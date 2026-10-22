@@ -4,7 +4,8 @@
     "forgedOwnerHeadersAccepted": false,
     "localAdapterEnabledByEnvironmentOrCookie": false,
     "privatePagesAndAPIs": 503,
-    "localTestRoute": 404
+    "localTestRoute": 404,
+    "compilerEndpointsExposeSourceOrEventStream": false
   },
   "syntheticDispatch": {
     "realChatGPTSignInVerified": false,
@@ -17,6 +18,8 @@
     "judgeCreditsPage": 403,
     "verifiedHarnessOwnerAdminPage": 200,
     "localSignInCommand": 404,
-    "publicRulesAPI": 200
+    "publicRulesAPI": 200,
+    "nestedBraceProfileRoundTrip": true,
+    "nestedBraceTeamLookup": 404
   }
 }

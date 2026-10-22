@@ -1,0 +1,10 @@
+{
+  "advisory": "GHSA-vfj7-8cjw-p6xm",
+  "isolatedNodeProcess": true,
+  "maxHeapMiB": 64,
+  "timeoutMs": 5000,
+  "depth": 2048,
+  "characters": 4097,
+  "outcome": "RangeError",
+  "conclusion": "The installed build dependency remains vulnerable; production mitigation is artifact exclusion and absence of runtime glob compilation, not a dependency patch."
+}

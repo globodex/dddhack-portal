@@ -1,4 +1,4 @@
-# DevDay Exchange Hackathon portal — v1 rehearsal
+# DevDay Community Hackathon: New Delhi — v1 rehearsal
 
 **A persisted local implementation with the supported Sites Worker/build integration. Local production smoke tests pass; real hosted ChatGPT sign-in and deployment remain unverified. Nothing is deployed.** This is the new `dddhack-portal` project, separate from `devday-recap`.
 
@@ -49,4 +49,4 @@ Read `docs/SITES_INTEGRATION.md`, `docs/ROUTE_MATRIX.md`, `docs/OPERATOR_RUNBOOK
 
 The original design references could not be opened through the supplied network or web reader. Reference screenshots and verified official dot assets remain blocked. The UI uses original dot artwork, explicitly described as such, with no endorsement claim. Fontsource Manrope and DM Sans are bundled locally under their included licenses.
 
-Dependency auditing still reports inherited framework/tooling findings. Available `fflate`, Miniflare `sharp`/`undici`/`ws` and plugin `ws` fixes are pinned; remaining findings and their reachability limits are recorded in `docs/SECURITY.md`. No forced downgrade or unsupported replacement was used. This is a remaining live-release blocker, alongside the integration and policy decisions.
+Dependency auditing still reports inherited framework/tooling findings. Available `fflate`, Miniflare `sharp`/`undici`/`ws` and plugin `ws` fixes are pinned; remaining findings and their reachability limits are recorded in `docs/SECURITY.md`. No forced downgrade or unsupported replacement was used. The production artifact mitigation and remaining build-environment risk are documented in `docs/DEPENDENCY_REACHABILITY.md`. The artifact gate must pass for each release; hosted identity/runtime setup and owner policy activation remain separate requirements.

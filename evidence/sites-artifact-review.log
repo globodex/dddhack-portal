@@ -1,0 +1,49 @@
+
+> devday-exchange-portal@0.1.0 test:artifact
+> node scripts/review-production-artifact.mjs
+
+{
+  "environments": [
+    {
+      "name": "rsc",
+      "outputDirectory": "dist/server",
+      "chunks": 56,
+      "moduleCount": 291
+    },
+    {
+      "name": "ssr",
+      "outputDirectory": "dist/server/ssr",
+      "chunks": 10,
+      "moduleCount": 120
+    },
+    {
+      "name": "client",
+      "outputDirectory": "dist/client",
+      "chunks": 7,
+      "moduleCount": 152
+    }
+  ],
+  "affectedModules": [],
+  "compilerEntries": [],
+  "externalModules": [
+    "cloudflare:workers",
+    "node:async_hooks",
+    "node:buffer",
+    "node:crypto",
+    "node:fs",
+    "node:module",
+    "node:path",
+    "node:url"
+  ],
+  "unresolved": [],
+  "dynamicExpressions": [],
+  "retainedDeadDevelopmentImports": [
+    {
+      "from": "dist/server/ssr/index.js",
+      "expression": "import(n.join(i,`cjs/react-dom-server.edge.development.js`))",
+      "guard": "function Ro(){return!1}",
+      "reason": "Consequent of a zero-argument, unreassigned function that returns literal false in the production artifact"
+    }
+  ],
+  "artifactFiles": 117
+}

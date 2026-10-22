@@ -1,6 +1,6 @@
 
 > devday-exchange-portal@0.1.0 build
-> node scripts/run-framework.mjs build
+> node scripts/run-framework.mjs build && node scripts/review-production-artifact.mjs
 
 [vinext] Tip: migrate from `vinext build` to `vite build`.
 (!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
@@ -18,7 +18,7 @@ vite v8.3.5 building ssr environment for production...
 transforming...
 ✓ 214 modules transformed.
 rendering chunks...
-✓ built in 200ms
+✓ built in 206ms
 [3/5] build rsc environment...
 vite v8.3.5 building rsc environment for production...
 transforming...
@@ -28,7 +28,7 @@ computing gzip size...
 dist/server/__vinext_cacheability_manifest.js                                                                                                0.02 kB
 dist/server/__vinext_cacheability_request_projection.js                                                                                      0.02 kB
 dist/server/__vinext_pregenerated_concrete_paths.js                                                                                          0.05 kB
-dist/server/wrangler.json                                                                                                                    1.28 kB │ gzip:  0.66 kB
+dist/server/wrangler.json                                                                                                                    1.30 kB │ gzip:  0.67 kB
 dist/server/_next/static/media/manrope-latin-500-normal.BYYD-dBL.woff2                                                                      14.04 kB
 dist/server/_next/static/media/dm-sans-latin-400-normal.CW0RaeGs.woff2                                                                      14.20 kB
 dist/server/_next/static/media/dm-sans-latin-500-normal.B9HHJjqV.woff2                                                                      14.30 kB
@@ -66,39 +66,39 @@ dist/server/_next/static/app-prerender-static-params-D9q3Iser.js                
 dist/server/_next/static/page-ajjx_MOm.js                                                                                                    1.84 kB │ gzip:  0.98 kB
 dist/server/_next/static/app-prerender-endpoints-CD2_m-FG.js                                                                                 2.56 kB │ gzip:  1.02 kB
 dist/server/_next/static/headers-BUAhKXqP.js                                                                                                 2.64 kB │ gzip:  1.10 kB
-dist/server/_next/static/app-page-cache-render-D16FFmGf.js                                                                                   2.66 kB │ gzip:  1.21 kB
+dist/server/_next/static/app-page-cache-render-CczAcJR-.js                                                                                   2.66 kB │ gzip:  1.21 kB
 dist/server/_next/static/http-CpNwLa3B.js                                                                                                    3.07 kB │ gzip:  1.61 kB
-dist/server/_next/static/isr-cache-C5eg4RaT.js                                                                                               3.50 kB │ gzip:  1.74 kB
+dist/server/_next/static/isr-cache-CKbQ9BNs.js                                                                                               3.50 kB │ gzip:  1.74 kB
 dist/server/_next/static/unified-request-context-j9pueOfY.js                                                                                 3.71 kB │ gzip:  1.46 kB
-dist/server/_next/static/app-page-tracing-htU0P9s4.js                                                                                        3.85 kB │ gzip:  1.90 kB
+dist/server/_next/static/app-page-tracing-4ikBCS8K.js                                                                                        3.85 kB │ gzip:  1.90 kB
 dist/server/_next/static/cache-handler-Dc39X6I9.js                                                                                           4.03 kB │ gzip:  1.51 kB
 dist/server/_next/static/request-pipeline-DvRa2crm.js                                                                                        4.98 kB │ gzip:  1.98 kB
 dist/server/_next/static/middleware-response-headers-Drly5KMQ.js                                                                             5.56 kB │ gzip:  2.23 kB
 dist/server/_next/static/framework~index~page~layout~app-rsc-response-stage~app-route-handler-dispatch~app-page-cach~le6jrlrm-CcOTYhCj.js    5.71 kB │ gzip:  2.34 kB
 dist/server/_next/static/client-build-files-8quKCVIN.js                                                                                      6.29 kB │ gzip:  2.60 kB
 dist/server/_next/static/response-stage-policy-DGeWxlCK.js                                                                                   6.95 kB │ gzip:  2.40 kB
-dist/server/_next/static/app-page-cache-finalizer-phYpOgsY.js                                                                                7.12 kB │ gzip:  2.52 kB
-dist/server/_next/static/app-page-cache-DXUgFCDE.js                                                                                          7.59 kB │ gzip:  2.57 kB
-dist/server/_next/static/app-rsc-response-stage-CjO-NcnV.js                                                                                  7.63 kB │ gzip:  2.63 kB
+dist/server/_next/static/app-page-cache-finalizer-D0cm2HUm.js                                                                                7.12 kB │ gzip:  2.52 kB
+dist/server/_next/static/app-page-cache-CujEFru3.js                                                                                          7.59 kB │ gzip:  2.57 kB
+dist/server/_next/static/app-rsc-response-stage-Bi2j-xCq.js                                                                                  7.63 kB │ gzip:  2.63 kB
 dist/server/_next/static/config-headers-B9T79R78.js                                                                                          8.53 kB │ gzip:  3.47 kB
-dist/server/_next/static/artifact-compatibility-CgGkHXNY.js                                                                                 10.19 kB │ gzip:  3.54 kB
+dist/server/_next/static/artifact-compatibility-S5EB0-vv.js                                                                                 10.19 kB │ gzip:  3.53 kB
 dist/server/_next/static/cacheability-request-BAMb6JV4.js                                                                                   10.69 kB │ gzip:  3.68 kB
-dist/server/_next/static/app-page-execution-DGk0hTas.js                                                                                     11.91 kB │ gzip:  4.29 kB
-dist/server/_next/static/app-elements-CyrOjLC1.js                                                                                           12.01 kB │ gzip:  4.09 kB
+dist/server/_next/static/app-page-execution-D4qEhnWD.js                                                                                     11.91 kB │ gzip:  4.29 kB
+dist/server/_next/static/app-elements-DGa_3NqZ.js                                                                                           12.01 kB │ gzip:  4.09 kB
 dist/server/_next/static/headers-BE_FSstC.js                                                                                                12.15 kB │ gzip:  4.12 kB
-dist/server/_next/static/prerender-work-unit-setup-RhwEGhXC.js                                                                              12.46 kB │ gzip:  4.68 kB
-dist/server/_next/static/rsc-completion-metadata-BPxyoPhM.js                                                                                13.35 kB │ gzip:  4.80 kB
+dist/server/_next/static/prerender-work-unit-setup-CRjfelff.js                                                                              12.46 kB │ gzip:  4.68 kB
+dist/server/_next/static/rsc-completion-metadata-BRluN4TU.js                                                                                13.35 kB │ gzip:  4.79 kB
 dist/server/_next/static/framework~index-D0tIdu_j.js                                                                                        18.90 kB │ gzip:  6.23 kB
-dist/server/_next/static/text-stream-CSIawS9k.js                                                                                            19.58 kB │ gzip:  5.96 kB
+dist/server/_next/static/text-stream-D1DMNu92.js                                                                                            19.58 kB │ gzip:  5.96 kB
 dist/server/_next/static/fetch-cache-BUdD_6Dq.js                                                                                            24.25 kB │ gzip:  8.42 kB
-dist/server/_next/static/app-route-handler-dispatch-B37TXdi0.js                                                                             55.60 kB │ gzip: 19.53 kB
+dist/server/_next/static/app-route-handler-dispatch-DDdknTf9.js                                                                             55.60 kB │ gzip: 19.53 kB
 dist/server/_next/static/framework~index~page~app-route-handler-dispatch-Cj1jsih6.js                                                        56.39 kB │ gzip: 17.20 kB
 dist/server/_next/static/service-DYryuKrE.js                                                                                                90.93 kB │ gzip: 26.14 kB
-dist/server/index.js                                                                                                                       224.77 kB │ gzip: 64.92 kB
+dist/server/index.js                                                                                                                       224.79 kB │ gzip: 64.93 kB
 
 [33m[INEFFECTIVE_DYNAMIC_IMPORT] [0mapp/layout.tsx is dynamically imported by \0virtual:vinext-rsc-entry but also statically imported by \0virtual:vinext-rsc-entry, dynamic import will not move module into another chunk.
 
-✓ built in 665ms
+✓ built in 675ms
 [4/5] build client environment...
 vite v8.3.5 building client environment for production...
 `output.codeSplitting.groups[0].name` is a function. Set `output.codeSplitting.groups[0].debugName` so the bundler timing report can identify this group.
@@ -126,7 +126,7 @@ dist/client/_next/static/chunks/BTf9HmUE.js                             111.23 k
 dist/client/_next/static/chunks/C--se8fB.js                             119.91 kB │ gzip: 35.96 kB
 dist/client/_next/static/chunks/CLvDmS2G.js                             219.24 kB │ gzip: 68.39 kB
 
-✓ built in 287ms
+✓ built in 290ms
 [5/5] build ssr environment...
 vite v8.3.5 building ssr environment for production...
 transforming...
@@ -148,7 +148,7 @@ dist/server/ssr/index.js                                           302.19 kB │
 
 [33m[INEFFECTIVE_DYNAMIC_IMPORT] [0mnode_modules/vinext/dist/shims/slot.js is dynamically imported by \0virtual:vite-rsc/client-references but also statically imported by node_modules/vinext/dist/server/app-route-tree.js, node_modules/vinext/dist/server/app-ssr-entry.js, node_modules/vinext/dist/shims/client-page-root.js, dynamic import will not move module into another chunk.
 
-✓ built in 512ms
+✓ built in 538ms
 
   Route (app)
   ┌ ƒ /:path*
@@ -158,3 +158,49 @@ dist/server/ssr/index.js                                           302.19 kB │
   λ API  ƒ Dynamic
 
   Build complete.
+
+{
+  "environments": [
+    {
+      "name": "rsc",
+      "outputDirectory": "dist/server",
+      "chunks": 56,
+      "moduleCount": 291
+    },
+    {
+      "name": "ssr",
+      "outputDirectory": "dist/server/ssr",
+      "chunks": 10,
+      "moduleCount": 120
+    },
+    {
+      "name": "client",
+      "outputDirectory": "dist/client",
+      "chunks": 7,
+      "moduleCount": 152
+    }
+  ],
+  "affectedModules": [],
+  "compilerEntries": [],
+  "externalModules": [
+    "cloudflare:workers",
+    "node:async_hooks",
+    "node:buffer",
+    "node:crypto",
+    "node:fs",
+    "node:module",
+    "node:path",
+    "node:url"
+  ],
+  "unresolved": [],
+  "dynamicExpressions": [],
+  "retainedDeadDevelopmentImports": [
+    {
+      "from": "dist/server/ssr/index.js",
+      "expression": "import(n.join(i,`cjs/react-dom-server.edge.development.js`))",
+      "guard": "function Ro(){return!1}",
+      "reason": "Consequent of a zero-argument, unreassigned function that returns literal false in the production artifact"
+    }
+  ],
+  "artifactFiles": 117
+}

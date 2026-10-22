@@ -42,7 +42,9 @@ try {
   worker = await unstable_dev("dist/server/index.js", options);
   const landing = await worker.fetch("/");
   assert.equal(landing.status, 200);
-  assert.match(await landing.text(), /Build what/);
+  const landingHTML = await landing.text();
+  assert.match(landingHTML, /Build what/);
+  assert.match(landingHTML, /DevDay Community Hackathon: New Delhi/);
   for (const path of [
     "/dashboard/credits",
     "/admin/permissions",
@@ -58,12 +60,32 @@ try {
     assert.equal((await response.json()).code, "SITES_DISPATCH_NOT_CONFIGURED");
   }
   assert.equal((await worker.fetch("/local-test")).status, 404);
+  const compilerEndpoints = [
+    "/@vite/client",
+    "/@fs/package.json",
+    "/esbuild",
+    "/__sites_connector_preview/context",
+  ];
+  for (const endpoint of compilerEndpoints) {
+    const response = await worker.fetch(endpoint);
+    const body = await response.text();
+    assert.notEqual(response.headers.get("content-type"), "text/event-stream");
+    assert(
+      !body.includes("import.meta.hot"),
+      endpoint + " exposed Vite client source",
+    );
+    assert(
+      !body.includes('"dependencies":'),
+      endpoint + " exposed package/source data",
+    );
+  }
   report.standalone = {
     landing: 200,
     forgedOwnerHeadersAccepted: false,
     localAdapterEnabledByEnvironmentOrCookie: false,
     privatePagesAndAPIs: 503,
     localTestRoute: 404,
+    compilerEndpointsExposeSourceOrEventStream: false,
   };
   await worker.stop();
   worker = undefined;
@@ -164,6 +186,30 @@ try {
   assert.equal(mutation.status, 404);
   assert.equal(mutation.headers.get("set-cookie"), null);
   assert.equal((await worker.fetch("/api/portal?view=/rules")).status, 200);
+  const nestedBraces = "{".repeat(256) + "literal text" + "}".repeat(256);
+  const profileMutation = await worker.fetch(
+    `http://${worker.address}:${worker.port}/api/portal`,
+    {
+      method: "POST",
+      headers: {
+        ...alice,
+        "content-type": "application/json",
+        origin: `http://${worker.address}:${worker.port}`,
+      },
+      body: JSON.stringify({ action: "profile", data: { bio: nestedBraces } }),
+    },
+  );
+  assert.equal(profileMutation.status, 200);
+  const storedProfile = await worker.fetch(
+    "/api/portal?view=/dashboard/profile",
+    { headers: alice },
+  );
+  assert.equal((await storedProfile.json()).profile.bio, nestedBraces);
+  const literalLookup = await worker.fetch(
+    "/api/portal?view=" + encodeURIComponent("/teams/" + nestedBraces),
+  );
+  assert.equal(literalLookup.status, 404);
+  assert.equal((await worker.fetch("/")).status, 200);
   report.syntheticDispatch = {
     realChatGPTSignInVerified: false,
     anonymousPrivatePage: 302,
@@ -176,6 +222,8 @@ try {
     verifiedHarnessOwnerAdminPage: 200,
     localSignInCommand: 404,
     publicRulesAPI: 200,
+    nestedBraceProfileRoundTrip: true,
+    nestedBraceTeamLookup: 404,
   };
   writeFileSync(
     "evidence/sites-production-smoke.json",

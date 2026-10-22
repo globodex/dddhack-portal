@@ -20,13 +20,13 @@ The app has not been deployed. The supported Sites Worker, auth helpers, D1 decl
 
 Browser QA and reference screenshots were unavailable in this turn: the computer tool exposes no browsers/apps and IAB launch reports unavailable. Prior v1 browser evidence remains historical; no new screenshot or visual-verification claim is made.
 
-## Dependency audit: unresolved release blocker
+## Dependency audit and artifact release gate
 
-`evidence/sites-dependency-audit.json` records the latest full dependency audit after supported Sites integration. The older `evidence/dependency-audit.json` is the v1 production-only audit and should not be treated as the current complete tree. The final complete tree reports **6 high, 4 moderate, 2 low, 0 critical** package-chain findings. The six high findings still propagate from the inherited `braces` chain; the moderate/low findings are in the Drizzle/esbuild/Wrangler toolchain.
+The full current audit records **6 high, 4 moderate, 0 low, 0 critical** package-chain findings in `evidence/sites-dependency-audit.json`. They remain visible and unpatched where no supported fix is available. The two low Windows esbuild findings were removed by a stable compatible Cloudflare toolchain update.
 
-The inherited `braces` stack-exhaustion chain remains unresolved; npm's suggested forced Vinext downgrade would abandon the current framework path and was not applied. Available `fflate` and same-major `sharp`, `undici` and `ws` fixes are pinned and retested. The supported starter's older build-tool dependencies still need a maintained patched path. No `npm audit fix --force` or unsupported downgrade was used.
+The completed [reachability review](DEPENDENCY_REACHABILITY.md) establishes an artifact-specific mitigation for the remaining findings: affected build/CLI implementations are not shipped, final imports resolve only to emitted modules/platform builtins, and visitor input never enters the build transforms. A bounded local reproduction still produces a braces `RangeError`; no dependency-fix claim is made. A negative gate test proves affected modules, new external/nonliteral imports and stale graphs fail closed. The production build now runs this artifact gate automatically. New advisories require an explicit fresh review.
 
-The portal does not intentionally accept user-provided glob patterns or expose development tooling publicly. That limits the intended input surface, but full dependency reachability is not audited; remaining findings continue to block live release.
+This clears the previous unknown-reachability blocker only for the checked artifact and release conditions in that review. It is not permission to expose development tools, build untrusted participant source, skip hosted identity checks or ignore new advisories. Remaining build-environment risk, evidence hashes and limits are documented there.
 
 ## Remaining integration/security work
 

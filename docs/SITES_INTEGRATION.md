@@ -1,6 +1,6 @@
 # Supported Sites integration
 
-Implemented locally on `param302-linux` using installed official Sites plugin 1.1.1. **No Site was created, registered, deployed or published. No credentials or sharing settings were changed.** The existing feature branch and service logic are preserved. Public hosting is requested for the eventual new portal; actual publication is on hold for UI direction and release readiness. The separate `dddrecap` Site is unrelated.
+Implemented locally on `param302-linux` using installed official Sites plugin 1.1.1. **No Site was created, registered, deployed or published. No credentials or sharing settings were changed.** The existing feature branch and service logic are preserved. Public hosting is now requested first, titled **DevDay Community Hackathon: New Delhi**, preferred slug `dddhack-portal`. Site creation/short-lived source credential approval and hosted readiness are pending. The separate `dddrecap` Site is unrelated.
 
 ## Build and request boundary
 
@@ -30,8 +30,8 @@ The native Sites read-only connection works locally, and the setup/build/source 
 
 ## Remaining release work
 
-1. Obtain the user's UI direction. Reference screenshots remain blocked because the computer tool reports no browsers/apps and `Browser is not available: iab`. No supported screenshot fallback was available; no reference images or Library IDs were fabricated.
-2. Resolve the documented dependency findings and policy/operational decisions.
+1. Obtain the required approval for the new Site and its short-lived source-write credential. Naming: `DevDay Community Hackathon: New Delhi`, preferred slug `dddhack-portal`; no live URL is verified.
+2. Enforce the artifact-specific mitigation in `DEPENDENCY_REACHABILITY.md`, retain the full audit findings, and keep the event policies draft until separately approved.
 3. When publication resumes, create the new Site, preserve its returned identity and configure the requested public audience through supported tools. Do not deploy a dummy auth implementation or expose a header-trusting standalone Worker.
 4. Configure a fresh production credit key and server trust only after verifying Dispatch as the sole ingress; rehearse real sign-in, anonymous requests, header spoof rejection, account revocation, private data and hosted D1 using authorized test accounts.
 5. Initialize the inactive draft explicitly, validate operator workflows, hosted backup/restore and capacity, then complete the approved release. No real AI/GitHub evaluator or API spending is enabled by this integration.

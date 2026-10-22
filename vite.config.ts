@@ -4,6 +4,7 @@ import hostingConfig from "./.openai/hosting.json";
 import { readExecutionProfile } from "./scripts/execution-profile.mjs";
 import { configureToolEnvironment } from "./scripts/tool-environment.mjs";
 import { sites } from "./scripts/vite/sites-vite-plugin";
+import { productionReachability } from "./scripts/vite/production-reachability-plugin.mjs";
 import { connectorPreview } from "./scripts/vite/connector-preview-plugin.mjs";
 
 const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
@@ -43,8 +44,10 @@ export default defineConfig(async ({ command }) => {
   // Keep the existing synthetic SQLite rehearsal in Node only. This branch is
   // never used by a production build or the production Worker.
   if (command === "serve" && process.env.PORTAL_LOCAL_TEST === "1") {
-    return { plugins: [vinext(), sites({ mockAuth: false })],
-      server: { host: "127.0.0.1", port: 5173, strictPort: true } };
+    return {
+      plugins: [vinext(), sites({ mockAuth: false })],
+      server: { host: "127.0.0.1", port: 5173, strictPort: true },
+    };
   }
 
   // Wrangler snapshots its log path while the Cloudflare plugin is imported.
@@ -63,6 +66,7 @@ export default defineConfig(async ({ command }) => {
       vinext(),
       sites({ mockAuth: !managedLinux }),
       connectorPreview(),
+      productionReachability(),
       cloudflare({
         viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
         inspectorPort: false,

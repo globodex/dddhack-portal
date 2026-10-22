@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "node scripts/run-framework.mjs dev",
-    "build": "node scripts/run-framework.mjs build",
+    "build": "node scripts/run-framework.mjs build && node scripts/review-production-artifact.mjs",
     "typecheck": "tsc --noEmit",
     "test": "tsx --test tests/*.test.ts",
     "test:e2e": "playwright test",
@@ -17,7 +17,8 @@
     "test:production": "node --import tsx scripts/production-smoke.mjs",
     "format": "prettier --write app lib scripts tests docs README.md",
     "start": "node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js dev --config dist/server/wrangler.json --local --persist-to .wrangler/state --ip 127.0.0.1 --inspector-port 0",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "test:artifact": "node scripts/review-production-artifact.mjs"
   },
   "dependencies": {
     "@fontsource/dm-sans": "5.3.0",
@@ -32,7 +33,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",
-    "@cloudflare/workers-types": "4.20260515.1",
+    "@cloudflare/workers-types": "4.20260617.1",
     "@playwright/test": "1.56.1",
     "@types/node": "24.10.0",
     "@types/react": "19.2.2",
@@ -44,10 +45,12 @@
     "tsx": "4.20.6",
     "typescript": "5.9.3",
     "vite": "8.3.5",
-    "@cloudflare/vite-plugin": "1.37.1",
-    "wrangler": "4.92.0",
+    "@cloudflare/vite-plugin": "1.42.0",
+    "wrangler": "4.102.0",
     "drizzle-kit": "0.31.10",
-    "playwright-core": "1.56.1"
+    "playwright-core": "1.56.1",
+    "es-module-lexer": "3.0.4",
+    "acorn": "8.19.0"
   },
   "overrides": {
     "fflate": "0.8.3",

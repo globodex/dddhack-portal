@@ -1,24 +1,6 @@
 {
   "auditReportVersion": 2,
   "vulnerabilities": {
-    "@cloudflare/vite-plugin": {
-      "name": "@cloudflare/vite-plugin",
-      "severity": "low",
-      "isDirect": true,
-      "via": [
-        "wrangler"
-      ],
-      "effects": [],
-      "range": "1.24.0 - 1.41.0",
-      "nodes": [
-        "node_modules/@cloudflare/vite-plugin"
-      ],
-      "fixAvailable": {
-        "name": "@cloudflare/vite-plugin",
-        "version": "1.64.0",
-        "isSemVerMajor": false
-      }
-    },
     "@esbuild-kit/core-utils": {
       "name": "@esbuild-kit/core-utils",
       "severity": "moderate",
@@ -132,32 +114,14 @@
             "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N"
           },
           "range": "<=0.24.2"
-        },
-        {
-          "source": 1120680,
-          "name": "esbuild",
-          "dependency": "esbuild",
-          "title": "esbuild allows arbitrary file read when running the development server on Windows",
-          "url": "https://github.com/advisories/GHSA-g7r4-m6w7-qqqr",
-          "severity": "low",
-          "cwe": [
-            "CWE-22"
-          ],
-          "cvss": {
-            "score": 2.5,
-            "vectorString": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:L/A:N"
-          },
-          "range": ">=0.27.3 <0.28.1"
         }
       ],
       "effects": [
-        "@esbuild-kit/core-utils",
-        "wrangler"
+        "@esbuild-kit/core-utils"
       ],
-      "range": "<=0.24.2 || 0.27.3 - 0.28.0",
+      "range": "<=0.24.2",
       "nodes": [
-        "node_modules/@esbuild-kit/core-utils/node_modules/esbuild",
-        "node_modules/wrangler/node_modules/esbuild"
+        "node_modules/@esbuild-kit/core-utils/node_modules/esbuild"
       ],
       "fixAvailable": {
         "name": "drizzle-kit",
@@ -262,44 +226,24 @@
         "version": "0.0.15",
         "isSemVerMajor": true
       }
-    },
-    "wrangler": {
-      "name": "wrangler",
-      "severity": "low",
-      "isDirect": true,
-      "via": [
-        "esbuild"
-      ],
-      "effects": [
-        "@cloudflare/vite-plugin"
-      ],
-      "range": "4.64.0 - 4.101.0",
-      "nodes": [
-        "node_modules/wrangler"
-      ],
-      "fixAvailable": {
-        "name": "@cloudflare/vite-plugin",
-        "version": "1.64.0",
-        "isSemVerMajor": false
-      }
     }
   },
   "metadata": {
     "vulnerabilities": {
       "info": 0,
-      "low": 2,
+      "low": 0,
       "moderate": 4,
       "high": 6,
       "critical": 0,
-      "total": 12
+      "total": 10
     },
     "dependencies": {
-      "prod": 120,
-      "dev": 165,
-      "optional": 199,
+      "prod": 147,
+      "dev": 166,
+      "optional": 200,
       "peer": 54,
       "peerOptional": 0,
-      "total": 420
+      "total": 448
     }
   }
 }

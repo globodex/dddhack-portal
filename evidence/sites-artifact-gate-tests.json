@@ -1,0 +1,8 @@
+{
+  "rejectsExternalNpmImport": true,
+  "rejectsNewNonliteralImport": true,
+  "rejectsAffectedBundledModule": true,
+  "rejectsUnrecordedJavaScript": true,
+  "rejectsStaleBuildGraph": true,
+  "originalArtifactRestoredAndPasses": true
+}
