@@ -12,6 +12,8 @@ The official Sites source workflow rebuilt the project with its persisted projec
 
 ## Verification limits
 
+Later diagnosis: production Worker logs now confirm the user's anonymous landing returned 200 and their signed-in `/dashboard` request returned 503 with identity headers present at Dispatch. The error is the app's unset runtime configuration guard. This does not establish production header sanitization. The prepared, unpublished source repair separates credit encryption from sign-in; see `AUTH_REPAIR.md`. Earlier executor checks and the original version 1 deployment record below remain historical evidence.
+
 Native deployment and public access succeeded. Direct anonymous HTTPS checks from `param302-linux` returned **403 for every attempted route**, including `/`. Therefore the live landing, asset loading, private API responses, Dispatch header stripping and interactive sign-in are **not HTTP/browser verified**. No alternative origin, forged browser user agent, access-control workaround or security-warning bypass was attempted. Native Worker log queries returned no events for these checks; the available data does not establish the exact source of the denial.
 
 The compiled local production tests pass: public landing 200 with the exact title; unconfigured protected routes/APIs 503; fixture route 404; configured synthetic Dispatch tests preserve anonymous/participant/admin/judge/export restrictions. Those are local results, not substitutes for live HTTP evidence. See `evidence/sites-live-http.json` and `evidence/sites-publication.json`.

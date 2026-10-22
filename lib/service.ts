@@ -10,6 +10,7 @@ import {
   sha256,
   seal,
   unseal,
+  requireCreditKey,
   parseCSV,
   feedbackQuality,
   PortalError,
@@ -59,7 +60,7 @@ export class PortalService {
   constructor(
     public db: Database,
     public identity: Identity | null,
-    public creditKey: string,
+    public creditKey: string | undefined,
     public now: () => string = () => new Date().toISOString(),
     public evaluator: Evaluator = disabledEvaluator,
   ) {}
@@ -616,6 +617,7 @@ export class PortalService {
       case "reveal-credit": {
         await this.approved();
         demand(actor.role !== "judge", 403, "JUDGES_CANNOT_ACCESS_CREDITS");
+        requireCreditKey(this.creditKey);
         const d = z.object({ typeId: id }).parse(data);
         const c = await one<{ ciphertext: string }>(
           this.db,
@@ -638,6 +640,7 @@ export class PortalService {
             digest: z.string().optional(),
           })
           .parse(data);
+        if (d.kind === "credits") requireCreditKey(this.creditKey);
         const parsed = parseCSV(d.csv);
         demand(
           parsed[0].length === 1 &&

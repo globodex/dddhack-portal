@@ -42,9 +42,18 @@ export async function sha256(v: string) {
     (b) => b.toString(16).padStart(2, "0"),
   ).join("");
 }
-export async function seal(value: string, key: string) {
-  const raw = Uint8Array.from(atob(key), (c) => c.charCodeAt(0));
+export function requireCreditKey(key: string | undefined) {
+  let raw = new Uint8Array();
+  try {
+    if (key) raw = Uint8Array.from(atob(key), (c) => c.charCodeAt(0));
+  } catch {
+    // Invalid encoding has the same fail-closed response as an absent key.
+  }
   demand(raw.length === 32, 503, "CREDIT_KEY_UNAVAILABLE");
+  return raw;
+}
+export async function seal(value: string, key: string | undefined) {
+  const raw = requireCreditKey(key);
   const k = await crypto.subtle.importKey("raw", raw, "AES-GCM", false, [
     "encrypt",
   ]);
@@ -60,15 +69,12 @@ export async function seal(value: string, key: string) {
     btoa(String.fromCharCode(...new Uint8Array(encrypted)))
   );
 }
-export async function unseal(value: string, key: string) {
+export async function unseal(value: string, key: string | undefined) {
+  const raw = requireCreditKey(key);
   const [a, b] = value.split(".");
-  const k = await crypto.subtle.importKey(
-    "raw",
-    Uint8Array.from(atob(key), (c) => c.charCodeAt(0)),
-    "AES-GCM",
-    false,
-    ["decrypt"],
-  );
+  const k = await crypto.subtle.importKey("raw", raw, "AES-GCM", false, [
+    "decrypt",
+  ]);
   return new TextDecoder().decode(
     await crypto.subtle.decrypt(
       { name: "AES-GCM", iv: Uint8Array.from(atob(a), (c) => c.charCodeAt(0)) },

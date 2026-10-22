@@ -9,7 +9,7 @@ import {
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { unstable_dev, getPlatformProxy } from "wrangler";
-import { seedLocal, LOCAL_CREDIT_KEY } from "./fixtures.ts";
+import { seedLocal } from "./fixtures.ts";
 process.env.PORTAL_LOCAL_TEST = "1"; // Cannot reactivate code removed by the production build.
 process.env.CLOUDFLARE_CF_FETCH_ENABLED = "false";
 process.env.WRANGLER_SEND_METRICS = "false";
@@ -116,7 +116,6 @@ try {
     vars: {
       PORTAL_RUNTIME: "sites",
       PORTAL_TRUST_SITES_DISPATCH: "true",
-      CREDIT_ENCRYPTION_KEY: LOCAL_CREDIT_KEY,
     },
   });
   const anon = await worker.fetch("/dashboard", { redirect: "manual" });
@@ -185,6 +184,27 @@ try {
   );
   assert.equal(mutation.status, 404);
   assert.equal(mutation.headers.get("set-cookie"), null);
+  const creditImport = await worker.fetch(
+    `http://${worker.address}:${worker.port}/api/portal`,
+    {
+      method: "POST",
+      headers: {
+        ...owner,
+        "content-type": "application/json",
+        origin: `http://${worker.address}:${worker.port}`,
+      },
+      body: JSON.stringify({
+        action: "preview-import",
+        data: {
+          kind: "credits",
+          csv: "value\nSYNTHETIC-ONLY",
+          typeId: "unused",
+        },
+      }),
+    },
+  );
+  assert.equal(creditImport.status, 503);
+  assert.equal((await creditImport.json()).code, "CREDIT_KEY_UNAVAILABLE");
   assert.equal((await worker.fetch("/api/portal?view=/rules")).status, 200);
   const nestedBraces = "{".repeat(256) + "literal text" + "}".repeat(256);
   const profileMutation = await worker.fetch(
@@ -212,6 +232,8 @@ try {
   assert.equal((await worker.fetch("/")).status, 200);
   report.syntheticDispatch = {
     realChatGPTSignInVerified: false,
+    creditEncryptionKeyConfigured: false,
+    creditImportWithoutKey: 503,
     anonymousPrivatePage: 302,
     participantProfilePage: 200,
     participantPrivateAPI: 200,

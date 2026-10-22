@@ -35,15 +35,13 @@ export function getSitesRuntime(): Runtime {
   );
   const { env, request } = context;
   demand(env.DB, 503, "DATABASE_BINDING_UNAVAILABLE");
-  const key = env.CREDIT_ENCRYPTION_KEY;
-  let keyLength = 0;
-  try {
-    keyLength = key ? atob(key).length : 0;
-  } catch {
-    /* Fail closed below. */
-  }
-  demand(key && keyLength === 32, 503, "CREDIT_KEY_UNAVAILABLE");
-  return { db: env.DB, identity: sitesIdentity(request, env), key };
+  // Credit encryption is independent of sign-in. Only credit imports/reveals
+  // require this secret; absence never creates or substitutes a key.
+  return {
+    db: env.DB,
+    identity: sitesIdentity(request, env),
+    key: env.CREDIT_ENCRYPTION_KEY,
+  };
 }
 export function protectedPath(path: string) {
   return /^\/(dashboard|admin|judge)(\/|$)/.test(path);

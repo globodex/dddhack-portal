@@ -11,6 +11,7 @@ import { handlePortal, handleExport } from "../lib/http";
 import { seedLocal, LOCAL_CREDIT_KEY } from "../scripts/fixtures";
 import { rows, type Database } from "../lib/db";
 import { setup } from "./helpers";
+import { seal, unseal, PortalError } from "../lib/security";
 
 const trusted = {
   PORTAL_RUNTIME: "sites",
@@ -52,11 +53,7 @@ test("Worker request scope isolates concurrent identities, bindings and keys; no
   );
   assert.equal(new Set(outcomes).size, 30);
   assert.throws(() => getSitesRuntime(), /SITES_DISPATCH_NOT_CONFIGURED/);
-  for (const env of [
-    { DB: db },
-    { ...trusted, DB: undefined },
-    { ...trusted, DB: db, CREDIT_ENCRYPTION_KEY: "bad" },
-  ]) {
+  for (const env of [{ DB: db }, { ...trusted, DB: undefined }]) {
     runWithSitesRequest(
       request("forged", "connectwithparam.30@gmail.com"),
       env,
@@ -67,6 +64,78 @@ test("Worker request scope isolates concurrent identities, bindings and keys; no
   assert.equal(protectedPath("/dashboard/credits"), true);
   assert.equal(protectedPath("/administrator"), false);
   db.close();
+});
+test("sign-in and profile access do not require a credit secret; credit operations fail closed without one", async () => {
+  const { db } = await setup();
+  try {
+    for (const key of [undefined, "", "bad", "not!base64", btoa("short")]) {
+      const env = { ...trusted, DB: db, CREDIT_ENCRYPTION_KEY: key };
+      const req = request(
+        "fake_alice",
+        "alice@portal.test",
+        "/api/portal?view=/dashboard/profile",
+      );
+      const profile = await runWithSitesRequest(req, env, () =>
+        handlePortal(req, getSitesRuntime()),
+      );
+      assert.equal(profile.status, 200);
+      assert.equal(
+        ((await profile.json()) as { me: { id: string } }).me.id,
+        "fake_alice",
+      );
+      const anon = request(
+        undefined,
+        undefined,
+        "/api/portal?view=/dashboard/profile",
+      );
+      assert.equal(
+        (
+          await runWithSitesRequest(anon, env, () =>
+            handlePortal(anon, getSitesRuntime()),
+          )
+        ).status,
+        401,
+      );
+      const owner = request(
+        "owner-without-credit-key",
+        "connectwithparam.30@gmail.com",
+      );
+      const before = await rows(db, "SELECT * FROM import_previews");
+      const mutation = new Request("https://portal.test/api/portal", {
+        method: "POST",
+        headers: {
+          ...Object.fromEntries(owner.headers),
+          origin: "https://portal.test",
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          action: "preview-import",
+          data: {
+            kind: "credits",
+            csv: "value\nSYNTHETIC-TEST-CODE",
+            typeId: "unused",
+          },
+        }),
+      });
+      const rejected = await runWithSitesRequest(mutation, env, () =>
+        handlePortal(mutation, getSitesRuntime()),
+      );
+      assert.equal(rejected.status, 503);
+      assert.equal(
+        ((await rejected.json()) as { code: string }).code,
+        "CREDIT_KEY_UNAVAILABLE",
+      );
+      assert.deepEqual(await rows(db, "SELECT * FROM import_previews"), before);
+      const unavailable = (e: unknown) =>
+        e instanceof PortalError &&
+        e.status === 503 &&
+        e.code === "CREDIT_KEY_UNAVAILABLE";
+      await assert.rejects(seal("synthetic", key), unavailable);
+      await assert.rejects(unseal("unused.ciphertext", key), unavailable);
+    }
+  } finally {
+    db.close();
+  }
 });
 test("Sites runtime authorizes anonymous, participant, judge and owner requests against server data", async () => {
   const { db } = await setup();

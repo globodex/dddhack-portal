@@ -12,7 +12,7 @@ import { sitesIdentity } from "./identity";
 export type Runtime = {
   db: Database;
   identity: Identity | null;
-  key: string;
+  key: string | undefined;
   localTest?: boolean;
 };
 const safeHeaders = {
@@ -188,7 +188,7 @@ export async function handleExport(request: Request, runtime: Runtime) {
 // App Router routes use getSitesRuntime() from the Worker request scope.
 export function createSitesPortalHandler(env: {
   DB: Database;
-  CREDIT_ENCRYPTION_KEY: string;
+  CREDIT_ENCRYPTION_KEY?: string;
   PORTAL_RUNTIME?: string;
   PORTAL_TRUST_SITES_DISPATCH?: string;
 }) {

@@ -9,6 +9,8 @@
   },
   "syntheticDispatch": {
     "realChatGPTSignInVerified": false,
+    "creditEncryptionKeyConfigured": false,
+    "creditImportWithoutKey": 503,
     "anonymousPrivatePage": 302,
     "participantProfilePage": 200,
     "participantPrivateAPI": 200,
