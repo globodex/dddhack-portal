@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.vite/
+.vinext/
+.wrangler/
+.sites-runtime/
+.local/
+.env*
+!.env.example
+test-results/
+playwright-report/
+*.tsbuildinfo
+evidence/*.png
+evidence/*.webm
