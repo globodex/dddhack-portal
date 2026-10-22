@@ -1,0 +1,193 @@
+import { z } from "zod";
+import { PortalService } from "./service";
+import {
+  PortalError,
+  checkMutationRequest,
+  csvExport,
+  demand,
+} from "./security";
+import type { Database } from "./db";
+import type { Identity } from "./identity";
+import { sitesIdentity } from "./identity";
+export type Runtime = {
+  db: Database;
+  identity: Identity | null;
+  key: string;
+  localTest?: boolean;
+};
+const safeHeaders = {
+  "Cache-Control": "private, no-store, max-age=0",
+  "X-Content-Type-Options": "nosniff",
+  "Referrer-Policy": "same-origin",
+  Vary: "Cookie, oai-authenticated-user-id",
+};
+function errorResponse(error: unknown) {
+  if (error instanceof z.ZodError)
+    return Response.json(
+      {
+        code: "VALIDATION_ERROR",
+        message: error.issues
+          .map((i) => i.path.join(".") + ": " + i.message)
+          .join("; "),
+      },
+      { status: 422, headers: safeHeaders },
+    );
+  if (error instanceof SyntaxError)
+    return Response.json(
+      { code: "INVALID_JSON", message: "The request contains invalid JSON." },
+      { status: 422, headers: safeHeaders },
+    );
+  if (error instanceof PortalError)
+    return Response.json(
+      { code: error.code, message: error.message },
+      { status: error.status, headers: safeHeaders },
+    );
+  const msg = error instanceof Error ? error.message : "";
+  const constraint = msg.match(
+    /TEAM_FULL|APPROVAL_REQUIRED|MEMBERSHIP_FROZEN|ALREADY_IN_TEAM|IDEA_LOCKED|SUBMISSIONS_CLOSED|EVENT_DRAFT|VOTE_LIMIT|OWN_TEAM|CHECKIN_REQUIRED|RESULTS_FROZEN|IMMUTABLE/,
+  );
+  if (constraint || /constraint|UNIQUE|CHECK/.test(msg))
+    return Response.json(
+      {
+        code: constraint?.[0] || "CONFLICT",
+        message:
+          constraint?.[0] ||
+          "A limit or duplicate record prevented this action. No changes were committed.",
+      },
+      { status: 409, headers: safeHeaders },
+    );
+  return Response.json(
+    {
+      code: "REQUEST_FAILED",
+      message:
+        "The request could not be completed. No secret values are included in this error.",
+    },
+    { status: 500, headers: safeHeaders },
+  );
+}
+async function readBody(request: Request) {
+  const reader = request.body?.getReader();
+  demand(reader, 422, "EMPTY_BODY");
+  let length = 0;
+  const chunks: Uint8Array[] = [];
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    length += value.length;
+    if (length > 600_000) {
+      await reader.cancel();
+      throw new PortalError(413, "BODY_TOO_LARGE");
+    }
+    chunks.push(value);
+  }
+  const combined = new Uint8Array(length);
+  let at = 0;
+  for (const c of chunks) {
+    combined.set(c, at);
+    at += c.length;
+  }
+  return JSON.parse(new TextDecoder().decode(combined));
+}
+export async function handlePortal(request: Request, runtime: Runtime) {
+  try {
+    const service = new PortalService(
+      runtime.db,
+      runtime.identity,
+      runtime.key,
+    );
+    if (request.method === "GET") {
+      const view = new URL(request.url).searchParams.get("view") || "/";
+      return Response.json(
+        { ...(await service.view(view)), localTest: !!runtime.localTest },
+        { headers: safeHeaders },
+      );
+    }
+    demand(request.method === "POST", 405, "METHOD_NOT_ALLOWED");
+    checkMutationRequest(request);
+    const { action, data } = z
+      .object({ action: z.string().max(80), data: z.unknown() })
+      .strict()
+      .parse(await readBody(request));
+    if (action === "local-signin") {
+      demand(runtime.localTest, 404, "NOT_FOUND");
+      const { fixture } = z
+        .object({
+          fixture: z.enum([
+            "owner",
+            "admin",
+            "judge",
+            "judge2",
+            "alice",
+            "bob",
+            "carol",
+            "dave",
+            "eve",
+            "frank",
+            "pending",
+            "stranger",
+          ]),
+        })
+        .parse(data);
+      return Response.json(
+        { message: "Fake local identity selected." },
+        {
+          headers: {
+            ...safeHeaders,
+            "Set-Cookie": `portal_local_fixture=${fixture}; Path=/; HttpOnly; SameSite=Strict; Max-Age=28800`,
+          },
+        },
+      );
+    }
+    return Response.json(await service.command(action, data), {
+      headers: safeHeaders,
+    });
+  } catch (e) {
+    return errorResponse(e);
+  }
+}
+export async function handleExport(request: Request, runtime: Runtime) {
+  try {
+    const service = new PortalService(
+      runtime.db,
+      runtime.identity,
+      runtime.key,
+    );
+    const actor = await service.staff();
+    const list = new URL(request.url).searchParams.get("list") || "";
+    if (["settings", "permissions"].includes(list)) await service.staff(true);
+    const data = await service.adminList(list);
+    await service.mutate(actor.id, "export", list, [], {
+      rows: data.length,
+      secretValues: false,
+    });
+    return new Response(csvExport(data), {
+      headers: {
+        ...safeHeaders,
+        "Content-Type": "text/csv; charset=utf-8",
+        "Content-Disposition": `attachment; filename="devday-${list}.csv"`,
+      },
+    });
+  } catch (e) {
+    return errorResponse(e);
+  }
+}
+// Future supported Sites Worker wiring calls this factory with the request-scoped D1 binding.
+// It is deliberately NOT attached to a public Worker until the Sites starter/plugin is available.
+export function createSitesPortalHandler(env: {
+  DB: Database;
+  CREDIT_ENCRYPTION_KEY: string;
+  PORTAL_RUNTIME?: string;
+  PORTAL_TRUST_SITES_DISPATCH?: string;
+}) {
+  return async (request: Request) => {
+    try {
+      const identity = sitesIdentity(request, env);
+      const runtime = { db: env.DB, identity, key: env.CREDIT_ENCRYPTION_KEY };
+      return new URL(request.url).pathname === "/api/export"
+        ? handleExport(request, runtime)
+        : handlePortal(request, runtime);
+    } catch (e) {
+      return errorResponse(e);
+    }
+  };
+}

@@ -1,4 +1,4 @@
 {
-  "d1": { "binding": "DB", "migrations_dir": "db/migrations" },
+  "d1": null,
   "r2": null
 }

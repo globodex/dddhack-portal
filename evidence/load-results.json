@@ -1,0 +1,39 @@
+{
+  "scope": "LOCAL ONLY: 200 distinct synthetic sessions over loopback HTTP, SQLite WAL; not hosted Sites capacity or ChatGPT sign-in proof",
+  "reads": {
+    "sessions": 200,
+    "success": 200,
+    "wallMs": 261,
+    "p50Ms": 168,
+    "p95Ms": 224
+  },
+  "submissions": {
+    "concurrent": 20,
+    "committed": 3,
+    "rejected": 17
+  },
+  "checkins": {
+    "concurrent": 40,
+    "checkedIn": 40,
+    "allocated": 20,
+    "pending": 20,
+    "duplicateCredits": 0
+  },
+  "votes": {
+    "concurrent": 14,
+    "committed": 3,
+    "rejected": 11
+  },
+  "membershipRace": {
+    "workerThreads": 6,
+    "contenders": 24,
+    "accepted": 1,
+    "finalSize": 5
+  },
+  "integrity": {
+    "foreignKeyViolations": 0,
+    "sqliteIntegrity": {
+      "integrity_check": "ok"
+    }
+  }
+}
