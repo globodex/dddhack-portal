@@ -1,6 +1,6 @@
 # Security verification and release limits
 
-The app has not been deployed. The supported Sites Worker, auth helpers, D1 declaration, migrations and production build are integrated and locally exercised; actual hosted ChatGPT authentication, Dispatch provenance and hosted D1 remain unverified. The production Worker returns **503** for protected data when trusted runtime configuration is absent. The local fake identity runtime is compiled out of that build; setting an environment variable on the production build does not enable it.
+A public draft has been deployed successfully according to Sites; see `PUBLICATION.md`. Anonymous HTTP verification from this executor returned 403, so live behavior is not confirmed. The supported Sites Worker, auth helpers, D1 declaration, migrations and production build are integrated and locally exercised; actual hosted ChatGPT authentication, Dispatch provenance and hosted D1 remain unverified. The production Worker returns **503** for protected data when trusted runtime configuration is absent. The local fake identity runtime is compiled out of that build; setting an environment variable on the production build does not enable it.
 
 ## Verified controls
 
@@ -37,4 +37,4 @@ This clears the previous unknown-reachability blocker only for the checked artif
 - Implement/rehearse exceptional check-in reversal, credit reissue, frozen roster corrections, active deadline extensions and result retraction before live operations that may need them. They are intentionally unavailable; direct SQL edits are not a substitute.
 - Establish authorized hosted backups, restoration drills, observability, data deletion/retention tooling and operational ownership. The included backup helper accepts synthetic `.test` local databases only.
 
-No actual credentials, external API spending, emails, production role grants or production-data imports were used. No hosted Site, Vercel project or Neon database was created.
+No application credentials, external API spending, emails, production role grants or production-data imports were used. The separately approved short-lived source credential was used only for this Site publication and was not persisted. The approved new Sites project and one short-lived source-write credential were created; public access and native deployment succeeded. No production credit key/trust configuration, Vercel project or Neon database was created.

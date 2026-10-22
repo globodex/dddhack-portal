@@ -1,0 +1,119 @@
+{
+  "title": "DevDay Community Hackathon: New Delhi",
+  "project_id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed",
+  "slug": "dddhack-portal",
+  "url": "https://dddhack-portal.param3021.chatgpt.site",
+  "access_mode": "public",
+  "status": "succeeded",
+  "deployment_id": "appgdep_6ad9ed142bb081919f086fe6fa155a55",
+  "version_id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed~appgver_693760cb07c88191a6bfb353fef5d511",
+  "version_number": 1,
+  "published_source_commit": "8811d58af2f9079405f359c02ad3034ed967e890",
+  "env_set_revision": 0,
+  "archive_content_hash": "sha256:7819503c9fb8be28974949901c63f596ba01ff06e70b51a97e60fae21acc3c80",
+  "db": {
+    "binding": "DB",
+    "tables": [
+      "astra_jobs",
+      "audit_logs",
+      "check_ins",
+      "credit_allocations",
+      "credit_inventory",
+      "credit_types",
+      "event_settings",
+      "feedback",
+      "human_scores",
+      "idea_revisions",
+      "ideas",
+      "import_previews",
+      "judge_assignments",
+      "memberships",
+      "profiles",
+      "registrations",
+      "request_buckets",
+      "result_publication",
+      "result_snapshots",
+      "reviews",
+      "scoring_revision",
+      "submission_versions",
+      "team_actions",
+      "teams",
+      "tie_resolutions",
+      "users",
+      "votes"
+    ],
+    "checks": [
+      {
+        "table": "users",
+        "rowsReturned": 0,
+        "hasMore": false,
+        "truncated": false
+      },
+      {
+        "table": "registrations",
+        "rowsReturned": 0,
+        "hasMore": false,
+        "truncated": false
+      },
+      {
+        "table": "credit_inventory",
+        "rowsReturned": 0,
+        "hasMore": false,
+        "truncated": false
+      },
+      {
+        "table": "credit_allocations",
+        "rowsReturned": 0,
+        "hasMore": false,
+        "truncated": false
+      },
+      {
+        "table": "event_settings",
+        "rowsReturned": 0,
+        "hasMore": false,
+        "truncated": false
+      },
+      {
+        "table": "result_snapshots",
+        "rowsReturned": 0,
+        "hasMore": false,
+        "truncated": false
+      },
+      {
+        "table": "result_publication",
+        "rowsReturned": 0,
+        "hasMore": false,
+        "truncated": false
+      },
+      {
+        "table": "scoring_revision",
+        "rowsReturned": 1,
+        "hasMore": false,
+        "truncated": false,
+        "internalRevision": 0
+      }
+    ],
+    "hostedMigrationLedgerAndTriggersDirectlyInspected": false
+  },
+  "verification": {
+    "nativeDeploymentAndPublicAccessConfirmed": true,
+    "publicHTTPVerified": false,
+    "httpBlocker": "All attempted public-origin requests returned HTTP 403",
+    "returnedWorkerLogEvents": 0,
+    "interactiveChatGPTLoginVerified": false
+  },
+  "runtime": {
+    "configuredEnvironmentKeys": [],
+    "productionEncryptionKeyConfigured": false,
+    "dispatchTrustConfigured": false,
+    "eventInitialized": false,
+    "resultsPublished": false
+  },
+  "credential": {
+    "auth_mode": "http_extra_header",
+    "expires_at": "2026-10-22T11:08:23.602Z",
+    "persistentlySaved": false,
+    "storageMechanism": "Official hidden stdin and session memory only; no supported secure credential store is installed",
+    "renewed": false
+  }
+}

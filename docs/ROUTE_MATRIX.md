@@ -39,7 +39,7 @@ Every admin list page has a permission-checked CSV export link. Credits sub-tool
 
 ## Deliberately limited / blocked
 
-- No actual hosted ChatGPT identity, hosted D1 or deployment, external AI/GitHub fetch, API spending, email, automatic Luma sync, real credits or real role grants were tested or performed.
+- Native Sites publication and hosted D1 schema are now inspected; live HTTP requests are blocked by 403 and actual authenticated hosted flows remain unverified. No external AI/GitHub fetch, API spending, email, automatic Luma sync, real credits or production role grants were performed.
 - Invitations are in-portal identity-targeted actions, valid until membership freeze; no bearer tokens or email links exist.
 - Emergency roster overrides after freeze, check-in reversal, credit reissue, leader transfer, judge unassignment UI, custom questions/uploads and automatic evaluator scheduling/crash recovery remain follow-up work. Routine pre-freeze member removal exists in the service; richer roster controls are limited.
 - Policy activation freezes editing. Emergency deadline extensions need a separately implemented audited flow before live use; direct database edits are not an operator workaround.

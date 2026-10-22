@@ -1,6 +1,6 @@
 # Supported Sites integration
 
-Implemented locally on `param302-linux` using installed official Sites plugin 1.1.1. **No Site was created, registered, deployed or published. No credentials or sharing settings were changed.** The existing feature branch and service logic are preserved. Public hosting is now requested first, titled **DevDay Community Hackathon: New Delhi**, preferred slug `dddhack-portal`. Site creation/short-lived source credential approval and hosted readiness are pending. The separate `dddrecap` Site is unrelated.
+Implemented locally on `param302-linux` using the official Sites 1.1.1 integration and a maintained compatible Cloudflare toolchain update. **A public draft is deployed** as **DevDay Community Hackathon: New Delhi**, slug `dddhack-portal`, project ID `appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed`. See `PUBLICATION.md` for the exact saved revision, native verification, HTTP 403 blocker and pending runtime-secret/trust approval. The separate `dddrecap` Site is untouched.
 
 ## Build and request boundary
 
@@ -26,12 +26,12 @@ Run `npm run typecheck`, `npm test`, the Sites plugin's `build-site.mjs`, then `
 
 Evidence: `evidence/sites-build.log`, `evidence/sites-tests.log`, `evidence/sites-production-smoke.log`, `evidence/sites-production-smoke.json` and `evidence/sites-dependency-audit.json` and `evidence/sites-dev-smoke.json`.
 
-The native Sites read-only connection works locally, and the setup/build/source helpers and auth source are installed. This removes the earlier missing-helper limitation. Publishing has not been attempted, so native creation/source-access/deployment approval and hosted readiness remain unverified. Use the official source workflow for the eventual new Site; never reuse another Site's ID. Creating source credentials, security-sensitive grants or configuring production secrets must follow action-time approval requirements.
+The native Sites read-only connection works locally, and the setup/build/source helpers and auth source are installed. This removes the earlier missing-helper limitation. Native creation, approved source access and public deployment succeeded. Live HTTP checks are blocked by 403; runtime secret/trust configuration and actual hosted sign-in remain unverified. Use the official source workflow for the eventual new Site; never reuse another Site's ID. Creating source credentials, security-sensitive grants or configuring production secrets must follow action-time approval requirements.
 
 ## Remaining release work
 
-1. Obtain the required approval for the new Site and its short-lived source-write credential. Naming: `DevDay Community Hackathon: New Delhi`, preferred slug `dddhack-portal`; no live URL is verified.
+1. Obtain separate approval for production encryption-key/trust setup, then complete the setup and live HTTP verification described in `PUBLICATION.md`. The native source-credential operation was approved and completed; the credential was not saved because no supported secure store exists.
 2. Enforce the artifact-specific mitigation in `DEPENDENCY_REACHABILITY.md`, retain the full audit findings, and keep the event policies draft until separately approved.
-3. When publication resumes, create the new Site, preserve its returned identity and configure the requested public audience through supported tools. Do not deploy a dummy auth implementation or expose a header-trusting standalone Worker.
+3. Reuse the persisted project ID for all future updates. The Site is public and version 1 is published. Do not create a duplicate, deploy dummy auth or expose a header-trusting standalone Worker.
 4. Configure a fresh production credit key and server trust only after verifying Dispatch as the sole ingress; rehearse real sign-in, anonymous requests, header spoof rejection, account revocation, private data and hosted D1 using authorized test accounts.
 5. Initialize the inactive draft explicitly, validate operator workflows, hosted backup/restore and capacity, then complete the approved release. No real AI/GitHub evaluator or API spending is enabled by this integration.

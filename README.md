@@ -1,6 +1,6 @@
 # DevDay Community Hackathon: New Delhi — v1 rehearsal
 
-**A persisted local implementation with the supported Sites Worker/build integration. Local production smoke tests pass; real hosted ChatGPT sign-in and deployment remain unverified. Nothing is deployed.** This is the new `dddhack-portal` project, separate from `devday-recap`.
+**A published Sites draft with the supported Worker/build integration. Native publication and public access succeeded; direct HTTP verification from this executor is blocked by 403. Private runtime configuration and real hosted ChatGPT sign-in remain pending.** This is the new `dddhack-portal` project, separate from `devday-recap`.
 
 The portal covers registration review, private onboarding, teams/ideas, check-in and encrypted personal credits, three leader submission versions, review jobs, judges, votes/feedback, and owner-controlled result snapshots. Event: **1 November 2026, Asia/Kolkata**. The initial policy is deliberately draft; the submission cutoff, diversity rubric, vote formula and AI fallback are unresolved. Activation, scoring and publication fail closed.
 
@@ -45,7 +45,7 @@ Browser testing uses an installed Chromium; set `CHROMIUM_PATH` for your machine
 
 ## Before live use
 
-Read `docs/SITES_INTEGRATION.md`, `docs/ROUTE_MATRIX.md`, `docs/OPERATOR_RUNBOOK.md` and `docs/SECURITY.md`. The installed official Sites 1.1.1 starter supplies the maintained `sites()` plugin, Cloudflare Worker, request-scoped connector handling, auth helpers and build tooling. The Worker captures D1/identity per request, and protected pages use the official server auth helper with server-side permission checks. The manifest declares logical `DB`, has no Site ID, and leaves unused R2 null; no provisioning was attempted. Never enable Dispatch trust on an independently exposed Worker. Hosted sign-in, ingress header stripping, storage and capacity still require a real authorized Sites rehearsal. The public landing can render without private runtime configuration.
+Read `docs/PUBLICATION.md`, `docs/SITES_INTEGRATION.md`, `docs/ROUTE_MATRIX.md`, `docs/OPERATOR_RUNBOOK.md` and `docs/SECURITY.md`. The installed official Sites 1.1.1 starter supplies the maintained `sites()` plugin, Cloudflare Worker, request-scoped connector handling, auth helpers and build tooling. The Worker captures D1/identity per request, and protected pages use the official server auth helper with server-side permission checks. The manifest declares logical `DB`, persists the approved new Site ID, and leaves unused R2 null. Native Sites publication and DB provisioning succeeded; see the publication record for verification limits. Never enable Dispatch trust on an independently exposed Worker. Hosted sign-in, ingress header stripping, storage and capacity still require a real authorized Sites rehearsal. The public landing can render without private runtime configuration.
 
 The original design references could not be opened through the supplied network or web reader. Reference screenshots and verified official dot assets remain blocked. The UI uses original dot artwork, explicitly described as such, with no endorsement claim. Fontsource Manrope and DM Sans are bundled locally under their included licenses.
 

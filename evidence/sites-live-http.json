@@ -1,0 +1,67 @@
+{
+  "origin": "https://dddhack-portal.param3021.chatgpt.site",
+  "checks": [
+    {
+      "path": "/",
+      "status": 403,
+      "contentType": "text/plain; charset=UTF-8",
+      "cacheControl": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+      "bytesRead": 17,
+      "expectedTitlePresent": false,
+      "landingHeadingPresent": false
+    },
+    {
+      "path": "/dashboard",
+      "status": 403,
+      "contentType": "text/plain; charset=UTF-8",
+      "cacheControl": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+      "bytesRead": 17
+    },
+    {
+      "path": "/admin",
+      "status": 403,
+      "contentType": "text/plain; charset=UTF-8",
+      "cacheControl": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+      "bytesRead": 17
+    },
+    {
+      "path": "/api/portal?view=/dashboard/profile",
+      "status": 403,
+      "contentType": "text/plain; charset=UTF-8",
+      "cacheControl": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+      "bytesRead": 17
+    },
+    {
+      "path": "/api/portal?view=/admin/permissions",
+      "status": 403,
+      "contentType": "text/plain; charset=UTF-8",
+      "cacheControl": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+      "bytesRead": 17
+    },
+    {
+      "path": "/api/export?list=credits",
+      "status": 403,
+      "contentType": "text/plain; charset=UTF-8",
+      "cacheControl": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+      "bytesRead": 17
+    },
+    {
+      "path": "/local-test",
+      "status": 403,
+      "contentType": "text/plain; charset=UTF-8",
+      "cacheControl": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+      "bytesRead": 17
+    },
+    {
+      "path": "/signin-with-chatgpt?return_to=%2Fdashboard",
+      "status": 403,
+      "contentType": "text/plain; charset=UTF-8",
+      "cacheControl": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+      "bytesRead": 17
+    }
+  ],
+  "interactiveChatGPTLoginVerified": false,
+  "publicLandingVerifiedByHTTP": false,
+  "boundaryVerificationCompleted": false,
+  "limitation": "Every attempted public-origin request returned HTTP 403 before application behavior could be established. No access-control workaround or alternative origin was attempted."
+}
