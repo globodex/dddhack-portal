@@ -1,3 +1,7 @@
+import {
+  getSitesRuntime,
+  unavailableResponse,
+} from "../../../lib/sites-runtime";
 import { handleExport } from "../../../lib/http";
 export const dynamic = "force-dynamic";
 export async function GET(request: Request) {
@@ -5,8 +9,9 @@ export async function GET(request: Request) {
     const { localRuntime } = await import("../../../lib/local-test/runtime");
     return handleExport(request, await localRuntime(request));
   }
-  return new Response("Hosted adapter unavailable", {
-    status: 503,
-    headers: { "Cache-Control": "no-store" },
-  });
+  try {
+    return await handleExport(request, getSitesRuntime());
+  } catch (error) {
+    return unavailableResponse(error);
+  }
 }

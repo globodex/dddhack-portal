@@ -1,6 +1,6 @@
 # Routes and features
 
-All functional statuses below mean **local persisted rehearsal**, with D1 compatibility tested in Miniflare. Hosted identity/database wiring is blocked as described in `SITES_INTEGRATION.md`. UI visibility is never the permission boundary; the server independently authorizes every read/write. One App Router catch-all renders the mapped screens; it is not a static mock.
+All functional statuses below mean **local persisted rehearsal**, with D1 compatibility tested in Miniflare. The supported Sites Worker/database/auth wiring is implemented and locally tested as described in `SITES_INTEGRATION.md`; actual hosted identity remains unverified. UI visibility is never the permission boundary; the server independently authorizes every read/write. One App Router catch-all renders the mapped screens; it is not a static mock.
 
 | Route                                                        | Access                              | Implemented behavior / gate                                                                                                                              |
 | ------------------------------------------------------------ | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -39,7 +39,7 @@ Every admin list page has a permission-checked CSV export link. Credits sub-tool
 
 ## Deliberately limited / blocked
 
-- No production ChatGPT identity, hosted D1, Sites packaging, external AI/GitHub fetch, API spending, email, automatic Luma sync, real credits or real role grants were tested or performed.
+- No actual hosted ChatGPT identity, hosted D1 or deployment, external AI/GitHub fetch, API spending, email, automatic Luma sync, real credits or real role grants were tested or performed.
 - Invitations are in-portal identity-targeted actions, valid until membership freeze; no bearer tokens or email links exist.
 - Emergency roster overrides after freeze, check-in reversal, credit reissue, leader transfer, judge unassignment UI, custom questions/uploads and automatic evaluator scheduling/crash recovery remain follow-up work. Routine pre-freeze member removal exists in the service; richer roster controls are limited.
 - Policy activation freezes editing. Emergency deadline extensions need a separately implemented audited flow before live use; direct database edits are not an operator workaround.

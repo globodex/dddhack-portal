@@ -14,7 +14,12 @@ import {
   feedbackQuality,
   PortalError,
 } from "./security";
-import { policySchema, policyBlockers, type Policy } from "./policy";
+import {
+  policySchema,
+  policyBlockers,
+  draftPolicy,
+  type Policy,
+} from "./policy";
 import {
   disabledEvaluator,
   reportSchema,
@@ -197,6 +202,32 @@ export class PortalService {
     const actor = await this.actor();
     await this.throttle(actor.id);
     switch (action) {
+      case "initialize-event": {
+        await this.staff(true);
+        const d = z.object({ reason }).strict().parse(data);
+        demand(
+          !(await one(this.db, "SELECT id FROM event_settings WHERE id=1")),
+          409,
+          "EVENT_ALREADY_INITIALIZED",
+        );
+        await this.mutate(
+          actor.id,
+          action,
+          "1",
+          [
+            [
+              "INSERT INTO event_settings(id,policy) VALUES(1,?)",
+              JSON.stringify(draftPolicy),
+            ],
+          ],
+          { active: false },
+          d.reason,
+        );
+        return {
+          message:
+            "Draft event initialized. Policy confirmation is still required.",
+        };
+      }
       case "profile": {
         const d = z
           .object({
@@ -1472,6 +1503,9 @@ export class PortalService {
     return result.map((r, i) => ({ ...r, rank: r.components ? i + 1 : null }));
   }
   async view(path: string): Promise<Record<string, unknown>> {
+    // Use one permission target for ordinary URL slash aliases as well as API views.
+    // In particular, /admin/permissions/ must retain the owner-only requirement.
+    path = path.replace(/\/+/g, "/").replace(/\/$/, "") || "/";
     const s = await this.settings();
     const publicPolicy = {
       ideaLock: s.policy.ideaLock,

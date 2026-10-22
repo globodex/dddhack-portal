@@ -1,3 +1,7 @@
+import {
+  getSitesRuntime,
+  unavailableResponse,
+} from "../../../lib/sites-runtime";
 import { handlePortal } from "../../../lib/http";
 export const dynamic = "force-dynamic";
 export async function GET(request: Request) {
@@ -11,12 +15,9 @@ async function route(request: Request) {
     const { localRuntime } = await import("../../../lib/local-test/runtime");
     return handlePortal(request, await localRuntime(request));
   }
-  return Response.json(
-    {
-      code: "HOSTED_ADAPTER_UNAVAILABLE",
-      message:
-        "Hosted authentication and D1 wiring require the supported Sites starter. Local rehearsal is available only in development.",
-    },
-    { status: 503, headers: { "Cache-Control": "no-store" } },
-  );
+  try {
+    return await handlePortal(request, getSitesRuntime());
+  } catch (error) {
+    return unavailableResponse(error);
+  }
 }

@@ -1,0 +1,27 @@
+✔ actual local D1 binding: schema, trigger rollback, batch atomicity and concurrent credit/submission commands (3751.138807ms)
+✔ ties need complete owner adjudication; altered score breakdown invalidates earlier order (175.704693ms)
+✔ snapshot revision guard and request throttle fail closed (289.185128ms)
+✔ owner derives only from trusted Sites identity; local header spoofing and unsafe return paths fail (29.393657ms)
+✔ draft policies block activation, scoring and submission; approved rehearsal is explicit (74.774819ms)
+✔ registered approval, single membership and five-person constraints; request/invite acceptance (42.053765ms)
+✔ idea core locks exactly at IST boundary; description remains editable and no public idea/profile/gender leak (38.051773ms)
+✔ check-in allocations are idempotent, encrypted, private and retryable after inventory exhaustion (52.350796ms)
+✔ CSV previews, duplicate handling, formula protection and AES-GCM integrity (27.827998ms)
+✔ only leader can commit; exactly three successful versions, invalid fields/cutoff do not consume attempts (61.323099ms)
+✔ external evaluation failure and invalid model output preserve submission; uncertainty is reviewable (21.533487ms)
+✔ three distinct votes, no own-team or duplicate votes, meaningful feedback and bounded scoring (71.14928ms)
+✔ full mock rehearsal: two equal-weight judges, human review, owner freeze, immutable private snapshot and publication (55.455051ms)
+✔ HTTP security: CSRF, IDOR, role bypass, export permissions, cache controls and bounded body (52.068801ms)
+✔ Worker request scope isolates concurrent identities, bindings and keys; no fallback outside Dispatch (46.348517ms)
+✔ Sites runtime authorizes anonymous, participant, judge and owner requests against server data (23.250427ms)
+✔ Sites Drizzle migrations preserve schema constraints, triggers and persisted service behavior on D1 (1824.811991ms)
+✔ fresh hosted schema requires an explicit owner-only, audited draft initialization (29.186506ms)
+✔ slash aliases cannot weaken owner-only settings and permissions reads (19.760822ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4981.319953

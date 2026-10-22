@@ -1,0 +1,7 @@
+{
+  "landing": 200,
+  "forgedOwnerHeaders": 401,
+  "explicitFakeSignIn": 200,
+  "fakeParticipantProfile": 200,
+  "fakeParticipantAdmin": 403
+}

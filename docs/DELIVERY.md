@@ -50,3 +50,13 @@ Screenshot files remain ignored local artifacts, delivered through Library rathe
 | Real external evaluation, hosted identity/storage/capacity                | Not attempted                                | Credentials/spending/production imports/role grants and hosting were not authorized. Mock/local tests completed.                                                                                        |
 
 No automatic approval-review rejection occurred. No operation has an uncertain hosted deployment outcome because no hosting mutation was initiated. No animation fallback/model switch was invoked; the original animation passes local browser checks.
+
+## Local Sites integration follow-up (22 October 2026)
+
+The connected `param302-linux` checkout now has the supported Sites 1.1.1 Worker/plugin/auth integration and logical `DB` binding. The original missing-helper blocker is resolved locally. See `SITES_INTEGRATION.md` and the `evidence/sites-*` files for current checks; the original v1 record above is historical. Production behavior is now exercised on the compiled Worker, including an explicit synthetic Dispatch harness. Real ChatGPT sign-in and hosted storage remain unverified. No Site creation, credentials, grants, deployment or sharing mutation was performed; publication is held for UI direction/readiness.
+
+The screenshot attempt reached an infrastructure blocker before either reference could be inspected: computer inventory had no browsers/apps; opening the first reference in IAB returned `Browser is not available: iab`. No screenshots were captured or uploaded, and no new Library identifiers exist.
+
+Local integration validation: TypeScript passes; all 19 server/domain/Sites tests pass; the official Sites production build passes with ordinary framework chunk warnings; compiled Worker smoke checks pass in standalone and isolated synthetic Dispatch modes. Current full dependency audit: 6 high, 4 moderate, 2 low, 0 critical. Available sharp/undici/ws fixes were applied without a forced framework downgrade. Historical browser checks were not rerun because no supported browser is exposed. No actual ChatGPT authentication or hosted capacity guarantee is claimed.
+
+The existing development HTTP rehearsal also passes on a disposable SQLite database: landing 200, spoofed owner identity headers 401, explicit fake participant sign-in/profile 200 and participant access to owner permissions 403 (`evidence/sites-dev-smoke.json`). Its temporary loopback server was stopped after checking.

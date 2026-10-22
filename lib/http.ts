@@ -184,8 +184,8 @@ export async function handleExport(request: Request, runtime: Runtime) {
     return errorResponse(e);
   }
 }
-// Future supported Sites Worker wiring calls this factory with the request-scoped D1 binding.
-// It is deliberately NOT attached to a public Worker until the Sites starter/plugin is available.
+// Testable adapter for callers already inside the trusted Sites Dispatch boundary.
+// App Router routes use getSitesRuntime() from the Worker request scope.
 export function createSitesPortalHandler(env: {
   DB: Database;
   CREDIT_ENCRYPTION_KEY: string;
