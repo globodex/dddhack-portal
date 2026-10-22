@@ -1,4 +1,22 @@
 import { test, expect } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
+import { writeFileSync } from "node:fs";
+test("landing and guide meet automated WCAG A/AA checks", async ({ page }) => {
+  const results = [];
+  for (const path of ["/", "/rules"]) {
+    await page.goto(path);
+    await page.waitForTimeout(250);
+    const result = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+      .analyze();
+    results.push({ path, violations: result.violations });
+  }
+  writeFileSync(
+    "evidence/accessibility-results.json",
+    JSON.stringify(results, null, 2) + "\n",
+  );
+  expect(results.flatMap((r) => r.violations)).toEqual([]);
+});
 test("landing fits desktop and mobile, navigation works, motion repels and reduced motion is stable", async ({
   page,
 }) => {
@@ -6,6 +24,8 @@ test("landing fits desktop and mobile, navigation works, motion repels and reduc
   page.on("pageerror", (e) => errors.push(e.message));
   for (const viewport of [
     { width: 1440, height: 960 },
+    { width: 1366, height: 768 },
+    { width: 375, height: 667 },
     { width: 390, height: 844 },
     { width: 360, height: 740 },
   ]) {
@@ -82,7 +102,7 @@ test("private profile persistence, public consent, owner/admin controls and safe
     .getByLabel("A little about you")
     .fill("FAKE browser rehearsal profile.");
   await page.getByRole("button", { name: "Save", exact: true }).click();
-  await expect(page.getByRole("status")).toContainText("Profile saved");
+  await expect(page.locator(".form-status")).toContainText("Profile saved");
   await page.reload();
   await expect(page.getByLabel("A little about you")).toHaveValue(
     "FAKE browser rehearsal profile.",
@@ -98,7 +118,7 @@ test("private profile persistence, public consent, owner/admin controls and safe
     .getByLabel("Verification note")
     .fill("FAKE browser physical verification");
   await page.getByRole("button", { name: "Save", exact: true }).click();
-  await expect(page.getByRole("status")).toContainText("Checked in");
+  await expect(page.locator(".form-status")).toContainText("Checked in");
   await page.goto("/admin/participants");
   const download = page.waitForEvent("download");
   await page.getByRole("link", { name: "Export safe CSV" }).click();

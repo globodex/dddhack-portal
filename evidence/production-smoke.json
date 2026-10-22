@@ -1,0 +1,8 @@
+{
+  "landing": 200,
+  "unwiredRead": 503,
+  "unwiredMutation": 503,
+  "unwiredExport": 503,
+  "localAdapterEnabledByEnvironment": false,
+  "forgedOwnerHeadersAccepted": false
+}

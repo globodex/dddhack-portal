@@ -1,0 +1,48 @@
+
+> devday-exchange-portal@0.1.0 test:load
+> tsx scripts/load.ts
+
+{
+  "scope": "LOCAL ONLY: 200 distinct synthetic sessions over loopback HTTP, SQLite WAL; not hosted Sites capacity or ChatGPT sign-in proof",
+  "reads": {
+    "sessions": 200,
+    "success": 200,
+    "wallMs": 276,
+    "p50Ms": 182,
+    "p95Ms": 240
+  },
+  "submissions": {
+    "concurrent": 20,
+    "committed": 3,
+    "rejected": 17
+  },
+  "checkins": {
+    "concurrent": 40,
+    "checkedIn": 40,
+    "allocated": 20,
+    "pending": 20,
+    "duplicateCredits": 0
+  },
+  "votes": {
+    "concurrent": 14,
+    "committed": 3,
+    "rejected": 11
+  },
+  "membershipRace": {
+    "workerThreads": 6,
+    "contenders": 24,
+    "accepted": 1,
+    "finalSize": 5
+  },
+  "integrity": {
+    "foreignKeyViolations": 0,
+    "sqliteIntegrity": {
+      "integrity_check": "ok"
+    }
+  }
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

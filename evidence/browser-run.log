@@ -1,0 +1,23 @@
+
+> devday-exchange-portal@0.1.0 test:e2e
+> playwright test
+
+
+Running 5 tests using 1 worker
+
+(node:5193) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5193) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/browser/portal.spec.ts:4:1 › landing and guide meet automated WCAG A/AA checks (3.0s)
+  ✓  2 tests/browser/portal.spec.ts:22:1 › landing fits desktop and mobile, navigation works, motion repels and reduced motion is stable (12.6s)
+  ✓  3 tests/browser/portal.spec.ts:78:1 › tiny screens and zoom retain accessible vertical overflow without horizontal clipping (750ms)
+  ✓  4 tests/browser/portal.spec.ts:95:1 › private profile persistence, public consent, owner/admin controls and safe exports (5.0s)
+  ✓  5 tests/browser/portal.spec.ts:170:1 › judges cannot see credit values or unpublished results; sign in uses platform-owned top navigation (1.9s)
+
+  5 passed (24.6s)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

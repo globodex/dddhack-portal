@@ -3,9 +3,9 @@
   "reads": {
     "sessions": 200,
     "success": 200,
-    "wallMs": 261,
-    "p50Ms": 168,
-    "p95Ms": 224
+    "wallMs": 276,
+    "p50Ms": 182,
+    "p95Ms": 240
   },
   "submissions": {
     "concurrent": 20,

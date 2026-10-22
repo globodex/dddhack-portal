@@ -688,21 +688,25 @@ export class PortalService {
           "PREVIEW_REQUIRED",
         );
         const sql: SQL[] = [];
-        for (const value of normalized) {
-          if (d.kind === "roster")
-            sql.push([
-              "INSERT INTO registrations(email) VALUES(?) ON CONFLICT(email) DO NOTHING",
-              value,
-            ]);
-          else
-            sql.push([
-              "INSERT INTO credit_inventory VALUES(?,?,?,?,?)",
-              crypto.randomUUID(),
-              d.typeId,
-              await seal(value, this.creditKey),
-              await sha256(value),
-              this.now(),
-            ]);
+        if (d.kind === "roster")
+          sql.push([
+            "INSERT INTO registrations(email) SELECT value FROM json_each(?) WHERE true ON CONFLICT(email) DO NOTHING",
+            JSON.stringify(normalized),
+          ]);
+        else {
+          const inventory = await Promise.all(
+            normalized.map(async (value) => ({
+              id: crypto.randomUUID(),
+              ciphertext: await seal(value, this.creditKey),
+              fingerprint: await sha256(value),
+            })),
+          );
+          sql.push([
+            "INSERT INTO credit_inventory SELECT json_extract(value,'$.id'),?,json_extract(value,'$.ciphertext'),json_extract(value,'$.fingerprint'),? FROM json_each(?)",
+            d.typeId,
+            this.now(),
+            JSON.stringify(inventory),
+          ]);
         }
         sql.push([
           "DELETE FROM import_previews WHERE actor_id=? AND digest=?",
@@ -746,13 +750,24 @@ export class PortalService {
           "POLICIES_UNCONFIRMED",
           policyBlockers(s.policy).join(", "),
         );
-        await this.mutate(
+        const activation = await this.mutate(
           actor.id,
           action,
           "event",
-          [["UPDATE event_settings SET active=1 WHERE id=1"]],
+          [
+            [
+              "UPDATE event_settings SET active=1 WHERE id=1 AND active=0 AND version=? AND policy=?",
+              s.version,
+              JSON.stringify(s.policy),
+            ],
+          ],
           { policyVersion: s.version },
           d.reason,
+        );
+        demand(
+          activation[0].meta?.changes === 1,
+          409,
+          "POLICY_CHANGED_OR_ALREADY_ACTIVE",
         );
         return {};
       }
@@ -1092,6 +1107,13 @@ export class PortalService {
           d.teamId,
         );
         demand(latest?.id === d.versionId, 409, "STALE_SUBMISSION");
+        const claims = JSON.parse(latest.payload);
+        demand(
+          d.falseClaims <=
+            Number(!!claims.openaiClaim) + Number(!!claims.cerebrasClaim),
+          422,
+          "NO_UNCLAIMED_API_PENALTIES",
+        );
         const s = await this.settings();
         demand(
           this.now() >= s.policy.submissionClose!,
@@ -1160,6 +1182,48 @@ export class PortalService {
         await this.staff();
         await this.unfrozen();
         return { items: await this.compute() };
+      }
+      case "resolve-tie": {
+        await this.staff(true);
+        await this.unfrozen();
+        const d = z.object({ teamIds: z.unknown(), reason }).parse(data);
+        const teamIds = z.array(id).min(2).max(160).parse(json(d.teamIds));
+        demand(new Set(teamIds).size === teamIds.length, 422, "DUPLICATE_TEAM");
+        const result = await this.compute(true);
+        const first = result.find((r) => r.teamId === teamIds[0]);
+        demand(first?.components, 422, "RANKED_TEAM_REQUIRED");
+        const tied = result.filter(
+          (r) => r.components?.total === first.components!.total,
+        );
+        demand(
+          tied.length === teamIds.length &&
+            tied.every((r) => teamIds.includes(r.teamId)),
+          422,
+          "COMPLETE_TIED_GROUP_REQUIRED",
+        );
+        const groupHash = await tieHash((await this.settings()).version, tied);
+        await this.mutate(
+          actor.id,
+          "resolve-tie",
+          groupHash,
+          [
+            ["DELETE FROM tie_resolutions WHERE group_hash=?", groupHash],
+            ...teamIds.map(
+              (teamId, i) =>
+                [
+                  "INSERT INTO tie_resolutions VALUES(?,?,?)",
+                  groupHash,
+                  teamId,
+                  i + 1,
+                ] as SQL,
+            ),
+          ],
+          { order: teamIds },
+          d.reason,
+        );
+        return {
+          message: "Owner tie order recorded for this exact score breakdown.",
+        };
       }
       case "freeze-results": {
         await this.staff(true);
@@ -1277,7 +1341,7 @@ export class PortalService {
       assigned: assigned.length,
     };
   }
-  async compute() {
+  async compute(allowUnresolvedTies = false) {
     const s = await this.live();
     const versions = await rows<Version>(
       this.db,
@@ -1369,14 +1433,42 @@ export class PortalService {
     result.sort(
       (a, b) => (b.components?.total ?? -1) - (a.components?.total ?? -1),
     );
-    for (let i = 1; i < result.length; i++)
-      demand(
-        result[i].components === null ||
-          result[i].components?.total !== result[i - 1].components?.total,
-        409,
-        "TIE_REQUIRES_OWNER_RESOLUTION",
-        "Tied totals require a documented policy and adjudication; automatic tie breaking is disabled in v1.",
-      );
+    for (let start = 0; start < result.length;) {
+      let end = start + 1;
+      while (
+        end < result.length &&
+        result[start].components &&
+        result[end].components?.total === result[start].components?.total
+      )
+        end++;
+      if (end - start > 1) {
+        const group = result.slice(start, end);
+        const hash = await tieHash(s.version, group);
+        const order = await rows<{ team_id: string; ordinal: number }>(
+          this.db,
+          "SELECT team_id,ordinal FROM tie_resolutions WHERE group_hash=?",
+          hash,
+        );
+        const resolved =
+          order.length === group.length &&
+          group.every((r) => order.some((o) => o.team_id === r.teamId));
+        demand(
+          resolved || allowUnresolvedTies,
+          409,
+          "TIE_REQUIRES_OWNER_RESOLUTION",
+          "Owner must record the complete tied group order and reason under the approved policy.",
+        );
+        if (resolved) {
+          group.sort(
+            (a, b) =>
+              order.find((o) => o.team_id === a.teamId)!.ordinal -
+              order.find((o) => o.team_id === b.teamId)!.ordinal,
+          );
+          result.splice(start, group.length, ...group);
+        }
+      }
+      start = end;
+    }
     return result.map((r, i) => ({ ...r, rank: r.components ? i + 1 : null }));
   }
   async view(path: string): Promise<Record<string, unknown>> {
@@ -1576,6 +1668,13 @@ export class PortalService {
       return {
         ...base,
         team: t,
+        members: t
+          ? await rows(
+              this.db,
+              "SELECT u.id,u.name FROM memberships m JOIN users u ON u.id=m.user_id WHERE m.team_id=?",
+              t.id,
+            )
+          : [],
         attempts: t
           ? await rows(
               this.db,
@@ -1655,6 +1754,19 @@ export class PortalService {
     demand(list in queries, 404, "LIST_NOT_FOUND");
     return rows(this.db, queries[list]);
   }
+}
+async function tieHash(
+  version: number,
+  group: { teamId: string; components: unknown }[],
+) {
+  return sha256(
+    JSON.stringify({
+      version,
+      teams: [...group]
+        .sort((a, b) => a.teamId.localeCompare(b.teamId))
+        .map((r) => ({ teamId: r.teamId, components: r.components })),
+    }),
+  );
 }
 function similarity(a: string, b: string) {
   const grams = (v: string) =>

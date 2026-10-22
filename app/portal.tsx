@@ -166,6 +166,8 @@ function Action({
 }) {
   const [message, setMessage] = useState(""),
     [busy, setBusy] = useState(false);
+  const [ready, setReady] = useState(false);
+  useEffect(() => setReady(true), []);
   return (
     <form
       className="panel form-panel"
@@ -176,6 +178,15 @@ function Action({
         const f = new FormData(e.currentTarget);
         const data: Record<string, unknown> = { ...defaults };
         for (const [k, v] of f.entries()) data[k] = v;
+        if (action === "submit") {
+          data.contributions = Object.keys(data)
+            .filter((k) => k.startsWith("role:"))
+            .map((k) => ({
+              userId: k.slice(5),
+              role: data[k],
+              codex: data["codex:" + k.slice(5)],
+            }));
+        }
         try {
           const result = await api(action, data);
           setMessage(result.message || "Saved.");
@@ -189,7 +200,10 @@ function Action({
     >
       <h2>{title}</h2>
       {children}
-      <button className={danger ? "button danger" : "button"} disabled={busy}>
+      <button
+        className={danger ? "button danger" : "button"}
+        disabled={busy || !ready}
+      >
         {busy ? "Saving…" : label}
       </button>
       <p role="status" className="form-status">
@@ -225,7 +239,11 @@ function DataTable({ items }: { items: Row[] }) {
                 <td key={k}>
                   {typeof r[k] === "object"
                     ? JSON.stringify(r[k])
-                    : String(r[k] ?? "—")}
+                    : typeof r[k] === "string" &&
+                        /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d/.test(String(r[k])) &&
+                        Number.isFinite(Date.parse(String(r[k])))
+                      ? ist(String(r[k]))
+                      : String(r[k] ?? "—")}
                 </td>
               ))}
             </tr>
@@ -646,7 +664,19 @@ export default function Portal({
                     : "not registered"}
                 </small>
               </span>
-              <a href="/signout-with-chatgpt?return_to=%2F" target="_top">
+              <a
+                href="/signout-with-chatgpt?return_to=%2F"
+                target="_top"
+                onClick={
+                  localTest
+                    ? async (e) => {
+                        e.preventDefault();
+                        await api("local-signout", {});
+                        location.href = "/";
+                      }
+                    : undefined
+                }
+              >
                 Sign out →
               </a>
             </div>
@@ -1013,13 +1043,21 @@ export default function Portal({
                   label="How the tools helped"
                   type="textarea"
                 />
-                <Field
-                  name="contributions"
-                  label={
-                    'Per-member contributions as JSON: [{"userId":"…","role":"…","codex":"…"}]'
-                  }
-                  type="textarea"
-                />
+                {(view.members || []).map((m) => (
+                  <fieldset key={String(m.id)}>
+                    <legend>{String(m.name)}’s contribution</legend>
+                    <Field
+                      name={"role:" + m.id}
+                      label="Role and completed work"
+                      type="textarea"
+                    />
+                    <Field
+                      name={"codex:" + m.id}
+                      label="How this member used Codex"
+                      type="textarea"
+                    />
+                  </fieldset>
+                ))}
                 <label>
                   Claim OpenAI API use?
                   <select name="openaiClaim">
@@ -1052,7 +1090,12 @@ export default function Portal({
                   type="checkbox"
                 />
               </Action>
-              <DataTable items={view.attempts || []} />
+              <DataTable
+                items={(view.attempts || []).map((r) => ({
+                  attempt: r.attempt,
+                  saved_at: r.created_at,
+                }))}
+              />
             </>
           )}
           {!error && (path === "/teams" || path === "/projects") && (
@@ -1423,6 +1466,21 @@ export default function Portal({
                 {segment[1] === "results" && (
                   <>
                     <ResultsPreview />
+                    <Action
+                      title="Owner: resolve a tied group"
+                      action="resolve-tie"
+                      onDone={refresh}
+                    >
+                      <Field
+                        name="teamIds"
+                        label="Team IDs in approved rank order (JSON list)"
+                        type="textarea"
+                      />
+                      <Field
+                        name="reason"
+                        label="Tie policy applied and adjudication evidence"
+                      />
+                    </Action>
                     <Action
                       title="Owner: freeze private results"
                       action="freeze-results"

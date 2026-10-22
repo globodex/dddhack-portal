@@ -1,0 +1,6 @@
+{
+  path: '.local/backups/rehearsal-1792661933279.sqlite',
+  status: [Object: null prototype] { integrity_check: 'ok' },
+  count: [Object: null prototype] { n: 15 },
+  scope: 'Synthetic local backup and restore verification; includes encrypted fake inventory.'
+}

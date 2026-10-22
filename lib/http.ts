@@ -44,7 +44,7 @@ function errorResponse(error: unknown) {
     );
   const msg = error instanceof Error ? error.message : "";
   const constraint = msg.match(
-    /TEAM_FULL|APPROVAL_REQUIRED|MEMBERSHIP_FROZEN|ALREADY_IN_TEAM|IDEA_LOCKED|SUBMISSIONS_CLOSED|EVENT_DRAFT|VOTE_LIMIT|OWN_TEAM|CHECKIN_REQUIRED|RESULTS_FROZEN|IMMUTABLE/,
+    /TEAM_FULL|APPROVAL_REQUIRED|MEMBERSHIP_FROZEN|ALREADY_IN_TEAM|IDEA_LOCKED|SUBMISSIONS_CLOSED|EVENT_DRAFT|VOTE_LIMIT|OWN_TEAM|CHECKIN_REQUIRED|RESULTS_FROZEN|SCORING_CHANGED_RETRY|IMMUTABLE/,
   );
   if (constraint || /constraint|UNIQUE|CHECK/.test(msg))
     return Response.json(
@@ -108,6 +108,19 @@ export async function handlePortal(request: Request, runtime: Runtime) {
       .object({ action: z.string().max(80), data: z.unknown() })
       .strict()
       .parse(await readBody(request));
+    if (action === "local-signout") {
+      demand(runtime.localTest, 404, "NOT_FOUND");
+      return Response.json(
+        { message: "Local test identity cleared." },
+        {
+          headers: {
+            ...safeHeaders,
+            "Set-Cookie":
+              "portal_local_fixture=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0",
+          },
+        },
+      );
+    }
     if (action === "local-signin") {
       demand(runtime.localTest, 404, "NOT_FOUND");
       const { fixture } = z

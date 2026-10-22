@@ -13,7 +13,9 @@
     "test": "tsx --test tests/*.test.ts",
     "test:e2e": "playwright test",
     "db:local": "tsx scripts/local-db.ts",
-    "test:load": "tsx scripts/load.ts"
+    "test:load": "tsx scripts/load.ts",
+    "test:production": "node scripts/production-smoke.mjs",
+    "format": "prettier --write app lib scripts tests docs README.md"
   },
   "dependencies": {
     "@fontsource/dm-sans": "5.3.0",

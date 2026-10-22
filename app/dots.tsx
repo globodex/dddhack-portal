@@ -30,6 +30,7 @@ export default function Dots({
       homeY: number;
     }[] = [];
     const resize = () => {
+      cancelAnimationFrame(frame);
       const rect = canvas.getBoundingClientRect();
       w = rect.width;
       h = rect.height;
@@ -57,6 +58,11 @@ export default function Dots({
     };
     const draw = (t: number) => {
       if (!alive) return;
+      if (t && t - last < 32) {
+        frame = requestAnimationFrame(draw);
+        return;
+      }
+      last = t;
       ctx.clearRect(0, 0, w, h);
       const reduced = media.matches;
       for (let i = 0; i < particles.length; i++) {
@@ -100,15 +106,7 @@ export default function Dots({
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fill();
       }
-      if (!reduced && !document.hidden)
-        frame = requestAnimationFrame((t) => {
-          if (t - last < 32) {
-            frame = requestAnimationFrame(draw);
-            return;
-          }
-          last = t;
-          draw(t);
-        });
+      if (!reduced && !document.hidden) frame = requestAnimationFrame(draw);
     };
     const move = (e: PointerEvent) => {
       const rect = canvas.getBoundingClientRect();
@@ -127,6 +125,7 @@ export default function Dots({
     window.addEventListener("pointermove", move, { passive: true });
     window.addEventListener("pointerdown", move, { passive: true });
     window.addEventListener("pointerup", leave, { passive: true });
+    window.addEventListener("pointercancel", leave, { passive: true });
     document.addEventListener("visibilitychange", restart);
     media.addEventListener("change", restart);
     return () => {
@@ -136,6 +135,7 @@ export default function Dots({
       window.removeEventListener("pointermove", move);
       window.removeEventListener("pointerdown", move);
       window.removeEventListener("pointerup", leave);
+      window.removeEventListener("pointercancel", leave);
       document.removeEventListener("visibilitychange", restart);
       media.removeEventListener("change", restart);
     };

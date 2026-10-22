@@ -8,7 +8,7 @@
   background: #f6f5f0;
   font-synthesis: none;
   --ink: #183b2d;
-  --muted: #68746b;
+  --muted: #58675b;
   --line: #dce0d6;
   --mint: #c6e9c9;
 }
@@ -339,7 +339,7 @@ aside {
 .workspace-label {
   font-size: 9px;
   letter-spacing: 1.7px;
-  color: #73806f;
+  color: #596a52;
   display: block;
   margin: 0 10px 25px;
 }
@@ -374,7 +374,7 @@ aside nav a[aria-current] span {
   gap: 15px;
   padding: 45px 10px 10px;
   font-size: 10px;
-  color: #6f7b6c;
+  color: #596753;
 }
 .sidebar-bottom > span {
   letter-spacing: 1px;
@@ -400,7 +400,7 @@ aside nav a[aria-current] span {
   letter-spacing: 1.8px;
   font-family: monospace;
   font-weight: 500;
-  color: #6a7966;
+  color: #596952;
   display: block;
   margin-bottom: 18px;
 }
@@ -448,7 +448,7 @@ aside nav a[aria-current] span {
 }
 .identity small {
   display: block;
-  color: #778373;
+  color: #596753;
   font-size: 10px;
   margin-top: 3px;
 }
@@ -483,7 +483,7 @@ aside nav a[aria-current] span {
 }
 .panel p {
   font-size: 12px;
-  color: #697463;
+  color: #596653;
 }
 .panel a:not(.button) {
   font-size: 12px;
@@ -577,7 +577,7 @@ tbody tr:last-child td {
   padding: 55px 22px;
   text-align: center;
   margin: 24px 0;
-  color: #75816f;
+  color: #596753;
 }
 .empty > span {
   font-size: 40px;
@@ -645,7 +645,7 @@ tbody tr:last-child td {
   justify-content: space-between;
   gap: 16px;
   font-size: 9px;
-  color: #76806e;
+  color: #596753;
 }
 .skip {
   position: fixed;
@@ -930,13 +930,13 @@ tbody tr:last-child td {
 @media (max-height: 680px) {
   .landing {
     min-height: 620px;
-    height: auto;
+    height: 100svh;
   }
   .hero {
     min-height: 390px;
   }
   .hero h1 {
-    font-size: 76px;
+    font-size: clamp(54px, 16vw, 76px);
   }
   .hero-kicker {
     margin-top: 15px;
@@ -957,4 +957,15 @@ tbody tr:last-child td {
   .button:hover {
     transform: none;
   }
+}
+
+fieldset {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin: 20px 0;
+  padding: 18px;
+}
+legend {
+  font-size: 13px;
+  padding: 0 8px;
 }

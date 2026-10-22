@@ -1,6 +1,6 @@
 // LOCAL TEST ADAPTER. Imported by scripts and development only; never a hosted database.
 import { DatabaseSync } from "node:sqlite";
-import { mkdirSync, readFileSync } from "node:fs";
+import { mkdirSync, readFileSync, readdirSync } from "node:fs";
 import { dirname } from "node:path";
 import type { Database, Statement } from "../db";
 export class LocalDatabase implements Database {
@@ -56,12 +56,11 @@ export class LocalDatabase implements Database {
     }
   }
   migrate() {
-    this.raw.exec(
-      readFileSync(
-        new URL("../../db/migrations/0001_portal.sql", import.meta.url),
-        "utf8",
-      ),
-    );
+    const directory = new URL("../../db/migrations/", import.meta.url);
+    for (const name of readdirSync(directory)
+      .filter((n) => n.endsWith(".sql"))
+      .sort())
+      this.raw.exec(readFileSync(new URL(name, directory), "utf8"));
   }
   close() {
     this.raw.close();
