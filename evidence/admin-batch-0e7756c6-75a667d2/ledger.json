@@ -1,0 +1,3574 @@
+{
+  "sourceHead": "0e7756c60e2fff88a4f7fb1e3eca31efc20349d0",
+  "workerSha256": "75a667d2c42a821611c3cbbea72447ee464e2ad5f2f6165fbbba647764e69ce6",
+  "origin": "http://127.0.0.1:4173",
+  "syntheticOnly": true,
+  "sandbox": true,
+  "captures": [
+    {
+      "id": "admin-participants-admin-desktop-default-fullpage-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "8a1a650da00c87104cd1d14710145dbe8803e77dfffe2cf8fd75df9c00443a9d",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "id": "libfile_3b7b1a3cbee8819195dc653c23e66012",
+        "file_id": "file_000000003d888230b7888ce37125fca2",
+        "status": "succeeded",
+        "version": 0,
+        "path": "/admin-participants-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "local_xattrs_applied": true
+      },
+      "inspection": "Opened actual pixels; synthetic-only content. Equal full-page/viewport files validated by identical SHA256 when page fits viewport."
+    },
+    {
+      "id": "admin-participants-admin-desktop-default-viewport-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "8a1a650da00c87104cd1d14710145dbe8803e77dfffe2cf8fd75df9c00443a9d",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "id": "libfile_f920d5ed5e7881919a13df53833cf9f5",
+        "file_id": "file_0000000067c48230a3278f217987ce05",
+        "status": "succeeded",
+        "version": 0,
+        "path": "/admin-participants-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "local_xattrs_applied": true
+      },
+      "inspection": "Opened actual pixels; synthetic-only content. Equal full-page/viewport files validated by identical SHA256 when page fits viewport."
+    },
+    {
+      "id": "admin-participants-admin-mobile-default-fullpage-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 390,
+        "height": 1210
+      },
+      "sha256": "92f214fb0a5d245cb9c118e7fd09cacffb92ebf5c330917e96de42fb21c622f9",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 1210,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "id": "libfile_ffbd5890234c819199499f325da55c9c",
+        "file_id": "file_00000000581081f8b9cd689023d9e2e5",
+        "status": "succeeded",
+        "version": 0,
+        "path": "/admin-participants-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "local_xattrs_applied": true
+      },
+      "inspection": "Opened actual pixels; synthetic-only content. Equal full-page/viewport files validated by identical SHA256 when page fits viewport."
+    },
+    {
+      "id": "admin-participants-admin-mobile-default-viewport-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "7fc7977a1ecc854b9d8a578034aca61160833dcf1802dc6c77585776c7b322b2",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 1210,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "id": "libfile_5c0300c01e808191972d4408c48c960f",
+        "file_id": "file_0000000058b88230a537a45410e621fd",
+        "status": "succeeded",
+        "version": 0,
+        "path": "/admin-participants-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "local_xattrs_applied": true
+      },
+      "inspection": "Opened actual pixels; synthetic-only content. Equal full-page/viewport files validated by identical SHA256 when page fits viewport."
+    },
+    {
+      "id": "admin-teams-admin-desktop-default-fullpage-0e7756c6-75a667d2",
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-teams-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1440,
+        "height": 1535
+      },
+      "sha256": "17fae20b9acec3d2674c0268eaeebbf277b16dcd3f77d596f9601a4f77d78449",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 1535,
+        "headings": [
+          "Teams^^",
+          "Common Ground",
+          "Common Ground",
+          "Small Wonder",
+          "Small Wonder",
+          "The Fifth Element",
+          "The Fifth Element"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "id": "libfile_62f6593d99fc81918d86c3b780890b09",
+        "file_id": "file_00000000d13c81fd99968bb618c9e5d8",
+        "status": "succeeded",
+        "version": 0,
+        "path": "/admin-teams-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-teams-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "local_xattrs_applied": true
+      },
+      "inspection": "Opened actual pixels; synthetic-only content. Equal full-page/viewport files validated by identical SHA256 when page fits viewport."
+    },
+    {
+      "id": "admin-teams-admin-desktop-default-viewport-0e7756c6-75a667d2",
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-teams-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "4befaa8c8c68d31cfcbc74fcb59f0fa768be58b120a58733b55c3cbfbc466919",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 1535,
+        "headings": [
+          "Teams^^",
+          "Common Ground",
+          "Common Ground",
+          "Small Wonder",
+          "Small Wonder",
+          "The Fifth Element",
+          "The Fifth Element"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "id": "libfile_f43dda1636648191b598f210bed40095",
+        "file_id": "file_00000000001081f694b23d2b00d76b14",
+        "status": "succeeded",
+        "version": 0,
+        "path": "/admin-teams-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-teams-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "local_xattrs_applied": true
+      },
+      "inspection": "Opened actual pixels; synthetic-only content. Equal full-page/viewport files validated by identical SHA256 when page fits viewport."
+    },
+    {
+      "id": "admin-teams-admin-mobile-default-fullpage-0e7756c6-75a667d2",
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-teams-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 390,
+        "height": 2198
+      },
+      "sha256": "73ac99fe669530d30e28407869405fbba4c20d5fcd518ffdbafa5c073ca52f4c",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 2198,
+        "headings": [
+          "Teams^^",
+          "Common Ground",
+          "Common Ground",
+          "Small Wonder",
+          "Small Wonder",
+          "The Fifth Element",
+          "The Fifth Element"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "id": "libfile_66a3afd160e881918616fe3fdc24307a",
+        "file_id": "file_000000002de481fdbe7cb7a08f41d7e6",
+        "status": "succeeded",
+        "version": 0,
+        "path": "/admin-teams-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-teams-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "local_xattrs_applied": true
+      },
+      "inspection": "Opened actual pixels; synthetic-only content. Equal full-page/viewport files validated by identical SHA256 when page fits viewport."
+    },
+    {
+      "id": "admin-teams-admin-mobile-default-viewport-0e7756c6-75a667d2",
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-teams-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "f6d966e6a52cda2153151f70ba40dd52553178666dee21fda06d7c9aabc8276f",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 2198,
+        "headings": [
+          "Teams^^",
+          "Common Ground",
+          "Common Ground",
+          "Small Wonder",
+          "Small Wonder",
+          "The Fifth Element",
+          "The Fifth Element"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "id": "libfile_f7e37e55978881919dccfbc0bf370449",
+        "file_id": "file_00000000915081f5a038d7580917a609",
+        "status": "succeeded",
+        "version": 0,
+        "path": "/admin-teams-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-teams-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "local_xattrs_applied": true
+      },
+      "inspection": "Opened actual pixels; synthetic-only content. Equal full-page/viewport files validated by identical SHA256 when page fits viewport."
+    },
+    {
+      "id": "admin-submissions-admin-desktop-default-fullpage-0e7756c6-75a667d2",
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-submissions-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "f3ef58ca99ed7b50a47c687d939853ba3be9bbbc76adb0e90059e23d40bd9bad",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Submissions^^",
+          "Small Wonder",
+          "The Fifth Element"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "id": "libfile_ad71a78bbe9081919347d9bdbdfd13cb",
+        "file_id": "file_0000000023cc8230af10d8014cb694a7",
+        "status": "succeeded",
+        "version": 0,
+        "path": "/admin-submissions-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-submissions-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "local_xattrs_applied": true
+      },
+      "inspection": "Opened actual pixels; synthetic-only content. Equal full-page/viewport files validated by identical SHA256 when page fits viewport."
+    },
+    {
+      "id": "admin-submissions-admin-desktop-default-viewport-0e7756c6-75a667d2",
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-submissions-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "f3ef58ca99ed7b50a47c687d939853ba3be9bbbc76adb0e90059e23d40bd9bad",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Submissions^^",
+          "Small Wonder",
+          "The Fifth Element"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "id": "libfile_be607fe106688191b1520dd099623ee3",
+        "file_id": "file_00000000217481f5aadcf40eb1174c01",
+        "status": "succeeded",
+        "version": 0,
+        "path": "/admin-submissions-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-submissions-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "local_xattrs_applied": true
+      },
+      "inspection": "Opened actual pixels; synthetic-only content. Equal full-page/viewport files validated by identical SHA256 when page fits viewport."
+    },
+    {
+      "id": "admin-submissions-admin-mobile-default-fullpage-0e7756c6-75a667d2",
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-submissions-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 390,
+        "height": 861
+      },
+      "sha256": "cc3b75209775cf75f14a859a8f1fa8fb84072210de34641479fe9f3d1350659b",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 861,
+        "headings": [
+          "Submissions^^",
+          "Small Wonder",
+          "The Fifth Element"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-submissions-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+        "file_id": "file_00000000655081f4b6b2ec22e33b91dc",
+        "library_file_id": "libfile_576680d067b88191a3dcb7204b7dfcc0",
+        "file_name": "admin-submissions-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 41179,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-submissions-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-submissions-admin-mobile-default-fullpage-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-submissions-admin-mobile-default-viewport-0e7756c6-75a667d2",
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-submissions-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "ff033b553d69b3ffcb4730cc8500aa3caf4e8c0c26194ba46ddb373ada4f4521",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 861,
+        "headings": [
+          "Submissions^^",
+          "Small Wonder",
+          "The Fifth Element"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-submissions-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+        "file_id": "file_00000000f62c820cb46571e06b969561",
+        "library_file_id": "libfile_88335163df548191b0484a8776bde819",
+        "file_name": "admin-submissions-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 41075,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-submissions-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-submissions-admin-mobile-default-viewport-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-review-admin-desktop-default-fullpage-0e7756c6-75a667d2",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1440,
+        "height": 1528
+      },
+      "sha256": "12278e8fa25d01db4bedfe6ee242c7f50c13a538e5ec6c9b1dd5a5e87992f5a6",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 1528,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-review-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "file_id": "file_000000000dfc81f5943b79d612ee205f",
+        "library_file_id": "libfile_964c2d750c8c8191b5fa5d048d41811d",
+        "file_name": "admin-review-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 112834,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-review-admin-desktop-default-fullpage-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-review-admin-desktop-default-viewport-0e7756c6-75a667d2",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "27626f808702fbd2f969a995af247459549ca862e5b2dd8f832dd646bccace14",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 1528,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-review-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "file_id": "file_0000000079c881fd82e1c50273faeff5",
+        "library_file_id": "libfile_dc02175339a88191956013f31bb8d682",
+        "file_name": "admin-review-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 85778,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-review-admin-desktop-default-viewport-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-review-admin-mobile-default-fullpage-0e7756c6-75a667d2",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 390,
+        "height": 2347
+      },
+      "sha256": "eddfdedaf7dae1fbe9aab3da8544b701f295c7ec3b946c68191191844dd11f27",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 2347,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-review-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+        "file_id": "file_00000000aa6c81fd827db71756a154c6",
+        "library_file_id": "libfile_6fb2c83c07f88191a96bac2a560e7865",
+        "file_name": "admin-review-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 89192,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-review-admin-mobile-default-fullpage-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-review-admin-mobile-default-viewport-0e7756c6-75a667d2",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "83febefb2a8ca4025cdfef64abef6dca6494ac9fe4abc733698d67b11e4d074c",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 2347,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-review-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+        "file_id": "file_00000000a92481f58c033c8378f6369b",
+        "library_file_id": "libfile_b934d75a86b881918d966b121e647e6b",
+        "file_name": "admin-review-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 35498,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-review-admin-mobile-default-viewport-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-credits-admin-desktop-default-fullpage-0e7756c6-75a667d2",
+      "route": "/admin/credits",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-credits-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "ddd1f482fd0bf9972aebe1017a2a24a2be79253358930d796afa0518a60bcee8",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Credits^^"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-credits-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "file_id": "file_000000009d0881f5b8449af4ed10a7ad",
+        "library_file_id": "libfile_34dde31dd39481918ecbaa5f9f13e0ba",
+        "file_name": "admin-credits-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 40927,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-credits-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-credits-admin-desktop-default-fullpage-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-credits-admin-desktop-default-viewport-0e7756c6-75a667d2",
+      "route": "/admin/credits",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-credits-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "ddd1f482fd0bf9972aebe1017a2a24a2be79253358930d796afa0518a60bcee8",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Credits^^"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-credits-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "file_id": "file_00000000020881f5ac1cfd547ea77c1f",
+        "library_file_id": "libfile_537f6de00fc88191ba259167d2eb9ff1",
+        "file_name": "admin-credits-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 40927,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-credits-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-credits-admin-desktop-default-viewport-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-credits-admin-mobile-default-fullpage-0e7756c6-75a667d2",
+      "route": "/admin/credits",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-credits-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "0cc45be24c644597e3d1fac9928ca3f1d51870941b740394cbb7ddef9b3a1617",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 844,
+        "headings": [
+          "Credits^^"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-credits-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+        "file_id": "file_000000007e2881f89d297be61ef312a4",
+        "library_file_id": "libfile_aef611157a548191b9ce77f22667760e",
+        "file_name": "admin-credits-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 21916,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-credits-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-credits-admin-mobile-default-fullpage-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-credits-admin-mobile-default-viewport-0e7756c6-75a667d2",
+      "route": "/admin/credits",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-credits-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "0cc45be24c644597e3d1fac9928ca3f1d51870941b740394cbb7ddef9b3a1617",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 844,
+        "headings": [
+          "Credits^^"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-credits-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+        "file_id": "file_0000000085a081f5ae562f16b30ea169",
+        "library_file_id": "libfile_9e8f674cc0b8819184f06a04cc73d48d",
+        "file_name": "admin-credits-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 21916,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-credits-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-credits-admin-mobile-default-viewport-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-settings-admin-desktop-default-fullpage-0e7756c6-75a667d2",
+      "route": "/admin/settings",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-settings-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1440,
+        "height": 1561
+      },
+      "sha256": "7eb44058fa9514aa5612ff44b1b93c89b9b7f7a68603b70b7f755a4b073a71eb",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 1561,
+        "headings": [
+          "Settings^^",
+          "Operational and scoring readiness",
+          "Submissions",
+          "Check-in",
+          "Judging and scoring",
+          "Community engagement",
+          "Builder boost (FAKE)",
+          "Score reveals",
+          "Reveal AI scores",
+          "Reveal Final score"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-settings-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "file_id": "file_00000000ba5481fd9755c10f6b0ea3f6",
+        "library_file_id": "libfile_fb140223de248191abafee04bac41698",
+        "file_name": "admin-settings-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 108477,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-settings-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-settings-admin-desktop-default-fullpage-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-settings-admin-desktop-default-viewport-0e7756c6-75a667d2",
+      "route": "/admin/settings",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-settings-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "8e2ed992e73a9875ce17bbade4e4f9e8792d1abd0c38357f58e9a432094d2b7c",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 1561,
+        "headings": [
+          "Settings^^",
+          "Operational and scoring readiness",
+          "Submissions",
+          "Check-in",
+          "Judging and scoring",
+          "Community engagement",
+          "Builder boost (FAKE)",
+          "Score reveals",
+          "Reveal AI scores",
+          "Reveal Final score"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-settings-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "file_id": "file_00000000a6bc820da2c2441029a484ad",
+        "library_file_id": "libfile_9d8f89abbaa48191a11a1b9863552052",
+        "file_name": "admin-settings-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 79092,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-settings-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-settings-admin-desktop-default-viewport-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-settings-admin-mobile-default-fullpage-0e7756c6-75a667d2",
+      "route": "/admin/settings",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-settings-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 390,
+        "height": 1710
+      },
+      "sha256": "f146a9570cd8039231adfdc25f45715bea77e0c11aee1012d8b41a97b0fb8257",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 1710,
+        "headings": [
+          "Settings^^",
+          "Operational and scoring readiness",
+          "Submissions",
+          "Check-in",
+          "Judging and scoring",
+          "Community engagement",
+          "Builder boost (FAKE)",
+          "Score reveals",
+          "Reveal AI scores",
+          "Reveal Final score"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-settings-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+        "file_id": "file_000000009a0481fdb28a78594309011c",
+        "library_file_id": "libfile_d2bb3b0fc0e08191a4c6d0da9aad719b",
+        "file_name": "admin-settings-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 84011,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-settings-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-settings-admin-mobile-default-fullpage-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-settings-admin-mobile-default-viewport-0e7756c6-75a667d2",
+      "route": "/admin/settings",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-settings-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "4604051e89926b0d7374a6b2dd4a630cbe3abfb29b713b7248b154302cceff6b",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 1710,
+        "headings": [
+          "Settings^^",
+          "Operational and scoring readiness",
+          "Submissions",
+          "Check-in",
+          "Judging and scoring",
+          "Community engagement",
+          "Builder boost (FAKE)",
+          "Score reveals",
+          "Reveal AI scores",
+          "Reveal Final score"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-settings-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+        "file_id": "file_00000000ea8881fdbc4fd86ab29c5677",
+        "library_file_id": "libfile_90fa902401688191a293f50275bbe8a2",
+        "file_name": "admin-settings-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 48768,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-settings-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-settings-admin-mobile-default-viewport-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-settings-owner-desktop-default-fullpage-0e7756c6-75a667d2",
+      "route": "/admin/settings",
+      "role": "owner",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-settings-owner-desktop-default-fullpage-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1440,
+        "height": 7317
+      },
+      "sha256": "0f2315a7d7dedf3600c7fd712c073567b3086d38ae8649b8ea18e5897c77687f",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 7319,
+        "headings": [
+          "Settings^^",
+          "Operational setup",
+          "Operational and scoring readiness",
+          "Submissions",
+          "Check-in",
+          "Judging and scoring",
+          "Community engagement",
+          "Builder boost (FAKE)",
+          "Submission window",
+          "Global scoring weights",
+          "Global scoring weights",
+          "Score reveals",
+          "Reveal AI scores",
+          "Freeze final judging snapshot",
+          "Reveal Final score",
+          "Add Admins",
+          "Public event content",
+          "Agenda",
+          "Frequently asked questions"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-settings-owner-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "file_id": "file_000000008e5c81f9923870a9332de61f",
+        "library_file_id": "libfile_0eec8d8d6ce88191be25096d7b81e135",
+        "file_name": "admin-settings-owner-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 441086,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-settings-owner-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-settings-owner-desktop-default-fullpage-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-settings-owner-desktop-default-viewport-0e7756c6-75a667d2",
+      "route": "/admin/settings",
+      "role": "owner",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-settings-owner-desktop-default-viewport-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "963d0f6eb7e8fbd19f2a908408317d1e19667ad812eb5175a5d51d4bfe4b9cff",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 7319,
+        "headings": [
+          "Settings^^",
+          "Operational setup",
+          "Operational and scoring readiness",
+          "Submissions",
+          "Check-in",
+          "Judging and scoring",
+          "Community engagement",
+          "Builder boost (FAKE)",
+          "Submission window",
+          "Global scoring weights",
+          "Global scoring weights",
+          "Score reveals",
+          "Reveal AI scores",
+          "Freeze final judging snapshot",
+          "Reveal Final score",
+          "Add Admins",
+          "Public event content",
+          "Agenda",
+          "Frequently asked questions"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-settings-owner-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "file_id": "file_000000000dac81fdaf033b63255f5ca4",
+        "library_file_id": "libfile_47b4aaf1efc88191823d5fb837a6cee8",
+        "file_name": "admin-settings-owner-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 85984,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-settings-owner-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-settings-owner-desktop-default-viewport-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-settings-owner-mobile-default-fullpage-0e7756c6-75a667d2",
+      "route": "/admin/settings",
+      "role": "owner",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-settings-owner-mobile-default-fullpage-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 390,
+        "height": 8014
+      },
+      "sha256": "734f48949c7d81c7de228474bedbcd9279fef8ed2de51606cc1caa345d970e42",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 8016,
+        "headings": [
+          "Settings^^",
+          "Operational setup",
+          "Operational and scoring readiness",
+          "Submissions",
+          "Check-in",
+          "Judging and scoring",
+          "Community engagement",
+          "Builder boost (FAKE)",
+          "Submission window",
+          "Global scoring weights",
+          "Global scoring weights",
+          "Score reveals",
+          "Reveal AI scores",
+          "Freeze final judging snapshot",
+          "Reveal Final score",
+          "Add Admins",
+          "Public event content",
+          "Agenda",
+          "Frequently asked questions"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-settings-owner-mobile-default-fullpage-0e7756c6-75a667d2.png",
+        "file_id": "file_00000000b95881f585b2e9f922813e36",
+        "library_file_id": "libfile_09a4bf76184481919801b76c56be7918",
+        "file_name": "admin-settings-owner-mobile-default-fullpage-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 369124,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-settings-owner-mobile-default-fullpage-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-settings-owner-mobile-default-fullpage-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-settings-owner-mobile-default-viewport-0e7756c6-75a667d2",
+      "route": "/admin/settings",
+      "role": "owner",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-settings-owner-mobile-default-viewport-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "f84a93e819769b10f0f8f6f42b87c1164f6e3937c171701827f55f3299fa630c",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 8016,
+        "headings": [
+          "Settings^^",
+          "Operational setup",
+          "Operational and scoring readiness",
+          "Submissions",
+          "Check-in",
+          "Judging and scoring",
+          "Community engagement",
+          "Builder boost (FAKE)",
+          "Submission window",
+          "Global scoring weights",
+          "Global scoring weights",
+          "Score reveals",
+          "Reveal AI scores",
+          "Freeze final judging snapshot",
+          "Reveal Final score",
+          "Add Admins",
+          "Public event content",
+          "Agenda",
+          "Frequently asked questions"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-settings-owner-mobile-default-viewport-0e7756c6-75a667d2.png",
+        "file_id": "file_00000000780481fdb4d0c258e462e080",
+        "library_file_id": "libfile_792b331c8d30819196465a67731324eb",
+        "file_name": "admin-settings-owner-mobile-default-viewport-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 45946,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-settings-owner-mobile-default-viewport-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-settings-owner-mobile-default-viewport-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-logs-owner-desktop-default-fullpage-0e7756c6-75a667d2",
+      "route": "/admin/logs",
+      "role": "owner",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-logs-owner-desktop-default-fullpage-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "8c594fbcd52576584a9ad05bc3727cf69e6de0907ac8fc1ed9b480bf14401bb5",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Logs^^"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-logs-owner-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "file_id": "file_000000006d7881fd9dea9a2f14d85adc",
+        "library_file_id": "libfile_d8bfcf502ab08191839e5995e356a98e",
+        "file_name": "admin-logs-owner-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 44597,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-logs-owner-desktop-default-fullpage-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-logs-owner-desktop-default-fullpage-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-logs-owner-desktop-default-viewport-0e7756c6-75a667d2",
+      "route": "/admin/logs",
+      "role": "owner",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-logs-owner-desktop-default-viewport-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "8c594fbcd52576584a9ad05bc3727cf69e6de0907ac8fc1ed9b480bf14401bb5",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Logs^^"
+        ]
+      },
+      "inspected": true,
+      "library": {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/admin-logs-owner-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "file_id": "file_00000000cbe481fd9b2d92ef7f21cc1f",
+        "library_file_id": "libfile_6289b1083af08191922033236910487f",
+        "file_name": "admin-logs-owner-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 44597,
+        "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-logs-owner-desktop-default-viewport-0e7756c6-75a667d2.png",
+        "local_xattrs_applied": true,
+        "captureId": "admin-logs-owner-desktop-default-viewport-0e7756c6-75a667d2"
+      },
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-logs-owner-mobile-default-fullpage-0e7756c6-75a667d2",
+      "route": "/admin/logs",
+      "role": "owner",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-logs-owner-mobile-default-fullpage-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "195a6ec7f997e01a51621bc2af2466eb2367649da97fc49af434651e751cfda5",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 844,
+        "headings": [
+          "Logs^^"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-logs-owner-mobile-default-viewport-0e7756c6-75a667d2",
+      "route": "/admin/logs",
+      "role": "owner",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-logs-owner-mobile-default-viewport-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "195a6ec7f997e01a51621bc2af2466eb2367649da97fc49af434651e751cfda5",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 844,
+        "headings": [
+          "Logs^^"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened and inspected actual pixels; fixture-only, no unmasked vouchers or real personal data."
+    },
+    {
+      "id": "admin-participants-admin-desktop-section-1-filter-participants-section-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-1-Filter participants",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-desktop-section-1-filter-participants-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1128,
+        "height": 72
+      },
+      "sha256": "f18d43bc82ffbf648f28c51d0e3c8142c945a779e9a2bb182d793a4e9afb527b",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 1745,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-participants-admin-desktop-section-2-add-emails-or-import-a-roster-section-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-2-Add emails or import a roster",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-desktop-section-2-add-emails-or-import-a-roster-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1128,
+        "height": 252
+      },
+      "sha256": "5e4832581ae9fa363bcd58a74a0e7e677e9fb66a3fff83d9b8d5cc091ed7a1cc",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 1745,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-participants-admin-desktop-section-4-bob-section-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-4-Bob",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-desktop-section-4-bob-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 243,
+        "height": 225
+      },
+      "sha256": "6379a8a9554ddd0a75985830f16dac385e27ba61e33463c2cb4e9e940c51f6a6",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 1745,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-participants-admin-desktop-section-5-section-5-section-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-5-Section 5",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-desktop-section-5-section-5-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 294,
+        "height": 44
+      },
+      "sha256": "4d729d2ebce410aa3aad120bbfedd10da9b52aa858ced83805d87949276b17eb",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 1745,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-participants-admin-desktop-section-6-carol-section-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-6-Carol",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-desktop-section-6-carol-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 243,
+        "height": 225
+      },
+      "sha256": "c94c84f7f18278189aa018353569cb8911a233d053bf5c47cdacc718fbcbd3f5",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 1745,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-participants-admin-desktop-section-7-section-7-section-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-7-Section 7",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-desktop-section-7-section-7-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 294,
+        "height": 44
+      },
+      "sha256": "e0f90069f992967bf18d09f26c5f5a1918c333e361beba326ee027143de46485",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 1745,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-participants-admin-desktop-section-8-dave-section-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-8-Dave",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-desktop-section-8-dave-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 243,
+        "height": 225
+      },
+      "sha256": "cea82723dc01e06d19c47fbc9ab4734e052ae0fc0f1f3f6e059c4549e27d5549",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 1745,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-participants-admin-desktop-section-9-section-9-section-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-9-Section 9",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-desktop-section-9-section-9-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 294,
+        "height": 44
+      },
+      "sha256": "70fe3d3f3d908e16d74f37e51f90614a817ca77e2c4aff7effdd4ae2bd4ebbf4",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 1745,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-participants-admin-mobile-section-1-filter-participants-section-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "section-1-Filter participants",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-mobile-section-1-filter-participants-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 354,
+        "height": 154
+      },
+      "sha256": "bb2220d7e9a2b60a5494fe13dc8fa2f6ec4baefb7660da20343f5634bf220f9f",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 2652,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-participants-admin-mobile-section-2-add-emails-or-import-a-roster-section-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "section-2-Add emails or import a roster",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-mobile-section-2-add-emails-or-import-a-roster-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 354,
+        "height": 300
+      },
+      "sha256": "53f8185a238ff5335a870ad59d27617f88ce168bb80b959b2e75851256c801a2",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 2652,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-participants-admin-mobile-section-4-bob-section-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "section-4-Bob",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-mobile-section-4-bob-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 292,
+        "height": 218
+      },
+      "sha256": "07d377e634a404761477aa02e0bafe50ec6bdd6aa79ad9619555e873af6ecf7a",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 2652,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-participants-admin-mobile-section-5-section-5-section-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "section-5-Section 5",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-mobile-section-5-section-5-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 292,
+        "height": 94
+      },
+      "sha256": "a17b521ff37c8c9baca9d4796f05b7ce3129234f8ee99847cef0f7533b3246a1",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 2652,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-participants-admin-mobile-section-6-carol-section-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "section-6-Carol",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-mobile-section-6-carol-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 292,
+        "height": 218
+      },
+      "sha256": "0d4cb69c93ec6e2e42bc8dae5f008e0221f7e0761766bdbf4ace9113b8899be6",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 2652,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-participants-admin-mobile-section-7-section-7-section-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "section-7-Section 7",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-mobile-section-7-section-7-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 292,
+        "height": 94
+      },
+      "sha256": "044a81422b1cc70467627a591d6bbac7ec49d36d88c47a48ff0fc775a47c3a02",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 2652,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-participants-admin-mobile-section-8-dave-section-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "section-8-Dave",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-mobile-section-8-dave-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 292,
+        "height": 218
+      },
+      "sha256": "f3abc9bc8a680cbd6088b208661860e4b2d4a240b4ef921d314c574ec2ad27d6",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 2652,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-participants-admin-mobile-section-9-section-9-section-0e7756c6-75a667d2",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "section-9-Section 9",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-mobile-section-9-section-9-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 292,
+        "height": 94
+      },
+      "sha256": "5643f540587342e8cfc1137c77eae2dd65a0787f098d90728680802fa2917342",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 2652,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-teams-admin-desktop-section-1-common-ground-section-0e7756c6-75a667d2",
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-1-Common Ground",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-teams-admin-desktop-section-1-common-ground-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1128,
+        "height": 674
+      },
+      "sha256": "c42fe3928496c15e35fdc63676ba19066de1e4e9114c9baa933f9b5955c86f4b",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 2308,
+        "headings": [
+          "Teams^^",
+          "Common Ground",
+          "Common Ground",
+          "Small Wonder",
+          "Small Wonder",
+          "The Fifth Element",
+          "The Fifth Element"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-teams-admin-desktop-section-3-small-wonder-section-0e7756c6-75a667d2",
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-3-Small Wonder",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-teams-admin-desktop-section-3-small-wonder-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1128,
+        "height": 511
+      },
+      "sha256": "11988ef9ad8dc0a9da1439022c4b69f3dfef5231e9e6eb303d0807169bd1837c",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 2308,
+        "headings": [
+          "Teams^^",
+          "Common Ground",
+          "Common Ground",
+          "Small Wonder",
+          "Small Wonder",
+          "The Fifth Element",
+          "The Fifth Element"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-teams-admin-desktop-section-5-the-fifth-element-section-0e7756c6-75a667d2",
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-5-The Fifth Element",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-teams-admin-desktop-section-5-the-fifth-element-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1128,
+        "height": 839
+      },
+      "sha256": "e7a6c03fc917c6916426daaa0db65db4095fbb27d37e9aab653453fb545dbfee",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 2308,
+        "headings": [
+          "Teams^^",
+          "Common Ground",
+          "Common Ground",
+          "Small Wonder",
+          "Small Wonder",
+          "The Fifth Element",
+          "The Fifth Element"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-teams-admin-mobile-section-1-common-ground-section-0e7756c6-75a667d2",
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "section-1-Common Ground",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-teams-admin-mobile-section-1-common-ground-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 354,
+        "height": 812
+      },
+      "sha256": "8a24d8c00f0237d89e264c4551e9a1984ce542b37a7908317667af1cd7528bf2",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 2947,
+        "headings": [
+          "Teams^^",
+          "Common Ground",
+          "Common Ground",
+          "Small Wonder",
+          "Small Wonder",
+          "The Fifth Element",
+          "The Fifth Element"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-teams-admin-mobile-section-3-small-wonder-section-0e7756c6-75a667d2",
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "section-3-Small Wonder",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-teams-admin-mobile-section-3-small-wonder-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 354,
+        "height": 551
+      },
+      "sha256": "4162acd7966a0bff5c8b67509a528ab8cdab8403c7121621df7b3e633a1cf3a7",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 2947,
+        "headings": [
+          "Teams^^",
+          "Common Ground",
+          "Common Ground",
+          "Small Wonder",
+          "Small Wonder",
+          "The Fifth Element",
+          "The Fifth Element"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-teams-admin-mobile-section-5-the-fifth-element-section-0e7756c6-75a667d2",
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "section-5-The Fifth Element",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-teams-admin-mobile-section-5-the-fifth-element-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 354,
+        "height": 1074
+      },
+      "sha256": "9dfe9be10cbf22178b499e529fa616818144d28285899b4b03debd17b9709540",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 2947,
+        "headings": [
+          "Teams^^",
+          "Common Ground",
+          "Common Ground",
+          "Small Wonder",
+          "Small Wonder",
+          "The Fifth Element",
+          "The Fifth Element"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-submissions-admin-desktop-section-1-manage-project-and-submissions-section-0e7756c6-75a667d2",
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-1-Manage project and submissions",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-submissions-admin-desktop-section-1-manage-project-and-submissions-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1128,
+        "height": 246
+      },
+      "sha256": "6b6b992e7ae1afd13c51ac7b741e6e2fd350ebf246d3d7fbceaf0db42820154b",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 988,
+        "headings": [
+          "Submissions^^",
+          "Small Wonder",
+          "The Fifth Element"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-submissions-admin-desktop-section-3-manage-project-and-submissions-section-0e7756c6-75a667d2",
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-3-Manage project and submissions",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-submissions-admin-desktop-section-3-manage-project-and-submissions-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 1128,
+        "height": 246
+      },
+      "sha256": "34cbe4c63089a723b629a1d9f1ea88a716faa13985ec6e1eb635666efd0dbddb",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 988,
+        "headings": [
+          "Submissions^^",
+          "Small Wonder",
+          "The Fifth Element"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-submissions-admin-mobile-section-1-manage-project-and-submissions-section-0e7756c6-75a667d2",
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "section-1-Manage project and submissions",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-submissions-admin-mobile-section-1-manage-project-and-submissions-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 354,
+        "height": 292
+      },
+      "sha256": "8e6b30bf206bb62ce9568748cc33c8ed10b42d0fe89cabddbece0e56bdcb7231",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 1279,
+        "headings": [
+          "Submissions^^",
+          "Small Wonder",
+          "The Fifth Element"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-submissions-admin-mobile-section-3-manage-project-and-submissions-section-0e7756c6-75a667d2",
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "section-3-Manage project and submissions",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-submissions-admin-mobile-section-3-manage-project-and-submissions-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 354,
+        "height": 292
+      },
+      "sha256": "2ffd715097f37f696850fa07cde3199ee4f8cba7c1c373c8b152b2f49c4255c3",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 1279,
+        "headings": [
+          "Submissions^^",
+          "Small Wonder",
+          "The Fifth Element"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-review-admin-desktop-section-1-manage-project-and-submission-versions-section-0e7756c6-75a667d2",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-1-Manage project and submission versions",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-desktop-section-1-manage-project-and-submission-versions-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 626,
+        "height": 2318
+      },
+      "sha256": "bc31a68f1a807ef0404b5373ef5b3b9a634570589a1ef75a763548fa160df18d",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 2458,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-review-admin-desktop-section-2-manage-project-and-submission-versions-section-0e7756c6-75a667d2",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-2-Manage project and submission versions",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-desktop-section-2-manage-project-and-submission-versions-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 626,
+        "height": 246
+      },
+      "sha256": "3a276944b48c2385e8c5d985dac68956c1ef802a09201bb8e5f4689f4ab73ee2",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 2458,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-review-admin-desktop-section-4-final-judging-rubric-reviewer-private-section-0e7756c6-75a667d2",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-4-Final judging rubric \u00b7 reviewer private",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-desktop-section-4-final-judging-rubric-reviewer-private-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 626,
+        "height": 866
+      },
+      "sha256": "cefc90d614d916d5ad0860f92d3ddb994b448864b24dd9eaa10c44bbc14b4ae1",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 2458,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-review-admin-desktop-section-6-eligibility-check-section-0e7756c6-75a667d2",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-6-Eligibility check",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-desktop-section-6-eligibility-check-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 626,
+        "height": 471
+      },
+      "sha256": "a430ecaac141da19f2a9b0a3c83f97044e4ba9d09f5627fc67377d140c90e8f5",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 2458,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ]
+      },
+      "inspected": true,
+      "library": null,
+      "inspection": "Opened actual pixels; synthetic-only content, no revealed vouchers. Capture is evidence, not a claim of mockup fidelity."
+    },
+    {
+      "id": "admin-review-admin-desktop-section-7-private-review-section-0e7756c6-75a667d2",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-7-Private review",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-desktop-section-7-private-review-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 463,
+        "height": 2318
+      },
+      "sha256": "bd4be76f747b9c784d44f3e7003189c3f9b64b546b76aae0a5ef5210c883becc",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 2458,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ]
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-review-admin-desktop-section-8-private-review-section-0e7756c6-75a667d2",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-8-Private review",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-desktop-section-8-private-review-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 430,
+        "height": 382
+      },
+      "sha256": "0dd59831f63c8bda8d650ff22b5276b6b53d001d4f00ccd4a431940db88ddf08",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 2458,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ]
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-review-admin-desktop-section-9-ai-evaluation-section-0e7756c6-75a667d2",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-9-AI evaluation",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-desktop-section-9-ai-evaluation-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 430,
+        "height": 131
+      },
+      "sha256": "85c4a74163fa229b689454d28ea156651f034af9fef853185bfb0fbd34c15fe9",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 2458,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ]
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-review-admin-desktop-section-10-review-history-unrevealed-section-0e7756c6-75a667d2",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-10-Review history \u00b7 unrevealed",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-desktop-section-10-review-history-unrevealed-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 430,
+        "height": 224
+      },
+      "sha256": "b2061ef57d5a50d9c1cf1f7e6c2a0e2b8e82ae34d4517f17897786df925b1b7a",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 2458,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ]
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-review-admin-desktop-section-11-assign-a-reviewer-section-0e7756c6-75a667d2",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "section-11-Assign a reviewer",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-desktop-section-11-assign-a-reviewer-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 430,
+        "height": 226
+      },
+      "sha256": "deb46583cf1da2d96bb1452b17ad1f55a85d89a66c8b6aa75ef1cf6ffabc62fb",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 2458,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ]
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-review-admin-mobile-section-1-manage-project-and-submission-versions-section-0e7756c6-75a667d2",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "section-1-Manage project and submission versions",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-mobile-section-1-manage-project-and-submission-versions-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 354,
+        "height": 2268
+      },
+      "sha256": "a42e7b72d284d5c72c845d0905f81c05ad8634a0e953d72adb824a47285682a1",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 3534,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ]
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-review-admin-mobile-section-2-manage-project-and-submission-versions-section-0e7756c6-75a667d2",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "section-2-Manage project and submission versions",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-mobile-section-2-manage-project-and-submission-versions-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 354,
+        "height": 296
+      },
+      "sha256": "6475a5b43cb7ddd0c9800bb191d63b2e4475d4584a26ee8558dc820abb116d85",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 3534,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ]
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-review-admin-mobile-section-4-final-judging-rubric-reviewer-private-section-0e7756c6-75a667d2",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "section-4-Final judging rubric \u00b7 reviewer private",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-mobile-section-4-final-judging-rubric-reviewer-private-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 354,
+        "height": 902
+      },
+      "sha256": "6608422be8b734ebed4a9f693138627168917cf10457a922d4b3b409109ccc93",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 3534,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ]
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-review-admin-mobile-section-6-eligibility-check-section-0e7756c6-75a667d2",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "section-6-Eligibility check",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-mobile-section-6-eligibility-check-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 354,
+        "height": 463
+      },
+      "sha256": "61d5c3aa4c60d7639bafb132e9b812f30f6391f592d19043c6982a4a46eb296e",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 3534,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ]
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-review-admin-mobile-section-7-private-review-section-0e7756c6-75a667d2",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "section-7-Private review",
+      "kind": "section",
+      "path": "evidence/admin-batch-0e7756c6-75a667d2/admin-review-admin-mobile-section-7-private-review-section-0e7756c6-75a667d2.png",
+      "image": {
+        "width": 354,
+        "height": 1035
+      },
+      "sha256": "8fd5f2a3718006db43be98a3b09d6a2ddaad9ccc8899458127897fc9aa66529e",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 3534,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ]
+      },
+      "inspected": false,
+      "library": null
+    }
+  ],
+  "checks": [],
+  "blocked": [],
+  "requests": [],
+  "pageErrors": [],
+  "browser": "156.0.8078.4",
+  "corePlan": [
+    {
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/credits",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/credits",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/credits",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/credits",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/settings",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/settings",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/settings",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/settings",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/settings",
+      "role": "owner",
+      "viewport": "desktop",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/settings",
+      "role": "owner",
+      "viewport": "desktop",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/settings",
+      "role": "owner",
+      "viewport": "mobile",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/settings",
+      "role": "owner",
+      "viewport": "mobile",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/logs",
+      "role": "owner",
+      "viewport": "desktop",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/logs",
+      "role": "owner",
+      "viewport": "desktop",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/logs",
+      "role": "owner",
+      "viewport": "mobile",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/logs",
+      "role": "owner",
+      "viewport": "mobile",
+      "kind": "viewport"
+    }
+  ],
+  "sectionPlan": [
+    {
+      "key": "participants",
+      "path": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 0,
+      "state": "section-1-Filter participants",
+      "kind": "section"
+    },
+    {
+      "key": "participants",
+      "path": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 1,
+      "state": "section-2-Add emails or import a roster",
+      "kind": "section"
+    },
+    {
+      "key": "participants",
+      "path": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 3,
+      "state": "section-4-Bob",
+      "kind": "section"
+    },
+    {
+      "key": "participants",
+      "path": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 4,
+      "state": "section-5-Section 5",
+      "kind": "section"
+    },
+    {
+      "key": "participants",
+      "path": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 5,
+      "state": "section-6-Carol",
+      "kind": "section"
+    },
+    {
+      "key": "participants",
+      "path": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 6,
+      "state": "section-7-Section 7",
+      "kind": "section"
+    },
+    {
+      "key": "participants",
+      "path": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 7,
+      "state": "section-8-Dave",
+      "kind": "section"
+    },
+    {
+      "key": "participants",
+      "path": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 8,
+      "state": "section-9-Section 9",
+      "kind": "section"
+    },
+    {
+      "key": "participants",
+      "path": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 0,
+      "state": "section-1-Filter participants",
+      "kind": "section"
+    },
+    {
+      "key": "participants",
+      "path": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 1,
+      "state": "section-2-Add emails or import a roster",
+      "kind": "section"
+    },
+    {
+      "key": "participants",
+      "path": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 3,
+      "state": "section-4-Bob",
+      "kind": "section"
+    },
+    {
+      "key": "participants",
+      "path": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 4,
+      "state": "section-5-Section 5",
+      "kind": "section"
+    },
+    {
+      "key": "participants",
+      "path": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 5,
+      "state": "section-6-Carol",
+      "kind": "section"
+    },
+    {
+      "key": "participants",
+      "path": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 6,
+      "state": "section-7-Section 7",
+      "kind": "section"
+    },
+    {
+      "key": "participants",
+      "path": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 7,
+      "state": "section-8-Dave",
+      "kind": "section"
+    },
+    {
+      "key": "participants",
+      "path": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 8,
+      "state": "section-9-Section 9",
+      "kind": "section"
+    },
+    {
+      "key": "teams",
+      "path": "/admin/teams",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 0,
+      "state": "section-1-Common Ground",
+      "kind": "section"
+    },
+    {
+      "key": "teams",
+      "path": "/admin/teams",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 2,
+      "state": "section-3-Small Wonder",
+      "kind": "section"
+    },
+    {
+      "key": "teams",
+      "path": "/admin/teams",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 4,
+      "state": "section-5-The Fifth Element",
+      "kind": "section"
+    },
+    {
+      "key": "teams",
+      "path": "/admin/teams",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 0,
+      "state": "section-1-Common Ground",
+      "kind": "section"
+    },
+    {
+      "key": "teams",
+      "path": "/admin/teams",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 2,
+      "state": "section-3-Small Wonder",
+      "kind": "section"
+    },
+    {
+      "key": "teams",
+      "path": "/admin/teams",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 4,
+      "state": "section-5-The Fifth Element",
+      "kind": "section"
+    },
+    {
+      "key": "submissions",
+      "path": "/admin/submissions",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 0,
+      "state": "section-1-Manage project and submissions",
+      "kind": "section"
+    },
+    {
+      "key": "submissions",
+      "path": "/admin/submissions",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 2,
+      "state": "section-3-Manage project and submissions",
+      "kind": "section"
+    },
+    {
+      "key": "submissions",
+      "path": "/admin/submissions",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 0,
+      "state": "section-1-Manage project and submissions",
+      "kind": "section"
+    },
+    {
+      "key": "submissions",
+      "path": "/admin/submissions",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 2,
+      "state": "section-3-Manage project and submissions",
+      "kind": "section"
+    },
+    {
+      "key": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 0,
+      "state": "section-1-Manage project and submission versions",
+      "kind": "section"
+    },
+    {
+      "key": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 1,
+      "state": "section-2-Manage project and submission versions",
+      "kind": "section"
+    },
+    {
+      "key": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 3,
+      "state": "section-4-Final judging rubric \u00b7 reviewer private",
+      "kind": "section"
+    },
+    {
+      "key": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 5,
+      "state": "section-6-Eligibility check",
+      "kind": "section"
+    },
+    {
+      "key": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 6,
+      "state": "section-7-Private review",
+      "kind": "section"
+    },
+    {
+      "key": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 7,
+      "state": "section-8-Private review",
+      "kind": "section"
+    },
+    {
+      "key": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 8,
+      "state": "section-9-AI evaluation",
+      "kind": "section"
+    },
+    {
+      "key": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 9,
+      "state": "section-10-Review history \u00b7 unrevealed",
+      "kind": "section"
+    },
+    {
+      "key": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 10,
+      "state": "section-11-Assign a reviewer",
+      "kind": "section"
+    },
+    {
+      "key": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 0,
+      "state": "section-1-Manage project and submission versions",
+      "kind": "section"
+    },
+    {
+      "key": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 1,
+      "state": "section-2-Manage project and submission versions",
+      "kind": "section"
+    },
+    {
+      "key": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 3,
+      "state": "section-4-Final judging rubric \u00b7 reviewer private",
+      "kind": "section"
+    },
+    {
+      "key": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 5,
+      "state": "section-6-Eligibility check",
+      "kind": "section"
+    },
+    {
+      "key": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 6,
+      "state": "section-7-Private review",
+      "kind": "section"
+    },
+    {
+      "key": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 7,
+      "state": "section-8-Private review",
+      "kind": "section"
+    },
+    {
+      "key": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 8,
+      "state": "section-9-AI evaluation",
+      "kind": "section"
+    },
+    {
+      "key": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 9,
+      "state": "section-10-Review history \u00b7 unrevealed",
+      "kind": "section"
+    },
+    {
+      "key": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 10,
+      "state": "section-11-Assign a reviewer",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 0,
+      "state": "section-1-Operational and scoring readiness",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 1,
+      "state": "section-2-Community engagement",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 2,
+      "state": "section-3-Shared credit setup instructions",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "admin",
+      "viewport": "desktop",
+      "sectionIndex": 4,
+      "state": "section-5-Score reveals",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 0,
+      "state": "section-1-Operational and scoring readiness",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 1,
+      "state": "section-2-Community engagement",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 2,
+      "state": "section-3-Shared credit setup instructions",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "admin",
+      "viewport": "mobile",
+      "sectionIndex": 4,
+      "state": "section-5-Score reveals",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "owner",
+      "viewport": "desktop",
+      "sectionIndex": 0,
+      "state": "section-1-Operational setup",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "owner",
+      "viewport": "desktop",
+      "sectionIndex": 1,
+      "state": "section-2-Operational and scoring readiness",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "owner",
+      "viewport": "desktop",
+      "sectionIndex": 3,
+      "state": "section-4-Community engagement",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "owner",
+      "viewport": "desktop",
+      "sectionIndex": 4,
+      "state": "section-5-Shared credit setup instructions",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "owner",
+      "viewport": "desktop",
+      "sectionIndex": 6,
+      "state": "section-7-Submission window",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "owner",
+      "viewport": "desktop",
+      "sectionIndex": 7,
+      "state": "section-8-Global scoring weights",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "owner",
+      "viewport": "desktop",
+      "sectionIndex": 9,
+      "state": "section-10-Score reveals",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "owner",
+      "viewport": "desktop",
+      "sectionIndex": 13,
+      "state": "section-14-Add Admins",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "owner",
+      "viewport": "desktop",
+      "sectionIndex": 14,
+      "state": "section-15-Public event content",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "owner",
+      "viewport": "mobile",
+      "sectionIndex": 0,
+      "state": "section-1-Operational setup",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "owner",
+      "viewport": "mobile",
+      "sectionIndex": 1,
+      "state": "section-2-Operational and scoring readiness",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "owner",
+      "viewport": "mobile",
+      "sectionIndex": 3,
+      "state": "section-4-Community engagement",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "owner",
+      "viewport": "mobile",
+      "sectionIndex": 4,
+      "state": "section-5-Shared credit setup instructions",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "owner",
+      "viewport": "mobile",
+      "sectionIndex": 6,
+      "state": "section-7-Submission window",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "owner",
+      "viewport": "mobile",
+      "sectionIndex": 7,
+      "state": "section-8-Global scoring weights",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "owner",
+      "viewport": "mobile",
+      "sectionIndex": 9,
+      "state": "section-10-Score reveals",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "owner",
+      "viewport": "mobile",
+      "sectionIndex": 13,
+      "state": "section-14-Add Admins",
+      "kind": "section"
+    },
+    {
+      "key": "settings",
+      "path": "/admin/settings",
+      "role": "owner",
+      "viewport": "mobile",
+      "sectionIndex": 14,
+      "state": "section-15-Public event content",
+      "kind": "section"
+    }
+  ],
+  "checkpoint": {
+    "captured": 72,
+    "coreComplete": true,
+    "sectionsCaptured": 40,
+    "sectionsPlanned": 70,
+    "dialogsCaptured": 0,
+    "libraryConfirmed": 30,
+    "browserClosed": true,
+    "hold": "Root requested uncontended load300 test; no further browser or preview requests until release."
+  }
+}

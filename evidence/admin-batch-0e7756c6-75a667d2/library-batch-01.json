@@ -1,0 +1,152 @@
+[
+  {
+    "id": "libfile_3b7b1a3cbee8819195dc653c23e66012",
+    "file_id": "file_000000003d888230b7888ce37125fca2",
+    "status": "succeeded",
+    "version": 0,
+    "path": "/admin-participants-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+    "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+    "xattrs": [
+      {
+        "name": "user.library-file-version",
+        "value": "0"
+      }
+    ],
+    "local_xattrs_applied": true
+  },
+  {
+    "id": "libfile_f920d5ed5e7881919a13df53833cf9f5",
+    "file_id": "file_0000000067c48230a3278f217987ce05",
+    "status": "succeeded",
+    "version": 0,
+    "path": "/admin-participants-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+    "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+    "xattrs": [
+      {
+        "name": "user.library-file-version",
+        "value": "0"
+      }
+    ],
+    "local_xattrs_applied": true
+  },
+  {
+    "id": "libfile_ffbd5890234c819199499f325da55c9c",
+    "file_id": "file_00000000581081f8b9cd689023d9e2e5",
+    "status": "succeeded",
+    "version": 0,
+    "path": "/admin-participants-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+    "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+    "xattrs": [
+      {
+        "name": "user.library-file-version",
+        "value": "0"
+      }
+    ],
+    "local_xattrs_applied": true
+  },
+  {
+    "id": "libfile_5c0300c01e808191972d4408c48c960f",
+    "file_id": "file_0000000058b88230a537a45410e621fd",
+    "status": "succeeded",
+    "version": 0,
+    "path": "/admin-participants-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+    "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-participants-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+    "xattrs": [
+      {
+        "name": "user.library-file-version",
+        "value": "0"
+      }
+    ],
+    "local_xattrs_applied": true
+  },
+  {
+    "id": "libfile_62f6593d99fc81918d86c3b780890b09",
+    "file_id": "file_00000000d13c81fd99968bb618c9e5d8",
+    "status": "succeeded",
+    "version": 0,
+    "path": "/admin-teams-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+    "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-teams-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+    "xattrs": [
+      {
+        "name": "user.library-file-version",
+        "value": "0"
+      }
+    ],
+    "local_xattrs_applied": true
+  },
+  {
+    "id": "libfile_f43dda1636648191b598f210bed40095",
+    "file_id": "file_00000000001081f694b23d2b00d76b14",
+    "status": "succeeded",
+    "version": 0,
+    "path": "/admin-teams-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+    "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-teams-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+    "xattrs": [
+      {
+        "name": "user.library-file-version",
+        "value": "0"
+      }
+    ],
+    "local_xattrs_applied": true
+  },
+  {
+    "id": "libfile_66a3afd160e881918616fe3fdc24307a",
+    "file_id": "file_000000002de481fdbe7cb7a08f41d7e6",
+    "status": "succeeded",
+    "version": 0,
+    "path": "/admin-teams-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+    "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-teams-admin-mobile-default-fullpage-0e7756c6-75a667d2.png",
+    "xattrs": [
+      {
+        "name": "user.library-file-version",
+        "value": "0"
+      }
+    ],
+    "local_xattrs_applied": true
+  },
+  {
+    "id": "libfile_f7e37e55978881919dccfbc0bf370449",
+    "file_id": "file_00000000915081f5a038d7580917a609",
+    "status": "succeeded",
+    "version": 0,
+    "path": "/admin-teams-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+    "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-teams-admin-mobile-default-viewport-0e7756c6-75a667d2.png",
+    "xattrs": [
+      {
+        "name": "user.library-file-version",
+        "value": "0"
+      }
+    ],
+    "local_xattrs_applied": true
+  },
+  {
+    "id": "libfile_ad71a78bbe9081919347d9bdbdfd13cb",
+    "file_id": "file_0000000023cc8230af10d8014cb694a7",
+    "status": "succeeded",
+    "version": 0,
+    "path": "/admin-submissions-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+    "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-submissions-admin-desktop-default-fullpage-0e7756c6-75a667d2.png",
+    "xattrs": [
+      {
+        "name": "user.library-file-version",
+        "value": "0"
+      }
+    ],
+    "local_xattrs_applied": true
+  },
+  {
+    "id": "libfile_be607fe106688191b1520dd099623ee3",
+    "file_id": "file_00000000217481f5aadcf40eb1174c01",
+    "status": "succeeded",
+    "version": 0,
+    "path": "/admin-submissions-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+    "original_path": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered/evidence/admin-batch-0e7756c6-75a667d2/admin-submissions-admin-desktop-default-viewport-0e7756c6-75a667d2.png",
+    "xattrs": [
+      {
+        "name": "user.library-file-version",
+        "value": "0"
+      }
+    ],
+    "local_xattrs_applied": true
+  }
+]
