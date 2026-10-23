@@ -2378,7 +2378,7 @@ export class PortalService {
         "SELECT id,policy_version,created_at,frozen_by FROM result_snapshots",
       permissions: "SELECT id,name,email,role FROM users",
       audit:
-        "SELECT id,actor_id,action,entity_id,detail,reason,created_at FROM audit_logs ORDER BY created_at DESC LIMIT 2000",
+        "SELECT a.id,a.actor_id,a.action,a.entity_id,a.detail,a.reason,a.created_at,COALESCE(pp.display_name,u.name) actorName,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression FROM audit_logs a LEFT JOIN users u ON u.id=a.actor_id LEFT JOIN participant_profiles pp ON pp.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id ORDER BY a.created_at DESC LIMIT 2000",
       settings: "SELECT id,active,version,policy FROM event_settings",
     };
     demand(list in queries, 404, "LIST_NOT_FOUND");

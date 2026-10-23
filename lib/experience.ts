@@ -886,7 +886,7 @@ export class PortalExperience {
           this.s.db,
           ids,
           (marks) =>
-            `SELECT m.team_id,u.id,u.name,u.email,COALESCE(r.status,'pending') approval,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression FROM memberships m JOIN users u ON u.id=m.user_id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN registrations r ON r.email=u.email WHERE m.team_id IN (${marks})`,
+            `SELECT m.team_id,u.id,COALESCE(pp.display_name,u.name) name,u.email,COALESCE(r.status,'pending') approval,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression FROM memberships m JOIN users u ON u.id=m.user_id LEFT JOIN participant_profiles pp ON pp.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN registrations r ON r.email=u.email WHERE m.team_id IN (${marks})`,
         ),
         people = await personFacts(
           this.s.db,

@@ -136,6 +136,14 @@ export function portalConfirmationFor(
   target: string,
 ): Confirmation {
   const base = confirmationFor(action, values, target);
+  if (action === "respond-team")
+    return {
+      ...base,
+      title: values.accept
+        ? "Accept membership request?"
+        : "Decline membership request?",
+      confirmLabel: values.accept ? "Accept" : "Decline",
+    };
   if (action === "delete-own-team")
     return {
       ...base,
@@ -232,7 +240,8 @@ export function portalTargetName(data: View, values: Row): string {
     values.userId ||
     values.projectId ||
     values.teamId ||
-    values.typeId;
+    values.typeId ||
+    values.requestId;
   const record = [
     ...(data.project ? [data.project] : []),
     ...(data.items || []),
@@ -250,6 +259,8 @@ export function portalTargetName(data: View, values: Row): string {
   );
   if (values.kind === "person" && values.targetId)
     return portalTargetName(data, { userId: values.targetId });
+  if (values.requestId && record)
+    return `${record.person_name || "Applicant"} · ${record.team_name || data.team?.name || "Team"}`;
   if (values.minutes && data.policy?.submissionClose)
     return `Submission deadline → ${ist(new Date(Date.parse(data.policy.submissionClose) + Number(values.minutes) * 60000).toISOString())}`;
   if (
@@ -4022,7 +4033,12 @@ export function AdminList({
               <details>
                 <summary>
                   <span className="admin-log-actor">
-                    <UserRound size={22} aria-hidden="true" />
+                    <DotAvatar
+                      color={record.avatarColor}
+                      expression={record.avatarExpression}
+                      size={36}
+                      decorative
+                    />
                   </span>
                   <div>
                     <strong>

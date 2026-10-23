@@ -166,7 +166,7 @@ details + details {
   top: 8px;
   left: 8px;
   transform: translateY(-150%);
-  z-index: 100;
+  z-index: 1000;
   background: #111;
   color: #fff;
   padding: 12px;

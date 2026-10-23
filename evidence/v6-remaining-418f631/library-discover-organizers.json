@@ -1,0 +1,86 @@
+{
+  "name": "discover-organizers",
+  "source": "418f6311c1e5a01831897b36f181eeda799c7911",
+  "workerSha": "6e77794a8831ccb2594f3383171244b1dd9f4ec07c56633f1357ad101b4cfaf5",
+  "synthetic": true,
+  "userAccepted": false,
+  "results": [
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-discover-rules/evidence/discover-rules-v6/418f6311-2026-10-23T19-57-30.615Z/people-1440x900.png",
+      "libraryId": "libfile_97b88b41fb388191a585b43ffe8d34b3",
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "status": "succeeded"
+    },
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-discover-rules/evidence/discover-rules-v6/418f6311-2026-10-23T19-57-30.615Z/people-390x844.png",
+      "libraryId": "libfile_9dca6a3425008191b2dd543ca27fb3ae",
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "status": "succeeded"
+    },
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-discover-rules/evidence/discover-rules-v6/418f6311-2026-10-23T19-57-30.615Z/teams-teamless-390x844.png",
+      "libraryId": "libfile_f73a8bf3f3a881918021f27159f46bc5",
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "status": "succeeded"
+    },
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-discover-rules/evidence/discover-rules-v6/418f6311-2026-10-23T19-57-30.615Z/other-profile-390x844.png",
+      "libraryId": "libfile_91d315b116b48191b35fae5700f1a8eb",
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "status": "succeeded"
+    },
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-discover-rules/evidence/discover-rules-v6/418f6311-2026-10-23T19-57-30.615Z/rules-1440x900.png",
+      "libraryId": "libfile_94ab3c108c588191b9f6974c9f775679",
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "status": "succeeded"
+    },
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-discover-rules/evidence/discover-rules-v6/418f6311-2026-10-23T19-57-30.615Z/rules-390x844.png",
+      "libraryId": "libfile_fcc99c226bfc8191bd4a48fc9d220f45",
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "status": "succeeded"
+    },
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-backdrop/418f6311-6e77794a-2026-10-23T19-56-30-965Z/organizers-framed-390x844.png",
+      "libraryId": "libfile_45a98a6aa8ac8191bbf9037858fe0141",
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "status": "succeeded"
+    }
+  ]
+}

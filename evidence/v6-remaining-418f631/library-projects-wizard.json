@@ -1,0 +1,86 @@
+{
+  "name": "projects-wizard",
+  "source": "418f6311c1e5a01831897b36f181eeda799c7911",
+  "workerSha": "6e77794a8831ccb2594f3383171244b1dd9f4ec07c56633f1357ad101b4cfaf5",
+  "synthetic": true,
+  "userAccepted": false,
+  "results": [
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-project-ui/evidence/v6-projects-submission/418f6311-6i09BT/projects-bob-1440x900.png",
+      "libraryId": "libfile_06020ec86a048191bf9ef3fdabd18601",
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "status": "succeeded"
+    },
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-project-ui/evidence/v6-projects-submission/418f6311-6i09BT/projects-bob-390x844.png",
+      "libraryId": "libfile_f399341e9cfc8191a2b6def359ffc778",
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "status": "succeeded"
+    },
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-project-ui/evidence/v6-projects-submission/418f6311-6i09BT/detail-bob-390x844.png",
+      "libraryId": "libfile_3ddc02d3ed648191a3eb311d1a8b3571",
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "status": "succeeded"
+    },
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-project-ui/evidence/v6-projects-submission/418f6311-DI2bUj/wizard-1-essentials-1440x900.png",
+      "libraryId": "libfile_687f1b5142988191adecdaea472ad5ab",
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "status": "succeeded"
+    },
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-project-ui/evidence/v6-projects-submission/418f6311-DI2bUj/wizard-1-essentials-390x844.png",
+      "libraryId": "libfile_1ab28d7a3d7c8191ad5ea2b6bbc22989",
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "status": "succeeded"
+    },
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-project-ui/evidence/v6-projects-submission/418f6311-DI2bUj/wizard-2-integrations-390x844.png",
+      "libraryId": "libfile_5f193dfe9b24819182dd91a05555c8b9",
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "status": "succeeded"
+    },
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-project-ui/evidence/v6-projects-submission/418f6311-DI2bUj/wizard-3-images-390x844.png",
+      "libraryId": "libfile_25c19d20b4008191afffbef61db9129b",
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "status": "succeeded"
+    }
+  ]
+}

@@ -58,6 +58,8 @@ const report = {
   browserClosed: false,
   homeRecheckOnly: process.env.QA_RECHECK_HOME === "1",
   gapPhase: process.env.QA_GAPS === "1",
+  gapRecheckOnly: process.env.QA_GAP_RECHECK === "1",
+  remainingDesktopPhase: process.env.QA_GAPS_REMAINING === "1",
   managedAuthenticationProof: false,
   actualProfileSaves: 0,
 };
@@ -610,7 +612,7 @@ async function home(c, full) {
         assert.equal(new URL(c.page.url()).pathname, "/signin-with-chatgpt");
       } else {
         await c.page.waitForURL(origin + "/dashboard");
-        if (["stranger", "mentor", "volunteer"].includes(c.actor.name)) {
+        if (c.actor.name === "stranger") {
           await c.page
             .getByRole("alert")
             .filter({
@@ -1650,6 +1652,68 @@ async function logoutGap(c) {
     };
   });
 }
+async function gapRecoveryRecheck(c) {
+  for (const path of ["/", "/dashboard", "/profile"]) {
+    await go(c, path);
+    await check(c, "Skip to content from " + path, async () => {
+      const skip = c.page.getByRole("link", {
+        name: "Skip to content",
+        exact: true,
+      });
+      await skip.focus();
+      if (c.actor.name === "alice" && path === "/dashboard")
+        await capture(c, "focused-skip-recheck-original");
+      const hit = await skip.evaluate((el) => {
+        const r = el.getBoundingClientRect();
+        return el.contains(
+          document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2),
+        );
+      });
+      assert.equal(
+        hit,
+        true,
+        "Focused skip link must sit above the sticky header",
+      );
+      await activate(c, skip);
+      assert.equal(new URL(c.page.url()).hash, "#main");
+      assert.equal(
+        await c.page
+          .locator("#main")
+          .evaluate((el) => el === document.activeElement),
+        true,
+      );
+      return {
+        semanticId: "shared-nav:skip-main",
+        from: path,
+        centerHit: true,
+        actualInput: c.mode.input,
+      };
+    });
+  }
+  if (c.actor.name === "anonymous") {
+    await go(c, "/dashboard");
+    await check(c, "Dashboard role boundary", async () => {
+      await c.page
+        .getByRole("link", { name: "Sign in with ChatGPT", exact: true })
+        .waitFor();
+      assert.equal(
+        await c.page
+          .locator(
+            ".dashboard-v6,.dashboard-member-phone,.dashboard-venue,.profile-flow",
+          )
+          .count(),
+        0,
+      );
+      return {
+        semanticId: "auth:anonymous-dashboard-boundary",
+        boundary:
+          "Rendered sign-in recovery with redirected authentication intercepted",
+        privateDataAllowed: false,
+      };
+    });
+  }
+  if (c.actor.name === "stranger") await logoutGap(c);
+}
 try {
   for (const mode of modes) {
     for (const actor of actors) {
@@ -1661,9 +1725,16 @@ try {
       const c = await session(actor, mode);
       try {
         if (report.gapPhase) {
-          await navigationGaps(c);
-          if (actor.name === "alice") await profileGaps(c);
-          await logoutGap(c);
+          if (
+            report.gapRecheckOnly ||
+            (report.remainingDesktopPhase && mode.hasTouch)
+          )
+            await gapRecoveryRecheck(c);
+          else {
+            await navigationGaps(c);
+            if (actor.name === "alice") await profileGaps(c);
+            await logoutGap(c);
+          }
         } else await home(c, actor.name === "anonymous");
         if (!report.homeRecheckOnly && !report.gapPhase) {
           await dashboard(c, actor.name === "alice");
