@@ -210,12 +210,10 @@ page.on("response", (response) => {
           : {}),
         ...(Array.isArray(body.rows)
           ? {
-              rows: body.rows
-                .slice(0, 5)
-                .map((row) => ({
-                  row: row.row,
-                  cells: row.cells.map((cell) => (cell ? "[masked]" : "")),
-                })),
+              rows: body.rows.slice(0, 5).map((row) => ({
+                row: row.row,
+                cells: row.cells.map((cell) => (cell ? "[masked]" : "")),
+              })),
             }
           : {}),
       });
@@ -225,6 +223,13 @@ page.on("response", (response) => {
 const click = (locator) =>
   mode === "upload" ? locator.tap() : locator.click();
 async function snapshot(name) {
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    scrollTo({ top: 0, behavior: "instant" });
+    await new Promise((resolve) =>
+      requestAnimationFrame(() => requestAnimationFrame(resolve)),
+    );
+  });
   const path = join(output, `${name}-${viewport.width}x${viewport.height}.png`);
   await page.screenshot({ path, fullPage: true, animations: "disabled" });
   report.screenshots.push({
@@ -324,6 +329,7 @@ try {
   await firstConfirmation.waitFor();
   assert.equal(counts["preview-credit-batch"], 2);
   assert.ok((await firstConfirmation.innerText()).includes(finalHeading));
+  assert.match(await firstConfirmation.innerText(), /\b16 codes\b/);
   await click(
     firstConfirmation.getByRole("button", { name: "Cancel", exact: true }),
   );
