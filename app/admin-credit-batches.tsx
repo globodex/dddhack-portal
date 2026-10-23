@@ -41,7 +41,7 @@ export function creditBatchPublishValues(
     !preview.columns.length ||
     columns.length !== preview.columns.length
   )
-    throw new Error("Preview the CSV before publishing.");
+    throw new Error("Add a CSV before publishing.");
   if (
     columns.some(
       (column, index) =>
@@ -71,43 +71,6 @@ export function creditBatchDeleteValues(batchId: string, columnId?: string) {
       ? { columnId, confirmation: "DELETE_CREDIT_COLUMN" }
       : { confirmation: "DELETE_CREDIT_BATCH" }),
   };
-}
-
-// Sample data is masked again here. A server error must never expose a cell.
-export function MaskedCreditPreview({
-  preview,
-}: {
-  preview: CreditBatchPreview;
-}) {
-  return (
-    <div className="table-scroll credit-batch-samples">
-      <table>
-        <caption className="sr-only">Masked CSV preview</caption>
-        <thead>
-          <tr>
-            <th>Row</th>
-            {preview.columns.map((column) => (
-              <th key={column.key}>{column.heading}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {preview.rows.slice(0, 5).map((row, index) => (
-            <tr key={index}>
-              <th scope="row">{row.row}</th>
-              {preview.columns.map((column, cell) => (
-                <td key={column.key}>
-                  {row.cells[cell] === "" || row.cells[cell] == null
-                    ? "Empty"
-                    : "[masked]"}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
 }
 
 function PendingIcon({
@@ -237,22 +200,18 @@ export default function AdminCreditBatches({
   const [fileName, setFileName] = useState("");
   const [preview, setPreview] = useState<CreditBatchPreview | null>(null);
   const [columns, setColumns] = useState<CreditBatchColumnDraft[]>([]);
-  const [reviewed, setReviewed] = useState(false);
   const [message, setMessage] = useState("");
   const source = useRef("");
   const generation = useRef(0);
   const input = useRef<HTMLInputElement>(null);
   const previewOp = useAdminOperation(),
-    reviewOp = useAdminOperation(),
     publishOp = useAdminOperation();
   const reset = () => {
     generation.current++;
     setPreview(null);
     setColumns([]);
-    setReviewed(false);
     setMessage("");
     previewOp.clearError();
-    reviewOp.clearError();
     publishOp.clearError();
   };
   const readFile = async (file?: File) => {
@@ -294,7 +253,7 @@ export default function AdminCreditBatches({
                   !result.columns.length ||
                   !Array.isArray(result.rows)
                 )
-                  throw new Error("The CSV preview is unavailable.");
+                  throw new Error("The CSV could not be read.");
                 setPreview(result);
                 setColumns(
                   result.columns.map((column) => ({
@@ -350,11 +309,11 @@ export default function AdminCreditBatches({
               aria-busy={previewOp.busy}
             >
               <PendingIcon busy={previewOp.busy} action="upload" />
-              {previewOp.busy ? "Preparing…" : "Preview"}
+              {previewOp.busy ? "Preparing…" : "Add credits"}
             </button>
             {previewOp.busy && (
               <span className="sr-only" role="status">
-                Preparing CSV preview
+                Reading credit columns
               </span>
             )}
           </form>
@@ -362,40 +321,34 @@ export default function AdminCreditBatches({
           <form
             onSubmit={(event) => {
               event.preventDefault();
-              if (!reviewed) {
-                void reviewOp.execute(async () => {
-                  const values = creditBatchPublishValues(
-                    source.current,
-                    preview,
-                    columns,
-                  );
-                  const result = await previewAdminAction<CreditBatchPreview>(
-                    "preview-credit-batch",
-                    { csv: values.csv, columns: values.columns },
-                  );
-                  if (
-                    !result.digest ||
-                    !Array.isArray(result.columns) ||
-                    result.columns.length !== columns.length ||
-                    !Array.isArray(result.rows)
-                  )
-                    throw new Error("The credit review is unavailable.");
-                  setPreview(result);
-                  setReviewed(true);
-                });
-                return;
-              }
               void publishOp.execute(async () => {
-                await run(
-                  "publish-credit-batch",
-                  creditBatchPublishValues(source.current, preview, columns),
+                const values = creditBatchPublishValues(
+                  source.current,
+                  preview,
+                  columns,
                 );
+                const checked = await previewAdminAction<CreditBatchPreview>(
+                  "preview-credit-batch",
+                  { csv: values.csv, columns: values.columns },
+                );
+                if (
+                  !checked.digest ||
+                  !Array.isArray(checked.columns) ||
+                  checked.columns.length !== columns.length
+                )
+                  throw new Error("Credits could not be validated.");
+                await run("publish-credit-batch", {
+                  ...creditBatchPublishValues(values.csv, checked, columns),
+                  newCount: columns.reduce(
+                    (sum, column) => sum + column.count,
+                    0,
+                  ),
+                });
                 setCSV("");
                 source.current = "";
                 setFileName("");
                 setPreview(null);
                 setColumns([]);
-                setReviewed(false);
                 if (input.current) input.current.value = "";
                 setMessage("Credits published.");
               });
@@ -409,12 +362,11 @@ export default function AdminCreditBatches({
                 type="button"
                 className="button secondary"
                 onClick={reset}
-                disabled={reviewOp.busy || publishOp.busy}
+                disabled={publishOp.busy}
               >
                 Change CSV
               </button>
             </div>
-            <MaskedCreditPreview preview={preview} />
             <div className="credit-batch-column-editors">
               {columns.map((column, index) => (
                 <section
@@ -431,7 +383,7 @@ export default function AdminCreditBatches({
                       aria-label={`Heading for ${preview.columns[index].heading}`}
                       value={column.heading}
                       required
-                      readOnly={reviewed || reviewOp.busy || publishOp.busy}
+                      readOnly={publishOp.busy}
                       maxLength={100}
                       onChange={(event) =>
                         setColumns((current) =>
@@ -450,7 +402,7 @@ export default function AdminCreditBatches({
                       aria-label={`Instructions for ${preview.columns[index].heading}`}
                       value={column.instructions}
                       required
-                      readOnly={reviewed || reviewOp.busy || publishOp.busy}
+                      readOnly={publishOp.busy}
                       maxLength={10000}
                       rows={5}
                       onChange={(event) =>
@@ -464,53 +416,20 @@ export default function AdminCreditBatches({
                       }
                     />
                   </label>
-                  {column.instructions && (
-                    <div className="credit-batch-markdown-preview">
-                      <h4>Preview</h4>
-                      <CreditInstructions markdown={column.instructions} />
-                    </div>
-                  )}
                 </section>
               ))}
             </div>
             <div className="credit-batch-publish-actions">
-              {reviewed && (
-                <button
-                  className="button secondary"
-                  type="button"
-                  disabled={publishOp.busy}
-                  onClick={() => {
-                    setReviewed(false);
-                    publishOp.clearError();
-                  }}
-                >
-                  Edit instructions
-                </button>
-              )}
               <button
                 className="button"
                 type="submit"
-                disabled={reviewOp.busy || publishOp.busy}
-                aria-busy={reviewOp.busy || publishOp.busy}
+                disabled={publishOp.busy}
+                aria-busy={publishOp.busy}
               >
-                <PendingIcon
-                  busy={reviewOp.busy || publishOp.busy}
-                  action="upload"
-                />
-                {reviewOp.busy
-                  ? "Reviewing…"
-                  : publishOp.busy
-                    ? "Publishing…"
-                    : reviewed
-                      ? "Publish credits"
-                      : "Review"}
+                <PendingIcon busy={publishOp.busy} action="upload" />
+                {publishOp.busy ? "Publishing…" : "Publish credits"}
               </button>
             </div>
-            {reviewOp.busy && (
-              <span className="sr-only" role="status">
-                Reviewing credit columns
-              </span>
-            )}
             {publishOp.busy && (
               <span className="sr-only" role="status">
                 Credit publication pending
@@ -521,11 +440,6 @@ export default function AdminCreditBatches({
         {previewOp.error && (
           <p className="error-message" role="alert">
             {previewOp.error}
-          </p>
-        )}
-        {reviewOp.error && (
-          <p className="error-message" role="alert">
-            {reviewOp.error}
           </p>
         )}
         {publishOp.error && (

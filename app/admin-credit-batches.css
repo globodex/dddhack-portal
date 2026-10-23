@@ -93,30 +93,6 @@
 .credit-batch-published > h2 {
   margin-bottom: 0;
 }
-.credit-batch-markdown-preview {
-  padding: 16px;
-  background: #f5f8fa;
-  border-radius: 10px;
-  overflow-wrap: anywhere;
-}
-.credit-batch-markdown-preview > h4 {
-  font-size: 13px;
-  color: #526079;
-  margin-bottom: 12px;
-}
-.credit-batch-samples {
-  max-width: 100%;
-  border: 1px solid #e1e8ee;
-  border-radius: 10px;
-}
-.credit-batch-samples table {
-  min-width: 100%;
-}
-.credit-batch-samples th,
-.credit-batch-samples td {
-  padding: 12px 16px;
-  white-space: nowrap;
-}
 .credit-batch-delete {
   display: grid;
   justify-items: end;

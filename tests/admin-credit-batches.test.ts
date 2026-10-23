@@ -3,7 +3,6 @@ import assert from "node:assert/strict";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import AdminCreditBatches, {
-  MaskedCreditPreview,
   PublishedCreditBatches,
   creditBatchPublishValues,
   creditBatchDeleteValues,
@@ -26,19 +25,6 @@ const preview: CreditBatchPreview = {
   })),
 };
 const run = async () => ({});
-
-test("credit samples never render raw cells and are bounded to five rows even if the response is not", () => {
-  const html = renderToStaticMarkup(
-    createElement(MaskedCreditPreview, { preview }),
-  );
-  assert.doesNotMatch(html, /DO-NOT-RENDER/);
-  assert.equal((html.match(/<tr>/g) || []).length, 6);
-  assert.equal((html.match(/\[masked\]/g) || []).length, 9);
-  assert.equal((html.match(/>Empty</g) || []).length, 1);
-  assert.match(html, /Synthetic Alpha/);
-  assert.match(html, /Synthetic Beta/);
-  assert.match(html, /<caption class="sr-only">Masked CSV preview/);
-});
 
 test("publish values retain exact column mapping and final digest while omitting display-only preview samples", () => {
   const values = creditBatchPublishValues(
@@ -102,16 +88,19 @@ test("deletion identifies exactly a batch or its selected column with distinct c
   assert.throws(() => creditBatchDeleteValues(""));
 });
 
-test("CSV upload and paste coexist with a named Preview action and no published values in initial markup", () => {
+test("CSV upload and paste lead directly to Add credits without Preview or Review controls", () => {
   const html = renderToStaticMarkup(createElement(AdminCreditBatches, { run }));
   assert.match(
     html,
     /type="file" accept="\.csv,text\/csv" aria-label="Upload credits CSV"/,
   );
   assert.match(html, /Paste CSV<textarea name="creditsCSV"/);
-  assert.match(html, />Preview<\/button>/);
+  assert.match(html, />Add credits<\/button>/);
   assert.match(html, /No uploads yet\./);
-  assert.doesNotMatch(html, /Publish credits|SYNTHETIC-DO-NOT-RENDER/);
+  assert.doesNotMatch(
+    html,
+    /Publish credits|SYNTHETIC-DO-NOT-RENDER|>Preview<|>Review<|credit-batch-samples/,
+  );
 });
 
 test("published columns render safe Markdown with separately named delete buttons and no raw voucher properties", () => {
