@@ -1,4 +1,4 @@
-node_modules/
+node_modules
 dist/
 .vite/
 .vinext/
@@ -12,6 +12,8 @@ playwright-report/
 *.tsbuildinfo
 evidence/*.png
 evidence/*.webm
+evidence/**/*.png
+evidence/**/*.webm
 
 .next/
 

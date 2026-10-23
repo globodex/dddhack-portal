@@ -11,7 +11,7 @@
     "realChatGPTSignInVerified": false,
     "creditEncryptionKeyConfigured": false,
     "eventSettingsConfigured": false,
-    "creditImportWithoutKey": 503,
+    "invalidCreditPoolWithoutKey": 422,
     "anonymousPrivatePage": 302,
     "participantProfilePage": 200,
     "participantDashboardBeforeEventInitialization": 200,
@@ -24,7 +24,8 @@
     "localSignInCommand": 404,
     "signedInRulesAnonymousAPI": 401,
     "nestedBraceProfileRoundTrip": true,
-    "nestedBraceTeamLookup": 404
+    "nestedBraceTeamLookup": 404,
+    "voucherImportAndRevealWithoutKey": 200
   },
   "stagedRelease": {
     "publicDefaultDeadline": "2026-11-01T10:30:00.000Z",

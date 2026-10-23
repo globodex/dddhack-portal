@@ -1,0 +1,671 @@
+{
+  "source": "722c04d",
+  "workerSHA": "e06ce1a3af228b75ab4aaab5d6e1e66f1139eb66a8e2743aa93ba50cc84c13a0",
+  "browser": "156.0.8078.4",
+  "sandbox": true,
+  "cachePolicy": "Playwright route allowlist disables HTTP cache; before/after use same policy",
+  "cases": [
+    {
+      "name": "desktop-fine",
+      "initial": {
+        "motion": "true",
+        "coarse": false,
+        "hoverNone": false,
+        "reduced": false,
+        "fallbackVisible": "hidden",
+        "fallbackComplete": true,
+        "fill": true,
+        "mask": true,
+        "metro": true,
+        "fillTransform": "",
+        "metroTransform": "none",
+        "maskTransform": "none",
+        "width": 793.390625,
+        "overflow": false
+      },
+      "resources": [
+        {
+          "file": "fallback-approved-v3.png",
+          "transferSize": 1372119,
+          "encodedBodySize": 1371819
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "transferSize": 66493,
+          "encodedBodySize": 66193
+        },
+        {
+          "file": "delhi-fill-overscan.png",
+          "transferSize": 1545182,
+          "encodedBodySize": 1544882
+        },
+        {
+          "file": "metro-static.png",
+          "transferSize": 296453,
+          "encodedBodySize": 296153
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "transferSize": 66493,
+          "encodedBodySize": 66193
+        }
+      ],
+      "requests": [
+        {
+          "file": "fallback-approved-v3.png",
+          "at": 1792779205462
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "at": 1792779205765
+        },
+        {
+          "file": "delhi-fill-overscan.png",
+          "at": 1792779205766
+        },
+        {
+          "file": "metro-static.png",
+          "at": 1792779205766
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "at": 1792779205839
+        }
+      ],
+      "encodedBytes": 3345240,
+      "transferBytes": 3346740,
+      "pointer": {
+        "motion": "true",
+        "coarse": false,
+        "hoverNone": false,
+        "reduced": false,
+        "fallbackVisible": "hidden",
+        "fallbackComplete": true,
+        "fill": true,
+        "mask": true,
+        "metro": true,
+        "fillTransform": "translate(-2.46411px, -1.62883px)",
+        "metroTransform": "none",
+        "maskTransform": "none",
+        "width": 793.390625,
+        "overflow": false
+      },
+      "resized": {
+        "motion": "true",
+        "coarse": false,
+        "hoverNone": false,
+        "reduced": false,
+        "fallbackVisible": "hidden",
+        "fallbackComplete": true,
+        "fill": true,
+        "mask": true,
+        "metro": true,
+        "fillTransform": "translate(0px, 0px)",
+        "metroTransform": "none",
+        "maskTransform": "none",
+        "width": 342,
+        "overflow": false
+      },
+      "reduced": {
+        "motion": "false",
+        "coarse": false,
+        "hoverNone": false,
+        "reduced": true,
+        "fallbackVisible": "visible",
+        "fallbackComplete": true,
+        "fill": false,
+        "mask": false,
+        "metro": false,
+        "fillTransform": "",
+        "metroTransform": null,
+        "maskTransform": null,
+        "width": 793.390625,
+        "overflow": false
+      },
+      "resumedMedia": {
+        "motion": "true",
+        "coarse": false,
+        "hoverNone": false,
+        "reduced": false,
+        "fallbackVisible": "hidden",
+        "fallbackComplete": true,
+        "fill": true,
+        "mask": true,
+        "metro": true,
+        "fillTransform": "",
+        "metroTransform": "none",
+        "maskTransform": "none",
+        "width": 793.390625,
+        "overflow": false
+      },
+      "paused": {
+        "motion": "false",
+        "coarse": false,
+        "hoverNone": false,
+        "reduced": false,
+        "fallbackVisible": "visible",
+        "fallbackComplete": true,
+        "fill": false,
+        "mask": false,
+        "metro": false,
+        "fillTransform": "",
+        "metroTransform": null,
+        "maskTransform": null,
+        "width": 793.390625,
+        "overflow": false
+      },
+      "resumedPause": {
+        "motion": "true",
+        "coarse": false,
+        "hoverNone": false,
+        "reduced": false,
+        "fallbackVisible": "hidden",
+        "fallbackComplete": true,
+        "fill": true,
+        "mask": true,
+        "metro": true,
+        "fillTransform": "translate(0px, 0px)",
+        "metroTransform": "none",
+        "maskTransform": "none",
+        "width": 793.390625,
+        "overflow": false
+      },
+      "pointerCoarseTransition": {
+        "motion": "false",
+        "coarse": true,
+        "hoverNone": true,
+        "reduced": false,
+        "fallbackVisible": "visible",
+        "fallbackComplete": true,
+        "fill": false,
+        "mask": false,
+        "metro": false,
+        "fillTransform": "",
+        "metroTransform": null,
+        "maskTransform": null,
+        "width": 793.390625,
+        "overflow": false
+      },
+      "pointerFineTransition": {
+        "motion": "false",
+        "coarse": false,
+        "hoverNone": true,
+        "reduced": false,
+        "fallbackVisible": "visible",
+        "fallbackComplete": true,
+        "fill": false,
+        "mask": false,
+        "metro": false,
+        "fillTransform": "",
+        "metroTransform": null,
+        "maskTransform": null,
+        "width": 793.390625,
+        "overflow": false
+      },
+      "heroOffscreen": {
+        "motion": "false",
+        "coarse": false,
+        "hoverNone": true,
+        "reduced": false,
+        "fallbackVisible": "visible",
+        "fallbackComplete": true,
+        "fill": false,
+        "mask": false,
+        "metro": false,
+        "fillTransform": "",
+        "metroTransform": null,
+        "maskTransform": null,
+        "width": 793.390625,
+        "overflow": false
+      },
+      "heroReturned": {
+        "motion": "false",
+        "coarse": false,
+        "hoverNone": true,
+        "reduced": false,
+        "fallbackVisible": "visible",
+        "fallbackComplete": true,
+        "fill": false,
+        "mask": false,
+        "metro": false,
+        "fillTransform": "",
+        "metroTransform": null,
+        "maskTransform": null,
+        "width": 793.390625,
+        "overflow": false
+      },
+      "resourcesAfterChanges": [
+        {
+          "file": "fallback-approved-v3.png",
+          "transferSize": 1372119,
+          "encodedBodySize": 1371819
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "transferSize": 66493,
+          "encodedBodySize": 66193
+        },
+        {
+          "file": "delhi-fill-overscan.png",
+          "transferSize": 1545182,
+          "encodedBodySize": 1544882
+        },
+        {
+          "file": "metro-static.png",
+          "transferSize": 296453,
+          "encodedBodySize": 296153
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "transferSize": 66493,
+          "encodedBodySize": 66193
+        }
+      ]
+    },
+    {
+      "name": "phone-coarse",
+      "initial": {
+        "motion": "false",
+        "coarse": true,
+        "hoverNone": true,
+        "reduced": false,
+        "fallbackVisible": "visible",
+        "fallbackComplete": true,
+        "fill": false,
+        "mask": false,
+        "metro": false,
+        "fillTransform": "",
+        "metroTransform": null,
+        "maskTransform": null,
+        "width": 342,
+        "overflow": false
+      },
+      "resources": [
+        {
+          "file": "fallback-approved-v3.png",
+          "transferSize": 1372119,
+          "encodedBodySize": 1371819
+        }
+      ],
+      "requests": [
+        {
+          "file": "fallback-approved-v3.png",
+          "at": 1792779208852
+        }
+      ],
+      "encodedBytes": 1371819,
+      "transferBytes": 1372119
+    },
+    {
+      "name": "desktop-reduced",
+      "initial": {
+        "motion": "false",
+        "coarse": false,
+        "hoverNone": false,
+        "reduced": true,
+        "fallbackVisible": "visible",
+        "fallbackComplete": true,
+        "fill": false,
+        "mask": false,
+        "metro": false,
+        "fillTransform": "",
+        "metroTransform": null,
+        "maskTransform": null,
+        "width": 793.390625,
+        "overflow": false
+      },
+      "resources": [
+        {
+          "file": "fallback-approved-v3.png",
+          "transferSize": 1372119,
+          "encodedBodySize": 1371819
+        }
+      ],
+      "requests": [
+        {
+          "file": "fallback-approved-v3.png",
+          "at": 1792779209838
+        }
+      ],
+      "encodedBytes": 1371819,
+      "transferBytes": 1372119
+    },
+    {
+      "name": "narrow-fine",
+      "initial": {
+        "motion": "true",
+        "coarse": false,
+        "hoverNone": false,
+        "reduced": false,
+        "fallbackVisible": "hidden",
+        "fallbackComplete": true,
+        "fill": true,
+        "mask": true,
+        "metro": true,
+        "fillTransform": "",
+        "metroTransform": "none",
+        "maskTransform": "none",
+        "width": 342,
+        "overflow": false
+      },
+      "resources": [
+        {
+          "file": "fallback-approved-v3.png",
+          "transferSize": 1372119,
+          "encodedBodySize": 1371819
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "transferSize": 66493,
+          "encodedBodySize": 66193
+        },
+        {
+          "file": "metro-static.png",
+          "transferSize": 296453,
+          "encodedBodySize": 296153
+        },
+        {
+          "file": "delhi-fill-overscan.png",
+          "transferSize": 1545182,
+          "encodedBodySize": 1544882
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "transferSize": 66493,
+          "encodedBodySize": 66193
+        }
+      ],
+      "requests": [
+        {
+          "file": "fallback-approved-v3.png",
+          "at": 1792779210868
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "at": 1792779211054
+        },
+        {
+          "file": "delhi-fill-overscan.png",
+          "at": 1792779211055
+        },
+        {
+          "file": "metro-static.png",
+          "at": 1792779211055
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "at": 1792779211125
+        }
+      ],
+      "encodedBytes": 3345240,
+      "transferBytes": 3346740
+    },
+    {
+      "name": "failed-fill",
+      "initial": {
+        "motion": "false",
+        "coarse": false,
+        "hoverNone": false,
+        "reduced": false,
+        "fallbackVisible": "visible",
+        "fallbackComplete": true,
+        "fill": false,
+        "mask": false,
+        "metro": false,
+        "fillTransform": "",
+        "metroTransform": null,
+        "maskTransform": null,
+        "width": 793.390625,
+        "overflow": false
+      },
+      "resources": [
+        {
+          "file": "fallback-approved-v3.png",
+          "transferSize": 1372119,
+          "encodedBodySize": 1371819
+        },
+        {
+          "file": "delhi-fill-overscan.png",
+          "transferSize": 0,
+          "encodedBodySize": 0
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "transferSize": 66493,
+          "encodedBodySize": 66193
+        },
+        {
+          "file": "metro-static.png",
+          "transferSize": 296453,
+          "encodedBodySize": 296153
+        }
+      ],
+      "requests": [
+        {
+          "file": "fallback-approved-v3.png",
+          "at": 1792779211964
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "at": 1792779212202
+        },
+        {
+          "file": "delhi-fill-overscan.png",
+          "at": 1792779212202
+        },
+        {
+          "file": "metro-static.png",
+          "at": 1792779212203
+        }
+      ],
+      "encodedBytes": 1734165,
+      "transferBytes": 1735065
+    },
+    {
+      "name": "delayed-fill",
+      "during": {
+        "motion": "false",
+        "coarse": false,
+        "hoverNone": false,
+        "reduced": false,
+        "fallbackVisible": "visible",
+        "fallbackComplete": true,
+        "fill": false,
+        "mask": false,
+        "metro": false,
+        "fillTransform": "",
+        "metroTransform": null,
+        "maskTransform": null,
+        "width": 793.390625,
+        "overflow": false
+      },
+      "after": {
+        "motion": "true",
+        "coarse": false,
+        "hoverNone": false,
+        "reduced": false,
+        "fallbackVisible": "hidden",
+        "fallbackComplete": true,
+        "fill": true,
+        "mask": true,
+        "metro": true,
+        "fillTransform": "",
+        "metroTransform": "none",
+        "maskTransform": "none",
+        "width": 793.390625,
+        "overflow": false
+      },
+      "requests": [
+        {
+          "file": "fallback-approved-v3.png",
+          "at": 1792779213029
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "at": 1792779213247
+        },
+        {
+          "file": "delhi-fill-overscan.png",
+          "at": 1792779213247
+        },
+        {
+          "file": "metro-static.png",
+          "at": 1792779213247
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "at": 1792779214787
+        }
+      ]
+    },
+    {
+      "name": "delayed-mask",
+      "atReveal": {
+        "motion": "true",
+        "coarse": false,
+        "hoverNone": false,
+        "reduced": false,
+        "fallbackVisible": "hidden",
+        "fallbackComplete": true,
+        "fill": true,
+        "mask": true,
+        "metro": true,
+        "fillTransform": "",
+        "metroTransform": "none",
+        "maskTransform": "none",
+        "width": 793.390625,
+        "overflow": false
+      },
+      "requestsAtReveal": [
+        {
+          "file": "fallback-approved-v3.png",
+          "at": 1792779215586
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "at": 1792779215797
+        },
+        {
+          "file": "delhi-fill-overscan.png",
+          "at": 1792779215797
+        },
+        {
+          "file": "metro-static.png",
+          "at": 1792779215797
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "at": 1792779217320
+        }
+      ],
+      "after": {
+        "motion": "true",
+        "coarse": false,
+        "hoverNone": false,
+        "reduced": false,
+        "fallbackVisible": "hidden",
+        "fallbackComplete": true,
+        "fill": true,
+        "mask": true,
+        "metro": true,
+        "fillTransform": "",
+        "metroTransform": "none",
+        "maskTransform": "none",
+        "width": 793.390625,
+        "overflow": false
+      },
+      "requests": [
+        {
+          "file": "fallback-approved-v3.png",
+          "at": 1792779215586
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "at": 1792779215797
+        },
+        {
+          "file": "delhi-fill-overscan.png",
+          "at": 1792779215797
+        },
+        {
+          "file": "metro-static.png",
+          "at": 1792779215797
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "at": 1792779217320
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "before": [
+    {
+      "source": "0e7756c60e2fff88a4f7fb1e3eca31efc20349d0",
+      "width": 1440,
+      "resources": [
+        {
+          "file": "fallback-approved-v3.png",
+          "transferSize": 1372119,
+          "encodedBodySize": 1371819
+        },
+        {
+          "file": "delhi-fill-overscan.png",
+          "transferSize": 1545182,
+          "encodedBodySize": 1544882
+        },
+        {
+          "file": "metro-static.png",
+          "transferSize": 296453,
+          "encodedBodySize": 296153
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "transferSize": 66493,
+          "encodedBodySize": 66193
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "transferSize": 66493,
+          "encodedBodySize": 66193
+        }
+      ],
+      "encodedBytes": 3345240,
+      "transferBytes": 3346740
+    },
+    {
+      "source": "0e7756c60e2fff88a4f7fb1e3eca31efc20349d0",
+      "width": 390,
+      "resources": [
+        {
+          "file": "fallback-approved-v3.png",
+          "transferSize": 1372119,
+          "encodedBodySize": 1371819
+        },
+        {
+          "file": "metro-static.png",
+          "transferSize": 296453,
+          "encodedBodySize": 296153
+        },
+        {
+          "file": "delhi-fill-overscan.png",
+          "transferSize": 1545182,
+          "encodedBodySize": 1544882
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "transferSize": 66493,
+          "encodedBodySize": 66193
+        },
+        {
+          "file": "text-mask-alpha.png",
+          "transferSize": 66493,
+          "encodedBodySize": 66193
+        }
+      ],
+      "encodedBytes": 3345240,
+      "transferBytes": 3346740
+    }
+  ],
+  "browserClosed": true
+}
