@@ -1819,6 +1819,12 @@ export class PortalExperience {
           t.id,
         ]);
         sql.push([
+          "INSERT INTO astra_jobs(id,version_id,updated_at) VALUES(?,?,?)",
+          crypto.randomUUID(),
+          versionId,
+          this.s.now(),
+        ]);
+        sql.push([
           "UPDATE projects SET published_version_id=? WHERE id=?",
           versionId,
           projectId,
