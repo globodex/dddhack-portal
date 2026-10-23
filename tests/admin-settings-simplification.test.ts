@@ -34,41 +34,34 @@ const fixture = {
 const markup = (data: any) =>
   renderToStaticMarkup(createElement(Settings, { data, run }));
 
-test("Settings removes readiness section and lists while retaining explicit owner event controls", () => {
+test("Settings removes readiness section and manual attestation controls", () => {
   const html = markup(fixture);
-  assert.match(html, /Event controls/);
-  assert.match(html, /Preview operational setup/);
-  assert.match(html, /Enable submissions/);
-  assert.match(html, /Enable check-in/);
-  assert.match(html, /I confirm these/);
-  assert.match(html, /I confirm indefinite retention/);
   assert.doesNotMatch(
     html,
-    /Operational setup and readiness|Operational and scoring readiness|Scoring confirmations still required|Unnecessary|Judging and scoring/,
+    /Event controls|Preview operational setup|Enable submissions|Enable check-in|I confirm these|I confirm indefinite retention/,
+  );
+  assert.doesNotMatch(
+    html,
+    /Operational setup and readiness|Operational and scoring readiness|Scoring confirmations still required|Unnecessary unresolved scoring copy|Unnecessary submission readiness copy|Unnecessary checkin readiness copy|Judging and scoring/,
   );
   assert.doesNotMatch(html, /<h2[^>]*>Operational setup</);
 });
 
-test("Settings event configuration and enable controls remain owner-only and readiness gated", () => {
-  for (const role of ["admin", "participant", "judge", "mentor"]) {
-    const html = markup({
-      ...fixture,
-      me: { id: "synthetic-" + role, role, owner: false },
-    });
-    assert.doesNotMatch(
-      html,
-      /Event controls|Preview operational setup|Enable submissions|Enable check-in/,
-    );
-  }
-  for (const state of [
-    { configured: false, enabled: false },
-    { configured: true, enabled: true },
-  ]) {
-    const html = markup({
-      ...fixture,
-      readiness: { ...fixture.readiness, submissions: state, checkin: state },
-    });
-    assert.doesNotMatch(html, /Enable submissions|Enable check-in/);
-    assert.match(html, /Preview operational setup/);
+test("Settings has no manual operation controls for any role or readiness state", () => {
+  for (const role of ["owner", "admin", "participant", "judge", "mentor"]) {
+    for (const state of [
+      { configured: false, enabled: false },
+      { configured: true, enabled: true },
+    ]) {
+      const html = markup({
+        ...fixture,
+        me: { id: "synthetic-" + role, role, owner: role === "owner" },
+        readiness: { ...fixture.readiness, submissions: state, checkin: state },
+      });
+      assert.doesNotMatch(
+        html,
+        /Event controls|Preview operational setup|Enable submissions|Enable check-in|rulesConfirmed|privacyConfirmed/,
+      );
+    }
   }
 });

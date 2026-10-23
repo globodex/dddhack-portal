@@ -4,6 +4,7 @@ import {
   ChevronRight,
   Plus,
   Search as SearchIcon,
+  Save as SaveIcon,
   ArrowLeft,
   ArrowRight,
   ArrowUp,
@@ -54,7 +55,6 @@ import {
   submissionToolChoices,
   selectedSubmissionTools,
 } from "../lib/submission-tools";
-import OwnerOperationalSetup from "./owner-operational-setup";
 import {
   participantExportHref,
   type ParticipantRecordState,
@@ -69,6 +69,7 @@ import {
 } from "../lib/avatar-contract";
 import {
   useEffect,
+  useId,
   useState,
   useRef,
   type ReactNode,
@@ -459,6 +460,7 @@ function Form({
   label = "Save",
   className = "panel",
   disabled = false,
+  disabledReason,
 }: {
   title?: string;
   children: ReactNode;
@@ -466,7 +468,9 @@ function Form({
   label?: string;
   className?: string;
   disabled?: boolean;
+  disabledReason?: string;
 }) {
+  const disabledReasonId = useId();
   const [busy, setBusy] = useState(false),
     [error, setError] = useState("");
   return (
@@ -491,10 +495,22 @@ function Form({
       {title && <h2>{title}</h2>}
       {children}
       <div className="form-actions">
-        <button className="button" disabled={busy || disabled}>
+        <button
+          className="button"
+          disabled={busy || disabled}
+          title={disabled ? disabledReason : undefined}
+          aria-describedby={
+            disabled && disabledReason ? disabledReasonId : undefined
+          }
+        >
           {busy ? "Saving…" : label}
         </button>
       </div>
+      {disabled && disabledReason && (
+        <p id={disabledReasonId} className="control-feedback">
+          {disabledReason}
+        </p>
+      )}
       {error && (
         <p role="alert" className="error-message">
           {error}
@@ -4156,7 +4172,7 @@ export function AdminList({
     </section>
   );
 }
-function ContentEditor({
+export function ContentEditor({
   data,
   run,
   scope,
@@ -4167,174 +4183,272 @@ function ContentEditor({
 }) {
   const record = scope === "public" ? data.content : data.venue;
   const initial = JSON.parse(record?.draft || "{}");
-  const [content, setContent] = useState<Row>(initial);
+  const [content, setContent] = useState<Row>(initial),
+    [busy, setBusy] = useState<"save" | "publish" | null>(null),
+    [status, setStatus] = useState(""),
+    [error, setError] = useState(""),
+    [removal, setRemoval] = useState<{
+      collection: "agenda" | "faqs";
+      index: number;
+      target: string;
+    } | null>(null);
   const dirty = JSON.stringify(content) !== JSON.stringify(initial);
-  const update = (k: string, v: unknown) =>
+  const update = (k: string, v: unknown) => {
     setContent((p) => ({ ...p, [k]: v }));
-  return (
-    <Form
-      title={
-        scope === "public" ? "Public event content" : "Private arrival details"
+    setError("");
+  };
+  const persist = async (action: "content-save" | "content-publish") => {
+    if (busy) return;
+    setBusy(action === "content-save" ? "save" : "publish");
+    setStatus(action === "content-save" ? "Saving draft…" : "Publishing…");
+    setError("");
+    try {
+      await run(action, {
+        scope,
+        revision: record?.revision || 0,
+        ...(action === "content-save" ? { content } : {}),
+        reason:
+          action === "content-save"
+            ? "Owner updated the event content draft"
+            : "Owner published the saved content draft",
+      });
+      setStatus(
+        action === "content-save" ? "Draft saved." : "Draft published.",
+      );
+    } catch (cause) {
+      if (cause instanceof ActionCancelled) setStatus("Cancelled.");
+      else {
+        setStatus("");
+        setError((cause as Error).message);
       }
-      label="Save draft"
-      onSave={async (f) => {
-        await run("content-save", {
-          scope,
-          revision: record?.revision || 0,
-          content,
-          reason: f.get("reason"),
-        });
-      }}
-    >
-      {scope === "public" ? (
-        <>
-          <h3>Agenda</h3>
-          {(content.agenda || []).map((a: Row, i: number) => (
-            <fieldset key={i}>
-              <legend>Agenda entry {i + 1}</legend>
-              {["time", "title", "description"].map((k) => (
-                <label key={k}>
-                  {k}
-                  <input
-                    value={a[k]}
-                    onChange={(e) =>
-                      update(
-                        "agenda",
-                        content.agenda.map((x: Row, j: number) =>
-                          j === i ? { ...x, [k]: e.target.value } : x,
-                        ),
-                      )
-                    }
-                  />
-                </label>
-              ))}
-              <button
-                type="button"
-                className="link-button"
-                onClick={() =>
-                  update(
-                    "agenda",
-                    content.agenda.filter((_: Row, j: number) => j !== i),
-                  )
-                }
-              >
-                Remove entry
-              </button>
-            </fieldset>
-          ))}
-          <button
-            type="button"
-            className="button secondary"
-            onClick={() =>
-              update("agenda", [
-                ...(content.agenda || []),
-                { time: "", title: "", description: "" },
-              ])
-            }
-          >
-            Add agenda entry
-          </button>
-          <h3>Frequently asked questions</h3>
-          {(content.faqs || []).map((f: Row, i: number) => (
-            <fieldset key={i}>
-              <legend>Question {i + 1}</legend>
-              {["question", "answer"].map((k) => (
-                <label key={k}>
-                  {k}
-                  <textarea
-                    value={f[k]}
-                    onChange={(e) =>
-                      update(
-                        "faqs",
-                        content.faqs.map((x: Row, j: number) =>
-                          j === i ? { ...x, [k]: e.target.value } : x,
-                        ),
-                      )
-                    }
-                  />
-                </label>
-              ))}
-              <button
-                type="button"
-                className="link-button"
-                onClick={() =>
-                  update(
-                    "faqs",
-                    content.faqs.filter((_: Row, j: number) => j !== i),
-                  )
-                }
-              >
-                Remove question
-              </button>
-            </fieldset>
-          ))}
-          <button
-            type="button"
-            className="button secondary"
-            onClick={() =>
-              update("faqs", [
-                ...(content.faqs || []),
-                { question: "", answer: "" },
-              ])
-            }
-          >
-            Add question
-          </button>
-          <label>
-            Rules · plain text
-            <textarea
-              rows={7}
-              value={content.rules || ""}
-              onChange={(e) => update("rules", e.target.value)}
-            />
-          </label>
-        </>
-      ) : (
-        <>
-          {[
-            ["location", "Exact room or entry location"],
-            ["directions", "Private directions"],
-            ["mapUrl", "Private Google Maps URL"],
-          ].map(([k, label]) => (
-            <label key={k}>
-              {label}
-              {k === "directions" ? (
-                <textarea
-                  value={content[k] || ""}
-                  onChange={(e) => update(k, e.target.value)}
-                />
-              ) : (
-                <input
-                  type={k === "mapUrl" ? "url" : "text"}
-                  value={content[k] || ""}
-                  onChange={(e) => update(k, e.target.value)}
-                />
-              )}
-            </label>
-          ))}
-        </>
+    } finally {
+      setBusy(null);
+    }
+  };
+  return (
+    <>
+      {removal && (
+        <ConfirmationDialog
+          value={{
+            title:
+              removal.collection === "agenda"
+                ? "Remove agenda entry?"
+                : "Remove question?",
+            target: removal.target,
+            description:
+              "Remove this item from the draft. Save the draft to keep the change.",
+            confirmLabel:
+              removal.collection === "agenda"
+                ? "Remove entry"
+                : "Remove question",
+            critical: true,
+          }}
+          decide={(confirmed) => {
+            if (confirmed) {
+              update(
+                removal.collection,
+                content[removal.collection].filter(
+                  (_: Row, index: number) => index !== removal.index,
+                ),
+              );
+              setStatus(
+                removal.collection === "agenda"
+                  ? "Agenda entry removed."
+                  : "Question removed.",
+              );
+            } else setStatus("Removal cancelled.");
+            setRemoval(null);
+          }}
+        />
       )}
-      <Field
-        name="reason"
-        label="Reason for this content change"
-        required
-        minLength={5}
-      />
-      <button
-        type="button"
-        className="button secondary"
-        disabled={dirty || !record?.revision}
-        onClick={() => {
-          void run("content-publish", {
-            scope,
-            revision: record.revision,
-            reason: "Owner published the saved content draft",
-          }).catch(() => {});
+      <form
+        className="panel admin-content-editor"
+        aria-busy={!!busy}
+        onSubmit={(event) => {
+          event.preventDefault();
+          void persist("content-save");
         }}
       >
-        Publish saved draft
-      </button>
-    </Form>
+        <h2>
+          {scope === "public"
+            ? "Public event content"
+            : "Private arrival details"}
+        </h2>
+        <fieldset disabled={!!busy}>
+          {scope === "public" ? (
+            <>
+              <h3>Agenda</h3>
+              {(content.agenda || []).map((entry: Row, index: number) => (
+                <fieldset key={index}>
+                  <legend>Agenda entry {index + 1}</legend>
+                  {["time", "title", "description"].map((key) => (
+                    <label key={key}>
+                      {key}
+                      <input
+                        value={entry[key]}
+                        onChange={(event) =>
+                          update(
+                            "agenda",
+                            content.agenda.map((row: Row, i: number) =>
+                              i === index
+                                ? { ...row, [key]: event.target.value }
+                                : row,
+                            ),
+                          )
+                        }
+                      />
+                    </label>
+                  ))}
+                  <button
+                    type="button"
+                    className="button secondary"
+                    aria-label={`Remove agenda entry ${index + 1}: ${entry.title || "Untitled"}`}
+                    onClick={() =>
+                      setRemoval({
+                        collection: "agenda",
+                        index,
+                        target: `Agenda entry ${index + 1}: ${entry.title || "Untitled"}`,
+                      })
+                    }
+                  >
+                    <Trash2 size={18} aria-hidden="true" focusable="false" />{" "}
+                    Remove
+                  </button>
+                </fieldset>
+              ))}
+              <button
+                type="button"
+                className="button secondary"
+                onClick={() => {
+                  update("agenda", [
+                    ...(content.agenda || []),
+                    { time: "", title: "", description: "" },
+                  ]);
+                  setStatus("Agenda entry added.");
+                }}
+              >
+                <Plus size={18} aria-hidden="true" focusable="false" /> Add
+                agenda entry
+              </button>
+              <h3>Frequently asked questions</h3>
+              {(content.faqs || []).map((entry: Row, index: number) => (
+                <fieldset key={index}>
+                  <legend>Question {index + 1}</legend>
+                  {["question", "answer"].map((key) => (
+                    <label key={key}>
+                      {key}
+                      <textarea
+                        value={entry[key]}
+                        onChange={(event) =>
+                          update(
+                            "faqs",
+                            content.faqs.map((row: Row, i: number) =>
+                              i === index
+                                ? { ...row, [key]: event.target.value }
+                                : row,
+                            ),
+                          )
+                        }
+                      />
+                    </label>
+                  ))}
+                  <button
+                    type="button"
+                    className="button secondary"
+                    aria-label={`Remove question ${index + 1}: ${entry.question || "Untitled"}`}
+                    onClick={() =>
+                      setRemoval({
+                        collection: "faqs",
+                        index,
+                        target: `Question ${index + 1}: ${entry.question || "Untitled"}`,
+                      })
+                    }
+                  >
+                    <Trash2 size={18} aria-hidden="true" focusable="false" />{" "}
+                    Remove
+                  </button>
+                </fieldset>
+              ))}
+              <button
+                type="button"
+                className="button secondary"
+                onClick={() => {
+                  update("faqs", [
+                    ...(content.faqs || []),
+                    { question: "", answer: "" },
+                  ]);
+                  setStatus("Question added.");
+                }}
+              >
+                <Plus size={18} aria-hidden="true" focusable="false" /> Add
+                question
+              </button>
+              <label>
+                Rules · plain text
+                <textarea
+                  rows={7}
+                  value={content.rules || ""}
+                  onChange={(event) => update("rules", event.target.value)}
+                />
+              </label>
+            </>
+          ) : (
+            <>
+              {[
+                ["location", "Exact room or entry location"],
+                ["directions", "Private directions"],
+                ["mapUrl", "Private Google Maps URL"],
+              ].map(([key, label]) => (
+                <label key={key}>
+                  {label}
+                  {key === "directions" ? (
+                    <textarea
+                      value={content[key] || ""}
+                      onChange={(event) => update(key, event.target.value)}
+                    />
+                  ) : (
+                    <input
+                      type={key === "mapUrl" ? "url" : "text"}
+                      value={content[key] || ""}
+                      onChange={(event) => update(key, event.target.value)}
+                    />
+                  )}
+                </label>
+              ))}
+            </>
+          )}
+          <div className="form-actions">
+            <button
+              type="submit"
+              className="button"
+              disabled={!!busy || (!dirty && !!record?.revision)}
+            >
+              <SaveIcon size={18} aria-hidden="true" focusable="false" />
+              {busy === "save" ? "Saving…" : "Save draft"}
+            </button>
+            <button
+              type="button"
+              className="button secondary"
+              disabled={!!busy || dirty || !record?.revision}
+              onClick={() => {
+                void persist("content-publish");
+              }}
+            >
+              <Send size={18} aria-hidden="true" focusable="false" />
+              {busy === "publish" ? "Publishing…" : "Publish saved draft"}
+            </button>
+          </div>
+        </fieldset>
+        <p role="status" aria-live="polite">
+          {status}
+        </p>
+        {error && (
+          <p role="alert" className="error-message">
+            {error}
+          </p>
+        )}
+      </form>
+    </>
   );
 }
 function OwnerPolicyControls({
@@ -4538,6 +4652,11 @@ export function Settings({
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
+  const scoringBlocker =
+    data.readiness?.scoring?.blockers?.[0] || data.blockers?.[0];
+  const scoringDisabledReason = scoringBlocker
+    ? `Confirm scoring policy: ${String(scoringBlocker).slice(0, 80)}.`
+    : "Complete scoring configuration with the owner.";
   return (
     <section className="admin-exact admin-settings-page">
       <header className="page-heading admin-exact-heading">
@@ -4574,6 +4693,7 @@ export function Settings({
           <Form
             title="Reveal AI scores"
             disabled={data.readiness?.scoring?.ready !== true}
+            disabledReason={scoringDisabledReason}
             label="Reveal AI scores"
             onSave={async (f) => {
               await run("reveal-ai-scores", { reason: f.get("reason") });
@@ -4585,6 +4705,7 @@ export function Settings({
             <Form
               title="Freeze final judging snapshot"
               disabled={data.readiness?.scoring?.ready !== true}
+              disabledReason={scoringDisabledReason}
               label="Freeze final scores"
               onSave={async (f) => {
                 await run("freeze-results", { reason: f.get("reason") });
@@ -4601,6 +4722,7 @@ export function Settings({
           <Form
             title="Reveal Final score"
             disabled={data.readiness?.scoring?.ready !== true}
+            disabledReason={scoringDisabledReason}
             label="Reveal Final score"
             onSave={async (f) => {
               await run("reveal-final-scores", {
@@ -4619,6 +4741,10 @@ export function Settings({
                 ))}
               </select>
             </Field>
+            {data.readiness?.scoring?.ready === true &&
+              !(data.resultSnapshots || []).length && (
+                <p>Freeze final scores first.</p>
+              )}
             <Field name="reason" label="Reveal reason" required minLength={5} />
           </Form>
           {data.scoreRelease?.remainingAwards?.length > 0 && (
@@ -4660,52 +4786,6 @@ export function Settings({
         providers={data.creditInstructions || []}
         run={run}
       />
-      {data.me?.owner && (
-        <details className="admin-settings-extra admin-event-controls">
-          <summary>
-            Event controls
-            <ChevronDown size={20} aria-hidden="true" />
-          </summary>
-          <OwnerOperationalSetup
-            key={`operational-${data.policyVersion}`}
-            owner={true}
-            version={data.policyVersion || 0}
-            open={data.policy?.submissionOpen || ""}
-            close={data.policy?.submissionClose || null}
-            run={run}
-          />
-          <div className="form-actions">
-            {(
-              [
-                ["submissions", "Submissions"],
-                ["checkin", "Check-in"],
-              ] as const
-            ).map(([scope, label]) =>
-              data.readiness?.[scope]?.configured &&
-              !data.readiness[scope].enabled ? (
-                <Form
-                  key={scope}
-                  label={`Enable ${label.toLowerCase()}`}
-                  onSave={async (f) => {
-                    await run("activate-operations", {
-                      operation: scope,
-                      version: data.policyVersion,
-                      reason: f.get("reason"),
-                    });
-                  }}
-                >
-                  <Field
-                    name="reason"
-                    label="Enablement reason"
-                    required
-                    minLength={5}
-                  />
-                </Form>
-              ) : null,
-            )}
-          </div>
-        </details>
-      )}
       {data.me?.owner && (
         <details className="admin-settings-extra">
           <summary>

@@ -84,8 +84,8 @@ test("real Settings payload and authenticated API configure a fresh inactive eve
         },
       }),
     );
-    assert.match(markup, /Event controls/);
-    assert.match(markup, /Preview operational setup/);
+    assert.doesNotMatch(markup, /Event controls/);
+    assert.doesNotMatch(markup, /Preview operational setup/);
     assert.doesNotMatch(markup, />Enable check-in</);
     assert.doesNotMatch(markup, />Enable submissions</);
     const before = await one(db, "SELECT * FROM event_settings");
@@ -112,7 +112,7 @@ test("real Settings payload and authenticated API configure a fresh inactive eve
     markup = renderToStaticMarkup(
       createElement(Settings, { data: view, run: async () => ({}) }),
     );
-    assert.match(markup, />Enable check-in</);
+    assert.doesNotMatch(markup, />Enable check-in</);
     const enable = await post(db, "activate-operations", {
       operation: "checkin",
       version: view.policyVersion,
