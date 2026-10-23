@@ -1,0 +1,1 @@
+ALTER TABLE `participant_profiles` ADD `gender_confirmed` integer DEFAULT 0 NOT NULL;

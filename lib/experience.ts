@@ -1,0 +1,1321 @@
+import { z } from "zod";
+import type { PortalService } from "./service";
+import { one, rows, assertPreviousWrite, type SQL } from "./db";
+import {
+  demand,
+  emailSchema,
+  githubUrl,
+  httpsUrl,
+  text,
+  sha256,
+  PortalError,
+} from "./security";
+import {
+  avatarPresets,
+  teamPalettes,
+  portalRoles,
+  readiness,
+  participantStatus,
+  unresolvedEventDecisions,
+} from "./experience-contract";
+import { validateProjectImage } from "./project-media";
+import {
+  eventContentCommand,
+  publicEventContent,
+  managesPrivateVenue,
+  publicContentSchema,
+  privateVenueSchema,
+  defaultPublicContent,
+} from "./event-content";
+import { disabledEvaluator, reportSchema } from "./evaluation";
+import { policyBlockers } from "./policy";
+type Actor = Awaited<ReturnType<PortalService["actor"]>>;
+type Team = {
+  id: string;
+  name: string;
+  leader_id: string;
+  bio: string;
+  avatar?: string;
+  palette?: string;
+};
+type Project = {
+  id: string;
+  team_id: string;
+  slug: string;
+  draft: string;
+  revision: number;
+  published_version_id: string | null;
+  updated_at: string;
+};
+type Payload = {
+  projectName: string;
+  problemSolution: string;
+  description: string;
+  github: string;
+  demo: string;
+  logo: string;
+  banner: string;
+  tools: string;
+  contributions: { userId: string; role: string; codex: string }[];
+  attestation: boolean;
+};
+const id = z.string().min(1).max(150),
+  why = text(500).min(5);
+const palette = z.enum(
+  Object.keys(teamPalettes) as [
+    keyof typeof teamPalettes,
+    ...(keyof typeof teamPalettes)[],
+  ],
+);
+const draftSchema = z
+  .object({
+    projectName: z.string().max(120).default(""),
+    problemSolution: z.string().max(500).default(""),
+    description: z.string().max(6000).default(""),
+    github: z.string().max(2048).default(""),
+    demo: z.string().max(2048).default(""),
+    logo: z.string().max(180000).default(""),
+    banner: z.string().max(180000).default(""),
+    tools: z.string().max(2000).default(""),
+    contributions: z
+      .array(
+        z
+          .object({
+            userId: id,
+            role: z.string().max(2000),
+            codex: z.string().max(2000),
+          })
+          .strict(),
+      )
+      .max(5)
+      .default([]),
+    attestation: z.boolean().default(false),
+  })
+  .strict();
+export class PortalExperience {
+  constructor(private s: PortalService) {}
+  async team(userId: string) {
+    return one<Team>(
+      this.s.db,
+      "SELECT t.*,s.avatar,s.palette FROM memberships m JOIN teams t ON t.id=m.team_id LEFT JOIN team_styles s ON s.team_id=t.id WHERE m.user_id=?",
+      userId,
+    );
+  }
+  async ready(teamId: string) {
+    const r = await one<{ total: number; approved: number }>(
+      this.s.db,
+      "SELECT count(*) total,COALESCE(sum(CASE WHEN r.status='approved' THEN 1 ELSE 0 END),0) approved FROM memberships m JOIN users u ON u.id=m.user_id LEFT JOIN registrations r ON r.email=u.email WHERE m.team_id=?",
+      teamId,
+    );
+    return readiness(Number(r?.total || 0), Number(r?.approved || 0));
+  }
+  async profile(actor: Actor) {
+    const p = await one<{
+      bio: string;
+      socials: string;
+      gender: string;
+      gender_description: string;
+      public: number;
+      display_name: string | null;
+      skills: string | null;
+      completed_at: string | null;
+      gender_confirmed: number | null;
+    }>(
+      this.s.db,
+      "SELECT p.*,x.display_name,x.skills,x.completed_at,x.gender_confirmed FROM profiles p LEFT JOIN participant_profiles x ON x.user_id=p.user_id WHERE p.user_id=?",
+      actor.id,
+    );
+    return {
+      ...p,
+      socials: JSON.parse(p?.socials || "[]"),
+      display_name: p?.display_name || actor.name,
+      skills: p?.skills || "",
+      complete:
+        !!p?.completed_at &&
+        p.gender_confirmed === 1 &&
+        !!p.display_name?.trim() &&
+        (p.bio?.trim().length || 0) >= 10 &&
+        (p.skills?.trim().length || 0) >= 2,
+    };
+  }
+  async completed(actor: Actor) {
+    demand(
+      (await this.profile(actor)).complete,
+      409,
+      "PROFILE_COMPLETION_REQUIRED",
+    );
+  }
+  async canReview(actor: Actor, project: Project) {
+    const own = await this.team(actor.id);
+    if (actor.owner || actor.role === "admin") return "admin";
+    const assignment = await one<{ kind: string }>(
+      this.s.db,
+      "SELECT kind FROM project_assignments WHERE project_id=? AND user_id=?",
+      project.id,
+      actor.id,
+    );
+    demand(
+      assignment &&
+        assignment.kind === actor.role &&
+        own?.id !== project.team_id,
+      403,
+      "PROJECT_ASSIGNMENT_REQUIRED",
+    );
+    return assignment.kind;
+  }
+  async project(identifier: string) {
+    const p = await one<Project>(
+      this.s.db,
+      "SELECT * FROM projects WHERE id=? OR slug=?",
+      identifier,
+      identifier,
+    );
+    demand(p, 404, "PROJECT_NOT_FOUND");
+    return p;
+  }
+  async version(p: Project) {
+    return one<{
+      id: string;
+      attempt: number;
+      payload: string;
+      created_at: string;
+    }>(
+      this.s.db,
+      "SELECT * FROM submission_versions WHERE team_id=? ORDER BY attempt DESC LIMIT 1",
+      p.team_id,
+    );
+  }
+  async eligibility(p: Project) {
+    const v = await this.version(p);
+    if (!v) return { status: "not_submitted", versionId: null };
+    const e = await one<{ status: string; reason: string }>(
+      this.s.db,
+      "SELECT status,reason FROM project_eligibility WHERE project_id=? AND version_id=?",
+      p.id,
+      v.id,
+    );
+    const legacy = e
+      ? undefined
+      : await one<{ eligibility: string }>(
+          this.s.db,
+          "SELECT eligibility FROM reviews WHERE team_id=? AND version_id=?",
+          p.team_id,
+          v.id,
+        );
+    return {
+      status: e?.status || legacy?.eligibility || "needs_review",
+      reason: e?.status === "ineligible" ? e.reason : undefined,
+      versionId: v.id,
+    };
+  }
+  async publicProject(p: Project) {
+    demand(
+      p.published_version_id &&
+        (await this.eligibility(p)).status === "eligible",
+      404,
+      "PROJECT_NOT_ELIGIBLE",
+    );
+    const v = await one<{ payload: string }>(
+      this.s.db,
+      "SELECT payload FROM submission_versions WHERE id=? AND team_id=?",
+      p.published_version_id,
+      p.team_id,
+    );
+    demand(v, 404, "PROJECT_NOT_PUBLISHED");
+    const d = JSON.parse(v.payload) as Payload;
+    // Legacy versions without required media stay private until explicitly reconciled.
+    validateProjectImage(d.logo || "", "logo");
+    validateProjectImage(d.banner || "", "banner");
+    const t = await one<{ name: string }>(
+      this.s.db,
+      "SELECT name FROM teams WHERE id=?",
+      p.team_id,
+    );
+    const counts = await one<{ upvotes: number; comments: number }>(
+      this.s.db,
+      "SELECT (SELECT count(*) FROM project_upvotes WHERE project_id=?) upvotes,(SELECT count(*) FROM project_comments WHERE project_id=?) comments",
+      p.id,
+      p.id,
+    );
+    const result = await one<{ payload: string }>(
+      this.s.db,
+      "SELECT s.payload FROM result_publication p JOIN result_snapshots s ON s.id=p.snapshot_id",
+    );
+    const revealed = result
+      ? (
+          JSON.parse(result.payload) as {
+            teamId: string;
+            rank: number;
+            components?: { total: number };
+          }[]
+        ).find((r) => r.teamId === p.team_id)
+      : undefined;
+    const first = await one<{ created_at: string }>(
+      this.s.db,
+      "SELECT created_at FROM submission_versions WHERE team_id=? ORDER BY attempt ASC LIMIT 1",
+      p.team_id,
+    );
+    return {
+      id: p.id,
+      firstSubmittedAt: first?.created_at,
+      slug: p.slug,
+      teamName: t?.name,
+      projectName: d.projectName,
+      problemSolution: d.problemSolution,
+      description: d.description,
+      github: d.github,
+      demo: d.demo,
+      logo: `/api/project-image/${p.id}/logo?version=${p.published_version_id}`,
+      banner: `/api/project-image/${p.id}/banner?version=${p.published_version_id}`,
+      upvotes: counts?.upvotes || 0,
+      comments: counts?.comments || 0,
+      ...(revealed
+        ? {
+            result: {
+              score: revealed.components?.total ?? null,
+            },
+          }
+        : {}),
+    };
+  }
+  async participantRows() {
+    const items = await rows<{
+      id: string | null;
+      name: string | null;
+      email: string;
+      approval: string;
+      checked_in: string | null;
+      team_id: string | null;
+      team_name: string | null;
+      submitted: number;
+    }>(
+      this.s.db,
+      "SELECT u.id,COALESCE(x.display_name,u.name) name,r.email,r.status approval,c.created_at checked_in,t.id team_id,t.name team_name,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id) submitted FROM registrations r LEFT JOIN users u ON u.email=r.email LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id UNION ALL SELECT u.id,COALESCE(x.display_name,u.name),u.email,'pending',c.created_at,t.id,t.name,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id) FROM users u LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id WHERE NOT EXISTS(SELECT 1 FROM registrations r WHERE r.email=u.email)",
+    );
+    return Promise.all(
+      items.map(async (item) => {
+        const teamReadiness = item.team_id
+          ? await this.ready(item.team_id)
+          : readiness(0, 0);
+        return {
+          ...item,
+          teamReadiness,
+          status: participantStatus({
+            submitted: !!item.submitted,
+            checkedIn: !!item.checked_in,
+            going: teamReadiness.going,
+            approval: item.approval,
+          }),
+        };
+      }),
+    );
+  }
+  async workspace(actor: Actor) {
+    const profile = await this.profile(actor);
+    if (!profile.complete)
+      return { me: actor, profile, profileIncomplete: true };
+    const team = await this.team(actor.id),
+      registration = await one<{ status: string }>(
+        this.s.db,
+        "SELECT status,luma_confirmed FROM registrations WHERE email=?",
+        actor.email,
+      );
+    const ready = team ? await this.ready(team.id) : readiness(0, 0);
+    const attempts = team
+      ? await rows(
+          this.s.db,
+          "SELECT id,attempt,created_at FROM submission_versions WHERE team_id=? ORDER BY attempt DESC",
+          team.id,
+        )
+      : [];
+    const members = team
+      ? await rows(
+          this.s.db,
+          "SELECT u.id,COALESCE(x.display_name,u.name) name,CASE WHEN u.id=t.leader_id THEN 'leader' ELSE 'member' END role,COALESCE(r.status,'pending') approval FROM memberships m JOIN users u ON u.id=m.user_id JOIN teams t ON t.id=m.team_id LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_profiles x ON x.user_id=u.id WHERE t.id=?",
+          team.id,
+        )
+      : [];
+    const project = team
+      ? await one<Project>(
+          this.s.db,
+          "SELECT * FROM projects WHERE team_id=?",
+          team.id,
+        )
+      : undefined;
+    const feedback = project
+      ? await rows(
+          this.s.db,
+          "SELECT h.id,h.body,h.kind,h.created_at,h.version_id,u.name author FROM project_review_history h JOIN users u ON u.id=h.author_id WHERE h.project_id=? ORDER BY h.created_at DESC",
+          project.id,
+        )
+      : [];
+    // Feedback has no numeric rating, evaluation report or hidden score fields.
+    const venue = ready.going
+      ? await one<{ published: string | null }>(
+          this.s.db,
+          "SELECT published FROM private_venue WHERE id=1",
+        )
+      : undefined;
+    const checked = !!(await one(
+      this.s.db,
+      "SELECT user_id FROM check_ins WHERE user_id=?",
+      actor.id,
+    ));
+    const credits =
+      actor.role !== "judge" && registration?.status === "approved"
+        ? await rows(
+            this.s.db,
+            "SELECT t.id type_id,t.name,t.instructions,CASE WHEN a.inventory_id IS NOT NULL THEN 1 ELSE 0 END allocated FROM credit_types t LEFT JOIN credit_allocations a ON a.type_id=t.id AND a.user_id=? WHERE t.active=1",
+            actor.id,
+          )
+        : [];
+    return {
+      me: actor,
+      profile,
+      registration: {
+        ...registration,
+        status: registration?.status || "pending",
+      },
+      team,
+      teamReadiness: ready,
+      members,
+      attempts,
+      project: project
+        ? { ...project, draft: JSON.parse(project.draft) }
+        : undefined,
+      feedback,
+      eligibility: project
+        ? await this.eligibility(project)
+        : { status: "not_submitted" },
+      leaderboardUrl:
+        project && (await this.eligibility(project)).status === "eligible"
+          ? "/leaderboard?project=" +
+            encodeURIComponent(project.slug) +
+            "#entry-" +
+            project.slug
+          : undefined,
+      credits,
+      checkedIn: checked,
+      status: participantStatus({
+        submitted: attempts.length > 0,
+        checkedIn: checked,
+        going: ready.going,
+        approval: registration?.status,
+      }),
+      actions: await rows(
+        this.s.db,
+        "SELECT a.*,t.name team_name,u.name person_name FROM team_actions a JOIN teams t ON t.id=a.team_id JOIN users u ON u.id=a.user_id WHERE a.user_id=? OR t.leader_id=?",
+        actor.id,
+        actor.id,
+      ),
+      ...(venue?.published
+        ? {
+            privateVenue: privateVenueSchema.parse(JSON.parse(venue.published)),
+          }
+        : {}),
+      eventDraft: !(await this.s.settings(true)).active,
+    };
+  }
+  async view(
+    path: string,
+    options: { search?: string; page?: number; focus?: string } = {},
+  ): Promise<Record<string, unknown> | null> {
+    const route = path.replace(/\/+/g, "/").replace(/\/$/, "") || "/";
+    if (route === "/" || route === "/rules")
+      return {
+        content: await publicEventContent(this.s),
+        ...(this.s.identity ? { me: await this.s.actor() } : {}),
+      };
+    if (
+      route === "/projects" ||
+      route === "/leaderboard" ||
+      route.startsWith("/projects/")
+    ) {
+      let selectedPage = Math.floor(options.page || 0);
+      if (options.focus) {
+        const ordered = await rows<{ slug: string }>(
+          this.s.db,
+          "SELECT p.slug FROM projects p JOIN submission_versions v ON v.id=p.published_version_id WHERE COALESCE((SELECT e.status FROM project_eligibility e WHERE e.project_id=p.id AND e.version_id=v.id),(SELECT r.eligibility FROM reviews r WHERE r.team_id=p.team_id AND r.version_id=v.id),'needs_review')='eligible' ORDER BY (SELECT count(*) FROM project_upvotes u WHERE u.project_id=p.id) DESC,(SELECT first.created_at FROM submission_versions first WHERE first.team_id=p.team_id ORDER BY first.attempt ASC LIMIT 1) ASC,p.id ASC LIMIT 1000",
+        );
+        const found = ordered.findIndex((p) => p.slug === options.focus);
+        if (found >= 0) selectedPage = Math.floor(found / 24);
+      }
+      const all =
+        route === "/projects" || route === "/leaderboard"
+          ? await rows<Project>(
+              this.s.db,
+              "SELECT p.* FROM projects p JOIN submission_versions v ON v.id=p.published_version_id JOIN teams t ON t.id=p.team_id WHERE COALESCE((SELECT e.status FROM project_eligibility e WHERE e.project_id=p.id AND e.version_id=v.id),(SELECT r.eligibility FROM reviews r WHERE r.team_id=p.team_id AND r.version_id=v.id),'needs_review')='eligible' AND instr(lower(json_extract(v.payload,'$.projectName') || ' ' || t.name),lower(?))>0 ORDER BY (SELECT count(*) FROM project_upvotes u WHERE u.project_id=p.id) DESC,(SELECT first.created_at FROM submission_versions first WHERE first.team_id=p.team_id ORDER BY first.attempt ASC LIMIT 1) ASC,p.id ASC LIMIT 25 OFFSET ?",
+              (options.search || "").slice(0, 200),
+              selectedPage * 24,
+            )
+          : [await this.project(decodeURIComponent(route.split("/")[2]))];
+      const hasMore =
+        ["/projects", "/leaderboard"].includes(route) && all.length > 24;
+      const items = await Promise.all(
+        all.slice(0, 24).map((p) => this.publicProject(p)),
+      );
+      const me = this.s.identity ? await this.s.actor() : undefined;
+      return {
+        items,
+        me,
+        hasMore,
+        page: selectedPage,
+        ...(route !== "/projects" && route !== "/leaderboard"
+          ? {
+              comments: await rows(
+                this.s.db,
+                "SELECT c.id,c.body,c.created_at,COALESCE(x.display_name,u.name) author FROM project_comments c JOIN users u ON u.id=c.author_id LEFT JOIN participant_profiles x ON x.user_id=u.id WHERE c.project_id=? ORDER BY c.created_at LIMIT 500",
+                all[0].id,
+              ),
+            }
+          : {}),
+      };
+    }
+    if (["/profile", "/dashboard/profile"].includes(route)) {
+      const me = await this.s.actor();
+      return { me, profile: await this.profile(me) };
+    }
+    if (route === "/teams" || route.startsWith("/teams/")) {
+      const me = await this.s.actor(),
+        profile = await this.profile(me);
+      if (!profile.complete) return { me, profile, profileIncomplete: true };
+      const teams = await rows<Team>(
+        this.s.db,
+        "SELECT t.*,s.avatar,s.palette FROM teams t LEFT JOIN team_styles s ON s.team_id=t.id ORDER BY t.name",
+      );
+      const requestedTeam = route.startsWith("/teams/")
+        ? decodeURIComponent(route.split("/")[2])
+        : undefined;
+      if (requestedTeam)
+        demand(
+          teams.some((t) => t.id === requestedTeam),
+          404,
+          "TEAM_NOT_FOUND",
+        );
+      return {
+        ...(await this.workspace(me)),
+        items: await Promise.all(
+          teams
+            .filter((t) => !requestedTeam || t.id === requestedTeam)
+            .map(async (t) => ({
+              id: t.id,
+              name: t.name,
+              bio: t.bio,
+              avatar: t.avatar,
+              palette: t.palette,
+              readiness: await this.ready(t.id),
+              requested: !!(await one(
+                this.s.db,
+                "SELECT id FROM team_actions WHERE team_id=? AND user_id=? AND kind='request' AND status='pending'",
+                t.id,
+                me.id,
+              )),
+            })),
+        ),
+      };
+    }
+    if (
+      [
+        "/dashboard",
+        "/dashboard/team",
+        "/submission",
+        "/dashboard/submission",
+      ].includes(route)
+    )
+      return this.workspace(await this.s.actor());
+    if (route === "/admin" || route === "/admin/participants") {
+      const me = await this.s.actor();
+      demand(
+        me.owner || ["admin", "volunteer"].includes(me.role),
+        403,
+        "ADMIN_REQUIRED",
+      );
+      return {
+        me,
+        items: await this.participantRows(),
+        lookupOnly: me.role === "volunteer",
+        checkInConfigured: !!(await this.s.settings(true)).active,
+      };
+    }
+    if (["/admin/logs", "/admin/audit"].includes(route)) {
+      await this.s.staff(true);
+      return {
+        me: await this.s.actor(),
+        items: await this.s.adminList("audit"),
+      };
+    }
+    if (route === "/admin/teams") {
+      const me = await this.s.staff();
+      const all = await rows<Team>(
+        this.s.db,
+        "SELECT t.*,s.avatar,s.palette FROM teams t LEFT JOIN team_styles s ON s.team_id=t.id ORDER BY t.name",
+      );
+      return {
+        me,
+        items: await Promise.all(
+          all.map(async (t) => ({
+            ...t,
+            readiness: await this.ready(t.id),
+            members: await rows(
+              this.s.db,
+              "SELECT u.id,u.name,u.email,COALESCE(r.status,'pending') approval FROM memberships m JOIN users u ON u.id=m.user_id LEFT JOIN registrations r ON r.email=u.email WHERE m.team_id=?",
+              t.id,
+            ),
+          })),
+        ),
+      };
+    }
+    if (route === "/admin/settings") {
+      const me = await this.s.staff();
+      const settings = await this.s.settings(true);
+      const canManageVenue = await managesPrivateVenue(this.s, me);
+      const content = me.owner
+        ? await one(
+            this.s.db,
+            "SELECT draft,published,revision,updated_at FROM event_content WHERE id=1",
+          )
+        : undefined;
+      const venue = canManageVenue
+        ? await one(
+            this.s.db,
+            "SELECT draft,published,revision,updated_at FROM private_venue WHERE id=1",
+          )
+        : undefined;
+      return {
+        me,
+        policy: settings.policy,
+        eventDraft: !settings.active,
+        blockers: policyBlockers(settings.policy),
+        unresolved: unresolvedEventDecisions,
+        content: content || {
+          draft: JSON.stringify(defaultPublicContent),
+          revision: 0,
+        },
+        ...(canManageVenue
+          ? {
+              venue: venue || {
+                draft: JSON.stringify({
+                  location: "",
+                  directions: "",
+                  mapUrl: "",
+                }),
+                revision: 0,
+              },
+            }
+          : {}),
+        canManageVenue,
+        resultSnapshots: me.owner
+          ? await rows(
+              this.s.db,
+              "SELECT id,created_at FROM result_snapshots ORDER BY created_at DESC",
+            )
+          : undefined,
+        resultPublication: me.owner
+          ? await one(
+              this.s.db,
+              "SELECT published_at FROM result_publication WHERE id=1",
+            )
+          : undefined,
+        roles: me.owner
+          ? await rows(
+              this.s.db,
+              "SELECT u.id,u.email,u.name,COALESCE(r.role,u.role) role,CASE WHEN v.user_id IS NULL THEN 0 ELSE 1 END venue_manager FROM users u LEFT JOIN portal_roles r ON r.user_id=u.id LEFT JOIN private_venue_managers v ON v.user_id=u.id",
+            )
+          : undefined,
+      };
+    }
+    if (route === "/admin/submissions" || route === "/review") {
+      const me = await this.s.actor();
+      demand(
+        me.owner || ["admin", "judge", "mentor"].includes(me.role),
+        403,
+        "REVIEWER_REQUIRED",
+      );
+      const query =
+        "SELECT p.id,p.slug,t.name teamName,json_extract(p.draft,'$.projectName') projectName,CASE WHEN EXISTS(SELECT 1 FROM submission_versions v WHERE v.team_id=p.team_id) THEN 'Submitted' ELSE 'Draft' END status,p.updated_at FROM projects p JOIN teams t ON t.id=p.team_id ";
+      return {
+        me,
+        items: await rows(
+          this.s.db,
+          me.owner || me.role === "admin"
+            ? query + " ORDER BY p.updated_at DESC LIMIT 1000"
+            : query +
+                " JOIN project_assignments a ON a.project_id=p.id WHERE a.user_id=? AND a.kind=? ORDER BY p.updated_at DESC LIMIT 1000",
+          ...(me.owner || me.role === "admin" ? [] : [me.id, me.role]),
+        ),
+      };
+    }
+
+    if (/^\/(admin\/submissions|review)\/[^/]+$/.test(route)) {
+      const me = await this.s.actor(),
+        p = await this.project(route.split("/").at(-1)!);
+      const kind = await this.canReview(me, p),
+        v = await this.version(p);
+      return {
+        me,
+        project: { ...p, draft: JSON.parse(p.draft) },
+        version: v ? { ...v, payload: JSON.parse(v.payload) } : undefined,
+        reviewKind: kind,
+        eligibility: await this.eligibility(p),
+        rubricReview:
+          me.owner || me.role === "admin"
+            ? await one(
+                this.s.db,
+                "SELECT eligibility,astra,codex,diversity,false_claims,evidence FROM reviews WHERE team_id=? AND version_id=?",
+                p.team_id,
+                v?.id || "",
+              )
+            : undefined,
+
+        history: await rows(
+          this.s.db,
+          kind === "mentor"
+            ? "SELECT h.id,h.version_id,h.body,h.kind,h.created_at,u.name author FROM project_review_history h JOIN users u ON u.id=h.author_id WHERE h.project_id=? ORDER BY h.created_at DESC"
+            : "SELECT h.*,u.name author FROM project_review_history h JOIN users u ON u.id=h.author_id WHERE h.project_id=? ORDER BY h.created_at DESC",
+          p.id,
+        ),
+        runs: !(me.owner || me.role === "admin")
+          ? []
+          : await rows(
+              this.s.db,
+              "SELECT id,version_id,config_key,state,error,created_at,updated_at FROM evaluation_runs WHERE project_id=? ORDER BY created_at DESC",
+              p.id,
+            ),
+        reviewers:
+          me.owner || me.role === "admin"
+            ? await rows(
+                this.s.db,
+                "SELECT u.id,u.name,COALESCE(r.role,u.role) role FROM users u LEFT JOIN portal_roles r ON r.user_id=u.id WHERE COALESCE(r.role,u.role) IN ('judge','mentor')",
+              )
+            : undefined,
+        evaluationConfigured: false,
+      };
+    }
+    return null;
+  }
+  async command(
+    action: string,
+    data: unknown,
+    actor: Actor,
+  ): Promise<Record<string, unknown> | null> {
+    const content = await eventContentCommand(this.s, action, data);
+    if (content) return content;
+    if (action === "complete-profile") {
+      const d = z
+        .object({
+          displayName: text(100).min(2),
+          bio: text(2000).min(10),
+          skills: text(500).min(2),
+          socials: z.string().max(12000).default(""),
+          public: z.boolean().default(false),
+          gender: z.enum([
+            "woman",
+            "man",
+            "non-binary",
+            "self-described",
+            "prefer-not-to-say",
+          ]),
+          genderDescription: z.string().max(100).default(""),
+        })
+        .strict()
+        .parse(data);
+      const links = d.socials
+        .split(/\r?\n/)
+        .map((v) => v.trim())
+        .filter(Boolean);
+      demand(links.length <= 8, 422, "TOO_MANY_SOCIALS");
+      links.forEach((v) => httpsUrl.parse(v));
+      await this.s.mutate(
+        actor.id,
+        action,
+        actor.id,
+        [
+          [
+            "INSERT INTO participant_profiles(user_id,display_name,skills,completed_at,gender_confirmed) VALUES(?,?,?,?,1) ON CONFLICT(user_id) DO UPDATE SET display_name=excluded.display_name,skills=excluded.skills,completed_at=excluded.completed_at,gender_confirmed=1",
+            actor.id,
+            d.displayName,
+            d.skills,
+            this.s.now(),
+          ],
+          [
+            "UPDATE profiles SET bio=?,socials=?,gender=?,gender_description=?,public=? WHERE user_id=?",
+            d.bio,
+            JSON.stringify(links),
+            d.gender,
+            d.genderDescription,
+            d.public ? 1 : 0,
+            actor.id,
+          ],
+        ],
+        { fields: ["name", "bio", "skills", "socials", "consent"] },
+      );
+      return { message: "Profile saved. Your workspace is ready." };
+    }
+    if (action === "create-workspace-team") {
+      await this.completed(actor);
+      demand(actor.role === "participant", 403, "PARTICIPANT_REQUIRED");
+      const d = z
+        .object({
+          name: text(80),
+          bio: z.string().max(1000).default(""),
+          avatar: z.enum(avatarPresets),
+          palette,
+        })
+        .strict()
+        .parse(data);
+      demand(!(await this.team(actor.id)), 409, "ALREADY_IN_TEAM");
+      const registration = await one<{ status: string }>(
+        this.s.db,
+        "SELECT status FROM registrations WHERE email=?",
+        actor.email,
+      );
+      demand(
+        !registration ||
+          !["rejected", "cancelled"].includes(registration.status),
+        403,
+        "REGISTRATION_REQUIRED",
+      );
+      const teamId = crypto.randomUUID();
+      await this.s.mutate(
+        actor.id,
+        action,
+        teamId,
+        [
+          [
+            "INSERT INTO teams VALUES(?,?,?,?,?)",
+            teamId,
+            d.name,
+            actor.id,
+            d.bio,
+            this.s.now(),
+          ],
+          [
+            "INSERT INTO memberships VALUES(?,?,?)",
+            actor.id,
+            teamId,
+            this.s.now(),
+          ],
+          [
+            "INSERT INTO team_styles VALUES(?,?,?)",
+            teamId,
+            d.avatar,
+            d.palette,
+          ],
+        ],
+        { name: d.name, avatar: d.avatar, palette: d.palette },
+      );
+      return {
+        message: "Team created. Approval readiness is tracked separately.",
+        teamId,
+      };
+    }
+    if (action === "team-style") {
+      const d = z
+          .object({ avatar: z.enum(avatarPresets), palette })
+          .strict()
+          .parse(data),
+        t = await this.team(actor.id);
+      demand(t && t.leader_id === actor.id, 403, "LEADER_REQUIRED");
+      await this.s.mutate(
+        actor.id,
+        action,
+        t.id,
+        [
+          [
+            "INSERT INTO team_styles VALUES(?,?,?) ON CONFLICT(team_id) DO UPDATE SET avatar=excluded.avatar,palette=excluded.palette",
+            t.id,
+            d.avatar,
+            d.palette,
+          ],
+        ],
+        d,
+      );
+      return { message: "Team identity updated for every member." };
+    }
+    if (action === "remove-workspace-member") {
+      const d = z.object({ userId: id, reason: why }).strict().parse(data),
+        t = await this.team(d.userId);
+      demand(t, 404, "TEAM_NOT_FOUND");
+      demand(
+        actor.owner || actor.role === "admin" || t.leader_id === actor.id,
+        403,
+        "TEAM_MANAGER_REQUIRED",
+      );
+      demand(d.userId !== t.leader_id, 409, "TRANSFER_LEADERSHIP_FIRST");
+      await this.s.unfrozen();
+      const settings = await this.s.settings(true);
+      demand(
+        !settings.active || this.s.now() < settings.policy.membershipFreeze,
+        409,
+        "MEMBERSHIP_FROZEN",
+      );
+      await this.s.mutate(
+        actor.id,
+        action,
+        t.id,
+        [
+          [
+            "DELETE FROM memberships WHERE user_id=? AND team_id=?",
+            d.userId,
+            t.id,
+          ],
+        ],
+        { userId: d.userId },
+        d.reason,
+      );
+      return {
+        message:
+          "Membership removed. Readiness and private venue access recalculated.",
+      };
+    }
+    if (action === "request-team" || action === "respond-team") {
+      await this.completed(actor);
+      if (action === "request-team") {
+        demand(actor.role === "participant", 403, "PARTICIPANT_REQUIRED");
+        const d = z.object({ teamId: id }).strict().parse(data);
+        demand(!(await this.team(actor.id)), 409, "ALREADY_IN_TEAM");
+        demand(
+          await one(this.s.db, "SELECT id FROM teams WHERE id=?", d.teamId),
+          404,
+          "TEAM_NOT_FOUND",
+        );
+        await this.s.mutate(
+          actor.id,
+          action,
+          d.teamId,
+          [
+            [
+              "INSERT INTO team_actions VALUES(?,?,?,'request','pending',?) ON CONFLICT(team_id,user_id,kind) DO UPDATE SET status='pending',created_at=excluded.created_at WHERE team_actions.status<>'accepted'",
+              crypto.randomUUID(),
+              d.teamId,
+              actor.id,
+              this.s.now(),
+            ],
+          ],
+          {},
+        );
+        return { message: "Request sent to the team leader." };
+      }
+      const d = z
+          .object({ requestId: id, accept: z.boolean() })
+          .strict()
+          .parse(data),
+        r = await one<{
+          id: string;
+          team_id: string;
+          user_id: string;
+          status: string;
+          leader_id: string;
+        }>(
+          this.s.db,
+          "SELECT a.*,t.leader_id FROM team_actions a JOIN teams t ON t.id=a.team_id WHERE a.id=? AND a.kind='request'",
+          d.requestId,
+        );
+      demand(r && r.leader_id === actor.id, 403, "LEADER_REQUIRED");
+      demand(r.status === "pending", 409, "REQUEST_ALREADY_RESOLVED");
+      await this.s.mutate(
+        actor.id,
+        action,
+        r.team_id,
+        [
+          ...(d.accept
+            ? [
+                [
+                  "INSERT INTO memberships(user_id,team_id,joined_at) SELECT ?,?,? WHERE EXISTS(SELECT 1 FROM team_actions WHERE id=? AND status='pending')",
+                  r.user_id,
+                  r.team_id,
+                  this.s.now(),
+                  r.id,
+                ] as SQL,
+              ]
+            : []),
+          [
+            "UPDATE team_actions SET status=? WHERE id=? AND status='pending'",
+            d.accept ? "accepted" : "declined",
+            r.id,
+          ],
+        ],
+        { accepted: d.accept },
+      );
+      return {
+        message: d.accept
+          ? "Member joined. Team readiness recalculated."
+          : "Request declined.",
+      };
+    }
+    if (action === "save-project" || action === "submit-project") {
+      await this.completed(actor);
+      const t = await this.team(actor.id);
+      demand(t && t.leader_id === actor.id, 403, "LEADER_REQUIRED");
+      await this.s.unfrozen();
+      const d = z
+          .object({ revision: z.number().int().min(0), project: draftSchema })
+          .strict()
+          .parse(data),
+        p = await one<Project>(
+          this.s.db,
+          "SELECT * FROM projects WHERE team_id=?",
+          t.id,
+        );
+      demand((p?.revision || 0) === d.revision, 409, "PROJECT_CHANGED_RELOAD");
+      if (d.project.logo) validateProjectImage(d.project.logo, "logo");
+      if (d.project.banner) validateProjectImage(d.project.banner, "banner");
+      const projectId = p?.id || crypto.randomUUID(),
+        slug = p?.slug || "project-" + projectId;
+      const sql: SQL[] = p
+        ? [
+            [
+              "UPDATE projects SET draft=?,revision=revision+1,updated_at=? WHERE id=? AND revision=?",
+              JSON.stringify(d.project),
+              this.s.now(),
+              p.id,
+              d.revision,
+            ],
+          ]
+        : [
+            [
+              "INSERT INTO projects(id,team_id,slug,draft,updated_at) VALUES(?,?,?,?,?)",
+              projectId,
+              t.id,
+              slug,
+              JSON.stringify(d.project),
+              this.s.now(),
+            ],
+          ];
+      sql.push(...assertPreviousWrite());
+      if (action === "submit-project") {
+        await this.s.live();
+        const ready = await this.ready(t.id);
+        demand(ready.going, 409, "TEAM_APPROVAL_INCOMPLETE");
+        text(120).parse(d.project.projectName);
+        text(500).parse(d.project.problemSolution);
+        text(6000).parse(d.project.description);
+        githubUrl.parse(d.project.github);
+        if (d.project.demo) httpsUrl.parse(d.project.demo);
+        validateProjectImage(d.project.logo, "logo");
+        validateProjectImage(d.project.banner, "banner");
+        demand(d.project.attestation, 422, "ATTESTATION_REQUIRED");
+        const members = await rows<{ user_id: string }>(
+          this.s.db,
+          "SELECT user_id FROM memberships WHERE team_id=?",
+          t.id,
+        );
+        demand(
+          d.project.contributions.length === members.length &&
+            new Set(d.project.contributions.map((c) => c.userId)).size ===
+              members.length &&
+            members.every((m) =>
+              d.project.contributions.some(
+                (c) =>
+                  c.userId === m.user_id && c.role.trim() && c.codex.trim(),
+              ),
+            ),
+          422,
+          "ALL_MEMBER_CONTRIBUTIONS_REQUIRED",
+        );
+        const versionId = crypto.randomUUID();
+        sql.push([
+          "INSERT INTO submission_versions SELECT ?,?,COALESCE(MAX(attempt),0)+1,?,? FROM submission_versions WHERE team_id=?",
+          versionId,
+          t.id,
+          JSON.stringify(d.project),
+          this.s.now(),
+          t.id,
+        ]);
+        sql.push([
+          "UPDATE projects SET published_version_id=? WHERE id=?",
+          versionId,
+          projectId,
+        ]);
+      }
+      const result = await this.s.mutate(actor.id, action, projectId, sql, {
+        fields: ["project", "media", "contributions"],
+        submitted: action === "submit-project",
+      });
+      demand(result[0].meta?.changes === 1, 409, "PROJECT_CHANGED_RELOAD");
+      return {
+        message:
+          action === "submit-project"
+            ? "Project version committed. Publication requires organizer review."
+            : "Project draft saved.",
+        projectId,
+      };
+    }
+    if (action === "set-project-eligibility") {
+      await this.s.staff();
+      const d = z
+          .object({
+            projectId: id,
+            versionId: id,
+            status: z.enum(["eligible", "ineligible", "needs_review"]),
+            reason: why,
+          })
+          .strict()
+          .parse(data),
+        p = await this.project(d.projectId),
+        v = await this.version(p);
+      demand(v?.id === d.versionId, 409, "PROJECT_VERSION_CHANGED");
+      await this.s.mutate(
+        actor.id,
+        action,
+        p.id,
+        [
+          [
+            "INSERT INTO project_eligibility VALUES(?,?,?,?,?,?) ON CONFLICT(project_id) DO UPDATE SET version_id=excluded.version_id,status=excluded.status,reason=excluded.reason,decided_by=excluded.decided_by,updated_at=excluded.updated_at",
+            p.id,
+            v.id,
+            d.status,
+            d.reason,
+            actor.id,
+            this.s.now(),
+          ],
+        ],
+        { versionId: v.id, status: d.status },
+        "Eligibility evidence recorded; no score change",
+      );
+      return {
+        message:
+          "Eligibility recorded. Eligible entries appear automatically; scores remain private.",
+      };
+    }
+    if (action === "upvote-project" || action === "comment-project") {
+      const d = z
+          .object({
+            projectId: id,
+            body:
+              action === "comment-project" ? text(1500) : z.string().optional(),
+          })
+          .strict()
+          .parse(data),
+        p = await this.project(d.projectId);
+      demand(
+        p.published_version_id &&
+          (await this.eligibility(p)).status === "eligible",
+        404,
+        "PROJECT_NOT_ELIGIBLE",
+      );
+      await this.s.mutate(
+        actor.id,
+        action,
+        p.id,
+        action === "upvote-project"
+          ? [
+              [
+                "INSERT INTO project_upvotes VALUES(?,?,?) ON CONFLICT DO NOTHING",
+                p.id,
+                actor.id,
+                this.s.now(),
+              ],
+            ]
+          : [
+              [
+                "INSERT INTO project_comments VALUES(?,?,?,?,?)",
+                crypto.randomUUID(),
+                p.id,
+                actor.id,
+                d.body!,
+                this.s.now(),
+              ],
+            ],
+        { publicEngagement: true },
+      );
+      return {
+        message:
+          action === "upvote-project" ? "Upvote recorded." : "Comment posted.",
+      };
+    }
+    if (action === "participant-bulk") {
+      const d = z
+        .object({
+          emails: z.array(emailSchema).min(1).max(250),
+          status: z
+            .enum(["pending", "approved", "rejected", "cancelled"])
+            .optional(),
+          checkIn: z.boolean().default(false),
+          reason: why,
+        })
+        .strict()
+        .parse(data);
+      if (d.checkIn)
+        demand(
+          actor.owner || ["admin", "volunteer"].includes(actor.role),
+          403,
+          "CHECKIN_OPERATOR_REQUIRED",
+        );
+      else await this.s.staff();
+      demand(!(d.checkIn && d.status), 422, "SEPARATE_STATUS_AND_ATTENDANCE");
+      const emails = [...new Set(d.emails)],
+        sql: SQL[] = [];
+      if (d.checkIn) {
+        demand(
+          (await this.s.settings(true)).active,
+          409,
+          "CHECKIN_POLICY_UNCONFIRMED",
+        );
+        for (const email of emails) {
+          const u = await one<{ id: string }>(
+            this.s.db,
+            "SELECT id FROM users WHERE email=?",
+            email,
+          );
+          demand(u, 422, "PARTICIPANT_NOT_SIGNED_IN");
+          sql.push([
+            "INSERT INTO check_ins VALUES(?,?,?) ON CONFLICT(user_id) DO NOTHING",
+            u.id,
+            actor.id,
+            this.s.now(),
+          ]);
+        }
+      } else {
+        demand(d.status, 422, "STATUS_REQUIRED");
+        for (const email of emails)
+          sql.push([
+            "INSERT INTO registrations(email,status) VALUES(?,?) ON CONFLICT(email) DO UPDATE SET status=excluded.status",
+            email,
+            d.status,
+          ]);
+      }
+      await this.s.mutate(
+        actor.id,
+        action,
+        "participants",
+        sql,
+        { count: emails.length, status: d.status, checkIn: d.checkIn },
+        d.reason,
+      );
+      return {
+        message: "Participant facts updated. Team readiness recalculated.",
+      };
+    }
+    if (action === "portal-role") {
+      await this.s.staff(true);
+      const d = z
+        .object({ userId: id, role: z.enum(portalRoles), reason: why })
+        .strict()
+        .parse(data);
+      demand(d.userId !== actor.id, 422, "OWNER_IDENTITY_IS_PLATFORM_MANAGED");
+      demand(
+        await one(this.s.db, "SELECT id FROM users WHERE id=?", d.userId),
+        404,
+        "USER_NOT_FOUND",
+      );
+      await this.s.mutate(
+        actor.id,
+        action,
+        d.userId,
+        [
+          [
+            "INSERT INTO portal_roles VALUES(?,?,?,?) ON CONFLICT(user_id) DO UPDATE SET role=excluded.role,granted_by=excluded.granted_by,updated_at=excluded.updated_at",
+            d.userId,
+            d.role,
+            actor.id,
+            this.s.now(),
+          ],
+          ["DELETE FROM private_venue_managers WHERE user_id=?", d.userId],
+          [
+            "DELETE FROM project_assignments WHERE user_id=? AND kind<>?",
+            d.userId,
+            d.role,
+          ],
+        ],
+        { role: d.role },
+        d.reason,
+      );
+      return { message: "Role updated with an audit entry." };
+    }
+    if (action === "assign-project") {
+      await this.s.staff();
+      const d = z
+          .object({
+            projectId: id,
+            userId: id,
+            kind: z.enum(["judge", "mentor"]),
+            reason: why,
+          })
+          .strict()
+          .parse(data),
+        p = await this.project(d.projectId);
+      const u = await one<{ role: string }>(
+        this.s.db,
+        "SELECT COALESCE(r.role,u.role) role FROM users u LEFT JOIN portal_roles r ON r.user_id=u.id WHERE u.id=?",
+        d.userId,
+      );
+      demand(u?.role === d.kind, 422, "REVIEWER_ROLE_REQUIRED");
+      demand(
+        (await this.team(d.userId))?.id !== p.team_id,
+        409,
+        "REVIEWER_CONFLICT",
+      );
+      await this.s.mutate(
+        actor.id,
+        action,
+        p.id,
+        [
+          [
+            "INSERT INTO project_assignments VALUES(?,?,?) ON CONFLICT(project_id,user_id) DO UPDATE SET kind=excluded.kind",
+            p.id,
+            d.userId,
+            d.kind,
+          ],
+        ],
+        { kind: d.kind, userId: d.userId },
+        d.reason,
+      );
+      return { message: "Project assigned." };
+    }
+    if (action === "review-project") {
+      const d = z
+          .object({
+            projectId: id,
+            versionId: id,
+            body: text(4000),
+            rating: z.number().min(0).max(10).optional(),
+          })
+          .strict()
+          .parse(data),
+        p = await this.project(d.projectId),
+        kind = await this.canReview(actor, p),
+        v = await this.version(p);
+      demand(v?.id === d.versionId, 409, "PROJECT_VERSION_CHANGED");
+      demand(
+        kind === "judge" || d.rating === undefined,
+        403,
+        "ONLY_ASSIGNED_JUDGES_SCORE",
+      );
+      await this.s.unfrozen();
+      await this.s.mutate(
+        actor.id,
+        action,
+        p.id,
+        [
+          [
+            "INSERT INTO project_review_history VALUES(?,?,?,?,?,?,?,?)",
+            crypto.randomUUID(),
+            p.id,
+            d.versionId,
+            actor.id,
+            kind,
+            d.body,
+            d.rating ?? null,
+            this.s.now(),
+          ],
+        ],
+        { versionId: d.versionId, kind, hasRating: d.rating !== undefined },
+      );
+      return {
+        message:
+          "Private review saved. Team feedback contains no numeric score.",
+      };
+    }
+    if (action === "reevaluate-project") {
+      const d = z.object({ projectId: id, versionId: id }).strict().parse(data);
+      const p = await this.project(d.projectId),
+        kind = await this.canReview(actor, p);
+      demand(kind !== "mentor", 403, "SCORING_REVIEWER_REQUIRED");
+      // Separate secure API setup is pending. No runner, credential or network
+      // invocation is enabled by this revision, even with an injected evaluator.
+      throw new PortalError(503, "EVALUATOR_NOT_CONFIGURED");
+    }
+    return null;
+  }
+}

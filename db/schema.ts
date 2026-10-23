@@ -6,6 +6,7 @@ import {
   real,
   primaryKey,
   unique,
+  uniqueIndex,
   index,
   check,
   customType,
@@ -492,4 +493,222 @@ export const votes = sqliteTable(
     created_at: text("created_at").notNull(),
   },
   (table) => [primaryKey({ columns: [table.voter_id, table.team_id] })],
+);
+
+export const participant_profiles = sqliteTable("participant_profiles", {
+  user_id: text("user_id")
+    .primaryKey()
+    .references(() => users.id),
+  display_name: text("display_name").notNull(),
+  skills: text("skills").notNull().default(""),
+  completed_at: text("completed_at").notNull(),
+  gender_confirmed: integer("gender_confirmed").notNull().default(0),
+});
+export const portal_roles = sqliteTable(
+  "portal_roles",
+  {
+    user_id: text("user_id")
+      .primaryKey()
+      .references(() => users.id),
+    role: text("role").notNull(),
+    granted_by: text("granted_by")
+      .notNull()
+      .references(() => users.id),
+    updated_at: text("updated_at").notNull(),
+  },
+  (t) => [
+    check(
+      "portal_role_valid",
+      sql`${t.role} IN ('participant','volunteer','mentor','judge','admin')`,
+    ),
+  ],
+);
+export const team_styles = sqliteTable("team_styles", {
+  team_id: text("team_id")
+    .primaryKey()
+    .references(() => teams.id),
+  avatar: text("avatar").notNull().default("orbit"),
+  palette: text("palette").notNull().default("forest"),
+});
+export const projects = sqliteTable(
+  "projects",
+  {
+    id: text("id").primaryKey(),
+    team_id: text("team_id")
+      .notNull()
+      .unique()
+      .references(() => teams.id),
+    slug: text("slug").notNull().unique(),
+    draft: text("draft").notNull().default("{}"),
+    revision: integer("revision").notNull().default(1),
+    published_version_id: text("published_version_id").references(
+      () => submission_versions.id,
+    ),
+    updated_at: text("updated_at").notNull(),
+  },
+  (t) => [check("project_draft_json", sql`json_valid(${t.draft})`)],
+);
+export const project_upvotes = sqliteTable(
+  "project_upvotes",
+  {
+    project_id: text("project_id")
+      .notNull()
+      .references(() => projects.id),
+    user_id: text("user_id")
+      .notNull()
+      .references(() => users.id),
+    created_at: text("created_at").notNull(),
+  },
+  (t) => [primaryKey({ columns: [t.project_id, t.user_id] })],
+);
+export const project_comments = sqliteTable(
+  "project_comments",
+  {
+    id: text("id").primaryKey(),
+    project_id: text("project_id")
+      .notNull()
+      .references(() => projects.id),
+    author_id: text("author_id")
+      .notNull()
+      .references(() => users.id),
+    body: text("body").notNull(),
+    created_at: text("created_at").notNull(),
+  },
+  (t) => [index("project_comments_project").on(t.project_id, t.created_at)],
+);
+export const project_assignments = sqliteTable(
+  "project_assignments",
+  {
+    project_id: text("project_id")
+      .notNull()
+      .references(() => projects.id),
+    user_id: text("user_id")
+      .notNull()
+      .references(() => users.id),
+    kind: text("kind").notNull(),
+  },
+  (t) => [
+    primaryKey({ columns: [t.project_id, t.user_id] }),
+    check("project_assignment_kind", sql`${t.kind} IN ('judge','mentor')`),
+  ],
+);
+export const project_review_history = sqliteTable(
+  "project_review_history",
+  {
+    id: text("id").primaryKey(),
+    project_id: text("project_id")
+      .notNull()
+      .references(() => projects.id),
+    version_id: text("version_id")
+      .notNull()
+      .references(() => submission_versions.id),
+    author_id: text("author_id")
+      .notNull()
+      .references(() => users.id),
+    kind: text("kind").notNull(),
+    body: text("body").notNull(),
+    rating: real("rating"),
+    created_at: text("created_at").notNull(),
+  },
+  (t) => [
+    check("project_review_kind", sql`${t.kind} IN ('judge','mentor','admin')`),
+    check("project_review_rating", sql`${t.rating} BETWEEN 0 AND 10`),
+  ],
+);
+export const evaluation_runs = sqliteTable(
+  "evaluation_runs",
+  {
+    id: text("id").primaryKey(),
+    project_id: text("project_id")
+      .notNull()
+      .references(() => projects.id),
+    version_id: text("version_id")
+      .notNull()
+      .references(() => submission_versions.id),
+    config_key: text("config_key").notNull(),
+    state: text("state").notNull(),
+    report: text("report"),
+    error: text("error"),
+    created_at: text("created_at").notNull(),
+    updated_at: text("updated_at").notNull(),
+  },
+  (t) => [
+    check(
+      "evaluation_run_state",
+      sql`${t.state} IN ('queued','running','completed','failed','stale')`,
+    ),
+    check(
+      "evaluation_run_report",
+      sql`${t.report} IS NULL OR json_valid(${t.report})`,
+    ),
+    uniqueIndex("evaluation_single_active")
+      .on(t.version_id, t.config_key)
+      .where(sql`${t.state} IN ('queued','running')`),
+  ],
+);
+export const event_content = sqliteTable("event_content", {
+  id: integer("id").primaryKey(),
+  draft: text("draft").notNull(),
+  published: text("published"),
+  revision: integer("revision").notNull().default(1),
+  updated_at: text("updated_at").notNull(),
+});
+export const private_venue = sqliteTable("private_venue", {
+  id: integer("id").primaryKey(),
+  draft: text("draft").notNull(),
+  published: text("published"),
+  revision: integer("revision").notNull().default(1),
+  updated_at: text("updated_at").notNull(),
+});
+export const private_venue_managers = sqliteTable("private_venue_managers", {
+  user_id: text("user_id")
+    .primaryKey()
+    .references(() => users.id),
+  granted_by: text("granted_by")
+    .notNull()
+    .references(() => users.id),
+  updated_at: text("updated_at").notNull(),
+});
+export const event_content_history = sqliteTable(
+  "event_content_history",
+  {
+    id: text("id").primaryKey(),
+    scope: text("scope").notNull(),
+    revision: integer("revision").notNull(),
+    snapshot: text("snapshot").notNull(),
+    actor_id: text("actor_id")
+      .notNull()
+      .references(() => users.id),
+    created_at: text("created_at").notNull(),
+  },
+  (t) => [check("content_scope", sql`${t.scope} IN ('public','private')`)],
+);
+export const write_guards = sqliteTable(
+  "write_guards",
+  { token: text("token").primaryKey(), valid: integer("valid").notNull() },
+  (t) => [check("write_guard_valid", sql`${t.valid}=1`)],
+);
+
+export const project_eligibility = sqliteTable(
+  "project_eligibility",
+  {
+    project_id: text("project_id")
+      .primaryKey()
+      .references(() => projects.id),
+    version_id: text("version_id")
+      .notNull()
+      .references(() => submission_versions.id),
+    status: text("status").notNull(),
+    reason: text("reason").notNull(),
+    decided_by: text("decided_by")
+      .notNull()
+      .references(() => users.id),
+    updated_at: text("updated_at").notNull(),
+  },
+  (t) => [
+    check(
+      "project_eligibility_status",
+      sql`${t.status} IN ('eligible','ineligible','needs_review')`,
+    ),
+  ],
 );

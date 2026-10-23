@@ -44,7 +44,9 @@ export function getSitesRuntime(): Runtime {
   };
 }
 export function protectedPath(path: string) {
-  return /^\/(dashboard|admin|judge)(\/|$)/.test(path);
+  return /^\/(dashboard|admin|judge|teams|profile|submission|review)(\/|$)/.test(
+    path,
+  );
 }
 export function unavailableResponse(error: unknown) {
   const failure =

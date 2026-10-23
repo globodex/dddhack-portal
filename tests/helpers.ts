@@ -35,6 +35,10 @@ export const rehearsalPolicy: Policy = {
   penaltyApproved: true,
   retentionNotice: "FAKE REHEARSAL: synthetic data only; delete after test.",
   confirmations: [...decisions],
+  capacity: 160,
+  teamFormationRule:
+    "FAKE REHEARSAL ONLY: October freeze, not a live event decision.",
+  projectEngagementRule: "display-only",
 };
 export async function activate(db: LocalDatabase) {
   await batch(db, [

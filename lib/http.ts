@@ -98,7 +98,26 @@ export async function handlePortal(request: Request, runtime: Runtime) {
     if (request.method === "GET") {
       const view = new URL(request.url).searchParams.get("view") || "/";
       return Response.json(
-        { ...(await service.view(view)), localTest: !!runtime.localTest },
+        {
+          ...(await service.view(view, {
+            focus: (new URL(request.url).searchParams.get("focus") || "").slice(
+              0,
+              150,
+            ),
+            search: (new URL(request.url).searchParams.get("q") || "").slice(
+              0,
+              200,
+            ),
+            page: Math.min(
+              1000,
+              Math.max(
+                0,
+                Number(new URL(request.url).searchParams.get("page")) || 0,
+              ),
+            ),
+          })),
+          localTest: !!runtime.localTest,
+        },
         { headers: safeHeaders },
       );
     }
@@ -167,8 +186,36 @@ export async function handleExport(request: Request, runtime: Runtime) {
     );
     const actor = await service.staff();
     const list = new URL(request.url).searchParams.get("list") || "";
+    demand(
+      [
+        "participants",
+        "credits",
+        "teams",
+        "submissions",
+        "settings",
+        "permissions",
+        "audit",
+        "logs",
+      ].includes(list),
+      403,
+      "EXPORT_NOT_PERMITTED",
+    );
+    if (list === "audit" || list === "logs") await service.staff(true);
     if (["settings", "permissions"].includes(list)) await service.staff(true);
-    const data = await service.adminList(list);
+    let data: Record<string, unknown>[] = await service.adminList(
+      list === "logs" ? "audit" : list,
+    );
+    const query = (new URL(request.url).searchParams.get("q") || "")
+      .slice(0, 200)
+      .toLowerCase();
+    const status = (
+      new URL(request.url).searchParams.get("status") || ""
+    ).slice(0, 40);
+    data = data.filter(
+      (row) =>
+        (!query || JSON.stringify(row).toLowerCase().includes(query)) &&
+        (!status || row.status === status),
+    );
     await service.mutate(actor.id, "export", list, [], {
       rows: data.length,
       secretValues: false,

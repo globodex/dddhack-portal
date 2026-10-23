@@ -55,6 +55,17 @@ export async function seedLocal(db: Database) {
         string,
         ...unknown[],
       ],
+      [
+        "UPDATE profiles SET bio='Synthetic local builder profile' WHERE user_id=?",
+        i.id,
+      ] as [string, ...unknown[]],
+      [
+        "INSERT INTO participant_profiles(user_id,display_name,skills,completed_at,gender_confirmed) VALUES(?,?,?,?,1)",
+        i.id,
+        i.name,
+        "Synthetic coding skills",
+        time,
+      ] as [string, ...unknown[]],
       ...(id === "stranger"
         ? []
         : [

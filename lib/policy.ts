@@ -15,6 +15,9 @@ export const decisions = [
   "lumaPolicy",
   "penalties",
   "privacyRetention",
+  "capacity",
+  "teamFormation",
+  "projectEngagement",
 ] as const;
 const instant = z
   .string()
@@ -47,6 +50,15 @@ export const policySchema = z
     penaltyApproved: z.boolean(),
     retentionNotice: z.string().max(4000),
     confirmations: z.array(z.enum(decisions)),
+    capacity: z.number().int().min(1).max(1000).nullable().default(null),
+    teamFormationRule: z.string().max(2000).default(""),
+    projectEngagementRule: z
+      .enum([
+        "unconfirmed",
+        "display-only",
+        "score-with-approved-normalization",
+      ])
+      .default("unconfirmed"),
   })
   .strict();
 export type Policy = z.infer<typeof policySchema>;
@@ -76,9 +88,16 @@ export const draftPolicy: Policy = {
   penaltyApproved: false,
   retentionNotice: "",
   confirmations: [],
+  capacity: null,
+  teamFormationRule: "",
+  projectEngagementRule: "unconfirmed",
 };
 export function policyBlockers(p: Policy): string[] {
   const b: string[] = decisions.filter((d) => !p.confirmations.includes(d));
+  if (!p.capacity) b.push("confirmed event capacity");
+  if (!p.teamFormationRule.trim()) b.push("confirmed team-formation rule");
+  if (p.projectEngagementRule === "unconfirmed")
+    b.push("public engagement scoring policy");
   if (!p.submissionClose || p.submissionClose <= p.submissionOpen)
     b.push("valid submission window");
   if (

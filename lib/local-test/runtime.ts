@@ -15,8 +15,8 @@ export async function localRuntime(request: Request) {
     const exists = db.raw
       .prepare("SELECT name FROM sqlite_master WHERE name='users'")
       .get();
+    db.migrate();
     if (!exists) {
-      db.migrate();
       await seedLocal(db);
     }
   }

@@ -86,7 +86,7 @@ test("ties need complete owner adjudication; altered score breakdown invalidates
     snapshotId: snapshot.snapshotId,
     reason: "FAKE reveal",
   });
-  const pub = await service("alice").view("/leaderboard");
+  const pub = await service("alice").view("/winners");
   assert.equal((pub.items as { team: string }[])[0].team, "Common Ground");
   db.close();
 });

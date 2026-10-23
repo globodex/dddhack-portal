@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { batch, one, rows, type Database, type SQL } from "./db";
 import { isOwner, type Identity } from "./identity";
+import { PortalExperience } from "./experience";
 import {
   demand,
   emailSchema,
@@ -85,7 +86,17 @@ export class PortalService {
       "SELECT id,email,name,role FROM users WHERE id=?",
       i.id,
     ))!;
-    return { ...u, owner: isOwner(i) };
+    const extra = await one<{ role: string; display_name: string | null }>(
+      this.db,
+      "SELECT COALESCE(r.role,u.role) role,p.display_name FROM users u LEFT JOIN portal_roles r ON r.user_id=u.id LEFT JOIN participant_profiles p ON p.user_id=u.id WHERE u.id=?",
+      i.id,
+    );
+    return {
+      ...u,
+      role: extra?.role || u.role,
+      name: extra?.display_name || u.name,
+      owner: isOwner(i),
+    };
   }
   async staff(ownerOnly = false) {
     const u = await this.actor();
@@ -206,6 +217,24 @@ export class PortalService {
   ): Promise<Record<string, unknown>> {
     const actor = await this.actor();
     await this.throttle(actor.id);
+    const revised = await new PortalExperience(this).command(
+      action,
+      data,
+      actor,
+    );
+    if (revised !== null) return revised;
+    if (
+      [
+        "create-team",
+        "team-request",
+        "team-invite",
+        "team-respond",
+        "remove-member",
+        "idea",
+        "submit",
+      ].includes(action)
+    )
+      await new PortalExperience(this).completed(actor);
     switch (action) {
       case "initialize-event": {
         await this.staff(true);
@@ -236,8 +265,8 @@ export class PortalService {
       case "profile": {
         const d = z
           .object({
-            bio: z.string().max(2000).default(""),
-            socials: z.string().max(12000).default(""),
+            bio: z.string().max(2000).optional(),
+            socials: z.string().max(12000).optional(),
             gender: z
               .enum([
                 "woman",
@@ -246,12 +275,21 @@ export class PortalService {
                 "self-described",
                 "prefer-not-to-say",
               ])
-              .default("prefer-not-to-say"),
-            genderDescription: z.string().max(100).default(""),
-            public: bool.default(false),
+              .optional(),
+            genderDescription: z.string().max(100).optional(),
+            public: bool.optional(),
           })
           .parse(data);
-        const socials = d.socials
+        const old = (await one<{
+          bio: string;
+          socials: string;
+          gender: string;
+          gender_description: string;
+          public: number;
+        }>(this.db, "SELECT * FROM profiles WHERE user_id=?", actor.id))!;
+        const socials = (
+          d.socials ?? (JSON.parse(old.socials) as string[]).join("\n")
+        )
           .split(/\r?\n/)
           .map((s) => s.trim())
           .filter(Boolean);
@@ -264,11 +302,11 @@ export class PortalService {
           [
             [
               "UPDATE profiles SET bio=?,socials=?,gender=?,gender_description=?,public=? WHERE user_id=?",
-              d.bio,
+              d.bio ?? old.bio,
               JSON.stringify(socials),
-              d.gender,
-              d.genderDescription,
-              d.public ? 1 : 0,
+              d.gender ?? old.gender,
+              d.genderDescription ?? old.gender_description,
+              d.public === undefined ? old.public : d.public ? 1 : 0,
               actor.id,
             ],
           ],
@@ -810,6 +848,17 @@ export class PortalService {
         return {};
       }
       case "submit": {
+        const legacyTeam = await this.team(actor.id);
+        demand(
+          !legacyTeam ||
+            !(await one(
+              this.db,
+              "SELECT id FROM projects WHERE team_id=?",
+              legacyTeam.id,
+            )),
+          409,
+          "USE_SHARED_PROJECT_SUBMISSION",
+        );
         await this.unfrozen();
         const { u, t } = await this.lead();
         await this.live();
@@ -1404,11 +1453,33 @@ export class PortalService {
         "SELECT * FROM teams WHERE id=?",
         v.team_id,
       ))!;
-      const human = await rows<{ rating: number }>(
+      const revisedProject = await one<{ id: string }>(
         this.db,
-        "SELECT h.rating FROM human_scores h JOIN users u ON u.id=h.judge_id JOIN judge_assignments a ON a.judge_id=h.judge_id AND a.team_id=h.team_id WHERE h.team_id=? AND u.role='judge' AND NOT EXISTS(SELECT 1 FROM memberships m WHERE m.user_id=h.judge_id AND m.team_id=h.team_id)",
+        "SELECT id FROM projects WHERE team_id=?",
         t.id,
       );
+      if (revisedProject) {
+        const eligible = await one<{ status: string }>(
+          this.db,
+          "SELECT status FROM project_eligibility WHERE project_id=? AND version_id=?",
+          revisedProject.id,
+          v.id,
+        );
+        if (eligible) review.eligibility = eligible.status;
+      }
+      const human = revisedProject
+        ? await rows<{ rating: number }>(
+            this.db,
+            "SELECT h.rating FROM project_review_history h JOIN project_assignments a ON a.project_id=h.project_id AND a.user_id=h.author_id AND a.kind='judge' JOIN users u ON u.id=h.author_id LEFT JOIN portal_roles r ON r.user_id=u.id WHERE h.project_id=? AND h.version_id=? AND h.kind='judge' AND h.rating IS NOT NULL AND COALESCE(r.role,u.role)='judge' AND NOT EXISTS(SELECT 1 FROM memberships m WHERE m.user_id=h.author_id AND m.team_id=?) AND h.rowid=(SELECT MAX(last.rowid) FROM project_review_history last WHERE last.project_id=h.project_id AND last.version_id=h.version_id AND last.author_id=h.author_id AND last.kind='judge')",
+            revisedProject.id,
+            v.id,
+            t.id,
+          )
+        : await rows<{ rating: number }>(
+            this.db,
+            "SELECT h.rating FROM human_scores h JOIN users u ON u.id=h.judge_id JOIN judge_assignments a ON a.judge_id=h.judge_id AND a.team_id=h.team_id WHERE h.team_id=? AND u.role='judge' AND NOT EXISTS(SELECT 1 FROM memberships m WHERE m.user_id=h.judge_id AND m.team_id=h.team_id)",
+            t.id,
+          );
       if (review.eligibility === "eligible") {
         demand(
           human.length >= s.policy.minJudges &&
@@ -1433,13 +1504,25 @@ export class PortalService {
           t.id,
         ))!.n,
       );
+      const revisedCounts =
+        revisedProject &&
+        s.policy.projectEngagementRule === "score-with-approved-normalization"
+          ? await one<{ votes: number; feedback: number }>(
+              this.db,
+              "SELECT (SELECT count(*) FROM project_upvotes WHERE project_id=?) votes,(SELECT count(DISTINCT author_id) FROM project_comments WHERE project_id=?) feedback",
+              revisedProject.id,
+              revisedProject.id,
+            )
+          : undefined;
       entries.push({
         v,
         t,
         review,
         human: human.map((x) => x.rating),
-        voteCount,
-        feedbackCount,
+        voteCount: revisedProject ? revisedCounts?.votes || 0 : voteCount,
+        feedbackCount: revisedProject
+          ? revisedCounts?.feedback || 0
+          : feedbackCount,
       });
     }
     const maxVotes = Math.max(
@@ -1509,10 +1592,15 @@ export class PortalService {
     }
     return result.map((r, i) => ({ ...r, rank: r.components ? i + 1 : null }));
   }
-  async view(path: string): Promise<Record<string, unknown>> {
+  async view(
+    path: string,
+    options: { search?: string; page?: number; focus?: string } = {},
+  ): Promise<Record<string, unknown>> {
     // Use one permission target for ordinary URL slash aliases as well as API views.
     // In particular, /admin/permissions/ must retain the owner-only requirement.
     path = path.replace(/\/+/g, "/").replace(/\/$/, "") || "/";
+    const revised = await new PortalExperience(this).view(path, options);
+    if (revised !== null) return revised;
     const s = await this.settings(true);
     const publicPolicy = {
       ideaLock: s.policy.ideaLock,
@@ -1663,7 +1751,6 @@ export class PortalService {
             demo: p.demo || "",
             description: p.description || "",
             contributions: p.contributions || [],
-            evidence: r.report ? JSON.parse(String(r.report)) : null,
             rating: r.rating,
             notes: r.notes,
           };
@@ -1767,6 +1854,14 @@ export class PortalService {
     );
   }
   async adminList(list: string) {
+    if (["audit", "logs", "permissions", "settings"].includes(list))
+      await this.staff(true);
+    if (list === "participants")
+      return new PortalExperience(this).participantRows();
+    if (list === "teams" || list === "submissions") {
+      const view = await new PortalExperience(this).view("/admin/" + list);
+      return (view?.items || []) as Record<string, unknown>[];
+    }
     const queries: Record<string, string> = {
       participants:
         "SELECT u.id,u.name,r.email,r.status,r.luma_confirmed,c.created_at checked_in FROM registrations r LEFT JOIN users u ON u.email=r.email LEFT JOIN check_ins c ON c.user_id=u.id UNION ALL SELECT u.id,u.name,u.email,NULL,NULL,NULL FROM users u WHERE NOT EXISTS(SELECT 1 FROM registrations r WHERE r.email=u.email)",

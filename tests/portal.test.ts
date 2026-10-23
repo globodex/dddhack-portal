@@ -133,16 +133,12 @@ test("idea core locks exactly at IST boundary; description remains editable and 
     core: "The immutable concept",
     description: "Better description",
   });
-  const publicView = await new PortalService(
-    db,
-    null,
-    LOCAL_CREDIT_KEY,
-    () => "2026-10-30T00:00:00.000Z",
-  ).view("/teams/fake_team1");
-  assert.equal(publicView.idea, undefined);
-  assert.equal(JSON.stringify(publicView).includes("gender"), false);
-  assert.deepEqual(publicView.members, []);
+  await assert.rejects(
+    new PortalService(db, null, LOCAL_CREDIT_KEY).view("/teams/fake_team1"),
+    /SIGN_IN_REQUIRED/,
+  );
   assert.equal((await rows(db, "SELECT * FROM idea_revisions")).length, 2);
+  await activate(db);
   clock("2026-10-29T18:29:00.000Z");
   await assert.rejects(
     service("owner").command("create-team", { name: "Frozen" }),
@@ -527,7 +523,7 @@ test("full mock rehearsal: two equal-weight judges, human review, owner freeze, 
     service("admin").command("freeze-results", { reason: "test" }),
     /OWNER_REQUIRED/,
   );
-  await assert.rejects(service().view("/leaderboard"), /Results are private/);
+  await assert.rejects(service().view("/winners"), /Results are private/);
   clock("2026-11-01T13:00:00.000Z");
   const frozen = await service("owner").command("freeze-results", {
     reason: "Rehearsal completed",
@@ -554,7 +550,7 @@ test("full mock rehearsal: two equal-weight judges, human review, owner freeze, 
     snapshotId: frozen.snapshotId,
     reason: "FAKE local reveal",
   });
-  const pub = await service().view("/leaderboard");
+  const pub = await service().view("/winners");
   assert.equal((pub.items as { score: number }[])[0].score, 80);
   assert(!JSON.stringify(pub).includes("fake_judge"));
   db.close();

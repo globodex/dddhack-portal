@@ -57,10 +57,43 @@ export class LocalDatabase implements Database {
   }
   migrate() {
     const directory = new URL("../../db/migrations/", import.meta.url);
+    this.raw.exec(
+      "CREATE TABLE IF NOT EXISTS local_schema_migrations(name TEXT PRIMARY KEY)",
+    );
+    // Adopt only known legacy baselines without replaying or deleting their data.
+    const has = (name: string) =>
+      !!this.raw
+        .prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=?")
+        .get(name);
+    if (has("users"))
+      this.raw
+        .prepare("INSERT OR IGNORE INTO local_schema_migrations VALUES(?)")
+        .run("0001_portal.sql");
+    if (has("tie_resolutions"))
+      this.raw
+        .prepare("INSERT OR IGNORE INTO local_schema_migrations VALUES(?)")
+        .run("0002_tie_resolutions.sql");
     for (const name of readdirSync(directory)
       .filter((n) => n.endsWith(".sql"))
-      .sort())
-      this.raw.exec(readFileSync(new URL(name, directory), "utf8"));
+      .sort()) {
+      if (
+        this.raw
+          .prepare("SELECT name FROM local_schema_migrations WHERE name=?")
+          .get(name)
+      )
+        continue;
+      this.raw.exec("BEGIN IMMEDIATE");
+      try {
+        this.raw.exec(readFileSync(new URL(name, directory), "utf8"));
+        this.raw
+          .prepare("INSERT INTO local_schema_migrations VALUES(?)")
+          .run(name);
+        this.raw.exec("COMMIT");
+      } catch (error) {
+        this.raw.exec("ROLLBACK");
+        throw error;
+      }
+    }
   }
   close() {
     this.raw.close();
