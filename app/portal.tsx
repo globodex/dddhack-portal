@@ -1453,19 +1453,29 @@ export function Discover({
   const participants = path === "/discover/participants";
   const canCreate = data.me?.canParticipate === true && !data.team;
   useEffect(() => {
-    if (participants && window.location.hash.startsWith("#person-")) {
-      document
-        .getElementById(window.location.hash.slice(1))
-        ?.scrollIntoView({ block: "center", behavior: "auto" });
+    if (!participants) return;
+    const openHash = () => {
       const hash = window.location.hash;
+      if (!/^#person-[A-Za-z0-9_-]+$/.test(hash)) return;
       const row = (data.items || []).find(
         (person: Row) => `#person-${person.id}` === hash,
       );
-      if (row && hashOpened.current !== hash) {
-        hashOpened.current = hash;
-        setSelectedPerson(discoveryProfileProjection(row));
-      }
-    }
+      if (!row || hashOpened.current === hash) return;
+      hashOpened.current = hash;
+      document
+        .getElementById(`person-${row.id}`)
+        ?.scrollIntoView({ block: "center", behavior: "auto" });
+      setSelectedPerson(discoveryProfileProjection(row));
+    };
+    // Data refreshes must not reopen a dismissed dialog. A new hash navigation
+    // is an explicit request, including returning to a previously viewed person.
+    const navigateHash = () => {
+      hashOpened.current = "";
+      openHash();
+    };
+    openHash();
+    window.addEventListener("hashchange", navigateHash);
+    return () => window.removeEventListener("hashchange", navigateHash);
   }, [participants, data.items]);
   const items = (data.items || []).filter(
     (row) =>
