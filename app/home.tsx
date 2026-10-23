@@ -465,26 +465,28 @@ export default function Home({
           <p className="hero-date">
             Sunday, 1 November 2026 · Hosted by Codex Ambassadors
           </p>
-          <a
-            className="hero-register"
-            href="https://luma.com/6t5uk4lo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Register <ArrowUpRight size={20} aria-hidden="true" />
-          </a>
-          <a
-            className="button primary-cta"
-            href={
-              signedIn
-                ? "/dashboard"
-                : "/signin-with-chatgpt?return_to=%2Fdashboard"
-            }
-            target="_top"
-          >
-            {signedIn ? "Open your Dashboard" : "Continue with ChatGPT"}
-            <ArrowRight size={20} aria-hidden="true" />
-          </a>
+          <div className="hero-actions">
+            <a
+              className="hero-register"
+              href="https://luma.com/6t5uk4lo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Register <ArrowUpRight size={20} aria-hidden="true" />
+            </a>
+            <a
+              className="button primary-cta"
+              href={
+                signedIn
+                  ? "/dashboard"
+                  : "/signin-with-chatgpt?return_to=%2Fdashboard"
+              }
+              target="_top"
+            >
+              {signedIn ? "Open your Dashboard" : "Continue with ChatGPT"}
+              <ArrowRight size={20} aria-hidden="true" />
+            </a>
+          </div>
         </div>
         <div className="hero-art" aria-hidden="true">
           <Dots paused={paused || !ready} />
