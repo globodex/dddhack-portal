@@ -9,7 +9,11 @@ import {
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { unstable_dev, getPlatformProxy } from "wrangler";
-import { draftPolicy } from "../lib/policy.ts";
+import {
+  indefiniteRetentionNotice,
+  operationalSetupRequest,
+  operationalSetupSave,
+} from "../lib/operational-setup-contract.ts";
 import { syntheticImage } from "../tests/fixture-images.ts";
 import { seedLocal } from "./fixtures.ts";
 process.env.PORTAL_LOCAL_TEST = "1"; // Cannot reactivate code removed by the production build.
@@ -396,39 +400,78 @@ try {
   };
   // Only this disposable local D1 harness receives the following synthetic operational setup.
   const syntheticNow = Date.now();
-  const operationalPolicy = {
-    ...draftPolicy,
-    operationScopes: [],
-    submissionOpen: new Date(syntheticNow - 3600000).toISOString(),
-    submissionClose: new Date(syntheticNow + 3600000).toISOString(),
-    deploymentRule:
-      "SYNTHETIC smoke: organizer verifies public repository and reproducible demo.",
-    retentionNotice: "SYNTHETIC smoke data only; disposable database.",
-    confirmations: [
-      ...draftPolicy.confirmations,
-      "submissionOpen",
-      "deploymentRule",
-      "privacyRetention",
-      "lumaPolicy",
-    ],
+  const windowRequest = {
+    open: new Date(syntheticNow - 3600000).toISOString(),
+    close: new Date(syntheticNow + 3600000).toISOString(),
   };
-  assert.equal(
-    (
-      await post(owner, "initialize-event", {
-        reason: "Synthetic disposable operational setup",
-      })
-    ).status,
-    200,
+  const windowPreview = await post(
+    owner,
+    "preview-submission-window",
+    windowRequest,
   );
-  assert.equal(
-    (
-      await post(owner, "settings", {
-        policy: operationalPolicy,
-        reason: "Synthetic operational-only confirmations",
-      })
-    ).status,
-    200,
+  assert.equal(windowPreview.status, 200);
+  const proposedWindow = await windowPreview.json();
+  const publishedWindow = await post(owner, "publish-submission-window", {
+    ...windowRequest,
+    token: proposedWindow.token,
+    version: proposedWindow.version,
+    reason: "Synthetic real-window preview workflow",
+    confirmation: "CHANGE_SUBMISSION_WINDOW",
+  });
+  assert.equal(publishedWindow.status, 200, await publishedWindow.text());
+  const setupValues = operationalSetupRequest({
+    version: 1,
+    operation: "submissions",
+    privacyConfirmed: true,
+    rulesConfirmed: true,
+    reason: "Synthetic explicit operational confirmation",
+  });
+  const falsePrivacy = await post(owner, "preview-operational-setup", {
+    ...setupValues,
+    privacyConfirmed: false,
+  });
+  assert.equal(falsePrivacy.status, 422);
+  const deniedSetup = await post(
+    alice,
+    "preview-operational-setup",
+    setupValues,
   );
+  assert.equal(deniedSetup.status, 403);
+  const setupPreview = await post(
+    owner,
+    "preview-operational-setup",
+    setupValues,
+  );
+  assert.equal(setupPreview.status, 200);
+  const proposedSetup = await setupPreview.json();
+  assert.equal(proposedSetup.enablesOperations, false);
+  const confirmedSetup = await post(
+    owner,
+    "save-operational-setup",
+    operationalSetupSave(setupValues, proposedSetup),
+  );
+  assert.equal(confirmedSetup.status, 200, await confirmedSetup.text());
+  const configuredOnly = await (
+    await worker.fetch("/api/portal?view=/admin/settings", { headers: owner })
+  ).json();
+  assert.equal(
+    configuredOnly.policy.retentionNotice,
+    indefiniteRetentionNotice,
+  );
+  assert.equal(configuredOnly.readiness.submissions.configured, true);
+  assert.equal(configuredOnly.readiness.submissions.enabled, false);
+  assert.equal(configuredOnly.readiness.checkin.enabled, false);
+  assert.equal(configuredOnly.readiness.scoring.ready, false);
+  report.ownerOperationalSetup = {
+    ownerPreview: 200,
+    ownerSave: 200,
+    uncheckedPrivacy: 422,
+    participantDenied: 403,
+    indefiniteRetention: true,
+    configurationDidNotEnableOperations: true,
+    judgingUnconfirmed: true,
+    realChatGPTBrowserSession: false,
+  };
   let setup = await (
     await worker.fetch("/api/portal?view=/admin/settings", { headers: owner })
   ).json();

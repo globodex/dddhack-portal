@@ -36,6 +36,16 @@
     "participantGlobalPolicyPreview": 403,
     "realManagedLogoutVerified": false
   },
+  "ownerOperationalSetup": {
+    "ownerPreview": 200,
+    "ownerSave": 200,
+    "uncheckedPrivacy": 422,
+    "participantDenied": 403,
+    "indefiniteRetention": true,
+    "configurationDidNotEnableOperations": true,
+    "judgingUnconfirmed": true,
+    "realChatGPTBrowserSession": false
+  },
   "rosterGate": {
     "unmatchedVerifiedEmail": 403,
     "ownerBootstrap": 200,
