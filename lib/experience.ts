@@ -1,4 +1,5 @@
 import { auditReason } from "./security";
+import { teamFacts, personFacts, selectedRows } from "./directory-facts";
 import { submissionToolChoices } from "./submission-tools";
 import { engagementState, engagementControl } from "./engagement-control";
 import { removalCommand, notRemoved } from "./record-removal";
@@ -356,66 +357,54 @@ export class PortalExperience {
       this.s.db,
       "SELECT u.id,COALESCE(x.display_name,u.name) name,r.email,r.status approval,c.created_at checked_in,t.id team_id,t.name team_name,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id) submitted FROM registrations r LEFT JOIN users u ON u.email=r.email LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id UNION ALL SELECT u.id,COALESCE(x.display_name,u.name),u.email,'pending',c.created_at,t.id,t.name,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id) FROM users u LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id WHERE NOT EXISTS(SELECT 1 FROM registrations r WHERE r.email=u.email)",
     );
-    return Promise.all(
-      items.map(async (item) => {
-        const individual = item.id
-          ? await personStatus(this.s, item.id)
-          : undefined;
-        const progress = item.team_id
-          ? await teamStatus(this.s, item.team_id)
-          : undefined;
-        const teamReadiness = item.team_id
-          ? await this.ready(item.team_id)
-          : readiness(0, 0);
+    const teams = await teamFacts(
+        this.s.db,
+        items.flatMap((item) => (item.team_id ? [item.team_id] : [])),
+      ),
+      people = await personFacts(
+        this.s.db,
+        items.flatMap((item) => (item.id ? [item.id] : [])),
+      ),
+      absentEmails = new Set(
+        (
+          await rows<{ email: string }>(
+            this.s.db,
+            "SELECT email FROM registration_absences",
+          )
+        ).map((row) => row.email),
+      );
+    return items
+      .map((item) => {
+        const individual = item.id ? people.get(item.id) : undefined,
+          progress = item.team_id ? teams.get(item.team_id) : undefined;
         return {
           ...item,
-          deactivated_at: item.id
-            ? (
-                await one<{ updated_at: string }>(
-                  this.s.db,
-                  "SELECT updated_at FROM record_removals WHERE kind='participant' AND target_id=? AND active=1",
-                  item.id,
-                )
-              )?.updated_at
-            : undefined,
-          teamReadiness,
+          deactivated_at: individual?.deactivatedAt,
+          teamReadiness: progress?.readiness || readiness(0, 0),
           status:
             individual?.status ||
             (item.approval !== "approved"
               ? "Registered"
-              : (await one(
-                    this.s.db,
-                    "SELECT email FROM registration_absences WHERE email=?",
-                    item.email,
-                  ))
+              : absentEmails.has(item.email)
                 ? "Absent"
                 : "Going"),
           teamStatus: progress?.status,
           teamLocked: progress?.locked || false,
-          teamLockedAt: item.team_id
-            ? (
-                await one<{ locked_at: string }>(
-                  this.s.db,
-                  "SELECT locked_at FROM team_locks WHERE team_id=?",
-                  item.team_id,
-                )
-              )?.locked_at
-            : null,
+          teamLockedAt: item.team_id ? progress?.lockedAt : null,
           checked_in: individual?.checkedIn
             ? item.checked_in || "Manually checked in"
             : null,
         };
-      }),
-    ).then((list) =>
-      list.sort(
+      })
+      .sort(
         (a, b) =>
           Number(b.teamLocked && b.status === "Registered") -
             Number(a.teamLocked && a.status === "Registered") ||
           (a.teamLockedAt || "9999").localeCompare(b.teamLockedAt || "9999") ||
           a.email.localeCompare(b.email),
-      ),
-    );
+      );
   }
+
   async workspace(actor: Actor, contacts = true) {
     const profile = await this.profile(actor);
     if (!profile.complete)
@@ -762,8 +751,7 @@ export class PortalExperience {
       return { me, profile: await this.profile(me) };
     }
     if (route === "/teams" || route.startsWith("/teams/")) {
-      const me = await this.s.actor(),
-        profile = await this.profile(me);
+      const me = await this.s.actor();
       const teams = await rows<Team>(
         this.s.db,
         "SELECT t.*,'initials' avatar,COALESCE(s.color_key,s.palette) palette FROM teams t LEFT JOIN team_styles s ON s.team_id=t.id WHERE NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='team' AND rr.target_id=t.id AND rr.active=1) ORDER BY t.name",
@@ -777,35 +765,34 @@ export class PortalExperience {
           404,
           "TEAM_NOT_FOUND",
         );
+      const selected = teams.filter(
+          (t) => !requestedTeam || t.id === requestedTeam,
+        ),
+        facts = await teamFacts(
+          this.s.db,
+          selected.map((t) => t.id),
+          me.id,
+        );
       return {
         me,
         team: await this.team(me.id),
-        items: await Promise.all(
-          teams
-            .filter((t) => !requestedTeam || t.id === requestedTeam)
-            .map(async (t) => ({
-              id: t.id,
-              name: t.name,
-              bio: t.bio,
-              avatar: t.avatar,
-              palette: t.palette,
-              locked: !!(await one(
-                this.s.db,
-                "SELECT team_id FROM team_locks WHERE team_id=?",
-                t.id,
-              )),
-              status: (await teamStatus(this.s, t.id)).status,
-              readiness: await this.ready(t.id),
-              requested: !!(await one(
-                this.s.db,
-                "SELECT id FROM team_actions WHERE team_id=? AND user_id=? AND kind='request' AND status='pending'",
-                t.id,
-                me.id,
-              )),
-            })),
-        ),
+        items: selected.map((t) => {
+          const fact = facts.get(t.id)!;
+          return {
+            id: t.id,
+            name: t.name,
+            bio: t.bio,
+            avatar: t.avatar,
+            palette: t.palette,
+            locked: fact.locked,
+            status: fact.status,
+            readiness: fact.readiness,
+            requested: fact.requested,
+          };
+        }),
       };
     }
+
     if (["/submission", "/dashboard/submission"].includes(route)) {
       const me = await this.s.actor(),
         team = await this.team(me.id);
@@ -859,38 +846,56 @@ export class PortalExperience {
         this.s.db,
         "SELECT t.*,'initials' avatar,COALESCE(s.color_key,s.palette) palette FROM teams t LEFT JOIN team_styles s ON s.team_id=t.id ORDER BY t.name",
       );
+      const ids = all.map((t) => t.id),
+        facts = await teamFacts(this.s.db, ids),
+        ideas = new Map(
+          (
+            await selectedRows<{
+              team_id: string;
+              title: string;
+              description: string;
+            }>(
+              this.s.db,
+              ids,
+              (marks) =>
+                `SELECT team_id,title,description FROM ideas WHERE team_id IN (${marks})`,
+            )
+          ).map(({ team_id, ...idea }) => [team_id, idea]),
+        ),
+        members = await selectedRows<{
+          team_id: string;
+          id: string;
+          name: string;
+          email: string;
+          approval: string;
+        }>(
+          this.s.db,
+          ids,
+          (marks) =>
+            `SELECT m.team_id,u.id,u.name,u.email,COALESCE(r.status,'pending') approval FROM memberships m JOIN users u ON u.id=m.user_id LEFT JOIN registrations r ON r.email=u.email WHERE m.team_id IN (${marks})`,
+        ),
+        byTeam = new Map<string, Omit<(typeof members)[number], "team_id">[]>();
+      for (const { team_id, ...member } of members) {
+        const group = byTeam.get(team_id) || [];
+        group.push(member);
+        byTeam.set(team_id, group);
+      }
       return {
         me,
-        items: await Promise.all(
-          all.map(async (t) => ({
-            ...t,
-            locked: !!(await one(
-              this.s.db,
-              "SELECT team_id FROM team_locks WHERE team_id=?",
-              t.id,
-            )),
-            lockedAt: (
-              await one<{ locked_at: string }>(
-                this.s.db,
-                "SELECT locked_at FROM team_locks WHERE team_id=?",
-                t.id,
-              )
-            )?.locked_at,
-            status: (await teamStatus(this.s, t.id)).status,
-            idea: await one(
-              this.s.db,
-              "SELECT title,description FROM ideas WHERE team_id=?",
-              t.id,
-            ),
-            readiness: await this.ready(t.id),
-            members: await rows(
-              this.s.db,
-              "SELECT u.id,u.name,u.email,COALESCE(r.status,'pending') approval FROM memberships m JOIN users u ON u.id=m.user_id LEFT JOIN registrations r ON r.email=u.email WHERE m.team_id=?",
-              t.id,
-            ),
-          })),
-        ).then((list) =>
-          list.sort((a, b) => {
+        items: all
+          .map((t) => {
+            const fact = facts.get(t.id)!;
+            return {
+              ...t,
+              locked: fact.locked,
+              lockedAt: fact.lockedAt,
+              status: fact.status,
+              idea: ideas.get(t.id),
+              readiness: fact.readiness,
+              members: byTeam.get(t.id) || [],
+            };
+          })
+          .sort((a, b) => {
             const priority = (r: typeof a) =>
               r.status === "Locked"
                 ? r.readiness.allApproved
@@ -907,7 +912,6 @@ export class PortalExperience {
               a.name.localeCompare(b.name)
             );
           }),
-        ),
       };
     }
     if (route === "/admin/settings") {
@@ -999,38 +1003,44 @@ export class PortalExperience {
         "REVIEWER_REQUIRED",
       );
       const query =
-        "SELECT p.id,p.slug,t.name teamName,json_extract(p.draft,'$.projectName') projectName,CASE WHEN EXISTS(SELECT 1 FROM submission_versions v WHERE v.team_id=p.team_id) THEN 'Submitted' ELSE 'Draft' END status,p.updated_at FROM projects p JOIN teams t ON t.id=p.team_id ";
+        "SELECT p.id,p.slug,t.name teamName,json_extract(p.draft,'$.projectName') projectName,CASE WHEN EXISTS(SELECT 1 FROM submission_versions v WHERE v.team_id=p.team_id) THEN 'Submitted' ELSE 'Draft' END status,p.updated_at,rr.updated_at deleted_at FROM projects p JOIN teams t ON t.id=p.team_id LEFT JOIN record_removals rr ON rr.kind='project' AND rr.target_id=p.id AND rr.active=1 ";
+      const items = await rows<Record<string, any>>(
+        this.s.db,
+        me.owner || me.role === "admin"
+          ? query + " ORDER BY p.updated_at DESC LIMIT 1000"
+          : query +
+              " JOIN project_assignments a ON a.project_id=p.id WHERE a.user_id=? AND a.kind=? ORDER BY p.updated_at DESC LIMIT 1000",
+        ...(me.owner || me.role === "admin" ? [] : [me.id, me.role]),
+      );
+      const byProject = new Map<string, Record<string, unknown>[]>();
+      if (me.owner || me.role === "admin") {
+        const versions = await selectedRows<{
+          project_id: string;
+          id: string;
+          attempt: number;
+          deleted_at: string | null;
+        }>(
+          this.s.db,
+          items.map((item) => String(item.id)),
+          (marks) =>
+            `SELECT p.id project_id,v.id,v.attempt,r.updated_at deleted_at FROM projects p JOIN submission_versions v ON v.team_id=p.team_id LEFT JOIN record_removals r ON r.kind='submission' AND r.target_id=v.id AND r.active=1 WHERE p.id IN (${marks}) ORDER BY attempt DESC`,
+        );
+        for (const { project_id, ...version } of versions) {
+          const group = byProject.get(project_id) || [];
+          if (group.length < 3) group.push(version);
+          byProject.set(project_id, group);
+        }
+      }
       return {
         me,
-        items: await Promise.all(
-          (
-            await rows<Record<string, any>>(
-              this.s.db,
-              me.owner || me.role === "admin"
-                ? query + " ORDER BY p.updated_at DESC LIMIT 1000"
-                : query +
-                    " JOIN project_assignments a ON a.project_id=p.id WHERE a.user_id=? AND a.kind=? ORDER BY p.updated_at DESC LIMIT 1000",
-              ...(me.owner || me.role === "admin" ? [] : [me.id, me.role]),
-            )
-          ).map(async (item) => ({
-            ...item,
-            deleted_at: (
-              await one<{ updated_at: string }>(
-                this.s.db,
-                "SELECT updated_at FROM record_removals WHERE kind='project' AND target_id=? AND active=1",
-                item.id,
-              )
-            )?.updated_at,
-            versions:
-              me.owner || me.role === "admin"
-                ? await rows(
-                    this.s.db,
-                    "SELECT v.id,v.attempt,r.updated_at deleted_at FROM projects p JOIN submission_versions v ON v.team_id=p.team_id LEFT JOIN record_removals r ON r.kind='submission' AND r.target_id=v.id AND r.active=1 WHERE p.id=? ORDER BY attempt DESC LIMIT 3",
-                    item.id,
-                  )
-                : undefined,
-          })),
-        ),
+        items: items.map((item) => ({
+          ...item,
+          deleted_at: item.deleted_at ?? undefined,
+          versions:
+            me.owner || me.role === "admin"
+              ? byProject.get(String(item.id)) || []
+              : undefined,
+        })),
       };
     }
 
