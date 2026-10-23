@@ -54,3 +54,36 @@ test("portrait pointer displacement stays local and settles without a pointer", 
       assert.ok(Math.hypot(push.x, push.y) <= 24.0001);
     }
 });
+
+test("dense portrait piles stagger their lanes and vary row heights without changing the fill envelope", () => {
+  for (const [width, height] of [
+    [320, 740],
+    [390, 844],
+    [834, 1194],
+  ]) {
+    const dense = portraitPile(width, height, 1);
+    // The previous pile aligned every row to four fixed vertical lanes.
+    for (let row = 1; row < 8; row++) {
+      const current = dense.dots.slice(row * 4, row * 4 + 4);
+      const previous = dense.dots.slice((row - 1) * 4, row * 4);
+      const laneShift =
+        current.reduce(
+          (sum, dot, index) => sum + Math.abs(dot.x - previous[index].x),
+          0,
+        ) / 4;
+      assert.ok(
+        laneShift > width * 0.045,
+        "adjacent rows do not form fixed lanes",
+      );
+      const bases = current.map((dot) => dot.y + dot.diameter / 2);
+      assert.ok(
+        Math.max(...bases) - Math.min(...bases) > 8,
+        "seeded rows have irregular heights rather than horizontal shelves",
+      );
+    }
+    for (const dot of dense.dots) {
+      assert.ok(dot.y - dot.diameter / 2 >= height * 0.2 - 0.01);
+      assert.ok(dot.y + dot.diameter / 2 <= height + 0.01);
+    }
+  }
+});

@@ -22,6 +22,7 @@ export const portraitDotPool = Array.from({ length: 36 }, (_, index) => {
     size: 0.76 + next() * 0.48,
     jitter: next() - 0.5,
     angle: (next() - 0.5) * 40,
+    verticalJitter: next() - 0.5,
   };
 });
 
@@ -41,19 +42,24 @@ export function portraitPile(width: number, height: number, progress: number) {
     dots: portraitDotPool.map((dot, index) => {
       const diameter = Math.min((width / columns) * 1.12, base * dot.size);
       const radius = diameter / 2;
+      const row = Math.floor(index / columns);
+      // Alternating row offsets and bounded seeded jitter break up visible lanes.
+      // Keep the pile inside its viewport jar and retain the same fill envelope.
+      const stagger = row % 2 === 0 ? -0.22 : 0.22;
       return {
         ...dot,
         diameter,
         active: index < count,
         x: clamp(
-          (((index % columns) + 0.5) * width) / columns +
-            (dot.jitter * width) / 16,
+          (((index % columns) + 0.5 + stagger + dot.jitter * 0.62) * width) /
+            columns,
           radius,
           Math.max(radius, width - radius),
         ),
-        y: Math.max(
-          radius,
-          height - radius - Math.floor(index / columns) * step,
+        y: clamp(
+          height - radius - row * step + dot.verticalJitter * step * 0.8,
+          Math.max(radius, height - fillHeight + radius),
+          Math.max(radius, height - radius),
         ),
       };
     }),
