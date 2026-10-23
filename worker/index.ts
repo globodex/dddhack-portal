@@ -83,7 +83,12 @@ const worker = {
           );
           await service.view(url.pathname);
         } catch (error) {
-          return unavailableResponse(error);
+          // The page deliberately renders the account-switch recovery shell for
+          // a verified email outside the roster. API access still fails closed.
+          if (!(
+            error instanceof PortalError && error.code === "LUMA_EMAIL_MISMATCH"
+          ))
+            return unavailableResponse(error);
         }
       }
       const response = await runWithConnectorBinding(binding, () =>

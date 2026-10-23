@@ -1720,7 +1720,7 @@ export function ProjectHistory({ canRead }: { canRead: boolean }) {
           {items.map((item) => (
             <article className="history-version" key={item.id}>
               <h3>Version {item.attempt}</h3>
-              <p>{new Date(item.created_at).toLocaleString()}</p>
+              <p>{ist(item.created_at)}</p>
               <ProjectVersion payload={item.payload} />
             </article>
           ))}
@@ -2023,7 +2023,7 @@ export function Projects({
               <article className="public-comment" key={c.id}>
                 <strong>{c.author}</strong>
                 <p>{c.body}</p>
-                <small>{new Date(c.created_at).toLocaleString()}</small>
+                <small>{ist(c.created_at)}</small>
               </article>
             ))}
             {data.me?.canEngage === true &&
@@ -2815,7 +2815,7 @@ export function Review({
               </button>
               {(data.runs || []).map((r: Row) => (
                 <p key={r.id}>
-                  {r.state} · {new Date(r.created_at).toLocaleString()}
+                  {r.state} · {ist(r.created_at)}
                   {r.error && <small>{r.error}</small>}
                 </p>
               ))}
@@ -2832,7 +2832,7 @@ export function Review({
                   <Pill>Score {h.rating}</Pill>
                 )}
                 <p>{h.body}</p>
-                <small>{new Date(h.created_at).toLocaleString()}</small>
+                <small>{ist(h.created_at)}</small>
               </article>
             ))}
           </details>
@@ -3086,7 +3086,7 @@ export function AdminList({
             <tbody>
               {items.map((r) => (
                 <tr key={r.id}>
-                  <td>{new Date(r.created_at).toLocaleString()}</td>
+                  <td>{ist(r.created_at)}</td>
                   <td>{r.action}</td>
                   <td>{r.reason}</td>
                   <td className="log-detail">{r.detail}</td>

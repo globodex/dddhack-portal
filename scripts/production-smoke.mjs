@@ -651,8 +651,21 @@ try {
     (await unmatched.json()).message,
     "Please sign in with your Luma-registered email",
   );
+  const mismatchShell = await worker.fetch("/dashboard", {
+    headers: {
+      "oai-authenticated-user-id": "fake_stranger",
+      "oai-authenticated-user-email": "stranger@portal.test",
+    },
+  });
+  assert.equal(mismatchShell.status, 200);
+  assert.match(mismatchShell.headers.get("content-type") || "", /text\/html/);
+  const mismatchHTML = await mismatchShell.text();
+  assert.match(mismatchHTML, /Codex Community New Delhi/);
+  assert.ok(!mismatchHTML.includes(privateMarker));
+  assert.match(mismatchShell.headers.get("cache-control") || "", /no-store/);
   report.rosterGate = {
     unmatchedVerifiedEmail: 403,
+    unmatchedEmailRecoveryShell: 200,
     ownerBootstrap: 200,
     realParticipantImport: false,
   };
