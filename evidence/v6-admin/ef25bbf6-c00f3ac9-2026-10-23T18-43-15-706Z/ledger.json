@@ -1,0 +1,1874 @@
+{
+  "source": "ef25bbf62e3a22c1d5ec27f417cc292562c444aa",
+  "workerSha256": "c00f3ac9b214358eb61047e0b74bfd97f872f607b1cbd15a440cc32d962f6439",
+  "observedHead": "ef25bbf62e3a22c1d5ec27f417cc292562c444aa",
+  "artifactRoot": "/home/param302/Dev/DDEHack-portal/.worktrees/visual-integration",
+  "origin": "http://127.0.0.1:4173",
+  "startedAt": "2026-10-23T18:43:15.706Z",
+  "syntheticOnly": true,
+  "chromiumSandbox": true,
+  "checks": [
+    {
+      "name": "desktop: Participants default compact rows",
+      "passed": true,
+      "viewportWidth": 1440,
+      "viewportHeight": 900,
+      "documentWidth": 1440,
+      "documentHeight": 900,
+      "firstRowY": 350.5,
+      "firstRowHeight": 61,
+      "rows": 3
+    },
+    {
+      "name": "desktop: More status control opens and closes without mutation",
+      "passed": true,
+      "viewportWidth": 1440,
+      "viewportHeight": 900,
+      "documentWidth": 1440,
+      "documentHeight": 900
+    },
+    {
+      "name": "desktop: exact participant trash target cancelled",
+      "passed": true,
+      "target": "Bob",
+      "buttons": [
+        "Cancel",
+        "Remove this participant"
+      ],
+      "cancelFocused": true
+    },
+    {
+      "name": "desktop: search and actual filtered CSV export",
+      "passed": true,
+      "exportedRows": 1,
+      "syntheticOnly": true
+    },
+    {
+      "name": "desktop: focused import width",
+      "passed": true,
+      "width": 600,
+      "viewportWidth": 1440,
+      "viewportHeight": 900,
+      "documentWidth": 1440,
+      "documentHeight": 900
+    },
+    {
+      "name": "desktop: single email confirmation cancelled",
+      "passed": true,
+      "target": "v6-single-desktop@portal.test",
+      "buttons": [
+        "Cancel",
+        "Confirm"
+      ],
+      "cancelFocused": true
+    },
+    {
+      "name": "desktop: deduplicated email list confirmation cancelled",
+      "passed": true,
+      "target": "2 participants",
+      "buttons": [
+        "Cancel",
+        "Confirm"
+      ],
+      "cancelFocused": true
+    },
+    {
+      "name": "desktop: header CSV confirmation cancelled",
+      "passed": true,
+      "target": "2 participants",
+      "buttons": [
+        "Cancel",
+        "Confirm"
+      ],
+      "cancelFocused": true
+    },
+    {
+      "name": "desktop: Credits metrics match actual API metadata",
+      "passed": true,
+      "viewportWidth": 1440,
+      "viewportHeight": 900,
+      "documentWidth": 1440,
+      "documentHeight": 900,
+      "metadata": [
+        {
+          "name": "Builder boost (FAKE)",
+          "active": 1,
+          "inventory": 21,
+          "assigned": 1
+        }
+      ]
+    },
+    {
+      "name": "desktop: Credits search empty state",
+      "passed": true,
+      "viewportWidth": 1440,
+      "viewportHeight": 900,
+      "documentWidth": 1440,
+      "documentHeight": 900,
+      "state": "Search has zero matching records; not an empty-inventory fixture"
+    },
+    {
+      "name": "desktop: Teams controls and named removal target",
+      "passed": true,
+      "viewportWidth": 1440,
+      "viewportHeight": 900,
+      "documentWidth": 1440,
+      "documentHeight": 1004
+    },
+    {
+      "name": "mobile: Participants default compact rows",
+      "passed": true,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "documentWidth": 390,
+      "documentHeight": 875,
+      "firstRowY": 254,
+      "firstRowHeight": 190.59375,
+      "rows": 3
+    },
+    {
+      "name": "mobile: More status control opens and closes without mutation",
+      "passed": true,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "documentWidth": 390,
+      "documentHeight": 1160
+    },
+    {
+      "name": "mobile: exact participant trash target cancelled",
+      "passed": true,
+      "target": "Bob",
+      "buttons": [
+        "Cancel",
+        "Remove this participant"
+      ],
+      "cancelFocused": true
+    },
+    {
+      "name": "mobile: search and actual filtered CSV export",
+      "passed": true,
+      "exportedRows": 1,
+      "syntheticOnly": true
+    },
+    {
+      "name": "mobile: mobile filters expand and restore",
+      "passed": true,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "documentWidth": 390,
+      "documentHeight": 1102
+    },
+    {
+      "name": "mobile: focused import width",
+      "passed": true,
+      "width": 354,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "documentWidth": 390,
+      "documentHeight": 1095
+    },
+    {
+      "name": "mobile: single email confirmation cancelled",
+      "passed": true,
+      "target": "v6-single-mobile@portal.test",
+      "buttons": [
+        "Cancel",
+        "Confirm"
+      ],
+      "cancelFocused": true
+    },
+    {
+      "name": "mobile: deduplicated email list confirmation cancelled",
+      "passed": true,
+      "target": "2 participants",
+      "buttons": [
+        "Cancel",
+        "Confirm"
+      ],
+      "cancelFocused": true
+    },
+    {
+      "name": "mobile: header CSV confirmation cancelled",
+      "passed": true,
+      "target": "2 participants",
+      "buttons": [
+        "Cancel",
+        "Confirm"
+      ],
+      "cancelFocused": true
+    },
+    {
+      "name": "mobile: Credits metrics match actual API metadata",
+      "passed": true,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "metadata": [
+        {
+          "name": "Builder boost (FAKE)",
+          "active": 1,
+          "inventory": 21,
+          "assigned": 1
+        }
+      ]
+    },
+    {
+      "name": "mobile: Credits search empty state",
+      "passed": true,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "state": "Search has zero matching records; not an empty-inventory fixture"
+    },
+    {
+      "name": "mobile: Teams controls and named removal target",
+      "passed": true,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "documentWidth": 390,
+      "documentHeight": 1038
+    },
+    {
+      "name": "tablet: Participants default compact rows",
+      "passed": true,
+      "viewportWidth": 834,
+      "viewportHeight": 1194,
+      "documentWidth": 834,
+      "documentHeight": 1258,
+      "firstRowY": 413.5,
+      "firstRowHeight": 63.796875,
+      "rows": 3
+    },
+    {
+      "name": "tablet: More status control opens and closes without mutation",
+      "passed": true,
+      "viewportWidth": 834,
+      "viewportHeight": 1194,
+      "documentWidth": 834,
+      "documentHeight": 1258
+    },
+    {
+      "name": "tablet: exact participant trash target cancelled",
+      "passed": true,
+      "target": "Bob",
+      "buttons": [
+        "Cancel",
+        "Remove this participant"
+      ],
+      "cancelFocused": true
+    },
+    {
+      "name": "tablet: search and actual filtered CSV export",
+      "passed": true,
+      "exportedRows": 1,
+      "syntheticOnly": true
+    },
+    {
+      "name": "tablet: Credits metrics match actual API metadata",
+      "passed": true,
+      "viewportWidth": 834,
+      "viewportHeight": 1194,
+      "documentWidth": 834,
+      "documentHeight": 1258,
+      "metadata": [
+        {
+          "name": "Builder boost (FAKE)",
+          "active": 1,
+          "inventory": 21,
+          "assigned": 1
+        }
+      ]
+    },
+    {
+      "name": "tablet: Credits search empty state",
+      "passed": true,
+      "viewportWidth": 834,
+      "viewportHeight": 1194,
+      "documentWidth": 834,
+      "documentHeight": 1258,
+      "state": "Search has zero matching records; not an empty-inventory fixture"
+    },
+    {
+      "name": "tablet: Teams controls and named removal target",
+      "passed": true,
+      "viewportWidth": 834,
+      "viewportHeight": 1194,
+      "documentWidth": 834,
+      "documentHeight": 1258
+    },
+    {
+      "name": "narrow: Participants default compact rows",
+      "passed": true,
+      "viewportWidth": 320,
+      "viewportHeight": 740,
+      "documentWidth": 320,
+      "documentHeight": 929,
+      "firstRowY": 254,
+      "firstRowHeight": 208.59375,
+      "rows": 3
+    },
+    {
+      "name": "narrow: More status control opens and closes without mutation",
+      "passed": true,
+      "viewportWidth": 320,
+      "viewportHeight": 740,
+      "documentWidth": 320,
+      "documentHeight": 1214
+    },
+    {
+      "name": "narrow: exact participant trash target cancelled",
+      "passed": true,
+      "target": "Bob",
+      "buttons": [
+        "Cancel",
+        "Remove this participant"
+      ],
+      "cancelFocused": true
+    },
+    {
+      "name": "narrow: search and actual filtered CSV export",
+      "passed": true,
+      "exportedRows": 1,
+      "syntheticOnly": true
+    },
+    {
+      "name": "narrow: mobile filters expand and restore",
+      "passed": true,
+      "viewportWidth": 320,
+      "viewportHeight": 740,
+      "documentWidth": 320,
+      "documentHeight": 1182
+    },
+    {
+      "name": "narrow: Credits metrics match actual API metadata",
+      "passed": true,
+      "viewportWidth": 320,
+      "viewportHeight": 740,
+      "documentWidth": 320,
+      "documentHeight": 740,
+      "metadata": [
+        {
+          "name": "Builder boost (FAKE)",
+          "active": 1,
+          "inventory": 21,
+          "assigned": 1
+        }
+      ]
+    },
+    {
+      "name": "narrow: Credits search empty state",
+      "passed": true,
+      "viewportWidth": 320,
+      "viewportHeight": 740,
+      "documentWidth": 320,
+      "documentHeight": 740,
+      "state": "Search has zero matching records; not an empty-inventory fixture"
+    },
+    {
+      "name": "narrow: Teams controls and named removal target",
+      "passed": true,
+      "viewportWidth": 320,
+      "viewportHeight": 740,
+      "documentWidth": 320,
+      "documentHeight": 1126
+    },
+    {
+      "name": "No actual mutation or external request attempted",
+      "passed": true
+    },
+    {
+      "name": "No page errors",
+      "passed": true
+    },
+    {
+      "name": "Compiled Worker unchanged throughout capture",
+      "passed": true
+    }
+  ],
+  "captures": [
+    {
+      "label": "desktop-participants-undimmed",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/desktop-participants-undimmed.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "27d7c6ecbeb54c410b8ae2efa8ff08e23466b7f34e9f9f6916a02ac21022f640",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "desktop-participant-more-open",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/desktop-participant-more-open.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "0b1f3407badc06d149cd6e1e0c63b381658a33105923585507a3a5025c73fe6c",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "desktop-participant-trash-confirm-cancel",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/desktop-participant-trash-confirm-cancel.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "1afeb2bb721b4b87a79c83b2b515a4cc454130887af81cc523c0c7a5f4f5f14f",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "desktop-import-single-form",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/desktop-import-single-form.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "042cdd45ea67d9de44f13a8e86ef5a018f847987a0dbc87f718a3d29f703c9fe",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "desktop-import-single-confirm-cancel",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/desktop-import-single-confirm-cancel.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "e7da2dbc0008aaa550caa8d8da07ce641b75050cc8d155ec42334d2f0e1009df",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "desktop-import-list-confirm-cancel",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/desktop-import-list-confirm-cancel.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "07cc2e73fcf654d017a06ee0f5a0b92e04bd696f00d63120f18e0a8d9aef71d0",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "desktop-import-csv-confirm-cancel",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/desktop-import-csv-confirm-cancel.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "9094792360d023956cf1b5d5d4b80bb83e06fc670ca5dc66530f9ce0a3d2ed85",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "desktop-credits-populated",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/desktop-credits-populated.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "13a11d94d3d99e0fd6bae04845938ee41dd15f2cfe55b3a48bc35a661a388474",
+      "route": "/admin/credits"
+    },
+    {
+      "label": "desktop-credits-search-empty",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/desktop-credits-search-empty.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "1f8ec31af6edf01ab4dd763be4b3018d13c13933c104b857500ac32f2c20516e",
+      "route": "/admin/credits"
+    },
+    {
+      "label": "desktop-teams-default",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/desktop-teams-default.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "dcd99f9f8a62adb3dd8da593a066e5a2371100f3294b9b000e1f42de4a08657a",
+      "route": "/admin/teams"
+    },
+    {
+      "label": "mobile-participants-undimmed",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/mobile-participants-undimmed.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "4050cd0dced6c775a361aeb256ada25f3b9bb9b93246014727965a27290d26d3",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "mobile-participant-more-open",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/mobile-participant-more-open.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "64c34e6b494da93bfa28118875b3b01c03ae26579532b5ceeabe5da1f4d60026",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "mobile-participant-trash-confirm-cancel",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/mobile-participant-trash-confirm-cancel.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "aae36115ca7f6eef51b1cb40ff3c2c8c5b8f760cfc9b602d66f16e7faf803d79",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "mobile-participant-filters-expanded",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/mobile-participant-filters-expanded.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "a00fe3265ea550ec908e48be29b1bef75efdc44cb87b4fe5d6debd44db281a7e",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "mobile-import-single-form",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/mobile-import-single-form.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "c6c9e9f98aae676ddf5987663cfa9250ab914a6d2591e9398cf38169ac6d9207",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "mobile-import-single-confirm-cancel",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/mobile-import-single-confirm-cancel.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "3add0cc45a9a36a3b6bbd100df27c45962a82df11311f68b252e23087eef6efb",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "mobile-import-list-confirm-cancel",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/mobile-import-list-confirm-cancel.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "ef7e409a5d245f05816ea4883a23c2b470fe77d069e8b99a928b93b9ecb6ea4d",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "mobile-import-csv-confirm-cancel",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/mobile-import-csv-confirm-cancel.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "6b3f3cc38dd50e8bc587d0b26efe3a47ee0ba5ae6ced856ae56c84cda729cf2c",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "mobile-credits-populated",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/mobile-credits-populated.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "b455847e43fae693056628b2c187de1c1bff909d628be1cec9c5b1c6c6d2fc8a",
+      "route": "/admin/credits"
+    },
+    {
+      "label": "mobile-credits-search-empty",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/mobile-credits-search-empty.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "d6ddfb22836b19810056866cb370d5fc58610b5be9615aa164b3971b14d1e927",
+      "route": "/admin/credits"
+    },
+    {
+      "label": "mobile-teams-default",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/mobile-teams-default.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "9635ff07b9db8aef806689fb7ee20c707b7338c8c6ce2b4801068cd57028f493",
+      "route": "/admin/teams"
+    },
+    {
+      "label": "mobile-teams-filters-expanded",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/mobile-teams-filters-expanded.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "20c5f158554536155335763d49083659102406cebbb3c1fb4444b2ad0d4a21de",
+      "route": "/admin/teams"
+    },
+    {
+      "label": "tablet-participants-undimmed",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/tablet-participants-undimmed.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 834,
+        "height": 1194
+      },
+      "sha256": "56a4d0cfba72085c95e8832d4cabcc14d2e89661525f6448e09f2c14d2002e11",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "tablet-participant-more-open",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/tablet-participant-more-open.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 834,
+        "height": 1194
+      },
+      "sha256": "78ab6901e2549b8ec9a40cd73da37ef3b18b7918af4f63f0699ae803bc6791ef",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "tablet-participant-trash-confirm-cancel",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/tablet-participant-trash-confirm-cancel.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 834,
+        "height": 1194
+      },
+      "sha256": "fce1eb56648e17ac783e5e957db88d55aef99323763efe391aec1be0f07a3268",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "tablet-credits-populated",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/tablet-credits-populated.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 834,
+        "height": 1194
+      },
+      "sha256": "05a1f8ef8550fdd7da8de7aa74fc5d2a5ac13ae38dcbfc3a3a8171beebf3dbff",
+      "route": "/admin/credits"
+    },
+    {
+      "label": "tablet-credits-search-empty",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/tablet-credits-search-empty.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 834,
+        "height": 1194
+      },
+      "sha256": "159ba91ca9b9ee80c16369fe5fb43cc16948898027e81c2675dd955ba99fa4f2",
+      "route": "/admin/credits"
+    },
+    {
+      "label": "tablet-teams-default",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/tablet-teams-default.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 834,
+        "height": 1194
+      },
+      "sha256": "96a828208c674022d797efc4f8a751dd772e08f78b810e20faf839b4a625fa00",
+      "route": "/admin/teams"
+    },
+    {
+      "label": "narrow-participants-undimmed",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/narrow-participants-undimmed.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "sha256": "bae33302c7d53f60f5a8f103aae3574e77041c5aba2938023bf1130a9945f39a",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "narrow-participant-more-open",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/narrow-participant-more-open.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "sha256": "ca53de1eb2dc268393b8d6fc838f28d54a9a683403daf1724ebd7d297d99bc5a",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "narrow-participant-trash-confirm-cancel",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/narrow-participant-trash-confirm-cancel.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "sha256": "05ff46a4f271e7109e5a1a2591e359de6e40b3a38c63670d13c17481a93ac6d2",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "narrow-participant-filters-expanded",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/narrow-participant-filters-expanded.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "sha256": "5176fb48d2a83b1843df2022f852592522ef12122cb00532dac8c37403913348",
+      "route": "/admin/participants"
+    },
+    {
+      "label": "narrow-credits-populated",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/narrow-credits-populated.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "sha256": "ae7eb49533b5af3fabaf518b1149526bf4cdba0a9acc11930141ab4c5c8389b0",
+      "route": "/admin/credits"
+    },
+    {
+      "label": "narrow-credits-search-empty",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/narrow-credits-search-empty.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "sha256": "b93fc61fd17cf61468995734dae4f8e319ebc01d8e056fa59f5454dfd028a82e",
+      "route": "/admin/credits"
+    },
+    {
+      "label": "narrow-teams-default",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/narrow-teams-default.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "sha256": "95bcdf4a8d3a9563668850f9242939c8539073731ded8ceb6185b778000f1971",
+      "route": "/admin/teams"
+    },
+    {
+      "label": "narrow-teams-filters-expanded",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin/evidence/v6-admin/ef25bbf6-c00f3ac9-2026-10-23T18-43-15-706Z/narrow-teams-filters-expanded.png",
+      "kind": "visible-viewport",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "sha256": "036e938f8545390a2fb3c68ce3d3b12afc1f937ff5d1e03a96faf8431714a4ff",
+      "route": "/admin/teams"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "blocked": [],
+  "requests": [
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/admin/participants"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/css/CtNCN1pF.css"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/BNlZZZli.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/XKyaHtl9.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/CLvDmS2G.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/C--se8fB.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/DFqxsIZv.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/BGSHnkw7.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.CW0RaeGs.woff2"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.DvUfVpUG.woff2"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/CMRVmd7j.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/api/portal"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.B9HHJjqV.woff2"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/api/export"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/admin/participants"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/css/CtNCN1pF.css"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/BNlZZZli.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/XKyaHtl9.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/CLvDmS2G.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/C--se8fB.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/DFqxsIZv.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/BGSHnkw7.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.CW0RaeGs.woff2"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.DvUfVpUG.woff2"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/CMRVmd7j.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/api/portal"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.B9HHJjqV.woff2"
+    },
+    {
+      "viewport": "desktop",
+      "method": "POST",
+      "path": "/api/portal",
+      "action": "preview-import"
+    },
+    {
+      "viewport": "desktop",
+      "method": "POST",
+      "path": "/api/portal",
+      "action": "preview-import"
+    },
+    {
+      "viewport": "desktop",
+      "method": "POST",
+      "path": "/api/portal",
+      "action": "preview-import"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/admin/credits"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/css/CtNCN1pF.css"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/BNlZZZli.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/XKyaHtl9.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/CLvDmS2G.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/C--se8fB.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/DFqxsIZv.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/BGSHnkw7.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.CW0RaeGs.woff2"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.DvUfVpUG.woff2"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/CMRVmd7j.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/api/portal"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.B9HHJjqV.woff2"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-900-normal.BmOyECvA.woff2"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/api/portal"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/admin/teams"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/css/CtNCN1pF.css"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/BNlZZZli.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/XKyaHtl9.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/CLvDmS2G.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/C--se8fB.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/DFqxsIZv.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/BGSHnkw7.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.CW0RaeGs.woff2"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.DvUfVpUG.woff2"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/chunks/CMRVmd7j.js"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/api/portal"
+    },
+    {
+      "viewport": "desktop",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.B9HHJjqV.woff2"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/admin/participants"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/css/CtNCN1pF.css"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/BNlZZZli.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/XKyaHtl9.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/CLvDmS2G.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/C--se8fB.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/DFqxsIZv.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/BGSHnkw7.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.CW0RaeGs.woff2"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.DvUfVpUG.woff2"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/CMRVmd7j.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/api/portal"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.B9HHJjqV.woff2"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/api/export"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/admin/participants"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/css/CtNCN1pF.css"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/BNlZZZli.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/XKyaHtl9.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/CLvDmS2G.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/C--se8fB.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/DFqxsIZv.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/BGSHnkw7.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.CW0RaeGs.woff2"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.DvUfVpUG.woff2"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/CMRVmd7j.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/api/portal"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.B9HHJjqV.woff2"
+    },
+    {
+      "viewport": "mobile",
+      "method": "POST",
+      "path": "/api/portal",
+      "action": "preview-import"
+    },
+    {
+      "viewport": "mobile",
+      "method": "POST",
+      "path": "/api/portal",
+      "action": "preview-import"
+    },
+    {
+      "viewport": "mobile",
+      "method": "POST",
+      "path": "/api/portal",
+      "action": "preview-import"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/admin/credits"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/css/CtNCN1pF.css"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/BNlZZZli.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/XKyaHtl9.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/CLvDmS2G.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/C--se8fB.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/DFqxsIZv.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/BGSHnkw7.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.CW0RaeGs.woff2"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.DvUfVpUG.woff2"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/CMRVmd7j.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/api/portal"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.B9HHJjqV.woff2"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-900-normal.BmOyECvA.woff2"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/api/portal"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/admin/teams"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/css/CtNCN1pF.css"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/BNlZZZli.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/XKyaHtl9.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/CLvDmS2G.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/C--se8fB.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/DFqxsIZv.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/BGSHnkw7.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.CW0RaeGs.woff2"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.DvUfVpUG.woff2"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/chunks/CMRVmd7j.js"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/api/portal"
+    },
+    {
+      "viewport": "mobile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.B9HHJjqV.woff2"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/admin/participants"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/css/CtNCN1pF.css"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/BNlZZZli.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/XKyaHtl9.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/CLvDmS2G.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/C--se8fB.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/DFqxsIZv.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/BGSHnkw7.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.CW0RaeGs.woff2"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.DvUfVpUG.woff2"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/CMRVmd7j.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/api/portal"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.B9HHJjqV.woff2"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/api/export"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/admin/credits"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/css/CtNCN1pF.css"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/BNlZZZli.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/XKyaHtl9.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/CLvDmS2G.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/C--se8fB.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/DFqxsIZv.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/BGSHnkw7.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.CW0RaeGs.woff2"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.DvUfVpUG.woff2"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/CMRVmd7j.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/api/portal"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.B9HHJjqV.woff2"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-900-normal.BmOyECvA.woff2"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/api/portal"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/admin/teams"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/css/CtNCN1pF.css"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/BNlZZZli.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/XKyaHtl9.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/CLvDmS2G.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/C--se8fB.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/DFqxsIZv.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/BGSHnkw7.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.CW0RaeGs.woff2"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.DvUfVpUG.woff2"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/chunks/CMRVmd7j.js"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/api/portal"
+    },
+    {
+      "viewport": "tablet",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.B9HHJjqV.woff2"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/admin/participants"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/css/CtNCN1pF.css"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/BNlZZZli.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/XKyaHtl9.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/CLvDmS2G.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/C--se8fB.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/DFqxsIZv.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/BGSHnkw7.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.CW0RaeGs.woff2"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.DvUfVpUG.woff2"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/CMRVmd7j.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/api/portal"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.B9HHJjqV.woff2"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/api/export"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/admin/credits"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/css/CtNCN1pF.css"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/BNlZZZli.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/XKyaHtl9.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/CLvDmS2G.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/C--se8fB.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/DFqxsIZv.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/BGSHnkw7.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.CW0RaeGs.woff2"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.DvUfVpUG.woff2"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/CMRVmd7j.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/api/portal"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.B9HHJjqV.woff2"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-900-normal.BmOyECvA.woff2"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/api/portal"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/admin/teams"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/css/CtNCN1pF.css"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/BNlZZZli.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/XKyaHtl9.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/CLvDmS2G.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/C--se8fB.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/DFqxsIZv.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/BGSHnkw7.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.CW0RaeGs.woff2"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.DvUfVpUG.woff2"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/chunks/CMRVmd7j.js"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/api/portal"
+    },
+    {
+      "viewport": "narrow",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.B9HHJjqV.woff2"
+    }
+  ],
+  "verification": "Actual compiled local Worker with disposable synthetic D1. Not hosted sign-in or user acceptance.",
+  "browser": "156.0.8078.4",
+  "finishedAt": "2026-10-23T18:43:30.161Z",
+  "workerSha256After": "c00f3ac9b214358eb61047e0b74bfd97f872f607b1cbd15a440cc32d962f6439",
+  "artifactUnchanged": true
+}
