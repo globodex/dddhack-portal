@@ -2,6 +2,7 @@
 import AddAdmins from "./add-admins";
 import { HeadingDot } from "./expressive-heading";
 import CenteredLoader from "./centered-loader";
+import { portalNavigation } from "../lib/navigation";
 import {
   submissionToolChoices,
   selectedSubmissionTools,
@@ -265,7 +266,9 @@ type IconName =
   | "copy"
   | "up"
   | "history"
-  | "person";
+  | "person"
+  | "users"
+  | "team";
 function Icon({ name, size = 20 }: { name: IconName; size?: number }) {
   const paths: Record<IconName, ReactNode> = {
     home: (
@@ -336,6 +339,18 @@ function Icon({ name, size = 20 }: { name: IconName; size?: number }) {
       <>
         <path d="M3 4v6h6M3 10a9 9 0 1 1 1 7" />
         <path d="M12 7v5l3 2" />
+      </>
+    ),
+    users: (
+      <>
+        <circle cx="8" cy="7" r="3" />
+        <path d="M2 21v-2a6 6 0 0 1 12 0v2M16 4a3 3 0 0 1 0 6M18 13a6 6 0 0 1 4 6v2" />
+      </>
+    ),
+    team: (
+      <>
+        <circle cx="12" cy="7" r="3" />
+        <path d="M5 21v-2a7 7 0 0 1 14 0v2M3 6v5M1 9h4M21 6v5m-2-2h4" />
       </>
     ),
     person: (
@@ -671,13 +686,12 @@ export function TeamWorkspace({
         <div className="identity-line">
           <TeamAvatar name={t.name} palette={t.palette} />
           <div>
-            <span className="eyebrow">Your team</span>
             <h3>{t.name}</h3>
           </div>
         </div>
         <Pill>{data.teamStatus || "Forming"}</Pill>
       </div>
-      {leader ? (
+      {leader && !locked ? (
         <Form
           title="Team idea"
           disabled={locked}
@@ -722,7 +736,6 @@ export function TeamWorkspace({
         )
       )}
       <div className="form-actions">
-        <Pill>{t.locked ? "Team locked" : "Team unlocked"}</Pill>
         {leader && !locked && (
           <button
             className="button secondary"
@@ -3737,36 +3750,7 @@ export default function Portal({
       actionBusy.current = false;
     }
   };
-  const admin = path.startsWith("/admin"),
-    privileged = data.me?.owner || data.me?.role === "admin",
-    reviewer = ["judge", "mentor"].includes(data.me?.role || "");
-  const nav = admin
-    ? [
-        ["/admin/participants", "Participants"],
-        ["/discover/teams", "Discover"],
-        ["/rules", "Rules"],
-        ...(privileged
-          ? [
-              ["/admin/teams", "Teams"],
-              ["/admin/submissions", "Submissions"],
-              ["/admin/settings", "Settings"],
-            ]
-          : []),
-        ...(data.me?.owner ? [["/admin/logs", "Logs"]] : []),
-      ]
-    : [
-        ["/", "Home"],
-        ["/projects", "Projects"],
-        ["/leaderboard", "Leaderboard"],
-        ...(data.me
-          ? [
-              ["/dashboard", "Dashboard"],
-              ["/rules", "Rules"],
-              ["/discover/teams", "Discover"],
-              ...(reviewer ? [["/review", "Assigned projects"]] : []),
-            ]
-          : []),
-      ];
+  const { admin, privileged, items: nav } = portalNavigation(path, data.me);
   const c =
     teamPalettes[(data.team?.palette || "forest") as Palette] ||
     teamPalettes.forest;
@@ -3879,19 +3863,21 @@ export default function Portal({
                     ? "home"
                     : label === "Dashboard"
                       ? "dashboard"
-                      : label === "Discover" ||
-                          label === "Teams" ||
-                          label === "Participants"
-                        ? "discover"
-                        : label === "Leaderboard"
-                          ? "leaderboard"
-                          : label === "Rules"
-                            ? "rules"
-                            : label === "Settings"
-                              ? "settings"
-                              : label === "Logs"
-                                ? "logs"
-                                : "projects"
+                      : label === "Participants"
+                        ? "users"
+                        : label === "Teams"
+                          ? "team"
+                          : label === "Discover"
+                            ? "discover"
+                            : label === "Leaderboard"
+                              ? "leaderboard"
+                              : label === "Rules"
+                                ? "rules"
+                                : label === "Settings"
+                                  ? "settings"
+                                  : label === "Logs"
+                                    ? "logs"
+                                    : "projects"
                 }
               />
               {label}
