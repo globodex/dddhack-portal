@@ -27,7 +27,7 @@ try {
     { name: "profile-participant", route: "/profile", actor: { id: "fake_alice", email: "alice@portal.test" }, width: 1440 },
     { name: "participants-admin", route: "/admin/participants", actor: { id: "fake_admin", email: "admin@portal.test" }, width: 1440 },
     { name: "home-touch", route: "/", actor: null, width: 390 },
-  ]) {
+  ].filter((scenario) => !process.env.PERF_SCENARIOS || process.env.PERF_SCENARIOS.split(",").includes(scenario.name))) {
     const context = await browser.newContext({ viewport: { width: scenario.width, height: scenario.width === 390 ? 844 : 900 }, serviceWorkers: "block", ...(scenario.width === 390 ? { isMobile: true, hasTouch: true } : {}), ...(scenario.actor ? { extraHTTPHeaders: { "oai-authenticated-user-id": scenario.actor.id, "oai-authenticated-user-email": scenario.actor.email, "oai-authenticated-user-full-name": "Synthetic Actor" } } : {}) });
     await context.addInitScript(() => {
       performance.setResourceTimingBufferSize(3000);
@@ -51,13 +51,15 @@ try {
     cdp.on("Network.responseReceived", (event) => { const row = byId.get(event.requestId); if (row) Object.assign(row, { status: event.response.status, responseAt: event.timestamp, responseTiming: event.response.timing, fromDiskCache: !!event.response.fromDiskCache, cacheControl: event.response.headers["cache-control"] || event.response.headers["Cache-Control"] || null, mime: event.response.mimeType }); });
     cdp.on("Network.loadingFinished", (event) => { const row = byId.get(event.requestId); if (row) Object.assign(row, { encodedBytes: event.encodedDataLength, durationMs: (event.timestamp - row.at) * 1000 }); });
     cdp.on("Network.loadingFailed", (event) => { const row = byId.get(event.requestId); if (row) row.failure = event.errorText; });
-    const observe = async (label, action) => {
+    const observe = async (label, action, heading) => {
       phase = label;
       const first = records.length;
       const start = performance.now();
       const response = await action();
       if (response) assert.equal(response.status(), 200);
-      await page.locator("#main h1").first().waitFor({ timeout: 15000 });
+      if (heading) await page.getByRole("heading", { name: heading, exact: true }).waitFor({ timeout: 15000 });
+      else await page.locator("#main h1").first().waitFor({ timeout: 15000 });
+      const elapsedToContentReadyMs = performance.now() - start;
       await page.waitForLoadState("networkidle", { timeout: 15000 });
       await page.waitForTimeout(350);
       const timing = await page.evaluate(() => ({ timeOrigin: performance.timeOrigin, now: performance.now(), navigation: performance.getEntriesByType("navigation").map((entry) => entry.toJSON()), paint: performance.getEntriesByType("paint").map((entry) => entry.toJSON()), lcp: window.__perfLCP || [], resources: performance.getEntriesByType("resource").map((entry) => entry.toJSON()), scripts: [...document.scripts].filter((script) => script.src).map((script) => script.src), heading: document.querySelector("#main h1")?.textContent, horizontalOverflow: document.documentElement.scrollWidth > innerWidth }));
@@ -67,7 +69,7 @@ try {
       const grouped = {};
       for (const row of requests) { const group = grouped[row.type] ||= { requests: 0, bytes: 0, cached: 0 }; group.requests++; group.bytes += row.encodedBytes || 0; if (row.fromDiskCache || row.fromMemoryCache) group.cached++; }
       const api = requests.filter((row) => new URL(row.url).pathname === "/api/portal");
-      report.samples.push({ scenario: scenario.name, phase: label, route: new URL(page.url()).pathname, fixture: scenario.actor?.id || "anonymous", viewport: scenario.width, elapsedToObservedMs: performance.now() - start, summary: { documentTTFBMs: hasDocument ? nav?.responseStart - nav?.requestStart : null, documentToResponseEndMs: hasDocument ? nav?.responseEnd : null, DOMContentLoadedMs: hasDocument ? nav?.domContentLoadedEventEnd : null, loadMs: hasDocument ? nav?.loadEventEnd : null, lastObservedLCPMs: hasDocument ? timing.lcp.at(-1)?.startTime || null : null, observedLCPElement: timing.lcp.at(-1)?.tag || null, encodedBytes: requests.reduce((sum, row) => sum + (row.encodedBytes || 0), 0), requestCount: requests.length, documentRequests: requests.filter((row) => row.type === "Document").length, apiCalls: api.length, duplicateApiCalls: api.filter((row, index) => api.findIndex((other) => other.url === row.url) !== index).length, byType: grouped }, timing, requests });
+      report.samples.push({ scenario: scenario.name, phase: label, route: new URL(page.url()).pathname, fixture: scenario.actor?.id || "anonymous", viewport: scenario.width, elapsedToObservedMs: performance.now() - start, elapsedToContentReadyMs, summary: { documentTTFBMs: hasDocument ? nav?.responseStart - nav?.requestStart : null, documentToResponseEndMs: hasDocument ? nav?.responseEnd : null, DOMContentLoadedMs: hasDocument ? nav?.domContentLoadedEventEnd : null, loadMs: hasDocument ? nav?.loadEventEnd : null, lastObservedLCPMs: hasDocument ? timing.lcp.at(-1)?.startTime || null : null, observedLCPElement: hasDocument ? timing.lcp.at(-1)?.tag || null : null, encodedBytes: requests.reduce((sum, row) => sum + (row.encodedBytes || 0), 0), requestCount: requests.length, documentRequests: requests.filter((row) => row.type === "Document").length, apiCalls: api.length, duplicateApiCalls: api.filter((row, index) => api.findIndex((other) => other.url === row.url) !== index).length, byType: grouped }, timing, requests });
       save();
     };
     await observe("cold", () => page.goto(origin + scenario.route, { waitUntil: "domcontentloaded" }));
@@ -76,9 +78,34 @@ try {
       for (const [target, name] of [["/discover/teams", "Discover"], ["/rules", "Rules"], ["/dashboard", "Dashboard"]]) {
         await observe(`sidebar-${name.toLowerCase()}`, async () => {
           await Promise.all([page.waitForURL(origin + target, { waitUntil: "domcontentloaded" }), page.locator(`aside.sidebar a[href="${target}"]`).click()]);
-        });
+        }, name);
       }
       await observe("focus-visibility-burst", async () => { await page.evaluate(() => { for (let i = 0; i < 3; i++) { window.dispatchEvent(new Event("focus")); document.dispatchEvent(new Event("visibilitychange")); } }); });
+      await observe("history-back", () => page.goBack({ waitUntil: "domcontentloaded" }), "Rules");
+      await observe("history-forward", () => page.goForward({ waitUntil: "domcontentloaded" }), "Dashboard");
+      const previousURL = page.url();
+      const [popup] = await Promise.all([context.waitForEvent("page"), page.locator('aside.sidebar a[href="/discover/teams"]').click({ modifiers: ["Control"] })]);
+      await popup.waitForLoadState("domcontentloaded");
+      const initialPopupPath = new URL(popup.url()).pathname;
+      if (initialPopupPath === "/signin-with-chatgpt") {
+        report.fixtureNotes ||= [];
+        report.fixtureNotes.push("Modified-click popup request preceded Playwright context synthetic headers and correctly required sign-in; replayed expected href after explicitly attaching the same fixture headers. Real managed cookie/session completion remains untested.");
+        await popup.setExtraHTTPHeaders({ "oai-authenticated-user-id": scenario.actor.id, "oai-authenticated-user-email": scenario.actor.email, "oai-authenticated-user-full-name": "Synthetic Actor" });
+        await popup.goto(origin + "/discover/teams", { waitUntil: "domcontentloaded" });
+      }
+      await popup.getByRole("heading", { name: "Discover", exact: true }).waitFor();
+      assert.equal(new URL(popup.url()).pathname, "/discover/teams");
+      assert.equal(page.url(), previousURL);
+      report.navigationChecks ||= [];
+      report.navigationChecks.push({ scenario: scenario.name, check: "modified-click preserves href/new-tab and original page", passed: true });
+      await popup.close();
+      const denied = await context.newPage();
+      const deniedResponse = await denied.goto(origin + "/admin/participants", { waitUntil: "domcontentloaded" });
+      assert.equal(deniedResponse.status(), 403);
+      assert.equal(await denied.locator(".participants-table").count(), 0);
+      report.navigationChecks.push({ scenario: scenario.name, check: "participant admin navigation denied403 without stale admin body", passed: true });
+      await denied.close();
+      save();
     }
     await context.close();
   }
