@@ -1,12 +1,20 @@
 {
   "lane": "profile",
   "base": "8a9daadb96e360340620ab5f0619d0489b2d3e50",
-  "compiledSource": "b3d6eabe615122771b710cefcbc930e3d2027c92",
-  "workerSha256": "534d5308221c6854e54db4fa4869a41d5bc089a866724254165ee11acfaac605",
+  "compiledSource": "5becb79ff5dceb188fb7e170c05e72e0b662b874",
+  "workerSha256": "0d2e35d9594fa1ad733d8ac5c297088958b6e9252b39e64b288e420bbb276d2a",
   "productSourceChanged": false,
   "typecheck": "passed",
-  "buildArtifactReview": { "passed": true, "artifactFiles": 185 },
-  "scopedTests": { "passed": 16, "failed": 0, "newTests": 2, "log": "scoped-tests.log" },
+  "buildArtifactReview": {
+    "passed": true,
+    "artifactFiles": 185
+  },
+  "scopedTests": {
+    "passed": 16,
+    "failed": 0,
+    "newTests": 2,
+    "log": "scoped-tests.log"
+  },
   "httpCoverage": [
     "One complete-profile POST persists all profile fields and normalized phone",
     "Fresh own-profile GET verifies saved fields, completeness and no-store",
@@ -14,14 +22,16 @@
     "Exactly one successful audit entry omits private field values",
     "Invalid phone, HTTP social URL, invented category and email override each return422 without partial replacement or successful audit"
   ],
-  "acceptedBrowserInteractionChecks": 0,
+  "acceptedBrowserInteractionChecks": 34,
   "browserBlocker": {
     "action": "Launch Chromium with chromiumSandbox:true and --disable-setuid-sandbox",
     "target": "/usr/bin/chromium in cloud environment",
     "outcome": "failed before browser pages or requests",
     "reason": "No usable sandbox",
     "automaticApprovalDenial": false,
-    "bypassRetried": false
+    "bypassRetried": false,
+    "resolved": true,
+    "resolution": "Approved executor escalation permits full Chromium sandbox (chromiumSandbox:true,args:[]) outside nested executor user namespace. No Chromium sandbox disabled in accepted runs."
   },
   "diagnosticRunsExcluded": [
     "keyboard-b3d6eab-wkw1ts/report.json",
@@ -29,12 +39,45 @@
   ],
   "diagnosticNote": "These two earlier synthetic runs used stale no-sandbox launch before the V6_FRESH_HANDOFF browser constraint was read. Each wrote one fake Alice profile into a fresh disposable local D1; both previews were stopped and deleted their local databases. They are excluded from accepted interaction coverage. The corrected runner requires the sandbox and reports a launch blocker.",
   "remaining": [
-    "Run corrected profile runner in keyboard, desktop and touch modes with one fresh reset per mode after sandboxed browser is available",
-    "Review new screenshots against selected profile mockup before Library delivery",
-    "Final integrated-source browser recheck"
+    "Final integrated-source combined-flow recheck",
+    "Compare actual screenshots to selected profile mockup once reference pixels are available",
+    "Physical-device and managed sign-in coverage remain unverified"
   ],
   "physicalDeviceCoverage": false,
   "productionAccess": false,
   "realProviderCalls": false,
-  "publication": false
+  "publication": false,
+  "acceptedBrowserRuns": [
+    {
+      "mode": "keyboard",
+      "report": "keyboard-5becb79-2wAL5I/report.json",
+      "checks": 12,
+      "positiveSaves": 1,
+      "freshReset": true,
+      "sandbox": true
+    },
+    {
+      "mode": "desktop",
+      "report": "desktop-5becb79-nkIFP0/report.json",
+      "checks": 11,
+      "positiveSaves": 1,
+      "freshReset": true,
+      "sandbox": true
+    },
+    {
+      "mode": "touch",
+      "report": "touch-5becb79-rb1WGw/report.json",
+      "checks": 11,
+      "positiveSaves": 1,
+      "freshReset": true,
+      "sandbox": true
+    }
+  ],
+  "acceptedBrowserPositiveSaves": 3,
+  "screenshots": {
+    "actual": 6,
+    "visuallyInspected": 6,
+    "referenceCompared": false,
+    "note": "Parent reports Library reference pixel transfer403; no mockup fidelity or user acceptance claim."
+  }
 }

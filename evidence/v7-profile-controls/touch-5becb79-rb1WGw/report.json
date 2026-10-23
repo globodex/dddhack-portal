@@ -1,0 +1,104 @@
+{
+  "source": "5becb79ff5dceb188fb7e170c05e72e0b662b874",
+  "workerSha": "0d2e35d9594fa1ad733d8ac5c297088958b6e9252b39e64b288e420bbb276d2a",
+  "mode": "touch",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "resetToken": "cd1dd895-6c11-4c55-9b37-2aeb55b94f93",
+  "syntheticOnly": true,
+  "input": "touch",
+  "browserEmulation": true,
+  "physicalDevice": false,
+  "browserSandbox": true,
+  "checks": [
+    {
+      "name": "Authenticated email is read-only; own profile response is no-store",
+      "passed": true
+    },
+    {
+      "name": "Step 2: heading focus and no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "Invalid phone prevents navigation and any write",
+      "passed": true
+    },
+    {
+      "name": "Social add/platform/edit/remove affects only the selected row",
+      "passed": true
+    },
+    {
+      "name": "Step 1: heading focus and no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "Step 2: heading focus and no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "Back/Next retains basics, avatar, phone and social link",
+      "passed": true
+    },
+    {
+      "name": "Step 3: heading focus and no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "Save commits one positive synthetic request and navigates to Teams",
+      "passed": true
+    },
+    {
+      "name": "Fresh server read verifies every saved field and unchanged public visibility",
+      "passed": true
+    },
+    {
+      "name": "Full page reload retains the committed profile",
+      "passed": true
+    }
+  ],
+  "writes": [
+    {
+      "action": "complete-profile",
+      "actor": "fake_alice",
+      "requestCount": 1
+    }
+  ],
+  "blocked": [],
+  "errors": [],
+  "screenshots": [
+    {
+      "path": "/workspace/v7-profile/evidence/v7-profile-controls/touch-5becb79-rb1WGw/before-save-390x844.png",
+      "route": "/profile",
+      "mode": "touch",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "5becb79ff5dceb188fb7e170c05e72e0b662b874",
+      "workerSha": "0d2e35d9594fa1ad733d8ac5c297088958b6e9252b39e64b288e420bbb276d2a",
+      "inspected": true,
+      "referenceCompared": false,
+      "visualReview": "Labels, persisted synthetic fields, selected avatar, layout and Save/Next controls visible; no selected-mockup fidelity claim."
+    },
+    {
+      "path": "/workspace/v7-profile/evidence/v7-profile-controls/touch-5becb79-rb1WGw/persisted-profile-390x844.png",
+      "route": "/profile",
+      "mode": "touch",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "5becb79ff5dceb188fb7e170c05e72e0b662b874",
+      "workerSha": "0d2e35d9594fa1ad733d8ac5c297088958b6e9252b39e64b288e420bbb276d2a",
+      "inspected": true,
+      "referenceCompared": false,
+      "visualReview": "Labels, persisted synthetic fields, selected avatar, layout and Save/Next controls visible; no selected-mockup fidelity claim."
+    }
+  ],
+  "browserClosed": true,
+  "browser": "154.0.8037.57",
+  "acceptedInteractionCoverage": true,
+  "referenceCompared": false
+}

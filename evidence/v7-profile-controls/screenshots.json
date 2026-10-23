@@ -1,0 +1,92 @@
+{
+  "source": "5becb79ff5dceb188fb7e170c05e72e0b662b874",
+  "workerSha256": "0d2e35d9594fa1ad733d8ac5c297088958b6e9252b39e64b288e420bbb276d2a",
+  "syntheticOnly": true,
+  "referenceCompared": false,
+  "screenshots": [
+    {
+      "path": "/workspace/v7-profile/evidence/v7-profile-controls/keyboard-5becb79-2wAL5I/before-save-1440x900.png",
+      "route": "/profile",
+      "mode": "keyboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "5becb79ff5dceb188fb7e170c05e72e0b662b874",
+      "workerSha": "0d2e35d9594fa1ad733d8ac5c297088958b6e9252b39e64b288e420bbb276d2a",
+      "inspected": true,
+      "referenceCompared": false,
+      "visualReview": "Labels, persisted synthetic fields, selected avatar, layout and Save/Next controls visible; no selected-mockup fidelity claim."
+    },
+    {
+      "path": "/workspace/v7-profile/evidence/v7-profile-controls/keyboard-5becb79-2wAL5I/persisted-profile-1440x900.png",
+      "route": "/profile",
+      "mode": "keyboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "5becb79ff5dceb188fb7e170c05e72e0b662b874",
+      "workerSha": "0d2e35d9594fa1ad733d8ac5c297088958b6e9252b39e64b288e420bbb276d2a",
+      "inspected": true,
+      "referenceCompared": false,
+      "visualReview": "Labels, persisted synthetic fields, selected avatar, layout and Save/Next controls visible; no selected-mockup fidelity claim."
+    },
+    {
+      "path": "/workspace/v7-profile/evidence/v7-profile-controls/desktop-5becb79-nkIFP0/before-save-1440x900.png",
+      "route": "/profile",
+      "mode": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "5becb79ff5dceb188fb7e170c05e72e0b662b874",
+      "workerSha": "0d2e35d9594fa1ad733d8ac5c297088958b6e9252b39e64b288e420bbb276d2a",
+      "inspected": true,
+      "referenceCompared": false,
+      "visualReview": "Labels, persisted synthetic fields, selected avatar, layout and Save/Next controls visible; no selected-mockup fidelity claim."
+    },
+    {
+      "path": "/workspace/v7-profile/evidence/v7-profile-controls/desktop-5becb79-nkIFP0/persisted-profile-1440x900.png",
+      "route": "/profile",
+      "mode": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "5becb79ff5dceb188fb7e170c05e72e0b662b874",
+      "workerSha": "0d2e35d9594fa1ad733d8ac5c297088958b6e9252b39e64b288e420bbb276d2a",
+      "inspected": true,
+      "referenceCompared": false,
+      "visualReview": "Labels, persisted synthetic fields, selected avatar, layout and Save/Next controls visible; no selected-mockup fidelity claim."
+    },
+    {
+      "path": "/workspace/v7-profile/evidence/v7-profile-controls/touch-5becb79-rb1WGw/before-save-390x844.png",
+      "route": "/profile",
+      "mode": "touch",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "5becb79ff5dceb188fb7e170c05e72e0b662b874",
+      "workerSha": "0d2e35d9594fa1ad733d8ac5c297088958b6e9252b39e64b288e420bbb276d2a",
+      "inspected": true,
+      "referenceCompared": false,
+      "visualReview": "Labels, persisted synthetic fields, selected avatar, layout and Save/Next controls visible; no selected-mockup fidelity claim."
+    },
+    {
+      "path": "/workspace/v7-profile/evidence/v7-profile-controls/touch-5becb79-rb1WGw/persisted-profile-390x844.png",
+      "route": "/profile",
+      "mode": "touch",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "5becb79ff5dceb188fb7e170c05e72e0b662b874",
+      "workerSha": "0d2e35d9594fa1ad733d8ac5c297088958b6e9252b39e64b288e420bbb276d2a",
+      "inspected": true,
+      "referenceCompared": false,
+      "visualReview": "Labels, persisted synthetic fields, selected avatar, layout and Save/Next controls visible; no selected-mockup fidelity claim."
+    }
+  ]
+}
