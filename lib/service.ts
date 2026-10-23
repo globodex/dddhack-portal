@@ -1,3 +1,4 @@
+import { auditReason } from "./security";
 import { rosterImport } from "./roster-import";
 import { reconcileAbsences } from "./absence";
 import { notRemoved } from "./record-removal";
@@ -75,7 +76,7 @@ type Review = {
   evidence: string;
 };
 const id = text(200),
-  reason = text(1000),
+  reason = auditReason(),
   number = z.coerce.number().finite();
 const bool = z.preprocess(
   (v) => v === true || v === "true" || v === "on" || v === 1,
@@ -136,8 +137,8 @@ export class PortalService {
       "SELECT target_id FROM record_removals WHERE kind='participant' AND target_id=? AND active=1",
       u.id,
     ));
-    const role = extra?.role || u.role,
-      owner = isOwner(i),
+    const role = deactivated ? "participant" : extra?.role || u.role,
+      owner = !deactivated && isOwner(i),
       rostered = !!(await one(
         this.db,
         "SELECT email FROM luma_roster WHERE email=?",
@@ -164,15 +165,16 @@ export class PortalService {
         !deactivated && (owner || role === "admin" || (rostered && ready)),
       canParticipate:
         !deactivated && role === "participant" && (rostered || owner) && ready,
-      role: extra?.role || u.role,
+      role,
       name: extra?.display_name || u.name,
-      owner: isOwner(i),
+      owner,
       avatarColor: extra?.avatar_color || "blue",
       avatarExpression: extra?.avatar_expression || "squeezed",
     };
   }
   async staff(ownerOnly = false) {
     const u = await this.actor();
+    demand(!u.deactivated, 403, "PARTICIPANT_REMOVED");
     demand(
       u.owner || (!ownerOnly && u.role === "admin"),
       403,
@@ -817,7 +819,7 @@ export class PortalService {
           .object({
             typeId: id,
             markdown: z.string().max(10000),
-            reason: text(1000).min(5),
+            reason: auditReason(),
           })
           .strict()
           .parse(data);
@@ -1126,7 +1128,7 @@ export class PortalService {
             operation: z.enum(["submissions", "checkin"]),
             version: z.number().int().min(1),
             confirmation: z.string(),
-            reason: text(1000).min(5),
+            reason: auditReason(),
           })
           .strict()
           .parse(data);
@@ -1249,7 +1251,7 @@ export class PortalService {
             problemSolution: text(500),
             description: text(6000),
             github: githubUrl,
-            commitSha,
+            commitSha: z.unknown().transform(() => ""),
             demo: optionalUrl,
             video: optionalUrl,
             gtm: text(3000),

@@ -67,9 +67,9 @@ export function filterParticipants<T extends ParticipantFilterRow>(
       if (filters.team === "none" && row.teamId) return false;
       if (
         filters.individual &&
-        !normalize(`${row.name} ${row.email || ""}`).includes(
-          normalize(filters.individual),
-        )
+        !normalize(
+          `${row.name} ${row.email || ""} ${row.teamName || ""}`,
+        ).includes(normalize(filters.individual))
       )
         return false;
       if (

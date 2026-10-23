@@ -22,7 +22,7 @@ const labels: Record<string, string> = {
   "complete-profile": "Update profile",
   "save-project": "Update project draft",
   "submit-project": "Submit project version",
-  "admin-idea-override":"Override private locked idea",
+  "admin-idea-override": "Override private locked idea",
   "rename-team": "Rename your team",
   "team-style": "Update team appearance",
   "remove-workspace-member": "Remove team member",
@@ -31,6 +31,7 @@ const labels: Record<string, string> = {
   "content-save": "Update event content draft",
   "content-publish": "Publish event content",
   "portal-role": "Update portal role",
+  "add-admin": "Add admin",
   "venue-manager": "Update private venue permission",
   "publish-submission-extension": "Publish submission deadline extension",
   "publish-policy-weights": "Publish global scoring weights",
@@ -68,12 +69,11 @@ export function confirmationFor(
     "publish-policy-weights",
   ].includes(action);
   const title = labels[action] || action.replaceAll("-", " ");
-  let description =
-    "Review this change before continuing. Cancel keeps the current state.";
+  let description = "";
   if (action === "content-publish")
     description =
       values.scope === "private"
-        ? "Publish these directions to Going team members and authorized venue operators. The previous revision remains in protected history."
+        ? "Publish these directions to personally Going or Checked in attendees and authorized venue operators. The previous revision remains in protected history."
         : "Publish this content to everyone visiting the public Site. The previous revision remains in history.";
   if (action === "reveal-ai-scores")
     description =
@@ -94,7 +94,7 @@ export function confirmationFor(
       "Enable only the selected operation under its confirmed operational rules. Judging and score reveals remain separately gated.";
   if (["admin-status", "admin-status-bulk"].includes(action))
     description =
-      "Record this manual status with an audit reason. Attendance history, team lock and the three-submission limit remain intact. A Submitted label alone creates no public project. Checked in records manual attendance; personal credits remain bound to their recipient.";
+      "Record this manual status. Attendance history, team lock and the three-submission limit remain intact. A Submitted label alone creates no public project. Checked in records manual attendance; personal credits remain bound to their recipient.";
   if (action === "lock-team")
     description =
       "Freeze this team’s membership and details for admin review. There is no unlock action. This does not approve any member.";
@@ -149,23 +149,30 @@ export function revealConfirmation(
   action: string,
   values: Record<string, any>,
 ) {
-  return action==="admin-idea-override" ? "OVERRIDE_TEAM_IDEA" : ["admin-status", "admin-status-bulk"].includes(action)
-    ? "CHANGE_STATUS"
-    : action === "lock-team"
-      ? "LOCK_TEAM"
-      : action === "activate-operations"
-        ? values.operation === "submissions"
-          ? "ENABLE_SUBMISSIONS"
-          : "ENABLE_CHECKIN"
-        : action === "publish-submission-extension"
-          ? "EXTEND_DEADLINE"
-          : action === "publish-policy-weights"
-            ? "GLOBAL_SCORING"
-            : action === "reveal-ai-scores"
-              ? "PUBLIC_AI"
-              : action === "reveal-final-scores"
-                ? "PUBLIC_FINAL"
-                : action === "unveil-winner"
-                  ? `UNVEIL_${values.position}`
-                  : undefined;
+  if (action === "add-admin") return "ADD_ADMIN";
+  return action === "admin-idea-override"
+    ? "OVERRIDE_TEAM_IDEA"
+    : ["admin-status", "admin-status-bulk"].includes(action)
+      ? "CHANGE_STATUS"
+      : action === "lock-team"
+        ? "LOCK_TEAM"
+        : action === "activate-operations"
+          ? values.operation === "submissions"
+            ? "ENABLE_SUBMISSIONS"
+            : "ENABLE_CHECKIN"
+          : action === "publish-submission-extension"
+            ? "EXTEND_DEADLINE"
+            : action === "publish-policy-weights"
+              ? "GLOBAL_SCORING"
+              : action === "reveal-ai-scores"
+                ? "PUBLIC_AI"
+                : action === "reveal-final-scores"
+                  ? "PUBLIC_FINAL"
+                  : action === "unveil-winner"
+                    ? `UNVEIL_${values.position}`
+                    : undefined;
+}
+
+export function requiresActionConfirmation(action: string) {
+  return action !== "complete-profile" && action !== "profile";
 }

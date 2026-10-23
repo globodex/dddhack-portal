@@ -1,3 +1,4 @@
+import { auditReason } from "./security";
 import { z } from "zod";
 import type { PortalService } from "./service";
 import { one, assertPreviousWrite } from "./db";
@@ -29,7 +30,7 @@ export async function engagementControl(
         votingPaused: z.boolean(),
         feedbackPaused: z.boolean(),
         version: z.number().int().min(0),
-        reason: z.string().trim().min(5).max(1000),
+        reason: auditReason(),
         confirmation: z.literal("CHANGE_ENGAGEMENT"),
       })
       .strict()

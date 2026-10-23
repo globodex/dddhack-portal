@@ -342,13 +342,12 @@ test("version-bound private repository evidence, proven violation and narrow ass
       }),
       { code: "ADMIN_ELIGIBILITY_DECISION_REQUIRED" },
     );
-    await assert.rejects(
-      service("admin").command("record-repository-evidence", {
-        ...evidence,
-        commitSha: "b".repeat(40),
-      }),
-      { code: "SUBMITTED_COMMIT_MISMATCH" },
-    );
+    // Participants no longer submit a manual hash. An authorized reviewer may
+    // bind observed repository evidence to this immutable version separately.
+    await service("admin").command("record-repository-evidence", {
+      ...evidence,
+      commitSha: "b".repeat(40),
+    });
     await service("admin").command("record-repository-evidence", {
       ...evidence,
       metadata: null,
@@ -360,11 +359,11 @@ test("version-bound private repository evidence, proven violation and narrow ass
     );
     assert.equal(
       (await rows(db, "SELECT * FROM repository_evidence")).length,
-      2,
+      3,
     );
     assert.equal(
       (await rows(db, "SELECT * FROM eligibility_history")).length,
-      3,
+      4,
     );
     await assert.rejects(
       db.prepare("UPDATE repository_evidence SET commit_sha='tamper'").all(),

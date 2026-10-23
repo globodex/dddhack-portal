@@ -305,10 +305,6 @@ export default function Home({
               Open general venue in Maps
             </a>
           )}
-          <p className="muted">
-            Exact arrival details are shared privately with people marked Going
-            or Checked in on the portal.
-          </p>
         </div>
       </section>
       <section id="rules" className="chapter stacked">
@@ -398,7 +394,6 @@ export default function Home({
         </p>
       </section>
       <footer className="home-footer">
-        Built for people who build.{" "}
         <a
           href="https://luma.com/6t5uk4lo"
           target="_blank"

@@ -3,6 +3,7 @@ import "./style.css";
 import "./public-home.css";
 import "./participant-ui.css";
 import "./admin-controls.css";
+import "./navigation-correction.css";
 export const metadata = {
   title: "DevDay Exchange Community Hackathon: New Delhi",
   description:

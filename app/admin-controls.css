@@ -198,10 +198,9 @@
   padding: 10px 12px;
 }
 .admin-control.admin-participant-filters {
-  grid-template-columns: minmax(200px, 1.8fr) minmax(160px, 1.3fr) minmax(
-      140px,
-      1fr
-    ) minmax(160px, 1fr);
+  grid-template-columns:
+    minmax(200px, 1.8fr) minmax(160px, 1.3fr) minmax(140px, 1fr)
+    minmax(160px, 1fr);
   gap: 12px;
   padding: 0;
   border: 0;
@@ -330,5 +329,17 @@
   .admin-source-options button {
     flex: 1;
     padding-inline: 10px;
+  }
+}
+
+.admin-control.admin-participant-filters {
+  grid-template-columns: minmax(240px, 2fr) minmax(150px, 1fr) minmax(
+      160px,
+      1fr
+    );
+}
+@media (max-width: 740px) {
+  .admin-control.admin-participant-filters {
+    grid-template-columns: 1fr;
   }
 }

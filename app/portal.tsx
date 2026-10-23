@@ -1,4 +1,7 @@
 "use client";
+import AddAdmins from "./add-admins";
+import { HeadingDot } from "./expressive-heading";
+import CenteredLoader from "./centered-loader";
 import OwnerOperationalSetup from "./owner-operational-setup";
 import {
   participantExportHref,
@@ -35,6 +38,7 @@ import {
   ConfirmationGate,
   confirmationFor,
   revealConfirmation,
+  requiresActionConfirmation,
   type Confirmation,
 } from "../lib/action-confirmation";
 import TeamAvatar from "./team-avatar";
@@ -152,14 +156,23 @@ export function portalConfirmationFor(
       confirmLabel: "Apply engagement settings",
       critical: true,
     };
+  if (action === "add-admin")
+    return {
+      ...base,
+      title: "Add admin?",
+      target: values.email || "",
+      description: "",
+      confirmLabel: "Add",
+      critical: true,
+    };
   if (action === "commit-import")
     return {
       ...base,
-      title: "Add roster entries",
-      description:
-        "Import only new participants from this exact preview and field mapping. Existing profiles and statuses are not updated. Removed participants cannot be restored by an import.",
-      confirmLabel: "Add previewed roster entries",
-      critical: true,
+      title: "Add participants?",
+      target: values.singleEmail || `${values.newCount || 0} participants`,
+      description: "",
+      confirmLabel: "Add",
+      critical: false,
     };
   return base;
 }
@@ -401,6 +414,7 @@ function Field({
   minLength?: number;
   children?: ReactNode;
 }) {
+  if (name === "reason") return null;
   return (
     <label>
       {label}
@@ -640,10 +654,7 @@ export function TeamWorkspace({
     return (
       <section className="panel">
         <h3>Find your team</h3>
-        <p>
-          Creating a team is optional. Browse Discover to meet other builders or
-          request to join a team.
-        </p>
+
         <a className="button secondary" href="/discover/teams">
           Discover teams
         </a>
@@ -695,10 +706,7 @@ export function TeamWorkspace({
               <small id="idea-count">{description.length}/500 characters</small>
             </label>
           </fieldset>
-          <p className="muted">
-            Save your title and description before locking. You can edit them
-            while your team remains unlocked and before the roster freeze.
-          </p>
+
           {locked && <Pill>Idea locked</Pill>}
         </Form>
       ) : (
@@ -852,22 +860,12 @@ export function TeamWorkspace({
                   </button>
                 </div>
               ))}
-            {!(data.actions || []).some(
-              (r: Row) =>
-                r.kind === "request" &&
-                r.status === "pending" &&
-                r.team_id === t.id,
-            ) && <p className="muted">No pending requests.</p>}
           </details>
           <TeamStyle team={t} run={run} />
           {data.members?.length === 1 && (
             <details className="panel">
               <summary>Delete your team</summary>
-              <p>
-                Only an unlocked team with you as its sole member can be
-                removed. Its history is retained. Existing project or allocation
-                dependencies may block removal.
-              </p>
+
               <Form
                 label="Review team deletion"
                 onSave={async (f) => {
@@ -931,11 +929,6 @@ export function Dashboard({
       <>
         <header className="page-heading">
           <h1>Welcome</h1>
-          <p>
-            You can browse teams, participants and public projects.
-            Participation becomes available when the hosts add your account to
-            the roster.
-          </p>
         </header>
         <div className="form-actions">
           <a className="button" href="/discover/teams">
@@ -950,10 +943,9 @@ export function Dashboard({
   return (
     <>
       <header className="page-heading">
-        <p className="eyebrow">Your build day, together</p>
         <h1>
           Dashboard
-          <span className="heading-dot blue" />
+          <HeadingDot color="blue" expression="squeezed" />
         </h1>
       </header>
       <div className="status-strip">
@@ -989,15 +981,11 @@ export function Dashboard({
         aria-labelledby="credits-heading"
       >
         <h2 id="credits-heading">Credits</h2>
-        <p className="muted">
-          Your personal checked-in allocations. Keep revealed values private.
-        </p>
+
         {(data.credits || []).map((c: Row) => (
           <Credit key={c.type_id} credit={c} />
         ))}
-        {!data.credits?.length && (
-          <p className="muted">No personal credits are available yet.</p>
-        )}
+        {!data.credits?.length && <p>No credits assigned.</p>}
       </section>
       <section
         id="project"
@@ -1040,9 +1028,7 @@ export function Dashboard({
         )}
         <section className="panel" aria-label="Private team feedback">
           <h3>Private team feedback</h3>
-          <p className="muted">
-            Visible to your team. Public project comments are separate.
-          </p>
+
           {(data.feedback || []).map((f: Row) => (
             <article className="feedback-entry" key={f.id}>
               <p>{f.body}</p>
@@ -1052,11 +1038,7 @@ export function Dashboard({
               </small>
             </article>
           ))}
-          {!data.feedback?.length && (
-            <p className="muted">
-              Feedback will appear after a reviewer shares it.
-            </p>
-          )}
+          {!data.feedback?.length && <p>No feedback yet.</p>}
         </section>
       </section>
       {data.privateVenue ? (
@@ -1075,12 +1057,7 @@ export function Dashboard({
             </a>
           )}
         </section>
-      ) : (
-        <p className="muted">
-          Arrival details appear when the server confirms your personal
-          attendance eligibility and the hosts publish them.
-        </p>
-      )}
+      ) : null}
     </>
   );
 }
@@ -1193,7 +1170,7 @@ export function Credit({ credit }: { credit: Row }) {
           {copied ? "Copied" : "Copy"}
         </button>
       </div>
-      {!credit.allocated && <p className="muted">No allocation assigned.</p>}
+
       {error && <p role="alert">{error}</p>}
     </article>
   );
@@ -1228,14 +1205,10 @@ export function Discover({
   return (
     <>
       <header className="page-heading">
-        <p className="eyebrow">Signed-in community directory</p>
         <h1>
           Discover
-          <span className="heading-dot violet" />
+          <HeadingDot color="purple" expression="round" />
         </h1>
-        <p className="muted">
-          Find people and teams. Creating a team is optional.
-        </p>
       </header>
       <nav className="discovery-tabs" aria-label="Discover">
         <a
@@ -1336,15 +1309,9 @@ export function Discover({
       )}
       {!participants && !data.team && data.me?.canParticipate === true && (
         <details className="panel">
-          <summary>Create your own team · optional</summary>
+          <summary>Create team</summary>
           <CreateTeam run={run} />
         </details>
-      )}
-      {data.me?.mode === "viewer" && (
-        <p className="notice">
-          Viewer access lets you explore. Team membership and participation
-          require a roster invitation.
-        </p>
       )}
     </>
   );
@@ -1470,11 +1437,6 @@ export function Submission({
     }));
   return (
     <>
-      <p className="muted">
-        The leader must personally be checked in to save or commit during the
-        submission window. Each successful commit is immutable; draft saves and
-        navigation use no attempts.
-      </p>
       {data.submissionAccess?.canRead !== true ? (
         <p className="notice">
           This project is not available for your account.
@@ -1612,15 +1574,6 @@ export function Submission({
                     </label>
                   </div>
                 ))}
-                <label>
-                  Submitted commit SHA
-                  <input
-                    value={project.commitSha || ""}
-                    pattern="[a-fA-F0-9]{40}"
-                    maxLength={40}
-                    onChange={(e) => set("commitSha", e.target.value)}
-                  />
-                </label>
                 <label className="check-label">
                   <input
                     type="checkbox"
@@ -1630,10 +1583,6 @@ export function Submission({
                   We confirm this submission accurately describes our team’s
                   work.
                 </label>
-                <p className="muted">
-                  Committing uses one of the team’s three submissions.{" "}
-                  {Math.max(0, 2 - attemptsUsed)} will remain after this commit.
-                </p>
               </div>
               <div className="form-actions">
                 {step > 1 && (
@@ -1743,7 +1692,7 @@ export function ProjectHistory({ canRead }: { canRead: boolean }) {
           className="project-history-dialog"
           ref={dialog}
           aria-labelledby="history-title"
-          aria-describedby="history-description"
+
           onCancel={(e) => {
             e.preventDefault();
             setOpen(false);
@@ -1761,10 +1710,7 @@ export function ProjectHistory({ canRead }: { canRead: boolean }) {
               Close
             </button>
           </div>
-          <p id="history-description">
-            Up to three immutable committed versions. History remains available
-            when editing closes.
-          </p>
+
           {busy && <p role="status">Loading committed history…</p>}
           {error && <p role="alert">{error}</p>}
           {!busy && !error && !items.length && (
@@ -1808,11 +1754,6 @@ export function ProjectVersion({ payload }: { payload: Row }) {
               </a>
             </p>
           ),
-      )}
-      {payload.commitSha && (
-        <p>
-          Commit <code>{payload.commitSha}</code>
-        </p>
       )}
     </>
   );
@@ -2101,9 +2042,7 @@ export function Projects({
                   required
                 />
               </Form>
-            ) : data.me ? (
-              <p className="muted">Comments are read-only for your account.</p>
-            ) : (
+            ) : data.me ? null : (
               <a className="button" href={signIn} target="_top">
                 Sign in to comment
               </a>
@@ -2115,10 +2054,9 @@ export function Projects({
   return (
     <>
       <header className="page-heading">
-        <p className="eyebrow">Built by the community</p>
         <h1>
           {board ? "Leaderboard" : "Projects"}
-          <span className="heading-dot violet" />
+          <HeadingDot color="purple" expression="round" />
         </h1>
       </header>
       <Search
@@ -2235,12 +2173,6 @@ export function Projects({
           Next page
         </button>
       </div>
-      {!data.me && (
-        <p className="muted">
-          Sign in to upvote or comment. Scores remain private until the owner
-          reveals results.
-        </p>
-      )}
     </>
   );
 }
@@ -2298,7 +2230,7 @@ export function AdminParticipants({
     [recordState, setRecordState] = useState<ParticipantRecordState>("active"),
     [selected, setSelected] = useState<string[]>([]),
     [status, setStatus] = useState("pending"),
-    [reason, setReason] = useState(""),
+    [reason] = useState("Confirmed portal action"),
     [error, setError] = useState("");
   const canManage = data.me?.owner === true || data.me?.role === "admin";
   const rows = (data.items || []).map(adminParticipantProjection);
@@ -2323,14 +2255,9 @@ export function AdminParticipants({
   return (
     <>
       <header className="page-heading">
-        <p className="eyebrow">
-          {data.lookupOnly
-            ? "Attendance operations"
-            : "Participant administration"}
-        </p>
         <h1>
           Participants
-          <span className="heading-dot orange" />
+          <HeadingDot color="orange" expression="plus" />
         </h1>
       </header>
       <AdminParticipantFilters value={filters} onChange={updateFilters} />
@@ -2360,94 +2287,77 @@ export function AdminParticipants({
           </a>
         )}
       </div>
-      {canManage && (
-        <p className="muted">
-          Exports all {items.length} matching participants in the displayed
-          order. Private phone, profile and credit fields are excluded.
-        </p>
-      )}
+
       {canManage && (
         <details className="panel">
           <summary>Add emails or import a roster</summary>
           <AdminImportControls run={run} />
         </details>
       )}
-      <div className="bulk-bar">
-        <strong>{selected.length} selected</strong>
-        {canManage && (
-          <label>
-            <span className="sr-only">Individual approval status</span>
-            <select value={status} onChange={(e) => setStatus(e.target.value)}>
-              <option value="pending">Registered</option>
-              <option value="approved">Going</option>
-              <option value="checked">Checked in</option>
-              <option value="absent">Absent</option>
-            </select>
-          </label>
-        )}
-        <label className="reason-input">
-          <span className="sr-only">Reason for action</span>
-          <input
-            placeholder="Reason for action"
-            value={reason}
-            onChange={(e) => setReason(e.target.value)}
-          />
-        </label>
-        {canManage && (
-          <button
-            className="button secondary"
-            disabled={!selected.length || reason.trim().length < 5}
-            onClick={() => {
-              if (["checked", "absent"].includes(status)) {
-                const people = (data.items || []).filter((r) =>
-                  selected.includes(r.email),
-                );
-                if (people.some((r) => !r.id)) {
-                  setError(
-                    "Selected people must sign in before a manual attendance status can be recorded.",
+      {selected.length > 0 && (
+        <div className="bulk-bar">
+          <strong>{selected.length} selected</strong>
+          {canManage && (
+            <label>
+              <span className="sr-only">Individual approval status</span>
+              <select
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
+              >
+                <option value="pending">Registered</option>
+                <option value="approved">Going</option>
+                <option value="checked">Checked in</option>
+                <option value="absent">Absent</option>
+              </select>
+            </label>
+          )}
+          {canManage && (
+            <button
+              className="button secondary"
+              disabled={!selected.length}
+              onClick={() => {
+                if (["checked", "absent"].includes(status)) {
+                  const people = (data.items || []).filter((r) =>
+                    selected.includes(r.email),
                   );
-                  return;
-                }
-                void run("admin-status-bulk", {
-                  userIds: people.map((r) => r.id),
-                  status: status === "checked" ? "Checked in" : "Absent",
-                  reason,
-                }).catch(() => {});
-              } else
-                void run("participant-bulk", {
-                  emails: selected,
-                  status,
-                  reason,
-                }).catch(() => {});
+                  if (people.some((r) => !r.id)) {
+                    setError(
+                      "Selected people must sign in before a manual attendance status can be recorded.",
+                    );
+                    return;
+                  }
+                  void run("admin-status-bulk", {
+                    userIds: people.map((r) => r.id),
+                    status: status === "checked" ? "Checked in" : "Absent",
+                    reason,
+                  }).catch(() => {});
+                } else
+                  void run("participant-bulk", {
+                    emails: selected,
+                    status,
+                    reason,
+                  }).catch(() => {});
+              }}
+            >
+              Update approval
+            </button>
+          )}
+          <button
+            className="button"
+            disabled={!selected.length || !data.checkInConfigured}
+            onClick={() => {
+              void run("participant-bulk", {
+                emails: selected,
+                checkIn: true,
+                reason,
+              }).catch(() => {});
             }}
           >
-            Update approval
+            Check in
           </button>
-        )}
-        <button
-          className="button"
-          disabled={
-            !selected.length ||
-            reason.trim().length < 5 ||
-            !data.checkInConfigured
-          }
-          onClick={() => {
-            void run("participant-bulk", {
-              emails: selected,
-              checkIn: true,
-              reason,
-            }).catch(() => {});
-          }}
-        >
-          Check in
-        </button>
-      </div>
-      {!data.checkInConfigured && (
-        <p className="muted">
-          {data.checkInStatus?.message || "Check-in setup is pending."} Going is
-          an individual approval on this portal. Luma is registration only.
-        </p>
+        </div>
       )}
+
       <div className="table-scroll">
         <table className="participants-table">
           <thead>
@@ -2642,9 +2552,7 @@ export function Review({
               <p>Required project media is not complete.</p>
             </>
           )}
-          <p className="muted">
-            {v ? `Committed version ${v.attempt}` : "Draft — not submitted"}
-          </p>
+
           {(data.me?.owner || data.me?.role === "admin") && (
             <details className="panel">
               <summary>Manage project and submission versions</summary>
@@ -2718,10 +2626,6 @@ export function Review({
                   required
                   minLength={5}
                 />
-                <p className="muted">
-                  No model result is invented here. Unverified evidence stays
-                  unscored. This does not reveal scores.
-                </p>
               </Form>
             </details>
           )}
@@ -2759,11 +2663,7 @@ export function Review({
                   label="Private evidence (required for Ineligible)"
                   type="textarea"
                 />
-                <p>
-                  Eligibility is separate from evaluation. Verified eligible
-                  submissions appear automatically. Leave unverified external
-                  checks pending.
-                </p>
+
                 <Field name="status" label="Eligibility">
                   <select
                     name="status"
@@ -2819,11 +2719,7 @@ export function Review({
               type="textarea"
               required={!["admin", "judge"].includes(data.reviewKind)}
             />
-            <p className="muted">
-              Written feedback is private to this team and authorized reviewers.
-              Numeric scores stay reviewer-private and are separate from the
-              feedback text.
-            </p>
+
             {!v && (
               <p className="notice">
                 A committed version is required before a review can be saved.
@@ -2837,10 +2733,7 @@ export function Review({
               <Pill>
                 {data.evaluationConfigured ? "Configured" : "Not configured"}
               </Pill>
-              <p className="muted">
-                Each run is bound to a project version. Previous reviews are
-                retained.
-              </p>
+
               <button
                 className="button secondary"
                 disabled={
@@ -2882,9 +2775,6 @@ export function Review({
                 <small>{new Date(h.created_at).toLocaleString()}</small>
               </article>
             ))}
-            {!data.history?.length && (
-              <p className="muted">No saved reviews yet.</p>
-            )}
           </details>
           {(data.me?.owner || data.me?.role === "admin") && (
             <Form
@@ -2948,16 +2838,9 @@ export function AdminList({
   return (
     <>
       <header className="page-heading">
-        <p className="eyebrow">
-          {logs
-            ? "Owner only"
-            : teams
-              ? "Team administration"
-              : "Project records"}
-        </p>
         <h1>
           {logs ? "Logs" : teams ? "Teams" : "Submissions"}
-          <span className="heading-dot green" />
+          <HeadingDot color="green" expression="cheerful" />
         </h1>
       </header>
       <div className="toolbar">
@@ -3150,25 +3033,6 @@ function ContentEditor({
     >
       {scope === "public" ? (
         <>
-          <label>
-            General venue
-            <input
-              value={content.venue || ""}
-              onChange={(e) => update("venue", e.target.value)}
-            />
-          </label>
-          <label>
-            General Google Maps URL
-            <input
-              type="url"
-              value={content.mapUrl || ""}
-              onChange={(e) => update("mapUrl", e.target.value)}
-            />
-          </label>
-          <p className="muted">
-            IIIT Delhi is user-provided. The public Luma page exposes no
-            verified Maps link.
-          </p>
           <h3>Agenda</h3>
           {(content.agenda || []).map((a: Row, i: number) => (
             <fieldset key={i}>
@@ -3272,12 +3136,6 @@ function ContentEditor({
         </>
       ) : (
         <>
-          <p className="notice">
-            These fields are never included in public content or ordinary
-            exports. Published details are returned only to personally Going or
-            Checked in people with current approval and authorized venue
-            managers.
-          </p>
           {[
             ["location", "Exact room or entry location"],
             ["directions", "Private directions"],
@@ -3321,10 +3179,6 @@ function ContentEditor({
       >
         Publish saved draft
       </button>
-      <p className="muted">
-        Save before publishing. Content publication does not activate event
-        policies.
-      </p>
     </Form>
   );
 }
@@ -3341,11 +3195,7 @@ function OwnerPolicyControls({
   return (
     <section className="panel">
       <h2>Global scoring weights</h2>
-      <p>
-        Submission deadline: {ist(data.policy.submissionClose)}. Roster and idea
-        lock: October 29 at 23:59 IST. No strict participant cap; teams remain
-        at most five.
-      </p>
+
       <Form
         title="Global scoring weights"
         disabled={data.readiness?.scoring?.ready !== true}
@@ -3390,10 +3240,7 @@ function OwnerPolicyControls({
               {warning}
             </p>
           ))}
-          <p>
-            This creates global policy version {preview.version + 1}. Existing
-            submissions are retained.
-          </p>
+
           <button
             className="button"
             onClick={() => {
@@ -3436,10 +3283,6 @@ export function AdminEngagementControls({
     return (
       <section className="panel">
         <h2>Community engagement</h2>
-        <p className="muted">
-          Engagement settings are unavailable. Reload to retrieve the current
-          server settings.
-        </p>
       </section>
     );
   return (
@@ -3456,10 +3299,6 @@ export function AdminEngagementControls({
         });
       }}
     >
-      <p>
-        Pause or reopen public voting and public feedback independently.
-        Existing votes, comments and frozen scores stay intact.
-      </p>
       <Field
         name="votingPaused"
         type="checkbox"
@@ -3486,10 +3325,9 @@ export function Settings({
   return (
     <>
       <header className="page-heading">
-        <p className="eyebrow">Event setup</p>
         <h1>
           Settings
-          <span className="heading-dot green" />
+          <HeadingDot color="green" expression="cheerful" />
         </h1>
       </header>
       {data.me?.owner && (
@@ -3505,11 +3343,7 @@ export function Settings({
       <section className="panel">
         <h2>Operational and scoring readiness</h2>
         {!data.readiness?.initialized && (
-          <p className="notice">
-            Event setup has not been saved. Profiles, teams and ideas remain
-            available. Confirm operational setup above before enabling
-            submissions or check-in.
-          </p>
+          <p className="notice">Operational setup required.</p>
         )}
         {(
           [
@@ -3520,12 +3354,7 @@ export function Settings({
           <div key={scope}>
             <h3>{label}</h3>
             <p>{data.readiness?.[scope]?.message}</p>
-            {data.readiness?.[scope]?.blockers?.length > 0 && (
-              <p className="muted">
-                Required operational confirmations:{" "}
-                {data.readiness[scope].blockers.join(", ")}
-              </p>
-            )}
+
             {data.me?.owner &&
               data.readiness?.[scope]?.configured &&
               !data.readiness[scope].enabled && (
@@ -3568,11 +3397,6 @@ export function Settings({
             ))}
           </ul>
         </details>
-        <p className="muted">
-          Submission and check-in controls use their own operational readiness.
-          Unconfirmed judging criteria keep score computation and reveals
-          blocked.
-        </p>
       </section>
       <AdminEngagementControls
         key={`engagement-${data.engagement?.version ?? "pending"}`}
@@ -3581,10 +3405,7 @@ export function Settings({
       />
       <details className="panel">
         <summary>Shared credit setup instructions</summary>
-        <p>
-          Setup steps only; assigned codes stay in each checked-in recipient’s
-          private vault.
-        </p>
+
         {(data.creditInstructions || []).map((c: Row) => (
           <Form
             key={c.id + String(c.instructions)}
@@ -3628,11 +3449,7 @@ export function Settings({
         <section className="panel">
           <h2>Score reveals</h2>
           <p>Current stage: {data.scoreRelease?.stage || "community"}</p>
-          <p className="muted">
-            Public actions are audited and irreversible. Real persisted scores
-            and confirmed policy are required. Choose a stage only when reviews
-            are complete.
-          </p>
+
           <Form
             title="Reveal AI scores"
             disabled={data.readiness?.scoring?.ready !== true}
@@ -3714,14 +3531,9 @@ export function Settings({
               />
             </Form>
           )}
-          {!data.scoringDisclosure?.confirmed && (
-            <p className="muted">
-              Final scoring criteria and weightage are unconfirmed. Final reveal
-              is blocked.
-            </p>
-          )}
         </section>
       )}
+      <AddAdmins owner={!!data.me?.owner} run={run} />
       {data.me?.owner && (
         <ContentEditor
           key={`public-${data.content?.revision}`}
@@ -3729,92 +3541,6 @@ export function Settings({
           run={run}
           scope="public"
         />
-      )}
-      {data.canManageVenue && (
-        <ContentEditor
-          key={`private-${data.venue?.revision}`}
-          data={data}
-          run={run}
-          scope="private"
-        />
-      )}
-      {data.me?.owner && (
-        <>
-          <Form
-            title="Least-privilege roles"
-            label="Update role"
-            onSave={async (f) => {
-              await run("portal-role", {
-                userId: f.get("userId"),
-                role: f.get("role"),
-                reason: f.get("reason"),
-              });
-            }}
-          >
-            <Field name="userId" label="Person">
-              <select name="userId" required>
-                <option value="">Choose a signed-in person</option>
-                {(data.roles || [])
-                  .filter((r: Row) => r.id !== data.me?.id)
-                  .map((r: Row) => (
-                    <option key={r.id} value={r.id}>
-                      {r.name} · {r.email} · {r.role}
-                    </option>
-                  ))}
-              </select>
-            </Field>
-            <Field name="role" label="Role">
-              <select name="role">
-                {portalRoles.map((r) => (
-                  <option key={r}>{r}</option>
-                ))}
-              </select>
-            </Field>
-            <p className="muted">
-              Volunteers: lookup/check-in. Mentors: assigned advice. Judges:
-              assigned scoring. Admins: participant, team and project
-              management. Only the owner controls roles, Logs and results
-              reveal.
-            </p>
-            <Field name="reason" label="Reason" required minLength={5} />
-          </Form>
-          <Form
-            title="Private venue management"
-            label="Update venue permission"
-            onSave={async (f) => {
-              await run("venue-manager", {
-                userId: f.get("userId"),
-                enabled: f.get("enabled") === "on",
-                reason: f.get("reason"),
-              });
-            }}
-          >
-            <Field
-              name="userId"
-              label="Specifically authorized operational admin"
-            >
-              <select name="userId" required>
-                <option value="">Choose an administrator</option>
-                {(data.roles || [])
-                  .filter((r: Row) => r.role === "admin")
-                  .map((r: Row) => (
-                    <option key={r.id} value={r.id}>
-                      {r.name} ·{" "}
-                      {r.venue_manager
-                        ? "Has venue permission"
-                        : "No venue permission"}
-                    </option>
-                  ))}
-              </select>
-            </Field>
-            <Field
-              name="enabled"
-              type="checkbox"
-              label="Allow private venue management"
-            />
-            <Field name="reason" label="Reason" required minLength={5} />
-          </Form>
-        </>
       )}
     </>
   );
@@ -3916,6 +3642,7 @@ export default function Portal({
     actionBusy.current = true;
     try {
       if (
+        requiresActionConfirmation(action) &&
         !(await gate.current!.ask(
           portalConfirmationFor(
             action,
@@ -3937,9 +3664,10 @@ export default function Portal({
       )
         throw new ActionCancelled();
       const token = revealConfirmation(action, values);
+      const { newCount: _count, singleEmail: _email, ...payload } = values;
       const result = await api(
         action,
-        token ? { ...values, confirmation: token } : values,
+        token ? { ...payload, confirmation: token } : payload,
       );
       setMessage(result.message || "Saved.");
       await load();
@@ -4265,18 +3993,13 @@ export default function Portal({
             ))}
           </section>
         ) : loading ? (
-          <div className="loading-state" role="status">
-            <span className="loading-dots" aria-hidden="true">
-              <i />
-              <i />
-              <i />
-            </span>
-            <span>
-              {/^\/(dashboard|profile|teams|submission)(\/|$)/.test(path)
-                ? "Checking registration"
-                : "Loading"}
-            </span>
-          </div>
+          <CenteredLoader
+            label={
+              /^\/(dashboard|profile|teams|submission)(\/|$)/.test(path)
+                ? "Checking registration…"
+                : "Loading…"
+            }
+          />
         ) : (
           !error && (
             <>

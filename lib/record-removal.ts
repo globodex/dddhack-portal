@@ -1,3 +1,4 @@
+import { auditReason } from "./security";
 import { z } from "zod";
 import type { PortalService } from "./service";
 import { one, assertPreviousWrite, type SQL } from "./db";
@@ -14,7 +15,7 @@ export async function removalCommand(
     const actor = await s.actor();
     const d = z
       .object({
-        reason: z.string().trim().min(5).max(1000),
+        reason: auditReason(),
         confirmation: z.literal("DELETE_OWN_TEAM"),
       })
       .strict()
@@ -98,7 +99,7 @@ export async function removalCommand(
       d = z
         .object({
           teamId: z.string().min(1).max(150),
-          reason: z.string().trim().min(5).max(1000),
+          reason: auditReason(),
           confirmation: z.literal("RESTORE_TEAM"),
         })
         .strict()
@@ -165,7 +166,7 @@ export async function removalCommand(
     const d = z
       .object({
         userId: z.string().min(1).max(150),
-        reason: z.string().trim().min(5).max(1000),
+        reason: auditReason(),
         confirmation: z.string(),
       })
       .strict()
@@ -241,7 +242,7 @@ export async function removalCommand(
         projectId: z.string().min(1).max(150),
         scope: z.enum(["project", "submission", "both"]),
         versionId: z.string().min(1).max(150).optional(),
-        reason: z.string().trim().min(5).max(1000),
+        reason: auditReason(),
         confirmation: z.string(),
       })
       .strict()

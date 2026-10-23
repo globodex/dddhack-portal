@@ -1,3 +1,4 @@
+import { auditReason } from "./security";
 import { z } from "zod";
 import type { PortalService } from "./service";
 import { one, rows, type Database } from "./db";
@@ -106,7 +107,7 @@ export async function qualificationCommand(
       commentId: z.string().min(1).max(150),
       versionId: z.string().min(1).max(150),
       qualified: z.boolean(),
-      reason: z.string().trim().min(5).max(1000),
+      reason: auditReason(),
     })
     .strict()
     .parse(input);

@@ -1,3 +1,4 @@
+import { automaticAuditReason } from "./audit-contract";
 export const indefiniteRetentionNotice =
   "Records are retained indefinitely until authorized manual removal. Private participant data remains access-controlled; credit secrets are excluded from logs and ordinary exports.";
 export const optionalDeploymentRule =
@@ -16,7 +17,7 @@ export function operationalSetupRequest(input: {
   operation: string;
   privacyConfirmed: boolean;
   rulesConfirmed: boolean;
-  reason: string;
+  reason?: string;
 }): OperationalSetupRequest {
   if (!Number.isInteger(input.version) || input.version < 0)
     throw new Error("Reload the current policy version before confirming.");
@@ -24,9 +25,9 @@ export function operationalSetupRequest(input: {
     throw new Error("Choose submissions or check-in.");
   if (input.privacyConfirmed !== true || input.rulesConfirmed !== true)
     throw new Error("Review and explicitly confirm both policy statements.");
-  const reason = input.reason.trim();
+  const reason = input.reason?.trim() || automaticAuditReason;
   if (reason.length < 5 || reason.length > 1000)
-    throw new Error("Enter an audit reason of 5 to 1000 characters.");
+    throw new Error("Invalid audit annotation.");
   return {
     version: input.version,
     operation: input.operation,

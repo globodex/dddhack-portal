@@ -1,3 +1,4 @@
+import { auditReason } from "./security";
 import { z } from "zod";
 import { one, assertPreviousWrite } from "./db";
 import type { PortalService } from "./service";
@@ -50,7 +51,7 @@ export async function eventContentCommand(
       .object({
         userId: z.string().min(1),
         enabled: z.boolean(),
-        reason: plain(500).min(5),
+        reason: auditReason(500),
       })
       .strict()
       .parse(data);
@@ -84,7 +85,7 @@ export async function eventContentCommand(
       scope: z.enum(["public", "private"]),
       revision: z.number().int().min(0),
       content: z.unknown().optional(),
-      reason: plain(500).min(5),
+      reason: auditReason(500),
     })
     .strict()
     .parse(data);

@@ -1,3 +1,4 @@
+import { auditReason } from "./security";
 import { z } from "zod";
 import type { PortalService } from "./service";
 import { one, rows, assertPreviousWrite, type SQL } from "./db";
@@ -18,7 +19,7 @@ type Release = {
   payload: string;
   criteria: string | null;
 };
-const reason = z.string().trim().min(5).max(1000);
+const reason = auditReason();
 export async function scoreState(s: PortalService) {
   const releases = await rows<Release>(
     s.db,

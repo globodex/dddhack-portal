@@ -1,3 +1,4 @@
+import { auditReason } from "./security";
 import { engagementState, engagementControl } from "./engagement-control";
 import { removalCommand, notRemoved } from "./record-removal";
 import {
@@ -95,7 +96,7 @@ type Payload = {
   attestation: boolean;
 };
 const id = z.string().min(1).max(150),
-  why = text(500).min(5);
+  why = auditReason(500);
 const palette = z.enum(teamColorKeys);
 const draftSchema = z
   .object({
@@ -103,7 +104,7 @@ const draftSchema = z
     problemSolution: z.string().max(500).default(""),
     description: z.string().max(6000).default(""),
     github: z.string().max(2048).default(""),
-    commitSha: z.string().max(40).default(""),
+    commitSha: z.unknown().transform(() => ""),
     demo: z.string().max(2048).default(""),
     logo: z.string().max(180000).default(""),
     banner: z.string().max(180000).default(""),
@@ -1758,7 +1759,8 @@ export class PortalExperience {
         text(500).parse(d.project.problemSolution);
         text(6000).parse(d.project.description);
         githubUrl.parse(d.project.github);
-        d.project.commitSha = commitSha.parse(d.project.commitSha);
+        // Repository evidence is collected separately; participants never supply a hash.
+        d.project.commitSha = "";
         if (d.project.demo) httpsUrl.parse(d.project.demo);
         validateProjectImage(d.project.logo, "logo");
         validateProjectImage(d.project.banner, "banner");
@@ -2036,6 +2038,60 @@ export class PortalExperience {
             ? "You’re Going. Individual approvals updated."
             : "Participant status updated.",
       };
+    }
+    if (action === "add-admin") {
+      await this.s.staff(true);
+      const d = z
+        .object({ email: emailSchema, confirmation: z.literal("ADD_ADMIN") })
+        .strict()
+        .parse(data);
+      const target = await one<{ id: string; role: string }>(
+        this.s.db,
+        "SELECT u.id,COALESCE(r.role,u.role) role FROM users u LEFT JOIN portal_roles r ON r.user_id=u.id WHERE u.email=?",
+        d.email,
+      );
+      demand(
+        target,
+        422,
+        "ACCOUNT_MUST_SIGN_IN_FIRST",
+        "This person must sign in before being added as an admin.",
+      );
+      demand(
+        target.id !== actor.id && target.role !== "owner",
+        422,
+        "OWNER_IDENTITY_IS_PLATFORM_MANAGED",
+      );
+      demand(
+        !(await one(
+          this.s.db,
+          "SELECT target_id FROM record_removals WHERE kind='participant' AND target_id=? AND active=1",
+          target.id,
+        )),
+        409,
+        "PARTICIPANT_REMOVED",
+      );
+      if (target.role === "admin") return { message: "Already an admin." };
+      await this.s.mutate(
+        actor.id,
+        action,
+        target.id,
+        [
+          [
+            "INSERT INTO portal_roles SELECT ?,?,?,? WHERE EXISTS(SELECT 1 FROM users u WHERE u.id=? AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=u.id AND rr.active=1)) ON CONFLICT(user_id) DO UPDATE SET role=excluded.role,granted_by=excluded.granted_by,updated_at=excluded.updated_at WHERE NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=excluded.user_id AND rr.active=1)",
+            target.id,
+            "admin",
+            actor.id,
+            this.s.now(),
+            target.id,
+          ],
+          ...assertPreviousWrite(),
+          ["DELETE FROM private_venue_managers WHERE user_id=?", target.id],
+          ["DELETE FROM project_assignments WHERE user_id=?", target.id],
+        ],
+        { role: "admin" },
+        "Confirmed portal action",
+      );
+      return { message: "Admin added." };
     }
     if (action === "portal-role") {
       await this.s.staff(true);

@@ -608,3 +608,9 @@
     font-size: 13px;
   }
 }
+
+@media (max-width: 740px) {
+  .app-shell .profile-heading > .expressive-heading-dot {
+    --heading-dot-size: 36px !important;
+  }
+}

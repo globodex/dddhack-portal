@@ -29,7 +29,11 @@ export default function ConfirmationDialog({
       className="confirmation-dialog"
       ref={dialog}
       aria-labelledby="confirmation-title"
-      aria-describedby="confirmation-target confirmation-description"
+      aria-describedby={
+        value.description
+          ? "confirmation-target confirmation-description"
+          : "confirmation-target"
+      }
       onCancel={(e) => {
         e.preventDefault();
         decide(false);
@@ -39,7 +43,9 @@ export default function ConfirmationDialog({
       <p id="confirmation-target">
         <strong>{value.target}</strong>
       </p>
-      <p id="confirmation-description">{value.description}</p>
+      {value.description && (
+        <p id="confirmation-description">{value.description}</p>
+      )}
       <div className="form-actions">
         <button
           ref={cancel}

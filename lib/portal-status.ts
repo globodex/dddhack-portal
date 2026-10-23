@@ -1,3 +1,4 @@
+import { auditReason } from "./security";
 import type { PortalService } from "./service";
 import { one, rows } from "./db";
 import { z } from "zod";
@@ -105,7 +106,7 @@ export async function statusCommand(
       .object({
         userIds: z.array(z.string().min(1)).min(1).max(250),
         status: z.enum(personStatuses),
-        reason: z.string().trim().min(5).max(1000),
+        reason: auditReason(),
         confirmation: z.literal("CHANGE_STATUS"),
       })
       .strict()
@@ -159,7 +160,7 @@ export async function statusCommand(
       kind: z.enum(["person", "team"]),
       targetId: z.string().min(1).max(150),
       status: z.string(),
-      reason: z.string().trim().min(5).max(1000),
+      reason: auditReason(),
       ruleReference: z.string().trim().max(1000).optional(),
       evidence: z.string().trim().max(3000).optional(),
       confirmation: z.literal("CHANGE_STATUS"),

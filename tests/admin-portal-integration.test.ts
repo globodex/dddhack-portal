@@ -98,9 +98,9 @@ test("participant admin page wires reviewed imports and only individual removal,
     "Filter participants",
     "Participation record",
     "Removed participants",
-    "Pasted email list",
-    "Email-only or full Luma CSV",
-    "Preview import",
+    "Single email",
+    "Email list",
+    "CSV",
     "Remove participant",
     "active@example.invalid",
     "Export filtered participants (1)",
@@ -110,7 +110,7 @@ test("participant admin page wires reviewed imports and only individual removal,
     markup,
     /removed@example.invalid|Preview registered emails|Bulk delete|Delete selected/,
   );
-  assert.match(markup, /Exports all/);
+  assert.doesNotMatch(markup, /Exports all|CSV export includes/);
   const volunteer = html(AdminParticipants, {
     data: {
       me: { ...admin, role: "volunteer" },
@@ -123,7 +123,7 @@ test("participant admin page wires reviewed imports and only individual removal,
     volunteer,
     /Add-only import|Remove participant|Manage participant|Individual approval status/,
   );
-  assert.match(volunteer, /Check in/);
+  assert.doesNotMatch(volunteer, /class="bulk-bar"/);
 });
 test("project adapter uses supplied exact version IDs and removed metadata without synthesizing attempts", () => {
   const values = adminProjectProjection({
@@ -148,9 +148,9 @@ test("project list management is restricted to admin/owner and kept outside revi
     path: "/admin/submissions",
     run,
   });
-  assert.match(management, /Project and submission management/);
-  assert.match(management, /fixture-project/);
-  assert.match(management, /Committed attempts stay consumed/);
+  assert.match(management, /Remove|Restore/);
+  assert.match(management, /Fixture Project/);
+  assert.doesNotMatch(management, /name="reason"/);
   assert.doesNotMatch(management, /<a[^>]*>[\s\S]*<form[\s\S]*<\/a>/);
   const reviewer = html(AdminList, {
     data: { me: { ...admin, role: "judge" }, items: [project] },
@@ -298,7 +298,7 @@ test("owner window editor replaces extension-only settings and engagement contro
   );
   assert.match(
     html(AdminEngagementControls, { data: { me: admin }, run }),
-    /Engagement settings are unavailable/,
+    /Community engagement/,
   );
 });
 test("public project engagement is read-only when server flags or per-row capabilities deny it, with no private score leaks", () => {

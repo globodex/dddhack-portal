@@ -2240,3 +2240,80 @@ td strong {
 .progress-track i:not([data-active="true"]) {
   background: #e2e4e8;
 }
+
+/* Compact authenticated workspace; public hero keeps its own display scale. */
+.main:not(.home-main) h1 {
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin-bottom: 20px;
+}
+.main:not(.home-main) .page-heading {
+  margin: 0 0 24px;
+}
+.main:not(.home-main) .page-heading h1 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+}
+.main:not(.home-main) label {
+  font-size: 14px;
+}
+.main:not(.home-main) label > input:not([type="checkbox"]):not([type="radio"]),
+.main:not(.home-main) label > select,
+.main:not(.home-main) label > textarea {
+  font-size: 15px;
+  border-radius: 11px;
+  padding: 12px 14px;
+}
+.main:not(.home-main) label > input:not([type="checkbox"]):not([type="radio"]),
+.main:not(.home-main) label > select {
+  min-height: 48px;
+}
+.main:not(.home-main) .panel {
+  margin: 16px 0;
+  padding: 22px;
+}
+.main:not(.home-main) details.panel > summary {
+  padding-block: 0;
+}
+.main:not(.home-main) .toolbar {
+  gap: 12px;
+  margin-block: 12px;
+}
+.main:not(.home-main) .bulk-bar {
+  margin-block: 12px;
+}
+@media (min-width: 1000px) {
+  .sidebar {
+    width: 232px;
+  }
+  .main:not(.home-main) {
+    margin-left: 232px;
+    padding: 32px 40px 64px;
+    max-width: 1240px;
+  }
+}
+@media (max-width: 740px) {
+  .main:not(.home-main) {
+    margin-left: 0;
+    padding: 24px 18px 48px;
+  }
+  .main:not(.home-main) h1 {
+    font-size: 32px;
+    line-height: 1.125;
+  }
+  .main:not(.home-main) .panel {
+    padding: 18px;
+  }
+}
+
+.page-heading .expressive-heading-dot {
+  --heading-dot-size: 40px !important;
+}
+@media (max-width: 740px) {
+  .page-heading .expressive-heading-dot {
+    --heading-dot-size: 32px !important;
+  }
+}

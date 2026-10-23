@@ -1,3 +1,4 @@
+import { auditReason } from "./security";
 import { z } from "zod";
 import type { PortalService } from "./service";
 import { one, type SQL } from "./db";
@@ -83,7 +84,7 @@ export async function repositoryCommand(
       projectId: z.string().min(1),
       versionId: z.string().min(1),
       commitSha,
-      reason: z.string().trim().min(10).max(1000),
+      reason: auditReason(1000, 10),
       metadata: z
         .object({
           public: z.boolean(),
@@ -107,7 +108,8 @@ export async function repositoryCommand(
   );
   demand(version, 409, "PROJECT_VERSION_CHANGED");
   demand(
-    JSON.parse(version.payload).commitSha === d.commitSha,
+    !JSON.parse(version.payload).commitSha ||
+      JSON.parse(version.payload).commitSha === d.commitSha,
     409,
     "SUBMITTED_COMMIT_MISMATCH",
   );

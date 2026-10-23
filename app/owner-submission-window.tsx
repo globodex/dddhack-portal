@@ -1,4 +1,5 @@
-"use client";
+import { automaticAuditReason } from "../lib/audit-contract";
+("use client");
 import { useId, useState } from "react";
 import {
   AdminIcon,
@@ -64,10 +65,10 @@ export type SubmissionWindowPreview = {
 };
 export function submissionWindowPublishValues(
   review: SubmissionWindowPreview,
-  reason: string,
+  reason = automaticAuditReason,
 ) {
-  if (!review.token || !Number.isInteger(review.version) || !reason.trim())
-    throw new Error("A current preview and audit reason are required.");
+  if (!review.token || !Number.isInteger(review.version))
+    throw new Error("A current preview is required.");
   if (
     !Number.isFinite(Date.parse(review.open)) ||
     !Number.isFinite(Date.parse(review.close)) ||
@@ -79,7 +80,7 @@ export function submissionWindowPublishValues(
     close: review.close,
     token: review.token,
     version: review.version,
-    reason: reason.trim(),
+    reason: reason.trim() || automaticAuditReason,
     confirmation: "CHANGE_SUBMISSION_WINDOW",
   };
 }
@@ -113,7 +114,6 @@ export default function OwnerSubmissionWindow({
   const id = useId();
   const [openInput, setOpen] = useState(() => inputOrEmpty(open));
   const [closeInput, setClose] = useState(() => inputOrEmpty(close));
-  const [reason, setReason] = useState("");
   const [review, setReview] = useState<SubmissionWindowPreview | null>(null);
   const { busy, error, execute, clearError } = useAdminOperation();
   if (!owner) return null;
@@ -137,17 +137,7 @@ export default function OwnerSubmissionWindow({
         <AdminIcon name="clock" />
         Submission window
       </h2>
-      <p className="admin-control-note">
-        Owner only. Enter both times in India Standard Time (IST, Asia/Kolkata,
-        UTC+05:30). The server stores UTC. Current settings remain active until
-        you publish a confirmed change.
-      </p>
-      <p className="admin-control-warning">
-        Testing uses real attempts. Each project has a hard limit of three
-        committed submissions; admin cleanup never resets it. The repository
-        creation and first commit must both be strictly after 1 November 2026,
-        08:00 IST (02:30 UTC). Changing this window does not change that cutoff.
-      </p>
+
       <fieldset disabled={busy}>
         <div className="admin-control-grid">
           <label>
@@ -241,7 +231,7 @@ export default function OwnerSubmissionWindow({
             void execute(async () => {
               await run(
                 "publish-submission-window",
-                submissionWindowPublishValues(review, reason),
+                submissionWindowPublishValues(review),
               );
               setReview(null);
             });
@@ -270,23 +260,7 @@ export default function OwnerSubmissionWindow({
             </ul>
           )}
           <fieldset disabled={busy}>
-            <label>
-              <span>
-                Audit reason <span aria-hidden="true">*</span>
-              </span>
-              <textarea
-                required
-                maxLength={1000}
-                rows={2}
-                value={reason}
-                onChange={(event) => setReason(event.target.value)}
-              />
-            </label>
-            <button
-              className="button"
-              type="submit"
-              disabled={busy || !reason.trim()}
-            >
+            <button className="button" type="submit" disabled={busy}>
               {busy ? "Waiting…" : "Review and publish both dates"}
             </button>
           </fieldset>

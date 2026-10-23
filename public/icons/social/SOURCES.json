@@ -1,0 +1,11 @@
+{
+  "source": "https://github.com/tabler/tabler-icons",
+  "license": "MIT",
+  "files": {
+    "linkedin": "brand-linkedin",
+    "github": "brand-github",
+    "x": "brand-x",
+    "instagram": "brand-instagram",
+    "website": "world"
+  }
+}

@@ -1,3 +1,4 @@
+import { auditReason } from "./security";
 import { z } from "zod";
 import type { PortalService } from "./service";
 import { assertPreviousWrite, type SQL } from "./db";
@@ -13,7 +14,7 @@ const inputSchema = z
     operation: z.enum(["submissions", "checkin"]),
     privacyConfirmed: z.literal(true),
     rulesConfirmed: z.literal(true),
-    reason: z.string().trim().min(5).max(1000),
+    reason: auditReason(),
     token: z.string().optional(),
     confirmation: z.literal("CONFIRM_OPERATIONAL_SETUP").optional(),
   })

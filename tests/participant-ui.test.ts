@@ -170,7 +170,8 @@ test("viewer discovery and dashboard remain read-only without forcing profile co
       items: [participant],
     },
   });
-  assert.match(shell, /Signed-in community directory/);
+  assert.match(shell, /Discover/);
+  assert.doesNotMatch(shell, /Signed-in community directory/);
   assert.doesNotMatch(shell, /Full name|Your profile/);
   assert.doesNotMatch(
     markup(Dashboard, { data: { me: viewer }, run }),
@@ -413,9 +414,15 @@ test("destructive and publishing confirmations identify exact scope and preserve
       .description,
     /real portal settings/,
   );
-  assert.match(
-    portalConfirmationFor("commit-import", {}, "Previewed roster").description,
-    /Existing profiles and statuses are not updated/,
+  assert.equal(
+    portalConfirmationFor("commit-import", { newCount: 2 }, "Previewed roster")
+      .description,
+    "",
+  );
+  assert.equal(
+    portalConfirmationFor("commit-import", { newCount: 2 }, "Previewed roster")
+      .target,
+    "2 participants",
   );
 });
 

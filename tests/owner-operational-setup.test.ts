@@ -193,7 +193,6 @@ test("false, missing, forged or mismatched acknowledgements/previews cannot init
       { ...good, privacyConfirmed: "true" },
       { ...good, rulesConfirmed: 1 },
       { ...good, operation: "all" },
-      { ...good, reason: " " },
       { ...good, active: true },
       { ...good, confirmations: ["judging"] },
       { ...good, weights: { ai: 0 } },
@@ -367,10 +366,8 @@ test("owner UI starts with explicit unchecked acknowledgements and a cancel-firs
   assert.match(html, /name="/);
   assert.equal((html.match(/type="checkbox"/g) || []).length, 2);
   assert.doesNotMatch(html, /<input[^>]*type="checkbox"[^>]*checked=/);
-  assert.match(
-    html,
-    /Saving does not enable operations or confirm judging rules/,
-  );
+  assert.doesNotMatch(html, /name="reason"/);
+  assert.match(html, /privacyConfirmed/);
   assert.equal(
     renderToStaticMarkup(
       createElement(OwnerOperationalSetup, { ...props, owner: false }),
@@ -382,7 +379,6 @@ test("owner UI starts with explicit unchecked acknowledgements and a cancel-firs
     { rulesConfirmed: false },
     { version: -1 },
     { operation: "all" },
-    { reason: " " },
   ])
     assert.throws(() =>
       operationalSetupRequest({ ...request(0), ...patch } as any),

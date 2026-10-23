@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { automaticAuditReason } from "./audit-contract";
 export class PortalError extends Error {
   constructor(
     public status: number,
@@ -15,6 +16,15 @@ export function demand(
   message = code,
 ): asserts condition {
   if (!condition) throw new PortalError(status, code, message);
+}
+export function auditReason(max = 1000, min = 1) {
+  return z.preprocess(
+    (value) =>
+      value == null || (typeof value === "string" && !value.trim())
+        ? automaticAuditReason
+        : value,
+    z.string().trim().min(min).max(max),
+  );
 }
 export const emailSchema = z.string().trim().toLowerCase().email().max(254);
 export const text = (max = 2000) => z.string().trim().min(1).max(max);

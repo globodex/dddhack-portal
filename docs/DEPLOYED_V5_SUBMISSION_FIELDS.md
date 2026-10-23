@@ -1,0 +1,15 @@
+# Frozen v5 submission fields
+
+Source inspected: `f1a4b3db83e2263170e8b5fb4738b18f0e218b8d`, not the correction branch. This is the source published as public version 5.
+
+| Step                   | Visible fields                                                                                                                        | Commit validation                                                                                                                                                  |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1 — Project essentials | Project name; One-line problem and solution; Project description; GitHub repository; Demo URL · optional; Tools and how you used them | Name, one-line summary, description and GitHub URL required. Demo optional, HTTPS if supplied. Tools text is shown but not required by the current commit handler. |
+| 2 — Project images     | Project logo; Project banner                                                                                                          | Both required. Logo 1:1; banner 16:9. PNG/JPEG, at most 128 KB each.                                                                                               |
+| 3 — Review and commit  | For each current member: Contribution; Use of Codex or other tools. Submitted commit SHA. Accuracy attestation checkbox.              | Nonempty contribution and tool-use text for every current member. 40-hex commit SHA required by backend despite no HTML required marker. Attestation true.         |
+
+Source evidence: `app/portal.tsx` at frozen ref, lines 1504–1623; next-step checks 1367–1387; `lib/experience.ts` lines 1757–1785. All fields are also shown read-only when editing is unavailable. Only the personally checked-in leader can save/commit in the enabled window; each committed version consumes one of the immutable three attempts. Other members can view authorized current/history content.
+
+Confirmed core discussion: project name/description/GitHub URL, optional deployment link, mandatory square logo and 16:9 banner. The one-line summary, tools narrative, per-member contribution/tool-use narrative and attestation are additional visible v5 fields; they should not be represented as part of that minimal confirmed list without reference to the fuller specification. The manual commit SHA is specifically rejected by the latest instruction and is removed from participant UI and required validation in this correction. No participant SHA256 input is shown in v5. Ordinary internal request integrity/idempotency hashes are invisible and remain internal.
+
+The confirmed strict repository creation AND first-commit timing rule remains separate. The correction does not replace the removed manual hash with a different participant verification field.

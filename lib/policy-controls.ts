@@ -1,3 +1,4 @@
+import { auditReason } from "./security";
 import { operationalSetup } from "./operational-setup";
 import { z } from "zod";
 import type { PortalService } from "./service";
@@ -24,7 +25,7 @@ export async function policyControl(
         close: z.string().datetime(),
         version: z.number().int().min(0).optional(),
         token: z.string().optional(),
-        reason: z.string().trim().min(5).max(1000).optional(),
+        reason: auditReason(),
         confirmation: z.literal("CHANGE_SUBMISSION_WINDOW").optional(),
       })
       .strict()
@@ -142,7 +143,7 @@ export async function policyControl(
       weights: weightsSchema.optional(),
       preview: z.string().optional(),
       confirmation: z.string().optional(),
-      reason: z.string().trim().min(5).max(1000).optional(),
+      reason: auditReason(),
     })
     .strict()
     .parse(input);

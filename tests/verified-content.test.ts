@@ -89,5 +89,8 @@ test("organizer photos match verified public source hashes; Shivay uses his conf
     html,
     /Full surname awaiting confirmation|pbs\.twimg\.com|lumacdn/,
   );
-  assert.match(html, /people marked Going or Checked in/);
+  assert.doesNotMatch(
+    html,
+    /people marked Going or Checked in|Built for people who build/,
+  );
 });

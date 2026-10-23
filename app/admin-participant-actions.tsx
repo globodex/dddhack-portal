@@ -169,20 +169,14 @@ export function AdminParticipantFilters({
     <fieldset className="admin-control admin-participant-filters">
       <legend className="sr-only">Filter participants</legend>
       <label>
-        Search participants
+        Search
         <input
           type="search"
           value={value.individual}
-          onChange={(event) => update({ individual: event.target.value })}
-          placeholder="Name or email"
-        />
-      </label>
-      <label>
-        Search teams
-        <input
-          type="search"
-          value={value.teamQuery}
-          onChange={(event) => update({ teamQuery: event.target.value })}
+          onChange={(event) =>
+            update({ individual: event.target.value, teamQuery: "" })
+          }
+          placeholder="Name, email or team"
         />
       </label>
       <label>

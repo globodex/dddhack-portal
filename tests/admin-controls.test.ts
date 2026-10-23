@@ -85,7 +85,7 @@ test("window validation rejects rolled calendars, guessed zones and non-increasi
     assert.throws(() => submissionWindowValues("2026-11-01T08:00", close));
 });
 
-test("window publication preserves reviewed server token and version and requires audit reason", () => {
+test("window publication preserves reviewed token/version and supplies automatic audit annotation", () => {
   const dates = submissionWindowValues("2026-11-01T08:00", "2026-11-01T16:00");
   const review: SubmissionWindowPreview = {
     ...dates,
@@ -102,7 +102,10 @@ test("window publication preserves reviewed server token and version and require
     reason: "reviewed dates",
     confirmation: "CHANGE_SUBMISSION_WINDOW",
   });
-  assert.throws(() => submissionWindowPublishValues(review, " "));
+  assert.equal(
+    submissionWindowPublishValues(review, " ").reason,
+    "Confirmed portal action",
+  );
   assert.throws(() =>
     submissionWindowPublishValues({ ...review, token: "" }, "reason"),
   );
@@ -343,12 +346,8 @@ test("controls render target, audit and real-attempt consequences without mutati
   );
   assert.ok(owner.includes('value="2026-11-01T08:00"'));
   assert.ok(owner.includes('value="2026-11-01T16:00"'));
-  assert.ok(
-    owner.includes(
-      "repository creation and first commit must both be strictly after",
-    ),
-  );
-  assert.ok(owner.includes("Testing uses real attempts"));
+  assert.ok(!owner.includes("Testing uses real attempts"));
+  assert.ok(!owner.includes("Audit reason"));
   const imports = renderToStaticMarkup(
     createElement(AdminImportControls, { run: noMutation }),
   );

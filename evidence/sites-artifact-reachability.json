@@ -20,19 +20,19 @@
       "name": "rsc",
       "outputDirectory": "dist/server",
       "chunks": 63,
-      "moduleCount": 325
+      "moduleCount": 327
     },
     {
       "name": "ssr",
       "outputDirectory": "dist/server/ssr",
       "chunks": 10,
-      "moduleCount": 141
+      "moduleCount": 145
     },
     {
       "name": "client",
       "outputDirectory": "dist/client",
       "chunks": 7,
-      "moduleCount": 173
+      "moduleCount": 177
     }
   ],
   "reviewedAdvisoryPackages": [
@@ -49,8 +49,8 @@
     "@cloudflare/vite-plugin"
   ],
   "generatedMetadata": [
-    "dist/client/_next/static/b9d7069c-2e38-4af8-9624-13b70f0bf3d0/_buildManifest.js",
-    "dist/client/_next/static/b9d7069c-2e38-4af8-9624-13b70f0bf3d0/_ssgManifest.js",
+    "dist/client/_next/static/3003440b-c547-4198-a82b-90284a33e2df/_buildManifest.js",
+    "dist/client/_next/static/3003440b-c547-4198-a82b-90284a33e2df/_ssgManifest.js",
     "dist/server/__vinext_action_owner_manifest.js",
     "dist/server/__vinext_cacheability_manifest.js",
     "dist/server/__vinext_cacheability_request_projection.js",
@@ -277,19 +277,23 @@
     },
     {
       "path": "dist/client/.vite/manifest.json",
-      "sha256": "9ac3755f7dedd11df470264cd3d7ffaa0f9c47ce68eccef3d0ad23d5f0096fc7"
+      "sha256": "feac393587c8d27e2f2115ece95a58a10f617afd1a67eaf257a0ff424f110b57"
     },
     {
       "path": "dist/client/_headers",
       "sha256": "2148fb62669525f5091532d36d4a48a8da95b08a5a797bacde75d2fe981351bb"
     },
     {
-      "path": "dist/client/_next/static/b9d7069c-2e38-4af8-9624-13b70f0bf3d0/_buildManifest.js",
+      "path": "dist/client/_next/static/3003440b-c547-4198-a82b-90284a33e2df/_buildManifest.js",
       "sha256": "4cce301fe69e28d6463904ecf618427e95091bf3584ea347d8ca55d1077e1fb6"
     },
     {
-      "path": "dist/client/_next/static/b9d7069c-2e38-4af8-9624-13b70f0bf3d0/_ssgManifest.js",
+      "path": "dist/client/_next/static/3003440b-c547-4198-a82b-90284a33e2df/_ssgManifest.js",
       "sha256": "653f3e53e89b4f8548ff86c19e92bb3c6b84b6be7485a320b1e00893ed877479"
+    },
+    {
+      "path": "dist/client/_next/static/chunks/BQJT1FzH.js",
+      "sha256": "7d7a41cda17328db8572b0a2997f9488e6b70b818640c09df482835bf1688441"
     },
     {
       "path": "dist/client/_next/static/chunks/C--se8fB.js",
@@ -304,14 +308,6 @@
       "sha256": "cb6b046e0232b38355f955e4eeaa0685f20a22db5f38467703d62cf987953a76"
     },
     {
-      "path": "dist/client/_next/static/chunks/CW1ay5SJ.js",
-      "sha256": "f11dafcf7153c539813bca04148444020c5de4f887dd28a791dcc8d96101ae02"
-    },
-    {
-      "path": "dist/client/_next/static/chunks/CqwCb0fk.js",
-      "sha256": "8fbd73991d64ebd8745929262219fc17d3455d521702357d4bc004071e04572f"
-    },
-    {
       "path": "dist/client/_next/static/chunks/DFqxsIZv.js",
       "sha256": "56d191b9517f6e3890c9937d6b6cbdae37aa8a66bb39004371a234079971a396"
     },
@@ -320,8 +316,12 @@
       "sha256": "548d1dbf321e7d2ae804fcc158b588706a7c52f8ca175de1490c6ccb4dbe55b7"
     },
     {
-      "path": "dist/client/_next/static/css/BEFSyNxR.css",
-      "sha256": "0e1fbc8f0c9d5545113e5d4e06cb27d3c8690a97d54d138ef9c67b6a272ff689"
+      "path": "dist/client/_next/static/chunks/ZfmX60mt.js",
+      "sha256": "f7f72574b32d0b5150eb0ac212d1a263ceaeb15583c7b23d36925a8eabddfb72"
+    },
+    {
+      "path": "dist/client/_next/static/css/DWrn0bdV.css",
+      "sha256": "09fc1b0a8795ce81c18ce4eb5c935b372810d4729c07577918090af739a998a6"
     },
     {
       "path": "dist/client/_next/static/media/dm-sans-latin-400-normal.BwCSEQnW.woff",
@@ -376,6 +376,34 @@
       "sha256": "6df74c12268c4937abb71dd0742d9a0af609bb5e7ddb30fdb350dadcf8476967"
     },
     {
+      "path": "dist/client/icons/social/LICENSE.txt",
+      "sha256": "b740a1d46122672da62833e97f7e7c8a13fa85cbc7445b584b297cc00dde93db"
+    },
+    {
+      "path": "dist/client/icons/social/SOURCES.json",
+      "sha256": "3115cd2fdd76e5858925165e45f7738309a97c9fd74a2977261e21a0d905124a"
+    },
+    {
+      "path": "dist/client/icons/social/github.svg",
+      "sha256": "1ba4d43069f269d4aedc71bd5887632ae08b17435d64f47f331b18c316ffeb37"
+    },
+    {
+      "path": "dist/client/icons/social/instagram.svg",
+      "sha256": "04bd4b7ca2a7f1052dbf9fc072128b20589d95abbe505e02c5750c81d285e172"
+    },
+    {
+      "path": "dist/client/icons/social/linkedin.svg",
+      "sha256": "9896ef7ec6eda6755029ccf967645f3f95fb2ae2c6a40f44a4e4c7f55d672ba2"
+    },
+    {
+      "path": "dist/client/icons/social/website.svg",
+      "sha256": "d0dfc538f966d03b72a9fe872fbb567d5e84db9d24b95af032305404ef71f587"
+    },
+    {
+      "path": "dist/client/icons/social/x.svg",
+      "sha256": "ae6adacfff2a410c94946aa0af8a0fc92f30b4f832f0077468402be76b6566f7"
+    },
+    {
       "path": "dist/client/organizers/Param3021-x.jpg",
       "sha256": "f19b21c25dbe9eb91c2ece9027adcb1ec24d28979ca633e7607703d54297fe17"
     },
@@ -389,19 +417,19 @@
     },
     {
       "path": "dist/client/vinext-client-entry-manifest.json",
-      "sha256": "51d3bec41450e1e4c84dd41cde6a62d4204bd060b32715aa8f224d1ceb928a0b"
+      "sha256": "6187b0bf4247fc5c46c317760f7952878dabf30e55bc895549fd5ed114eb7de8"
     },
     {
       "path": "dist/server/.vite/manifest.json",
-      "sha256": "880ea31334c9d10eb402da599d4509aec300c9c14e00cc85bc5f763338b6d969"
+      "sha256": "4aa4ee9d448807a87d175fc8d9af6e3e7d5e06590e23c78c4c7168f34e131939"
     },
     {
       "path": "dist/server/BUILD_ID",
-      "sha256": "145426d7d5d1a1b5851675ee0cd36995ed61d26ace9694e9f406292d8fe95401"
+      "sha256": "772c70469e32a972cec3c7f23e91003dc7ccd16aa06c657e1cb61b7637e9fff4"
     },
     {
       "path": "dist/server/RSC_BUILD_ID",
-      "sha256": "eae3282beea0e12563c982a64cb4933a21c84511ab1dcf5a06c1aee6005eac75"
+      "sha256": "2b0fb9c18d2f10e5872e83e1894b07d4e18e87f65873e2d08f46debff0c640ea"
     },
     {
       "path": "dist/server/__vinext_action_owner_manifest.js",
@@ -421,31 +449,31 @@
     },
     {
       "path": "dist/server/__vite_rsc_assets_manifest.js",
-      "sha256": "ae0ac01b1f2ebbdbee3fc43425ebced52a3f3ffaf915791adc19cbf5be8b9d73"
+      "sha256": "83be8c5934c00e180e137e8af7f90ad45a16e9bdeeb2cd4240ea7b4e3d39704b"
     },
     {
-      "path": "dist/server/_next/static/app-elements-CSGH9U3J.js",
-      "sha256": "586056c6d854582b4b7a0a5cbf926e993c2f8f60a41d303d0420d64dd1280d3e"
+      "path": "dist/server/_next/static/app-elements-BQ_s9YQv.js",
+      "sha256": "4fcb78715d07f87251ae9bbe8e9eabe485e4c591f0074b081c52c99b10a1c06a"
     },
     {
-      "path": "dist/server/_next/static/app-page-cache-finalizer-CWA6eHVK.js",
-      "sha256": "ed7c8a12e99dbccf9c9746b10bfcdab31d139a8606b3d53acaa7ebf665f690a8"
+      "path": "dist/server/_next/static/app-page-cache-CvB2G0gq.js",
+      "sha256": "426a9d70bbd47118f69f06758dd4d2b43dcf21750d408d7baa3ed190131e2fa8"
     },
     {
-      "path": "dist/server/_next/static/app-page-cache-qBLGjiFG.js",
-      "sha256": "002a19a75cec5224920eddc74f29b03e2fb2f6c9870fcbcae7993a7bb55161cc"
+      "path": "dist/server/_next/static/app-page-cache-finalizer-DEQg3BsA.js",
+      "sha256": "a51dc2d11a41694d2bf7e407b890ac220afd4638f4e6844e484152c8e5fcc603"
     },
     {
-      "path": "dist/server/_next/static/app-page-cache-render-CrpCpX8u.js",
-      "sha256": "8118870cec6c4766239c89e376b9e142912460e62fc116af5b967164e3838f4c"
+      "path": "dist/server/_next/static/app-page-cache-render-CzhgBNdU.js",
+      "sha256": "99bda04b8672681b2f6b718c4b4aac018d8f628debe6e357c41fd027cc9f4361"
     },
     {
-      "path": "dist/server/_next/static/app-page-execution-oooUUcAM.js",
-      "sha256": "921299a007a33fee1fa4dc18e2a6582391ad3bf9cca9619df19066d17e9ff67e"
+      "path": "dist/server/_next/static/app-page-execution-oMZc9xsW.js",
+      "sha256": "1ebc83629953b3a62b501e4f8c2e6b62957c94a1731c3ac428686b03dd0b29d1"
     },
     {
-      "path": "dist/server/_next/static/app-page-tracing-Rjhaclu2.js",
-      "sha256": "6a68b28f38bf03d7da522ee7e07f84279d8fa80a2c27934a4a8037ef2207111f"
+      "path": "dist/server/_next/static/app-page-tracing-wE6JAu5X.js",
+      "sha256": "3ec345f4ec11e95c61ee9f37d9b6dd8a2b8c39eda807955acf524f98cbe5bd76"
     },
     {
       "path": "dist/server/_next/static/app-prerender-endpoints-CD2_m-FG.js",
@@ -456,20 +484,20 @@
       "sha256": "839d619dce7bbcae3c86ea5c4078224e8c3205fa1794e42d282b7d5b3f790b91"
     },
     {
-      "path": "dist/server/_next/static/app-route-handler-dispatch-Dk96wvRo.js",
-      "sha256": "e5298005ef1060c718c246975a50de8bdf1c7340403a0dfb5984773f9a40c69a"
+      "path": "dist/server/_next/static/app-route-handler-dispatch-C1SSXb6_.js",
+      "sha256": "3757feec7a2c3a0f78eb1279e61e2748babfaf743f738f1a517283289f4033c9"
     },
     {
-      "path": "dist/server/_next/static/app-rsc-response-stage-myZ0GB9f.js",
-      "sha256": "f6839c44d86b1e60a416203a50613c2d82bfddb7cce72582953d3aa630d5679b"
+      "path": "dist/server/_next/static/app-rsc-response-stage-D8ZMJOZs.js",
+      "sha256": "f157b7ff58fb981aaf9e3ec7e7e16e6c11d0ffda426f2a8481d03aab4a6b2758"
     },
     {
       "path": "dist/server/_next/static/app-static-generation-BX8cz43B.js",
       "sha256": "71451721ae4a42108e9ed32567cd9d9861beb4952215b0fd57ffc373cd3edc01"
     },
     {
-      "path": "dist/server/_next/static/artifact-compatibility-DMBDAQDh.js",
-      "sha256": "bf0f87c8b250241c88e825ecb206de427c159e7cc4a607a83c3b4472467308fb"
+      "path": "dist/server/_next/static/artifact-compatibility-BNoZ_6yd.js",
+      "sha256": "b4a7901bedb2de9c1ba32df8dbbe108c062da6414b65d4578d7d81f4ad33b5ff"
     },
     {
       "path": "dist/server/_next/static/asset-prefix-DG5zdfn4.js",
@@ -512,8 +540,8 @@
       "sha256": "f772ccb230a8d3f5970a69a8bc088e0b8053843f50f2825f281709d0660ca8b1"
     },
     {
-      "path": "dist/server/_next/static/css/BEFSyNxR.css",
-      "sha256": "0e1fbc8f0c9d5545113e5d4e06cb27d3c8690a97d54d138ef9c67b6a272ff689"
+      "path": "dist/server/_next/static/css/DWrn0bdV.css",
+      "sha256": "09fc1b0a8795ce81c18ce4eb5c935b372810d4729c07577918090af739a998a6"
     },
     {
       "path": "dist/server/_next/static/fetch-cache-BUdD_6Dq.js",
@@ -544,8 +572,8 @@
       "sha256": "2cb33ba070c0f16f2eb03bc5e83476a8f87e14b6bd7cfb8f477f86f191c925b1"
     },
     {
-      "path": "dist/server/_next/static/http-BhCYM5Bb.js",
-      "sha256": "cee4e147e58bf9ed2953dc413834d6bec236698f9f2a13eb9a9cf9f6a8492e4c"
+      "path": "dist/server/_next/static/http-U7NiznD9.js",
+      "sha256": "4be5c7d37961af6b25b06ebc4ce97c9c5c66fb7fecbf0a4e1df095baa8a450e6"
     },
     {
       "path": "dist/server/_next/static/http-error-responses-B2gV-Vqb.js",
@@ -560,8 +588,8 @@
       "sha256": "945f4750ad905436e24559ee54c36f833d2167d0a01bed2bce101719fa7f55e2"
     },
     {
-      "path": "dist/server/_next/static/isr-cache-DAV1nHDk.js",
-      "sha256": "578778e0f1808d33e988639e087ea6f0d975b072b9fa74de9c168dea19b2c350"
+      "path": "dist/server/_next/static/isr-cache-BMvabRJk.js",
+      "sha256": "d0cbc25c62dfb4198f5baf61b0e2b681996a52e19098f0a2291aafe7c4c46cc8"
     },
     {
       "path": "dist/server/_next/static/isr-decision-BRUsE8vn.js",
@@ -616,16 +644,16 @@
       "sha256": "f817ea13a7599aed77fd2aca1f4bfcae5ce2b9267bbcd8cc2e4847c7f03155e3"
     },
     {
-      "path": "dist/server/_next/static/page-DEMYgdvU.js",
-      "sha256": "a75ed7dc738556dc91f91ed9c2fcf3455898386386d1f1d99b2109fc72521716"
+      "path": "dist/server/_next/static/page-DuHF8oJP.js",
+      "sha256": "2a793ae4056a5c9876bbda565c06e3b65d1f567095a383b624e92b8c1f798cbc"
     },
     {
-      "path": "dist/server/_next/static/prerender-work-unit-setup-D4sT60DA.js",
-      "sha256": "cd16d5ad72120254af7c2371d70a82521782f5263046692ee1572b3a6ad6b874"
+      "path": "dist/server/_next/static/prerender-work-unit-setup-_vRvP7pG.js",
+      "sha256": "bdca2c5b124fd22523ae258cef1dd4ed53558d4de1f89288ae4d11d4c0b13a65"
     },
     {
-      "path": "dist/server/_next/static/project-media-C02rknt0.js",
-      "sha256": "2dfa344c3531367ac3e6d5912fad4925528b319fd215a8fee3e88064e5302e58"
+      "path": "dist/server/_next/static/project-media-e_u9G-kX.js",
+      "sha256": "6b220f767b8f71e1ee6d122ab214700b6f01649689e0529eeb1773769462bb24"
     },
     {
       "path": "dist/server/_next/static/request-context-BThF-RdR.js",
@@ -648,48 +676,48 @@
       "sha256": "6ad62cbbcb212c7fd754ac5f39f322f29a7b53f3514838a9b1f718adb7b20d92"
     },
     {
-      "path": "dist/server/_next/static/route-B5Dc-urP.js",
-      "sha256": "70528c6ed6ce99017943a3b570b25cd51b4fff0cdbfb8bca2851a1fb73455ade"
+      "path": "dist/server/_next/static/route-BZpKH0XH.js",
+      "sha256": "136b8b34154b0df5930bbc88bdce6c791665e0b064f7d60ac24df6fcc32cef6c"
     },
     {
-      "path": "dist/server/_next/static/route-BCjTfYLf.js",
-      "sha256": "f95cf2ab729adc4f810f602c681b168426007d8f50ceff77b54752e5f5f3e605"
+      "path": "dist/server/_next/static/route-ByOdHpUI.js",
+      "sha256": "476ff4e7d1c9196d8e71309ecd985556992124e4190b5547dc38d60c3dfb5485"
     },
     {
-      "path": "dist/server/_next/static/route-BEXM2M1g.js",
-      "sha256": "283ac743cc7d2d0597c078a4f572b09d0ae44d420b18913cc24a4017d58e2a99"
+      "path": "dist/server/_next/static/route-CQdSYavp.js",
+      "sha256": "74e2e2ff82865f9b62361618aa703e0d567db05d559201255dd9c173c73cf032"
     },
     {
-      "path": "dist/server/_next/static/route-BdEay_L0.js",
-      "sha256": "ed7f99a704741034253042f45434cf97e9f71049757f9e26716dcd351ef1e46d"
+      "path": "dist/server/_next/static/route-CYu34Gb5.js",
+      "sha256": "92e2487894c3f52888817a24bbcf1a3f5f9ed61111dde5a34e901c4f7276ea0e"
+    },
+    {
+      "path": "dist/server/_next/static/route-DlbGyXl7.js",
+      "sha256": "23f8be27dbb76ea7591bf4f0292e715270e7d161a5de225f6b4feff87a727e86"
     },
     {
       "path": "dist/server/_next/static/route-Dq6i1qp5.js",
       "sha256": "7d75c9d6c703600418f45f994de261554476ce2afe7056de284dfb6c9cd727bb"
     },
     {
-      "path": "dist/server/_next/static/route-Hnt74HUh.js",
-      "sha256": "2ee5984d5a201e85203f262c784d8fdb07fbd59bebea2e8265c95f3df8996f92"
+      "path": "dist/server/_next/static/rsc-completion-metadata-BpXgFqGG.js",
+      "sha256": "b883f8438df59ef0a85bedeb35fbefc5f627995ec6637fb8c5fbd8acdc0d01b4"
     },
     {
-      "path": "dist/server/_next/static/rsc-completion-metadata-C_mVDye5.js",
-      "sha256": "3c5b6ef7aca2082201dc04d426383a887ddf2a42b42902360bfa0ea918badc30"
+      "path": "dist/server/_next/static/seo-BOevd2gJ.js",
+      "sha256": "f15e48544a3c3cd2a1be9cab0c36c7f9f74a881f736d28be4ba8c33e5a9c6ba8"
     },
     {
-      "path": "dist/server/_next/static/seo-C8Eloh1Y.js",
-      "sha256": "8eca757dbde567410133ac11ce195008484a160ff7cee021c102866ea9c1331b"
+      "path": "dist/server/_next/static/service-D8fBmdFc.js",
+      "sha256": "e99b13f20d4f72d117b6c67ab6c8b31406decf53be40117a33bc27fbd5079aa8"
     },
     {
-      "path": "dist/server/_next/static/service-CU_xCyus.js",
-      "sha256": "5d37cd53b858e0a77a46398592326320f1b2c5ad9fe47e0ec4e05d0400260274"
+      "path": "dist/server/_next/static/sites-runtime-Dto7-rFH.js",
+      "sha256": "e7838bc16ed80ffd566d673d4f2fd54329129697c7d653a253366a2ac278aa3b"
     },
     {
-      "path": "dist/server/_next/static/sites-runtime-CCe5mSWV.js",
-      "sha256": "c2b66c5364c22b9809f5858a9ab39c1190cdd74fd290e1df617cec84717cf82b"
-    },
-    {
-      "path": "dist/server/_next/static/text-stream-Do71Qj4y.js",
-      "sha256": "29718421179813da52d7007bffba1ceadab90143aca0dd79ecdd3cab52e77eab"
+      "path": "dist/server/_next/static/text-stream-DNZ2NFlT.js",
+      "sha256": "7983432119875bb4de1256537ce8ff18d67de6f6c2229ac97650037d3f4a265e"
     },
     {
       "path": "dist/server/_next/static/unified-request-context-j9pueOfY.js",
@@ -709,11 +737,11 @@
     },
     {
       "path": "dist/server/index.js",
-      "sha256": "28a83d7ee2ce1156a040516bfb38fc2c11954de269a7e56af468518c30f59a99"
+      "sha256": "26cac02137d41802773f15ca047d8e3f4c2d8e63f938218d4591ddb5b77d7c04"
     },
     {
       "path": "dist/server/ssr/__vite_rsc_assets_manifest.js",
-      "sha256": "ae0ac01b1f2ebbdbee3fc43425ebced52a3f3ffaf915791adc19cbf5be8b9d73"
+      "sha256": "83be8c5934c00e180e137e8af7f90ad45a16e9bdeeb2cd4240ea7b4e3d39704b"
     },
     {
       "path": "dist/server/ssr/_next/static/app-prefetch-fetch-queue-CopZIb6O.js",
@@ -736,8 +764,8 @@
       "sha256": "acbe99eeb1be1266be50565a83ab8d9901cd0ba91ca7357c14feded51147d315"
     },
     {
-      "path": "dist/server/ssr/_next/static/portal-DRFOWlav.js",
-      "sha256": "94e077cb7da06e6e92b4d62fe919888cc2ab98f635b8833c36b16c0b7c4a5024"
+      "path": "dist/server/ssr/_next/static/portal-BqCIHd_e.js",
+      "sha256": "a95dd4677768a86092d09bf4b8e6b96a9c1d20db5196ec207d84490902cc532b"
     },
     {
       "path": "dist/server/ssr/_next/static/react-1cso1KEy.js",
@@ -753,15 +781,15 @@
     },
     {
       "path": "dist/server/ssr/index.js",
-      "sha256": "0dde8210870fbb53ea21b83ad647a5cae57e9a12b0befacc6538cf925a389729"
+      "sha256": "8168086989d9fc7820b4947b86748a8f2f2fac836c0e9c40f176eb8953b01436"
     },
     {
       "path": "dist/server/ssr/vinext-client-assets.js",
-      "sha256": "cc16008c9f93ed496c67ef91d99e5f49e18a47b00ffd0a8e1935edda45983278"
+      "sha256": "8d9e6c24e14901ae28dd6cd53408095d7063d7c9b845b89ad0e407ab6d90ca1d"
     },
     {
       "path": "dist/server/vinext-client-assets.js",
-      "sha256": "cc16008c9f93ed496c67ef91d99e5f49e18a47b00ffd0a8e1935edda45983278"
+      "sha256": "8d9e6c24e14901ae28dd6cd53408095d7063d7c9b845b89ad0e407ab6d90ca1d"
     },
     {
       "path": "dist/server/vinext-externals.json",
@@ -769,7 +797,7 @@
     },
     {
       "path": "dist/server/vinext-server.json",
-      "sha256": "5d3217031812f11b2925e9c81bad00a09fc3213ee1a2ce47bab3545b607a1ca3"
+      "sha256": "2d3dd7cb4c0cb48c7f0a5cad6f419d6fe913a9f1b0d47f7ee4d1f7e0b8ed5f88"
     },
     {
       "path": "dist/server/wrangler.json",
@@ -800,16 +828,16 @@
             "_next/static/middleware-response-headers-Drly5KMQ.js",
             "_next/static/cache-headers-BIgvnIjp.js",
             "_next/static/client-build-files-8quKCVIN.js",
-            "_next/static/text-stream-Do71Qj4y.js",
-            "_next/static/artifact-compatibility-DMBDAQDh.js",
-            "_next/static/rsc-completion-metadata-C_mVDye5.js",
+            "_next/static/text-stream-DNZ2NFlT.js",
+            "_next/static/artifact-compatibility-BNoZ_6yd.js",
+            "_next/static/rsc-completion-metadata-BpXgFqGG.js",
             "_next/static/isolate-shared-promise-CGHEva37.js",
-            "_next/static/prerender-work-unit-setup-D4sT60DA.js",
+            "_next/static/prerender-work-unit-setup-_vRvP7pG.js",
             "_next/static/worker-prerender-discovery-DLql9EfP.js",
             "_next/static/navigation-context-state-eqeXZne_.js",
             "_next/static/framework~index~page~layout~app-rsc-response-stage~app-route-handler-dispatch~app-page-cach~le6jrlrm-CcOTYhCj.js",
             "_next/static/framework~index-D0tIdu_j.js",
-            "_next/static/app-page-execution-oooUUcAM.js",
+            "_next/static/app-page-execution-oMZc9xsW.js",
             "_next/static/navigation-errors-Ce3IkhEE.js",
             "_next/static/navigation.react-server-DKujESoy.js",
             "_next/static/cache-handler-Dc39X6I9.js",
@@ -817,14 +845,14 @@
             "_next/static/framework~index~page~layout~app-route-handler-dispatch~app-page-cache~app-page-cache-render-CgwH7d5v.js",
             "_next/static/root-params-LKNbadxv.js",
             "_next/static/response-stage-policy-DGeWxlCK.js",
-            "_next/static/app-page-tracing-Rjhaclu2.js",
+            "_next/static/app-page-tracing-wE6JAu5X.js",
             "_next/static/implicit-tags-Bartch8r.js",
-            "_next/static/app-elements-CSGH9U3J.js",
-            "_next/static/app-page-cache-finalizer-CWA6eHVK.js",
-            "_next/static/isr-cache-DAV1nHDk.js",
+            "_next/static/app-elements-BQ_s9YQv.js",
+            "_next/static/app-page-cache-finalizer-DEQg3BsA.js",
+            "_next/static/isr-cache-BMvabRJk.js",
             "_next/static/app-prerender-static-params-D9q3Iser.js",
-            "_next/static/sites-runtime-CCe5mSWV.js",
-            "_next/static/service-CU_xCyus.js",
+            "_next/static/sites-runtime-Dto7-rFH.js",
+            "_next/static/service-D8fBmdFc.js",
             "cloudflare:workers",
             "node:async_hooks",
             "virtual:vinext-cacheability-manifest",
@@ -837,19 +865,19 @@
             "_next/static/app-prerender-endpoints-CD2_m-FG.js",
             "_next/static/config-headers-B9T79R78.js",
             "_next/static/fetch-cache-BUdD_6Dq.js",
-            "_next/static/app-rsc-response-stage-myZ0GB9f.js",
+            "_next/static/app-rsc-response-stage-D8ZMJOZs.js",
             "_next/static/app-static-generation-BX8cz43B.js",
-            "_next/static/app-page-cache-qBLGjiFG.js",
-            "_next/static/app-page-cache-render-CrpCpX8u.js",
-            "_next/static/app-route-handler-dispatch-Dk96wvRo.js",
-            "_next/static/route-Hnt74HUh.js",
+            "_next/static/app-page-cache-CvB2G0gq.js",
+            "_next/static/app-page-cache-render-CzhgBNdU.js",
+            "_next/static/app-route-handler-dispatch-C1SSXb6_.js",
+            "_next/static/route-DlbGyXl7.js",
             "index.js",
-            "_next/static/route-BEXM2M1g.js",
-            "_next/static/route-BCjTfYLf.js",
-            "_next/static/route-BdEay_L0.js",
+            "_next/static/route-BZpKH0XH.js",
+            "_next/static/route-ByOdHpUI.js",
+            "_next/static/route-CYu34Gb5.js",
             "_next/static/route-Dq6i1qp5.js",
-            "_next/static/route-B5Dc-urP.js",
-            "_next/static/page-DEMYgdvU.js",
+            "_next/static/route-CQdSYavp.js",
+            "_next/static/page-DuHF8oJP.js",
             "_next/static/cacheability-request-BAMb6JV4.js",
             "_next/static/worker-image-optimization-ByGMcbVE.js"
           ],
@@ -1257,17 +1285,22 @@
             {
               "id": "app/admin-controls.css",
               "renderedLength": 0,
-              "sourceSha256": "c2d6ccde9c58931ca005e297a41ad829e9670c4be4ac72e7ca91cf86308ae36f"
+              "sourceSha256": "09701b24f30be5540a8777fba3b3f89c3993a89175a46558c6252dea775b0c81"
             },
             {
               "id": "app/layout.tsx",
               "renderedLength": 1036,
-              "sourceSha256": "bea9b90bb7997f31a4f450c2e54e5ed8a87964ff9d4daf0d059fd0b850ffe253"
+              "sourceSha256": "5f19244e4906a416f62dbe4fd05d18272ca85d4c675fb4743a78dc69293b1e3c"
+            },
+            {
+              "id": "app/navigation-correction.css",
+              "renderedLength": 0,
+              "sourceSha256": "97b91d8f489d06ea5b14c5a18738eb1766b9d444568cab6d67d04dadca4ab9f9"
             },
             {
               "id": "app/participant-ui.css",
               "renderedLength": 0,
-              "sourceSha256": "d786019f168070a096502bf5cb7e0bba659a32c507595801936cf5c23307fbe8"
+              "sourceSha256": "691cacc777eb3d8db1a0db883be7a35a4a95b4dc49a6bcb506e3eac144557cbe"
             },
             {
               "id": "app/public-home.css",
@@ -1277,7 +1310,7 @@
             {
               "id": "app/style.css",
               "renderedLength": 0,
-              "sourceSha256": "08fb58600b8388b16bc38c7f23e6d18c851a0ee9c947f47031d43854152edd24"
+              "sourceSha256": "7f0c4c7befd1309ab0b2ae3e4b88709f24850649864dbe6eff7097d4ac720452"
             },
             {
               "id": "lib/connector-context.ts",
@@ -1301,7 +1334,7 @@
             },
             {
               "id": "\u0000virtual:vinext-rsc-entry",
-              "renderedLength": 32812,
+              "renderedLength": 33019,
               "sourceSha256": null
             },
             {
@@ -1310,7 +1343,7 @@
               "sourceSha256": null
             },
             {
-              "id": "\u0000virtual:vite-rsc/css?type=rsc&id=%2Fhome%2Fparam302%2FDev%2FDDEHack-portal%2F.worktrees%2Fparticipant-export%2Fapp%2Flayout.tsx&lang.js",
+              "id": "\u0000virtual:vite-rsc/css?type=rsc&id=%2Fhome%2Fparam302%2FDev%2FDDEHack-portal%2F.worktrees%2Fvisual-integration%2Fapp%2Flayout.tsx&lang.js",
               "renderedLength": 826,
               "sourceSha256": null
             },
@@ -1322,12 +1355,12 @@
           ]
         },
         {
-          "file": "_next/static/app-elements-CSGH9U3J.js",
+          "file": "_next/static/app-elements-BQ_s9YQv.js",
           "facade": null,
           "imports": [
             "_next/static/rolldown-runtime-XKyaHtl9.js",
             "_next/static/fetch-cache-BUdD_6Dq.js",
-            "_next/static/artifact-compatibility-DMBDAQDh.js",
+            "_next/static/artifact-compatibility-BNoZ_6yd.js",
             "_next/static/isolate-shared-promise-CGHEva37.js",
             "_next/static/framework~index~page~layout~app-rsc-response-stage~app-route-handler-dispatch~app-page-cach~le6jrlrm-CcOTYhCj.js",
             "_next/static/framework~index~page~layout~app-route-handler-dispatch~app-page-cache~app-page-cache-render-CgwH7d5v.js"
@@ -1357,48 +1390,18 @@
           ]
         },
         {
-          "file": "_next/static/app-page-cache-finalizer-CWA6eHVK.js",
-          "facade": null,
-          "imports": [
-            "_next/static/headers-BUAhKXqP.js",
-            "_next/static/cdn-cache-CC1cBNp7.js",
-            "_next/static/middleware-response-headers-Drly5KMQ.js",
-            "_next/static/cache-headers-BIgvnIjp.js",
-            "_next/static/text-stream-Do71Qj4y.js",
-            "_next/static/artifact-compatibility-DMBDAQDh.js",
-            "_next/static/app-page-execution-oooUUcAM.js",
-            "_next/static/cache-handler-Dc39X6I9.js",
-            "_next/static/isr-cache-DAV1nHDk.js"
-          ],
-          "dynamicImports": [
-            "_next/static/client-trace-metadata-DUR2PiYt.js"
-          ],
-          "modules": [
-            {
-              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/vinext/dist/server/app-page-cache-finalizer.js",
-              "renderedLength": 11843,
-              "sourceSha256": "cc2006d748558d16825ee99305234f06470afebb34bd4e5cb759b2d5f81ba115"
-            },
-            {
-              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/vinext/dist/server/app-page-rsc-render-status.js",
-              "renderedLength": 1512,
-              "sourceSha256": "f99cbea8959d9d3c47c0f29a91bae7cb5ca9de2a67addd55f7c0dbcfa5949e63"
-            }
-          ]
-        },
-        {
-          "file": "_next/static/app-page-cache-qBLGjiFG.js",
+          "file": "_next/static/app-page-cache-CvB2G0gq.js",
           "facade": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/vinext/dist/server/app-page-cache.js",
           "imports": [
             "_next/static/headers-BUAhKXqP.js",
             "_next/static/middleware-response-headers-Drly5KMQ.js",
             "_next/static/cache-headers-BIgvnIjp.js",
-            "_next/static/text-stream-Do71Qj4y.js",
-            "_next/static/artifact-compatibility-DMBDAQDh.js",
-            "_next/static/app-page-execution-oooUUcAM.js",
+            "_next/static/text-stream-DNZ2NFlT.js",
+            "_next/static/artifact-compatibility-BNoZ_6yd.js",
+            "_next/static/app-page-execution-oMZc9xsW.js",
             "_next/static/cache-handler-Dc39X6I9.js",
-            "_next/static/app-page-cache-finalizer-CWA6eHVK.js",
-            "_next/static/isr-cache-DAV1nHDk.js",
+            "_next/static/app-page-cache-finalizer-DEQg3BsA.js",
+            "_next/static/isr-cache-BMvabRJk.js",
             "_next/static/isr-decision-BRUsE8vn.js"
           ],
           "dynamicImports": [],
@@ -1431,14 +1434,44 @@
           ]
         },
         {
-          "file": "_next/static/app-page-cache-render-CrpCpX8u.js",
+          "file": "_next/static/app-page-cache-finalizer-DEQg3BsA.js",
+          "facade": null,
+          "imports": [
+            "_next/static/headers-BUAhKXqP.js",
+            "_next/static/cdn-cache-CC1cBNp7.js",
+            "_next/static/middleware-response-headers-Drly5KMQ.js",
+            "_next/static/cache-headers-BIgvnIjp.js",
+            "_next/static/text-stream-DNZ2NFlT.js",
+            "_next/static/artifact-compatibility-BNoZ_6yd.js",
+            "_next/static/app-page-execution-oMZc9xsW.js",
+            "_next/static/cache-handler-Dc39X6I9.js",
+            "_next/static/isr-cache-BMvabRJk.js"
+          ],
+          "dynamicImports": [
+            "_next/static/client-trace-metadata-DUR2PiYt.js"
+          ],
+          "modules": [
+            {
+              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/vinext/dist/server/app-page-cache-finalizer.js",
+              "renderedLength": 11843,
+              "sourceSha256": "cc2006d748558d16825ee99305234f06470afebb34bd4e5cb759b2d5f81ba115"
+            },
+            {
+              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/vinext/dist/server/app-page-rsc-render-status.js",
+              "renderedLength": 1512,
+              "sourceSha256": "f99cbea8959d9d3c47c0f29a91bae7cb5ca9de2a67addd55f7c0dbcfa5949e63"
+            }
+          ]
+        },
+        {
+          "file": "_next/static/app-page-cache-render-CzhgBNdU.js",
           "facade": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/vinext/dist/server/app-page-cache-render.js",
           "imports": [
             "_next/static/fetch-cache-BUdD_6Dq.js",
-            "_next/static/text-stream-Do71Qj4y.js",
-            "_next/static/app-page-execution-oooUUcAM.js",
+            "_next/static/text-stream-DNZ2NFlT.js",
+            "_next/static/app-page-execution-oMZc9xsW.js",
             "_next/static/headers-BE_FSstC.js",
-            "_next/static/app-page-tracing-Rjhaclu2.js",
+            "_next/static/app-page-tracing-wE6JAu5X.js",
             "_next/static/implicit-tags-Bartch8r.js"
           ],
           "dynamicImports": [],
@@ -1451,7 +1484,7 @@
           ]
         },
         {
-          "file": "_next/static/app-page-execution-oooUUcAM.js",
+          "file": "_next/static/app-page-execution-oMZc9xsW.js",
           "facade": null,
           "imports": [
             "_next/static/rolldown-runtime-XKyaHtl9.js",
@@ -1460,7 +1493,7 @@
             "_next/static/base-path-Cmiu3HvG.js",
             "_next/static/middleware-response-headers-Drly5KMQ.js",
             "_next/static/cache-headers-BIgvnIjp.js",
-            "_next/static/artifact-compatibility-DMBDAQDh.js",
+            "_next/static/artifact-compatibility-BNoZ_6yd.js",
             "_next/static/framework~index~page~layout~app-rsc-response-stage~app-route-handler-dispatch~app-page-cach~le6jrlrm-CcOTYhCj.js",
             "_next/static/navigation-errors-Ce3IkhEE.js",
             "_next/static/cache-handler-Dc39X6I9.js",
@@ -1511,12 +1544,12 @@
           ]
         },
         {
-          "file": "_next/static/app-page-tracing-Rjhaclu2.js",
+          "file": "_next/static/app-page-tracing-wE6JAu5X.js",
           "facade": null,
           "imports": [
             "_next/static/fetch-cache-BUdD_6Dq.js",
-            "_next/static/artifact-compatibility-DMBDAQDh.js",
-            "_next/static/app-page-execution-oooUUcAM.js"
+            "_next/static/artifact-compatibility-BNoZ_6yd.js",
+            "_next/static/app-page-execution-oMZc9xsW.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -1572,7 +1605,7 @@
           ]
         },
         {
-          "file": "_next/static/app-route-handler-dispatch-Dk96wvRo.js",
+          "file": "_next/static/app-route-handler-dispatch-C1SSXb6_.js",
           "facade": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/vinext/dist/server/app-route-handler-dispatch.js",
           "imports": [
             "_next/static/rolldown-runtime-XKyaHtl9.js",
@@ -1584,15 +1617,15 @@
             "_next/static/request-context-BThF-RdR.js",
             "_next/static/middleware-response-headers-Drly5KMQ.js",
             "_next/static/cache-headers-BIgvnIjp.js",
-            "_next/static/artifact-compatibility-DMBDAQDh.js",
-            "_next/static/rsc-completion-metadata-C_mVDye5.js",
+            "_next/static/artifact-compatibility-BNoZ_6yd.js",
+            "_next/static/rsc-completion-metadata-BpXgFqGG.js",
             "_next/static/navigation-context-state-eqeXZne_.js",
             "_next/static/framework~index~page~layout~app-rsc-response-stage~app-route-handler-dispatch~app-page-cach~le6jrlrm-CcOTYhCj.js",
             "_next/static/headers-BE_FSstC.js",
             "_next/static/root-params-LKNbadxv.js",
             "_next/static/implicit-tags-Bartch8r.js",
-            "_next/static/app-elements-CSGH9U3J.js",
-            "_next/static/isr-cache-DAV1nHDk.js",
+            "_next/static/app-elements-BQ_s9YQv.js",
+            "_next/static/isr-cache-BMvabRJk.js",
             "_next/static/isr-decision-BRUsE8vn.js",
             "_next/static/app-static-generation-BX8cz43B.js",
             "_next/static/cacheability-limits-BTpP4ZoO.js",
@@ -1720,7 +1753,7 @@
           ]
         },
         {
-          "file": "_next/static/app-rsc-response-stage-myZ0GB9f.js",
+          "file": "_next/static/app-rsc-response-stage-D8ZMJOZs.js",
           "facade": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/vinext/dist/server/app-rsc-response-stage.js",
           "imports": [
             "_next/static/fetch-cache-BUdD_6Dq.js",
@@ -1728,12 +1761,12 @@
             "_next/static/request-pipeline-DvRa2crm.js",
             "_next/static/unified-request-context-j9pueOfY.js",
             "_next/static/request-context-BThF-RdR.js",
-            "_next/static/artifact-compatibility-DMBDAQDh.js",
-            "_next/static/prerender-work-unit-setup-D4sT60DA.js",
+            "_next/static/artifact-compatibility-BNoZ_6yd.js",
+            "_next/static/prerender-work-unit-setup-_vRvP7pG.js",
             "_next/static/headers-BE_FSstC.js",
             "_next/static/root-params-LKNbadxv.js",
             "_next/static/response-stage-policy-DGeWxlCK.js",
-            "_next/static/app-page-tracing-Rjhaclu2.js",
+            "_next/static/app-page-tracing-wE6JAu5X.js",
             "_next/static/implicit-tags-Bartch8r.js"
           ],
           "dynamicImports": [],
@@ -1759,7 +1792,7 @@
           ]
         },
         {
-          "file": "_next/static/artifact-compatibility-DMBDAQDh.js",
+          "file": "_next/static/artifact-compatibility-BNoZ_6yd.js",
           "facade": null,
           "imports": [
             "_next/static/fetch-cache-BUdD_6Dq.js",
@@ -2250,11 +2283,11 @@
           ]
         },
         {
-          "file": "_next/static/http-BhCYM5Bb.js",
+          "file": "_next/static/http-U7NiznD9.js",
           "facade": null,
           "imports": [
-            "_next/static/sites-runtime-CCe5mSWV.js",
-            "_next/static/service-CU_xCyus.js"
+            "_next/static/sites-runtime-Dto7-rFH.js",
+            "_next/static/service-D8fBmdFc.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -2270,8 +2303,8 @@
             },
             {
               "id": "lib/participant-filters.ts",
-              "renderedLength": 1561,
-              "sourceSha256": "7a7b6b3f66006accd793fc41b88dc99db201508fa378434f6b042c1c7dc8885a"
+              "renderedLength": 1583,
+              "sourceSha256": "a69133e693b52e6111b46e7bc6495d69371fcb8aa2ebbd7a3d981e45d1118914"
             }
           ]
         },
@@ -2324,13 +2357,13 @@
           ]
         },
         {
-          "file": "_next/static/isr-cache-DAV1nHDk.js",
+          "file": "_next/static/isr-cache-BMvabRJk.js",
           "facade": null,
           "imports": [
             "_next/static/fetch-cache-BUdD_6Dq.js",
             "_next/static/request-context-BThF-RdR.js",
             "_next/static/cdn-cache-CC1cBNp7.js",
-            "_next/static/artifact-compatibility-DMBDAQDh.js",
+            "_next/static/artifact-compatibility-BNoZ_6yd.js",
             "_next/static/isolate-shared-promise-CGHEva37.js",
             "_next/static/work-unit-async-storage-Ci9D6p_d.js",
             "node:path",
@@ -2474,7 +2507,7 @@
           ]
         },
         {
-          "file": "_next/static/page-DEMYgdvU.js",
+          "file": "_next/static/page-DuHF8oJP.js",
           "facade": "app/[[...path]]/page.tsx",
           "imports": [
             "_next/static/navigation-context-state-eqeXZne_.js",
@@ -2482,9 +2515,9 @@
             "_next/static/navigation.react-server-DKujESoy.js",
             "_next/static/headers-BE_FSstC.js",
             "_next/static/framework~index~page~layout~app-route-handler-dispatch~app-page-cache~app-page-cache-render-CgwH7d5v.js",
-            "_next/static/sites-runtime-CCe5mSWV.js",
-            "_next/static/service-CU_xCyus.js",
-            "_next/static/seo-C8Eloh1Y.js"
+            "_next/static/sites-runtime-Dto7-rFH.js",
+            "_next/static/service-D8fBmdFc.js",
+            "_next/static/seo-BOevd2gJ.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -2501,12 +2534,12 @@
             {
               "id": "app/portal.tsx",
               "renderedLength": 206,
-              "sourceSha256": "93b55aad0fedf88298517891da6e0ae03f6d391c184232c23f2ec134ceff5a5f"
+              "sourceSha256": "9e7d2e025a6bda18282933700bfcb3d86bd87d0f7fdf46f10fafd72036b7f50e"
             }
           ]
         },
         {
-          "file": "_next/static/prerender-work-unit-setup-D4sT60DA.js",
+          "file": "_next/static/prerender-work-unit-setup-_vRvP7pG.js",
           "facade": null,
           "imports": [
             "_next/static/fetch-cache-BUdD_6Dq.js",
@@ -2516,7 +2549,7 @@
             "_next/static/base-path-Cmiu3HvG.js",
             "_next/static/asset-prefix-DG5zdfn4.js",
             "_next/static/middleware-response-headers-Drly5KMQ.js",
-            "_next/static/artifact-compatibility-DMBDAQDh.js",
+            "_next/static/artifact-compatibility-BNoZ_6yd.js",
             "_next/static/isolate-shared-promise-CGHEva37.js",
             "_next/static/root-params-LKNbadxv.js",
             "_next/static/response-stage-policy-DGeWxlCK.js",
@@ -2577,10 +2610,10 @@
           ]
         },
         {
-          "file": "_next/static/project-media-C02rknt0.js",
+          "file": "_next/static/project-media-e_u9G-kX.js",
           "facade": null,
           "imports": [
-            "_next/static/sites-runtime-CCe5mSWV.js"
+            "_next/static/sites-runtime-Dto7-rFH.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -2704,11 +2737,42 @@
           ]
         },
         {
-          "file": "_next/static/route-B5Dc-urP.js",
+          "file": "_next/static/route-BZpKH0XH.js",
+          "facade": "app/api/portal/route.ts",
+          "imports": [
+            "_next/static/sites-runtime-Dto7-rFH.js",
+            "_next/static/http-U7NiznD9.js"
+          ],
+          "dynamicImports": [],
+          "modules": [
+            {
+              "id": "app/api/portal/route.ts",
+              "renderedLength": 328,
+              "sourceSha256": "6d94aaf18af990c8d3f83c1dee936fe75f180e348f5809ea16b990e15a828a64"
+            }
+          ]
+        },
+        {
+          "file": "_next/static/route-ByOdHpUI.js",
+          "facade": "app/robots.txt/route.ts",
+          "imports": [
+            "_next/static/seo-BOevd2gJ.js"
+          ],
+          "dynamicImports": [],
+          "modules": [
+            {
+              "id": "app/robots.txt/route.ts",
+              "renderedLength": 450,
+              "sourceSha256": "66a1d1b5516020cec353b7fca3eb16ec3d33ebfa2c06ede62e012c088c3ba113"
+            }
+          ]
+        },
+        {
+          "file": "_next/static/route-CQdSYavp.js",
           "facade": "app/api/project-image/[id]/[kind]/route.ts",
           "imports": [
-            "_next/static/sites-runtime-CCe5mSWV.js",
-            "_next/static/project-media-C02rknt0.js"
+            "_next/static/sites-runtime-Dto7-rFH.js",
+            "_next/static/project-media-e_u9G-kX.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -2725,43 +2789,12 @@
           ]
         },
         {
-          "file": "_next/static/route-BCjTfYLf.js",
-          "facade": "app/robots.txt/route.ts",
-          "imports": [
-            "_next/static/seo-C8Eloh1Y.js"
-          ],
-          "dynamicImports": [],
-          "modules": [
-            {
-              "id": "app/robots.txt/route.ts",
-              "renderedLength": 450,
-              "sourceSha256": "66a1d1b5516020cec353b7fca3eb16ec3d33ebfa2c06ede62e012c088c3ba113"
-            }
-          ]
-        },
-        {
-          "file": "_next/static/route-BEXM2M1g.js",
-          "facade": "app/api/portal/route.ts",
-          "imports": [
-            "_next/static/sites-runtime-CCe5mSWV.js",
-            "_next/static/http-BhCYM5Bb.js"
-          ],
-          "dynamicImports": [],
-          "modules": [
-            {
-              "id": "app/api/portal/route.ts",
-              "renderedLength": 328,
-              "sourceSha256": "6d94aaf18af990c8d3f83c1dee936fe75f180e348f5809ea16b990e15a828a64"
-            }
-          ]
-        },
-        {
-          "file": "_next/static/route-BdEay_L0.js",
+          "file": "_next/static/route-CYu34Gb5.js",
           "facade": "app/sitemap.xml/route.ts",
           "imports": [
-            "_next/static/sites-runtime-CCe5mSWV.js",
-            "_next/static/service-CU_xCyus.js",
-            "_next/static/seo-C8Eloh1Y.js"
+            "_next/static/sites-runtime-Dto7-rFH.js",
+            "_next/static/service-D8fBmdFc.js",
+            "_next/static/seo-BOevd2gJ.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -2769,6 +2802,22 @@
               "id": "app/sitemap.xml/route.ts",
               "renderedLength": 903,
               "sourceSha256": "f8b6fb68a54b98c974e20b9b3f645809306db3d5d83afe73e4e5e064441ce768"
+            }
+          ]
+        },
+        {
+          "file": "_next/static/route-DlbGyXl7.js",
+          "facade": "app/api/export/route.ts",
+          "imports": [
+            "_next/static/sites-runtime-Dto7-rFH.js",
+            "_next/static/http-U7NiznD9.js"
+          ],
+          "dynamicImports": [],
+          "modules": [
+            {
+              "id": "app/api/export/route.ts",
+              "renderedLength": 213,
+              "sourceSha256": "7670c62f73c6b151a0c54fa2af017087fef3ef21dbd12be983997363e8b09c33"
             }
           ]
         },
@@ -2786,29 +2835,13 @@
           ]
         },
         {
-          "file": "_next/static/route-Hnt74HUh.js",
-          "facade": "app/api/export/route.ts",
-          "imports": [
-            "_next/static/sites-runtime-CCe5mSWV.js",
-            "_next/static/http-BhCYM5Bb.js"
-          ],
-          "dynamicImports": [],
-          "modules": [
-            {
-              "id": "app/api/export/route.ts",
-              "renderedLength": 213,
-              "sourceSha256": "7670c62f73c6b151a0c54fa2af017087fef3ef21dbd12be983997363e8b09c33"
-            }
-          ]
-        },
-        {
-          "file": "_next/static/rsc-completion-metadata-C_mVDye5.js",
+          "file": "_next/static/rsc-completion-metadata-BpXgFqGG.js",
           "facade": null,
           "imports": [
             "_next/static/fetch-cache-BUdD_6Dq.js",
             "_next/static/headers-BUAhKXqP.js",
             "_next/static/unified-request-context-j9pueOfY.js",
-            "_next/static/artifact-compatibility-DMBDAQDh.js",
+            "_next/static/artifact-compatibility-BNoZ_6yd.js",
             "_next/static/headers-BE_FSstC.js"
           ],
           "dynamicImports": [],
@@ -2866,10 +2899,10 @@
           ]
         },
         {
-          "file": "_next/static/seo-C8Eloh1Y.js",
+          "file": "_next/static/seo-BOevd2gJ.js",
           "facade": null,
           "imports": [
-            "_next/static/sites-runtime-CCe5mSWV.js"
+            "_next/static/sites-runtime-Dto7-rFH.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -2881,11 +2914,11 @@
           ]
         },
         {
-          "file": "_next/static/service-CU_xCyus.js",
+          "file": "_next/static/service-D8fBmdFc.js",
           "facade": null,
           "imports": [
-            "_next/static/sites-runtime-CCe5mSWV.js",
-            "_next/static/project-media-C02rknt0.js"
+            "_next/static/sites-runtime-Dto7-rFH.js",
+            "_next/static/project-media-e_u9G-kX.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -2906,13 +2939,13 @@
             },
             {
               "id": "lib/engagement-control.ts",
-              "renderedLength": 1638,
-              "sourceSha256": "50192bd2c82d8008ca078fccfa99f361449e42d13efc61ee9a69b6ca7969d833"
+              "renderedLength": 1620,
+              "sourceSha256": "74543d4e5481f0d38c1cf19f6c094b3b3801a4659bb0915303c3c89e9e63fa57"
             },
             {
               "id": "lib/engagement-scoring.ts",
-              "renderedLength": 4535,
-              "sourceSha256": "b4ad40f859ed47f28c473c842bf20e211175ea40cafa8201f1ec33539ef3dcb5"
+              "renderedLength": 4517,
+              "sourceSha256": "287fbd090efaf1b93e2863d25c3cc388d346b588094d411bda38d07616d41de5"
             },
             {
               "id": "lib/evaluation.ts",
@@ -2926,8 +2959,8 @@
             },
             {
               "id": "lib/event-content.ts",
-              "renderedLength": 3430,
-              "sourceSha256": "6e63e79e1beef484fc3f382db383429c49d538390cd86b3f6964cfdbc5b006fd"
+              "renderedLength": 3428,
+              "sourceSha256": "813739bd51f8b3d7a2650d4ff7e633662be076620dc659414041268fd123ed4a"
             },
             {
               "id": "lib/experience-contract.ts",
@@ -2936,18 +2969,18 @@
             },
             {
               "id": "lib/experience.ts",
-              "renderedLength": 55575,
-              "sourceSha256": "0a392afcf5fa2c983720c118b738e3ae018b06cdd554e3d5edbb123c055ad423"
+              "renderedLength": 57208,
+              "sourceSha256": "326a82c3e4423950990abab0f5db39d28b5d98f05cb2ac6d7dfd8093c4faec9b"
             },
             {
               "id": "lib/operational-setup-contract.ts",
               "renderedLength": 388,
-              "sourceSha256": "e6d9b4edab61d8a60be4a2700847b357c2522bd87fd713cc1a34780c45cb59d7"
+              "sourceSha256": "e09da408d923317d6c8ce321e490bb93e2d5f518a14d205d385620f76ccd1843"
             },
             {
               "id": "lib/operational-setup.ts",
-              "renderedLength": 3383,
-              "sourceSha256": "274ced162f62cb907c3d5d38f82a36d6c4dc60a504ada09842c3109649212d61"
+              "renderedLength": 3365,
+              "sourceSha256": "70252e1ec44ee7e56a3424939b17938eaf2cc574e629df7ef3f47979d285f592"
             },
             {
               "id": "lib/participant-rules.ts",
@@ -2961,8 +2994,8 @@
             },
             {
               "id": "lib/policy-controls.ts",
-              "renderedLength": 6677,
-              "sourceSha256": "675183db7f547dd4e348d9346e49dd1064abbde1202f0ede028ed441a795a693"
+              "renderedLength": 6619,
+              "sourceSha256": "08a2470a8dd8691ed269077bd219671aaefd43fe05a2df1a36277626293feff3"
             },
             {
               "id": "lib/policy.ts",
@@ -2971,8 +3004,8 @@
             },
             {
               "id": "lib/portal-status.ts",
-              "renderedLength": 6863,
-              "sourceSha256": "ac6ec45ab4dd31b5c96e9cd577641a0df04a6054418c7368fe37ff160ec273ac"
+              "renderedLength": 6827,
+              "sourceSha256": "ee2b6c325e60ff4eb85aa91f1fe9a01832464e2b36e279ba284aa14b8c583ec6"
             },
             {
               "id": "lib/profile-contract.ts",
@@ -2981,13 +3014,13 @@
             },
             {
               "id": "lib/record-removal.ts",
-              "renderedLength": 7217,
-              "sourceSha256": "7574722c0a6ea3782c4803675b12f4eccfaf097adb74fb88bc36e1746b29d4f6"
+              "renderedLength": 7145,
+              "sourceSha256": "feec0aa8882606ca85f9abf6a33747a8de15498e4a0bbee78f505c6f5fc61477"
             },
             {
               "id": "lib/repository-evidence.ts",
-              "renderedLength": 3866,
-              "sourceSha256": "28c24e54495112d4c6d83e61b4168949810f25ec1343fdc7267421f31280be3d"
+              "renderedLength": 3896,
+              "sourceSha256": "0cc2aaa69b2fe8524509927e9dd382c12ead6c6aca92a5f8e761ed952ac53621"
             },
             {
               "id": "lib/roster-import.ts",
@@ -3001,13 +3034,13 @@
             },
             {
               "id": "lib/score-release.ts",
-              "renderedLength": 7683,
-              "sourceSha256": "92716382d92ae6b396daac38c5425a9f9298a8a4a0ff18ed16baa943af11667c"
+              "renderedLength": 7665,
+              "sourceSha256": "a41955d39bd0dec28fe8287ee6efab5c33cca3a8e0bec2f3f12a6a9eb137a7be"
             },
             {
               "id": "lib/service.ts",
-              "renderedLength": 56595,
-              "sourceSha256": "28774a672988dee5c001c5c62da09090e62d0d37bff8ac18c532f182096364d0"
+              "renderedLength": 56689,
+              "sourceSha256": "bbfe5e00b88a34199823abc19596607ee086bbd106c282531d587d7110b1fdb0"
             },
             {
               "id": "lib/team-access.ts",
@@ -3022,7 +3055,7 @@
           ]
         },
         {
-          "file": "_next/static/sites-runtime-CCe5mSWV.js",
+          "file": "_next/static/sites-runtime-Dto7-rFH.js",
           "facade": null,
           "imports": [
             "node:async_hooks"
@@ -3105,14 +3138,19 @@
               "sourceSha256": "9a51164d376c2f6a412a40294aa68650528a7a92b0275a1047edac9aa7f31c98"
             },
             {
+              "id": "lib/audit-contract.ts",
+              "renderedLength": 79,
+              "sourceSha256": "f0e1710acc69634fbcf2182d0b4803995d75c26e9530f91cdf5728b532dbb535"
+            },
+            {
               "id": "lib/identity.ts",
               "renderedLength": 1073,
               "sourceSha256": "f6e58a1d17d00df7e0b4fba8a439b5012fc34546cb5b6d5b3ed862d4b7cd3c97"
             },
             {
               "id": "lib/security.ts",
-              "renderedLength": 4143,
-              "sourceSha256": "d9a3f9bac60338f879081125faf5b9115593fc5b654d2d2a0bb580756afd531e"
+              "renderedLength": 4346,
+              "sourceSha256": "ce31b93504b0e9570591bd453edca4a19febdc12e755b16fd888fa4c8d949d8a"
             },
             {
               "id": "lib/sites-runtime.ts",
@@ -3122,16 +3160,16 @@
           ]
         },
         {
-          "file": "_next/static/text-stream-Do71Qj4y.js",
+          "file": "_next/static/text-stream-DNZ2NFlT.js",
           "facade": null,
           "imports": [
             "_next/static/fetch-cache-BUdD_6Dq.js",
             "_next/static/headers-BUAhKXqP.js",
             "_next/static/middleware-response-headers-Drly5KMQ.js",
-            "_next/static/artifact-compatibility-DMBDAQDh.js",
-            "_next/static/app-page-execution-oooUUcAM.js",
+            "_next/static/artifact-compatibility-BNoZ_6yd.js",
+            "_next/static/app-page-execution-oMZc9xsW.js",
             "_next/static/headers-BE_FSstC.js",
-            "_next/static/app-elements-CSGH9U3J.js"
+            "_next/static/app-elements-BQ_s9YQv.js"
           ],
           "dynamicImports": [],
           "modules": [
@@ -3260,7 +3298,7 @@
           ],
           "dynamicImports": [
             "_next/static/error-boundary-II6ZEgDJ.js",
-            "_next/static/portal-DRFOWlav.js",
+            "_next/static/portal-BqCIHd_e.js",
             "_next/static/app-prefetch-fetch-queue-CopZIb6O.js",
             "index.js",
             "_next/static/layout-segment-context-ByvUVady.js",
@@ -3814,7 +3852,7 @@
           ]
         },
         {
-          "file": "_next/static/portal-DRFOWlav.js",
+          "file": "_next/static/portal-BqCIHd_e.js",
           "facade": "app/portal.tsx",
           "imports": [
             "_next/static/react-1cso1KEy.js",
@@ -3898,24 +3936,34 @@
               "sourceSha256": "9a51164d376c2f6a412a40294aa68650528a7a92b0275a1047edac9aa7f31c98"
             },
             {
+              "id": "app/add-admins.tsx",
+              "renderedLength": 1813,
+              "sourceSha256": "910fdd48a69b14ca025206a91fb9d88deed1d6ecdc9322ad088edb1cb404fd4f"
+            },
+            {
               "id": "app/admin-import-controls.tsx",
-              "renderedLength": 11597,
-              "sourceSha256": "b1b46821a5ab4e8eeb781b3d0a5760b588ec4c68e3f104bf3367ef13e27270cd"
+              "renderedLength": 8568,
+              "sourceSha256": "2162f11f7df4dbf8892d1dfede0400ad5fa482ce4f5d4eb08ca27ec7c0ba3a06"
             },
             {
               "id": "app/admin-participant-actions.tsx",
-              "renderedLength": 7840,
-              "sourceSha256": "ccfc0716cd2a35414953ada0f0b76d0713cec7570c38dbfb3c4ec6c8b1bf8df9"
+              "renderedLength": 6110,
+              "sourceSha256": "8cf056cb07b45db5aad063163b6557adea8117b5f09b1cb798e384c95a8dcdb6"
             },
             {
               "id": "app/admin-project-actions.tsx",
-              "renderedLength": 6702,
-              "sourceSha256": "ebce96a2d713ec84a2ce4bc01f761b769d02e2d0957d35bbeef8e1a482dd6366"
+              "renderedLength": 4194,
+              "sourceSha256": "3aca392471dcff235cb6172fd8d2131fb5db07694724e25c8d019907d085e0a5"
+            },
+            {
+              "id": "app/centered-loader.tsx",
+              "renderedLength": 1861,
+              "sourceSha256": "0690042186bd1ad28e9d1b07e3e9cb8ccf3469823c7c135cc5b94a26a300add9"
             },
             {
               "id": "app/confirmation-dialog.tsx",
-              "renderedLength": 1793,
-              "sourceSha256": "c8a94de6b21df9f000b8f268fefc806cb7e53f30cd6d1bb6fa810832a458e72a"
+              "renderedLength": 1858,
+              "sourceSha256": "3e62760f10df1f680336e08168bfc38a856ee36938dcf1b85d925f8375bd8ad8"
             },
             {
               "id": "app/credit-instructions.tsx",
@@ -3929,8 +3977,8 @@
             },
             {
               "id": "app/dot-avatar.tsx",
-              "renderedLength": 831,
-              "sourceSha256": "91c1a0f8db4f467cbd334fa8968027c610c979a5a7209cfc81d8f4b56837d605"
+              "renderedLength": 1125,
+              "sourceSha256": "9e883bac577794fcaf6c2c279041c72091e355aa91f3b2fb1993312a343732c5"
             },
             {
               "id": "app/dots.tsx",
@@ -3938,29 +3986,34 @@
               "sourceSha256": "2827a3001ecf71bfa4c4f786de30c82d1c135e61ac3b3eebcc053d3977f50c3d"
             },
             {
+              "id": "app/expressive-heading.tsx",
+              "renderedLength": 2356,
+              "sourceSha256": "ce3436a4b15ea9eb6fd18ceefdefad72ecb5d63ae50913862fa4d86efadcd0da"
+            },
+            {
               "id": "app/home.tsx",
-              "renderedLength": 15596,
-              "sourceSha256": "859f6f2150446cf76ec77fe4f48635678fd93974d550734f94804f69d67a9581"
+              "renderedLength": 15201,
+              "sourceSha256": "ec1cd9e6595530fc0003d30cee822fa77a2527764e2e14048996d4b5c04e6f43"
             },
             {
               "id": "app/owner-operational-setup.tsx",
-              "renderedLength": 7635,
-              "sourceSha256": "7d9f5e474993f720384a2586e593ce900f1eb04f5c6e8ad717510232a028c641"
+              "renderedLength": 6692,
+              "sourceSha256": "565d6bd22e6ca792bd2faf800d661acd7a2b05ed7dc45ea9c533f779b81c8a4c"
             },
             {
               "id": "app/owner-submission-window.tsx",
-              "renderedLength": 9528,
-              "sourceSha256": "db70cddccb82093816373280ec7842034a8d16fef5f8489bec58d06235518b07"
+              "renderedLength": 8284,
+              "sourceSha256": "78e7e06c5fcb90c273bf0f5d8c7c7902b694dd0def069f84a5f369ee43be5418"
             },
             {
               "id": "app/portal.tsx",
-              "renderedLength": 149649,
-              "sourceSha256": "93b55aad0fedf88298517891da6e0ae03f6d391c184232c23f2ec134ceff5a5f"
+              "renderedLength": 135869,
+              "sourceSha256": "9e7d2e025a6bda18282933700bfcb3d86bd87d0f7fdf46f10fafd72036b7f50e"
             },
             {
               "id": "app/profile-flow.tsx",
-              "renderedLength": 12977,
-              "sourceSha256": "24afea247f2aa2d094cfc18de2db756b75fbc53f082726971e6bd5fa35225c2f"
+              "renderedLength": 17187,
+              "sourceSha256": "d97ac3dcc12ce17f3ce68edcec1bf7adf607fa468bfc10f0ef77c152bfbeff47"
             },
             {
               "id": "app/team-avatar.tsx",
@@ -3969,8 +4022,13 @@
             },
             {
               "id": "lib/action-confirmation.ts",
-              "renderedLength": 6567,
-              "sourceSha256": "a88246eb0c5c2796f2a9eaace49503da1e3d4932b0e585b3a2c8a1375a76f1fe"
+              "renderedLength": 6686,
+              "sourceSha256": "341971d5b09f94d3467f101e6d77f02a7b530a4d212362db18ddfbd3a3e68c8f"
+            },
+            {
+              "id": "lib/audit-contract.ts",
+              "renderedLength": 79,
+              "sourceSha256": "f0e1710acc69634fbcf2182d0b4803995d75c26e9530f91cdf5728b532dbb535"
             },
             {
               "id": "lib/avatar-contract.ts",
@@ -3989,7 +4047,7 @@
             },
             {
               "id": "lib/experience-contract.ts",
-              "renderedLength": 828,
+              "renderedLength": 745,
               "sourceSha256": "b11b7e01b143768b56c6ebbe2104594eea3e52503b61dcb707617dcf880eaeae"
             },
             {
@@ -3999,13 +4057,13 @@
             },
             {
               "id": "lib/operational-setup-contract.ts",
-              "renderedLength": 1305,
-              "sourceSha256": "e6d9b4edab61d8a60be4a2700847b357c2522bd87fd713cc1a34780c45cb59d7"
+              "renderedLength": 1314,
+              "sourceSha256": "e09da408d923317d6c8ce321e490bb93e2d5f518a14d205d385620f76ccd1843"
             },
             {
               "id": "lib/participant-filters.ts",
-              "renderedLength": 1849,
-              "sourceSha256": "7a7b6b3f66006accd793fc41b88dc99db201508fa378434f6b042c1c7dc8885a"
+              "renderedLength": 1919,
+              "sourceSha256": "a69133e693b52e6111b46e7bc6495d69371fcb8aa2ebbd7a3d981e45d1118914"
             },
             {
               "id": "lib/profile-contract.ts",
@@ -4082,7 +4140,7 @@
       "outputDirectory": "dist/client",
       "chunks": [
         {
-          "file": "_next/static/chunks/CqwCb0fk.js",
+          "file": "_next/static/chunks/ZfmX60mt.js",
           "facade": "\u0000virtual:vinext-app-browser-entry",
           "imports": [
             "_next/static/chunks/XKyaHtl9.js",
@@ -4091,7 +4149,7 @@
           ],
           "dynamicImports": [
             "_next/static/chunks/C--se8fB.js",
-            "_next/static/chunks/CW1ay5SJ.js",
+            "_next/static/chunks/BQJT1FzH.js",
             "_next/static/chunks/DFqxsIZv.js",
             "_next/static/chunks/CMRVmd7j.js"
           ],
@@ -4305,6 +4363,232 @@
               "id": "\u0000virtual:vite-rsc/client-references",
               "renderedLength": 2503,
               "sourceSha256": null
+            }
+          ]
+        },
+        {
+          "file": "_next/static/chunks/BQJT1FzH.js",
+          "facade": "app/portal.tsx",
+          "imports": [
+            "_next/static/chunks/XKyaHtl9.js",
+            "_next/static/chunks/CLvDmS2G.js"
+          ],
+          "dynamicImports": [],
+          "modules": [
+            {
+              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/classic/errors.js",
+              "renderedLength": 749,
+              "sourceSha256": "fd807f79ded4f88928ab8205de1922901a4d3a8c9b93d072e1ab8c0a44a95df5"
+            },
+            {
+              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/classic/iso.js",
+              "renderedLength": 935,
+              "sourceSha256": "3cc5e6b4da086b8ffc7ee3188c69e4d3c945b368092e78d2299b5321182752c5"
+            },
+            {
+              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/classic/parse.js",
+              "renderedLength": 785,
+              "sourceSha256": "14cbcc416ab9169abc2cde97af77da54ca769684eac1e03a3753c16ea4a7cd95"
+            },
+            {
+              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/classic/schemas.js",
+              "renderedLength": 16390,
+              "sourceSha256": "3f2d1639b6f1e81e549d31d85e390aaa840b5a2964256c49aac7a94c5e7e0942"
+            },
+            {
+              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/api.js",
+              "renderedLength": 7558,
+              "sourceSha256": "8722c715be582089faa0b96816db906a913697e8777ec247ed11bd2eed2e9fd7"
+            },
+            {
+              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/checks.js",
+              "renderedLength": 6523,
+              "sourceSha256": "6d5342cbfc770541ef5f010c7ac534529012036c6482af1c3e57a1afb78c1828"
+            },
+            {
+              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/core.js",
+              "renderedLength": 1727,
+              "sourceSha256": "a1f78ff62ae173c6a722b92b394075f3075c7f7d731bc443827aec4f30302d92"
+            },
+            {
+              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/doc.js",
+              "renderedLength": 855,
+              "sourceSha256": "e084bbcc536746a8942fd33b08afe4db345554b3a0383114f1dca95261c958d9"
+            },
+            {
+              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/errors.js",
+              "renderedLength": 1904,
+              "sourceSha256": "c920e5549c1abcb8fc95824678beabb43023407d6a92020a3ac4a223af0a7a4b"
+            },
+            {
+              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/parse.js",
+              "renderedLength": 3287,
+              "sourceSha256": "a58b9c7be78e29d71f969f01807fe5f9be1f68d222a0f60c25e32e24f3b6639c"
+            },
+            {
+              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/regexes.js",
+              "renderedLength": 3365,
+              "sourceSha256": "f2aee057ccd1e081bbec2d1bf9d3ae57e3df72a13e056ff1cd48829158983fad"
+            },
+            {
+              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/registries.js",
+              "renderedLength": 1211,
+              "sourceSha256": "cec90d369f7206f701fa3f540bc92855a8c9145d44e4d8642053645e73f70002"
+            },
+            {
+              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/schemas.js",
+              "renderedLength": 30547,
+              "sourceSha256": "5bbea188027bfd2b7e3b673c8d6bf2b76f4e95a3d6a0cad3ba21571bf8208920"
+            },
+            {
+              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/util.js",
+              "renderedLength": 8021,
+              "sourceSha256": "d99bf396f177afe547703eff48b9746c360bfc2a2708adfd4a43e73768107b6c"
+            },
+            {
+              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/versions.js",
+              "renderedLength": 113,
+              "sourceSha256": "9a51164d376c2f6a412a40294aa68650528a7a92b0275a1047edac9aa7f31c98"
+            },
+            {
+              "id": "app/add-admins.tsx",
+              "renderedLength": 1813,
+              "sourceSha256": "910fdd48a69b14ca025206a91fb9d88deed1d6ecdc9322ad088edb1cb404fd4f"
+            },
+            {
+              "id": "app/admin-import-controls.tsx",
+              "renderedLength": 8568,
+              "sourceSha256": "2162f11f7df4dbf8892d1dfede0400ad5fa482ce4f5d4eb08ca27ec7c0ba3a06"
+            },
+            {
+              "id": "app/admin-participant-actions.tsx",
+              "renderedLength": 6110,
+              "sourceSha256": "8cf056cb07b45db5aad063163b6557adea8117b5f09b1cb798e384c95a8dcdb6"
+            },
+            {
+              "id": "app/admin-project-actions.tsx",
+              "renderedLength": 4194,
+              "sourceSha256": "3aca392471dcff235cb6172fd8d2131fb5db07694724e25c8d019907d085e0a5"
+            },
+            {
+              "id": "app/centered-loader.tsx",
+              "renderedLength": 1861,
+              "sourceSha256": "0690042186bd1ad28e9d1b07e3e9cb8ccf3469823c7c135cc5b94a26a300add9"
+            },
+            {
+              "id": "app/confirmation-dialog.tsx",
+              "renderedLength": 1858,
+              "sourceSha256": "3e62760f10df1f680336e08168bfc38a856ee36938dcf1b85d925f8375bd8ad8"
+            },
+            {
+              "id": "app/credit-instructions.tsx",
+              "renderedLength": 1826,
+              "sourceSha256": "34566868ed0e5e6c635da294942b182c1569071f58d824fb57169a7fd8b01abd"
+            },
+            {
+              "id": "app/delhi-wordmark.tsx",
+              "renderedLength": 2710,
+              "sourceSha256": "51e78637ab79d279e6638b9857853bc98e4dc5808155fceeaa39130f5005c2a5"
+            },
+            {
+              "id": "app/dot-avatar.tsx",
+              "renderedLength": 1125,
+              "sourceSha256": "9e883bac577794fcaf6c2c279041c72091e355aa91f3b2fb1993312a343732c5"
+            },
+            {
+              "id": "app/dots.tsx",
+              "renderedLength": 5468,
+              "sourceSha256": "2827a3001ecf71bfa4c4f786de30c82d1c135e61ac3b3eebcc053d3977f50c3d"
+            },
+            {
+              "id": "app/expressive-heading.tsx",
+              "renderedLength": 2356,
+              "sourceSha256": "ce3436a4b15ea9eb6fd18ceefdefad72ecb5d63ae50913862fa4d86efadcd0da"
+            },
+            {
+              "id": "app/home.tsx",
+              "renderedLength": 15201,
+              "sourceSha256": "ec1cd9e6595530fc0003d30cee822fa77a2527764e2e14048996d4b5c04e6f43"
+            },
+            {
+              "id": "app/owner-operational-setup.tsx",
+              "renderedLength": 6692,
+              "sourceSha256": "565d6bd22e6ca792bd2faf800d661acd7a2b05ed7dc45ea9c533f779b81c8a4c"
+            },
+            {
+              "id": "app/owner-submission-window.tsx",
+              "renderedLength": 8284,
+              "sourceSha256": "78e7e06c5fcb90c273bf0f5d8c7c7902b694dd0def069f84a5f369ee43be5418"
+            },
+            {
+              "id": "app/portal.tsx",
+              "renderedLength": 135869,
+              "sourceSha256": "9e7d2e025a6bda18282933700bfcb3d86bd87d0f7fdf46f10fafd72036b7f50e"
+            },
+            {
+              "id": "app/profile-flow.tsx",
+              "renderedLength": 17187,
+              "sourceSha256": "d97ac3dcc12ce17f3ce68edcec1bf7adf607fa468bfc10f0ef77c152bfbeff47"
+            },
+            {
+              "id": "app/team-avatar.tsx",
+              "renderedLength": 820,
+              "sourceSha256": "8f4dd37f2d011410cae8d5ca76bb5180e97cc0fd21e48b7c4c2e48b70a35a353"
+            },
+            {
+              "id": "lib/action-confirmation.ts",
+              "renderedLength": 6686,
+              "sourceSha256": "341971d5b09f94d3467f101e6d77f02a7b530a4d212362db18ddfbd3a3e68c8f"
+            },
+            {
+              "id": "lib/audit-contract.ts",
+              "renderedLength": 79,
+              "sourceSha256": "f0e1710acc69634fbcf2182d0b4803995d75c26e9530f91cdf5728b532dbb535"
+            },
+            {
+              "id": "lib/avatar-contract.ts",
+              "renderedLength": 875,
+              "sourceSha256": "b4098fb566116b16e429695ef9afc56306c014e28e855ea60eeb5a5b108f63fd"
+            },
+            {
+              "id": "lib/delhi-motion.ts",
+              "renderedLength": 441,
+              "sourceSha256": "a03f099945c01b7d6356bf9e3ecdbeb9f36628baa1ed97199a26ee93aecf4c62"
+            },
+            {
+              "id": "lib/event-content-contract.ts",
+              "renderedLength": 3054,
+              "sourceSha256": "5788abd17d9d38fc888284fd5bc05ec884ffbfbbdf2db56f81445436fc73d8b9"
+            },
+            {
+              "id": "lib/experience-contract.ts",
+              "renderedLength": 745,
+              "sourceSha256": "b11b7e01b143768b56c6ebbe2104594eea3e52503b61dcb707617dcf880eaeae"
+            },
+            {
+              "id": "lib/instruction-markdown.ts",
+              "renderedLength": 1865,
+              "sourceSha256": "b8eb0be234a1c77d0dee23eb39d6e54cf30908c16e6cfa3497eec9a1adbf4260"
+            },
+            {
+              "id": "lib/operational-setup-contract.ts",
+              "renderedLength": 1314,
+              "sourceSha256": "e09da408d923317d6c8ce321e490bb93e2d5f518a14d205d385620f76ccd1843"
+            },
+            {
+              "id": "lib/participant-filters.ts",
+              "renderedLength": 1919,
+              "sourceSha256": "a69133e693b52e6111b46e7bc6495d69371fcb8aa2ebbd7a3d981e45d1118914"
+            },
+            {
+              "id": "lib/profile-contract.ts",
+              "renderedLength": 455,
+              "sourceSha256": "1c7c89063c7aa5899fa60c4643a9ab726f3cd85f65cf006158710ab60a1d23a8"
+            },
+            {
+              "id": "lib/time.ts",
+              "renderedLength": 192,
+              "sourceSha256": "7430b1662198dd73a9c3fc9cf9244efa10ddfbd1c727a0ed0ccbd23c7ad84caa"
             }
           ]
         },
@@ -4786,212 +5070,6 @@
               "id": "\u0000virtual:vinext-app-route-manifest",
               "renderedLength": 1584,
               "sourceSha256": null
-            }
-          ]
-        },
-        {
-          "file": "_next/static/chunks/CW1ay5SJ.js",
-          "facade": "app/portal.tsx",
-          "imports": [
-            "_next/static/chunks/XKyaHtl9.js",
-            "_next/static/chunks/CLvDmS2G.js"
-          ],
-          "dynamicImports": [],
-          "modules": [
-            {
-              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/classic/errors.js",
-              "renderedLength": 749,
-              "sourceSha256": "fd807f79ded4f88928ab8205de1922901a4d3a8c9b93d072e1ab8c0a44a95df5"
-            },
-            {
-              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/classic/iso.js",
-              "renderedLength": 935,
-              "sourceSha256": "3cc5e6b4da086b8ffc7ee3188c69e4d3c945b368092e78d2299b5321182752c5"
-            },
-            {
-              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/classic/parse.js",
-              "renderedLength": 785,
-              "sourceSha256": "14cbcc416ab9169abc2cde97af77da54ca769684eac1e03a3753c16ea4a7cd95"
-            },
-            {
-              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/classic/schemas.js",
-              "renderedLength": 16390,
-              "sourceSha256": "3f2d1639b6f1e81e549d31d85e390aaa840b5a2964256c49aac7a94c5e7e0942"
-            },
-            {
-              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/api.js",
-              "renderedLength": 7558,
-              "sourceSha256": "8722c715be582089faa0b96816db906a913697e8777ec247ed11bd2eed2e9fd7"
-            },
-            {
-              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/checks.js",
-              "renderedLength": 6523,
-              "sourceSha256": "6d5342cbfc770541ef5f010c7ac534529012036c6482af1c3e57a1afb78c1828"
-            },
-            {
-              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/core.js",
-              "renderedLength": 1727,
-              "sourceSha256": "a1f78ff62ae173c6a722b92b394075f3075c7f7d731bc443827aec4f30302d92"
-            },
-            {
-              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/doc.js",
-              "renderedLength": 855,
-              "sourceSha256": "e084bbcc536746a8942fd33b08afe4db345554b3a0383114f1dca95261c958d9"
-            },
-            {
-              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/errors.js",
-              "renderedLength": 1904,
-              "sourceSha256": "c920e5549c1abcb8fc95824678beabb43023407d6a92020a3ac4a223af0a7a4b"
-            },
-            {
-              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/parse.js",
-              "renderedLength": 3287,
-              "sourceSha256": "a58b9c7be78e29d71f969f01807fe5f9be1f68d222a0f60c25e32e24f3b6639c"
-            },
-            {
-              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/regexes.js",
-              "renderedLength": 3365,
-              "sourceSha256": "f2aee057ccd1e081bbec2d1bf9d3ae57e3df72a13e056ff1cd48829158983fad"
-            },
-            {
-              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/registries.js",
-              "renderedLength": 1211,
-              "sourceSha256": "cec90d369f7206f701fa3f540bc92855a8c9145d44e4d8642053645e73f70002"
-            },
-            {
-              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/schemas.js",
-              "renderedLength": 30547,
-              "sourceSha256": "5bbea188027bfd2b7e3b673c8d6bf2b76f4e95a3d6a0cad3ba21571bf8208920"
-            },
-            {
-              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/util.js",
-              "renderedLength": 8021,
-              "sourceSha256": "d99bf396f177afe547703eff48b9746c360bfc2a2708adfd4a43e73768107b6c"
-            },
-            {
-              "id": "/home/param302/Dev/DDEHack-portal/dddhack-portal/node_modules/zod/v4/core/versions.js",
-              "renderedLength": 113,
-              "sourceSha256": "9a51164d376c2f6a412a40294aa68650528a7a92b0275a1047edac9aa7f31c98"
-            },
-            {
-              "id": "app/admin-import-controls.tsx",
-              "renderedLength": 11597,
-              "sourceSha256": "b1b46821a5ab4e8eeb781b3d0a5760b588ec4c68e3f104bf3367ef13e27270cd"
-            },
-            {
-              "id": "app/admin-participant-actions.tsx",
-              "renderedLength": 7840,
-              "sourceSha256": "ccfc0716cd2a35414953ada0f0b76d0713cec7570c38dbfb3c4ec6c8b1bf8df9"
-            },
-            {
-              "id": "app/admin-project-actions.tsx",
-              "renderedLength": 6702,
-              "sourceSha256": "ebce96a2d713ec84a2ce4bc01f761b769d02e2d0957d35bbeef8e1a482dd6366"
-            },
-            {
-              "id": "app/confirmation-dialog.tsx",
-              "renderedLength": 1793,
-              "sourceSha256": "c8a94de6b21df9f000b8f268fefc806cb7e53f30cd6d1bb6fa810832a458e72a"
-            },
-            {
-              "id": "app/credit-instructions.tsx",
-              "renderedLength": 1826,
-              "sourceSha256": "34566868ed0e5e6c635da294942b182c1569071f58d824fb57169a7fd8b01abd"
-            },
-            {
-              "id": "app/delhi-wordmark.tsx",
-              "renderedLength": 2710,
-              "sourceSha256": "51e78637ab79d279e6638b9857853bc98e4dc5808155fceeaa39130f5005c2a5"
-            },
-            {
-              "id": "app/dot-avatar.tsx",
-              "renderedLength": 831,
-              "sourceSha256": "91c1a0f8db4f467cbd334fa8968027c610c979a5a7209cfc81d8f4b56837d605"
-            },
-            {
-              "id": "app/dots.tsx",
-              "renderedLength": 5468,
-              "sourceSha256": "2827a3001ecf71bfa4c4f786de30c82d1c135e61ac3b3eebcc053d3977f50c3d"
-            },
-            {
-              "id": "app/home.tsx",
-              "renderedLength": 15596,
-              "sourceSha256": "859f6f2150446cf76ec77fe4f48635678fd93974d550734f94804f69d67a9581"
-            },
-            {
-              "id": "app/owner-operational-setup.tsx",
-              "renderedLength": 7635,
-              "sourceSha256": "7d9f5e474993f720384a2586e593ce900f1eb04f5c6e8ad717510232a028c641"
-            },
-            {
-              "id": "app/owner-submission-window.tsx",
-              "renderedLength": 9528,
-              "sourceSha256": "db70cddccb82093816373280ec7842034a8d16fef5f8489bec58d06235518b07"
-            },
-            {
-              "id": "app/portal.tsx",
-              "renderedLength": 149649,
-              "sourceSha256": "93b55aad0fedf88298517891da6e0ae03f6d391c184232c23f2ec134ceff5a5f"
-            },
-            {
-              "id": "app/profile-flow.tsx",
-              "renderedLength": 12977,
-              "sourceSha256": "24afea247f2aa2d094cfc18de2db756b75fbc53f082726971e6bd5fa35225c2f"
-            },
-            {
-              "id": "app/team-avatar.tsx",
-              "renderedLength": 820,
-              "sourceSha256": "8f4dd37f2d011410cae8d5ca76bb5180e97cc0fd21e48b7c4c2e48b70a35a353"
-            },
-            {
-              "id": "lib/action-confirmation.ts",
-              "renderedLength": 6567,
-              "sourceSha256": "a88246eb0c5c2796f2a9eaace49503da1e3d4932b0e585b3a2c8a1375a76f1fe"
-            },
-            {
-              "id": "lib/avatar-contract.ts",
-              "renderedLength": 875,
-              "sourceSha256": "b4098fb566116b16e429695ef9afc56306c014e28e855ea60eeb5a5b108f63fd"
-            },
-            {
-              "id": "lib/delhi-motion.ts",
-              "renderedLength": 441,
-              "sourceSha256": "a03f099945c01b7d6356bf9e3ecdbeb9f36628baa1ed97199a26ee93aecf4c62"
-            },
-            {
-              "id": "lib/event-content-contract.ts",
-              "renderedLength": 3054,
-              "sourceSha256": "5788abd17d9d38fc888284fd5bc05ec884ffbfbbdf2db56f81445436fc73d8b9"
-            },
-            {
-              "id": "lib/experience-contract.ts",
-              "renderedLength": 828,
-              "sourceSha256": "b11b7e01b143768b56c6ebbe2104594eea3e52503b61dcb707617dcf880eaeae"
-            },
-            {
-              "id": "lib/instruction-markdown.ts",
-              "renderedLength": 1865,
-              "sourceSha256": "b8eb0be234a1c77d0dee23eb39d6e54cf30908c16e6cfa3497eec9a1adbf4260"
-            },
-            {
-              "id": "lib/operational-setup-contract.ts",
-              "renderedLength": 1305,
-              "sourceSha256": "e6d9b4edab61d8a60be4a2700847b357c2522bd87fd713cc1a34780c45cb59d7"
-            },
-            {
-              "id": "lib/participant-filters.ts",
-              "renderedLength": 1849,
-              "sourceSha256": "7a7b6b3f66006accd793fc41b88dc99db201508fa378434f6b042c1c7dc8885a"
-            },
-            {
-              "id": "lib/profile-contract.ts",
-              "renderedLength": 455,
-              "sourceSha256": "1c7c89063c7aa5899fa60c4643a9ab726f3cd85f65cf006158710ab60a1d23a8"
-            },
-            {
-              "id": "lib/time.ts",
-              "renderedLength": 192,
-              "sourceSha256": "7430b1662198dd73a9c3fc9cf9244efa10ddfbd1c727a0ed0ccbd23c7ad84caa"
             }
           ]
         },

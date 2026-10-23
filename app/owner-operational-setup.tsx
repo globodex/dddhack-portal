@@ -56,7 +56,6 @@ export default function OwnerOperationalSetup({
   const [operation, setOperation] = useState<SetupOperation>("submissions"),
     [privacy, setPrivacy] = useState(false),
     [rules, setRules] = useState(false),
-    [reason, setReason] = useState(""),
     [review, setReview] = useState<{
       request: OperationalSetupRequest;
       preview: Preview;
@@ -71,10 +70,7 @@ export default function OwnerOperationalSetup({
   return (
     <section className="panel" aria-labelledby="operational-setup-title">
       <h2 id="operational-setup-title">Operational setup</h2>
-      <p>
-        Confirm the chosen operation and shared privacy notice. Saving does not
-        enable operations or confirm judging rules.
-      </p>
+
       <form
         onSubmit={async (event) => {
           event.preventDefault();
@@ -88,7 +84,6 @@ export default function OwnerOperationalSetup({
               operation,
               privacyConfirmed: privacy,
               rulesConfirmed: rules,
-              reason,
             });
             const result = await preview(request);
             if (
@@ -175,23 +170,9 @@ export default function OwnerOperationalSetup({
             I confirm indefinite retention and the private-field protections
             above.
           </label>
-          <label>
-            Audit reason
-            <input
-              required
-              name="reason"
-              minLength={5}
-              maxLength={1000}
-              value={reason}
-              onChange={(e) => {
-                setReason(e.target.value);
-                invalidate();
-              }}
-            />
-          </label>
           <button
             className="button secondary"
-            disabled={busy || !privacy || !rules || reason.trim().length < 5}
+            disabled={busy || !privacy || !rules}
           >
             {busy ? "Preparing…" : "Preview operational setup"}
           </button>
@@ -208,11 +189,7 @@ export default function OwnerOperationalSetup({
               : review.preview.attendanceRule}
           </p>
           <p>{review.preview.retentionNotice}</p>
-          <p>
-            Policy version {version + 1}. Existing enabled scopes and all
-            judging confirmations/weights stay unchanged. No operation is
-            enabled by this save.
-          </p>
+
           <div className="form-actions">
             <button
               type="button"

@@ -1,5 +1,6 @@
 "use client";
 import DotAvatar from "./dot-avatar";
+import { HeadingDot } from "./expressive-heading";
 import { dotColors, dotExpressions } from "../lib/avatar-contract";
 import { useEffect, useRef, useState } from "react";
 import { ActionCancelled } from "../lib/action-confirmation";
@@ -374,11 +375,10 @@ export default function ProfileFlow({
           <h1 ref={heading} tabIndex={-1}>
             {step === 1 ? "Your profile" : step === 2 ? "Contact" : "About you"}
           </h1>
-          <DotAvatar
-            color={avatarColor}
-            expression={avatarExpression}
+          <HeadingDot
+            color={avatarColor as keyof typeof dotColors}
+            expression={avatarExpression as keyof typeof dotExpressions}
             size={48}
-            decorative
           />
         </header>
         <div className="profile-progress" aria-label={`Step ${step} of 3`}>
