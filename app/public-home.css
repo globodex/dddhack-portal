@@ -190,7 +190,7 @@
 .public-home-shell .bottom-dots .public-dot {
   left: calc((var(--strip-index) + 0.5) * 100% / 12);
   top: 100%;
-  width: clamp(32px, 6vw, 88px);
+  width: clamp(40px, 9vw, 136px);
   transform: translate(-50%, -65%);
 }
 .public-home-shell
@@ -887,4 +887,273 @@
   .event-day {
   font-size: 16px;
   margin-bottom: 14px;
+}
+/* Rendered board corrections, verified against the 0e7756c browser captures. */
+.public-home-shell .public-header {
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+}
+.public-home-shell .public-header nav .button {
+  background: #111;
+  color: white;
+  border-color: #111;
+}
+.public-home-shell .home-hero {
+  min-height: 100svh;
+  padding-top: clamp(160px, 21vh, 220px);
+  padding-bottom: 240px;
+}
+.public-home-shell .hero-title-lines > span:first-child {
+  font-size: 1.1em;
+}
+.public-home-shell .hero-date {
+  font-size: clamp(22px, 2.5vw, 36px);
+  line-height: 1.2;
+  margin-top: 24px;
+}
+.public-home-shell .hero-register {
+  font-size: clamp(18px, 1.8vw, 25px);
+}
+.public-home-shell .home-motion-strip {
+  margin: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.public-home-shell .motion-toggle {
+  left: auto;
+  transform: none;
+  bottom: 202px;
+}
+.public-home-shell .scroll-cue {
+  bottom: 200px;
+}
+.public-home-shell .chapter-stack {
+  margin-inline: 16px;
+}
+.public-home-shell .chapter-stack .chapter {
+  border: 1px solid #ddd;
+  border-radius: 24px 24px 0 0;
+}
+.public-home-shell .chapter-content {
+  padding: 32px clamp(24px, 3.3vw, 48px) 64px;
+}
+.public-home-shell .chapter-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 40px;
+}
+.public-home-shell .chapter h2 {
+  font-size: clamp(50px, 6.5vw, 96px);
+}
+.public-home-shell .schedule-body {
+  text-align: center;
+  padding-top: 20px;
+}
+.public-home-shell .schedule-body .event-day {
+  font-size: clamp(20px, 2.2vw, 32px);
+}
+.public-home-shell .schedule-body > h3 {
+  margin: 32px 0 48px;
+}
+.public-home-shell .schedule-body .agenda-pending {
+  color: #111;
+  font-size: clamp(20px, 2vw, 28px);
+}
+.public-home-shell .agenda-track {
+  text-align: left;
+}
+.public-home-shell
+  .chapter-stack[data-agenda="true"]
+  #schedule
+  .chapter-content {
+  padding-inline: clamp(24px, 3.3vw, 48px);
+}
+@media (min-width: 768px) {
+  .public-home-shell #venue .chapter-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .public-home-shell .venue-body {
+    padding-top: 44px;
+  }
+  .public-home-shell .venue-body h3 {
+    font-size: clamp(50px, 6.4vw, 94px);
+  }
+  .public-home-shell .venue-body p {
+    font-size: clamp(26px, 3.4vw, 48px);
+    color: #111;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+  }
+  .public-home-shell #faq .chapter-content {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.8fr) minmax(0, 1.5fr);
+    gap: 48px;
+    align-items: start;
+  }
+  .public-home-shell .public-faq {
+    padding-top: 30px;
+  }
+  .public-home-shell .public-faq summary {
+    font-size: 18px;
+  }
+  .public-home-shell .public-rules {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px;
+  }
+  .public-home-shell .public-rules li {
+    position: relative;
+    display: block;
+    font-size: clamp(20px, 2vw, 28px);
+    padding-top: 40px;
+    line-height: 1.25;
+  }
+  .public-home-shell .public-rules li::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #111;
+  }
+  .public-home-shell .public-rules li::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 32px;
+    right: 0;
+    border-top: 1px solid #bbb;
+  }
+}
+@media (max-width: 999px) {
+  .public-header nav {
+    display: none;
+  }
+  .public-header .public-menu {
+    display: inline-flex;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    justify-content: center;
+    border-radius: 50%;
+    background: #111;
+    color: white;
+    border-color: #111;
+  }
+  .public-header nav[data-open="true"] {
+    position: absolute;
+    right: 24px;
+    top: 76px;
+    z-index: 40;
+    display: grid;
+    gap: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 18px;
+    border-radius: 16px;
+    box-shadow: 0 10px 35px #0001;
+  }
+  .public-header nav[data-open="true"] > * {
+    display: block;
+  }
+  .public-home-shell .home-hero {
+    padding-top: 120px;
+    padding-bottom: 220px;
+  }
+  .public-home-shell .hero-art {
+    width: min(360px, 60%);
+  }
+}
+@media (max-width: 700px) {
+  .public-brand {
+    font-size: 14px;
+    max-width: 250px;
+    line-height: 1.25;
+  }
+  .public-header nav {
+    display: none;
+  }
+  .public-home-shell .home-hero {
+    padding-top: 108px;
+    padding-bottom: 78px;
+  }
+  .public-home-shell .hero-date {
+    font-size: 20px;
+    margin-top: 18px;
+  }
+  .public-home-shell .hero-register {
+    font-size: 18px;
+  }
+  .public-home-shell .hero-art {
+    width: min(100%, 300px);
+  }
+  .public-home-shell .motion-toggle {
+    left: auto;
+    right: 24px;
+    transform: none;
+    bottom: 18px;
+  }
+  .public-home-shell .scroll-cue {
+    bottom: 16px;
+  }
+  .public-home-shell .chapter-stack {
+    margin-inline: 20px;
+  }
+  .public-home-shell .chapter-stack .chapter {
+    border: 0;
+    border-top: 1px solid #ddd;
+    border-radius: 0;
+  }
+  .public-home-shell .chapter-content {
+    padding: 28px 0 44px;
+  }
+  .public-home-shell .chapter-number {
+    display: none;
+  }
+  .public-home-shell .chapter-heading {
+    margin-bottom: 24px;
+  }
+  .public-home-shell .chapter h2 {
+    font-size: 42px;
+  }
+  .public-home-shell .schedule-body {
+    padding-top: 0;
+  }
+  .public-home-shell .schedule-body .event-day {
+    font-size: 18px;
+  }
+  .public-home-shell .schedule-body > h3 {
+    font-size: 34px;
+    margin: 22px 0 28px;
+    white-space: nowrap;
+  }
+  .public-home-shell .schedule-body .agenda-pending {
+    font-size: 19px;
+  }
+  .public-home-shell .venue-body {
+    padding-top: 0;
+  }
+  .public-home-shell .venue-body p {
+    color: #111;
+    font-weight: 600;
+  }
+  .public-home-shell .public-rules li {
+    border-bottom: 1px solid #ddd;
+    font-size: 19px;
+  }
+}
+@media (max-width: 359px) {
+  .public-home-shell .schedule-body > h3 {
+    font-size: 28px;
+  }
+  .public-brand {
+    font-size: 12px;
+    max-width: 200px;
+  }
 }

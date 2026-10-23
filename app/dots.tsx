@@ -119,7 +119,7 @@ export default function Dots({
         : compact
           ? mobileDots
           : desktopDots;
-      const scale = bottom ? Math.min(1, width / 1100) : width / 480;
+      const scale = bottom ? Math.min(1.55, width / 760) : width / 480;
       dots = descriptors.map((item, i) => {
         const r = (item.diameter * scale) / 2;
         const homeX = bottom
