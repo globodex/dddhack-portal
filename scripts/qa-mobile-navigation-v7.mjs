@@ -198,6 +198,63 @@ try {
       await context.close();
     }
   }
+  const desktopContext = await browser.newContext({
+    viewport: { width: 1440, height: 900 },
+    serviceWorkers: "block",
+    reducedMotion: "no-preference",
+  });
+  await desktopContext.route("**/*", (route) => {
+    const request = route.request(),
+      target = new URL(request.url());
+    if (
+      target.origin !== url.origin ||
+      !["GET", "HEAD"].includes(request.method())
+    )
+      return route.abort();
+    if (target.pathname === "/api/portal") return route.fulfill({ json: {} });
+    return route.continue();
+  });
+  const desktop = await desktopContext.newPage();
+  const loaded = desktop.waitForResponse(
+    (response) => new URL(response.url()).pathname === "/api/portal",
+  );
+  await desktop.goto(origin);
+  await loaded;
+  await desktop.evaluate(() => document.fonts.ready);
+  for (const section of ["hero", "faq"]) {
+    await desktop
+      .locator(section === "hero" ? ".home-hero" : "#faq")
+      .scrollIntoViewIfNeeded();
+    const path = resolve(out, `${section}-1440x900.png`);
+    await desktop.screenshot({ path, animations: "disabled" });
+    report.captures.push(path);
+  }
+  await desktop.setViewportSize({ width: 390, height: 844 });
+  await desktop.locator(".public-menu").click();
+  const animation = await desktop
+    .locator("#mobile-navigation")
+    .evaluate((node) => {
+      const motion = node
+        .getAnimations()
+        .find((item) => item.animationName === "mobile-navigation-enter");
+      if (!motion) return null;
+      motion.pause();
+      motion.currentTime = 0;
+      const start = node.getBoundingClientRect().top;
+      motion.currentTime = 140;
+      const middle = node.getBoundingClientRect().top;
+      motion.finish();
+      return { start, middle, end: node.getBoundingClientRect().top };
+    });
+  assert.ok(
+    animation &&
+      animation.start < animation.middle &&
+      animation.middle < 0 &&
+      animation.end === 0,
+  );
+  report.checks.push({ normalMotionTopToBottom: animation });
+  await desktop.keyboard.press("Escape");
+  await desktopContext.close();
 } catch (error) {
   report.failure = error.stack || String(error);
   process.exitCode = 1;
