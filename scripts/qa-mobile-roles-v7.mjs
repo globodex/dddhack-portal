@@ -19,7 +19,7 @@ const cases = [
   ["mentor", "/dashboard", "Assigned projects"],
   ["volunteer", "/dashboard", "Administration"],
   ["pending", "/profile", "Your profile"],
-  ["stranger", "/dashboard", "Log out"],
+  ["stranger", "/dashboard", "Sign in"],
 ];
 const out = resolve("evidence/v7-mobile-navigation");
 mkdirSync(out, { recursive: true });
@@ -74,7 +74,13 @@ try {
       (r) => new URL(r.url()).pathname === "/api/portal",
     );
     await page.goto(origin + path);
-    await loaded;
+    const apiResponse = await loaded;
+    if (actor === "stranger") {
+      assert.equal(apiResponse.status(), 403);
+      await page
+        .getByRole("button", { name: "Sign out / switch account", exact: true })
+        .waitFor();
+    } else assert.equal(apiResponse.status(), 200);
     await page.evaluate(() => document.fonts.ready);
     const trigger = page.locator(
       actor === "anonymous" ? ".public-menu" : ".mobile-header > button",
