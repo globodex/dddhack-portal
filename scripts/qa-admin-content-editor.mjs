@@ -348,7 +348,7 @@ try {
     .fill(expected.agenda[0].title);
   const faq = form.getByRole("group", { name: "Question 1", exact: true });
   await faq
-    .getByLabel("question", { exact: true })
+    .getByRole("textbox", { name: "question", exact: true })
     .fill(expected.faqs[0].question);
   await faq
     .getByRole("textbox", { name: "answer", exact: true })
