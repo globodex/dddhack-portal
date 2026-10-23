@@ -8,7 +8,8 @@ export default function DelhiWordmark({
   paused?: boolean;
 }) {
   const root = useRef<HTMLSpanElement>(null),
-    fill = useRef<HTMLImageElement>(null);
+    fill = useRef<HTMLImageElement>(null),
+    layerLoad = useRef<Promise<void> | null>(null);
   const [active, setActive] = useState(false),
     [loaded, setLoaded] = useState(false);
   useEffect(() => {
@@ -16,52 +17,79 @@ export default function DelhiWordmark({
       "(prefers-reduced-motion: reduce), (pointer: coarse), (hover: none)",
     );
     let alive = true;
-    const images = [
-      "text-mask-alpha.png",
-      "delhi-fill-overscan.png",
-      "metro-static.png",
-    ].map(
-      (src) =>
-        new Promise<void>((resolve, reject) => {
-          const i = new Image();
-          i.onload = () => resolve();
-          i.onerror = () => reject();
-          i.src = base + src;
-        }),
-    );
-    Promise.all(images)
-      .then(() => {
-        if (alive) setLoaded(true);
-      })
-      .catch(() => {
-        if (alive) setLoaded(false);
-      });
-    const reset = () => {
-      setActive(
-        !media.matches && !paused && CSS.supports("mask-image", "url('x.png')"),
-      );
+    const resetFill = () => {
       if (fill.current) fill.current.style.transform = "translate(0px, 0px)";
     };
-    reset();
-    media.addEventListener("change", reset);
-    const observer = new ResizeObserver(() => {
-      if (fill.current) fill.current.style.transform = "translate(0px, 0px)";
-    });
+    const update = () => {
+      const eligible =
+        !media.matches &&
+        !paused &&
+        typeof CSS !== "undefined" &&
+        (CSS.supports("mask-image", "url('x.png')") ||
+          CSS.supports("-webkit-mask-image", "url('x.png')"));
+      setActive(eligible);
+      resetFill();
+      if (!eligible) return;
+      // Static SSR/first paint stays visible. Coarse/reduced devices never request
+      // the motion artwork; eligible devices reveal it only after every decode.
+      if (!layerLoad.current) {
+        layerLoad.current = Promise.all(
+          [
+            "text-mask-alpha.png",
+            "delhi-fill-overscan.png",
+            "metro-static.png",
+          ].map(
+            (src) =>
+              new Promise<void>((resolve, reject) => {
+                const image = new Image();
+                image.onload = () => {
+                  if (typeof image.decode === "function")
+                    image.decode().then(resolve, reject);
+                  else resolve();
+                };
+                image.onerror = () => reject(new Error("Artwork unavailable"));
+                image.src = base + src;
+              }),
+          ),
+        ).then(() => undefined);
+      }
+      layerLoad.current.then(
+        () => {
+          if (alive) setLoaded(true);
+        },
+        () => {
+          if (alive) {
+            setLoaded(false);
+            setActive(false);
+          }
+          layerLoad.current = null;
+        },
+      );
+    };
+    update();
+    media.addEventListener("change", update);
+    const observer = new ResizeObserver(resetFill);
     if (root.current) observer.observe(root.current);
     return () => {
       alive = false;
       observer.disconnect();
-      media.removeEventListener("change", reset);
+      media.removeEventListener("change", update);
     };
   }, [paused]);
+  const showFallback = () => {
+    setLoaded(false);
+    setActive(false);
+    layerLoad.current = null;
+  };
+  const motion = active && loaded && !paused;
   return (
     <span
       ref={root}
       className="delhi-wordmark"
       aria-hidden="true"
-      data-motion={active && loaded}
+      data-motion={motion}
       onPointerMove={(e) => {
-        if (!active || !loaded || e.pointerType !== "mouse") return;
+        if (!motion || e.pointerType !== "mouse") return;
         const r = e.currentTarget.getBoundingClientRect();
         const p = delhiOffset(
           e.clientX - r.left,
@@ -85,23 +113,29 @@ export default function DelhiWordmark({
           alt=""
           fetchPriority="high"
         />
-        <span className="delhi-mask">
-          <img
-            ref={fill}
-            className="delhi-fill"
-            src={base + "delhi-fill-overscan.png"}
-            alt=""
-            width={2112}
-            height={832}
-          />
-        </span>
-        <img
-          className="delhi-metro"
-          src={base + "metro-static.png"}
-          alt=""
-          width={2048}
-          height={768}
-        />
+        {motion && (
+          <>
+            <span className="delhi-mask">
+              <img
+                ref={fill}
+                onError={showFallback}
+                className="delhi-fill"
+                src={base + "delhi-fill-overscan.png"}
+                alt=""
+                width={2112}
+                height={832}
+              />
+            </span>
+            <img
+              onError={showFallback}
+              className="delhi-metro"
+              src={base + "metro-static.png"}
+              alt=""
+              width={2048}
+              height={768}
+            />
+          </>
+        )}
       </span>
     </span>
   );
