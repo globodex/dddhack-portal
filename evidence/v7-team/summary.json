@@ -1,0 +1,66 @@
+{
+  "source": "b95c4fb",
+  "runtimeBase": "8a9daadb96e360340620ab5f0619d0489b2d3e50",
+  "workerSha256": "d43976f1cd0105eea93f24fe102afe36b18c810c8410db5fb17252cbb89fccf2",
+  "syntheticOnly": true,
+  "publicationRequested": false,
+  "tests": {
+    "command": "node --import tsx --test --test-concurrency=1 tests/team-http-flow.test.ts tests/team-control-fixtures.test.ts tests/team-write-reset-guard.test.ts",
+    "passed": 3,
+    "failed": 0,
+    "scope": "in-process HTTP handler and disposable SQLite service contracts, not browser interaction coverage"
+  },
+  "positiveHttpFlow": {
+    "successfulWrites": 10,
+    "actions": [
+      "save-workspace-idea",
+      "rename-team",
+      "team-style",
+      "respond-team:accept",
+      "respond-team:decline",
+      "remove-workspace-member",
+      "lock-team",
+      "delete-own-team",
+      "create-workspace-team",
+      "request-team"
+    ],
+    "verified": [
+      "persisted state re-read per actor",
+      "member edit denied",
+      "locked rename denied",
+      "removed member private idea revoked",
+      "removed team recoverable history retained",
+      "submission attempts unchanged",
+      "private no-store response headers",
+      "outbound fetch forbidden"
+    ]
+  },
+  "typecheck": "passed",
+  "build": {
+    "command": "npm run build",
+    "status": "passed",
+    "artifactFiles": 185,
+    "sourceNote": "built same runtime source as8a9daad; subsequent commits changed test harness only"
+  },
+  "browser": {
+    "status": "blocked-before-first-request",
+    "attemptedMode": "desktop",
+    "passedInteractionChecks": 0,
+    "writes": 0,
+    "screenshots": 0,
+    "reason": "Chromium SUID sandbox helper is misconfigured; sandbox-preserving user-namespace probe also reported No usable sandbox",
+    "sandboxDisabled": false,
+    "evidence": "../v7-team-desktop/report.json",
+    "remainingModes": [
+      "desktop",
+      "mobile touch emulation",
+      "tablet touch emulation",
+      "keyboard"
+    ]
+  },
+  "remaining": [
+    "Execute positive browser interactions after sandbox infrastructure is repaired",
+    "Capture and review actual screenshots; no screenshot claim in this lane",
+    "Integration owner must run final combined regression after merges"
+  ]
+}
