@@ -64,8 +64,10 @@ test("server accepts verified choices and preserves optional socials while rejec
     db.close();
   }
 });
-test("organizer photos match verified public source hashes; Shivay uses his confirmed full name and a labelled placeholder", () => {
+test("organizer photos match verified public source hashes, including confirmed HowDevelop profile", () => {
   const photos = {
+    "HowDevelop-x.jpg":
+      "e01d0b72a4c2ae65fa48cd3e9222d4517407885d4d9626261bfbac0814af7fb4",
     "Param3021-x.jpg":
       "f19b21c25dbe9eb91c2ece9027adcb1ec24d28979ca633e7607703d54297fe17",
     "nikhilsbuilds-x.jpg":
@@ -84,7 +86,8 @@ test("organizer photos match verified public source hashes; Shivay uses his conf
   for (const file of Object.keys(photos))
     assert.ok(html.includes("/organizers/" + file));
   assert.match(html, /Shivay Lamba/);
-  assert.match(html, /Shivay Lamba: photo pending/);
+  assert.match(html, /https:\/\/x\.com\/HowDevelop/);
+  assert.doesNotMatch(html, /Shivay Lamba: photo pending/);
   assert.doesNotMatch(
     html,
     /Full surname awaiting confirmation|pbs\.twimg\.com|lumacdn/,
