@@ -15,7 +15,20 @@ import { seedControlEntries } from "./control-entry-fixtures.ts";
 import { join } from "node:path";
 import { unstable_dev, getPlatformProxy } from "wrangler";
 import { seedLocal } from "./fixtures.ts";
+import { draftPolicy } from "../lib/policy.ts";
+import { makeLoad300, seedLoad300 } from "./load-300-fixtures.mjs";
 import { seedRichVisual, seedMockupReview } from "./visual-rich-fixtures.ts";
+const directory300 = process.argv.includes("--directory300");
+if (
+  directory300 &&
+  ["--rich", "--mockup-review", "--control-audit", "--project-extras"].some(
+    (flag) => process.argv.includes(flag),
+  )
+)
+  throw new Error(
+    "Directory300 is a separate synthetic fixture; rich/control flags cannot be combined",
+  );
+const directoryFixture = directory300 ? makeLoad300() : null;
 const portValue =
   process.argv.find((value) => value.startsWith("--port="))?.slice(7) || "4173";
 if (
@@ -43,45 +56,49 @@ try {
       .split("--> statement-breakpoint")
       .filter((s) => s.trim()))
       await platform.env.DB.prepare(sql).all();
-  await seedLocal(platform.env.DB);
-  // Explicitly synthetic Registered/Locked rows for the table-first screenshot.
-  await platform.env.DB.prepare(
-    "UPDATE registrations SET status='pending' WHERE email IN ('bob@portal.test','carol@portal.test','dave@portal.test')",
-  ).all();
-  await platform.env.DB.prepare(
-    "INSERT INTO team_locks VALUES('fake_team3','fake_bob','2026-10-23T08:00:00.000Z')",
-  ).all();
-  // Real imported/persisted social-prefill state, using only reserved synthetic URLs.
-  await platform.env.DB.prepare(
-    "UPDATE profiles SET socials=?,public=1 WHERE user_id='fake_alice'",
-  )
-    .bind(
-      JSON.stringify([
-        "https://github.com/synthetic-alice",
-        "https://example.test/alice",
-      ]),
+  if (directory300) {
+    await seedLoad300(platform.env.DB, directoryFixture, draftPolicy);
+  } else {
+    await seedLocal(platform.env.DB);
+    // Explicitly synthetic Registered/Locked rows for the table-first screenshot.
+    await platform.env.DB.prepare(
+      "UPDATE registrations SET status='pending' WHERE email IN ('bob@portal.test','carol@portal.test','dave@portal.test')",
+    ).all();
+    await platform.env.DB.prepare(
+      "INSERT INTO team_locks VALUES('fake_team3','fake_bob','2026-10-23T08:00:00.000Z')",
+    ).all();
+    // Real imported/persisted social-prefill state, using only reserved synthetic URLs.
+    await platform.env.DB.prepare(
+      "UPDATE profiles SET socials=?,public=1 WHERE user_id='fake_alice'",
     )
-    .all();
-  if (process.argv.includes("--rich")) await seedRichVisual(platform.env.DB);
-  if (process.argv.includes("--mockup-review"))
-    await seedMockupReview(platform.env.DB);
-  if (process.argv.includes("--control-audit")) {
-    if (
-      !process.argv.includes("--rich") ||
-      !process.argv.includes("--mockup-review")
-    )
-      throw new Error("Control audit requires the fresh rich mockup fixture");
-    await seedControlProjects(
-      platform.env.DB,
-      process.argv.includes("--project-extras"),
-    );
-    await seedTeamControls(platform.env.DB, {
-      scope: "fresh-disposable-local",
-    });
-    await seedControlEntries(
-      platform.env.DB,
-      process.argv.includes("--project-extras"),
-    );
+      .bind(
+        JSON.stringify([
+          "https://github.com/synthetic-alice",
+          "https://example.test/alice",
+        ]),
+      )
+      .all();
+    if (process.argv.includes("--rich")) await seedRichVisual(platform.env.DB);
+    if (process.argv.includes("--mockup-review"))
+      await seedMockupReview(platform.env.DB);
+    if (process.argv.includes("--control-audit")) {
+      if (
+        !process.argv.includes("--rich") ||
+        !process.argv.includes("--mockup-review")
+      )
+        throw new Error("Control audit requires the fresh rich mockup fixture");
+      await seedControlProjects(
+        platform.env.DB,
+        process.argv.includes("--project-extras"),
+      );
+      await seedTeamControls(platform.env.DB, {
+        scope: "fresh-disposable-local",
+      });
+      await seedControlEntries(
+        platform.env.DB,
+        process.argv.includes("--project-extras"),
+      );
+    }
   }
 } finally {
   await platform.dispose();
@@ -113,6 +130,7 @@ if (process.argv.includes("--control-audit")) {
   );
   writeFileSync(
     controlManifestPath,
+    directoryManifestPath,
     JSON.stringify(
       {
         disposable: true,
@@ -167,6 +185,39 @@ if (process.argv.includes("--control-audit")) {
     { mode: 0o600 },
   );
 }
+let directoryManifestPath;
+if (directory300) {
+  directoryManifestPath = join(
+    tmpdir(),
+    "ddehack-directory-" + randomUUID() + ".json",
+  );
+  writeFileSync(
+    directoryManifestPath,
+    JSON.stringify(
+      {
+        disposable: true,
+        syntheticOnly: true,
+        readOnly: true,
+        origin: previewOrigin,
+        artifactRoot: process.cwd(),
+        source: execFileSync("git", ["rev-parse", "HEAD"], {
+          encoding: "utf8",
+        }).trim(),
+        worker: createHash("sha256")
+          .update(readFileSync("dist/server/index.js"))
+          .digest("hex"),
+        actors: {
+          viewer: directoryFixture.participants[0],
+          admin: directoryFixture.operations[0],
+        },
+        dataset: directoryFixture.summary,
+      },
+      null,
+      2,
+    ),
+    { mode: 0o600 },
+  );
+}
 console.log(
   JSON.stringify({
     ready: true,
@@ -174,6 +225,7 @@ console.log(
     data: "disposable synthetic D1 only",
     productionArtifact: true,
     controlManifestPath,
+    directoryManifestPath,
     richSyntheticStates: process.argv.includes("--rich"),
     mockupReviewStates: process.argv.includes("--mockup-review"),
   }),
