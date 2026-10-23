@@ -1100,3 +1100,25 @@ details.panel:has(> .admin-import)[open] {
     letter-spacing: -0.035em;
   }
 }
+
+/* Follow-up from actual source34d69955 admin captures. */
+.app-shell:has(#site-navigation[aria-label="Administration"])
+  .button:not(.secondary):not(.admin-icon-action):not(.admin-control-danger) {
+  color: #fff;
+  background: #111515;
+  border-color: #111515;
+}
+@media (min-width: 741px) and (max-width: 999px) {
+  .main:not(.home-main)
+    .admin-participant-filters
+    ~ .table-scroll
+    .participants-table
+    td {
+    padding-block: 6px;
+  }
+}
+@media (max-width: 740px) {
+  .main:not(.home-main) .toolbar.admin-participant-record-tools > a.button {
+    display: none;
+  }
+}
