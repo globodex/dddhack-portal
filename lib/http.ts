@@ -5,6 +5,11 @@ import {
 import { z } from "zod";
 import { PortalService } from "./service";
 import {
+  queueEvaluations,
+  type BackgroundDispatch,
+} from "./evaluation-background";
+import { participantPagingFromParams } from "./discover-participants";
+import {
   PortalError,
   checkMutationRequest,
   csvExport,
@@ -18,6 +23,7 @@ export type Runtime = {
   identity: Identity | null;
   key: string | undefined;
   localTest?: boolean;
+  background?: BackgroundDispatch;
 };
 const safeHeaders = {
   "Cache-Control": "private, no-store, max-age=0",
@@ -100,10 +106,15 @@ export async function handlePortal(request: Request, runtime: Runtime) {
       runtime.key,
     );
     if (request.method === "GET") {
-      const view = new URL(request.url).searchParams.get("view") || "/";
+      const params = new URL(request.url).searchParams;
+      const view = params.get("view") || "/";
       return Response.json(
         {
           ...(await service.view(view, {
+            ...(view.replace(/\/+/g, "/").replace(/\/$/, "") ===
+            "/discover/participants"
+              ? participantPagingFromParams(params)
+              : {}),
             focus: (new URL(request.url).searchParams.get("focus") || "").slice(
               0,
               150,
@@ -172,6 +183,13 @@ export async function handlePortal(request: Request, runtime: Runtime) {
             "Set-Cookie": `portal_local_fixture=${fixture}; Path=/; HttpOnly; SameSite=Strict; Max-Age=28800`,
           },
         },
+      );
+    }
+    if (action === "astra-process") {
+      demand(runtime.background, 503, "BACKGROUND_PROCESSING_UNAVAILABLE");
+      return Response.json(
+        await queueEvaluations(service, data, runtime.background),
+        { status: 202, headers: safeHeaders },
       );
     }
     return Response.json(await service.command(action, data), {

@@ -32,11 +32,21 @@ type DirectoryRow = {
   socials: string;
 };
 
-export function participantPagingFromParams(params: URLSearchParams): DiscoverParticipantOptions {
+export function participantPagingFromParams(
+  params: URLSearchParams,
+): DiscoverParticipantOptions {
   const raw = params.get("limit");
-  demand(raw === null || /^[1-9]\d*$/.test(raw), 422, "INVALID_DIRECTORY_LIMIT");
+  demand(
+    raw === null || /^[1-9]\d*$/.test(raw),
+    422,
+    "INVALID_DIRECTORY_LIMIT",
+  );
   const limit = raw === null ? undefined : Number(raw);
-  demand(limit === undefined || (Number.isSafeInteger(limit) && limit <= 48), 422, "INVALID_DIRECTORY_LIMIT");
+  demand(
+    limit === undefined || (Number.isSafeInteger(limit) && limit <= 48),
+    422,
+    "INVALID_DIRECTORY_LIMIT",
+  );
   return {
     ...(limit === undefined ? {} : { limit }),
     cursor: params.get("cursor") || undefined,
@@ -46,22 +56,54 @@ export function participantPagingFromParams(params: URLSearchParams): DiscoverPa
 }
 
 function encodeCursor(cursor: Cursor) {
-  return btoa(String.fromCharCode(...new TextEncoder().encode(JSON.stringify(cursor))))
-    .replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  return btoa(
+    String.fromCharCode(...new TextEncoder().encode(JSON.stringify(cursor))),
+  )
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
 }
-function decodeCursor(value: string, q: string, membership: Membership): Cursor {
+function decodeCursor(
+  value: string,
+  q: string,
+  membership: Membership,
+): Cursor {
   try {
-    demand(value.length <= 2048 && /^[A-Za-z0-9_-]+$/.test(value), 422, "INVALID_DIRECTORY_CURSOR");
-    const bytes = Uint8Array.from(atob(value.replace(/-/g, "+").replace(/_/g, "/")), (c) => c.charCodeAt(0));
-    const c = JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(bytes));
-    demand(c && typeof c === "object" && !Array.isArray(c) &&
-      Object.keys(c).sort().join(",") === "id,membership,name,q,v" &&
-      c.v === 1 && typeof c.name === "string" && c.name.length <= 200 &&
-      typeof c.id === "string" && c.id.length > 0 && c.id.length <= 150 &&
-      c.q === q && c.membership === membership, 422, "INVALID_DIRECTORY_CURSOR");
+    demand(
+      value.length <= 2048 && /^[A-Za-z0-9_-]+$/.test(value),
+      422,
+      "INVALID_DIRECTORY_CURSOR",
+    );
+    const bytes = Uint8Array.from(
+      atob(value.replace(/-/g, "+").replace(/_/g, "/")),
+      (c) => c.charCodeAt(0),
+    );
+    const c = JSON.parse(
+      new TextDecoder("utf-8", { fatal: true }).decode(bytes),
+    );
+    demand(
+      c &&
+        typeof c === "object" &&
+        !Array.isArray(c) &&
+        Object.keys(c).sort().join(",") === "id,membership,name,q,v" &&
+        c.v === 1 &&
+        typeof c.name === "string" &&
+        c.name.length <= 200 &&
+        typeof c.id === "string" &&
+        c.id.length > 0 &&
+        c.id.length <= 150 &&
+        c.q === q &&
+        c.membership === membership,
+      422,
+      "INVALID_DIRECTORY_CURSOR",
+    );
     return c;
   } catch {
-    throw new PortalError(422, "INVALID_DIRECTORY_CURSOR", "This directory cursor is invalid or belongs to another search. Refresh the directory.");
+    throw new PortalError(
+      422,
+      "INVALID_DIRECTORY_CURSOR",
+      "This directory cursor is invalid or belongs to another search. Refresh the directory.",
+    );
   }
 }
 
@@ -85,24 +127,55 @@ const selection = `SELECT u.id,COALESCE(pp.display_name,u.name) name,
  AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=u.id AND rr.active=1)
  AND pp.completed_at IS NOT NULL AND pd.phone<>''`;
 const name = "COALESCE(pp.display_name,u.name) COLLATE NOCASE";
-const project = (row: DirectoryRow) => ({ ...row, socials: JSON.parse(row.socials) });
+const project = (row: DirectoryRow) => ({
+  ...row,
+  socials: JSON.parse(row.socials),
+});
 
-export async function discoverParticipants(db: Database, options: PortalViewOptions = {}) {
+export async function discoverParticipants(
+  db: Database,
+  options: PortalViewOptions = {},
+) {
   const limit = options.limit ?? 24;
-  demand(Number.isSafeInteger(limit) && limit >= 1 && limit <= 48, 422, "INVALID_DIRECTORY_LIMIT");
+  demand(
+    Number.isSafeInteger(limit) && limit >= 1 && limit <= 48,
+    422,
+    "INVALID_DIRECTORY_LIMIT",
+  );
   const membership = options.membership || "all";
-  demand(["all", "in", "out"].includes(membership), 422, "INVALID_DIRECTORY_MEMBERSHIP");
+  demand(
+    ["all", "in", "out"].includes(membership),
+    422,
+    "INVALID_DIRECTORY_MEMBERSHIP",
+  );
   const q = (options.search || "").slice(0, 200).trim();
-  const cursor = options.cursor ? decodeCursor(options.cursor, q, membership as Membership) : undefined;
-  demand(options.person === undefined || (typeof options.person === "string" && options.person.length > 0 && options.person.length <= 150), 422, "INVALID_DIRECTORY_PERSON");
-  const filters = ["instr(lower(COALESCE(pp.display_name,u.name) || ' ' || COALESCE(t.name,'') || ' ' || CASE WHEN p.public=1 THEN p.bio ELSE '' END),lower(?))>0"];
+  const cursor = options.cursor
+    ? decodeCursor(options.cursor, q, membership as Membership)
+    : undefined;
+  demand(
+    options.person === undefined ||
+      (typeof options.person === "string" &&
+        options.person.length > 0 &&
+        options.person.length <= 150),
+    422,
+    "INVALID_DIRECTORY_PERSON",
+  );
+  const filters = [
+    "instr(lower(COALESCE(pp.display_name,u.name) || ' ' || COALESCE(t.name,'') || ' ' || CASE WHEN p.public=1 THEN p.bio ELSE '' END),lower(?))>0",
+  ];
   const args: unknown[] = [q];
-  if (membership !== "all") filters.push(`m.team_id IS ${membership === "in" ? "NOT " : ""}NULL`);
+  if (membership !== "all")
+    filters.push(`m.team_id IS ${membership === "in" ? "NOT " : ""}NULL`);
   if (cursor) {
     filters.push(`(${name}>? OR (${name}=? AND u.id>?))`);
     args.push(cursor.name, cursor.name, cursor.id);
   }
-  const found = await rows<DirectoryRow>(db, `${selection} AND ${filters.join(" AND ")} ORDER BY ${name},u.id LIMIT ?`, ...args, limit + 1);
+  const found = await rows<DirectoryRow>(
+    db,
+    `${selection} AND ${filters.join(" AND ")} ORDER BY ${name},u.id LIMIT ?`,
+    ...args,
+    limit + 1,
+  );
   const hasMore = found.length > limit;
   const page = found.slice(0, limit);
   const last = page.at(-1);
@@ -110,7 +183,27 @@ export async function discoverParticipants(db: Database, options: PortalViewOpti
     items: page.map(project),
     limit,
     hasMore,
-    nextCursor: hasMore && last ? encodeCursor({v: 1, name: last.name, id: last.id, q, membership: membership as Membership}) : null,
-    ...(options.person ? {focusedPerson: (await rows<DirectoryRow>(db, `${selection} AND u.id=? LIMIT 1`, options.person)).map(project)[0] || null} : {}),
+    nextCursor:
+      hasMore && last
+        ? encodeCursor({
+            v: 1,
+            name: last.name,
+            id: last.id,
+            q,
+            membership: membership as Membership,
+          })
+        : null,
+    ...(options.person
+      ? {
+          focusedPerson:
+            (
+              await rows<DirectoryRow>(
+                db,
+                `${selection} AND u.id=? LIMIT 1`,
+                options.person,
+              )
+            ).map(project)[0] || null,
+        }
+      : {}),
   };
 }

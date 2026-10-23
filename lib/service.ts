@@ -1,4 +1,5 @@
 import { auditReason } from "./security";
+import type { PortalViewOptions } from "./discover-participants";
 import { submissionToolChoices } from "./submission-tools";
 import { rosterImport } from "./roster-import";
 import { reconcileAbsences } from "./absence";
@@ -1511,6 +1512,17 @@ export class PortalService {
         );
         return {};
       }
+      case "astra-recover": {
+        await this.staff();
+        await this.unfrozen();
+        const d = z.object({jobId: id}).strict().parse(data);
+        const cutoff = new Date(Date.parse(this.now()) - 15 * 60_000).toISOString();
+        await this.mutate(actor.id, action, d.jobId, [
+          ["UPDATE astra_jobs SET state='failed_retryable',error='Processing interrupted; staff retry required',updated_at=? WHERE id=? AND state='running' AND updated_at<=?",this.now(),d.jobId,cutoff],
+          ...assertPreviousWrite(),
+        ], {state: "failed_retryable"});
+        return {message: "Interrupted verification recovered. Staff retry required."};
+      }
       case "astra-run": {
         await this.staff();
         await this.unfrozen();
@@ -1538,12 +1550,14 @@ export class PortalService {
           409,
           "SUBMISSION_WINDOW_OPEN",
         );
+        const claimedAt = this.now();
         const claim = await batch(this.db, [
           [
-            "UPDATE astra_jobs SET state='running',attempts=attempts+1,updated_at=? WHERE id=? AND state=?",
-            this.now(),
+            "UPDATE astra_jobs SET state='running',attempts=attempts+1,updated_at=? WHERE id=? AND state=? AND attempts=?",
+            claimedAt,
             j.id,
             j.state,
+            j.attempts,
           ],
         ]);
         demand(claim[0].meta?.changes === 1, 409, "JOB_ALREADY_CLAIMED");
@@ -1562,11 +1576,14 @@ export class PortalService {
             j.id,
             [
               [
-                "UPDATE astra_jobs SET state='needs_review',report=?,error=NULL,updated_at=? WHERE id=?",
-                JSON.stringify(report),
+                "UPDATE astra_jobs SET state='needs_review',report=?,error=NULL,updated_at=? WHERE id=? AND state='running' AND attempts=? AND updated_at=?",
+                JSON.stringify({...report, status: "needs_review"}),
                 this.now(),
                 j.id,
+                j.attempts + 1,
+                claimedAt,
               ],
+              ...assertPreviousWrite(),
             ],
             { state: "needs_review" },
           );
@@ -1575,16 +1592,22 @@ export class PortalService {
               "Report stored. Human review required; no automatic deductions.",
           };
         } catch {
+          const lease = await one<{state: string; attempts: number; updated_at: string}>(this.db, "SELECT state,attempts,updated_at FROM astra_jobs WHERE id=?", j.id);
+          if (!lease || lease.state !== "running" || lease.attempts !== j.attempts + 1 || lease.updated_at !== claimedAt)
+            return {message: "Verification was superseded by another staff action."};
           await this.mutate(
             actor.id,
             action,
             j.id,
             [
               [
-                "UPDATE astra_jobs SET state='failed_retryable',error='Evaluation unavailable or invalid output',updated_at=? WHERE id=?",
+                "UPDATE astra_jobs SET state='failed_retryable',error='Evaluation unavailable or invalid output',updated_at=? WHERE id=? AND state='running' AND attempts=? AND updated_at=?",
                 this.now(),
                 j.id,
+                j.attempts + 1,
+                claimedAt,
               ],
+              ...assertPreviousWrite(),
             ],
             { state: "failed_retryable" },
           );
@@ -2064,7 +2087,7 @@ export class PortalService {
   }
   async view(
     path: string,
-    options: { search?: string; page?: number; focus?: string } = {},
+    options: PortalViewOptions = {},
   ): Promise<Record<string, unknown>> {
     // Use one permission target for ordinary URL slash aliases as well as API views.
     // In particular, /admin/permissions/ must retain the owner-only requirement.

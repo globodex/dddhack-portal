@@ -10,7 +10,11 @@ export type SitesEnvironment = {
   PORTAL_RUNTIME?: string;
   PORTAL_TRUST_SITES_DISPATCH?: string;
 };
-type RequestContext = { request: Request; env: SitesEnvironment };
+type RequestContext = {
+  request: Request;
+  env: SitesEnvironment;
+  background?: Runtime["background"];
+};
 const requests = new AsyncLocalStorage<RequestContext>();
 
 // Only the Worker entry supplies this context. No global env/identity survives requests.
@@ -18,8 +22,9 @@ export function runWithSitesRequest<T>(
   request: Request,
   env: SitesEnvironment,
   run: () => T,
+  background?: Runtime["background"],
 ): T {
-  return requests.run({ request, env }, run);
+  return requests.run({ request, env, background }, run);
 }
 export function dispatchConfigured(env: SitesEnvironment) {
   return (
@@ -41,6 +46,7 @@ export function getSitesRuntime(): Runtime {
     db: env.DB,
     identity: sitesIdentity(request, env),
     key: env.CREDIT_ENCRYPTION_KEY,
+    ...(context.background ? { background: context.background } : {}),
   };
 }
 export function protectedPath(path: string) {

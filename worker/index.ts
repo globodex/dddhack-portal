@@ -56,55 +56,61 @@ const worker = {
         },
       };
     }
-    return runWithSitesRequest(request, env, async () => {
-      const url = new URL(request.url);
-      if (!import.meta.env.DEV && url.pathname === "/local-test") {
-        return new Response("Not found", { status: 404 });
-      }
-      if (protectedPath(url.pathname)) {
-        try {
-          const runtime = getSitesRuntime();
-          if (!runtime.identity) {
-            return new Response(null, {
-              status: 302,
-              headers: {
-                Location: new URL(signInPath(url.pathname + url.search), url)
-                  .href,
-                "Cache-Control": "private, no-store",
-              },
-            });
-          }
-          // Authorize before rendering; framework error pages must not turn
-          // permission denials into successful participant/admin shells.
-          const service = new PortalService(
-            runtime.db,
-            runtime.identity,
-            runtime.key,
-          );
-          await service.view(url.pathname);
-        } catch (error) {
-          // The page deliberately renders the account-switch recovery shell for
-          // a verified email outside the roster. API access still fails closed.
-          if (!(
-            error instanceof PortalError && error.code === "LUMA_EMAIL_MISMATCH"
-          ))
-            return unavailableResponse(error);
+    return runWithSitesRequest(
+      request,
+      env,
+      async () => {
+        const url = new URL(request.url);
+        if (!import.meta.env.DEV && url.pathname === "/local-test") {
+          return new Response("Not found", { status: 404 });
         }
-      }
-      const response = await runWithConnectorBinding(binding, () =>
-        handler.fetch(request, env, ctx),
-      );
-      if (protectedPath(url.pathname)) {
-        const privateResponse = new Response(response.body, response);
-        privateResponse.headers.set("Cache-Control", "private, no-store");
-        privateResponse.headers.append(
-          "Vary",
-          "Cookie, oai-authenticated-user-id",
+        if (protectedPath(url.pathname)) {
+          try {
+            const runtime = getSitesRuntime();
+            if (!runtime.identity) {
+              return new Response(null, {
+                status: 302,
+                headers: {
+                  Location: new URL(signInPath(url.pathname + url.search), url)
+                    .href,
+                  "Cache-Control": "private, no-store",
+                },
+              });
+            }
+            // Authorize before rendering; framework error pages must not turn
+            // permission denials into successful participant/admin shells.
+            const service = new PortalService(
+              runtime.db,
+              runtime.identity,
+              runtime.key,
+            );
+            await service.view(url.pathname);
+          } catch (error) {
+            // The page deliberately renders the account-switch recovery shell for
+            // a verified email outside the roster. API access still fails closed.
+            if (!(
+              error instanceof PortalError &&
+              error.code === "LUMA_EMAIL_MISMATCH"
+            ))
+              return unavailableResponse(error);
+          }
+        }
+        const response = await runWithConnectorBinding(binding, () =>
+          handler.fetch(request, env, ctx),
         );
-        return privateResponse;
-      }
-      return response;
-    });
+        if (protectedPath(url.pathname)) {
+          const privateResponse = new Response(response.body, response);
+          privateResponse.headers.set("Cache-Control", "private, no-store");
+          privateResponse.headers.append(
+            "Vary",
+            "Cookie, oai-authenticated-user-id",
+          );
+          return privateResponse;
+        }
+        return response;
+      },
+      (task) => ctx.waitUntil(task),
+    );
   },
 };
 
