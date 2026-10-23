@@ -85,7 +85,8 @@ const report = {
   manifest: { before: null, after: null },
   limitations: [
     "Synthetic loopback identities; not hosted sign-in.",
-    "Mouse uses click; isMobile+hasTouch uses tap for every pointer activation. Text fill, selectOption and file injection use Playwright input APIs; no native OS picker/keyboard coverage claimed.",
+    "Mouse uses click; touch uses browser emulation and tap. Keyboard activation uses focus plus Enter or Space; fill/selectOption/file injection use Playwright APIs, so complete keyboard entry and native OS pickers are unverified.",
+    "Chromium sandbox is required. Browser startup failures provide no accepted interaction evidence.",
     "Local lease prevents duplicate admin runners; root exclusive release must keep other lanes from writing concurrently.",
     "No production data, external writes, admin grants, voucher reveal, AI activation, or scoring enablement.",
     "Owner policy publication is excluded; Settings windows/switches are preview/draft/cancel only.",
@@ -93,11 +94,7 @@ const report = {
   ],
 };
 const { chromium } = await import("playwright-core");
-const browser = await chromium.launch({
-  headless: true,
-  executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium",
-  args: ["--no-sandbox"],
-});
+let browser;
 let page,
   role = "admin",
   mode = "mouse";
@@ -341,6 +338,11 @@ function manifest(data) {
     .sort((a, b) => a.id.localeCompare(b.id));
 }
 try {
+  browser = await chromium.launch({
+    headless: true,
+    executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium",
+    chromiumSandbox: true,
+  });
   // One sequential writer. Mode-specific imports/removals, restored settings,
   // and protected TeamQA membership snapshots prevent fixture collisions.
   for (mode of [inputMode]) {
@@ -681,7 +683,7 @@ try {
 } catch (e) {
   report.failure = e.stack;
 } finally {
-  await browser.close();
+  await browser?.close();
   await Promise.allSettled(pendingResponses);
   report.finishedAt = new Date().toISOString();
   report.workerUnchanged = hash(worker) === workerSha;
