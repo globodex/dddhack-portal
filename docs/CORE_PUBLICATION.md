@@ -1,3 +1,5 @@
+Current: public version5 is published. See [PARALLEL_CORE_PUBLICATION.md](PARALLEL_CORE_PUBLICATION.md). The version4 checkpoint below is historical.
+
 # Reviewed core release published
 
 **Version 4 succeeded** at https://dddhack-portal.param3021.chatgpt.site with public access preserved.

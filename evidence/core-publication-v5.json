@@ -1,0 +1,132 @@
+{
+  "project_id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed",
+  "url": "https://dddhack-portal.param3021.chatgpt.site",
+  "access": "public",
+  "version": 5,
+  "version_id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed~appgver_fa4d8ba529bc8191ad98b6edb298d357",
+  "commit_sha": "f1a4b3db83e2263170e8b5fb4738b18f0e218b8d",
+  "deployment_id": "appgdep_6adb85baacf481919890912bb121caf6",
+  "status": "succeeded",
+  "env_set_revision": 3,
+  "updated_at": "2026-10-23T16:05:32.743448+00:00",
+  "archive_file_count": 170,
+  "post_publish_table_checks": [
+    {
+      "table": "event_settings",
+      "rowsInFirstPage": 0,
+      "has_more": false,
+      "isError": false
+    },
+    {
+      "table": "luma_roster",
+      "rowsInFirstPage": 0,
+      "has_more": false,
+      "isError": false
+    },
+    {
+      "table": "evaluation_runs",
+      "rowsInFirstPage": 0,
+      "has_more": false,
+      "isError": false
+    },
+    {
+      "table": "score_releases",
+      "rowsInFirstPage": 0,
+      "has_more": false,
+      "isError": false
+    },
+    {
+      "table": "record_removals",
+      "rowsInFirstPage": 0,
+      "has_more": false,
+      "isError": false
+    },
+    {
+      "table": "private_venue",
+      "rowsInFirstPage": 0,
+      "has_more": false,
+      "isError": false
+    }
+  ],
+  "native_schema_overview": {
+    "returned_tables": [
+      "astra_jobs",
+      "audit_logs",
+      "automatic_absences",
+      "check_ins",
+      "credit_allocations",
+      "credit_inventory",
+      "credit_types",
+      "eligibility_history",
+      "engagement_controls",
+      "evaluation_runs",
+      "event_content",
+      "event_content_history",
+      "event_policy_history",
+      "event_settings",
+      "feedback",
+      "human_scores",
+      "idea_revisions",
+      "ideas",
+      "import_previews",
+      "judge_assignments",
+      "luma_roster",
+      "manual_checkins",
+      "memberships",
+      "participant_profiles",
+      "participant_status_overrides",
+      "portal_roles",
+      "private_venue",
+      "private_venue_managers",
+      "profile_details",
+      "profile_photos",
+      "profiles",
+      "project_assignments",
+      "project_comments",
+      "project_commit_receipts",
+      "project_eligibility",
+      "project_feedback_reviews",
+      "project_review_history",
+      "project_upvotes",
+      "projects",
+      "record_removals",
+      "registration_absences",
+      "registrations",
+      "repository_evidence",
+      "request_buckets",
+      "result_publication",
+      "result_snapshots",
+      "reviews",
+      "roster_prefills",
+      "score_releases",
+      "scoring_revision"
+    ],
+    "returned_count": 50,
+    "model_projection": {
+      "truncated": false,
+      "omitted_project_id": false,
+      "omitted_selected_binding": false,
+      "omitted_bindings": 0,
+      "omitted_tables": 0
+    },
+    "note": "Overview returned 50 names; this is not asserted to be the complete 61-table application schema. New required tables are present. Hosted migration ledger/trigger definitions are not exposed."
+  },
+  "verification": {
+    "tests": 112,
+    "typecheck": "passed",
+    "officialBuild": "passed",
+    "artifactFiles": 170,
+    "compiledWorkerSmoke": "passed",
+    "interactiveChatGPTSignIn": "unverified: no supported local browser",
+    "liveHTTP": "Earlier executor access denied; no repeat or alternate bypass attempted. Native publication confirmation is separate from HTTP/browser checks."
+  },
+  "credential": {
+    "created": 1,
+    "scope": "existing Site source repository",
+    "delivery": "official helper hidden stdin",
+    "persisted": false,
+    "discarded": true
+  },
+  "livePolicyDataMutations": false,
+  "filteredExportFollowupIncluded": false
+}

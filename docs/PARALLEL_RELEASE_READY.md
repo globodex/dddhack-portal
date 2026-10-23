@@ -1,6 +1,6 @@
 # Integrated core release checkpoint — 23 October 2026
 
-The local parallel integration is ready for source synchronization and publication to the existing public Site. It is not yet deployed. The Site remains version4 at https://dddhack-portal.param3021.chatgpt.site, project `appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed`, runtime configuration revision3. No source credential is available; one fresh short-lived credential restricted to this existing Site source repository requires action-time approval.
+Published as public version5 on23 October2026. See [PARALLEL_CORE_PUBLICATION.md](PARALLEL_CORE_PUBLICATION.md) for exact source/deployment identifiers and native verification. The source credential was approved, used once through the official workflow and discarded. The preparation details below describe the reviewed release boundary.
 
 ## Integrated scope
 
