@@ -1,0 +1,9 @@
+{
+  "source": "7fd4016ce9a2156d13de4d600818ae0aad9e7ff5",
+  "worker": "bda55c603146f4bc9ddba3f31dfb7411a286eec3484b47ad7a2fa31d15a14a38",
+  "realBackend": true,
+  "mockedApi": false,
+  "input": "CDP touchStart/Move/End",
+  "initial": 24,
+  "loaded": 48
+}

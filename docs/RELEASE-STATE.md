@@ -1,3 +1,7 @@
+# Cloud continuation
+
+The historical v6 ledger below is preserved. See [V7_CLOUD_STATUS.md](V7_CLOUD_STATUS.md) for the isolated, unpublished v7 implementation, exact build/test evidence, screenshots and remaining boundaries.
+
 # V6 release state
 
 Updated 23 October 2026 after the user requested holding development and publishing the current snapshot. This is the single current ledger. Earlier evidence remains source-bound; implemented, integrated, tested, accepted and published are distinct.

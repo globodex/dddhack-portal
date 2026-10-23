@@ -1,0 +1,293 @@
+{
+  "source": "7fd4016ce9a2156d13de4d600818ae0aad9e7ff5",
+  "workerSha": "bda55c603146f4bc9ddba3f31dfb7411a286eec3484b47ad7a2fa31d15a14a38",
+  "mode": "upload",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "syntheticOnly": true,
+  "chromiumSandbox": true,
+  "checks": [
+    {
+      "name": "Preview has immediate local busy feedback without freezing unrelated controls",
+      "passed": true
+    },
+    {
+      "name": "Preview masks every value, limits samples to five and removes raw CSV from the review DOM",
+      "passed": true
+    },
+    {
+      "name": "Markdown renders safely and edited columns receive a final server review",
+      "passed": true
+    },
+    {
+      "name": "Editing invalidates publish readiness until the changed instructions are reviewed again",
+      "passed": true
+    },
+    {
+      "name": "Cancel publication creates no publish request",
+      "passed": true
+    },
+    {
+      "name": "Publication persists exact headings and reviewed instructions without returning raw inventory",
+      "passed": true
+    },
+    {
+      "name": "Exact column deletion preserves the other column and its instructions",
+      "passed": true
+    },
+    {
+      "name": "Exact batch deletion removes the remaining column from the active projection",
+      "passed": true
+    }
+  ],
+  "actions": [
+    {
+      "action": "preview-credit-batch",
+      "ordinal": 1,
+      "actor": "fake_admin"
+    },
+    {
+      "action": "preview-credit-batch",
+      "ordinal": 2,
+      "actor": "fake_admin"
+    },
+    {
+      "action": "preview-credit-batch",
+      "ordinal": 3,
+      "actor": "fake_admin"
+    },
+    {
+      "action": "publish-credit-batch",
+      "ordinal": 1,
+      "actor": "fake_admin"
+    },
+    {
+      "action": "delete-credit-column",
+      "ordinal": 1,
+      "actor": "fake_admin"
+    },
+    {
+      "action": "delete-credit-batch",
+      "ordinal": 1,
+      "actor": "fake_admin"
+    }
+  ],
+  "responses": [
+    {
+      "action": "preview-credit-batch",
+      "status": 200,
+      "rowCount": 8,
+      "columns": [
+        {
+          "key": "0",
+          "heading": "Synthetic upload Alpha",
+          "instructions": "",
+          "count": 8
+        },
+        {
+          "key": "1",
+          "heading": "Synthetic upload Beta",
+          "instructions": "",
+          "count": 8
+        }
+      ],
+      "rows": [
+        {
+          "row": 1,
+          "cells": [
+            "[masked]",
+            "[masked]"
+          ]
+        },
+        {
+          "row": 2,
+          "cells": [
+            "[masked]",
+            "[masked]"
+          ]
+        },
+        {
+          "row": 3,
+          "cells": [
+            "[masked]",
+            "[masked]"
+          ]
+        },
+        {
+          "row": 4,
+          "cells": [
+            "[masked]",
+            "[masked]"
+          ]
+        },
+        {
+          "row": 5,
+          "cells": [
+            "[masked]",
+            "[masked]"
+          ]
+        }
+      ]
+    },
+    {
+      "action": "preview-credit-batch",
+      "status": 200,
+      "rowCount": 8,
+      "columns": [
+        {
+          "key": "0",
+          "heading": "Synthetic upload Alpha Revised",
+          "instructions": "# Redeem Alpha\n**Use your own credit.**\n[Help](https://example.test/alpha)",
+          "count": 8
+        },
+        {
+          "key": "1",
+          "heading": "Synthetic upload Beta",
+          "instructions": "# Redeem Beta\n1. Read the synthetic steps.\n2. Redeem your own code.",
+          "count": 8
+        }
+      ],
+      "rows": [
+        {
+          "row": 1,
+          "cells": [
+            "[masked]",
+            "[masked]"
+          ]
+        },
+        {
+          "row": 2,
+          "cells": [
+            "[masked]",
+            "[masked]"
+          ]
+        },
+        {
+          "row": 3,
+          "cells": [
+            "[masked]",
+            "[masked]"
+          ]
+        },
+        {
+          "row": 4,
+          "cells": [
+            "[masked]",
+            "[masked]"
+          ]
+        },
+        {
+          "row": 5,
+          "cells": [
+            "[masked]",
+            "[masked]"
+          ]
+        }
+      ]
+    },
+    {
+      "action": "preview-credit-batch",
+      "status": 200,
+      "rowCount": 8,
+      "columns": [
+        {
+          "key": "0",
+          "heading": "Synthetic upload Alpha Revised",
+          "instructions": "# Redeem Alpha\n**Use your own credit.**\n[Help](https://example.test/alpha)\nFinal reviewed steps.",
+          "count": 8
+        },
+        {
+          "key": "1",
+          "heading": "Synthetic upload Beta",
+          "instructions": "# Redeem Beta\n1. Read the synthetic steps.\n2. Redeem your own code.",
+          "count": 8
+        }
+      ],
+      "rows": [
+        {
+          "row": 1,
+          "cells": [
+            "[masked]",
+            "[masked]"
+          ]
+        },
+        {
+          "row": 2,
+          "cells": [
+            "[masked]",
+            "[masked]"
+          ]
+        },
+        {
+          "row": 3,
+          "cells": [
+            "[masked]",
+            "[masked]"
+          ]
+        },
+        {
+          "row": 4,
+          "cells": [
+            "[masked]",
+            "[masked]"
+          ]
+        },
+        {
+          "row": 5,
+          "cells": [
+            "[masked]",
+            "[masked]"
+          ]
+        }
+      ]
+    },
+    {
+      "action": "publish-credit-batch",
+      "status": 200,
+      "message": "Credit batch published. Available codes assigned to eligible checked-in recipients.",
+      "batchId": "6b52f6ca-678d-4aed-adae-6b33c22fcc21"
+    },
+    {
+      "action": "delete-credit-column",
+      "status": 200,
+      "message": "Credit column deleted."
+    },
+    {
+      "action": "delete-credit-batch",
+      "status": 200,
+      "message": "Credit batch deleted."
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "screenshots": [
+    {
+      "path": "/workspace/dddhack-portal/evidence/v7-credit-batches-ui/upload-7fd4016-4T9mLi/reviewed-columns-masked-390x844.png",
+      "route": "/admin/credits",
+      "role": "synthetic-admin",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "7fd4016ce9a2156d13de4d600818ae0aad9e7ff5",
+      "workerSha": "bda55c603146f4bc9ddba3f31dfb7411a286eec3484b47ad7a2fa31d15a14a38",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/dddhack-portal/evidence/v7-credit-batches-ui/upload-7fd4016-4T9mLi/published-columns-390x844.png",
+      "route": "/admin/credits",
+      "role": "synthetic-admin",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "7fd4016ce9a2156d13de4d600818ae0aad9e7ff5",
+      "workerSha": "bda55c603146f4bc9ddba3f31dfb7411a286eec3484b47ad7a2fa31d15a14a38",
+      "inspected": false
+    }
+  ],
+  "browserClosed": true,
+  "browser": "154.0.8037.57"
+}

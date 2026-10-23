@@ -1,0 +1,39 @@
+{
+  "source": "7fd4016ce9a2156d13de4d600818ae0aad9e7ff5",
+  "workerSha": "bda55c603146f4bc9ddba3f31dfb7411a286eec3484b47ad7a2fa31d15a14a38",
+  "mode": "paste",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "syntheticOnly": true,
+  "chromiumSandbox": true,
+  "checks": [],
+  "actions": [
+    {
+      "action": "preview-credit-batch",
+      "ordinal": 1,
+      "actor": "fake_admin"
+    }
+  ],
+  "responses": [],
+  "errors": [],
+  "blocked": [],
+  "screenshots": [
+    {
+      "path": "/workspace/dddhack-portal/evidence/v7-credit-batches-ui/paste-7fd4016-8rTiYi/failure-1440x900.png",
+      "route": "/admin/credits",
+      "role": "synthetic-admin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "7fd4016ce9a2156d13de4d600818ae0aad9e7ff5",
+      "workerSha": "bda55c603146f4bc9ddba3f31dfb7411a286eec3484b47ad7a2fa31d15a14a38",
+      "inspected": false
+    }
+  ],
+  "browserClosed": true,
+  "browser": "154.0.8037.57",
+  "failure": "locator.isEnabled: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.credit-batch-editor').getByLabel('Paste CSV', { exact: true })\u001b[22m\n\n    at /workspace/v7-credit-batches/scripts/qa-credit-batches-v7.mjs:260:59"
+}

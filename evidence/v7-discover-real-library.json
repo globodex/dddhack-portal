@@ -1,0 +1,53 @@
+{
+  "source": "7fd4016ce9a2156d13de4d600818ae0aad9e7ff5",
+  "worker": "bda55c603146f4bc9ddba3f31dfb7411a286eec3484b47ad7a2fa31d15a14a38",
+  "syntheticOnly": true,
+  "actualScreenshots": true,
+  "uiReviewed": true,
+  "library": {
+    "results": [
+      {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/discover-real-desktop-7fd4016.png",
+        "file_id": "file_00000000cd0c81f8a6c96a935d8f158b",
+        "library_file_id": "libfile_91fec08c8ec08191abde54e72fff2efa",
+        "file_name": "discover-real-desktop-7fd4016.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 93664
+      },
+      {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/discover-real-mobile-7fd4016.png",
+        "file_id": "file_00000000c1a881fd863033bddff2f7cc",
+        "library_file_id": "libfile_1078aed1975c8191859f4f20c81245b6",
+        "file_name": "discover-real-mobile-7fd4016.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 34972
+      }
+    ],
+    "warnings": [],
+    "external_connectors_accessed": false
+  }
+}

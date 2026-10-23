@@ -29,10 +29,10 @@ export default function AdminLeaderTransfer({
   if (!canTransfer || member.removed || member.id === team.leader_id)
     return null;
   return (
-    <div className="admin-control admin-leader-transfer">
+    <div className="admin-leader-transfer">
       <button
         type="button"
-        className="button secondary admin-icon-action"
+        className="admin-toolbar-icon"
         disabled={busy}
         aria-busy={busy}
         aria-label={`Make ${member.name} team leader for ${team.name}`}

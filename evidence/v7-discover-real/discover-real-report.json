@@ -1,0 +1,19 @@
+{
+  "source": "7fd4016ce9a2156d13de4d600818ae0aad9e7ff5",
+  "worker": "bda55c603146f4bc9ddba3f31dfb7411a286eec3484b47ad7a2fa31d15a14a38",
+  "realBackend": true,
+  "mockedApi": false,
+  "syntheticOnly": true,
+  "checks": [
+    "Real server initial 24",
+    "Real scroll loads second page",
+    "No duplicate cards",
+    "Server search beyond first page",
+    "Full directory membership filter"
+  ],
+  "errors": [],
+  "requests": [
+    "http://127.0.0.1:4183/api/portal?view=%2Fdiscover%2Fparticipants&q=&membership=all&limit=24&cursor=eyJ2IjoxLCJuYW1lIjoiU3ludGhldGljIFBhcnRpY2lwYW50IDAyMyIsImlkIjoibG9hZDMwMF9wXzAyMyIsInEiOiIiLCJtZW1iZXJzaGlwIjoiYWxsIn0",
+    "http://127.0.0.1:4183/api/portal?view=%2Fdiscover%2Fparticipants&q=Synthetic+Participant+299&membership=all&limit=24"
+  ]
+}

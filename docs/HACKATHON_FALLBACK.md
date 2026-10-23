@@ -4,13 +4,13 @@ Source baseline: `7fd4016ce9a2156d13de4d600818ae0aad9e7ff5`. This is an operatin
 
 ## While the portal works
 
-Use **Participants** to add roster entries, approve **Going**, and record verified attendance with **Check in** when that operation is enabled. A team **Locked** label is separate from personal approval and attendance. The bulk attendance action does not itself allocate credits.
+Use **Participants** to add roster entries, approve **Going**, and record verified attendance with **Check in**. V7 derives availability from actual prerequisites and does not require operational-readiness checkboxes. A team **Locked** label is separate from personal approval and attendance. The bulk attendance action does not itself allocate credits.
 
 Use **Teams** for membership and lock checks. Use **Credits** to review and explicitly publish the intended credit batch. Participants access their own assigned credits in Dashboard. Never put credit values in screenshots, paper attendance sheets, ordinary exports or audit notes.
 
 The personally checked-in team leader submits through Dashboard during the configured window. Confirm the committed version in history. Only three committed versions are allowed; a saved draft is not a submitted version.
 
-Use **Submissions → project → Review** for version-specific eligibility, reviewer assignment, private feedback and manual scores. Use **Settings → Results** only when its actual prerequisites are satisfied. Follow the existing scoring baseline in [v7-scoring-baseline.md](v7-scoring-baseline.md); this guide changes no weights.
+Use **Submissions → project → Review** for version-specific eligibility, private feedback and manual scores. Every admin can score directly without an assignment; separately appointed judges/mentors retain their assigned access. Use **Settings → Results visibility** only when its actual prerequisites are satisfied. Follow the existing scoring baseline in [v7-scoring-baseline.md](v7-scoring-baseline.md); this guide changes no weights.
 
 ## Start fallback deliberately
 

@@ -1,4 +1,8 @@
 {
+  "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+  "workerSha256": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+  "syntheticOnly": true,
+  "publicationPerformed": false,
   "standalone": {
     "landing": 200,
     "forgedOwnerHeadersAccepted": false,
@@ -28,27 +32,26 @@
     "voucherImportAndRevealWithoutKey": 200
   },
   "stagedRelease": {
-    "publicDefaultDeadline": "2026-11-01T10:30:00.000Z",
+    "missingSettingsHaveNoInventedDeadline": true,
     "repeatedManagedIdentity": 200,
     "anonymousAfterIdentityRemoved": 401,
     "appSessionCookieIssued": false,
     "revealWithoutExplicitIntent": 422,
-    "ownerExtensionPreview": 200,
+    "extensionWithoutConfiguredDeadline": 422,
     "participantGlobalPolicyPreview": 403,
     "realManagedLogoutVerified": false
   },
-  "ownerOperationalSetup": {
-    "ownerPreview": 200,
-    "ownerSave": 200,
-    "uncheckedPrivacy": 422,
-    "participantDenied": 403,
-    "indefiniteRetention": true,
-    "configurationDidNotEnableOperations": true,
-    "judgingUnconfirmed": true,
+  "derivedOperationalPrerequisites": {
+    "actualWindowPublication": 200,
+    "submissionAllowedWithoutManualActivation": true,
+    "checkinAllowedWithoutManualActivation": true,
+    "scoringStillRequiresActualConfiguration": true,
+    "participantWindowChangeDenied": 403,
     "realChatGPTBrowserSession": false
   },
   "rosterGate": {
     "unmatchedVerifiedEmail": 403,
+    "unmatchedEmailRecoveryShell": 200,
     "ownerBootstrap": 200,
     "realParticipantImport": false
   },
@@ -66,9 +69,9 @@
     "environment": "disposable local synthetic D1 only",
     "operationalSubmissionWithJudgingIncomplete": 200,
     "scoringStillBlocked": 409,
-    "checkinBeforeSeparateEnablement": 409,
-    "checkinAfterSeparateEnablement": 200,
-    "unconfirmedJudgingFlagsPreserved": true
+    "checkinWithoutManualEnablement": 200,
+    "repeatedAttendanceIsSafe": true,
+    "actualScoringConfigurationStillRequired": true
   },
   "revisedExperience": {
     "registeredTeamCreation": 200,

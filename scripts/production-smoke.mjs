@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import {
   mkdtempSync,
   readFileSync,
@@ -9,11 +11,6 @@ import {
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { unstable_dev, getPlatformProxy } from "wrangler";
-import {
-  indefiniteRetentionNotice,
-  operationalSetupRequest,
-  operationalSetupSave,
-} from "../lib/operational-setup-contract.ts";
 import { syntheticImage } from "../tests/fixture-images.ts";
 import { seedLocal } from "./fixtures.ts";
 process.env.PORTAL_LOCAL_TEST = "1"; // Cannot reactivate code removed by the production build.
@@ -38,7 +35,12 @@ const options = {
   },
 };
 let worker;
-const report = {};
+const report = {
+  source: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+  workerSha256: createHash("sha256").update(readFileSync("dist/server/index.js")).digest("hex"),
+  syntheticOnly: true,
+  publicationPerformed: false,
+};
 const spoof = {
   "oai-authenticated-user-id": "attacker",
   "oai-authenticated-user-email": "connectwithparam.30@gmail.com",
@@ -413,7 +415,7 @@ try {
   assert.equal(board.status, 200);
   assert.ok(!/evaluationState|rating|privateVenue/.test(boardText));
   const publicPolicy = await (await worker.fetch("/api/portal?view=/")).json();
-  assert.equal(publicPolicy.submissionClose, "2026-11-01T10:30:00.000Z");
+  assert.equal(publicPolicy.submissionClose, null);
   const repeated = await worker.fetch("/api/portal?view=/dashboard", {
     headers: alice,
   });
@@ -430,8 +432,7 @@ try {
     version: 0,
     minutes: 30,
   });
-  assert.equal(ownerPreview.status, 200);
-  assert.equal((await ownerPreview.json()).after, "2026-11-01T11:00:00.000Z");
+  assert.equal(ownerPreview.status, 422);
   const participantPreview = await post(alice, "preview-policy-weights", {
     version: 0,
     weights: {
@@ -445,12 +446,12 @@ try {
   });
   assert.equal(participantPreview.status, 403);
   report.stagedRelease = {
-    publicDefaultDeadline: publicPolicy.submissionClose,
+    missingSettingsHaveNoInventedDeadline: publicPolicy.submissionClose === null,
     repeatedManagedIdentity: 200,
     anonymousAfterIdentityRemoved: 401,
     appSessionCookieIssued: false,
     revealWithoutExplicitIntent: 422,
-    ownerExtensionPreview: 200,
+    extensionWithoutConfiguredDeadline: 422,
     participantGlobalPolicyPreview: 403,
     realManagedLogoutVerified: false,
   };
@@ -475,75 +476,24 @@ try {
     confirmation: "CHANGE_SUBMISSION_WINDOW",
   });
   assert.equal(publishedWindow.status, 200, await publishedWindow.text());
-  const setupValues = operationalSetupRequest({
-    version: 1,
-    operation: "submissions",
-    privacyConfirmed: true,
-    rulesConfirmed: true,
-    reason: "Synthetic explicit operational confirmation",
-  });
-  const falsePrivacy = await post(owner, "preview-operational-setup", {
-    ...setupValues,
-    privacyConfirmed: false,
-  });
-  assert.equal(falsePrivacy.status, 422);
-  const deniedSetup = await post(
-    alice,
-    "preview-operational-setup",
-    setupValues,
-  );
-  assert.equal(deniedSetup.status, 403);
-  const setupPreview = await post(
-    owner,
-    "preview-operational-setup",
-    setupValues,
-  );
-  assert.equal(setupPreview.status, 200);
-  const proposedSetup = await setupPreview.json();
-  assert.equal(proposedSetup.enablesOperations, false);
-  const confirmedSetup = await post(
-    owner,
-    "save-operational-setup",
-    operationalSetupSave(setupValues, proposedSetup),
-  );
-  assert.equal(confirmedSetup.status, 200, await confirmedSetup.text());
-  const configuredOnly = await (
+  const setup = await (
     await worker.fetch("/api/portal?view=/admin/settings", { headers: owner })
   ).json();
-  assert.equal(
-    configuredOnly.policy.retentionNotice,
-    indefiniteRetentionNotice,
-  );
-  assert.equal(configuredOnly.readiness.submissions.configured, true);
-  assert.equal(configuredOnly.readiness.submissions.enabled, false);
-  assert.equal(configuredOnly.readiness.checkin.enabled, false);
-  assert.equal(configuredOnly.readiness.scoring.ready, false);
-  report.ownerOperationalSetup = {
-    ownerPreview: 200,
-    ownerSave: 200,
-    uncheckedPrivacy: 422,
-    participantDenied: 403,
-    indefiniteRetention: true,
-    configurationDidNotEnableOperations: true,
-    judgingUnconfirmed: true,
+  assert.equal(setup.readiness.submissions.configured, true);
+  assert.equal(setup.readiness.submissions.enabled, true);
+  assert.equal(setup.readiness.submissions.allowed, true);
+  assert.equal(setup.readiness.checkin.enabled, true);
+  assert.equal(setup.readiness.scoring.ready, false);
+  const participantWindow = await post(alice, "preview-submission-window", windowRequest);
+  assert.equal(participantWindow.status, 403);
+  report.derivedOperationalPrerequisites = {
+    actualWindowPublication: 200,
+    submissionAllowedWithoutManualActivation: true,
+    checkinAllowedWithoutManualActivation: true,
+    scoringStillRequiresActualConfiguration: true,
+    participantWindowChangeDenied: 403,
     realChatGPTBrowserSession: false,
   };
-  let setup = await (
-    await worker.fetch("/api/portal?view=/admin/settings", { headers: owner })
-  ).json();
-  const enabledSubmission = await post(owner, "activate-operations", {
-    operation: "submissions",
-    version: setup.policyVersion,
-    confirmation: "ENABLE_SUBMISSIONS",
-    reason: "Synthetic submission-only enablement",
-  });
-  assert.equal(enabledSubmission.status, 200, await enabledSubmission.text());
-  setup = await (
-    await worker.fetch("/api/portal?view=/admin/settings", { headers: owner })
-  ).json();
-  assert.equal(setup.readiness.submissions.allowed, true);
-  assert.equal(setup.readiness.checkin.enabled, false);
-  assert.equal(setup.readiness.scoring.ready, false);
   await post(owner, "participant-bulk", {
     emails: ["alice@portal.test"],
     status: "approved",
@@ -581,33 +531,12 @@ try {
   });
   assert.equal(committed.status, 200, await committed.text());
   assert.equal((await post(owner, "compute-results", {})).status, 409);
-  const checkinBefore = await post(owner, "participant-bulk", {
+  const repeatedCheckin = await post(owner, "participant-bulk", {
     emails: ["alice@portal.test"],
     checkIn: true,
-    reason: "Synthetic check-in must stay separate",
+    reason: "Synthetic idempotent attendance without readiness checkboxes",
   });
-  assert.equal(checkinBefore.status, 409);
-  assert.equal(
-    (
-      await post(owner, "activate-operations", {
-        operation: "checkin",
-        version: setup.policyVersion,
-        confirmation: "ENABLE_CHECKIN",
-        reason: "Synthetic independent attendance enablement",
-      })
-    ).status,
-    200,
-  );
-  assert.equal(
-    (
-      await post(owner, "participant-bulk", {
-        emails: ["alice@portal.test"],
-        checkIn: true,
-        reason: "Synthetic attendance only, no credit key",
-      })
-    ).status,
-    200,
-  );
+  assert.equal(repeatedCheckin.status, 200, await repeatedCheckin.text());
   const rejectedPhoto = await post(alice, "complete-profile", {
     displayName: "Synthetic Alice",
     gender: "non-binary",
@@ -683,9 +612,9 @@ try {
     environment: "disposable local synthetic D1 only",
     operationalSubmissionWithJudgingIncomplete: 200,
     scoringStillBlocked: 409,
-    checkinBeforeSeparateEnablement: 409,
-    checkinAfterSeparateEnablement: 200,
-    unconfirmedJudgingFlagsPreserved: true,
+    checkinWithoutManualEnablement: 200,
+    repeatedAttendanceIsSafe: true,
+    actualScoringConfigurationStillRequired: true,
   };
   report.revisedExperience = {
     registeredTeamCreation: 200,
