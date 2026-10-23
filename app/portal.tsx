@@ -2090,7 +2090,17 @@ export function Submission({
           {canCommit && (
             <footer className="submission-actions">
               {step < 3 ? (
-                <button type="button" className="button" onClick={next}>
+                <button
+                  key="submission-next"
+                  type="button"
+                  className="button"
+                  onClick={(event) => {
+                    // This click replaces Next with a submit button. Cancel its
+                    // native activation before changing the rendered step.
+                    event.preventDefault();
+                    next();
+                  }}
+                >
                   Next <ArrowRight size={20} aria-hidden="true" />
                 </button>
               ) : (
