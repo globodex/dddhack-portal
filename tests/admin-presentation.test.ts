@@ -236,7 +236,7 @@ test("row removals invalidate snapshot; row order can change without recaching l
   );
 });
 
-test("real fresh Admin projections preserve status/readiness and private ideas while avatar/name changes invalidate labels", async () => {
+test("real fresh Admin projections preserve status/readiness and locked private idea overrides while avatar/name changes invalidate labels", async () => {
   const { setup } = await import("./helpers");
   const { db, service } = await setup();
   try {
@@ -315,7 +315,7 @@ test("real fresh Admin projections preserve status/readiness and private ideas w
     );
     await teams.merge(teamFull, teamsPath);
     await service("admin").command("admin-idea-override", {
-      teamId: "fake_team3",
+      teamId: "fake_team1",
       title: "NEW PRIVATE IDEA",
       description: "Synthetic authorized correction",
       reason: "Synthetic cache freshness check",
@@ -330,7 +330,7 @@ test("real fresh Admin projections preserve status/readiness and private ideas w
     );
     assert.equal(ideaDelta.adminPresentation.unchanged, true);
     assert.equal(
-      (ideaDelta.items as any[]).find((row) => row.id === "fake_team3").idea
+      (ideaDelta.items as any[]).find((row) => row.id === "fake_team1").idea
         .title,
       "NEW PRIVATE IDEA",
     );
