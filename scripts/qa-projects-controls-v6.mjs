@@ -179,8 +179,11 @@ assert.equal(
   }).trim(),
   manifest.source,
 );
-const origin = "http://127.0.0.1:4173";
-assert.equal(manifest.origin, origin);
+const origin = manifest.origin;
+assert.match(origin, /^http:\/\/127\.0\.0\.1:\d{4,5}$/);
+assert.ok(
+  Number(new URL(origin).port) >= 1024 && Number(new URL(origin).port) <= 65535,
+);
 assert.match(manifest.project?.slug || "", /^[a-zA-Z0-9_-]+$/);
 assert.ok(manifest.project?.id);
 for (const actor of Object.values(manifest.actors || {})) {
@@ -244,10 +247,10 @@ async function check(id, device, fn) {
     record(id, "failed", e.message, device);
   }
 }
-const { chromium } =
-  await import("/tmp/ddehack-playwright-runner/node_modules/playwright/index.mjs");
+const { chromium } = await import("@playwright/test");
 const browser = await chromium.launch({
   headless: true,
+  executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium",
   chromiumSandbox: true,
 });
 const allDevices = [
@@ -360,7 +363,15 @@ async function session(role, device, policy = {}) {
         return route.abort("blockedbyclient");
       }
       state.posts.push({ action, data }); // Memory only; never serialize drafts/media.
-      report.requests.push({ role, device: device.name, action });
+      report.requests.push({
+        role,
+        device: device.name,
+        action,
+        transport:
+          policy.voteReject && action === "upvote-project"
+            ? "injected-rejection"
+            : "loopback-backend",
+      });
       if (action === "submit-project") state.lastCommit = body;
       if (policy.voteReject && action === "upvote-project") {
         await policy.voteReject;
@@ -393,6 +404,14 @@ async function session(role, device, policy = {}) {
   page.on("pageerror", (e) =>
     report.pageErrors.push({ role, device: device.name, error: e.message }),
   );
+  page.on("dialog", async (dialog) => {
+    report.pageErrors.push({
+      role,
+      device: device.name,
+      error: `Unexpected JavaScript ${dialog.type()} dialog`,
+    });
+    await dialog.dismiss();
+  });
   page.on("response", (r) => {
     if (r.request().method() === "POST")
       state.responses.push({ status: r.status() });
@@ -1378,6 +1397,60 @@ async function mutationChecks() {
     manifest.mutationProjects?.[device.name] ||
     manifest.mutationProject ||
     manifest.project;
+  const expectedLeaderProject = manifest.leaderProjects?.[device.name] ||
+    manifest.leaderProject || { id: "visual_project_alice", attemptsUsed: 2 };
+  const preflightMember = await session("member", device);
+  try {
+    await visit(preflightMember, "/projects/" + target.slug);
+    const state = await read(preflightMember, "/projects/" + target.slug);
+    assert.equal(state.status, 200);
+    assert.equal(state.body.items[0].id, target.id);
+    assert.equal(
+      state.body.items[0].upvoted,
+      false,
+      "Fresh reset requires an unvoted synthetic target",
+    );
+    assert.equal(state.body.items[0].canUpvote, true);
+    assert.equal(state.body.items[0].canComment, true);
+    privateAbsent(state.body);
+  } finally {
+    await preflightMember.context.close();
+  }
+  const preflightLeader = await session("leader", device);
+  try {
+    await visit(preflightLeader, "/dashboard#project");
+    const state = await read(preflightLeader, "/submission");
+    assert.equal(state.status, 200);
+    assert.equal(
+      state.body.project?.id,
+      expectedLeaderProject.id,
+      "Only the manifest-bound leader project may change",
+    );
+    assert.equal(
+      state.body.submissionAccess?.attemptsUsed,
+      expectedLeaderProject.attemptsUsed,
+    );
+    assert.equal(state.body.submissionAccess?.canCommit, true);
+    assert.equal(state.body.team?.leader_id, state.body.me?.id);
+  } finally {
+    await preflightLeader.context.close();
+  }
+  report.writeScope = {
+    device: device.name,
+    member: (
+      manifest.actorsByDevice?.[device.name]?.member || manifest.actors.member
+    ).id,
+    engagementProject: target.id,
+    leader: (
+      manifest.actorsByDevice?.[device.name]?.leader || manifest.actors.leader
+    ).id,
+    leaderProject: expectedLeaderProject.id,
+    attemptsAtReset: expectedLeaderProject.attemptsUsed,
+    origin,
+    path: "/api/portal",
+    actions: [...postActions],
+  };
+  save();
   let release;
   const rejection = new Promise((r) => {
     release = r;
