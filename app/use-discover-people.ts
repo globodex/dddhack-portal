@@ -81,10 +81,10 @@ export function useDiscoverPeople(data: Page, search: string, membership: string
   stateRef.current = state;
 
   useEffect(() => {
-    if (!enabled) return;
     const epoch = ++generation.current;
     active.current?.abort();
     active.current = null;
+    if (!enabled) return;
     if (!query.search && query.membership === "all") {
       setState(fromPage(data, key));
       return;
@@ -111,6 +111,12 @@ export function useDiscoverPeople(data: Page, search: string, membership: string
     };
   }, [enabled, key, data.items, data.hasMore, data.nextCursor]);
 
+  useEffect(() => () => {
+    generation.current++;
+    active.current?.abort();
+    active.current = null;
+  }, []);
+
   const loadMore = async () => {
     const before = stateRef.current;
     if (!enabled || active.current || before.key !== key || before.loading) return;
@@ -118,7 +124,8 @@ export function useDiscoverPeople(data: Page, search: string, membership: string
     const epoch = generation.current;
     const controller = new AbortController();
     active.current = controller;
-    setState((previous) => ({ ...previous, loading: true, error: "" }));
+    stateRef.current = { ...before, loading: true, error: "" };
+    setState(stateRef.current);
     try {
       const page = await readPeoplePage(
         peopleDirectoryUrl({ ...query, ...(before.nextCursor ? { cursor: before.nextCursor } : {}) }),
@@ -131,10 +138,13 @@ export function useDiscoverPeople(data: Page, search: string, membership: string
         seen.add(person.id);
         return true;
       });
-      setState({ ...fromPage(page, key), items: [...before.items, ...added] });
+      stateRef.current = { ...fromPage(page, key), items: [...before.items, ...added] };
+      setState(stateRef.current);
     } catch (error) {
-      if (generation.current === epoch && !controller.signal.aborted)
-        setState((previous) => ({ ...previous, loading: false, error: (error as Error).message }));
+      if (generation.current === epoch && !controller.signal.aborted) {
+        stateRef.current = { ...before, loading: false, error: (error as Error).message };
+        setState(stateRef.current);
+      }
     } finally {
       if (active.current === controller) active.current = null;
     }
