@@ -1,0 +1,19 @@
+{
+  "status": "offline generator verified; actual D1 counts pending execution",
+  "algorithm": "Seeded xorshift32 PRNG. Fisher-Yates shuffle300 participants; assign first90 as one leader/member per team; allocate remaining210 one at a time among seeded-random teams with remaining capacity below5.",
+  "participants": 300,
+  "teams": 90,
+  "memberships": 300,
+  "operationalAdmins": 2,
+  "ownerActionsExercised": false,
+  "minTeamSize": 1,
+  "maxTeamSize": 5,
+  "teamSizeDistribution": {
+    "1": 4,
+    "2": 25,
+    "3": 21,
+    "4": 17,
+    "5": 23
+  },
+  "assignmentSHA256": "2f0ad7380b518a15b2ab815c4f1d67e08122751f96c536057e4931101ed945ae"
+}
