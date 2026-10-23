@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useId, useRef } from "react";
-import { ExternalLink } from "lucide-react";
+import { X } from "lucide-react";
+import TeamAvatar from "./team-avatar";
 import DotAvatar from "./dot-avatar";
 
 export type DiscoveryPerson = {
@@ -10,6 +11,7 @@ export type DiscoveryPerson = {
   socials: string[];
   avatarColor: string;
   avatarExpression: string;
+  team?: { name: string; palette?: string };
 };
 
 export function discoverySocialLinks(socials: string[]) {
@@ -97,64 +99,68 @@ export default function DiscoveryProfile({
   return (
     <dialog
       ref={dialog}
-      className="discovery-profile"
+      className="discovery-profile discovery-profile-v6"
       aria-labelledby={titleId}
       aria-describedby={person.bio ? bioId : undefined}
     >
-      <div className="discovery-profile-top">
+      <button
+        type="button"
+        className="discovery-profile-close"
+        autoFocus
+        onClick={() => dialog.current?.close()}
+        aria-label="Close profile"
+      >
+        <X size={22} aria-hidden="true" />
+      </button>
+      <div className="discovery-profile-identity-v6">
         <DotAvatar
           color={person.avatarColor}
           expression={person.avatarExpression}
-          size={72}
+          size={80}
           decorative
         />
-        <button
-          type="button"
-          className="discovery-profile-close"
-          autoFocus
-          onClick={() => dialog.current?.close()}
-          aria-label="Close profile"
-        >
-          Close
-        </button>
+        <h2 id={titleId}>{person.name}</h2>
+        {person.bio && (
+          <p id={bioId} className="discovery-profile-bio">
+            {person.bio}
+          </p>
+        )}
+        {links.length > 0 && (
+          <nav className="discovery-profile-socials" aria-label="Social links">
+            <ul>
+              {links.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${link.label}: ${link.href} (opens in a new tab)`}
+                  >
+                    <img
+                      src={`/icons/social/${link.icon}.svg`}
+                      width={26}
+                      height={26}
+                      alt=""
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
       </div>
-      <h2 id={titleId}>{person.name}</h2>
-      {person.bio && (
-        <p id={bioId} className="discovery-profile-bio">
-          {person.bio}
-        </p>
-      )}
-      {links.length > 0 && (
-        <section
-          className="discovery-profile-socials"
-          aria-label="Social links"
-        >
-          <h3>Social links</h3>
-          <ul>
-            {links.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${link.label}: ${link.href} (opens in a new tab)`}
-                >
-                  <img
-                    src={`/icons/social/${link.icon}.svg`}
-                    width={22}
-                    height={22}
-                    alt=""
-                  />
-                  <span>{link.label}</span>
-                  <ExternalLink
-                    className="discovery-profile-external"
-                    size={18}
-                    aria-hidden="true"
-                  />
-                </a>
-              </li>
-            ))}
-          </ul>
+      {person.team && (
+        <section className="discovery-profile-team-v6" aria-label="Team">
+          <h3>Team</h3>
+          <div>
+            <TeamAvatar
+              name={person.team.name}
+              palette={person.team.palette}
+              size={52}
+            />
+            <h4>{person.team.name}</h4>
+            <span>In a team</span>
+          </div>
         </section>
       )}
     </dialog>

@@ -1,5 +1,9 @@
 "use client";
 import {
+  ChevronDown,
+  ChevronRight,
+  Plus,
+  Search as SearchIcon,
   ArrowLeft,
   ArrowRight,
   ArrowUp,
@@ -34,6 +38,7 @@ import { HeadingDot } from "./expressive-heading";
 import CenteredLoader from "./centered-loader";
 import DiscoveryProfile, {
   discoverySocialLinks,
+  openDiscoveryDialog,
   type DiscoveryPerson,
 } from "./discovery-profile";
 import { portalNavigation } from "../lib/navigation";
@@ -1331,6 +1336,7 @@ export function Credit({ credit }: { credit: Row }) {
   );
 }
 export function discoveryProfileProjection(row: Row): DiscoveryPerson {
+  const teamName = typeof row.teamName === "string" ? row.teamName.trim() : "";
   return {
     name: String(row.name || "Participant"),
     bio: String(row.bio || ""),
@@ -1339,8 +1345,86 @@ export function discoveryProfileProjection(row: Row): DiscoveryPerson {
       : [],
     avatarColor: String(row.avatarColor || "blue"),
     avatarExpression: String(row.avatarExpression || "squeezed"),
+    ...(teamName
+      ? {
+          team: {
+            name: teamName,
+            ...(typeof row.teamPalette === "string"
+              ? { palette: row.teamPalette }
+              : {}),
+          },
+        }
+      : {}),
   };
 }
+
+function DiscoverSocials({ socials = [] }: { socials?: string[] }) {
+  const links = discoverySocialLinks(socials);
+  if (!links.length) return null;
+  return (
+    <nav className="discover-socials" aria-label="Social links">
+      {links.map((link) => (
+        <a
+          key={link.href}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${link.label} (opens in a new tab)`}
+        >
+          <img
+            src={`/icons/social/${link.icon}.svg`}
+            width={24}
+            height={24}
+            alt=""
+          />
+        </a>
+      ))}
+    </nav>
+  );
+}
+
+function DiscoverTeamDialog({
+  team,
+  onClose,
+}: {
+  team: Row;
+  onClose: () => void;
+}) {
+  const dialog = useRef<HTMLDialogElement>(null);
+  const callback = useRef(onClose);
+  useEffect(() => {
+    callback.current = onClose;
+  }, [onClose]);
+  useEffect(() => {
+    if (dialog.current)
+      return openDiscoveryDialog(dialog.current, () => callback.current());
+  }, []);
+  return (
+    <dialog
+      ref={dialog}
+      className="discover-team-dialog-v6"
+      aria-labelledby="discover-team-title"
+    >
+      <button
+        type="button"
+        className="discover-dialog-close"
+        autoFocus
+        aria-label="Close team"
+        onClick={() => dialog.current?.close()}
+      >
+        <X size={22} aria-hidden="true" />
+      </button>
+      <TeamAvatar name={team.name} palette={team.palette} size={80} />
+      <h2 id="discover-team-title">{team.name}</h2>
+      <span className={`discover-state ${team.locked ? "locked" : "forming"}`}>
+        {team.status || (team.locked ? "Locked" : "Forming")}
+      </span>
+      <p>{team.readiness?.total ?? "?"}/5 members</p>
+      {team.bio && <p className="discover-team-bio">{team.bio}</p>}
+    </dialog>
+  );
+}
+
 export function Discover({
   data,
   path,
@@ -1355,8 +1439,10 @@ export function Discover({
   const [selectedPerson, setSelectedPerson] = useState<DiscoveryPerson | null>(
     null,
   );
+  const [selectedTeam, setSelectedTeam] = useState<Row | null>(null);
   const hashOpened = useRef("");
   const participants = path === "/discover/participants";
+  const canCreate = data.me?.canParticipate === true && !data.team;
   useEffect(() => {
     if (participants && window.location.hash.startsWith("#person-")) {
       document
@@ -1382,141 +1468,229 @@ export function Discover({
         (teamFilter === "in" ? !!row.teamName : !row.teamName)),
   );
   return (
-    <>
-      <header className="page-heading">
+    <section className="discover-v6">
+      <header className="discover-heading">
         <h1>
+          <HeadingDot
+            color="blue"
+            expression="squeezed"
+            size="var(--directory-heading-size, 52px)"
+          />
           Discover
-          <HeadingDot color="purple" expression="round" />
         </h1>
       </header>
-      <nav className="discovery-tabs" aria-label="Discover">
+      <nav className="discover-tabs" aria-label="Discover">
+        <a
+          href="/discover/participants"
+          aria-current={participants ? "page" : undefined}
+        >
+          People
+        </a>
         <a
           href="/discover/teams"
           aria-current={!participants ? "page" : undefined}
         >
           Teams
         </a>
-        <a
-          href="/discover/participants"
-          aria-current={participants ? "page" : undefined}
-        >
-          Participants
-        </a>
       </nav>
-      <div className="toolbar">
-        <Search
-          value={search}
-          onChange={setSearch}
-          label={
-            participants ? "Search participants or teams" : "Search team names"
-          }
-        />
+      <div className="discover-toolbar">
+        <label className="discover-search">
+          <SearchIcon size={22} aria-hidden="true" />
+          <span className="sr-only">
+            {participants ? "Search people" : "Search teams"}
+          </span>
+          <input
+            type="search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder={participants ? "Search people" : "Search teams"}
+          />
+        </label>
         {participants && (
-          <label>
-            <span className="sr-only">Team membership</span>
-            <select
-              value={teamFilter}
-              onChange={(e) => setTeamFilter(e.target.value)}
-            >
-              <option value="">All participants</option>
-              <option value="in">In a team</option>
-              <option value="out">Not in a team</option>
-            </select>
-          </label>
+          <div
+            className="discover-membership-filters"
+            role="group"
+            aria-label="Team membership"
+          >
+            {[
+              ["", "All"],
+              ["in", "In a team"],
+              ["out", "Not in a team"],
+            ].map(([value, label]) => (
+              <button
+                key={value}
+                type="button"
+                aria-pressed={teamFilter === value}
+                onClick={() => setTeamFilter(value)}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
         )}
       </div>
-      <ul className="directory-list">
+      <ul
+        className={`discover-directory ${participants ? "discover-people" : "discover-teams"}`}
+      >
         {items.map((row) => (
           <li key={row.id} id={participants ? `person-${row.id}` : undefined}>
             {participants ? (
-              <DotAvatar
-                color={row.avatarColor}
-                expression={row.avatarExpression}
-                size={56}
-              />
+              <>
+                <DotAvatar
+                  color={row.avatarColor}
+                  expression={row.avatarExpression}
+                  size={56}
+                  decorative
+                />
+                <div className="discover-identity">
+                  <h2>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setSelectedPerson(discoveryProfileProjection(row))
+                      }
+                      aria-haspopup="dialog"
+                    >
+                      {row.name}
+                    </button>
+                  </h2>
+                  {row.bio && <p>{row.bio}</p>}
+                </div>
+                <span
+                  className={`discover-membership ${row.teamName ? "joined" : "unjoined"}`}
+                >
+                  {row.teamName ? "In a team" : "Not in a team"}
+                </span>
+                <DiscoverSocials socials={row.socials} />
+                <button
+                  type="button"
+                  className="discover-profile-open"
+                  aria-label={`View ${row.name}'s profile`}
+                  aria-haspopup="dialog"
+                  onClick={() =>
+                    setSelectedPerson(discoveryProfileProjection(row))
+                  }
+                >
+                  <ChevronRight size={22} aria-hidden="true" />
+                </button>
+              </>
             ) : (
-              <TeamAvatar name={row.name} palette={row.palette} size={56} />
+              <>
+                <TeamAvatar name={row.name} palette={row.palette} size={56} />
+                <div className="discover-identity">
+                  <h2>{row.name}</h2>
+                  <p>{row.readiness?.total ?? "?"}/5 members</p>
+                </div>
+                <span
+                  className={`discover-state ${row.locked ? "locked" : "forming"}`}
+                >
+                  {row.status || (row.locked ? "Locked" : "Forming")}
+                </span>
+                <div className="discover-team-action">
+                  {data.team?.id === row.id ? (
+                    <a href="/dashboard" className="discover-view-team">
+                      Your team
+                    </a>
+                  ) : canCreate &&
+                    !row.locked &&
+                    Number(row.readiness?.total) < 5 ? (
+                    <button
+                      type="button"
+                      className="discover-request"
+                      disabled={!!row.requested}
+                      onClick={() => {
+                        void run("request-team", { teamId: row.id }).catch(
+                          () => {},
+                        );
+                      }}
+                    >
+                      {row.requested ? "Requested" : "Request to join"}
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="discover-view-team"
+                      aria-haspopup="dialog"
+                      onClick={() => setSelectedTeam(row)}
+                    >
+                      View team
+                    </button>
+                  )}
+                </div>
+              </>
             )}
-            <div>
-              <h2>
-                {participants ? (
-                  <button
-                    type="button"
-                    className="link-button"
-                    aria-haspopup="dialog"
-                    onClick={() =>
-                      setSelectedPerson(discoveryProfileProjection(row))
-                    }
-                  >
-                    {row.name}
-                  </button>
-                ) : (
-                  row.name
-                )}
-              </h2>
-              {participants ? (
-                <>
-                  <Pill>{row.teamName ? "In a team" : "Not in a team"}</Pill>
-                  {row.teamName && <p>{row.teamName}</p>}
-                  <p>{row.bio}</p>
-                  <SocialLinks socials={row.socials} />
-                </>
-              ) : (
-                <>
-                  <p>
-                    {row.readiness?.total ?? "?"}{" "}
-                    {row.readiness?.total === 1 ? "member" : "members"} ·{" "}
-                    {row.status || (row.locked ? "Locked" : "Forming")}
-                  </p>
-                  <p>{row.bio}</p>
-                </>
-              )}
-            </div>
-            {!participants &&
-              (data.team?.id === row.id ? (
-                <Pill tone="positive">Your team</Pill>
-              ) : (
-                data.me?.canParticipate === true &&
-                !data.team &&
-                !row.locked && (
-                  <button
-                    className="button secondary"
-                    disabled={!!row.requested}
-                    onClick={() => {
-                      void run("request-team", { teamId: row.id }).catch(
-                        () => {},
-                      );
-                    }}
-                  >
-                    {row.requested ? "Requested" : "Request to join"}
-                  </button>
-                )
-              ))}
           </li>
         ))}
       </ul>
+      {!items.length && (
+        <p className="discover-empty">
+          {search || teamFilter
+            ? "No matches"
+            : participants
+              ? "No people yet"
+              : "No teams yet"}
+        </p>
+      )}
+      {!participants && canCreate && (
+        <details className="discover-create">
+          <summary>
+            <Plus size={20} aria-hidden="true" />
+            Create team
+          </summary>
+          <CreateTeam run={run} />
+        </details>
+      )}
       {selectedPerson && (
         <DiscoveryProfile
           person={selectedPerson}
           onClose={() => setSelectedPerson(null)}
         />
       )}
-      {!items.length && (
-        <Empty>
-          {search || teamFilter
-            ? "No matches. Try another search or filter."
-            : "No entries are available yet."}
-        </Empty>
+      {selectedTeam && (
+        <DiscoverTeamDialog
+          team={selectedTeam}
+          onClose={() => setSelectedTeam(null)}
+        />
       )}
-      {!participants && !data.team && data.me?.canParticipate === true && (
-        <details className="panel">
-          <summary>Create team</summary>
-          <CreateTeam run={run} />
-        </details>
-      )}
-    </>
+    </section>
   );
 }
+
+export function SharedRules({ categories = [] }: { categories?: Row[] }) {
+  return (
+    <section className="rules-v6">
+      <header className="rules-heading">
+        <a href="/dashboard" aria-label="Back to Dashboard">
+          <ArrowLeft size={22} aria-hidden="true" />
+        </a>
+        <h1>
+          <HeadingDot
+            color="orange"
+            expression="sleepy"
+            size="var(--directory-heading-size, 52px)"
+          />
+          Rules
+        </h1>
+      </header>
+      <div className="rules-accordion">
+        {categories.map((category, index) => (
+          <details key={category.title} open={index === 0}>
+            <summary>
+              <span>{category.title}</span>
+              <ChevronDown size={22} aria-hidden="true" />
+            </summary>
+            <ol>
+              {category.items.map((item: string) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ol>
+          </details>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 const emptyProject = {
   projectName: "",
   problemSolution: "",
@@ -4351,19 +4525,7 @@ export default function Portal({
                   <Profile data={data} run={run} />
                 )
               ) : path === "/rules" ? (
-                <section>
-                  <h1>Rules</h1>
-                  {(data.categories || []).map((c: Row) => (
-                    <section key={c.title} className="panel">
-                      <h2>{c.title}</h2>
-                      <ul>
-                        {c.items.map((t: string) => (
-                          <li key={t}>{t}</li>
-                        ))}
-                      </ul>
-                    </section>
-                  ))}
-                </section>
+                <SharedRules categories={data.categories || []} />
               ) : path === "/dashboard" ? (
                 <Dashboard data={data} run={run} />
               ) : path === "/discover/teams" ||

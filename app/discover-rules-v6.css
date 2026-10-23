@@ -1,0 +1,605 @@
+/* Board03 Discover and board08 Rules. All rules are scoped to this lane. */
+.discover-v6,
+.rules-v6 {
+  width: 100%;
+  max-width: 1120px;
+  color: #111515;
+}
+.discover-v6 .discover-heading h1,
+.rules-v6 .rules-heading h1 {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+  font-size: 36px;
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}
+.discover-v6 .discover-tabs {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+  border-bottom: 1px solid #dce3e8;
+}
+.discover-v6 .discover-tabs a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  min-width: 112px;
+  padding: 10px 24px;
+  color: #425166;
+  font-size: 16px;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+.discover-v6 .discover-tabs a[aria-current="page"] {
+  color: #008a57;
+  border-color: #009b65;
+  font-weight: 700;
+}
+.discover-v6 .discover-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid #e4e9ed;
+}
+.discover-v6 .discover-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1 1 280px;
+  max-width: 430px;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0 16px;
+  border-radius: 12px;
+  background: #f2f5f7;
+  color: #526079;
+}
+.discover-v6 .discover-search svg {
+  flex: 0 0 22px;
+}
+.discover-v6 .discover-search input {
+  width: 100%;
+  min-width: 0;
+  height: 48px;
+  min-height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #111515;
+  font: inherit;
+  font-size: 16px;
+}
+.discover-v6 .discover-search input::placeholder {
+  color: #6b7890;
+  opacity: 1;
+}
+.discover-v6 .discover-membership-filters {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+}
+.discover-v6 .discover-membership-filters button {
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid transparent;
+  border-radius: 28px;
+  background: #f2f5f7;
+  color: #425166;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.discover-v6 .discover-membership-filters button[aria-pressed="true"] {
+  background: #008a57;
+  color: #fff;
+}
+.discover-v6 .discover-directory {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.discover-v6 .discover-directory > li {
+  display: grid;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+  padding: 20px 0;
+  border-bottom: 1px solid #e4e9ed;
+}
+.discover-v6 .discover-people > li {
+  grid-template-columns: 56px minmax(160px, 1fr) auto minmax(88px, 220px) 44px;
+  min-height: 104px;
+}
+.discover-v6 .discover-identity {
+  min-width: 0;
+}
+.discover-v6 .discover-identity h2 {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  overflow-wrap: anywhere;
+}
+.discover-v6 .discover-identity h2 button {
+  display: block;
+  min-height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+.discover-v6 .discover-identity p {
+  margin: 3px 0 0;
+  color: #526079;
+  font-size: 14px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.discover-v6 .discover-membership,
+.discover-v6 .discover-state {
+  justify-self: start;
+  padding: 7px 12px;
+  border-radius: 22px;
+  background: #f2f5f7;
+  color: #425166;
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.discover-v6 .discover-membership.joined {
+  background: #e8f9ee;
+  color: #087d3c;
+}
+.discover-v6 .discover-state.forming {
+  background: #ecf3ff;
+  color: #0060d7;
+}
+.discover-v6 .discover-socials {
+  grid-column: 4;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0 4px;
+}
+.discover-v6 .discover-socials a,
+.discover-v6 .discover-profile-open {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #425166;
+}
+.discover-v6 .discover-profile-open {
+  grid-column: 5;
+}
+.discover-v6 .discover-socials img {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+.discover-v6 .discover-teams > li {
+  grid-template-columns: 56px minmax(0, 1fr) auto minmax(150px, 180px);
+}
+.discover-v6 .discover-team-action {
+  min-width: 0;
+}
+.discover-v6 .discover-team-action button,
+.discover-v6 .discover-team-action a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid #cbd6df;
+  border-radius: 10px;
+  background: #fff;
+  color: #111515;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  text-decoration: none;
+}
+.discover-v6 .discover-team-action .discover-request {
+  background: #008a57;
+  border-color: #008a57;
+  color: #fff;
+}
+.discover-v6 .discover-team-action button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.discover-v6 .discover-create {
+  margin-top: 24px;
+  max-width: 600px;
+}
+.discover-v6 .discover-create > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid #cbd6df;
+  border-radius: 10px;
+  color: #111515;
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+  list-style: none;
+}
+.discover-v6 .discover-create > summary::-webkit-details-marker {
+  display: none;
+}
+.discover-v6 .discover-create > form {
+  margin-top: 16px;
+}
+.discover-v6 .discover-empty {
+  margin: 40px 0;
+  text-align: center;
+  color: #526079;
+  font-size: 15px;
+}
+.discover-v6 :is(a, button, summary):hover {
+  filter: brightness(0.96);
+}
+.discover-v6 :is(a, button, summary, input):focus-visible,
+.rules-v6 :is(a, summary):focus-visible {
+  outline: 2px solid #006afe;
+  outline-offset: 3px;
+}
+/* The native modal retains its focus/escape lifecycle and its safe field allowlist. */
+dialog.discovery-profile-v6,
+dialog.discover-team-dialog-v6 {
+  position: fixed;
+  box-sizing: border-box;
+  width: min(440px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 28px;
+  border: 1px solid #dce3e8;
+  border-radius: 16px;
+  background: #fff;
+  color: #111515;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+dialog.discover-team-dialog-v6::backdrop {
+  background: #1119;
+}
+dialog.discovery-profile-v6 .discovery-profile-close,
+dialog.discover-team-dialog-v6 .discover-dialog-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  width: 44px;
+  min-height: 44px;
+  height: 44px;
+  padding: 10px;
+  border: 0;
+  background: transparent;
+  color: #425166;
+}
+dialog.discovery-profile-v6 .discovery-profile-identity-v6,
+dialog.discover-team-dialog-v6 {
+  text-align: center;
+}
+dialog.discovery-profile-v6 .discovery-profile-identity-v6 {
+  padding-top: 16px;
+}
+dialog.discovery-profile-v6 .discovery-profile-identity-v6 > svg {
+  display: block;
+  margin: 0 auto;
+}
+dialog.discovery-profile-v6 h2,
+dialog.discover-team-dialog-v6 h2 {
+  margin: 20px 0 8px;
+  color: #111515;
+  font-size: 28px;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+  overflow-wrap: anywhere;
+}
+dialog.discovery-profile-v6 .discovery-profile-bio,
+dialog.discover-team-dialog-v6 p {
+  margin: 0;
+  color: #526079;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+dialog.discovery-profile-v6 .discovery-profile-socials {
+  margin: 16px 0 28px;
+  padding: 0;
+  border: 0;
+}
+dialog.discovery-profile-v6 .discovery-profile-socials ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+dialog.discovery-profile-v6 .discovery-profile-socials a {
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 9px;
+  border: 0;
+  border-radius: 8px;
+}
+dialog.discovery-profile-v6 .discovery-profile-socials img {
+  width: 26px;
+  height: 26px;
+  flex: 0 0 26px;
+}
+dialog.discovery-profile-v6 .discovery-profile-team-v6 {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid #dce3e8;
+}
+dialog.discovery-profile-v6 .discovery-profile-team-v6 h3 {
+  margin: 0 0 14px;
+  font-size: 14px;
+  font-weight: 700;
+}
+dialog.discovery-profile-v6 .discovery-profile-team-v6 > div {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #e1e7ec;
+  border-radius: 12px;
+}
+dialog.discovery-profile-v6 .discovery-profile-team-v6 h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+dialog.discovery-profile-v6 .discovery-profile-team-v6 span {
+  padding: 6px 9px;
+  border-radius: 20px;
+  background: #e8f9ee;
+  color: #087d3c;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+dialog.discover-team-dialog-v6 > .team-avatar {
+  display: block;
+  margin: 16px auto 0;
+}
+dialog.discover-team-dialog-v6 .discover-state {
+  display: inline-block;
+  margin: 4px 0 12px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #ecf3ff;
+  color: #0060d7;
+  font-size: 13px;
+}
+dialog.discover-team-dialog-v6 .discover-state.locked {
+  background: #f2f5f7;
+  color: #425166;
+}
+dialog.discover-team-dialog-v6 .discover-team-bio {
+  margin-top: 16px;
+  white-space: pre-wrap;
+}
+.rules-v6 {
+  max-width: 800px;
+}
+.rules-v6 .rules-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.rules-v6 .rules-heading > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  border-radius: 8px;
+  color: #111515;
+}
+.rules-v6 .rules-accordion {
+  border-top: 1px solid #dce3e8;
+}
+.rules-v6 .rules-accordion > details {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid #e1e7ec;
+}
+.rules-v6 .rules-accordion summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 70px;
+  padding: 20px 0;
+  color: #111515;
+  cursor: pointer;
+  list-style: none;
+  font-size: 17px;
+  line-height: 1.35;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+.rules-v6 .rules-accordion summary::-webkit-details-marker {
+  display: none;
+}
+.rules-v6 .rules-accordion summary svg {
+  flex: 0 0 22px;
+}
+.rules-v6 .rules-accordion details[open] summary svg {
+  transform: rotate(180deg);
+}
+.rules-v6 .rules-accordion ol {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0 0 24px 24px;
+  color: #425166;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.rules-v6 .rules-accordion li {
+  padding-left: 6px;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 1000px) {
+  .discover-v6 .discover-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .discover-v6 .discover-search {
+    flex: 0 0 auto;
+    max-width: none;
+  }
+  .discover-v6 .discover-people > li {
+    grid-template-columns: 48px minmax(0, 1fr) 44px;
+    gap: 4px 12px;
+  }
+  .discover-v6 .discover-people > li > svg {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    align-self: start;
+    width: 48px;
+    height: 48px;
+  }
+  .discover-v6 .discover-people .discover-identity {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .discover-v6 .discover-people .discover-membership {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 5px;
+  }
+  .discover-v6 .discover-people .discover-socials {
+    grid-column: 2;
+    grid-row: 3;
+    justify-content: flex-start;
+    margin-left: -10px;
+  }
+  .discover-v6 .discover-profile-open {
+    grid-column: 3;
+    grid-row: 1 / 4;
+  }
+  .discover-v6 .discover-teams > li {
+    grid-template-columns: 56px minmax(0, 1fr) auto;
+    gap: 16px 12px;
+    padding: 24px 0;
+  }
+  .discover-v6 .discover-team-action {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 740px) {
+  .discover-v6 .discover-heading h1,
+  .rules-v6 .rules-heading h1 {
+    gap: 12px;
+    font-size: 32px;
+  }
+  .discover-v6,
+  .rules-v6 {
+    --directory-heading-size: 48px;
+  }
+  .discover-v6 .discover-tabs {
+    margin-top: 16px;
+  }
+  .discover-v6 .discover-tabs a {
+    flex: 1;
+    min-width: 0;
+    min-height: 48px;
+  }
+  .discover-v6 .discover-toolbar {
+    padding: 20px 0;
+  }
+  .discover-v6 .discover-membership-filters {
+    justify-content: space-between;
+    gap: 6px;
+  }
+  .discover-v6 .discover-membership-filters button {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+  .discover-v6 .discover-identity h2 {
+    font-size: 16px;
+  }
+  .discover-v6 .discover-identity p {
+    font-size: 13px;
+  }
+  .discover-v6 .discover-membership,
+  .discover-v6 .discover-state {
+    padding: 7px 10px;
+    font-size: 11px;
+  }
+  .rules-v6 .rules-heading {
+    gap: 0;
+    margin-left: -10px;
+    margin-bottom: 24px;
+  }
+  .rules-v6 .rules-accordion summary {
+    min-height: 68px;
+    padding: 20px 0;
+    font-size: 16px;
+  }
+  .rules-v6 .rules-accordion ol {
+    font-size: 14px;
+    gap: 10px;
+  }
+  dialog.discovery-profile-v6,
+  dialog.discover-team-dialog-v6 {
+    padding: 24px;
+  }
+  dialog.discovery-profile-v6 .discovery-profile-team-v6 > div {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 8px 12px;
+    padding: 12px;
+  }
+  dialog.discovery-profile-v6 .discovery-profile-team-v6 svg {
+    width: 44px;
+    height: 44px;
+    grid-row: 1 / 3;
+  }
+  dialog.discovery-profile-v6 .discovery-profile-team-v6 span {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+dialog.discovery-profile-v6 :is(a, button):focus-visible,
+dialog.discover-team-dialog-v6 button:focus-visible {
+  outline: 2px solid #006afe;
+  outline-offset: 3px;
+}
