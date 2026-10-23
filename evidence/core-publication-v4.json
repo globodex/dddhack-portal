@@ -1,0 +1,121 @@
+{
+  "project_id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed",
+  "title": "DevDay Exchange Community Hackathon: New Delhi",
+  "url": "https://dddhack-portal.param3021.chatgpt.site",
+  "access_mode": "public",
+  "version_number": 4,
+  "version_id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed~appgver_26bf9d391bb48191944268955928c4c5",
+  "source_commit": "3b5c7251b43afdbab9abd1b6fc40468dde85e70d",
+  "deployment_id": "appgdep_6adb58cb35f4819190925caa4e33e298",
+  "status": "succeeded",
+  "env_set_revision": 3,
+  "updated_at": "2026-10-23T12:53:40.730268+00:00",
+  "artifact": {
+    "file_count": 131,
+    "size_bytes": 2897920,
+    "content_hash": "sha256:a3cda2d55f5c0ca05c9d0e7cc8c3a3ca0baf36ef0d1f25a9fdecb4a16def0851"
+  },
+  "hosted_schema": {
+    "binding": "DB",
+    "table_count": 45,
+    "tables": [
+      "astra_jobs",
+      "audit_logs",
+      "check_ins",
+      "credit_allocations",
+      "credit_inventory",
+      "credit_types",
+      "evaluation_runs",
+      "event_content",
+      "event_content_history",
+      "event_policy_history",
+      "event_settings",
+      "feedback",
+      "human_scores",
+      "idea_revisions",
+      "ideas",
+      "import_previews",
+      "judge_assignments",
+      "memberships",
+      "participant_profiles",
+      "portal_roles",
+      "private_venue",
+      "private_venue_managers",
+      "profiles",
+      "project_assignments",
+      "project_comments",
+      "project_eligibility",
+      "project_review_history",
+      "project_upvotes",
+      "projects",
+      "registrations",
+      "request_buckets",
+      "result_publication",
+      "result_snapshots",
+      "reviews",
+      "score_releases",
+      "scoring_revision",
+      "submission_versions",
+      "team_actions",
+      "team_styles",
+      "teams",
+      "tie_resolutions",
+      "users",
+      "votes",
+      "winner_reveals",
+      "write_guards"
+    ],
+    "ledger_and_triggers_inspected": false
+  },
+  "post_deploy_checks": [
+    {
+      "table": "event_settings",
+      "empty": true,
+      "has_more": false
+    },
+    {
+      "table": "score_releases",
+      "empty": true,
+      "has_more": false
+    },
+    {
+      "table": "winner_reveals",
+      "empty": true,
+      "has_more": false
+    },
+    {
+      "table": "evaluation_runs",
+      "empty": true,
+      "has_more": false
+    },
+    {
+      "table": "event_policy_history",
+      "empty": true,
+      "has_more": false
+    }
+  ],
+  "verification": {
+    "typecheck": "pass",
+    "regression_tests": 41,
+    "production_build": "pass",
+    "artifact_gate_files": 131,
+    "compiled_worker_smoke": "pass",
+    "live_interactive_signin_logout": false,
+    "live_browser_device_QA": false,
+    "live_direct_HTTP": "not repeated: earlier executor access denial"
+  },
+  "credential": {
+    "scope": "existing Site source repository only",
+    "persisted": false,
+    "discarded_after_bounded_workflow": true
+  },
+  "not_performed": [
+    "policy activation",
+    "live score reveal",
+    "role grants",
+    "real data import",
+    "credit key creation",
+    "AI provider calls",
+    "generated artwork integration"
+  ]
+}

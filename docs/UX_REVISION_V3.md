@@ -1,3 +1,7 @@
+# Publication update
+
+The tested core and subsequent session/reveal/policy extension are now public version 4. See [CORE_PUBLICATION.md](CORE_PUBLICATION.md). Older local-only statements below are historical.
+
 # Current extension to this checkpoint
 
 See [SESSION_AND_REVEALS.md](SESSION_AND_REVEALS.md) for the subsequent session/logout, mandatory confirmations, manual staged reveals, confirmed event choices and global policy controls. Earlier statements below about unresolved capacity/deadline/reveal order are superseded. Publication is tracked in CORE_PUBLICATION.md when completed.

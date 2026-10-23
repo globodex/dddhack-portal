@@ -1,6 +1,6 @@
 # DevDay Exchange Community Hackathon: New Delhi
 
-The revised profile → team → submission portal is implemented and tested locally. It is **not deployed**: the public Site remains version 3. Read [the current session, reveal and policy checkpoint](docs/SESSION_AND_REVEALS.md) and [visual QA limits](design-qa.md) before release. Typecheck, 41 regression tests, official Sites production build/artifact review and compiled-Worker smoke checks pass. Browser visual QA is blocked on this executor.
+The revised core is **published as public version 4** at [dddhack-portal.param3021.chatgpt.site](https://dddhack-portal.param3021.chatgpt.site). Read [the publication record](docs/CORE_PUBLICATION.md), [session/reveal/policy behavior](docs/SESSION_AND_REVEALS.md) and [visual QA limits](design-qa.md). Typecheck, 41 regression tests, official production build/artifact gate and compiled Worker smoke pass. Interactive browser/device QA remains unverified.
 
 The latest UI provides private team customization, an eligible upvote-ordered public project list, required self-reported private gender, role-scoped review/admin tools, and owner-managed public/private event content. Event policies remain draft; no real data, grants, API calls or new credentials were introduced. AI evaluation remains Not configured.
 
