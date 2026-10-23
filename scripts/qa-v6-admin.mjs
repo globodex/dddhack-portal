@@ -195,6 +195,9 @@ async function cancelDialog(page, label, target) {
     (element) => document.activeElement === element,
   );
   const buttons = await dialog.getByRole("button").allTextContents();
+  const primaryBackground = await dialog
+    .locator("button.button:not(.secondary)")
+    .evaluate((element) => getComputedStyle(element).backgroundColor);
   await capture(page, label);
   // Always dismiss before assertions, including when the target or focus is wrong.
   await cancel.click();
@@ -202,6 +205,11 @@ async function cancelDialog(page, label, target) {
   assert.ok(text.includes(target), text);
   assert.equal(focused, true, "Cancel must receive initial focus");
   assert.equal(buttons.length, 2, "Exactly Cancel and one confirmation action");
+  assert.equal(
+    primaryBackground,
+    "rgb(17, 21, 21)",
+    "Admin confirmation primary must use the approved black",
+  );
   return {
     target,
     buttons: buttons.map((value) => value.trim()),
@@ -257,15 +265,13 @@ async function importChecks(page, label) {
   );
   await check(`${label}: header CSV confirmation cancelled`, async () => {
     await add.getByRole("button", { name: "CSV", exact: true }).click();
-    await add
-      .locator("input[type=file]")
-      .setInputFiles({
-        name: "synthetic-v6-cancel.csv",
-        mimeType: "text/csv",
-        buffer: Buffer.from(
-          `email\nv6-csv-one-${label}@portal.test\nv6-csv-two-${label}@portal.test\nbob@portal.test\n`,
-        ),
-      });
+    await add.locator("input[type=file]").setInputFiles({
+      name: "synthetic-v6-cancel.csv",
+      mimeType: "text/csv",
+      buffer: Buffer.from(
+        `email\nv6-csv-one-${label}@portal.test\nv6-csv-two-${label}@portal.test\nbob@portal.test\n`,
+      ),
+    });
     await add.getByRole("button", { name: "Add", exact: true }).click();
     return cancelDialog(
       page,
@@ -344,7 +350,9 @@ try {
             await row.locator(".admin-status-menu[open]").count(),
             1,
           );
-          await row.getByLabel("New status", { exact: true }).waitFor();
+          await row
+            .locator('.admin-status-menu select[name="status"]')
+            .waitFor();
           await capture(page, `${label}-participant-more-open`);
           const result = await bounds(page);
           await summary.click();
@@ -421,6 +429,13 @@ try {
             .first()
             .waitFor({ state: "visible" });
           await capture(page, `${label}-participant-filters-expanded`);
+          assert.equal(
+            await page
+              .getByRole("link", { name: /^Export filtered participants/ })
+              .count(),
+            1,
+            "Expanded mobile filters must retain one export control",
+          );
           const result = await bounds(page);
           const status = page
               .locator(".admin-participant-filters select")
