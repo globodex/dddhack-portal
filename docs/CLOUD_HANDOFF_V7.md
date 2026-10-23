@@ -2,7 +2,7 @@
 
 The user explicitly requested holding development, publishing the current coherent snapshot, then moving development to a saved Codex Cloud task. This file authorizes no new credentials, production mutations or AI calls.
 
-Runtime snapshot: `0e07bc656d6bfa5d6c009813587b9c3658e22cf1`; Worker SHA-256 `2ca635068e527b2afc7cc226001a236201dcbcce0e09d8fd0529d6afcf315bc3`. The publication checkpoint adds documentation only. Read Sites publication receipt for the actual live version. Repository is exclusively `Param302/dddhack-portal`; preserve all branches, no force pushes/main resets.
+Runtime snapshot: `0e07bc656d6bfa5d6c009813587b9c3658e22cf1`; Worker SHA-256 `2ca635068e527b2afc7cc226001a236201dcbcce0e09d8fd0529d6afcf315bc3`. The publication checkpoint adds documentation only. V6 publication succeeded: source `6cffbc936681147aa91600ff765c1634602b264f`, version6, config3 unchanged. See `evidence/v6-publication.json`. A later GitHub handoff commit adds inert recovery patches only; it is not a separately published version. Repository is exclusively `Param302/dddhack-portal`; preserve all branches, no force pushes/main resets.
 
 All agents paused with browsers closed. No production records or secrets have been exported. Existing Site `appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed` is public. Preserve its audience, D1 and config3. OPENAI_API_KEY and legacy encryption configuration stay in Sites and are not needed for synthetic tests.
 
@@ -25,3 +25,5 @@ Install from lockfile in the actual cloud environment and follow its runtime/bro
 ## Design references
 
 Main eight boards delivered in Library: profile `libfile_d5422b4a7efc819197fed4e02c871b30`; Dashboard `libfile_6fdab1b064d08191a2902b20eb60732f`; Discover `libfile_b957c220b54481919b08ca4e1d98c7d6`; Projects `libfile_39b52e3ca2248191a1ea495d2e61cef3`; Admin `libfile_24b521bbc148819181168724be7fdb7e`; wizard `libfile_6f25977ba4e8819193e89349b95eb934`; Settings/Review `libfile_bc5305437da88191aa2987075e302b85`; Team/Rules/Logs `libfile_9fc700bb05e48191964ed7a460cb6cc1`. Selected organizers `libfile_73355cbeb8b08191be77e6bcfa52ce82`; rejected9fd board must not be used. Preserve original organizer photos already in public assets, matching rings and origin-side unit motion. Generated labels/artifacts never override approved functional rules.
+
+Paused source drafts and prepared QA changes are preserved as inert patches in `docs/deferred-v7/`. Do not execute or apply them blindly. Source418f631 code coverage LCOV remains local; it is scoped loaded-module evidence, not an exhaustive release claim.

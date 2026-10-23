@@ -4,7 +4,7 @@ Updated 23 October 2026 after the user requested holding development and publish
 
 ## Current state
 
-- Production remains V5, source `f1a4b3db83e2263170e8b5fb4738b18f0e218b8d`, config 3. No V6 publication, production test data, real API calls or credential changes.
+- Production is now V6, published source `6cffbc936681147aa91600ff765c1634602b264f`, public URL https://dddhack-portal.param3021.chatgpt.site. Sites confirmed success at20:17:32UTC with config3 unchanged. Receipt: `evidence/v6-publication.json`. No production test records or real AI calls. A fresh Site-only source credential was issued and used in memory via official hidden stdin; it was not persisted.
 - Integration branch `fix/visual-correction-integration`, runtime source `0e07bc656d6bfa5d6c009813587b9c3658e22cf1`, Worker SHA-256 `2ca635068e527b2afc7cc226001a236201dcbcce0e09d8fd0529d6afcf315bc3`. TypeScript and 185-file production artifact review pass. Matching targeted browser rechecks are active.
 - User says the direction is better but below their desired quality. Broad visual polish is deferred to V7, second priority. This is not full visual acceptance.
 - The finite V6 addition is Discover participant cards with real server pagination and scroll loading, preserving search/filter, privacy, keyboard fallback and touch usability. Admin tables and Projects list remain as selected.
@@ -35,7 +35,7 @@ Updated 23 October 2026 after the user requested holding development and publish
 3. On fresh disposable synthetic databases, execute positive Team, project/vote/comment/submission, profile Save and admin/import/status/review/credit actions with the planned mouse/touch modes. Keep exact reset/source/Worker guards and action allowlists. No live destructive mutations. Do not equate read/cancel with write coverage.
 4. Deliver corrected Admin and participant-card desktop/mobile originals, source/role/viewport labeled.
 5. Audit all integrated diffs, run matching final serial regression, TypeScript, build/artifact review and compiled smoke. Resolve failures and rerun only affected checks plus required final gates. Consolidate functional checked/restricted/untested inventory honestly.
-6. Report exact release candidate source/Worker, evidence and limitations. Publish only after required acceptance and action-time source credential approval. No publication action is pending or attempted.
+6. Publication completed on explicit hold-and-publish instruction. Exact saved version/deployment IDs are in the receipt. Remaining controls, cards and visual polish are not claimed complete.
 
 The user superseded the full V6 completion plan with an explicit hold and publish instruction. The incomplete items above remain deferred and are not claimed complete. Minimum snapshot checks: TypeScript and build/artifact review passed; matching compiled Worker smoke passed; targeted wizard recovery30/30 and mobile/tablet skip/recovery58/58 passed. Positive write tests and remaining desktop/keyboard checks were not completed. Publication outcome must be read from the Sites tool result.
 

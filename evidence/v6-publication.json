@@ -1,0 +1,17 @@
+{
+  "project_id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed",
+  "version": 6,
+  "saved_version_id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed~appgver_f779aeadace08191bfbd176f74b1430d",
+  "deployment_id": "appgdep_6adbc0d28d2c8191a2a12f80d396d18f",
+  "status": "succeeded",
+  "url": "https://dddhack-portal.param3021.chatgpt.site",
+  "published_source": "6cffbc936681147aa91600ff765c1634602b264f",
+  "runtime_source": "0e07bc656d6bfa5d6c009813587b9c3658e22cf1",
+  "worker_sha256": "2ca635068e527b2afc7cc226001a236201dcbcce0e09d8fd0529d6afcf315bc3",
+  "env_set_revision": 3,
+  "published_at": "2026-10-23T20:17:32.147318+00:00",
+  "access": "public",
+  "production_test_records_created": false,
+  "all_control_tests_complete": false,
+  "cards_scroll_loading_shipped": false
+}

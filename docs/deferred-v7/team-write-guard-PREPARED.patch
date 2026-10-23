@@ -1,0 +1,339 @@
+diff --git a/scripts/qa-team-write-v6.md b/scripts/qa-team-write-v6.md
+index 527f8f4..db21fae 100644
+--- a/scripts/qa-team-write-v6.md
++++ b/scripts/qa-team-write-v6.md
+@@ -6,7 +6,8 @@ Required gates:
+ 
+ - `TEAM_WRITE_READY=1`: coordinator authorizes the write phase now.
+ - `TEAM_WRITE_FRESH_FIXTURE=1`: coordinator freshly reset the local DB; no earlier write run shares it.
+-- `TEAM_WRITE_RESET_TOKEN`: fresh unique 32-character lowercase hexadecimal token. It is consumed in `/tmp` using exclusive file creation before launch and cannot be reused after failure.
++- `TEAM_WRITE_RESET_TOKEN`: exact fresh UUID `resetToken` from the coordinator's reset manifest. It is consumed in `/tmp` using exclusive file creation before launch and cannot be reused after failure.
++- `TEAM_WRITE_RESET_MANIFEST`: exact `/tmp/ddehack-controls-<UUID>.json` receipt path. Its reset token, disposable/synthetic/reset confirmation flags, loopback origin, source, Worker and artifact root must match. The report records its hash.
+ - Exact matching `DASHBOARD_QA_SOURCE` and `DASHBOARD_QA_WORKER` hashes supplied by the coordinator.
+ - `TEAM_WRITE_VIEWPORT=mobile`, `desktop` or `tablet`; one viewport per newly reset DB. Mobile/tablet use real Playwright touch events, desktop uses mouse clicks.
+ - Optional `DASHBOARD_QA_OUTPUT` chooses a new evidence directory.
+@@ -15,6 +16,8 @@ Keep `PLAYWRIGHT_BROWSERS_PATH=/tmp/ddehack-playwright-browsers`. Use the sandbo
+ 
+ Before the first write, it verifies the two exact seeded teams, leader/member IDs, two pending fixed request IDs, empty ideas, zero attempts and teamless applicants. Only the five reserved `fake_teamqa_*` actors can create contexts. Every POST must match one just-in-time actor/action/exact-body permit and consumes it once. Other methods, external requests and unallowlisted writes are aborted. After failure, stop and inspect the report; do not rerun on the partially changed DB.
+ 
+-The intended ten writes are: save idea, rename, style, accept, decline, remove accepted member, lock, delete solo team, create its replacement, request that new team. UI validation, eight palette selections, named confirmations, successful responses and reloaded own-dashboard projections are checked between stages. No API-only write bypass, production identity or unrelated fixture actor is enabled. The new replacement team UUID is restricted to the value returned by the allowed create action. The fixture helper regression separately verifies recoverable deletion/history and normal backend lock guards; this browser runner cannot inspect private audit storage and makes no audit-history claim.
++The intended ten writes are: save a 500-character idea, rename, style, accept, decline, remove accepted member, lock, delete solo team, create its replacement, request that new team. Local required title/description, real typing at the 500-character boundary, rename required/minimum length, eight palette selections, Cancel-before-Delete persistence, named destructive confirmations, successful responses and reloaded own-dashboard projections are checked between stages. No API-only write bypass, production identity or unrelated fixture actor is enabled. The new replacement team UUID is restricted to the value returned by the allowed create action. The fixture helper regression separately verifies recoverable deletion/history and normal backend lock guards; this browser runner cannot inspect private audit storage and makes no audit-history claim.
++
++The pure reset-receipt validator has a focused no-browser unit check covering a matching reset plus stale source/Worker/root, wrong origin, wrong path/token and missing required flags: `node --import tsx tests/team-write-reset-guard.test.ts`.
+ 
+ Two original viewport captures are intended after saved changes and after lock. No credit secrets are accessed. A successful run should produce ten allowed writes with zero unexpected requests or page errors. All browser contexts close and the compiled hash is checked again even if the functional sequence fails.
+diff --git a/scripts/qa-team-write-v6.mjs b/scripts/qa-team-write-v6.mjs
+index 865bb8d..641a247 100644
+--- a/scripts/qa-team-write-v6.mjs
++++ b/scripts/qa-team-write-v6.mjs
+@@ -2,28 +2,44 @@
+ import assert from "node:assert/strict";
+ import { createHash } from "node:crypto";
+ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
++import { isDeepStrictEqual } from "node:util";
+ import { chromium } from "/tmp/ddehack-playwright-runner/node_modules/playwright/index.mjs";
++import { assertTeamWriteReset } from "./team-write-reset-guard.mjs";
+ const origin = "http://127.0.0.1:4173",
+   artifact =
+     "/home/param302/Dev/DDEHack-portal/.worktrees/visual-integration/dist/server/index.js";
+ const source = process.env.DASHBOARD_QA_SOURCE,
+   worker = process.env.DASHBOARD_QA_WORKER,
+-  resetToken = process.env.TEAM_WRITE_RESET_TOKEN;
++  resetToken = process.env.TEAM_WRITE_RESET_TOKEN,
++  manifestPath = process.env.TEAM_WRITE_RESET_MANIFEST;
+ if (
+   process.env.TEAM_WRITE_READY !== "1" ||
+   process.env.TEAM_WRITE_FRESH_FIXTURE !== "1" ||
+   !/^[a-f0-9]{40}$/.test(source || "") ||
+   !/^[a-f0-9]{64}$/.test(worker || "") ||
+-  !/^[a-f0-9]{32}$/.test(resetToken || "")
++  !/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(
++    resetToken || "",
++  ) ||
++  manifestPath !== "/tmp/ddehack-controls-" + resetToken + ".json"
+ ) {
+   console.log(
+-    "Prepared only. Requires coordinator write-phase signal, fresh disposable reset, unique 32-hex reset token and matching source/Worker.",
++    "Prepared only. Requires coordinator write-phase signal, exact fresh reset manifest/UUID and matching source/Worker.",
+   );
+   process.exit(0);
+ }
+ const hash = () =>
+   createHash("sha256").update(readFileSync(artifact)).digest("hex");
+ assert.equal(hash(), worker);
++const manifestBytes = readFileSync(manifestPath);
++assertTeamWriteReset({
++  manifest: JSON.parse(manifestBytes.toString("utf8")),
++  path: manifestPath,
++  token: resetToken,
++  source,
++  worker,
++  artifactRoot:
++    "/home/param302/Dev/DDEHack-portal/.worktrees/visual-integration",
++});
+ const size = process.env.TEAM_WRITE_VIEWPORT || "mobile";
+ const sizes = {
+   desktop: { width: 1440, height: 900 },
+@@ -41,11 +57,14 @@ const report = {
+   syntheticOnly: true,
+   sandbox: true,
+   resetTokenHash: createHash("sha256").update(resetToken).digest("hex"),
++  resetManifestPath: manifestPath,
++  resetManifestHash: createHash("sha256").update(manifestBytes).digest("hex"),
+   checks: [],
+   writes: [],
+   blocked: [],
+   pageErrors: [],
+   captures: [],
++  confirmations: [],
+ };
+ // A consumed token cannot be retried, even after a failure. Reset the disposable
+ // database and obtain a new coordinator token before any fresh attempt.
+@@ -93,7 +112,7 @@ async function session(actor) {
+         !permit ||
+         permit.actor !== actor ||
+         body?.action !== permit.action ||
+-        JSON.stringify(body?.data) !== JSON.stringify(permit.data)
++        !isDeepStrictEqual(body?.data, permit.data)
+       ) {
+         report.blocked.push({
+           kind: "unallowlisted-write",
+@@ -161,6 +180,13 @@ async function commit(s, action, data, trigger) {
+       .evaluate((e) => e === document.activeElement),
+     true,
+   );
++  const target = await dialog.locator("#confirmation-target").innerText();
++  if (action === "delete-own-team") assert.equal(target, "Synthetic Solo Team");
++  if (action === "remove-workspace-member") {
++    assert.match(target, /Synthetic Team Accept/);
++    assert.match(target, /fake_teamqa_accept/);
++  }
++  report.confirmations.push({ actor: s.actor, action, target });
+   permit = { actor: s.actor, action, data };
+   const response = s.page.waitForResponse(
+     (r) =>
+@@ -241,13 +267,45 @@ try {
+   );
+   const idea = {
+     title: "Synthetic control idea",
+-    description:
+-      "Synthetic local saved idea for the isolated Team write phase.",
++    description: "Synthetic local saved idea. ".repeat(30).slice(0, 499) + ".",
+   };
+   await leader.panel.getByLabel("Idea title", { exact: true }).fill(idea.title);
++  await record(
++    "description is required before any save confirmation",
++    async () => {
++      await act(
++        leader.panel.getByRole("button", {
++          name: "Save team idea",
++          exact: true,
++        }),
++      );
++      assert.equal(
++        await leader.panel
++          .locator("textarea[name=description]")
++          .evaluate((e) => e.validity.valueMissing),
++        true,
++      );
++      assert.equal(await leader.page.getByRole("dialog").count(), 0);
++      assert.equal(report.writes.length, 0);
++    },
++  );
+   await leader.panel
+     .locator("textarea[name=description]")
+     .fill(idea.description);
++  await record(
++    "500-character description boundary is enforced by real typing",
++    async () => {
++      const description = leader.panel.locator("textarea[name=description]");
++      await description.press("End");
++      await description.press("x");
++      assert.equal((await description.inputValue()).length, 500);
++      assert.match(
++        await leader.panel.locator("#idea-count").innerText(),
++        /^500\/500/,
++      );
++      assert.equal(await description.inputValue(), idea.description);
++    },
++  );
+   await record("save idea persists and enables Lock", async () => {
+     await commit(leader, "save-workspace-idea", idea, () =>
+       act(
+@@ -269,6 +327,20 @@ try {
+   });
+   const renamed = "Synthetic Renamed Loop";
+   await act(leader.panel.locator("summary").filter({ hasText: "Rename team" }));
++  await record("rename required and minimum length validation", async () => {
++    const name = leader.panel.getByLabel("Team name", { exact: true });
++    await name.fill("");
++    await act(
++      leader.panel.getByRole("button", { name: "Rename team", exact: true }),
++    );
++    assert.equal(await name.evaluate((e) => e.validity.valueMissing), true);
++    await name.pressSequentially("x");
++    await act(
++      leader.panel.getByRole("button", { name: "Rename team", exact: true }),
++    );
++    assert.equal(await name.evaluate((e) => e.validity.tooShort), true);
++    assert.equal(await leader.page.getByRole("dialog").count(), 0);
++  });
+   await leader.panel.getByLabel("Team name", { exact: true }).fill(renamed);
+   await record("rename persists", async () => {
+     await commit(
+@@ -419,6 +491,29 @@ try {
+   await act(
+     solo.panel.locator("summary").filter({ hasText: "Delete your team" }),
+   );
++  await record(
++    "cancelled named deletion keeps the sole team intact",
++    async () => {
++      await act(
++        solo.panel.getByRole("button", {
++          name: "Review team deletion",
++          exact: true,
++        }),
++      );
++      const dialog = solo.page.getByRole("dialog");
++      await dialog.waitFor();
++      assert.equal(
++        await dialog.locator("#confirmation-target").innerText(),
++        "Synthetic Solo Team",
++      );
++      await act(dialog.getByRole("button", { name: "Cancel", exact: true }));
++      await dialog.waitFor({ state: "hidden" });
++      assert.equal((await reload(solo)).team.id, ids.solo);
++      await act(
++        solo.panel.locator("summary").filter({ hasText: "Delete your team" }),
++      );
++    },
++  );
+   await record(
+     "named sole unlocked deletion returns leader to teamless state",
+     async () => {
+@@ -438,6 +533,14 @@ try {
+     },
+   );
+   const createdName = "Synthetic Team QA Created";
++  await record("replacement team name remains required", async () => {
++    const name = solo.panel.getByLabel("Team name", { exact: true });
++    await act(
++      solo.panel.getByRole("button", { name: "Create team", exact: true }),
++    );
++    assert.equal(await name.evaluate((e) => e.validity.valueMissing), true);
++    assert.equal(await solo.page.getByRole("dialog").count(), 0);
++  });
+   await solo.panel.getByLabel("Team name", { exact: true }).fill(createdName);
+   let createdId;
+   await record(
+@@ -466,14 +569,12 @@ try {
+   await record(
+     "teamless applicant can request the newly created team",
+     async () => {
+-      const row = decline.page
+-        .locator("li")
+-        .filter({
+-          has: decline.page.getByRole("heading", {
+-            name: createdName,
+-            exact: true,
+-          }),
+-        });
++      const row = decline.page.locator("li").filter({
++        has: decline.page.getByRole("heading", {
++          name: createdName,
++          exact: true,
++        }),
++      });
+       await commit(decline, "request-team", { teamId: createdId }, () =>
+         act(row.getByRole("button", { name: "Request to join", exact: true })),
+       );
+diff --git a/scripts/team-write-reset-guard.mjs b/scripts/team-write-reset-guard.mjs
+new file mode 100644
+index 0000000..fbebdeb
+--- /dev/null
++++ b/scripts/team-write-reset-guard.mjs
+@@ -0,0 +1,31 @@
++import assert from "node:assert/strict";
++export function assertTeamWriteReset({
++  manifest,
++  path,
++  token,
++  source,
++  worker,
++  artifactRoot,
++}) {
++  assert.match(
++    token || "",
++    /^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/,
++    "fresh manifest UUID reset token required",
++  );
++  assert.equal(
++    path,
++    "/tmp/ddehack-controls-" + token + ".json",
++    "exact coordinator reset receipt path required",
++  );
++  assert.equal(manifest.resetToken, token, "reset receipt token mismatch");
++  for (const key of ["disposable", "syntheticOnly", "rootConfirmedReset"])
++    assert.equal(manifest[key], true, "reset receipt must confirm " + key);
++  assert.equal(manifest.origin, "http://127.0.0.1:4173");
++  assert.equal(manifest.source, source, "stale reset receipt source");
++  assert.equal(manifest.worker, worker, "stale reset receipt Worker");
++  assert.equal(
++    manifest.artifactRoot,
++    artifactRoot,
++    "reset receipt artifact root mismatch",
++  );
++}
+diff --git a/tests/team-write-reset-guard.test.ts b/tests/team-write-reset-guard.test.ts
+new file mode 100644
+index 0000000..f9725f7
+--- /dev/null
++++ b/tests/team-write-reset-guard.test.ts
+@@ -0,0 +1,47 @@
++import { test } from "node:test";
++import assert from "node:assert/strict";
++import { assertTeamWriteReset } from "../scripts/team-write-reset-guard.mjs";
++const token = "eb825a68-849c-44db-9d27-581568de6c3a",
++  source = "a".repeat(40),
++  worker = "b".repeat(64),
++  artifactRoot = "/local/integration";
++const fixture = () => ({
++  path: "/tmp/ddehack-controls-" + token + ".json",
++  token,
++  source,
++  worker,
++  artifactRoot,
++  manifest: {
++    resetToken: token,
++    source,
++    worker,
++    artifactRoot,
++    origin: "http://127.0.0.1:4173",
++    disposable: true,
++    syntheticOnly: true,
++    rootConfirmedReset: true,
++  },
++});
++test("Team write reset accepts only matching explicit local reset evidence", () => {
++  assert.doesNotThrow(() => assertTeamWriteReset(fixture()));
++  for (const change of [
++    { source: "c".repeat(40) },
++    { worker: "d".repeat(64) },
++    { artifactRoot: "/other" },
++    { origin: "https://example.test" },
++    { resetToken: "fb825a68-849c-44db-9d27-581568de6c3a" },
++    { disposable: false },
++    { syntheticOnly: false },
++    { rootConfirmedReset: false },
++  ]) {
++    const f = fixture();
++    f.manifest = { ...f.manifest, ...change };
++    assert.throws(() => assertTeamWriteReset(f));
++  }
++  assert.throws(() =>
++    assertTeamWriteReset({ ...fixture(), path: "/tmp/other.json" }),
++  );
++  assert.throws(() =>
++    assertTeamWriteReset({ ...fixture(), token: token.replaceAll("-", "") }),
++  );
++});

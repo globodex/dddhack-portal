@@ -1,0 +1,513 @@
+diff --git a/docs/PROJECTS-CONTROL-COVERAGE-V6.md b/docs/PROJECTS-CONTROL-COVERAGE-V6.md
+index bae8061..43382e3 100644
+--- a/docs/PROJECTS-CONTROL-COVERAGE-V6.md
++++ b/docs/PROJECTS-CONTROL-COVERAGE-V6.md
+@@ -90,3 +90,13 @@ Full read-only control report: `evidence/v6-project-controls/418f6311-VHCsa6/rep
+ Three groups failed in that bounded run. Stale client validation reproduced for essentials, GitHub and accuracy in all five modes; source correction `1b4543b` is prepared, and actual recovery assertions now await its matching build. Keyboard Cerebras selection used an incorrect harness assumption that every native radio is reachable by Tab; the runner now Tabs to the checked group member and uses Arrow keys. First-submission Back incorrectly asserted DOM removal, although the authorized draft intentionally remains inside the hidden Project panel; the assertion now checks visibility and eventual Team focus.
+ 
+ A separate corrected actual check in `evidence/v6-first-back/418f6311/report.json` passed first-submission entry and Back-to-Team focus in desktop mouse, mobile emulated touch and desktop keyboard, with zero errors or writes. Its mobile before/after originals were opened and inspected. Tablet and narrow first-Back assertions remain in the corrected full runner for the next matching build. None of these results establish durable vote/comment/save/commit coverage, hosted identity, physical touch or overall release acceptance.
++
++## Targeted recovery and sequenced durable phase
++
++`scripts/qa-projects-recovery-v6.mjs` is the short follow-up for the next hash-matched artifact. It runs six checks in each of the five modes, for 30 checks total: essentials recovery, GitHub recovery, native radio selection and Back state, accuracy recovery, published first Back/focus, and unpublished first Back/focus. It captures clean states before corresponding local validation exercises. It requires both named synthetic leaders and the matching manifest, and **rejects `--mutations`**. The manifest's reset flag cannot enable writes in this runner. Syntax and prepared-only guard were checked; no browser was started while root builds.
++
++The durable full runner remains separately gated and starts only after root explicitly releases a fresh reset. Current fixture scope is Bob (`fake_bob`) engaging with `fake_control_project_00`, and Alice (`fake_alice`) saving/committing `visual_project_alice`, initially at two attempts. Before any write, read-only preflights confirm the target is unvoted and engageable, and that the authenticated leader's server-owned project ID and attempts match the expected fixture. An unexpected project/attempt stops the phase before writes. The default expected leader fixture is Alice/two; an explicit `leaderProject` (or per-mode `leaderProjects`) manifest entry is required for a different bound project/attempt.
++
++Only POST `/api/portal` at the fixed loopback origin may pass, and only the four named actions: `upvote-project`, `comment-project`, `save-project`, `submit-project`. Read-only contexts retain their own blocked-write policy even during a durable run. No firstLeader, Viewer, nonleader, Eve, admin, review, scoring, AI, eligibility, credential or external action is allowlisted. Locally injected rejection requests and actual loopback-backend requests are distinguished in the report. Unexpected JavaScript alert/confirm dialogs are dismissed and reported as failures, preventing an escaped-comment regression from hanging the run.
++
++The durable phase executes only the first selected device. With no device flag that is desktop mouse. Use a new root reset/release and matching reset token for each later touch or keyboard mode, so a previous vote or locked third attempt cannot substitute for a fresh positive test. Root must sequence admin review and project commits; Alice's final commit changes her current version and may remove that version from public eligibility until reviewed. This is not permission to test or change eligibility.
+diff --git a/scripts/qa-projects-controls-v6.mjs b/scripts/qa-projects-controls-v6.mjs
+index 193f358..3506dcf 100644
+--- a/scripts/qa-projects-controls-v6.mjs
++++ b/scripts/qa-projects-controls-v6.mjs
+@@ -360,7 +360,15 @@ async function session(role, device, policy = {}) {
+         return route.abort("blockedbyclient");
+       }
+       state.posts.push({ action, data }); // Memory only; never serialize drafts/media.
+-      report.requests.push({ role, device: device.name, action });
++      report.requests.push({
++        role,
++        device: device.name,
++        action,
++        transport:
++          policy.voteReject && action === "upvote-project"
++            ? "injected-rejection"
++            : "loopback-backend",
++      });
+       if (action === "submit-project") state.lastCommit = body;
+       if (policy.voteReject && action === "upvote-project") {
+         await policy.voteReject;
+@@ -393,6 +401,14 @@ async function session(role, device, policy = {}) {
+   page.on("pageerror", (e) =>
+     report.pageErrors.push({ role, device: device.name, error: e.message }),
+   );
++  page.on("dialog", async (dialog) => {
++    report.pageErrors.push({
++      role,
++      device: device.name,
++      error: `Unexpected JavaScript ${dialog.type()} dialog`,
++    });
++    await dialog.dismiss();
++  });
+   page.on("response", (r) => {
+     if (r.request().method() === "POST")
+       state.responses.push({ status: r.status() });
+@@ -1378,6 +1394,60 @@ async function mutationChecks() {
+     manifest.mutationProjects?.[device.name] ||
+     manifest.mutationProject ||
+     manifest.project;
++  const expectedLeaderProject = manifest.leaderProjects?.[device.name] ||
++    manifest.leaderProject || { id: "visual_project_alice", attemptsUsed: 2 };
++  const preflightMember = await session("member", device);
++  try {
++    await visit(preflightMember, "/projects/" + target.slug);
++    const state = await read(preflightMember, "/projects/" + target.slug);
++    assert.equal(state.status, 200);
++    assert.equal(state.body.items[0].id, target.id);
++    assert.equal(
++      state.body.items[0].upvoted,
++      false,
++      "Fresh reset requires an unvoted synthetic target",
++    );
++    assert.equal(state.body.items[0].canUpvote, true);
++    assert.equal(state.body.items[0].canComment, true);
++    privateAbsent(state.body);
++  } finally {
++    await preflightMember.context.close();
++  }
++  const preflightLeader = await session("leader", device);
++  try {
++    await visit(preflightLeader, "/dashboard#project");
++    const state = await read(preflightLeader, "/submission");
++    assert.equal(state.status, 200);
++    assert.equal(
++      state.body.project?.id,
++      expectedLeaderProject.id,
++      "Only the manifest-bound leader project may change",
++    );
++    assert.equal(
++      state.body.submissionAccess?.attemptsUsed,
++      expectedLeaderProject.attemptsUsed,
++    );
++    assert.equal(state.body.submissionAccess?.canCommit, true);
++    assert.equal(state.body.team?.leader_id, state.body.me?.id);
++  } finally {
++    await preflightLeader.context.close();
++  }
++  report.writeScope = {
++    device: device.name,
++    member: (
++      manifest.actorsByDevice?.[device.name]?.member || manifest.actors.member
++    ).id,
++    engagementProject: target.id,
++    leader: (
++      manifest.actorsByDevice?.[device.name]?.leader || manifest.actors.leader
++    ).id,
++    leaderProject: expectedLeaderProject.id,
++    attemptsAtReset: expectedLeaderProject.attemptsUsed,
++    origin,
++    path: "/api/portal",
++    actions: [...postActions],
++  };
++  save();
+   let release;
+   const rejection = new Promise((r) => {
+     release = r;
+diff --git a/scripts/qa-projects-recovery-v6.mjs b/scripts/qa-projects-recovery-v6.mjs
+new file mode 100644
+index 0000000..14d8cb0
+--- /dev/null
++++ b/scripts/qa-projects-recovery-v6.mjs
+@@ -0,0 +1,392 @@
++// Targeted read-only regression run. Never permits any POST, regardless of flags.
++import assert from "node:assert/strict";
++import { createHash } from "node:crypto";
++import { execFileSync } from "node:child_process";
++import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
++import { join, resolve } from "node:path";
++
++if (!process.argv.includes("--preview-ready")) {
++  console.log(
++    "Prepared only. Set V6_CONTROL_MANIFEST to the new matching artifact manifest and pass --preview-ready. This runner is always read-only.",
++  );
++  process.exit(0);
++}
++assert.ok(
++  !process.argv.includes("--mutations"),
++  "Targeted recovery runner cannot enable writes",
++);
++const manifest = JSON.parse(
++  readFileSync(process.env.V6_CONTROL_MANIFEST || "", "utf8"),
++);
++assert.equal(manifest.syntheticOnly, true);
++assert.equal(manifest.disposable, true);
++assert.equal(manifest.origin, "http://127.0.0.1:4173");
++assert.match(manifest.source, /^[a-f0-9]{40}$/);
++assert.match(manifest.worker, /^[a-f0-9]{64}$/);
++const artifact = resolve(manifest.artifactRoot);
++const fingerprint = () =>
++  createHash("sha256")
++    .update(readFileSync(join(artifact, "dist/server/index.js")))
++    .digest("hex");
++assert.equal(fingerprint(), manifest.worker);
++assert.equal(
++  execFileSync("git", ["-C", artifact, "rev-parse", "HEAD"], {
++    encoding: "utf8",
++  }).trim(),
++  manifest.source,
++);
++for (const role of ["leader", "firstLeader"]) {
++  assert.match(manifest.actors[role]?.id || "", /^fake_/);
++  assert.match(manifest.actors[role]?.email || "", /^[^@]+@[^@]+\.test$/);
++}
++const modes = [
++  {
++    name: "desktop-mouse",
++    viewport: { width: 1440, height: 900 },
++    pointer: "mouse",
++  },
++  {
++    name: "tablet-touch",
++    viewport: { width: 834, height: 1194 },
++    pointer: "touch",
++  },
++  {
++    name: "mobile-touch",
++    viewport: { width: 390, height: 844 },
++    pointer: "touch",
++  },
++  {
++    name: "narrow-touch",
++    viewport: { width: 320, height: 740 },
++    pointer: "touch",
++  },
++  {
++    name: "desktop-keyboard",
++    viewport: { width: 1440, height: 900 },
++    pointer: "keyboard",
++  },
++];
++const chosen = process.argv
++  .find((arg) => arg.startsWith("--device="))
++  ?.slice(9);
++const devices = chosen ? modes.filter((mode) => mode.name === chosen) : modes;
++assert.ok(devices.length, "Unknown device mode");
++mkdirSync("evidence/v6-project-recovery", { recursive: true });
++const output = mkdtempSync(
++  "evidence/v6-project-recovery/" + manifest.source.slice(0, 8) + "-",
++);
++const report = {
++  source: manifest.source,
++  worker: manifest.worker,
++  artifact,
++  output,
++  readOnly: true,
++  physicalDeviceTested: false,
++  checks: [],
++  screenshots: [],
++  errors: [],
++  blocked: [],
++};
++const save = () =>
++  writeFileSync(join(output, "report.json"), JSON.stringify(report, null, 2));
++const { chromium } =
++  await import("/tmp/ddehack-playwright-runner/node_modules/playwright/index.mjs");
++const browser = await chromium.launch({
++  headless: true,
++  chromiumSandbox: true,
++});
++async function check(id, mode, fn) {
++  try {
++    await fn();
++    report.checks.push({ id, mode: mode.name, passed: true });
++  } catch (error) {
++    report.checks.push({
++      id,
++      mode: mode.name,
++      passed: false,
++      error: error.message,
++    });
++  }
++  save();
++}
++async function session(role, mode) {
++  const actor = manifest.actors[role];
++  const context = await browser.newContext({
++    viewport: mode.viewport,
++    hasTouch: mode.pointer === "touch",
++    isMobile: mode.pointer === "touch",
++    serviceWorkers: "block",
++  });
++  await context.route("**/*", (route) => {
++    const request = route.request(),
++      url = new URL(request.url());
++    if (
++      url.origin !== manifest.origin ||
++      !["GET", "HEAD"].includes(request.method())
++    ) {
++      report.blocked.push({
++        mode: mode.name,
++        role,
++        method: request.method(),
++        external: url.origin !== manifest.origin,
++      });
++      return route.abort("blockedbyclient");
++    }
++    return route.continue({
++      headers: {
++        ...request.headers(),
++        "oai-authenticated-user-id": actor.id,
++        "oai-authenticated-user-email": actor.email,
++      },
++    });
++  });
++  const page = await context.newPage();
++  page.setDefaultTimeout(12000);
++  page.on("pageerror", (error) =>
++    report.errors.push({ mode: mode.name, role, error: error.message }),
++  );
++  return { role, mode, context, page };
++}
++async function tabTo(s, locator) {
++  for (let n = 0; n < 120; n++) {
++    if (await locator.evaluate((el) => el === document.activeElement)) {
++      assert.ok(
++        await locator.evaluate((el) => {
++          const a = getComputedStyle(el),
++            b = getComputedStyle(el.parentElement);
++          return (
++            a.outlineStyle !== "none" ||
++            a.boxShadow !== "none" ||
++            b.outlineStyle !== "none"
++          );
++        }),
++        "Visible keyboard focus",
++      );
++      return;
++    }
++    await s.page.keyboard.press("Tab");
++  }
++  throw new Error(`Tab did not reach ${locator}`);
++}
++async function activate(s, locator, key = "Enter") {
++  if (s.mode.pointer === "keyboard") {
++    await tabTo(s, locator);
++    await s.page.keyboard.press(key);
++  } else if (s.mode.pointer === "touch") await locator.tap();
++  else await locator.click();
++}
++async function fill(s, locator, text) {
++  if (s.mode.pointer === "keyboard") {
++    await tabTo(s, locator);
++    await s.page.keyboard.press("ControlOrMeta+A");
++    await s.page.keyboard.press("Backspace");
++    if (text) await s.page.keyboard.type(text);
++  } else {
++    if (s.mode.pointer === "touch") await locator.tap();
++    await locator.fill(text);
++  }
++}
++async function open(s) {
++  const url = manifest.origin + "/dashboard#project";
++  if (s.page.url() === url) await s.page.reload({ waitUntil: "networkidle" });
++  else await s.page.goto(url, { waitUntil: "networkidle" });
++  await s.page.evaluate(() => document.fonts.ready);
++  const editor = s.page.locator(".submission-v6");
++  if ((await editor.count()) && (await editor.isVisible())) return;
++  await activate(s, s.page.getByRole("tab", { name: "Project", exact: true }));
++  const update = s.page.getByRole("button", {
++    name: "Update project",
++    exact: true,
++  });
++  await activate(s, update);
++  await editor.waitFor();
++}
++async function next(s) {
++  await activate(s, s.page.getByRole("button", { name: /^Next/ }));
++  assert.equal(
++    await s.page.locator("dialog[open]").count(),
++    0,
++    "Next cannot open a mutation dialog",
++  );
++}
++async function shot(s, label) {
++  const path = join(output, `${label}-${s.role}-${s.mode.name}.png`);
++  await s.page.screenshot({ path, fullPage: true, animations: "disabled" });
++  report.screenshots.push({
++    label,
++    role: s.role,
++    mode: s.mode.name,
++    path,
++    inspected: false,
++  });
++  save();
++}
++try {
++  for (const mode of devices) {
++    const s = await session("leader", mode);
++    try {
++      await check("essentials-validation-recovery", mode, async () => {
++        await open(s);
++        await shot(s, "clean-step1");
++        const field = s.page.locator(
++            '.submission-v6 input[name="projectName"]',
++          ),
++          original = await field.inputValue();
++        await fill(s, field, "");
++        await next(s);
++        const alert = s.page
++          .getByRole("alert")
++          .filter({ hasText: "Add a project name, summary and description." });
++        await alert.waitFor();
++        await fill(s, field, original);
++        assert.equal(await alert.count(), 0);
++        await shot(s, "essentials-corrected");
++      });
++      await check("github-validation-recovery", mode, async () => {
++        await open(s);
++        await next(s);
++        const field = s.page.locator('.submission-v6 input[name="github"]'),
++          original = await field.inputValue();
++        await fill(s, field, "https://example.test/invalid");
++        await next(s);
++        const alert = s.page
++          .getByRole("alert")
++          .filter({ hasText: "Add your GitHub repository." });
++        await alert.waitFor();
++        await fill(s, field, original);
++        assert.equal(await alert.count(), 0);
++        await shot(s, "github-corrected");
++      });
++      await check("native-radio-and-back-state", mode, async () => {
++        await open(s);
++        await next(s);
++        const group = s.page.locator(".submission-v6").getByRole("radio");
++        assert.equal(await group.count(), 2);
++        for (const label of ["Yes", "No"]) {
++          const desired = s.page.getByRole("radio", {
++            name: label,
++            exact: true,
++          });
++          if (mode.pointer === "keyboard") {
++            const checked = s.page
++              .locator(".submission-v6")
++              .getByRole("radio", { checked: true });
++            await tabTo(
++              s,
++              (await checked.count()) ? checked.first() : group.first(),
++            );
++            for (let n = 0; n < 2 && !(await desired.isChecked()); n++)
++              await s.page.keyboard.press("ArrowRight");
++          } else await activate(s, desired.locator(".."));
++          assert.equal(await desired.isChecked(), true);
++        }
++        await activate(
++          s,
++          s.page.getByRole("button", {
++            name: "Previous submission step",
++            exact: true,
++          }),
++        );
++        await next(s);
++        assert.equal(
++          await s.page
++            .getByRole("radio", { name: "No", exact: true })
++            .isChecked(),
++          true,
++        );
++        await shot(s, "radio-back-state");
++      });
++      await check("accuracy-validation-recovery", mode, async () => {
++        await open(s);
++        await next(s);
++        await next(s);
++        await shot(s, "clean-step3");
++        const accuracy = s.page.getByRole("checkbox", {
++          name: "I confirm this submission is accurate.",
++          exact: true,
++        });
++        if (await accuracy.isChecked()) await activate(s, accuracy, "Space");
++        await activate(
++          s,
++          s.page.getByRole("button", { name: "Submit", exact: true }),
++        );
++        const alert = s.page
++          .getByRole("alert")
++          .filter({ hasText: "Confirm this submission is accurate." });
++        await alert.waitFor();
++        await activate(s, accuracy, "Space");
++        assert.equal(await alert.count(), 0);
++        await shot(s, "accuracy-corrected");
++      });
++      await check("published-first-back-focus", mode, async () => {
++        await open(s);
++        await activate(
++          s,
++          s.page.getByRole("button", {
++            name: "Back to your project",
++            exact: true,
++          }),
++        );
++        await s.page
++          .getByRole("button", { name: "Update project", exact: true })
++          .waitFor();
++        await s.page.waitForFunction(
++          () => document.activeElement?.id === "dashboard-project-edit",
++        );
++        assert.equal(await s.page.locator(".submission-v6").count(), 0);
++      });
++    } finally {
++      await s.context.close();
++    }
++    const first = await session("firstLeader", mode);
++    try {
++      await check("unpublished-first-back-focus", mode, async () => {
++        await open(first);
++        await shot(first, "clean-first-submission");
++        await activate(
++          first,
++          first.page.getByRole("button", { name: "Back to Team", exact: true }),
++        );
++        await first.page
++          .locator('#dashboard-tab-team[aria-selected="true"]')
++          .waitFor();
++        assert.equal(
++          await first.page.locator(".submission-v6").isVisible(),
++          false,
++        );
++        await first.page.waitForFunction(
++          () => document.activeElement?.id === "dashboard-tab-team",
++        );
++        await shot(first, "first-back-team");
++        await open(first);
++        await first.page.locator(".submission-v6").waitFor();
++      });
++    } finally {
++      await first.context.close();
++    }
++  }
++  assert.equal(fingerprint(), manifest.worker);
++  assert.deepEqual(report.errors, []);
++  assert.deepEqual(report.blocked, []);
++  if (report.checks.some((check) => !check.passed)) process.exitCode = 1;
++} catch (error) {
++  report.failure = String(error.stack || error);
++  process.exitCode = 1;
++} finally {
++  await browser.close();
++  report.browserClosed = true;
++  save();
++}
++console.log(
++  JSON.stringify(
++    {
++      output,
++      passed: report.checks.filter((c) => c.passed).length,
++      failed: report.checks.filter((c) => !c.passed).length,
++      screenshots: report.screenshots.length,
++      browserClosed: report.browserClosed,
++    },
++    null,
++    2,
++  ),
++);
