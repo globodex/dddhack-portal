@@ -1,0 +1,94 @@
+{
+  "source": "436c91885de22ab4be020a198cd8897abe11192c",
+  "worker": "dea84021ecb472fa63d5d3b6ea4fe8a3e9d6ac3924d32a2bef87b7c0913e1a3b",
+  "operation": "create_library_file",
+  "library_artifact_type": "image",
+  "external_connectors_accessed": false,
+  "warnings": [],
+  "results": [
+    {
+      "file_name": "ddehack-v7-crown-admin-desktop-1440x900-436c918-after.png",
+      "local_path": "/workspace/v7-team/evidence/v7-admin-crown-final-delivery/ddehack-v7-crown-admin-desktop-1440x900-436c918-after.png",
+      "capture_path": "/workspace/v7-team/evidence/v7-admin-crown-final-desktop/admin-desktop-after-transfer.png",
+      "library_file_id": "libfile_08d74301343c8191abba17ee0eb671d0",
+      "file_id": "file_0000000087208230bd04236ce926ee50",
+      "status": "succeeded",
+      "current_version_number": 0,
+      "file_size_bytes": 108889,
+      "sha256": "cdf34a340b8de8592fae01343899a8218ae2b26eb544df1a948b76c6fef6ed5d",
+      "viewport": "1440x900",
+      "actor": "fake_admin",
+      "visually_inspected": true,
+      "original_pixels": true,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "file_name": "ddehack-v7-crown-admin-desktop-1440x900-436c918-confirm.png",
+      "local_path": "/workspace/v7-team/evidence/v7-admin-crown-final-delivery/ddehack-v7-crown-admin-desktop-1440x900-436c918-confirm.png",
+      "capture_path": "/workspace/v7-team/evidence/v7-admin-crown-final-desktop/admin-desktop-cancel-confirmation.png",
+      "library_file_id": "libfile_c00b7813b4308191a8c21aa9adffa529",
+      "file_id": "file_000000003b1081f5931fb2353cd74c88",
+      "status": "succeeded",
+      "current_version_number": 0,
+      "file_size_bytes": 121739,
+      "sha256": "ef2888d5895dc147a59abe4e30238a2afc17d3d398b32b72d864561ea2735279",
+      "viewport": "1440x900",
+      "actor": "fake_admin",
+      "visually_inspected": true,
+      "original_pixels": true,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "file_name": "ddehack-v7-crown-admin-mobile-390x844-436c918-after.png",
+      "local_path": "/workspace/v7-team/evidence/v7-admin-crown-final-delivery/ddehack-v7-crown-admin-mobile-390x844-436c918-after.png",
+      "capture_path": "/workspace/v7-team/evidence/v7-admin-crown-final-mobile/admin-mobile-after-transfer.png",
+      "library_file_id": "libfile_0be86008f4a081919d79df9361a4421b",
+      "file_id": "file_00000000977481fd9794d10b8441f8a9",
+      "status": "succeeded",
+      "current_version_number": 0,
+      "file_size_bytes": 72618,
+      "sha256": "0ec1b19f79d9f4494f6a8b107fcfa755e5e9990ad12ca4e575f4b5ee23eba33c",
+      "viewport": "390x844",
+      "actor": "fake_admin",
+      "visually_inspected": true,
+      "original_pixels": true,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "file_name": "ddehack-v7-crown-admin-mobile-390x844-436c918-confirm.png",
+      "local_path": "/workspace/v7-team/evidence/v7-admin-crown-final-delivery/ddehack-v7-crown-admin-mobile-390x844-436c918-confirm.png",
+      "capture_path": "/workspace/v7-team/evidence/v7-admin-crown-final-mobile/admin-mobile-cancel-confirmation.png",
+      "library_file_id": "libfile_267a0bf41b288191911470abaaf94826",
+      "file_id": "file_00000000ff7481f68f1e1c014fe04fd2",
+      "status": "succeeded",
+      "current_version_number": 0,
+      "file_size_bytes": 64810,
+      "sha256": "37810e662fa043c77da39aa37edf34e8287b21be189409395ce0fb2315a0750d",
+      "viewport": "390x844",
+      "actor": "fake_admin",
+      "visually_inspected": true,
+      "original_pixels": true,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ]
+    }
+  ]
+}

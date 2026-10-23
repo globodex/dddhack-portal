@@ -1,0 +1,102 @@
+{
+  "source": "436c91885de22ab4be020a198cd8897abe11192c",
+  "worker": "dea84021ecb472fa63d5d3b6ea4fe8a3e9d6ac3924d32a2bef87b7c0913e1a3b",
+  "qaCommit": "3bd3c05",
+  "syntheticOnly": true,
+  "checksPassed": 18,
+  "modes": [
+    {
+      "mode": "desktop",
+      "source": "436c91885de22ab4be020a198cd8897abe11192c",
+      "worker": "dea84021ecb472fa63d5d3b6ea4fe8a3e9d6ac3924d32a2bef87b7c0913e1a3b",
+      "checksPassed": 9,
+      "layout": {
+        "width": 44,
+        "height": 44,
+        "hit": true,
+        "rowHeight": 52,
+        "scrollWidth": 1440,
+        "viewportWidth": 1440
+      },
+      "posts": [
+        {
+          "actor": "admin",
+          "purpose": "positive-ui-transfer",
+          "action": "transfer-team-leader",
+          "status": 200
+        },
+        {
+          "actor": "admin",
+          "purpose": "negative-api-stale",
+          "action": "transfer-team-leader",
+          "status": 409,
+          "code": "TEAM_LEADER_CHANGED"
+        },
+        {
+          "actor": "next",
+          "purpose": "negative-api-participant",
+          "action": "transfer-team-leader",
+          "status": 403,
+          "code": "ADMIN_REQUIRED"
+        }
+      ],
+      "browserClosed": true,
+      "artifactUnchanged": true,
+      "report": "evidence/v7-admin-crown-final-desktop/report.json"
+    },
+    {
+      "mode": "mobile",
+      "source": "436c91885de22ab4be020a198cd8897abe11192c",
+      "worker": "dea84021ecb472fa63d5d3b6ea4fe8a3e9d6ac3924d32a2bef87b7c0913e1a3b",
+      "checksPassed": 9,
+      "layout": {
+        "width": 44,
+        "height": 44,
+        "hit": true,
+        "rowHeight": 52,
+        "scrollWidth": 390,
+        "viewportWidth": 390
+      },
+      "posts": [
+        {
+          "actor": "admin",
+          "purpose": "positive-ui-transfer",
+          "action": "transfer-team-leader",
+          "status": 200
+        },
+        {
+          "actor": "admin",
+          "purpose": "negative-api-stale",
+          "action": "transfer-team-leader",
+          "status": 409,
+          "code": "TEAM_LEADER_CHANGED"
+        },
+        {
+          "actor": "next",
+          "purpose": "negative-api-participant",
+          "action": "transfer-team-leader",
+          "status": 403,
+          "code": "ADMIN_REQUIRED"
+        }
+      ],
+      "browserClosed": true,
+      "artifactUnchanged": true,
+      "report": "evidence/v7-admin-crown-final-mobile/report.json"
+    }
+  ],
+  "positiveUITransfers": 2,
+  "negativeAPIProbes": 4,
+  "unexpectedRequests": 0,
+  "pageErrors": 0,
+  "freshResetPerMode": true,
+  "chromiumSandbox": true,
+  "sandboxDisabled": false,
+  "screenshotsCaptured": 8,
+  "screenshotsInspectedAndDeliveredToLibrary": 4,
+  "libraryReceipt": "evidence/v7-admin-crown-final-delivery/library-delivery.json",
+  "layoutFindingResolved": "Both actual targets measure44x44 with52px member rows and working center pointer hits. Page scroll widths match1440px/390px viewports. Oversized outline wrapper is gone.",
+  "rootRuntimeChangesByLane": false,
+  "ownedPreviewsStopped": true,
+  "ownedSuccessfulPreviewDatabasesRemoved": true,
+  "remaining": "Root final combined evidence commit and delivery; earlier keyboard functional8/8 remains source-bound0a2e3f9 before style-only correction."
+}

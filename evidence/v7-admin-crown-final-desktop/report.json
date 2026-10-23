@@ -1,0 +1,202 @@
+{
+  "source": "436c91885de22ab4be020a198cd8897abe11192c",
+  "worker": "dea84021ecb472fa63d5d3b6ea4fe8a3e9d6ac3924d32a2bef87b7c0913e1a3b",
+  "origin": "http://127.0.0.1:4194",
+  "mode": "desktop",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "syntheticOnly": true,
+  "chromiumSandbox": true,
+  "resetTokenHash": "297471dab34975c2de03427cc61eb15373b8580a7fd9391b6d9f9c83389e7d6a",
+  "resetManifestHash": "0adf0d2570ff4cdec62fc803660fbfb71dff62a75c344ec0749661d1b821fec7",
+  "checks": [
+    {
+      "label": "fresh locked two-attempt team has the exact previous leader and current teammate",
+      "passed": true
+    },
+    {
+      "label": "compact crown is a 44px pointer target without an inflated row or overflow",
+      "passed": true
+    },
+    {
+      "label": "named cancellation sends no POST and leaves the crown unchanged",
+      "passed": true
+    },
+    {
+      "label": "confirmed admin crown transfer commits exactly one UI POST",
+      "passed": true
+    },
+    {
+      "label": "one new leader, unchanged membership, lock, private idea and submitted history",
+      "passed": true
+    },
+    {
+      "label": "old and new dashboards recheck crown and personal attendance permissions",
+      "passed": true
+    },
+    {
+      "label": "stale admin retry is rejected without another transfer",
+      "passed": true
+    },
+    {
+      "label": "participant is forbidden from the admin team view and crown action",
+      "passed": true
+    },
+    {
+      "label": "exact action allowlist permits one success and two declared negative probes",
+      "passed": true
+    }
+  ],
+  "posts": [
+    {
+      "actor": "admin",
+      "purpose": "positive-ui-transfer",
+      "action": "transfer-team-leader",
+      "status": 200
+    },
+    {
+      "actor": "admin",
+      "purpose": "negative-api-stale",
+      "action": "transfer-team-leader",
+      "status": 409,
+      "code": "TEAM_LEADER_CHANGED"
+    },
+    {
+      "actor": "next",
+      "purpose": "negative-api-participant",
+      "action": "transfer-team-leader",
+      "status": 403,
+      "code": "ADMIN_REQUIRED"
+    }
+  ],
+  "blocked": [],
+  "pageErrors": [],
+  "captures": [
+    {
+      "path": "/workspace/v7-team/evidence/v7-admin-crown-final-desktop/admin-desktop-cancel-confirmation.png",
+      "actor": "fake_admin",
+      "source": "436c91885de22ab4be020a198cd8897abe11192c",
+      "worker": "dea84021ecb472fa63d5d3b6ea4fe8a3e9d6ac3924d32a2bef87b7c0913e1a3b",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "original": true
+    },
+    {
+      "path": "/workspace/v7-team/evidence/v7-admin-crown-final-desktop/admin-desktop-after-transfer.png",
+      "actor": "fake_admin",
+      "source": "436c91885de22ab4be020a198cd8897abe11192c",
+      "worker": "dea84021ecb472fa63d5d3b6ea4fe8a3e9d6ac3924d32a2bef87b7c0913e1a3b",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "original": true
+    },
+    {
+      "path": "/workspace/v7-team/evidence/v7-admin-crown-final-desktop/previous-desktop-dashboard-after-transfer.png",
+      "actor": "fake_alice",
+      "source": "436c91885de22ab4be020a198cd8897abe11192c",
+      "worker": "dea84021ecb472fa63d5d3b6ea4fe8a3e9d6ac3924d32a2bef87b7c0913e1a3b",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "original": true
+    },
+    {
+      "path": "/workspace/v7-team/evidence/v7-admin-crown-final-desktop/next-desktop-dashboard-after-transfer.png",
+      "actor": "fake_review_one",
+      "source": "436c91885de22ab4be020a198cd8897abe11192c",
+      "worker": "dea84021ecb472fa63d5d3b6ea4fe8a3e9d6ac3924d32a2bef87b7c0913e1a3b",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "original": true
+    }
+  ],
+  "before": {
+    "teamId": "fake_team1",
+    "leaderId": "fake_alice",
+    "locked": true,
+    "lockedAt": "2026-10-23T21:13:27.851Z",
+    "members": [
+      {
+        "id": "fake_alice",
+        "role": "leader"
+      },
+      {
+        "id": "fake_review_one",
+        "role": "member"
+      },
+      {
+        "id": "fake_review_two",
+        "role": "member"
+      }
+    ],
+    "attempts": [
+      {
+        "id": "visual_alice_v2",
+        "attempt": 2,
+        "created_at": "2026-10-23T21:13:27.599Z"
+      },
+      {
+        "id": "visual_alice_v1",
+        "attempt": 1,
+        "created_at": "2026-10-23T21:13:27.599Z"
+      }
+    ],
+    "attemptsUsed": 2,
+    "projectRevision": 2,
+    "publishedVersionId": "visual_alice_v2"
+  },
+  "crownLayout": {
+    "width": 44,
+    "height": 44,
+    "hit": true,
+    "rowHeight": 52,
+    "scrollWidth": 1440,
+    "viewportWidth": 1440
+  },
+  "after": {
+    "teamId": "fake_team1",
+    "leaderId": "fake_review_one",
+    "locked": true,
+    "lockedAt": "2026-10-23T21:13:27.851Z",
+    "members": [
+      {
+        "id": "fake_alice",
+        "role": "member"
+      },
+      {
+        "id": "fake_review_one",
+        "role": "leader"
+      },
+      {
+        "id": "fake_review_two",
+        "role": "member"
+      }
+    ],
+    "attempts": [
+      {
+        "id": "visual_alice_v2",
+        "attempt": 2,
+        "created_at": "2026-10-23T21:13:27.599Z"
+      },
+      {
+        "id": "visual_alice_v1",
+        "attempt": 1,
+        "created_at": "2026-10-23T21:13:27.599Z"
+      }
+    ],
+    "attemptsUsed": 2,
+    "projectRevision": 2,
+    "publishedVersionId": "visual_alice_v2"
+  },
+  "browserClosed": true,
+  "artifactUnchanged": true
+}
