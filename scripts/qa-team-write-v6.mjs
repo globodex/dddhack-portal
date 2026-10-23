@@ -178,8 +178,13 @@ async function reload(s) {
   return view(s);
 }
 async function record(label, fn) {
-  await fn();
-  report.checks.push({ label, passed: true });
+  try {
+    await fn();
+    report.checks.push({ label, passed: true });
+  } catch (error) {
+    report.failedCheck = label;
+    throw error;
+  }
 }
 async function capture(s, label) {
   const path = output + "/" + s.actor + "-" + size + "-" + label + ".png";
@@ -705,6 +710,7 @@ try {
   );
 } catch (e) {
   report.failure = e.message;
+  report.failureStack = e.stack;
   const leader = sessions.get("leader");
   if (leader)
     report.failureState = {
