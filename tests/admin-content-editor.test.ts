@@ -46,8 +46,13 @@ test("Results controls keep unavailable gates and explain each disabled action a
           owner: true,
           role: "participant",
         },
-        readiness: {
-          scoring: { ready: false, blockers: ["confirmed scoring rules"] },
+        resultControls: {
+          ai: {
+            allowed: false,
+            reason: "Current eligible evaluations required.",
+          },
+          freeze: { allowed: false, reason: "Scoring rules required." },
+          final: { allowed: false, reason: "Frozen snapshot required." },
         },
         resultSnapshots: [],
       },
@@ -61,7 +66,34 @@ test("Results controls keep unavailable gates and explain each disabled action a
   ];
   assert.equal(controls.length, 3);
   for (const [, reason, id] of controls) {
-    assert.match(reason, /Confirm scoring policy/);
+    assert.match(reason, /required\./);
     assert.ok(html.includes(`id="${id}"`));
   }
+});
+
+test("Results controls use actual per-action availability rather than obsolete manual readiness", () => {
+  const html = renderToStaticMarkup(
+    createElement(Settings, {
+      data: {
+        me: {
+          id: "synthetic-owner",
+          name: "Synthetic owner",
+          email: "owner@portal.test",
+          owner: true,
+          role: "participant",
+        },
+        readiness: { scoring: { ready: false } },
+        resultControls: {
+          ai: { allowed: true, reason: "" },
+          freeze: { allowed: false, reason: "Reviews required." },
+          final: { allowed: false, reason: "Frozen snapshot required." },
+        },
+      },
+      run,
+    }),
+  );
+  assert.match(html, /<button class="button">Reveal AI scores<\/button>/);
+  assert.match(html, /title="Reviews required\."/);
+  assert.match(html, /title="Frozen snapshot required\."/);
+  assert.doesNotMatch(html, /Complete scoring configuration/);
 });

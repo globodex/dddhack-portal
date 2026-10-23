@@ -4652,11 +4652,10 @@ export function Settings({
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
-  const scoringBlocker =
-    data.readiness?.scoring?.blockers?.[0] || data.blockers?.[0];
-  const scoringDisabledReason = scoringBlocker
-    ? `Confirm scoring policy: ${String(scoringBlocker).slice(0, 80)}.`
-    : "Complete scoring configuration with the owner.";
+  const resultControl = (kind: "ai" | "freeze" | "final") => ({
+    allowed: data.resultControls?.[kind]?.allowed === true,
+    reason: data.resultControls?.[kind]?.reason || "Reload result controls.",
+  });
   return (
     <section className="admin-exact admin-settings-page">
       <header className="page-heading admin-exact-heading">
@@ -4692,8 +4691,8 @@ export function Settings({
 
           <Form
             title="Reveal AI scores"
-            disabled={data.readiness?.scoring?.ready !== true}
-            disabledReason={scoringDisabledReason}
+            disabled={!resultControl("ai").allowed}
+            disabledReason={resultControl("ai").reason}
             label="Reveal AI scores"
             onSave={async (f) => {
               await run("reveal-ai-scores", { reason: f.get("reason") });
@@ -4704,8 +4703,8 @@ export function Settings({
           {data.me?.owner && (
             <Form
               title="Freeze final judging snapshot"
-              disabled={data.readiness?.scoring?.ready !== true}
-              disabledReason={scoringDisabledReason}
+              disabled={!resultControl("freeze").allowed}
+              disabledReason={resultControl("freeze").reason}
               label="Freeze final scores"
               onSave={async (f) => {
                 await run("freeze-results", { reason: f.get("reason") });
@@ -4721,8 +4720,8 @@ export function Settings({
           )}
           <Form
             title="Reveal Final score"
-            disabled={data.readiness?.scoring?.ready !== true}
-            disabledReason={scoringDisabledReason}
+            disabled={!resultControl("final").allowed}
+            disabledReason={resultControl("final").reason}
             label="Reveal Final score"
             onSave={async (f) => {
               await run("reveal-final-scores", {
@@ -4741,10 +4740,6 @@ export function Settings({
                 ))}
               </select>
             </Field>
-            {data.readiness?.scoring?.ready === true &&
-              !(data.resultSnapshots || []).length && (
-                <p>Freeze final scores first.</p>
-              )}
             <Field name="reason" label="Reveal reason" required minLength={5} />
           </Form>
           {data.scoreRelease?.remainingAwards?.length > 0 && (
