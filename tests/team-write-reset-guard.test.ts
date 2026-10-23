@@ -56,3 +56,26 @@ test("Team write reset accepts only matching explicit local reset evidence", () 
     assertTeamWriteReset({ ...fixture(), token: token.replaceAll("-", "") }),
   );
 });
+
+test("Team reset root mismatch keeps its message and isolated origin", () => {
+  const input = {
+    ...fixture(),
+    origin: "http://127.0.0.1:4176",
+    manifest: {
+      ...fixture().manifest,
+      origin: "http://127.0.0.1:4176",
+      artifactRoot: "/stale-checkout",
+    },
+  };
+  assert.throws(() => assertTeamWriteReset(input), (error: unknown) => {
+    assert.ok(error instanceof assert.AssertionError);
+    assert.match(error.message, /^reset receipt artifact root mismatch/);
+    assert.equal(error.actual, "/stale-checkout");
+    assert.equal(error.expected, artifactRoot);
+    return true;
+  });
+  assert.equal(input.origin, "http://127.0.0.1:4176");
+  assert.equal(input.manifest.origin, input.origin);
+  input.manifest.artifactRoot = artifactRoot;
+  assert.doesNotThrow(() => assertTeamWriteReset(input));
+});
