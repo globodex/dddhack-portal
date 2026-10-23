@@ -1,0 +1,289 @@
+{
+  "frozenSource": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+  "worker": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+  "runnerCommit": "5164f66",
+  "syntheticOnly": true,
+  "target": {
+    "teamId": "fake_team1",
+    "teamName": "Small Wonder",
+    "oldLeader": "fake_alice",
+    "newLeader": "fake_review_one",
+    "locked": true,
+    "attemptsUsed": 2
+  },
+  "results": {
+    "checksPassed": 24,
+    "positiveUITransfers": 3,
+    "negativeAPIProbes": 6,
+    "unexpectedRequests": 0,
+    "pageErrors": 0,
+    "freshResetPerMode": true,
+    "modes": [
+      {
+        "mode": "desktop",
+        "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+        "worker": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+        "checksPassed": 8,
+        "posts": [
+          {
+            "actor": "admin",
+            "purpose": "positive-ui-transfer",
+            "action": "transfer-team-leader",
+            "status": 200
+          },
+          {
+            "actor": "admin",
+            "purpose": "negative-api-stale",
+            "action": "transfer-team-leader",
+            "status": 409,
+            "code": "TEAM_LEADER_CHANGED"
+          },
+          {
+            "actor": "next",
+            "purpose": "negative-api-participant",
+            "action": "transfer-team-leader",
+            "status": 403,
+            "code": "ADMIN_REQUIRED"
+          }
+        ],
+        "browserClosed": true,
+        "artifactUnchanged": true,
+        "report": "evidence/v7-admin-crown-desktop/report.json",
+        "captures": [
+          {
+            "path": "/workspace/v7-team/evidence/v7-admin-crown-desktop/admin-desktop-cancel-confirmation.png",
+            "actor": "fake_admin",
+            "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+            "worker": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "original": true
+          },
+          {
+            "path": "/workspace/v7-team/evidence/v7-admin-crown-desktop/admin-desktop-after-transfer.png",
+            "actor": "fake_admin",
+            "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+            "worker": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "original": true
+          },
+          {
+            "path": "/workspace/v7-team/evidence/v7-admin-crown-desktop/previous-desktop-dashboard-after-transfer.png",
+            "actor": "fake_alice",
+            "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+            "worker": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "original": true
+          },
+          {
+            "path": "/workspace/v7-team/evidence/v7-admin-crown-desktop/next-desktop-dashboard-after-transfer.png",
+            "actor": "fake_review_one",
+            "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+            "worker": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "original": true
+          }
+        ]
+      },
+      {
+        "mode": "mobile",
+        "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+        "worker": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+        "checksPassed": 8,
+        "posts": [
+          {
+            "actor": "admin",
+            "purpose": "positive-ui-transfer",
+            "action": "transfer-team-leader",
+            "status": 200
+          },
+          {
+            "actor": "admin",
+            "purpose": "negative-api-stale",
+            "action": "transfer-team-leader",
+            "status": 409,
+            "code": "TEAM_LEADER_CHANGED"
+          },
+          {
+            "actor": "next",
+            "purpose": "negative-api-participant",
+            "action": "transfer-team-leader",
+            "status": 403,
+            "code": "ADMIN_REQUIRED"
+          }
+        ],
+        "browserClosed": true,
+        "artifactUnchanged": true,
+        "report": "evidence/v7-admin-crown-mobile/report.json",
+        "captures": [
+          {
+            "path": "/workspace/v7-team/evidence/v7-admin-crown-mobile/admin-mobile-cancel-confirmation.png",
+            "actor": "fake_admin",
+            "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+            "worker": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "original": true
+          },
+          {
+            "path": "/workspace/v7-team/evidence/v7-admin-crown-mobile/admin-mobile-after-transfer.png",
+            "actor": "fake_admin",
+            "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+            "worker": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "original": true
+          },
+          {
+            "path": "/workspace/v7-team/evidence/v7-admin-crown-mobile/previous-mobile-dashboard-after-transfer.png",
+            "actor": "fake_alice",
+            "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+            "worker": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "original": true
+          },
+          {
+            "path": "/workspace/v7-team/evidence/v7-admin-crown-mobile/next-mobile-dashboard-after-transfer.png",
+            "actor": "fake_review_one",
+            "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+            "worker": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "original": true
+          }
+        ]
+      },
+      {
+        "mode": "keyboard",
+        "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+        "worker": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+        "checksPassed": 8,
+        "posts": [
+          {
+            "actor": "admin",
+            "purpose": "positive-ui-transfer",
+            "action": "transfer-team-leader",
+            "status": 200
+          },
+          {
+            "actor": "admin",
+            "purpose": "negative-api-stale",
+            "action": "transfer-team-leader",
+            "status": 409,
+            "code": "TEAM_LEADER_CHANGED"
+          },
+          {
+            "actor": "next",
+            "purpose": "negative-api-participant",
+            "action": "transfer-team-leader",
+            "status": 403,
+            "code": "ADMIN_REQUIRED"
+          }
+        ],
+        "browserClosed": true,
+        "artifactUnchanged": true,
+        "report": "evidence/v7-admin-crown-keyboard/report.json",
+        "captures": [
+          {
+            "path": "/workspace/v7-team/evidence/v7-admin-crown-keyboard/admin-keyboard-cancel-confirmation.png",
+            "actor": "fake_admin",
+            "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+            "worker": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "original": true
+          },
+          {
+            "path": "/workspace/v7-team/evidence/v7-admin-crown-keyboard/admin-keyboard-after-transfer.png",
+            "actor": "fake_admin",
+            "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+            "worker": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "original": true
+          },
+          {
+            "path": "/workspace/v7-team/evidence/v7-admin-crown-keyboard/previous-keyboard-dashboard-after-transfer.png",
+            "actor": "fake_alice",
+            "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+            "worker": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "original": true
+          },
+          {
+            "path": "/workspace/v7-team/evidence/v7-admin-crown-keyboard/next-keyboard-dashboard-after-transfer.png",
+            "actor": "fake_review_one",
+            "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+            "worker": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "original": true
+          }
+        ]
+      }
+    ]
+  },
+  "validated": [
+    "Named confirmation names team and previous/new leaders, Cancel initially focused",
+    "Cancel sends no POST and preserves leader",
+    "Exactly one positive UI transfer per fresh fixture",
+    "Previous leader remains member and loses commit controls",
+    "New leader holds sole leader role but cannot commit without personal check-in",
+    "Unchanged membership, team lock and lock timestamp",
+    "Private idea and saved project unchanged, compared in memory only",
+    "Same two immutable submission versions and attemptsUsed2",
+    "Stale admin retry409TEAM_LEADER_CHANGED",
+    "New-leader participant denied admin view403 and transfer action403ADMIN_REQUIRED"
+  ],
+  "screenshots": {
+    "count": 12,
+    "original": true,
+    "reviewedByLane": [
+      "evidence/v7-admin-crown-desktop/admin-desktop-cancel-confirmation.png",
+      "evidence/v7-admin-crown-mobile/admin-mobile-after-transfer.png"
+    ],
+    "finding": "Crown action inherits oversized outlined-button area; root will perform scoped icon layout correction after frozen functional QA. No selected-mockup acceptance claim."
+  },
+  "startupHistory": {
+    "port4192": "Two preview startups failed before browser/POST because an unrelated Delhi variant preview already occupied4192; its process was identified and left untouched. Port4194 then used successfully.",
+    "failedStartupProcesses": "stopped",
+    "successfulPreviews": "stopped; each preview removed its own disposable database"
+  },
+  "chromiumSandbox": true,
+  "sandboxDisabled": false,
+  "productionWrites": false,
+  "publication": false,
+  "remaining": [
+    "Root scoped Crown icon layout fix and matching screenshot check on its new source",
+    "Root final combined regression and Library screenshot delivery"
+  ]
+}
