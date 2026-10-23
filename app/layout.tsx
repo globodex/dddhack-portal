@@ -3,6 +3,7 @@ import "./style.css";
 import "./public-home.css";
 import "./home-lower.css";
 import "./organizer-section.css";
+import "./portrait-backdrop.css";
 import "./participant-ui.css";
 import "./admin-controls.css";
 import "./navigation-correction.css";

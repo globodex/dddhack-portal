@@ -1,0 +1,52 @@
+/* One non-interactive, bounded portrait backdrop. Foreground reading areas stay opaque. */
+.public-home-shell .portrait-backdrop {
+  display: none;
+}
+@media (max-width: 1099px) and (orientation: portrait) {
+  .public-home-shell .home[data-portrait-backdrop="true"] {
+    isolation: isolate;
+  }
+  .public-home-shell .portrait-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: clip;
+    pointer-events: none;
+    user-select: none;
+    contain: strict;
+  }
+  .public-home-shell .portrait-backdrop-dot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    visibility: hidden;
+    opacity: 0.25;
+    pointer-events: none;
+  }
+  .public-home-shell .portrait-backdrop-dot > svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .public-home-shell .home[data-portrait-backdrop="true"] .home-hero,
+  .public-home-shell
+    .home[data-portrait-backdrop="true"]
+    .chapter-stack
+    .chapter {
+    background: transparent;
+  }
+  .public-home-shell .home[data-portrait-backdrop="true"] .hero-copy,
+  .public-home-shell
+    .home[data-portrait-backdrop="true"]
+    .chapter-stack
+    .chapter-content,
+  .public-home-shell
+    .home[data-portrait-backdrop="true"]
+    .organizer-heading-row
+    h2,
+  .public-home-shell .home[data-portrait-backdrop="true"] .home-footer {
+    background: #fff;
+  }
+}

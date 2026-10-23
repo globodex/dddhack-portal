@@ -14,6 +14,7 @@ import {
 import Dots from "./dots";
 import DelhiWordmark from "./delhi-wordmark";
 import OrganizerSection from "./organizer-section";
+import PortraitBackdrop from "./portrait-backdrop";
 import { defaultPublicContent } from "../lib/event-content-contract";
 import {
   agendaDestination,
@@ -447,6 +448,7 @@ export default function Home({
   }, [paused, ready, visible]);
   return (
     <div className="home" data-paused={paused}>
+      <PortraitBackdrop paused={paused} />
       <section className="home-hero" aria-labelledby="home-title" ref={hero}>
         <div className="hero-copy">
           <h1
