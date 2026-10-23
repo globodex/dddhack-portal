@@ -343,3 +343,160 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Rendered participant administration: compact disclosure and mobile facts. */
+details.panel:has(> .admin-import) {
+  margin-block: 12px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+details.panel:has(> .admin-import) > summary {
+  min-height: 48px;
+  margin: 0;
+  padding: 12px 0;
+  line-height: 24px;
+}
+details.panel:has(> .admin-import)[open] {
+  margin-bottom: 18px;
+}
+.admin-participant-filters ~ .table-scroll .participants-table td {
+  vertical-align: top;
+}
+.admin-participant-filters ~ .table-scroll .participants-table td details {
+  margin: 0;
+}
+.admin-participant-filters ~ .table-scroll .participants-table td summary {
+  min-height: 44px;
+  padding-block: 10px;
+  line-height: 24px;
+  font-size: 12px;
+}
+.admin-participant-filters ~ .table-scroll .participants-table td small {
+  line-height: 1.4;
+}
+@media (max-width: 740px) {
+  .admin-control.admin-participant-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 12px;
+    margin-block: 12px 16px;
+  }
+  .admin-control.admin-participant-filters > label:first-of-type {
+    grid-column: 1 / -1;
+  }
+  .admin-control.admin-participant-filters label,
+  .admin-participant-filters + .toolbar > label {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .admin-control.admin-participant-filters :is(input, select) {
+    padding-inline: 10px;
+    font-size: 13px;
+  }
+  .admin-participant-filters + .toolbar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: end;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .admin-participant-filters + .toolbar > label:not(.search-label) {
+    display: grid;
+    gap: 6px;
+    min-width: 0;
+    max-width: none;
+  }
+  .admin-participant-filters + .toolbar select {
+    min-width: 0;
+    width: 100%;
+    padding-inline: 10px;
+    font-size: 13px;
+  }
+  .admin-participant-filters + .toolbar > .button {
+    min-width: 0;
+    width: 100%;
+    min-height: 46px;
+    padding: 8px 10px;
+    font-size: 12px;
+    line-height: 15px;
+    white-space: normal;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+  .admin-participant-filters ~ .table-scroll .participants-table tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 6px 12px;
+    padding: 16px 14px 12px 46px;
+  }
+  .admin-participant-filters ~ .table-scroll .participants-table td {
+    min-width: 0;
+    padding: 0;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .admin-participant-filters
+    ~ .table-scroll
+    .participants-table
+    td:first-child {
+    top: 18px;
+    left: 14px;
+  }
+  .admin-participant-filters
+    ~ .table-scroll
+    .participants-table
+    td:nth-child(2),
+  .admin-participant-filters
+    ~ .table-scroll
+    .participants-table
+    td:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+  .admin-participant-filters
+    ~ .table-scroll
+    .participants-table
+    td:nth-child(2)
+    strong {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .admin-participant-filters
+    ~ .table-scroll
+    .participants-table
+    td:nth-child(6) {
+    grid-column: 1;
+  }
+  .admin-participant-filters
+    ~ .table-scroll
+    .participants-table
+    td:nth-child(6)::before {
+    content: none;
+  }
+  .admin-participant-filters
+    ~ .table-scroll
+    .participants-table
+    td:nth-child(7) {
+    grid-column: 2;
+    align-self: end;
+  }
+  .admin-participant-filters
+    ~ .table-scroll
+    .participants-table
+    td
+    details
+    > summary {
+    line-height: 18px;
+    overflow-wrap: anywhere;
+  }
+  .admin-participant-filters
+    ~ .table-scroll
+    .participants-table
+    td:nth-child(6):has(details[open]),
+  .admin-participant-filters
+    ~ .table-scroll
+    .participants-table
+    td:nth-child(7):has(details[open]) {
+    grid-column: 1 / -1;
+  }
+}
