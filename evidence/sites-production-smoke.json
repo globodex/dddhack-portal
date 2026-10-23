@@ -36,6 +36,14 @@
     "participantGlobalPolicyPreview": 403,
     "realManagedLogoutVerified": false
   },
+  "operationalReadiness": {
+    "environment": "disposable local synthetic D1 only",
+    "operationalSubmissionWithJudgingIncomplete": 200,
+    "scoringStillBlocked": 409,
+    "checkinBeforeSeparateEnablement": 409,
+    "checkinAfterSeparateEnablement": 200,
+    "unconfirmedJudgingFlagsPreserved": true
+  },
   "revisedExperience": {
     "registeredTeamCreation": 200,
     "sharedTeamAccent": true,

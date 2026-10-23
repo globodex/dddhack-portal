@@ -1,5 +1,13 @@
+import { qualifiedEngagement } from "./engagement-scoring";
 import { z } from "zod";
-import { batch, one, rows, type Database, type SQL } from "./db";
+import {
+  assertPreviousWrite,
+  batch,
+  one,
+  rows,
+  type Database,
+  type SQL,
+} from "./db";
 import { isOwner, type Identity } from "./identity";
 import { PortalExperience } from "./experience";
 import {
@@ -17,6 +25,11 @@ import {
   PortalError,
 } from "./security";
 import {
+  operationalBlockers,
+  operationEnabled,
+  operationalDecisions,
+  setupReadiness,
+  type Operation,
   policySchema,
   policyBlockers,
   draftPolicy,
@@ -129,7 +142,12 @@ export class PortalService {
     // implicitly initializing an event. Commands retain the default strict path.
     if (!s && allowUninitializedView)
       return { active: 0, version: 0, policy: draftPolicy };
-    demand(s, 503, "DATABASE_NOT_INITIALIZED");
+    demand(
+      s,
+      409,
+      "EVENT_SETUP_REQUIRED",
+      "Event setup is pending. Drafts and profiles remain available; the owner can initialize the event without opening operations.",
+    );
     return { ...s, policy: policySchema.parse(JSON.parse(s.policy)) };
   }
   audit(
@@ -184,11 +202,25 @@ export class PortalService {
     );
   }
   async live() {
-    const s = await this.settings();
+    const s = await this.settings(true);
     demand(
-      s.active && policyBlockers(s.policy).length === 0,
+      s.version > 0 && s.active && policyBlockers(s.policy).length === 0,
       409,
       "POLICIES_UNCONFIRMED",
+      "Scoring setup is incomplete. Operational submissions and check-in have separate readiness checks.",
+    );
+    return s;
+  }
+  async operational(operation: Operation) {
+    const s = await this.settings(true),
+      status = setupReadiness(s, this.now())[operation];
+    demand(
+      status.configured && status.enabled,
+      409,
+      operation === "submissions"
+        ? "SUBMISSIONS_NOT_ENABLED"
+        : "CHECKIN_POLICY_UNCONFIRMED",
+      status.message,
     );
     return s;
   }
@@ -616,6 +648,7 @@ export class PortalService {
       }
       case "check-in": {
         await this.staff();
+        await this.operational("checkin");
         const d = z.object({ userId: id, reason }).parse(data);
         await this.mutate(
           actor.id,
@@ -632,6 +665,10 @@ export class PortalService {
           {},
           d.reason,
         );
+        if (!this.creditKey)
+          return {
+            message: "Checked in. Credit allocation is not configured yet.",
+          };
         return this.allocate(d.userId, actor.id);
       }
       case "allocate": {
@@ -804,22 +841,156 @@ export class PortalService {
         await this.staff(true);
         const d = z.object({ policy: z.unknown(), reason }).parse(data);
         const old = await this.settings();
-        demand(!old.active, 409, "ACTIVE_POLICY_IMMUTABLE");
+        await this.unfrozen();
         const p = policySchema.parse(json(d.policy));
+        if (old.active) {
+          const protectedKeys = [
+            "timezone",
+            "ideaLock",
+            "membershipFreeze",
+            "ideaReveal",
+            "submissionOpen",
+            "submissionClose",
+            "deploymentRule",
+            "lumaRequired",
+            "retentionNotice",
+            "capacityRule",
+            "capacity",
+            "teamFormationRule",
+            "operationScopes",
+            "weights",
+          ] as const;
+          demand(
+            protectedKeys.every(
+              (key) =>
+                JSON.stringify(p[key]) === JSON.stringify(old.policy[key]),
+            ) &&
+              operationalDecisions.every(
+                (key) =>
+                  !old.policy.confirmations.includes(key) ||
+                  p.confirmations.includes(key),
+              ),
+            409,
+            "ACTIVE_OPERATION_POLICY_PROTECTED",
+            "Enabled operational rules cannot be changed through judging setup. Use the dedicated deadline or global-weight preview controls.",
+          );
+        }
+        const oldQualification = old.policy.engagementQualification,
+          newQualification = p.engagementQualification;
+        if (
+          oldQualification &&
+          newQualification &&
+          (JSON.stringify(oldQualification) !==
+            JSON.stringify(newQualification) ||
+            [
+              "feedbackMin",
+              "feedbackMax",
+              "engagementOpen",
+              "engagementClose",
+            ].some(
+              (key) =>
+                old.policy[key as keyof typeof old.policy] !==
+                p[key as keyof typeof p],
+            ))
+        )
+          demand(
+            newQualification.version > oldQualification.version,
+            409,
+            "QUALIFICATION_VERSION_REQUIRED",
+          );
         await this.mutate(
           actor.id,
           action,
           "event",
           [
             [
-              "UPDATE event_settings SET policy=?,version=version+1 WHERE id=1 AND active=0",
+              "UPDATE event_settings SET policy=?,version=version+1 WHERE id=1 AND version=?",
               JSON.stringify(p),
+              old.version,
             ],
+            ...assertPreviousWrite(),
           ],
           { before: old.policy, after: p },
           d.reason,
         );
         return { blockers: policyBlockers(p) };
+      }
+      case "activate-operations": {
+        await this.staff(true);
+        await this.unfrozen();
+        const d = z
+          .object({
+            operation: z.enum(["submissions", "checkin"]),
+            version: z.number().int().min(1),
+            confirmation: z.string(),
+            reason: text(1000).min(5),
+          })
+          .strict()
+          .parse(data);
+        demand(
+          d.confirmation ===
+            (d.operation === "submissions"
+              ? "ENABLE_SUBMISSIONS"
+              : "ENABLE_CHECKIN"),
+          422,
+          "EXPLICIT_OPERATION_CONFIRMATION_REQUIRED",
+        );
+        const s = await this.settings(true);
+        demand(s.version === d.version, 409, "POLICY_CHANGED_RELOAD");
+        const blockers = operationalBlockers(s.policy, d.operation);
+        demand(
+          blockers.length === 0,
+          409,
+          "OPERATION_POLICY_UNCONFIRMED",
+          blockers.join(", "),
+        );
+        if (operationEnabled(s, d.operation))
+          return { message: "This operation is already enabled." };
+        const p = {
+          ...s.policy,
+          operationScopes: [
+            ...new Set([
+              ...(s.active
+                ? s.policy.operationScopes ||
+                  (["submissions", "checkin"] as const)
+                : []),
+              d.operation,
+            ]),
+          ],
+        };
+        const serialized = JSON.stringify(p);
+        const result = await this.mutate(
+          actor.id,
+          action,
+          d.operation,
+          [
+            [
+              "UPDATE event_settings SET active=1,policy=?,version=version+1 WHERE id=1 AND version=? AND NOT EXISTS(SELECT 1 FROM result_snapshots)",
+              serialized,
+              d.version,
+            ],
+            ...assertPreviousWrite(),
+            [
+              "INSERT INTO event_policy_history VALUES(?,?,?,?,?)",
+              s.version + 1,
+              serialized,
+              actor.id,
+              this.now(),
+              d.reason,
+            ],
+          ],
+          { operation: d.operation, policyVersion: s.version + 1 },
+          d.reason,
+        );
+        // D1 meta.changes may include trigger writes; the transactional
+        // assertPreviousWrite() above checks the direct UPDATE and rolls back
+        // stale writes together with history/audit rows.
+        return {
+          message:
+            d.operation === "submissions"
+              ? "Submission operations enabled. Scoring remains separately gated."
+              : "Check-in operations enabled. Scoring remains separately gated.",
+        };
       }
       case "activate": {
         await this.staff(true);
@@ -831,24 +1002,24 @@ export class PortalService {
           "POLICIES_UNCONFIRMED",
           policyBlockers(s.policy).join(", "),
         );
+        const activatedPolicy = {
+          ...s.policy,
+          operationScopes: ["submissions", "checkin"] as Operation[],
+        };
         const activation = await this.mutate(
           actor.id,
           action,
           "event",
           [
             [
-              "UPDATE event_settings SET active=1 WHERE id=1 AND active=0 AND version=? AND policy=?",
+              "UPDATE event_settings SET active=1,policy=?,version=version+1 WHERE id=1 AND active=0 AND version=?",
+              JSON.stringify(activatedPolicy),
               s.version,
-              JSON.stringify(s.policy),
             ],
+            ...assertPreviousWrite(),
           ],
-          { policyVersion: s.version },
+          { policyVersion: s.version + 1 },
           d.reason,
-        );
-        demand(
-          activation[0].meta?.changes === 1,
-          409,
-          "POLICY_CHANGED_OR_ALREADY_ACTIVE",
         );
         return {};
       }
@@ -866,7 +1037,7 @@ export class PortalService {
         );
         await this.unfrozen();
         const { u, t } = await this.lead();
-        await this.live();
+        await this.operational("submissions");
         const d = z
           .object({
             projectName: text(120),
@@ -1511,14 +1682,21 @@ export class PortalService {
       );
       const revisedCounts =
         revisedProject &&
+        review.eligibility === "eligible" &&
         s.policy.projectEngagementRule === "score-with-approved-normalization"
-          ? await one<{ votes: number; feedback: number }>(
+          ? await qualifiedEngagement(
               this.db,
-              "SELECT (SELECT count(*) FROM project_upvotes WHERE project_id=?) votes,(SELECT count(DISTINCT author_id) FROM project_comments WHERE project_id=?) feedback",
+              s.policy,
               revisedProject.id,
-              revisedProject.id,
+              v.id,
             )
           : undefined;
+      demand(
+        !revisedCounts?.pendingFeedback,
+        409,
+        "ENGAGEMENT_REVIEW_INCOMPLETE",
+        "Potential scoring feedback still needs staff qualification. Public comments alone do not earn scoring credit.",
+      );
       entries.push({
         v,
         t,

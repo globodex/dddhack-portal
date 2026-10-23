@@ -1,0 +1,62 @@
+> devday-exchange-portal@0.1.0 test
+> tsx --test tests/*.test.ts
+
+✔ actual local D1 binding: schema, trigger rollback, batch atomicity and concurrent credit/submission commands (5411.802457ms)
+✔ scored engagement stays disabled without explicit qualification policy; public interactions remain available and unchanged (90.076804ms)
+✔ qualified scoring filters declared audience/windows, requires staff review, deduplicates authors/copies and ignores late public comments (56.71854ms)
+✔ qualification binds comment text and submission/rule version, records immutable decisions and respects result freeze (50.516055ms)
+✔ final computation refuses pending scored feedback and uses only reviewed valid authors after qualification (52.860861ms)
+✔ original preset shapes, safe contrast and semantic responsive shell render without rejected artwork or private data (48.053013ms)
+✔ additive local upgrade preserves existing users and is idempotent (16.065831ms)
+✔ inline profile gate, registered team creation, presets, partial readiness and revocation (101.458484ms)
+✔ private venue never leaves unauthorized projections; Going, approval and membership are checked afresh (109.445729ms)
+✔ owner event drafts, safe Maps URLs, plain text and optimistic edits preserve published content (53.621328ms)
+✔ shared draft/committed project, required media, concurrent writes and public version isolation (64.352617ms)
+✔ signed-in engagement permits admins and pending people, is idempotent, and stays separate from private reviews (59.940922ms)
+✔ volunteer, mentor and judge boundaries, owner Logs, role and assignment revocation (62.48467ms)
+✔ reevaluation stays Not configured while API setup is pending; active-run guard and history remain structural (38.195201ms)
+✔ leaderboard orders by upvotes then immutable first submission time, excludes ineligible, and exposes no evaluation or rank (105.753883ms)
+✔ revised judge reviews feed only an owner-revealed frozen score; public engagement remains independent (73.195742ms)
+✔ exact timestamp ties use a stable key and a focused leaderboard link selects its containing page (56.442201ms)
+✔ ties need complete owner adjudication; altered score breakdown invalidates earlier order (142.922982ms)
+✔ snapshot revision guard and request throttle fail closed (158.678267ms)
+✔ operational-only policy accepts valid submissions while judging and reveals remain blocked; scopes never enable each other (89.783017ms)
+✔ operational split preserves server windows, Going, required media, repository validation and three-attempt atomic limits (79.725322ms)
+✔ check-in requires only its operational policy, keeps approval/Luma protections and works without a credit key (47.536613ms)
+✔ fresh setup errors are actionable, owner enablement needs intent/current version, and judging updates cannot weaken enabled operations (70.717506ms)
+✔ diversity validation uses an explicit supported assessment mode, accepts negated words and never approves demographic algorithms (3.467662ms)
+✔ draft scope hints do not cross-enable operations; legacy full activation enables both with one versioned policy (40.606874ms)
+✔ confirmed rules have no admission cap, one roster/idea lock and the sole 16:00 IST deadline (1.189963ms)
+✔ owner-only positive extension previews IST rollover, requires matching confirmation, versions/audits and changes server cutoff without touching submissions (161.60791ms)
+✔ global weights use one preview/version for all teams, reject per-team overrides and cannot alter frozen results (41.79438ms)
+✔ roster and whole idea lock together by server clock, including an inactive draft event (32.063751ms)
+✔ owner derives only from trusted Sites identity; local header spoofing and unsafe return paths fail (34.144259ms)
+✔ draft policies block activation, scoring and submission; approved rehearsal is explicit (76.84623ms)
+✔ registered approval, single membership and five-person constraints; request/invite acceptance (44.598218ms)
+✔ whole idea locks exactly with the roster at the IST boundary and no public idea/profile/gender leak (55.236689ms)
+✔ check-in allocations are idempotent, encrypted, private and retryable after inventory exhaustion (74.651548ms)
+✔ CSV previews, duplicate handling, formula protection and AES-GCM integrity (32.441935ms)
+✔ only leader can commit; exactly three successful versions, invalid fields/cutoff do not consume attempts (105.696023ms)
+✔ external evaluation failure and invalid model output preserve submission; uncertainty is reviewable (48.310911ms)
+✔ three distinct votes, no own-team or duplicate votes, meaningful feedback and bounded scoring (66.431657ms)
+✔ full mock rehearsal: two equal-weight judges, human review, owner freeze, immutable private snapshot and publication (52.556737ms)
+✔ HTTP security: CSRF, IDOR, role bypass, export permissions, cache controls and bounded body (45.596829ms)
+✔ AI reveal requires admin, explicit intent, actual persisted provider score and finalized current-version report (70.510015ms)
+✔ final stage withholds every undisclosed position, allows manual award order, then enables full final ordering and confirmed Info (111.747954ms)
+✔ confirmation decisions are default-safe, single-use and block overlapping prompts; accessible dialog exposes exact target (8.973003ms)
+✔ managed identity persists across ordinary requests; local logout expires its fixture cookie and anonymous private reads fail (64.927682ms)
+✔ Worker request scope isolates concurrent identities, bindings and keys; no fallback outside Dispatch (91.813239ms)
+✔ sign-in and profile access do not require a credit secret; credit operations fail closed without one (65.800192ms)
+✔ Sites runtime authorizes anonymous, participant, judge and owner requests against server data (39.259515ms)
+✔ Sites Drizzle migrations preserve schema constraints, triggers and persisted service behavior on D1 (2165.644746ms)
+✔ fresh hosted schema requires an explicit owner-only, audited draft initialization (25.207958ms)
+✔ fresh event read views work before explicit initialization and never activate or persist draft settings (24.827195ms)
+✔ slash aliases cannot weaken owner-only settings and permissions reads (37.864623ms)
+ℹ tests 51
+ℹ suites 0
+ℹ pass 51
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6562.3369

@@ -11,6 +11,8 @@ export class ActionCancelled extends Error {
   }
 }
 const labels: Record<string, string> = {
+  "activate-operations": "Enable event operation",
+  "qualify-project-feedback": "Record scoring feedback qualification",
   "save-workspace-idea": "Update team idea",
   "complete-profile": "Update profile",
   "save-project": "Update project draft",
@@ -52,6 +54,7 @@ export function confirmationFor(
     "unveil-winner",
     "freeze-results",
     "content-publish",
+    "activate-operations",
     "publish-submission-extension",
     "publish-policy-weights",
   ].includes(action);
@@ -77,6 +80,9 @@ export function confirmationFor(
   if (action === "publish-policy-weights")
     description =
       "Apply the previewed global weights to every team in one policy version. No team-specific override is possible. Frozen results block this change.";
+  if (action === "activate-operations")
+    description =
+      "Enable only the selected operation under its confirmed operational rules. Judging and score reveals remain separately gated.";
   if (action === "logout")
     description =
       "End this Site session using managed ChatGPT sign-out. You can sign in again later.";
@@ -122,15 +128,19 @@ export function revealConfirmation(
   action: string,
   values: Record<string, any>,
 ) {
-  return action === "publish-submission-extension"
-    ? "EXTEND_DEADLINE"
-    : action === "publish-policy-weights"
-      ? "GLOBAL_SCORING"
-      : action === "reveal-ai-scores"
-        ? "PUBLIC_AI"
-        : action === "reveal-final-scores"
-          ? "PUBLIC_FINAL"
-          : action === "unveil-winner"
-            ? `UNVEIL_${values.position}`
-            : undefined;
+  return action === "activate-operations"
+    ? values.operation === "submissions"
+      ? "ENABLE_SUBMISSIONS"
+      : "ENABLE_CHECKIN"
+    : action === "publish-submission-extension"
+      ? "EXTEND_DEADLINE"
+      : action === "publish-policy-weights"
+        ? "GLOBAL_SCORING"
+        : action === "reveal-ai-scores"
+          ? "PUBLIC_AI"
+          : action === "reveal-final-scores"
+            ? "PUBLIC_FINAL"
+            : action === "unveil-winner"
+              ? `UNVEIL_${values.position}`
+              : undefined;
 }

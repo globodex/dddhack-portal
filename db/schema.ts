@@ -764,3 +764,32 @@ export const event_policy_history = sqliteTable("event_policy_history", {
   created_at: text("created_at").notNull(),
   reason: text("reason").notNull(),
 });
+
+export const project_feedback_reviews = sqliteTable(
+  "project_feedback_reviews",
+  {
+    id: text("id").primaryKey(),
+    comment_id: text("comment_id")
+      .notNull()
+      .references(() => project_comments.id),
+    version_id: text("version_id")
+      .notNull()
+      .references(() => submission_versions.id),
+    rule_version: integer("rule_version").notNull(),
+    qualified: integer("qualified").notNull(),
+    body_hash: text("body_hash").notNull(),
+    reviewer_id: text("reviewer_id")
+      .notNull()
+      .references(() => users.id),
+    reason: text("reason").notNull(),
+    created_at: text("created_at").notNull(),
+  },
+  (t) => [
+    check("feedback_review_qualified", sql`${t.qualified} IN (0,1)`),
+    index("feedback_review_lookup").on(
+      t.comment_id,
+      t.version_id,
+      t.rule_version,
+    ),
+  ],
+);

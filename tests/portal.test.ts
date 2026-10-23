@@ -55,10 +55,9 @@ test("draft policies block activation, scoring and submission; approved rehearsa
     service("owner").command("activate", { reason: "test" }),
     /diversity/,
   );
-  await assert.rejects(
-    service().command("submit", submission),
-    /POLICIES_UNCONFIRMED/,
-  );
+  await assert.rejects(service().command("submit", submission), {
+    code: "SUBMISSIONS_NOT_ENABLED",
+  });
   db.close();
 });
 test("registered approval, single membership and five-person constraints; request/invite acceptance", async () => {
@@ -153,6 +152,7 @@ test("whole idea locks exactly with the roster at the IST boundary and no public
 });
 test("check-in allocations are idempotent, encrypted, private and retryable after inventory exhaustion", async () => {
   const { db, service } = await setup();
+  await activate(db);
   await assert.rejects(
     service("admin").command("check-in", {
       userId: "fake_pending",

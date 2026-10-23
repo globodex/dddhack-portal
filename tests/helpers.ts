@@ -23,6 +23,7 @@ export const rehearsalPolicy: Policy = {
   judgingClose: "2026-11-01T12:30:00.000Z",
   engagementOpen: "2026-11-01T10:30:00.000Z",
   engagementClose: "2026-11-01T12:00:00.000Z",
+  diversityAssessment: "non-demographic-evidence",
   diversityRubric:
     "FAKE REHEARSAL: complementary skills and documented collaboration. No sensitive attributes.",
   voteFormula: "sqrt-relative",

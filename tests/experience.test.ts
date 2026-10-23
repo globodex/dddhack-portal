@@ -87,7 +87,7 @@ test("additive local upgrade preserves existing users and is idempotent", () => 
           .prepare("SELECT count(*) n FROM local_schema_migrations")
           .get() as Row
       ).n,
-      6,
+      7,
     );
     assert.ok(
       db.raw
@@ -415,7 +415,7 @@ test("shared draft/committed project, required media, concurrent writes and publ
     await alice.command("save-project", { revision: 0, project: p });
     await assert.rejects(
       alice.command("submit-project", { revision: 1, project: p }),
-      /POLICIES_UNCONFIRMED/,
+      { code: "SUBMISSIONS_NOT_ENABLED" },
     );
     await activate(db);
     clock("2026-11-01T04:00:00.000Z");

@@ -1,3 +1,4 @@
+import { qualificationCommand } from "./engagement-scoring";
 import { z } from "zod";
 import type { PortalService } from "./service";
 import { one, rows, assertPreviousWrite, type SQL } from "./db";
@@ -30,7 +31,7 @@ import {
 import { disabledEvaluator, reportSchema } from "./evaluation";
 import { policyControl } from "./policy-controls";
 import { publicScores, scoreState, revealCommand } from "./score-release";
-import { policyBlockers } from "./policy";
+import { setupReadiness, policyBlockers } from "./policy";
 type Actor = Awaited<ReturnType<PortalService["actor"]>>;
 type Team = {
   id: string;
@@ -364,6 +365,10 @@ export class PortalExperience {
             actor.id,
           )
         : [];
+    const operational = setupReadiness(
+      await this.s.settings(true),
+      this.s.now(),
+    );
     return {
       me: actor,
       profile,
@@ -416,7 +421,8 @@ export class PortalExperience {
             privateVenue: privateVenueSchema.parse(JSON.parse(venue.published)),
           }
         : {}),
-      eventDraft: !(await this.s.settings(true)).active,
+      submissionStatus: operational.submissions,
+      eventDraft: !operational.submissions.enabled,
     };
   }
   async view(
@@ -587,7 +593,12 @@ export class PortalExperience {
         me,
         items: await this.participantRows(),
         lookupOnly: me.role === "volunteer",
-        checkInConfigured: !!(await this.s.settings(true)).active,
+        checkInConfigured: setupReadiness(
+          await this.s.settings(true),
+          this.s.now(),
+        ).checkin.allowed,
+        checkInStatus: setupReadiness(await this.s.settings(true), this.s.now())
+          .checkin,
       };
     }
     if (["/admin/logs", "/admin/audit"].includes(route)) {
@@ -638,6 +649,7 @@ export class PortalExperience {
         me,
         policy: settings.policy,
         policyVersion: settings.version,
+        readiness: setupReadiness(settings, this.s.now()),
         eventDraft: !settings.active,
         blockers: policyBlockers(settings.policy),
         unresolved: unresolvedEventDecisions,
@@ -834,6 +846,8 @@ export class PortalExperience {
           "Team idea saved. It locks with the roster on October 29 at 23:59 IST.",
       };
     }
+    const qualification = await qualificationCommand(this.s, action, data);
+    if (qualification) return qualification;
     const policy = await policyControl(this.s, action, data);
     if (policy) return policy;
     const reveal = await revealCommand(this.s, action, data);
@@ -1124,7 +1138,7 @@ export class PortalExperience {
           ];
       sql.push(...assertPreviousWrite());
       if (action === "submit-project") {
-        await this.s.live();
+        await this.s.operational("submissions");
         const ready = await this.ready(t.id);
         demand(ready.going, 409, "TEAM_APPROVAL_INCOMPLETE");
         text(120).parse(d.project.projectName);
@@ -1176,7 +1190,7 @@ export class PortalExperience {
       return {
         message:
           action === "submit-project"
-            ? "Project version committed. Publication requires organizer review."
+            ? "Project version committed. Eligible entries appear automatically; eligibility verification remains separate."
             : "Project draft saved.",
         projectId,
       };
@@ -1287,11 +1301,7 @@ export class PortalExperience {
       const emails = [...new Set(d.emails)],
         sql: SQL[] = [];
       if (d.checkIn) {
-        demand(
-          (await this.s.settings(true)).active,
-          409,
-          "CHECKIN_POLICY_UNCONFIRMED",
-        );
+        await this.s.operational("checkin");
         for (const email of emails) {
           const u = await one<{ id: string }>(
             this.s.db,

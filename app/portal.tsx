@@ -912,11 +912,8 @@ function Submission({
               View project on leaderboard
             </a>
           )}
-          {data.eventDraft && (
-            <p className="notice">
-              The final event policy is pending. Drafts remain editable; final
-              submission is closed.
-            </p>
+          {data.submissionStatus && !data.submissionStatus.allowed && (
+            <p className="notice">{data.submissionStatus.message}</p>
           )}
           <form
             className="panel project-editor"
@@ -1027,7 +1024,7 @@ function Submission({
                   className="button secondary"
                   disabled={
                     busy ||
-                    data.eventDraft ||
+                    !data.submissionStatus?.allowed ||
                     !data.teamReadiness?.going ||
                     (data.attempts?.length || 0) >= 3
                   }
@@ -1572,8 +1569,8 @@ function AdminParticipants({
       </div>
       {!data.checkInConfigured && (
         <p className="muted">
-          Check-in waits for the owner-confirmed event policy. Going is derived
-          from the complete team, never set as an individual status.
+          {data.checkInStatus?.message || "Check-in setup is pending."} Going is
+          derived from the complete team, never set as an individual status.
         </p>
       )}
       <div className="table-scroll">
@@ -2407,16 +2404,63 @@ function Settings({
   return (
     <>
       <header className="page-heading">
-        <p className="eyebrow">Configuration, not activation</p>
+        <p className="eyebrow">Event setup</p>
         <h1>
           Settings
           <span className="heading-dot green" />
         </h1>
       </header>
       <section className="panel">
-        <h2>Event policy</h2>
-        <Pill tone="waiting">
-          {data.eventDraft ? "Draft · inactive" : "Owner-confirmed policy"}
+        <h2>Operational and scoring readiness</h2>
+        {!data.readiness?.initialized && (
+          <p className="notice">
+            Event setup has not been saved. Profiles, teams, ideas and project
+            drafts remain available.
+          </p>
+        )}
+        {(
+          [
+            ["submissions", "Submissions"],
+            ["checkin", "Check-in"],
+          ] as const
+        ).map(([scope, label]) => (
+          <div key={scope}>
+            <h3>{label}</h3>
+            <p>{data.readiness?.[scope]?.message}</p>
+            {data.readiness?.[scope]?.blockers?.length > 0 && (
+              <p className="muted">
+                Required operational confirmations:{" "}
+                {data.readiness[scope].blockers.join(", ")}
+              </p>
+            )}
+            {data.me?.owner &&
+              data.readiness?.[scope]?.configured &&
+              !data.readiness[scope].enabled && (
+                <Form
+                  label={`Enable ${label.toLowerCase()}`}
+                  onSave={async (f) => {
+                    await run("activate-operations", {
+                      operation: scope,
+                      version: data.policyVersion,
+                      reason: f.get("reason"),
+                    });
+                  }}
+                >
+                  <Field
+                    name="reason"
+                    label="Enablement reason"
+                    required
+                    minLength={5}
+                  />
+                </Form>
+              )}
+          </div>
+        ))}
+        <h3>Judging and scoring</h3>
+        <Pill tone={data.readiness?.scoring?.ready ? "positive" : "waiting"}>
+          {data.readiness?.scoring?.ready
+            ? "Policy ready · reveal remains explicit"
+            : "Scoring setup incomplete"}
         </Pill>
         <ul>
           {(data.unresolved || []).map((x: string) => (
@@ -2424,7 +2468,7 @@ function Settings({
           ))}
         </ul>
         <details>
-          <summary>Required confirmations</summary>
+          <summary>Scoring confirmations still required</summary>
           <ul>
             {(data.blockers || []).map((x: string) => (
               <li key={x}>{x}</li>
@@ -2432,8 +2476,9 @@ function Settings({
           </ul>
         </details>
         <p className="muted">
-          Review the remaining criteria and operating windows before opening
-          submissions or revealing scores.
+          Submission and check-in controls use their own operational readiness.
+          Unconfirmed judging criteria keep score computation and reveals
+          blocked.
         </p>
       </section>
       {data.me?.owner && <OwnerPolicyControls data={data} run={run} />}
@@ -2716,6 +2761,10 @@ export default function Portal({
     if (values.minutes && data.policy?.submissionClose)
       return `Submission deadline → ${ist(new Date(Date.parse(data.policy.submissionClose) + Number(values.minutes) * 60000).toISOString())}`;
     if (values.weights) return "Global scoring weights — all teams";
+    if (values.operation)
+      return values.operation === "submissions"
+        ? "Submission operations"
+        : "Check-in operations";
     if (values.position) return `Award ${values.position}`;
     if (values.snapshotId) return `Frozen snapshot ${values.snapshotId}`;
     if (values.scope)

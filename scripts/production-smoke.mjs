@@ -9,6 +9,7 @@ import {
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { unstable_dev, getPlatformProxy } from "wrangler";
+import { draftPolicy } from "../lib/policy.ts";
 import { syntheticImage } from "../tests/fixture-images.ts";
 import { seedLocal } from "./fixtures.ts";
 process.env.PORTAL_LOCAL_TEST = "1"; // Cannot reactivate code removed by the production build.
@@ -392,6 +393,120 @@ try {
     ownerExtensionPreview: 200,
     participantGlobalPolicyPreview: 403,
     realManagedLogoutVerified: false,
+  };
+  // Only this disposable local D1 harness receives the following synthetic operational setup.
+  const syntheticNow = Date.now();
+  const operationalPolicy = {
+    ...draftPolicy,
+    operationScopes: [],
+    submissionOpen: new Date(syntheticNow - 3600000).toISOString(),
+    submissionClose: new Date(syntheticNow + 3600000).toISOString(),
+    deploymentRule:
+      "SYNTHETIC smoke: organizer verifies public repository and reproducible demo.",
+    retentionNotice: "SYNTHETIC smoke data only; disposable database.",
+    confirmations: [
+      ...draftPolicy.confirmations,
+      "submissionOpen",
+      "deploymentRule",
+      "privacyRetention",
+      "lumaPolicy",
+    ],
+  };
+  assert.equal(
+    (
+      await post(owner, "initialize-event", {
+        reason: "Synthetic disposable operational setup",
+      })
+    ).status,
+    200,
+  );
+  assert.equal(
+    (
+      await post(owner, "settings", {
+        policy: operationalPolicy,
+        reason: "Synthetic operational-only confirmations",
+      })
+    ).status,
+    200,
+  );
+  let setup = await (
+    await worker.fetch("/api/portal?view=/admin/settings", { headers: owner })
+  ).json();
+  const enabledSubmission = await post(owner, "activate-operations", {
+    operation: "submissions",
+    version: setup.policyVersion,
+    confirmation: "ENABLE_SUBMISSIONS",
+    reason: "Synthetic submission-only enablement",
+  });
+  assert.equal(enabledSubmission.status, 200, await enabledSubmission.text());
+  setup = await (
+    await worker.fetch("/api/portal?view=/admin/settings", { headers: owner })
+  ).json();
+  assert.equal(setup.readiness.submissions.allowed, true);
+  assert.equal(setup.readiness.checkin.enabled, false);
+  assert.equal(setup.readiness.scoring.ready, false);
+  await post(owner, "participant-bulk", {
+    emails: ["alice@portal.test"],
+    status: "approved",
+    reason: "Synthetic approval restore",
+  });
+  const committed = await post(alice, "submit-project", {
+    revision: 0,
+    project: {
+      projectName: "Synthetic Operational Worker",
+      problemSolution: "Verify submission without judging policy",
+      description: "Synthetic reproducible instructions",
+      github: "https://github.com/example/rehearsal",
+      demo: "",
+      logo: syntheticImage(64, 64),
+      banner: syntheticImage(160, 90),
+      tools: "Codex CLI",
+      contributions: [
+        {
+          userId: "fake_alice",
+          role: "Built this synthetic test",
+          codex: "Verified the Worker flow",
+        },
+      ],
+      attestation: true,
+    },
+  });
+  assert.equal(committed.status, 200, await committed.text());
+  assert.equal((await post(owner, "compute-results", {})).status, 409);
+  const checkinBefore = await post(owner, "participant-bulk", {
+    emails: ["alice@portal.test"],
+    checkIn: true,
+    reason: "Synthetic check-in must stay separate",
+  });
+  assert.equal(checkinBefore.status, 409);
+  assert.equal(
+    (
+      await post(owner, "activate-operations", {
+        operation: "checkin",
+        version: setup.policyVersion,
+        confirmation: "ENABLE_CHECKIN",
+        reason: "Synthetic independent attendance enablement",
+      })
+    ).status,
+    200,
+  );
+  assert.equal(
+    (
+      await post(owner, "participant-bulk", {
+        emails: ["alice@portal.test"],
+        checkIn: true,
+        reason: "Synthetic attendance only, no credit key",
+      })
+    ).status,
+    200,
+  );
+  report.operationalReadiness = {
+    environment: "disposable local synthetic D1 only",
+    operationalSubmissionWithJudgingIncomplete: 200,
+    scoringStillBlocked: 409,
+    checkinBeforeSeparateEnablement: 409,
+    checkinAfterSeparateEnablement: 200,
+    unconfirmedJudgingFlagsPreserved: true,
   };
   report.revisedExperience = {
     registeredTeamCreation: 200,

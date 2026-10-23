@@ -41,12 +41,42 @@ test(
       }
       assert.equal(buffer.trim(), "");
       await seedLocal(db);
+      await batch(db, [
+        [
+          "UPDATE event_settings SET policy=?,active=0 WHERE id=1",
+          JSON.stringify({ ...rehearsalPolicy, operationScopes: [] }),
+        ],
+      ]);
       let now = "2026-10-22T08:00:00.000Z";
       const admin = new PortalService(
         db,
         fixtures.admin,
         LOCAL_CREDIT_KEY,
         () => now,
+      );
+      const owner = new PortalService(
+        db,
+        fixtures.owner,
+        LOCAL_CREDIT_KEY,
+        () => now,
+      );
+      for (const [i, operation] of (
+        ["submissions", "checkin"] as const
+      ).entries()) {
+        await owner.command("activate-operations", {
+          operation,
+          version: i + 1,
+          confirmation:
+            operation === "submissions"
+              ? "ENABLE_SUBMISSIONS"
+              : "ENABLE_CHECKIN",
+          reason: "Local D1 scoped enablement test",
+        });
+      }
+      assert.equal(
+        ((await owner.view("/admin/settings")).readiness as any).checkin
+          .allowed,
+        true,
       );
       const roster =
         "email\n" +

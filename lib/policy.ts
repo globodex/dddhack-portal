@@ -41,6 +41,37 @@ const instant = z
   .string()
   .datetime()
   .transform((v) => new Date(v).toISOString());
+export const qualificationSchema = z
+  .object({
+    confirmed: z.boolean(),
+    version: z.number().int().positive(),
+    voters: z.enum([
+      "all-signed-in",
+      "other-team",
+      "approved-checked-in-other-team",
+    ]),
+    feedbackAuthors: z.enum([
+      "all-signed-in",
+      "other-team",
+      "approved-checked-in-other-team",
+    ]),
+    feedbackReview: z.literal("staff-qualified"),
+    feedbackDuplicates: z.enum([
+      "staff-reviewed",
+      "exclude-exact-normalized-copies",
+    ]),
+  })
+  .strict();
+export type Operation = "submissions" | "checkin";
+export const operationalDecisions = [
+  "submissionOpen",
+  "submissionCutoff",
+  "deploymentRule",
+  "privacyRetention",
+  "lumaPolicy",
+  "capacity",
+  "teamFormation",
+] as const;
 export const policySchema = z
   .object({
     timezone: z.literal("Asia/Kolkata"),
@@ -53,6 +84,14 @@ export const policySchema = z
     engagementOpen: instant.nullable(),
     engagementClose: instant.nullable(),
     diversityRubric: z.string().max(4000),
+    diversityAssessment: z
+      .enum(["unconfirmed", "non-demographic-evidence"])
+      .default("unconfirmed"),
+    engagementQualification: qualificationSchema.nullable().default(null),
+    operationScopes: z
+      .array(z.enum(["submissions", "checkin"]))
+      .nullable()
+      .default(null),
     voteFormula: z.enum(["unconfirmed", "sqrt-relative", "fixed-target"]),
     voteTarget: z.number().int().min(1).max(160),
     aiFallback: z.string().max(4000),
@@ -103,6 +142,9 @@ export const draftPolicy: Policy = {
   engagementOpen: null,
   engagementClose: null,
   diversityRubric: "",
+  diversityAssessment: "unconfirmed",
+  engagementQualification: null,
+  operationScopes: null,
   voteFormula: "unconfirmed",
   voteTarget: 10,
   aiFallback: "",
@@ -113,11 +155,18 @@ export const draftPolicy: Policy = {
   tieBreak: "",
   codexReviewer: "",
   appealClose: null,
-  deploymentRule: "",
+  deploymentRule:
+    "Deployment link is optional for every project. Missing deployment does not make a submission ineligible.",
   lumaRequired: false,
   penaltyApproved: false,
   retentionNotice: "",
-  confirmations: ["capacity", "teamFormation", "submissionCutoff"],
+  confirmations: [
+    "capacity",
+    "teamFormation",
+    "submissionCutoff",
+    "submissionOpen",
+    "deploymentRule",
+  ],
   weights: baseWeights,
   capacityRule: "no-strict-cap",
   revealOrder: "manual",
@@ -150,10 +199,15 @@ export function policyBlockers(p: Policy): string[] {
     b.push("valid engagement window");
   if (
     !p.diversityRubric.trim() ||
-    /gender|entropy|demograph/i.test(p.diversityRubric)
+    p.diversityAssessment !== "non-demographic-evidence"
   )
     b.push("non-demographic diversity rubric");
   if (p.voteFormula === "unconfirmed") b.push("vote formula");
+  if (
+    p.projectEngagementRule === "score-with-approved-normalization" &&
+    qualificationBlockers(p).length > 0
+  )
+    b.push(...qualificationBlockers(p));
   for (const k of [
     "aiFallback",
     "tieBreak",
@@ -166,5 +220,114 @@ export function policyBlockers(p: Policy): string[] {
     b.push("appeal deadline");
   if (p.feedbackMax < p.feedbackMin) b.push("feedback limits");
   return [...new Set(b)];
+}
+export function qualificationBlockers(p: Policy): string[] {
+  const b: string[] = [];
+  if (
+    p.projectEngagementRule !== "score-with-approved-normalization" ||
+    !p.engagementQualification?.confirmed
+  )
+    b.push("confirmed engagement qualification rules");
+  for (const key of [
+    "projectEngagement",
+    "feedback",
+    "engagementWindows",
+  ] as const)
+    if (!p.confirmations.includes(key)) b.push(key);
+  if (
+    !p.engagementOpen ||
+    !p.engagementClose ||
+    p.engagementClose <= p.engagementOpen
+  )
+    b.push("scoring engagement window");
+  if (p.feedbackMax < p.feedbackMin) b.push("feedback limits");
+  return b;
+}
+export function operationalBlockers(p: Policy, operation: Operation): string[] {
+  const required =
+    operation === "submissions"
+      ? ([
+          "submissionOpen",
+          "submissionCutoff",
+          "deploymentRule",
+          "privacyRetention",
+        ] as const)
+      : (["lumaPolicy", "privacyRetention"] as const);
+  const blockers: string[] = required.filter(
+    (key) => !p.confirmations.includes(key),
+  );
+  if (!p.retentionNotice.trim()) blockers.push("retention notice");
+  if (operation === "submissions") {
+    if (!p.submissionClose || p.submissionClose <= p.submissionOpen)
+      blockers.push("valid submission window");
+    if (!p.deploymentRule.trim()) blockers.push("deployment eligibility rule");
+  }
+  return blockers;
+}
+export function operationEnabled(
+  settings: { active: number; policy: Policy },
+  operation: Operation,
+) {
+  return (
+    !!settings.active &&
+    (settings.policy.operationScopes === null ||
+      settings.policy.operationScopes.includes(operation))
+  );
+}
+export function setupReadiness(
+  settings: { active: number; version: number; policy: Policy },
+  now: string,
+) {
+  const status = (operation: Operation) => {
+    const blockers = operationalBlockers(settings.policy, operation),
+      enabled = operationEnabled(settings, operation),
+      configured = settings.version > 0 && blockers.length === 0;
+    let state = !configured ? "setup-pending" : !enabled ? "disabled" : "ready";
+    if (operation === "submissions" && state === "ready")
+      state =
+        now < settings.policy.submissionOpen
+          ? "scheduled"
+          : now >= settings.policy.submissionClose!
+            ? "closed"
+            : "open";
+    const messages: Record<string, string> = {
+      "setup-pending":
+        operation === "submissions"
+          ? "Submission setup is pending. Your draft can still be saved."
+          : "Check-in setup is pending.",
+      disabled:
+        operation === "submissions"
+          ? "Submissions are not enabled yet. Your draft can still be saved."
+          : "Check-in is not enabled yet.",
+      scheduled:
+        "Submissions have not opened yet. Your draft can still be saved.",
+      closed:
+        "The submission deadline has passed. Committed versions are preserved.",
+      open: "Submissions are open.",
+      ready: "Check-in is ready.",
+    };
+    return {
+      enabled,
+      configured,
+      state,
+      message: messages[state],
+      blockers,
+      allowed:
+        operation === "submissions" ? state === "open" : state === "ready",
+    };
+  };
+  const scoringBlockers = policyBlockers(settings.policy);
+  return {
+    initialized: settings.version > 0,
+    submissions: status("submissions"),
+    checkin: status("checkin"),
+    scoring: {
+      ready:
+        settings.version > 0 &&
+        !!settings.active &&
+        scoringBlockers.length === 0,
+      blockers: scoringBlockers,
+    },
+  };
 }
 export { ist } from "./time";

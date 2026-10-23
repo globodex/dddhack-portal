@@ -289,6 +289,8 @@ test("fresh hosted schema requires an explicit owner-only, audited draft initial
     "capacity",
     "teamFormation",
     "submissionCutoff",
+    "submissionOpen",
+    "deploymentRule",
   ]);
   assert.equal(
     (await rows(db, "SELECT * FROM audit_logs WHERE action='initialize-event'"))
@@ -315,18 +317,25 @@ test("fresh event read views work before explicit initialization and never activ
     const adminSetup = await service("owner").view("/admin/settings");
     assert.deepEqual(
       (adminSetup.policy as { confirmations: string[] }).confirmations,
-      ["capacity", "teamFormation", "submissionCutoff"],
+      [
+        "capacity",
+        "teamFormation",
+        "submissionCutoff",
+        "submissionOpen",
+        "deploymentRule",
+      ],
     );
     assert.ok((adminSetup.blockers as string[]).length > 0);
     await assert.rejects(
       service("alice").view("/admin/settings"),
       /ADMIN_REQUIRED/,
     );
-    await assert.rejects(
-      service("owner").settings(),
-      /DATABASE_NOT_INITIALIZED/,
-    );
-    await assert.rejects(service("owner").live(), /DATABASE_NOT_INITIALIZED/);
+    await assert.rejects(service("owner").settings(), {
+      code: "EVENT_SETUP_REQUIRED",
+    });
+    await assert.rejects(service("owner").live(), {
+      code: "POLICIES_UNCONFIRMED",
+    });
     assert.equal((await rows(db, "SELECT * FROM event_settings")).length, 0);
   } finally {
     db.close();
