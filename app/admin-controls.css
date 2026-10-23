@@ -1707,6 +1707,10 @@ details.panel:has(> .admin-import)[open] {
   border-radius: 10px;
   object-fit: cover;
 }
+.main:not(.home-main) .admin-exact .team-avatar {
+  padding: 0;
+  border-radius: 50%;
+}
 .admin-review-tabs {
   display: none;
 }
