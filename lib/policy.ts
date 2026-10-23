@@ -1,3 +1,7 @@
+import {
+  indefiniteRetentionNotice,
+  optionalDeploymentRule,
+} from "./operational-setup-contract";
 import { z } from "zod";
 export const baseWeights = {
   human: 50,
@@ -155,12 +159,10 @@ export const draftPolicy: Policy = {
   tieBreak: "",
   codexReviewer: "",
   appealClose: null,
-  deploymentRule:
-    "Deployment link is optional for every project. Missing deployment does not make a submission ineligible.",
+  deploymentRule: optionalDeploymentRule,
   lumaRequired: false,
   penaltyApproved: false,
-  retentionNotice:
-    "Records are retained indefinitely until authorized manual removal. Private participant data remains access-controlled; credit secrets are excluded from logs and ordinary exports.",
+  retentionNotice: indefiniteRetentionNotice,
   confirmations: [
     "capacity",
     "teamFormation",
@@ -297,14 +299,13 @@ export function setupReadiness(
     const messages: Record<string, string> = {
       "setup-pending":
         operation === "submissions"
-          ? "Submission setup is pending. Your draft can still be saved."
+          ? "Submission setup is pending. Profiles, teams and ideas remain available."
           : "Check-in setup is pending.",
       disabled:
         operation === "submissions"
-          ? "Submissions are not enabled yet. Your draft can still be saved."
+          ? "Submissions are not enabled yet."
           : "Check-in is not enabled yet.",
-      scheduled:
-        "Submissions have not opened yet. Your draft can still be saved.",
+      scheduled: "Submissions have not opened yet.",
       closed:
         "The submission deadline has passed. Committed versions are preserved.",
       open: "Submissions are open.",

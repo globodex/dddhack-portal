@@ -322,7 +322,7 @@ test("fresh setup errors are actionable, owner enablement needs intent/current v
     const error = (await response.json()) as Row;
     assert.equal(error.code, "SUBMISSIONS_NOT_ENABLED");
     assert.ok(!JSON.stringify(error).includes("DATABASE_NOT_INITIALIZED"));
-    assert.match(error.message, /draft/i);
+    assert.match(error.message, /Profiles, teams and ideas/i);
     assert.equal(
       ((await service("alice").view("/dashboard")) as Row).submissionStatus
         .state,

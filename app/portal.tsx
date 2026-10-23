@@ -1,4 +1,5 @@
 "use client";
+import OwnerOperationalSetup from "./owner-operational-setup";
 import {
   participantExportHref,
   type ParticipantRecordState,
@@ -126,6 +127,14 @@ export function portalConfirmationFor(
       critical: true,
     };
   }
+  if (action === "save-operational-setup")
+    return {
+      ...base,
+      title: "Confirm operational setup",
+      description: `Save the reviewed ${values.operation === "checkin" ? "check-in" : "submission"} rules and shared indefinite-retention notice. Existing enabled scopes stay unchanged; this does not enable operations or confirm any judging policy.`,
+      confirmLabel: "Save these confirmations",
+      critical: true,
+    };
   if (action === "publish-submission-window")
     return {
       ...base,
@@ -3483,12 +3492,23 @@ export function Settings({
           <span className="heading-dot green" />
         </h1>
       </header>
+      {data.me?.owner && (
+        <OwnerOperationalSetup
+          key={`operational-${data.policyVersion}`}
+          owner={true}
+          version={data.policyVersion || 0}
+          open={data.policy?.submissionOpen || ""}
+          close={data.policy?.submissionClose || null}
+          run={run}
+        />
+      )}
       <section className="panel">
         <h2>Operational and scoring readiness</h2>
         {!data.readiness?.initialized && (
           <p className="notice">
-            Event setup has not been saved. Profiles, teams, ideas and project
-            drafts remain available.
+            Event setup has not been saved. Profiles, teams and ideas remain
+            available. Confirm operational setup above before enabling
+            submissions or check-in.
           </p>
         )}
         {(

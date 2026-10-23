@@ -1,3 +1,4 @@
+import { operationalSetup } from "./operational-setup";
 import { z } from "zod";
 import type { PortalService } from "./service";
 import { one, assertPreviousWrite } from "./db";
@@ -11,6 +12,8 @@ export async function policyControl(
   action: string,
   input: unknown,
 ) {
+  const setup = await operationalSetup(s, action, input);
+  if (setup) return setup;
   if (
     ["preview-submission-window", "publish-submission-window"].includes(action)
   ) {

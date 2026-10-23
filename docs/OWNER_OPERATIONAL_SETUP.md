@@ -1,6 +1,6 @@
 # Owner setup after the core release
 
-This is an instruction/checkpoint document only. No live policy, roster, venue, role or credit was changed. The public release remains the independently frozen source `f1a4b3d`; this export follow-up has not been deployed.
+This is an instruction/checkpoint document only. No live policy, roster, venue, role or credit was changed. The public release remains the independently frozen source `f1a4b3d`; this export/operational-setup follow-up has not been deployed.
 
 ## Registration and teams do not require judging activation
 
@@ -11,16 +11,21 @@ This is an instruction/checkpoint document only. No live policy, roster, venue, 
 
 Unresolved AI/rubric/diversity/Codex/feedback-point definitions do **not** block profile completion, registration or team/idea flows. They continue to block dependent final scoring/reveals.
 
-## Submission/check-in setup: exact current UI and its gap
+## Submission/check-in setup in this follow-up
 
-1. Open **Settings → Submission window** as owner. Default public window is1 November2026,08:00–16:00IST. Verify the opening and closing values, preview the exact IST dates, enter the reason and confirm publication only when intended. The backend stores UTC and requires open<close. This initializes an inactive draft when none exists. Testing uses real attempts; the separate repository cutoff stays strictly after1 November08:00IST.
-2. Read **Operational and scoring readiness**. Submissions require only submissionOpen, submissionCutoff, deploymentRule and privacyRetention confirmations, a nonempty retention notice and a valid window. Check-in requires only lumaPolicy and privacyRetention confirmations, a nonempty retention notice and portal Going rather than Luma approval. Scoring flags are a separate gate.
-3. Once each scope is configured, its **Enable submissions** / **Enable check-in** button appears. The owner enters an enablement reason and confirms the custom dialog. Each scope is independent; enabling one must not enable scoring or the other scope. This document does not authorize enabling either live scope.
-4. Submission writes still require a personally checked-in leader, the configured server window, valid project fields and fewer than3 immutable committed attempts. Any teammate check-in can unlock team project reading; it does not authorize another member to submit. Check-in applies the individual portal approval rule.
+The currently live version5 does not yet contain this new control. These are the exact steps once this tested follow-up is published; no live operation has been performed.
 
-**Current UI gap:** `f1a4b3d` has no owner form for setting the required operational confirmation flags/retention notice. Defaults already contain the confirmed window, optional deployment rule and portal-only attendance rule, but deliberately do not auto-confirm privacyRetention. Thus on a fresh event, publishing the window alone will not make the enable buttons available. There is also no separate Initialize event button; the window publication creates the inactive draft. The owner-authenticated backend supports explicit draft initialization/settings and independent activation, but there is no honest click-only Settings procedure for the missing policy confirmation step yet. A small owner-only operational-confirmation form is a follow-up; do not use all-policy activation or mark unresolved judging choices confirmed to work around it. This gap does not block the registration/team steps above.
+1. Sign in as the existing owner and open **Settings → Operational setup**. Choose **Submissions** or **Check-in**. Review the displayed rules for that scope and the shared indefinite-retention/private-field notice. The confirmation checkboxes start unchecked.
+2. Explicitly check both statements, enter an audit reason, then choose **Preview operational setup**. Preview is read-only. Changing the scope, checkboxes or reason discards the preview.
+3. Review the exact operation/window/notice and choose **Review and save confirmations**. The accessible custom dialog defaults safely to Cancel; confirm **Save these confirmations** only when intended. A fresh event is initialized as an inactive draft. Existing enabled scopes, dates, scoring definitions and weights are preserved. Saving never enables an operation.
+4. In **Operational and scoring readiness**, the selected configured scope now exposes **Enable submissions** or **Enable check-in**. Enter the enablement reason and confirm that separate operation-specific dialog. To configure/enable the other scope, repeat with its current policy version. Enabling one never cross-enables the other or confirms judging rules.
+5. If dates need changing, use **Submission window** to preview/publish opening and closing values in IST. Defaults stay1 November2026,08:00–16:00IST until explicitly changed; backend stores UTC and requires open<close. Real testing consumes real immutable attempts; repository creation AND first commit must still be strictly after1 November08:00IST. Record removal cannot reset attempts or waive that rule.
 
-The approved retention decision is indefinite retention until authorized manual removal, with private fields access-controlled and secrets excluded from logs/ordinary exports. There is no90-day automatic purge.
+Submissions require only confirmed submissionOpen/submissionCutoff/deploymentRule/privacyRetention, a nonempty retention notice and valid opening/closing window. The setup form applies the user-confirmed optional deployment rule. Check-in requires only lumaPolicy/privacyRetention, the notice and individual portal Going approval; Luma is registration only. The form accepts neither arbitrary confirmation flags nor scoring-policy/weight/activation fields. False or missing acknowledgements, stale/mismatched previews, non-owner requests and cross-origin mutations are rejected server-side.
+
+The actual submission write still requires a personally checked-in leader, the enabled server window, required project fields and fewer than3 committed versions. Another teammate checking in unlocks team project reading, not submission authority. Unresolved judging/AI/scoring definitions remain unchanged and separately gated. Profiles, teams and ideas do not require these operation scopes to be enabled.
+
+The retention notice is the confirmed indefinite retention until authorized manual removal, with private fields access-controlled and secrets excluded from logs/ordinary exports. There is no90-day purge. This closes the known owner confirmation UI gap; it does not activate live settings by deployment or by rendering Settings.
 
 ## Private venue entry
 
