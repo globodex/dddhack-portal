@@ -11,8 +11,9 @@ export default function TeamAvatar({
   size?: number;
   avatar?: string;
 }) {
-  const p = teamPalettes[palette as Palette] || teamPalettes.forest,
-    bg = teamDotColors[palette] || p.ink;
+  const selectedPalette = palette || "forest",
+    p = teamPalettes[selectedPalette as Palette] || teamPalettes.forest,
+    bg = teamDotColors[selectedPalette] || p.ink;
   return (
     <svg
       className="team-avatar"
@@ -28,7 +29,7 @@ export default function TeamAvatar({
         y="42"
         dominantBaseline="middle"
         textAnchor="middle"
-        fill={palette === "graphite" ? "white" : "#111"}
+        fill={selectedPalette === "graphite" ? "white" : "#111"}
         fontFamily="Arial,sans-serif"
         fontWeight="700"
         fontSize="25"
