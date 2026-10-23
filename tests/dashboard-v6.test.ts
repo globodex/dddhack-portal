@@ -132,3 +132,41 @@ test("focused project editor has a real button exit without duplicate history ac
     assert.match(html, /Step 1 of 3/);
   }
 });
+
+test("nonleader retains authorized read access to an unpublished saved draft", () => {
+  const data = {
+    me: { ...me, id: "synthetic_member" },
+    team,
+    members: [],
+    project: {
+      revision: 1,
+      draft: {
+        projectName: "Saved team draft",
+        problemSolution: "A shared read-only summary",
+        description: "Existing unpublished work remains readable to the team.",
+        github: "https://github.com/example/existing-draft",
+      },
+    },
+    submissionAccess: { canRead: true, canCommit: false, attemptsUsed: 0 },
+  };
+  const html = renderToStaticMarkup(createElement(Dashboard, { data, run }));
+  assert.match(html, /name="projectName"[^>]*value="Saved team draft"/);
+  assert.match(html, /A shared read-only summary/);
+  assert.match(
+    html,
+    /Existing unpublished work remains readable to the team\./,
+  );
+  assert.match(html, /https:\/\/github\.com\/example\/existing-draft/);
+  assert.match(html, /<fieldset disabled="">/);
+  assert.doesNotMatch(html, /Update project|Save draft|>Submit</);
+  const denied = renderToStaticMarkup(
+    createElement(Dashboard, {
+      data: { ...data, submissionAccess: { canRead: false, canCommit: false } },
+      run,
+    }),
+  );
+  assert.doesNotMatch(
+    denied,
+    /Saved team draft|A shared read-only summary|existing-draft/,
+  );
+});

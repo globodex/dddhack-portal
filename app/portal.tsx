@@ -1066,6 +1066,13 @@ function DashboardProject({
               )}
             </article>
           )}
+          {!project?.published_version_id && !editorOpen && (
+            <Submission
+              key={`${project?.revision || 0}-${data.team?.id || "none"}`}
+              data={data}
+              run={run}
+            />
+          )}
         </>
       ) : (
         <p className="notice">
