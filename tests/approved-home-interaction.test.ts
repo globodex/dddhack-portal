@@ -110,6 +110,7 @@ test("airblower substantially moves multiple nearby dots and settles home inside
 test("approved Home SSR has exact day/actions, real organizers and unenhanced readable chapters with no fabricated agenda", () => {
   const html = renderToStaticMarkup(createElement(Home));
   assert.match(html, /Sunday, 1 November 2026/);
+  assert.doesNotMatch(html, /—/);
   assert.match(html, /Continue with ChatGPT/);
   assert.match(html, /https:\/\/luma.com\/6t5uk4lo/);
   assert.match(html, /Agenda to follow/);

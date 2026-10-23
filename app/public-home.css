@@ -863,3 +863,28 @@
   color: inherit;
   max-width: 110px;
 }
+/* Real multi-item agendas use a compact stage; the unconfirmed day-range stays editorial. */
+.public-home-shell
+  .chapter-stack[data-agenda="true"]
+  #schedule
+  .chapter-content {
+  padding-top: 32px;
+  padding-bottom: 40px;
+}
+.public-home-shell
+  .chapter-stack[data-agenda="true"]
+  #schedule
+  .chapter-heading {
+  margin-bottom: 28px;
+}
+.public-home-shell .chapter-stack[data-agenda="true"] .schedule-body > h3 {
+  font-size: 44px;
+  margin-bottom: 16px;
+}
+.public-home-shell
+  .chapter-stack[data-agenda="true"]
+  .schedule-body
+  .event-day {
+  font-size: 16px;
+  margin-bottom: 14px;
+}
