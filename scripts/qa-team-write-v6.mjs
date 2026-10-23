@@ -56,7 +56,7 @@ const report = {
   worker,
   origin,
   viewport: size,
-  inputMode: touch ? "touch-emulation" : size === "keyboard" ? "keyboard" : "mouse",
+  inputMode: ["mobile", "tablet"].includes(size) ? "touch-emulation" : size === "keyboard" ? "keyboard" : "mouse",
   syntheticOnly: true,
   sandbox: true,
   resetTokenHash: createHash("sha256").update(resetToken).digest("hex"),
