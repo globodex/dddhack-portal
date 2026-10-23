@@ -555,7 +555,7 @@ export class PortalExperience {
       status: individual.status,
       actions: await rows(
         this.s.db,
-        "SELECT a.*,t.name team_name,u.name person_name FROM team_actions a JOIN teams t ON t.id=a.team_id JOIN users u ON u.id=a.user_id WHERE a.user_id=? OR t.leader_id=?",
+        "SELECT a.*,t.name team_name,COALESCE(NULLIF(pp.display_name,''),u.name) person_name FROM team_actions a JOIN teams t ON t.id=a.team_id JOIN users u ON u.id=a.user_id LEFT JOIN participant_profiles pp ON pp.user_id=u.id WHERE a.user_id=? OR t.leader_id=?",
         actor.id,
         actor.id,
       ),
