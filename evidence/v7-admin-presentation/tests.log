@@ -1,0 +1,15 @@
+✔ Admin refresh reuses only explicit labels while all volatile/private fields stay fresh, preserving id/null-id rows (10.121318ms)
+✔ editable avatars, name overrides and membership presentation changes invalidate version without assuming immutability (5.694334ms)
+✔ actor, role, owner, route and options are independent scopes; scope switches clear the single snapshot (3.185967ms)
+✔ missing/wrong snapshots, tampered scopes, changed IDs and unsafe delta shapes fail closed for full retry (3.706159ms)
+✔ row removals invalidate snapshot; row order can change without recaching labels; unsupported views remain full (1.439968ms)
+✔ real fresh Admin projections preserve status/readiness and private ideas while avatar/name changes invalidate labels (291.569064ms)
+✔ logout/pagehide clear cannot be undone by in-flight digest completion (1.036381ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 504.290456
