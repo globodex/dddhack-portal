@@ -92,12 +92,14 @@
   overflow-wrap: anywhere;
 }
 .main .projects-v6 .project-row-link small {
+  display: block;
   color: #74839a;
   font-size: 15px;
   line-height: 1.4;
 }
 .main .projects-v6 .engagement {
   display: flex;
+  flex-direction: row;
   align-items: start;
   gap: 12px;
   margin: 0;
