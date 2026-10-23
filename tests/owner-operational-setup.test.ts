@@ -198,7 +198,7 @@ test("false, missing, forged or mismatched acknowledgements/previews cannot init
   const { db } = await setup();
   try {
     await db.prepare("DELETE FROM event_settings").all();
-    const good = request(0);
+    const good = request(0, "checkin");
     const missingPrivacy = { ...good } as any;
     delete missingPrivacy.privacyConfirmed;
     const missingRules = { ...good } as any;
@@ -219,9 +219,10 @@ test("false, missing, forged or mismatched acknowledgements/previews cannot init
       assert.equal(r.status, 422);
       assert.equal(await one(db, "SELECT id FROM event_settings"), undefined);
     }
-    const preview = (await (
-      await post(db, "preview-operational-setup", good)
-    ).json()) as any;
+    const previewResponse = await post(db, "preview-operational-setup", good);
+    assert.equal(previewResponse.status, 200);
+    const preview = (await previewResponse.json()) as any;
+    assert.ok(preview.token);
     for (const data of [
       good,
       { ...good, token: "forged", confirmation: "CONFIRM_OPERATIONAL_SETUP" },
@@ -231,7 +232,7 @@ test("false, missing, forged or mismatched acknowledgements/previews cannot init
         ...good,
         token: preview.token,
         confirmation: "CONFIRM_OPERATIONAL_SETUP",
-        operation: "checkin",
+        operation: "submissions",
       },
       {
         ...good,
@@ -367,7 +368,7 @@ test("configuration preserves custom dates, active scopes, weights and unresolve
     db.close();
   }
 });
-test("owner UI starts with explicit unchecked acknowledgements and a cancel-first confirmation; non-owner sees no setup control", async () => {
+test("retained legacy setup component stays unmounted from Settings and preserves its own validation contract", async () => {
   const props = {
     owner: true,
     version: 0,
