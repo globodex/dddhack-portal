@@ -245,7 +245,7 @@ async function metrics(page, label, { defaultFit = false } = {}) {
 }
 async function reachable(page, label) {
   const fields = page.locator(".profile-fields");
-  const inputs = fields.locator("input:not([type=radio]),select");
+  const inputs = fields.locator("input:not([type=radio]),select,a[href]");
   for (let i = 0; i < (await inputs.count()); i++) {
     await inputs.nth(i).focus();
     const bounds = await inputs.nth(i).evaluate((el) => {
@@ -405,7 +405,16 @@ try {
             const boxes = [...node.querySelectorAll("select,input,button")].map(
               (el) => {
                 const r = el.getBoundingClientRect();
-                return { top: r.top, bottom: r.bottom, height: r.height };
+                const style = getComputedStyle(el);
+                return {
+                  tag: el.tagName.toLowerCase(),
+                  top: r.top,
+                  bottom: r.bottom,
+                  height: r.height,
+                  minHeight: style.minHeight,
+                  paddingTop: style.paddingTop,
+                  paddingBottom: style.paddingBottom,
+                };
               },
             );
             return {
@@ -417,21 +426,28 @@ try {
             };
           }),
         );
-      assert.ok(
-        rows.every(
-          (row) =>
-            row.boxes.every((b) => b.height >= 44) &&
-            Math.max(...row.boxes.map((b) => b.top)) -
-              Math.min(...row.boxes.map((b) => b.top)) <=
-              1 &&
-            !row.text,
-        ),
+      const socialRowsAligned = rows.every(
+        (row) =>
+          row.boxes.every((b) => b.height >= 44) &&
+          Math.max(...row.boxes.map((b) => b.top)) -
+            Math.min(...row.boxes.map((b) => b.top)) <=
+            1 &&
+          !row.text,
       );
+      if (!socialRowsAligned) {
+        report.defects.push({
+          viewport: name,
+          kind: "social-row-alignment",
+          rows,
+        });
+        persist();
+      }
       assert.equal(await page.getByText(/Social links.*optional/).count(), 0);
-      checked(
-        `${name}: five social rows align selector, URL and named icon-only trash`,
-        { rows },
-      );
+      if (socialRowsAligned)
+        checked(
+          `${name}: five social rows align selector, URL and named icon-only trash`,
+          { rows },
+        );
       await page
         .getByRole("button", { name: "Remove X link 3", exact: true })
         .click();

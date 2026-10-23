@@ -359,7 +359,7 @@
   font-size: 14px;
   font-weight: 500;
 }
-.app-shell .profile-flow .profile-fields input:not([type="radio"]),
+.app-shell .profile-flow .profile-fields label > input:not([type="radio"]),
 .app-shell .profile-flow .profile-fields select {
   min-height: 44px;
   height: 44px;
@@ -594,6 +594,7 @@
 @media (max-width: 900px) {
   .app-shell .profile-flow {
     max-width: 680px;
+    height: min(820px, calc(100dvh - 112px));
   }
   .app-shell .profile-basics-layout {
     grid-template-columns: minmax(0, 1fr);
