@@ -288,6 +288,7 @@ export default function AdminCreditBatches({
               Paste CSV
               <textarea
                 name="creditsCSV"
+                aria-label="Paste CSV"
                 value={csv}
                 required
                 rows={6}
