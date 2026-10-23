@@ -3,6 +3,9 @@ import assert from "node:assert/strict";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { chromium } from "@playwright/test";
+import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 
 const origin = process.env.MOBILE_NAV_ORIGIN || "http://127.0.0.1:5178";
 const url = new URL(origin);
@@ -11,6 +14,12 @@ assert.equal(url.protocol, "http:");
 const out = resolve("evidence/v7-mobile-navigation");
 mkdirSync(out, { recursive: true });
 const report = {
+  source: execFileSync("git", ["rev-parse", "HEAD"], {
+    encoding: "utf8",
+  }).trim(),
+  worker: createHash("sha256")
+    .update(readFileSync("dist/server/index.js"))
+    .digest("hex"),
   readOnly: true,
   syntheticOnly: true,
   sandbox: true,
@@ -62,7 +71,11 @@ try {
         return route.continue();
       });
       const page = await context.newPage();
+      const loaded = page.waitForResponse(
+        (response) => new URL(response.url()).pathname === "/api/portal",
+      );
       await page.goto(origin);
+      await loaded;
       await page.evaluate(() => document.fonts.ready);
       const trigger = page.locator(".public-menu");
       await trigger.tap();
@@ -114,6 +127,27 @@ try {
       if (role === "anonymous")
         assert.ok(state.links.some((link) => link.text === "Sign in"));
       else assert.ok(state.links.some((link) => link.text === "Log out"));
+      const focusables = dialog.locator("a,button");
+      await focusables.last().focus();
+      await page.keyboard.press("Tab");
+      assert.equal(
+        await focusables
+          .first()
+          .evaluate((node) => node === document.activeElement),
+        true,
+      );
+      await page.keyboard.press("Shift+Tab");
+      assert.equal(
+        await focusables
+          .last()
+          .evaluate((node) => node === document.activeElement),
+        true,
+      );
+      if (width === 390) {
+        const path = resolve(out, `navigation-${role}-390x844.png`);
+        await page.screenshot({ path, animations: "disabled" });
+        report.captures.push(path);
+      }
       await page.keyboard.press("Escape");
       await dialog.waitFor({ state: "hidden" });
       assert.equal(
@@ -144,6 +178,7 @@ try {
             !value.overflow,
         ),
       );
+      console.log(`PASS ${width} ${role}`);
       report.checks.push({
         width,
         role,
