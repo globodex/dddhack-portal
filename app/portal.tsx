@@ -166,7 +166,7 @@ export function portalConfirmationFor(
       title: "Add admin?",
       target: values.email || "",
       description: "",
-      confirmLabel: "Add",
+      confirmLabel: "Confirm",
       critical: true,
     };
   if (action === "commit-import")
@@ -175,7 +175,7 @@ export function portalConfirmationFor(
       title: "Add participants?",
       target: values.singleEmail || `${values.newCount || 0} participants`,
       description: "",
-      confirmLabel: "Add",
+      confirmLabel: "Confirm",
       critical: false,
     };
   return base;
@@ -2827,7 +2827,8 @@ export function AdminList({
     [filter, setFilter] = useState(""),
     [lockFilter, setLockFilter] = useState("");
   const teams = path === "/admin/teams",
-    logs = path === "/admin/logs";
+    logs = path === "/admin/logs",
+    credits = path === "/admin/credits";
   const items = (data.items || []).filter(
     (r) =>
       JSON.stringify(r).toLowerCase().includes(q.toLowerCase()) &&
@@ -2838,7 +2839,13 @@ export function AdminList({
     <>
       <header className="page-heading">
         <h1>
-          {logs ? "Logs" : teams ? "Teams" : "Submissions"}
+          {logs
+            ? "Logs"
+            : teams
+              ? "Teams"
+              : credits
+                ? "Credits"
+                : "Submissions"}
           <HeadingDot color="green" expression="cheerful" />
         </h1>
       </header>
@@ -2848,7 +2855,7 @@ export function AdminList({
           onChange={setQ}
           label={teams ? "Search team or member" : "Search records"}
         />
-        {!logs && (
+        {!logs && !credits && (
           <select
             aria-label={teams ? "Team lock status" : "Submission status"}
             value={filter}
@@ -2885,13 +2892,36 @@ export function AdminList({
         {path !== "/review" && (
           <a
             className="button secondary"
-            href={`/api/export?list=${logs ? "logs" : teams ? "teams" : "submissions"}&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}`}
+            href={`/api/export?list=${logs ? "logs" : teams ? "teams" : credits ? "credits" : "submissions"}&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}`}
           >
             Export CSV
           </a>
         )}
       </div>
-      {teams ? (
+      {credits ? (
+        <div className="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Credit</th>
+                <th>Status</th>
+                <th>Inventory</th>
+                <th>Assigned</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((credit) => (
+                <tr key={credit.id}>
+                  <td>{credit.name}</td>
+                  <td>{credit.active ? "Active" : "Inactive"}</td>
+                  <td>{credit.inventory}</td>
+                  <td>{credit.assigned}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : teams ? (
         <ul className="admin-team-list">
           {items.map((t) => (
             <li key={t.id}>

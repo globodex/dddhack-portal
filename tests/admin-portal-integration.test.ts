@@ -97,7 +97,7 @@ test("participant admin page wires reviewed imports and only individual removal,
   for (const text of [
     "Filter participants",
     "Participation record",
-    "Removed participants",
+    '<option value="removed">Removed</option>',
     "Single email",
     "Email list",
     "CSV",
@@ -352,5 +352,33 @@ test("public Home retains top navigation and private administration does not lea
   assert.doesNotMatch(
     markup,
     /Remove participant|Project and submission management|Submission window|Pause community voting/,
+  );
+});
+
+test("admin credit overview renders metadata counts rather than bogus submission links", () => {
+  const markup = html(AdminList, {
+    data: {
+      me: admin,
+      items: [
+        {
+          id: "fake-credit",
+          name: "Builder credit",
+          active: 1,
+          inventory: 10,
+          assigned: 3,
+        },
+      ],
+    },
+    path: "/admin/credits",
+    run,
+  });
+  assert.match(markup, /Credits/);
+  assert.match(markup, /Builder credit/);
+  assert.match(markup, /Inventory/);
+  assert.match(markup, /Assigned/);
+  assert.match(markup, /list=credits/);
+  assert.doesNotMatch(
+    markup,
+    /Untitled draft|submissions\/undefined|Submission status|Reveal|ciphertext/,
   );
 });
