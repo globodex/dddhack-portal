@@ -1327,7 +1327,8 @@ export function Discover({
               ) : (
                 <>
                   <p>
-                    {row.readiness?.total ?? "?"} members ·{" "}
+                    {row.readiness?.total ?? "?"}{" "}
+                    {row.readiness?.total === 1 ? "member" : "members"} ·{" "}
                     {row.status || (row.locked ? "Locked" : "Forming")}
                   </p>
                   <p>{row.bio}</p>
@@ -3884,7 +3885,7 @@ export default function Portal({
           onClick={() => setMenu(!menu)}
         >
           <Icon name={menu ? "close" : "menu"} />
-          {menu ? "Close menu" : "Menu"}
+          <span className="sr-only">{menu ? "Close menu" : "Menu"}</span>
         </button>
       </header>
       <aside className={`sidebar ${menu ? "open" : ""}`}>
@@ -3949,7 +3950,13 @@ export default function Portal({
           {data.me ? (
             <>
               <strong>{data.me.name}</strong>
-              <small>{data.me.owner ? "Owner" : data.me.role}</small>
+              <small>
+                {data.me.owner
+                  ? "Owner"
+                  : data.me.mode === "viewer"
+                    ? "Viewer"
+                    : data.me.role}
+              </small>
               {data.me.mode !== "viewer" && (
                 <a
                   href="/profile"

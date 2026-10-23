@@ -1,5 +1,5 @@
 import { ist } from "./time";
-export function participantRules(close: string | null) {
+export function participantRules(open: string | null, close: string | null) {
   return [
     {
       title: "Registration and attendance",
@@ -19,8 +19,10 @@ export function participantRules(close: string | null) {
     {
       title: "Building, credits and submissions",
       items: [
-        "Repository creation AND first commit must both be strictly after 1 November 2026, 08:00 IST. Supply the full submitted commit SHA. Repository history is operational evidence, not proof of original authorship.",
-        "At least one checked-in team member is required to access submission. Submissions open 1 November at 08:00 IST and close " +
+        "Repository creation AND first commit must both be strictly after 1 November 2026, 08:00 IST. Repository history is operational evidence, not proof of original authorship.",
+        "Only the personally checked-in team leader can submit or update a project. Submissions open " +
+          (open ? ist(open) : "at the published opening time") +
+          " and close " +
           (close ? ist(close) : "at the published deadline") +
           ".",
         "Exactly three committed submissions per team, including the initial version. Drafts and wizard navigation use no attempt. No project edits after the third commit.",

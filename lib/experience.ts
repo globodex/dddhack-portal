@@ -598,13 +598,16 @@ export class PortalExperience {
         ).map((r) => ({ ...r, socials: JSON.parse(r.socials) })),
       };
     }
-    if (route === "/rules")
+    if (route === "/rules") {
+      const { policy } = await this.s.settings(true);
       return {
         me: await this.s.actor(),
         categories: participantRules(
-          (await this.s.settings(true)).policy.submissionClose,
+          policy.submissionOpen,
+          policy.submissionClose,
         ),
       };
+    }
     if (route === "/")
       return {
         content: await publicEventContent(this.s),
