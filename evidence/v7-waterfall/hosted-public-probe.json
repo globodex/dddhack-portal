@@ -1,0 +1,11 @@
+{
+  "target": "https://dddhack-portal.param3021.chatgpt.site/",
+  "action": "One anonymous GET with response body discarded",
+  "outcome": "blocked_before_site",
+  "reason": "Environment outbound proxy CONNECT tunnel returned403 before TLS",
+  "curl_exit_code": 56,
+  "download_bytes": 0,
+  "hosted_timing_available": false,
+  "retried": false,
+  "production_write_requested": false
+}

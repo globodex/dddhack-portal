@@ -81,11 +81,13 @@ try {
         }, name);
       }
       await observe("focus-visibility-burst", async () => { await page.evaluate(() => { for (let i = 0; i < 3; i++) { window.dispatchEvent(new Event("focus")); document.dispatchEvent(new Event("visibilitychange")); } }); });
+      await page.waitForTimeout(2100);
+      await observe("expired-focus-visibility-burst", async () => { await page.evaluate(() => { for (let i = 0; i < 3; i++) { window.dispatchEvent(new Event("focus")); document.dispatchEvent(new Event("visibilitychange")); } }); });
       await observe("history-back", () => page.goBack({ waitUntil: "domcontentloaded" }), "Rules");
       await observe("history-forward", () => page.goForward({ waitUntil: "domcontentloaded" }), "Dashboard");
       const previousURL = page.url();
       const [popup] = await Promise.all([context.waitForEvent("page"), page.locator('aside.sidebar a[href="/discover/teams"]').click({ modifiers: ["Control"] })]);
-      await popup.waitForLoadState("domcontentloaded");
+      await popup.waitForURL((url) => url.origin === origin, { waitUntil: "domcontentloaded" });
       const initialPopupPath = new URL(popup.url()).pathname;
       if (initialPopupPath === "/signin-with-chatgpt") {
         report.fixtureNotes ||= [];
