@@ -172,14 +172,18 @@ import {
 export function AdminParticipantFilters({
   value = defaultAdminParticipantFilters,
   onChange,
+  expanded = false,
 }: {
   value?: AdminParticipantFiltersValue;
   onChange: (value: AdminParticipantFiltersValue) => void;
+  expanded?: boolean;
 }) {
   const update = (patch: Partial<AdminParticipantFiltersValue>) =>
     onChange({ ...value, ...patch });
   return (
-    <fieldset className="admin-control admin-participant-filters">
+    <fieldset
+      className={`admin-control admin-participant-filters${expanded ? " is-expanded" : ""}`}
+    >
       <legend className="sr-only">Filter participants</legend>
       <label>
         Search

@@ -52,6 +52,7 @@ import ProfileFlow from "./profile-flow";
 import AdminImportControls from "./admin-import-controls";
 import AdminParticipantActions, {
   AdminParticipantFilters,
+  AdminIcon,
   defaultAdminParticipantFilters,
   filterAdminParticipants,
   type AdminParticipantFiltersValue,
@@ -2234,7 +2235,8 @@ export function AdminParticipants({
     [selected, setSelected] = useState<string[]>([]),
     [status, setStatus] = useState("pending"),
     [reason] = useState("Confirmed portal action"),
-    [error, setError] = useState("");
+    [error, setError] = useState(""),
+    [filtersExpanded, setFiltersExpanded] = useState(false);
   const canManage = data.me?.owner === true || data.me?.role === "admin";
   const rows = (data.items || []).map(adminParticipantProjection);
   const items = filterAdminParticipants(rows, filters).filter(
@@ -2263,8 +2265,40 @@ export function AdminParticipants({
           <HeadingDot color="orange" expression="plus" />
         </h1>
       </header>
-      <AdminParticipantFilters value={filters} onChange={updateFilters} />
-      <div className="toolbar">
+      <div className="admin-mobile-tools">
+        <Search
+          value={filters.individual}
+          onChange={(individual) =>
+            updateFilters({ ...filters, individual, teamQuery: "" })
+          }
+          label="Name, email or team"
+        />
+        <button
+          className="admin-toolbar-icon"
+          aria-label="Participant filters"
+          aria-expanded={filtersExpanded}
+          onClick={() => setFiltersExpanded(!filtersExpanded)}
+        >
+          <AdminIcon name="filter" />
+        </button>
+        {canManage && (
+          <a
+            className="admin-toolbar-icon"
+            aria-label={`Export filtered participants (${items.length})`}
+            href={participantExportHref(filters, recordState)}
+          >
+            <AdminIcon name="download" />
+          </a>
+        )}
+      </div>
+      <AdminParticipantFilters
+        value={filters}
+        onChange={updateFilters}
+        expanded={filtersExpanded}
+      />
+      <div
+        className={`toolbar admin-participant-record-tools${filtersExpanded ? " is-expanded" : ""}`}
+      >
         <label>
           Participation record
           <select
@@ -2284,16 +2318,21 @@ export function AdminParticipants({
         {canManage && (
           <a
             className="button secondary"
+            aria-label={`Export filtered participants (${items.length})`}
             href={participantExportHref(filters, recordState)}
           >
-            Export filtered participants ({items.length})
+            <AdminIcon name="download" />
+            <span className="admin-export-label">Export ({items.length})</span>
           </a>
         )}
       </div>
 
       {canManage && (
-        <details className="panel">
-          <summary>Add emails or import a roster</summary>
+        <details className="panel admin-import-panel">
+          <summary>
+            <AdminIcon name="person" />
+            Add participants
+          </summary>
           <AdminImportControls run={run} />
         </details>
       )}
@@ -2408,9 +2447,21 @@ export function AdminParticipants({
                   />
                 </td>
                 <td>
-                  <strong>{r.name || "Not signed in yet"}</strong>
-                  <small>{r.email}</small>
-                  {r.removed && <Pill>Removed</Pill>}
+                  <div className="admin-person-identity">
+                    <DotAvatar
+                      color={r.avatarColor || r.avatar_color || "blue"}
+                      expression={
+                        r.avatarExpression || r.avatar_expression || "squeezed"
+                      }
+                      size={32}
+                      decorative
+                    />
+                    <div>
+                      <strong>{r.name || "Not signed in yet"}</strong>
+                      <small>{r.email}</small>
+                      {r.removed && <Pill>Removed</Pill>}
+                    </div>
+                  </div>
                 </td>
                 <td>
                   {r.teamName || "Not in a team"}
@@ -2421,11 +2472,15 @@ export function AdminParticipants({
                   </small>
                 </td>
                 <td>
-                  {r.approval === "approved"
-                    ? "Going"
-                    : r.approval === "pending"
-                      ? "Registered"
-                      : r.approval}
+                  <Pill
+                    tone={r.approval === "approved" ? "positive" : "neutral"}
+                  >
+                    {r.approval === "approved"
+                      ? "Going"
+                      : r.approval === "pending"
+                        ? "Registered"
+                        : r.approval}
+                  </Pill>
                 </td>
                 <td>
                   <Pill
@@ -2439,32 +2494,33 @@ export function AdminParticipants({
                         : "Not in a team")}
                   </Pill>
                 </td>
-                <td>
-                  {r.checked_in ? "Checked in" : "Not checked in"}
-                  {canManage && r.id && !r.removed && (
-                    <StatusChange
-                      kind="person"
-                      target={r.id}
-                      name={r.name || r.email}
-                      current={r.status}
-                      run={run}
-                    />
-                  )}
-                </td>
+                <td>{r.checked_in ? "Checked in" : "Not checked in"}</td>
                 {canManage && (
                   <td>
                     {r.id ? (
-                      <AdminParticipantActions
-                        key={`${r.id}-${r.removed}`}
-                        participant={{
-                          id: r.id,
-                          name: r.name,
-                          email: r.email,
-                          removed: r.removed,
-                        }}
-                        run={run}
-                        compact
-                      />
+                      <div className="admin-row-actions">
+                        {!r.removed && (
+                          <StatusChange
+                            kind="person"
+                            target={r.id}
+                            name={r.name || r.email}
+                            current={r.status}
+                            run={run}
+                            compact
+                          />
+                        )}
+                        <AdminParticipantActions
+                          key={`${r.id}-${r.removed}`}
+                          participant={{
+                            id: r.id,
+                            name: r.name,
+                            email: r.email,
+                            removed: r.removed,
+                          }}
+                          run={run}
+                          compact
+                        />
+                      </div>
                     ) : (
                       <span className="muted">
                         Account has not signed in yet.
@@ -2830,7 +2886,8 @@ export function AdminList({
 }) {
   const [q, setQ] = useState(""),
     [filter, setFilter] = useState(""),
-    [lockFilter, setLockFilter] = useState("");
+    [lockFilter, setLockFilter] = useState(""),
+    [filtersExpanded, setFiltersExpanded] = useState(false);
   const teams = path === "/admin/teams",
     logs = path === "/admin/logs",
     credits = path === "/admin/credits";
@@ -2854,12 +2911,30 @@ export function AdminList({
           <HeadingDot color="green" expression="cheerful" />
         </h1>
       </header>
-      <div className="toolbar">
+      <div
+        className={`toolbar admin-list-toolbar${filtersExpanded ? " is-expanded" : ""}`}
+      >
         <Search
           value={q}
           onChange={setQ}
-          label={teams ? "Search team or member" : "Search records"}
+          label={
+            teams
+              ? "Search team or member"
+              : credits
+                ? "Search credits"
+                : "Search records"
+          }
         />
+        {!logs && !credits && (
+          <button
+            className="admin-toolbar-icon admin-mobile-filter"
+            aria-label={teams ? "Team filters" : "Submission filters"}
+            aria-expanded={filtersExpanded}
+            onClick={() => setFiltersExpanded(!filtersExpanded)}
+          >
+            <AdminIcon name="filter" />
+          </button>
+        )}
         {!logs && !credits && (
           <select
             aria-label={teams ? "Team lock status" : "Submission status"}
@@ -2889,23 +2964,27 @@ export function AdminList({
         {teams && (
           <a
             className="button secondary"
+            aria-label="Export member emails"
             href={`/api/export?list=team-emails&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}`}
           >
-            Export member emails
+            <AdminIcon name="users" />
+            <span className="admin-export-label">Member emails</span>
           </a>
         )}
         {path !== "/review" && (
           <a
             className="button secondary"
+            aria-label="Export CSV"
             href={`/api/export?list=${logs ? "logs" : teams ? "teams" : credits ? "credits" : "submissions"}&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}`}
           >
-            Export CSV
+            <AdminIcon name="download" />
+            <span className="admin-export-label">Export CSV</span>
           </a>
         )}
       </div>
       {credits ? (
-        <div className="table-scroll">
-          <table>
+        <div className="table-scroll admin-credit-inventory">
+          <table className="admin-credits-table">
             <thead>
               <tr>
                 <th>Credit</th>
@@ -2917,10 +2996,23 @@ export function AdminList({
             <tbody>
               {items.map((credit) => (
                 <tr key={credit.id}>
-                  <td>{credit.name}</td>
-                  <td>{credit.active ? "Active" : "Inactive"}</td>
-                  <td>{credit.inventory}</td>
-                  <td>{credit.assigned}</td>
+                  <td className="credit-identity">
+                    <AdminIcon name="ticket" />
+                    <strong>{credit.name}</strong>
+                  </td>
+                  <td className="credit-state">
+                    <Pill tone={credit.active ? "positive" : "neutral"}>
+                      {credit.active ? "Active" : "Inactive"}
+                    </Pill>
+                  </td>
+                  <td className="credit-metric">
+                    <span className="credit-metric-label">Inventory</span>
+                    <strong>{credit.inventory}</strong>
+                  </td>
+                  <td className="credit-metric">
+                    <span className="credit-metric-label">Assigned</span>
+                    <strong>{credit.assigned}</strong>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -2936,17 +3028,20 @@ export function AdminList({
                   <h2>{t.name}</h2>
                   <Pill>{t.status}</Pill>
                 </div>
-                <Pill tone={t.readiness.allApproved ? "positive" : "waiting"}>
-                  {t.status}
-                </Pill>
+                <div className="admin-team-actions">
+                  <Pill tone={t.readiness.allApproved ? "positive" : "waiting"}>
+                    {t.status}
+                  </Pill>
+                  <StatusChange
+                    kind="team"
+                    target={t.id}
+                    name={t.name}
+                    current={t.status}
+                    run={run}
+                    compact
+                  />
+                </div>
               </header>
-              <StatusChange
-                kind="team"
-                target={t.id}
-                name={t.name}
-                current={t.status}
-                run={run}
-              />
               <ul className="member-list">
                 {t.members.map((m: Row) => (
                   <li key={m.id}>
@@ -2959,7 +3054,9 @@ export function AdminList({
                     </Pill>
                     {m.id !== t.leader_id && (
                       <button
-                        className="link-button"
+                        className="admin-toolbar-icon admin-icon-danger"
+                        aria-label={`Remove ${m.name || m.email} from ${t.name}`}
+                        title={`Remove ${m.name || m.email}`}
                         onClick={() => {
                           void run("remove-workspace-member", {
                             userId: m.id,
@@ -2967,7 +3064,7 @@ export function AdminList({
                           }).catch(() => {});
                         }}
                       >
-                        Remove membership
+                        <AdminIcon name="trash" />
                       </button>
                     )}
                   </li>
@@ -4081,16 +4178,23 @@ function StatusChange({
   name,
   current,
   run,
+  compact = false,
 }: {
   kind: "person" | "team";
   target: string;
   name: string;
   current: string;
   run: (a: string, d: Row) => Promise<Row>;
+  compact?: boolean;
 }) {
   return (
-    <details>
-      <summary>Change {name} status</summary>
+    <details className={compact ? "admin-status-menu" : undefined}>
+      <summary
+        aria-label={`Change ${name} status`}
+        title={`Change ${name} status`}
+      >
+        {compact ? <AdminIcon name="more" /> : <>Change {name} status</>}
+      </summary>
       <Form
         title={name}
         label="Review status change"

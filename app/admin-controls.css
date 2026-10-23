@@ -742,3 +742,361 @@ details.panel:has(> .admin-import)[open] {
     grid-column: 1 / -1;
   }
 }
+
+/* V6 admin list hierarchy, sharing the same targets and server actions. */
+.admin-mobile-tools,
+.admin-mobile-filter {
+  display: none;
+}
+.main:not(.home-main) .admin-toolbar-icon,
+.main:not(.home-main) .admin-status-menu > summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 10px;
+  color: #5b6770;
+  background: #fff;
+  border: 1px solid #dce3e8;
+  border-radius: 10px;
+  cursor: pointer;
+  list-style: none;
+}
+.main:not(.home-main) .admin-toolbar-icon:hover,
+.main:not(.home-main) .admin-status-menu > summary:hover {
+  color: #111515;
+  background: #f0f3f5;
+  filter: none;
+}
+.main:not(.home-main) .admin-toolbar-icon[aria-expanded="true"] {
+  color: #006afe;
+  border-color: #006afe;
+  background: #ecf3ff;
+}
+.main:not(.home-main) .admin-toolbar-icon:focus-visible,
+.main:not(.home-main) .admin-status-menu > summary:focus-visible {
+  outline: 3px solid #006afe;
+  outline-offset: 2px;
+}
+.main:not(.home-main) .admin-icon-danger:hover {
+  color: #c92c42;
+  background: #fff0f2;
+  border-color: #f0cbd2;
+}
+.main:not(.home-main) .admin-status-menu > summary::-webkit-details-marker {
+  display: none;
+}
+.main:not(.home-main) .admin-control-icon {
+  width: 20px;
+  height: 20px;
+  flex-basis: 20px;
+}
+.main:not(.home-main) .admin-list-toolbar .button,
+.main:not(.home-main) .admin-participant-record-tools .button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+.main:not(.home-main)
+  details.panel.admin-import-panel[open]:has(> .admin-import) {
+  max-width: 600px;
+  padding: 0 20px 20px;
+  border: 1px solid #dce3e8;
+  border-radius: 12px;
+  background: #fff;
+}
+.main:not(.home-main) .admin-import-panel > summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  font-weight: 600;
+}
+.main:not(.home-main) .admin-import-panel > .admin-import {
+  max-width: 600px;
+}
+.main:not(.home-main) .participants-table :is(th, td) {
+  vertical-align: middle;
+}
+.main:not(.home-main)
+  .admin-participant-filters
+  ~ .table-scroll
+  .participants-table
+  td {
+  padding-block: 8px;
+}
+.admin-person-identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.admin-person-identity > svg {
+  flex: 0 0 32px;
+}
+.admin-person-identity > div {
+  min-width: 0;
+}
+.admin-person-identity strong {
+  font-size: 14px;
+  line-height: 20px;
+  color: #111515;
+}
+.admin-person-identity small {
+  margin-top: 2px;
+  font-size: 12px;
+  color: #5b6770;
+}
+.main:not(.home-main)
+  :is(.participants-table, .admin-team-list, .admin-credits-table)
+  .pill {
+  flex: 0 0 auto;
+  width: fit-content;
+  max-width: 100%;
+  padding: 5px 9px;
+  font-size: 12px;
+  line-height: 16px;
+}
+.main:not(.home-main)
+  :is(.participants-table, .admin-team-list, .admin-credits-table)
+  .pill.positive {
+  color: #087d3c;
+  background: #e8f9ee;
+}
+.admin-row-actions,
+.admin-team-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.main:not(.home-main) .admin-status-menu {
+  margin: 0;
+}
+.main:not(.home-main) .admin-status-menu > summary {
+  padding: 10px;
+  border-color: transparent;
+  background: transparent;
+}
+.main:not(.home-main) .admin-status-menu > form {
+  width: min(100%, 480px);
+  min-width: 240px;
+  margin: 8px 0;
+  padding: 16px;
+  border-color: #dce3e8;
+  border-radius: 12px;
+}
+.main:not(.home-main) .admin-status-menu > form h2 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+.main:not(.home-main) .admin-status-menu > form label {
+  margin-block: 12px;
+  font-size: 13px;
+}
+.main:not(.home-main) .admin-status-menu > form .form-actions {
+  margin: 14px 0 0;
+}
+.main:not(.home-main) .admin-row-actions:has(.admin-status-menu[open]),
+.main:not(.home-main) .admin-team-actions:has(.admin-status-menu[open]) {
+  flex-wrap: wrap;
+  align-items: start;
+}
+.main:not(.home-main) .admin-row-actions .admin-status-menu[open],
+.main:not(.home-main) .admin-team-actions .admin-status-menu[open] {
+  flex: 1 1 100%;
+}
+.main:not(.home-main) .admin-team-actions .admin-status-menu[open] > form {
+  min-width: 0;
+}
+.main:not(.home-main) .admin-team-list .member-list > li > .admin-toolbar-icon {
+  flex: 0 0 44px;
+}
+.main:not(.home-main) .admin-credits-table td {
+  vertical-align: middle;
+}
+.main:not(.home-main) .admin-credits-table .credit-identity {
+  font-size: 15px;
+  font-weight: 600;
+}
+.credit-identity > svg {
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: middle;
+  color: #5b6770;
+}
+.credit-identity > strong {
+  display: inline;
+  vertical-align: middle;
+}
+.credit-metric-label {
+  display: none;
+}
+@media (max-width: 740px) {
+  .main:not(.home-main) .admin-mobile-tools {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 12px;
+  }
+  .admin-mobile-tools .search-label {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+  }
+  .main:not(.home-main) .admin-mobile-tools input,
+  .main:not(.home-main) .admin-list-toolbar .search-label input {
+    min-height: 44px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+  }
+  .main:not(.home-main) .admin-mobile-filter {
+    display: inline-flex;
+  }
+  .main:not(.home-main) .admin-participant-filters:not(.is-expanded),
+  .main:not(.home-main) .admin-participant-record-tools:not(.is-expanded),
+  .main:not(.home-main) .admin-participant-filters > label:first-of-type {
+    display: none;
+  }
+  .main:not(.home-main) .admin-participant-record-tools > a {
+    display: none;
+  }
+  .main:not(.home-main) .admin-participant-record-tools {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .main:not(.home-main) .admin-list-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .main:not(.home-main) .admin-list-toolbar .search-label {
+    flex: 1 1 100px;
+    min-width: 0;
+  }
+  .main:not(.home-main) .admin-list-toolbar > .button {
+    flex: 0 0 44px;
+    width: 44px;
+    min-width: 44px;
+    padding: 10px;
+    margin: 0;
+  }
+  .main:not(.home-main) .admin-list-toolbar .admin-export-label,
+  .main:not(.home-main) .admin-list-toolbar:not(.is-expanded) > select {
+    display: none;
+  }
+  .main:not(.home-main) .admin-list-toolbar > select {
+    order: 5;
+    flex: 1 1 130px;
+    min-width: 0;
+    max-width: none;
+    min-height: 44px;
+    padding: 10px;
+    font-size: 13px;
+  }
+  .main:not(.home-main)
+    .admin-participant-filters
+    ~ .table-scroll
+    .participants-table
+    td {
+    padding: 0;
+  }
+  .main:not(.home-main) .participants-table .admin-row-actions {
+    justify-content: end;
+  }
+  .main:not(.home-main)
+    details.panel.admin-import-panel[open]:has(> .admin-import) {
+    padding-inline: 14px;
+  }
+  .main:not(.home-main) .admin-team-list .section-heading {
+    align-items: start;
+    flex-wrap: wrap;
+  }
+  .main:not(.home-main) .admin-team-list .identity-line {
+    flex: 1 1 150px;
+  }
+  .main:not(.home-main) .admin-team-actions {
+    flex: 0 1 auto;
+    margin-left: auto;
+  }
+  .main:not(.home-main) .admin-team-actions:has(.admin-status-menu[open]) {
+    flex: 1 1 100%;
+  }
+  .main:not(.home-main) .admin-team-list .member-list > li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .main:not(.home-main) .admin-team-list .member-list > li > div {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+  }
+  .main:not(.home-main) .admin-team-list .member-list > li > .pill {
+    grid-column: auto;
+    margin: 0;
+  }
+  .main:not(.home-main) .admin-credit-inventory {
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+  }
+  .admin-credits-table,
+  .admin-credits-table tbody {
+    display: block;
+  }
+  .admin-credits-table thead {
+    display: none;
+  }
+  .main:not(.home-main) .admin-credits-table tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0 0 12px;
+    padding: 18px;
+    border: 1px solid #dce3e8;
+    border-radius: 12px;
+    background: #fff;
+  }
+  .main:not(.home-main) .admin-credits-table td {
+    display: block;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+  }
+  .main:not(.home-main) .admin-credits-table .credit-identity {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .credit-identity > svg {
+    flex: 0 0 20px;
+    margin: 0;
+  }
+  .main:not(.home-main) .admin-credits-table .credit-state {
+    justify-self: end;
+    align-self: start;
+  }
+  .main:not(.home-main) .admin-credits-table .credit-metric-label {
+    display: block;
+    margin-bottom: 4px;
+    color: #5b6770;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .main:not(.home-main) .admin-credits-table .credit-metric strong {
+    font-size: 28px;
+    line-height: 34px;
+    letter-spacing: -0.035em;
+  }
+}
