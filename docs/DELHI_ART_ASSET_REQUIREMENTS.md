@@ -30,3 +30,6 @@ The current PNG alone does not provide independently movable under-text content.
 - Test pointer center/corners/outside bounds, degenerate/changed dimensions, resize, pointer leave, pause, media-query changes, reduced motion and touch fallback. Then compare actual rendered pixels against the approved source at desktop/mobile sizes.
 
 No art component was built or inserted because its required assets are absent. Consequently these art-specific interaction/visual tests have **not run**; the existing correctness test results do not verify this effect. Do not report integration complete until the exact layers are present and the tests/visual comparison pass. Local browser QA was already blocked by the unavailable browser surface; that remains a separate verification limit.
+
+
+23 October update: the approved v3 layered pack is now materialized and integrated locally. See OPERATIONAL_RELEASE_2026_10_23.md and assets/delhi-v3-manifest.json for provenance and bounded motion. The prior missing-layer blocker is resolved. Integrated browser/device QA remains unverified.

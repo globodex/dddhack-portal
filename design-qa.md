@@ -13,3 +13,7 @@ Blocker: the local CUA inventory exposes no apps or browsers. No supported rende
 Next: connect a supported browser surface to this local task, inspect desktop/mobile/reduced-motion states with synthetic data, compare against the selected mockups, fix deviations, and obtain user feedback before release. Pending artwork/photo/policy/API decisions are listed in docs/UX_REVISION_V3.md.
 
 Latest controls: native Cancel-first modal confirmations, managed sign-out, manual award unveiling and owner deadline/weight previews are implemented. Interactive keyboard/focus/session/device checks remain unverified. User explicitly deferred device QA until after the reviewed core publication.
+
+## 23 October approved home/profile implementation checkpoint
+
+The newer ux-restart home/profile studies and Delhi v3 pack supersede the historical face-free/plain-wordmark direction above. Their local implementation includes typographic decorative marks, the actual masked fill with static Metro, public top navigation, organizer section, scroll cue, two-step minimal profile and optional safely normalized photo. Remaining page mockups are not treated as approved. Static/controller/server/Worker tests pass; see docs/OPERATIONAL_RELEASE_2026_10_23.md and current release evidence. The final visual result remains blocked for acceptance: no supported local browser surface exists. Asset-only upstream cloud proof is not proof of the integrated site. No screenshot-match, touch, real sign-in/logout or device acceptance is claimed.

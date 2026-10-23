@@ -1,0 +1,24 @@
+{
+  "sourceCommit": "4cc46437075ef46fa4a86266928fb338d8172bd1",
+  "executor": "param302-linux",
+  "branch": "feat/devday-exchange-v1",
+  "published": false,
+  "typecheck": "passed",
+  "tests": {
+    "passed": 63,
+    "failed": 0
+  },
+  "productionArtifactFiles": 151,
+  "compiledWorker": "passed-disposable-local-D1",
+  "realChatGPTLoginLogout": "unverified",
+  "browserDeviceQA": "unavailable",
+  "livePolicyActivation": false,
+  "credentialCreated": false,
+  "providerCalls": 0,
+  "pendingHostMigrations": [
+    "0010_groovy_black_cat",
+    "0011_wealthy_spirit",
+    "0012_vengeful_shape",
+    "0013_fantastic_slipstream"
+  ]
+}

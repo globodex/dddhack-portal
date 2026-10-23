@@ -50,3 +50,6 @@ Read `docs/PUBLICATION.md`, `docs/SITES_INTEGRATION.md`, `docs/ROUTE_MATRIX.md`,
 The original design references could not be opened through the supplied network or web reader. Reference screenshots and verified official dot assets remain blocked. The UI uses original dot artwork, explicitly described as such, with no endorsement claim. Fontsource Manrope and DM Sans are bundled locally under their included licenses.
 
 Dependency auditing still reports inherited framework/tooling findings. Available `fflate`, Miniflare `sharp`/`undici`/`ws` and plugin `ws` fixes are pinned; remaining findings and their reachability limits are recorded in `docs/SECURITY.md`. No forced downgrade or unsupported replacement was used. The production artifact mitigation and remaining build-environment risk are documented in `docs/DEPENDENCY_REACHABILITY.md`. The artifact gate must pass for each release; hosted identity/runtime setup and owner policy activation remain separate requirements.
+
+
+Latest local implementation and pending release gates: [23 October checkpoint](docs/OPERATIONAL_RELEASE_2026_10_23.md). This supersedes historical team-Going, optional-sex and artwork-blocker notes. Public v4 remains unchanged until a separately authorized deployment.
