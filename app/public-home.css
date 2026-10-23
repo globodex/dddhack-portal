@@ -1240,3 +1240,70 @@
     transform: none;
   }
 }
+
+/* The navbar owns real layout space, including on desktop. Keep standard heroes
+   within the remaining viewport while allowing short screens and zoom to scroll. */
+.public-home-shell {
+  --public-header-height: 80px;
+}
+.public-home-shell .public-header {
+  position: sticky;
+  inset: auto;
+  top: 0;
+  block-size: var(--public-header-height);
+  min-block-size: var(--public-header-height);
+  box-sizing: border-box;
+  padding-block: 12px;
+  border-bottom: 1px solid #e7e9e8;
+}
+.public-home-shell .home-hero {
+  min-height: calc(100svh - var(--public-header-height));
+  padding-top: 24px;
+  padding-bottom: 214px;
+}
+@media (min-width: 1000px) {
+  .public-home-shell .hero-copy {
+    max-width: min(100%, calc(min(5.12vw, 8.2svh) * 10.75));
+  }
+  .public-home-shell .home-hero h1 {
+    font-size: clamp(34px, min(5.12vw, 8.2svh), 92px);
+  }
+  .public-home-shell .hero-date {
+    max-width: none;
+  }
+}
+@media (max-width: 999px) {
+  .public-home-shell {
+    --public-header-height: 64px;
+  }
+  .public-home-shell .public-header {
+    padding-block: 10px;
+  }
+}
+@media (min-width: 701px) and (max-width: 999px) {
+  .public-home-shell .hero-art {
+    width: min(300px, 50%);
+  }
+  .public-home-shell .hero-date {
+    max-width: none;
+  }
+}
+@media (max-width: 700px) {
+  .public-home-shell .home-hero {
+    padding-top: 24px;
+    padding-bottom: 78px;
+  }
+}
+@media (max-width: 700px) and (orientation: landscape) {
+  .public-home-shell .home-hero {
+    padding-bottom: 196px;
+  }
+}
+.public-home-shell #home-title {
+  scroll-margin-top: calc(var(--public-header-height) + 24px);
+}
+@media (max-width: 999px) {
+  .public-home-shell .public-header nav[data-open="true"] {
+    top: calc(100% + 8px);
+  }
+}
