@@ -1,0 +1,1190 @@
+{
+  "source": "418f6311c1e5a01831897b36f181eeda799c7911",
+  "worker": "6e77794a8831ccb2594f3383171244b1dd9f4ec07c56633f1357ad101b4cfaf5",
+  "origin": "http://127.0.0.1:4173",
+  "syntheticOnly": true,
+  "readCancelOnly": true,
+  "sandbox": true,
+  "checks": [
+    {
+      "label": "teamqa_leader-desktop safe layout and avatars",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-desktop forming state and compact idea",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-desktop required validation",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-desktop counter and saved-idea lock prerequisite",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-desktop save-idea cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-desktop rename cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-desktop eight touch-sized palette choices",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-desktop palette cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-desktop pending requests and protected deletion",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-desktop accept-request cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-desktop decline-request cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-desktop remove-member cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-desktop cancelled edits did not persist",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-mobile-touch safe layout and avatars",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-mobile-touch forming state and compact idea",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-mobile-touch required validation",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-mobile-touch counter and saved-idea lock prerequisite",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-mobile-touch save-idea cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-mobile-touch rename cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-mobile-touch eight touch-sized palette choices",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-mobile-touch palette cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-mobile-touch pending requests and protected deletion",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-mobile-touch accept-request cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-mobile-touch decline-request cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-mobile-touch remove-member cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-mobile-touch cancelled edits did not persist",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-tablet-touch safe layout and avatars",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-tablet-touch forming state and compact idea",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-tablet-touch required validation",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-tablet-touch counter and saved-idea lock prerequisite",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-tablet-touch save-idea cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-tablet-touch rename cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-tablet-touch eight touch-sized palette choices",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-tablet-touch palette cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-tablet-touch pending requests and protected deletion",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-tablet-touch accept-request cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-tablet-touch decline-request cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-tablet-touch remove-member cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_leader-tablet-touch cancelled edits did not persist",
+      "passed": true
+    },
+    {
+      "label": "teamqa_member-desktop safe layout and avatars",
+      "passed": true
+    },
+    {
+      "label": "teamqa_member-desktop member cannot mutate leader controls",
+      "passed": true
+    },
+    {
+      "label": "teamqa_member-mobile-touch safe layout and avatars",
+      "passed": true
+    },
+    {
+      "label": "teamqa_member-mobile-touch member cannot mutate leader controls",
+      "passed": true
+    },
+    {
+      "label": "teamqa_member-tablet-touch safe layout and avatars",
+      "passed": true
+    },
+    {
+      "label": "teamqa_member-tablet-touch member cannot mutate leader controls",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-desktop safe layout and avatars",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-desktop required validation",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-desktop counter and saved-idea lock prerequisite",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-desktop save-idea cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-desktop rename cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-desktop eight touch-sized palette choices",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-desktop palette cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-desktop delete-solo-team cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-desktop cancelled edits did not persist",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-mobile-touch safe layout and avatars",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-mobile-touch required validation",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-mobile-touch counter and saved-idea lock prerequisite",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-mobile-touch save-idea cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-mobile-touch rename cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-mobile-touch eight touch-sized palette choices",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-mobile-touch palette cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-mobile-touch delete-solo-team cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-mobile-touch cancelled edits did not persist",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-tablet-touch safe layout and avatars",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-tablet-touch required validation",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-tablet-touch counter and saved-idea lock prerequisite",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-tablet-touch save-idea cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-tablet-touch rename cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-tablet-touch eight touch-sized palette choices",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-tablet-touch palette cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-tablet-touch delete-solo-team cancel",
+      "passed": true
+    },
+    {
+      "label": "teamqa_solo-tablet-touch cancelled edits did not persist",
+      "passed": true
+    },
+    {
+      "label": "eve-desktop safe layout and avatars",
+      "passed": true
+    },
+    {
+      "label": "eve-desktop required validation",
+      "passed": true
+    },
+    {
+      "label": "eve-desktop counter and saved-idea lock prerequisite",
+      "passed": true
+    },
+    {
+      "label": "eve-desktop save-idea cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-desktop lock-team cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-desktop rename cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-desktop eight touch-sized palette choices",
+      "passed": true
+    },
+    {
+      "label": "eve-desktop palette cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-desktop remove-Frank cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-desktop cancelled edits did not persist",
+      "passed": true
+    },
+    {
+      "label": "eve-mobile-touch safe layout and avatars",
+      "passed": true
+    },
+    {
+      "label": "eve-mobile-touch required validation",
+      "passed": true
+    },
+    {
+      "label": "eve-mobile-touch counter and saved-idea lock prerequisite",
+      "passed": true
+    },
+    {
+      "label": "eve-mobile-touch save-idea cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-mobile-touch lock-team cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-mobile-touch rename cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-mobile-touch eight touch-sized palette choices",
+      "passed": true
+    },
+    {
+      "label": "eve-mobile-touch palette cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-mobile-touch remove-Frank cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-mobile-touch cancelled edits did not persist",
+      "passed": true
+    },
+    {
+      "label": "eve-tablet-touch safe layout and avatars",
+      "passed": true
+    },
+    {
+      "label": "eve-tablet-touch required validation",
+      "passed": true
+    },
+    {
+      "label": "eve-tablet-touch counter and saved-idea lock prerequisite",
+      "passed": true
+    },
+    {
+      "label": "eve-tablet-touch save-idea cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-tablet-touch lock-team cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-tablet-touch rename cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-tablet-touch eight touch-sized palette choices",
+      "passed": true
+    },
+    {
+      "label": "eve-tablet-touch palette cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-tablet-touch remove-Frank cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-tablet-touch cancelled edits did not persist",
+      "passed": true
+    },
+    {
+      "label": "frank-desktop safe layout and avatars",
+      "passed": true
+    },
+    {
+      "label": "frank-desktop member cannot mutate leader controls",
+      "passed": true
+    },
+    {
+      "label": "frank-mobile-touch safe layout and avatars",
+      "passed": true
+    },
+    {
+      "label": "frank-mobile-touch member cannot mutate leader controls",
+      "passed": true
+    },
+    {
+      "label": "frank-tablet-touch safe layout and avatars",
+      "passed": true
+    },
+    {
+      "label": "frank-tablet-touch member cannot mutate leader controls",
+      "passed": true
+    },
+    {
+      "label": "teamqa_accept existing request is disabled",
+      "passed": true
+    },
+    {
+      "label": "teamqa_decline existing request is disabled",
+      "passed": true
+    }
+  ],
+  "geometry": [
+    {
+      "actor": "teamqa_leader",
+      "viewport": "desktop",
+      "width": 1100,
+      "overflow": false,
+      "rows": [
+        66,
+        67
+      ],
+      "fieldsetPadding": "0px",
+      "actions": [
+        162,
+        251
+      ]
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "mobile-touch",
+      "width": 354,
+      "overflow": false,
+      "rows": [
+        108,
+        109
+      ],
+      "fieldsetPadding": "0px",
+      "actions": [
+        354,
+        354
+      ]
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "tablet-touch",
+      "width": 782,
+      "overflow": false,
+      "rows": [
+        66,
+        67
+      ],
+      "fieldsetPadding": "0px",
+      "actions": [
+        162,
+        251
+      ]
+    },
+    {
+      "actor": "teamqa_member",
+      "viewport": "desktop",
+      "width": 1100,
+      "overflow": false,
+      "rows": [
+        66,
+        67
+      ],
+      "fieldsetPadding": null,
+      "actions": []
+    },
+    {
+      "actor": "teamqa_member",
+      "viewport": "mobile-touch",
+      "width": 354,
+      "overflow": false,
+      "rows": [
+        108,
+        109
+      ],
+      "fieldsetPadding": null,
+      "actions": []
+    },
+    {
+      "actor": "teamqa_member",
+      "viewport": "tablet-touch",
+      "width": 782,
+      "overflow": false,
+      "rows": [
+        66,
+        67
+      ],
+      "fieldsetPadding": null,
+      "actions": []
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "desktop",
+      "width": 1100,
+      "overflow": false,
+      "rows": [
+        67
+      ],
+      "fieldsetPadding": "0px",
+      "actions": [
+        162,
+        251
+      ]
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "mobile-touch",
+      "width": 354,
+      "overflow": false,
+      "rows": [
+        109
+      ],
+      "fieldsetPadding": "0px",
+      "actions": [
+        354,
+        354
+      ]
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "tablet-touch",
+      "width": 782,
+      "overflow": false,
+      "rows": [
+        67
+      ],
+      "fieldsetPadding": "0px",
+      "actions": [
+        162,
+        251
+      ]
+    },
+    {
+      "actor": "eve",
+      "viewport": "desktop",
+      "width": 1100,
+      "overflow": false,
+      "rows": [
+        66,
+        66,
+        66,
+        66,
+        67
+      ],
+      "fieldsetPadding": "0px",
+      "actions": [
+        162,
+        251
+      ]
+    },
+    {
+      "actor": "eve",
+      "viewport": "mobile-touch",
+      "width": 354,
+      "overflow": false,
+      "rows": [
+        108,
+        108,
+        108,
+        108,
+        109
+      ],
+      "fieldsetPadding": "0px",
+      "actions": [
+        354,
+        354
+      ]
+    },
+    {
+      "actor": "eve",
+      "viewport": "tablet-touch",
+      "width": 782,
+      "overflow": false,
+      "rows": [
+        66,
+        66,
+        66,
+        66,
+        67
+      ],
+      "fieldsetPadding": "0px",
+      "actions": [
+        162,
+        251
+      ]
+    },
+    {
+      "actor": "frank",
+      "viewport": "desktop",
+      "width": 1100,
+      "overflow": false,
+      "rows": [
+        66,
+        66,
+        66,
+        66,
+        67
+      ],
+      "fieldsetPadding": null,
+      "actions": []
+    },
+    {
+      "actor": "frank",
+      "viewport": "mobile-touch",
+      "width": 354,
+      "overflow": false,
+      "rows": [
+        108,
+        108,
+        108,
+        108,
+        109
+      ],
+      "fieldsetPadding": null,
+      "actions": []
+    },
+    {
+      "actor": "frank",
+      "viewport": "tablet-touch",
+      "width": 782,
+      "overflow": false,
+      "rows": [
+        66,
+        66,
+        66,
+        66,
+        67
+      ],
+      "fieldsetPadding": null,
+      "actions": []
+    }
+  ],
+  "captures": [
+    {
+      "actor": "teamqa_leader",
+      "viewport": "desktop",
+      "label": "initial",
+      "path": "evidence/team-forming-418f631/teamqa_leader-desktop-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "desktop",
+      "label": "whole-page",
+      "path": "evidence/team-forming-418f631/teamqa_leader-desktop-whole-page.png",
+      "original": true,
+      "fullPage": true
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "mobile-touch",
+      "label": "initial",
+      "path": "evidence/team-forming-418f631/teamqa_leader-mobile-touch-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "mobile-touch",
+      "label": "whole-page",
+      "path": "evidence/team-forming-418f631/teamqa_leader-mobile-touch-whole-page.png",
+      "original": true,
+      "fullPage": true
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "tablet-touch",
+      "label": "initial",
+      "path": "evidence/team-forming-418f631/teamqa_leader-tablet-touch-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "tablet-touch",
+      "label": "whole-page",
+      "path": "evidence/team-forming-418f631/teamqa_leader-tablet-touch-whole-page.png",
+      "original": true,
+      "fullPage": true
+    },
+    {
+      "actor": "teamqa_member",
+      "viewport": "desktop",
+      "label": "initial",
+      "path": "evidence/team-forming-418f631/teamqa_member-desktop-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "teamqa_member",
+      "viewport": "mobile-touch",
+      "label": "initial",
+      "path": "evidence/team-forming-418f631/teamqa_member-mobile-touch-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "teamqa_member",
+      "viewport": "tablet-touch",
+      "label": "initial",
+      "path": "evidence/team-forming-418f631/teamqa_member-tablet-touch-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "desktop",
+      "label": "initial",
+      "path": "evidence/team-forming-418f631/teamqa_solo-desktop-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "desktop",
+      "label": "whole-page",
+      "path": "evidence/team-forming-418f631/teamqa_solo-desktop-whole-page.png",
+      "original": true,
+      "fullPage": true
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "desktop",
+      "label": "delete-solo-team-confirmation",
+      "path": "evidence/team-forming-418f631/teamqa_solo-desktop-delete-solo-team-confirmation.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "mobile-touch",
+      "label": "initial",
+      "path": "evidence/team-forming-418f631/teamqa_solo-mobile-touch-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "mobile-touch",
+      "label": "whole-page",
+      "path": "evidence/team-forming-418f631/teamqa_solo-mobile-touch-whole-page.png",
+      "original": true,
+      "fullPage": true
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "mobile-touch",
+      "label": "delete-solo-team-confirmation",
+      "path": "evidence/team-forming-418f631/teamqa_solo-mobile-touch-delete-solo-team-confirmation.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "tablet-touch",
+      "label": "initial",
+      "path": "evidence/team-forming-418f631/teamqa_solo-tablet-touch-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "tablet-touch",
+      "label": "whole-page",
+      "path": "evidence/team-forming-418f631/teamqa_solo-tablet-touch-whole-page.png",
+      "original": true,
+      "fullPage": true
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "tablet-touch",
+      "label": "delete-solo-team-confirmation",
+      "path": "evidence/team-forming-418f631/teamqa_solo-tablet-touch-delete-solo-team-confirmation.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "eve",
+      "viewport": "desktop",
+      "label": "initial",
+      "path": "evidence/team-forming-418f631/eve-desktop-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "eve",
+      "viewport": "mobile-touch",
+      "label": "initial",
+      "path": "evidence/team-forming-418f631/eve-mobile-touch-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "eve",
+      "viewport": "tablet-touch",
+      "label": "initial",
+      "path": "evidence/team-forming-418f631/eve-tablet-touch-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "frank",
+      "viewport": "desktop",
+      "label": "initial",
+      "path": "evidence/team-forming-418f631/frank-desktop-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "frank",
+      "viewport": "mobile-touch",
+      "label": "initial",
+      "path": "evidence/team-forming-418f631/frank-mobile-touch-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "frank",
+      "viewport": "tablet-touch",
+      "label": "initial",
+      "path": "evidence/team-forming-418f631/frank-tablet-touch-initial.png",
+      "original": true,
+      "fullPage": false
+    }
+  ],
+  "confirmations": [
+    {
+      "actor": "teamqa_leader",
+      "viewport": "desktop",
+      "action": "save-idea",
+      "title": "Update team idea",
+      "target": "Synthetic Green Loop"
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "desktop",
+      "action": "rename",
+      "title": "Rename your team",
+      "target": "Synthetic unsaved team name"
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "desktop",
+      "action": "palette",
+      "title": "Update team appearance",
+      "target": "Synthetic Green Loop"
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "desktop",
+      "action": "accept-request",
+      "title": "Update membership request",
+      "target": "Synthetic Green Loop"
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "desktop",
+      "action": "decline-request",
+      "title": "Update membership request",
+      "target": "Synthetic Green Loop"
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "desktop",
+      "action": "remove-member",
+      "title": "Remove team member",
+      "target": "Synthetic Team Member · ID fake_teamqa_member"
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "mobile-touch",
+      "action": "save-idea",
+      "title": "Update team idea",
+      "target": "Synthetic Green Loop"
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "mobile-touch",
+      "action": "rename",
+      "title": "Rename your team",
+      "target": "Synthetic unsaved team name"
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "mobile-touch",
+      "action": "palette",
+      "title": "Update team appearance",
+      "target": "Synthetic Green Loop"
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "mobile-touch",
+      "action": "accept-request",
+      "title": "Update membership request",
+      "target": "Synthetic Green Loop"
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "mobile-touch",
+      "action": "decline-request",
+      "title": "Update membership request",
+      "target": "Synthetic Green Loop"
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "mobile-touch",
+      "action": "remove-member",
+      "title": "Remove team member",
+      "target": "Synthetic Team Member · ID fake_teamqa_member"
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "tablet-touch",
+      "action": "save-idea",
+      "title": "Update team idea",
+      "target": "Synthetic Green Loop"
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "tablet-touch",
+      "action": "rename",
+      "title": "Rename your team",
+      "target": "Synthetic unsaved team name"
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "tablet-touch",
+      "action": "palette",
+      "title": "Update team appearance",
+      "target": "Synthetic Green Loop"
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "tablet-touch",
+      "action": "accept-request",
+      "title": "Update membership request",
+      "target": "Synthetic Green Loop"
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "tablet-touch",
+      "action": "decline-request",
+      "title": "Update membership request",
+      "target": "Synthetic Green Loop"
+    },
+    {
+      "actor": "teamqa_leader",
+      "viewport": "tablet-touch",
+      "action": "remove-member",
+      "title": "Remove team member",
+      "target": "Synthetic Team Member · ID fake_teamqa_member"
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "desktop",
+      "action": "save-idea",
+      "title": "Update team idea",
+      "target": "Synthetic Solo Team"
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "desktop",
+      "action": "rename",
+      "title": "Rename your team",
+      "target": "Synthetic unsaved team name"
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "desktop",
+      "action": "palette",
+      "title": "Update team appearance",
+      "target": "Synthetic Solo Team"
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "desktop",
+      "action": "delete-solo-team",
+      "title": "Delete your team",
+      "target": "Synthetic Solo Team"
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "mobile-touch",
+      "action": "save-idea",
+      "title": "Update team idea",
+      "target": "Synthetic Solo Team"
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "mobile-touch",
+      "action": "rename",
+      "title": "Rename your team",
+      "target": "Synthetic unsaved team name"
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "mobile-touch",
+      "action": "palette",
+      "title": "Update team appearance",
+      "target": "Synthetic Solo Team"
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "mobile-touch",
+      "action": "delete-solo-team",
+      "title": "Delete your team",
+      "target": "Synthetic Solo Team"
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "tablet-touch",
+      "action": "save-idea",
+      "title": "Update team idea",
+      "target": "Synthetic Solo Team"
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "tablet-touch",
+      "action": "rename",
+      "title": "Rename your team",
+      "target": "Synthetic unsaved team name"
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "tablet-touch",
+      "action": "palette",
+      "title": "Update team appearance",
+      "target": "Synthetic Solo Team"
+    },
+    {
+      "actor": "teamqa_solo",
+      "viewport": "tablet-touch",
+      "action": "delete-solo-team",
+      "title": "Delete your team",
+      "target": "Synthetic Solo Team"
+    },
+    {
+      "actor": "eve",
+      "viewport": "desktop",
+      "action": "save-idea",
+      "title": "Update team idea",
+      "target": "The Fifth Element"
+    },
+    {
+      "actor": "eve",
+      "viewport": "desktop",
+      "action": "lock-team",
+      "title": "Lock completed team",
+      "target": "The Fifth Element"
+    },
+    {
+      "actor": "eve",
+      "viewport": "desktop",
+      "action": "rename",
+      "title": "Rename your team",
+      "target": "Synthetic unsaved team name"
+    },
+    {
+      "actor": "eve",
+      "viewport": "desktop",
+      "action": "palette",
+      "title": "Update team appearance",
+      "target": "The Fifth Element"
+    },
+    {
+      "actor": "eve",
+      "viewport": "desktop",
+      "action": "remove-Frank",
+      "title": "Remove team member",
+      "target": "Frank · ID fake_frank"
+    },
+    {
+      "actor": "eve",
+      "viewport": "mobile-touch",
+      "action": "save-idea",
+      "title": "Update team idea",
+      "target": "The Fifth Element"
+    },
+    {
+      "actor": "eve",
+      "viewport": "mobile-touch",
+      "action": "lock-team",
+      "title": "Lock completed team",
+      "target": "The Fifth Element"
+    },
+    {
+      "actor": "eve",
+      "viewport": "mobile-touch",
+      "action": "rename",
+      "title": "Rename your team",
+      "target": "Synthetic unsaved team name"
+    },
+    {
+      "actor": "eve",
+      "viewport": "mobile-touch",
+      "action": "palette",
+      "title": "Update team appearance",
+      "target": "The Fifth Element"
+    },
+    {
+      "actor": "eve",
+      "viewport": "mobile-touch",
+      "action": "remove-Frank",
+      "title": "Remove team member",
+      "target": "Frank · ID fake_frank"
+    },
+    {
+      "actor": "eve",
+      "viewport": "tablet-touch",
+      "action": "save-idea",
+      "title": "Update team idea",
+      "target": "The Fifth Element"
+    },
+    {
+      "actor": "eve",
+      "viewport": "tablet-touch",
+      "action": "lock-team",
+      "title": "Lock completed team",
+      "target": "The Fifth Element"
+    },
+    {
+      "actor": "eve",
+      "viewport": "tablet-touch",
+      "action": "rename",
+      "title": "Rename your team",
+      "target": "Synthetic unsaved team name"
+    },
+    {
+      "actor": "eve",
+      "viewport": "tablet-touch",
+      "action": "palette",
+      "title": "Update team appearance",
+      "target": "The Fifth Element"
+    },
+    {
+      "actor": "eve",
+      "viewport": "tablet-touch",
+      "action": "remove-Frank",
+      "title": "Remove team member",
+      "target": "Frank · ID fake_frank"
+    }
+  ],
+  "blocked": [],
+  "pageErrors": [],
+  "browserClosed": true,
+  "workerAfter": "6e77794a8831ccb2594f3383171244b1dd9f4ec07c56633f1357ad101b4cfaf5",
+  "artifactUnchanged": true
+}
