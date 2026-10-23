@@ -85,6 +85,65 @@ async function data(count = 6) {
   }
   return { ...ctx, publicService: new PortalService(ctx.db, null, undefined) };
 }
+test("each public response reads score disclosure once and refilters the next response after eligibility revocation", async () => {
+  const ctx = await data(6);
+  const prepare = ctx.db.prepare.bind(ctx.db);
+  let releaseReads = 0,
+    validityScans = 0;
+  ctx.db.prepare = (sql) => {
+    if (sql.includes("FROM score_releases")) releaseReads++;
+    if (sql.startsWith("SELECT p.id,p.published_version_id versionId"))
+      validityScans++;
+    return prepare(sql);
+  };
+  try {
+    const community = (await ctx.publicService.view("/projects")) as Row;
+    assert.equal(community.items.length, 6);
+    assert.equal(releaseReads, 1);
+    assert.equal(validityScans, 0);
+    assert.ok(community.items.every((item: Row) => !item.result));
+
+    await ctx.db
+      .prepare("INSERT INTO score_releases VALUES(?,'ai',?,?,NULL,?,'fake_admin')")
+      .bind(
+        "synthetic-performance-release",
+        "synthetic-source",
+        JSON.stringify([
+          {
+            projectId: "stage-project-1",
+            versionId: "stage-version-1",
+            teamId: "stage-team-1",
+            score: 12,
+          },
+        ]),
+        "2026-11-01T13:00:00Z",
+      )
+      .all();
+    releaseReads = validityScans = 0;
+    const disclosed = (await ctx.publicService.view("/projects")) as Row;
+    assert.equal(releaseReads, 1);
+    assert.equal(validityScans, 1);
+    assert.equal(
+      disclosed.items.find((item: Row) => item.id === "stage-project-1").result
+        .score,
+      12,
+    );
+    await ctx.db
+      .prepare("UPDATE project_eligibility SET status='ineligible',reason='Synthetic revocation' WHERE project_id='stage-project-1'")
+      .all();
+    releaseReads = validityScans = 0;
+    const revoked = (await ctx.publicService.view("/projects")) as Row;
+    assert.equal(releaseReads, 1);
+    assert.equal(validityScans, 1);
+    assert.equal(revoked.items.length, 5);
+    assert.ok(revoked.items.every((item: Row) => !item.result));
+    assert.ok(!JSON.stringify(revoked).includes("stage-project-1"));
+  } finally {
+    ctx.db.prepare = prepare;
+    ctx.db.close();
+  }
+});
+
 function report(versionId: string, model = "fixture-provider-result") {
   return {
     versionId,

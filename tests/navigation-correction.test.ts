@@ -72,7 +72,9 @@ test("Schedule removes the rejected helper line while approved artwork and ordin
   const html = render(Home, {});
   assert.ok(!html.includes("One day. Many possibilities."));
   assert.match(html, /fallback-approved-v3\.png/);
-  assert.match(html, /metro-static\.png/);
+  // The approved static fallback includes the Metro. Motion layers are loaded
+  // only after a fine pointer and motion preference are known in the browser.
+  assert.doesNotMatch(html, /metro-static\.png/);
   assert.ok(html.indexOf('id="schedule"') < html.indexOf('id="venue"'));
   assert.ok(html.indexOf('id="venue"') < html.indexOf('id="rules"'));
   assert.ok(html.indexOf('id="rules"') < html.indexOf('id="faq"'));

@@ -276,7 +276,10 @@ export class PortalExperience {
       versionId: v.id,
     };
   }
-  async publicProject(p: Project) {
+  async publicProject(
+    p: Project,
+    disclosure?: Awaited<ReturnType<typeof publicScores>>,
+  ) {
     demand(
       p.published_version_id &&
         (await this.eligibility(p)).status === "eligible",
@@ -305,8 +308,8 @@ export class PortalExperience {
       p.id,
       p.id,
     );
-    const disclosure = await publicScores(this.s);
-    const revealed = disclosure.scores.find(
+    const publishedScores = disclosure ?? (await publicScores(this.s));
+    const revealed = publishedScores.scores.find(
       (e) => e.projectId === p.id && e.versionId === p.published_version_id,
     );
     const first = await one<{ created_at: string }>(
@@ -332,7 +335,7 @@ export class PortalExperience {
         ? {
             result: {
               score: revealed.score,
-              stage: disclosure.stage,
+              stage: publishedScores.stage,
               ...(revealed.position ? { position: revealed.position } : {}),
             },
           }
@@ -671,7 +674,7 @@ export class PortalExperience {
           ? all.slice(selectedPage * 24, (selectedPage + 1) * 24)
           : all
         ).map(async (p) => ({
-          ...(await this.publicProject(p)),
+          ...(await this.publicProject(p, scores)),
           canComment: !!me?.canEngage && !engagement.feedbackPaused,
           engagementPaused:
             engagement.votingPaused || engagement.feedbackPaused,
@@ -699,7 +702,7 @@ export class PortalExperience {
                 .sort((a, b) => a.position! - b.position!)
                 .map(async (e) => {
                   const p = await this.project(e.projectId);
-                  const publicEntry = await this.publicProject(p);
+                  const publicEntry = await this.publicProject(p, scores);
                   return {
                     projectName: publicEntry.projectName,
                     teamName: publicEntry.teamName,

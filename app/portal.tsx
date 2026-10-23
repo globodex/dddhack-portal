@@ -2512,23 +2512,17 @@ export function AdminParticipants({
                 {canManage && (
                   <td>
                     {r.id ? (
-                      <details>
-                        <summary>
-                          {r.removed
-                            ? "Restore participant"
-                            : "Remove participant"}
-                        </summary>
-                        <AdminParticipantActions
-                          key={`${r.id}-${r.removed}`}
-                          participant={{
-                            id: r.id,
-                            name: r.name,
-                            email: r.email,
-                            removed: r.removed,
-                          }}
-                          run={run}
-                        />
-                      </details>
+                      <AdminParticipantActions
+                        key={`${r.id}-${r.removed}`}
+                        participant={{
+                          id: r.id,
+                          name: r.name,
+                          email: r.email,
+                          removed: r.removed,
+                        }}
+                        run={run}
+                        compact
+                      />
                     ) : (
                       <span className="muted">
                         Account has not signed in yet.
