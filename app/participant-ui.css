@@ -223,6 +223,8 @@
 
 /* Standalone profile onboarding follows the selected three-step visual target. */
 body:has(.onboarding-shell) {
+  display: flow-root;
+  min-height: 100svh;
   background: #edf3f6;
 }
 .app-shell.onboarding-shell {
@@ -472,7 +474,7 @@ body:has(.onboarding-shell) {
   padding: 0;
   border: 0;
   border-radius: 8px;
-  background: #edf2f5;
+  background: transparent;
 }
 .app-shell .profile-flow .sex-choices legend {
   width: 100%;
@@ -508,10 +510,17 @@ body:has(.onboarding-shell) {
   min-height: 44px;
   padding: 10px 6px;
   border: 0;
-  border-radius: 8px;
+  border-radius: 0;
+  background: #edf2f5;
   color: #273342;
   font-size: 14px;
   line-height: 20px;
+}
+.app-shell .profile-flow .sex-choices label:first-of-type span {
+  border-radius: 8px 0 0 8px;
+}
+.app-shell .profile-flow .sex-choices label:last-of-type span {
+  border-radius: 0 8px 8px 0;
 }
 .app-shell .profile-flow .sex-choices label + label span::before {
   content: "";
@@ -522,6 +531,7 @@ body:has(.onboarding-shell) {
   border-left: 1px solid #d3dfe7;
 }
 .app-shell .profile-flow .sex-choices input:checked + span {
+  border-radius: 8px;
   background: #008d66;
   color: #fff;
   box-shadow: none;
@@ -964,6 +974,17 @@ body:has(.onboarding-shell) {
   .app-shell .profile-expression-grid .profile-avatar-choice svg {
     width: 40px;
     height: 40px;
+  }
+  .app-shell
+    .profile-expression-grid
+    .profile-avatar-choice:has(input:checked)
+    > svg {
+    outline-color: #fff;
+    outline-offset: -3px;
+    box-shadow: 0 0 0 2px #006afe;
+  }
+  .app-shell .profile-avatar-choice:has(input:focus-visible) {
+    outline-offset: -2px;
   }
   .app-shell .profile-color-grid {
     grid-template-columns: repeat(4, 44px);

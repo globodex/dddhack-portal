@@ -219,16 +219,27 @@ async function metrics(page, label, { defaultFit = false } = {}) {
       const action = document
         .querySelector(".profile-next")
         .getBoundingClientRect();
+      const field = document.querySelector(".profile-fields");
+      const fieldBox = field.getBoundingClientRect();
+      const style = getComputedStyle(field);
+      const clippedX = /auto|hidden|scroll|clip/.test(style.overflowX);
+      const clippedY = /auto|hidden|scroll|clip/.test(style.overflowY);
       return nodes
         .filter((node) => {
           const r = node.getBoundingClientRect();
+          const visible = {
+            left: clippedX ? Math.max(r.left, fieldBox.left) : r.left,
+            right: clippedX ? Math.min(r.right, fieldBox.right) : r.right,
+            top: clippedY ? Math.max(r.top, fieldBox.top) : r.top,
+            bottom: clippedY ? Math.min(r.bottom, fieldBox.bottom) : r.bottom,
+          };
           return (
-            r.width &&
-            r.height &&
-            r.left < action.right - 1 &&
-            r.right > action.left + 1 &&
-            r.top < action.bottom - 1 &&
-            r.bottom > action.top + 1
+            visible.right > visible.left &&
+            visible.bottom > visible.top &&
+            visible.left < action.right - 1 &&
+            visible.right > action.left + 1 &&
+            visible.top < action.bottom - 1 &&
+            visible.bottom > action.top + 1
           );
         })
         .map(
