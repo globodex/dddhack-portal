@@ -1,0 +1,68 @@
+{
+  "source": "e95ec2d4a9f73f76f57c65f33fc4cb6414baf907",
+  "worker": "19064c247de272f3829fcd41f8bd24476d48d3bf8840c5bd22558b56062e5e7a",
+  "origin": "http://127.0.0.1:4176",
+  "viewport": "keyboard",
+  "inputMode": "keyboard",
+  "syntheticOnly": true,
+  "sandbox": true,
+  "resetTokenHash": "8d55a99cc70a2a20c773866d35fdfcc54314f90a8c4df83b2fcf0f0f223409f5",
+  "resetManifestPath": "/tmp/ddehack-controls-3a9c12f7-d518-4946-a147-c4f2797adb96.json",
+  "resetManifestHash": "bde73aef035f10e008e103be8c59a7bbbd37f2afe2ad350d0796c3526d6f7626",
+  "checks": [
+    {
+      "label": "dashboard tabs support Arrow keys, Home and End",
+      "passed": true
+    },
+    {
+      "label": "fresh reserved fixture gate before the first write",
+      "passed": true
+    },
+    {
+      "label": "member has no leader editing controls",
+      "passed": true
+    },
+    {
+      "label": "native empty idea validation and saved-idea Lock prerequisite",
+      "passed": true
+    },
+    {
+      "label": "description is required before any save confirmation",
+      "passed": true
+    },
+    {
+      "label": "500-character description boundary is enforced by real typing",
+      "passed": true
+    }
+  ],
+  "writes": [],
+  "blocked": [],
+  "pageErrors": [],
+  "captures": [],
+  "confirmations": [],
+  "browserStarted": true,
+  "failure": "Expected values to be strictly equal:\n\nfalse !== true\n",
+  "failureState": {
+    "requests": [
+      "Synthetic Team AcceptAcceptDecline",
+      "Synthetic Team DeclineAcceptDecline"
+    ],
+    "details": [
+      {
+        "summary": "Rename team",
+        "open": false
+      },
+      {
+        "summary": "Membership requests",
+        "open": false
+      },
+      {
+        "summary": "Customize your team badge and accent",
+        "open": false
+      }
+    ]
+  },
+  "browserClosed": true,
+  "workerAfter": "19064c247de272f3829fcd41f8bd24476d48d3bf8840c5bd22558b56062e5e7a",
+  "artifactUnchanged": true
+}

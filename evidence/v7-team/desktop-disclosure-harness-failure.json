@@ -1,0 +1,106 @@
+{
+  "source": "1ff453e0a55e9fc2af6c8369e02ed6cf38c688ec",
+  "worker": "19064c247de272f3829fcd41f8bd24476d48d3bf8840c5bd22558b56062e5e7a",
+  "origin": "http://127.0.0.1:4176",
+  "viewport": "desktop",
+  "inputMode": "mouse",
+  "syntheticOnly": true,
+  "sandbox": true,
+  "resetTokenHash": "8d8f03a838aa384ca58af318e7996782d8d804f1f244334a3596419a55863854",
+  "resetManifestPath": "/tmp/ddehack-controls-a5988d16-7f55-49cc-aa43-6c7c3942860e.json",
+  "resetManifestHash": "44f10cba48e1a64a992769dff98788d6ead18172909ef89a1b0f8e15adc4505e",
+  "checks": [
+    {
+      "label": "fresh reserved fixture gate before the first write",
+      "passed": true
+    },
+    {
+      "label": "member has no leader editing controls",
+      "passed": true
+    },
+    {
+      "label": "native empty idea validation and saved-idea Lock prerequisite",
+      "passed": true
+    },
+    {
+      "label": "description is required before any save confirmation",
+      "passed": true
+    },
+    {
+      "label": "500-character description boundary is enforced by real typing",
+      "passed": true
+    },
+    {
+      "label": "save idea persists and enables Lock",
+      "passed": true
+    },
+    {
+      "label": "rename required and minimum length validation",
+      "passed": true
+    },
+    {
+      "label": "rename persists",
+      "passed": true
+    },
+    {
+      "label": "all eight palette inputs respond to actual mouse or touch",
+      "passed": true
+    },
+    {
+      "label": "palette persists",
+      "passed": true
+    },
+    {
+      "label": "accept request persists membership",
+      "passed": true
+    }
+  ],
+  "writes": [
+    {
+      "actor": "leader",
+      "action": "save-workspace-idea"
+    },
+    {
+      "actor": "leader",
+      "action": "rename-team"
+    },
+    {
+      "actor": "leader",
+      "action": "team-style"
+    },
+    {
+      "actor": "leader",
+      "action": "respond-team"
+    }
+  ],
+  "blocked": [],
+  "pageErrors": [],
+  "captures": [],
+  "confirmations": [
+    {
+      "actor": "leader",
+      "action": "save-workspace-idea",
+      "target": "Synthetic Green Loop"
+    },
+    {
+      "actor": "leader",
+      "action": "rename-team",
+      "target": "Synthetic Renamed Loop"
+    },
+    {
+      "actor": "leader",
+      "action": "team-style",
+      "target": "Synthetic Renamed Loop"
+    },
+    {
+      "actor": "leader",
+      "action": "respond-team",
+      "target": "Synthetic Team Accept · Synthetic Renamed Loop"
+    }
+  ],
+  "browserStarted": true,
+  "failure": "locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('tabpanel', { name: 'Team', exact: true }).locator('.request-row').filter({ hasText: 'Synthetic Team Decline' }).getByRole('button', { name: 'Decline', exact: true })\u001b[22m\n",
+  "browserClosed": true,
+  "workerAfter": "19064c247de272f3829fcd41f8bd24476d48d3bf8840c5bd22558b56062e5e7a",
+  "artifactUnchanged": true
+}

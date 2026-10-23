@@ -1,0 +1,160 @@
+{
+  "source": "571e0169b5b05fd3fff9a144d0c735014fef308c",
+  "worker": "19064c247de272f3829fcd41f8bd24476d48d3bf8840c5bd22558b56062e5e7a",
+  "origin": "http://127.0.0.1:4176",
+  "viewport": "desktop",
+  "inputMode": "mouse",
+  "syntheticOnly": true,
+  "sandbox": true,
+  "resetTokenHash": "37e7130bba2e5b628d1957d8c1911d454179ceaac170875a5a3c5ae09ca42786",
+  "resetManifestPath": "/tmp/ddehack-controls-840a1650-4091-41eb-8028-bff9bb4954c5.json",
+  "resetManifestHash": "281f63dfcb3618b874354fc4c133bde968ecd5cdf43f6d644d9f4805b1056400",
+  "checks": [
+    {
+      "label": "fresh reserved fixture gate before the first write",
+      "passed": true
+    },
+    {
+      "label": "member has no leader editing controls",
+      "passed": true
+    },
+    {
+      "label": "native empty idea validation and saved-idea Lock prerequisite",
+      "passed": true
+    },
+    {
+      "label": "description is required before any save confirmation",
+      "passed": true
+    },
+    {
+      "label": "500-character description boundary is enforced by real typing",
+      "passed": true
+    },
+    {
+      "label": "save idea persists and enables Lock",
+      "passed": true
+    },
+    {
+      "label": "rename required and minimum length validation",
+      "passed": true
+    },
+    {
+      "label": "rename persists",
+      "passed": true
+    },
+    {
+      "label": "all eight palette inputs respond to actual mouse or touch",
+      "passed": true
+    },
+    {
+      "label": "palette persists",
+      "passed": true
+    },
+    {
+      "label": "accept request persists membership",
+      "passed": true
+    },
+    {
+      "label": "decline request leaves applicant teamless",
+      "passed": true
+    },
+    {
+      "label": "remove accepted member recalculates their private access",
+      "passed": true
+    },
+    {
+      "label": "lock persists and removes editing for leader and member",
+      "passed": true
+    }
+  ],
+  "writes": [
+    {
+      "actor": "leader",
+      "action": "save-workspace-idea"
+    },
+    {
+      "actor": "leader",
+      "action": "rename-team"
+    },
+    {
+      "actor": "leader",
+      "action": "team-style"
+    },
+    {
+      "actor": "leader",
+      "action": "respond-team"
+    },
+    {
+      "actor": "leader",
+      "action": "respond-team"
+    },
+    {
+      "actor": "leader",
+      "action": "remove-workspace-member"
+    },
+    {
+      "actor": "leader",
+      "action": "lock-team"
+    }
+  ],
+  "blocked": [],
+  "pageErrors": [],
+  "captures": [
+    {
+      "path": "evidence/v7-team-desktop-verified/leader-desktop-saved-before-lock.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "path": "evidence/v7-team-desktop-verified/leader-desktop-locked.png",
+      "original": true,
+      "fullPage": false
+    }
+  ],
+  "confirmations": [
+    {
+      "actor": "leader",
+      "action": "save-workspace-idea",
+      "target": "Synthetic Green Loop"
+    },
+    {
+      "actor": "leader",
+      "action": "rename-team",
+      "target": "Synthetic Renamed Loop"
+    },
+    {
+      "actor": "leader",
+      "action": "team-style",
+      "target": "Synthetic Renamed Loop"
+    },
+    {
+      "actor": "leader",
+      "action": "respond-team",
+      "target": "Synthetic Team Accept · Synthetic Renamed Loop"
+    },
+    {
+      "actor": "leader",
+      "action": "respond-team",
+      "target": "Synthetic Team Decline · Synthetic Renamed Loop"
+    },
+    {
+      "actor": "leader",
+      "action": "remove-workspace-member",
+      "target": "Synthetic Team Accept · ID fake_teamqa_accept"
+    },
+    {
+      "actor": "leader",
+      "action": "lock-team",
+      "target": "Synthetic Renamed Loop"
+    }
+  ],
+  "browserStarted": true,
+  "failure": "locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('tabpanel', { name: 'Team', exact: true }).getByLabel('Reason for deleting your team', { exact: true })\u001b[22m\n",
+  "failureState": {
+    "requests": [],
+    "details": []
+  },
+  "browserClosed": true,
+  "workerAfter": "19064c247de272f3829fcd41f8bd24476d48d3bf8840c5bd22558b56062e5e7a",
+  "artifactUnchanged": true
+}

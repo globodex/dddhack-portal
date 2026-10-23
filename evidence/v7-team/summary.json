@@ -1,34 +1,28 @@
 {
-  "source": "b95c4fb",
+  "latestHarnessSource": "973e685",
   "runtimeBase": "8a9daadb96e360340620ab5f0619d0489b2d3e50",
-  "workerSha256": "d43976f1cd0105eea93f24fe102afe36b18c810c8410db5fb17252cbb89fccf2",
+  "runtimeCorrection": {
+    "integrationCommit": "7d38178",
+    "laneCommit": "447bf32",
+    "description": "Saved participant display names in membership actions and confirmations"
+  },
+  "workerSha256": "19064c247de272f3829fcd41f8bd24476d48d3bf8840c5bd22558b56062e5e7a",
   "syntheticOnly": true,
   "publicationRequested": false,
   "tests": {
     "command": "node --import tsx --test --test-concurrency=1 tests/team-http-flow.test.ts tests/team-control-fixtures.test.ts tests/team-write-reset-guard.test.ts",
-    "passed": 3,
+    "passed": 4,
     "failed": 0,
-    "scope": "in-process HTTP handler and disposable SQLite service contracts, not browser interaction coverage"
+    "scope": "in-process HTTP handler, disposable SQLite service contracts, reset guards"
   },
   "positiveHttpFlow": {
     "successfulWrites": 10,
-    "actions": [
-      "save-workspace-idea",
-      "rename-team",
-      "team-style",
-      "respond-team:accept",
-      "respond-team:decline",
-      "remove-workspace-member",
-      "lock-team",
-      "delete-own-team",
-      "create-workspace-team",
-      "request-team"
-    ],
     "verified": [
       "persisted state re-read per actor",
       "member edit denied",
       "locked rename denied",
       "removed member private idea revoked",
+      "chosen profile names preserved when auth name falls back to email",
       "removed team recoverable history retained",
       "submission attempts unchanged",
       "private no-store response headers",
@@ -39,28 +33,138 @@
   "build": {
     "command": "npm run build",
     "status": "passed",
-    "artifactFiles": 185,
-    "sourceNote": "built same runtime source as8a9daad; subsequent commits changed test harness only"
+    "artifactFiles": 185
   },
   "browser": {
-    "status": "blocked-before-first-request",
-    "attemptedMode": "desktop",
-    "passedInteractionChecks": 0,
-    "writes": 0,
-    "screenshots": 0,
-    "reason": "Chromium SUID sandbox helper is misconfigured; sandbox-preserving user-namespace probe also reported No usable sandbox",
+    "status": "passed-scoped-controls",
+    "checksPassed": 82,
+    "writes": 40,
+    "unexpectedRequests": 0,
+    "pageErrors": 0,
+    "modes": [
+      {
+        "mode": "desktop",
+        "source": "e95ec2d4a9f73f76f57c65f33fc4cb6414baf907",
+        "worker": "19064c247de272f3829fcd41f8bd24476d48d3bf8840c5bd22558b56062e5e7a",
+        "checksPassed": 20,
+        "writes": 10,
+        "unexpectedRequests": 0,
+        "pageErrors": 0,
+        "sandbox": true,
+        "browserClosed": true,
+        "artifactUnchanged": true,
+        "report": "evidence/v7-team-desktop-verified/report.json",
+        "captures": [
+          {
+            "path": "evidence/v7-team-desktop-verified/leader-desktop-saved-before-lock.png",
+            "original": true,
+            "fullPage": false
+          },
+          {
+            "path": "evidence/v7-team-desktop-verified/leader-desktop-locked.png",
+            "original": true,
+            "fullPage": false
+          }
+        ]
+      },
+      {
+        "mode": "mobile",
+        "source": "e95ec2d4a9f73f76f57c65f33fc4cb6414baf907",
+        "worker": "19064c247de272f3829fcd41f8bd24476d48d3bf8840c5bd22558b56062e5e7a",
+        "checksPassed": 20,
+        "writes": 10,
+        "unexpectedRequests": 0,
+        "pageErrors": 0,
+        "sandbox": true,
+        "browserClosed": true,
+        "artifactUnchanged": true,
+        "report": "evidence/v7-team-mobile-verified/report.json",
+        "captures": [
+          {
+            "path": "evidence/v7-team-mobile-verified/leader-mobile-saved-before-lock.png",
+            "original": true,
+            "fullPage": false
+          },
+          {
+            "path": "evidence/v7-team-mobile-verified/leader-mobile-locked.png",
+            "original": true,
+            "fullPage": false
+          }
+        ]
+      },
+      {
+        "mode": "tablet",
+        "source": "e95ec2d4a9f73f76f57c65f33fc4cb6414baf907",
+        "worker": "19064c247de272f3829fcd41f8bd24476d48d3bf8840c5bd22558b56062e5e7a",
+        "checksPassed": 20,
+        "writes": 10,
+        "unexpectedRequests": 0,
+        "pageErrors": 0,
+        "sandbox": true,
+        "browserClosed": true,
+        "artifactUnchanged": true,
+        "report": "evidence/v7-team-tablet-verified/report.json",
+        "captures": [
+          {
+            "path": "evidence/v7-team-tablet-verified/leader-tablet-saved-before-lock.png",
+            "original": true,
+            "fullPage": false
+          },
+          {
+            "path": "evidence/v7-team-tablet-verified/leader-tablet-locked.png",
+            "original": true,
+            "fullPage": false
+          }
+        ]
+      },
+      {
+        "mode": "keyboard",
+        "source": "973e685c49e465806ec8ba518f4b8c4bf46cfc60",
+        "worker": "19064c247de272f3829fcd41f8bd24476d48d3bf8840c5bd22558b56062e5e7a",
+        "checksPassed": 22,
+        "writes": 10,
+        "unexpectedRequests": 0,
+        "pageErrors": 0,
+        "sandbox": true,
+        "browserClosed": true,
+        "artifactUnchanged": true,
+        "report": "evidence/v7-team-keyboard-verified/report.json",
+        "captures": [
+          {
+            "path": "evidence/v7-team-keyboard-verified/leader-keyboard-saved-before-lock.png",
+            "original": true,
+            "fullPage": false
+          },
+          {
+            "path": "evidence/v7-team-keyboard-verified/leader-keyboard-locked.png",
+            "original": true,
+            "fullPage": false
+          }
+        ]
+      }
+    ],
+    "physicalDeviceTesting": false,
     "sandboxDisabled": false,
-    "evidence": "../v7-team-desktop/report.json",
-    "remainingModes": [
-      "desktop",
-      "mobile touch emulation",
-      "tablet touch emulation",
-      "keyboard"
-    ]
+    "executionNote": "Approved executor escalation permits Chromium sandbox startup; chromiumSandbox:true with no sandbox-disable flags",
+    "freshResetPerMode": true,
+    "screenshots": 8,
+    "screenshotsVisuallyReviewed": 4,
+    "visualTargetComparison": "Not performed in this lane; existing accepted product visuals preserved"
+  },
+  "earlierFailures": {
+    "preserved": [
+      "evidence/v7-team-desktop/report.json",
+      "evidence/v7-team-desktop-resumed/report.json",
+      "evidence/v7-team/desktop-disclosure-harness-failure.json",
+      "evidence/v7-team/desktop-hidden-reason-harness-failure.json",
+      "evidence/v7-team/keyboard-initial-focus-failure.json",
+      "evidence/v7-team/keyboard-boundary-harness-failure.json"
+    ],
+    "note": "Sandbox startup failure, confirmed request-name defect, and harness assumptions preserved separately; final mode results above use fresh resets after corrections"
   },
   "remaining": [
-    "Execute positive browser interactions after sandbox infrastructure is repaired",
-    "Capture and review actual screenshots; no screenshot claim in this lane",
-    "Integration owner must run final combined regression after merges"
+    "Integration owner final combined regression after merges",
+    "Managed sign-in/logout and physical device checks are outside this lane",
+    "Library delivery and comparison to selected visual targets handled by integration owner"
   ]
 }

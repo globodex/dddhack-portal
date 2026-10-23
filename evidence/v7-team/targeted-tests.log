@@ -1,11 +1,12 @@
-✔ local Team control seed is additive, guarded and exercises existing membership/lock/removal contracts (108.79933ms)
-✔ synthetic Team HTTP flow persists ten writes and revokes removed-member private access (151.562629ms)
-✔ Team write reset accepts only matching explicit local reset evidence (5.473402ms)
-ℹ tests 3
+✔ local Team control seed is additive, guarded and exercises existing membership/lock/removal contracts (113.347823ms)
+✔ synthetic Team HTTP flow persists ten writes and revokes removed-member private access (218.721494ms)
+✔ Team write reset accepts only matching explicit local reset evidence (5.563386ms)
+✔ Team reset root mismatch keeps its message and isolated origin (0.705242ms)
+ℹ tests 4
 ℹ suites 0
-ℹ pass 3
+ℹ pass 4
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 1344.560864
+ℹ duration_ms 2175.487637

@@ -1,0 +1,70 @@
+{
+  "source": "aafb3ff5193e9240f1745b1b27125e476a6a2982",
+  "worker": "19064c247de272f3829fcd41f8bd24476d48d3bf8840c5bd22558b56062e5e7a",
+  "origin": "http://127.0.0.1:4176",
+  "viewport": "keyboard",
+  "inputMode": "keyboard",
+  "syntheticOnly": true,
+  "sandbox": true,
+  "resetTokenHash": "265166740d5f77107e4cafbb907d0bec563a951325aa3bc5119f771d2e086931",
+  "resetManifestPath": "/tmp/ddehack-controls-84c68e06-65f7-4bf8-a6cc-6fd4d6411fa7.json",
+  "resetManifestHash": "c0c69e4012430f8032eb691f0e28f3b66fb81eb1213f26e6a42eef8efbdf719a",
+  "checks": [
+    {
+      "label": "dashboard tabs support Arrow keys, Home and End",
+      "passed": true
+    },
+    {
+      "label": "fresh reserved fixture gate before the first write",
+      "passed": true
+    },
+    {
+      "label": "member has no leader editing controls",
+      "passed": true
+    },
+    {
+      "label": "native empty idea validation and saved-idea Lock prerequisite",
+      "passed": true
+    },
+    {
+      "label": "description is required before any save confirmation",
+      "passed": true
+    },
+    {
+      "label": "500-character description boundary is enforced by real typing",
+      "passed": true
+    }
+  ],
+  "writes": [],
+  "blocked": [],
+  "pageErrors": [],
+  "captures": [],
+  "confirmations": [],
+  "browserStarted": true,
+  "failedCheck": "confirmation traps Tab and cancels with Escape without writing",
+  "failure": "Expected values to be strictly equal:\n\nfalse !== true\n",
+  "failureStack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n\n    at file:///workspace/v7-team/scripts/qa-team-write-v6.mjs:395:16\n    at async record (file:///workspace/v7-team/scripts/qa-team-write-v6.mjs:182:5)\n    at async file:///workspace/v7-team/scripts/qa-team-write-v6.mjs:374:5",
+  "failureState": {
+    "requests": [
+      "Synthetic Team AcceptAcceptDecline",
+      "Synthetic Team DeclineAcceptDecline"
+    ],
+    "details": [
+      {
+        "summary": "Rename team",
+        "open": false
+      },
+      {
+        "summary": "Membership requests",
+        "open": false
+      },
+      {
+        "summary": "Customize your team badge and accent",
+        "open": false
+      }
+    ]
+  },
+  "browserClosed": true,
+  "workerAfter": "19064c247de272f3829fcd41f8bd24476d48d3bf8840c5bd22558b56062e5e7a",
+  "artifactUnchanged": true
+}

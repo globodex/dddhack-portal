@@ -1,0 +1,214 @@
+{
+  "source": "973e685c49e465806ec8ba518f4b8c4bf46cfc60",
+  "worker": "19064c247de272f3829fcd41f8bd24476d48d3bf8840c5bd22558b56062e5e7a",
+  "origin": "http://127.0.0.1:4176",
+  "viewport": "keyboard",
+  "inputMode": "keyboard",
+  "syntheticOnly": true,
+  "sandbox": true,
+  "resetTokenHash": "b45c20f82e49e7e12d051f29c2e60d30855524928722066904def829e5397327",
+  "resetManifestPath": "/tmp/ddehack-controls-f4332d9c-873d-4a7d-91a4-96dcef08b85c.json",
+  "resetManifestHash": "63aaf5da71b3429ab8e7d90f762c15fd9eec974e16e4320b7c83a38d9782b123",
+  "checks": [
+    {
+      "label": "dashboard tabs support Arrow keys, Home and End",
+      "passed": true
+    },
+    {
+      "label": "fresh reserved fixture gate before the first write",
+      "passed": true
+    },
+    {
+      "label": "member has no leader editing controls",
+      "passed": true
+    },
+    {
+      "label": "native empty idea validation and saved-idea Lock prerequisite",
+      "passed": true
+    },
+    {
+      "label": "description is required before any save confirmation",
+      "passed": true
+    },
+    {
+      "label": "500-character description boundary is enforced by real typing",
+      "passed": true
+    },
+    {
+      "label": "native confirmation supports Tab, Shift+Tab and Escape without writing",
+      "passed": true
+    },
+    {
+      "label": "save idea persists and enables Lock",
+      "passed": true
+    },
+    {
+      "label": "rename required and minimum length validation",
+      "passed": true
+    },
+    {
+      "label": "rename persists",
+      "passed": true
+    },
+    {
+      "label": "all eight palette inputs respond to actual mouse or touch",
+      "passed": true
+    },
+    {
+      "label": "palette persists",
+      "passed": true
+    },
+    {
+      "label": "accept request persists membership",
+      "passed": true
+    },
+    {
+      "label": "decline request leaves applicant teamless",
+      "passed": true
+    },
+    {
+      "label": "remove accepted member recalculates their private access",
+      "passed": true
+    },
+    {
+      "label": "lock persists and removes editing for leader and member",
+      "passed": true
+    },
+    {
+      "label": "cancelled named deletion keeps the sole team intact",
+      "passed": true
+    },
+    {
+      "label": "named sole unlocked deletion returns leader to teamless state",
+      "passed": true
+    },
+    {
+      "label": "replacement team name remains required",
+      "passed": true
+    },
+    {
+      "label": "teamless eligible participant can create a replacement team",
+      "passed": true
+    },
+    {
+      "label": "teamless applicant can request the newly created team",
+      "passed": true
+    },
+    {
+      "label": "all writes stayed within the exact named-fake action allowlist",
+      "passed": true
+    }
+  ],
+  "writes": [
+    {
+      "actor": "leader",
+      "action": "save-workspace-idea"
+    },
+    {
+      "actor": "leader",
+      "action": "rename-team"
+    },
+    {
+      "actor": "leader",
+      "action": "team-style"
+    },
+    {
+      "actor": "leader",
+      "action": "respond-team"
+    },
+    {
+      "actor": "leader",
+      "action": "respond-team"
+    },
+    {
+      "actor": "leader",
+      "action": "remove-workspace-member"
+    },
+    {
+      "actor": "leader",
+      "action": "lock-team"
+    },
+    {
+      "actor": "solo",
+      "action": "delete-own-team"
+    },
+    {
+      "actor": "solo",
+      "action": "create-workspace-team"
+    },
+    {
+      "actor": "decline",
+      "action": "request-team"
+    }
+  ],
+  "blocked": [],
+  "pageErrors": [],
+  "captures": [
+    {
+      "path": "evidence/v7-team-keyboard-verified/leader-keyboard-saved-before-lock.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "path": "evidence/v7-team-keyboard-verified/leader-keyboard-locked.png",
+      "original": true,
+      "fullPage": false
+    }
+  ],
+  "confirmations": [
+    {
+      "actor": "leader",
+      "action": "save-workspace-idea",
+      "target": "Synthetic Green Loop"
+    },
+    {
+      "actor": "leader",
+      "action": "rename-team",
+      "target": "Synthetic Renamed Loop"
+    },
+    {
+      "actor": "leader",
+      "action": "team-style",
+      "target": "Synthetic Renamed Loop"
+    },
+    {
+      "actor": "leader",
+      "action": "respond-team",
+      "target": "Synthetic Team Accept · Synthetic Renamed Loop"
+    },
+    {
+      "actor": "leader",
+      "action": "respond-team",
+      "target": "Synthetic Team Decline · Synthetic Renamed Loop"
+    },
+    {
+      "actor": "leader",
+      "action": "remove-workspace-member",
+      "target": "Synthetic Team Accept · ID fake_teamqa_accept"
+    },
+    {
+      "actor": "leader",
+      "action": "lock-team",
+      "target": "Synthetic Renamed Loop"
+    },
+    {
+      "actor": "solo",
+      "action": "delete-own-team",
+      "target": "Synthetic Solo Team"
+    },
+    {
+      "actor": "solo",
+      "action": "create-workspace-team",
+      "target": "Synthetic Team QA Created"
+    },
+    {
+      "actor": "decline",
+      "action": "request-team",
+      "target": "Synthetic Team QA Created"
+    }
+  ],
+  "browserStarted": true,
+  "browserClosed": true,
+  "workerAfter": "19064c247de272f3829fcd41f8bd24476d48d3bf8840c5bd22558b56062e5e7a",
+  "artifactUnchanged": true
+}
