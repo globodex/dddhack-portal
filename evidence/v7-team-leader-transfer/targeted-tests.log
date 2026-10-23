@@ -1,0 +1,21 @@
+✔ admin crown action identifies the actual teammate and is hidden for unavailable targets (10.554424ms)
+✔ admin crown transfer changes exactly one leader and records only safe identities (55.777767ms)
+✔ participants, current leaders and judges cannot use staff crown transfer (32.107548ms)
+✔ staff permission is rechecked after a prior authorized read (36.987506ms)
+✔ frozen results reject crown transfer without changing the team or audit (41.280336ms)
+✔ transfer rejects outsiders, removed teammates, stale crowns and missing confirmations (32.928775ms)
+✔ atomic crown CAS rolls back its guard and audit after concurrent membership change (30.653128ms)
+✔ atomic crown CAS rolls back its guard and audit after concurrent removed change (30.649608ms)
+✔ atomic crown CAS rolls back its guard and audit after concurrent leader change (31.896281ms)
+✔ atomic crown CAS rolls back its guard and audit after concurrent frozen change (28.482971ms)
+✔ audit failure rolls back the crown change and temporary guard together (30.413749ms)
+✔ locked crown guard permits no other fields, outsiders or mismatched transfer tuple (35.665645ms)
+✔ locked absent-leader transfer preserves lock and history; only personally checked-in new leader can continue (62.391702ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1556.909373

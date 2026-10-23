@@ -1,0 +1,39 @@
+{
+  "source": "d83e7d0",
+  "helperCommits": [
+    "b920f68",
+    "b5b5ef9"
+  ],
+  "componentCommit": "13fcfe5",
+  "testCommit": "d83e7d0",
+  "migrationSource": "bb302cc:db/migrations/0023_admin_leader_transfer.sql",
+  "migrationSha256": "6d6ddc18690301f03584fd3bd8f6cbdaad808c93b43a10b0c1991ffe369c3297",
+  "migrationOwnership": "Exact root-owned migration copied for local tests only; not included in Team test commits",
+  "tests": {
+    "passed": 13,
+    "failed": 0,
+    "command": "node --import tsx --test --test-concurrency=1 tests/team-leader-transfer.test.ts tests/admin-leader-transfer.test.ts",
+    "scope": "12 real disposable SQLite service/trigger tests plus1 server-rendered crown-control contract"
+  },
+  "verified": [
+    "Admin and owner transfer to a current teammate with no mandatory personal check-in at transfer time",
+    "Anonymous, participant, current leader and judge calls denied",
+    "Same service instance rechecks revoked admin role",
+    "Removed/outsider/stale/already-current targets denied and strict confirmation required",
+    "Atomic CAS rechecks membership removal, participant removal, changed leader and concurrent result freeze",
+    "Audit failure rolls back both crown and temporary guard",
+    "Locked guard rejects case-only rename, bio change, outsiders and mismatched tuple",
+    "Existing team lock, private idea, memberships, submitted version and receipt history preserved",
+    "Old leader remains member and cannot submit after transfer",
+    "New leader must personally check in before committing",
+    "Three committed attempts remain the ceiling after a second transfer",
+    "Audit detail selects safe team and old/new leader identities only",
+    "Actual Lucide crown control hidden for current leader, removed targets and denied staff capability"
+  ],
+  "typecheck": "passed",
+  "notVerified": [
+    "Mounted admin interaction/browser flow belongs to root integration",
+    "No hosted Site or production data touched",
+    "No publication performed"
+  ]
+}
