@@ -1,0 +1,17 @@
+✔ all role shells share one mobile dialog with ordinary role-authorized links and no section labels (79.697978ms)
+✔ modal lifetime locks page scroll, dismisses on desktop resize and restores trigger without moving the page (0.865122ms)
+✔ heading dots retain all eight approved symbolic expressions and eight palette values as decorative marks (17.42346ms)
+✔ cursor attention is bounded in both axes, follows direction, and resets invalid coordinates safely (0.8441ms)
+✔ centered loader has one accessible status and supports content or viewport placement and pause (0.914787ms)
+✔ Schedule removes the rejected helper line while approved artwork and ordinary chapter order stay present (28.404147ms)
+✔ route skeletons describe one busy region and keep decorative placeholders outside the accessibility tree (20.71158ms)
+✔ route shapes preserve distinct profile, dashboard, cards, table and form structures (0.231919ms)
+✔ initial loading keeps the shared shell, while supplied loaded content has no skeleton overlay (18.776297ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1038.717445

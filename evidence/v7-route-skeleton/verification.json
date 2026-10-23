@@ -1,0 +1,91 @@
+{
+  "source": "517a9e4e95aafe45a3d10fb8bf0f7b2b923f97d1",
+  "workerSha": "80c36becbd5b71ace5b7012995e4deb70eaaf3e576045dfff67a78c74a4daecf",
+  "scopedTests": {
+    "passed": 9,
+    "failed": 0
+  },
+  "typecheck": "passed",
+  "buildArtifactReview": {
+    "passed": true,
+    "artifactFiles": 189
+  },
+  "controlledBrowserChecks": {
+    "passed": 27,
+    "failed": 0,
+    "cases": 3,
+    "report": "517a9e4-LzbdGa/report.json",
+    "label": "Controlled delayed response/error/retry; not latency measurements"
+  },
+  "screenshots": [
+    {
+      "path": "/workspace/v7-performance/evidence/v7-route-skeleton/517a9e4-LzbdGa/desktop-dashboard-loading-1440x900.png",
+      "route": "/dashboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "517a9e4e95aafe45a3d10fb8bf0f7b2b923f97d1",
+      "workerSha": "80c36becbd5b71ace5b7012995e4deb70eaaf3e576045dfff67a78c74a4daecf",
+      "inspected": true,
+      "referenceCompared": false,
+      "review": "Neutral route-shaped placeholders fit desktop/mobile, shell stays visible, no record content or interactive imitation."
+    },
+    {
+      "path": "/workspace/v7-performance/evidence/v7-route-skeleton/517a9e4-LzbdGa/touch-people-loading-390x844.png",
+      "route": "/discover/participants",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "517a9e4e95aafe45a3d10fb8bf0f7b2b923f97d1",
+      "workerSha": "80c36becbd5b71ace5b7012995e4deb70eaaf3e576045dfff67a78c74a4daecf",
+      "inspected": true,
+      "referenceCompared": false,
+      "review": "Neutral route-shaped placeholders fit desktop/mobile, shell stays visible, no record content or interactive imitation."
+    },
+    {
+      "path": "/workspace/v7-performance/evidence/v7-route-skeleton/517a9e4-LzbdGa/desktop-profile-loading-1440x900.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "517a9e4e95aafe45a3d10fb8bf0f7b2b923f97d1",
+      "workerSha": "80c36becbd5b71ace5b7012995e4deb70eaaf3e576045dfff67a78c74a4daecf",
+      "inspected": true,
+      "referenceCompared": false,
+      "review": "Neutral route-shaped placeholders fit desktop/mobile, shell stays visible, no record content or interactive imitation."
+    }
+  ],
+  "productChanges": [
+    "Route-layout placeholders only while loading",
+    "CSS opacity pulse disabled for reduced motion",
+    "Accessible busy region/status, decorative shapes only",
+    "No added requests, timers, tracking, or cached private data"
+  ],
+  "runtimeLimits": [
+    "Shared request timeout/retry state remains integration owner scope",
+    "Browser performance timings separately owned by performance audit agent",
+    "No hosted capacity or perceived percent improvement claim",
+    "Private authorization and no-store boundaries unchanged"
+  ],
+  "readOnlyFindings": [
+    {
+      "evidence": "app/[[...path]]/page.tsx protected service.view return is discarded, followed by Portal useEffect GET",
+      "suggestion": "Reuse authorized SSR projection for exact same actor/route and skip redundant mount GET; preserve private no-store and session clearing"
+    },
+    {
+      "evidence": "Nine built client JS files total695606bytes; gzip204748bytes; largest242429bytes",
+      "limit": "Artifact inventory, not actual per-route transfer or execution time",
+      "suggestion": "Measure role/editor chunk loading before bounded code splitting; keep server authorization unchanged"
+    },
+    {
+      "evidence": "Portal main/sidebar navigation uses ordinary href anchors",
+      "suggestion": "Use measured client navigation only with correct auth/session revalidation; browser audit owns document reload evidence"
+    }
+  ],
+  "noProductionAccess": true,
+  "publication": false,
+  "allOwnedPreviewsStopped": true
+}

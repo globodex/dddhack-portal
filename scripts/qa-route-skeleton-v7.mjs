@@ -59,7 +59,7 @@ try {
       assert.equal(await skeleton.getAttribute("aria-busy"), "true");
       assert.equal(await skeleton.getByRole("status").count(), 1);
       assert.equal(await skeleton.locator("button,input,a").count(), 0);
-      const shell = page.locator(viewport.width < 1200 ? ".mobile-header" : ".sidebar");
+      const shell = page.locator(viewport.width < 1200 || path === "/profile" ? ".mobile-header" : ".sidebar");
       assert.equal(await shell.isVisible(), true);
       const animation = await page.locator(".route-skeleton-shapes").evaluate((node) => getComputedStyle(node).animationName);
       assert.equal(animation, motion === "reduce" ? "none" : "route-skeleton-pulse");

@@ -1,0 +1,124 @@
+{
+  "source": "517a9e4e95aafe45a3d10fb8bf0f7b2b923f97d1",
+  "workerSha": "80c36becbd5b71ace5b7012995e4deb70eaaf3e576045dfff67a78c74a4daecf",
+  "syntheticOnly": true,
+  "chromiumSandbox": true,
+  "controlledNetworkGates": true,
+  "performanceBenchmark": false,
+  "cases": [
+    {
+      "label": "desktop-dashboard",
+      "route": "/dashboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "reducedMotion": "no-preference",
+      "passed": true,
+      "checks": 9,
+      "reads": 2,
+      "assertions": [
+        "busy status",
+        "decorative controls",
+        "shell visible",
+        "motion preference",
+        "no horizontal overflow",
+        "no extra request",
+        "error removes skeleton",
+        "retry loads content",
+        "no loaded-content overlay"
+      ]
+    },
+    {
+      "label": "touch-people",
+      "route": "/discover/participants",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "reducedMotion": "reduce",
+      "passed": true,
+      "checks": 9,
+      "reads": 2,
+      "assertions": [
+        "busy status",
+        "decorative controls",
+        "shell visible",
+        "motion preference",
+        "no horizontal overflow",
+        "no extra request",
+        "error removes skeleton",
+        "retry loads content",
+        "no loaded-content overlay"
+      ]
+    },
+    {
+      "label": "desktop-profile",
+      "route": "/profile",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "reducedMotion": "reduce",
+      "passed": true,
+      "checks": 9,
+      "reads": 2,
+      "assertions": [
+        "busy status",
+        "decorative controls",
+        "shell visible",
+        "motion preference",
+        "no horizontal overflow",
+        "no extra request",
+        "error removes skeleton",
+        "retry loads content",
+        "no loaded-content overlay"
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "/workspace/v7-performance/evidence/v7-route-skeleton/517a9e4-LzbdGa/desktop-dashboard-loading-1440x900.png",
+      "route": "/dashboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "517a9e4e95aafe45a3d10fb8bf0f7b2b923f97d1",
+      "workerSha": "80c36becbd5b71ace5b7012995e4deb70eaaf3e576045dfff67a78c74a4daecf",
+      "inspected": true,
+      "referenceCompared": false,
+      "review": "Neutral route-shaped placeholders fit desktop/mobile, shell stays visible, no record content or interactive imitation."
+    },
+    {
+      "path": "/workspace/v7-performance/evidence/v7-route-skeleton/517a9e4-LzbdGa/touch-people-loading-390x844.png",
+      "route": "/discover/participants",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "517a9e4e95aafe45a3d10fb8bf0f7b2b923f97d1",
+      "workerSha": "80c36becbd5b71ace5b7012995e4deb70eaaf3e576045dfff67a78c74a4daecf",
+      "inspected": true,
+      "referenceCompared": false,
+      "review": "Neutral route-shaped placeholders fit desktop/mobile, shell stays visible, no record content or interactive imitation."
+    },
+    {
+      "path": "/workspace/v7-performance/evidence/v7-route-skeleton/517a9e4-LzbdGa/desktop-profile-loading-1440x900.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "517a9e4e95aafe45a3d10fb8bf0f7b2b923f97d1",
+      "workerSha": "80c36becbd5b71ace5b7012995e4deb70eaaf3e576045dfff67a78c74a4daecf",
+      "inspected": true,
+      "referenceCompared": false,
+      "review": "Neutral route-shaped placeholders fit desktop/mobile, shell stays visible, no record content or interactive imitation."
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "browserClosed": true,
+  "browser": "154.0.8037.57"
+}
