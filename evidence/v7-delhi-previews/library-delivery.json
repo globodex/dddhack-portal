@@ -1,0 +1,50 @@
+{
+  "results": [
+    {
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/1-new-delhi-smaller-landmarks-1440x500.png",
+      "file_id": "file_00000000b77c81fdb29af04015fa630b",
+      "library_file_id": "libfile_2d5a46035acc8191873448678c66f7c3",
+      "file_name": "1-new-delhi-smaller-landmarks-1440x500.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 290029,
+      "original_local_path": "/workspace/v7-delhi-preview/evidence/v7-delhi-previews/1-new-delhi-smaller-landmarks-1440x500.png",
+      "local_xattrs_applied": true
+    },
+    {
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/2-new-delhi-smaller-landmarks-outline-1440x500.png",
+      "file_id": "file_000000006aa481f5bccd165d37cea862",
+      "library_file_id": "libfile_4370d8a4c5808191b61a35322d110a53",
+      "file_name": "2-new-delhi-smaller-landmarks-outline-1440x500.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 297920,
+      "original_local_path": "/workspace/v7-delhi-preview/evidence/v7-delhi-previews/2-new-delhi-smaller-landmarks-outline-1440x500.png",
+      "local_xattrs_applied": true
+    }
+  ],
+  "warnings": [],
+  "external_connectors_accessed": false
+}
