@@ -314,6 +314,45 @@ try {
     },
   );
   await check(
+    "compact crown is a 44px pointer target without an inflated row or overflow",
+    async () => {
+      const button = admin.page.getByRole("button", {
+        name: `Make ${target.newName} team leader for ${target.name}`,
+        exact: true,
+      });
+      await button.evaluate((node) => node.scrollIntoView({ block: "center" }));
+      const box = await button.boundingBox();
+      assert.ok(box);
+      assert.equal(box.width, 44);
+      assert.equal(box.height, 44);
+      assert.equal(await button.isEnabled(), true);
+      const metrics = await button.evaluate((node) => {
+        const box = node.getBoundingClientRect();
+        const row = node.closest("li");
+        return {
+          hit:
+            document
+              .elementFromPoint(box.x + box.width / 2, box.y + box.height / 2)
+              ?.closest("button") === node,
+          rowHeight: row.getBoundingClientRect().height,
+          scrollWidth: document.documentElement.scrollWidth,
+          viewportWidth: innerWidth,
+        };
+      });
+      assert.equal(metrics.hit, true);
+      // Allow up to three lines of member content on the narrow viewport.
+      assert.ok(
+        metrics.rowHeight <= 128,
+        "Crown must not inflate a member row into a card",
+      );
+      assert.ok(
+        metrics.scrollWidth <= metrics.viewportWidth + 1,
+        "No horizontal page overflow",
+      );
+      report.crownLayout = { width: box.width, height: box.height, ...metrics };
+    },
+  );
+  await check(
     "named cancellation sends no POST and leaves the crown unchanged",
     async () => {
       const count = report.posts.length;
