@@ -1,4 +1,5 @@
 import { auditReason } from "./security";
+import { creditBatchCommand, creditBatchesView } from "./credit-batches";
 import type { PortalViewOptions } from "./discover-participants";
 import { submissionToolChoices } from "./submission-tools";
 import { rosterImport } from "./roster-import";
@@ -274,7 +275,7 @@ export class PortalService {
   async live() {
     const s = await this.settings(true);
     demand(
-      s.version > 0 && s.active && policyBlockers(s.policy).length === 0,
+      policyBlockers(s.policy).length === 0,
       409,
       "POLICIES_UNCONFIRMED",
       "Scoring setup is incomplete. Operational submissions and check-in have separate readiness checks.",
@@ -359,6 +360,8 @@ export class PortalService {
       ].includes(action)
     )
       await requireRosterMember(this, actor);
+    const creditBatch = await creditBatchCommand(this, action, data);
+    if (creditBatch !== null) return creditBatch;
     const revised = await new PortalExperience(this).command(
       action === "idea" ? "save-workspace-idea" : action,
       data,
@@ -2304,7 +2307,7 @@ export class PortalService {
           policy: s.policy,
           blockers: policyBlockers(s.policy),
         };
-      return { ...base, items: await this.adminList(list) };
+      return { ...base, items: await this.adminList(list), ...(list === "credits" ? {creditBatches: await creditBatchesView(this)} : {}) };
     }
     if (path.startsWith("/judge")) {
       demand(u.role === "judge", 403, "JUDGE_REQUIRED");

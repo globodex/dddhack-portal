@@ -37,6 +37,7 @@ import {
   X,
 } from "lucide-react";
 import AddAdmins from "./add-admins";
+import AdminCreditBatches from "./admin-credit-batches";
 import Link from "vinext/shims/link";
 import { useDiscoverPeople, peopleDirectoryUrl, readPeoplePage } from "./use-discover-people";
 import { HeadingDot } from "./expressive-heading";
@@ -240,6 +241,8 @@ export function portalConfirmationFor(
 }
 export function portalTargetName(data: View, values: Row): string {
   const id =
+    values.columnId ||
+    values.batchId ||
     values.targetId ||
     values.userId ||
     values.projectId ||
@@ -255,6 +258,8 @@ export function portalTargetName(data: View, values: Row): string {
     ...(data.reviewers || []),
     ...(data.actions || []),
     ...(data.creditInstructions || []),
+    ...(data.creditBatches || []).map((batch: Row) => ({...batch,name:batch.columns.map((c:Row)=>c.heading).join(", ")})),
+    ...(data.creditBatches || []).flatMap((batch:Row)=>batch.columns.map((c:Row)=>({...c,name:c.heading}))),
   ].find(
     (r: Row) =>
       typeof id === "string" &&
@@ -3940,6 +3945,8 @@ export function AdminList({
         )}
       </div>
       {credits ? (
+        <>
+        <AdminCreditBatches batches={data.creditBatches || []} run={run} />
         <div className="table-scroll admin-credit-inventory">
           <table className="admin-credits-table">
             <thead>
@@ -3975,6 +3982,7 @@ export function AdminList({
             </tbody>
           </table>
         </div>
+        </>
       ) : teams ? (
         <ul className="admin-team-list">
           {items.map((team) => (
@@ -4758,6 +4766,7 @@ export default function Portal({
   const [confirmation, setConfirmation] = useState<Confirmation | null>(null);
   const gate = useRef<ConfirmationGate | null>(null),
     actionBusy = useRef(false),
+    mutationKeys = useRef(new Set<string>()),
     loadGeneration = useRef(0),
     loadAbort = useRef<AbortController | null>(null),
     lastRefresh = useRef(0),
@@ -4844,7 +4853,9 @@ export default function Portal({
     };
   }, [path]);
   const run = async (action: string, values: Row) => {
-    if (actionBusy.current) throw new ActionCancelled();
+    const mutationKey=action+":"+(values.columnId||values.batchId||values.projectId||values.teamId||values.userId||values.typeId||values.digest||"page");
+    if (mutationKeys.current.has(mutationKey) || gate.current?.pending) throw new ActionCancelled();
+    mutationKeys.current.add(mutationKey);
     actionBusy.current = true;
     try {
       if (
@@ -4886,7 +4897,8 @@ export default function Portal({
       );
       throw e;
     } finally {
-      actionBusy.current = false;
+      mutationKeys.current.delete(mutationKey);
+      actionBusy.current = mutationKeys.current.size>0;
     }
   };
   const logout = async () => {

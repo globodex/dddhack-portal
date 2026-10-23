@@ -11,6 +11,9 @@ export class ActionCancelled extends Error {
   }
 }
 const labels: Record<string, string> = {
+  "publish-credit-batch": "Publish credit batch",
+  "delete-credit-batch": "Delete credit batch",
+  "delete-credit-column": "Delete credit column",
   "admin-status-bulk": "Change selected participant statuses",
   "admin-status": "Change individual or team status",
   "record-repository-evidence": "Record repository evidence",
@@ -57,6 +60,9 @@ export function confirmationFor(
   target: string,
 ): Confirmation {
   const critical = [
+    "publish-credit-batch",
+    "delete-credit-batch",
+    "delete-credit-column",
     "reveal-ai-scores",
     "reveal-final-scores",
     "unveil-winner",
@@ -70,6 +76,12 @@ export function confirmationFor(
   ].includes(action);
   const title = labels[action] || action.replaceAll("-", " ");
   let description = "";
+  if (action === "publish-credit-batch")
+    description =
+      "Publish these headings and instructions. Available codes will be assigned once to eligible checked-in recipients.";
+  if (action === "delete-credit-batch" || action === "delete-credit-column")
+    description =
+      "Delete the selected credit inventory, recipient mappings, headings and instructions. This cannot revoke vouchers already redeemed with an external provider.";
   if (action === "content-publish")
     description =
       values.scope === "private"
@@ -111,6 +123,8 @@ export function confirmationFor(
     target,
     description,
     confirmLabel:
+      action === "publish-credit-batch" ? "Publish credits" :
+      ["delete-credit-batch","delete-credit-column"].includes(action) ? "Delete credits" :
       action === "submit-project"
         ? "Commit submission"
         : action === "lock-team"
@@ -149,6 +163,9 @@ export function revealConfirmation(
   action: string,
   values: Record<string, any>,
 ) {
+  if (action === "publish-credit-batch") return "PUBLISH_CREDIT_BATCH";
+  if (action === "delete-credit-batch") return "DELETE_CREDIT_BATCH";
+  if (action === "delete-credit-column") return "DELETE_CREDIT_COLUMN";
   if (action === "add-admin") return "ADD_ADMIN";
   return action === "admin-idea-override"
     ? "OVERRIDE_TEAM_IDEA"

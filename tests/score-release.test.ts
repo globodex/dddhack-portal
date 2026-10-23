@@ -319,7 +319,7 @@ test("final stage withholds every undisclosed position, allows manual award orde
     ]);
     await assert.rejects(
       service("admin").command("reveal-final-scores", intent),
-      /SCORING_DISCLOSURE_UNCONFIRMED/,
+      { code: "SCORING_DISCLOSURE_UNCONFIRMED" },
     );
     await batch(db, [
       ["UPDATE event_settings SET policy=?", JSON.stringify(policy)],

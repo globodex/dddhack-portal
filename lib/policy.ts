@@ -1,4 +1,8 @@
 import {
+  deriveOperational,
+  deriveScorePolicyBlockers,
+} from "./derived-readiness";
+import {
   indefiniteRetentionNotice,
   optionalDeploymentRule,
 } from "./operational-setup-contract";
@@ -181,158 +185,39 @@ export const draftPolicy: Policy = {
   projectEngagementRule: "unconfirmed",
 };
 export function policyBlockers(p: Policy): string[] {
-  const b: string[] = decisions.filter((d) => !p.confirmations.includes(d));
-
-  if (!p.teamFormationRule.trim()) b.push("confirmed team-formation rule");
-  if (p.projectEngagementRule === "unconfirmed")
-    b.push("public engagement scoring policy");
-  if (!p.submissionClose || p.submissionClose <= p.submissionOpen)
-    b.push("valid submission window");
-  if (
-    !p.judgingClose ||
-    !p.submissionClose ||
-    p.judgingClose <= p.submissionClose
-  )
-    b.push("valid judging window");
-  if (
-    !p.engagementOpen ||
-    !p.engagementClose ||
-    p.engagementClose <= p.engagementOpen ||
-    p.engagementOpen < p.ideaReveal
-  )
-    b.push("valid engagement window");
-  if (
-    !p.diversityRubric.trim() ||
-    p.diversityAssessment !== "non-demographic-evidence"
-  )
-    b.push("non-demographic diversity rubric");
-  if (p.voteFormula === "unconfirmed") b.push("vote formula");
-  if (
-    p.projectEngagementRule === "score-with-approved-normalization" &&
-    qualificationBlockers(p).length > 0
-  )
-    b.push(...qualificationBlockers(p));
-  for (const k of [
-    "aiFallback",
-    "tieBreak",
-    "codexReviewer",
-    "deploymentRule",
-    "retentionNotice",
-  ] as const)
-    if (!p[k].trim()) b.push(k);
-  if (!p.appealClose || !p.judgingClose || p.appealClose > p.judgingClose)
-    b.push("appeal deadline");
-  if (p.feedbackMax < p.feedbackMin) b.push("feedback limits");
-  return [...new Set(b)];
+  return deriveScorePolicyBlockers(p);
 }
 export function qualificationBlockers(p: Policy): string[] {
-  const b: string[] = [];
-  if (
-    p.projectEngagementRule !== "score-with-approved-normalization" ||
-    !p.engagementQualification?.confirmed
-  )
-    b.push("confirmed engagement qualification rules");
-  for (const key of [
-    "projectEngagement",
-    "feedback",
-    "engagementWindows",
-  ] as const)
-    if (!p.confirmations.includes(key)) b.push(key);
-  if (
-    !p.engagementOpen ||
-    !p.engagementClose ||
-    p.engagementClose <= p.engagementOpen
-  )
-    b.push("scoring engagement window");
-  if (p.feedbackMax < p.feedbackMin) b.push("feedback limits");
-  return b;
+  if (p.projectEngagementRule !== "score-with-approved-normalization")
+    return ["engagement qualification rules"];
+  return deriveScorePolicyBlockers(p).filter((b) =>
+    [
+      "engagement qualification rules",
+      "valid engagement window",
+      "feedback limits",
+    ].includes(b),
+  );
 }
 export function operationalBlockers(p: Policy, operation: Operation): string[] {
-  const required =
-    operation === "submissions"
-      ? ([
-          "submissionOpen",
-          "submissionCutoff",
-          "deploymentRule",
-          "privacyRetention",
-        ] as const)
-      : (["lumaPolicy", "privacyRetention"] as const);
-  const blockers: string[] = required.filter(
-    (key) => !p.confirmations.includes(key),
-  );
-  if (!p.retentionNotice.trim()) blockers.push("retention notice");
-  if (operation === "checkin" && p.lumaRequired)
-    blockers.push("Luma is registration only; portal Going governs check-in");
-  if (operation === "submissions") {
-    if (!p.submissionClose || p.submissionClose <= p.submissionOpen)
-      blockers.push("valid submission window");
-    if (!p.deploymentRule.trim()) blockers.push("deployment eligibility rule");
-  }
-  return blockers;
+  return deriveOperational(p, operation, new Date().toISOString()).blockers;
 }
 export function operationEnabled(
   settings: { active: number; policy: Policy },
   operation: Operation,
 ) {
-  return (
-    !!settings.active &&
-    (settings.policy.operationScopes === null ||
-      settings.policy.operationScopes.includes(operation))
-  );
+  return deriveOperational(settings.policy, operation, new Date().toISOString())
+    .enabled;
 }
 export function setupReadiness(
   settings: { active: number; version: number; policy: Policy },
   now: string,
 ) {
-  const status = (operation: Operation) => {
-    const blockers = operationalBlockers(settings.policy, operation),
-      enabled = operationEnabled(settings, operation),
-      configured = settings.version > 0 && blockers.length === 0;
-    let state = !configured ? "setup-pending" : !enabled ? "disabled" : "ready";
-    if (operation === "submissions" && state === "ready")
-      state =
-        now < settings.policy.submissionOpen
-          ? "scheduled"
-          : now >= settings.policy.submissionClose!
-            ? "closed"
-            : "open";
-    const messages: Record<string, string> = {
-      "setup-pending":
-        operation === "submissions"
-          ? "Submission setup is pending. Profiles, teams and ideas remain available."
-          : "Check-in setup is pending.",
-      disabled:
-        operation === "submissions"
-          ? "Submissions are not enabled yet."
-          : "Check-in is not enabled yet.",
-      scheduled: "Submissions have not opened yet.",
-      closed:
-        "The submission deadline has passed. Committed versions are preserved.",
-      open: "Submissions are open.",
-      ready: "Check-in is ready.",
-    };
-    return {
-      enabled,
-      configured,
-      state,
-      message: messages[state],
-      blockers,
-      allowed:
-        operation === "submissions" ? state === "open" : state === "ready",
-    };
-  };
-  const scoringBlockers = policyBlockers(settings.policy);
+  const scoringBlockers = deriveScorePolicyBlockers(settings.policy);
   return {
     initialized: settings.version > 0,
-    submissions: status("submissions"),
-    checkin: status("checkin"),
-    scoring: {
-      ready:
-        settings.version > 0 &&
-        !!settings.active &&
-        scoringBlockers.length === 0,
-      blockers: scoringBlockers,
-    },
+    submissions: deriveOperational(settings.policy, "submissions", now),
+    checkin: deriveOperational(settings.policy, "checkin", now),
+    scoring: { ready: scoringBlockers.length === 0, blockers: scoringBlockers },
   };
 }
 export { ist } from "./time";

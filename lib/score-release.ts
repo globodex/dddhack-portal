@@ -163,7 +163,17 @@ export async function revealCommand(
   }
   if (action === "reveal-ai-scores")
     demand(state.stage === "community", 409, "SCORE_STAGE_CLOSED");
-  const settings = await s.live();
+  if (action === "reveal-final-scores") {
+    const disclosure = (await s.settings(true)).policy.scoringDisclosure;
+    demand(
+      disclosure && disclosure.criteria.trim() && disclosure.weightage.trim(),
+      409,
+      "SCORING_DISCLOSURE_UNCONFIRMED",
+      "Set scoring criteria and weightage before revealing final scores.",
+    );
+  }
+  const settings =
+    action === "reveal-ai-scores" ? await s.settings(true) : await s.live();
   const revision = (await one<{ version: number }>(
     s.db,
     "SELECT version FROM scoring_revision WHERE id=1",
@@ -236,9 +246,7 @@ export async function revealCommand(
     );
     const disclosure = settings.policy.scoringDisclosure;
     demand(
-      disclosure?.confirmed &&
-        disclosure.criteria.trim() &&
-        disclosure.weightage.trim(),
+      disclosure && disclosure.criteria.trim() && disclosure.weightage.trim(),
       409,
       "SCORING_DISCLOSURE_UNCONFIRMED",
     );

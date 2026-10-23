@@ -169,6 +169,20 @@
       "when": 1792776550786,
       "tag": "0023_voucher_credit_values",
       "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "6",
+      "when": 1792788339987,
+      "tag": "0024_credit_batches",
+      "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "6",
+      "when": 1792788555458,
+      "tag": "0025_derived_operational_gates",
+      "breakpoints": true
     }
   ]
 }

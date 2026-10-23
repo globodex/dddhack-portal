@@ -1010,3 +1010,34 @@ export const registration_absences = sqliteTable("registration_absences", {
   reconciled_at: text("reconciled_at").notNull(),
   cutoff: text("cutoff").notNull(),
 });
+
+export const credit_batches = sqliteTable(
+  "credit_batches",
+  {
+    id: text("id").primaryKey(),
+    digest: text("digest").notNull(),
+    created_by: text("created_by")
+      .notNull()
+      .references(() => users.id),
+    created_at: text("created_at").notNull(),
+    deleted_at: text("deleted_at"),
+  },
+  (table) => [unique().on(table.created_by, table.digest)],
+);
+export const credit_batch_columns = sqliteTable(
+  "credit_batch_columns",
+  {
+    batch_id: text("batch_id")
+      .notNull()
+      .references(() => credit_batches.id),
+    type_id: text("type_id")
+      .notNull()
+      .references(() => credit_types.id),
+    column_key: text("column_key").notNull(),
+    source_heading: text("source_heading").notNull(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.batch_id, table.column_key] }),
+    unique().on(table.type_id),
+  ],
+);

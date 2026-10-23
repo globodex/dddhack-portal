@@ -1,4 +1,5 @@
 import { auditReason } from "./security";
+import { resultControls } from "./result-controls";
 import { discoverParticipants, type PortalViewOptions } from "./discover-participants";
 import { teamFacts, personFacts, selectedRows } from "./directory-facts";
 import {
@@ -980,6 +981,7 @@ export class PortalExperience {
             }
           : {}),
         canManageVenue,
+        resultControls: await resultControls(this.s),
         scoreRelease: await scoreState(this.s).then((s) => ({
           stage: s.stage,
           releaseId: s.active?.id,

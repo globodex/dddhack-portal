@@ -14,7 +14,9 @@ import "./projects-submission-v6.css";
 import "./portal-shell.css";
 import "./mobile-navigation.css";
 import "./route-skeleton.css";
+import "./admin-credit-batches.css";
 export const metadata = {
+  icons: { icon: "/brand/codex-user-supplied.svg" },
   title: "DevDay Exchange Community Hackathon: New Delhi",
   description:
     "The participant and organizer workspace for DevDay Exchange Community Hackathon: New Delhi, 1 November 2026.",
