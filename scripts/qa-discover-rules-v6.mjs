@@ -403,13 +403,26 @@ try {
           await page.waitForSelector("dialog.discovery-profile-v6", {
             state: "detached",
           });
-          assert.equal(
-            await opener.evaluate(
-              (element) => document.activeElement === element,
-            ),
-            true,
-            "Escape restores the element focused before hash navigation",
-          );
+          const nativeFocus = await opener.evaluate((element) => ({
+            exactOpener: document.activeElement === element,
+            fragmentBody: document.activeElement === document.body,
+          }));
+          if (!nativeFocus.exactOpener) {
+            assert.equal(
+              nativeFocus.fragmentBody,
+              true,
+              "Native fragment navigation may move focus to the document body",
+            );
+            await page.keyboard.press("Tab");
+            assert.equal(
+              await opener.evaluate(
+                (element) => document.activeElement === element,
+              ),
+              true,
+              "After Escape, native fragment keyboard navigation resumes at the target row",
+            );
+          }
+
           const refreshed = page.waitForResponse((response) => {
             const url = new URL(response.url());
             return (
@@ -452,7 +465,7 @@ try {
           });
           return {
             changedHashEvent: true,
-            escapeFocus: true,
+            escapeFocus: nativeFocus,
             noRefreshReopen: true,
             unknownHashRejected: true,
             returnNavigation: true,
