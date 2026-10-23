@@ -1,0 +1,507 @@
+{
+  "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+  "worker": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+  "syntheticOnly": true,
+  "readCancelOnly": true,
+  "sandbox": true,
+  "checks": [
+    {
+      "label": "eve-desktop has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "label": "eve-desktop one expression per member",
+      "passed": true
+    },
+    {
+      "label": "eve-desktop empty idea blocked by native validation",
+      "passed": true
+    },
+    {
+      "label": "eve-desktop save idea confirmation cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-desktop lock team confirmation cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-desktop rename confirmation cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-desktop eight named palettes",
+      "passed": true
+    },
+    {
+      "label": "eve-desktop palette confirmation cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-desktop remove Frank confirmation cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-mobile-touch has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "label": "eve-mobile-touch one expression per member",
+      "passed": true
+    },
+    {
+      "label": "eve-mobile-touch empty idea blocked by native validation",
+      "passed": true
+    },
+    {
+      "label": "eve-mobile-touch save idea confirmation cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-mobile-touch lock team confirmation cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-mobile-touch rename confirmation cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-mobile-touch eight named palettes",
+      "passed": true
+    },
+    {
+      "label": "eve-mobile-touch palette confirmation cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-mobile-touch remove Frank confirmation cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-tablet-touch has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "label": "eve-tablet-touch one expression per member",
+      "passed": true
+    },
+    {
+      "label": "eve-tablet-touch empty idea blocked by native validation",
+      "passed": true
+    },
+    {
+      "label": "eve-tablet-touch save idea confirmation cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-tablet-touch lock team confirmation cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-tablet-touch rename confirmation cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-tablet-touch eight named palettes",
+      "passed": true
+    },
+    {
+      "label": "eve-tablet-touch palette confirmation cancel",
+      "passed": true
+    },
+    {
+      "label": "eve-tablet-touch remove Frank confirmation cancel",
+      "passed": true
+    },
+    {
+      "label": "frank-desktop has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "label": "frank-desktop one expression per member",
+      "passed": true
+    },
+    {
+      "label": "frank-desktop member cannot edit leader controls",
+      "passed": true
+    },
+    {
+      "label": "frank-mobile-touch has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "label": "frank-mobile-touch one expression per member",
+      "passed": true
+    },
+    {
+      "label": "frank-mobile-touch member cannot edit leader controls",
+      "passed": true
+    },
+    {
+      "label": "frank-tablet-touch has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "label": "frank-tablet-touch one expression per member",
+      "passed": true
+    },
+    {
+      "label": "frank-tablet-touch member cannot edit leader controls",
+      "passed": true
+    }
+  ],
+  "captures": [
+    {
+      "actor": "eve",
+      "viewport": "desktop",
+      "label": "initial",
+      "path": "evidence/team-controls-8e90450/eve-desktop-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "eve",
+      "viewport": "desktop",
+      "label": "whole-page",
+      "path": "evidence/team-controls-8e90450/eve-desktop-whole-page.png",
+      "original": true,
+      "fullPage": true
+    },
+    {
+      "actor": "eve",
+      "viewport": "desktop",
+      "label": "controls-expanded",
+      "path": "evidence/team-controls-8e90450/eve-desktop-controls-expanded.png",
+      "original": true,
+      "fullPage": true
+    },
+    {
+      "actor": "eve",
+      "viewport": "mobile-touch",
+      "label": "initial",
+      "path": "evidence/team-controls-8e90450/eve-mobile-touch-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "eve",
+      "viewport": "mobile-touch",
+      "label": "whole-page",
+      "path": "evidence/team-controls-8e90450/eve-mobile-touch-whole-page.png",
+      "original": true,
+      "fullPage": true
+    },
+    {
+      "actor": "eve",
+      "viewport": "mobile-touch",
+      "label": "controls-expanded",
+      "path": "evidence/team-controls-8e90450/eve-mobile-touch-controls-expanded.png",
+      "original": true,
+      "fullPage": true
+    },
+    {
+      "actor": "eve",
+      "viewport": "tablet-touch",
+      "label": "initial",
+      "path": "evidence/team-controls-8e90450/eve-tablet-touch-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "eve",
+      "viewport": "tablet-touch",
+      "label": "whole-page",
+      "path": "evidence/team-controls-8e90450/eve-tablet-touch-whole-page.png",
+      "original": true,
+      "fullPage": true
+    },
+    {
+      "actor": "eve",
+      "viewport": "tablet-touch",
+      "label": "controls-expanded",
+      "path": "evidence/team-controls-8e90450/eve-tablet-touch-controls-expanded.png",
+      "original": true,
+      "fullPage": true
+    },
+    {
+      "actor": "frank",
+      "viewport": "desktop",
+      "label": "initial",
+      "path": "evidence/team-controls-8e90450/frank-desktop-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "frank",
+      "viewport": "desktop",
+      "label": "whole-page",
+      "path": "evidence/team-controls-8e90450/frank-desktop-whole-page.png",
+      "original": true,
+      "fullPage": true
+    },
+    {
+      "actor": "frank",
+      "viewport": "mobile-touch",
+      "label": "initial",
+      "path": "evidence/team-controls-8e90450/frank-mobile-touch-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "frank",
+      "viewport": "mobile-touch",
+      "label": "whole-page",
+      "path": "evidence/team-controls-8e90450/frank-mobile-touch-whole-page.png",
+      "original": true,
+      "fullPage": true
+    },
+    {
+      "actor": "frank",
+      "viewport": "tablet-touch",
+      "label": "initial",
+      "path": "evidence/team-controls-8e90450/frank-tablet-touch-initial.png",
+      "original": true,
+      "fullPage": false
+    },
+    {
+      "actor": "frank",
+      "viewport": "tablet-touch",
+      "label": "whole-page",
+      "path": "evidence/team-controls-8e90450/frank-tablet-touch-whole-page.png",
+      "original": true,
+      "fullPage": true
+    }
+  ],
+  "inventory": [
+    {
+      "actor": "eve",
+      "viewport": {
+        "label": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "heading": "TE\nThe Fifth Element\nSubmitted",
+      "buttons": [
+        "",
+        "",
+        "",
+        "",
+        "Save team idea",
+        "Lock completed team"
+      ],
+      "summaries": [
+        "Rename team",
+        "Membership requests",
+        "Customize your team badge and accent"
+      ],
+      "members": 5,
+      "overflow": false
+    },
+    {
+      "actor": "eve",
+      "viewport": "desktop",
+      "cancelled": "save idea",
+      "confirmationTitle": "Update team idea"
+    },
+    {
+      "actor": "eve",
+      "viewport": "desktop",
+      "cancelled": "lock team",
+      "confirmationTitle": "Lock completed team"
+    },
+    {
+      "actor": "eve",
+      "viewport": "desktop",
+      "cancelled": "rename",
+      "confirmationTitle": "Rename your team"
+    },
+    {
+      "actor": "eve",
+      "viewport": "desktop",
+      "cancelled": "palette",
+      "confirmationTitle": "Update team appearance"
+    },
+    {
+      "actor": "eve",
+      "viewport": "desktop",
+      "pendingRequestActions": 0,
+      "deleteVisible": 0,
+      "leaveControls": 0,
+      "transferControls": 0
+    },
+    {
+      "actor": "eve",
+      "viewport": "desktop",
+      "cancelled": "remove Frank",
+      "confirmationTitle": "Remove team member"
+    },
+    {
+      "actor": "eve",
+      "viewport": {
+        "label": "mobile-touch",
+        "width": 390,
+        "height": 844
+      },
+      "heading": "TE\nThe Fifth Element\nSubmitted",
+      "buttons": [
+        "",
+        "",
+        "",
+        "",
+        "Save team idea",
+        "Lock completed team"
+      ],
+      "summaries": [
+        "Rename team",
+        "Membership requests",
+        "Customize your team badge and accent"
+      ],
+      "members": 5,
+      "overflow": false
+    },
+    {
+      "actor": "eve",
+      "viewport": "mobile-touch",
+      "cancelled": "save idea",
+      "confirmationTitle": "Update team idea"
+    },
+    {
+      "actor": "eve",
+      "viewport": "mobile-touch",
+      "cancelled": "lock team",
+      "confirmationTitle": "Lock completed team"
+    },
+    {
+      "actor": "eve",
+      "viewport": "mobile-touch",
+      "cancelled": "rename",
+      "confirmationTitle": "Rename your team"
+    },
+    {
+      "actor": "eve",
+      "viewport": "mobile-touch",
+      "cancelled": "palette",
+      "confirmationTitle": "Update team appearance"
+    },
+    {
+      "actor": "eve",
+      "viewport": "mobile-touch",
+      "pendingRequestActions": 0,
+      "deleteVisible": 0,
+      "leaveControls": 0,
+      "transferControls": 0
+    },
+    {
+      "actor": "eve",
+      "viewport": "mobile-touch",
+      "cancelled": "remove Frank",
+      "confirmationTitle": "Remove team member"
+    },
+    {
+      "actor": "eve",
+      "viewport": {
+        "label": "tablet-touch",
+        "width": 834,
+        "height": 1194
+      },
+      "heading": "TE\nThe Fifth Element\nSubmitted",
+      "buttons": [
+        "",
+        "",
+        "",
+        "",
+        "Save team idea",
+        "Lock completed team"
+      ],
+      "summaries": [
+        "Rename team",
+        "Membership requests",
+        "Customize your team badge and accent"
+      ],
+      "members": 5,
+      "overflow": false
+    },
+    {
+      "actor": "eve",
+      "viewport": "tablet-touch",
+      "cancelled": "save idea",
+      "confirmationTitle": "Update team idea"
+    },
+    {
+      "actor": "eve",
+      "viewport": "tablet-touch",
+      "cancelled": "lock team",
+      "confirmationTitle": "Lock completed team"
+    },
+    {
+      "actor": "eve",
+      "viewport": "tablet-touch",
+      "cancelled": "rename",
+      "confirmationTitle": "Rename your team"
+    },
+    {
+      "actor": "eve",
+      "viewport": "tablet-touch",
+      "cancelled": "palette",
+      "confirmationTitle": "Update team appearance"
+    },
+    {
+      "actor": "eve",
+      "viewport": "tablet-touch",
+      "pendingRequestActions": 0,
+      "deleteVisible": 0,
+      "leaveControls": 0,
+      "transferControls": 0
+    },
+    {
+      "actor": "eve",
+      "viewport": "tablet-touch",
+      "cancelled": "remove Frank",
+      "confirmationTitle": "Remove team member"
+    },
+    {
+      "actor": "frank",
+      "viewport": {
+        "label": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "heading": "TE\nThe Fifth Element\nSubmitted",
+      "buttons": [],
+      "summaries": [],
+      "members": 5,
+      "overflow": false
+    },
+    {
+      "actor": "frank",
+      "viewport": {
+        "label": "mobile-touch",
+        "width": 390,
+        "height": 844
+      },
+      "heading": "TE\nThe Fifth Element\nSubmitted",
+      "buttons": [],
+      "summaries": [],
+      "members": 5,
+      "overflow": false
+    },
+    {
+      "actor": "frank",
+      "viewport": {
+        "label": "tablet-touch",
+        "width": 834,
+        "height": 1194
+      },
+      "heading": "TE\nThe Fifth Element\nSubmitted",
+      "buttons": [],
+      "summaries": [],
+      "members": 5,
+      "overflow": false
+    }
+  ],
+  "blocked": [],
+  "pageErrors": [],
+  "browserClosed": true,
+  "workerAfter": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+  "artifactUnchanged": true
+}

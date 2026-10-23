@@ -1,0 +1,61 @@
+{
+  "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+  "worker": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+  "syntheticOnly": true,
+  "sandbox": true,
+  "checks": [
+    {
+      "viewport": {
+        "width": 834,
+        "height": 1194
+      },
+      "geometry": {
+        "scroll": 65,
+        "top": 0,
+        "background": "rgb(255, 255, 255)",
+        "position": "sticky",
+        "overflow": false
+      },
+      "path": "evidence/dashboard-sticky-8e90450/dashboard-sticky-scroll-834x1194.png",
+      "original": true,
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1194,
+        "height": 834
+      },
+      "geometry": {
+        "scroll": 300,
+        "top": 0,
+        "background": "rgb(255, 255, 255)",
+        "position": "sticky",
+        "overflow": false
+      },
+      "path": "evidence/dashboard-sticky-8e90450/dashboard-sticky-scroll-1194x834.png",
+      "original": true,
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "geometry": {
+        "scroll": 140,
+        "top": 0,
+        "background": "rgb(255, 255, 255)",
+        "position": "sticky",
+        "overflow": false
+      },
+      "path": "evidence/dashboard-sticky-8e90450/dashboard-sticky-scroll-390x844.png",
+      "original": true,
+      "passed": true
+    }
+  ],
+  "blocked": [],
+  "pageErrors": [],
+  "browserClosed": true,
+  "workerAfter": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+  "artifactUnchanged": true
+}
