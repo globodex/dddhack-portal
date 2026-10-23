@@ -1,4 +1,5 @@
 import { auditReason } from "./security";
+import { submissionToolChoices } from "./submission-tools";
 import { rosterImport } from "./roster-import";
 import { reconcileAbsences } from "./absence";
 import { notRemoved } from "./record-removal";
@@ -1272,8 +1273,13 @@ export class PortalService {
             video: optionalUrl,
             gtm: text(3000),
             features: text(4000),
-            tools: text(2000),
+            tools: z.string().max(2000).default(""),
             cerebrasIntegration: z.enum(["yes", "no"]).optional(),
+            ecosystemSelections: z
+              .array(z.enum(submissionToolChoices))
+              .max(6)
+              .refine((items) => new Set(items).size === items.length)
+              .optional(),
             toolEffectiveness: z.unknown().transform(() => ""),
             contributions: z.unknown().transform(() => []),
             openaiClaim: bool,

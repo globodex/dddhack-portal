@@ -1,18 +1,19 @@
-// Participant-facing choices from the confirmed master specification.
+// Latest user-confirmed participant choices, kept separate from verification.
 // This is a declaration, not automatic evidence of tool usage or a score.
 export const submissionToolChoices = [
+  "OpenAI API",
+  "Codex",
+  "ChatGPT Sites",
+  "Parallel Agents",
+  "Parallel worktrees",
   "ChatGPT",
-  "ChatGPT Work",
-  "ChatGPT Dots",
-  "Codex CLI",
-  "Codex IDE Extension",
-  "Codex Cloud / delegated tasks",
-  "OpenAI API / models",
-  "Other OpenAI tools",
 ] as const;
 
 export function selectedSubmissionTools(value: unknown): string[] {
-  if (typeof value !== "string") return [];
-  const selected = value.split(/[\n,]/).map((item) => item.trim());
+  const selected = Array.isArray(value)
+    ? value
+    : typeof value === "string"
+      ? value.split(/[\n,]/).map((item) => item.trim())
+      : [];
   return submissionToolChoices.filter((choice) => selected.includes(choice));
 }

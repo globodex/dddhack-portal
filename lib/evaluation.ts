@@ -1,5 +1,7 @@
 import { baseWeights, type Policy } from "./policy";
 import { z } from "zod";
+import { selectedSubmissionTools } from "./submission-tools";
+import { ecosystemVerificationGuidance } from "./ecosystem-verification";
 export const reportSchema = z
   .object({
     versionId: z.string(),
@@ -43,7 +45,14 @@ export interface Evaluator {
   evaluate(versionId: string, payload: unknown): Promise<Report>;
 }
 export const disabledEvaluator: Evaluator = {
-  async evaluate(versionId) {
+  async evaluate(versionId, payload) {
+    const declared =
+      payload && typeof payload === "object"
+        ? (payload as Record<string, unknown>)
+        : {};
+    const claims = selectedSubmissionTools(
+      declared.ecosystemSelections ?? declared.tools,
+    );
     return {
       versionId,
       status: "needs_review",
@@ -58,6 +67,15 @@ export const disabledEvaluator: Evaluator = {
           explanation:
             "No credentialed external integration or network fetch is enabled. Organizer review required.",
         },
+        ...claims.map((claim) => ({
+          id: `ecosystem:${claim}`,
+          status: "UNKNOWN" as const,
+          evidence: [],
+          explanation:
+            ecosystemVerificationGuidance[
+              claim as keyof typeof ecosystemVerificationGuidance
+            ],
+        })),
       ],
       dimensions: null,
       suspectedFalseClaims: [],

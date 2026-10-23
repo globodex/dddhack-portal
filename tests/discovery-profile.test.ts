@@ -168,3 +168,22 @@ test("Escape cancel closes the native dialog, and unmount cleanup never calls on
   assert.equal(second.focused(), 0);
   assert.equal(calls, 1);
 });
+
+test("directory dialog projection never forwards private row fields", async () => {
+  const { discoveryProfileProjection } = await import("../app/portal");
+  const projected = discoveryProfileProjection({
+    ...person,
+    email: "private@example.test",
+    phone: "private-phone",
+    sex: "private-sex",
+    orgId: "private-org",
+  });
+  assert.deepEqual(
+    Object.keys(projected).sort(),
+    ["name", "bio", "socials", "avatarColor", "avatarExpression"].sort(),
+  );
+  assert.doesNotMatch(
+    JSON.stringify(projected),
+    /private@example|private-phone|private-sex|private-org/,
+  );
+});

@@ -2,6 +2,7 @@
 import AddAdmins from "./add-admins";
 import { HeadingDot } from "./expressive-heading";
 import CenteredLoader from "./centered-loader";
+import DiscoveryProfile, { type DiscoveryPerson } from "./discovery-profile";
 import { portalNavigation } from "../lib/navigation";
 import {
   submissionToolChoices,
@@ -1192,6 +1193,17 @@ export function Credit({ credit }: { credit: Row }) {
     </article>
   );
 }
+export function discoveryProfileProjection(row: Row): DiscoveryPerson {
+  return {
+    name: String(row.name || "Participant"),
+    bio: String(row.bio || ""),
+    socials: Array.isArray(row.socials)
+      ? row.socials.filter((value: unknown) => typeof value === "string")
+      : [],
+    avatarColor: String(row.avatarColor || "blue"),
+    avatarExpression: String(row.avatarExpression || "squeezed"),
+  };
+}
 export function Discover({
   data,
   path,
@@ -1203,13 +1215,26 @@ export function Discover({
 }) {
   const [search, setSearch] = useState(""),
     [teamFilter, setTeamFilter] = useState("");
+  const [selectedPerson, setSelectedPerson] = useState<DiscoveryPerson | null>(
+    null,
+  );
+  const hashOpened = useRef("");
   const participants = path === "/discover/participants";
   useEffect(() => {
-    if (participants && window.location.hash.startsWith("#person-"))
+    if (participants && window.location.hash.startsWith("#person-")) {
       document
         .getElementById(window.location.hash.slice(1))
         ?.scrollIntoView({ block: "center", behavior: "auto" });
-  }, [participants]);
+      const hash = window.location.hash;
+      const row = (data.items || []).find(
+        (person: Row) => `#person-${person.id}` === hash,
+      );
+      if (row && hashOpened.current !== hash) {
+        hashOpened.current = hash;
+        setSelectedPerson(discoveryProfileProjection(row));
+      }
+    }
+  }, [participants, data.items]);
   const items = (data.items || []).filter(
     (row) =>
       `${row.name || ""} ${row.teamName || ""} ${row.bio || ""}`
@@ -1276,7 +1301,22 @@ export function Discover({
               <TeamAvatar name={row.name} palette={row.palette} size={56} />
             )}
             <div>
-              <h2>{row.name}</h2>
+              <h2>
+                {participants ? (
+                  <button
+                    type="button"
+                    className="link-button"
+                    aria-haspopup="dialog"
+                    onClick={() =>
+                      setSelectedPerson(discoveryProfileProjection(row))
+                    }
+                  >
+                    {row.name}
+                  </button>
+                ) : (
+                  row.name
+                )}
+              </h2>
               {participants ? (
                 <>
                   <Pill>{row.teamName ? "In a team" : "Not in a team"}</Pill>
@@ -1317,6 +1357,12 @@ export function Discover({
           </li>
         ))}
       </ul>
+      {selectedPerson && (
+        <DiscoveryProfile
+          person={selectedPerson}
+          onClose={() => setSelectedPerson(null)}
+        />
+      )}
       {!items.length && (
         <Empty>
           {search || teamFilter
@@ -1417,7 +1463,13 @@ export function Submission({
     try {
       await run(submit ? "submit-project" : "save-project", {
         revision: data.project?.revision || 0,
-        project: { ...project, contributions: undefined },
+        project: {
+          ...project,
+          ecosystemSelections: selectedSubmissionTools(
+            project.ecosystemSelections ?? project.tools,
+          ),
+          contributions: undefined,
+        },
       });
     } catch (e) {
       if (!(e instanceof ActionCancelled)) setError((e as Error).message);
@@ -1505,25 +1557,28 @@ export function Submission({
                   </label>
                 ))}
                 <fieldset className="submission-tools">
-                  <legend>Tools used</legend>
+                  <legend>
+                    How have you integrated OpenAI ecosystem in it?
+                  </legend>
                   {submissionToolChoices.map((tool) => (
                     <label className="check-label" key={tool}>
                       <input
                         type="checkbox"
                         checked={selectedSubmissionTools(
-                          project.tools,
+                          project.ecosystemSelections ?? project.tools,
                         ).includes(tool)}
                         onChange={(e) => {
                           const selected = selectedSubmissionTools(
-                            project.tools,
+                            project.ecosystemSelections ?? project.tools,
                           );
-                          set(
-                            "tools",
-                            (e.target.checked
-                              ? [...selected, tool]
-                              : selected.filter((item) => item !== tool)
-                            ).join("\n"),
-                          );
+                          const choices = e.target.checked
+                            ? [...selected, tool]
+                            : selected.filter((item) => item !== tool);
+                          setProject((p: Row) => ({
+                            ...p,
+                            tools: choices.join("\n"),
+                            ecosystemSelections: choices,
+                          }));
                         }}
                       />
                       {tool}
@@ -3786,7 +3841,8 @@ export default function Portal({
             aria-expanded={menu}
             onClick={() => setMenu(!menu)}
           >
-            Menu
+            <Icon name={menu ? "close" : "menu"} />
+            <span className="sr-only">{menu ? "Close menu" : "Menu"}</span>
           </button>
           <nav
             id="public-navigation"

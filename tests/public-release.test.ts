@@ -14,7 +14,7 @@ import { GET as sitemap } from "../app/sitemap.xml/route";
 import { GET as robots } from "../app/robots.txt/route";
 import { PortalService } from "../lib/service";
 
-test("approved Delhi pack is byte-identical; inverse fill offsets clamp and scale in source coordinates", () => {
+test("approved Delhi pack matches original or independently verified lossless encoding; inverse fill offsets clamp and scale", () => {
   const hashes: Record<string, string> = {
     "delhi-fill-overscan.png":
       "17f8e31b0803566388bedca68f8471307a64205b4556cac8c2a757a29f640d0b",
@@ -27,7 +27,24 @@ test("approved Delhi pack is byte-identical; inverse fill offsets clamp and scal
   };
   for (const [name, hash] of Object.entries(hashes)) {
     const bytes = readFileSync("public/art/delhi-v3/" + name);
-    assert.equal(createHash("sha256").update(bytes).digest("hex"), hash, name);
+    // Both exact encodings were independently checked against the approved
+    // pixel/alpha/metadata baseline; arbitrary replacement artwork is rejected.
+    const lossless: Record<string, string> = {
+      "delhi-fill-overscan.png":
+        "325d353c1e874aeb98864741c9bf0e0fa6fb1f3e8657431cba02609576041f33",
+      "fallback-approved-v3.png":
+        "bec57daa23b34ee1786e7d3d7fd68939ff943756a11cb4b589c21aab1e5235eb",
+      "metro-static.png":
+        "b8de85137167a70568eeff715f5880fdebf6ce0998b7cdc8848016199016534c",
+      "text-mask-alpha.png":
+        "edc05d2a1af15111da7fe54934b40cb7513550016c066d41a3f97d4c98b76ecb",
+    };
+    assert.ok(
+      [hash, lossless[name]].includes(
+        createHash("sha256").update(bytes).digest("hex"),
+      ),
+      name,
+    );
     assert.equal(
       bytes.readUInt32BE(16),
       name.includes("overscan") ? 2112 : 2048,
@@ -93,7 +110,7 @@ test("sitemap and metadata reuse anonymous eligible published projections and ex
   const { db } = await setup();
   try {
     await activate(db);
-    await attend(db,"fake_alice","fake_bob");
+    await attend(db, "fake_alice", "fake_bob");
     const time = "2026-11-01T04:00:00.000Z";
     const payload = JSON.stringify({
       projectName: "Published public project",

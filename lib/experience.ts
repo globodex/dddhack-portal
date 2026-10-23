@@ -1,4 +1,5 @@
 import { auditReason } from "./security";
+import { submissionToolChoices } from "./submission-tools";
 import { engagementState, engagementControl } from "./engagement-control";
 import { removalCommand, notRemoved } from "./record-removal";
 import {
@@ -93,6 +94,7 @@ type Payload = {
   banner: string;
   tools: string;
   cerebrasIntegration?: "yes" | "no";
+  ecosystemSelections?: (typeof submissionToolChoices)[number][];
   contributions: { userId: string; role: string; codex: string }[];
   attestation: boolean;
 };
@@ -111,6 +113,11 @@ const draftSchema = z
     banner: z.string().max(180000).default(""),
     tools: z.string().max(2000).default(""),
     cerebrasIntegration: z.enum(["yes", "no"]).optional(),
+    ecosystemSelections: z
+      .array(z.enum(submissionToolChoices))
+      .max(6)
+      .refine((items) => new Set(items).size === items.length)
+      .optional(),
     // Retired participant fields are ignored before request identity/persistence.
     contributions: z.unknown().transform(() => []),
     attestation: z.boolean().default(false),
