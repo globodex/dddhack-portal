@@ -1,0 +1,22 @@
+{
+  "source": "5fa4ffea3a2d62c7ebb7671a4ac572ef2043e1e9",
+  "worker": "1f3faa77447d60045476f547416a93b0936761fae2ef6e7d6177a9b848ba8e76",
+  "origin": "http://127.0.0.1:4173",
+  "chromiumSandbox": true,
+  "methods": [
+    "GET",
+    "HEAD"
+  ],
+  "samples": [],
+  "errors": [
+    "page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4173/\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at /workspace/v7-perf-audit/scripts/qa-v7-waterfall.mjs:71:38\n    at observe (/workspace/v7-perf-audit/scripts/qa-v7-waterfall.mjs:57:30)\n    at /workspace/v7-perf-audit/scripts/qa-v7-waterfall.mjs:71:11"
+  ],
+  "limitations": [
+    "Local compiled Worker/disposable synthetic D1, unthrottled localhost. Browser-cold does not mean cold server isolate. Other local lanes can cause CPU contention.",
+    "No Playwright request routing: real HTTP cache retained. Synthetic headers use fixture actors only. DNS resolution denies external hosts; no writes or production requests are performed.",
+    "Last observed LCP is a diagnostic candidate before fixed observation ends, not a finalized field Web Vital. One cold/warm sample per route is exploratory, not a statistical benchmark.",
+    "Browser can count document/API requests, not internal service projections. Internal repetition must be attributed from exact source lines."
+  ],
+  "browserClosed": true,
+  "finishedAt": "2026-10-23T20:38:15.696Z"
+}
