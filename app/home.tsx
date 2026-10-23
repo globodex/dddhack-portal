@@ -8,6 +8,8 @@ import {
   ArrowUpRight,
   Pause,
   Play,
+  Plus,
+  Minus,
 } from "lucide-react";
 import Dots from "./dots";
 import DelhiWordmark from "./delhi-wordmark";
@@ -55,6 +57,23 @@ const hosts = [
   ["Nikhil Shukla", "Codex Ambassador", "nikhilsbuilds"],
   ["Shresth Shukla", "Cerebras Ambassador", "callmeshuklaji"],
 ];
+// The portrait layout is still under design review. Do not mount extra motion
+// fields there, or turn the approved desktop decoration into a mobile layout.
+function ChapterDecoration({ paused }: { paused: boolean }) {
+  const [desktop, setDesktop] = useState(false);
+  useEffect(() => {
+    const media = matchMedia("(min-width: 741px)");
+    const update = () => setDesktop(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+  return (
+    <div className="chapter-decoration" aria-hidden="true">
+      {desktop && <Dots paused={paused} />}
+    </div>
+  );
+}
 function Chapters({
   items,
   paused,
@@ -122,16 +141,25 @@ function Chapters({
         (chapter) =>
           chapter.querySelector<HTMLElement>(".chapter-content")!.scrollHeight,
       );
+      const publicHeader =
+        document.querySelector<HTMLElement>(".public-header");
+      const headerHeight =
+        publicHeader && getComputedStyle(publicHeader).position === "sticky"
+          ? publicHeader.getBoundingClientRect().height
+          : 0;
       const layout = stackGeometry(
         innerWidth,
-        innerHeight,
+        innerHeight - headerHeight,
         natural,
         paused || reduced.matches,
       );
       node.dataset.enhanced = String(layout.enabled);
       node.dataset.agenda = String(layout.enabled && horizontal);
       chapters.forEach((chapter, i) => {
-        chapter.style.setProperty("--chapter-top", `${layout.tops[i]}px`);
+        chapter.style.setProperty(
+          "--chapter-top",
+          `${layout.tops[i] + headerHeight}px`,
+        );
         chapter.style.setProperty("--chapter-stage", `${layout.stages[i]}px`);
       });
       const windowNode = rail?.parentElement;
@@ -141,7 +169,11 @@ function Chapters({
           : 0;
       node.style.setProperty("--agenda-travel", `${distance}px`);
       geometry.current = {
-        start: node.getBoundingClientRect().top + scrollY - layout.tops[0],
+        start:
+          node.getBoundingClientRect().top +
+          scrollY -
+          layout.tops[0] -
+          headerHeight,
         distance,
         offsets: rail
           ? [...rail.children].map((child) => (child as HTMLElement).offsetLeft)
@@ -220,7 +252,7 @@ function Chapters({
           <div className="chapter-body schedule-body">
             <p className="event-day">Sunday, 1 November 2026</p>
             <h3>
-              08:00 - 20:00 <span>IST</span>
+              08:00 to 20:00 <span>IST</span>
             </h3>
             {agenda.length ? (
               <>
@@ -265,6 +297,7 @@ function Chapters({
               <p className="agenda-pending">Agenda to follow</p>
             )}
           </div>
+          <ChapterDecoration paused={paused} />
         </div>
       </section>
       <div className="agenda-duration" aria-hidden="true" />
@@ -279,6 +312,7 @@ function Chapters({
             <h3>IIIT Delhi</h3>
             <p>New Delhi</p>
           </div>
+          <ChapterDecoration paused={paused} />
         </div>
       </section>
       <section
@@ -289,11 +323,21 @@ function Chapters({
         <div className="chapter-content">
           {heading(2, "Rules")}
           <ol className="public-rules">
-            <li>Register on Luma</li>
-            <li>Every member registers</li>
-            <li>Up to five per team</li>
-            <li>Entry requires Going on portal</li>
+            <li>Every team member must register on Luma.</li>
+            <li>Entry requires Going on portal. No +1s.</li>
+            <li>Teams may have up to five members.</li>
+            <li>Bring your laptop. Be available from 8 AM to 8 PM.</li>
+            <li>Submit a new build started for this hackathon.</li>
+            <li>Under 18? Parent or guardian permission is required.</li>
+            <li>
+              Event photography and video may appear on community channels.
+            </li>
+            <li>
+              Submissions: personally checked-in leader only, three committed
+              versions.
+            </li>
           </ol>
+          <ChapterDecoration paused={paused} />
         </div>
       </section>
       <section
@@ -304,16 +348,26 @@ function Chapters({
         <div className="chapter-content">
           {heading(3, "FAQ")}
           <div className="chapter-body public-faq">
-            {faqs.map(([question, answer]) => (
-              <details key={question}>
+            {faqs.map(([question, answer], index) => (
+              <details key={question} open={index === 0}>
                 <summary>
                   {question}
-                  <span aria-hidden="true">+</span>
+                  <Plus
+                    className="faq-expand-icon"
+                    size={20}
+                    aria-hidden="true"
+                  />
+                  <Minus
+                    className="faq-collapse-icon"
+                    size={20}
+                    aria-hidden="true"
+                  />
                 </summary>
                 <p>{answer}</p>
               </details>
             ))}
           </div>
+          <ChapterDecoration paused={paused} />
         </div>
       </section>
     </div>

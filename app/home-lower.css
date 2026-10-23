@@ -1,0 +1,142 @@
+/* Shared desktop/tablet lower-section boards. Portrait redesign remains separate. */
+.public-home-shell .chapter-decoration {
+  display: none;
+}
+.public-home-shell .public-faq .faq-collapse-icon,
+.public-home-shell .public-faq details[open] .faq-expand-icon {
+  display: none;
+}
+.public-home-shell .public-faq details[open] .faq-collapse-icon {
+  display: block;
+}
+.public-home-shell .public-faq summary > svg {
+  flex: 0 0 20px;
+}
+@media (min-width: 741px) {
+  .public-home-shell .chapter-stack .chapter {
+    border-radius: 24px 24px 0 0;
+    scroll-margin-top: calc(var(--public-header-height, 80px) + 14px);
+  }
+  .public-home-shell .chapter-stack .chapter .chapter-content {
+    position: relative;
+    display: block;
+    min-height: 560px;
+    padding: clamp(34px, 5vh, 60px) clamp(28px, 4vw, 64px) 56px;
+  }
+  .public-home-shell .chapter-stack .chapter-heading {
+    display: block;
+    width: 60%;
+    margin-bottom: 24px;
+  }
+  .public-home-shell .chapter-stack .chapter-number {
+    display: none;
+  }
+  .public-home-shell .chapter-stack .chapter h2 {
+    font-size: clamp(52px, 6.2vw, 92px);
+    line-height: 1.04;
+    letter-spacing: -0.055em;
+    font-weight: 700;
+  }
+  .public-home-shell .chapter-stack .chapter-body,
+  .public-home-shell .chapter-stack .public-rules {
+    position: relative;
+    z-index: 1;
+    width: 59%;
+    text-align: left;
+    padding-top: 0;
+  }
+  .public-home-shell .chapter-stack .chapter-decoration {
+    display: block;
+    position: absolute;
+    top: 38px;
+    right: clamp(18px, 2.7vw, 44px);
+    width: 40%;
+    max-width: 490px;
+    aspect-ratio: 480 / 440;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .public-home-shell .chapter-stack .schedule-body .event-day {
+    font-size: clamp(20px, 2.15vw, 32px);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.035em;
+    margin: 0 0 22px;
+  }
+  .public-home-shell .chapter-stack .schedule-body > h3 {
+    margin: 0 0 24px;
+    font-size: clamp(27px, 3.2vw, 48px);
+    font-weight: 650;
+    letter-spacing: -0.045em;
+    line-height: 1.2;
+  }
+  .public-home-shell .chapter-stack .schedule-body > h3 span {
+    font-size: 1em;
+    letter-spacing: inherit;
+  }
+  .public-home-shell .chapter-stack .agenda-pending {
+    font-size: clamp(18px, 1.8vw, 26px);
+    color: #111;
+  }
+  .public-home-shell .chapter-stack .venue-body h3 {
+    color: #00ab43;
+    font-size: clamp(46px, 5.3vw, 80px);
+    font-weight: 700;
+    line-height: 1.05;
+    margin: 10px 0 4px;
+  }
+  .public-home-shell .chapter-stack .venue-body p {
+    color: #111;
+    font-size: clamp(38px, 4.8vw, 72px);
+    font-weight: 700;
+    letter-spacing: -0.055em;
+    line-height: 1.05;
+  }
+  .public-home-shell .chapter-stack .public-rules {
+    display: block;
+    margin: 0;
+    list-style: none;
+  }
+  .public-home-shell .chapter-stack .public-rules li {
+    display: grid;
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 14px;
+    position: relative;
+    padding: 12px 0;
+    border-bottom: 1px solid #e2e5e4;
+    font-size: clamp(14px, 1.22vw, 18px);
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+  }
+  .public-home-shell .chapter-stack .public-rules li::before {
+    position: static;
+    color: #111;
+    font-size: 13px;
+    font-weight: 650;
+  }
+  .public-home-shell .chapter-stack .public-rules li::after {
+    content: none;
+  }
+  .public-home-shell .chapter-stack .public-rules li:last-child {
+    border-bottom: 0;
+  }
+  .public-home-shell .chapter-stack .public-faq {
+    padding: 0;
+  }
+  .public-home-shell .chapter-stack .public-faq summary {
+    min-height: 48px;
+    padding-block: 12px;
+    gap: 16px;
+    font-size: clamp(15px, 1.3vw, 19px);
+    line-height: 1.35;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  .public-home-shell .chapter-stack .public-faq details p {
+    font-size: clamp(14px, 1.13vw, 17px);
+    color: #444;
+    line-height: 1.45;
+    padding: 0 28px 16px 0;
+  }
+}
