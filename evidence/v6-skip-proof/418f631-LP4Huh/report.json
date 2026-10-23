@@ -1,0 +1,65 @@
+{
+  "source": "418f6311c1e5a01831897b36f181eeda799c7911",
+  "worker": "6e77794a8831ccb2594f3383171244b1dd9f4ec07c56633f1357ad101b4cfaf5",
+  "cases": [
+    {
+      "name": "mobile",
+      "rect": {
+        "x": 8,
+        "y": 8,
+        "width": 135,
+        "height": 45
+      },
+      "skipZ": "100",
+      "headerZ": "100",
+      "hit": {
+        "tag": "SPAN",
+        "classes": "",
+        "insideHeader": true
+      },
+      "centerHitsSkip": false,
+      "keyboardActivatesMain": true,
+      "screenshot": "evidence/v6-skip-proof/418f631-LP4Huh/mobile-focused-skip-original.png"
+    },
+    {
+      "name": "tablet",
+      "rect": {
+        "x": 8,
+        "y": 8,
+        "width": 135,
+        "height": 45
+      },
+      "skipZ": "100",
+      "headerZ": "100",
+      "hit": {
+        "tag": "SPAN",
+        "classes": "",
+        "insideHeader": true
+      },
+      "centerHitsSkip": false,
+      "keyboardActivatesMain": true,
+      "screenshot": "evidence/v6-skip-proof/418f631-LP4Huh/tablet-focused-skip-original.png"
+    },
+    {
+      "name": "desktop",
+      "rect": {
+        "x": 8,
+        "y": 8,
+        "width": 135,
+        "height": 45
+      },
+      "skipZ": "100",
+      "headerZ": "100",
+      "hit": {
+        "tag": "SPAN",
+        "classes": "",
+        "insideHeader": true
+      },
+      "centerHitsSkip": false,
+      "keyboardActivatesMain": true,
+      "screenshot": "evidence/v6-skip-proof/418f631-LP4Huh/desktop-focused-skip-original.png"
+    }
+  ],
+  "browserClosed": true,
+  "workerAfter": "6e77794a8831ccb2594f3383171244b1dd9f4ec07c56633f1357ad101b4cfaf5"
+}
