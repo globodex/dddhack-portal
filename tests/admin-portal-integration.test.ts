@@ -61,7 +61,7 @@ const project = {
 };
 test("team management mounts named crown transfer with explicit old and new leaders", () => {
   const data = {
-    me: admin,
+    me: { ...admin, mode: "staff" as const },
     items: [{ id: "locked-team", name: "Locked Team", leader_id: "old-leader", locked: true,
       members: [{ id: "old-leader", name: "Absent Leader" }, { id: "new-leader", name: "Present Teammate" }] }],
   };
