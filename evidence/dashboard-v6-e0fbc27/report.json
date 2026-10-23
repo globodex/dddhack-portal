@@ -1,0 +1,641 @@
+{
+  "source": "e0fbc27c87449ff499427589108b201ab7829365",
+  "worker": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+  "syntheticOnly": true,
+  "origin": "http://127.0.0.1:4173",
+  "sandbox": true,
+  "checks": [
+    {
+      "name": "team-layout-and-shell",
+      "viewport": 1440,
+      "passed": true,
+      "geometry": {
+        "overflow": false,
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 64,
+          "display": "flex",
+          "position": "sticky",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(20, 20, 20)"
+        },
+        "sidebar": {
+          "x": 0,
+          "y": 64,
+          "width": 232,
+          "height": 836,
+          "display": "flex",
+          "position": "fixed",
+          "background": "rgb(251, 252, 253)",
+          "color": "rgb(20, 20, 20)"
+        },
+        "main": {
+          "x": 232,
+          "y": 64,
+          "width": 1208,
+          "height": 836,
+          "display": "block",
+          "position": "static",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(20, 20, 20)"
+        },
+        "active": {
+          "x": 16,
+          "y": 84,
+          "width": 199,
+          "height": 48,
+          "display": "flex",
+          "position": "static",
+          "background": "rgb(0, 156, 104)",
+          "color": "rgb(255, 255, 255)"
+        }
+      },
+      "members": [
+        {
+          "expressions": 1,
+          "initials": 0
+        },
+        {
+          "expressions": 1,
+          "initials": 0
+        },
+        {
+          "expressions": 1,
+          "initials": 0
+        }
+      ]
+    },
+    {
+      "name": "tab-hash-and-keyboard",
+      "viewport": 1440,
+      "passed": true
+    },
+    {
+      "name": "responsive-navigation-disclosure",
+      "viewport": 1440,
+      "passed": true
+    },
+    {
+      "name": "voucher-mask-reveal-hide-tab-reset",
+      "viewport": 1440,
+      "passed": true,
+      "revealedScreenshots": 0,
+      "copyInitiallyDisabled": true,
+      "revealHttpNoStore": true,
+      "blurCheck": "window blur event dispatched in the actual page"
+    },
+    {
+      "name": "project-readonly-votes-and-two-versions",
+      "viewport": 1440,
+      "passed": true
+    },
+    {
+      "name": "team-layout-and-shell",
+      "viewport": 390,
+      "passed": true,
+      "geometry": {
+        "overflow": false,
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 65,
+          "display": "grid",
+          "position": "sticky",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(20, 20, 20)"
+        },
+        "sidebar": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "display": "none",
+          "position": "static",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(20, 20, 20)"
+        },
+        "main": {
+          "x": 0,
+          "y": 65,
+          "width": 390,
+          "height": 1017.578125,
+          "display": "block",
+          "position": "static",
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(20, 20, 20)"
+        },
+        "active": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "display": "flex",
+          "position": "static",
+          "background": "rgb(228, 250, 236)",
+          "color": "rgb(0, 107, 67)"
+        }
+      },
+      "members": [
+        {
+          "expressions": 1,
+          "initials": 0
+        },
+        {
+          "expressions": 1,
+          "initials": 0
+        },
+        {
+          "expressions": 1,
+          "initials": 0
+        }
+      ]
+    },
+    {
+      "name": "tab-hash-and-keyboard",
+      "viewport": 390,
+      "passed": true
+    },
+    {
+      "name": "responsive-navigation-disclosure",
+      "viewport": 390,
+      "passed": true
+    },
+    {
+      "name": "voucher-mask-reveal-hide-tab-reset",
+      "viewport": 390,
+      "passed": true,
+      "revealedScreenshots": 0,
+      "copyInitiallyDisabled": true,
+      "revealHttpNoStore": true,
+      "blurCheck": "window blur event dispatched in the actual page"
+    },
+    {
+      "name": "project-readonly-votes-and-two-versions",
+      "viewport": 390,
+      "passed": true
+    },
+    {
+      "name": "team-layout-and-shell",
+      "viewport": 834,
+      "passed": true,
+      "geometry": {
+        "overflow": false,
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 834,
+          "height": 64,
+          "display": "grid",
+          "position": "sticky",
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(20, 20, 20)"
+        },
+        "sidebar": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "display": "none",
+          "position": "fixed",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(20, 20, 20)"
+        },
+        "main": {
+          "x": 0,
+          "y": 64,
+          "width": 834,
+          "height": 1194,
+          "display": "block",
+          "position": "static",
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(20, 20, 20)"
+        },
+        "active": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "display": "flex",
+          "position": "static",
+          "background": "rgb(228, 250, 236)",
+          "color": "rgb(0, 107, 67)"
+        }
+      },
+      "members": [
+        {
+          "expressions": 1,
+          "initials": 0
+        },
+        {
+          "expressions": 1,
+          "initials": 0
+        },
+        {
+          "expressions": 1,
+          "initials": 0
+        }
+      ]
+    },
+    {
+      "name": "tab-hash-and-keyboard",
+      "viewport": 834,
+      "passed": true
+    },
+    {
+      "name": "responsive-navigation-disclosure",
+      "viewport": 834,
+      "passed": true
+    },
+    {
+      "name": "voucher-mask-reveal-hide-tab-reset",
+      "viewport": 834,
+      "passed": true,
+      "revealedScreenshots": 0,
+      "copyInitiallyDisabled": true,
+      "revealHttpNoStore": true,
+      "blurCheck": "window blur event dispatched in the actual page"
+    },
+    {
+      "name": "project-readonly-votes-and-two-versions",
+      "viewport": 834,
+      "passed": true
+    },
+    {
+      "name": "registered-user-private-data-absent",
+      "viewport": 390,
+      "passed": true,
+      "privateVenueAbsent": true,
+      "personalCreditsAbsent": true
+    },
+    {
+      "name": "third-attempt-project-readonly",
+      "viewport": 390,
+      "passed": true,
+      "committedVersions": 3,
+      "mutationControlsAbsent": true,
+      "unallocatedVoucherRevealDisabled": true
+    }
+  ],
+  "layout": [
+    {
+      "viewport": 1440,
+      "geometry": {
+        "overflow": false,
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 64,
+          "display": "flex",
+          "position": "sticky",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(20, 20, 20)"
+        },
+        "sidebar": {
+          "x": 0,
+          "y": 64,
+          "width": 232,
+          "height": 836,
+          "display": "flex",
+          "position": "fixed",
+          "background": "rgb(251, 252, 253)",
+          "color": "rgb(20, 20, 20)"
+        },
+        "main": {
+          "x": 232,
+          "y": 64,
+          "width": 1208,
+          "height": 836,
+          "display": "block",
+          "position": "static",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(20, 20, 20)"
+        },
+        "active": {
+          "x": 16,
+          "y": 84,
+          "width": 199,
+          "height": 48,
+          "display": "flex",
+          "position": "static",
+          "background": "rgb(0, 156, 104)",
+          "color": "rgb(255, 255, 255)"
+        }
+      }
+    },
+    {
+      "viewport": 390,
+      "geometry": {
+        "overflow": false,
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 65,
+          "display": "grid",
+          "position": "sticky",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(20, 20, 20)"
+        },
+        "sidebar": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "display": "none",
+          "position": "static",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(20, 20, 20)"
+        },
+        "main": {
+          "x": 0,
+          "y": 65,
+          "width": 390,
+          "height": 1017.578125,
+          "display": "block",
+          "position": "static",
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(20, 20, 20)"
+        },
+        "active": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "display": "flex",
+          "position": "static",
+          "background": "rgb(228, 250, 236)",
+          "color": "rgb(0, 107, 67)"
+        }
+      }
+    },
+    {
+      "viewport": 834,
+      "geometry": {
+        "overflow": false,
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 834,
+          "height": 64,
+          "display": "grid",
+          "position": "sticky",
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(20, 20, 20)"
+        },
+        "sidebar": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "display": "none",
+          "position": "fixed",
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(20, 20, 20)"
+        },
+        "main": {
+          "x": 0,
+          "y": 64,
+          "width": 834,
+          "height": 1194,
+          "display": "block",
+          "position": "static",
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(20, 20, 20)"
+        },
+        "active": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "display": "flex",
+          "position": "static",
+          "background": "rgb(228, 250, 236)",
+          "color": "rgb(0, 107, 67)"
+        }
+      }
+    }
+  ],
+  "initialLoads": [
+    {
+      "actor": "alice",
+      "viewport": 1440,
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "title": "DevDay Exchange Community Hackathon: New Delhi"
+    },
+    {
+      "actor": "alice",
+      "viewport": 390,
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "title": "DevDay Exchange Community Hackathon: New Delhi"
+    },
+    {
+      "actor": "alice",
+      "viewport": 834,
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "title": "DevDay Exchange Community Hackathon: New Delhi"
+    },
+    {
+      "actor": "bob",
+      "viewport": 390,
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "title": "DevDay Exchange Community Hackathon: New Delhi"
+    },
+    {
+      "actor": "eve",
+      "viewport": 390,
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "title": "DevDay Exchange Community Hackathon: New Delhi"
+    }
+  ],
+  "screenshots": [
+    {
+      "label": "01-team-locked",
+      "viewport": {
+        "label": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "path": "evidence/dashboard-v6-e0fbc27/01-team-locked-desktop-1440x900.png",
+      "original": true,
+      "fullPage": false,
+      "deliverable": true,
+      "allocationMasked": true
+    },
+    {
+      "label": "02-credits-masked",
+      "viewport": {
+        "label": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "path": "evidence/dashboard-v6-e0fbc27/02-credits-masked-desktop-1440x900.png",
+      "original": true,
+      "fullPage": false,
+      "deliverable": true,
+      "allocationMasked": true
+    },
+    {
+      "label": "03-project-summary",
+      "viewport": {
+        "label": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "path": "evidence/dashboard-v6-e0fbc27/03-project-summary-desktop-1440x900.png",
+      "original": true,
+      "fullPage": false,
+      "deliverable": true,
+      "allocationMasked": true
+    },
+    {
+      "label": "04-project-version-history",
+      "viewport": {
+        "label": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "path": "evidence/dashboard-v6-e0fbc27/04-project-version-history-desktop-1440x900.png",
+      "original": true,
+      "fullPage": false,
+      "deliverable": false,
+      "allocationMasked": true
+    },
+    {
+      "label": "01-team-locked",
+      "viewport": {
+        "label": "mobile",
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/dashboard-v6-e0fbc27/01-team-locked-mobile-390x844.png",
+      "original": true,
+      "fullPage": false,
+      "deliverable": true,
+      "allocationMasked": true
+    },
+    {
+      "label": "02-credits-masked",
+      "viewport": {
+        "label": "mobile",
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/dashboard-v6-e0fbc27/02-credits-masked-mobile-390x844.png",
+      "original": true,
+      "fullPage": false,
+      "deliverable": true,
+      "allocationMasked": true
+    },
+    {
+      "label": "03-project-summary",
+      "viewport": {
+        "label": "mobile",
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/dashboard-v6-e0fbc27/03-project-summary-mobile-390x844.png",
+      "original": true,
+      "fullPage": false,
+      "deliverable": true,
+      "allocationMasked": true
+    },
+    {
+      "label": "04-project-version-history",
+      "viewport": {
+        "label": "mobile",
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/dashboard-v6-e0fbc27/04-project-version-history-mobile-390x844.png",
+      "original": true,
+      "fullPage": false,
+      "deliverable": false,
+      "allocationMasked": true
+    },
+    {
+      "label": "01-team-locked",
+      "viewport": {
+        "label": "tablet",
+        "width": 834,
+        "height": 1194
+      },
+      "path": "evidence/dashboard-v6-e0fbc27/01-team-locked-tablet-834x1194.png",
+      "original": true,
+      "fullPage": false,
+      "deliverable": true,
+      "allocationMasked": true
+    },
+    {
+      "label": "02-credits-masked",
+      "viewport": {
+        "label": "tablet",
+        "width": 834,
+        "height": 1194
+      },
+      "path": "evidence/dashboard-v6-e0fbc27/02-credits-masked-tablet-834x1194.png",
+      "original": true,
+      "fullPage": false,
+      "deliverable": true,
+      "allocationMasked": true
+    },
+    {
+      "label": "03-project-summary",
+      "viewport": {
+        "label": "tablet",
+        "width": 834,
+        "height": 1194
+      },
+      "path": "evidence/dashboard-v6-e0fbc27/03-project-summary-tablet-834x1194.png",
+      "original": true,
+      "fullPage": false,
+      "deliverable": true,
+      "allocationMasked": true
+    },
+    {
+      "label": "04-project-version-history",
+      "viewport": {
+        "label": "tablet",
+        "width": 834,
+        "height": 1194
+      },
+      "path": "evidence/dashboard-v6-e0fbc27/04-project-version-history-tablet-834x1194.png",
+      "original": true,
+      "fullPage": false,
+      "deliverable": false,
+      "allocationMasked": true
+    },
+    {
+      "label": "05-project-third-attempt-readonly",
+      "viewport": {
+        "label": "mobile",
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/dashboard-v6-e0fbc27/05-project-third-attempt-readonly-mobile-390x844.png",
+      "original": true,
+      "fullPage": false,
+      "deliverable": true,
+      "allocationMasked": true
+    }
+  ],
+  "pageErrors": [],
+  "blocked": [],
+  "methods": {
+    "GET": 79,
+    "HEAD": 0,
+    "syntheticReveal": 9
+  },
+  "browser": "156.0.8078.4",
+  "browserClosed": true,
+  "workerAfter": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+  "artifactUnchanged": true
+}
