@@ -1,0 +1,204 @@
+{
+  "results": [
+    {
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/faq-390x844.png",
+      "file_id": "file_000000003dd081fda511b82b489e0a58",
+      "library_file_id": "libfile_fa6e699a7664819187adf465eced8591",
+      "file_name": "faq-390x844.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 37591,
+      "original_local_path": "/workspace/v7-home/evidence/v7-mobile-navigation/faq-390x844.png",
+      "local_xattrs_applied": true,
+      "capture_source": "ccc8e47faa459fcdedad23eed333080c673d94a1",
+      "worker_sha256": "e386e26c390c27fe01c38bfeda5d307e669e199ce652b94e351070127b92ff1e"
+    },
+    {
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/navigation-admin-390x844.png",
+      "file_id": "file_0000000030f481fd8a1678075806ed3e",
+      "library_file_id": "libfile_b286a56204548191a8baaa90370ee6e6",
+      "file_name": "navigation-admin-390x844.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 20296,
+      "original_local_path": "/workspace/v7-home/evidence/v7-mobile-navigation/navigation-admin-390x844.png",
+      "local_xattrs_applied": true,
+      "capture_source": "ccc8e47faa459fcdedad23eed333080c673d94a1",
+      "worker_sha256": "e386e26c390c27fe01c38bfeda5d307e669e199ce652b94e351070127b92ff1e"
+    },
+    {
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/navigation-admin-actual-route-390x844.png",
+      "file_id": "file_000000003d0881f88a2cec2fe94048e5",
+      "library_file_id": "libfile_6d97bead4b788191be9b47c318e83830",
+      "file_name": "navigation-admin-actual-route-390x844.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 26408,
+      "original_local_path": "/workspace/v7-home/evidence/v7-mobile-navigation/navigation-admin-actual-route-390x844.png",
+      "local_xattrs_applied": true,
+      "capture_source": "50c32a2ca8273f5f907e23c6e88671d22a3d74f8",
+      "worker_sha256": "e386e26c390c27fe01c38bfeda5d307e669e199ce652b94e351070127b92ff1e"
+    },
+    {
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/navigation-anonymous-390x844.png",
+      "file_id": "file_00000000febc81f8817abf8361001d8f",
+      "library_file_id": "libfile_cad44c8df430819187f78e4627bfed54",
+      "file_name": "navigation-anonymous-390x844.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 11923,
+      "original_local_path": "/workspace/v7-home/evidence/v7-mobile-navigation/navigation-anonymous-390x844.png",
+      "local_xattrs_applied": true,
+      "capture_source": "ccc8e47faa459fcdedad23eed333080c673d94a1",
+      "worker_sha256": "e386e26c390c27fe01c38bfeda5d307e669e199ce652b94e351070127b92ff1e"
+    },
+    {
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/navigation-participant-390x844.png",
+      "file_id": "file_0000000015f881f5be59c49ddb353505",
+      "library_file_id": "libfile_5c036ac2c2f08191887879902c3614fd",
+      "file_name": "navigation-participant-390x844.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 17726,
+      "original_local_path": "/workspace/v7-home/evidence/v7-mobile-navigation/navigation-participant-390x844.png",
+      "local_xattrs_applied": true,
+      "capture_source": "ccc8e47faa459fcdedad23eed333080c673d94a1",
+      "worker_sha256": "e386e26c390c27fe01c38bfeda5d307e669e199ce652b94e351070127b92ff1e"
+    },
+    {
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/navigation-pending-actual-route-390x844.png",
+      "file_id": "file_00000000c44c81f8a94abbc5bdad7fe0",
+      "library_file_id": "libfile_faa1084a35848191a27422f2a554a319",
+      "file_name": "navigation-pending-actual-route-390x844.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 19698,
+      "original_local_path": "/workspace/v7-home/evidence/v7-mobile-navigation/navigation-pending-actual-route-390x844.png",
+      "local_xattrs_applied": true,
+      "capture_source": "50c32a2ca8273f5f907e23c6e88671d22a3d74f8",
+      "worker_sha256": "e386e26c390c27fe01c38bfeda5d307e669e199ce652b94e351070127b92ff1e"
+    },
+    {
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/rules-390x844(1).png",
+      "file_id": "file_000000006348823083ea59bfae356260",
+      "library_file_id": "libfile_3dc6905beb4481918a51c77792c5ab2c",
+      "file_name": "rules-390x844(1).png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 52526,
+      "original_local_path": "/workspace/v7-home/evidence/v7-mobile-navigation/rules-390x844.png",
+      "local_xattrs_applied": true,
+      "capture_source": "ccc8e47faa459fcdedad23eed333080c673d94a1",
+      "worker_sha256": "e386e26c390c27fe01c38bfeda5d307e669e199ce652b94e351070127b92ff1e"
+    },
+    {
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/venue-390x844.png",
+      "file_id": "file_00000000d09c823095f737f1fb6ead79",
+      "library_file_id": "libfile_74f9a904b9d48191ab9e6aabd7c395eb",
+      "file_name": "venue-390x844.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 38943,
+      "original_local_path": "/workspace/v7-home/evidence/v7-mobile-navigation/venue-390x844.png",
+      "local_xattrs_applied": true,
+      "capture_source": "ccc8e47faa459fcdedad23eed333080c673d94a1",
+      "worker_sha256": "e386e26c390c27fe01c38bfeda5d307e669e199ce652b94e351070127b92ff1e"
+    }
+  ],
+  "warnings": [],
+  "external_connectors_accessed": false,
+  "checkpoint_source": "50c32a2ca8273f5f907e23c6e88671d22a3d74f8",
+  "runtime_last_changed": "0e319d8",
+  "excluded_desktop_diagnostics": [
+    "hero-1440x900.png",
+    "faq-1440x900.png"
+  ]
+}
