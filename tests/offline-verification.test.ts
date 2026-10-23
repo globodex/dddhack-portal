@@ -160,3 +160,28 @@ test("snapshot path, duplicate, file-count and byte bounds fail closed without e
     );
   }
 });
+
+test("SDK pattern binds calls to the imported client and supports offline Python evidence", async () => {
+  for (const [content, expected] of [
+    [
+      'import OpenAI from "openai"; const client = new OpenAI(); unrelated.responses.create({});',
+      "UNKNOWN",
+    ],
+    [
+      'from openai import OpenAI\nclient = OpenAI()\nclient.responses.create(model="fixture", input="synthetic")',
+      "NEEDS_MANUAL_REVIEW",
+    ],
+  ] as const) {
+    const report = await createOfflineVerificationEvaluator(async () => ({
+      ...snapshot(),
+      files: [{ path: "src/app.py", content }],
+      workflow: [],
+    })).evaluate("synthetic-version", payload);
+    assert.equal(
+      report.checks.find((check) => check.id === "ecosystem:OpenAI API")!
+        .status,
+      expected,
+    );
+    assert.equal(report.dimensions, null);
+  }
+});
