@@ -1,5 +1,11 @@
 # Sites publication record
 
+## Current dashboard repair publication
+
+**Version 3** is live at **https://dddhack-portal.param3021.chatgpt.site**, title **DevDay Exchange Community Hackathon: New Delhi**, source **`67e05772e63d43031ccd1913d0d8691d4b955895`**, deployment **`appgdep_6adb2fad68cc81919724ac6aa70ac8f1`**, status **succeeded**. Saved version ID: `appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed~appgver_302476e84448819189b22c93c96929b6`.
+
+This publishes the tested read-only inactive draft fallback: dashboard/profile rendering no longer requires an event-settings row. It does not initialize or activate an event. Public visibility and runtime revision 1 are preserved; no credit key exists. Native DB checks confirm the event-settings, roster, credit and results tables remain empty. The isolated compiled Worker returns dashboard/profile 200 with those settings absent. Interactive live authentication remains unverified because no browser is exposed and previous executor HTTP checks were blocked; no bypass or repeated denied request was attempted. See `AUTH_REPAIR.md` and `evidence/sites-dashboard-repair-publication.json`.
+
 ## Current authentication repair publication
 
 Version **2**, source **`92a82e22ef32dd79860ab501bbb1edcaafff8178`**, was successfully published on 2026-10-23 as deployment **`appgdep_6adb2a1359f08191bf321bc1b5bd4582`**. Runtime revision **1** contains only `PORTAL_RUNTIME=sites` and `PORTAL_TRUST_SITES_DISPATCH=true`. No credit key was created. Site access remains public and URL unchanged. The Site display title is **DevDay Exchange Community Hackathon: New Delhi**.

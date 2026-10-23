@@ -1,0 +1,130 @@
+{
+  "project_id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed",
+  "repair_commit": "7f0db37322e34131e8cef3d9f7e97c00c6d27d6d",
+  "workflow": {
+    "project_id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed",
+    "commit_sha": "67e05772e63d43031ccd1913d0d8691d4b955895",
+    "archive": "/tmp/portal-dashboard-repair-publication.tar.gz"
+  },
+  "version": {
+    "id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed~appgver_302476e84448819189b22c93c96929b6",
+    "project_id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed",
+    "version_number": 3,
+    "source": {
+      "commit_sha": "67e05772e63d43031ccd1913d0d8691d4b955895"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000657c81f8861197cddaef1bd9",
+      "content_hash": "sha256:b060bedb3f1aa2cbfbf50aaf23690a3ed9d5c25af55bbb3cbbdd44b7f1944153",
+      "size_bytes": 2170880,
+      "file_count": 117
+    },
+    "screenshot_url": null,
+    "deployment_id": "appgdep_6adb2fad68cc81919724ac6aa70ac8f1"
+  },
+  "deployment": {
+    "id": "appgdep_6adb2fad68cc81919724ac6aa70ac8f1",
+    "project_id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed",
+    "title": "DevDay Exchange Community Hackathon: New Delhi",
+    "version_id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed~appgver_302476e84448819189b22c93c96929b6",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://dddhack-portal.param3021.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6ad9ec4bea6c8191b2bb155de7fe00ed",
+    "failure_message": null,
+    "env_set_revision": 1,
+    "updated_at": "2026-10-23T09:58:12.733188+00:00"
+  },
+  "site": {
+    "id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed",
+    "status": "active",
+    "title": "DevDay Exchange Community Hackathon: New Delhi",
+    "access_mode": "public",
+    "current_live_url": "https://dddhack-portal.param3021.chatgpt.site",
+    "latest_version_number": 3
+  },
+  "environment": {
+    "project_id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed",
+    "entries": [
+      {
+        "key": "PORTAL_RUNTIME",
+        "value": "sites",
+        "is_secret": false,
+        "type": "envvar"
+      },
+      {
+        "key": "PORTAL_TRUST_SITES_DISPATCH",
+        "value": "true",
+        "is_secret": false,
+        "type": "envvar"
+      }
+    ],
+    "revision": 1,
+    "updated_at": "2026-10-23T09:34:02.211324+00:00"
+  },
+  "database": [
+    {
+      "table": "event_settings",
+      "isError": false,
+      "returned_rows": 0,
+      "has_more": false
+    },
+    {
+      "table": "credit_inventory",
+      "isError": false,
+      "returned_rows": 0,
+      "has_more": false
+    },
+    {
+      "table": "credit_allocations",
+      "isError": false,
+      "returned_rows": 0,
+      "has_more": false
+    },
+    {
+      "table": "registrations",
+      "isError": false,
+      "returned_rows": 0,
+      "has_more": false
+    },
+    {
+      "table": "result_publication",
+      "isError": false,
+      "returned_rows": 0,
+      "has_more": false
+    },
+    {
+      "table": "result_snapshots",
+      "isError": false,
+      "returned_rows": 0,
+      "has_more": false
+    }
+  ],
+  "credential": {
+    "auth_mode": "http_extra_header",
+    "provider": "cloudflare_artifact",
+    "token_expires_at": "2026-10-23T10:07:04.320Z",
+    "persisted": false,
+    "discarded_after_workflow": true
+  },
+  "verification": {
+    "unit_and_d1_tests": 21,
+    "typecheck": "passed",
+    "official_production_build": "passed",
+    "artifact_reachability_gate": "passed",
+    "artifact_files": 117,
+    "compiled_worker_smoke": "passed",
+    "compiled_dashboard_without_event_settings": 200,
+    "compiled_participant_profile_without_credit_key": 200,
+    "compiled_anonymous_private_api": 401,
+    "compiled_participant_admin": 403,
+    "compiled_credit_import_without_key": 503,
+    "interactive_sign_in_verified": false,
+    "live_dashboard_verified": false,
+    "recent_native_worker_log_events": 0,
+    "blocked_http_routes_not_retried": true
+  }
+}

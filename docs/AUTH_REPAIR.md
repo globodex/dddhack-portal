@@ -1,5 +1,17 @@
 # Authentication repair checkpoint
 
+## Dashboard follow-up published, 2026-10-23
+
+**Version 3 is deployed successfully** at <https://dddhack-portal.param3021.chatgpt.site>. Published source: `67e05772e63d43031ccd1913d0d8691d4b955895`; deployment: `appgdep_6adb2fad68cc81919724ac6aa70ac8f1`; saved version: `appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed~appgver_302476e84448819189b22c93c96929b6`. The official source helper published tested repair `7f0db37322e34131e8cef3d9f7e97c00c6d27d6d` with refreshed build evidence. The exact HTML and Site display title is **DevDay Exchange Community Hackathon: New Delhi**.
+
+Public visibility and runtime revision 1 are unchanged. The only runtime entries are the two Sites auth confirmations. Native read-only checks confirm that event settings, registrations, credit inventory/allocations and result snapshots/publication remain empty. No bootstrap row, credit secret, policy activation, data reset or permission grant was introduced.
+
+Validation: all 21 unit/D1 tests and typecheck passed for the repair. The publication workflow reran the official production build, the 117-file artifact gate and compiled Worker smoke checks with no event-settings row and no credit key. Dashboard/profile return 200 in that isolated harness, while anonymous/private API and role restrictions remain effective. Native saved-version/deployment reads confirm successful version 3 publication. No live authenticated dashboard success is claimed: the local task has no supported browser; earlier direct HTTP checks were blocked by Cloudflare 403, and those denied routes were not retried. The latest native Worker log query returned no recent events, not evidence of an interactive success. Evidence: `evidence/sites-dashboard-repair-publication.json`.
+
+The user approved one additional short-lived source credential for this bounded dashboard publication. It was used through hidden stdin/session memory and was not persisted. It is discarded once this workflow is complete; no standing approval exists for future credentials.
+
+The sections below retain the chronological diagnosis and earlier preparation state.
+
 ## Published authentication configuration, 2026-10-23
 
 Version 2 is published successfully at <https://dddhack-portal.param3021.chatgpt.site>, source `92a82e22ef32dd79860ab501bbb1edcaafff8178`, deployment `appgdep_6adb2a1359f08191bf321bc1b5bd4582`. Environment revision 1 contains exactly `PORTAL_RUNTIME=sites` and `PORTAL_TRUST_SITES_DISPATCH=true`; no credit key exists. The exact requested Site display title is now **DevDay Exchange Community Hackathon: New Delhi**. The source HTML title correction is included in the follow-up patch below.

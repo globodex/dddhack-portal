@@ -1,5 +1,9 @@
 # Supported Sites integration
 
+## Current publication checkpoint
+
+Version 3 is successfully deployed as **DevDay Exchange Community Hackathon: New Delhi** at <https://dddhack-portal.param3021.chatgpt.site>. The two Sites runtime auth settings are configured at revision 1 under the official managed Dispatch identity contract. Credit encryption is independent of sign-in and has no production key configured. Read views use an inactive, unconfirmed draft without initializing the event; commands keep their initialization checks. The isolated compiled Worker verifies dashboard/profile 200 with no event-settings row. Native DB inspection confirms settings, roster, credit and result tables remain empty. Live interactive authentication remains unverified. See `AUTH_REPAIR.md` and `PUBLICATION.md` for exact current IDs and evidence; earlier integration notes below describe historical checkpoints.
+
 Implemented locally on `param302-linux` using the official Sites 1.1.1 integration and a maintained compatible Cloudflare toolchain update. **A public draft is deployed** as **DevDay Community Hackathon: New Delhi**, slug `dddhack-portal`, project ID `appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed`. See `PUBLICATION.md` for the exact saved revision, native verification, HTTP 403 blocker and pending runtime-secret/trust approval. The separate `dddrecap` Site is untouched.
 
 ## Build and request boundary
