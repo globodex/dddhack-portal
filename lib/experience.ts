@@ -347,9 +347,11 @@ export class PortalExperience {
       team_id: string | null;
       team_name: string | null;
       submitted: number;
+      avatarColor: string | null;
+      avatarExpression: string | null;
     }>(
       this.s.db,
-      "SELECT u.id,COALESCE(x.display_name,u.name) name,r.email,r.status approval,c.created_at checked_in,t.id team_id,t.name team_name,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id) submitted FROM registrations r LEFT JOIN users u ON u.email=r.email LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id UNION ALL SELECT u.id,COALESCE(x.display_name,u.name),u.email,'pending',c.created_at,t.id,t.name,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id) FROM users u LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id WHERE NOT EXISTS(SELECT 1 FROM registrations r WHERE r.email=u.email)",
+      "SELECT u.id,COALESCE(x.display_name,u.name) name,r.email,r.status approval,c.created_at checked_in,t.id team_id,t.name team_name,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id) submitted,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression FROM registrations r LEFT JOIN users u ON u.email=r.email LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id UNION ALL SELECT u.id,COALESCE(x.display_name,u.name),u.email,'pending',c.created_at,t.id,t.name,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id),pd.avatar_color,pd.avatar_expression FROM users u LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id WHERE NOT EXISTS(SELECT 1 FROM registrations r WHERE r.email=u.email)",
     );
     const teams = await teamFacts(
         this.s.db,
@@ -579,7 +581,7 @@ export class PortalExperience {
         items: (
           await rows<Record<string, any>>(
             this.s.db,
-            "SELECT u.id,COALESCE(pp.display_name,u.name) name,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression,t.name teamName,CASE WHEN m.team_id IS NULL THEN 'Not in a team' ELSE 'In a team' END teamStatus,CASE WHEN p.public=1 THEN p.bio ELSE '' END bio,CASE WHEN p.public=1 THEN p.socials ELSE '[]' END socials FROM users u JOIN luma_roster l ON l.email=u.email JOIN participant_profiles pp ON pp.user_id=u.id LEFT JOIN portal_roles r ON r.user_id=u.id JOIN profiles p ON p.user_id=u.id JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id WHERE COALESCE(r.role,u.role)='participant' AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=u.id AND rr.active=1) AND pp.completed_at IS NOT NULL AND pd.phone<>'' ORDER BY name LIMIT 1000",
+            "SELECT u.id,COALESCE(pp.display_name,u.name) name,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression,t.name teamName,COALESCE(ts.color_key,ts.palette) teamPalette,CASE WHEN m.team_id IS NULL THEN 'Not in a team' ELSE 'In a team' END teamStatus,CASE WHEN p.public=1 THEN p.bio ELSE '' END bio,CASE WHEN p.public=1 THEN p.socials ELSE '[]' END socials FROM users u JOIN luma_roster l ON l.email=u.email JOIN participant_profiles pp ON pp.user_id=u.id LEFT JOIN portal_roles r ON r.user_id=u.id JOIN profiles p ON p.user_id=u.id JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id LEFT JOIN team_styles ts ON ts.team_id=t.id WHERE COALESCE(r.role,u.role)='participant' AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=u.id AND rr.active=1) AND pp.completed_at IS NOT NULL AND pd.phone<>'' ORDER BY name LIMIT 1000",
           )
         ).map((r) => ({ ...r, socials: JSON.parse(r.socials) })),
       };
@@ -728,7 +730,7 @@ export class PortalExperience {
           ? {
               comments: await rows(
                 this.s.db,
-                "SELECT c.id,c.body,c.created_at,COALESCE(x.display_name,u.name) author FROM project_comments c JOIN users u ON u.id=c.author_id LEFT JOIN participant_profiles x ON x.user_id=u.id WHERE c.project_id=? ORDER BY c.created_at LIMIT 500",
+                "SELECT c.id,c.body,c.created_at,COALESCE(x.display_name,u.name) author,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression FROM project_comments c JOIN users u ON u.id=c.author_id LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id WHERE c.project_id=? ORDER BY c.created_at LIMIT 500",
                 all[0].id,
               ),
             }
@@ -884,12 +886,22 @@ export class PortalExperience {
           this.s.db,
           ids,
           (marks) =>
-            `SELECT m.team_id,u.id,u.name,u.email,COALESCE(r.status,'pending') approval FROM memberships m JOIN users u ON u.id=m.user_id LEFT JOIN registrations r ON r.email=u.email WHERE m.team_id IN (${marks})`,
+            `SELECT m.team_id,u.id,u.name,u.email,COALESCE(r.status,'pending') approval,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression FROM memberships m JOIN users u ON u.id=m.user_id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN registrations r ON r.email=u.email WHERE m.team_id IN (${marks})`,
         ),
-        byTeam = new Map<string, Omit<(typeof members)[number], "team_id">[]>();
+        people = await personFacts(
+          this.s.db,
+          members.map((member) => member.id),
+        ),
+        byTeam = new Map<
+          string,
+          (Omit<(typeof members)[number], "team_id"> & { status: string })[]
+        >();
       for (const { team_id, ...member } of members) {
         const group = byTeam.get(team_id) || [];
-        group.push(member);
+        group.push({
+          ...member,
+          status: people.get(member.id)?.status || "Registered",
+        });
         byTeam.set(team_id, group);
       }
       return {

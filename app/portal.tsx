@@ -12,7 +12,6 @@ import {
   EyeOff,
   LockKeyhole,
   MapPin,
-  MessageCircle,
   Phone,
   Trash2,
   BriefcaseBusiness,
@@ -715,7 +714,12 @@ export function TeamWorkspace({
                     aria-label={`Open WhatsApp chat with ${m.name}`}
                     title="WhatsApp"
                   >
-                    <MessageCircle size={23} aria-hidden="true" />
+                    <img
+                      src="/icons/social/whatsapp.svg"
+                      width={23}
+                      height={23}
+                      alt=""
+                    />
                   </a>
                 )}
               </div>
@@ -4229,14 +4233,15 @@ export default function Portal({
     (path === "/dashboard" &&
       !!data.profileIncomplete &&
       data.me?.mode !== "viewer");
-  const dashboardDesktop =
-    path === "/dashboard" && !profileOnboarding && wideNavigation;
+  const publicBrowse = path.startsWith("/projects") || path === "/leaderboard";
+  const workspaceShell = path !== "/" && !publicBrowse && !profileOnboarding;
+  const dashboardDesktop = workspaceShell && wideNavigation;
   const c =
     teamPalettes[(data.team?.palette || "forest") as Palette] ||
     teamPalettes.forest;
   return (
     <div
-      className={`app-shell ${path === "/" ? "public-home-shell" : ""} ${profileOnboarding ? "onboarding-shell" : ""}`.trim()}
+      className={`app-shell ${path === "/" ? "public-home-shell" : ""} ${profileOnboarding ? "onboarding-shell" : ""} ${workspaceShell ? "workspace-shell" : ""} ${publicBrowse ? "public-project-shell" : ""}`.trim()}
       style={{ "--team-accent": c.ink, "--team-wash": c.wash } as CSSProperties}
     >
       {confirmation && (
@@ -4249,7 +4254,7 @@ export default function Portal({
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      {path === "/" && (
+      {(path === "/" || publicBrowse) && (
         <header className="public-header">
           <a className="public-brand" href="/">
             <img
@@ -4274,12 +4279,18 @@ export default function Portal({
             aria-label="Public navigation"
             data-open={menu}
           >
-            <a href="/" aria-current="page">
+            <a href="/" aria-current={path === "/" ? "page" : undefined}>
+              {publicBrowse && <Icon name="home" />}
               Home
             </a>
-            <a href="/projects">Projects</a>
             <a
-              className="button"
+              href="/projects"
+              aria-current={publicBrowse ? "page" : undefined}
+            >
+              {publicBrowse && <Icon name="projects" />}Projects
+            </a>
+            <a
+              className={publicBrowse ? "public-dashboard-link" : "button"}
               href={
                 data.me
                   ? "/dashboard"
@@ -4287,7 +4298,12 @@ export default function Portal({
               }
               target="_top"
             >
-              {data.me ? "Dashboard" : "Sign in"}
+              {publicBrowse && <Icon name="person" />}
+              {data.me
+                ? publicBrowse
+                  ? "Open your Dashboard"
+                  : "Dashboard"
+                : "Sign in"}
             </a>
           </nav>
         </header>
@@ -4340,6 +4356,7 @@ export default function Portal({
               href={href}
               aria-current={
                 path === href ||
+                (href === "/dashboard" && path === "/submission") ||
                 (href === "/discover/teams" &&
                   path === "/discover/participants")
                   ? "page"

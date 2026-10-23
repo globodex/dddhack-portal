@@ -590,10 +590,9 @@
   }
 }
 
-/* The selected Dashboard board has a full-width desktop brand bar, with the
-   navigation and account row below it. Other routes keep their existing shell. */
+/* Shared selected desktop frame, with the navigation and account row below it. */
 @media (min-width: 1200px) {
-  .app-shell:has(.dashboard-v6) > .mobile-header {
+  .app-shell.workspace-shell > .mobile-header {
     display: flex;
     position: sticky;
     top: 0;
@@ -608,7 +607,7 @@
     background: #fff;
     border-bottom: 1px solid #e3e9ee;
   }
-  .app-shell:has(.dashboard-v6) > .mobile-header .brand {
+  .app-shell.workspace-shell > .mobile-header .brand {
     display: inline-flex;
     align-items: center;
     gap: 14px;
@@ -618,16 +617,16 @@
     letter-spacing: -0.025em;
     font-weight: 700;
   }
-  .app-shell:has(.dashboard-v6) > .mobile-header .brand img {
+  .app-shell.workspace-shell > .mobile-header .brand img {
     width: 32px;
     height: 32px;
     flex: 0 0 32px;
   }
-  .app-shell:has(.dashboard-v6) > .mobile-header .brand span {
+  .app-shell.workspace-shell > .mobile-header .brand span {
     max-width: none;
     color: #111515;
   }
-  .app-shell:has(.dashboard-v6) > .mobile-header button {
+  .app-shell.workspace-shell > .mobile-header button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -640,10 +639,10 @@
     border-radius: 8px;
     color: #111515;
   }
-  .app-shell:has(.dashboard-v6) > .mobile-header button:hover {
+  .app-shell.workspace-shell > .mobile-header button:hover {
     background: #f0f5f8;
   }
-  .app-shell:has(.dashboard-v6) > .sidebar {
+  .app-shell.workspace-shell > .sidebar {
     display: flex;
     position: fixed;
     inset: 64px auto 0 0;
@@ -653,15 +652,15 @@
     border-right: 1px solid #e3e9ee;
     background: #fbfcfd;
   }
-  .app-shell:has(.dashboard-v6) > .sidebar > .brand {
+  .app-shell.workspace-shell > .sidebar > .brand {
     display: none;
   }
-  .app-shell:has(.dashboard-v6) > .sidebar nav {
+  .app-shell.workspace-shell > .sidebar nav {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 7px;
   }
-  .app-shell:has(.dashboard-v6) > .sidebar nav > a {
+  .app-shell.workspace-shell > .sidebar nav > a {
     display: flex;
     align-items: center;
     gap: 18px;
@@ -673,24 +672,24 @@
     font-weight: 400;
     line-height: 1.3;
   }
-  .app-shell:has(.dashboard-v6) > .sidebar nav > a > svg {
+  .app-shell.workspace-shell > .sidebar nav > a > svg {
     width: 23px;
     height: 23px;
     flex: 0 0 23px;
   }
-  .app-shell:has(.dashboard-v6) > .sidebar nav > a[aria-current="page"] {
+  .app-shell.workspace-shell > .sidebar nav > a[aria-current="page"] {
     background: #009c68;
     color: #fff;
     font-weight: 500;
   }
-  .app-shell:has(.dashboard-v6) > .sidebar nav > a:hover {
+  .app-shell.workspace-shell > .sidebar nav > a:hover {
     text-decoration: none;
     background: #eef4f7;
   }
-  .app-shell:has(.dashboard-v6) > .sidebar nav > a[aria-current="page"]:hover {
+  .app-shell.workspace-shell > .sidebar nav > a[aria-current="page"]:hover {
     background: #00885a;
   }
-  .app-shell:has(.dashboard-v6) > .main {
+  .app-shell.workspace-shell > .main {
     margin-left: 232px;
     padding: 24px 32px 56px;
     min-height: calc(100svh - 64px);
@@ -698,7 +697,7 @@
     scroll-margin-top: 80px;
     background: #fff;
   }
-  .app-shell:has(.dashboard-v6) > .sidebar .account-controls {
+  .app-shell.workspace-shell > .sidebar .account-controls {
     display: grid;
     grid-template-columns: 40px minmax(0, 1fr) 44px;
     grid-auto-flow: row;
@@ -709,7 +708,7 @@
     padding: 12px 0 0;
     border: 0;
   }
-  .app-shell:has(.dashboard-v6) > .sidebar .account-controls > strong {
+  .app-shell.workspace-shell > .sidebar .account-controls > strong {
     grid-column: 2;
     grid-row: 1;
     min-width: 0;
@@ -721,10 +720,10 @@
     font-weight: 400;
     color: #293749;
   }
-  .app-shell:has(.dashboard-v6) > .sidebar .account-controls > small {
+  .app-shell.workspace-shell > .sidebar .account-controls > small {
     display: none;
   }
-  .app-shell:has(.dashboard-v6) > .sidebar .personal-profile-link {
+  .app-shell.workspace-shell > .sidebar .personal-profile-link {
     display: inline-flex;
     grid-column: 1;
     grid-row: 1;
@@ -733,7 +732,7 @@
     gap: 0;
     border-radius: 50%;
   }
-  .app-shell:has(.dashboard-v6) > .sidebar .personal-profile-link > span {
+  .app-shell.workspace-shell > .sidebar .personal-profile-link > span {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -743,12 +742,12 @@
     clip-path: inset(50%);
     white-space: nowrap;
   }
-  .app-shell:has(.dashboard-v6) > .sidebar .personal-profile-link > svg {
+  .app-shell.workspace-shell > .sidebar .personal-profile-link > svg {
     width: 38px;
     height: 38px;
     flex: 0 0 38px;
   }
-  .app-shell:has(.dashboard-v6)
+  .app-shell.workspace-shell
     > .sidebar
     .account-controls
     > a:not(.personal-profile-link) {
@@ -756,7 +755,7 @@
     padding: 8px 0;
     font-size: 13px;
   }
-  .app-shell:has(.dashboard-v6) > .sidebar .account-controls > button {
+  .app-shell.workspace-shell > .sidebar .account-controls > button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -771,10 +770,10 @@
     line-height: 1.2;
     text-decoration: none;
   }
-  .app-shell:has(.dashboard-v6) > .sidebar .account-controls > button:hover {
+  .app-shell.workspace-shell > .sidebar .account-controls > button:hover {
     background: #eef4f7;
   }
-  .app-shell:has(.dashboard-v6) > .sidebar .account-controls > button > span {
+  .app-shell.workspace-shell > .sidebar .account-controls > button > span {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -787,10 +786,10 @@
   }
   /* On desktop the existing toggle collapses an already visible sidebar.
      The root header supplies the matching media-aware ARIA state. */
-  .app-shell:has(.dashboard-v6) > .sidebar.open {
+  .app-shell.workspace-shell > .sidebar.open {
     display: none;
   }
-  .app-shell:has(.dashboard-v6):has(> .sidebar.open) > .main {
+  .app-shell.workspace-shell:has(> .sidebar.open) > .main {
     margin-left: 0;
   }
 }

@@ -110,6 +110,8 @@
     align-items: center;
     gap: 10px;
     min-block-size: 64px;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
     padding: 10px 18px;
     box-sizing: border-box;
   }

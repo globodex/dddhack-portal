@@ -1,0 +1,9 @@
+{
+  "source": "https://cdn.jsdelivr.net/npm/simple-icons@16.0.0/icons/whatsapp.svg",
+  "project": "https://github.com/simple-icons/simple-icons",
+  "version": "16.0.0",
+  "license": "CC0-1.0",
+  "upstreamSha256": "8fb209a53a61618c3483594b3e070481a35575d6aaecbe00a6fe386670c8fb1c",
+  "changes": "Set the SVG fill to WhatsApp brand green #25D366; retain upstream path unchanged.",
+  "runtime": "Served locally as one SVG asset; no icon package or external runtime request."
+}
