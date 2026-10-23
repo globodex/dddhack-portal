@@ -1,0 +1,184 @@
+{
+  "batch": "profile",
+  "build": "0e7756c60e2fff88a4f7fb1e3eca31efc20349d0",
+  "workerSha": "75a667d2c42a821611c3cbbea72447ee464e2ad5f2f6165fbbba647764e69ce6",
+  "origin": "http://127.0.0.1:4173",
+  "syntheticOnly": true,
+  "screenshots": [
+    {
+      "filename": "profile-step1-avatar-selected--participant-alice--desktop-1440x900--0e7756c.png",
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/discovery-dialog/evidence/profile-discovery-batch/profile/profile-step1-avatar-selected--participant-alice--desktop-1440x900--0e7756c.png",
+      "route": "/profile",
+      "state": "profile-step1-avatar-selected",
+      "role": "participant-alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "build": "0e7756c60e2fff88a4f7fb1e3eca31efc20349d0",
+      "workerSha": "75a667d2c42a821611c3cbbea72447ee464e2ad5f2f6165fbbba647764e69ce6",
+      "inspected": true
+    },
+    {
+      "filename": "profile-step2-contact--participant-alice--desktop-1440x900--0e7756c.png",
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/discovery-dialog/evidence/profile-discovery-batch/profile/profile-step2-contact--participant-alice--desktop-1440x900--0e7756c.png",
+      "route": "/profile",
+      "state": "profile-step2-contact",
+      "role": "participant-alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "build": "0e7756c60e2fff88a4f7fb1e3eca31efc20349d0",
+      "workerSha": "75a667d2c42a821611c3cbbea72447ee464e2ad5f2f6165fbbba647764e69ce6",
+      "inspected": true
+    },
+    {
+      "filename": "profile-step2-platform-chooser--participant-alice--desktop-1440x900--0e7756c.png",
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/discovery-dialog/evidence/profile-discovery-batch/profile/profile-step2-platform-chooser--participant-alice--desktop-1440x900--0e7756c.png",
+      "route": "/profile",
+      "state": "profile-step2-platform-chooser",
+      "role": "participant-alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "build": "0e7756c60e2fff88a4f7fb1e3eca31efc20349d0",
+      "workerSha": "75a667d2c42a821611c3cbbea72447ee464e2ad5f2f6165fbbba647764e69ce6",
+      "inspected": true
+    },
+    {
+      "filename": "profile-step3-about--participant-alice--desktop-1440x900--0e7756c.png",
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/discovery-dialog/evidence/profile-discovery-batch/profile/profile-step3-about--participant-alice--desktop-1440x900--0e7756c.png",
+      "route": "/profile",
+      "state": "profile-step3-about",
+      "role": "participant-alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "build": "0e7756c60e2fff88a4f7fb1e3eca31efc20349d0",
+      "workerSha": "75a667d2c42a821611c3cbbea72447ee464e2ad5f2f6165fbbba647764e69ce6",
+      "inspected": true
+    },
+    {
+      "filename": "profile-step1-avatar-selected--participant-alice--mobile-390x844--0e7756c.png",
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/discovery-dialog/evidence/profile-discovery-batch/profile/profile-step1-avatar-selected--participant-alice--mobile-390x844--0e7756c.png",
+      "route": "/profile",
+      "state": "profile-step1-avatar-selected",
+      "role": "participant-alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "build": "0e7756c60e2fff88a4f7fb1e3eca31efc20349d0",
+      "workerSha": "75a667d2c42a821611c3cbbea72447ee464e2ad5f2f6165fbbba647764e69ce6",
+      "inspected": true
+    },
+    {
+      "filename": "profile-step2-contact--participant-alice--mobile-390x844--0e7756c.png",
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/discovery-dialog/evidence/profile-discovery-batch/profile/profile-step2-contact--participant-alice--mobile-390x844--0e7756c.png",
+      "route": "/profile",
+      "state": "profile-step2-contact",
+      "role": "participant-alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "build": "0e7756c60e2fff88a4f7fb1e3eca31efc20349d0",
+      "workerSha": "75a667d2c42a821611c3cbbea72447ee464e2ad5f2f6165fbbba647764e69ce6",
+      "inspected": true
+    },
+    {
+      "filename": "profile-step2-platform-chooser--participant-alice--mobile-390x844--0e7756c.png",
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/discovery-dialog/evidence/profile-discovery-batch/profile/profile-step2-platform-chooser--participant-alice--mobile-390x844--0e7756c.png",
+      "route": "/profile",
+      "state": "profile-step2-platform-chooser",
+      "role": "participant-alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "build": "0e7756c60e2fff88a4f7fb1e3eca31efc20349d0",
+      "workerSha": "75a667d2c42a821611c3cbbea72447ee464e2ad5f2f6165fbbba647764e69ce6",
+      "inspected": true
+    },
+    {
+      "filename": "profile-step3-about--participant-alice--mobile-390x844--0e7756c.png",
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/discovery-dialog/evidence/profile-discovery-batch/profile/profile-step3-about--participant-alice--mobile-390x844--0e7756c.png",
+      "route": "/profile",
+      "state": "profile-step3-about",
+      "role": "participant-alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "build": "0e7756c60e2fff88a4f7fb1e3eca31efc20349d0",
+      "workerSha": "75a667d2c42a821611c3cbbea72447ee464e2ad5f2f6165fbbba647764e69ce6",
+      "inspected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "desktop: avatar selection changes locally without saving",
+      "passed": true
+    },
+    {
+      "name": "profile-step1-avatar-selected desktop: captured without horizontal overflow",
+      "passed": true,
+      "viewport": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "name": "profile-step2-contact desktop: captured without horizontal overflow",
+      "passed": true,
+      "viewport": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "name": "profile-step2-platform-chooser desktop: captured without horizontal overflow",
+      "passed": true,
+      "viewport": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "name": "profile-step3-about desktop: captured without horizontal overflow",
+      "passed": true,
+      "viewport": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "name": "mobile: avatar selection changes locally without saving",
+      "passed": true
+    },
+    {
+      "name": "profile-step1-avatar-selected mobile: captured without horizontal overflow",
+      "passed": true,
+      "viewport": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "profile-step2-contact mobile: captured without horizontal overflow",
+      "passed": true,
+      "viewport": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "profile-step2-platform-chooser mobile: captured without horizontal overflow",
+      "passed": true,
+      "viewport": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "profile-step3-about mobile: captured without horizontal overflow",
+      "passed": true,
+      "viewport": 390,
+      "scrollWidth": 390
+    }
+  ],
+  "errors": [],
+  "blockedRequests": [],
+  "browserClosed": true,
+  "browser": "156.0.8078.4",
+  "visualInspection": "All eight original screenshots opened and inspected: desktop/mobile three steps, selected avatar, native platform dropdown; no clipping, overlap or unexpected helper copy observed. Mobile step 1 is a full-page image taller than its 844px viewport. Synthetic fixture values only. No Save was pressed."
+}
