@@ -1,0 +1,192 @@
+{
+  "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+  "worker": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+  "originals": true,
+  "sourceCompared": true,
+  "userAccepted": false,
+  "published": false,
+  "knownLimits": [
+    "Desktop organizer columns continue approximately 8 px below viewport; page scroll preserves all content.",
+    "Portrait backdrop uses an orderly seeded pile; visual acceptance is still open.",
+    "Earlier wrongly labeled lower-section diagnostics are superseded by this sequential-capture batch.",
+    "Mobile organizer image is diagnostic only and withheld from the ready batch while the orderly backdrop is corrected to an irregular jar arrangement."
+  ],
+  "results": [
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-landing-batch/8e904504-901580c9/hero-1440x900.png",
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/hero-1440x900.png",
+      "file_id": "file_00000000169481f8a1c9eb03621ebb0f",
+      "library_file_id": "libfile_9972dbf6606c8191973ab6c586f887c6",
+      "file_name": "hero-1440x900.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 298191,
+      "readyForUserBatch": true
+    },
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-landing-batch/8e904504-901580c9/hero-390x844.png",
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/hero-390x844.png",
+      "file_id": "file_00000000c70081fdb33fe18285daca7a",
+      "library_file_id": "libfile_7921ea71ef408191a348ba0d300f55dd",
+      "file_name": "hero-390x844.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 91596,
+      "readyForUserBatch": true
+    },
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-landing-batch/8e904504-901580c9/schedule-1440x900.png",
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/schedule-1440x900.png",
+      "file_id": "file_00000000ceb481f4ae88b6abde322dac",
+      "library_file_id": "libfile_df29e5b451148191b09feb66d8cb2a92",
+      "file_name": "schedule-1440x900.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 66763,
+      "readyForUserBatch": true
+    },
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-landing-batch/8e904504-901580c9/venue-1440x900.png",
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/venue-1440x900.png",
+      "file_id": "file_00000000f33c81f581371d94dcadfc47",
+      "library_file_id": "libfile_a7833e7631888191ade7d54070e73c79",
+      "file_name": "venue-1440x900.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 53950,
+      "readyForUserBatch": true
+    },
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-landing-batch/8e904504-901580c9/rules-1440x900.png",
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/rules-1440x900.png",
+      "file_id": "file_00000000d1588230abdbe46e7894554b",
+      "library_file_id": "libfile_6f71b37aaad88191ab4bab4698d9d05b",
+      "file_name": "rules-1440x900.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 78374,
+      "readyForUserBatch": true
+    },
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-landing-batch/8e904504-901580c9/faq-1440x900.png",
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/faq-1440x900.png",
+      "file_id": "file_000000005ec0822fad0c624c3e7936f2",
+      "library_file_id": "libfile_0c73c6c83c1881918c6c35d2a5fe8f73",
+      "file_name": "faq-1440x900.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 75450,
+      "readyForUserBatch": true
+    },
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-landing-batch/8e904504-901580c9/organizers-1440x900.png",
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/organizers-1440x900.png",
+      "file_id": "file_0000000046d081fda8ccd9a8c97e2d37",
+      "library_file_id": "libfile_60fbabbbcac08191b3b5bdeef00ce07a",
+      "file_name": "organizers-1440x900.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 461003,
+      "readyForUserBatch": true
+    },
+    {
+      "localPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-landing-batch/8e904504-901580c9/organizers-390x844.png",
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/organizers-390x844.png",
+      "file_id": "file_0000000060f481f5a1b64d74ceb3b56e",
+      "library_file_id": "libfile_d140e59325a0819191998237ea28b7be",
+      "file_name": "organizers-390x844.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 133374,
+      "readyForUserBatch": false
+    }
+  ]
+}

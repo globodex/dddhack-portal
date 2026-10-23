@@ -70,9 +70,12 @@ const fingerprint = (root = artifactRoot) =>
     ].map((file) => [file, hash(readFileSync(join(root, file)))]),
   );
 const sourceArtifactBefore = fingerprint();
+const approvedWorker = process.env.LOAD_300_WORKER_SHA ||
+  "75a667d2c42a821611c3cbbea72447ee464e2ad5f2f6165fbbba647764e69ce6";
+assert.match(approvedWorker, /^[a-f0-9]{64}$/, "An exact root-reviewed Worker SHA-256 is required.");
 assert.equal(
   sourceArtifactBefore["dist/server/index.js"],
-  "75a667d2c42a821611c3cbbea72447ee464e2ad5f2f6165fbbba647764e69ce6",
+  approvedWorker,
   "Root-approved Worker fingerprint differs; wait for fresh readiness.",
 );
 const compiledConfig = JSON.parse(
@@ -111,7 +114,7 @@ const report = {
   plan,
   artifactBefore,
   sourceArtifactBefore,
-  rootProvidedSourceRevision: "0e7756c60e2fff88a4f7fb1e3eca31efc20349d0",
+  rootProvidedSourceRevision: process.env.LOAD_300_SOURCE || "0e7756c60e2fff88a4f7fb1e3eca31efc20349d0",
   immutableSnapshot: true,
   samples: [],
   groups: [],
