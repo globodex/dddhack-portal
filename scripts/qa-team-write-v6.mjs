@@ -510,6 +510,10 @@ try {
   await act(
     solo.panel.locator("summary").filter({ hasText: "Delete your team" }),
   );
+  const deletionReason = "Synthetic sole-team replacement QA";
+  await solo.panel
+    .getByLabel("Reason for deleting your team", { exact: true })
+    .fill(deletionReason);
   await record(
     "cancelled named deletion keeps the sole team intact",
     async () => {
@@ -531,6 +535,9 @@ try {
       await act(
         solo.panel.locator("summary").filter({ hasText: "Delete your team" }),
       );
+      await solo.panel
+        .getByLabel("Reason for deleting your team", { exact: true })
+        .fill(deletionReason);
     },
   );
   await record(
@@ -539,7 +546,7 @@ try {
       await commit(
         solo,
         "delete-own-team",
-        { reason: null, confirmation: "DELETE_OWN_TEAM" },
+        { reason: deletionReason, confirmation: "DELETE_OWN_TEAM" },
         () =>
           act(
             solo.panel.getByRole("button", {

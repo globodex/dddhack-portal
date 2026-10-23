@@ -35,7 +35,7 @@ test("synthetic Team HTTP flow persists ten writes and revokes removed-member pr
     );
     const response = await handlePortal(request, {
       db,
-      identity: actors[who],
+      identity: { ...actors[who], name: actors[who].email },
       key: undefined,
     });
     assert.match(
@@ -62,7 +62,20 @@ test("synthetic Team HTTP flow persists ten writes and revokes removed-member pr
   };
   try {
     await seedTeamControls(db, { scope: "fresh-disposable-local" });
+    // Sites may supply an email fallback name while the profile has a chosen name.
+    await view("accept");
+    await view("decline");
     const initial = await view("leader");
+    assert.equal(
+      initial.actions.find((entry: any) => entry.id === ids.acceptRequest)
+        .person_name,
+      "Synthetic Team Accept",
+    );
+    assert.equal(
+      initial.actions.find((entry: any) => entry.id === ids.declineRequest)
+        .person_name,
+      "Synthetic Team Decline",
+    );
     assert.equal(initial.team.id, ids.formingTeam);
     assert.equal(initial.submissionAccess.attemptsUsed, 0);
     const memberRename = await call("member", "rename-team", {
