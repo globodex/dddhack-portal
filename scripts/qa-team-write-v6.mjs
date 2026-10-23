@@ -589,10 +589,6 @@ try {
   await expand(
     solo.panel.locator("summary").filter({ hasText: "Delete your team" }),
   );
-  const deletionReason = "Synthetic sole-team replacement QA";
-  await solo.panel
-    .getByLabel("Reason for deleting your team", { exact: true })
-    .fill(deletionReason);
   await record(
     "cancelled named deletion keeps the sole team intact",
     async () => {
@@ -614,9 +610,6 @@ try {
       await expand(
         solo.panel.locator("summary").filter({ hasText: "Delete your team" }),
       );
-      await solo.panel
-        .getByLabel("Reason for deleting your team", { exact: true })
-        .fill(deletionReason);
     },
   );
   await record(
@@ -625,7 +618,7 @@ try {
       await commit(
         solo,
         "delete-own-team",
-        { reason: deletionReason, confirmation: "DELETE_OWN_TEAM" },
+        { reason: null, confirmation: "DELETE_OWN_TEAM" },
         () =>
           act(
             solo.panel.getByRole("button", {
@@ -716,14 +709,12 @@ try {
   if (leader)
     report.failureState = {
       requests: await leader.panel.locator(".request-row").allTextContents(),
-      details: await leader.panel
-        .locator("details")
-        .evaluateAll((nodes) =>
-          nodes.map((n) => ({
-            summary: n.querySelector("summary")?.textContent,
-            open: n.open,
-          })),
-        ),
+      details: await leader.panel.locator("details").evaluateAll((nodes) =>
+        nodes.map((n) => ({
+          summary: n.querySelector("summary")?.textContent,
+          open: n.open,
+        })),
+      ),
     };
   process.exitCode = 1;
 } finally {
