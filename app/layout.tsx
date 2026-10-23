@@ -12,6 +12,7 @@ import "./dashboard-v6.css";
 import "./discover-rules-v6.css";
 import "./projects-submission-v6.css";
 import "./portal-shell.css";
+import "./mobile-navigation.css";
 export const metadata = {
   title: "DevDay Exchange Community Hackathon: New Delhi",
   description:

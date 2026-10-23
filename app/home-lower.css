@@ -12,6 +12,70 @@
 .public-home-shell .public-faq summary > svg {
   flex: 0 0 20px;
 }
+/* One gutter owns the phone layout. Clear the desktop columns and transforms
+   through the entire mobile breakpoint, including 701–740px portrait widths. */
+@media (max-width: 740px) {
+  .public-home-shell .chapter-stack {
+    margin-inline: 20px;
+  }
+  .public-home-shell .chapter-stack .chapter,
+  .public-home-shell .chapter-stack[data-enhanced="true"] .chapter {
+    position: relative;
+    top: auto;
+    min-height: 0;
+    border-inline: 0;
+    border-radius: 0;
+    scroll-margin-top: calc(var(--public-header-height, 64px) + 16px);
+    transform: none;
+  }
+  .public-home-shell .chapter-stack .chapter .chapter-content,
+  .public-home-shell .chapter-stack #venue .chapter-content,
+  .public-home-shell .chapter-stack #faq .chapter-content {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: 28px 0 44px;
+    box-sizing: border-box;
+    transform: none;
+  }
+  .public-home-shell .chapter-stack .chapter-heading,
+  .public-home-shell .chapter-stack .chapter-body,
+  .public-home-shell .chapter-stack .public-rules {
+    width: 100%;
+    min-width: 0;
+    margin-inline: 0;
+    text-align: left;
+    transform: none;
+    box-sizing: border-box;
+  }
+  .public-home-shell .chapter-stack .public-rules {
+    display: block;
+    padding-inline: 0;
+  }
+  .public-home-shell .chapter-stack .public-rules li {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 12px;
+    overflow-wrap: anywhere;
+  }
+  .public-home-shell .chapter-stack .public-rules li::before {
+    position: static;
+  }
+  .public-home-shell .chapter-stack .public-rules li::after {
+    content: none;
+  }
+  .public-home-shell .chapter-stack .public-faq {
+    padding: 0;
+  }
+  .public-home-shell .chapter-stack .public-faq details,
+  .public-home-shell .chapter-stack .public-faq summary,
+  .public-home-shell .chapter-stack .public-faq details p {
+    margin-inline: 0;
+    padding-inline-start: 0;
+    overflow-wrap: anywhere;
+  }
+}
 @media (min-width: 741px) {
   .public-home-shell .chapter-stack .chapter {
     border-radius: 24px 24px 0 0;

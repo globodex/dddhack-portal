@@ -40,6 +40,7 @@ import AddAdmins from "./add-admins";
 import { useDiscoverPeople, peopleDirectoryUrl, readPeoplePage } from "./use-discover-people";
 import { HeadingDot } from "./expressive-heading";
 import CenteredLoader from "./centered-loader";
+import MobileNavigation from "./mobile-navigation";
 import DiscoveryProfile, {
   discoverySocialLinks,
   openDiscoveryDialog,
@@ -4951,9 +4952,10 @@ export default function Portal({
           </a>
           <button
             className="public-menu button secondary"
-            aria-controls="public-navigation"
+            aria-controls="mobile-navigation"
+            aria-haspopup="dialog"
             aria-expanded={menu}
-            onClick={() => setMenu(!menu)}
+            onClick={(event) => { event.currentTarget.focus(); setMenu(!menu); }}
           >
             <Icon name={menu ? "close" : "menu"} />
             <span className="sr-only">{menu ? "Close menu" : "Open menu"}</span>
@@ -4961,7 +4963,7 @@ export default function Portal({
           <nav
             id="public-navigation"
             aria-label="Public navigation"
-            data-open={menu}
+            data-open={false}
           >
             <a href="/" aria-current={path === "/" ? "page" : undefined}>
               {publicBrowse && <Icon name="home" />}
@@ -5005,8 +5007,9 @@ export default function Portal({
         <button
           className="button secondary"
           aria-expanded={menu}
-          aria-controls="site-navigation"
-          onClick={() => setMenu(!menu)}
+          aria-controls="mobile-navigation"
+          aria-haspopup="dialog"
+          onClick={(event) => { event.currentTarget.focus(); setMenu(!menu); }}
         >
           <Icon name={menu ? "close" : "menu"} />
           <span className="sr-only">{menu ? "Close menu" : "Open menu"}</span>
@@ -5042,7 +5045,7 @@ export default function Portal({
           </a>
         )}
       </header>
-      <aside className={`sidebar ${menu ? "open" : ""}`}>
+      <aside className="sidebar">
         <a className="brand" href="/" aria-label="DevDay Exchange home">
           <img
             src="/brand/codex-user-supplied.svg"
@@ -5148,6 +5151,24 @@ export default function Portal({
           )}
         </div>
       </aside>
+      <MobileNavigation open={menu} onClose={() => setMenu(false)}>
+        {nav.map(([href, label]) => (
+          <a key={href} href={href} aria-current={path === href ? "page" : undefined}>{label}</a>
+        ))}
+        {!data.me ? (
+          <a href="/signin-with-chatgpt?return_to=%2Fdashboard" target="_top">Sign in</a>
+        ) : (
+          <>
+            {data.me.mode !== "viewer" && <a href="/profile">Your profile</a>}
+            {(privileged || data.me.role === "volunteer") && (
+              <a href={admin ? "/dashboard" : "/admin/participants"}>
+                {admin ? "Workspace" : "Administration"}
+              </a>
+            )}
+            <button type="button" onClick={() => { setMenu(false); requestAnimationFrame(() => void logout()); }}>Log out</button>
+          </>
+        )}
+      </MobileNavigation>
       <main
         id="main"
         tabIndex={-1}
