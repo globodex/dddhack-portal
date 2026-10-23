@@ -1870,6 +1870,15 @@ export class PortalService {
     );
     const entries = [];
     for (const v of versions) {
+      if (
+        await one(
+          this.db,
+          "SELECT target_id FROM record_removals WHERE active=1 AND ((kind='submission' AND target_id=?) OR (kind='project' AND target_id IN(SELECT id FROM projects WHERE team_id=?)))",
+          v.id,
+          v.team_id,
+        )
+      )
+        continue;
       const review = await one<Review>(
         this.db,
         "SELECT * FROM reviews WHERE team_id=?",
@@ -1892,15 +1901,6 @@ export class PortalService {
         "SELECT id FROM projects WHERE team_id=?",
         t.id,
       );
-      if (
-        await one(
-          this.db,
-          "SELECT target_id FROM record_removals WHERE active=1 AND ((kind='submission' AND target_id=?) OR (kind='project' AND target_id=?))",
-          v.id,
-          revisedProject?.id || "",
-        )
-      )
-        continue;
       if (revisedProject) {
         const eligible = await one<{ status: string }>(
           this.db,

@@ -43,12 +43,24 @@ export async function submissionAccess(s: PortalService, teamId?: string) {
     ? !!(await personStatus(s, actor.id)).checkedIn
     : false;
   const isLeader = !!actor && leader?.leader_id === actor.id;
+  const projectRemoved = teamId
+    ? !!(await one(
+        s.db,
+        "SELECT r.target_id FROM record_removals r JOIN projects p ON r.target_id=p.id AND r.kind='project' WHERE p.team_id=? AND r.active=1",
+        teamId,
+      ))
+    : false;
   const canAccess = !!teamId && checkedInMembers > 0 && operation.allowed;
   const canCommit =
-    canAccess && isLeader && personallyCheckedIn && attemptsUsed < 3;
+    canAccess &&
+    isLeader &&
+    personallyCheckedIn &&
+    attemptsUsed < 3 &&
+    !projectRemoved;
   return {
     canAccess,
     canCommit,
+    projectRemoved,
     isLeader,
     personallyCheckedIn,
     canRead: !!teamId && checkedInMembers > 0,
@@ -87,6 +99,12 @@ export async function requireSubmissionAccess(
     "TEAM_CHECKIN_REQUIRED: " + state.message,
   );
   if (readOnly) return state;
+  demand(
+    !state.projectRemoved,
+    409,
+    "RECORD_REMOVED",
+    "The project was removed by an administrator.",
+  );
   demand(state.isLeader, 403, "LEADER_REQUIRED");
   demand(
     state.personallyCheckedIn,

@@ -745,3 +745,37 @@ test("admin engagement pause is versioned, backend enforced, and reopening prese
     db.close();
   }
 });
+
+test("unreviewed removed projects do not block active scoring coverage and cannot be edited, while history remains", async () => {
+  const { db, service, clock } = await setup();
+  try {
+    await activate(db);
+    clock("2026-11-01T04:00:00.000Z");
+    await attend(db, "fake_alice");
+    const commit = await service().command("submit-project", {
+      revision: 0,
+      project,
+    });
+    await service("admin").command("project-soft-delete", {
+      projectId: commit.projectId,
+      scope: "project",
+      reason: "Synthetic removed unreviewed project",
+      confirmation: "REMOVE_PROJECT",
+    });
+    assert.deepEqual(await service("owner").compute(), []);
+    assert.equal(
+      asRow(await service().view("/dashboard")).submissionAccess.canCommit,
+      false,
+    );
+    await assert.rejects(
+      service().command("save-project", { revision: 1, project }),
+      { code: "RECORD_REMOVED" },
+    );
+    assert.equal(
+      (await rows(db, "SELECT * FROM submission_versions")).length,
+      1,
+    );
+  } finally {
+    db.close();
+  }
+});
