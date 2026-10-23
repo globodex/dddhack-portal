@@ -115,3 +115,20 @@ Reproduction: create only a synthetic approved registration for `never@portal.te
 - The isolated v4 public candidate still requires its own final source-boundary verification; no inference of latest backend compliance follows from these integrated fixes.
 
 Validation for this exact integrated ref: `npm run typecheck` passed; `node --import tsx --test --test-isolation=none tests/*.test.ts` with approved local loopback passed **94/94**, including D1 transactions/migrations. The additional import and in-flight-removal reproductions above also succeeded and expose coverage gaps despite that green suite. No live/network browser operation, real record, venue value, secret or paid provider was involved. Awaiting the root's correction ref for final verification; this pass does not certify changes made after `379c568`.
+
+## Correction verification — ref `7919187`
+
+Used a fresh auditor branch, `audit/portal-corrections`. The original second-pass adversarial reproductions now fail safely:
+
+- The exact imported category saves successfully on first completion. Edited social URLs replace imported values. Subsequent explicit blank category and empty social list remain blank on reload and through `profileInitialLinks()`.
+- Deactivation committed during the original throttle interleaving rejects `PARTICIPANT_REMOVED` and does not persist the profile mutation. A stronger regression pauses immediately before `mutate`; the transaction-time active-actor assertion rejects and rolls back the domain batch. The temporary assertion guard is removed on success and rolled back on failure.
+- Approved never-login registrations are reconciled by email without manufacturing a user. Their Absent state survives later first sign-in; Registered and ever-attended people retain the covered exclusions.
+- Legacy `idea` dispatch uses the canonical save implementation. Public images remain no-store. Removed latest records are excluded from score normalization once their review-readiness check is passed.
+
+The latest explicitly communicated venue rule supersedes the original all-member rule: an approved person with Going/Checked in status may see the private venue, as may existing owner/scoped operations admins. Source/test review found no widening to Viewer/discovery/public projections. No actual venue value was read or emitted. Engagement pause is versioned and enforced by API/database guards, with server row capabilities reflected in UI; reopening does not reset votes or frozen scores. Hidden final-stage projections remain filtered by `publicScores`.
+
+Focused verification: `node --import tsx --test --test-isolation=none tests/latest-permissions.test.ts tests/admin-portal-integration.test.ts tests/score-release.test.ts tests/experience.test.ts` passed **37/37**. This includes the new prefill, transaction race, email-absence, engagement-control, venue-privacy and hidden-score regressions. Root is independently running full suite/typecheck/build for this ref; the auditor does not claim those runs here.
+
+No new P0/P1 privacy or capability finding was identified in this correction pass. One P2 readiness bug remains: `PortalService.compute()` checks `REVIEW_INCOMPLETE` at `lib/service.ts:1878` before checking the project/version tombstone at line 1895. Reproduction: commit a synthetic project without a review, soft-remove its project, then call owner `compute()`; it still throws `REVIEW_INCOMPLETE` instead of excluding that removed record. Move removal filtering before review-readiness validation. This affects scoring availability, not private-data exposure or immutable history. Reported to root for correction.
+
+This verdict is bounded to `7919187`, the focused checks and source paths reviewed. There were no live probes, deployments, credentials, paid providers, real imports/removals or browser operations.
