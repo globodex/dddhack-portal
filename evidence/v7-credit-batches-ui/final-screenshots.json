@@ -1,0 +1,67 @@
+{
+  "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+  "workerSha": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+  "syntheticOnly": true,
+  "screenshots": [
+    {
+      "path": "/workspace/dddhack-portal/evidence/v7-credit-batches-ui/paste-0a2e3f9-t4dwiq/credit-columns-edited-1440x900.png",
+      "route": "/admin/credits",
+      "role": "synthetic-admin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+      "workerSha": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+      "inspected": true,
+      "referenceCompared": false,
+      "review": "Actual synthetic-admin capture; no raw voucher cells or manual preview controls; headings, Markdown and assigned counts visible; desktop/mobile layout inspected.",
+      "deliveryPath": "/workspace/v7-credit-batches/outputs/credit-final-delivery/DDEHack-v7-Credits-desktop-edit-columns-synthetic-admin-1440x900-0a2e3f9.png"
+    },
+    {
+      "path": "/workspace/dddhack-portal/evidence/v7-credit-batches-ui/paste-0a2e3f9-t4dwiq/published-columns-1440x900.png",
+      "route": "/admin/credits",
+      "role": "synthetic-admin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+      "workerSha": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+      "inspected": true,
+      "referenceCompared": false,
+      "review": "Actual synthetic-admin capture; no raw voucher cells or manual preview controls; headings, Markdown and assigned counts visible; desktop/mobile layout inspected.",
+      "deliveryPath": "/workspace/v7-credit-batches/outputs/credit-final-delivery/DDEHack-v7-Credits-desktop-published-synthetic-admin-1440x900-0a2e3f9.png"
+    },
+    {
+      "path": "/workspace/dddhack-portal/evidence/v7-credit-batches-ui/upload-0a2e3f9-ikYDtm/credit-columns-edited-390x844.png",
+      "route": "/admin/credits",
+      "role": "synthetic-admin",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+      "workerSha": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+      "inspected": true,
+      "referenceCompared": false,
+      "review": "Actual synthetic-admin capture; no raw voucher cells or manual preview controls; headings, Markdown and assigned counts visible; desktop/mobile layout inspected.",
+      "deliveryPath": "/workspace/v7-credit-batches/outputs/credit-final-delivery/DDEHack-v7-Credits-mobile-edit-columns-synthetic-admin-390x844-0a2e3f9.png"
+    },
+    {
+      "path": "/workspace/dddhack-portal/evidence/v7-credit-batches-ui/upload-0a2e3f9-ikYDtm/published-columns-390x844.png",
+      "route": "/admin/credits",
+      "role": "synthetic-admin",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+      "workerSha": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+      "inspected": true,
+      "referenceCompared": false,
+      "review": "Actual synthetic-admin capture; no raw voucher cells or manual preview controls; headings, Markdown and assigned counts visible; desktop/mobile layout inspected.",
+      "deliveryPath": "/workspace/v7-credit-batches/outputs/credit-final-delivery/DDEHack-v7-Credits-mobile-published-synthetic-admin-390x844-0a2e3f9.png"
+    }
+  ]
+}

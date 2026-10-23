@@ -1,0 +1,95 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Action completed."
+    }
+  ],
+  "structuredContent": {
+    "results": [
+      {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/DDEHack-v7-Credits-desktop-edit-columns-synthetic-admin-1440x900-0a2e3f9.png",
+        "file_id": "file_00000000a6ac82309f93ac72ae9256a8",
+        "library_file_id": "libfile_2109ddb5eb7481919601e9770e306dd6",
+        "file_name": "DDEHack-v7-Credits-desktop-edit-columns-synthetic-admin-1440x900-0a2e3f9.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 111132
+      },
+      {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/DDEHack-v7-Credits-desktop-published-synthetic-admin-1440x900-0a2e3f9.png",
+        "file_id": "file_00000000e78c81f7a6c044c27923cedd",
+        "library_file_id": "libfile_0fbc90e19de081918e4bfc5238464f31",
+        "file_name": "DDEHack-v7-Credits-desktop-published-synthetic-admin-1440x900-0a2e3f9.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 124009
+      },
+      {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/DDEHack-v7-Credits-mobile-edit-columns-synthetic-admin-390x844-0a2e3f9.png",
+        "file_id": "file_00000000f74081f8b12090c90188f3ef",
+        "library_file_id": "libfile_1aaa138672dc8191b40e4ac73f1efc52",
+        "file_name": "DDEHack-v7-Credits-mobile-edit-columns-synthetic-admin-390x844-0a2e3f9.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 77236
+      },
+      {
+        "operation": "create_library_file",
+        "status": "succeeded",
+        "path": "/DDEHack-v7-Credits-mobile-published-synthetic-admin-390x844-0a2e3f9.png",
+        "file_id": "file_000000001d9881f584be4688fb05998a",
+        "library_file_id": "libfile_9e176ef70b98819192e444dee4b2139b",
+        "file_name": "DDEHack-v7-Credits-mobile-published-synthetic-admin-390x844-0a2e3f9.png",
+        "current_version_number": 0,
+        "restored_from_version_number": null,
+        "xattrs": [
+          {
+            "name": "user.library-file-version",
+            "value": "0"
+          }
+        ],
+        "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+        "mime_type": "image/png",
+        "library_artifact_type": "image",
+        "file_size_bytes": 97127
+      }
+    ],
+    "warnings": [],
+    "external_connectors_accessed": false
+  },
+  "isError": false
+}
