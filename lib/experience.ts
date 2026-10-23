@@ -1,5 +1,9 @@
 import { auditReason } from "./security";
 import { teamFacts, personFacts, selectedRows } from "./directory-facts";
+import {
+  publicProjectFacts,
+  type PublicProjectFact,
+} from "./public-project-facts";
 import { submissionToolChoices } from "./submission-tools";
 import { engagementState, engagementControl } from "./engagement-control";
 import { removalCommand, notRemoved } from "./record-removal";
@@ -84,6 +88,10 @@ type Project = {
   published_version_id: string | null;
   updated_at: string;
 };
+type PublicProjectReference = Pick<
+  Project,
+  "id" | "team_id" | "slug" | "published_version_id"
+>;
 type Payload = {
   projectName: string;
   problemSolution: string;
@@ -278,51 +286,37 @@ export class PortalExperience {
     };
   }
   async publicProject(
-    p: Project,
+    p: PublicProjectReference,
     disclosure?: Awaited<ReturnType<typeof publicScores>>,
+    prefetched?: PublicProjectFact,
   ) {
+    const fact =
+      prefetched ?? (await publicProjectFacts(this.s.db, [p.id])).get(p.id);
     demand(
       p.published_version_id &&
-        (await this.eligibility(p)).status === "eligible",
+        fact &&
+        fact.id === p.id &&
+        fact.team_id === p.team_id &&
+        !fact.removed &&
+        fact.eligibility === "eligible" &&
+        fact.published_version_id === p.published_version_id,
       404,
       "PROJECT_NOT_ELIGIBLE",
     );
-    const v = await one<{ payload: string }>(
-      this.s.db,
-      "SELECT payload FROM submission_versions WHERE id=? AND team_id=?",
-      p.published_version_id,
-      p.team_id,
-    );
-    demand(v, 404, "PROJECT_NOT_PUBLISHED");
-    const d = JSON.parse(v.payload) as Payload;
+    demand(fact.payload, 404, "PROJECT_NOT_PUBLISHED");
+    const d = JSON.parse(fact.payload) as Payload;
     // Legacy versions without required media stay private until explicitly reconciled.
     validateProjectImage(d.logo || "", "logo");
     validateProjectImage(d.banner || "", "banner");
-    const t = await one<{ name: string }>(
-      this.s.db,
-      "SELECT name FROM teams WHERE id=?",
-      p.team_id,
-    );
-    const counts = await one<{ upvotes: number; comments: number }>(
-      this.s.db,
-      "SELECT (SELECT count(*) FROM project_upvotes WHERE project_id=?) upvotes,(SELECT count(*) FROM project_comments WHERE project_id=?) comments",
-      p.id,
-      p.id,
-    );
     const publishedScores = disclosure ?? (await publicScores(this.s));
     const revealed = publishedScores.scores.find(
       (e) => e.projectId === p.id && e.versionId === p.published_version_id,
     );
-    const first = await one<{ created_at: string }>(
-      this.s.db,
-      "SELECT created_at FROM submission_versions WHERE team_id=? ORDER BY attempt ASC LIMIT 1",
-      p.team_id,
-    );
     return {
       id: p.id,
-      firstSubmittedAt: first?.created_at,
+      firstSubmittedAt: fact.firstSubmittedAt ?? undefined,
       slug: p.slug,
-      teamName: t?.name,
+      teamName: fact.teamName,
       projectName: d.projectName,
       problemSolution: d.problemSolution,
       description: d.description,
@@ -330,8 +324,8 @@ export class PortalExperience {
       demo: d.demo,
       logo: `/api/project-image/${p.id}/logo?version=${p.published_version_id}`,
       banner: `/api/project-image/${p.id}/banner?version=${p.published_version_id}`,
-      upvotes: counts?.upvotes || 0,
-      comments: counts?.comments || 0,
+      upvotes: fact.upvotes,
+      comments: fact.comments,
       ...(revealed
         ? {
             result: {
@@ -618,13 +612,13 @@ export class PortalExperience {
         route,
       );
       let all = listRoute
-        ? await rows<Project>(
+        ? await rows<PublicProjectReference>(
             this.s.db,
-            "SELECT p.* FROM projects p JOIN submission_versions v ON v.id=p.published_version_id JOIN teams t ON t.id=p.team_id WHERE COALESCE((SELECT e.status FROM project_eligibility e WHERE e.project_id=p.id AND e.version_id=v.id),(SELECT r.eligibility FROM reviews r WHERE r.team_id=p.team_id AND r.version_id=v.id),'needs_review')='eligible' AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.active=1 AND ((rr.kind='project' AND rr.target_id=p.id) OR (rr.kind='submission' AND rr.target_id=v.id))) AND instr(lower(json_extract(v.payload,'$.projectName') || ' ' || t.name),lower(?))>0 ORDER BY (SELECT count(*) FROM project_upvotes u WHERE u.project_id=p.id) DESC,(SELECT first.created_at FROM submission_versions first WHERE first.team_id=p.team_id ORDER BY first.attempt ASC LIMIT 1) ASC,p.id ASC LIMIT 1000",
+            "SELECT p.id,p.team_id,p.slug,p.published_version_id FROM projects p JOIN submission_versions v ON v.id=p.published_version_id JOIN teams t ON t.id=p.team_id WHERE COALESCE((SELECT e.status FROM project_eligibility e WHERE e.project_id=p.id AND e.version_id=v.id),(SELECT r.eligibility FROM reviews r WHERE r.team_id=p.team_id AND r.version_id=v.id),'needs_review')='eligible' AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.active=1 AND ((rr.kind='project' AND rr.target_id=p.id) OR (rr.kind='submission' AND rr.target_id=v.id))) AND instr(lower(json_extract(v.payload,'$.projectName') || ' ' || t.name),lower(?))>0 ORDER BY (SELECT count(*) FROM project_upvotes u WHERE u.project_id=p.id) DESC,(SELECT first.created_at FROM submission_versions first WHERE first.team_id=p.team_id ORDER BY first.attempt ASC LIMIT 1) ASC,p.id ASC LIMIT 1000",
             (options.search || "").slice(0, 200),
           )
         : [await this.project(decodeURIComponent(route.split("/")[2]))];
-      const scoreFor = (p: Project) =>
+      const scoreFor = (p: PublicProjectReference) =>
         scores.scores.find(
           (e) => e.projectId === p.id && e.versionId === p.published_version_id,
         );
@@ -658,50 +652,68 @@ export class PortalExperience {
       const ownAttendance = me
         ? (await personStatus(this.s, me.id)).checkedIn
         : false;
-      const items = await Promise.all(
-        (listRoute
+      const selected = listRoute
           ? all.slice(selectedPage * 24, (selectedPage + 1) * 24)
-          : all
-        ).map(async (p) => ({
-          ...(await this.publicProject(p, scores)),
+          : all,
+        awardScores =
+          scores.stage === "final"
+            ? scores.scores
+                .filter(
+                  (entry) =>
+                    entry.position && (scores.complete || entry.position! <= 5),
+                )
+                .sort((a, b) => a.position! - b.position!)
+            : [],
+        references = new Map(all.map((project) => [project.id, project]));
+      const missingAwards = awardScores
+        .map((entry) => entry.projectId)
+        .filter((id) => !references.has(id));
+      for (const project of await selectedRows<PublicProjectReference>(
+        this.s.db,
+        missingAwards,
+        (marks) =>
+          `SELECT id,team_id,slug,published_version_id FROM projects WHERE id IN (${marks})`,
+      ))
+        references.set(project.id, project);
+      const facts = await publicProjectFacts(
+        this.s.db,
+        [
+          ...selected.map((project) => project.id),
+          ...awardScores.map((entry) => entry.projectId),
+        ],
+        me?.id,
+      );
+      const items = await Promise.all(
+        selected.map(async (p) => ({
+          ...(await this.publicProject(p, scores, facts.get(p.id))),
           canComment: !!me?.canEngage && !engagement.feedbackPaused,
           engagementPaused:
             engagement.votingPaused || engagement.feedbackPaused,
-          upvoted: me
-            ? !!(await one(
-                this.s.db,
-                "SELECT project_id FROM project_upvotes WHERE project_id=? AND user_id=?",
-                p.id,
-                me.id,
-              ))
-            : false,
+          upvoted: !!facts.get(p.id)?.upvoted,
           canUpvote:
             !engagement.votingPaused &&
             !!me?.canEngage &&
             (ownTeam?.id !== p.team_id || ownAttendance),
         })),
       );
-      const awards =
-        scores.stage === "final"
-          ? await Promise.all(
-              scores.scores
-                .filter(
-                  (e) => e.position && (scores.complete || e.position! <= 5),
-                )
-                .sort((a, b) => a.position! - b.position!)
-                .map(async (e) => {
-                  const p = await this.project(e.projectId);
-                  const publicEntry = await this.publicProject(p, scores);
-                  return {
-                    projectName: publicEntry.projectName,
-                    teamName: publicEntry.teamName,
-                    slug: publicEntry.slug,
-                    score: e.score,
-                    position: e.position,
-                  };
-                }),
-            )
-          : [];
+      const awards = await Promise.all(
+        awardScores.map(async (e) => {
+          const p = references.get(e.projectId);
+          demand(p, 404, "PROJECT_NOT_FOUND");
+          const publicEntry = await this.publicProject(
+            p,
+            scores,
+            facts.get(p.id),
+          );
+          return {
+            projectName: publicEntry.projectName,
+            teamName: publicEntry.teamName,
+            slug: publicEntry.slug,
+            score: e.score,
+            position: e.position,
+          };
+        }),
+      );
       return {
         items,
         me,
