@@ -23,7 +23,7 @@ const ownerEmail = readFileSync(join(artifactRoot, 'lib/identity.ts'), 'utf8').m
 const runId = `${source.slice(0,8)}-${new Date().toISOString().replace(/[:.]/g,'-')}`;
 const output = resolve(process.env.V6_QA_OUTPUT || 'evidence/v6-admin-controls', runId);
 mkdirSync(output, {recursive:true});
-const receipt = {source, workerSha256:workerSha, origin, phase:'read-cancel', syntheticOnly:true,
+const receipt = {source, workerSha256:workerSha, origin, phase:process.env.V6_QA_CAPTURE_ONLY==='1'?'clean-captures-only':'read-cancel', syntheticOnly:true,
   startedAt:new Date().toISOString(), captures:[], checks:[], controls:[], requests:[], blocked:[], errors:[],
   limitations:['Inventory counts are not exhaustive interaction coverage.', 'No confirming writes in this phase.',
     'Trusted loopback identities test authorization gates, not hosted login.',
@@ -72,7 +72,7 @@ async function step(name, work) {
   catch(e) {receipt.checks.push({role,mode,route:routePath,name,passed:false,error:e.message});}
 }
 async function activate(locator) {await locator.scrollIntoViewIfNeeded(); if(mode==='touch') await locator.tap(); else await locator.click();}
-async function shot(label, fullPage=true) {
+async function shot(label, fullPage=false) {
   await page.evaluate(()=>document.fonts.ready);
   const path=join(output,`${role}-${mode}-${label}.png`);
   await page.screenshot({path,fullPage,animations:'disabled'});
@@ -85,8 +85,13 @@ async function cancel(target) {
   const cancel=dialog.getByRole('button',{name:'Cancel',exact:true});
   const focus=await cancel.evaluate(e=>e===document.activeElement);
   await mark(dialog,'Modal opened; target text and initial Cancel focus verified.');
-  await activate(cancel); await mark(cancel,'Activated Cancel; modal dismissed.');
-  await dialog.waitFor({state:'hidden'});
+  const cancelIds=await cancel.evaluateAll(es=>es.map(e=>e.dataset.v6AuditControl));
+  const confirmIds=await dialog.locator('button.button:not(.secondary)').evaluateAll(es=>es.map(e=>e.dataset.v6AuditControl));
+  await activate(cancel); await dialog.waitFor({state:'hidden'});
+  for(const entry of currentControls()) {
+    if(cancelIds.includes(entry.domId))Object.assign(entry,{status:'checked',result:'passed',reason:'Activated Cancel and verified dialog dismissed.'});
+    if(confirmIds.includes(entry.domId))Object.assign(entry,{status:'skipped',result:'not-run',reason:'Confirming writes explicitly deferred until fresh disposable fixture reset.'});
+  }
   assert.ok(focus,'Cancel initial focus'); if(target) assert.ok(text.includes(target),`Missing target ${target}`);
 }
 async function generic() {
@@ -230,6 +235,7 @@ try {
       if(!allowed)continue;
       // Baseline captures happen before opening any local form or filter.
       if(['owner','admin'].includes(role))await shot(routePath.split('/').filter(Boolean).join('-')+'-clean');
+      if(process.env.V6_QA_CAPTURE_ONLY==='1')continue;
       await inventory('initial');
       if(routePath==='/admin/participants'&&['owner','admin'].includes(role))await participants();
       else if(routePath.endsWith('synthetic-alice'))await review();
