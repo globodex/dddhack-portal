@@ -1,8 +1,8 @@
-# DevDay Community Hackathon: New Delhi — v1 rehearsal
+# DevDay Exchange Community Hackathon: New Delhi
 
-**A published Sites draft with the supported Worker/build integration. Native publication and public access succeeded; direct HTTP verification from this executor is blocked by 403. Private runtime configuration and real hosted ChatGPT sign-in remain pending.** This is the new `dddhack-portal` project, separate from `devday-recap`.
+The revised profile → team → submission portal is implemented and tested locally. It is **not deployed**: the public Site remains version 3. Read [the current revision checkpoint](docs/UX_REVISION_V3.md) and [visual QA limits](design-qa.md) before release. Typecheck, 33 regression tests, official Sites production build/artifact review and compiled-Worker smoke checks pass. Browser visual QA is blocked on this executor.
 
-The portal covers registration review, private onboarding, teams/ideas, check-in and encrypted personal credits, three leader submission versions, review jobs, judges, votes/feedback, and owner-controlled result snapshots. Event: **1 November 2026, Asia/Kolkata**. The initial policy is deliberately draft; the submission cutoff, diversity rubric, vote formula and AI fallback are unresolved. Activation, scoring and publication fail closed.
+The latest UI provides private team customization, an eligible upvote-ordered public project list, required self-reported private gender, role-scoped review/admin tools, and owner-managed public/private event content. Event policies remain draft; no real data, grants, API calls or new credentials were introduced. AI evaluation remains Not configured.
 
 ## Run locally
 
@@ -14,7 +14,7 @@ npm run db:local
 PORTAL_LOCAL_TEST=1 npm run dev
 ```
 
-Open `http://127.0.0.1:5173/`; use `/local-test` to select a clearly fake account. The owner fixture is `owner@portal.test`, not the production owner's email. Fake users, 1/3/5-person teams and `FAKE-NOT-REDEEMABLE-*` credit inventory are seeded into ignored `.local/portal.sqlite`. Data survives process restarts. Existing databases are preserved. Set `PORTAL_LOCAL_DB` to a fresh path for a new rehearsal. Do not place real data in this adapter. To disable it, omit `PORTAL_LOCAL_TEST`; production builds exclude the local runtime. The Worker requires explicit Sites Dispatch trust, D1 and a credit key; missing configuration returns 503 for protected data.
+Open `http://127.0.0.1:5173/`; use `/local-test` to select a clearly fake account. The owner fixture is `owner@portal.test`, not the production owner's email. Fake users, 1/3/5-person teams and `FAKE-NOT-REDEEMABLE-*` credit inventory are seeded into ignored `.local/portal.sqlite`. Data survives process restarts. Existing databases are preserved. Set `PORTAL_LOCAL_DB` to a fresh path for a new rehearsal. Do not place real data in this adapter. To disable it, omit `PORTAL_LOCAL_TEST`; production builds exclude the local runtime. The Worker requires explicit Sites Dispatch trust and D1. Profile/dashboard access works without a credit key; credit operations fail closed until a production key is configured.
 
 Portable shell equivalents: Windows PowerShell uses `$env:PORTAL_LOCAL_TEST='1'; npm run dev`. All previews are loopback only.
 
@@ -36,11 +36,11 @@ Browser testing uses an installed Chromium; set `CHROMIUM_PATH` for your machine
 ## Architecture and security
 
 - Vinext App Router, React, TypeScript; public and protected screens call a server API. SQLite is only the named local adapter. The domain service accepts the D1 interface and uses parameterized, one-statement `prepare()` calls and atomic `batch()` writes.
-- Schema/migration: `db/migrations/` (ordered `0001_portal.sql`, then `0002_tie_resolutions.sql`). Constraints and triggers enforce one membership, five-person cap, idea lock, three submission versions, credit uniqueness, vote limits and immutable audit/results. Race-sensitive limits are checked in SQL. Scoring revision checks reject a snapshot if its inputs changed while it was computed.
+- Schema/migration: `db/migrations/` (ordered additive migrations; see the current revision checkpoint). Constraints and triggers enforce one membership, five-person cap, idea lock, three submission versions, credit uniqueness, vote limits and immutable audit/results. Race-sensitive limits are checked in SQL. Scoring revision checks reject a snapshot if its inputs changed while it was computed.
 - The request-scoped Sites handler consumes **server-injected** `oai-authenticated-user-id` and email behind Sites Dispatch. `connectwithparam.30@gmail.com` is owner only when derived from that verified identity. No client email or requested role establishes ownership. Staff access is re-read on each request. Judges cannot access credits.
 - `.env.example` contains names/placeholders only. Fake inventory uses AES-256-GCM with an explicitly non-secret local test key. Production requires a new server-side key configured through Sites secrets. Codes are never in safe exports, audit values, public queries or frontend source. There is intentionally no bulk secret export.
 - Mutation API requires same-origin JSON, bounded request bodies, server RBAC and per-account throttling. CSV previews expire after 15 minutes; imports revalidate and preserve existing approvals. CSV exports neutralize spreadsheet formulas. React escapes user text. No arbitrary repository code is executed and no external URLs are fetched by this v1.
-- Profiles start private. Optional gender includes prefer not to say and remains private even when a profile is public. No demographic inference or automatic demographic scoring exists.
+- Profiles start private. Required self-reported gender includes prefer not to say and remains private even when a profile is public. No demographic inference or automatic demographic scoring exists.
 - Luma is manual: import roster → review/approve → export safe emails → manually approve in Luma → mark confirmed. No email delivery, provider credits, account provisioning or production role grants were performed.
 
 ## Before live use

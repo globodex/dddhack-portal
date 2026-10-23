@@ -1,3 +1,7 @@
+# Latest local revision checkpoint
+
+The revised portal is implemented locally and is not yet published. TypeScript, all 33 regression tests, production artifact review and compiled Worker smoke pass. Browser visual QA is blocked. See [UX_REVISION_V3.md](UX_REVISION_V3.md) for exact features, evidence, migrations and outstanding decisions. Older browser results below describe the previous UI only.
+
 # Current publication checkpoint
 The public Site is now **DevDay Exchange Community Hackathon: New Delhi**, <https://dddhack-portal.param3021.chatgpt.site>, version 3/source `67e05772e63d43031ccd1913d0d8691d4b955895`, deployment `appgdep_6adb2fad68cc81919724ac6aa70ac8f1` succeeded. The supported Sites auth settings are configured; the fresh-database dashboard repair is published. Read-only draft fallback does not initialize/activate policy or import data. Typecheck, all 21 unit/D1 tests, production build/artifact gate and compiled Worker checks pass, including dashboard/profile 200 without event settings or a credit key. Live interactive authentication is still unverified. See `AUTH_REPAIR.md` and `PUBLICATION.md`; older delivery checkpoints below are historical.
 

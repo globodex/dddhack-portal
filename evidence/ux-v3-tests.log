@@ -1,0 +1,44 @@
+> devday-exchange-portal@0.1.0 test
+> tsx --test tests/*.test.ts
+
+✔ actual local D1 binding: schema, trigger rollback, batch atomicity and concurrent credit/submission commands (4079.712257ms)
+✔ original preset shapes, safe contrast and semantic responsive shell render without rejected artwork or private data (22.060531ms)
+✔ additive local upgrade preserves existing users and is idempotent (13.244388ms)
+✔ inline profile gate, registered team creation, presets, partial readiness and revocation (86.694456ms)
+✔ private venue never leaves unauthorized projections; Going, approval and membership are checked afresh (87.057872ms)
+✔ owner event drafts, safe Maps URLs, plain text and optimistic edits preserve published content (34.1038ms)
+✔ shared draft/committed project, required media, concurrent writes and public version isolation (47.801518ms)
+✔ signed-in engagement permits admins and pending people, is idempotent, and stays separate from private reviews (39.208473ms)
+✔ volunteer, mentor and judge boundaries, owner Logs, role and assignment revocation (44.27288ms)
+✔ reevaluation stays Not configured while API setup is pending; active-run guard and history remain structural (24.628535ms)
+✔ leaderboard orders by upvotes then immutable first submission time, excludes ineligible, and exposes no evaluation or rank (72.577695ms)
+✔ revised judge reviews feed only an owner-revealed frozen score; public engagement remains independent (42.47081ms)
+✔ exact timestamp ties use a stable key and a focused leaderboard link selects its containing page (37.712602ms)
+✔ ties need complete owner adjudication; altered score breakdown invalidates earlier order (130.331178ms)
+✔ snapshot revision guard and request throttle fail closed (167.323411ms)
+✔ owner derives only from trusted Sites identity; local header spoofing and unsafe return paths fail (25.968536ms)
+✔ draft policies block activation, scoring and submission; approved rehearsal is explicit (55.074306ms)
+✔ registered approval, single membership and five-person constraints; request/invite acceptance (30.36659ms)
+✔ idea core locks exactly at IST boundary; description remains editable and no public idea/profile/gender leak (43.409308ms)
+✔ check-in allocations are idempotent, encrypted, private and retryable after inventory exhaustion (52.388678ms)
+✔ CSV previews, duplicate handling, formula protection and AES-GCM integrity (23.815764ms)
+✔ only leader can commit; exactly three successful versions, invalid fields/cutoff do not consume attempts (74.722354ms)
+✔ external evaluation failure and invalid model output preserve submission; uncertainty is reviewable (26.533837ms)
+✔ three distinct votes, no own-team or duplicate votes, meaningful feedback and bounded scoring (38.953635ms)
+✔ full mock rehearsal: two equal-weight judges, human review, owner freeze, immutable private snapshot and publication (38.424852ms)
+✔ HTTP security: CSRF, IDOR, role bypass, export permissions, cache controls and bounded body (28.035625ms)
+✔ Worker request scope isolates concurrent identities, bindings and keys; no fallback outside Dispatch (34.18759ms)
+✔ sign-in and profile access do not require a credit secret; credit operations fail closed without one (46.459531ms)
+✔ Sites runtime authorizes anonymous, participant, judge and owner requests against server data (26.111457ms)
+✔ Sites Drizzle migrations preserve schema constraints, triggers and persisted service behavior on D1 (1866.511343ms)
+✔ fresh hosted schema requires an explicit owner-only, audited draft initialization (22.18336ms)
+✔ fresh event read views work before explicit initialization and never activate or persist draft settings (17.803361ms)
+✔ slash aliases cannot weaken owner-only settings and permissions reads (21.788786ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5110.943087

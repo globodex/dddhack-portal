@@ -9,6 +9,7 @@ import {
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { unstable_dev, getPlatformProxy } from "wrangler";
+import { syntheticImage } from "../tests/fixture-images.ts";
 import { seedLocal } from "./fixtures.ts";
 process.env.PORTAL_LOCAL_TEST = "1"; // Cannot reactivate code removed by the production build.
 process.env.CLOUDFLARE_CF_FETCH_ENABLED = "false";
@@ -43,7 +44,7 @@ try {
   const landing = await worker.fetch("/");
   assert.equal(landing.status, 200);
   const landingHTML = await landing.text();
-  assert.match(landingHTML, /Build what/);
+  assert.match(landingHTML, /DevDay Exchange/);
   assert.match(landingHTML, /DevDay Exchange Community Hackathon: New Delhi/);
   for (const path of [
     "/dashboard/credits",
@@ -139,7 +140,10 @@ try {
     headers: alice,
   });
   assert.equal(dashboard.status, 200);
-  assert.equal((await worker.fetch("/dashboard", { headers: alice })).status, 200);
+  assert.equal(
+    (await worker.fetch("/dashboard", { headers: alice })).status,
+    200,
+  );
   assert.match(dashboard.headers.get("cache-control"), /no-store/);
   const profile = await worker.fetch("/api/portal?view=/dashboard/profile", {
     headers: alice,
@@ -230,6 +234,7 @@ try {
   assert.equal((await storedProfile.json()).profile.bio, nestedBraces);
   const literalLookup = await worker.fetch(
     "/api/portal?view=" + encodeURIComponent("/teams/" + nestedBraces),
+    { headers: alice },
   );
   assert.equal(literalLookup.status, 404);
   assert.equal((await worker.fetch("/")).status, 200);
@@ -251,6 +256,113 @@ try {
     publicRulesAPI: 200,
     nestedBraceProfileRoundTrip: true,
     nestedBraceTeamLookup: 404,
+  };
+  const post = async (identity, action, data) => {
+    const base = `http://${worker.address}:${worker.port}`;
+    return worker.fetch(base + "/api/portal", {
+      method: "POST",
+      headers: {
+        ...identity,
+        "content-type": "application/json",
+        origin: base,
+      },
+      body: JSON.stringify({ action, data }),
+    });
+  };
+  const pending = {
+    "oai-authenticated-user-id": "fake_pending",
+    "oai-authenticated-user-email": "pending@portal.test",
+  };
+  const created = await post(pending, "create-workspace-team", {
+    name: "Synthetic Worker Geometry",
+    avatar: "fold",
+    palette: "cobalt",
+  });
+  assert.equal(created.status, 200, await created.text());
+  const pendingWorkspace = await worker.fetch("/api/portal?view=/dashboard", {
+    headers: pending,
+  });
+  const pendingData = await pendingWorkspace.json();
+  assert.equal(pendingData.team.palette, "cobalt");
+  assert.equal(pendingData.teamReadiness.going, false);
+  assert.equal(pendingData.status, "Registered");
+  const missingGender = await post(pending, "complete-profile", {
+    displayName: "Synthetic Builder",
+    bio: "A synthetic builder profile.",
+    skills: "TypeScript",
+  });
+  assert.equal(missingGender.status, 422);
+  const draft = await post(pending, "save-project", {
+    revision: 0,
+    project: {
+      projectName: "Synthetic Worker Draft",
+      problemSolution: "A test project",
+      description: "Local compiled Worker test",
+      github: "https://github.com/example/test",
+      demo: "",
+      logo: syntheticImage(64, 64),
+      banner: syntheticImage(160, 90),
+      tools: "Codex CLI",
+      contributions: [],
+      attestation: false,
+    },
+  });
+  assert.equal(draft.status, 200, await draft.text());
+  assert.equal((await worker.fetch("/api/portal?view=/teams")).status, 401);
+  const privateMarker = "COMPILED-SYNTHETIC-PRIVATE-ARRIVAL";
+  const venueDraft = await post(owner, "content-save", {
+    scope: "private",
+    revision: 0,
+    content: {
+      location: privateMarker,
+      directions: "Synthetic instructions",
+      mapUrl: "",
+    },
+    reason: "Synthetic venue setup",
+  });
+  assert.equal(venueDraft.status, 200, await venueDraft.text());
+  assert.equal(
+    (
+      await post(owner, "content-publish", {
+        scope: "private",
+        revision: 1,
+        reason: "Synthetic private publication",
+      })
+    ).status,
+    200,
+  );
+  const goingView = await worker.fetch("/api/portal?view=/dashboard", {
+    headers: alice,
+  });
+  assert.equal((await goingView.json()).privateVenue.location, privateMarker);
+  const publicView = await worker.fetch("/api/portal?view=/");
+  assert.ok(!(await publicView.text()).includes(privateMarker));
+  const withdrawn = await post(owner, "participant-bulk", {
+    emails: ["alice@portal.test"],
+    status: "pending",
+    reason: "Synthetic approval withdrawal",
+  });
+  assert.equal(withdrawn.status, 200);
+  const revokedView = await worker.fetch("/api/portal?view=/dashboard", {
+    headers: alice,
+  });
+  assert.equal((await revokedView.json()).privateVenue, undefined);
+  const board = await worker.fetch("/api/portal?view=/leaderboard");
+  const boardText = await board.text();
+  assert.equal(board.status, 200);
+  assert.ok(!/evaluationState|rating|privateVenue/.test(boardText));
+  report.revisedExperience = {
+    registeredTeamCreation: 200,
+    sharedTeamAccent: true,
+    partialTeamGoing: false,
+    missingRequiredGender: 422,
+    projectDraftSave: 200,
+    privateTeamsAnonymousAPI: 401,
+    goingVenueVisible: true,
+    publicVenueSecretAbsent: true,
+    approvalRevocationRemovesVenue: true,
+    leaderboardExcludesInternalEvaluation: true,
+    realChatGPTSignInVerified: false,
   };
   writeFileSync(
     "evidence/sites-production-smoke.json",

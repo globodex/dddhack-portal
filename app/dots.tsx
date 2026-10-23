@@ -1,149 +1,156 @@
 "use client";
 import { useEffect, useRef } from "react";
 export default function Dots({
-  variant = 0,
-  landing = false,
+  paused = false,
+  bottom = false,
 }: {
-  variant?: number;
-  landing?: boolean;
+  paused?: boolean;
+  bottom?: boolean;
 }) {
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
-    const canvas = ref.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    const media = matchMedia("(prefers-reduced-motion: reduce)");
+    const canvas = ref.current,
+      ctx = canvas?.getContext("2d");
+    if (!canvas || !ctx) return;
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)");
     let frame = 0,
-      last = 0,
-      alive = true;
-    let w = 0,
-      h = 0;
-    const pointer = { x: -999, y: -999 };
-    let particles: {
+      w = 0,
+      h = 0,
+      visible = true,
+      alive = true,
+      previous = 0;
+    const point = { x: -9999, y: -9999 };
+    const colors = [
+      "#0969ff",
+      "#d9d9d9",
+      "#863fff",
+      "#00a251",
+      "#ff7900",
+      "#202020",
+    ];
+    let dots: {
       x: number;
       y: number;
+      hx: number;
+      hy: number;
+      r: number;
       vx: number;
       vy: number;
-      r: number;
-      homeX: number;
-      homeY: number;
     }[] = [];
-    const resize = () => {
-      cancelAnimationFrame(frame);
-      const rect = canvas.getBoundingClientRect();
-      w = rect.width;
-      h = rect.height;
-      const dpr = Math.min(devicePixelRatio, 1.5);
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = landing ? (w < 600 ? 25 : 64) : 28;
-      particles = Array.from({ length: count }, (_, i) => {
-        const a = i * 2.39996 + variant * 0.8;
-        const rad = Math.sqrt((i + 0.5) / count) * Math.min(w, h) * 0.39;
-        const x = w / 2 + Math.cos(a) * rad,
-          y = h / 2 + Math.sin(a) * rad;
-        return {
-          x: landing ? Math.random() * w : x,
-          y: landing ? -Math.random() * 100 : y,
-          vx: 0,
-          vy: landing ? 0.5 + Math.random() * 0.6 : 0,
-          r: landing ? 2 + Math.random() * 5 : 3.5,
-          homeX: x,
-          homeY: y,
-        };
-      });
-      draw(0);
-    };
-    const draw = (t: number) => {
+    const draw = (time = 0) => {
       if (!alive) return;
-      if (t && t - last < 32) {
-        frame = requestAnimationFrame(draw);
-        return;
-      }
-      last = t;
+      const dt = previous ? Math.min(2, (time - previous) / 16.67) : 1;
+      previous = time;
       ctx.clearRect(0, 0, w, h);
-      const reduced = media.matches;
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        if (reduced) {
-          p.x = p.homeX;
-          p.y = p.homeY;
+      for (let i = 0; i < dots.length; i++) {
+        const p = dots[i];
+        if (paused || reduced.matches) {
+          p.x = p.hx;
+          p.y = p.hy;
+          p.vx = p.vy = 0;
         } else {
-          const dx = p.x - pointer.x,
-            dy = p.y - pointer.y,
-            d = Math.hypot(dx, dy);
-          if (d < 110 && d > 0) {
-            p.vx += (dx / d) * (110 - d) * 0.008;
-            p.vy += (dy / d) * (110 - d) * 0.008;
+          const dx = p.x - point.x,
+            dy = p.y - point.y,
+            d = Math.hypot(dx, dy),
+            range = bottom ? 90 : 120;
+          if (d < range && d > 1) {
+            p.vx += (dx / d) * (range - d) * 0.017;
+            p.vy += (dy / d) * (range - d) * 0.017;
           }
-          if (landing) {
-            p.vy += 0.008;
-            p.vy = Math.min(p.vy, 1.2);
-            p.x += p.vx;
-            p.y += p.vy;
-            p.vx *= 0.96;
-            if (p.y > h + 10) {
-              p.y = -10;
-              p.x = Math.random() * w;
-            }
-          } else {
-            p.vx += (p.homeX - p.x) * 0.012;
-            p.vy += (p.homeY - p.y) * 0.012;
-            p.vx *= 0.88;
-            p.vy *= 0.88;
-            p.x += p.vx;
-            p.y += p.vy;
-          }
+          p.vx += (p.hx - p.x) * 0.014 * dt;
+          p.vy += (p.hy - p.y) * 0.014 * dt;
+          p.vx *= 0.87;
+          p.vy *= 0.87;
+          p.x += p.vx * dt;
+          p.y += p.vy * dt;
+          p.x = Math.max(p.r, Math.min(w - p.r, p.x));
+          p.y = Math.max(-h, Math.min(h - p.r, p.y));
         }
-        ctx.fillStyle = landing
-          ? i % 5 === 0
-            ? "#356b58"
-            : "#183c30"
-          : ["#e07544", "#4d7163", "#5474bc", "#936aad"][variant % 4];
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = colors[i % colors.length];
         ctx.fill();
       }
-      if (!reduced && !document.hidden) frame = requestAnimationFrame(draw);
-    };
-    const move = (e: PointerEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      pointer.x = e.clientX - rect.left;
-      pointer.y = e.clientY - rect.top;
-    };
-    const leave = () => {
-      pointer.x = pointer.y = -999;
+      if (!paused && !reduced.matches && visible && !document.hidden)
+        frame = requestAnimationFrame(draw);
     };
     const restart = () => {
       cancelAnimationFrame(frame);
-      if (!document.hidden) draw(0);
+      previous = 0;
+      if (visible && !document.hidden) draw();
     };
-    const observer = new ResizeObserver(resize);
-    observer.observe(canvas);
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = bottom ? 12 : 8;
+      dots = Array.from({ length: count }, (_, i) => {
+        const r = bottom
+          ? Math.min(35, (w / count) * 0.43) * (i % 3 === 1 ? 0.6 : 1)
+          : Math.min(w * 0.17, h * 0.15) * (i % 3 === 1 ? 0.48 : 1);
+        const hx = bottom
+          ? ((i + 0.5) * w) / count
+          : [0.25, 0.78, 0.38, 0.77, 0.21, 0.82, 0.59, 0.42][i] * w;
+        const hy = bottom
+          ? h * 0.56
+          : [0.32, 0.15, 0.59, 0.5, 0.77, 0.82, 0.31, 0.87][i] * h;
+        return {
+          x: hx,
+          y: paused || reduced.matches ? hy : -r * (i + 2),
+          hx,
+          hy,
+          r,
+          vx: 0,
+          vy: 0,
+        };
+      });
+      restart();
+    };
+    const move = (e: PointerEvent) => {
+      if (e.pointerType !== "mouse" && !e.buttons) return;
+      const r = canvas.getBoundingClientRect();
+      const x = e.clientX - r.left,
+        y = e.clientY - r.top;
+      point.x = x >= 0 && x <= w && y >= 0 && y <= h ? x : -9999;
+      point.y = point.x === -9999 ? -9999 : y;
+    };
+    const leave = () => {
+      point.x = point.y = -9999;
+    };
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(canvas);
+    const intersection = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      restart();
+    });
+    intersection.observe(canvas);
     window.addEventListener("pointermove", move, { passive: true });
     window.addEventListener("pointerdown", move, { passive: true });
     window.addEventListener("pointerup", leave, { passive: true });
     window.addEventListener("pointercancel", leave, { passive: true });
     document.addEventListener("visibilitychange", restart);
-    media.addEventListener("change", restart);
+    reduced.addEventListener("change", restart);
     return () => {
       alive = false;
       cancelAnimationFrame(frame);
-      observer.disconnect();
+      resizeObserver.disconnect();
+      intersection.disconnect();
       window.removeEventListener("pointermove", move);
       window.removeEventListener("pointerdown", move);
       window.removeEventListener("pointerup", leave);
       window.removeEventListener("pointercancel", leave);
       document.removeEventListener("visibilitychange", restart);
-      media.removeEventListener("change", restart);
+      reduced.removeEventListener("change", restart);
     };
-  }, [variant, landing]);
+  }, [paused, bottom]);
   return (
     <canvas
-      className={landing ? "falling-dots" : "heading-dots"}
       ref={ref}
+      className={bottom ? "bottom-dots" : "hero-dots"}
       aria-hidden="true"
     />
   );

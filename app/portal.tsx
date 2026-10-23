@@ -1,1526 +1,2643 @@
 "use client";
-import { useEffect, useState } from "react";
-import Dots from "./dots";
-import { ist } from "../lib/policy";
-const nav = [
-  ["/dashboard", "Overview"],
-  ["/dashboard/team", "My team"],
-  ["/dashboard/credits", "My credits"],
-  ["/dashboard/submission", "Submit project"],
-  ["/dashboard/profile", "My profile"],
-];
-const adminNav = [
-  "participants",
-  "teams",
-  "check-in",
-  "credits",
-  "submissions",
-  "astra",
-  "judging",
-  "votes",
-  "feedback",
-  "results",
-  "settings",
-  "permissions",
-  "audit",
-];
-export const titles: Record<string, [string, string]> = {
-  "/rules": [
-    "The rules of the build.",
-    "A shared starting point for a fair, thoughtful hackathon.",
-  ],
-  "/teams": [
-    "Find your people.",
-    "Small teams. Different perspectives. One day to make something matter.",
-  ],
-  "/projects": [
-    "Made in a day.",
-    "Explore the projects when the organizer opens discovery.",
-  ],
-  "/dashboard": [
-    "Your next big thing.",
-    "Your workspace for the build, from first idea to final demo.",
-  ],
-  "/dashboard/team": [
-    "Better, together.",
-    "Create your team, shape your idea, and get ready to build.",
-  ],
-  "/dashboard/credits": [
-    "A little extra power.",
-    "Your personal credit vault. Only you can reveal your allocations.",
-  ],
-  "/dashboard/submission": [
-    "Ship your idea.",
-    "A committed revision counts as one attempt. You have three.",
-  ],
-  "/dashboard/profile": [
-    "Introduce yourself.",
-    "You choose what to share. Your profile starts private.",
-  ],
-  "/judge": [
-    "Give good judgment.",
-    "Review assigned projects and leave one considered rating out of ten.",
-  ],
-  "/admin": [
-    "Keep the day moving.",
-    "A calm control room for an ambitious day.",
-  ],
-  "/leaderboard": [
-    "The work deserves a moment.",
-    "Results appear here after the owner freezes and publishes them.",
-  ],
-  "/winners": [
-    "Built with possibility.",
-    "The winner reveal is held until results are approved.",
-  ],
-  "/local-test": [
-    "Local rehearsal only.",
-    "Choose a fake account. This is not ChatGPT authentication.",
-  ],
-};
-type Row = Record<string, unknown>;
-type View = {
-  me?: { id: string; name: string; role: string; owner: boolean };
-  policy?: Record<string, unknown>;
+import {
+  useEffect,
+  useState,
+  useRef,
+  type ReactNode,
+  type CSSProperties,
+} from "react";
+import Home from "./home";
+import TeamAvatar from "./team-avatar";
+import {
+  avatarPresets,
+  teamPalettes,
+  portalRoles,
+  type Palette,
+} from "../lib/experience-contract";
+import { defaultPublicContent } from "../lib/event-content-contract";
+// Every record is a server-authorized projection; no client-side role filtering
+// substitutes for the service's per-request checks.
+type Row = Record<string, any>;
+type View = Row & {
+  me?: {
+    id: string;
+    name: string;
+    email: string;
+    role: string;
+    owner: boolean;
+  };
   items?: Row[];
-  team?: Row;
-  idea?: Row;
-  profile?: Row;
-  members?: Row[];
-  actions?: Row[];
-  attempts?: Row[];
-  metrics?: Row[];
-  blockers?: string[];
-  message?: string;
-  localTest?: boolean;
-  registration?: Row;
 };
-async function api(action: string, data: Record<string, unknown>) {
+async function api(action: string, data: Row) {
   const r = await fetch("/api/portal", {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ action, data }),
+    cache: "no-store",
   });
-  const b = (await r.json()) as View & {
-    message?: string;
-    code?: string;
-    value: string;
-    digest: string;
-    rows: Row[];
-  };
-  if (!r.ok) throw new Error(b.message || b.code || "Request failed");
-  return b;
+  const b = (await r.json()) as Row;
+  if (!r.ok) throw new Error(b.message || b.code || "The request failed.");
+  return b as Row;
 }
 function Field({
   name,
   label,
+  value = "",
   type = "text",
-  required = true,
-  value,
+  required = false,
+  minLength,
+  children,
 }: {
   name: string;
   label: string;
+  value?: any;
   type?: string;
   required?: boolean;
-  value?: unknown;
+  minLength?: number;
+  children?: ReactNode;
 }) {
   return (
     <label>
       {label}
-      {type === "textarea" ? (
-        <textarea
-          name={name}
-          required={required}
-          defaultValue={String(value ?? "")}
-          rows={4}
-        />
-      ) : type === "checkbox" ? (
-        <input name={name} type="checkbox" defaultChecked={Boolean(value)} />
-      ) : (
-        <input
-          name={name}
-          type={type}
-          required={required}
-          defaultValue={String(value ?? "")}
-        />
-      )}
+      {children ||
+        (type === "textarea" ? (
+          <textarea
+            name={name}
+            defaultValue={String(value || "")}
+            required={required}
+            minLength={minLength}
+            rows={4}
+          />
+        ) : type === "checkbox" ? (
+          <input name={name} type="checkbox" defaultChecked={!!value} />
+        ) : (
+          <input
+            name={name}
+            type={type}
+            defaultValue={String(value || "")}
+            required={required}
+            minLength={minLength}
+          />
+        ))}
     </label>
   );
 }
-function Action({
+function Form({
   title,
-  action,
   children,
-  defaults = {},
-  onDone,
+  onSave,
   label = "Save",
-  danger = false,
+  className = "panel",
 }: {
-  title: string;
-  action: string;
-  children?: React.ReactNode;
-  defaults?: Record<string, unknown>;
-  onDone: () => void;
+  title?: string;
+  children: ReactNode;
+  onSave: (data: FormData) => Promise<void>;
   label?: string;
-  danger?: boolean;
+  className?: string;
 }) {
-  const [message, setMessage] = useState(""),
-    [busy, setBusy] = useState(false);
-  const [ready, setReady] = useState(false);
-  useEffect(() => setReady(true), []);
+  const [busy, setBusy] = useState(false),
+    [error, setError] = useState("");
   return (
     <form
-      className="panel form-panel"
+      className={className}
       onSubmit={async (e) => {
         e.preventDefault();
-        setBusy(true);
-        setMessage("");
         const f = new FormData(e.currentTarget);
-        const data: Record<string, unknown> = { ...defaults };
-        for (const [k, v] of f.entries()) data[k] = v;
-        if (action === "submit") {
-          data.contributions = Object.keys(data)
-            .filter((k) => k.startsWith("role:"))
-            .map((k) => ({
-              userId: k.slice(5),
-              role: data[k],
-              codex: data["codex:" + k.slice(5)],
-            }));
-        }
+        setBusy(true);
+        setError("");
         try {
-          const result = await api(action, data);
-          setMessage(result.message || "Saved.");
-          onDone();
-        } catch (e) {
-          setMessage((e as Error).message);
+          await onSave(f);
+        } catch (err) {
+          setError((err as Error).message);
         } finally {
           setBusy(false);
         }
       }}
     >
-      <h2>{title}</h2>
+      {title && <h2>{title}</h2>}
       {children}
-      <button
-        className={danger ? "button danger" : "button"}
-        disabled={busy || !ready}
-      >
-        {busy ? "Saving…" : label}
-      </button>
-      <p role="status" className="form-status">
-        {message}
-      </p>
+      <div className="form-actions">
+        <button className="button" disabled={busy}>
+          {busy ? "Saving…" : label}
+        </button>
+      </div>
+      {error && (
+        <p role="alert" className="error-message">
+          {error}
+        </p>
+      )}
     </form>
   );
 }
-function DataTable({ items }: { items: Row[] }) {
-  if (!items.length)
-    return (
-      <div className="empty">
-        <span>○</span>
-        <h2>Nothing here just yet.</h2>
-        <p>When records are ready, they’ll appear here.</p>
-      </div>
-    );
-  const keys = Object.keys(items[0]);
+function Empty({ children }: { children: ReactNode }) {
   return (
-    <div className="table-scroll" tabIndex={0} aria-label="Records table">
-      <table>
-        <thead>
-          <tr>
-            {keys.map((k) => (
-              <th key={k}>{k.replaceAll("_", " ")}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {items.map((r, i) => (
-            <tr key={i}>
-              {keys.map((k) => (
-                <td key={k}>
-                  {typeof r[k] === "object"
-                    ? JSON.stringify(r[k])
-                    : typeof r[k] === "string" &&
-                        /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d/.test(String(r[k])) &&
-                        Number.isFinite(Date.parse(String(r[k])))
-                      ? ist(String(r[k]))
-                      : String(r[k] ?? "—")}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="empty-state">
+      <h2>Nothing here just yet.</h2>
+      <p>{children}</p>
     </div>
   );
 }
-function Credits({ items }: { items: Row[] }) {
-  const [revealed, setRevealed] = useState<Record<string, string>>({}),
-    [msg, setMsg] = useState("");
+function Pill({
+  children,
+  tone = "neutral",
+}: {
+  children: ReactNode;
+  tone?: string;
+}) {
+  return <span className={`pill ${tone}`}>{children}</span>;
+}
+function Search({
+  value,
+  onChange,
+  label = "Search",
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  label?: string;
+}) {
   return (
-    <div className="cards">
-      {items.length ? (
-        items.map((c, i) => (
-          <article className="panel credit" key={i}>
-            <span className="eyebrow">Personal allocation</span>
-            <h2>{String(c.name)}</h2>
-            <p>{String(c.instructions)}</p>
-            <div className="credit-code">
-              {revealed[String(c.type_id)] || "•••• •••• ••••"}
-            </div>
+    <label className="search-label">
+      <span className="sr-only">{label}</span>
+      <input
+        type="search"
+        placeholder={label}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      />
+    </label>
+  );
+}
+function Profile({
+  data,
+  run,
+  gated = false,
+}: {
+  data: View;
+  run: (a: string, d: Row) => Promise<Row>;
+  gated?: boolean;
+}) {
+  const p = data.profile || {};
+  return (
+    <div className="profile-layout">
+      <div>
+        <p className="eyebrow">
+          {gated ? "Before your workspace" : "Your profile"}
+        </p>
+        <h1>
+          {gated ? "First, a quick introduction." : "Make yourself known."}
+        </h1>
+        <p className="muted">
+          Signed in as {data.me?.email}. Your introduction and skills help your
+          team work together. Gender is required and private; prefer not to say
+          is an available response.
+        </p>
+      </div>
+      <Form
+        key={p.completed_at || data.me?.id}
+        title="A little about you"
+        label={gated ? "Continue to your workspace" : "Save profile"}
+        onSave={async (f) => {
+          await run("complete-profile", {
+            displayName: f.get("displayName"),
+            bio: f.get("bio"),
+            skills: f.get("skills"),
+            socials: f.get("socials"),
+            gender: f.get("gender"),
+            genderDescription: f.get("genderDescription"),
+            public: f.get("public") === "on",
+          });
+        }}
+      >
+        <Field
+          name="displayName"
+          label="Full name"
+          value={p.display_name || data.me?.name}
+          required
+          minLength={2}
+        />
+        <Field
+          name="bio"
+          label="Short introduction · at least 10 characters"
+          type="textarea"
+          value={p.bio}
+          required
+          minLength={10}
+        />
+        <Field
+          name="skills"
+          label="What do you enjoy building?"
+          value={p.skills}
+          required
+          minLength={2}
+        />
+        <Field
+          name="socials"
+          label="Links · one HTTPS link per line, optional"
+          type="textarea"
+          value={Array.isArray(p.socials) ? p.socials.join("\n") : ""}
+        />
+        <Field name="gender" label="Gender · required and private">
+          <select
+            name="gender"
+            required
+            defaultValue={
+              p.gender_confirmed || p.gender !== "prefer-not-to-say"
+                ? p.gender
+                : ""
+            }
+          >
+            <option value="" disabled>
+              Choose your response
+            </option>
+            <option value="prefer-not-to-say">Prefer not to say</option>
+            <option value="woman">Woman</option>
+            <option value="man">Man</option>
+            <option value="non-binary">Non-binary</option>
+            <option value="self-described">Self-described</option>
+          </select>
+        </Field>
+        <details>
+          <summary>Optional details and visibility</summary>
+          <Field
+            name="genderDescription"
+            label="Self-description · optional"
+            value={p.gender_description}
+          />
+          <Field
+            name="public"
+            label="Allow my introduction and links to appear with my team"
+            type="checkbox"
+            value={p.public}
+          />
+          <p className="muted">
+            Gender is never part of your public profile or scoring.
+          </p>
+        </details>
+      </Form>
+    </div>
+  );
+}
+function AvatarChooser({
+  avatar,
+  setAvatar,
+  palette,
+  setPalette,
+}: {
+  avatar: string;
+  setAvatar: (v: string) => void;
+  palette: string;
+  setPalette: (v: string) => void;
+}) {
+  return (
+    <>
+      <div className="badge-preview">
+        <TeamAvatar avatar={avatar} palette={palette} size={88} />
+        <div>
+          <strong>Your team identity</strong>
+          <p className="muted">
+            One original geometric badge. A shared accent for every member.
+          </p>
+        </div>
+      </div>
+      <fieldset>
+        <legend>Choose a shape</legend>
+        <div className="avatar-picker">
+          {avatarPresets.map((a) => (
+            <label key={a} title={a}>
+              <input
+                type="radio"
+                name="avatar"
+                value={a}
+                checked={avatar === a}
+                onChange={() => setAvatar(a)}
+              />
+              <TeamAvatar avatar={a} palette={palette} size={48} />
+              <span>{a}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Choose a palette</legend>
+        <div className="palette-picker">
+          {Object.entries(teamPalettes).map(([key, c]) => (
+            <label key={key}>
+              <input
+                type="radio"
+                name="palette"
+                value={key}
+                checked={palette === key}
+                onChange={() => setPalette(key)}
+              />
+              <span className="palette-swatch" style={{ background: c.ink }} />
+              <span>{c.label}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+    </>
+  );
+}
+function CreateTeam({ run }: { run: (a: string, d: Row) => Promise<Row> }) {
+  const [avatar, setAvatar] = useState("orbit"),
+    [palette, setPalette] = useState("forest");
+  return (
+    <Form
+      title="Start your team"
+      label="Create team"
+      onSave={async (f) => {
+        await run("create-workspace-team", {
+          name: f.get("name"),
+          bio: f.get("bio"),
+          avatar,
+          palette,
+        });
+      }}
+    >
+      <Field name="name" label="Team name" required />
+      <Field
+        name="bio"
+        label="What would you like to build? · optional"
+        type="textarea"
+      />
+      <AvatarChooser {...{ avatar, setAvatar, palette, setPalette }} />
+    </Form>
+  );
+}
+function TeamStyle({
+  team,
+  run,
+}: {
+  team: Row;
+  run: (a: string, d: Row) => Promise<Row>;
+}) {
+  const [avatar, setAvatar] = useState(team.avatar || "orbit"),
+    [palette, setPalette] = useState(team.palette || "forest");
+  return (
+    <details className="panel">
+      <summary>Customize your team badge and accent</summary>
+      <Form
+        className="inset-form"
+        onSave={async () => {
+          await run("team-style", { avatar, palette });
+        }}
+        label="Update team identity"
+      >
+        <AvatarChooser {...{ avatar, setAvatar, palette, setPalette }} />
+      </Form>
+    </details>
+  );
+}
+function TeamWorkspace({
+  data,
+  run,
+}: {
+  data: View;
+  run: (a: string, d: Row) => Promise<Row>;
+}) {
+  const [search, setSearch] = useState("");
+  const t = data.team;
+  if (!t)
+    return (
+      <>
+        <Empty>
+          Create a team below, or <a href="/teams">find a team</a> and request
+          to join.
+        </Empty>
+        {data.me?.role === "participant" && <CreateTeam run={run} />}
+      </>
+    );
+  return (
+    <section className="team-workspace">
+      <div className="section-heading">
+        <div className="identity-line">
+          <TeamAvatar avatar={t.avatar} palette={t.palette} />
+          <div>
+            <span className="eyebrow">Your team</span>
+            <h2>{t.name}</h2>
+          </div>
+        </div>
+        <Pill tone={data.teamReadiness?.going ? "positive" : "waiting"}>
+          {data.teamReadiness?.label}
+        </Pill>
+      </div>
+      <Search value={search} onChange={setSearch} label="Search team members" />
+      <ul className="member-list">
+        {(data.members || [])
+          .filter((m: Row) =>
+            m.name.toLowerCase().includes(search.toLowerCase()),
+          )
+          .map((m: Row) => (
+            <li key={m.id}>
+              <span className="person-monogram" aria-hidden="true">
+                {String(m.name).slice(0, 2).toUpperCase()}
+              </span>
+              <div>
+                <strong>{m.id === data.me?.id ? "You" : m.name}</strong>
+                <small>{m.role === "leader" ? "Team leader" : "Member"}</small>
+              </div>
+              <Pill tone={m.approval === "approved" ? "positive" : "neutral"}>
+                {m.approval === "approved" ? "Approved" : "Registered"}
+              </Pill>
+              {t.leader_id === data.me?.id && m.role !== "leader" && (
+                <button
+                  className="link-button"
+                  onClick={() => {
+                    void run("remove-workspace-member", {
+                      userId: m.id,
+                      reason: "Team leader removed membership",
+                    }).catch(() => {});
+                  }}
+                >
+                  Remove
+                </button>
+              )}
+            </li>
+          ))}
+      </ul>
+      {t.leader_id === data.me?.id && (
+        <>
+          <details className="panel">
+            <summary>Membership requests</summary>
+            {(data.actions || [])
+              .filter(
+                (r: Row) =>
+                  r.kind === "request" &&
+                  r.status === "pending" &&
+                  r.team_id === t.id,
+              )
+              .map((r: Row) => (
+                <div className="request-row" key={r.id}>
+                  <strong>{r.person_name}</strong>
+                  <button
+                    className="button secondary"
+                    onClick={() => {
+                      void run("respond-team", {
+                        requestId: r.id,
+                        accept: true,
+                      }).catch(() => {});
+                    }}
+                  >
+                    Accept
+                  </button>
+                  <button
+                    className="link-button"
+                    onClick={() => {
+                      void run("respond-team", {
+                        requestId: r.id,
+                        accept: false,
+                      }).catch(() => {});
+                    }}
+                  >
+                    Decline
+                  </button>
+                </div>
+              ))}
+            {!(data.actions || []).some(
+              (r: Row) =>
+                r.kind === "request" &&
+                r.status === "pending" &&
+                r.team_id === t.id,
+            ) && <p className="muted">No pending requests.</p>}
+          </details>
+          <TeamStyle team={t} run={run} />
+        </>
+      )}
+    </section>
+  );
+}
+function Dashboard({
+  data,
+  run,
+}: {
+  data: View;
+  run: (a: string, d: Row) => Promise<Row>;
+}) {
+  return (
+    <>
+      <header className="page-heading">
+        <p className="eyebrow">Your build day, together</p>
+        <h1>
+          Dashboard
+          <span className="heading-dot blue" />
+        </h1>
+      </header>
+      <div className="status-strip">
+        <div>
+          <span>Registration</span>
+          <Pill
+            tone={
+              data.registration?.status === "approved" ? "positive" : "neutral"
+            }
+          >
+            {data.registration?.status === "approved"
+              ? "Approved"
+              : data.registration?.status === "rejected"
+                ? "Not approved"
+                : "Registered"}
+          </Pill>
+        </div>
+        <div>
+          <span>Team</span>
+          <Pill tone={data.teamReadiness?.going ? "positive" : "waiting"}>
+            {data.teamReadiness?.label || "No team yet"}
+          </Pill>
+        </div>
+        <div>
+          <span>Progress</span>
+          <Pill>{data.status || "Registered"}</Pill>
+        </div>
+      </div>
+      {data.eligibility?.status === "ineligible" && (
+        <p className="notice">
+          <Pill tone="waiting">Ineligible</Pill> Your submission is excluded
+          from the leaderboard.{" "}
+          {data.eligibility.reason || "Check your private team feedback."}
+        </p>
+      )}
+
+      {data.leaderboardUrl && (
+        <a className="button secondary" href={data.leaderboardUrl}>
+          View project on leaderboard
+        </a>
+      )}
+      <TeamWorkspace data={data} run={run} />
+      <div className="workspace-links">
+        <a href="/submission">
+          <strong>Submission</strong>
+          <span>
+            {data.attempts?.length
+              ? `${data.attempts.length} committed version${data.attempts.length === 1 ? "" : "s"}`
+              : "Not submitted"}
+          </span>
+          <span>Open submission →</span>
+        </a>
+        <details>
+          <summary>
+            Credits <span className="muted">Private to you</span>
+          </summary>
+          {(data.credits || []).map((c: Row) => (
+            <Credit key={c.type_id} credit={c} />
+          ))}
+          {!data.credits?.length && (
+            <p className="muted">No personal credits are available yet.</p>
+          )}
+        </details>
+        <details>
+          <summary>
+            Team feedback <span className="muted">Private to this team</span>
+          </summary>
+          {(data.feedback || []).map((f: Row) => (
+            <article className="feedback-entry" key={f.id}>
+              <p>{f.body}</p>
+              <small>
+                {f.author} · {f.kind} ·{" "}
+                {new Date(f.created_at).toLocaleDateString()}
+              </small>
+            </article>
+          ))}
+          {!data.feedback?.length && (
+            <p className="muted">
+              Feedback will appear here after a reviewer shares it.
+            </p>
+          )}
+        </details>
+        {data.privateVenue ? (
+          <section className="private-arrival">
+            <h2>Your arrival details</h2>
+            <p>{data.privateVenue.location}</p>
+            <p className="prose">{data.privateVenue.directions}</p>
+            {data.privateVenue.mapUrl && (
+              <a
+                className="text-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                href={data.privateVenue.mapUrl}
+              >
+                Open private arrival map
+              </a>
+            )}
+          </section>
+        ) : (
+          <p className="muted">
+            Exact arrival details are available only when every current team
+            member is approved and the hosts publish them.
+          </p>
+        )}
+      </div>
+    </>
+  );
+}
+function Credit({ credit }: { credit: Row }) {
+  const [value, setValue] = useState(""),
+    [error, setError] = useState("");
+  return (
+    <div className="credit-row">
+      <strong>{credit.name}</strong>
+      <p>{credit.instructions}</p>
+      {value ? (
+        <>
+          <code>{value}</code>
+          <button className="link-button" onClick={() => setValue("")}>
+            Hide code
+          </button>
+        </>
+      ) : (
+        <button
+          className="button secondary"
+          disabled={!credit.allocated}
+          onClick={async () => {
+            try {
+              setValue(
+                String(
+                  (await api("reveal-credit", { typeId: credit.type_id }))
+                    .value,
+                ),
+              );
+            } catch (e) {
+              setError((e as Error).message);
+            }
+          }}
+        >
+          Reveal my allocation
+        </button>
+      )}
+      {error && <p role="alert">{error}</p>}
+    </div>
+  );
+}
+function Teams({
+  data,
+  run,
+}: {
+  data: View;
+  run: (a: string, d: Row) => Promise<Row>;
+}) {
+  const [search, setSearch] = useState("");
+  return (
+    <>
+      <header className="page-heading">
+        <p className="eyebrow">Signed-in directory · private</p>
+        <h1>
+          Teams
+          <span className="heading-dot violet" />
+        </h1>
+        <p className="muted">
+          Find your people. Membership requests go to the team leader.
+        </p>
+      </header>
+      <Search value={search} onChange={setSearch} label="Search team names" />
+      <ul className="directory-list">
+        {(data.items || [])
+          .filter((t) => t.name.toLowerCase().includes(search.toLowerCase()))
+          .map((t) => (
+            <li key={t.id}>
+              <TeamAvatar avatar={t.avatar} palette={t.palette} />
+              <div>
+                <h2>{t.name}</h2>
+                <p>
+                  {t.readiness.total} member{t.readiness.total === 1 ? "" : "s"}{" "}
+                  · {t.readiness.approved} approved
+                </p>
+                <small>{t.bio}</small>
+              </div>
+              {data.team?.id === t.id ? (
+                <Pill tone="positive">Your team</Pill>
+              ) : (
+                <button
+                  className="button secondary"
+                  disabled={
+                    !!data.team ||
+                    t.requested ||
+                    data.me?.role !== "participant"
+                  }
+                  onClick={() => {
+                    void run("request-team", { teamId: t.id }).catch(() => {});
+                  }}
+                >
+                  {t.requested
+                    ? "Requested"
+                    : data.team
+                      ? "Already in a team"
+                      : "Request to join"}
+                </button>
+              )}
+            </li>
+          ))}
+      </ul>
+      {!data.items?.length && <Empty>Be the first team to get started.</Empty>}
+      {!data.team && data.me?.role === "participant" && (
+        <CreateTeam run={run} />
+      )}
+    </>
+  );
+}
+const emptyProject = {
+  projectName: "",
+  problemSolution: "",
+  description: "",
+  github: "",
+  demo: "",
+  logo: "",
+  banner: "",
+  tools: "",
+  attestation: false,
+  contributions: [] as Row[],
+};
+function Submission({
+  data,
+  run,
+}: {
+  data: View;
+  run: (a: string, d: Row) => Promise<Row>;
+}) {
+  const initial = { ...emptyProject, ...data.project?.draft };
+  const [project, setProject] = useState(initial),
+    [busy, setBusy] = useState(false),
+    [error, setError] = useState("");
+  const leader = data.team?.leader_id === data.me?.id;
+  const set = (name: string, value: unknown) =>
+    setProject((p: Row) => ({ ...p, [name]: value }));
+  const upload = async (file: File | undefined, kind: string) => {
+    if (!file) return;
+    if (
+      !["image/png", "image/jpeg"].includes(file.type) ||
+      file.size > 131072
+    ) {
+      setError("Use a PNG or JPEG at most 128 KB. Logo: 1:1. Banner: 16:9.");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      set(kind, String(reader.result));
+      setError("");
+    };
+    reader.onerror = () => setError("That image could not be read.");
+    reader.readAsDataURL(file);
+  };
+  const save = async (submit = false) => {
+    setBusy(true);
+    setError("");
+    try {
+      await run(submit ? "submit-project" : "save-project", {
+        revision: data.project?.revision || 0,
+        project: {
+          ...project,
+          contributions: (data.members || []).map((m: Row) => ({
+            userId: m.id,
+            role:
+              project.contributions.find((c: Row) => c.userId === m.id)?.role ||
+              "",
+            codex:
+              project.contributions.find((c: Row) => c.userId === m.id)
+                ?.codex || "",
+          })),
+        },
+      });
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  };
+  const contribution = (userId: string, field: string, value: string) =>
+    setProject((p: Row) => ({
+      ...p,
+      contributions: [
+        ...p.contributions.filter((c: Row) => c.userId !== userId),
+        {
+          userId,
+          role:
+            p.contributions.find((c: Row) => c.userId === userId)?.role || "",
+          codex:
+            p.contributions.find((c: Row) => c.userId === userId)?.codex || "",
+          [field]: value,
+        },
+      ],
+    }));
+  return (
+    <>
+      <header className="page-heading">
+        <p className="eyebrow">Your shared project record</p>
+        <h1>
+          Submission
+          <span className="heading-dot green" />
+        </h1>
+        <p className="muted">
+          Save a draft anytime. Only the team leader can commit a version.
+          Eligible committed projects appear automatically on the leaderboard.
+        </p>
+      </header>
+      {!data.team ? (
+        <Empty>
+          Create or join a team in <a href="/teams">Teams</a> first.
+        </Empty>
+      ) : (
+        <>
+          <div className="status-strip">
+            <strong>{data.team.name}</strong>
+            <Pill>{data.attempts?.length || 0}/3 versions committed</Pill>
+            <Pill tone={data.teamReadiness?.going ? "positive" : "waiting"}>
+              {data.teamReadiness?.label}
+            </Pill>
+          </div>
+          {data.eligibility?.status === "ineligible" && (
+            <p className="notice">Ineligible · excluded from leaderboard</p>
+          )}
+          {data.leaderboardUrl && (
+            <a className="button secondary" href={data.leaderboardUrl}>
+              View project on leaderboard
+            </a>
+          )}
+          {data.eventDraft && (
+            <p className="notice">
+              The final event policy is pending. Drafts remain editable; final
+              submission is closed.
+            </p>
+          )}
+          <form
+            className="panel project-editor"
+            onSubmit={(e) => {
+              e.preventDefault();
+              void save(false);
+            }}
+          >
+            <fieldset disabled={!leader || busy}>
+              <legend>Project essentials</legend>
+              {[
+                ["projectName", "Project name"],
+                ["problemSolution", "One-line problem and solution"],
+                ["description", "Project description"],
+                ["github", "GitHub repository"],
+                ["demo", "Demo URL · optional"],
+                ["tools", "Tools and how you used them"],
+              ].map(([name, label]) => (
+                <label key={name}>
+                  {label}
+                  {name === "description" || name === "tools" ? (
+                    <textarea
+                      rows={4}
+                      value={project[name]}
+                      onChange={(e) => set(name, e.target.value)}
+                    />
+                  ) : (
+                    <input
+                      value={project[name]}
+                      type={
+                        name === "github" || name === "demo" ? "url" : "text"
+                      }
+                      onChange={(e) => set(name, e.target.value)}
+                    />
+                  )}
+                </label>
+              ))}
+              <div className="media-inputs">
+                {["logo", "banner"].map((kind) => (
+                  <label key={kind}>
+                    {kind === "logo"
+                      ? "Project logo · required, 1:1"
+                      : "Project banner · required, 16:9"}
+                    <input
+                      type="file"
+                      accept="image/png,image/jpeg"
+                      onChange={(e) => {
+                        void upload(e.target.files?.[0], kind);
+                      }}
+                    />
+                    <small>PNG or JPEG · at most 128 KB</small>
+                    {project[kind] && (
+                      <img
+                        className={`upload-preview ${kind}`}
+                        src={project[kind]}
+                        alt={`${kind} preview`}
+                      />
+                    )}
+                  </label>
+                ))}
+              </div>
+              <h2>Everyone’s contribution</h2>
+              {(data.members || []).map((m: Row) => (
+                <div className="contribution" key={m.id}>
+                  <h3>{m.name}</h3>
+                  <label>
+                    Contribution
+                    <input
+                      value={
+                        project.contributions.find(
+                          (c: Row) => c.userId === m.id,
+                        )?.role || ""
+                      }
+                      onChange={(e) =>
+                        contribution(m.id, "role", e.target.value)
+                      }
+                    />
+                  </label>
+                  <label>
+                    Use of Codex or other tools
+                    <input
+                      value={
+                        project.contributions.find(
+                          (c: Row) => c.userId === m.id,
+                        )?.codex || ""
+                      }
+                      onChange={(e) =>
+                        contribution(m.id, "codex", e.target.value)
+                      }
+                    />
+                  </label>
+                </div>
+              ))}
+              <label className="check-label">
+                <input
+                  type="checkbox"
+                  checked={!!project.attestation}
+                  onChange={(e) => set("attestation", e.target.checked)}
+                />
+                We confirm this submission accurately describes our team’s work.
+              </label>
+              <div className="form-actions">
+                <button className="button" disabled={busy}>
+                  Save draft
+                </button>
+                <button
+                  type="button"
+                  className="button secondary"
+                  disabled={
+                    busy ||
+                    data.eventDraft ||
+                    !data.teamReadiness?.going ||
+                    (data.attempts?.length || 0) >= 3
+                  }
+                  onClick={() => {
+                    void save(true);
+                  }}
+                >
+                  Commit submission
+                </button>
+              </div>
+            </fieldset>
+            {!leader && (
+              <p className="notice">
+                Only your team leader can edit or commit. This is your team’s
+                saved draft.
+              </p>
+            )}
+            {error && (
+              <p role="alert" className="error-message">
+                {error}
+              </p>
+            )}
+          </form>
+          <details className="panel">
+            <summary>Committed version history</summary>
+            {(data.attempts || []).map((v: Row) => (
+              <p key={v.id}>
+                Version {v.attempt} · {new Date(v.created_at).toLocaleString()}
+              </p>
+            ))}
+          </details>
+        </>
+      )}
+    </>
+  );
+}
+function ProjectBody({ project }: { project: Row }) {
+  return (
+    <>
+      <img
+        className="project-banner"
+        src={project.banner}
+        alt={`${project.projectName} project banner`}
+      />
+      <div className="project-identity">
+        <img
+          className="project-logo"
+          src={project.logo}
+          alt={`${project.projectName} logo`}
+        />
+        <div>
+          <h1>{project.projectName}</h1>
+          <p>Team {project.teamName || "project team"}</p>
+        </div>
+      </div>
+      <p className="project-description">{project.problemSolution}</p>
+      <p className="prose">{project.description}</p>
+      <div className="form-actions">
+        {project.demo && (
+          <a
+            className="button"
+            href={project.demo}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open demo
+          </a>
+        )}
+        {project.github && (
+          <a
+            className="button secondary"
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Repository
+          </a>
+        )}
+      </div>
+    </>
+  );
+}
+function Projects({
+  data,
+  path,
+  run,
+}: {
+  data: View;
+  path: string;
+  run: (a: string, d: Row) => Promise<Row>;
+}) {
+  const [q, setQ] = useState(""),
+    [page, setPage] = useState(0),
+    [listing, setListing] = useState<View>(data),
+    [searchError, setSearchError] = useState("");
+  const board = path === "/leaderboard",
+    detail = path !== "/projects" && !board,
+    p = data.items?.[0];
+  const highlighted = useRef(false);
+  useEffect(() => {
+    if (highlighted.current || !window.location.hash) return;
+    const target = document.getElementById(
+      decodeURIComponent(window.location.hash.slice(1)),
+    );
+    if (target) {
+      target.scrollIntoView({ block: "center", behavior: "auto" });
+      highlighted.current = true;
+    }
+  }, [listing]);
+
+  useEffect(() => {
+    if (detail) return;
+    const controller = new AbortController();
+    if (!q && !page) {
+      setListing(data);
+      if (data.page) setPage(data.page);
+      return;
+    }
+    const timer = setTimeout(async () => {
+      try {
+        const r = await fetch(
+          `/api/portal?view=${encodeURIComponent(path)}&q=${encodeURIComponent(q)}&page=${page}`,
+          { signal: controller.signal, cache: "no-store" },
+        );
+        const body = (await r.json()) as View;
+        if (!r.ok) throw new Error(String(body.message || "Search failed"));
+        setListing(body);
+        setSearchError("");
+      } catch (e) {
+        if ((e as Error).name !== "AbortError")
+          setSearchError((e as Error).message);
+      }
+    }, 180);
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
+  }, [q, page, data, path, detail]);
+  const signIn = "/signin-with-chatgpt?return_to=" + encodeURIComponent(path);
+  const engagement = (p: Row) => (
+    <div className="engagement">
+      <div>
+        {data.me ? (
+          <button
+            className="round-button"
+            aria-label={`Upvote ${p.projectName}`}
+            onClick={() => {
+              void run("upvote-project", { projectId: p.id }).catch(() => {});
+            }}
+          >
+            ↑
+          </button>
+        ) : (
+          <a
+            className="round-button"
+            href={signIn}
+            target="_top"
+            aria-label={`Sign in to upvote ${p.projectName}`}
+          >
+            ↑
+          </a>
+        )}
+        <span>
+          {p.upvotes} upvote{p.upvotes === 1 ? "" : "s"}
+        </span>
+      </div>
+      <a href={`/projects/${p.slug}#comments`}>
+        {p.comments} comment{p.comments === 1 ? "" : "s"}
+      </a>
+    </div>
+  );
+  if (detail && p)
+    return (
+      <>
+        <a className="back-link" href="/projects">
+          ← Projects
+        </a>
+        <article className="project-detail">
+          <ProjectBody project={p} />
+          {p.result && (
+            <p className="notice">
+              Revealed final judging score {p.result.score}
+            </p>
+          )}
+          {engagement(p)}
+          <section id="comments">
+            <h2>Comments</h2>
+            {(data.comments || []).map((c: Row) => (
+              <article className="public-comment" key={c.id}>
+                <strong>{c.author}</strong>
+                <p>{c.body}</p>
+                <small>{new Date(c.created_at).toLocaleString()}</small>
+              </article>
+            ))}
+            {data.me ? (
+              <Form
+                title="Join the conversation"
+                label="Post comment"
+                onSave={async (f) => {
+                  await run("comment-project", {
+                    projectId: p.id,
+                    body: f.get("body"),
+                  });
+                }}
+              >
+                <Field
+                  name="body"
+                  label="Public comment"
+                  type="textarea"
+                  required
+                />
+              </Form>
+            ) : (
+              <a className="button" href={signIn} target="_top">
+                Sign in to comment
+              </a>
+            )}
+          </section>
+        </article>
+      </>
+    );
+  return (
+    <>
+      <header className="page-heading">
+        <p className="eyebrow">Built by the community</p>
+        <h1>
+          {board ? "Leaderboard" : "Projects"}
+          <span className="heading-dot violet" />
+        </h1>
+      </header>
+      <Search
+        value={q}
+        onChange={(v) => {
+          setQ(v);
+          setPage(0);
+        }}
+        label="Search projects or teams"
+      />
+      {board && (
+        <p className="notice">
+          Eligible submitted projects, ordered by upvotes. Ties follow first
+          submission time. Final judging scores remain separate.
+        </p>
+      )}
+      {searchError && <p role="alert">{searchError}</p>}
+      <ul className="project-list">
+        {(listing.items || [])
+          .filter((p) =>
+            (p.projectName + " " + p.teamName + " " + p.problemSolution)
+              .toLowerCase()
+              .includes(q.toLowerCase()),
+          )
+          .map((p) => (
+            <li key={p.id} id={"entry-" + p.slug}>
+              <a className="project-row-link" href={`/projects/${p.slug}`}>
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  className="row-banner"
+                  src={p.banner}
+                  alt=""
+                />
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  className="row-logo"
+                  src={p.logo}
+                  alt=""
+                />
+                <div>
+                  <h2>{p.projectName}</h2>
+                  <p>Team {p.teamName}</p>
+                  <small>{p.problemSolution}</small>
+                </div>
+              </a>
+              {board ? (
+                <div className="engagement">
+                  <strong>{p.upvotes} upvotes</strong>
+                  <a href={`/projects/${p.slug}`}>View project</a>
+                </div>
+              ) : (
+                engagement(p)
+              )}
+            </li>
+          ))}
+      </ul>
+      {!listing.items?.length && (
+        <Empty>
+          Eligible submitted projects will appear here automatically.
+        </Empty>
+      )}
+      <div className="form-actions">
+        <button
+          className="button secondary"
+          disabled={!page}
+          onClick={() => setPage(page - 1)}
+        >
+          Previous page
+        </button>
+        <span>Page {page + 1}</span>
+        <button
+          className="button secondary"
+          disabled={!listing.hasMore}
+          onClick={() => setPage(page + 1)}
+        >
+          Next page
+        </button>
+      </div>
+      {!data.me && (
+        <p className="muted">
+          Sign in to upvote or comment. Scores remain private until the owner
+          reveals results.
+        </p>
+      )}
+    </>
+  );
+}
+function AdminParticipants({
+  data,
+  run,
+}: {
+  data: View;
+  run: (a: string, d: Row) => Promise<Row>;
+}) {
+  const [q, setQ] = useState(""),
+    [filter, setFilter] = useState(""),
+    [selected, setSelected] = useState<string[]>([]),
+    [status, setStatus] = useState("pending"),
+    [reason, setReason] = useState(""),
+    [emails, setEmails] = useState(""),
+    [preview, setPreview] = useState<Row | null>(null),
+    [error, setError] = useState("");
+  const items = (data.items || []).filter(
+    (r) =>
+      `${r.name || ""} ${r.email} ${r.team_name || ""}`
+        .toLowerCase()
+        .includes(q.toLowerCase()) &&
+      (!filter || r.status === filter),
+  );
+  const csv =
+    "email\n" +
+    [...new Set(emails.split(/[\s,;]+/).filter(Boolean))].join("\n");
+  return (
+    <>
+      <header className="page-heading">
+        <p className="eyebrow">
+          {data.lookupOnly
+            ? "Attendance operations"
+            : "Participant administration"}
+        </p>
+        <h1>
+          Participants
+          <span className="heading-dot orange" />
+        </h1>
+      </header>
+      <div className="toolbar">
+        <Search value={q} onChange={setQ} label="Search name, email or team" />
+        <label>
+          <span className="sr-only">Status filter</span>
+          <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+            <option value="">Status: all</option>
+            {[
+              "Registered",
+              "Approved",
+              "Going",
+              "Checked in",
+              "Submitted",
+              "Not approved",
+              "Cancelled",
+            ].map((s) => (
+              <option key={s}>{s}</option>
+            ))}
+          </select>
+        </label>
+        {!data.lookupOnly && (
+          <a
+            className="button secondary"
+            href={`/api/export?list=participants&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}`}
+          >
+            Export CSV
+          </a>
+        )}
+      </div>
+      {!data.lookupOnly && (
+        <details className="panel">
+          <summary>Add emails or import a roster</summary>
+          <label>
+            Emails · one per line or separated by commas
+            <textarea
+              rows={4}
+              value={emails}
+              onChange={(e) => {
+                setEmails(e.target.value);
+                setPreview(null);
+              }}
+            />
+          </label>
+          <label>
+            Or load an email CSV
+            <input
+              type="file"
+              accept="text/csv,.csv"
+              onChange={async (e) => {
+                const file = e.target.files?.[0];
+                if (!file) return;
+                if (file.size > 512000) {
+                  setError("CSV must be at most 512 KB.");
+                  return;
+                }
+                const text = await file.text();
+                setEmails(text.replace(/^email\s*\r?\n/i, ""));
+                setPreview(null);
+              }}
+            />
+          </label>
+          <div className="form-actions">
             <button
               className="button secondary"
-              disabled={!c.allocated}
               onClick={async () => {
+                setError("");
                 try {
-                  const b = await api("reveal-credit", { typeId: c.type_id });
-                  setRevealed({ ...revealed, [String(c.type_id)]: b.value });
+                  setPreview(
+                    await api("preview-import", { kind: "roster", csv }),
+                  );
                 } catch (e) {
-                  setMsg((e as Error).message);
+                  setError((e as Error).message);
                 }
               }}
             >
-              {c.allocated ? "Reveal my credit" : "Pending allocation"}
+              Preview registered emails
             </button>
-          </article>
-        ))
-      ) : (
-        <div className="empty">
-          <h2>Your credits are waiting for check-in.</h2>
-          <p>
-            Staff approval and check-in unlock available allocations. No shared
-            team codes.
-          </p>
-        </div>
+            {preview && (
+              <button
+                className="button"
+                onClick={async () => {
+                  try {
+                    await run("commit-import", {
+                      kind: "roster",
+                      csv,
+                      digest: preview.digest,
+                    });
+                    setPreview(null);
+                    setEmails("");
+                  } catch (e) {
+                    setError((e as Error).message);
+                  }
+                }}
+              >
+                Import {preview.rows?.length} registered emails
+              </button>
+            )}
+          </div>
+          {preview && (
+            <p>{preview.rows?.map((r: Row) => r.email).join(", ")}</p>
+          )}
+          {error && <p role="alert">{error}</p>}
+        </details>
       )}
-      <p role="status">{msg}</p>
-    </div>
-  );
-}
-function Importer({
-  kind,
-  onDone,
-}: {
-  kind: "roster" | "credits";
-  onDone: () => void;
-}) {
-  const [csv, setCsv] = useState(""),
-    [typeId, setTypeId] = useState(""),
-    [preview, setPreview] = useState<{ digest: string; rows: Row[] } | null>(
-      null,
-    ),
-    [msg, setMsg] = useState("");
-  return (
-    <section className="panel">
-      <h2>
-        {kind === "roster"
-          ? "Import registered emails"
-          : "Import credit inventory"}
-      </h2>
-      <p>
-        Preview is required. Existing approvals are preserved. Credit values
-        stay masked.
-      </p>
-      {kind === "credits" && (
-        <label>
-          Credit type ID
+      <div className="bulk-bar">
+        <strong>{selected.length} selected</strong>
+        {!data.lookupOnly && (
+          <label>
+            <span className="sr-only">Individual approval status</span>
+            <select value={status} onChange={(e) => setStatus(e.target.value)}>
+              <option value="pending">Registered</option>
+              <option value="approved">Approved</option>
+              <option value="rejected">Not approved</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </label>
+        )}
+        <label className="reason-input">
+          <span className="sr-only">Reason for action</span>
           <input
-            value={typeId}
-            onChange={(e) => {
-              setTypeId(e.target.value);
-              setPreview(null);
-            }}
+            placeholder="Reason for action"
+            value={reason}
+            onChange={(e) => setReason(e.target.value)}
           />
         </label>
-      )}
-      <label>
-        CSV contents
-        <textarea
-          rows={6}
-          value={csv}
-          onChange={(e) => {
-            setCsv(e.target.value);
-            setPreview(null);
-          }}
-          placeholder={
-            kind === "roster"
-              ? "email\nparticipant@example.test"
-              : "value\nFAKE-ONLY-001"
-          }
-        />
-      </label>
-      <button
-        className="button secondary"
-        onClick={async () => {
-          try {
-            const b = await api("preview-import", { kind, csv, typeId });
-            setPreview(b);
-            setMsg("Review every row before importing.");
-          } catch (e) {
-            setMsg((e as Error).message);
-          }
-        }}
-      >
-        Preview import
-      </button>
-      {preview && (
-        <>
-          <DataTable items={preview.rows} />
+        {!data.lookupOnly && (
           <button
-            className="button"
-            onClick={async () => {
-              try {
-                await api("commit-import", {
-                  kind,
-                  csv,
-                  typeId,
-                  digest: preview.digest,
-                });
-                setMsg("Import committed.");
-                setPreview(null);
-                onDone();
-              } catch (e) {
-                setMsg((e as Error).message);
-              }
+            className="button secondary"
+            disabled={!selected.length || reason.trim().length < 5}
+            onClick={() => {
+              void run("participant-bulk", {
+                emails: selected,
+                status,
+                reason,
+              }).catch(() => {});
             }}
           >
-            Confirm {preview.rows.length} rows
+            Update approval
           </button>
-        </>
-      )}
-      <p role="status">{msg}</p>
-    </section>
-  );
-}
-function ResultsPreview() {
-  const [items, setItems] = useState<Row[]>([]),
-    [message, setMessage] = useState("");
-  return (
-    <section className="panel">
-      <h2>Private scoring preview</h2>
-      <p>
-        Requires complete evidence and confirmed rules. It does not freeze or
-        publish results.
-      </p>
-      <button
-        className="button secondary"
-        onClick={async () => {
-          try {
-            const r = await api("compute-results", {});
-            setItems(r.items || []);
-            setMessage("Private preview computed.");
-          } catch (e) {
-            setMessage((e as Error).message);
-          }
-        }}
-      >
-        Compute staging results
-      </button>
-      <p role="status">{message}</p>
-      {items.length > 0 && <DataTable items={items} />}
-    </section>
-  );
-}
-export default function Portal({
-  path,
-  localTest,
-}: {
-  path: string;
-  localTest: boolean;
-}) {
-  const [hydrated, setHydrated] = useState(false);
-  useEffect(() => setHydrated(true), []);
-  const [view, setView] = useState<View>({}),
-    [error, setError] = useState(""),
-    [loading, setLoading] = useState(true),
-    [tick, setTick] = useState(0),
-    [search, setSearch] = useState("");
-  const refresh = () => setTick((t) => t + 1);
-  const isAdmin = path.startsWith("/admin"),
-    isDash = path.startsWith("/dashboard"),
-    isJudge = path.startsWith("/judge");
-  useEffect(() => {
-    let current = true;
-    setLoading(true);
-    setError("");
-    fetch("/api/portal?view=" + encodeURIComponent(path))
-      .then(async (r) => {
-        const b = (await r.json()) as View & {
-          message?: string;
-          code?: string;
-          value: string;
-          digest: string;
-          rows: Row[];
-        };
-        if (!r.ok) throw new Error(b.message || b.code);
-        return b;
-      })
-      .then((b) => {
-        if (current) setView(b);
-      })
-      .catch((e) => {
-        if (current) setError(e.message);
-      })
-      .finally(() => {
-        if (current) setLoading(false);
-      });
-    return () => {
-      current = false;
-    };
-  }, [path, tick]);
-  if (path === "/")
-    return (
-      <main className="landing">
-        <Dots landing />
-        <header className="landing-nav">
-          <a className="brand" href="/">
-            devday<span>exchange</span>
-          </a>
-          <nav aria-label="Main">
-            <a href="/teams">The teams</a>
-            <a href="/rules">The details →</a>
-            <a
-              className="nav-signin"
-              href="/signin-with-chatgpt?return_to=%2Fdashboard"
-              target="_top"
-            >
-              Sign in <span>→</span>
-            </a>
-          </nav>
-        </header>
-        <section className="hero">
-          <div className="event-pill">
-            <span /> NOV 01, 2026 <i /> INDIA · IST
-          </div>
-          <p className="hero-kicker">Good people. Big ideas. One day.</p>
-          <h1>
-            Build what
-            <br />
-            comes <em>next.</em>
-          </h1>
-          <p className="hero-description">
-            A day to meet your people, push an idea further,
-            <br className="desktop-break" /> and make something that matters.
-          </p>
-          <div className="hero-actions">
-            <a
-              className="button"
-              href="/signin-with-chatgpt?return_to=%2Fdashboard"
-              target="_top"
-            >
-              Enter the hackathon <span>→</span>
-            </a>
-            <a className="text-link" href="/teams">
-              Explore the teams <span>→</span>
-            </a>
-          </div>
-        </section>
-        <div className="landing-bottom">
-          <div className="event-stats">
-            <div>
-              <b>01 day</b>
-              <span>to go from idea to demo</span>
-            </div>
-            <div>
-              <b>1–5 builders</b>
-              <span>one team, many perspectives</span>
-            </div>
-            <div>
-              <b>Endless possibility</b>
-              <span>bring your curiosity</span>
-            </div>
-          </div>
-          <footer>
-            <span>
-              An independent community hackathon. No OpenAI endorsement implied.
-            </span>
-            <a href="/rules">Rules & privacy →</a>
-            <span className="original-label">
-              Original interactive dot artwork
-            </span>
-          </footer>
-        </div>
-        {localTest && (
-          <a className="local-chip" href="/local-test">
-            LOCAL TEST · fake accounts →
-          </a>
         )}
-      </main>
-    );
-  const segment = path.split("/").filter(Boolean);
-  const title =
-    titles[path] ??
-    (isAdmin
-      ? [
-          `Event ${segment[1]?.replaceAll("-", " ") || "operations"}.`,
-          "Private staff tools. Every change is authorized and recorded.",
-        ]
-      : isJudge
-        ? [
-            "Take a closer look.",
-            "The evidence, the project, and your considered rating.",
-          ]
-        : segment[0] === "teams"
-          ? [
-              "Meet the team.",
-              "A shared idea starts with the people behind it.",
-            ]
-          : segment[0] === "projects"
-            ? [
-                "From idea to reality.",
-                "Try the project and share specific, useful feedback.",
-              ]
-            : ["Page not found.", "This route does not exist."]);
-  const variant = Array.from(path).reduce((a, c) => a + c.charCodeAt(0), 0);
-  const filtered = (view.items || []).filter((r) =>
-    JSON.stringify(r).toLowerCase().includes(search.toLowerCase()),
+        <button
+          className="button"
+          disabled={
+            !selected.length ||
+            reason.trim().length < 5 ||
+            !data.checkInConfigured
+          }
+          onClick={() => {
+            void run("participant-bulk", {
+              emails: selected,
+              checkIn: true,
+              reason,
+            }).catch(() => {});
+          }}
+        >
+          Check in
+        </button>
+      </div>
+      {!data.checkInConfigured && (
+        <p className="muted">
+          Check-in waits for the owner-confirmed event policy. Going is derived
+          from the complete team, never set as an individual status.
+        </p>
+      )}
+      <div className="table-scroll">
+        <table className="participants-table">
+          <thead>
+            <tr>
+              <th>
+                <input
+                  type="checkbox"
+                  aria-label="Select visible participants"
+                  checked={
+                    !!items.length &&
+                    items.every((r) => selected.includes(r.email))
+                  }
+                  onChange={(e) =>
+                    setSelected(
+                      e.target.checked ? items.map((r) => r.email) : [],
+                    )
+                  }
+                />
+              </th>
+              <th>Participant</th>
+              <th>Team</th>
+              <th>Approval</th>
+              <th>Progress</th>
+              <th>Attendance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {items.map((r) => (
+              <tr key={r.email}>
+                <td>
+                  <input
+                    type="checkbox"
+                    aria-label={`Select ${r.email}`}
+                    checked={selected.includes(r.email)}
+                    onChange={(e) =>
+                      setSelected(
+                        e.target.checked
+                          ? [...selected, r.email]
+                          : selected.filter((x) => x !== r.email),
+                      )
+                    }
+                  />
+                </td>
+                <td>
+                  <strong>{r.name || "Not signed in yet"}</strong>
+                  <small>{r.email}</small>
+                </td>
+                <td>
+                  {r.team_name || "No team"}
+                  <small>
+                    {r.teamReadiness.total
+                      ? `${r.teamReadiness.approved}/${r.teamReadiness.total} approved`
+                      : ""}
+                  </small>
+                </td>
+                <td>
+                  {r.approval === "approved"
+                    ? "Approved"
+                    : r.approval === "pending"
+                      ? "Registered"
+                      : r.approval}
+                </td>
+                <td>
+                  <Pill tone={r.status === "Going" ? "positive" : "neutral"}>
+                    {r.status}
+                  </Pill>
+                </td>
+                <td>{r.checked_in ? "Checked in" : "Not checked in"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {!items.length && <Empty>No participants match this search.</Empty>}
+    </>
+  );
+}
+function Review({
+  data,
+  run,
+}: {
+  data: View;
+  run: (a: string, d: Row) => Promise<Row>;
+}) {
+  const p = data.project,
+    v = data.version;
+  if (!p) return <Empty>Select a submitted project.</Empty>;
+  const payload = v?.payload || p.draft;
+  return (
+    <>
+      <a
+        className="back-link"
+        href={
+          data.me?.owner || data.me?.role === "admin"
+            ? "/admin/submissions"
+            : "/review"
+        }
+      >
+        ← Submissions
+      </a>
+      <div className="review-layout">
+        <article>
+          {payload.logo && payload.banner ? (
+            <ProjectBody project={payload} />
+          ) : (
+            <>
+              <h1>{payload.projectName || "Untitled draft"}</h1>
+              <p>Required project media is not complete.</p>
+            </>
+          )}
+          <p className="muted">
+            {v ? `Committed version ${v.attempt}` : "Draft — not submitted"}
+          </p>
+          {(data.me?.owner || data.me?.role === "admin") && v && (
+            <details className="panel">
+              <summary>Final judging rubric · reviewer private</summary>
+              <Form
+                title="Record verified rubric evidence"
+                onSave={async (f) => {
+                  await run("review", {
+                    teamId: p.team_id,
+                    versionId: v.id,
+                    eligibility:
+                      data.eligibility.status === "ineligible"
+                        ? "ineligible"
+                        : data.eligibility.status === "eligible"
+                          ? "eligible"
+                          : "needs_review",
+                    astra: Number(f.get("astra")),
+                    codex: Number(f.get("codex")),
+                    diversity: Number(f.get("diversity")),
+                    falseClaims: Number(f.get("falseClaims")),
+                    evidence: f.get("evidence"),
+                    reason: f.get("reason"),
+                  });
+                }}
+              >
+                {[
+                  ["astra", "Technical rubric · 0–30"],
+                  ["codex", "Codex evidence · 0–5"],
+                  ["diversity", "Collaboration rubric · 0–10"],
+                  ["falseClaims", "Approved false-claim findings · 0–2"],
+                ].map(([name, label]) => (
+                  <Field
+                    key={name}
+                    name={name}
+                    type="number"
+                    label={label}
+                    required
+                    value={
+                      data.rubricReview?.[
+                        name === "falseClaims" ? "false_claims" : name
+                      ] ?? ""
+                    }
+                  />
+                ))}
+                <Field
+                  name="evidence"
+                  label="Verified evidence and review rationale"
+                  type="textarea"
+                  required
+                  value={data.rubricReview?.evidence || ""}
+                />
+                <Field
+                  name="reason"
+                  label="Change reason"
+                  required
+                  minLength={5}
+                />
+                <p className="muted">
+                  No model result is invented here. Unverified evidence stays
+                  unscored. This does not reveal scores.
+                </p>
+              </Form>
+            </details>
+          )}
+          {(data.me?.owner || data.me?.role === "admin") && v && (
+            <Form
+              className="panel"
+              title="Eligibility check"
+              label="Record eligibility"
+              onSave={async (f) => {
+                await run("set-project-eligibility", {
+                  projectId: p.id,
+                  versionId: v.id,
+                  status: f.get("status"),
+                  reason: f.get("reason"),
+                });
+              }}
+            >
+              <p>
+                Eligibility is separate from evaluation. Verified eligible
+                submissions appear automatically. Leave unverified external
+                checks pending.
+              </p>
+              <Field name="status" label="Eligibility">
+                <select
+                  name="status"
+                  defaultValue={data.eligibility?.status || "needs_review"}
+                >
+                  <option value="needs_review">Checks pending</option>
+                  <option value="eligible">Eligible</option>
+                  <option value="ineligible">Ineligible</option>
+                </select>
+              </Field>
+              <Field
+                name="reason"
+                label="Verified evidence or reason"
+                required
+                minLength={5}
+              />
+            </Form>
+          )}
+        </article>
+        <aside>
+          <Form
+            title={
+              data.reviewKind === "mentor" ? "Private advice" : "Private review"
+            }
+            label="Save review"
+            onSave={async (f) => {
+              await run("review-project", {
+                projectId: p.id,
+                versionId: v?.id,
+                body: f.get("body"),
+                ...(data.reviewKind === "judge"
+                  ? { rating: Number(f.get("rating")) }
+                  : {}),
+              });
+            }}
+          >
+            {data.reviewKind === "judge" && (
+              <Field
+                name="rating"
+                type="number"
+                label="Score · 0 to 10, reviewer-private"
+                required
+              />
+            )}
+            <Field
+              name="body"
+              label="Feedback for the team"
+              type="textarea"
+              required
+            />
+            <p className="muted">
+              Only this team and authorized reviewers can read this feedback.
+              Keep numeric scores out of team-facing copy.
+            </p>
+            {!v && (
+              <p className="notice">
+                A committed version is required before a review can be saved.
+              </p>
+            )}
+          </Form>
+          {(data.me?.owner || data.me?.role === "admin") && (
+            <section className="panel">
+              <h2>AI evaluation</h2>
+              <Pill>
+                {data.evaluationConfigured ? "Configured" : "Not configured"}
+              </Pill>
+              <p className="muted">
+                Each run is bound to a project version. Previous reviews are
+                retained.
+              </p>
+              <button
+                className="button secondary"
+                disabled={
+                  !data.evaluationConfigured ||
+                  !v ||
+                  (data.runs || []).some((r: Row) =>
+                    ["queued", "running"].includes(r.state),
+                  )
+                }
+                onClick={() => {
+                  void run("reevaluate-project", {
+                    projectId: p.id,
+                    versionId: v?.id,
+                  }).catch(() => {});
+                }}
+              >
+                Re-evaluate
+              </button>
+              {(data.runs || []).map((r: Row) => (
+                <p key={r.id}>
+                  {r.state} · {new Date(r.created_at).toLocaleString()}
+                  {r.error && <small>{r.error}</small>}
+                </p>
+              ))}
+            </section>
+          )}
+          <details className="panel">
+            <summary>Review history · unrevealed</summary>
+            {(data.history || []).map((h: Row) => (
+              <article className="feedback-entry" key={h.id}>
+                <strong>
+                  {h.author} · {h.kind}
+                </strong>
+                {h.rating !== undefined && h.rating !== null && (
+                  <Pill>Score {h.rating}</Pill>
+                )}
+                <p>{h.body}</p>
+                <small>{new Date(h.created_at).toLocaleString()}</small>
+              </article>
+            ))}
+            {!data.history?.length && (
+              <p className="muted">No saved reviews yet.</p>
+            )}
+          </details>
+          {(data.me?.owner || data.me?.role === "admin") && (
+            <Form
+              title="Assign a reviewer"
+              onSave={async (f) => {
+                const reviewer = (data.reviewers || []).find(
+                  (r: Row) => r.id === f.get("userId"),
+                );
+                if (!reviewer) throw new Error("Choose a reviewer.");
+                await run("assign-project", {
+                  projectId: p.id,
+                  userId: reviewer.id,
+                  kind: reviewer.role,
+                  reason: f.get("reason"),
+                });
+              }}
+            >
+              <Field name="userId" label="Assigned judge or mentor">
+                <select name="userId" required>
+                  <option value="">Choose a person</option>
+                  {(data.reviewers || []).map((r: Row) => (
+                    <option key={r.id} value={r.id}>
+                      {r.name} · {r.role}
+                    </option>
+                  ))}
+                </select>
+              </Field>
+              <Field
+                name="reason"
+                label="Assignment reason"
+                required
+                minLength={5}
+              />
+            </Form>
+          )}
+        </aside>
+      </div>
+    </>
+  );
+}
+function AdminList({
+  data,
+  path,
+  run,
+}: {
+  data: View;
+  path: string;
+  run: (a: string, d: Row) => Promise<Row>;
+}) {
+  const [q, setQ] = useState(""),
+    [filter, setFilter] = useState("");
+  const teams = path === "/admin/teams",
+    logs = path === "/admin/logs";
+  const items = (data.items || []).filter(
+    (r) =>
+      JSON.stringify(r).toLowerCase().includes(q.toLowerCase()) &&
+      (!filter || r.status === filter),
   );
   return (
     <>
-      <a className="skip" href="#content">
+      <header className="page-heading">
+        <p className="eyebrow">
+          {logs
+            ? "Owner only"
+            : teams
+              ? "Team administration"
+              : "Project records"}
+        </p>
+        <h1>
+          {logs ? "Logs" : teams ? "Teams" : "Submissions"}
+          <span className="heading-dot green" />
+        </h1>
+      </header>
+      <div className="toolbar">
+        <Search
+          value={q}
+          onChange={setQ}
+          label={teams ? "Search team or member" : "Search records"}
+        />
+        {!teams && !logs && (
+          <select
+            aria-label="Submission status"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+          >
+            <option value="">All statuses</option>
+            {["Draft", "Submitted"].map((s) => (
+              <option key={s}>{s}</option>
+            ))}
+          </select>
+        )}
+        {path !== "/review" && (
+          <a
+            className="button secondary"
+            href={`/api/export?list=${logs ? "logs" : teams ? "teams" : "submissions"}&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}`}
+          >
+            Export CSV
+          </a>
+        )}
+      </div>
+      {teams ? (
+        <ul className="admin-team-list">
+          {items.map((t) => (
+            <li key={t.id}>
+              <header className="section-heading">
+                <div className="identity-line">
+                  <TeamAvatar avatar={t.avatar} palette={t.palette} />
+                  <h2>{t.name}</h2>
+                </div>
+                <Pill tone={t.readiness.going ? "positive" : "waiting"}>
+                  {t.readiness.label}
+                </Pill>
+              </header>
+              <ul className="member-list">
+                {t.members.map((m: Row) => (
+                  <li key={m.id}>
+                    <div>
+                      <strong>{m.name}</strong>
+                      <small>{m.email}</small>
+                    </div>
+                    <Pill>
+                      {m.approval === "approved" ? "Approved" : "Registered"}
+                    </Pill>
+                    {m.id !== t.leader_id && (
+                      <button
+                        className="link-button"
+                        onClick={() => {
+                          void run("remove-workspace-member", {
+                            userId: m.id,
+                            reason: "Administrator updated team membership",
+                          }).catch(() => {});
+                        }}
+                      >
+                        Remove membership
+                      </button>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      ) : logs ? (
+        <div className="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                {["Time", "Action", "Reason", "Change summary"].map((x) => (
+                  <th key={x}>{x}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((r) => (
+                <tr key={r.id}>
+                  <td>{new Date(r.created_at).toLocaleString()}</td>
+                  <td>{r.action}</td>
+                  <td>{r.reason}</td>
+                  <td className="log-detail">{r.detail}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <ul className="submission-list">
+          {items.map((r) => (
+            <li key={r.id}>
+              <a
+                href={`${path === "/review" ? "/review" : "/admin/submissions"}/${r.slug}`}
+              >
+                <div>
+                  <h2>{r.projectName || "Untitled draft"}</h2>
+                  <p>Team {r.teamName}</p>
+                </div>
+                <Pill>{r.status}</Pill>
+                <span>Review project →</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+      {!items.length && <Empty>No records match this view.</Empty>}
+    </>
+  );
+}
+function ContentEditor({
+  data,
+  run,
+  scope,
+}: {
+  data: View;
+  run: (a: string, d: Row) => Promise<Row>;
+  scope: "public" | "private";
+}) {
+  const record = scope === "public" ? data.content : data.venue;
+  const initial = JSON.parse(record?.draft || "{}");
+  const [content, setContent] = useState<Row>(initial);
+  const dirty = JSON.stringify(content) !== JSON.stringify(initial);
+  const update = (k: string, v: unknown) =>
+    setContent((p) => ({ ...p, [k]: v }));
+  return (
+    <Form
+      title={
+        scope === "public" ? "Public event content" : "Private arrival details"
+      }
+      label="Save draft"
+      onSave={async (f) => {
+        await run("content-save", {
+          scope,
+          revision: record?.revision || 0,
+          content,
+          reason: f.get("reason"),
+        });
+      }}
+    >
+      {scope === "public" ? (
+        <>
+          <label>
+            General venue
+            <input
+              value={content.venue || ""}
+              onChange={(e) => update("venue", e.target.value)}
+            />
+          </label>
+          <label>
+            General Google Maps URL
+            <input
+              type="url"
+              value={content.mapUrl || ""}
+              onChange={(e) => update("mapUrl", e.target.value)}
+            />
+          </label>
+          <p className="muted">
+            IIIT Delhi is user-provided. The public Luma page exposes no
+            verified Maps link.
+          </p>
+          <h3>Agenda</h3>
+          {(content.agenda || []).map((a: Row, i: number) => (
+            <fieldset key={i}>
+              <legend>Agenda entry {i + 1}</legend>
+              {["time", "title", "description"].map((k) => (
+                <label key={k}>
+                  {k}
+                  <input
+                    value={a[k]}
+                    onChange={(e) =>
+                      update(
+                        "agenda",
+                        content.agenda.map((x: Row, j: number) =>
+                          j === i ? { ...x, [k]: e.target.value } : x,
+                        ),
+                      )
+                    }
+                  />
+                </label>
+              ))}
+              <button
+                type="button"
+                className="link-button"
+                onClick={() =>
+                  update(
+                    "agenda",
+                    content.agenda.filter((_: Row, j: number) => j !== i),
+                  )
+                }
+              >
+                Remove entry
+              </button>
+            </fieldset>
+          ))}
+          <button
+            type="button"
+            className="button secondary"
+            onClick={() =>
+              update("agenda", [
+                ...(content.agenda || []),
+                { time: "", title: "", description: "" },
+              ])
+            }
+          >
+            Add agenda entry
+          </button>
+          <h3>Frequently asked questions</h3>
+          {(content.faqs || []).map((f: Row, i: number) => (
+            <fieldset key={i}>
+              <legend>Question {i + 1}</legend>
+              {["question", "answer"].map((k) => (
+                <label key={k}>
+                  {k}
+                  <textarea
+                    value={f[k]}
+                    onChange={(e) =>
+                      update(
+                        "faqs",
+                        content.faqs.map((x: Row, j: number) =>
+                          j === i ? { ...x, [k]: e.target.value } : x,
+                        ),
+                      )
+                    }
+                  />
+                </label>
+              ))}
+              <button
+                type="button"
+                className="link-button"
+                onClick={() =>
+                  update(
+                    "faqs",
+                    content.faqs.filter((_: Row, j: number) => j !== i),
+                  )
+                }
+              >
+                Remove question
+              </button>
+            </fieldset>
+          ))}
+          <button
+            type="button"
+            className="button secondary"
+            onClick={() =>
+              update("faqs", [
+                ...(content.faqs || []),
+                { question: "", answer: "" },
+              ])
+            }
+          >
+            Add question
+          </button>
+          <label>
+            Rules · plain text
+            <textarea
+              rows={7}
+              value={content.rules || ""}
+              onChange={(e) => update("rules", e.target.value)}
+            />
+          </label>
+        </>
+      ) : (
+        <>
+          <p className="notice">
+            These fields are never included in public content or ordinary
+            exports. Published details are returned only to fully approved teams
+            and authorized venue managers.
+          </p>
+          {[
+            ["location", "Exact room or entry location"],
+            ["directions", "Private directions"],
+            ["mapUrl", "Private Google Maps URL"],
+          ].map(([k, label]) => (
+            <label key={k}>
+              {label}
+              {k === "directions" ? (
+                <textarea
+                  value={content[k] || ""}
+                  onChange={(e) => update(k, e.target.value)}
+                />
+              ) : (
+                <input
+                  type={k === "mapUrl" ? "url" : "text"}
+                  value={content[k] || ""}
+                  onChange={(e) => update(k, e.target.value)}
+                />
+              )}
+            </label>
+          ))}
+        </>
+      )}
+      <Field
+        name="reason"
+        label="Reason for this content change"
+        required
+        minLength={5}
+      />
+      <button
+        type="button"
+        className="button secondary"
+        disabled={dirty || !record?.revision}
+        onClick={() => {
+          void run("content-publish", {
+            scope,
+            revision: record.revision,
+            reason: "Owner published the saved content draft",
+          }).catch(() => {});
+        }}
+      >
+        Publish saved draft
+      </button>
+      <p className="muted">
+        Save before publishing. Content publication does not activate event
+        policies.
+      </p>
+    </Form>
+  );
+}
+function Settings({
+  data,
+  run,
+}: {
+  data: View;
+  run: (a: string, d: Row) => Promise<Row>;
+}) {
+  return (
+    <>
+      <header className="page-heading">
+        <p className="eyebrow">Configuration, not activation</p>
+        <h1>
+          Settings
+          <span className="heading-dot green" />
+        </h1>
+      </header>
+      <section className="panel">
+        <h2>Event policy</h2>
+        <Pill tone="waiting">
+          {data.eventDraft ? "Draft · inactive" : "Owner-confirmed policy"}
+        </Pill>
+        <ul>
+          {(data.unresolved || []).map((x: string) => (
+            <li key={x}>{x}</li>
+          ))}
+        </ul>
+        <details>
+          <summary>Required confirmations</summary>
+          <ul>
+            {(data.blockers || []).map((x: string) => (
+              <li key={x}>{x}</li>
+            ))}
+          </ul>
+        </details>
+        <p className="muted">
+          No activation action is run as part of this design revision.
+        </p>
+      </section>
+      {data.me?.owner && (
+        <details className="panel">
+          <summary>Final judging score reveal · owner only</summary>
+          <p className="muted">
+            This is separate from the public upvote-ordered project list.
+            Required policy confirmations, score coverage and tie resolution
+            must pass before freezing. Reveal is explicit.
+          </p>
+          <Form
+            title="Freeze final judging snapshot"
+            label="Freeze final scores"
+            onSave={async (f) => {
+              await run("freeze-results", { reason: f.get("reason") });
+            }}
+          >
+            <Field name="reason" label="Freeze reason" required minLength={5} />
+          </Form>
+          {data.resultSnapshots?.length > 0 && (
+            <Form
+              title="Reveal a frozen judging snapshot"
+              label="Reveal final judging scores"
+              onSave={async (f) => {
+                await run("publish-results", {
+                  snapshotId: f.get("snapshotId"),
+                  reason: f.get("reason"),
+                });
+              }}
+            >
+              <Field name="snapshotId" label="Frozen snapshot">
+                <select name="snapshotId" required>
+                  {data.resultSnapshots.map((r: Row) => (
+                    <option key={r.id} value={r.id}>
+                      {new Date(r.created_at).toLocaleString()}
+                    </option>
+                  ))}
+                </select>
+              </Field>
+              <Field
+                name="reason"
+                label="Reveal reason"
+                required
+                minLength={5}
+              />
+            </Form>
+          )}
+          {data.resultPublication && <Pill>Final judging scores revealed</Pill>}
+        </details>
+      )}
+      {data.me?.owner && (
+        <ContentEditor
+          key={`public-${data.content?.revision}`}
+          data={data}
+          run={run}
+          scope="public"
+        />
+      )}
+      {data.canManageVenue && (
+        <ContentEditor
+          key={`private-${data.venue?.revision}`}
+          data={data}
+          run={run}
+          scope="private"
+        />
+      )}
+      {data.me?.owner && (
+        <>
+          <Form
+            title="Least-privilege roles"
+            label="Update role"
+            onSave={async (f) => {
+              await run("portal-role", {
+                userId: f.get("userId"),
+                role: f.get("role"),
+                reason: f.get("reason"),
+              });
+            }}
+          >
+            <Field name="userId" label="Person">
+              <select name="userId" required>
+                <option value="">Choose a signed-in person</option>
+                {(data.roles || [])
+                  .filter((r: Row) => r.id !== data.me?.id)
+                  .map((r: Row) => (
+                    <option key={r.id} value={r.id}>
+                      {r.name} · {r.email} · {r.role}
+                    </option>
+                  ))}
+              </select>
+            </Field>
+            <Field name="role" label="Role">
+              <select name="role">
+                {portalRoles.map((r) => (
+                  <option key={r}>{r}</option>
+                ))}
+              </select>
+            </Field>
+            <p className="muted">
+              Volunteers: lookup/check-in. Mentors: assigned advice. Judges:
+              assigned scoring. Admins: participant, team and project
+              management. Only the owner controls roles, Logs and results
+              reveal.
+            </p>
+            <Field name="reason" label="Reason" required minLength={5} />
+          </Form>
+          <Form
+            title="Private venue management"
+            label="Update venue permission"
+            onSave={async (f) => {
+              await run("venue-manager", {
+                userId: f.get("userId"),
+                enabled: f.get("enabled") === "on",
+                reason: f.get("reason"),
+              });
+            }}
+          >
+            <Field
+              name="userId"
+              label="Specifically authorized operational admin"
+            >
+              <select name="userId" required>
+                <option value="">Choose an administrator</option>
+                {(data.roles || [])
+                  .filter((r: Row) => r.role === "admin")
+                  .map((r: Row) => (
+                    <option key={r.id} value={r.id}>
+                      {r.name} ·{" "}
+                      {r.venue_manager
+                        ? "Has venue permission"
+                        : "No venue permission"}
+                    </option>
+                  ))}
+              </select>
+            </Field>
+            <Field
+              name="enabled"
+              type="checkbox"
+              label="Allow private venue management"
+            />
+            <Field name="reason" label="Reason" required minLength={5} />
+          </Form>
+        </>
+      )}
+    </>
+  );
+}
+const canonical = (p: string) =>
+  ({
+    "/dashboard/profile": "/profile",
+    "/dashboard/submission": "/submission",
+    "/dashboard/team": "/dashboard",
+    "/dashboard/credits": "/dashboard",
+    "/admin": "/admin/participants",
+    "/admin/audit": "/admin/logs",
+    "/judge": "/review",
+  })[p] || p;
+export default function Portal({
+  path: original,
+  localTest = false,
+}: {
+  path: string;
+  localTest?: boolean;
+}) {
+  const path = canonical(original);
+  const [data, setData] = useState<View>({}),
+    [loading, setLoading] = useState(path !== "/"),
+    [error, setError] = useState(""),
+    [message, setMessage] = useState(""),
+    [menu, setMenu] = useState(false);
+  async function load() {
+    setError("");
+    try {
+      const r = await fetch(
+        `/api/portal?view=${encodeURIComponent(path)}&focus=${encodeURIComponent(new URLSearchParams(window.location.search).get("project") || "")}`,
+        {
+          cache: "no-store",
+        },
+      );
+      const body = (await r.json()) as View;
+      if (!r.ok)
+        throw new Error(
+          body.message || body.code || "This page could not be loaded.",
+        );
+      setData(body);
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setLoading(false);
+    }
+  }
+  useEffect(() => {
+    void load();
+  }, [path]);
+  const run = async (action: string, values: Row) => {
+    try {
+      const result = await api(action, values);
+      setMessage(result.message || "Saved.");
+      await load();
+      return result;
+    } catch (e) {
+      setMessage((e as Error).message);
+      throw e;
+    }
+  };
+  // Button actions report rejected operations without unhandled promise noise.
+  const clickRun = async (a: string, d: Row) => {
+    try {
+      return await run(a, d);
+    } catch {
+      return {};
+    }
+  };
+  const admin = path.startsWith("/admin"),
+    privileged = data.me?.owner || data.me?.role === "admin",
+    reviewer = ["judge", "mentor"].includes(data.me?.role || "");
+  const nav = admin
+    ? [
+        ["/admin/participants", "Participants"],
+        ...(privileged
+          ? [
+              ["/admin/teams", "Teams"],
+              ["/admin/submissions", "Submissions"],
+              ["/admin/settings", "Settings"],
+            ]
+          : []),
+        ...(data.me?.owner ? [["/admin/logs", "Logs"]] : []),
+      ]
+    : [
+        ["/", "Home"],
+        ["/projects", "Projects"],
+        ["/leaderboard", "Leaderboard"],
+        ...(data.me
+          ? [
+              ["/dashboard", "Dashboard"],
+              ...(data.me.role === "participant"
+                ? [
+                    ["/teams", "Teams"],
+                    ["/submission", "Submission"],
+                  ]
+                : []),
+              ...(reviewer ? [["/review", "Assigned projects"]] : []),
+            ]
+          : []),
+      ];
+  const c =
+    teamPalettes[(data.team?.palette || "forest") as Palette] ||
+    teamPalettes.forest;
+  return (
+    <div
+      className="app-shell"
+      style={{ "--team-accent": c.ink, "--team-wash": c.wash } as CSSProperties}
+    >
+      <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <header className="topbar">
-        <a className="brand" href="/">
-          devday<span>exchange</span>
+      <header className="mobile-header">
+        <a className="brand" href="/" aria-label="DevDay Exchange home">
+          D<span>/</span>E
         </a>
-        <nav aria-label="Main">
-          <a href="/teams">Teams</a>
-          <a href="/projects">Projects</a>
-          <a href="/rules">Guide</a>
-          <a href="/dashboard" className="nav-signin">
-            My workspace →
-          </a>
-        </nav>
+        <button
+          className="button secondary"
+          aria-expanded={menu}
+          aria-controls="site-navigation"
+          onClick={() => setMenu(!menu)}
+        >
+          {menu ? "Close menu" : "Menu"}
+        </button>
       </header>
-      <div className="workspace">
-        {(isDash || isAdmin || isJudge) && (
-          <aside>
-            <a className="workspace-label" href="/dashboard">
-              THE BUILD WORKSPACE
+      <aside className={`sidebar ${menu ? "open" : ""}`}>
+        <a className="brand" href="/" aria-label="DevDay Exchange home">
+          D<span>/</span>E
+        </a>
+        <nav
+          id="site-navigation"
+          aria-label={admin ? "Administration" : "Main navigation"}
+        >
+          {nav.map(([href, label]) => (
+            <a
+              key={href}
+              href={href}
+              aria-current={path === href ? "page" : undefined}
+            >
+              {label}
             </a>
-            <nav aria-label="Workspace">
-              {(isAdmin
-                ? [
-                    ["/admin", "Overview"],
-                    ...adminNav.map((n) => [
-                      "/admin/" + n,
-                      n.replaceAll("-", " "),
-                    ]),
-                  ]
-                : isJudge
-                  ? [["/judge", "Assigned projects"]]
-                  : nav
-              ).map(([url, label]) => (
-                <a
-                  href={url}
-                  key={url}
-                  aria-current={path === url ? "page" : undefined}
-                >
-                  {label}
-                  <span>→</span>
+          ))}
+          {!data.me && (
+            <a href="/signin-with-chatgpt?return_to=%2Fdashboard" target="_top">
+              Sign in
+            </a>
+          )}
+        </nav>
+        <div className="account-controls">
+          {data.me ? (
+            <>
+              <strong>{data.me.name}</strong>
+              <small>{data.me.owner ? "Owner" : data.me.role}</small>
+              <a href="/profile">Profile</a>
+              {(privileged || data.me.role === "volunteer") && (
+                <a href={admin ? "/dashboard" : "/admin/participants"}>
+                  {admin ? "Workspace" : "Administration"}
                 </a>
-              ))}
-            </nav>
-            <div className="sidebar-bottom">
-              <span>01 NOV 2026 · IST</span>
-              <a href="/admin">Staff console →</a>
-              <a href="/judge">Judge workspace →</a>
-            </div>
-          </aside>
-        )}
-        <main id="content" className="content">
-          <div className="page-intro">
-            <div>
-              <p className="eyebrow">
-                DEVDAY EXCHANGE /{" "}
-                {isAdmin
-                  ? "CONTROL ROOM"
-                  : isDash
-                    ? "YOUR WORKSPACE"
-                    : isJudge
-                      ? "JUDGING"
-                      : "THE HACKATHON"}
-              </p>
-              <h1>{title[0]}</h1>
-              <p>{title[1]}</p>
-            </div>
-            <Dots variant={variant} />
+              )}
+              <a href="/signout-with-chatgpt?return_to=%2F" target="_top">
+                Sign out
+              </a>
+            </>
+          ) : (
+            <p>
+              November 1<br />
+              New Delhi
+            </p>
+          )}
+        </div>
+      </aside>
+      <main id="main" className={path === "/" ? "main home-main" : "main"}>
+        {localTest && (
+          <div className="rehearsal-banner">
+            Local rehearsal · synthetic accounts only{" "}
+            <a href="/local-test">Switch fixture</a>
           </div>
-          {localTest && (
-            <div className="notice local">
-              <b>Local test adapter</b> · Fake accounts and local SQLite.{" "}
-              <a href="/local-test">Switch fixture →</a>
-            </div>
-          )}
-          {view.me && (
-            <div className="identity">
-              <span className="avatar">{view.me.name.slice(0, 1)}</span>
-              <span>
-                {view.me.name}
-                <small>
-                  {view.me.owner ? "Owner rehearsal" : view.me.role} ·{" "}
-                  {view.registration
-                    ? String(view.registration.status)
-                    : "not registered"}
-                </small>
-              </span>
+        )}
+        {message && (
+          <p className="action-message" role="status">
+            {message}
+          </p>
+        )}
+        {error && (
+          <div className="error-message" role="alert">
+            <h2>This page could not load.</h2>
+            <p>{error}</p>
+            <button
+              className="button secondary"
+              onClick={() => {
+                void load();
+              }}
+            >
+              Try again
+            </button>
+            {!data.me && (
               <a
-                href="/signout-with-chatgpt?return_to=%2F"
+                className="text-link"
                 target="_top"
-                onClick={
-                  localTest
-                    ? async (e) => {
-                        e.preventDefault();
-                        await api("local-signout", {});
-                        location.href = "/";
-                      }
-                    : undefined
-                }
+                href={`/signin-with-chatgpt?return_to=${encodeURIComponent(path)}`}
               >
-                Sign out →
+                Sign in with ChatGPT
               </a>
-            </div>
-          )}
-          {error && (
-            <div className="notice" role="alert">
-              {error}{" "}
-              <a
-                href="/signin-with-chatgpt?return_to=%2Fdashboard"
-                target="_top"
+            )}
+          </div>
+        )}
+        {path === "/" ? (
+          <Home
+            content={data.content || defaultPublicContent}
+            signedIn={!!data.me}
+          />
+        ) : path === "/local-test" && localTest ? (
+          <section className="panel">
+            <h1>Local rehearsal</h1>
+            <p>These are fake identities, never production sign-in.</p>
+            {[
+              "owner",
+              "admin",
+              "judge",
+              "alice",
+              "bob",
+              "pending",
+              "stranger",
+            ].map((f) => (
+              <button
+                key={f}
+                className="button secondary"
+                onClick={async () => {
+                  await api("local-signin", { fixture: f });
+                  window.location.assign("/dashboard");
+                }}
               >
-                Sign in with ChatGPT →
-              </a>
-            </div>
-          )}
-          {loading && <p role="status">Loading workspace…</p>}
-          {path === "/rules" && (
-            <div className="cards rules">
-              <article className="panel">
-                <span className="eyebrow">01 / BEFORE THE BUILD</span>
-                <h2>A clear starting line.</h2>
-                <p>
-                  Teams have 1–5 approved participants. Each person can join one
-                  active team.
-                </p>
-                <p>
-                  Idea lock: <b>28 October, 11:59 PM IST.</b>
-                  <br />
-                  Membership freeze: <b>29 October, 11:59 PM IST.</b>
-                </p>
-                <p>
-                  Ideas stay private until the configured November 1 reveal.
-                  Descriptions may improve without changing the locked core
-                  idea.
-                </p>
-              </article>
-              <article className="panel">
-                <span className="eyebrow">02 / THE DAY ITSELF</span>
-                <h2>Build it. Show it. Own it.</h2>
-                <p>
-                  Public GitHub repository creation and first commit must fall
-                  on 1 November 2026 IST. Ambiguous evidence receives human
-                  review.
-                </p>
-                <p>
-                  Team leaders have three committed submission attempts. The
-                  final cutoff is awaiting owner confirmation.
-                </p>
-              </article>
-              <article className="panel">
-                <span className="eyebrow">03 / FAIR PLAY</span>
-                <h2>Thoughtful judging.</h2>
-                <p>
-                  Proposed composition: human 50 · AI 30 · votes 5 · diversity
-                  10 · Codex 5, plus up to 5 feedback bonus.
-                </p>
-                <p>
-                  Scoring remains disabled until unresolved policies are
-                  approved. Unknown AI evidence never becomes an automatic zero
-                  or deduction.
-                </p>
-              </article>
-              <article className="panel">
-                <span className="eyebrow">04 / YOUR PRIVACY</span>
-                <h2>Share on your terms.</h2>
-                <p>
-                  Profiles start private. Gender is optional, includes prefer
-                  not to say, and is never inferred or used for automatic
-                  scoring. Personal credits are visible only to their recipient
-                  through the vault.
-                </p>
-                <p>
-                  No emails are sent. Luma changes are manual. Contact and
-                  retention details require organizer confirmation before live
-                  activation.
-                </p>
-              </article>
-            </div>
-          )}
-          {path === "/local-test" && localTest && (
-            <section className="panel">
-              <h2>Fake fixture accounts</h2>
-              <p>
-                No production credentials or real users. The owner fixture uses
-                owner@portal.test.
-              </p>
-              <div className="fixture-list">
-                {[
-                  "owner",
-                  "admin",
-                  "judge",
-                  "judge2",
-                  "alice",
-                  "bob",
-                  "carol",
-                  "dave",
-                  "eve",
-                  "frank",
-                  "pending",
-                  "stranger",
-                ].map((id) => (
-                  <button
-                    className="button secondary"
-                    key={id}
-                    disabled={!hydrated}
-                    onClick={async () => {
-                      try {
-                        await api("local-signin", { fixture: id });
-                        location.href = "/dashboard";
-                      } catch (e) {
-                        setError((e as Error).message);
-                      }
-                    }}
-                  >
-                    {id} →
-                  </button>
-                ))}
-              </div>
-            </section>
-          )}
-          {!loading && !error && path === "/dashboard" && (
+                {f}
+              </button>
+            ))}
+          </section>
+        ) : loading ? (
+          <p role="status">Loading your workspace…</p>
+        ) : (
+          !error && (
             <>
-              <div className="metric-grid">
-                <article className="panel">
-                  <span className="eyebrow">YOUR TEAM</span>
-                  <h2>{String(view.team?.name || "Find your people")}</h2>
-                  <a href="/dashboard/team">Open team workspace →</a>
-                </article>
-                <article className="panel">
-                  <span className="eyebrow">NEXT DEADLINE</span>
-                  <h2>28 Oct · 11:59 PM</h2>
-                  <p>Idea lock · Asia/Kolkata</p>
-                </article>
-                <article className="panel">
-                  <span className="eyebrow">YOUR ALLOCATION</span>
-                  <h2>Private by design.</h2>
-                  <a href="/dashboard/credits">Visit my credits →</a>
-                </article>
-              </div>
-              <section className="panel next-step">
-                <span className="eyebrow">MAKE ROOM FOR POSSIBILITY</span>
-                <h2>Great things start with a small team.</h2>
-                <p>
-                  Finish your profile, connect with builders, and write down the
-                  idea you want to bring to life.
-                </p>
-                <a className="button" href="/dashboard/team">
-                  Let’s get building →
-                </a>
-              </section>
-              <div className="notice">
-                Event policies are in draft. Submission cutoff and scoring rules
-                await owner confirmation.
-              </div>
-            </>
-          )}
-          {!error && path === "/dashboard/profile" && (
-            <Action title="Your profile" action="profile" onDone={refresh}>
-              <Field
-                name="bio"
-                label="A little about you"
-                type="textarea"
-                required={false}
-                value={view.profile?.bio}
-              />
-              <Field
-                name="socials"
-                label="Public HTTPS social links (one per line)"
-                type="textarea"
-                required={false}
-                value={
-                  Array.isArray(view.profile?.socials)
-                    ? view.profile?.socials.join("\n")
-                    : ""
-                }
-              />
-              <label>
-                Gender (optional, private)
-                <select
-                  name="gender"
-                  defaultValue={String(
-                    view.profile?.gender || "prefer-not-to-say",
-                  )}
-                >
-                  <option value="prefer-not-to-say">Prefer not to say</option>
-                  <option value="woman">Woman</option>
-                  <option value="man">Man</option>
-                  <option value="non-binary">Non-binary</option>
-                  <option value="self-described">Self described</option>
-                </select>
-              </label>
-              <Field
-                name="genderDescription"
-                label="Self description (optional, private)"
-                required={false}
-                value={view.profile?.gender_description}
-              />
-              <Field
-                name="public"
-                label="I consent to make my name, bio and social links public"
-                type="checkbox"
-                value={view.profile?.public}
-              />
-            </Action>
-          )}
-          {!error && path === "/dashboard/team" && (
-            <div className="cards">
-              {!view.team ? (
-                <Action
-                  title="Start your team"
-                  action="create-team"
-                  onDone={refresh}
-                  label="Create team →"
-                >
-                  <Field name="name" label="Team name" />
-                  <Field
-                    name="bio"
-                    label="What brings you together?"
-                    type="textarea"
-                    required={false}
-                  />
-                </Action>
+              {data.profileIncomplete ? (
+                <Profile data={data} run={run} gated />
+              ) : path === "/profile" ? (
+                <Profile data={data} run={run} />
+              ) : path === "/dashboard" ? (
+                <Dashboard data={data} run={clickRun} />
+              ) : path === "/teams" ? (
+                <Teams data={data} run={clickRun} />
+              ) : path === "/submission" ? (
+                <Submission
+                  key={`${data.project?.revision || 0}-${data.team?.id || "none"}`}
+                  data={data}
+                  run={run}
+                />
+              ) : path.startsWith("/projects") || path === "/leaderboard" ? (
+                <Projects data={data} path={path} run={clickRun} />
+              ) : path === "/admin/participants" ? (
+                <AdminParticipants data={data} run={run} />
+              ) : path === "/admin/settings" ? (
+                <Settings data={data} run={run} />
+              ) : /^\/(admin\/submissions|review)\//.test(path) ? (
+                <Review data={data} run={run} />
+              ) : path.startsWith("/admin") || path === "/review" ? (
+                <AdminList data={data} path={path} run={clickRun} />
               ) : (
-                <>
-                  <section className="panel">
-                    <span className="eyebrow">YOUR TEAM</span>
-                    <h2>{String(view.team.name)}</h2>
-                    <p>
-                      Team ID: <code>{String(view.team.id)}</code>
-                    </p>
-                    <DataTable items={view.members || []} />
-                  </section>
-                  <Action
-                    title="Your idea"
-                    action="idea"
-                    defaults={{ teamId: view.team.id }}
-                    onDone={refresh}
-                  >
-                    <Field
-                      name="title"
-                      label="Idea title · locks 28 Oct"
-                      value={view.idea?.title}
-                    />
-                    <Field
-                      name="core"
-                      label="Core idea · locks 28 Oct"
-                      type="textarea"
-                      value={view.idea?.core}
-                    />
-                    <Field
-                      name="description"
-                      label="Description · can improve after lock"
-                      type="textarea"
-                      value={view.idea?.description}
-                    />
-                  </Action>
-                  <Action
-                    title="Invite a registered builder"
-                    action="team-invite"
-                    defaults={{ teamId: view.team.id }}
-                    onDone={refresh}
-                  >
-                    <Field
-                      name="email"
-                      type="email"
-                      label="Registered email address"
-                    />
-                  </Action>
-                </>
-              )}
-              {!view.team && (
-                <Action
-                  title="Ask to join a team"
-                  action="team-request"
-                  onDone={refresh}
-                >
-                  <Field name="teamId" label="Team ID" />
-                </Action>
-              )}
-              <section className="panel">
-                <h2>Invites and requests</h2>
-                <DataTable items={view.actions || []} />
-                {(view.actions || [])
-                  .filter((a) => a.status === "pending")
-                  .map((a) => (
-                    <Action
-                      title={String(a.kind)}
-                      action="team-respond"
-                      defaults={{ id: a.id }}
-                      onDone={refresh}
-                      key={String(a.id)}
-                    >
-                      <label>
-                        Decision
-                        <select name="decision">
-                          <option value="accepted">Accept</option>
-                          <option value="declined">Decline</option>
-                        </select>
-                      </label>
-                    </Action>
-                  ))}
-              </section>
-            </div>
-          )}
-          {!error && path === "/dashboard/credits" && (
-            <Credits items={view.items || []} />
-          )}
-          {!error && path === "/dashboard/submission" && (
-            <>
-              <div className="notice">
-                <b>{view.attempts?.length || 0}/3 committed attempts.</b>{" "}
-                Cutoff:{" "}
-                {view.policy?.submissionClose
-                  ? ist(String(view.policy.submissionClose))
-                  : "Awaiting owner confirmation · submissions blocked"}
-              </div>
-              <Action
-                title="Final project submission"
-                action="submit"
-                onDone={refresh}
-                label="Commit a submission attempt"
-              >
-                <Field name="projectName" label="Project name" />
-                <Field
-                  name="problemSolution"
-                  label="Problem and solution (maximum 500 characters)"
-                  type="textarea"
-                />
-                <Field
-                  name="description"
-                  label="What did you build?"
-                  type="textarea"
-                />
-                <Field
-                  name="github"
-                  label="Public GitHub repository"
-                  type="url"
-                />
-                <Field
-                  name="demo"
-                  label="Live HTTPS demo (optional)"
-                  type="url"
-                  required={false}
-                />
-                <Field
-                  name="video"
-                  label="Demo video URL (optional)"
-                  type="url"
-                  required={false}
-                />
-                <Field
-                  name="gtm"
-                  label="Go-to-market and sustainability plan"
-                  type="textarea"
-                />
-                <Field
-                  name="features"
-                  label="Features and technical implementation"
-                  type="textarea"
-                />
-                <Field name="tools" label="OpenAI tools used (self-reported)" />
-                <Field
-                  name="toolEffectiveness"
-                  label="How the tools helped"
-                  type="textarea"
-                />
-                {(view.members || []).map((m) => (
-                  <fieldset key={String(m.id)}>
-                    <legend>{String(m.name)}’s contribution</legend>
-                    <Field
-                      name={"role:" + m.id}
-                      label="Role and completed work"
-                      type="textarea"
-                    />
-                    <Field
-                      name={"codex:" + m.id}
-                      label="How this member used Codex"
-                      type="textarea"
-                    />
-                  </fieldset>
-                ))}
-                <label>
-                  Claim OpenAI API use?
-                  <select name="openaiClaim">
-                    <option value="false">No</option>
-                    <option value="true">Yes</option>
-                  </select>
-                </label>
-                <Field
-                  name="openaiEvidence"
-                  label="OpenAI API models, feature path and redacted evidence (if claimed)"
-                  type="textarea"
-                  required={false}
-                />
-                <label>
-                  Claim Cerebras API use?
-                  <select name="cerebrasClaim">
-                    <option value="false">No</option>
-                    <option value="true">Yes</option>
-                  </select>
-                </label>
-                <Field
-                  name="cerebrasEvidence"
-                  label="Cerebras models, feature path and redacted evidence (if claimed)"
-                  type="textarea"
-                  required={false}
-                />
-                <Field
-                  name="attestation"
-                  label="I confirm this is original work and these claims are accurate"
-                  type="checkbox"
-                />
-              </Action>
-              <DataTable
-                items={(view.attempts || []).map((r) => ({
-                  attempt: r.attempt,
-                  saved_at: r.created_at,
-                }))}
-              />
-            </>
-          )}
-          {!error && (path === "/teams" || path === "/projects") && (
-            <>
-              <label className="search">
-                Find a {path === "/teams" ? "team" : "project"}
-                <input
-                  type="search"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search by name…"
-                />
-              </label>
-              <div className="cards">
-                {filtered.map((r, i) => (
-                  <a
-                    href={path + "/" + String(r.id)}
-                    className="panel directory-card"
-                    key={i}
-                  >
-                    <span className="eyebrow">
-                      {path === "/teams"
-                        ? "MEET THE BUILDERS"
-                        : "EXPLORE THE PROJECT"}
-                    </span>
-                    <h2>{String(r.name || r.projectName)}</h2>
-                    <p>
-                      {String(
-                        r.bio ||
-                          r.problemSolution ||
-                          "An idea, a team, a new possibility.",
-                      )}
-                    </p>
-                    <span>Take a look →</span>
-                  </a>
-                ))}
-              </div>
-              {!filtered.length && (
-                <div className="empty">
-                  <h2>
-                    {view.message || "The next great idea is on its way."}
-                  </h2>
-                  <p>Check back as teams get ready for the build.</p>
-                </div>
+                <Empty>Choose a page from the navigation.</Empty>
               )}
             </>
-          )}
-          {!error && segment.length === 2 && segment[0] === "teams" && (
-            <>
-              <DataTable items={view.items || []} />
-              <DataTable items={view.members || []} />
-              {view.idea && (
-                <section className="panel">
-                  <h2>{String(view.idea.title)}</h2>
-                  <p>{String(view.idea.core)}</p>
-                  <p>{String(view.idea.description)}</p>
-                </section>
-              )}
-            </>
-          )}
-          {!error && segment.length === 2 && segment[0] === "projects" && (
-            <>
-              <DataTable items={view.items || []} />
-              <div className="cards">
-                <Action
-                  title="Give this project a vote"
-                  action="vote"
-                  defaults={{ teamId: segment[1] }}
-                  onDone={refresh}
-                  label="Vote →"
-                >
-                  <p>
-                    Three distinct votes total. You can’t vote for your own
-                    team. Committed votes cannot be changed.
-                  </p>
-                </Action>
-                <Action
-                  title="Helpful, specific feedback"
-                  action="feedback"
-                  defaults={{ teamId: segment[1] }}
-                  onDone={refresh}
-                >
-                  <Field
-                    name="text"
-                    label="What worked, what failed, and what could improve?"
-                    type="textarea"
-                  />
-                </Action>
-              </div>
-            </>
-          )}
-          {!error && isJudge && (
-            <>
-              <DataTable items={view.items || []} />
-              {segment[1] && (
-                <Action
-                  title="Your overall rating"
-                  action="judge-score"
-                  defaults={{ teamId: segment[1] }}
-                  onDone={refresh}
-                >
-                  <Field name="rating" label="Rating out of 10" type="number" />
-                  <Field
-                    name="notes"
-                    label="Evidence and constructive notes"
-                    type="textarea"
-                    required={false}
-                  />
-                </Action>
-              )}
-              {!segment[1] &&
-                (view.items || []).map((r) => (
-                  <a
-                    className="button secondary"
-                    key={String(r.id)}
-                    href={"/judge/" + r.id}
-                  >
-                    Review {String(r.name)} →
-                  </a>
-                ))}
-            </>
-          )}
-          {!error && isAdmin && (
-            <>
-              {path === "/admin" && (
-                <div className="metric-grid">
-                  {(view.metrics || []).map((m, i) => (
-                    <article className="panel" key={i}>
-                      <span className="eyebrow">{String(m.label)}</span>
-                      <h2>{String(m.value)}</h2>
-                    </article>
-                  ))}
-                </div>
-              )}
-              {segment[1] && (
-                <div className="list-toolbar">
-                  <label>
-                    Search records
-                    <input
-                      type="search"
-                      value={search}
-                      onChange={(e) => setSearch(e.target.value)}
-                    />
-                  </label>
-                  <a
-                    className="button secondary"
-                    href={"/api/export?list=" + segment[1]}
-                  >
-                    Export safe CSV ↓
-                  </a>
-                </div>
-              )}
-              <DataTable items={filtered} />
-              <div className="cards">
-                {segment[1] === "participants" && (
-                  <>
-                    <Importer kind="roster" onDone={refresh} />
-                    <Action
-                      title="Review an account"
-                      action="registration"
-                      onDone={refresh}
-                    >
-                      <Field
-                        name="email"
-                        label="Verified account email"
-                        type="email"
-                      />
-                      <label>
-                        Status
-                        <select name="status">
-                          <option value="approved">Approved</option>
-                          <option value="pending">Pending</option>
-                          <option value="rejected">Rejected</option>
-                          <option value="cancelled">Cancelled</option>
-                        </select>
-                      </label>
-                      <Field
-                        name="lumaConfirmed"
-                        label="Approval manually confirmed in Luma"
-                        type="checkbox"
-                      />
-                      <Field name="reason" label="Reason" />
-                    </Action>
-                  </>
-                )}
-                {segment[1] === "check-in" && (
-                  <Action
-                    title="Check in a participant"
-                    action="check-in"
-                    onDone={refresh}
-                  >
-                    <Field name="userId" label="Participant ID" />
-                    <Field name="reason" label="Verification note" />
-                  </Action>
-                )}
-                {segment[1] === "credits" && (
-                  <>
-                    <Action
-                      title="Create a credit type"
-                      action="credit-type"
-                      onDone={refresh}
-                    >
-                      <Field name="name" label="Name" />
-                      <Field
-                        name="instructions"
-                        label="Redemption instructions"
-                        type="textarea"
-                      />
-                    </Action>
-                    <Importer kind="credits" onDone={refresh} />
-                    <Action
-                      title="Retry pending allocations"
-                      action="allocate"
-                      onDone={refresh}
-                    >
-                      <Field name="userId" label="Checked-in participant ID" />
-                    </Action>
-                  </>
-                )}
-                {segment[1] === "permissions" && (
-                  <>
-                    <Action
-                      title="Owner: appoint or revoke admin"
-                      action="role"
-                      onDone={refresh}
-                    >
-                      <Field
-                        name="userId"
-                        label="Existing verified account ID"
-                      />
-                      <label>
-                        Role
-                        <select name="role">
-                          <option value="participant">
-                            Participant (revoke staff access)
-                          </option>
-                          <option value="admin">Admin</option>
-                          <option value="judge">Judge</option>
-                        </select>
-                      </label>
-                      <Field name="reason" label="Reason" />
-                    </Action>
-                    <Action
-                      title="Owner: assign a judge"
-                      action="assign-judge"
-                      onDone={refresh}
-                    >
-                      <Field name="judgeId" label="Judge account ID" />
-                      <Field name="teamId" label="Team ID" />
-                      <Field name="reason" label="Reason" />
-                    </Action>
-                  </>
-                )}
-                {segment[1] === "settings" && (
-                  <>
-                    <section className="panel">
-                      <h2>Policy decisions still required</h2>
-                      <ul>
-                        {view.blockers?.map((x) => (
-                          <li key={x}>{x}</li>
-                        ))}
-                      </ul>
-                      <pre>{JSON.stringify(view.policy, null, 2)}</pre>
-                    </section>
-                    <Action
-                      title="Owner: save draft policies"
-                      action="settings"
-                      onDone={refresh}
-                    >
-                      <Field
-                        name="policy"
-                        label="Complete policy JSON (confirm each decision explicitly)"
-                        type="textarea"
-                        value={JSON.stringify(view.policy, null, 2)}
-                      />
-                      <Field name="reason" label="Decision record" />
-                    </Action>
-                    <Action
-                      title="Owner: activate confirmed policy"
-                      action="activate"
-                      onDone={refresh}
-                      danger
-                      label="Activate event"
-                    >
-                      <p>
-                        This is blocked while any policy is unresolved.
-                        Activation freezes policy editing in v1.
-                      </p>
-                      <Field name="reason" label="Approval reason" />
-                    </Action>
-                  </>
-                )}
-                {segment[1] === "astra" && (
-                  <Action
-                    title="Run one review job"
-                    action="astra-run"
-                    onDone={refresh}
-                  >
-                    <Field name="jobId" label="Job ID" />
-                    <p>
-                      External calls are disabled. The default evaluator records
-                      UNKNOWN and requires human review.
-                    </p>
-                  </Action>
-                )}
-                {segment[1] === "judging" && (
-                  <Action
-                    title="Staff review: evidence and score components"
-                    action="review"
-                    onDone={refresh}
-                  >
-                    <Field name="teamId" label="Team ID" />
-                    <Field
-                      name="versionId"
-                      label="Latest submission version ID"
-                    />
-                    <label>
-                      Eligibility
-                      <select name="eligibility">
-                        <option value="needs_review">Needs review</option>
-                        <option value="eligible">Eligible</option>
-                        <option value="ineligible">Ineligible</option>
-                      </select>
-                    </label>
-                    <Field
-                      name="astra"
-                      label="AI score 0–30 (human reviewed under approved fallback)"
-                      type="number"
-                    />
-                    <Field name="codex" label="Codex 0–5" type="number" />
-                    <Field
-                      name="diversity"
-                      label="Approved non-demographic diversity rubric 0–10"
-                      type="number"
-                    />
-                    <Field
-                      name="falseClaims"
-                      label="Human-confirmed false API claims (0, 1 or 2)"
-                      type="number"
-                      value="0"
-                    />
-                    <Field
-                      name="evidence"
-                      label="Evidence and appeal resolution"
-                      type="textarea"
-                    />
-                    <Field name="reason" label="Review reason" />
-                  </Action>
-                )}
-                {segment[1] === "feedback" && (
-                  <Action
-                    title="Moderate feedback"
-                    action="moderate-feedback"
-                    onDone={refresh}
-                  >
-                    <Field name="authorId" label="Author ID" />
-                    <Field name="teamId" label="Team ID" />
-                    <label>
-                      Decision
-                      <select name="valid">
-                        <option value="false">Invalidate</option>
-                        <option value="true">Restore</option>
-                      </select>
-                    </label>
-                    <Field name="reason" label="Reason" />
-                  </Action>
-                )}
-                {segment[1] === "results" && (
-                  <>
-                    <ResultsPreview />
-                    <Action
-                      title="Owner: resolve a tied group"
-                      action="resolve-tie"
-                      onDone={refresh}
-                    >
-                      <Field
-                        name="teamIds"
-                        label="Team IDs in approved rank order (JSON list)"
-                        type="textarea"
-                      />
-                      <Field
-                        name="reason"
-                        label="Tie policy applied and adjudication evidence"
-                      />
-                    </Action>
-                    <Action
-                      title="Owner: freeze private results"
-                      action="freeze-results"
-                      onDone={refresh}
-                    >
-                      <p>
-                        Requires confirmed policy, completed reviews, judge
-                        coverage and resolved ties.
-                      </p>
-                      <Field name="reason" label="Final review reason" />
-                    </Action>
-                    <Action
-                      title="Owner: publish frozen results"
-                      action="publish-results"
-                      onDone={refresh}
-                      danger
-                      label="Publish results"
-                    >
-                      <Field name="snapshotId" label="Frozen snapshot ID" />
-                      <Field name="reason" label="Publication approval" />
-                    </Action>
-                  </>
-                )}
-              </div>
-            </>
-          )}
-          {!error && (path === "/leaderboard" || path === "/winners") && (
-            <>
-              <DataTable items={view.items || []} />
-              <p>{view.message}</p>
-            </>
-          )}
-          <footer className="workspace-footer">
-            <span>Made for the people who build.</span>
-            <span>
-              Independent community event · <a href="/rules">Rules & privacy</a>
-            </span>
-          </footer>
-        </main>
-      </div>
-    </>
+          )
+        )}
+      </main>
+    </div>
   );
 }

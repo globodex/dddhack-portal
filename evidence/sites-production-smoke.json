@@ -25,5 +25,18 @@
     "publicRulesAPI": 200,
     "nestedBraceProfileRoundTrip": true,
     "nestedBraceTeamLookup": 404
+  },
+  "revisedExperience": {
+    "registeredTeamCreation": 200,
+    "sharedTeamAccent": true,
+    "partialTeamGoing": false,
+    "missingRequiredGender": 422,
+    "projectDraftSave": 200,
+    "privateTeamsAnonymousAPI": 401,
+    "goingVenueVisible": true,
+    "publicVenueSecretAbsent": true,
+    "approvalRevocationRemovesVenue": true,
+    "leaderboardExcludesInternalEvaluation": true,
+    "realChatGPTSignInVerified": false
   }
 }
