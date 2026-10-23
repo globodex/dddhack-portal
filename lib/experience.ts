@@ -1,4 +1,5 @@
 import { auditReason } from "./security";
+import { discoverParticipants, type PortalViewOptions } from "./discover-participants";
 import { teamFacts, personFacts, selectedRows } from "./directory-facts";
 import {
   publicProjectFacts,
@@ -569,7 +570,7 @@ export class PortalExperience {
   }
   async view(
     path: string,
-    options: { search?: string; page?: number; focus?: string } = {},
+    options: PortalViewOptions = {},
   ): Promise<Record<string, unknown> | null> {
     let route = path.replace(/\/+/g, "/").replace(/\/$/, "") || "/";
     if (route === "/discover/teams") route = "/teams";
@@ -578,12 +579,7 @@ export class PortalExperience {
       return {
         me,
         discovery: "participants",
-        items: (
-          await rows<Record<string, any>>(
-            this.s.db,
-            "SELECT u.id,COALESCE(pp.display_name,u.name) name,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression,t.name teamName,COALESCE(ts.color_key,ts.palette) teamPalette,CASE WHEN m.team_id IS NULL THEN 'Not in a team' ELSE 'In a team' END teamStatus,CASE WHEN p.public=1 THEN p.bio ELSE '' END bio,CASE WHEN p.public=1 THEN p.socials ELSE '[]' END socials FROM users u JOIN luma_roster l ON l.email=u.email JOIN participant_profiles pp ON pp.user_id=u.id LEFT JOIN portal_roles r ON r.user_id=u.id JOIN profiles p ON p.user_id=u.id JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id LEFT JOIN team_styles ts ON ts.team_id=t.id WHERE COALESCE(r.role,u.role)='participant' AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=u.id AND rr.active=1) AND pp.completed_at IS NOT NULL AND pd.phone<>'' ORDER BY name LIMIT 1000",
-          )
-        ).map((r) => ({ ...r, socials: JSON.parse(r.socials) })),
+        ...(await discoverParticipants(this.s.db, options)),
       };
     }
     if (route === "/rules") {
