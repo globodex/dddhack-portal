@@ -1,5 +1,6 @@
 // Disposable actual compiled Worker + D1 test. Never imported by application code.
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import {
   cpSync,
@@ -20,8 +21,13 @@ import {
   seedLoad300,
 } from "./load-300-fixtures.mjs";
 const ownRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const artifactRoot = resolve(ownRoot, "../visual-integration");
-const base = "http://127.0.0.1:4183";
+const artifactRoot = resolve(process.env.LOAD_300_ARTIFACT_ROOT || ownRoot);
+const port = Number(process.env.LOAD_300_PORT || "4183");
+assert.ok(
+  Number.isInteger(port) && port >= 1024 && port <= 65535,
+  "Use a nonprivileged local load port",
+);
+const base = `http://127.0.0.1:${port}`;
 const fixture = makeLoad300();
 const plan = {
   base,
@@ -70,9 +76,24 @@ const fingerprint = (root = artifactRoot) =>
     ].map((file) => [file, hash(readFileSync(join(root, file)))]),
   );
 const sourceArtifactBefore = fingerprint();
-const approvedWorker = process.env.LOAD_300_WORKER_SHA ||
-  "75a667d2c42a821611c3cbbea72447ee464e2ad5f2f6165fbbba647764e69ce6";
-assert.match(approvedWorker, /^[a-f0-9]{64}$/, "An exact root-reviewed Worker SHA-256 is required.");
+const approvedWorker = process.env.LOAD_300_WORKER_SHA;
+const approvedSource = process.env.LOAD_300_SOURCE;
+assert.match(
+  approvedSource || "",
+  /^[a-f0-9]{40}$/,
+  "An exact root-reviewed source revision is required",
+);
+assert.equal(
+  execFileSync("git", ["-C", artifactRoot, "rev-parse", "HEAD"], {
+    encoding: "utf8",
+  }).trim(),
+  approvedSource,
+);
+assert.match(
+  approvedWorker || "",
+  /^[a-f0-9]{64}$/,
+  "An exact root-reviewed Worker SHA-256 is required.",
+);
 assert.equal(
   sourceArtifactBefore["dist/server/index.js"],
   approvedWorker,
@@ -114,7 +135,7 @@ const report = {
   plan,
   artifactBefore,
   sourceArtifactBefore,
-  rootProvidedSourceRevision: process.env.LOAD_300_SOURCE || "0e7756c60e2fff88a4f7fb1e3eca31efc20349d0",
+  rootProvidedSourceRevision: approvedSource,
   immutableSnapshot: true,
   samples: [],
   groups: [],
@@ -319,6 +340,9 @@ async function counts(label) {
     ),
     evaluationRuns: await scalar("SELECT count(*) n FROM evaluation_runs"),
     astraJobs: await scalar("SELECT count(*) n FROM astra_jobs"),
+    nonpendingJobs: await scalar(
+      "SELECT count(*) n FROM astra_jobs WHERE state<>'pending' OR attempts<>0 OR report IS NOT NULL",
+    ),
   };
   report.checks.push(count);
   assert.equal(count.participants, 300);
@@ -328,7 +352,16 @@ async function counts(label) {
   assert(count.maxTeamSize <= 5);
   assert(count.maxAttempts <= 3);
   assert.equal(count.evaluationRuns, 0);
-  assert.equal(count.astraJobs, 0);
+  assert.equal(
+    count.astraJobs,
+    count.versions,
+    "Each committed synthetic version has one inert verification job",
+  );
+  assert.equal(
+    count.nonpendingJobs,
+    0,
+    "Load workload must never start verification",
+  );
   return count;
 }
 function leader(state) {
@@ -397,7 +430,11 @@ try {
   collectModules(serverRoot);
   const entryPath = join(serverRoot, "index.js");
   compiledModules.sort((a, b) =>
-    a.path === entryPath ? -1 : b.path === entryPath ? 1 : a.path.localeCompare(b.path),
+    a.path === entryPath
+      ? -1
+      : b.path === entryPath
+        ? 1
+        : a.path.localeCompare(b.path),
   );
   report.compiledModules = compiledModules.length;
   mf = new Miniflare({
@@ -407,7 +444,7 @@ try {
     compatibilityDate: compiledConfig.compatibility_date,
     compatibilityFlags: compiledConfig.compatibility_flags,
     host: "127.0.0.1",
-    port: 4183,
+    port,
     inspectorPort: 0,
     d1Databases: { DB: "ddehack-load-300-disposable" },
     d1Persist: join(temporary, "d1"),
@@ -482,7 +519,11 @@ try {
       let input = "";
       const closed = () => {
         process.stdin.off("data", receive);
-        reject(new Error("Coordination stdin closed before release; use a PTY or rerun only after explicit root release."));
+        reject(
+          new Error(
+            "Coordination stdin closed before release; use a PTY or rerun only after explicit root release.",
+          ),
+        );
       };
       const receive = (chunk) => {
         input += chunk;
@@ -827,8 +868,14 @@ try {
   assert.equal(report.blockedOutbound.length, 0);
   assert.equal(report.samples.filter((s) => s.unexpectedError).length, 0);
   assert.equal(report.samples.length, plan.plannedRequests);
-  assert.equal(report.samples.filter((s) => s.method === "GET").length, plan.plannedGET);
-  assert.equal(report.samples.filter((s) => s.method === "POST").length, plan.plannedPOST);
+  assert.equal(
+    report.samples.filter((s) => s.method === "GET").length,
+    plan.plannedGET,
+  );
+  assert.equal(
+    report.samples.filter((s) => s.method === "POST").length,
+    plan.plannedPOST,
+  );
   assert.equal(report.samples.filter((s) => s.expectedRejection).length, 116);
   report.checks.push({
     label: "unique-user-project/foreign-keys/AI-inactive",
@@ -836,7 +883,8 @@ try {
     foreignKeyViolations: 0,
     externalCallsAttempted: 0,
     evaluationRuns: 0,
-    astraJobs: 0,
+    astraJobs: final.astraJobs,
+    nonpendingJobs: final.nonpendingJobs,
   });
 } catch (error) {
   report.failure = error.stack || String(error);

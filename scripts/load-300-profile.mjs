@@ -1,5 +1,6 @@
 // Local diagnostic D1 attribution. No application/source/schema edits.
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import {
   cpSync,
@@ -19,8 +20,13 @@ import {
   seedLoad300,
 } from "./load-300-fixtures.mjs";
 const ownRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const artifactRoot = resolve(ownRoot, "../visual-integration");
-const base = "http://127.0.0.1:4183";
+const artifactRoot = resolve(process.env.LOAD_300_ARTIFACT_ROOT || ownRoot);
+const port = Number(process.env.LOAD_300_PORT || "4183");
+assert.ok(
+  Number.isInteger(port) && port >= 1024 && port <= 65535,
+  "Use a nonprivileged local load port",
+);
+const base = `http://127.0.0.1:${port}`;
 const fixture = makeLoad300();
 const routes = [
   "/dashboard",
@@ -53,9 +59,24 @@ const hash = (x) => createHash("sha256").update(x).digest("hex");
 const workerHash = hash(
   readFileSync(join(artifactRoot, "dist/server/index.js")),
 );
+const approvedWorker = process.env.LOAD_300_WORKER_SHA;
+const approvedSource = process.env.LOAD_300_SOURCE;
+assert.match(
+  approvedWorker || "",
+  /^[a-f0-9]{64}$/,
+  "An exact root-reviewed Worker SHA-256 is required",
+);
+assert.match(
+  approvedSource || "",
+  /^[a-f0-9]{40}$/,
+  "An exact root-reviewed source revision is required",
+);
+assert.equal(workerHash, approvedWorker);
 assert.equal(
-  workerHash,
-  "75a667d2c42a821611c3cbbea72447ee464e2ad5f2f6165fbbba647764e69ce6",
+  execFileSync("git", ["-C", artifactRoot, "rev-parse", "HEAD"], {
+    encoding: "utf8",
+  }).trim(),
+  approvedSource,
 );
 const temp = mkdtempSync(join(tmpdir(), "ddehack-load-300-profile-"));
 const snapshot = join(temp, "artifact");
@@ -71,7 +92,7 @@ assert.equal(
 const report = {
   plan,
   workerHash,
-  sourceRevision: "0e7756c60e2fff88a4f7fb1e3eca31efc20349d0",
+  sourceRevision: approvedSource,
   startedAt: new Date().toISOString(),
   fixture: fixture.summary,
   samples: [],
@@ -286,7 +307,7 @@ try {
     compatibilityDate: config.compatibility_date,
     compatibilityFlags: config.compatibility_flags,
     host: "127.0.0.1",
-    port: 4183,
+    port,
     inspectorPort: 0,
     d1Databases: { DB: "ddehack-load-300-read-profile" },
     d1Persist: join(temp, "d1"),
