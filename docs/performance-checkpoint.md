@@ -1,6 +1,6 @@
 # Performance checkpoint — 23 October 2026
 
-Measured local baseline is preserved. No app, schema, service, UI stylesheet or repository asset changes were made by this worktree. AI remained inactive and off the submission path. No deployment, production network probe, live stress, backup export or fixture mutation occurred.
+Measured local baseline is preserved. Following the latest explicit authorization, this worktree applied lossless recompression only to the four measured Delhi PNG assets. No app, schema, service or UI stylesheet changes were made. AI remained inactive and off the submission path. No deployment, production network probe, live stress, backup export or fixture mutation occurred.
 
 ## Reproducible evidence
 
@@ -10,7 +10,7 @@ Worktree `/home/param302/Dev/DDEHack-portal/.worktrees/performance-evidence`; br
 - `performance-burst-baseline.json`: all 216 measured API reads plus six preflight/warmup reads, with individual elapsed times, status and byte counts. No response bodies were retained.
 - `performance-png-feasibility.json`: numeric lossless candidate results, source/candidate hashes and independent decoded-pixel checks. Candidate binaries exist only in `/tmp/ddehack-lossless-feasibility-tc242dix`; those paths are ephemeral and no binaries are committed.
 
-The visual baseline overlapped other read-only browser QA, so its timings are diagnostic observations. Root confirmed all browser QA closed and held builds/tests/browsers before the burst run. Root was told the burst run finished and it was safe to rebuild immediately afterward. No after run exists.
+The visual baseline overlapped other read-only browser QA, so its timings are diagnostic observations. Root confirmed all browser QA closed and held builds/tests/browsers before the burst run. Root was told the burst run finished and it was safe to rebuild immediately afterward. No after run exists; root will integrate/build and measure actual browser transfer bytes after this asset-only change.
 
 ## Browser requests and images
 
@@ -45,7 +45,7 @@ Each row has 24 samples; empirical nearest-rank p50/p95 include response body re
 
 No causal explanation for relative endpoint latency is inferred. Any query or cache optimization needs profiling and semantic checks, particularly current authorization and privacy projections. No model of hosting capacity is provided.
 
-## Lossless feasibility only
+## Lossless verification and authorized application
 
 The source bytes were checked equal to the assets served by the measured compiled preview. Recompressing unchanged PNG scanlines with zlib level 9, merging IDAT chunks and retaining all non-IDAT chunks yielded these `/tmp` candidates:
 
@@ -57,7 +57,9 @@ The source bytes were checked equal to the assets served by the measured compile
 | text-mask-alpha.png      |         82,153 |          66,193 |  15,960 (19.43%) |
 | Total                    |      3,660,074 |       3,279,047 |          381,027 |
 
-For every candidate, CRC checks pass, inflated PNG scanlines match, all non-IDAT chunks remain byte-identical, and Pillow independently decodes identical mode/dimensions/pixel bytes. This proves candidate pixel identity under that decoder; no candidate has been integrated, rendered as the app or measured over HTTP. No improvement to loading time is claimed. The user deferred asset changes tonight; exact exclusive ownership must be agreed before applying anything in the next session.
+For every candidate, CRC checks pass, inflated PNG scanlines match, all non-IDAT chunks remain byte-identical, and Pillow independently decodes identical mode/dimensions/pixel bytes. This proves candidate pixel identity under that decoder. After the baseline checkpoint, the user explicitly authorized one bounded asset improvement and root granted exclusive ownership of these four files. The checked-in recompression script was rerun, every original source SHA-256 was checked against the preserved baseline record, and all four candidates were revalidated before any file was replaced. Explicit alpha-channel byte equality was also verified for the two RGBA assets. All applied hashes match the candidate hashes in `performance-png-feasibility.json`.
+
+Only these four public PNGs were replaced: total source size fell from 3,660,074 to 3,279,047 bytes, a verified reduction of **381,027 bytes (10.41%)**. Filenames, dimensions, decoded pixels, alpha and every non-IDAT chunk remain unchanged. There are no visual-composition, geometry, source or CSS changes. The numeric baseline JSON files remain the original before measurements. Root integration/build and actual browser after-byte comparison are pending. No improvement to loading time is claimed; request coalescing, caching, splitting and other changes remain proposals for cloud continuation.
 
 ## Exact non-secret toolchain and handoff
 
