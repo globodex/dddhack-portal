@@ -1,0 +1,9 @@
+# Guarded crown-transfer QA
+
+This runner is default-disabled. Build the exact integration candidate, start a fresh disposable `visual-preview.mjs --rich --mockup-review --control-audit --port=4176`, and use its reset receipt. Each desktop, mobile touch-emulated or keyboard run needs a separate fresh reset.
+
+Set `CROWN_QA_READY=1`, `CROWN_QA_FRESH_FIXTURE=1`, `CROWN_QA_SOURCE`, `CROWN_QA_WORKER`, `CROWN_QA_ARTIFACT_ROOT`, `CROWN_QA_ORIGIN`, `CROWN_QA_RESET_MANIFEST` and its exact `CROWN_QA_RESET_TOKEN`. Set `CROWN_QA_MODE` to `desktop`, `mobile` or `keyboard`; `CROWN_QA_OUTPUT` optionally selects an evidence directory. Run `node scripts/qa-admin-leader-transfer.mjs`. The compiled artifact's checkout HEAD, Worker hash, origin and reset receipt must all match. The single-use token is consumed before browser startup.
+
+The reserved target is locked Small Wonder, `fake_team1`, with two committed synthetic attempts. Alice transfers the crown to the existing Synthetic Member One. The actual admin UI checks cancellation without a POST and one confirmed transfer. Dashboard reads and rendered controls verify membership, lock, private idea, submitted history and attendance requirements. Two explicitly permitted API-only negative probes verify stale admin retry and participant denial. These are distinct from the positive UI interaction.
+
+All external browser requests and all writes except the three exact just-in-time transfer permits are aborted. No database reset, hosted mutation, real provider call, credential access, check-in grant or extra submission occurs in this runner. Chromium launches with its sandbox enabled. In the selected cloud executor, run browser QA through the approved executor escalation; never disable Chromium's sandbox. The coordinator owns preview cleanup and publication remains separate.
