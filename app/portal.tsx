@@ -37,6 +37,7 @@ import {
   X,
 } from "lucide-react";
 import AddAdmins from "./add-admins";
+import Link from "next/link";
 import { useDiscoverPeople, peopleDirectoryUrl, readPeoplePage } from "./use-discover-people";
 import { HeadingDot } from "./expressive-heading";
 import RouteSkeleton from "./route-skeleton";
@@ -4760,7 +4761,6 @@ export default function Portal({
     loadGeneration = useRef(0),
     loadAbort = useRef<AbortController | null>(null),
     lastRefresh = useRef(0),
-    hydratedView = useRef(initialView),
     hasLoadedView = useRef(!!initialView || !!initialPublic);
   if (!gate.current) gate.current = new ConfirmationGate(setConfirmation);
   async function load() {
@@ -4796,15 +4796,20 @@ export default function Portal({
     }
   }
   useEffect(() => {
-    if (initialView && hydratedView.current === initialView) {
+    if (initialView) {
       setData(initialView);
       hasLoadedView.current = true;
       setLoading(false);
       lastRefresh.current=Date.now();
     } else {
+      if (initialPublic) {
+        setData(initialPublic);
+        hasLoadedView.current = true;
+      } else {
+        hasLoadedView.current = false;
+      }
       void load();
     }
-    hydratedView.current = undefined;
     const refresh = () => {
       if (document.visibilityState === "visible" && !actionBusy.current && !loadAbort.current && Date.now()-lastRefresh.current>=2_000)
         void load();
@@ -4817,7 +4822,7 @@ export default function Portal({
       ++loadGeneration.current;
       loadAbort.current?.abort();
     };
-  }, [path]);
+  }, [path, initialView, initialPublic]);
   useEffect(() => {
     const hide = () => {
       ++loadGeneration.current;
@@ -4961,16 +4966,17 @@ export default function Portal({
             aria-label="Public navigation"
             data-open={false}
           >
-            <a href="/" aria-current={path === "/" ? "page" : undefined}>
+            <Link prefetch={false} href="/" aria-current={path === "/" ? "page" : undefined}>
               {publicBrowse && <Icon name="home" />}
               Home
-            </a>
-            <a
+            </Link>
+            <Link
+              prefetch={false}
               href="/projects"
               aria-current={publicBrowse ? "page" : undefined}
             >
               {publicBrowse && <Icon name="projects" />}Projects
-            </a>
+            </Link>
             <a
               className={publicBrowse ? "public-dashboard-link" : "button"}
               href={
@@ -5056,7 +5062,8 @@ export default function Portal({
           aria-label={admin ? "Administration" : "Main navigation"}
         >
           {nav.map(([href, label]) => (
-            <a
+            <Link
+              prefetch={false}
               key={href}
               href={href}
               aria-current={
@@ -5092,7 +5099,7 @@ export default function Portal({
                 }
               />
               {label}
-            </a>
+            </Link>
           ))}
           {!data.me && (
             <a href="/signin-with-chatgpt?return_to=%2Fdashboard" target="_top">
@@ -5149,7 +5156,7 @@ export default function Portal({
       </aside>
       <MobileNavigation open={menu} onClose={() => setMenu(false)}>
         {nav.map(([href, label]) => (
-          <a key={href} href={href} aria-current={path === href ? "page" : undefined}>{label}</a>
+          <Link prefetch={false} key={href} href={href} aria-current={path === href ? "page" : undefined}>{label}</Link>
         ))}
         {!data.me ? (
           <a href="/signin-with-chatgpt?return_to=%2Fdashboard" target="_top">Sign in</a>
