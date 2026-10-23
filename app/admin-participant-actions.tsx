@@ -1,5 +1,17 @@
 "use client";
-import { useRef, useState, type ReactNode } from "react";
+import { useRef, useState } from "react";
+import {
+  BriefcaseBusiness,
+  Clock3,
+  Download,
+  Ellipsis,
+  ListFilter,
+  Ticket,
+  Trash2,
+  Upload,
+  UserPlus,
+  Users,
+} from "lucide-react";
 import { ActionCancelled } from "../lib/action-confirmation";
 
 export type AdminRow = Record<string, any>;
@@ -33,73 +45,38 @@ export function useAdminOperation() {
 export function AdminIcon({
   name,
 }: {
-  name: "person" | "upload" | "project" | "clock" | "trash";
+  name:
+    | "trash"
+    | "person"
+    | "upload"
+    | "project"
+    | "clock"
+    | "filter"
+    | "download"
+    | "users"
+    | "more"
+    | "ticket";
 }) {
-  // Trash paths copied unchanged from the approved local Lucide source pack:
-  // github.com/lucide-icons/lucide/blob/main/icons/trash.svg (Lucide / Feather).
-  // Copyright (c) 2026 Lucide Icons and Contributors; 2013-present Cole Bemis.
-  // Permission is hereby granted, free of charge, to any person obtaining a copy
-  // of this software and associated documentation files (the "Software"), to deal
-  // in the Software without restriction, including without limitation the rights
-  // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  // copies of the Software, and to permit persons to whom the Software is
-  // furnished to do so, subject to the following conditions:
-  // The above copyright notice and this permission notice shall be included in
-  // all copies or substantial portions of the Software.
-  // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  // AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-  // THE SOFTWARE.
-  const paths: Record<typeof name, ReactNode> = {
-    trash: (
-      <>
-        <path d="M10 11v6" />
-        <path d="M14 11v6" />
-        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
-        <path d="M3 6h18" />
-        <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-      </>
-    ),
-    person: (
-      <>
-        <circle cx="12" cy="7" r="4" />
-        <path d="M4 21v-2a8 8 0 0 1 16 0v2M19 3v6m-3-3h6" />
-      </>
-    ),
-    upload: (
-      <>
-        <path d="M12 16V3m-5 5 5-5 5 5M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5" />
-      </>
-    ),
-    project: (
-      <>
-        <rect x="3" y="5" width="18" height="16" rx="2" />
-        <path d="M8 5V3h8v2M3 11h18M9 15h6" />
-      </>
-    ),
-    clock: (
-      <>
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 7v5l3 2" />
-      </>
-    ),
-  };
+  const Component = {
+    trash: Trash2,
+    person: UserPlus,
+    upload: Upload,
+    project: BriefcaseBusiness,
+    clock: Clock3,
+    filter: ListFilter,
+    download: Download,
+    users: Users,
+    more: Ellipsis,
+    ticket: Ticket,
+  }[name];
   return (
-    <svg
+    <Component
       className="admin-control-icon"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      size={20}
+      strokeWidth={1.8}
       aria-hidden="true"
-    >
-      {paths[name]}
-    </svg>
+      focusable="false"
+    />
   );
 }
 

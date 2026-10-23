@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef } from "react";
+import { ExternalLink } from "lucide-react";
 import DotAvatar from "./dot-avatar";
 
 export type DiscoveryPerson = {
@@ -145,12 +146,11 @@ export default function DiscoveryProfile({
                     alt=""
                   />
                   <span>{link.label}</span>
-                  <span
+                  <ExternalLink
                     className="discovery-profile-external"
+                    size={18}
                     aria-hidden="true"
-                  >
-                    ↗
-                  </span>
+                  />
                 </a>
               </li>
             ))}

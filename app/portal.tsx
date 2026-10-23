@@ -1,4 +1,25 @@
 "use client";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowUp,
+  BriefcaseBusiness,
+  ChartNoAxesColumnIncreasing,
+  ClipboardList,
+  Compass,
+  Copy,
+  Eye,
+  FileText,
+  History,
+  House,
+  LayoutDashboard,
+  Menu,
+  SlidersHorizontal,
+  UserRound,
+  Users,
+  UsersRound,
+  X,
+} from "lucide-react";
 import AddAdmins from "./add-admins";
 import { HeadingDot } from "./expressive-heading";
 import CenteredLoader from "./centered-loader";
@@ -271,112 +292,33 @@ type IconName =
   | "users"
   | "team";
 function Icon({ name, size = 20 }: { name: IconName; size?: number }) {
-  const paths: Record<IconName, ReactNode> = {
-    home: (
-      <>
-        <path d="m3 10 9-7 9 7" />
-        <path d="M5 9v12h14V9M9 21v-8h6v8" />
-      </>
-    ),
-    dashboard: (
-      <>
-        <rect x="3" y="3" width="7" height="7" rx="1" />
-        <rect x="14" y="3" width="7" height="7" rx="1" />
-        <rect x="3" y="14" width="7" height="7" rx="1" />
-        <rect x="14" y="14" width="7" height="7" rx="1" />
-      </>
-    ),
-    discover: (
-      <>
-        <circle cx="12" cy="12" r="9" />
-        <path d="m16 8-3 5-5 3 3-5 5-3Z" />
-      </>
-    ),
-    projects: (
-      <>
-        <rect x="3" y="6" width="18" height="15" rx="2" />
-        <path d="M8 6V3h8v3M3 12h18M10 12v3h4v-3" />
-      </>
-    ),
-    leaderboard: (
-      <>
-        <path d="M4 21V11h5v10M9 21V4h6v17M15 21v-7h5v7M2 21h20" />
-      </>
-    ),
-    rules: (
-      <>
-        <path d="M5 3h14v18H5zM8 7h8M8 11h8M8 15h5" />
-      </>
-    ),
-    settings: (
-      <>
-        <path d="M4 6h16M4 12h16M4 18h16" />
-        <circle cx="8" cy="6" r="2" />
-        <circle cx="16" cy="12" r="2" />
-        <circle cx="10" cy="18" r="2" />
-      </>
-    ),
-    logs: (
-      <>
-        <path d="M6 3h12v18H6zM9 7h6M9 11h6M9 15h6" />
-      </>
-    ),
-    menu: <path d="M3 6h18M3 12h18M3 18h18" />,
-    close: <path d="m6 6 12 12M18 6 6 18" />,
-    eye: (
-      <>
-        <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z" />
-        <circle cx="12" cy="12" r="3" />
-      </>
-    ),
-    copy: (
-      <>
-        <rect x="8" y="8" width="12" height="13" rx="2" />
-        <path d="M16 8V3H3v13h5" />
-      </>
-    ),
-    up: <path d="m6 10 6-6 6 6M12 4v16" />,
-    history: (
-      <>
-        <path d="M3 4v6h6M3 10a9 9 0 1 1 1 7" />
-        <path d="M12 7v5l3 2" />
-      </>
-    ),
-    users: (
-      <>
-        <circle cx="8" cy="7" r="3" />
-        <path d="M2 21v-2a6 6 0 0 1 12 0v2M16 4a3 3 0 0 1 0 6M18 13a6 6 0 0 1 4 6v2" />
-      </>
-    ),
-    team: (
-      <>
-        <circle cx="12" cy="7" r="3" />
-        <path d="M5 21v-2a7 7 0 0 1 14 0v2M3 6v5M1 9h4M21 6v5m-2-2h4" />
-      </>
-    ),
-    person: (
-      <>
-        <circle cx="12" cy="7" r="4" />
-        <path d="M4 21v-3a8 8 0 0 1 16 0v3" />
-      </>
-    ),
-  };
+  const Component = {
+    home: House,
+    dashboard: LayoutDashboard,
+    discover: Compass,
+    projects: BriefcaseBusiness,
+    leaderboard: ChartNoAxesColumnIncreasing,
+    rules: FileText,
+    settings: SlidersHorizontal,
+    logs: ClipboardList,
+    menu: Menu,
+    close: X,
+    eye: Eye,
+    copy: Copy,
+    up: ArrowUp,
+    history: History,
+    person: UserRound,
+    users: Users,
+    team: UsersRound,
+  }[name];
   return (
-    <svg
+    <Component
       className="ui-icon"
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      size={size}
+      strokeWidth={1.8}
       aria-hidden="true"
       focusable="false"
-    >
-      {paths[name]}
-    </svg>
+    />
   );
 }
 export function safeExternalUrl(value: unknown): string | undefined {
@@ -1654,7 +1596,7 @@ export function Submission({
                 )}
                 {step < 3 && (
                   <button type="button" className="button" onClick={next}>
-                    Next →
+                    Next <ArrowRight size={20} aria-hidden="true" />
                   </button>
                 )}
                 <button className="button" disabled={busy}>
@@ -2048,7 +1990,7 @@ export function Projects({
     return (
       <>
         <a className="back-link" href="/projects">
-          ← Projects
+          <ArrowLeft size={20} aria-hidden="true" /> Projects
         </a>
         <article className="project-detail">
           <ProjectBody project={p} />
@@ -2602,7 +2544,7 @@ export function Review({
             : "/review"
         }
       >
-        ← Submissions
+        <ArrowLeft size={20} aria-hidden="true" /> Submissions
       </a>
       <div className="review-layout">
         <article>
@@ -3068,7 +3010,9 @@ export function AdminList({
                   <p>Team {r.teamName}</p>
                 </div>
                 <Pill>{r.status}</Pill>
-                <span>Review project →</span>
+                <span>
+                  Review project <ArrowRight size={20} aria-hidden="true" />
+                </span>
               </a>
               {path === "/admin/submissions" &&
                 (data.me?.owner || data.me?.role === "admin") && (
@@ -3837,7 +3781,7 @@ export default function Portal({
             onClick={() => setMenu(!menu)}
           >
             <Icon name={menu ? "close" : "menu"} />
-            <span className="sr-only">{menu ? "Close menu" : "Menu"}</span>
+            <span className="sr-only">{menu ? "Close menu" : "Open menu"}</span>
           </button>
           <nav
             id="public-navigation"
@@ -3879,7 +3823,7 @@ export default function Portal({
           onClick={() => setMenu(!menu)}
         >
           <Icon name={menu ? "close" : "menu"} />
-          <span className="sr-only">{menu ? "Close menu" : "Menu"}</span>
+          <span className="sr-only">{menu ? "Close menu" : "Open menu"}</span>
         </button>
       </header>
       <aside className={`sidebar ${menu ? "open" : ""}`}>
