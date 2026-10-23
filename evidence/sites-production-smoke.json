@@ -26,6 +26,16 @@
     "nestedBraceProfileRoundTrip": true,
     "nestedBraceTeamLookup": 404
   },
+  "stagedRelease": {
+    "publicDefaultDeadline": "2026-11-01T10:30:00.000Z",
+    "repeatedManagedIdentity": 200,
+    "anonymousAfterIdentityRemoved": 401,
+    "appSessionCookieIssued": false,
+    "revealWithoutExplicitIntent": 422,
+    "ownerExtensionPreview": 200,
+    "participantGlobalPolicyPreview": 403,
+    "realManagedLogoutVerified": false
+  },
   "revisedExperience": {
     "registeredTeamCreation": 200,
     "sharedTeamAccent": true,

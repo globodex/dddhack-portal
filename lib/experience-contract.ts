@@ -35,10 +35,8 @@ export const portalRoles = [
   "admin",
 ] as const;
 export const unresolvedEventDecisions = [
-  "Capacity: Luma 150 approvals versus master specification 160 participants",
-  "Team formation: event-day formation versus October 29 freeze and October 28 idea lock",
-  "Submission cutoff: 15:45, 16:00 or 17:30 IST",
-  "Engagement fairness and its relationship to final scores",
+  "Diversity and Codex assessment criteria require documented owner confirmation; gender is not inferred or automatically scored.",
+  "Vote normalization, feedback validity/targets, judging/appeal windows and tie handling remain unconfirmed.",
 ] as const;
 export function readiness(total: number, approved: number) {
   return {

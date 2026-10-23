@@ -1,4 +1,22 @@
 import { z } from "zod";
+export const baseWeights = {
+  human: 50,
+  ai: 30,
+  votes: 5,
+  diversity: 10,
+  codex: 5,
+  feedback: 5,
+};
+export const weightsSchema = z
+  .object({
+    human: z.number().finite().min(0).max(1000),
+    ai: z.number().finite().min(0).max(1000),
+    votes: z.number().finite().min(0).max(1000),
+    diversity: z.number().finite().min(0).max(1000),
+    codex: z.number().finite().min(0).max(1000),
+    feedback: z.number().finite().min(0).max(1000),
+  })
+  .strict();
 export const decisions = [
   "submissionCutoff",
   "submissionOpen",
@@ -50,6 +68,18 @@ export const policySchema = z
     penaltyApproved: z.boolean(),
     retentionNotice: z.string().max(4000),
     confirmations: z.array(z.enum(decisions)),
+    scoringDisclosure: z
+      .object({
+        criteria: z.string().max(4000),
+        weightage: z.string().max(4000),
+        confirmed: z.boolean(),
+      })
+      .strict()
+      .nullable()
+      .default(null),
+    weights: weightsSchema.default(baseWeights),
+    capacityRule: z.literal("no-strict-cap").default("no-strict-cap"),
+    revealOrder: z.literal("manual").default("manual"),
     capacity: z.number().int().min(1).max(1000).nullable().default(null),
     teamFormationRule: z.string().max(2000).default(""),
     projectEngagementRule: z
@@ -64,11 +94,11 @@ export const policySchema = z
 export type Policy = z.infer<typeof policySchema>;
 export const draftPolicy: Policy = {
   timezone: "Asia/Kolkata",
-  ideaLock: "2026-10-28T18:29:00.000Z",
+  ideaLock: "2026-10-29T18:29:00.000Z",
   membershipFreeze: "2026-10-29T18:29:00.000Z",
   ideaReveal: "2026-11-01T02:30:00.000Z",
   submissionOpen: "2026-11-01T02:30:00.000Z",
-  submissionClose: null,
+  submissionClose: "2026-11-01T10:30:00.000Z",
   judgingClose: null,
   engagementOpen: null,
   engagementClose: null,
@@ -87,14 +117,19 @@ export const draftPolicy: Policy = {
   lumaRequired: false,
   penaltyApproved: false,
   retentionNotice: "",
-  confirmations: [],
+  confirmations: ["capacity", "teamFormation", "submissionCutoff"],
+  weights: baseWeights,
+  capacityRule: "no-strict-cap",
+  revealOrder: "manual",
   capacity: null,
-  teamFormationRule: "",
+  scoringDisclosure: null,
+  teamFormationRule:
+    "Pre-made teams: roster and idea lock together on October 29, 2026 at 23:59 IST.",
   projectEngagementRule: "unconfirmed",
 };
 export function policyBlockers(p: Policy): string[] {
   const b: string[] = decisions.filter((d) => !p.confirmations.includes(d));
-  if (!p.capacity) b.push("confirmed event capacity");
+
   if (!p.teamFormationRule.trim()) b.push("confirmed team-formation rule");
   if (p.projectEngagementRule === "unconfirmed")
     b.push("public engagement scoring policy");
@@ -132,12 +167,4 @@ export function policyBlockers(p: Policy): string[] {
   if (p.feedbackMax < p.feedbackMin) b.push("feedback limits");
   return [...new Set(b)];
 }
-export function ist(value: string) {
-  return (
-    new Intl.DateTimeFormat("en-IN", {
-      timeZone: "Asia/Kolkata",
-      dateStyle: "medium",
-      timeStyle: "short",
-    }).format(new Date(value)) + " IST"
-  );
-}
+export { ist } from "./time";

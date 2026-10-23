@@ -1,0 +1,55 @@
+> devday-exchange-portal@0.1.0 test:production
+> node --import tsx scripts/production-smoke.mjs
+
+{
+  "standalone": {
+    "landing": 200,
+    "forgedOwnerHeadersAccepted": false,
+    "localAdapterEnabledByEnvironmentOrCookie": false,
+    "privatePagesAndAPIs": 503,
+    "localTestRoute": 404,
+    "compilerEndpointsExposeSourceOrEventStream": false
+  },
+  "syntheticDispatch": {
+    "realChatGPTSignInVerified": false,
+    "creditEncryptionKeyConfigured": false,
+    "eventSettingsConfigured": false,
+    "creditImportWithoutKey": 503,
+    "anonymousPrivatePage": 302,
+    "participantProfilePage": 200,
+    "participantDashboardBeforeEventInitialization": 200,
+    "participantPrivateAPI": 200,
+    "anonymousPrivateAPI": 401,
+    "participantAdminPage": 403,
+    "participantExport": 403,
+    "judgeCreditsPage": 403,
+    "verifiedHarnessOwnerAdminPage": 200,
+    "localSignInCommand": 404,
+    "publicRulesAPI": 200,
+    "nestedBraceProfileRoundTrip": true,
+    "nestedBraceTeamLookup": 404
+  },
+  "stagedRelease": {
+    "publicDefaultDeadline": "2026-11-01T10:30:00.000Z",
+    "repeatedManagedIdentity": 200,
+    "anonymousAfterIdentityRemoved": 401,
+    "appSessionCookieIssued": false,
+    "revealWithoutExplicitIntent": 422,
+    "ownerExtensionPreview": 200,
+    "participantGlobalPolicyPreview": 403,
+    "realManagedLogoutVerified": false
+  },
+  "revisedExperience": {
+    "registeredTeamCreation": 200,
+    "sharedTeamAccent": true,
+    "partialTeamGoing": false,
+    "missingRequiredGender": 422,
+    "projectDraftSave": 200,
+    "privateTeamsAnonymousAPI": 401,
+    "goingVenueVisible": true,
+    "publicVenueSecretAbsent": true,
+    "approvalRevocationRemovesVenue": true,
+    "leaderboardExcludesInternalEvaluation": true,
+    "realChatGPTSignInVerified": false
+  }
+}

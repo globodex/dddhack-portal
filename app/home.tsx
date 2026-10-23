@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Dots from "./dots";
+import { ist } from "../lib/time";
 import { defaultPublicContent } from "../lib/event-content-contract";
 type Content = typeof defaultPublicContent;
 function Agenda({
@@ -117,9 +118,11 @@ function Agenda({
 export default function Home({
   content = defaultPublicContent,
   signedIn = false,
+  submissionClose = "2026-11-01T10:30:00.000Z",
 }: {
   content?: Content;
   signedIn?: boolean;
+  submissionClose?: string | null;
 }) {
   const [paused, setPaused] = useState(false),
     [bubble, setBubble] = useState(""),
@@ -220,6 +223,11 @@ export default function Home({
             <br />
             Bring your curiosity. Leave with something real.
           </p>
+          {submissionClose && (
+            <p className="submission-deadline">
+              Submissions close {ist(submissionClose)}
+            </p>
+          )}
           <p className="host-label">Hosted by Codex Ambassadors</p>
           <ul className="host-badges">
             <li>

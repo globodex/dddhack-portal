@@ -28,6 +28,8 @@ import {
   defaultPublicContent,
 } from "./event-content";
 import { disabledEvaluator, reportSchema } from "./evaluation";
+import { policyControl } from "./policy-controls";
+import { publicScores, scoreState, revealCommand } from "./score-release";
 import { policyBlockers } from "./policy";
 type Actor = Awaited<ReturnType<PortalService["actor"]>>;
 type Team = {
@@ -237,19 +239,10 @@ export class PortalExperience {
       p.id,
       p.id,
     );
-    const result = await one<{ payload: string }>(
-      this.s.db,
-      "SELECT s.payload FROM result_publication p JOIN result_snapshots s ON s.id=p.snapshot_id",
+    const disclosure = await publicScores(this.s);
+    const revealed = disclosure.scores.find(
+      (e) => e.projectId === p.id && e.versionId === p.published_version_id,
     );
-    const revealed = result
-      ? (
-          JSON.parse(result.payload) as {
-            teamId: string;
-            rank: number;
-            components?: { total: number };
-          }[]
-        ).find((r) => r.teamId === p.team_id)
-      : undefined;
     const first = await one<{ created_at: string }>(
       this.s.db,
       "SELECT created_at FROM submission_versions WHERE team_id=? ORDER BY attempt ASC LIMIT 1",
@@ -272,7 +265,9 @@ export class PortalExperience {
       ...(revealed
         ? {
             result: {
-              score: revealed.components?.total ?? null,
+              score: revealed.score,
+              stage: disclosure.stage,
+              ...(revealed.position ? { position: revealed.position } : {}),
             },
           }
         : {}),
@@ -378,6 +373,14 @@ export class PortalExperience {
       },
       team,
       teamReadiness: ready,
+      idea: team
+        ? await one(
+            this.s.db,
+            "SELECT title,core,description FROM ideas WHERE team_id=?",
+            team.id,
+          )
+        : undefined,
+      ideaLocked: this.s.now() >= (await this.s.settings(true)).policy.ideaLock,
       members,
       attempts,
       project: project
@@ -424,43 +427,93 @@ export class PortalExperience {
     if (route === "/" || route === "/rules")
       return {
         content: await publicEventContent(this.s),
+        submissionClose: (await this.s.settings(true)).policy.submissionClose,
         ...(this.s.identity ? { me: await this.s.actor() } : {}),
       };
     if (
       route === "/projects" ||
       route === "/leaderboard" ||
+      route === "/winners" ||
       route.startsWith("/projects/")
     ) {
       let selectedPage = Math.floor(options.page || 0);
-      if (options.focus) {
-        const ordered = await rows<{ slug: string }>(
-          this.s.db,
-          "SELECT p.slug FROM projects p JOIN submission_versions v ON v.id=p.published_version_id WHERE COALESCE((SELECT e.status FROM project_eligibility e WHERE e.project_id=p.id AND e.version_id=v.id),(SELECT r.eligibility FROM reviews r WHERE r.team_id=p.team_id AND r.version_id=v.id),'needs_review')='eligible' ORDER BY (SELECT count(*) FROM project_upvotes u WHERE u.project_id=p.id) DESC,(SELECT first.created_at FROM submission_versions first WHERE first.team_id=p.team_id ORDER BY first.attempt ASC LIMIT 1) ASC,p.id ASC LIMIT 1000",
+      const scores = await publicScores(this.s);
+      const listRoute = ["/projects", "/leaderboard", "/winners"].includes(
+        route,
+      );
+      let all = listRoute
+        ? await rows<Project>(
+            this.s.db,
+            "SELECT p.* FROM projects p JOIN submission_versions v ON v.id=p.published_version_id JOIN teams t ON t.id=p.team_id WHERE COALESCE((SELECT e.status FROM project_eligibility e WHERE e.project_id=p.id AND e.version_id=v.id),(SELECT r.eligibility FROM reviews r WHERE r.team_id=p.team_id AND r.version_id=v.id),'needs_review')='eligible' AND instr(lower(json_extract(v.payload,'$.projectName') || ' ' || t.name),lower(?))>0 ORDER BY (SELECT count(*) FROM project_upvotes u WHERE u.project_id=p.id) DESC,(SELECT first.created_at FROM submission_versions first WHERE first.team_id=p.team_id ORDER BY first.attempt ASC LIMIT 1) ASC,p.id ASC LIMIT 1000",
+            (options.search || "").slice(0, 200),
+          )
+        : [await this.project(decodeURIComponent(route.split("/")[2]))];
+      const scoreFor = (p: Project) =>
+        scores.scores.find(
+          (e) => e.projectId === p.id && e.versionId === p.published_version_id,
         );
-        const found = ordered.findIndex((p) => p.slug === options.focus);
+      // Until the countdown completes, keep the ordinary project list in community
+      // order. Sorting/removing the five hidden teams would reveal their identities.
+      if (
+        route === "/leaderboard" &&
+        (scores.stage === "ai" || scores.complete)
+      )
+        all.sort((a, b) => {
+          const x = scoreFor(a),
+            y = scoreFor(b);
+          if (x && y)
+            return scores.complete
+              ? x.position! - y.position!
+              : y.score - x.score;
+          return x ? -1 : y ? 1 : 0;
+        });
+      if (route === "/winners")
+        all = all
+          .filter((p) => scoreFor(p)?.position)
+          .sort((a, b) => scoreFor(a)!.position! - scoreFor(b)!.position!);
+      if (options.focus) {
+        const found = all.findIndex((p) => p.slug === options.focus);
         if (found >= 0) selectedPage = Math.floor(found / 24);
       }
-      const all =
-        route === "/projects" || route === "/leaderboard"
-          ? await rows<Project>(
-              this.s.db,
-              "SELECT p.* FROM projects p JOIN submission_versions v ON v.id=p.published_version_id JOIN teams t ON t.id=p.team_id WHERE COALESCE((SELECT e.status FROM project_eligibility e WHERE e.project_id=p.id AND e.version_id=v.id),(SELECT r.eligibility FROM reviews r WHERE r.team_id=p.team_id AND r.version_id=v.id),'needs_review')='eligible' AND instr(lower(json_extract(v.payload,'$.projectName') || ' ' || t.name),lower(?))>0 ORDER BY (SELECT count(*) FROM project_upvotes u WHERE u.project_id=p.id) DESC,(SELECT first.created_at FROM submission_versions first WHERE first.team_id=p.team_id ORDER BY first.attempt ASC LIMIT 1) ASC,p.id ASC LIMIT 25 OFFSET ?",
-              (options.search || "").slice(0, 200),
-              selectedPage * 24,
-            )
-          : [await this.project(decodeURIComponent(route.split("/")[2]))];
-      const hasMore =
-        ["/projects", "/leaderboard"].includes(route) && all.length > 24;
+      const hasMore = listRoute && all.length > (selectedPage + 1) * 24;
       const items = await Promise.all(
-        all.slice(0, 24).map((p) => this.publicProject(p)),
+        (listRoute
+          ? all.slice(selectedPage * 24, (selectedPage + 1) * 24)
+          : all
+        ).map((p) => this.publicProject(p)),
       );
+      const awards =
+        scores.stage === "final"
+          ? await Promise.all(
+              scores.scores
+                .filter(
+                  (e) => e.position && (scores.complete || e.position! <= 5),
+                )
+                .sort((a, b) => a.position! - b.position!)
+                .map(async (e) => {
+                  const p = await this.project(e.projectId);
+                  const publicEntry = await this.publicProject(p);
+                  return {
+                    projectName: publicEntry.projectName,
+                    teamName: publicEntry.teamName,
+                    slug: publicEntry.slug,
+                    score: e.score,
+                    position: e.position,
+                  };
+                }),
+            )
+          : [];
       const me = this.s.identity ? await this.s.actor() : undefined;
       return {
         items,
         me,
         hasMore,
         page: selectedPage,
-        ...(route !== "/projects" && route !== "/leaderboard"
+        scoreStage: scores.stage,
+        finalCountdownComplete: scores.complete,
+        awards,
+        ...(scores.criteria ? { scoringInfo: scores.criteria } : {}),
+        ...(!listRoute
           ? {
               comments: await rows(
                 this.s.db,
@@ -584,6 +637,7 @@ export class PortalExperience {
       return {
         me,
         policy: settings.policy,
+        policyVersion: settings.version,
         eventDraft: !settings.active,
         blockers: policyBlockers(settings.policy),
         unresolved: unresolvedEventDecisions,
@@ -604,12 +658,27 @@ export class PortalExperience {
             }
           : {}),
         canManageVenue,
-        resultSnapshots: me.owner
-          ? await rows(
-              this.s.db,
-              "SELECT id,created_at FROM result_snapshots ORDER BY created_at DESC",
+        scoreRelease: await scoreState(this.s).then((s) => ({
+          stage: s.stage,
+          releaseId: s.active?.id,
+          remainingAwards: s.entries
+            .filter(
+              (e) =>
+                e.position &&
+                e.position <= 5 &&
+                !s.unveiled.some((v) => v.project_id === e.projectId),
             )
-          : undefined,
+            .map((e) => ({ position: e.position, projectId: e.projectId })),
+          complete: s.complete,
+        })),
+        scoringDisclosure: settings.policy.scoringDisclosure,
+        resultSnapshots:
+          me.owner || me.role === "admin"
+            ? await rows(
+                this.s.db,
+                "SELECT id,created_at FROM result_snapshots ORDER BY created_at DESC",
+              )
+            : undefined,
         resultPublication: me.owner
           ? await one(
               this.s.db,
@@ -698,6 +767,77 @@ export class PortalExperience {
     data: unknown,
     actor: Actor,
   ): Promise<Record<string, unknown> | null> {
+    if (
+      [
+        "create-workspace-team",
+        "create-team",
+        "request-team",
+        "respond-team",
+        "team-request",
+        "team-invite",
+        "team-respond",
+        "remove-member",
+        "remove-workspace-member",
+      ].includes(action)
+    ) {
+      const settings = await this.s.settings(true);
+      demand(
+        this.s.now() < settings.policy.membershipFreeze,
+        409,
+        "MEMBERSHIP_FROZEN",
+      );
+    }
+    if (action === "save-workspace-idea") {
+      await this.completed(actor);
+      const team = await this.team(actor.id);
+      demand(team && team.leader_id === actor.id, 403, "LEADER_REQUIRED");
+      const settings = await this.s.settings(true);
+      demand(this.s.now() < settings.policy.ideaLock, 409, "IDEA_LOCKED");
+      const d = z
+        .object({
+          title: text(120).min(2),
+          core: text(2000).min(10),
+          description: text(6000),
+        })
+        .strict()
+        .parse(data);
+      const hash = await sha256(
+        JSON.stringify({ title: d.title, core: d.core }),
+      );
+      const time = this.s.now();
+      await this.s.mutate(
+        actor.id,
+        action,
+        team.id,
+        [
+          [
+            "INSERT INTO ideas VALUES(?,?,?,?,?,?) ON CONFLICT(team_id) DO UPDATE SET title=excluded.title,core=excluded.core,description=excluded.description,hash=excluded.hash,updated_at=excluded.updated_at",
+            team.id,
+            d.title,
+            d.core,
+            d.description,
+            hash,
+            time,
+          ],
+          [
+            "INSERT INTO idea_revisions VALUES(?,?,?,?)",
+            crypto.randomUUID(),
+            team.id,
+            JSON.stringify({ ...d, hash, author: actor.id }),
+            time,
+          ],
+        ],
+        { title: d.title, hash },
+      );
+      return {
+        message:
+          "Team idea saved. It locks with the roster on October 29 at 23:59 IST.",
+      };
+    }
+    const policy = await policyControl(this.s, action, data);
+    if (policy) return policy;
+    const reveal = await revealCommand(this.s, action, data);
+    if (reveal) return reveal;
     const content = await eventContentCommand(this.s, action, data);
     if (content) return content;
     if (action === "complete-profile") {

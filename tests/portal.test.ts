@@ -44,7 +44,8 @@ test("owner derives only from trusted Sites identity; local header spoofing and 
 });
 test("draft policies block activation, scoring and submission; approved rehearsal is explicit", async () => {
   const { db, service } = await setup();
-  assert(policyBlockers(draftPolicy).includes("submissionCutoff"));
+  assert(!policyBlockers(draftPolicy).includes("submissionCutoff"));
+  assert(policyBlockers(draftPolicy).includes("diversity"));
   assert.deepEqual(policyBlockers(rehearsalPolicy), []);
   await assert.rejects(
     service("admin").command("activate", { reason: "test" }),
@@ -52,7 +53,7 @@ test("draft policies block activation, scoring and submission; approved rehearsa
   );
   await assert.rejects(
     service("owner").command("activate", { reason: "test" }),
-    /submissionCutoff/,
+    /diversity/,
   );
   await assert.rejects(
     service().command("submit", submission),
@@ -111,15 +112,15 @@ test("registered approval, single membership and five-person constraints; reques
   );
   db.close();
 });
-test("idea core locks exactly at IST boundary; description remains editable and no public idea/profile/gender leak", async () => {
+test("whole idea locks exactly with the roster at the IST boundary and no public idea/profile/gender leak", async () => {
   const { db, service, clock } = await setup();
-  clock("2026-10-28T18:28:59.999Z");
+  clock("2026-10-29T18:28:59.999Z");
   await service().command("idea", {
     title: "Final core",
     core: "The immutable concept",
     description: "First description",
   });
-  clock("2026-10-28T18:29:00.000Z");
+  clock("2026-10-29T18:29:00.000Z");
   await assert.rejects(
     service().command("idea", {
       title: "Changed core",
@@ -128,16 +129,19 @@ test("idea core locks exactly at IST boundary; description remains editable and 
     }),
     /IDEA_LOCKED/,
   );
-  await service().command("idea", {
-    title: "Final core",
-    core: "The immutable concept",
-    description: "Better description",
-  });
+  await assert.rejects(
+    service().command("idea", {
+      title: "Final core",
+      core: "The immutable concept",
+      description: "Better description",
+    }),
+    /IDEA_LOCKED/,
+  );
   await assert.rejects(
     new PortalService(db, null, LOCAL_CREDIT_KEY).view("/teams/fake_team1"),
     /SIGN_IN_REQUIRED/,
   );
-  assert.equal((await rows(db, "SELECT * FROM idea_revisions")).length, 2);
+  assert.equal((await rows(db, "SELECT * FROM idea_revisions")).length, 1);
   await activate(db);
   clock("2026-10-29T18:29:00.000Z");
   await assert.rejects(
@@ -523,7 +527,10 @@ test("full mock rehearsal: two equal-weight judges, human review, owner freeze, 
     service("admin").command("freeze-results", { reason: "test" }),
     /OWNER_REQUIRED/,
   );
-  await assert.rejects(service().view("/winners"), /Results are private/);
+  assert.equal(
+    ((await service().view("/winners")).items as unknown[]).length,
+    0,
+  );
   clock("2026-11-01T13:00:00.000Z");
   const frozen = await service("owner").command("freeze-results", {
     reason: "Rehearsal completed",
@@ -546,13 +553,17 @@ test("full mock rehearsal: two equal-weight judges, human review, owner freeze, 
     batch(db, [["UPDATE result_snapshots SET payload='[]'"]]),
     /IMMUTABLE/,
   );
-  await service("owner").command("publish-results", {
-    snapshotId: frozen.snapshotId,
-    reason: "FAKE local reveal",
-  });
-  const pub = await service().view("/winners");
-  assert.equal((pub.items as { score: number }[])[0].score, 80);
-  assert(!JSON.stringify(pub).includes("fake_judge"));
+  await assert.rejects(
+    service("owner").command("publish-results", {
+      snapshotId: frozen.snapshotId,
+      reason: "FAKE local reveal",
+    }),
+    /USE_STAGED_SCORE_REVEAL/,
+  );
+  assert.equal(
+    ((await service().view("/winners")).items as unknown[]).length,
+    0,
+  );
   db.close();
 });
 test("HTTP security: CSRF, IDOR, role bypass, export permissions, cache controls and bounded body", async () => {

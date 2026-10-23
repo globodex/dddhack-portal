@@ -82,12 +82,21 @@ test("ties need complete owner adjudication; altered score breakdown invalidates
   const snapshot = await service("owner").command("freeze-results", {
     reason: "Rehearsal freeze after adjudication",
   });
-  await service("owner").command("publish-results", {
-    snapshotId: snapshot.snapshotId,
-    reason: "FAKE reveal",
-  });
+  await assert.rejects(
+    service("owner").command("publish-results", {
+      snapshotId: snapshot.snapshotId,
+      reason: "FAKE reveal",
+    }),
+    /USE_STAGED_SCORE_REVEAL/,
+  );
   const pub = await service("alice").view("/winners");
-  assert.equal((pub.items as { team: string }[])[0].team, "Common Ground");
+  assert.equal((pub.items as unknown[]).length, 0);
+  const privateSnapshot = await one<{ payload: string }>(
+    db,
+    "SELECT payload FROM result_snapshots WHERE id=?",
+    snapshot.snapshotId,
+  );
+  assert.equal(JSON.parse(privateSnapshot!.payload)[0].name, "Common Ground");
   db.close();
 });
 test("snapshot revision guard and request throttle fail closed", async () => {

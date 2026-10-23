@@ -1,0 +1,52 @@
+> devday-exchange-portal@0.1.0 test
+> tsx --test tests/*.test.ts
+
+✔ actual local D1 binding: schema, trigger rollback, batch atomicity and concurrent credit/submission commands (5731.831021ms)
+✔ original preset shapes, safe contrast and semantic responsive shell render without rejected artwork or private data (35.960935ms)
+✔ additive local upgrade preserves existing users and is idempotent (17.890171ms)
+✔ inline profile gate, registered team creation, presets, partial readiness and revocation (103.042574ms)
+✔ private venue never leaves unauthorized projections; Going, approval and membership are checked afresh (111.887841ms)
+✔ owner event drafts, safe Maps URLs, plain text and optimistic edits preserve published content (94.138214ms)
+✔ shared draft/committed project, required media, concurrent writes and public version isolation (121.658997ms)
+✔ signed-in engagement permits admins and pending people, is idempotent, and stays separate from private reviews (81.7951ms)
+✔ volunteer, mentor and judge boundaries, owner Logs, role and assignment revocation (52.754368ms)
+✔ reevaluation stays Not configured while API setup is pending; active-run guard and history remain structural (73.86106ms)
+✔ leaderboard orders by upvotes then immutable first submission time, excludes ineligible, and exposes no evaluation or rank (206.399657ms)
+✔ revised judge reviews feed only an owner-revealed frozen score; public engagement remains independent (158.136082ms)
+✔ exact timestamp ties use a stable key and a focused leaderboard link selects its containing page (93.307262ms)
+✔ ties need complete owner adjudication; altered score breakdown invalidates earlier order (172.259634ms)
+✔ snapshot revision guard and request throttle fail closed (223.750744ms)
+✔ confirmed rules have no admission cap, one roster/idea lock and the sole 16:00 IST deadline (1.127742ms)
+✔ owner-only positive extension previews IST rollover, requires matching confirmation, versions/audits and changes server cutoff without touching submissions (136.561274ms)
+✔ global weights use one preview/version for all teams, reject per-team overrides and cannot alter frozen results (42.109259ms)
+✔ roster and whole idea lock together by server clock, including an inactive draft event (40.223046ms)
+✔ owner derives only from trusted Sites identity; local header spoofing and unsafe return paths fail (24.332677ms)
+✔ draft policies block activation, scoring and submission; approved rehearsal is explicit (49.477087ms)
+✔ registered approval, single membership and five-person constraints; request/invite acceptance (61.822232ms)
+✔ whole idea locks exactly with the roster at the IST boundary and no public idea/profile/gender leak (65.461782ms)
+✔ check-in allocations are idempotent, encrypted, private and retryable after inventory exhaustion (77.153505ms)
+✔ CSV previews, duplicate handling, formula protection and AES-GCM integrity (30.00391ms)
+✔ only leader can commit; exactly three successful versions, invalid fields/cutoff do not consume attempts (92.146276ms)
+✔ external evaluation failure and invalid model output preserve submission; uncertainty is reviewable (32.620734ms)
+✔ three distinct votes, no own-team or duplicate votes, meaningful feedback and bounded scoring (57.876728ms)
+✔ full mock rehearsal: two equal-weight judges, human review, owner freeze, immutable private snapshot and publication (46.246031ms)
+✔ HTTP security: CSRF, IDOR, role bypass, export permissions, cache controls and bounded body (55.625659ms)
+✔ AI reveal requires admin, explicit intent, actual persisted provider score and finalized current-version report (87.245911ms)
+✔ final stage withholds every undisclosed position, allows manual award order, then enables full final ordering and confirmed Info (141.176522ms)
+✔ confirmation decisions are default-safe, single-use and block overlapping prompts; accessible dialog exposes exact target (10.160434ms)
+✔ managed identity persists across ordinary requests; local logout expires its fixture cookie and anonymous private reads fail (79.137135ms)
+✔ Worker request scope isolates concurrent identities, bindings and keys; no fallback outside Dispatch (52.962211ms)
+✔ sign-in and profile access do not require a credit secret; credit operations fail closed without one (69.411144ms)
+✔ Sites runtime authorizes anonymous, participant, judge and owner requests against server data (41.742896ms)
+✔ Sites Drizzle migrations preserve schema constraints, triggers and persisted service behavior on D1 (2510.678508ms)
+✔ fresh hosted schema requires an explicit owner-only, audited draft initialization (27.257887ms)
+✔ fresh event read views work before explicit initialization and never activate or persist draft settings (29.848792ms)
+✔ slash aliases cannot weaken owner-only settings and permissions reads (38.116381ms)
+ℹ tests 41
+ℹ suites 0
+ℹ pass 41
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7187.866661

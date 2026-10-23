@@ -87,7 +87,7 @@ test("additive local upgrade preserves existing users and is idempotent", () => 
           .prepare("SELECT count(*) n FROM local_schema_migrations")
           .get() as Row
       ).n,
-      4,
+      6,
     );
     assert.ok(
       db.raw
@@ -667,14 +667,14 @@ test("reevaluation stays Not configured while API setup is pending; active-run g
     const time = "2026-11-01T04:00:00.000Z";
     await db
       .prepare(
-        "INSERT INTO evaluation_runs VALUES('synthetic-run',?,?,?,'queued',NULL,NULL,?,?)",
+        "INSERT INTO evaluation_runs(id,project_id,version_id,config_key,state,report,error,created_at,updated_at) VALUES('synthetic-run',?,?,?,'queued',NULL,NULL,?,?)",
       )
       .bind(projectId, versionId, "synthetic-config", time, time)
       .all();
     await assert.rejects(
       db
         .prepare(
-          "INSERT INTO evaluation_runs VALUES('duplicate-run',?,?,?,'running',NULL,NULL,?,?)",
+          "INSERT INTO evaluation_runs(id,project_id,version_id,config_key,state,report,error,created_at,updated_at) VALUES('duplicate-run',?,?,?,'running',NULL,NULL,?,?)",
         )
         .bind(projectId, versionId, "synthetic-config", time, time)
         .all(),
@@ -687,7 +687,7 @@ test("reevaluation stays Not configured while API setup is pending; active-run g
       .all();
     await db
       .prepare(
-        "INSERT INTO evaluation_runs VALUES('synthetic-retry',?,?,?,'queued',NULL,NULL,?,?)",
+        "INSERT INTO evaluation_runs(id,project_id,version_id,config_key,state,report,error,created_at,updated_at) VALUES('synthetic-retry',?,?,?,'queued',NULL,NULL,?,?)",
       )
       .bind(projectId, versionId, "synthetic-config", time, time)
       .all();
@@ -843,9 +843,20 @@ test("revised judge reviews feed only an owner-revealed frozen score; public eng
       ((await publicService.view("/leaderboard")) as Row).items[0].result,
       undefined,
     );
-    await service("owner").command("publish-results", {
+    const release = await service("admin").command("reveal-final-scores", {
+      confirmation: "PUBLIC_FINAL",
       snapshotId: frozen.snapshotId,
       reason: "Synthetic explicit reveal",
+    });
+    assert.equal(
+      ((await publicService.view("/leaderboard")) as Row).items[0].result,
+      undefined,
+    );
+    await service("admin").command("unveil-winner", {
+      releaseId: release.releaseId,
+      position: 1,
+      confirmation: "UNVEIL_1",
+      reason: "Synthetic first award",
     });
     let board = (await publicService.view("/leaderboard")) as Row;
     assert.equal(board.items[0].result.score, 65);

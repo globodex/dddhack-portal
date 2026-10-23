@@ -351,6 +351,48 @@ try {
   const boardText = await board.text();
   assert.equal(board.status, 200);
   assert.ok(!/evaluationState|rating|privateVenue/.test(boardText));
+  const publicPolicy = await (await worker.fetch("/api/portal?view=/")).json();
+  assert.equal(publicPolicy.submissionClose, "2026-11-01T10:30:00.000Z");
+  const repeated = await worker.fetch("/api/portal?view=/dashboard", {
+    headers: alice,
+  });
+  assert.equal(repeated.status, 200);
+  assert.equal(repeated.headers.get("set-cookie"), null);
+  const anonymousAgain = await worker.fetch("/api/portal?view=/dashboard");
+  assert.equal(anonymousAgain.status, 401);
+  const revealWithoutIntent = await post(owner, "reveal-ai-scores", {
+    reason: "Synthetic missing confirmation",
+    confirmation: "",
+  });
+  assert.equal(revealWithoutIntent.status, 422);
+  const ownerPreview = await post(owner, "preview-submission-extension", {
+    version: 0,
+    minutes: 30,
+  });
+  assert.equal(ownerPreview.status, 200);
+  assert.equal((await ownerPreview.json()).after, "2026-11-01T11:00:00.000Z");
+  const participantPreview = await post(alice, "preview-policy-weights", {
+    version: 0,
+    weights: {
+      human: 50,
+      ai: 30,
+      votes: 5,
+      diversity: 10,
+      codex: 5,
+      feedback: 5,
+    },
+  });
+  assert.equal(participantPreview.status, 403);
+  report.stagedRelease = {
+    publicDefaultDeadline: publicPolicy.submissionClose,
+    repeatedManagedIdentity: 200,
+    anonymousAfterIdentityRemoved: 401,
+    appSessionCookieIssued: false,
+    revealWithoutExplicitIntent: 422,
+    ownerExtensionPreview: 200,
+    participantGlobalPolicyPreview: 403,
+    realManagedLogoutVerified: false,
+  };
   report.revisedExperience = {
     registeredTeamCreation: 200,
     sharedTeamAccent: true,

@@ -78,5 +78,5 @@ export const defaultPublicContent = {
     },
   ],
   rules:
-    "Event policies are draft. Capacity, team formation and the final submission cutoff are awaiting owner confirmation.",
+    "No strict participant cap; individual approval is required. Teams have at most five members. Pre-made team rosters and ideas lock on October 29 at 23:59 IST. Other judging and operational policies remain draft.",
 };

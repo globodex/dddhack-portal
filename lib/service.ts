@@ -460,6 +460,11 @@ export class PortalService {
         return {};
       }
       case "idea": {
+        demand(
+          this.now() < (await this.settings(true)).policy.ideaLock,
+          409,
+          "IDEA_LOCKED",
+        );
         const { u, t } = await this.lead();
         const d = z
           .object({
@@ -1537,6 +1542,7 @@ export class PortalService {
       projectName: JSON.parse(e.v.payload).projectName,
       eligibility: e.review.eligibility,
       components: score({
+        weights: s.policy.weights,
         human: e.human,
         astra: e.review.astra!,
         codex: e.review.codex!,
@@ -1590,7 +1596,11 @@ export class PortalService {
       }
       start = end;
     }
-    return result.map((r, i) => ({ ...r, rank: r.components ? i + 1 : null }));
+    return result.map((r, i) => ({
+      ...r,
+      policyVersion: s.version,
+      rank: r.components ? i + 1 : null,
+    }));
   }
   async view(
     path: string,

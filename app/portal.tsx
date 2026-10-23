@@ -7,6 +7,14 @@ import {
   type CSSProperties,
 } from "react";
 import Home from "./home";
+import ConfirmationDialog from "./confirmation-dialog";
+import {
+  ActionCancelled,
+  ConfirmationGate,
+  confirmationFor,
+  revealConfirmation,
+  type Confirmation,
+} from "../lib/action-confirmation";
 import TeamAvatar from "./team-avatar";
 import {
   avatarPresets,
@@ -14,6 +22,7 @@ import {
   portalRoles,
   type Palette,
 } from "../lib/experience-contract";
+import { ist } from "../lib/time";
 import { defaultPublicContent } from "../lib/event-content-contract";
 // Every record is a server-authorized projection; no client-side role filtering
 // substitutes for the service's per-request checks.
@@ -34,6 +43,7 @@ async function api(action: string, data: Row) {
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ action, data }),
     cache: "no-store",
+    credentials: "same-origin",
   });
   const b = (await r.json()) as Row;
   if (!r.ok) throw new Error(b.message || b.code || "The request failed.");
@@ -88,12 +98,14 @@ function Form({
   onSave,
   label = "Save",
   className = "panel",
+  disabled = false,
 }: {
   title?: string;
   children: ReactNode;
   onSave: (data: FormData) => Promise<void>;
   label?: string;
   className?: string;
+  disabled?: boolean;
 }) {
   const [busy, setBusy] = useState(false),
     [error, setError] = useState("");
@@ -102,13 +114,15 @@ function Form({
       className={className}
       onSubmit={async (e) => {
         e.preventDefault();
+        if (disabled || busy) return;
         const f = new FormData(e.currentTarget);
         setBusy(true);
         setError("");
         try {
           await onSave(f);
         } catch (err) {
-          setError((err as Error).message);
+          if (!(err instanceof ActionCancelled))
+            setError((err as Error).message);
         } finally {
           setBusy(false);
         }
@@ -117,7 +131,7 @@ function Form({
       {title && <h2>{title}</h2>}
       {children}
       <div className="form-actions">
-        <button className="button" disabled={busy}>
+        <button className="button" disabled={busy || disabled}>
           {busy ? "Saving…" : label}
         </button>
       </div>
@@ -421,6 +435,55 @@ function TeamWorkspace({
           {data.teamReadiness?.label}
         </Pill>
       </div>
+      {data.me?.id === t.leader_id ? (
+        <Form
+          title="Team idea"
+          disabled={data.ideaLocked}
+          label="Update team idea"
+          onSave={async (f) => {
+            await run("save-workspace-idea", {
+              title: f.get("title"),
+              core: f.get("core"),
+              description: f.get("description"),
+            });
+          }}
+        >
+          <p className="muted">
+            Idea and roster lock together on October 29 at 23:59 IST.
+          </p>
+          <fieldset disabled={data.ideaLocked}>
+            <Field
+              name="title"
+              label="Idea title"
+              value={data.idea?.title}
+              required
+            />
+            <Field
+              name="core"
+              label="Core concept"
+              type="textarea"
+              value={data.idea?.core}
+              required
+              minLength={10}
+            />
+            <Field
+              name="description"
+              label="Idea details"
+              type="textarea"
+              value={data.idea?.description}
+            />
+          </fieldset>
+          {data.ideaLocked && <Pill>Idea locked</Pill>}
+        </Form>
+      ) : (
+        data.idea && (
+          <section className="panel">
+            <h3>{data.idea.title}</h3>
+            <p>{data.idea.core}</p>
+            <p>{data.idea.description}</p>
+          </section>
+        )
+      )}
       <Search value={search} onChange={setSearch} label="Search team members" />
       <ul className="member-list">
         {(data.members || [])
@@ -1146,7 +1209,8 @@ function Projects({
           <ProjectBody project={p} />
           {p.result && (
             <p className="notice">
-              Revealed final judging score {p.result.score}
+              Revealed {p.result.stage === "ai" ? "AI" : "final"} score{" "}
+              {p.result.score}
             </p>
           )}
           {engagement(p)}
@@ -1205,9 +1269,34 @@ function Projects({
       />
       {board && (
         <p className="notice">
-          Eligible submitted projects, ordered by upvotes. Ties follow first
-          submission time. Final judging scores remain separate.
+          {listing.scoreStage === "ai"
+            ? "AI scores are public. Scored projects appear by score; tied scores follow first submission time."
+            : listing.scoreStage === "final"
+              ? listing.finalCountdownComplete
+                ? "Final awards are revealed. Projects follow the final score order."
+                : "Final awards are being unveiled one at a time. The ordinary project list stays in community order until every top-five award is unveiled."
+              : "Eligible projects ordered by upvotes, then immutable first submission time."}
         </p>
+      )}
+      {board && listing.awards?.length > 0 && (
+        <section className="panel" aria-label="Unveiled awards">
+          <h2>Unveiled awards</h2>
+          {listing.awards.map((a: Row) => (
+            <p key={a.position}>
+              <strong>
+                {a.position} · {a.teamName}
+              </strong>{" "}
+              · <a href={`/projects/${a.slug}`}>{a.projectName}</a> · {a.score}
+            </p>
+          ))}
+        </section>
+      )}
+      {listing.scoringInfo && (
+        <details className="scoring-info">
+          <summary>Info · calculation criteria and weightage</summary>
+          <p>{listing.scoringInfo.criteria}</p>
+          <p>{listing.scoringInfo.weightage}</p>
+        </details>
       )}
       {searchError && <p role="alert">{searchError}</p>}
       <ul className="project-list">
@@ -1242,7 +1331,11 @@ function Projects({
               </a>
               {board ? (
                 <div className="engagement">
-                  <strong>{p.upvotes} upvotes</strong>
+                  <strong>
+                    {p.result
+                      ? `${p.result.score} ${p.result.stage === "ai" ? "AI" : "final"} score`
+                      : `${p.upvotes} upvotes`}
+                  </strong>
                   <a href={`/projects/${p.slug}`}>View project</a>
                 </div>
               ) : (
@@ -1738,6 +1831,7 @@ function Review({
               </p>
             )}
           </Form>
+
           {(data.me?.owner || data.me?.role === "admin") && (
             <section className="panel">
               <h2>AI evaluation</h2>
@@ -2186,6 +2280,123 @@ function ContentEditor({
     </Form>
   );
 }
+function OwnerPolicyControls({
+  data,
+  run,
+}: {
+  data: View;
+  run: (a: string, d: Row) => Promise<Row>;
+}) {
+  const [preview, setPreview] = useState<Row | null>(null),
+    [error, setError] = useState("");
+  const weights = data.policy?.weights || {};
+  return (
+    <section className="panel">
+      <h2>Deadline and global weights</h2>
+      <p>
+        Submission deadline: {ist(data.policy.submissionClose)}. Roster and idea
+        lock: October 29 at 23:59 IST. No strict participant cap; teams remain
+        at most five.
+      </p>
+      <Form
+        title="Extend submission deadline"
+        label="Preview extension"
+        onSave={async (f) => {
+          setError("");
+          const values = {
+            version: data.policyVersion,
+            minutes: Number(f.get("minutes")),
+          };
+          const result = await api("preview-submission-extension", values);
+          setPreview({
+            kind: "extension",
+            values: { ...values, reason: f.get("reason") },
+            ...result,
+          });
+        }}
+      >
+        <Field
+          name="minutes"
+          type="number"
+          label="Additional whole minutes"
+          required
+        />
+        <Field name="reason" label="Reason" required minLength={5} />
+      </Form>
+      <Form
+        title="Global scoring weights"
+        label="Preview global weights"
+        onSave={async (f) => {
+          setError("");
+          const values = {
+            version: data.policyVersion,
+            weights: Object.fromEntries(
+              Object.keys(weights).map((k) => [k, Number(f.get(k))]),
+            ),
+          };
+          const result = await api("preview-policy-weights", values);
+          setPreview({
+            kind: "weights",
+            values: { ...values, reason: f.get("reason") },
+            ...result,
+          });
+        }}
+      >
+        {Object.entries(weights).map(([key, value]) => (
+          <Field
+            key={key}
+            name={key}
+            type="number"
+            label={key + " weight"}
+            value={value}
+            required
+          />
+        ))}
+        <Field name="reason" label="Reason" required minLength={5} />
+      </Form>
+      {preview && (
+        <div className="policy-preview" role="status">
+          <h3>Preview · not published</h3>
+          <p>
+            {preview.kind === "extension" ? "New deadline: " : "All teams: "}
+            <strong>{preview.label}</strong>
+          </p>
+          {(preview.warnings || []).map((warning: string) => (
+            <p role="alert" key={warning}>
+              {warning}
+            </p>
+          ))}
+          <p>
+            This creates global policy version {preview.version + 1}. Existing
+            submissions are retained.
+          </p>
+          <button
+            className="button"
+            onClick={() => {
+              void run(
+                preview.kind === "extension"
+                  ? "publish-submission-extension"
+                  : "publish-policy-weights",
+                { ...preview.values, preview: preview.preview },
+              )
+                .then(() => setPreview(null))
+                .catch((e) => {
+                  if (!(e instanceof ActionCancelled)) setError(e.message);
+                });
+            }}
+          >
+            Review and publish{" "}
+            {preview.kind === "extension" ? "extension" : "global weights"}
+          </button>
+          <button className="button secondary" onClick={() => setPreview(null)}>
+            Discard preview
+          </button>
+        </div>
+      )}
+      {error && <p role="alert">{error}</p>}
+    </section>
+  );
+}
 function Settings({
   data,
   run,
@@ -2221,56 +2432,104 @@ function Settings({
           </ul>
         </details>
         <p className="muted">
-          No activation action is run as part of this design revision.
+          Review the remaining criteria and operating windows before opening
+          submissions or revealing scores.
         </p>
       </section>
-      {data.me?.owner && (
-        <details className="panel">
-          <summary>Final judging score reveal · owner only</summary>
+      {data.me?.owner && <OwnerPolicyControls data={data} run={run} />}
+      {(data.me?.owner || data.me?.role === "admin") && (
+        <section className="panel">
+          <h2>Score reveals</h2>
+          <p>Current stage: {data.scoreRelease?.stage || "community"}</p>
           <p className="muted">
-            This is separate from the public upvote-ordered project list.
-            Required policy confirmations, score coverage and tie resolution
-            must pass before freezing. Reveal is explicit.
+            Public actions are audited and irreversible. Real persisted scores
+            and confirmed policy are required. Choose a stage only when reviews
+            are complete.
           </p>
           <Form
-            title="Freeze final judging snapshot"
-            label="Freeze final scores"
+            title="Reveal AI scores"
+            label="Reveal AI scores"
             onSave={async (f) => {
-              await run("freeze-results", { reason: f.get("reason") });
+              await run("reveal-ai-scores", { reason: f.get("reason") });
             }}
           >
-            <Field name="reason" label="Freeze reason" required minLength={5} />
+            <Field name="reason" label="Reveal reason" required minLength={5} />
           </Form>
-          {data.resultSnapshots?.length > 0 && (
+          {data.me?.owner && (
             <Form
-              title="Reveal a frozen judging snapshot"
-              label="Reveal final judging scores"
+              title="Freeze final judging snapshot"
+              label="Freeze final scores"
               onSave={async (f) => {
-                await run("publish-results", {
-                  snapshotId: f.get("snapshotId"),
+                await run("freeze-results", { reason: f.get("reason") });
+              }}
+            >
+              <Field
+                name="reason"
+                label="Freeze reason"
+                required
+                minLength={5}
+              />
+            </Form>
+          )}
+          <Form
+            title="Reveal Final score"
+            label="Reveal Final score"
+            onSave={async (f) => {
+              await run("reveal-final-scores", {
+                snapshotId: f.get("snapshotId"),
+                reason: f.get("reason"),
+              });
+            }}
+          >
+            <Field name="snapshotId" label="Frozen final snapshot">
+              <select name="snapshotId" required>
+                <option value="">Choose a frozen snapshot</option>
+                {(data.resultSnapshots || []).map((r: Row) => (
+                  <option key={r.id} value={r.id}>
+                    {r.created_at}
+                  </option>
+                ))}
+              </select>
+            </Field>
+            <Field name="reason" label="Reveal reason" required minLength={5} />
+          </Form>
+          {data.scoreRelease?.remainingAwards?.length > 0 && (
+            <Form
+              title="Unveil one award"
+              label="Unveil selected award"
+              onSave={async (f) => {
+                await run("unveil-winner", {
+                  releaseId: data.scoreRelease.releaseId,
+                  position: Number(f.get("position")),
                   reason: f.get("reason"),
                 });
               }}
             >
-              <Field name="snapshotId" label="Frozen snapshot">
-                <select name="snapshotId" required>
-                  {data.resultSnapshots.map((r: Row) => (
-                    <option key={r.id} value={r.id}>
-                      {new Date(r.created_at).toLocaleString()}
+              <Field name="position" label="Choose an unrevealed award">
+                <select name="position" required>
+                  <option value="">Choose an award</option>
+                  {data.scoreRelease.remainingAwards.map((a: Row) => (
+                    <option key={a.position} value={a.position}>
+                      Award {a.position}
                     </option>
                   ))}
                 </select>
               </Field>
               <Field
                 name="reason"
-                label="Reveal reason"
+                label="Unveil reason"
                 required
                 minLength={5}
               />
             </Form>
           )}
-          {data.resultPublication && <Pill>Final judging scores revealed</Pill>}
-        </details>
+          {!data.scoringDisclosure?.confirmed && (
+            <p className="muted">
+              Final scoring criteria and weightage are unconfirmed. Final reveal
+              is blocked.
+            </p>
+          )}
+        </section>
       )}
       {data.me?.owner && (
         <ContentEditor
@@ -2382,17 +2641,25 @@ const canonical = (p: string) =>
 export default function Portal({
   path: original,
   localTest = false,
+  initialPublic,
 }: {
   path: string;
   localTest?: boolean;
+  initialPublic?: View;
 }) {
   const path = canonical(original);
-  const [data, setData] = useState<View>({}),
+  const [data, setData] = useState<View>(initialPublic || {}),
     [loading, setLoading] = useState(path !== "/"),
     [error, setError] = useState(""),
     [message, setMessage] = useState(""),
     [menu, setMenu] = useState(false);
+  const [confirmation, setConfirmation] = useState<Confirmation | null>(null);
+  const gate = useRef<ConfirmationGate | null>(null),
+    actionBusy = useRef(false),
+    loadGeneration = useRef(0);
+  if (!gate.current) gate.current = new ConfirmationGate(setConfirmation);
   async function load() {
+    const generation = ++loadGeneration.current;
     setError("");
     try {
       const r = await fetch(
@@ -2402,29 +2669,130 @@ export default function Portal({
         },
       );
       const body = (await r.json()) as View;
-      if (!r.ok)
+      if (generation !== loadGeneration.current) return;
+      if (!r.ok) {
+        setData({});
         throw new Error(
           body.message || body.code || "This page could not be loaded.",
         );
+      }
       setData(body);
     } catch (e) {
-      setError((e as Error).message);
+      if (generation === loadGeneration.current) setError((e as Error).message);
     } finally {
-      setLoading(false);
+      if (generation === loadGeneration.current) setLoading(false);
     }
   }
   useEffect(() => {
     void load();
   }, [path]);
+  useEffect(() => {
+    const hide = () => {
+      ++loadGeneration.current;
+      gate.current?.decide(false);
+      setData({});
+      setLoading(true);
+    };
+    const show = (event: PageTransitionEvent) => {
+      if (event.persisted) void load();
+    };
+    window.addEventListener("pagehide", hide);
+    window.addEventListener("pageshow", show);
+    return () => {
+      window.removeEventListener("pagehide", hide);
+      window.removeEventListener("pageshow", show);
+      gate.current?.decide(false);
+    };
+  }, [path]);
+  const targetName = (values: Row) => {
+    const id = values.userId || values.projectId || values.teamId;
+    const record = [
+      ...(data.items || []),
+      ...(data.roles || []),
+      ...(data.members || []),
+      ...(data.reviewers || []),
+      ...(data.actions || []),
+    ].find((r: Row) => r.id === id || r.user_id === id);
+    if (values.minutes && data.policy?.submissionClose)
+      return `Submission deadline → ${ist(new Date(Date.parse(data.policy.submissionClose) + Number(values.minutes) * 60000).toISOString())}`;
+    if (values.weights) return "Global scoring weights — all teams";
+    if (values.position) return `Award ${values.position}`;
+    if (values.snapshotId) return `Frozen snapshot ${values.snapshotId}`;
+    if (values.scope)
+      return values.scope === "private"
+        ? "Private venue and directions"
+        : "Public agenda, rules, FAQ and venue";
+    if (values.emails) return (values.emails as string[]).join(", ");
+    return (
+      record?.name ||
+      record?.projectName ||
+      record?.person_name ||
+      record?.email ||
+      values.project?.projectName ||
+      values.name ||
+      (id
+        ? String(id)
+        : data.team?.name || data.me?.name || "This portal record")
+    );
+  };
   const run = async (action: string, values: Row) => {
+    if (actionBusy.current) throw new ActionCancelled();
+    actionBusy.current = true;
     try {
-      const result = await api(action, values);
+      if (
+        !(await gate.current!.ask(
+          confirmationFor(
+            action,
+            values,
+            action === "complete-profile"
+              ? data.me?.name || "Your profile"
+              : targetName(values),
+          ),
+        ))
+      )
+        throw new ActionCancelled();
+      const token = revealConfirmation(action, values);
+      const result = await api(
+        action,
+        token ? { ...values, confirmation: token } : values,
+      );
       setMessage(result.message || "Saved.");
       await load();
       return result;
     } catch (e) {
-      setMessage((e as Error).message);
+      setMessage(
+        e instanceof ActionCancelled
+          ? "Cancelled. No changes were made."
+          : (e as Error).message,
+      );
       throw e;
+    } finally {
+      actionBusy.current = false;
+    }
+  };
+  const logout = async () => {
+    if (actionBusy.current) return;
+    actionBusy.current = true;
+    try {
+      if (
+        !(await gate.current!.ask(
+          confirmationFor("logout", {}, data.me?.name || "This Site session"),
+        ))
+      ) {
+        setMessage("Logout cancelled.");
+        return;
+      }
+      if (localTest) await api("local-signout", {});
+      setData({});
+      setMessage("Signing out…");
+      const link = document.createElement("a");
+      link.href = localTest ? "/" : "/signout-with-chatgpt?return_to=%2F";
+      link.target = "_top";
+      link.click();
+    } catch (e) {
+      setMessage((e as Error).message);
+    } finally {
+      actionBusy.current = false;
     }
   };
   // Button actions report rejected operations without unhandled promise noise.
@@ -2475,6 +2843,13 @@ export default function Portal({
       className="app-shell"
       style={{ "--team-accent": c.ink, "--team-wash": c.wash } as CSSProperties}
     >
+      {confirmation && (
+        <ConfirmationDialog
+          value={confirmation}
+          decide={(yes) => gate.current?.decide(yes)}
+        />
+      )}
+
       <a className="skip-link" href="#main">
         Skip to content
       </a>
@@ -2525,9 +2900,13 @@ export default function Portal({
                   {admin ? "Workspace" : "Administration"}
                 </a>
               )}
-              <a href="/signout-with-chatgpt?return_to=%2F" target="_top">
-                Sign out
-              </a>
+              <button
+                className="link-button"
+                type="button"
+                onClick={() => void logout()}
+              >
+                Log out
+              </button>
             </>
           ) : (
             <p>
@@ -2537,7 +2916,11 @@ export default function Portal({
           )}
         </div>
       </aside>
-      <main id="main" className={path === "/" ? "main home-main" : "main"}>
+      <main
+        id="main"
+        tabIndex={-1}
+        className={path === "/" ? "main home-main" : "main"}
+      >
         {localTest && (
           <div className="rehearsal-banner">
             Local rehearsal · synthetic accounts only{" "}
@@ -2575,6 +2958,7 @@ export default function Portal({
         {path === "/" ? (
           <Home
             content={data.content || defaultPublicContent}
+            submissionClose={data.submissionClose}
             signedIn={!!data.me}
           />
         ) : path === "/local-test" && localTest ? (

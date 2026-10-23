@@ -1,6 +1,6 @@
 # DevDay Exchange Community Hackathon: New Delhi
 
-The revised profile → team → submission portal is implemented and tested locally. It is **not deployed**: the public Site remains version 3. Read [the current revision checkpoint](docs/UX_REVISION_V3.md) and [visual QA limits](design-qa.md) before release. Typecheck, 33 regression tests, official Sites production build/artifact review and compiled-Worker smoke checks pass. Browser visual QA is blocked on this executor.
+The revised profile → team → submission portal is implemented and tested locally. It is **not deployed**: the public Site remains version 3. Read [the current session, reveal and policy checkpoint](docs/SESSION_AND_REVEALS.md) and [visual QA limits](design-qa.md) before release. Typecheck, 41 regression tests, official Sites production build/artifact review and compiled-Worker smoke checks pass. Browser visual QA is blocked on this executor.
 
 The latest UI provides private team customization, an eligible upvote-ordered public project list, required self-reported private gender, role-scoped review/admin tools, and owner-managed public/private event content. Event policies remain draft; no real data, grants, API calls or new credentials were introduced. AI evaluation remains Not configured.
 

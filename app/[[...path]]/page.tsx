@@ -23,5 +23,22 @@ export default async function Page({
     // The service owns per-route roles, assignments, profile gating and projections.
     await service.view(routePath);
   }
-  return <Portal path={routePath} localTest={localTest} />;
+  let initialPublic: Record<string, any> | undefined;
+  if (!localTest && routePath === "/") {
+    try {
+      const runtime = getSitesRuntime();
+      initialPublic = await new PortalService(runtime.db, null, undefined).view(
+        "/",
+      );
+    } catch {
+      initialPublic = { submissionClose: null };
+    }
+  }
+  return (
+    <Portal
+      path={routePath}
+      localTest={localTest}
+      initialPublic={initialPublic}
+    />
+  );
 }

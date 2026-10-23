@@ -629,6 +629,8 @@ export const evaluation_runs = sqliteTable(
     state: text("state").notNull(),
     report: text("report"),
     error: text("error"),
+    score: real("score"),
+    provenance: text("provenance"),
     created_at: text("created_at").notNull(),
     updated_at: text("updated_at").notNull(),
   },
@@ -712,3 +714,53 @@ export const project_eligibility = sqliteTable(
     ),
   ],
 );
+
+export const score_releases = sqliteTable(
+  "score_releases",
+  {
+    id: text("id").primaryKey(),
+    stage: text("stage").notNull().unique(),
+    source_id: text("source_id").notNull(),
+    payload: text("payload").notNull(),
+    criteria: text("criteria"),
+    created_at: text("created_at").notNull(),
+    actor_id: text("actor_id")
+      .notNull()
+      .references(() => users.id),
+  },
+  (t) => [
+    check("score_release_stage", sql`${t.stage} IN ('ai','final')`),
+    check("score_release_json", sql`json_valid(${t.payload})`),
+  ],
+);
+export const winner_reveals = sqliteTable(
+  "winner_reveals",
+  {
+    release_id: text("release_id")
+      .notNull()
+      .references(() => score_releases.id),
+    position: integer("position").notNull(),
+    project_id: text("project_id")
+      .notNull()
+      .references(() => projects.id),
+    created_at: text("created_at").notNull(),
+    actor_id: text("actor_id")
+      .notNull()
+      .references(() => users.id),
+  },
+  (t) => [
+    primaryKey({ columns: [t.release_id, t.position] }),
+    unique().on(t.release_id, t.project_id),
+    check("winner_position", sql`${t.position} BETWEEN 1 AND 5`),
+  ],
+);
+
+export const event_policy_history = sqliteTable("event_policy_history", {
+  version: integer("version").primaryKey(),
+  policy: text("policy").notNull(),
+  actor_id: text("actor_id")
+    .notNull()
+    .references(() => users.id),
+  created_at: text("created_at").notNull(),
+  reason: text("reason").notNull(),
+});

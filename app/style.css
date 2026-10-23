@@ -1723,3 +1723,28 @@ td strong {
   outline-offset: 8px;
   border-radius: 12px;
 }
+
+.confirmation-dialog {
+  max-width: min(34rem, calc(100vw - 2rem));
+  border: 1px solid var(--line, #deded8);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  color: #17201c;
+  background: white;
+  overflow-wrap: anywhere;
+}
+.confirmation-dialog::backdrop {
+  background: rgb(12 24 18 / 60%);
+}
+.confirmation-dialog h2 {
+  font-size: 1.5rem;
+}
+.confirmation-dialog .form-actions {
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+.scoring-info {
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  color: #505b55;
+}

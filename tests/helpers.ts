@@ -36,6 +36,11 @@ export const rehearsalPolicy: Policy = {
   retentionNotice: "FAKE REHEARSAL: synthetic data only; delete after test.",
   confirmations: [...decisions],
   capacity: 160,
+  scoringDisclosure: {
+    criteria: "Synthetic rehearsal rubric only",
+    weightage: "Synthetic fixture weights; not an approved event policy",
+    confirmed: true,
+  },
   teamFormationRule:
     "FAKE REHEARSAL ONLY: October freeze, not a live event decision.",
   projectEngagementRule: "display-only",

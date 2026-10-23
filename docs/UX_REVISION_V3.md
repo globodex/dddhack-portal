@@ -1,3 +1,7 @@
+# Current extension to this checkpoint
+
+See [SESSION_AND_REVEALS.md](SESSION_AND_REVEALS.md) for the subsequent session/logout, mandatory confirmations, manual staged reveals, confirmed event choices and global policy controls. Earlier statements below about unresolved capacity/deadline/reveal order are superseded. Publication is tracked in CORE_PUBLICATION.md when completed.
+
 # Local portal revision — 23 October 2026
 
 Status: implemented and functionally verified locally; not published. Visual acceptance remains blocked. The live public Site remains version 3; this revision does not change hosted data, role grants, policies, credentials or runtime configuration.

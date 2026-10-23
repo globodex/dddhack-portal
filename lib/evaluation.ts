@@ -1,3 +1,4 @@
+import { baseWeights, type Policy } from "./policy";
 import { z } from "zod";
 export const reportSchema = z
   .object({
@@ -92,6 +93,7 @@ export function githubEligibility(
 }
 export function score(input: {
   human: number[];
+  weights?: Policy["weights"];
   astra: number;
   codex: number;
   diversity: number;
@@ -118,33 +120,33 @@ export function score(input: {
   ] as const)
     if (!Number.isFinite(v) || v < 0 || v > max)
       throw new Error("INVALID_" + n);
+  const weights = input.weights || baseWeights;
   const human =
-    (input.human.reduce((a, b) => a + b, 0) / input.human.length) * 5;
+    (input.human.reduce((a, b) => a + b, 0) / input.human.length / 10) *
+    weights.human;
+  const astra = (input.astra / 30) * weights.ai,
+    diversity = (input.diversity / 10) * weights.diversity,
+    codex = (input.codex / 5) * weights.codex;
   const voting =
     input.voteFormula === "sqrt-relative"
       ? input.maxVotes
-        ? 5 * Math.sqrt(input.votes / input.maxVotes)
+        ? weights.votes * Math.sqrt(input.votes / input.maxVotes)
         : 0
-      : 5 * Math.min(1, input.votes / input.voteTarget);
-  const bonus = 5 * Math.min(1, input.feedback / input.feedbackTarget);
+      : weights.votes * Math.min(1, input.votes / input.voteTarget);
+  const bonus =
+    weights.feedback * Math.min(1, input.feedback / input.feedbackTarget);
   const penalties = input.falseClaims * 5;
   return {
     human,
-    astra: input.astra,
+    astra,
     voting,
-    diversity: input.diversity,
-    codex: input.codex,
+    diversity,
+    codex,
     bonus,
     penalties,
     total: Math.max(
       0,
-      human +
-        input.astra +
-        voting +
-        input.diversity +
-        input.codex +
-        bonus -
-        penalties,
+      human + astra + voting + diversity + codex + bonus - penalties,
     ),
   };
 }
