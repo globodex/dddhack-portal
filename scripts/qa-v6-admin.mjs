@@ -187,7 +187,7 @@ async function capture(page, label, { fullPage = false } = {}) {
   return record;
 }
 async function cancelDialog(page, label, target) {
-  const dialog = page.locator("dialog[open]");
+  const dialog = page.locator("dialog.confirmation-dialog[open]");
   await dialog.waitFor();
   const cancel = dialog.getByRole("button", { name: "Cancel", exact: true });
   const text = await dialog.innerText();
@@ -219,12 +219,11 @@ async function cancelDialog(page, label, target) {
 async function importChecks(page, label) {
   await load(page, "/admin/participants", "Participants");
   await page
-    .locator(".admin-import-panel > summary")
-    .filter({ hasText: "Add participants" })
+    .getByRole("button", { name: "Add participants", exact: true })
     .click();
   const add = page.locator(".admin-import");
   await check(`${label}: focused import width`, async () => {
-    const box = await page.locator(".admin-import-panel").boundingBox();
+    const box = await page.locator(".admin-import-dialog").boundingBox();
     assert.ok(box.width <= 602, `Import width ${box.width}`);
     await capture(page, `${label}-import-single-form`);
     return { width: box.width, ...(await bounds(page)) };
@@ -370,14 +369,19 @@ try {
           const target = (
             await row.locator(".admin-person-identity strong").innerText()
           ).trim();
+          const menu = row.locator(".admin-status-menu");
+          if ((await menu.getAttribute("open")) === null)
+            await menu.locator("summary").click();
           await row
             .getByRole("button", { name: /^Remove participant:/ })
             .click();
-          return cancelDialog(
+          const result = await cancelDialog(
             page,
             `${label}-participant-trash-confirm-cancel`,
             target,
           );
+          await menu.locator("summary").click();
+          return result;
         },
       );
       await check(
