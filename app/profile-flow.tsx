@@ -1,5 +1,6 @@
 "use client";
 import DotAvatar from "./dot-avatar";
+import { ProfileIcon } from "./profile-icons";
 import { HeadingDot } from "./expressive-heading";
 import { dotColors, dotExpressions } from "../lib/avatar-contract";
 import { useEffect, useRef, useState } from "react";
@@ -141,7 +142,7 @@ export function ProfileAvatarPicker({
   return (
     <section className="profile-avatar" aria-label="Your avatar">
       <div className="profile-avatar-preview">
-        <DotAvatar color={color} expression={expression} size={96} />
+        <DotAvatar color={color} expression={expression} size={64} />
         <h2>Your avatar</h2>
       </div>
       <fieldset className="profile-avatar-options">
@@ -163,7 +164,7 @@ export function ProfileAvatarPicker({
               <DotAvatar
                 color={color}
                 expression={value}
-                size={48}
+                size={40}
                 decorative
               />
               <span className="sr-only">{expressionNames[value]}</span>
@@ -292,9 +293,10 @@ export function ProfileContactFields({
               type="button"
               className="profile-remove-link"
               aria-label={`Remove social link ${index + 1}`}
+              title={`Remove social link ${index + 1}`}
               onClick={() => onLinks(links.filter((_, i) => i !== index))}
             >
-              Remove
+              <ProfileIcon name="trash" />
             </button>
           </div>
         ))}
@@ -369,7 +371,7 @@ export default function ProfileFlow({
                 setStep(step - 1);
               }}
             >
-              ←
+              <ProfileIcon name="back" />
             </button>
           )}
           <h1 ref={heading} tabIndex={-1}>
@@ -378,7 +380,7 @@ export default function ProfileFlow({
           <HeadingDot
             color={avatarColor as keyof typeof dotColors}
             expression={avatarExpression as keyof typeof dotExpressions}
-            size={48}
+            size={40}
           />
         </header>
         <div className="profile-progress" aria-label={`Step ${step} of 3`}>
@@ -441,7 +443,7 @@ export default function ProfileFlow({
           }
         }}
       >
-        <fieldset disabled={busy} className="profile-fields">
+        <fieldset disabled={busy} className="profile-fields" tabIndex={0}>
           <legend className="sr-only">Step {step} of 3</legend>
           {step === 1 ? (
             <div className="profile-basics-layout">
@@ -555,7 +557,8 @@ export default function ProfileFlow({
         <div className="profile-actions">
           {error && <p role="alert">{error}</p>}
           <button className="button profile-next" disabled={busy}>
-            {busy ? "Saving…" : step === 3 ? "Save" : "Next →"}
+            <span>{busy ? "Saving…" : step === 3 ? "Save" : "Next"}</span>
+            {step < 3 && <ProfileIcon name="next" />}
           </button>
         </div>
       </form>
