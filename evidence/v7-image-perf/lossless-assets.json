@@ -1,0 +1,71 @@
+{
+  "encoder": {
+    "sharp": "0.35.5",
+    "webp": "1.6.0",
+    "options": {
+      "lossless": true,
+      "effort": 6,
+      "exact": true
+    }
+  },
+  "files": [
+    {
+      "name": "fallback-approved-v3",
+      "pngBytes": 1371819,
+      "webpBytes": 1148080,
+      "savedBytes": 223739,
+      "rgbaExact": true,
+      "width": 2048,
+      "height": 768,
+      "channels": 4,
+      "pngSha256": "bec57daa23b34ee1786e7d3d7fd68939ff943756a11cb4b589c21aab1e5235eb",
+      "webpSha256": "7eabccbc7b448e5b9a4567961ea506e4641ae632175b0712270082024159ea7b",
+      "rgbaSha256": "f97692399ff07305ecda9bb277d341d48674708db53585309dc4a50f4299d4d8"
+    },
+    {
+      "name": "delhi-fill-overscan",
+      "pngBytes": 1544882,
+      "webpBytes": 989474,
+      "savedBytes": 555408,
+      "rgbaExact": true,
+      "width": 2112,
+      "height": 832,
+      "channels": 4,
+      "pngSha256": "325d353c1e874aeb98864741c9bf0e0fa6fb1f3e8657431cba02609576041f33",
+      "webpSha256": "ea8a60b39e3e0dab91cc3f390b33670a6eaaae37aec757c89202a2f2f3c59d2b",
+      "rgbaSha256": "6596532164def066e3e60697542a1eb588255c7f64f8a8ec6eebe238b218493f"
+    },
+    {
+      "name": "metro-static",
+      "pngBytes": 296153,
+      "webpBytes": 162268,
+      "savedBytes": 133885,
+      "rgbaExact": true,
+      "width": 2048,
+      "height": 768,
+      "channels": 4,
+      "pngSha256": "b8de85137167a70568eeff715f5880fdebf6ce0998b7cdc8848016199016534c",
+      "webpSha256": "acc338499f8fafd93b1b2d91f89f0577aea237f97f74bc21bdf3d1f1848a63ea",
+      "rgbaSha256": "6ca1be474dfdbe9bc018f14b6a50f614f8be50f1632c8c4fd741407a8ae1a7fb"
+    },
+    {
+      "name": "text-mask-alpha",
+      "pngBytes": 66193,
+      "webpBytes": 33340,
+      "savedBytes": 32853,
+      "rgbaExact": true,
+      "width": 2048,
+      "height": 768,
+      "channels": 4,
+      "pngSha256": "edc05d2a1af15111da7fe54934b40cb7513550016c066d41a3f97d4c98b76ecb",
+      "webpSha256": "96d5c86f9dcd9e4f2aa2fb8001d8b5161260027c98095c540a67c7121f5488f4",
+      "rgbaSha256": "b5b49afca172b394420026e9cb7e35173aac56e35f8a93c1c2b522b2b3abf451"
+    }
+  ],
+  "originalPngPreserved": true,
+  "totalPngBytes": 3279047,
+  "totalWebpBytes": 2333162,
+  "savedBytes": 945885,
+  "savedPercent": 28.846338585570745,
+  "browserMetricsMeasured": false
+}

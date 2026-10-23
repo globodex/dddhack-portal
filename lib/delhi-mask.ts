@@ -1,6 +1,9 @@
 /** A decoded mask shared by the preloader and CSS, without a second URL request. */
-export async function loadDelhiMask(signal: AbortSignal) {
-  const response = await fetch("/art/delhi-v3/text-mask-alpha.png", { signal });
+export async function loadDelhiMask(
+  signal: AbortSignal,
+  source = "/art/delhi-v3/text-mask-alpha.png",
+) {
+  const response = await fetch(source, { signal });
   if (!response.ok) throw new Error("Artwork unavailable");
   const blob = await response.blob();
   signal.throwIfAborted();

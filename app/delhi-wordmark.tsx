@@ -3,6 +3,33 @@ import { useEffect, useRef, useState } from "react";
 import { delhiOffset } from "../lib/delhi-motion";
 import { loadDelhiMask } from "../lib/delhi-mask";
 const base = "/art/delhi-v3/";
+type DelhiLayers = { mask: string; fill: string; metro: string };
+
+/** Decode the preferred lossless format before revealing any moving artwork. */
+export async function loadDelhiLayer(name: string, signal: AbortSignal) {
+  for (const extension of ["webp", "png"]) {
+    signal.throwIfAborted();
+    const src = base + name + "." + extension;
+    try {
+      await new Promise<void>((resolve, reject) => {
+        const image = new Image();
+        image.onload = () => {
+          if (typeof image.decode === "function")
+            image.decode().then(resolve, reject);
+          else resolve();
+        };
+        image.onerror = () => reject(new Error("Artwork unavailable"));
+        image.src = src;
+      });
+      signal.throwIfAborted();
+      return src;
+    } catch (error) {
+      signal.throwIfAborted();
+      if (extension === "png") throw error;
+    }
+  }
+  throw new Error("Artwork unavailable");
+}
 export default function DelhiWordmark({
   paused = false,
 }: {
@@ -10,10 +37,12 @@ export default function DelhiWordmark({
 }) {
   const root = useRef<HTMLSpanElement>(null),
     fill = useRef<HTMLImageElement>(null),
-    layerLoad = useRef<Promise<string> | null>(null),
+    layerLoad = useRef<Promise<DelhiLayers> | null>(null),
     controller = useRef<AbortController | null>(null);
   const [active, setActive] = useState(false),
-    [maskUrl, setMaskUrl] = useState<string | null>(null);
+    [maskUrl, setMaskUrl] = useState<string | null>(null),
+    [layerSources, setLayerSources] = useState({ fill: "", metro: "" }),
+    [fallbackFailed, setFallbackFailed] = useState(false);
   useEffect(() => {
     const abort = new AbortController();
     controller.current = abort;
@@ -44,24 +73,18 @@ export default function DelhiWordmark({
       // the motion artwork; eligible devices reveal it only after every decode.
       if (!layerLoad.current) {
         const signal = controller.current!.signal;
-        const mask = loadDelhiMask(signal);
+        const mask = loadDelhiMask(signal, base + "text-mask-alpha.webp").catch(
+          () => {
+            signal.throwIfAborted();
+            return loadDelhiMask(signal);
+          },
+        );
         layerLoad.current = Promise.all([
           mask,
-          ...["delhi-fill-overscan.png", "metro-static.png"].map(
-            (src) =>
-              new Promise<void>((resolve, reject) => {
-                const image = new Image();
-                image.onload = () => {
-                  if (typeof image.decode === "function")
-                    image.decode().then(resolve, reject);
-                  else resolve();
-                };
-                image.onerror = () => reject(new Error("Artwork unavailable"));
-                image.src = base + src;
-              }),
-          ),
+          loadDelhiLayer("delhi-fill-overscan", signal),
+          loadDelhiLayer("metro-static", signal),
         ]).then(
-          ([readyMask]) => readyMask.url,
+          ([readyMask, fill, metro]) => ({ mask: readyMask.url, fill, metro }),
           (error) => {
             void mask.then(
               (readyMask) => readyMask.dispose(),
@@ -72,8 +95,11 @@ export default function DelhiWordmark({
         );
       }
       layerLoad.current.then(
-        (url) => {
-          if (alive) setMaskUrl(url);
+        (layers) => {
+          if (alive) {
+            setLayerSources({ fill: layers.fill, metro: layers.metro });
+            setMaskUrl(layers.mask);
+          }
         },
         () => {
           if (alive) {
@@ -123,14 +149,23 @@ export default function DelhiWordmark({
       }}
     >
       <span className="delhi-canvas">
-        <img
-          className="delhi-fallback"
-          src={base + "fallback-approved-v3.png"}
-          width={2048}
-          height={768}
-          alt=""
-          fetchPriority="high"
-        />
+        <picture>
+          {!fallbackFailed && (
+            <source
+              type="image/webp"
+              srcSet={base + "fallback-approved-v3.webp"}
+            />
+          )}
+          <img
+            className="delhi-fallback"
+            src={base + "fallback-approved-v3.png"}
+            width={2048}
+            height={768}
+            alt=""
+            fetchPriority="high"
+            onError={() => setFallbackFailed(true)}
+          />
+        </picture>
         {motion && (
           <>
             <span
@@ -140,24 +175,34 @@ export default function DelhiWordmark({
                 WebkitMaskImage: `url("${maskUrl}")`,
               }}
             >
-              <img
-                ref={fill}
-                onError={showFallback}
-                className="delhi-fill"
-                src={base + "delhi-fill-overscan.png"}
-                alt=""
-                width={2112}
-                height={832}
-              />
+              <picture>
+                {layerSources.fill.endsWith(".webp") && (
+                  <source type="image/webp" srcSet={layerSources.fill} />
+                )}
+                <img
+                  ref={fill}
+                  onError={showFallback}
+                  className="delhi-fill"
+                  src={base + "delhi-fill-overscan.png"}
+                  alt=""
+                  width={2112}
+                  height={832}
+                />
+              </picture>
             </span>
-            <img
-              onError={showFallback}
-              className="delhi-metro"
-              src={base + "metro-static.png"}
-              alt=""
-              width={2048}
-              height={768}
-            />
+            <picture>
+              {layerSources.metro.endsWith(".webp") && (
+                <source type="image/webp" srcSet={layerSources.metro} />
+              )}
+              <img
+                onError={showFallback}
+                className="delhi-metro"
+                src={base + "metro-static.png"}
+                alt=""
+                width={2048}
+                height={768}
+              />
+            </picture>
           </>
         )}
       </span>
