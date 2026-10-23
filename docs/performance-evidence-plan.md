@@ -4,16 +4,18 @@ Owner checkout: `.worktrees/performance-evidence`, branch `feat/performance-evid
 
 ## Current state
 
-Both scripts are prepared. Syntax checks and dry-plan mode do not launch Chromium or make requests. The previous preview was stale and stopped; execution is pending root's fresh-preview-ready signal. No baseline, after result or performance improvement is claimed.
+Visual baseline and bounded read-only burst baseline completed on 23 October 2026. The measured compiled fingerprints stayed unchanged within and across both runs. Raw sanitized numeric evidence is checked in as `performance-visual-baseline.json` and `performance-burst-baseline.json`; summaries and exact toolchain are in `performance-checkpoint.md`.
 
-The existing compiled visual setup in `.worktrees/visual-integration/scripts/visual-preview.mjs` uses an isolated temporary D1 database seeded from synthetic fixtures and serves `dist/server/index.js` on `127.0.0.1:4173`. The independent scripts do not start it or alter it. The older repository `playwright.config.ts` uses another port and `--no-sandbox`; it is intentionally not used.
+PNG feasibility produced candidates only under `/tmp`; independent Pillow decoding, inflated scanlines and non-IDAT chunks match. No application or repository asset was modified. No after measurement or improvement claim exists. Optimization, any new ownership assignment and baseline/after comparison are deferred to the next engineering session.
+
+The compiled visual setup in `.worktrees/visual-integration/scripts/visual-preview.mjs` uses an isolated temporary D1 database seeded from synthetic fixtures and serves `dist/server/index.js` on `127.0.0.1:4173`. The independent scripts do not start it or alter it. The older repository `playwright.config.ts` uses another port and `--no-sandbox`; it is intentionally not used.
 
 ## Prepared runs
 
 From this worktree, after root confirms the fresh compiled synthetic preview is ready:
 
 ```sh
-node scripts/performance-visual.mjs --preview-ready
+PLAYWRIGHT_BROWSERS_PATH=/tmp/ddehack-playwright-browsers node scripts/performance-visual.mjs --preview-ready
 node scripts/performance-bursts.mjs --preview-ready --label baseline
 ```
 
@@ -39,7 +41,7 @@ Static file inspection at fork `50c574e` found these source sizes: `fallback-app
 - If a downloaded PNG can be losslessly recompressed with a measurable reduction, propose ownership of that exact asset only. Verify decoded pixels, dimensions, alpha and rendered appearance are unchanged. Do not regenerate approved art or change formats/URLs without agreement.
 - If the browser actually records duplicate concurrent same-view API calls, propose a new client-scoped in-flight request coalescing helper, with root retaining exclusive portal integration. Never cache protected responses across users, capabilities, mutations or page lifecycles. Do not implement this solely because focus and visibility listeners exist in source; observed requests decide whether it is useful.
 
-No asset or helper implementation is authorized by this document. Root must agree exact exclusive ownership before edits.
+No asset or helper implementation is authorized by this document. Root must agree exact exclusive ownership before edits. The latest user direction defers all such changes tonight.
 
 ## Reliability recommendations, pending measured prioritization
 

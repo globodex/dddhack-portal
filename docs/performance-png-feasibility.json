@@ -1,0 +1,71 @@
+{
+  "scope": "Feasibility only. No repository asset changes, no network, no format/quality changes. Candidates live only in /tmp.",
+  "strategy": "Recompress identical PNG IDAT scanlines using zlib level9 and one IDAT chunk; retain all non-IDAT chunks byte-for-byte.",
+  "candidatesDirectory": "/tmp/ddehack-lossless-feasibility-tc242dix",
+  "rows": [
+    {
+      "asset": "fallback-approved-v3.png",
+      "originalBytes": 1689967,
+      "candidateBytes": 1371819,
+      "savedBytes": 318148,
+      "savedPercent": 18.82569304607723,
+      "dimensions": [2048, 768],
+      "mode": "RGB",
+      "sourceMatchesMeasuredPreview": true,
+      "inflatedScanlinesIdentical": true,
+      "nonIDATChunksIdentical": true,
+      "independentlyDecodedPixelsIdentical": true,
+      "decodedPixelSHA256": "319e8b51cb5efa852a5bf8c790417894e168491f82df6a9a9705ba2da39e1a2d",
+      "originalSHA256": "18d26b3d5cd123b624f1d005458cfcb536476f34ba91fa2c80263a858069dfb0",
+      "candidateSHA256": "bec57daa23b34ee1786e7d3d7fd68939ff943756a11cb4b589c21aab1e5235eb"
+    },
+    {
+      "asset": "delhi-fill-overscan.png",
+      "originalBytes": 1585270,
+      "candidateBytes": 1544882,
+      "savedBytes": 40388,
+      "savedPercent": 2.5477048073829693,
+      "dimensions": [2112, 832],
+      "mode": "RGB",
+      "sourceMatchesMeasuredPreview": true,
+      "inflatedScanlinesIdentical": true,
+      "nonIDATChunksIdentical": true,
+      "independentlyDecodedPixelsIdentical": true,
+      "decodedPixelSHA256": "78fe286f14ea6690d0bf1d644e01fb8d8c5e19d3291091df06296dd128f33681",
+      "originalSHA256": "17f8e31b0803566388bedca68f8471307a64205b4556cac8c2a757a29f640d0b",
+      "candidateSHA256": "325d353c1e874aeb98864741c9bf0e0fa6fb1f3e8657431cba02609576041f33"
+    },
+    {
+      "asset": "metro-static.png",
+      "originalBytes": 302684,
+      "candidateBytes": 296153,
+      "savedBytes": 6531,
+      "savedPercent": 2.1576958147771275,
+      "dimensions": [2048, 768],
+      "mode": "RGBA",
+      "sourceMatchesMeasuredPreview": true,
+      "inflatedScanlinesIdentical": true,
+      "nonIDATChunksIdentical": true,
+      "independentlyDecodedPixelsIdentical": true,
+      "decodedPixelSHA256": "6ca1be474dfdbe9bc018f14b6a50f614f8be50f1632c8c4fd741407a8ae1a7fb",
+      "originalSHA256": "f52185c3282c5df1f18909c0407f624910b43469575b187324adaa675d043110",
+      "candidateSHA256": "b8de85137167a70568eeff715f5880fdebf6ce0998b7cdc8848016199016534c"
+    },
+    {
+      "asset": "text-mask-alpha.png",
+      "originalBytes": 82153,
+      "candidateBytes": 66193,
+      "savedBytes": 15960,
+      "savedPercent": 19.4271663846725,
+      "dimensions": [2048, 768],
+      "mode": "RGBA",
+      "sourceMatchesMeasuredPreview": true,
+      "inflatedScanlinesIdentical": true,
+      "nonIDATChunksIdentical": true,
+      "independentlyDecodedPixelsIdentical": true,
+      "decodedPixelSHA256": "b5b49afca172b394420026e9cb7e35173aac56e35f8a93c1c2b522b2b3abf451",
+      "originalSHA256": "4cb67a233957b75b3a4323c54e51bf84cbbace0b823367a69ebce0f85279caf0",
+      "candidateSHA256": "edc05d2a1af15111da7fe54934b40cb7513550016c066d41a3f97d4c98b76ecb"
+    }
+  ]
+}
