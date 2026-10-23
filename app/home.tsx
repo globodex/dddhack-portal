@@ -68,7 +68,8 @@ function Chapters({
     let frame = 0,
       measureFrame = 0,
       alive = true,
-      initialized = false;
+      initialized = false,
+      activeStep = -1;
     const paint = () => {
       frame = 0;
       if (!rail || node.dataset.agenda !== "true") return;
@@ -80,7 +81,10 @@ function Chapters({
       offsets.forEach((offset, i) => {
         if (position >= Math.min(offset, distance) - 2) index = i;
       });
-      setStep((old) => (old === index ? old : index));
+      if (activeStep !== index) {
+        activeStep = index;
+        setStep(index);
+      }
     };
     const scroll = () => {
       if (!frame) frame = requestAnimationFrame(paint);
@@ -91,9 +95,10 @@ function Chapters({
       const previous = node.dataset.enhanced === "true";
       const anchor =
         initialized && node.getBoundingClientRect().top < 0
-          ? chapters.find(
-              (chapter) => chapter.getBoundingClientRect().bottom > 60,
-            )
+          ? [...chapters].reverse().find((chapter) => {
+              const rect = chapter.getBoundingClientRect();
+              return rect.top < innerHeight && rect.bottom > 60;
+            })
           : undefined;
       const anchorTop = anchor?.getBoundingClientRect().top;
       const horizontal =
@@ -206,7 +211,7 @@ function Chapters({
           <div className="chapter-body schedule-body">
             <p className="event-day">Sunday, 1 November 2026</p>
             <h3>
-              08:00 — 20:00 <span>IST</span>
+              08:00 - 20:00 <span>IST</span>
             </h3>
             {agenda.length ? (
               <>
