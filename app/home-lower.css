@@ -17,7 +17,9 @@
     border-radius: 24px 24px 0 0;
     scroll-margin-top: calc(var(--public-header-height, 80px) + 14px);
   }
-  .public-home-shell .chapter-stack .chapter .chapter-content {
+  .public-home-shell .chapter-stack .chapter .chapter-content,
+  .public-home-shell .chapter-stack #venue .chapter-content,
+  .public-home-shell .chapter-stack #faq .chapter-content {
     position: relative;
     display: block;
     min-height: 560px;
@@ -25,7 +27,7 @@
   }
   .public-home-shell .chapter-stack .chapter-heading {
     display: block;
-    width: 60%;
+    width: 55%;
     margin-bottom: 24px;
   }
   .public-home-shell .chapter-stack .chapter-number {
@@ -41,7 +43,7 @@
   .public-home-shell .chapter-stack .public-rules {
     position: relative;
     z-index: 1;
-    width: 59%;
+    width: 55%;
     text-align: left;
     padding-top: 0;
   }
