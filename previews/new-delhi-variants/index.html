@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>New Delhi artwork preview</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: #fff;
+      color: #143f32;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+    }
+    main {
+      width: min(1280px, calc(100vw - 120px));
+    }
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+    .outline {
+      display: none;
+    }
+    [data-variant="2"] .outline {
+      display: block;
+    }
+    .number {
+      position: fixed;
+      top: 30px;
+      left: 40px;
+      margin: 0;
+      font:
+        500 18px/1.2 Arial,
+        sans-serif;
+      color: #68736e;
+    }
+  </style>
+  <body data-variant="1">
+    <p class="number" aria-label="Preview number">1</p>
+    <main aria-label="New Delhi preview using approved artwork">
+      <svg
+        viewBox="0 110 2048 520"
+        role="img"
+        aria-label="New Delhi landmark wordmark and original Metro"
+      >
+        <defs>
+          <mask
+            id="letter-mask"
+            maskUnits="userSpaceOnUse"
+            x="0"
+            y="0"
+            width="2048"
+            height="768"
+            style="mask-type: alpha"
+          >
+            <image href="/art/text-mask-alpha.png" width="2048" height="768" />
+          </mask>
+          <filter
+            id="thin-outline"
+            x="-1%"
+            y="-1%"
+            width="102%"
+            height="102%"
+            color-interpolation-filters="sRGB"
+          >
+            <feMorphology
+              in="SourceAlpha"
+              operator="dilate"
+              radius="2"
+              result="expanded"
+            />
+            <feFlood flood-color="#174e3c" flood-opacity=".85" />
+            <feComposite in2="expanded" operator="in" />
+          </filter>
+          <linearGradient id="scene-edge" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="white" stop-opacity="0" />
+            <stop offset=".14" stop-color="white" />
+            <stop offset=".84" stop-color="white" />
+            <stop offset="1" stop-color="white" stop-opacity="0" />
+          </linearGradient>
+          <mask
+            id="scene-feather"
+            maskUnits="userSpaceOnUse"
+            x="221.44"
+            y="97.12"
+            width="1605.12"
+            height="632.32"
+          >
+            <rect
+              x="221.44"
+              y="97.12"
+              width="1605.12"
+              height="632.32"
+              fill="url(#scene-edge)"
+            />
+          </mask>
+        </defs>
+        <image
+          class="outline"
+          href="/art/text-mask-alpha.png"
+          width="2048"
+          height="768"
+          filter="url(#thin-outline)"
+        />
+        <g mask="url(#letter-mask)">
+          <rect width="2048" height="768" fill="#258965" />
+          <!-- Existing overscan scene at 76%, anchored to the letter baseline.
+             No source pixels or Metro placement are edited. -->
+          <image
+            href="/art/delhi-fill-overscan.png"
+            x="221.44"
+            y="97.12"
+            width="1605.12"
+            height="632.32"
+            mask="url(#scene-feather)"
+          />
+        </g>
+        <image
+          id="unchanged-metro"
+          href="/art/metro-static.png"
+          width="2048"
+          height="768"
+        />
+      </svg>
+    </main>
+    <script>
+      const variant =
+        new URLSearchParams(location.search).get("variant") === "2" ? "2" : "1";
+      document.body.dataset.variant = variant;
+      document.querySelector(".number").textContent = variant;
+      document.title =
+        variant === "1"
+          ? "1 Smaller landmarks"
+          : "2 Smaller landmarks with a thin outline";
+    </script>
+  </body>
+</html>
