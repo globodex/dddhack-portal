@@ -1,21 +1,26 @@
-"use client";
+import DotAvatar from "./dot-avatar";
+import { dotColors, dotExpressions } from "../lib/avatar-contract";
+("use client");
 import { useEffect, useRef, useState } from "react";
+import { profilePhonePattern } from "../lib/profile-contract";
 type Row = Record<string, any>;
-const platforms = ["X", "LinkedIn", "Instagram", "Website"];
-const platform = (s: string) => {
+const platforms = ["LinkedIn", "GitHub", "X", "Instagram", "Website"];
+function platform(url: string) {
   try {
-    const h = new URL(s).hostname.replace(/^www\./, "");
-    return h === "x.com" || h === "twitter.com"
-      ? "X"
-      : h === "linkedin.com"
-        ? "LinkedIn"
-        : h === "instagram.com"
-          ? "Instagram"
-          : "Website";
+    const h = new URL(url).hostname.replace(/^www\./, "");
+    return h === "linkedin.com"
+      ? "LinkedIn"
+      : h === "github.com"
+        ? "GitHub"
+        : h === "x.com" || h === "twitter.com"
+          ? "X"
+          : h === "instagram.com"
+            ? "Instagram"
+            : "Website";
   } catch {
     return "Website";
   }
-};
+}
 export default function ProfileFlow({
   data,
   run,
@@ -24,51 +29,15 @@ export default function ProfileFlow({
   run: (a: string, d: Row) => Promise<Row>;
 }) {
   const p = data.profile || {};
-  const [photo, setPhoto] = useState<string | undefined>(),
-    [photoPreview, setPhotoPreview] = useState<string | undefined>(p.photoUrl);
-  const upload = async (file: File | undefined) => {
-    if (!file) return;
-    if (
-      !["image/png", "image/jpeg"].includes(file.type) ||
-      file.size > 4 * 1024 * 1024
-    ) {
-      setError("Use a PNG or JPEG up to 4 MB.");
-      return;
-    }
-    try {
-      const image = await createImageBitmap(file);
-      try {
-        const canvas = document.createElement("canvas");
-        canvas.width = canvas.height = 256;
-        const ctx = canvas.getContext("2d");
-        if (!ctx) throw new Error("Image processing unavailable.");
-        const size = Math.min(image.width, image.height);
-        ctx.drawImage(
-          image,
-          (image.width - size) / 2,
-          (image.height - size) / 2,
-          size,
-          size,
-          0,
-          0,
-          256,
-          256,
-        );
-        const value = canvas.toDataURL("image/png");
-        if (value.length > 180000)
-          throw new Error("Photo is too detailed; choose a smaller image.");
-        setPhoto(value);
-        setPhotoPreview(value);
-        setError("");
-      } finally {
-        image.close();
-      }
-    } catch {
-      setError(
-        "That image could not be processed. Try a different PNG or JPEG.",
-      );
-    }
-  };
+  const initialLinks = Object.fromEntries(
+    platforms.map((t) => [
+      t,
+      (p.socials || []).find((url: string) => platform(url) === t) || "",
+    ]),
+  );
+  const extras = (p.socials || []).filter(
+    (url: string) => !Object.values(initialLinks).includes(url),
+  );
   const [step, setStep] = useState(1),
     [name, setName] = useState(p.display_name || data.me?.name || ""),
     [sex, setSex] = useState(
@@ -77,8 +46,14 @@ export default function ProfileFlow({
         : "",
     ),
     [bio, setBio] = useState(p.bio || ""),
-    [links, setLinks] = useState<{ type: string; url: string }[]>(
-      (p.socials || []).map((url: string) => ({ type: platform(url), url })),
+    [phone, setPhone] = useState(p.phone || ""),
+    [links, setLinks] = useState(initialLinks),
+    [description, setDescription] = useState(p.best_description || ""),
+    [organization, setOrganization] = useState(p.organization || ""),
+    [orgId, setOrgId] = useState(p.openai_org_id || ""),
+    [avatarColor, setAvatarColor] = useState(p.avatar_color || "blue"),
+    [avatarExpression, setAvatarExpression] = useState(
+      p.avatar_expression || "squeezed",
     ),
     [busy, setBusy] = useState(false),
     [error, setError] = useState("");
@@ -91,26 +66,31 @@ export default function ProfileFlow({
     }
     heading.current?.focus();
   }, [step]);
-  const update = (i: number, key: "type" | "url", value: string) =>
-    setLinks(links.map((x, j) => (i === j ? { ...x, [key]: value } : x)));
+  const choices = [
+    ...new Set([
+      ...(p.descriptionChoices || []),
+      ...(p.best_description ? [p.best_description] : []),
+    ]),
+  ] as string[];
   return (
     <section className="profile-flow" aria-label="Your profile">
-      <div className="profile-progress" aria-label={`Step ${step} of 2`}>
+      <div className="profile-progress" aria-label={`Step ${step} of 3`}>
         <span className="progress-track">
-          <i />
-          <i data-active={step === 2} />
+          {[1, 2, 3].map((n) => (
+            <i key={n} data-active={step >= n} />
+          ))}
         </span>
-        {step} / 2
+        {step} / 3
       </div>
-      {step === 2 && (
+      {step > 1 && (
         <button
           className="profile-back"
           type="button"
-          aria-label="Back to name and sex"
+          aria-label="Previous profile step"
           disabled={busy}
           onClick={() => {
             setError("");
-            setStep(1);
+            setStep(step - 1);
           }}
         >
           ←
@@ -126,7 +106,7 @@ export default function ProfileFlow({
           className={`profile-character ${step === 2 ? "purple" : "blue"}`}
           aria-hidden="true"
         >
-          {step === 1 ? "> <" : "○ ○"}
+          {step === 1 ? "> <" : step === 2 ? "○ ○" : "+ +"}
         </span>
       </header>
       <form
@@ -135,9 +115,19 @@ export default function ProfileFlow({
         onSubmit={async (e) => {
           e.preventDefault();
           setError("");
-          if (step === 1) {
-            if (!sex || name.trim().length < 2) return;
-            setStep(2);
+          if (step < 3) {
+            if (step === 1 && (name.trim().length < 2 || !bio.trim() || !sex)) {
+              setError("Complete your name, bio and sex.");
+              return;
+            }
+            if (
+              step === 2 &&
+              !profilePhonePattern.test(phone.trim().replace(/[ ()-]/g, ""))
+            ) {
+              setError("Enter your phone number.");
+              return;
+            }
+            setStep(step + 1);
             return;
           }
           if (busy) return;
@@ -147,12 +137,21 @@ export default function ProfileFlow({
               displayName: name.trim(),
               gender: sex,
               bio: bio.trim(),
-              socialLinks: links
-                .filter((l) => l.url.trim())
-                .map((l) => ({ ...l, url: l.url.trim() })),
+              phone: phone.trim(),
+              bestDescription: description,
+              organization: organization.trim(),
+              openaiOrgId: orgId.trim(),
+              socialLinks: [
+                ...platforms
+                  .filter((t) => links[t].trim())
+                  .map((type) => ({ type, url: links[type].trim() })),
+                ...extras.map((url: string) => ({ type: "Website", url })),
+              ],
               public: !!p.public,
-              ...(photo ? { photo } : {}),
+              avatarColor,
+              avatarExpression,
             });
+            window.location.assign("/teams");
           } catch (e) {
             setError((e as Error).message);
           } finally {
@@ -172,6 +171,28 @@ export default function ProfileFlow({
                 required
                 minLength={2}
                 maxLength={100}
+              />
+            </label>
+            <label>
+              Email
+              <input
+                type="email"
+                value={data.me?.email || ""}
+                readOnly
+                autoComplete="email"
+              />
+            </label>
+            <label>
+              One-line bio{" "}
+              <span className="required-mark" aria-hidden="true">
+                *
+              </span>
+              <input
+                name="bio"
+                value={bio}
+                maxLength={240}
+                required
+                onChange={(e) => setBio(e.target.value)}
               />
             </label>
             <fieldset className="sex-choices">
@@ -194,88 +215,130 @@ export default function ProfileFlow({
                 </label>
               ))}
             </fieldset>
+            <fieldset>
+              <legend>Your avatar</legend>
+              <DotAvatar color={avatarColor} expression={avatarExpression} />
+              <div className="palette-picker">
+                {Object.entries(dotColors).map(([color, hex]) => (
+                  <label key={color}>
+                    <input
+                      type="radio"
+                      name="avatarColor"
+                      value={color}
+                      checked={avatarColor === color}
+                      onChange={() => setAvatarColor(color)}
+                    />
+                    <span
+                      className="palette-swatch"
+                      style={{ background: hex }}
+                    />
+                    {color}
+                  </label>
+                ))}
+              </div>
+              <div className="avatar-picker">
+                {Object.keys(dotExpressions).map((expression) => (
+                  <label key={expression}>
+                    <input
+                      type="radio"
+                      name="avatarExpression"
+                      value={expression}
+                      checked={avatarExpression === expression}
+                      onChange={() => setAvatarExpression(expression)}
+                    />
+                    <DotAvatar
+                      color={avatarColor}
+                      expression={expression}
+                      size={48}
+                    />
+                    <span>{expression}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+          </>
+        ) : step === 2 ? (
+          <>
+            <label>
+              Phone{" "}
+              <span className="required-mark" aria-hidden="true">
+                *
+              </span>
+              <input
+                aria-describedby="phone-team-policy"
+                type="tel"
+                autoComplete="tel"
+                required
+                pattern={String.raw`\+?[0-9 \(\)\-]{7,30}`}
+                maxLength={30}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+              <small id="phone-team-policy">Shared only with your team.</small>
+            </label>
+            {platforms.map((type) => (
+              <label key={type}>
+                {type}
+                <input
+                  type="url"
+                  pattern="https://.*"
+                  placeholder="https://"
+                  maxLength={2048}
+                  value={links[type]}
+                  onChange={(e) =>
+                    setLinks({ ...links, [type]: e.target.value })
+                  }
+                />
+              </label>
+            ))}
           </>
         ) : (
           <>
-            <label className="profile-photo-upload">
-              <span className="profile-photo-preview">
-                {photoPreview ? (
-                  <img src={photoPreview} alt="Your profile photo" />
-                ) : (
-                  <span aria-hidden="true">
-                    {name
-                      .trim()
-                      .split(/\s+/)
-                      .slice(0, 2)
-                      .map((s: string) => s[0])
-                      .join("") || "?"}
-                  </span>
-                )}
-              </span>
-              Photo · optional
+            <label>
+              What best describes you
+              <select
+                value={description}
+                disabled={!choices.length}
+                onChange={(e) => setDescription(e.target.value)}
+              >
+                <option value="">
+                  {choices.length ? "Choose" : "Awaiting host choices"}
+                </option>
+                {choices.map((v) => (
+                  <option key={v}>{v}</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Organization
               <input
-                type="file"
-                accept="image/png,image/jpeg"
-                onChange={(e) => {
-                  void upload(e.target.files?.[0]);
-                }}
-                disabled={busy}
+                autoComplete="organization"
+                value={organization}
+                maxLength={300}
+                onChange={(e) => setOrganization(e.target.value)}
               />
             </label>
             <label>
-              One-line bio
+              OpenAI organization ID
               <input
-                name="bio"
-                value={bio}
-                maxLength={240}
-                required
-                onChange={(e) => setBio(e.target.value)}
+                value={orgId}
+                maxLength={200}
+                onChange={(e) => setOrgId(e.target.value)}
               />
             </label>
-            <fieldset className="social-editor">
-              <legend>Social links</legend>
-              {links.map((l, i) => (
-                <div className="social-row" key={i}>
-                  <label className="sr-only" htmlFor={`social-type-${i}`}>
-                    Link {i + 1} platform
-                  </label>
-                  <select
-                    id={`social-type-${i}`}
-                    value={l.type}
-                    onChange={(e) => update(i, "type", e.target.value)}
-                  >
-                    {platforms.map((t) => (
-                      <option key={t}>{t}</option>
-                    ))}
-                  </select>
-                  <label className="sr-only" htmlFor={`social-url-${i}`}>
-                    Link {i + 1} HTTPS URL
-                  </label>
-                  <input
-                    id={`social-url-${i}`}
-                    type="url"
-                    pattern="https://.*"
-                    placeholder="https://"
-                    value={l.url}
-                    maxLength={2048}
-                    onChange={(e) => update(i, "url", e.target.value)}
-                  />
-                </div>
-              ))}
-              <button
-                type="button"
-                className="button secondary"
-                disabled={links.length >= 8 || busy}
-                onClick={() => setLinks([...links, { type: "X", url: "" }])}
-              >
-                + Add social link
-              </button>
-            </fieldset>
+            <a
+              className="text-link"
+              href="https://platform.openai.com/settings/organization/general"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Find ID ↗
+            </a>
           </>
         )}
         {error && <p role="alert">{error}</p>}
         <button className="button profile-next" disabled={busy}>
-          {busy ? "Saving…" : step === 1 ? "Next →" : "Done ✓"}
+          {busy ? "Saving…" : step === 3 ? "Save" : "Next →"}
         </button>
       </form>
     </section>

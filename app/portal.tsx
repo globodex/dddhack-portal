@@ -1,4 +1,6 @@
-"use client";
+import DotAvatar from "./dot-avatar";
+import { teamColorKeys, teamDotColors,teamColorLabels } from "../lib/avatar-contract";
+("use client");
 import {
   useEffect,
   useState,
@@ -19,7 +21,6 @@ import {
 } from "../lib/action-confirmation";
 import TeamAvatar from "./team-avatar";
 import {
-  avatarPresets,
   teamPalettes,
   portalRoles,
   type Palette,
@@ -36,6 +37,8 @@ type View = Row & {
     email: string;
     role: string;
     owner: boolean;
+    avatarColor?: string;
+    avatarExpression?: string;
   };
   items?: Row[];
 };
@@ -196,49 +199,23 @@ function Profile({
 }
 
 function AvatarChooser({
-  avatar,
-  setAvatar,
   palette,
   setPalette,
+  name = "Team",
 }: {
-  avatar: string;
-  setAvatar: (v: string) => void;
   palette: string;
   setPalette: (v: string) => void;
+  name?: string;
 }) {
   return (
     <>
       <div className="badge-preview">
-        <TeamAvatar avatar={avatar} palette={palette} size={88} />
-        <div>
-          <strong>Your team identity</strong>
-          <p className="muted">
-            One original geometric badge. A shared accent for every member.
-          </p>
-        </div>
+        <TeamAvatar name={name} palette={palette} size={88} />
       </div>
       <fieldset>
-        <legend>Choose a shape</legend>
-        <div className="avatar-picker">
-          {avatarPresets.map((a) => (
-            <label key={a} title={a}>
-              <input
-                type="radio"
-                name="avatar"
-                value={a}
-                checked={avatar === a}
-                onChange={() => setAvatar(a)}
-              />
-              <TeamAvatar avatar={a} palette={palette} size={48} />
-              <span>{a}</span>
-            </label>
-          ))}
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Choose a palette</legend>
+        <legend>Team color</legend>
         <div className="palette-picker">
-          {Object.entries(teamPalettes).map(([key, c]) => (
+          {teamColorKeys.map((key) => (
             <label key={key}>
               <input
                 type="radio"
@@ -247,8 +224,11 @@ function AvatarChooser({
                 checked={palette === key}
                 onChange={() => setPalette(key)}
               />
-              <span className="palette-swatch" style={{ background: c.ink }} />
-              <span>{c.label}</span>
+              <span
+                className="palette-swatch"
+                style={{ background: teamDotColors[key] }}
+              />
+              {teamColorLabels[key]}
             </label>
           ))}
         </div>
@@ -256,8 +236,9 @@ function AvatarChooser({
     </>
   );
 }
+
 function CreateTeam({ run }: { run: (a: string, d: Row) => Promise<Row> }) {
-  const [avatar, setAvatar] = useState("orbit"),
+  const [name, setName] = useState(""),
     [palette, setPalette] = useState("forest");
   return (
     <Form
@@ -267,18 +248,26 @@ function CreateTeam({ run }: { run: (a: string, d: Row) => Promise<Row> }) {
         await run("create-workspace-team", {
           name: f.get("name"),
           bio: f.get("bio"),
-          avatar,
+          avatar: "initials",
           palette,
         });
       }}
     >
-      <Field name="name" label="Team name" required />
+      <label>
+        Team name
+        <input
+          name="name"
+          required
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </label>
       <Field
         name="bio"
         label="What would you like to build? · optional"
         type="textarea"
       />
-      <AvatarChooser {...{ avatar, setAvatar, palette, setPalette }} />
+      <AvatarChooser name={name} {...{ palette, setPalette }} />
     </Form>
   );
 }
@@ -289,19 +278,18 @@ function TeamStyle({
   team: Row;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
-  const [avatar, setAvatar] = useState(team.avatar || "orbit"),
-    [palette, setPalette] = useState(team.palette || "forest");
+  const [palette, setPalette] = useState(team.palette || "forest");
   return (
     <details className="panel">
       <summary>Customize your team badge and accent</summary>
       <Form
         className="inset-form"
         onSave={async () => {
-          await run("team-style", { avatar, palette });
+          await run("team-style", { avatar: "initials", palette });
         }}
         label="Update team identity"
       >
-        <AvatarChooser {...{ avatar, setAvatar, palette, setPalette }} />
+        <AvatarChooser name={team.name} {...{ palette, setPalette }} />
       </Form>
     </details>
   );
@@ -329,7 +317,7 @@ function TeamWorkspace({
     <section className="team-workspace">
       <div className="section-heading">
         <div className="identity-line">
-          <TeamAvatar avatar={t.avatar} palette={t.palette} />
+          <TeamAvatar name={t.name} palette={t.palette} />
           <div>
             <span className="eyebrow">Your team</span>
             <h2>{t.name}</h2>
@@ -401,6 +389,29 @@ function TeamWorkspace({
           </button>
         )}
       </div>
+      {t.leader_id === data.me?.id && !data.ideaLocked && (
+        <details className="panel">
+          <summary>Rename team</summary>
+          <Form
+            title={t.name}
+            label="Rename team"
+            onSave={async (f) => {
+              await run("rename-team", {
+                name: f.get("name"),
+                reason: "Leader renamed unlocked team",
+              });
+            }}
+          >
+            <Field
+              name="name"
+              label="Team name"
+              value={t.name}
+              required
+              minLength={2}
+            />
+          </Form>
+        </details>
+      )}
       <details className="panel">
         <summary>Team and submission rules</summary>
         <ul>
@@ -642,9 +653,35 @@ function Dashboard({
           </p>
         )}
       </div>
+      {data.team && <TeamContacts members={data.members || []} />}
     </>
   );
 }
+function TeamContacts({ members }: { members: Row[] }) {
+  return (
+    <section className="panel">
+      <h2>Your team contacts</h2>
+      <ul className="member-list">
+        {members
+          .filter((m) => m.whatsappUrl)
+          .map((m) => (
+            <li key={m.id}>
+              <strong>{m.name}</strong>
+              <a
+                href={m.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open WhatsApp chat with ${m.name}`}
+              >
+                {m.phone}
+              </a>
+            </li>
+          ))}
+      </ul>
+    </section>
+  );
+}
+
 function Credit({ credit }: { credit: Row }) {
   const [value, setValue] = useState(""),
     [error, setError] = useState("");
@@ -709,7 +746,7 @@ function Teams({
           .filter((t) => t.name.toLowerCase().includes(search.toLowerCase()))
           .map((t) => (
             <li key={t.id}>
-              <TeamAvatar avatar={t.avatar} palette={t.palette} />
+              <TeamAvatar name={t.name} palette={t.palette} />
               <div>
                 <h2>{t.name}</h2>
                 <p>
@@ -1534,12 +1571,16 @@ function AdminParticipants({
                   }
                 }}
               >
-                Import {preview.rows?.length} registered emails
+                Add new roster entries
               </button>
             )}
           </div>
           {preview && (
-            <p>{preview.rows?.map((r: Row) => r.email).join(", ")}</p>
+            <p>
+              {preview.rows
+                ?.map((r: Row) => `${r.email} · ${r.action || "Add"}`)
+                .join("; ")}
+            </p>
           )}
           {error && <p role="alert">{error}</p>}
         </details>
@@ -2090,7 +2131,7 @@ function AdminList({
             <li key={t.id}>
               <header className="section-heading">
                 <div className="identity-line">
-                  <TeamAvatar avatar={t.avatar} palette={t.palette} />
+                  <TeamAvatar name={t.name} palette={t.palette} />
                   <h2>{t.name}</h2>
                   <Pill>{t.status}</Pill>
                 </div>
@@ -2839,6 +2880,7 @@ export default function Portal({
   const [data, setData] = useState<View>(initialPublic || {}),
     [loading, setLoading] = useState(!initialPublic && path !== "/"),
     [error, setError] = useState(""),
+    [errorCode, setErrorCode] = useState(""),
     [message, setMessage] = useState(""),
     [menu, setMenu] = useState(false);
   const [confirmation, setConfirmation] = useState<Confirmation | null>(null);
@@ -2859,11 +2901,13 @@ export default function Portal({
       const body = (await r.json()) as View;
       if (generation !== loadGeneration.current) return;
       if (!r.ok) {
+        setErrorCode(body.code || "");
         setData({});
         throw new Error(
           body.message || body.code || "This page could not be loaded.",
         );
       }
+      setErrorCode("");
       setData(body);
     } catch (e) {
       if (generation === loadGeneration.current) setError((e as Error).message);
@@ -3027,14 +3071,7 @@ export default function Portal({
           ? [
               ["/dashboard", "Dashboard"],
               ["/rules", "Rules"],
-              ...(data.me.role === "participant"
-                ? [
-                    ["/teams", "Teams"],
-                    ...(data.submissionAccess?.canAccess
-                      ? [["/submission", "Submission"]]
-                      : []),
-                  ]
-                : []),
+              ...(data.me.role === "participant" ? [["/teams", "Teams"]] : []),
               ...(reviewer ? [["/review", "Assigned projects"]] : []),
             ]
           : []),
@@ -3152,7 +3189,13 @@ export default function Portal({
             <>
               <strong>{data.me.name}</strong>
               <small>{data.me.owner ? "Owner" : data.me.role}</small>
-              <a href="/profile">Profile</a>
+              <a href="/profile" aria-label="Your profile">
+                <DotAvatar
+                  color={data.me.avatarColor}
+                  expression={data.me.avatarExpression}
+                  size={40}
+                />
+              </a>
               {(privileged || data.me.role === "volunteer") && (
                 <a href={admin ? "/dashboard" : "/admin/participants"}>
                   {admin ? "Workspace" : "Administration"}
@@ -3192,7 +3235,9 @@ export default function Portal({
         )}
         {error && (
           <div className="error-message" role="alert">
-            <h2>This page could not load.</h2>
+            {errorCode !== "LUMA_EMAIL_MISMATCH" && (
+              <h2>This page could not load.</h2>
+            )}
             <p>{error}</p>
             <button
               className="button secondary"
@@ -3202,14 +3247,20 @@ export default function Portal({
             >
               Try again
             </button>
-            {!data.me && (
-              <a
-                className="text-link"
-                target="_top"
-                href={`/signin-with-chatgpt?return_to=${encodeURIComponent(path)}`}
-              >
-                Sign in with ChatGPT
-              </a>
+            {errorCode === "LUMA_EMAIL_MISMATCH" ? (
+              <button className="button" onClick={() => void logout()}>
+                Sign out / switch account
+              </button>
+            ) : (
+              !data.me && (
+                <a
+                  className="text-link"
+                  target="_top"
+                  href={`/signin-with-chatgpt?return_to=${encodeURIComponent(path)}`}
+                >
+                  Sign in with ChatGPT
+                </a>
+              )
             )}
           </div>
         )}
@@ -3251,7 +3302,11 @@ export default function Portal({
               <i />
               <i />
             </span>
-            <span>Loading</span>
+            <span>
+              {/^\/(dashboard|profile|teams|submission)(\/|$)/.test(path)
+                ? "Checking registration"
+                : "Loading"}
+            </span>
           </div>
         ) : (
           !error && (

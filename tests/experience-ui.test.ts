@@ -6,11 +6,15 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { teamPalettes, avatarPresets } from "../lib/experience-contract";
 import Portal from "../app/portal";
 import TeamAvatar from "../app/team-avatar";
-test("original preset shapes, safe contrast and semantic responsive shell render without rejected artwork or private data", () => {
-  const shapes = avatarPresets.map((avatar) =>
-    renderToStaticMarkup(createElement(TeamAvatar, { avatar })),
+test("initials-only team circles, safe contrast and semantic responsive shell render without rejected artwork or private data", () => {
+  const badge = renderToStaticMarkup(
+    createElement(TeamAvatar, { name: "Small Wonder", palette: "forest" }),
   );
-  assert.equal(new Set(shapes).size, 16);
+  assert.ok(
+    badge.includes("SW") &&
+      badge.includes("<circle") &&
+      !badge.includes("<path"),
+  );
   const luminance = (hex: string) => {
     const c = hex
       .slice(1)

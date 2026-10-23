@@ -53,3 +53,5 @@ Dependency auditing still reports inherited framework/tooling findings. Availabl
 
 
 Latest local implementation and pending release gates: [23 October checkpoint](docs/OPERATIONAL_RELEASE_2026_10_23.md). This supersedes historical team-Going, optional-sex and artwork-blocker notes. Public v4 remains unchanged until a separately authorized deployment.
+
+Latest late-call corrections: [three-step onboarding, imported-roster gate, symbolic avatars and same-team phone privacy](docs/LATE_PROFILE_ROSTER_2026_10_23.md). This supersedes participant photos and geometric team badges in the earlier checkpoint; it remains unpublished with explicit input/visual gates.

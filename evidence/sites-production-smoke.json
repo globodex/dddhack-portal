@@ -36,6 +36,11 @@
     "participantGlobalPolicyPreview": 403,
     "realManagedLogoutVerified": false
   },
+  "rosterGate": {
+    "unmatchedVerifiedEmail": 403,
+    "ownerBootstrap": 200,
+    "realParticipantImport": false
+  },
   "photoAndSEO": {
     "canonicalPublicSSR": 200,
     "robots": 200,

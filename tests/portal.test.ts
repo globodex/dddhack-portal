@@ -95,6 +95,11 @@ test("registered approval, single membership and five-person constraints; reques
     db,
     "SELECT id FROM team_actions WHERE user_id='fake_stranger'",
   );
+  await db
+    .prepare(
+      "INSERT INTO luma_roster VALUES('stranger@portal.test','fake_admin','2026-10-23')",
+    )
+    .all();
   await assert.rejects(
     service("stranger").command("team-respond", {
       id: full!.id,

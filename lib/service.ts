@@ -1,3 +1,5 @@
+import {teamPhone} from "./phone";
+import { requireRosterMember, normalizeRosterEmail } from "./roster";
 import { commitSha } from "./repository-evidence";
 import { attendancePredicate, personStatus } from "./portal-status";
 import {
@@ -88,7 +90,10 @@ export class PortalService {
   ) {}
   async actor() {
     demand(this.identity, 401, "SIGN_IN_REQUIRED");
-    const i = this.identity;
+    const i = {
+      ...this.identity,
+      email: normalizeRosterEmail(this.identity.email),
+    };
     await batch(this.db, [
       [
         "INSERT INTO users(id,email,name,created_at) VALUES(?,?,?,?) ON CONFLICT(id) DO UPDATE SET email=excluded.email,name=excluded.name WHERE users.email<>excluded.email OR users.name<>excluded.name",
@@ -107,16 +112,27 @@ export class PortalService {
       "SELECT id,email,name,role FROM users WHERE id=?",
       i.id,
     ))!;
-    const extra = await one<{ role: string; display_name: string | null }>(
+    const extra = await one<{
+      role: string;
+      display_name: string | null;
+      avatar_color: string | null;
+      avatar_expression: string | null;
+      completed_at:string|null;gender_confirmed:number|null;bio:string;gender:string;phone:string|null;
+    }>(
       this.db,
-      "SELECT COALESCE(r.role,u.role) role,p.display_name FROM users u LEFT JOIN portal_roles r ON r.user_id=u.id LEFT JOIN participant_profiles p ON p.user_id=u.id WHERE u.id=?",
+      "SELECT COALESCE(r.role,u.role) role,p.display_name,pd.avatar_color,pd.avatar_expression,p.completed_at,p.gender_confirmed,pr.bio,pr.gender,pd.phone FROM users u LEFT JOIN portal_roles r ON r.user_id=u.id LEFT JOIN participant_profiles p ON p.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN profiles pr ON pr.user_id=u.id WHERE u.id=?",
       i.id,
     );
+    const role=extra?.role||u.role,owner=isOwner(i),rostered=!!await one(this.db,"SELECT email FROM luma_roster WHERE email=?",i.email),ready=!!extra?.completed_at&&extra.gender_confirmed===1&&!!extra.bio?.trim()&&["man","woman","non-binary"].includes(extra.gender)&&!!teamPhone(extra.phone||"").phone;
     return {
       ...u,
+      mode:owner||role!=="participant"?"staff":rostered?"participant":"viewer",rostered,
+      canEngage:owner||role==="admin"||(rostered&&ready),canParticipate:role==="participant"&&(rostered||owner)&&ready,
       role: extra?.role || u.role,
       name: extra?.display_name || u.name,
       owner: isOwner(i),
+      avatarColor: extra?.avatar_color || "blue",
+      avatarExpression: extra?.avatar_expression || "squeezed",
     };
   }
   async staff(ownerOnly = false) {
@@ -257,6 +273,34 @@ export class PortalService {
   ): Promise<Record<string, unknown>> {
     const actor = await this.actor();
     await this.throttle(actor.id);
+    demand(actor.mode!=="viewer",403,"VIEWER_READ_ONLY","Viewer mode is read-only. Use your Luma-registered email or ask an admin to add it.");
+    if(["upvote-project","comment-project","vote","feedback"].includes(action)&&!actor.owner&&actor.role!=="admin"){
+      await requireRosterMember(this,actor);await new PortalExperience(this).completed(actor);
+    }
+    if (
+      [
+        "complete-profile",
+        "profile",
+        "save-workspace-idea",
+        "idea",
+        "create-workspace-team",
+        "create-team",
+        "request-team",
+        "respond-team",
+        "team-request",
+        "team-invite",
+        "team-respond",
+        "team-style",
+        "rename-team",
+        "remove-member",
+        "remove-workspace-member",
+        "save-project",
+        "submit-project",
+        "submit",
+        "reveal-credit",
+      ].includes(action)
+    )
+      await requireRosterMember(this, actor);
     const revised = await new PortalExperience(this).command(
       action,
       data,
@@ -817,9 +861,7 @@ export class PortalService {
           );
         }
         const normalized =
-          d.kind === "roster"
-            ? values.map((v) => v.toLowerCase().trim())
-            : values;
+          d.kind === "roster" ? values.map(normalizeRosterEmail) : values;
         demand(
           new Set(normalized).size === normalized.length,
           422,
@@ -828,6 +870,28 @@ export class PortalService {
         const digest = await sha256(
           JSON.stringify({ kind: d.kind, type: d.typeId, values: normalized }),
         );
+        const existing =
+          d.kind === "roster"
+            ? new Set(
+                (
+                  await rows<{ email: string }>(
+                    this.db,
+                    "SELECT email FROM registrations UNION SELECT email FROM luma_roster",
+                  )
+                ).map((r) => normalizeRosterEmail(r.email)),
+              )
+            : new Set<string>();
+        const rosterMatched =
+          d.kind === "roster"
+            ? new Set(
+                (
+                  await rows<{ email: string }>(
+                    this.db,
+                    "SELECT email FROM luma_roster",
+                  )
+                ).map((r) => r.email),
+              )
+            : new Set<string>();
         if (action === "preview-import") {
           await this.mutate(
             actor.id,
@@ -847,7 +911,15 @@ export class PortalService {
             digest,
             rows: normalized.map((v, i) =>
               d.kind === "roster"
-                ? { row: i + 1, email: v }
+                ? {
+                    row: i + 1,
+                    email: v,
+                    existing: existing.has(v),
+                    action: existing.has(v)
+                      ? "Skip participant fields/status; add only missing roster membership"
+                      : "Add Registered participant",
+                    rosterMatched: rosterMatched.has(v),
+                  }
                 : {
                     row: i + 1,
                     value: "[masked]",
@@ -869,12 +941,18 @@ export class PortalService {
           "PREVIEW_REQUIRED",
         );
         const sql: SQL[] = [];
-        if (d.kind === "roster")
+        if (d.kind === "roster") {
+          sql.push([
+            "INSERT INTO luma_roster SELECT value,?,? FROM json_each(?) WHERE true ON CONFLICT(email) DO NOTHING",
+            actor.id,
+            this.now(),
+            JSON.stringify(normalized),
+          ]);
           sql.push([
             "INSERT INTO registrations(email) SELECT value FROM json_each(?) WHERE true ON CONFLICT(email) DO NOTHING",
             JSON.stringify(normalized),
           ]);
-        else {
+        } else {
           const inventory = await Promise.all(
             normalized.map(async (value) => ({
               id: crypto.randomUUID(),
@@ -898,7 +976,12 @@ export class PortalService {
           kind: d.kind,
           count: values.length,
         });
-        return { message: "Import committed." };
+        return {
+          message:
+            d.kind === "roster"
+              ? "Add-only roster import committed. Existing participant fields and statuses were preserved."
+              : "Import committed.",
+        };
       }
       case "settings": {
         await this.staff(true);
@@ -1905,6 +1988,8 @@ export class PortalService {
     // Use one permission target for ordinary URL slash aliases as well as API views.
     // In particular, /admin/permissions/ must retain the owner-only requirement.
     path = path.replace(/\/+/g, "/").replace(/\/$/, "") || "/";
+    if (/^\/(dashboard|profile|submission|project-history)(\/|$)/.test(path))
+      await requireRosterMember(this);
     const revised = await new PortalExperience(this).view(path, options);
     if (revised !== null) return revised;
     const s = await this.settings(true);

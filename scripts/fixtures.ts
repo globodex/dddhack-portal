@@ -135,4 +135,23 @@ export async function seedLocal(db: Database) {
       ],
     ]);
   }
+  await batch(
+    db,
+    Object.entries(fixtures)
+      .filter(([name]) => name !== "stranger")
+      .map(([, i]) => [
+        "INSERT INTO luma_roster VALUES(?,?,?)",
+        i.email,
+        "fake_owner",
+        time,
+      ]),
+  );
+  await batch(
+    db,
+    Object.values(fixtures).map((i) => [
+      "INSERT INTO profile_details(user_id,phone) VALUES(?,?)",
+      i.id,
+      "+12025550100",
+    ]),
+  );
 }

@@ -1,3 +1,4 @@
+import { PortalError } from "../../lib/security";
 import {
   pageMetadata,
   publicPath,
@@ -27,7 +28,14 @@ export default async function Page({
       runtime.key,
     );
     // The service owns per-route roles, assignments, profile gating and projections.
-    await service.view(routePath);
+    try {
+      await service.view(routePath);
+    } catch (error) {
+      if (!(
+        error instanceof PortalError && error.code === "LUMA_EMAIL_MISMATCH"
+      ))
+        throw error;
+    }
   }
   let initialPublic: Record<string, any> | undefined;
   if (!localTest && publicPath(routePath)) {

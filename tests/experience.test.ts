@@ -90,7 +90,7 @@ test("additive local upgrade preserves existing users and is idempotent", () => 
           .prepare("SELECT count(*) n FROM local_schema_migrations")
           .get() as Row
       ).n,
-      10,
+      15,
     );
     assert.ok(
       db.raw
@@ -111,12 +111,16 @@ test("inline profile gate, registered team creation, presets, partial readiness 
       email: "new@example.invalid",
       source: "sites" as const,
     };
+    await db
+      .prepare("INSERT INTO luma_roster VALUES(?,'fake_admin','2026-10-23')")
+      .bind(identity.email)
+      .all();
     const s = new PortalService(db, identity, undefined);
     assert.equal((await s.view("/dashboard")).profileIncomplete, true);
     await assert.rejects(
       s.command("create-workspace-team", {
         name: "New Geometry",
-        avatar: "fold",
+        avatar: "initials",
         palette: "violet",
       }),
       /PROFILE_COMPLETION_REQUIRED/,
@@ -124,6 +128,7 @@ test("inline profile gate, registered team creation, presets, partial readiness 
     await assert.rejects(
       s.command("complete-profile", {
         displayName: "New Builder",
+        phone: "+1 202 555 0100",
         bio: "I enjoy building useful tools.",
         skills: "TypeScript",
       }),
@@ -131,6 +136,7 @@ test("inline profile gate, registered team creation, presets, partial readiness 
     await assert.rejects(
       s.command("complete-profile", {
         displayName: "New Builder",
+        phone: "+1 202 555 0100",
         bio: "I enjoy building useful tools.",
         skills: "TypeScript",
         gender: "",
@@ -138,6 +144,7 @@ test("inline profile gate, registered team creation, presets, partial readiness 
     );
     await s.command("complete-profile", {
       displayName: "New Builder",
+      phone: "+1 202 555 0100",
       bio: "I enjoy building useful tools.",
       skills: "TypeScript",
       gender: "non-binary",
@@ -148,7 +155,7 @@ test("inline profile gate, registered team creation, presets, partial readiness 
     const created = await s.command("create-workspace-team", {
       name: "New Geometry",
       bio: "A synthetic team",
-      avatar: "fold",
+      avatar: "initials",
       palette: "violet",
     });
     assert.equal(((await s.view("/dashboard")) as Row).status, "Registered");
@@ -253,10 +260,9 @@ test("private venue never leaves unauthorized projections; Going, approval and m
       ((await service("pending").view("/dashboard")) as Row).privateVenue,
       undefined,
     );
-    assert.equal(
-      ((await service("stranger").view("/dashboard")) as Row).privateVenue,
-      undefined,
-    );
+    await assert.rejects(service("stranger").view("/dashboard"), {
+      code: "LUMA_EMAIL_MISMATCH",
+    });
     assert.equal(
       ((await service("admin").view("/admin/settings")) as Row).venue,
       undefined,

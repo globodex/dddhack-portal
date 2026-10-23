@@ -276,7 +276,7 @@ try {
   };
   const created = await post(pending, "create-workspace-team", {
     name: "Synthetic Worker Geometry",
-    avatar: "fold",
+    avatar: "initials",
     palette: "cobalt",
   });
   assert.equal(created.status, 200, await created.text());
@@ -509,21 +509,16 @@ try {
     ).status,
     200,
   );
-  const photoSaved = await post(alice, "complete-profile", {
+  const rejectedPhoto = await post(alice, "complete-profile", {
     displayName: "Synthetic Alice",
     gender: "non-binary",
     bio: "Synthetic builder",
     photo: syntheticImage(64, 64),
   });
-  assert.equal(photoSaved.status, 200, await photoSaved.text());
-  const ownPhoto = await worker.fetch("/api/profile-photo/fake_alice", {
-    headers: alice,
-  });
-  assert.equal(ownPhoto.status, 200);
-  assert.equal(ownPhoto.headers.get("content-type"), "image/png");
-  assert.match(ownPhoto.headers.get("cache-control"), /no-store/);
+  assert.equal(rejectedPhoto.status, 422);
   assert.equal(
-    (await worker.fetch("/api/profile-photo/fake_alice")).status,
+    (await worker.fetch("/api/profile-photo/fake_alice", { headers: alice }))
+      .status,
     404,
   );
   const robots = await worker.fetch("/robots.txt");
@@ -546,13 +541,29 @@ try {
   const homeSEOHTML = await homeSEO.text();
   assert.match(homeSEOHTML, /application\/ld\+json/);
   assert.ok(!homeSEOHTML.includes(privateMarker));
+  const unmatched = await worker.fetch("/api/portal?view=/profile", {
+    headers: {
+      "oai-authenticated-user-id": "fake_stranger",
+      "oai-authenticated-user-email": "stranger@portal.test",
+    },
+  });
+  assert.equal(unmatched.status, 403);
+  assert.equal(
+    (await unmatched.json()).message,
+    "Please sign in with your Luma-registered email",
+  );
+  report.rosterGate = {
+    unmatchedVerifiedEmail: 403,
+    ownerBootstrap: 200,
+    realParticipantImport: false,
+  };
   report.photoAndSEO = {
     canonicalPublicSSR: 200,
     robots: 200,
     sitemap: 200,
-    ownPhoto: 200,
-    privatePhotoAnonymous: 404,
-    photoMetadataStripped: true,
+    participantPhotoUpload: 422,
+    participantPhotoRoute: 404,
+    photoUploadsDisabled: true,
     privateDataAbsent: true,
     browserVisualQA: false,
   };

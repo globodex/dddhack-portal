@@ -529,6 +529,7 @@ export const team_styles = sqliteTable("team_styles", {
     .primaryKey()
     .references(() => teams.id),
   avatar: text("avatar").notNull().default("orbit"),
+  color_key:text("color_key"),
   palette: text("palette").notNull().default("forest"),
 });
 export const projects = sqliteTable(
@@ -922,4 +923,24 @@ export const profile_photos = sqliteTable("profile_photos", {
     .references(() => users.id),
   png: text("png").notNull(),
   updated_at: text("updated_at").notNull(),
+});
+
+export const luma_roster = sqliteTable("luma_roster", {
+  email: text("email").primaryKey(),
+  imported_by: text("imported_by")
+    .notNull()
+    .references(() => users.id),
+  imported_at: text("imported_at").notNull(),
+});
+
+export const profile_details = sqliteTable("profile_details", {
+  avatar_color: text("avatar_color").notNull().default("blue"),
+  avatar_expression: text("avatar_expression").notNull().default("squeezed"),
+  user_id: text("user_id")
+    .primaryKey()
+    .references(() => users.id),
+  phone: text("phone").notNull().default(""),
+  best_description: text("best_description").notNull().default(""),
+  organization: text("organization").notNull().default(""),
+  openai_org_id: text("openai_org_id").notNull().default(""),
 });

@@ -44,7 +44,7 @@ export function getSitesRuntime(): Runtime {
   };
 }
 export function protectedPath(path: string) {
-  return /^\/(dashboard|admin|judge|teams|profile|submission|review|rules)(\/|$)/.test(
+  return /^\/(dashboard|admin|judge|teams|profile|submission|review|rules|project-history|discover)(\/|$)/.test(
     path,
   );
 }

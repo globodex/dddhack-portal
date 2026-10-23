@@ -61,7 +61,7 @@ test("lock freezes facts without approving members; manual statuses preserve loc
     );
     await assert.rejects(
       service("alice").command("team-style", {
-        avatar: "fold",
+        avatar: "initials",
         palette: "forest",
       }),
       { code: "TEAM_LOCKED" },
@@ -310,6 +310,13 @@ test("version-bound private repository evidence, proven violation and narrow ass
       kind: "judge",
       reason: "Synthetic limited assignment",
     });
+    await service("admin").command("admin-status", {
+      kind: "team",
+      targetId: "fake_team1",
+      status: "Forming",
+      reason: "Synthetic prior display override",
+      confirmation: "CHANGE_STATUS",
+    });
     await service("judge").command("set-project-eligibility", {
       projectId: p,
       versionId: v,
@@ -320,6 +327,10 @@ test("version-bound private repository evidence, proven violation and narrow ass
       row(await new PortalService(db, null, undefined).view("/projects")).items
         .length,
       1,
+    );
+    assert.equal(
+      (await teamStatus(service(), "fake_team1")).status,
+      "Submitted",
     );
     await assert.rejects(
       service("judge").command("set-project-eligibility", {
@@ -504,55 +515,6 @@ test("Delhi fill displacement is inverse, clamped and responsive; mask/Metro nev
   assert.deepEqual(delhiOffset(99999, -99999, 2048, 768), { x: -6, y: 4 });
   assert.deepEqual(delhiOffset(1, 1, 0, 1), { x: 0, y: 0 });
   assert.deepEqual(delhiOffset(1, 1, 100, 40, false), { x: 0, y: 0 });
-});
-test("optional profile photo is normalized raster-only storage, private by default and cannot target another user", async () => {
-  const { normalizeProfilePhoto, profilePhotoResponse } =
-    await import("../lib/profile-photo");
-  const { db, service } = await setup();
-  try {
-    const png = syntheticImage(64, 64);
-    const safe = await normalizeProfilePhoto(png);
-    assert.ok(safe.startsWith("data:image/png;base64,"));
-    await assert.rejects(
-      normalizeProfilePhoto(
-        "data:image/svg+xml;base64," + btoa('<svg onload="alert(1)"/>'),
-      ),
-    );
-    await assert.rejects(normalizeProfilePhoto(syntheticImage(600, 600)));
-    await assert.rejects(normalizeProfilePhoto(png.slice(0, -4) + "AAAA"));
-    await service().command("complete-profile", {
-      displayName: "Alice Builder",
-      gender: "woman",
-      bio: "Builds tools",
-      photo: png,
-    });
-    assert.equal(
-      (await profilePhotoResponse(db, "fake_alice", "fake_alice")).status,
-      200,
-    );
-    await assert.rejects(profilePhotoResponse(db, "fake_alice", "fake_bob"), {
-      code: "PHOTO_NOT_FOUND",
-    });
-    await assert.rejects(profilePhotoResponse(db, "fake_alice"), {
-      code: "PHOTO_NOT_FOUND",
-    });
-    await assert.rejects(
-      service("bob").command("complete-profile", {
-        displayName: "Bob Builder",
-        gender: "man",
-        bio: "Builds tools",
-        photo: png,
-        userId: "fake_alice",
-      }),
-    );
-    assert.equal(
-      (await rows(db, "SELECT * FROM profile_photos WHERE user_id='fake_bob'"))
-        .length,
-      0,
-    );
-  } finally {
-    db.close();
-  }
 });
 test("public metadata uses only safe project projections; private routes and signed-in Rules remain noindex and authenticated", async () => {
   const { pageMetadata, safeJSONLD, xmlEscape } = await import("../lib/seo");

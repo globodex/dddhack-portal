@@ -34,6 +34,7 @@ export async function submissionAccess(s: PortalService, teamId?: string) {
   const canAccess = !!teamId && checkedInMembers > 0 && operation.allowed;
   return {
     canAccess,
+    canRead:!!teamId&&checkedInMembers>0,
     checkedInMembers,
     going,
     attemptsUsed,

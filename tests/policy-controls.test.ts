@@ -227,7 +227,7 @@ test("roster and whole idea lock together by server clock, including an inactive
       service("pending").command("create-workspace-team", {
         name: "Too late",
         bio: "",
-        avatar: "orbit",
+        avatar: "initials",
         palette: "forest",
       }),
       /MEMBERSHIP_FROZEN/,

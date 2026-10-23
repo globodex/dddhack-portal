@@ -7,7 +7,7 @@ export async function GET() {
         "dashboard",
         "profile",
         "teams",
-        "submission",
+        "submission","project-history","discover",
         "review",
         "rules",
         "admin",

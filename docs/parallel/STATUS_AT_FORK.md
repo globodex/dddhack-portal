@@ -1,0 +1,5 @@
+# Local checkpoint before parallel work
+
+Previous pushed commits: 4cc4643 implementation, 668fc1c evidence (63-test release checkpoint, unpublished). Later local intermediate checks passed68 tests; current pre-fork source passes typecheck and68 tests after adjusting the new Viewer and additive-migration expectations. It is WIP, not a release: Dashboard consolidation, complete Viewer UI, full imports, owner date windows, soft removals and latest leader check-in still require integration/tests. Official build/Worker evidence for older snapshots is historical, not acceptance of all latest scope.
+
+No deployment, credential creation, real import/deletion, role grant, policy activation, live reveal or paid API call occurred. Public v4 is the last verified hosted baseline. A separate local clone at .releases/public-home-20261023 was prepared but has no active writer; actual parallel execution uses .worktrees paths. Main dirty work is checkpointed on a new local WIP branch, preserving feat/devday-exchange-v1.

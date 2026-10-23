@@ -2178,30 +2178,6 @@ td strong {
     animation: none;
   }
 }
-.profile-photo-upload {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.profile-photo-upload input {
-  width: 100%;
-}
-.profile-photo-preview {
-  width: 56px;
-  height: 56px;
-  display: grid;
-  place-items: center;
-  background: #edf0f4;
-  border-radius: 50%;
-  overflow: hidden;
-  font-weight: 700;
-}
-.profile-photo-preview img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 .public-brand {
   display: flex;
   align-items: center;
@@ -2257,4 +2233,10 @@ td strong {
   .public-header nav[data-open="true"] > a:first-child {
     display: block;
   }
+}
+.required-mark {
+  color: #b42318;
+}
+.progress-track i:not([data-active="true"]) {
+  background: #e2e4e8;
 }

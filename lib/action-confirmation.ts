@@ -22,6 +22,8 @@ const labels: Record<string, string> = {
   "complete-profile": "Update profile",
   "save-project": "Update project draft",
   "submit-project": "Submit project version",
+  "admin-idea-override":"Override private locked idea",
+  "rename-team": "Rename your team",
   "team-style": "Update team appearance",
   "remove-workspace-member": "Remove team member",
   "respond-team": "Update membership request",
@@ -147,7 +149,7 @@ export function revealConfirmation(
   action: string,
   values: Record<string, any>,
 ) {
-  return ["admin-status", "admin-status-bulk"].includes(action)
+  return action==="admin-idea-override" ? "OVERRIDE_TEAM_IDEA" : ["admin-status", "admin-status-bulk"].includes(action)
     ? "CHANGE_STATUS"
     : action === "lock-team"
       ? "LOCK_TEAM"

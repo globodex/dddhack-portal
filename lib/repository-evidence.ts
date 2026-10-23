@@ -50,6 +50,15 @@ export function eligibilityWrite(
       actorId,
       now,
     ],
+    ...(p.status === "eligible"
+      ? [
+          [
+            "DELETE FROM team_status_overrides WHERE team_id=(SELECT team_id FROM projects WHERE id=? AND published_version_id=?)",
+            p.id,
+            p.versionId,
+          ] as SQL,
+        ]
+      : []),
     [
       "INSERT INTO eligibility_history VALUES(?,?,?,?,?,?,?,?)",
       crypto.randomUUID(),
