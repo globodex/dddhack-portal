@@ -199,7 +199,7 @@ try {
     }
   }
 } catch (error) {
-  report.failure = String(error);
+  report.failure = error.stack || String(error);
   process.exitCode = 1;
 } finally {
   if (browser) await browser.close();

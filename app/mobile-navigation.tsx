@@ -53,6 +53,23 @@ export default function MobileNavigation({
       className="mobile-navigation"
       aria-label="Navigation"
       onClose={onClose}
+      onKeyDown={(event) => {
+        if (event.key !== "Tab") return;
+        const elements = [
+          ...event.currentTarget.querySelectorAll<HTMLElement>(
+            "a[href],button:not([disabled])",
+          ),
+        ].filter((element) => element.getClientRects().length > 0);
+        const first = elements[0],
+          last = elements.at(-1);
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }}
       onCancel={(event) => {
         event.preventDefault();
         onClose();
