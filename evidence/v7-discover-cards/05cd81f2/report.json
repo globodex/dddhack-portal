@@ -1,0 +1,135 @@
+{
+  "source": "05cd81f2dbecbb20f4ab722b571dd2e6c4f0fe48",
+  "worker": "cc889d6f59c7d263b16f105c9a13578169d16c14921e3523abf0596e2c8f7c09",
+  "origin": "http://127.0.0.1:4180",
+  "syntheticOnly": true,
+  "mockedApi": true,
+  "checked": [
+    {
+      "mode": "desktop",
+      "name": "initial bounded 24 cards"
+    },
+    {
+      "mode": "desktop",
+      "name": "no horizontal overflow"
+    },
+    {
+      "mode": "desktop",
+      "name": "card opens labelled dialog and Escape returns focus"
+    },
+    {
+      "mode": "desktop",
+      "name": "scroll loads next page and deduplicates"
+    },
+    {
+      "mode": "desktop",
+      "name": "last page and accessible end state"
+    },
+    {
+      "mode": "desktop",
+      "name": "search finds participant beyond first page"
+    },
+    {
+      "mode": "desktop",
+      "name": "failed query supports desktop Retry"
+    },
+    {
+      "mode": "desktop",
+      "name": "stale response cannot replace newer search"
+    },
+    {
+      "mode": "desktop",
+      "name": "rapid search debounces intermediate queries"
+    },
+    {
+      "mode": "desktop",
+      "name": "membership is a server query across directory"
+    },
+    {
+      "mode": "desktop",
+      "name": "safe hash loads off-page profile without appending unrelated page"
+    },
+    {
+      "mode": "keyboard",
+      "name": "initial bounded 24 cards"
+    },
+    {
+      "mode": "keyboard",
+      "name": "no horizontal overflow"
+    },
+    {
+      "mode": "keyboard",
+      "name": "card opens labelled dialog and Escape returns focus"
+    },
+    {
+      "mode": "keyboard",
+      "name": "keyboard Load more appends and deduplicates"
+    },
+    {
+      "mode": "keyboard",
+      "name": "last page and accessible end state"
+    },
+    {
+      "mode": "keyboard",
+      "name": "search finds participant beyond first page"
+    },
+    {
+      "mode": "keyboard",
+      "name": "failed query supports keyboard Retry"
+    },
+    {
+      "mode": "keyboard",
+      "name": "stale response cannot replace newer search"
+    },
+    {
+      "mode": "keyboard",
+      "name": "rapid search debounces intermediate queries"
+    },
+    {
+      "mode": "keyboard",
+      "name": "membership is a server query across directory"
+    },
+    {
+      "mode": "keyboard",
+      "name": "safe hash loads off-page profile without appending unrelated page"
+    },
+    {
+      "mode": "touch",
+      "name": "initial bounded 24 cards"
+    },
+    {
+      "mode": "touch",
+      "name": "no horizontal overflow"
+    },
+    {
+      "mode": "touch",
+      "name": "card opens labelled dialog and Escape returns focus"
+    }
+  ],
+  "errors": [
+    "page.waitForFunction: Timeout 30000ms exceeded.\n    at waitCount (/workspace/v7-discover/scripts/qa-v7-discover-cards.mjs:76:39)\n    at /workspace/v7-discover/scripts/qa-v7-discover-cards.mjs:92:13\n    at async check (/workspace/v7-discover/scripts/qa-v7-discover-cards.mjs:62:41)\n    at async file:///workspace/v7-discover/scripts/qa-v7-discover-cards.mjs:89:5"
+  ],
+  "screenshots": [
+    {
+      "mode": "desktop",
+      "path": "/workspace/v7-discover/evidence/v7-discover-cards/05cd81f2/desktop-people.png",
+      "source": "05cd81f2dbecbb20f4ab722b571dd2e6c4f0fe48",
+      "worker": "cc889d6f59c7d263b16f105c9a13578169d16c14921e3523abf0596e2c8f7c09",
+      "api": "synthetic mocked"
+    },
+    {
+      "mode": "keyboard",
+      "path": "/workspace/v7-discover/evidence/v7-discover-cards/05cd81f2/keyboard-people.png",
+      "source": "05cd81f2dbecbb20f4ab722b571dd2e6c4f0fe48",
+      "worker": "cc889d6f59c7d263b16f105c9a13578169d16c14921e3523abf0596e2c8f7c09",
+      "api": "synthetic mocked"
+    }
+  ],
+  "limits": [
+    "Browser API fixtures isolate client behavior; integration owner separately tests real pagination/privacy.",
+    "Touch is Chromium emulation, not a physical device.",
+    "No public Site, external links, real identities or durable writes exercised."
+  ],
+  "finishedAt": "2026-10-23T20:33:07.240Z",
+  "browserClosed": true
+}

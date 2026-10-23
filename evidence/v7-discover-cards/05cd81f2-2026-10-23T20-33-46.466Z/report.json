@@ -1,0 +1,94 @@
+{
+  "source": "05cd81f2dbecbb20f4ab722b571dd2e6c4f0fe48",
+  "worker": "cc889d6f59c7d263b16f105c9a13578169d16c14921e3523abf0596e2c8f7c09",
+  "origin": "http://127.0.0.1:4180",
+  "syntheticOnly": true,
+  "mockedApi": true,
+  "checked": [
+    {
+      "mode": "touch",
+      "name": "initial bounded 24 cards"
+    },
+    {
+      "mode": "touch",
+      "name": "no horizontal overflow"
+    },
+    {
+      "mode": "touch",
+      "name": "card opens labelled dialog and Escape returns focus"
+    },
+    {
+      "mode": "touch",
+      "name": "scroll loads next page and deduplicates"
+    },
+    {
+      "mode": "touch",
+      "name": "last page and accessible end state"
+    },
+    {
+      "mode": "touch",
+      "name": "search finds participant beyond first page"
+    },
+    {
+      "mode": "touch",
+      "name": "failed query supports touch Retry"
+    },
+    {
+      "mode": "touch",
+      "name": "stale response cannot replace newer search"
+    },
+    {
+      "mode": "touch",
+      "name": "rapid search debounces intermediate queries"
+    },
+    {
+      "mode": "touch",
+      "name": "membership is a server query across directory"
+    },
+    {
+      "mode": "touch",
+      "name": "safe hash loads off-page profile without appending unrelated page"
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    {
+      "mode": "touch",
+      "path": "/workspace/v7-discover/evidence/v7-discover-cards/05cd81f2-2026-10-23T20-33-46.466Z/touch-people.png",
+      "source": "05cd81f2dbecbb20f4ab722b571dd2e6c4f0fe48",
+      "worker": "cc889d6f59c7d263b16f105c9a13578169d16c14921e3523abf0596e2c8f7c09",
+      "api": "synthetic mocked"
+    }
+  ],
+  "limits": [
+    "Browser API fixtures isolate client behavior; integration owner separately tests real pagination/privacy.",
+    "Touch is Chromium emulation, not a physical device.",
+    "No public Site, external links, real identities or durable writes exercised."
+  ],
+  "touchScrolls": [
+    {
+      "before": {
+        "y": 4938,
+        "height": 6182,
+        "viewport": 844
+      },
+      "after": {
+        "y": 5473,
+        "count": 48
+      }
+    },
+    {
+      "before": {
+        "y": 10582,
+        "height": 11826,
+        "viewport": 844
+      },
+      "after": {
+        "y": 11117,
+        "count": 53
+      }
+    }
+  ],
+  "finishedAt": "2026-10-23T20:33:53.500Z",
+  "browserClosed": true
+}

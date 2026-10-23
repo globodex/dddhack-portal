@@ -13,9 +13,9 @@ const workerFile = resolve(artifactRoot, "dist/server/index.js");
 const fingerprint = () => createHash("sha256").update(readFileSync(workerFile)).digest("hex");
 const before = fingerprint();
 const source = process.env.DISCOVER_QA_SOURCE || execFileSync("git", ["-C", artifactRoot, "rev-parse", "HEAD"], { encoding: "utf8" }).trim();
-const output = resolve("evidence/v7-discover-cards", source.slice(0, 8));
+const output = resolve("evidence/v7-discover-cards", source.slice(0, 8) + "-" + new Date().toISOString().replaceAll(":", "-"));
 mkdirSync(output, { recursive: true });
-const report = { source, worker: before, origin, syntheticOnly: true, mockedApi: true, checked: [], errors: [], screenshots: [], limits: ["Browser API fixtures isolate client behavior; integration owner separately tests real pagination/privacy.", "Touch is Chromium emulation, not a physical device.", "No public Site, external links, real identities or durable writes exercised."] };
+const report = { source, worker: before, runnerSha256: createHash("sha256").update(readFileSync(new URL(import.meta.url))).digest("hex"), chromiumSandbox: true, role: "synthetic viewer", origin, syntheticOnly: true, mockedApi: true, checked: [], errors: [], screenshots: [], limits: ["Browser API fixtures isolate client behavior; integration owner separately tests real pagination/privacy.", "Touch is Chromium emulation, not a physical device.", "No public Site, external links, real identities or durable writes exercised."] };
 const people = Array.from({ length: 53 }, (_, index) => ({
   id: `fake_card_${index}`, name: `Synthetic Person ${String(index).padStart(2, "0")}`,
   bio: `Synthetic public bio ${index}`, socials: ["https://github.com/synthetic-example"],
@@ -27,8 +27,9 @@ let browser;
 const save = () => writeFileSync(`${output}/report.json`, JSON.stringify(report, null, 2) + "\n");
 try {
   browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium", headless: true, chromiumSandbox: true, args: [] });
-  for (const mode of ["desktop", "keyboard", "touch"]) {
-    const context = await browser.newContext({ viewport: mode === "touch" ? { width: 390, height: 844 } : { width: 1440, height: 900 }, ...(mode === "touch" ? { isMobile: true, hasTouch: true } : {}) });
+  for (const mode of (process.env.DISCOVER_QA_MODES || "desktop,keyboard,touch").split(",")) {
+    assert.ok(["desktop", "keyboard", "touch"].includes(mode));
+    const context = await browser.newContext({ extraHTTPHeaders: { "oai-authenticated-user-id": "fake_stranger", "oai-authenticated-user-email": "stranger@portal.test", "oai-authenticated-user-full-name": "Synthetic Viewer" }, viewport: mode === "touch" ? { width: 390, height: 844 } : { width: 1440, height: 900 }, ...(mode === "touch" ? { isMobile: true, hasTouch: true } : {}) });
     if (mode === "keyboard") await context.addInitScript(() => { window.IntersectionObserver = undefined; });
     const requests = [];
     let retryFailed = false;
@@ -60,6 +61,29 @@ try {
     const page = await context.newPage();
     const cards = page.locator(".discover-people-cards > li");
     const check = async (name, fn) => { await fn(); report.checked.push({ mode, name }); save(); };
+    const activate = async (locator) => {
+      if (mode === "touch") await locator.tap();
+      else if (mode === "keyboard") { await locator.focus(); await locator.press("Enter"); }
+      else await locator.click();
+    };
+    const scrollBottom = async () => {
+      if (mode !== "touch") return page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight - window.innerHeight - 400));
+      const cdp = await context.newCDPSession(page);
+      const beforeScroll = await page.evaluate(() => ({ y: window.scrollY, height: document.body.scrollHeight, viewport: window.innerHeight }));
+      try {
+        await cdp.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x: 195, y: 650 }] });
+        for (const y of [600, 500, 400, 300, 200, 100]) {
+          await cdp.send("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: [{ x: 195, y }] });
+          await page.waitForTimeout(30);
+        }
+        await cdp.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
+        await page.waitForTimeout(150);
+      } finally { await cdp.detach(); }
+      report.touchScrolls ||= [];
+      report.touchScrolls.push({ before: beforeScroll, after: await page.evaluate(() => ({ y: window.scrollY, count: document.querySelectorAll(".discover-people-cards > li").length })) });
+      save();
+    };
     const waitCount = (count) => page.waitForFunction((expected) => document.querySelectorAll(".discover-people-cards > li").length === expected, count);
     await page.goto(`${origin}/discover/participants`);
     await waitCount(24);
@@ -75,7 +99,7 @@ try {
     });
     await check(mode === "keyboard" ? "keyboard Load more appends and deduplicates" : "scroll loads next page and deduplicates", async () => {
       if (mode === "keyboard") { const more = page.getByRole("button", { name: "Load more", exact: true }); await more.focus(); await more.press("Enter"); }
-      else await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+      else await scrollBottom();
       await waitCount(48);
       assert.equal(requests.filter((request) => request.cursor === "24").length, 1);
       assert.equal(await cards.locator("[id]").count(), 0);
@@ -83,7 +107,7 @@ try {
     });
     await check("last page and accessible end state", async () => {
       if (mode === "keyboard") await page.getByRole("button", { name: "Load more", exact: true }).press("Enter");
-      else await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+      else await scrollBottom();
       await waitCount(53);
       await page.getByRole("status").filter({ hasText: "All people loaded" }).waitFor();
       assert.equal(await page.getByRole("button", { name: "Load more", exact: true }).count(), 0);
@@ -95,11 +119,11 @@ try {
       assert.match(await cards.innerText(), /Synthetic Person 52/);
       assert.ok(requests.some((request) => request.q === "Synthetic Person 52"));
     });
-    await check("failed query supports keyboard Retry", async () => {
+    await check(`failed query supports ${mode} Retry`, async () => {
       await search.fill("Retry");
       await page.getByRole("alert").filter({ hasText: "Synthetic directory unavailable." }).waitFor();
       const retry = page.getByRole("button", { name: "Retry", exact: true });
-      await retry.focus(); await retry.press("Enter");
+      await activate(retry);
       await waitCount(1);
       assert.match(await cards.innerText(), /Synthetic Person 00/);
     });
@@ -118,7 +142,7 @@ try {
       assert.equal(requests.filter((request) => ["Inter", "Intermediate"].includes(request.q)).length, 0);
     });
     await check("membership is a server query across directory", async () => {
-      await page.getByRole("button", { name: "Not in a team", exact: true }).click();
+      await activate(page.getByRole("button", { name: "Not in a team", exact: true }));
       await page.getByText("No matches", { exact: true }).waitFor();
       assert.ok(requests.some((request) => request.q === "Synthetic Person 50" && request.membership === "out"));
       await search.fill("Synthetic Person 51"); await waitCount(1);
@@ -129,17 +153,17 @@ try {
       await page.getByRole("dialog", { name: "Synthetic Person 52" }).waitFor();
       assert.equal(await cards.count(), 1);
       assert.match(await cards.innerText(), /Synthetic Person 51/);
-      await page.getByRole("button", { name: "Close profile" }).click();
+      await activate(page.getByRole("button", { name: "Close profile" }));
       await page.evaluate(() => window.dispatchEvent(new Event("focus")));
       await page.waitForTimeout(350);
       assert.equal(await page.getByRole("dialog").count(), 0);
     });
     await search.fill("");
-    await page.getByRole("button", { name: "All", exact: true }).click();
+    await activate(page.getByRole("button", { name: "All", exact: true }));
     await waitCount(24);
     await page.evaluate(() => window.scrollTo(0, 0));
     const screenshot = `${output}/${mode}-people.png`;
-    await page.screenshot({ path: screenshot, fullPage: mode !== "touch" });
+    await page.screenshot({ path: screenshot, fullPage: false });
     report.screenshots.push({ mode, path: screenshot, source, worker: before, api: "synthetic mocked" });
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);
     await context.close();
