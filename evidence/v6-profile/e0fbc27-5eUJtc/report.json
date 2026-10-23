@@ -1,0 +1,2700 @@
+{
+  "source": "e0fbc27c87449ff499427589108b201ab7829365",
+  "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+  "artifact": "/home/param302/Dev/DDEHack-portal/.worktrees/visual-integration",
+  "origin": "http://127.0.0.1:4173",
+  "output": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc",
+  "browserSandbox": true,
+  "syntheticOnly": true,
+  "identity": "fake_alice / alice@portal.test",
+  "saveAuthorized": false,
+  "checks": [
+    {
+      "name": "desktop: original reference poses captured before avatar or form-value edits",
+      "passed": true,
+      "originalValuesPreserved": true,
+      "defaultColor": "blue",
+      "defaultExpression": "squeezed"
+    },
+    {
+      "name": "all eight colors and expressions select independently",
+      "passed": true
+    },
+    {
+      "name": "desktop: all eight palette dots have usable targets",
+      "passed": true,
+      "palette": [
+        {
+          "x": 867,
+          "y": 376,
+          "width": 44,
+          "height": 44,
+          "swatch": 22
+        },
+        {
+          "x": 920.140625,
+          "y": 376,
+          "width": 44,
+          "height": 44,
+          "swatch": 22
+        },
+        {
+          "x": 973.28125,
+          "y": 376,
+          "width": 44,
+          "height": 44,
+          "swatch": 22
+        },
+        {
+          "x": 1026.421875,
+          "y": 376,
+          "width": 44,
+          "height": 44,
+          "swatch": 22
+        },
+        {
+          "x": 1079.5625,
+          "y": 376,
+          "width": 44,
+          "height": 44,
+          "swatch": 22
+        },
+        {
+          "x": 1132.703125,
+          "y": 376,
+          "width": 44,
+          "height": 44,
+          "swatch": 22
+        },
+        {
+          "x": 1185.84375,
+          "y": 376,
+          "width": 44,
+          "height": 44,
+          "swatch": 22
+        },
+        {
+          "x": 1238.984375,
+          "y": 376,
+          "width": 44,
+          "height": 44,
+          "swatch": 22
+        }
+      ],
+      "rowCount": 1
+    },
+    {
+      "name": "desktop step 1: bounded active step, centered heading and no horizontal overflow",
+      "passed": true,
+      "flow": {
+        "x": 157,
+        "y": 89,
+        "width": 1126,
+        "height": 424,
+        "right": 1283,
+        "bottom": 513
+      },
+      "fields": {
+        "x": 157,
+        "y": 153,
+        "width": 1126,
+        "height": 360,
+        "right": 1283,
+        "bottom": 513
+      },
+      "footer": {
+        "x": 1103,
+        "y": 465,
+        "width": 180,
+        "height": 48,
+        "right": 1283,
+        "bottom": 513
+      },
+      "toolbar": {
+        "x": 157,
+        "y": 89,
+        "width": 1126,
+        "height": 48,
+        "right": 1283,
+        "bottom": 137
+      },
+      "titleCenterDelta": 0.0078125,
+      "viewportWidth": 1440,
+      "viewportHeight": 900,
+      "documentWidth": 1440,
+      "fieldsScrollHeight": 360,
+      "fieldsClientHeight": 360,
+      "forms": 1,
+      "basics": 1,
+      "contact": 0,
+      "about": 0
+    },
+    {
+      "name": "desktop step 1: keyboard-focusable fields and primary action remain reachable",
+      "passed": true
+    },
+    {
+      "name": "desktop: five social rows align selector, URL and named icon-only trash",
+      "passed": true,
+      "rows": [
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 277,
+              "bottom": 321,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 277,
+              "bottom": 321,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 277,
+              "bottom": 321,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove LinkedIn link 1",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 331,
+              "bottom": 375,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 331,
+              "bottom": 375,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 331,
+              "bottom": 375,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove GitHub link 2",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 385,
+              "bottom": 429,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 385,
+              "bottom": 429,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 385,
+              "bottom": 429,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove X link 3",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 439,
+              "bottom": 483,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 439,
+              "bottom": 483,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 439,
+              "bottom": 483,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove Instagram link 4",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 493,
+              "bottom": 537,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 493,
+              "bottom": 537,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 493,
+              "bottom": 537,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove Website link 5",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "name": "desktop: Back/Next retains avatar, basics and five links; removal affects only its target",
+      "passed": true
+    },
+    {
+      "name": "desktop step 2: bounded active step, centered heading and no horizontal overflow",
+      "passed": true,
+      "flow": {
+        "x": 157,
+        "y": 89,
+        "width": 1126,
+        "height": 588,
+        "right": 1283,
+        "bottom": 677
+      },
+      "fields": {
+        "x": 157,
+        "y": 153,
+        "width": 1126,
+        "height": 458,
+        "right": 1283,
+        "bottom": 611
+      },
+      "footer": {
+        "x": 157,
+        "y": 611,
+        "width": 1126,
+        "height": 66,
+        "right": 1283,
+        "bottom": 677
+      },
+      "toolbar": {
+        "x": 157,
+        "y": 89,
+        "width": 1126,
+        "height": 48,
+        "right": 1283,
+        "bottom": 137
+      },
+      "titleCenterDelta": 0.0078125,
+      "viewportWidth": 1440,
+      "viewportHeight": 900,
+      "documentWidth": 1440,
+      "fieldsScrollHeight": 458,
+      "fieldsClientHeight": 458,
+      "forms": 1,
+      "basics": 0,
+      "contact": 1,
+      "about": 0
+    },
+    {
+      "name": "desktop step 2: keyboard-focusable fields and primary action remain reachable",
+      "passed": true
+    },
+    {
+      "name": "desktop step 3: bounded active step, centered heading and no horizontal overflow",
+      "passed": true,
+      "flow": {
+        "x": 157,
+        "y": 89,
+        "width": 1126,
+        "height": 466,
+        "right": 1283,
+        "bottom": 555
+      },
+      "fields": {
+        "x": 157,
+        "y": 153,
+        "width": 1126,
+        "height": 336,
+        "right": 1283,
+        "bottom": 489
+      },
+      "footer": {
+        "x": 157,
+        "y": 489,
+        "width": 1126,
+        "height": 66,
+        "right": 1283,
+        "bottom": 555
+      },
+      "toolbar": {
+        "x": 157,
+        "y": 89,
+        "width": 1126,
+        "height": 48,
+        "right": 1283,
+        "bottom": 137
+      },
+      "titleCenterDelta": 0.0078125,
+      "viewportWidth": 1440,
+      "viewportHeight": 900,
+      "documentWidth": 1440,
+      "fieldsScrollHeight": 336,
+      "fieldsClientHeight": 336,
+      "forms": 1,
+      "basics": 0,
+      "contact": 0,
+      "about": 1
+    },
+    {
+      "name": "desktop step 3: keyboard-focusable fields and primary action remain reachable",
+      "passed": true
+    },
+    {
+      "name": "desktop: three steps, six Luma choices, no fourth review step",
+      "passed": true
+    },
+    {
+      "name": "mobile: original reference poses captured before avatar or form-value edits",
+      "passed": true,
+      "originalValuesPreserved": true,
+      "defaultColor": "blue",
+      "defaultExpression": "squeezed"
+    },
+    {
+      "name": "mobile: all eight palette dots have usable targets",
+      "passed": true,
+      "palette": [
+        {
+          "x": 18,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 62,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 106,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 150,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 194,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 238,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 282,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 326,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        }
+      ],
+      "rowCount": 1
+    },
+    {
+      "name": "mobile step 1: bounded active step, centered heading and no horizontal overflow",
+      "passed": true,
+      "flow": {
+        "x": 18,
+        "y": 64,
+        "width": 354,
+        "height": 762,
+        "right": 372,
+        "bottom": 826
+      },
+      "fields": {
+        "x": 18,
+        "y": 164,
+        "width": 354,
+        "height": 602,
+        "right": 372,
+        "bottom": 766
+      },
+      "footer": {
+        "x": 18,
+        "y": 766,
+        "width": 354,
+        "height": 60,
+        "right": 372,
+        "bottom": 826
+      },
+      "toolbar": {
+        "x": 18,
+        "y": 72,
+        "width": 354,
+        "height": 80,
+        "right": 372,
+        "bottom": 152
+      },
+      "titleCenterDelta": 0,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "documentWidth": 390,
+      "fieldsScrollHeight": 602,
+      "fieldsClientHeight": 602,
+      "forms": 1,
+      "basics": 1,
+      "contact": 0,
+      "about": 0
+    },
+    {
+      "name": "mobile step 1: keyboard-focusable fields and primary action remain reachable",
+      "passed": true
+    },
+    {
+      "name": "mobile: five social rows align selector, URL and named icon-only trash",
+      "passed": true,
+      "rows": [
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 285,
+              "bottom": 329,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 285,
+              "bottom": 329,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 285,
+              "bottom": 329,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove LinkedIn link 1",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 339,
+              "bottom": 383,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 339,
+              "bottom": 383,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 339,
+              "bottom": 383,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove GitHub link 2",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 393,
+              "bottom": 437,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 393,
+              "bottom": 437,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 393,
+              "bottom": 437,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove X link 3",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 447,
+              "bottom": 491,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 447,
+              "bottom": 491,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 447,
+              "bottom": 491,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove Instagram link 4",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 501,
+              "bottom": 545,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 501,
+              "bottom": 545,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 501,
+              "bottom": 545,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove Website link 5",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "name": "mobile: Back/Next retains avatar, basics and five links; removal affects only its target",
+      "passed": true
+    },
+    {
+      "name": "mobile step 2: bounded active step, centered heading and no horizontal overflow",
+      "passed": true,
+      "flow": {
+        "x": 18,
+        "y": 64,
+        "width": 354,
+        "height": 762,
+        "right": 372,
+        "bottom": 826
+      },
+      "fields": {
+        "x": 18,
+        "y": 164,
+        "width": 354,
+        "height": 602,
+        "right": 372,
+        "bottom": 766
+      },
+      "footer": {
+        "x": 18,
+        "y": 766,
+        "width": 354,
+        "height": 60,
+        "right": 372,
+        "bottom": 826
+      },
+      "toolbar": {
+        "x": 18,
+        "y": 72,
+        "width": 354,
+        "height": 80,
+        "right": 372,
+        "bottom": 152
+      },
+      "titleCenterDelta": 0,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "documentWidth": 390,
+      "fieldsScrollHeight": 602,
+      "fieldsClientHeight": 602,
+      "forms": 1,
+      "basics": 0,
+      "contact": 1,
+      "about": 0
+    },
+    {
+      "name": "mobile step 2: keyboard-focusable fields and primary action remain reachable",
+      "passed": true
+    },
+    {
+      "name": "mobile step 3: bounded active step, centered heading and no horizontal overflow",
+      "passed": true,
+      "flow": {
+        "x": 18,
+        "y": 64,
+        "width": 354,
+        "height": 762,
+        "right": 372,
+        "bottom": 826
+      },
+      "fields": {
+        "x": 18,
+        "y": 164,
+        "width": 354,
+        "height": 602,
+        "right": 372,
+        "bottom": 766
+      },
+      "footer": {
+        "x": 18,
+        "y": 766,
+        "width": 354,
+        "height": 60,
+        "right": 372,
+        "bottom": 826
+      },
+      "toolbar": {
+        "x": 18,
+        "y": 72,
+        "width": 354,
+        "height": 80,
+        "right": 372,
+        "bottom": 152
+      },
+      "titleCenterDelta": 0,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "documentWidth": 390,
+      "fieldsScrollHeight": 602,
+      "fieldsClientHeight": 602,
+      "forms": 1,
+      "basics": 0,
+      "contact": 0,
+      "about": 1
+    },
+    {
+      "name": "mobile step 3: keyboard-focusable fields and primary action remain reachable",
+      "passed": true
+    },
+    {
+      "name": "mobile: three steps, six Luma choices, no fourth review step",
+      "passed": true
+    },
+    {
+      "name": "narrow: all eight palette dots have usable targets",
+      "passed": true,
+      "palette": [
+        {
+          "x": 18,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 70,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 122,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 174,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 18,
+          "y": 316,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 70,
+          "y": 316,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 122,
+          "y": 316,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 174,
+          "y": 316,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        }
+      ],
+      "rowCount": 2
+    },
+    {
+      "name": "narrow step 1: bounded active step, centered heading and no horizontal overflow",
+      "passed": true,
+      "flow": {
+        "x": 18,
+        "y": 64,
+        "width": 284,
+        "height": 558,
+        "right": 302,
+        "bottom": 622
+      },
+      "fields": {
+        "x": 18,
+        "y": 164,
+        "width": 284,
+        "height": 398,
+        "right": 302,
+        "bottom": 562
+      },
+      "footer": {
+        "x": 18,
+        "y": 562,
+        "width": 284,
+        "height": 60,
+        "right": 302,
+        "bottom": 622
+      },
+      "toolbar": {
+        "x": 18,
+        "y": 72,
+        "width": 284,
+        "height": 80,
+        "right": 302,
+        "bottom": 152
+      },
+      "titleCenterDelta": 0,
+      "viewportWidth": 320,
+      "viewportHeight": 640,
+      "documentWidth": 320,
+      "fieldsScrollHeight": 524,
+      "fieldsClientHeight": 398,
+      "forms": 1,
+      "basics": 1,
+      "contact": 0,
+      "about": 0
+    },
+    {
+      "name": "narrow step 1: keyboard-focusable fields and primary action remain reachable",
+      "passed": true
+    },
+    {
+      "name": "narrow: five social rows align selector, URL and named icon-only trash",
+      "passed": true,
+      "rows": [
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 285,
+              "bottom": 329,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 285,
+              "bottom": 329,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 285,
+              "bottom": 329,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove LinkedIn link 1",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 339,
+              "bottom": 383,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 339,
+              "bottom": 383,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 339,
+              "bottom": 383,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove GitHub link 2",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 393,
+              "bottom": 437,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 393,
+              "bottom": 437,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 393,
+              "bottom": 437,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove X link 3",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 447,
+              "bottom": 491,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 447,
+              "bottom": 491,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 447,
+              "bottom": 491,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove Instagram link 4",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 501,
+              "bottom": 545,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 501,
+              "bottom": 545,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 501,
+              "bottom": 545,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove Website link 5",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "name": "narrow: Back/Next retains avatar, basics and five links; removal affects only its target",
+      "passed": true
+    },
+    {
+      "name": "narrow step 2: bounded active step, centered heading and no horizontal overflow",
+      "passed": true,
+      "flow": {
+        "x": 18,
+        "y": 64,
+        "width": 284,
+        "height": 558,
+        "right": 302,
+        "bottom": 622
+      },
+      "fields": {
+        "x": 18,
+        "y": 164,
+        "width": 284,
+        "height": 398,
+        "right": 302,
+        "bottom": 562
+      },
+      "footer": {
+        "x": 18,
+        "y": 562,
+        "width": 284,
+        "height": 60,
+        "right": 302,
+        "bottom": 622
+      },
+      "toolbar": {
+        "x": 18,
+        "y": 72,
+        "width": 284,
+        "height": 80,
+        "right": 302,
+        "bottom": 152
+      },
+      "titleCenterDelta": 0,
+      "viewportWidth": 320,
+      "viewportHeight": 640,
+      "documentWidth": 320,
+      "fieldsScrollHeight": 449,
+      "fieldsClientHeight": 398,
+      "forms": 1,
+      "basics": 0,
+      "contact": 1,
+      "about": 0
+    },
+    {
+      "name": "narrow step 2: keyboard-focusable fields and primary action remain reachable",
+      "passed": true
+    },
+    {
+      "name": "narrow step 3: bounded active step, centered heading and no horizontal overflow",
+      "passed": true,
+      "flow": {
+        "x": 18,
+        "y": 64,
+        "width": 284,
+        "height": 558,
+        "right": 302,
+        "bottom": 622
+      },
+      "fields": {
+        "x": 18,
+        "y": 164,
+        "width": 284,
+        "height": 398,
+        "right": 302,
+        "bottom": 562
+      },
+      "footer": {
+        "x": 18,
+        "y": 562,
+        "width": 284,
+        "height": 60,
+        "right": 302,
+        "bottom": 622
+      },
+      "toolbar": {
+        "x": 18,
+        "y": 72,
+        "width": 284,
+        "height": 80,
+        "right": 302,
+        "bottom": 152
+      },
+      "titleCenterDelta": 0,
+      "viewportWidth": 320,
+      "viewportHeight": 640,
+      "documentWidth": 320,
+      "fieldsScrollHeight": 398,
+      "fieldsClientHeight": 398,
+      "forms": 1,
+      "basics": 0,
+      "contact": 0,
+      "about": 1
+    },
+    {
+      "name": "narrow step 3: keyboard-focusable fields and primary action remain reachable",
+      "passed": true
+    },
+    {
+      "name": "narrow: three steps, six Luma choices, no fourth review step",
+      "passed": true
+    },
+    {
+      "name": "tablet: all eight palette dots have usable targets",
+      "passed": true,
+      "palette": [
+        {
+          "x": 478.390625,
+          "y": 376,
+          "width": 44,
+          "height": 44,
+          "swatch": 22
+        },
+        {
+          "x": 564.59375,
+          "y": 376,
+          "width": 44,
+          "height": 44,
+          "swatch": 22
+        },
+        {
+          "x": 650.796875,
+          "y": 376,
+          "width": 44,
+          "height": 44,
+          "swatch": 22
+        },
+        {
+          "x": 737,
+          "y": 376,
+          "width": 44,
+          "height": 44,
+          "swatch": 22
+        },
+        {
+          "x": 478.390625,
+          "y": 424,
+          "width": 44,
+          "height": 44,
+          "swatch": 22
+        },
+        {
+          "x": 564.59375,
+          "y": 424,
+          "width": 44,
+          "height": 44,
+          "swatch": 22
+        },
+        {
+          "x": 650.796875,
+          "y": 424,
+          "width": 44,
+          "height": 44,
+          "swatch": 22
+        },
+        {
+          "x": 737,
+          "y": 424,
+          "width": 44,
+          "height": 44,
+          "swatch": 22
+        }
+      ],
+      "rowCount": 2
+    },
+    {
+      "name": "tablet step 1: bounded active step, centered heading and no horizontal overflow",
+      "passed": true,
+      "flow": {
+        "x": 53,
+        "y": 101,
+        "width": 728,
+        "height": 464,
+        "right": 781,
+        "bottom": 565
+      },
+      "fields": {
+        "x": 53,
+        "y": 205,
+        "width": 728,
+        "height": 360,
+        "right": 781,
+        "bottom": 565
+      },
+      "footer": {
+        "x": 601,
+        "y": 517,
+        "width": 180,
+        "height": 48,
+        "right": 781,
+        "bottom": 565
+      },
+      "toolbar": {
+        "x": 53,
+        "y": 101,
+        "width": 728,
+        "height": 88,
+        "right": 781,
+        "bottom": 189
+      },
+      "titleCenterDelta": 0.0078125,
+      "viewportWidth": 834,
+      "viewportHeight": 1194,
+      "documentWidth": 834,
+      "fieldsScrollHeight": 360,
+      "fieldsClientHeight": 360,
+      "forms": 1,
+      "basics": 1,
+      "contact": 0,
+      "about": 0
+    },
+    {
+      "name": "tablet step 1: keyboard-focusable fields and primary action remain reachable",
+      "passed": true
+    },
+    {
+      "name": "tablet: five social rows align selector, URL and named icon-only trash",
+      "passed": true,
+      "rows": [
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 329,
+              "bottom": 373,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 329,
+              "bottom": 373,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 329,
+              "bottom": 373,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove LinkedIn link 1",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 383,
+              "bottom": 427,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 383,
+              "bottom": 427,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 383,
+              "bottom": 427,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove GitHub link 2",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 437,
+              "bottom": 481,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 437,
+              "bottom": 481,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 437,
+              "bottom": 481,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove X link 3",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 491,
+              "bottom": 535,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 491,
+              "bottom": 535,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 491,
+              "bottom": 535,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove Instagram link 4",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 545,
+              "bottom": 589,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 545,
+              "bottom": 589,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 545,
+              "bottom": 589,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove Website link 5",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "name": "tablet: Back/Next retains avatar, basics and five links; removal affects only its target",
+      "passed": true
+    },
+    {
+      "name": "tablet step 2: bounded active step, centered heading and no horizontal overflow",
+      "passed": true,
+      "flow": {
+        "x": 53,
+        "y": 101,
+        "width": 728,
+        "height": 628,
+        "right": 781,
+        "bottom": 729
+      },
+      "fields": {
+        "x": 53,
+        "y": 205,
+        "width": 728,
+        "height": 458,
+        "right": 781,
+        "bottom": 663
+      },
+      "footer": {
+        "x": 53,
+        "y": 663,
+        "width": 728,
+        "height": 66,
+        "right": 781,
+        "bottom": 729
+      },
+      "toolbar": {
+        "x": 53,
+        "y": 101,
+        "width": 728,
+        "height": 88,
+        "right": 781,
+        "bottom": 189
+      },
+      "titleCenterDelta": 0.0078125,
+      "viewportWidth": 834,
+      "viewportHeight": 1194,
+      "documentWidth": 834,
+      "fieldsScrollHeight": 458,
+      "fieldsClientHeight": 458,
+      "forms": 1,
+      "basics": 0,
+      "contact": 1,
+      "about": 0
+    },
+    {
+      "name": "tablet step 2: keyboard-focusable fields and primary action remain reachable",
+      "passed": true
+    },
+    {
+      "name": "tablet step 3: bounded active step, centered heading and no horizontal overflow",
+      "passed": true,
+      "flow": {
+        "x": 53,
+        "y": 101,
+        "width": 728,
+        "height": 506,
+        "right": 781,
+        "bottom": 607
+      },
+      "fields": {
+        "x": 53,
+        "y": 205,
+        "width": 728,
+        "height": 336,
+        "right": 781,
+        "bottom": 541
+      },
+      "footer": {
+        "x": 53,
+        "y": 541,
+        "width": 728,
+        "height": 66,
+        "right": 781,
+        "bottom": 607
+      },
+      "toolbar": {
+        "x": 53,
+        "y": 101,
+        "width": 728,
+        "height": 88,
+        "right": 781,
+        "bottom": 189
+      },
+      "titleCenterDelta": 0.0078125,
+      "viewportWidth": 834,
+      "viewportHeight": 1194,
+      "documentWidth": 834,
+      "fieldsScrollHeight": 336,
+      "fieldsClientHeight": 336,
+      "forms": 1,
+      "basics": 0,
+      "contact": 0,
+      "about": 1
+    },
+    {
+      "name": "tablet step 3: keyboard-focusable fields and primary action remain reachable",
+      "passed": true
+    },
+    {
+      "name": "tablet: three steps, six Luma choices, no fourth review step",
+      "passed": true
+    },
+    {
+      "name": "short: all eight palette dots have usable targets",
+      "passed": true,
+      "palette": [
+        {
+          "x": 18,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 62,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 106,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 150,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 194,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 238,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 282,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 326,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        }
+      ],
+      "rowCount": 1
+    },
+    {
+      "name": "short step 1: bounded active step, centered heading and no horizontal overflow",
+      "passed": true,
+      "flow": {
+        "x": 18,
+        "y": 64,
+        "width": 354,
+        "height": 420,
+        "right": 372,
+        "bottom": 484
+      },
+      "fields": {
+        "x": 18,
+        "y": 164,
+        "width": 354,
+        "height": 260,
+        "right": 372,
+        "bottom": 424
+      },
+      "footer": {
+        "x": 18,
+        "y": 424,
+        "width": 354,
+        "height": 60,
+        "right": 372,
+        "bottom": 484
+      },
+      "toolbar": {
+        "x": 18,
+        "y": 72,
+        "width": 354,
+        "height": 80,
+        "right": 372,
+        "bottom": 152
+      },
+      "titleCenterDelta": 0,
+      "viewportWidth": 390,
+      "viewportHeight": 500,
+      "documentWidth": 390,
+      "fieldsScrollHeight": 476,
+      "fieldsClientHeight": 260,
+      "forms": 1,
+      "basics": 1,
+      "contact": 0,
+      "about": 0
+    },
+    {
+      "name": "short step 1: keyboard-focusable fields and primary action remain reachable",
+      "passed": true
+    },
+    {
+      "name": "short: five social rows align selector, URL and named icon-only trash",
+      "passed": true,
+      "rows": [
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 162,
+              "bottom": 206,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 162,
+              "bottom": 206,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 162,
+              "bottom": 206,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove LinkedIn link 1",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 216,
+              "bottom": 260,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 216,
+              "bottom": 260,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 216,
+              "bottom": 260,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove GitHub link 2",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 270,
+              "bottom": 314,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 270,
+              "bottom": 314,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 270,
+              "bottom": 314,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove X link 3",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 324,
+              "bottom": 368,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 324,
+              "bottom": 368,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 324,
+              "bottom": 368,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove Instagram link 4",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 378,
+              "bottom": 422,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 378,
+              "bottom": 422,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 378,
+              "bottom": 422,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove Website link 5",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "name": "short: Back/Next retains avatar, basics and five links; removal affects only its target",
+      "passed": true
+    },
+    {
+      "name": "short step 2: bounded active step, centered heading and no horizontal overflow",
+      "passed": true,
+      "flow": {
+        "x": 18,
+        "y": 64,
+        "width": 354,
+        "height": 420,
+        "right": 372,
+        "bottom": 484
+      },
+      "fields": {
+        "x": 18,
+        "y": 164,
+        "width": 354,
+        "height": 260,
+        "right": 372,
+        "bottom": 424
+      },
+      "footer": {
+        "x": 18,
+        "y": 424,
+        "width": 354,
+        "height": 60,
+        "right": 372,
+        "bottom": 484
+      },
+      "toolbar": {
+        "x": 18,
+        "y": 72,
+        "width": 354,
+        "height": 80,
+        "right": 372,
+        "bottom": 152
+      },
+      "titleCenterDelta": 0,
+      "viewportWidth": 390,
+      "viewportHeight": 500,
+      "documentWidth": 390,
+      "fieldsScrollHeight": 449,
+      "fieldsClientHeight": 260,
+      "forms": 1,
+      "basics": 0,
+      "contact": 1,
+      "about": 0
+    },
+    {
+      "name": "short step 2: keyboard-focusable fields and primary action remain reachable",
+      "passed": true
+    },
+    {
+      "name": "short step 3: bounded active step, centered heading and no horizontal overflow",
+      "passed": true,
+      "flow": {
+        "x": 18,
+        "y": 64,
+        "width": 354,
+        "height": 420,
+        "right": 372,
+        "bottom": 484
+      },
+      "fields": {
+        "x": 18,
+        "y": 164,
+        "width": 354,
+        "height": 260,
+        "right": 372,
+        "bottom": 424
+      },
+      "footer": {
+        "x": 18,
+        "y": 424,
+        "width": 354,
+        "height": 60,
+        "right": 372,
+        "bottom": 484
+      },
+      "toolbar": {
+        "x": 18,
+        "y": 72,
+        "width": 354,
+        "height": 80,
+        "right": 372,
+        "bottom": 152
+      },
+      "titleCenterDelta": 0,
+      "viewportWidth": 390,
+      "viewportHeight": 500,
+      "documentWidth": 390,
+      "fieldsScrollHeight": 297,
+      "fieldsClientHeight": 260,
+      "forms": 1,
+      "basics": 0,
+      "contact": 0,
+      "about": 1
+    },
+    {
+      "name": "short step 3: keyboard-focusable fields and primary action remain reachable",
+      "passed": true
+    },
+    {
+      "name": "short: three steps, six Luma choices, no fourth review step",
+      "passed": true
+    },
+    {
+      "name": "desktop-200pct-reflow: all eight palette dots have usable targets",
+      "passed": true,
+      "palette": [
+        {
+          "x": 18,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 62,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 106,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 150,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 194,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 238,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 282,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        },
+        {
+          "x": 326,
+          "y": 268,
+          "width": 44,
+          "height": 44,
+          "swatch": 18
+        }
+      ],
+      "rowCount": 1
+    },
+    {
+      "name": "desktop-200pct-reflow step 1: bounded active step, centered heading and no horizontal overflow",
+      "passed": true,
+      "flow": {
+        "x": 18,
+        "y": 64,
+        "width": 684,
+        "height": 420,
+        "right": 702,
+        "bottom": 484
+      },
+      "fields": {
+        "x": 18,
+        "y": 164,
+        "width": 684,
+        "height": 260,
+        "right": 702,
+        "bottom": 424
+      },
+      "footer": {
+        "x": 18,
+        "y": 424,
+        "width": 684,
+        "height": 60,
+        "right": 702,
+        "bottom": 484
+      },
+      "toolbar": {
+        "x": 18,
+        "y": 72,
+        "width": 684,
+        "height": 80,
+        "right": 702,
+        "bottom": 152
+      },
+      "titleCenterDelta": 0,
+      "viewportWidth": 720,
+      "viewportHeight": 450,
+      "documentWidth": 720,
+      "fieldsScrollHeight": 476,
+      "fieldsClientHeight": 260,
+      "forms": 1,
+      "basics": 1,
+      "contact": 0,
+      "about": 0
+    },
+    {
+      "name": "desktop-200pct-reflow step 1: keyboard-focusable fields and primary action remain reachable",
+      "passed": true
+    },
+    {
+      "name": "desktop-200pct-reflow: five social rows align selector, URL and named icon-only trash",
+      "passed": true,
+      "rows": [
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 128,
+              "bottom": 172,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 128,
+              "bottom": 172,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 128,
+              "bottom": 172,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove LinkedIn link 1",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 182,
+              "bottom": 226,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 182,
+              "bottom": 226,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 182,
+              "bottom": 226,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove GitHub link 2",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 236,
+              "bottom": 280,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 236,
+              "bottom": 280,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 236,
+              "bottom": 280,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove X link 3",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 290,
+              "bottom": 334,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 290,
+              "bottom": 334,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 290,
+              "bottom": 334,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove Instagram link 4",
+          "text": ""
+        },
+        {
+          "boxes": [
+            {
+              "tag": "select",
+              "top": 344,
+              "bottom": 388,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "input",
+              "top": 344,
+              "bottom": 388,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            },
+            {
+              "tag": "button",
+              "top": 344,
+              "bottom": 388,
+              "height": 44,
+              "minHeight": "44px",
+              "paddingTop": "10px",
+              "paddingBottom": "10px"
+            }
+          ],
+          "trashName": "Remove Website link 5",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "name": "desktop-200pct-reflow: Back/Next retains avatar, basics and five links; removal affects only its target",
+      "passed": true
+    },
+    {
+      "name": "desktop-200pct-reflow step 2: bounded active step, centered heading and no horizontal overflow",
+      "passed": true,
+      "flow": {
+        "x": 18,
+        "y": 64,
+        "width": 684,
+        "height": 420,
+        "right": 702,
+        "bottom": 484
+      },
+      "fields": {
+        "x": 18,
+        "y": 164,
+        "width": 684,
+        "height": 260,
+        "right": 702,
+        "bottom": 424
+      },
+      "footer": {
+        "x": 18,
+        "y": 424,
+        "width": 684,
+        "height": 60,
+        "right": 702,
+        "bottom": 484
+      },
+      "toolbar": {
+        "x": 18,
+        "y": 72,
+        "width": 684,
+        "height": 80,
+        "right": 702,
+        "bottom": 152
+      },
+      "titleCenterDelta": 0,
+      "viewportWidth": 720,
+      "viewportHeight": 450,
+      "documentWidth": 720,
+      "fieldsScrollHeight": 449,
+      "fieldsClientHeight": 260,
+      "forms": 1,
+      "basics": 0,
+      "contact": 1,
+      "about": 0
+    },
+    {
+      "name": "desktop-200pct-reflow step 2: keyboard-focusable fields and primary action remain reachable",
+      "passed": true
+    },
+    {
+      "name": "desktop-200pct-reflow step 3: bounded active step, centered heading and no horizontal overflow",
+      "passed": true,
+      "flow": {
+        "x": 18,
+        "y": 30,
+        "width": 684,
+        "height": 420,
+        "right": 702,
+        "bottom": 450
+      },
+      "fields": {
+        "x": 18,
+        "y": 130,
+        "width": 684,
+        "height": 260,
+        "right": 702,
+        "bottom": 390
+      },
+      "footer": {
+        "x": 18,
+        "y": 390,
+        "width": 684,
+        "height": 60,
+        "right": 702,
+        "bottom": 450
+      },
+      "toolbar": {
+        "x": 18,
+        "y": 38,
+        "width": 684,
+        "height": 80,
+        "right": 702,
+        "bottom": 118
+      },
+      "titleCenterDelta": 0,
+      "viewportWidth": 720,
+      "viewportHeight": 450,
+      "documentWidth": 720,
+      "fieldsScrollHeight": 297,
+      "fieldsClientHeight": 260,
+      "forms": 1,
+      "basics": 0,
+      "contact": 0,
+      "about": 1
+    },
+    {
+      "name": "desktop-200pct-reflow step 3: keyboard-focusable fields and primary action remain reachable",
+      "passed": true
+    },
+    {
+      "name": "desktop-200pct-reflow: three steps, six Luma choices, no fourth review step",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "reference-desktop-step1-original",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/reference-desktop-step1-original--alice--1440x900--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": true
+    },
+    {
+      "name": "desktop-step1-avatar-selected",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/desktop-step1-avatar-selected--alice--1440x900--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": false
+    },
+    {
+      "name": "desktop-step2-five-social-links",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/desktop-step2-five-social-links--alice--1440x900--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": false
+    },
+    {
+      "name": "desktop-step3-about",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/desktop-step3-about--alice--1440x900--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": false
+    },
+    {
+      "name": "reference-mobile-step1-original",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/reference-mobile-step1-original--alice--390x844--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": true
+    },
+    {
+      "name": "reference-mobile-step2-original",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/reference-mobile-step2-original--alice--390x844--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": true
+    },
+    {
+      "name": "reference-mobile-step3-original",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/reference-mobile-step3-original--alice--390x844--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": true
+    },
+    {
+      "name": "mobile-step1-avatar-selected",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/mobile-step1-avatar-selected--alice--390x844--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": false
+    },
+    {
+      "name": "mobile-step2-five-social-links",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/mobile-step2-five-social-links--alice--390x844--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": false
+    },
+    {
+      "name": "mobile-step2-platform-focused",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/mobile-step2-platform-focused--alice--390x844--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": false
+    },
+    {
+      "name": "mobile-step3-about",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/mobile-step3-about--alice--390x844--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": false
+    },
+    {
+      "name": "narrow-step1-avatar-selected",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/narrow-step1-avatar-selected--alice--320x640--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": true
+    },
+    {
+      "name": "narrow-step2-five-social-links",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/narrow-step2-five-social-links--alice--320x640--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": false
+    },
+    {
+      "name": "narrow-step3-about",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/narrow-step3-about--alice--320x640--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": false
+    },
+    {
+      "name": "tablet-step1-avatar-selected",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/tablet-step1-avatar-selected--alice--834x1194--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 834,
+        "height": 1194
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": true
+    },
+    {
+      "name": "tablet-step2-five-social-links",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/tablet-step2-five-social-links--alice--834x1194--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 834,
+        "height": 1194
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": false
+    },
+    {
+      "name": "tablet-step3-about",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/tablet-step3-about--alice--834x1194--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 834,
+        "height": 1194
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": false
+    },
+    {
+      "name": "short-step1-avatar-selected",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/short-step1-avatar-selected--alice--390x500--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 390,
+        "height": 500
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": false
+    },
+    {
+      "name": "short-step2-five-social-links",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/short-step2-five-social-links--alice--390x500--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 390,
+        "height": 500
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": true
+    },
+    {
+      "name": "short-step3-about",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/short-step3-about--alice--390x500--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 390,
+        "height": 500
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": false
+    },
+    {
+      "name": "desktop-200pct-reflow-step1-avatar-selected",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/desktop-200pct-reflow-step1-avatar-selected--alice--720x450--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 720,
+        "height": 450
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": false
+    },
+    {
+      "name": "desktop-200pct-reflow-step2-five-social-links",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/desktop-200pct-reflow-step2-five-social-links--alice--720x450--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 720,
+        "height": 450
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": false
+    },
+    {
+      "name": "desktop-200pct-reflow-step3-about",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/v6-profile/e0fbc27-5eUJtc/desktop-200pct-reflow-step3-about--alice--720x450--e0fbc27.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 720,
+        "height": 450
+      },
+      "fullPage": false,
+      "source": "e0fbc27c87449ff499427589108b201ab7829365",
+      "workerSha": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+      "inspected": false
+    }
+  ],
+  "defects": [],
+  "pageErrors": [],
+  "blockedRequests": [],
+  "writes": [],
+  "browserClosed": true,
+  "browser": "156.0.8078.4",
+  "saveSkipped": "Pass --save-synthetic-profile to permit one fake_alice complete-profile write to disposable D1",
+  "workerShaAfter": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+  "visualComparison": {
+    "reference": "/home/param302/Dev/DDEHack-portal/design-research/2026-10-23/main-pages-v3/01-profile-three-steps.png",
+    "sameInputComparison": true,
+    "deliveryOriginalsInspected": 4,
+    "totalOriginalsInspected": 7,
+    "userAccepted": false,
+    "finding": "No new layout defect identified in the inspected scoped profile comparison; all prior reported canvas/ring/segment defects corrected."
+  }
+}
