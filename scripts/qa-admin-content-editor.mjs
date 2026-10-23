@@ -287,13 +287,11 @@ try {
   const initial = await view();
   assert.equal(initial.content.revision, 0, "Fresh content fixture required");
   const original = JSON.parse(initial.content.draft);
-  const disclosure = page
-    .locator("details")
-    .filter({
-      has: page
-        .locator("summary")
-        .getByText("Public event content", { exact: true }),
-    });
+  const disclosure = page.locator("details").filter({
+    has: page
+      .locator("summary")
+      .getByText("Public event content", { exact: true }),
+  });
   await activate(disclosure.locator("summary"));
   const form = page.locator(".admin-content-editor");
   await form.waitFor();
@@ -352,7 +350,9 @@ try {
   await faq
     .getByLabel("question", { exact: true })
     .fill(expected.faqs[0].question);
-  await faq.getByLabel("answer", { exact: true }).fill(expected.faqs[0].answer);
+  await faq
+    .getByRole("textbox", { name: "answer", exact: true })
+    .fill(expected.faqs[0].answer);
   await check(
     "Draft save cancel preserves server; confirmed save persists exactly once",
     async () => {
