@@ -500,3 +500,245 @@ details.panel:has(> .admin-import)[open] {
     grid-column: 1 / -1;
   }
 }
+
+/* Admin density overrides intentionally outrank shared .main form defaults. */
+.main:not(.home-main):is(
+    :has(.admin-participant-filters),
+    :has(.admin-team-list),
+    :has(.submission-list:has(.admin-project-action))
+  )
+  > .page-heading {
+  margin-bottom: 16px;
+}
+.main:not(.home-main):is(
+    :has(.admin-participant-filters),
+    :has(.admin-team-list),
+    :has(.submission-list:has(.admin-project-action))
+  )
+  > .page-heading
+  h1 {
+  font-size: 32px;
+  letter-spacing: -0.045em;
+}
+.main:not(.home-main) .admin-control label {
+  margin: 0;
+  gap: 4px;
+  font-size: 12px;
+  line-height: 18px;
+}
+.main:not(.home-main) .admin-control label > :is(input, select, textarea) {
+  min-height: 44px;
+  padding: 9px 11px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.main:not(.home-main) .admin-control.admin-participant-filters {
+  margin-block: 8px 12px;
+  gap: 10px;
+}
+.main:not(.home-main) .admin-participant-filters + .toolbar {
+  align-items: end;
+  margin-block: 8px;
+}
+.main:not(.home-main) .admin-participant-filters + .toolbar > label {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+}
+.main:not(.home-main) .admin-participant-filters + .toolbar > label > select {
+  min-height: 44px;
+  padding: 9px 11px;
+  font-size: 13px;
+}
+.main:not(.home-main) details.panel:has(> .admin-import) {
+  padding: 0;
+  margin: 4px 0 12px;
+  border: 0;
+  border-radius: 0;
+}
+.main:not(.home-main) details.panel:has(> .admin-import) > summary {
+  min-height: 44px;
+  padding: 10px 0;
+  line-height: 24px;
+  font-size: 13px;
+}
+.main:not(.home-main)
+  .admin-participant-filters
+  ~ .table-scroll
+  .participants-table
+  :is(th, td) {
+  padding-block: 12px;
+}
+.main:not(.home-main)
+  .admin-participant-filters
+  ~ .table-scroll
+  .participants-table
+  th {
+  color: #5b616c;
+  background: #f8f9fa;
+  font-size: 12px;
+  font-weight: 500;
+}
+.main:not(.home-main) .admin-control .admin-icon-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #626672;
+  background: transparent;
+}
+.main:not(.home-main) .admin-control .admin-icon-action:hover {
+  color: #a12c25;
+  background: #fff0ee;
+  border-color: #f2d6d1;
+  filter: none;
+}
+.main:not(.home-main) .admin-control .admin-icon-action:focus-visible {
+  outline: 3px solid #245cc6;
+  outline-offset: 2px;
+}
+.main:not(.home-main) .admin-control .admin-icon-action .admin-control-icon {
+  width: 20px;
+  height: 20px;
+  flex-basis: 20px;
+}
+.main:not(.home-main) .admin-participant-action.is-compact {
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+}
+.main:not(.home-main)
+  .admin-participant-action.is-compact
+  .admin-action-target {
+  display: none;
+}
+.main:not(.home-main) .admin-import .admin-import-fields {
+  gap: 10px;
+  margin-top: 8px;
+}
+.main:not(.home-main) .admin-import .admin-source-options {
+  padding: 0;
+  gap: 0;
+  border-radius: 8px;
+  background: #f5f6f7;
+}
+.main:not(.home-main) .admin-import .admin-source-options button {
+  padding: 8px 14px;
+  font-size: 12px;
+}
+.main:not(.home-main) .admin-import .admin-import-entry {
+  gap: 10px;
+}
+.main:not(.home-main) .admin-import .admin-import-entry > .button {
+  min-height: 44px;
+  padding: 9px 18px;
+  border-radius: 8px;
+}
+.main:not(.home-main) .admin-control.admin-project-action {
+  margin: 0;
+  padding: 10px 0;
+  border: 0;
+  border-radius: 0;
+}
+.main:not(.home-main) .admin-team-list > li {
+  padding: 16px 0;
+  margin: 0;
+  border-width: 0 0 1px;
+  border-radius: 0;
+}
+.main:not(.home-main) .admin-team-list .section-heading {
+  margin: 0 0 8px;
+}
+.main:not(.home-main) .admin-team-list .identity-line h2 {
+  margin: 0;
+  font-size: 19px;
+  letter-spacing: -0.03em;
+}
+.main:not(.home-main) .admin-team-list .identity-line > .pill {
+  display: none;
+}
+.main:not(.home-main) .admin-team-list .identity-line > svg {
+  width: 36px;
+  height: 36px;
+}
+.main:not(.home-main) .admin-team-list .member-list > li {
+  min-height: 52px;
+  padding-block: 8px;
+  gap: 10px;
+}
+.main:not(.home-main) .admin-team-list details > summary {
+  min-height: 44px;
+  padding-block: 10px;
+  font-size: 12px;
+}
+.main:not(.home-main) .submission-list:has(.admin-project-action) > li > a {
+  padding: 16px 0;
+  gap: 12px;
+}
+.main:not(.home-main) .submission-list:has(.admin-project-action) h2 {
+  margin: 0 0 4px;
+  font-size: 19px;
+}
+.main:not(.home-main)
+  .submission-list:has(.admin-project-action)
+  details.panel {
+  padding: 0;
+  margin: 0 0 12px;
+  border: 0;
+  border-radius: 0;
+}
+.main:not(.home-main)
+  .submission-list:has(.admin-project-action)
+  details.panel
+  > summary {
+  min-height: 44px;
+  padding-block: 10px;
+  line-height: 24px;
+  font-size: 12px;
+}
+@media (max-width: 740px) {
+  .main:not(.home-main):is(
+      :has(.admin-participant-filters),
+      :has(.admin-team-list),
+      :has(.submission-list:has(.admin-project-action))
+    )
+    > .page-heading
+    h1 {
+    font-size: 28px;
+  }
+  .main:not(.home-main)
+    .admin-participant-filters
+    ~ .table-scroll
+    .participants-table
+    td {
+    padding: 0;
+  }
+  .main:not(.home-main) .admin-team-list .section-heading {
+    gap: 8px;
+  }
+  .main:not(.home-main) .admin-team-list .identity-line {
+    gap: 10px;
+    min-width: 0;
+  }
+  .main:not(.home-main) .admin-team-list .identity-line h2 {
+    font-size: 18px;
+  }
+  .main:not(.home-main) .submission-list:has(.admin-project-action) > li > a {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+  }
+  .main:not(.home-main)
+    .submission-list:has(.admin-project-action)
+    > li
+    > a
+    > div {
+    grid-column: 1 / -1;
+  }
+}

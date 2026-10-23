@@ -230,7 +230,7 @@ export default function AdminImportControls({
           });
         }}
       >
-        <fieldset disabled={busy}>
+        <fieldset disabled={busy} className="admin-import-fields">
           <div
             className="admin-source-options"
             role="group"
@@ -274,7 +274,7 @@ export default function AdminImportControls({
                 Email list
                 <textarea
                   required
-                  rows={3}
+                  rows={2}
                   value={csv}
                   onChange={(event) => changeSource(event.target.value)}
                   placeholder="name@example.com, another@example.com"
@@ -304,7 +304,7 @@ export default function AdminImportControls({
                 </label>
                 <textarea
                   aria-label="Paste CSV with header row"
-                  rows={3}
+                  rows={2}
                   value={csv}
                   onChange={(event) => changeSource(event.target.value)}
                   placeholder="Or paste CSV with header row"

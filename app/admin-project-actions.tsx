@@ -1,6 +1,10 @@
 "use client";
 import { useState } from "react";
-import { useAdminOperation, type AdminRun } from "./admin-participant-actions";
+import {
+  AdminIcon,
+  useAdminOperation,
+  type AdminRun,
+} from "./admin-participant-actions";
 
 export type AdminProjectTarget = {
   id: string;
@@ -117,11 +121,14 @@ export default function AdminProjectActions({
           </label>
         )}
         <button
-          className={`button ${restore ? "secondary" : "admin-control-danger"}`}
+          className={`button ${restore ? "secondary" : "admin-icon-action admin-icon-danger"}`}
+          aria-label={`${restore ? "Restore" : "Remove"} ${scope === "project" ? "project" : scope === "both" ? "project and submission" : "submission"}: ${project.name}${selectedVersion && scope !== "project" ? ` · ${selectedVersion.label} (${selectedVersion.id})` : ""}`}
+          title={`${restore ? "Restore" : "Remove"} ${scope === "project" ? "project" : scope === "both" ? "project and submission" : "submission"}`}
+          aria-busy={busy}
           type="submit"
           disabled={busy || (scope !== "project" && !selectedVersion)}
         >
-          {busy ? "Waiting…" : restore ? "Restore" : "Remove"}
+          {restore ? busy ? "Waiting…" : "Restore" : <AdminIcon name="trash" />}
         </button>
       </fieldset>
       {error && (

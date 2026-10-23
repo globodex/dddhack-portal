@@ -93,7 +93,7 @@ test("single email, list and email-only CSV require no profile fields", async ()
     assert.ok(!html.includes("Import preview"));
     assert.ok(!html.includes('type="tel"'));
     assert.ok(!html.includes("Complete profile"));
-    assert.equal((html.match(/<p/g) || []).length, 0);
+    assert.equal((html.match(/<p(?:\s|>)/g) || []).length, 0);
   }
 });
 
@@ -209,7 +209,7 @@ test("compact target actions keep exact tokens with no mandatory reason", () => 
   ]) {
     const html = renderToStaticMarkup(component);
     assert.ok(!html.includes("Audit reason"));
-    assert.equal((html.match(/<p/g) || []).length, 0);
+    assert.equal((html.match(/<p(?:\s|>)/g) || []).length, 0);
   }
 });
 

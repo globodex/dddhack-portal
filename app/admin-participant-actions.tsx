@@ -33,9 +33,36 @@ export function useAdminOperation() {
 export function AdminIcon({
   name,
 }: {
-  name: "person" | "upload" | "project" | "clock";
+  name: "person" | "upload" | "project" | "clock" | "trash";
 }) {
+  // Trash paths copied unchanged from the approved local Lucide source pack:
+  // github.com/lucide-icons/lucide/blob/main/icons/trash.svg (Lucide / Feather).
+  // Copyright (c) 2026 Lucide Icons and Contributors; 2013-present Cole Bemis.
+  // Permission is hereby granted, free of charge, to any person obtaining a copy
+  // of this software and associated documentation files (the "Software"), to deal
+  // in the Software without restriction, including without limitation the rights
+  // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  // copies of the Software, and to permit persons to whom the Software is
+  // furnished to do so, subject to the following conditions:
+  // The above copyright notice and this permission notice shall be included in
+  // all copies or substantial portions of the Software.
+  // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  // AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  // THE SOFTWARE.
   const paths: Record<typeof name, ReactNode> = {
+    trash: (
+      <>
+        <path d="M10 11v6" />
+        <path d="M14 11v6" />
+        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+        <path d="M3 6h18" />
+        <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+      </>
+    ),
     person: (
       <>
         <circle cx="12" cy="7" r="4" />
@@ -99,14 +126,16 @@ export function participantActionValues(
 export default function AdminParticipantActions({
   participant,
   run,
+  compact = false,
 }: {
   participant: AdminParticipantTarget;
   run: AdminRun;
+  compact?: boolean;
 }) {
   const { busy, error, execute } = useAdminOperation();
   return (
     <form
-      className="admin-control admin-participant-action"
+      className={`admin-control admin-participant-action${compact ? " is-compact" : ""}`}
       onSubmit={(event) => {
         event.preventDefault();
         void execute(() =>
@@ -124,15 +153,22 @@ export default function AdminParticipantActions({
         {participant.email && <span>{participant.email}</span>}
       </div>
       <button
-        className={`button ${participant.removed ? "secondary" : "admin-control-danger"}`}
+        className={`button ${participant.removed ? "secondary" : "admin-icon-action admin-icon-danger"}`}
+        aria-label={`${participant.removed ? "Restore participant" : "Remove participant"}: ${participant.name}${participant.email ? ` (${participant.email})` : ""}`}
+        title={`${participant.removed ? "Restore" : "Remove"} ${participant.name}`}
+        aria-busy={busy}
         type="submit"
         disabled={busy}
       >
-        {busy
-          ? "Waiting…"
-          : participant.removed
-            ? "Restore participant"
-            : "Remove participant"}
+        {participant.removed ? (
+          busy ? (
+            "Waiting…"
+          ) : (
+            "Restore"
+          )
+        ) : (
+          <AdminIcon name="trash" />
+        )}
       </button>
       {error && (
         <p className="error-message" role="alert">
