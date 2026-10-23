@@ -370,3 +370,8 @@ test("ignored participant hashes never affect draft/version persistence or retry
     }
   }
 });
+
+test("hardcoded app copy has no em dash", () => {
+  const source = readFileSync("app/portal.tsx", "utf8");
+  assert.equal(source.includes("\u2014"), false);
+});

@@ -201,7 +201,7 @@ export function portalTargetName(data: View, values: Row): string {
     typeof values.feedbackPaused === "boolean"
   )
     return `All projects · voting ${values.votingPaused ? "paused" : "open"} · public feedback ${values.feedbackPaused ? "paused" : "open"} · settings version ${values.version}`;
-  if (values.weights) return "Global scoring weights — all teams";
+  if (values.weights) return "Global scoring weights · all teams";
   if (values.operation)
     return values.operation === "submissions"
       ? "Submission operations"
@@ -1270,7 +1270,7 @@ export function Discover({
               ) : (
                 <>
                   <p>
-                    {row.readiness?.total ?? "—"} members ·{" "}
+                    {row.readiness?.total ?? "?"} members ·{" "}
                     {row.status || (row.locked ? "Locked" : "Forming")}
                   </p>
                   <p>{row.bio}</p>
@@ -1890,7 +1890,7 @@ export function UpvoteButton({
         }}
       >
         <Icon name="up" size={18} />
-        <span>{count ?? "—"}</span>
+        <span>{count ?? "?"}</span>
       </button>
       {error && (
         <small className="error-message" role="alert">
@@ -1975,7 +1975,7 @@ export function Projects({
           aria-label={`Sign in to upvote ${p.projectName}`}
         >
           <Icon name="up" size={18} />
-          <span>{Number.isFinite(p.upvotes) ? p.upvotes : "—"}</span>
+          <span>{Number.isFinite(p.upvotes) ? p.upvotes : "?"}</span>
         </a>
       )}
       <a href={`/projects/${p.slug}#comments`}>
