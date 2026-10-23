@@ -24,6 +24,7 @@ type TeamTarget = {
 export async function transferTeamLeader(s: PortalService, input: unknown) {
   const actor = await s.staff();
   const d = teamLeaderTransferSchema.parse(input);
+  await s.unfrozen();
   const team = await one<TeamTarget>(
     s.db,
     "SELECT t.id,t.name,t.leader_id,COALESCE(NULLIF(pp.display_name,''),u.name) leader_name FROM teams t JOIN users u ON u.id=t.leader_id LEFT JOIN participant_profiles pp ON pp.user_id=u.id WHERE t.id=? AND NOT EXISTS(SELECT 1 FROM record_removals r WHERE r.kind='team' AND r.target_id=t.id AND r.active=1)",
@@ -62,7 +63,7 @@ export async function transferTeamLeader(s: PortalService, input: unknown) {
     [
       ["INSERT INTO write_guards VALUES(?,1)", guard],
       [
-        "UPDATE teams SET leader_id=? WHERE id=? AND leader_id=? AND EXISTS(SELECT 1 FROM memberships m WHERE m.team_id=teams.id AND m.user_id=?) AND NOT EXISTS(SELECT 1 FROM record_removals r WHERE r.active=1 AND ((r.kind='team' AND r.target_id=teams.id) OR (r.kind='participant' AND r.target_id=?)))",
+        "UPDATE teams SET leader_id=? WHERE id=? AND leader_id=? AND EXISTS(SELECT 1 FROM memberships m WHERE m.team_id=teams.id AND m.user_id=?) AND NOT EXISTS(SELECT 1 FROM record_removals r WHERE r.active=1 AND ((r.kind='team' AND r.target_id=teams.id) OR (r.kind='participant' AND r.target_id=?))) AND NOT EXISTS(SELECT 1 FROM result_snapshots)",
         next.id,
         team.id,
         d.expectedLeaderId,
