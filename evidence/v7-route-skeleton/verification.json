@@ -8,7 +8,7 @@
   "typecheck": "passed",
   "buildArtifactReview": {
     "passed": true,
-    "artifactFiles": 189
+    "artifactFiles": 185
   },
   "controlledBrowserChecks": {
     "passed": 27,
