@@ -98,3 +98,59 @@
     animation: none;
   }
 }
+
+/* Authenticated mobile shell: keep the full community name beside a usable menu. */
+@media (max-width: 740px) {
+  .app-shell:not(.public-home-shell) > .mobile-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    min-block-size: 76px;
+    padding: 15px 16px;
+    box-sizing: border-box;
+  }
+  .app-shell:not(.public-home-shell) > .mobile-header .brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    font-size: 14px;
+    line-height: 1.25;
+    letter-spacing: normal;
+    white-space: normal;
+  }
+  .app-shell:not(.public-home-shell) > .mobile-header .brand img {
+    inline-size: 24px;
+    block-size: 24px;
+    flex: 0 0 24px;
+    object-fit: contain;
+  }
+  .app-shell:not(.public-home-shell) > .mobile-header .brand span {
+    min-inline-size: 0;
+    max-inline-size: none;
+    font: inherit;
+    color: inherit;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+  .app-shell:not(.public-home-shell) > .mobile-header .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: end;
+    gap: 8px;
+    min-inline-size: 44px;
+    min-block-size: 44px;
+    padding: 10px 12px;
+    font-size: 14px;
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+  .app-shell:not(.public-home-shell) > .mobile-header .button .ui-icon {
+    inline-size: 18px;
+    block-size: 18px;
+    flex: 0 0 18px;
+  }
+}
