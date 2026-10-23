@@ -2,6 +2,10 @@
 import AddAdmins from "./add-admins";
 import { HeadingDot } from "./expressive-heading";
 import CenteredLoader from "./centered-loader";
+import {
+  submissionToolChoices,
+  selectedSubmissionTools,
+} from "../lib/submission-tools";
 import OwnerOperationalSetup from "./owner-operational-setup";
 import {
   participantExportHref,
@@ -1325,8 +1329,8 @@ const emptyProject = {
   logo: "",
   banner: "",
   tools: "",
+  cerebrasIntegration: undefined,
   attestation: false,
-  contributions: [] as Row[],
 };
 export function Submission({
   data,
@@ -1400,18 +1404,7 @@ export function Submission({
     try {
       await run(submit ? "submit-project" : "save-project", {
         revision: data.project?.revision || 0,
-        project: {
-          ...project,
-          contributions: (data.members || []).map((m: Row) => ({
-            userId: m.id,
-            role:
-              project.contributions.find((c: Row) => c.userId === m.id)?.role ||
-              "",
-            codex:
-              project.contributions.find((c: Row) => c.userId === m.id)
-                ?.codex || "",
-          })),
-        },
+        project: { ...project, contributions: undefined },
       });
     } catch (e) {
       if (!(e instanceof ActionCancelled)) setError((e as Error).message);
@@ -1420,21 +1413,6 @@ export function Submission({
       setBusy(false);
     }
   };
-  const contribution = (userId: string, field: string, value: string) =>
-    setProject((p: Row) => ({
-      ...p,
-      contributions: [
-        ...p.contributions.filter((c: Row) => c.userId !== userId),
-        {
-          userId,
-          role:
-            p.contributions.find((c: Row) => c.userId === userId)?.role || "",
-          codex:
-            p.contributions.find((c: Row) => c.userId === userId)?.codex || "",
-          [field]: value,
-        },
-      ],
-    }));
   return (
     <>
       {data.submissionAccess?.canRead !== true ? (
@@ -1493,11 +1471,10 @@ export function Submission({
                   ["description", "Project description"],
                   ["github", "GitHub repository"],
                   ["demo", "Demo URL · optional"],
-                  ["tools", "Tools and how you used them"],
                 ].map(([name, label]) => (
                   <label key={name}>
                     {label}
-                    {name === "description" || name === "tools" ? (
+                    {name === "description" ? (
                       <textarea
                         rows={4}
                         value={project[name]}
@@ -1514,6 +1491,50 @@ export function Submission({
                     )}
                   </label>
                 ))}
+                <fieldset className="submission-tools">
+                  <legend>Tools used</legend>
+                  {submissionToolChoices.map((tool) => (
+                    <label className="check-label" key={tool}>
+                      <input
+                        type="checkbox"
+                        checked={selectedSubmissionTools(
+                          project.tools,
+                        ).includes(tool)}
+                        onChange={(e) => {
+                          const selected = selectedSubmissionTools(
+                            project.tools,
+                          );
+                          set(
+                            "tools",
+                            (e.target.checked
+                              ? [...selected, tool]
+                              : selected.filter((item) => item !== tool)
+                            ).join("\n"),
+                          );
+                        }}
+                      />
+                      {tool}
+                    </label>
+                  ))}
+                </fieldset>
+                <fieldset className="submission-tools">
+                  <legend>
+                    Does {project.projectName?.trim() || "your project"}{" "}
+                    integrate Cerebras?
+                  </legend>
+                  {(["yes", "no"] as const).map((answer) => (
+                    <label className="check-label" key={answer}>
+                      <input
+                        type="radio"
+                        name="cerebras-integration"
+                        value={answer}
+                        checked={project.cerebrasIntegration === answer}
+                        onChange={() => set("cerebrasIntegration", answer)}
+                      />
+                      {answer === "yes" ? "Yes" : "No"}
+                    </label>
+                  ))}
+                </fieldset>
               </div>
               <div hidden={step !== 2 && canCommit}>
                 <div className="media-inputs">
@@ -1542,38 +1563,6 @@ export function Submission({
                 </div>
               </div>
               <div hidden={step !== 3 && canCommit}>
-                <h3>Everyone’s contribution</h3>
-                {(data.members || []).map((m: Row) => (
-                  <div className="contribution" key={m.id}>
-                    <h3>{m.name}</h3>
-                    <label>
-                      Contribution
-                      <input
-                        value={
-                          project.contributions.find(
-                            (c: Row) => c.userId === m.id,
-                          )?.role || ""
-                        }
-                        onChange={(e) =>
-                          contribution(m.id, "role", e.target.value)
-                        }
-                      />
-                    </label>
-                    <label>
-                      Use of Codex or other tools
-                      <input
-                        value={
-                          project.contributions.find(
-                            (c: Row) => c.userId === m.id,
-                          )?.codex || ""
-                        }
-                        onChange={(e) =>
-                          contribution(m.id, "codex", e.target.value)
-                        }
-                      />
-                    </label>
-                  </div>
-                ))}
                 <label className="check-label">
                   <input
                     type="checkbox"
@@ -1737,6 +1726,9 @@ export function ProjectVersion({ payload }: { payload: Row }) {
       <p>{payload.problemSolution}</p>
       <p className="prose">{payload.description}</p>
       <p className="prose">{payload.tools}</p>
+      {payload.cerebrasIntegration && (
+        <p>Cerebras: {payload.cerebrasIntegration === "yes" ? "Yes" : "No"}</p>
+      )}
       {[
         ["Repository", payload.github],
         ["Demo", payload.demo],
@@ -2273,8 +2265,8 @@ export function AdminParticipants({
                 setFilters({ ...filters, status: "all", team: "all" });
             }}
           >
-            <option value="active">Active participants</option>
-            <option value="removed">Removed participants</option>
+            <option value="active">Active</option>
+            <option value="removed">Removed</option>
             <option value="all">All records</option>
           </select>
         </label>
@@ -2381,7 +2373,7 @@ export function AdminParticipants({
               <th>Participant</th>
               <th>Team</th>
               <th>Approval</th>
-              <th>Progress</th>
+              <th>Team status</th>
               <th>Attendance</th>
               {canManage && <th>Manage participant</th>}
             </tr>
@@ -2425,8 +2417,15 @@ export function AdminParticipants({
                       : r.approval}
                 </td>
                 <td>
-                  <Pill tone={r.status === "Going" ? "positive" : "neutral"}>
-                    {r.status}
+                  <Pill
+                    tone={r.teamStatus === "Submitted" ? "positive" : "neutral"}
+                  >
+                    {r.teamStatus ||
+                      (r.teamId
+                        ? r.teamLocked
+                          ? "Locked"
+                          : "Forming"
+                        : "Not in a team")}
                   </Pill>
                 </td>
                 <td>

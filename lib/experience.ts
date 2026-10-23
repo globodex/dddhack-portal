@@ -92,6 +92,7 @@ type Payload = {
   logo: string;
   banner: string;
   tools: string;
+  cerebrasIntegration?: "yes" | "no";
   contributions: { userId: string; role: string; codex: string }[];
   attestation: boolean;
 };
@@ -109,18 +110,9 @@ const draftSchema = z
     logo: z.string().max(180000).default(""),
     banner: z.string().max(180000).default(""),
     tools: z.string().max(2000).default(""),
-    contributions: z
-      .array(
-        z
-          .object({
-            userId: id,
-            role: z.string().max(2000),
-            codex: z.string().max(2000),
-          })
-          .strict(),
-      )
-      .max(5)
-      .default([]),
+    cerebrasIntegration: z.enum(["yes", "no"]).optional(),
+    // Retired participant fields are ignored before request identity/persistence.
+    contributions: z.unknown().transform(() => []),
     attestation: z.boolean().default(false),
   })
   .strict();
@@ -1765,24 +1757,6 @@ export class PortalExperience {
         validateProjectImage(d.project.logo, "logo");
         validateProjectImage(d.project.banner, "banner");
         demand(d.project.attestation, 422, "ATTESTATION_REQUIRED");
-        const members = await rows<{ user_id: string }>(
-          this.s.db,
-          "SELECT user_id FROM memberships WHERE team_id=?",
-          t.id,
-        );
-        demand(
-          d.project.contributions.length === members.length &&
-            new Set(d.project.contributions.map((c) => c.userId)).size ===
-              members.length &&
-            members.every((m) =>
-              d.project.contributions.some(
-                (c) =>
-                  c.userId === m.user_id && c.role.trim() && c.codex.trim(),
-              ),
-            ),
-          422,
-          "ALL_MEMBER_CONTRIBUTIONS_REQUIRED",
-        );
         const versionId = crypto.randomUUID();
         sql.push([
           "INSERT INTO submission_versions SELECT ?,?,COALESCE(MAX(attempt),0)+1,?,? FROM submission_versions WHERE team_id=?",
@@ -1808,7 +1782,7 @@ export class PortalExperience {
       }
       try {
         await this.s.mutate(actor.id, action, projectId, sql, {
-          fields: ["project", "media", "contributions"],
+          fields: ["project", "media"],
           submitted: action === "submit-project",
         });
       } catch (error) {

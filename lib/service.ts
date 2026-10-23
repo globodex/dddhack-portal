@@ -1257,8 +1257,9 @@ export class PortalService {
             gtm: text(3000),
             features: text(4000),
             tools: text(2000),
+            cerebrasIntegration: z.enum(["yes", "no"]).optional(),
             toolEffectiveness: text(3000),
-            contributions: z.unknown(),
+            contributions: z.unknown().transform(() => []),
             openaiClaim: bool,
             cerebrasClaim: bool,
             openaiEvidence: z.string().max(4000).default(""),
@@ -1269,26 +1270,7 @@ export class PortalService {
         validateProjectImage(d.logo, "logo");
         validateProjectImage(d.banner, "banner");
         demand(d.attestation, 422, "ATTESTATION_REQUIRED");
-        const members = await rows<{ user_id: string }>(
-          this.db,
-          "SELECT user_id FROM memberships WHERE team_id=?",
-          t.id,
-        );
-        const contributions = z
-          .array(z.object({ userId: id, role: text(2000), codex: text(2000) }))
-          .min(1)
-          .max(5)
-          .parse(json(d.contributions));
-        demand(
-          contributions.length === members.length &&
-            new Set(contributions.map((c) => c.userId)).size ===
-              members.length &&
-            members.every((m) =>
-              contributions.some((c) => c.userId === m.user_id),
-            ),
-          422,
-          "ALL_MEMBER_CONTRIBUTIONS_REQUIRED",
-        );
+        const contributions: unknown[] = [];
         demand(
           !d.openaiClaim || d.openaiEvidence.trim().length >= 20,
           422,
