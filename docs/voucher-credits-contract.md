@@ -1,0 +1,22 @@
+# Voucher-only credits
+
+This change is authorized for redeemable voucher codes and redemption links only. API keys, passwords and account credentials are outside this flow. New voucher rows do not use application encryption or require `CREDIT_ENCRYPTION_KEY`. Platform transport, database storage protections, trusted identity and role checks remain in place. Anyone with direct database access can read the new `voucher_value` values; the parent disclosed this tradeoff before the user confirmed the voucher-only scope.
+
+## Storage and additive upgrade
+
+`credit_inventory.voucher_value` is a new nullable text column. New imports write the redeemable value there and leave the retained `ciphertext` column empty. Plaintext is never placed in a column named ciphertext. The database rejects voucher rows with empty/oversized values or simultaneous nonempty ciphertext. Existing IDs, fingerprints, uniqueness constraints, types, ciphertext, assignments and recipient emails are preserved. Migration `0020_voucher_credit_values.sql` / Drizzle `0023_voucher_credit_values.sql` only adds the column and validation triggers; it performs no data conversion, reset or deletion.
+
+Historical rows retain `voucher_value=NULL` and their original ciphertext. Their explicit reveal still uses the existing key and fails closed when that key is unavailable/invalid. No key is rotated, deleted or changed. Without a usable legacy key, allocation skips unassigned ciphertext while continuing to allocate vouchers. Existing ciphertext allocations remain assigned and can be revealed again with their original key. Vouchers are preferred when both row types are available; each person still receives at most one allocation per type and each inventory row only one recipient.
+
+The parent performed the authorized read-only live inventory/allocation check before implementation: both tables were empty, with no further rows. No actual values were printed. This branch performs no live migration/import/allocation, key/configuration change, source-credential action or deployment. Apply additive migrations through the normal separately authorized release process before enabling the new code. Historical ciphertext, if encountered elsewhere, needs its existing key; do not convert it implicitly.
+
+## Unchanged API and UI fields
+
+- Admin import: `preview-import` / `commit-import` with `{kind:'credits',typeId,csv,digest?}` and the existing `value` CSV header. Preview returns `digest` and rows containing `row`, `value:'[masked]'`, and a non-value preview fingerprint. Preview never echoes vouchers. Commit requires the actor's current matching preview and returns only a message. Duplicate fingerprints stay prohibited per credit type.
+- Participant metadata: `type_id`, `name`, `instructions`, `allocated`. Neither vouchers nor ciphertext enter Dashboard lists, public/discovery responses or ordinary exports. Existing sanitized Markdown instructions are unchanged.
+- Explicit recipient reveal: `reveal-credit` accepts only `{typeId}` and returns only `{value:string}`. It verifies authenticated current identity, current verified email matching `credit_allocations.recipient_email`, individual current check-in and approval, roster access, and non-judge eligibility. Another user ID is rejected. A transaction-time recipient recheck prevents an in-flight revocation from returning the value or recording a successful reveal.
+- Reveals retain private/no-store HTTP headers. Existing UI masking, eye reveal and copy behavior remains unchanged. Values are not added to client persistence, telemetry or app audit records. Audit rows record actor/action/type/time without the value. Staff import and allocation RBAC remains unchanged.
+
+## Local validation
+
+`tests/voucher-credits.test.ts` covers keyless preview/import/check-in/reveal, concurrent allocation and duplicate import, attendance and role denials, cross-team and injected-recipient denial, verified-email changes, deactivation, dangerous-looking voucher strings absent from logs/metadata/public/exports/errors, in-flight recipient revocation, preserved legacy ciphertext, and additive repeat-safe migration. Existing Sites runtime checks cover missing and malformed keys without relaxing legacy cryptographic failures. Compiled smoke adds a genuine synthetic keyless voucher import/allocation/reveal plus ordinary-export exclusion; a nonexistent credit pool must return `422 CREDIT_TYPE_REQUIRED`, regardless of key availability.

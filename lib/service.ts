@@ -31,7 +31,6 @@ import {
   httpsUrl,
   githubUrl,
   sha256,
-  seal,
   unseal,
   requireCreditKey,
   parseCSV,
@@ -780,10 +779,6 @@ export class PortalService {
           {},
           d.reason,
         );
-        if (!this.creditKey)
-          return {
-            message: "Checked in. Credit allocation is not configured yet.",
-          };
         return this.allocate(d.userId, actor.id);
       }
       case "allocate": {
@@ -863,19 +858,41 @@ export class PortalService {
           403,
           "CHECKIN_REQUIRED",
         );
-        requireCreditKey(this.creditKey);
         const d = z.object({ typeId: id }).strict().parse(data);
-        const c = await one<{ ciphertext: string }>(
+        const recipient = `SELECT i.id inventory_id,i.ciphertext,i.voucher_value FROM credit_allocations a JOIN credit_inventory i ON i.id=a.inventory_id JOIN users u ON u.id=a.user_id WHERE ${attendancePredicate("a.user_id")} AND a.user_id=? AND a.type_id=? AND lower(a.recipient_email)=? AND lower(u.email)=?`;
+        const c = await one<{
+          inventory_id: string;
+          ciphertext: string;
+          voucher_value: string | null;
+        }>(
           this.db,
-          `SELECT i.ciphertext FROM credit_allocations a JOIN credit_inventory i ON i.id=a.inventory_id JOIN users u ON u.id=a.user_id WHERE ${attendancePredicate("a.user_id")} AND a.user_id=? AND a.type_id=? AND lower(a.recipient_email)=? AND lower(u.email)=?`,
+          recipient,
           actor.id,
           d.typeId,
           actor.email.toLowerCase(),
           actor.email.toLowerCase(),
         );
         demand(c, 404, "ALLOCATION_PENDING");
-        await this.mutate(actor.id, action, d.typeId, []);
-        return { value: await unseal(c.ciphertext, this.creditKey) };
+        // Voucher-only rows need no application key. Historical ciphertext stays
+        // untouched and can only be revealed using its existing decryption key.
+        const value =
+          c.voucher_value !== null
+            ? c.voucher_value
+            : await unseal(c.ciphertext, this.creditKey);
+        const guard = "credit-recipient:" + crypto.randomUUID();
+        await this.mutate(actor.id, action, d.typeId, [
+          [
+            `INSERT INTO write_guards VALUES(?,CASE WHEN EXISTS(${recipient} AND i.id=?) THEN 1 ELSE 0 END)`,
+            guard,
+            actor.id,
+            d.typeId,
+            actor.email.toLowerCase(),
+            actor.email.toLowerCase(),
+            c.inventory_id,
+          ],
+          ["DELETE FROM write_guards WHERE token=?", guard],
+        ]);
+        return { value };
       }
       case "preview-import":
       case "commit-import": {
@@ -890,7 +907,6 @@ export class PortalService {
             digest: z.string().optional(),
           })
           .parse(data);
-        if (d.kind === "credits") requireCreditKey(this.creditKey);
         const parsed = parseCSV(d.csv);
         demand(
           parsed[0].length === 1 &&
@@ -1015,12 +1031,12 @@ export class PortalService {
           const inventory = await Promise.all(
             normalized.map(async (value) => ({
               id: crypto.randomUUID(),
-              ciphertext: await seal(value, this.creditKey),
+              voucher_value: value,
               fingerprint: await sha256(value),
             })),
           );
           sql.push([
-            "INSERT INTO credit_inventory SELECT json_extract(value,'$.id'),?,json_extract(value,'$.ciphertext'),json_extract(value,'$.fingerprint'),? FROM json_each(?)",
+            "INSERT INTO credit_inventory(id,type_id,ciphertext,fingerprint,created_at,voucher_value) SELECT json_extract(value,'$.id'),?,'',json_extract(value,'$.fingerprint'),?,json_extract(value,'$.voucher_value') FROM json_each(?)",
             d.typeId,
             this.now(),
             JSON.stringify(inventory),
@@ -1258,7 +1274,7 @@ export class PortalService {
             features: text(4000),
             tools: text(2000),
             cerebrasIntegration: z.enum(["yes", "no"]).optional(),
-            toolEffectiveness: text(3000),
+            toolEffectiveness: z.unknown().transform(() => ""),
             contributions: z.unknown().transform(() => []),
             openaiClaim: bool,
             cerebrasClaim: bool,
@@ -1821,12 +1837,21 @@ export class PortalService {
       this.db,
       "SELECT id FROM credit_types WHERE active=1",
     );
+    let legacyAvailable = false;
+    try {
+      requireCreditKey(this.creditKey);
+      legacyAvailable = true;
+    } catch {
+      // A missing/invalid legacy key never blocks voucher-only allocation.
+      // Leave unassigned ciphertext available for its existing key later.
+    }
     const sql: SQL[] = types.map((t) => [
-      "INSERT INTO credit_allocations(inventory_id,type_id,user_id,assigned_at,recipient_email) SELECT i.id,i.type_id,?,?,(SELECT lower(email) FROM users WHERE id=?) FROM credit_inventory i WHERE i.type_id=? AND NOT EXISTS(SELECT 1 FROM credit_allocations a WHERE a.inventory_id=i.id) AND NOT EXISTS(SELECT 1 FROM credit_allocations a WHERE a.user_id=? AND a.type_id=?) ORDER BY i.id LIMIT 1",
+      "INSERT INTO credit_allocations(inventory_id,type_id,user_id,assigned_at,recipient_email) SELECT i.id,i.type_id,?,?,(SELECT lower(email) FROM users WHERE id=?) FROM credit_inventory i WHERE i.type_id=? AND (i.voucher_value IS NOT NULL OR ?=1) AND NOT EXISTS(SELECT 1 FROM credit_allocations a WHERE a.inventory_id=i.id) AND NOT EXISTS(SELECT 1 FROM credit_allocations a WHERE a.user_id=? AND a.type_id=?) ORDER BY (i.voucher_value IS NULL),i.id LIMIT 1",
       userId,
       this.now(),
       userId,
       t.id,
+      legacyAvailable ? 1 : 0,
       userId,
       t.id,
     ]);

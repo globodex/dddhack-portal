@@ -215,8 +215,8 @@ try {
       }),
     },
   );
-  assert.equal(creditImport.status, 503);
-  assert.equal((await creditImport.json()).code, "CREDIT_KEY_UNAVAILABLE");
+  assert.equal(creditImport.status, 422);
+  assert.equal((await creditImport.json()).code, "CREDIT_TYPE_REQUIRED");
   assert.equal((await worker.fetch("/api/portal?view=/rules")).status, 401);
   const nestedBraces = "{".repeat(256) + "literal text" + "}".repeat(256);
   const profileMutation = await worker.fetch(
@@ -247,7 +247,7 @@ try {
     realChatGPTSignInVerified: false,
     creditEncryptionKeyConfigured: false,
     eventSettingsConfigured: false,
-    creditImportWithoutKey: 503,
+    invalidCreditPoolWithoutKey: 422,
     anonymousPrivatePage: 302,
     participantProfilePage: 200,
     participantDashboardBeforeEventInitialization: 200,
@@ -274,6 +274,62 @@ try {
       body: JSON.stringify({ action, data }),
     });
   };
+  const voucher = "SYNTHETIC-COMPILED-VOUCHER-ONLY";
+  const voucherType = await post(owner, "credit-type", {
+    name: "Synthetic keyless voucher",
+    instructions: "Synthetic redemption instructions.",
+  });
+  assert.equal(voucherType.status, 200);
+  const voucherTypeId = (await voucherType.json()).id;
+  const voucherPreview = await post(owner, "preview-import", {
+    kind: "credits",
+    typeId: voucherTypeId,
+    csv: "value\n" + voucher,
+  });
+  assert.equal(voucherPreview.status, 200);
+  const voucherDigest = (await voucherPreview.json()).digest;
+  assert.equal(
+    (
+      await post(owner, "commit-import", {
+        kind: "credits",
+        typeId: voucherTypeId,
+        csv: "value\n" + voucher,
+        digest: voucherDigest,
+      })
+    ).status,
+    200,
+  );
+  const frank = {
+    "oai-authenticated-user-id": "fake_frank",
+    "oai-authenticated-user-email": "frank@portal.test",
+  };
+  assert.equal(
+    (
+      await post(owner, "admin-status", {
+        kind: "person",
+        targetId: "fake_frank",
+        status: "Checked in",
+        confirmation: "CHANGE_STATUS",
+      })
+    ).status,
+    200,
+  );
+  assert.equal(
+    (await post(owner, "allocate", { userId: "fake_frank" })).status,
+    200,
+  );
+  const voucherReveal = await post(frank, "reveal-credit", {
+    typeId: voucherTypeId,
+  });
+  assert.equal(voucherReveal.status, 200);
+  assert.match(voucherReveal.headers.get("cache-control"), /no-store/);
+  assert.equal((await voucherReveal.json()).value, voucher);
+  const ordinaryCredits = await worker.fetch("/api/export?list=credits", {
+    headers: owner,
+  });
+  assert.equal(ordinaryCredits.status, 200);
+  assert.equal((await ordinaryCredits.text()).includes(voucher), false);
+  report.syntheticDispatch.voucherImportAndRevealWithoutKey = 200;
   const pending = {
     "oai-authenticated-user-id": "fake_pending",
     "oai-authenticated-user-email": "pending@portal.test",

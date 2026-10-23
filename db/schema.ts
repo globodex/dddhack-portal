@@ -103,6 +103,7 @@ export const credit_inventory = sqliteTable(
       .notNull()
       .references((): AnySQLiteColumn => credit_types.id),
     ciphertext: text("ciphertext").notNull(),
+    voucher_value: text("voucher_value"),
     fingerprint: text("fingerprint").notNull(),
     created_at: text("created_at").notNull(),
   },

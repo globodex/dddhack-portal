@@ -126,7 +126,7 @@ export async function seedLocal(db: Database) {
     const value = "FAKE-NOT-REDEEMABLE-" + String(n).padStart(3, "0");
     await batch(db, [
       [
-        "INSERT INTO credit_inventory VALUES(?,?,?,?,?)",
+        "INSERT INTO credit_inventory(id,type_id,ciphertext,fingerprint,created_at) VALUES(?,?,?,?,?)",
         "fake_item_" + n,
         "fake_credit",
         await seal(value, LOCAL_CREDIT_KEY),

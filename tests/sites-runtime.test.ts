@@ -10,7 +10,7 @@ import {
 import { handlePortal, handleExport } from "../lib/http";
 import { seedLocal, LOCAL_CREDIT_KEY } from "../scripts/fixtures";
 import { rows, type Database } from "../lib/db";
-import { setup } from "./helpers";
+import { setup, attend } from "./helpers";
 import { seal, unseal, PortalError } from "../lib/security";
 
 const trusted = {
@@ -65,7 +65,7 @@ test("Worker request scope isolates concurrent identities, bindings and keys; no
   assert.equal(protectedPath("/administrator"), false);
   db.close();
 });
-test("sign-in and profile access do not require a credit secret; credit operations fail closed without one", async () => {
+test("sign-in and vouchers require no application key; legacy encryption remains fail-closed", async () => {
   const { db } = await setup();
   try {
     for (const key of [undefined, "", "bad", "not!base64", btoa("short")]) {
@@ -120,12 +120,64 @@ test("sign-in and profile access do not require a credit secret; credit operatio
       const rejected = await runWithSitesRequest(mutation, env, () =>
         handlePortal(mutation, getSitesRuntime()),
       );
-      assert.equal(rejected.status, 503);
+      assert.equal(rejected.status, 422);
       assert.equal(
         ((await rejected.json()) as { code: string }).code,
-        "CREDIT_KEY_UNAVAILABLE",
+        "CREDIT_TYPE_REQUIRED",
       );
       assert.deepEqual(await rows(db, "SELECT * FROM import_previews"), before);
+      const post = async (
+        action: string,
+        data: unknown,
+        participant = false,
+      ) => {
+        const req = new Request("https://portal.test/api/portal", {
+          method: "POST",
+          headers: {
+            ...Object.fromEntries(
+              (participant ? request("fake_alice", "alice@portal.test") : owner)
+                .headers,
+            ),
+            origin: "https://portal.test",
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ action, data }),
+        });
+        return runWithSitesRequest(req, env, () =>
+          handlePortal(req, getSitesRuntime()),
+        );
+      };
+      const created = await post("credit-type", {
+        name: "Synthetic voucher " + String(key),
+        instructions: "Redeem this synthetic voucher only.",
+      });
+      assert.equal(created.status, 200);
+      const typeId = ((await created.json()) as { id: string }).id;
+      const csv = "value\nSYNTHETIC-VOUCHER-" + String(key);
+      const preview = await post("preview-import", {
+        kind: "credits",
+        csv,
+        typeId,
+      });
+      assert.equal(preview.status, 200);
+      const digest = ((await preview.json()) as { digest: string }).digest;
+      assert.equal(
+        (await post("commit-import", { kind: "credits", csv, typeId, digest }))
+          .status,
+        200,
+      );
+      await attend(db, "fake_alice");
+      assert.equal(
+        (await post("allocate", { userId: "fake_alice" })).status,
+        200,
+      );
+      const reveal = await post("reveal-credit", { typeId }, true);
+      assert.equal(reveal.status, 200);
+      assert.match(reveal.headers.get("cache-control") || "", /no-store/);
+      assert.equal(
+        ((await reveal.json()) as { value: string }).value,
+        csv.split("\n")[1],
+      );
       const unavailable = (e: unknown) =>
         e instanceof PortalError &&
         e.status === 503 &&

@@ -239,7 +239,7 @@ test("check-in requires only its operational policy, keeps approval/Luma protect
     });
     assert.match(
       String(checked.message),
-      /Credit allocation is not configured/,
+      /Some allocations are pending inventory/,
     );
     assert.equal((await rows(db, "SELECT * FROM check_ins")).length, 1);
     assert.equal(
