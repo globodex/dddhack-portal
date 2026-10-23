@@ -1,0 +1,5796 @@
+{
+  "source": "34d69955f9c45031c927dd19a75c18446536714e",
+  "worker": "30aa2b2cdea7f6b5c031b187dbb5e2faa538dd8a6b9709b2e166ea3366013f62",
+  "artifactRoot": "/home/param302/Dev/DDEHack-portal/.worktrees/visual-integration",
+  "sandbox": true,
+  "browser": "156.0.8078.4",
+  "startedAt": "2026-10-23T18:32:19.123Z",
+  "readOnly": true,
+  "checks": [
+    {
+      "name": "1440x900 no horizontal spill",
+      "passed": true
+    },
+    {
+      "name": "1440x900 exact date",
+      "passed": true
+    },
+    {
+      "name": "1440x900 Register no underline",
+      "passed": true
+    },
+    {
+      "name": "1440x900 actual CTA ArrowRight",
+      "passed": true
+    },
+    {
+      "name": "1440x900 eight cluster dots / five size tiers",
+      "passed": true,
+      "count": 8,
+      "tiers": [
+        161.2,
+        136.4,
+        109.5,
+        84.7,
+        59.9
+      ]
+    },
+    {
+      "name": "1440x900 portrait phone strip visibility",
+      "passed": true,
+      "stripDisplay": "block"
+    },
+    {
+      "name": "1440x900 strip scoped to hero",
+      "passed": true
+    },
+    {
+      "name": "1440x900 eighteen strip dots",
+      "passed": true,
+      "count": 18
+    },
+    {
+      "name": "1440x900 strip CTA clearance",
+      "passed": true,
+      "ctaBottom": 773.328125,
+      "stripTop": 823.328125
+    },
+    {
+      "name": "1440x900 pause above strip",
+      "passed": true,
+      "pauseBottom": 811.328125,
+      "stripTop": 823.328125
+    },
+    {
+      "name": "1440x900 falling entrance observed",
+      "passed": true,
+      "sampleCount": 33,
+      "first": {
+        "t": 371.7999999977648,
+        "y": [
+          -241.747,
+          -272.74,
+          -273.773,
+          -254.144,
+          -296.501,
+          -239.68,
+          -381.216,
+          -299.601
+        ]
+      },
+      "last": {
+        "t": 1971.7999999977646,
+        "y": [
+          146.701,
+          133.271,
+          264.475,
+          63.0194,
+          297.534,
+          286.17,
+          74.3836,
+          207.654
+        ]
+      },
+      "initialAssertionPassed": true,
+      "observedYRanges": [
+        {
+          "min": -241.747,
+          "max": 146.701
+        },
+        {
+          "min": -272.74,
+          "max": 133.271
+        },
+        {
+          "min": -273.773,
+          "max": 264.475
+        },
+        {
+          "min": -254.144,
+          "max": 63.0194
+        },
+        {
+          "min": -296.501,
+          "max": 297.534
+        },
+        {
+          "min": -239.68,
+          "max": 286.17
+        },
+        {
+          "min": -381.216,
+          "max": 74.3836
+        },
+        {
+          "min": -299.601,
+          "max": 207.654
+        }
+      ]
+    },
+    {
+      "name": "desktop pointer repels multiple actual dots",
+      "passed": true,
+      "changed": 8
+    },
+    {
+      "name": "paused pointer leaves all dot transforms unchanged",
+      "passed": true
+    },
+    {
+      "name": "offscreen hero dot transforms stop",
+      "passed": true
+    },
+    {
+      "name": "hero strip leaves viewport with hero",
+      "passed": true,
+      "stripBottom": -3212.671875
+    },
+    {
+      "name": "reduced motion pointer leaves all transforms unchanged",
+      "passed": true
+    },
+    {
+      "name": "desktop to mobile resize no spill / hidden strip",
+      "passed": true,
+      "overflow": false,
+      "stripDisplay": "none"
+    },
+    {
+      "name": "1733x963 no horizontal spill",
+      "passed": true
+    },
+    {
+      "name": "1733x963 exact date",
+      "passed": true
+    },
+    {
+      "name": "1733x963 Register no underline",
+      "passed": true
+    },
+    {
+      "name": "1733x963 actual CTA ArrowRight",
+      "passed": true
+    },
+    {
+      "name": "1733x963 eight cluster dots / five size tiers",
+      "passed": true,
+      "count": 8,
+      "tiers": [
+        195.6,
+        165.5,
+        132.9,
+        102.8,
+        72.7
+      ]
+    },
+    {
+      "name": "1733x963 portrait phone strip visibility",
+      "passed": true,
+      "stripDisplay": "block"
+    },
+    {
+      "name": "1733x963 strip scoped to hero",
+      "passed": true
+    },
+    {
+      "name": "1733x963 eighteen strip dots",
+      "passed": true,
+      "count": 18
+    },
+    {
+      "name": "1733x963 strip CTA clearance",
+      "passed": true,
+      "ctaBottom": 861.78125,
+      "stripTop": 911.78125
+    },
+    {
+      "name": "1733x963 pause above strip",
+      "passed": true,
+      "pauseBottom": 899.78125,
+      "stripTop": 911.78125
+    },
+    {
+      "name": "1733x963 falling entrance observed",
+      "passed": true,
+      "sampleCount": 33,
+      "first": {
+        "t": 380.3999999985099,
+        "y": [
+          178.073,
+          161.771,
+          321.033,
+          76.4962,
+          361.163,
+          347.368,
+          90.2906,
+          252.061
+        ]
+      },
+      "last": {
+        "t": 1980.29999999851,
+        "y": [
+          178.07,
+          161.768,
+          321.029,
+          76.4938,
+          361.158,
+          347.364,
+          90.2872,
+          252.057
+        ]
+      },
+      "initialAssertionPassed": false,
+      "observedYRanges": [
+        {
+          "min": -293.445,
+          "max": 178.073
+        },
+        {
+          "min": -331.066,
+          "max": 161.771
+        },
+        {
+          "min": -332.32,
+          "max": 321.033
+        },
+        {
+          "min": -308.493,
+          "max": 76.4962
+        },
+        {
+          "min": -359.908,
+          "max": 361.163
+        },
+        {
+          "min": -290.936,
+          "max": 347.368
+        },
+        {
+          "min": -462.739,
+          "max": 90.2906
+        },
+        {
+          "min": -363.671,
+          "max": 252.061
+        }
+      ]
+    },
+    {
+      "name": "1194x834 no horizontal spill",
+      "passed": true
+    },
+    {
+      "name": "1194x834 exact date",
+      "passed": true
+    },
+    {
+      "name": "1194x834 Register no underline",
+      "passed": true
+    },
+    {
+      "name": "1194x834 actual CTA ArrowRight",
+      "passed": true
+    },
+    {
+      "name": "1194x834 eight cluster dots / five size tiers",
+      "passed": true,
+      "count": 8,
+      "tiers": [
+        133.1,
+        112.6,
+        90.4,
+        70,
+        49.5
+      ]
+    },
+    {
+      "name": "1194x834 portrait phone strip visibility",
+      "passed": true,
+      "stripDisplay": "block"
+    },
+    {
+      "name": "1194x834 strip scoped to hero",
+      "passed": true
+    },
+    {
+      "name": "1194x834 eighteen strip dots",
+      "passed": true,
+      "count": 18
+    },
+    {
+      "name": "1194x834 strip CTA clearance",
+      "passed": true,
+      "ctaBottom": 634.265625,
+      "stripTop": 684.265625
+    },
+    {
+      "name": "1194x834 pause above strip",
+      "passed": true,
+      "pauseBottom": 672.265625,
+      "stripTop": 684.265625
+    },
+    {
+      "name": "1194x834 falling entrance observed",
+      "passed": true,
+      "sampleCount": 37,
+      "first": {
+        "t": 213.39999999925493,
+        "y": [
+          121.171,
+          110.078,
+          218.45,
+          52.0525,
+          245.756,
+          236.37,
+          61.4391,
+          171.517
+        ]
+      },
+      "last": {
+        "t": 2013.2999999992549,
+        "y": [
+          121.169,
+          110.076,
+          218.447,
+          52.0509,
+          245.753,
+          236.367,
+          61.4367,
+          171.515
+        ]
+      },
+      "initialAssertionPassed": false,
+      "observedYRanges": [
+        {
+          "min": -199.677,
+          "max": 121.171
+        },
+        {
+          "min": -225.277,
+          "max": 110.078
+        },
+        {
+          "min": -226.13,
+          "max": 218.45
+        },
+        {
+          "min": -209.917,
+          "max": 52.0525
+        },
+        {
+          "min": -244.903,
+          "max": 245.756
+        },
+        {
+          "min": -197.97,
+          "max": 236.37
+        },
+        {
+          "min": -314.875,
+          "max": 61.4391
+        },
+        {
+          "min": -247.463,
+          "max": 171.517
+        }
+      ]
+    },
+    {
+      "name": "1194x834 sticky header stays visible",
+      "passed": true,
+      "y": 0,
+      "position": "sticky"
+    },
+    {
+      "name": "834x1194 no horizontal spill",
+      "passed": true
+    },
+    {
+      "name": "834x1194 exact date",
+      "passed": true
+    },
+    {
+      "name": "834x1194 Register no underline",
+      "passed": true
+    },
+    {
+      "name": "834x1194 actual CTA ArrowRight",
+      "passed": true
+    },
+    {
+      "name": "834x1194 eight cluster dots / five size tiers",
+      "passed": true,
+      "count": 8,
+      "tiers": [
+        117,
+        99,
+        79.5,
+        61.5,
+        43.5
+      ]
+    },
+    {
+      "name": "834x1194 portrait phone strip visibility",
+      "passed": true,
+      "stripDisplay": "block"
+    },
+    {
+      "name": "834x1194 strip scoped to hero",
+      "passed": true
+    },
+    {
+      "name": "834x1194 eighteen strip dots",
+      "passed": true,
+      "count": 18
+    },
+    {
+      "name": "834x1194 strip CTA clearance",
+      "passed": true,
+      "ctaBottom": 672.5,
+      "stripTop": 1075.5
+    },
+    {
+      "name": "834x1194 pause above strip",
+      "passed": true,
+      "pauseBottom": 1063.5,
+      "stripTop": 1075.5
+    },
+    {
+      "name": "834x1194 falling entrance observed",
+      "passed": true,
+      "sampleCount": 37,
+      "first": {
+        "t": 176.79999999776481,
+        "y": [
+          106.5,
+          96.75,
+          192,
+          45.75,
+          216,
+          207.75,
+          54,
+          150.75
+        ]
+      },
+      "last": {
+        "t": 1976.6999999977647,
+        "y": [
+          106.5,
+          96.75,
+          192,
+          45.75,
+          216,
+          207.75,
+          54,
+          150.75
+        ]
+      },
+      "initialAssertionPassed": false,
+      "observedYRanges": [
+        {
+          "min": -175.5,
+          "max": 106.5
+        },
+        {
+          "min": -198,
+          "max": 96.75
+        },
+        {
+          "min": -198.75,
+          "max": 192
+        },
+        {
+          "min": -184.5,
+          "max": 45.75
+        },
+        {
+          "min": -215.25,
+          "max": 216
+        },
+        {
+          "min": -174,
+          "max": 207.75
+        },
+        {
+          "min": -276.75,
+          "max": 54
+        },
+        {
+          "min": -217.5,
+          "max": 150.75
+        }
+      ]
+    },
+    {
+      "name": "834x1194 sticky header stays visible",
+      "passed": true,
+      "y": 0,
+      "position": "sticky"
+    },
+    {
+      "name": "834x1194 menu icon only",
+      "passed": true
+    },
+    {
+      "name": "834x1194 menu opens",
+      "passed": true
+    },
+    {
+      "name": "834x1194 menu closes",
+      "passed": true
+    },
+    {
+      "name": "390x844 no horizontal spill",
+      "passed": true
+    },
+    {
+      "name": "390x844 exact date",
+      "passed": true
+    },
+    {
+      "name": "390x844 Register no underline",
+      "passed": true
+    },
+    {
+      "name": "390x844 actual CTA ArrowRight",
+      "passed": true
+    },
+    {
+      "name": "390x844 eight cluster dots / five size tiers",
+      "passed": true,
+      "count": 8,
+      "tiers": [
+        97.5,
+        82.5,
+        66.3,
+        51.3,
+        36.3
+      ]
+    },
+    {
+      "name": "390x844 portrait phone strip visibility",
+      "passed": true,
+      "stripDisplay": "none"
+    },
+    {
+      "name": "390x844 strip scoped to hero",
+      "passed": true
+    },
+    {
+      "name": "390x844 falling entrance observed",
+      "passed": true,
+      "sampleCount": 34,
+      "first": {
+        "t": 353.89999999925493,
+        "y": [
+          88.75,
+          80.625,
+          160,
+          38.125,
+          180,
+          173.125,
+          45,
+          125.625
+        ]
+      },
+      "last": {
+        "t": 2003.7999999992549,
+        "y": [
+          88.75,
+          80.625,
+          160,
+          38.125,
+          180,
+          173.125,
+          45,
+          125.625
+        ]
+      },
+      "initialAssertionPassed": false,
+      "observedYRanges": [
+        {
+          "min": -146.25,
+          "max": 88.75
+        },
+        {
+          "min": -165,
+          "max": 80.625
+        },
+        {
+          "min": -165.625,
+          "max": 160
+        },
+        {
+          "min": -153.75,
+          "max": 38.125
+        },
+        {
+          "min": -179.375,
+          "max": 180
+        },
+        {
+          "min": -145,
+          "max": 173.125
+        },
+        {
+          "min": -230.625,
+          "max": 45
+        },
+        {
+          "min": -181.25,
+          "max": 125.625
+        }
+      ]
+    },
+    {
+      "name": "390x844 sticky header stays visible",
+      "passed": true,
+      "y": 0,
+      "position": "sticky"
+    },
+    {
+      "name": "390x844 menu icon only",
+      "passed": true
+    },
+    {
+      "name": "390x844 menu opens",
+      "passed": true
+    },
+    {
+      "name": "390x844 menu closes",
+      "passed": true
+    },
+    {
+      "name": "320x740 no horizontal spill",
+      "passed": true
+    },
+    {
+      "name": "320x740 exact date",
+      "passed": true
+    },
+    {
+      "name": "320x740 Register no underline",
+      "passed": true
+    },
+    {
+      "name": "320x740 actual CTA ArrowRight",
+      "passed": true
+    },
+    {
+      "name": "320x740 eight cluster dots / five size tiers",
+      "passed": true,
+      "count": 8,
+      "tiers": [
+        88.4,
+        74.8,
+        60.1,
+        46.5,
+        32.9
+      ]
+    },
+    {
+      "name": "320x740 portrait phone strip visibility",
+      "passed": true,
+      "stripDisplay": "none"
+    },
+    {
+      "name": "320x740 strip scoped to hero",
+      "passed": true
+    },
+    {
+      "name": "320x740 falling entrance observed",
+      "passed": true,
+      "sampleCount": 37,
+      "first": {
+        "t": 205.39999999925493,
+        "y": [
+          80.4667,
+          73.1,
+          145.067,
+          34.5667,
+          163.2,
+          156.967,
+          40.8,
+          113.9
+        ]
+      },
+      "last": {
+        "t": 2005.199999999255,
+        "y": [
+          80.4653,
+          73.0986,
+          145.065,
+          34.5656,
+          163.198,
+          156.965,
+          40.7984,
+          113.898
+        ]
+      },
+      "initialAssertionPassed": false,
+      "observedYRanges": [
+        {
+          "min": -132.6,
+          "max": 80.4667
+        },
+        {
+          "min": -149.6,
+          "max": 73.1
+        },
+        {
+          "min": -150.167,
+          "max": 145.067
+        },
+        {
+          "min": -139.4,
+          "max": 34.5667
+        },
+        {
+          "min": -162.633,
+          "max": 163.2
+        },
+        {
+          "min": -131.467,
+          "max": 156.967
+        },
+        {
+          "min": -209.1,
+          "max": 40.8
+        },
+        {
+          "min": -164.333,
+          "max": 113.9
+        }
+      ]
+    },
+    {
+      "name": "320x740 sticky header stays visible",
+      "passed": true,
+      "y": 0,
+      "position": "sticky"
+    },
+    {
+      "name": "320x740 menu icon only",
+      "passed": true
+    },
+    {
+      "name": "320x740 menu opens",
+      "passed": true
+    },
+    {
+      "name": "320x740 menu closes",
+      "passed": true
+    },
+    {
+      "name": "844x390 no horizontal spill",
+      "passed": true
+    },
+    {
+      "name": "844x390 exact date",
+      "passed": true
+    },
+    {
+      "name": "844x390 Register no underline",
+      "passed": true
+    },
+    {
+      "name": "844x390 actual CTA ArrowRight",
+      "passed": true
+    },
+    {
+      "name": "844x390 eight cluster dots / five size tiers",
+      "passed": true,
+      "count": 8,
+      "tiers": [
+        117,
+        99,
+        79.5,
+        61.5,
+        43.5
+      ]
+    },
+    {
+      "name": "844x390 portrait phone strip visibility",
+      "passed": true,
+      "stripDisplay": "block"
+    },
+    {
+      "name": "844x390 strip scoped to hero",
+      "passed": true
+    },
+    {
+      "name": "844x390 eighteen strip dots",
+      "passed": true,
+      "count": 18
+    },
+    {
+      "name": "844x390 strip CTA clearance",
+      "passed": true,
+      "ctaBottom": 674.4375,
+      "stripTop": 1077.4375
+    },
+    {
+      "name": "844x390 pause above strip",
+      "passed": true,
+      "pauseBottom": 1065.4375,
+      "stripTop": 1077.4375
+    },
+    {
+      "name": "844x390 falling entrance observed",
+      "passed": true,
+      "sampleCount": 38,
+      "first": {
+        "t": 154.4,
+        "y": [
+          106.5,
+          96.75,
+          192,
+          45.75,
+          216,
+          207.75,
+          54,
+          150.75
+        ]
+      },
+      "last": {
+        "t": 2004.3,
+        "y": [
+          -175.5,
+          -198,
+          -198.75,
+          -184.5,
+          -215.25,
+          -174,
+          -276.75,
+          -217.5
+        ]
+      },
+      "initialAssertionPassed": true,
+      "observedYRanges": [
+        {
+          "min": -175.5,
+          "max": 106.5
+        },
+        {
+          "min": -198,
+          "max": 96.75
+        },
+        {
+          "min": -198.75,
+          "max": 192
+        },
+        {
+          "min": -184.5,
+          "max": 45.75
+        },
+        {
+          "min": -215.25,
+          "max": 216
+        },
+        {
+          "min": -174,
+          "max": 207.75
+        },
+        {
+          "min": -276.75,
+          "max": 54
+        },
+        {
+          "min": -217.5,
+          "max": 150.75
+        }
+      ]
+    },
+    {
+      "name": "844x390 sticky header stays visible",
+      "passed": true,
+      "y": 0,
+      "position": "sticky"
+    },
+    {
+      "name": "844x390 menu icon only",
+      "passed": true
+    },
+    {
+      "name": "844x390 menu opens",
+      "passed": true
+    },
+    {
+      "name": "844x390 menu closes",
+      "passed": true
+    },
+    {
+      "name": "cold reduced phone has eight stable dots and no strip",
+      "passed": true
+    },
+    {
+      "name": "compiled Worker unchanged",
+      "passed": true
+    },
+    {
+      "name": "1440x900 complete hero and strip within first viewport",
+      "passed": false,
+      "heroBottom": 1013.328125,
+      "viewportHeight": 900,
+      "stripTop": 823.328125
+    },
+    {
+      "name": "1733x963 complete hero and strip within first viewport",
+      "passed": false,
+      "heroBottom": 1101.78125,
+      "viewportHeight": 963,
+      "stripTop": 911.78125
+    },
+    {
+      "name": "1194x834 complete hero and strip within first viewport",
+      "passed": false,
+      "heroBottom": 874.265625,
+      "viewportHeight": 834,
+      "stripTop": 684.265625
+    },
+    {
+      "name": "834x1194 complete hero and strip within first viewport",
+      "passed": false,
+      "heroBottom": 1265.5,
+      "viewportHeight": 1194,
+      "stripTop": 1075.5
+    }
+  ],
+  "captures": [
+    {
+      "name": "hero-1440x900",
+      "label": "Actual Home hero 1440x900",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/hero-1440x900.png",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0
+    },
+    {
+      "name": "hero-paused-1440x900",
+      "label": "Actual paused Home hero desktop",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/hero-paused-1440x900.png",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0
+    },
+    {
+      "name": "hero-reduced-1440x900",
+      "label": "Actual reduced-motion desktop Home",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/hero-reduced-1440x900.png",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0
+    },
+    {
+      "name": "schedule-1440x900",
+      "label": "Existing #schedule diagnostic 1440x900",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/schedule-1440x900.png",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 975
+    },
+    {
+      "name": "venue-1440x900",
+      "label": "Existing #venue diagnostic 1440x900",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/venue-1440x900.png",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 1823
+    },
+    {
+      "name": "rules-1440x900",
+      "label": "Existing #rules diagnostic 1440x900",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/rules-1440x900.png",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 2657
+    },
+    {
+      "name": "faq-1440x900",
+      "label": "Existing #faq diagnostic 1440x900",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/faq-1440x900.png",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 3477
+    },
+    {
+      "name": "organizers-1440x900",
+      "label": "Existing .organizers diagnostic 1440x900",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/organizers-1440x900.png",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 4226
+    },
+    {
+      "name": "hero-1733x963",
+      "label": "Actual Home hero 1733x963",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/hero-1733x963.png",
+      "width": 1733,
+      "height": 963,
+      "scrollY": 0
+    },
+    {
+      "name": "schedule-1733x963",
+      "label": "Existing #schedule diagnostic 1733x963",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/schedule-1733x963.png",
+      "width": 1733,
+      "height": 963,
+      "scrollY": 1064
+    },
+    {
+      "name": "venue-1733x963",
+      "label": "Existing #venue diagnostic 1733x963",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/venue-1733x963.png",
+      "width": 1733,
+      "height": 963,
+      "scrollY": 1975
+    },
+    {
+      "name": "rules-1733x963",
+      "label": "Existing #rules diagnostic 1733x963",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/rules-1733x963.png",
+      "width": 1733,
+      "height": 963,
+      "scrollY": 2872
+    },
+    {
+      "name": "faq-1733x963",
+      "label": "Existing #faq diagnostic 1733x963",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/faq-1733x963.png",
+      "width": 1733,
+      "height": 963,
+      "scrollY": 3755
+    },
+    {
+      "name": "organizers-1733x963",
+      "label": "Existing .organizers diagnostic 1733x963",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/organizers-1733x963.png",
+      "width": 1733,
+      "height": 963,
+      "scrollY": 4420
+    },
+    {
+      "name": "hero-1194x834",
+      "label": "Actual Home hero 1194x834",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/hero-1194x834.png",
+      "width": 1194,
+      "height": 834,
+      "scrollY": 0
+    },
+    {
+      "name": "schedule-1194x834",
+      "label": "Existing #schedule diagnostic 1194x834",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/schedule-1194x834.png",
+      "width": 1194,
+      "height": 834,
+      "scrollY": 805
+    },
+    {
+      "name": "venue-1194x834",
+      "label": "Existing #venue diagnostic 1194x834",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/venue-1194x834.png",
+      "width": 1194,
+      "height": 834,
+      "scrollY": 1618
+    },
+    {
+      "name": "rules-1194x834",
+      "label": "Existing #rules diagnostic 1194x834",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/rules-1194x834.png",
+      "width": 1194,
+      "height": 834,
+      "scrollY": 2386
+    },
+    {
+      "name": "faq-1194x834",
+      "label": "Existing #faq diagnostic 1194x834",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/faq-1194x834.png",
+      "width": 1194,
+      "height": 834,
+      "scrollY": 3140
+    },
+    {
+      "name": "organizers-1194x834",
+      "label": "Existing .organizers diagnostic 1194x834",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/organizers-1194x834.png",
+      "width": 1194,
+      "height": 834,
+      "scrollY": 3873
+    },
+    {
+      "name": "hero-834x1194",
+      "label": "Actual Home hero 834x1194",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/hero-834x1194.png",
+      "width": 834,
+      "height": 1194,
+      "scrollY": 0
+    },
+    {
+      "name": "menu-834x1194",
+      "label": "Actual open public navigation 834x1194",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/menu-834x1194.png",
+      "width": 834,
+      "height": 1194,
+      "scrollY": 0
+    },
+    {
+      "name": "schedule-834x1194",
+      "label": "Existing #schedule diagnostic 834x1194",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/schedule-834x1194.png",
+      "width": 834,
+      "height": 1194,
+      "scrollY": 1197
+    },
+    {
+      "name": "venue-834x1194",
+      "label": "Existing #venue diagnostic 834x1194",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/venue-834x1194.png",
+      "width": 834,
+      "height": 1194,
+      "scrollY": 2374
+    },
+    {
+      "name": "rules-834x1194",
+      "label": "Existing #rules diagnostic 834x1194",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/rules-834x1194.png",
+      "width": 834,
+      "height": 1194,
+      "scrollY": 3510
+    },
+    {
+      "name": "faq-834x1194",
+      "label": "Existing #faq diagnostic 834x1194",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/faq-834x1194.png",
+      "width": 834,
+      "height": 1194,
+      "scrollY": 4636
+    },
+    {
+      "name": "organizers-834x1194",
+      "label": "Existing .organizers diagnostic 834x1194",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/organizers-834x1194.png",
+      "width": 834,
+      "height": 1194,
+      "scrollY": 5242
+    },
+    {
+      "name": "hero-390x844",
+      "label": "Actual Home hero 390x844",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/hero-390x844.png",
+      "width": 390,
+      "height": 844,
+      "scrollY": 0
+    },
+    {
+      "name": "menu-390x844",
+      "label": "Actual open public navigation 390x844",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/menu-390x844.png",
+      "width": 390,
+      "height": 844,
+      "scrollY": 0
+    },
+    {
+      "name": "schedule-390x844",
+      "label": "Existing #schedule diagnostic 390x844",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/schedule-390x844.png",
+      "width": 390,
+      "height": 844,
+      "scrollY": 518
+    },
+    {
+      "name": "venue-390x844",
+      "label": "Existing #venue diagnostic 390x844",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/venue-390x844.png",
+      "width": 390,
+      "height": 844,
+      "scrollY": 540
+    },
+    {
+      "name": "rules-390x844",
+      "label": "Existing #rules diagnostic 390x844",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/rules-390x844.png",
+      "width": 390,
+      "height": 844,
+      "scrollY": 915
+    },
+    {
+      "name": "faq-390x844",
+      "label": "Existing #faq diagnostic 390x844",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/faq-390x844.png",
+      "width": 390,
+      "height": 844,
+      "scrollY": 1499
+    },
+    {
+      "name": "organizers-390x844",
+      "label": "Existing .organizers diagnostic 390x844",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/organizers-390x844.png",
+      "width": 390,
+      "height": 844,
+      "scrollY": 2331
+    },
+    {
+      "name": "hero-320x740",
+      "label": "Actual Home hero 320x740",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/hero-320x740.png",
+      "width": 320,
+      "height": 740,
+      "scrollY": 0
+    },
+    {
+      "name": "menu-320x740",
+      "label": "Actual open public navigation 320x740",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/menu-320x740.png",
+      "width": 320,
+      "height": 740,
+      "scrollY": 0
+    },
+    {
+      "name": "schedule-320x740",
+      "label": "Existing #schedule diagnostic 320x740",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/schedule-320x740.png",
+      "width": 320,
+      "height": 740,
+      "scrollY": 506
+    },
+    {
+      "name": "venue-320x740",
+      "label": "Existing #venue diagnostic 320x740",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/venue-320x740.png",
+      "width": 320,
+      "height": 740,
+      "scrollY": 577
+    },
+    {
+      "name": "rules-320x740",
+      "label": "Existing #rules diagnostic 320x740",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/rules-320x740.png",
+      "width": 320,
+      "height": 740,
+      "scrollY": 1118
+    },
+    {
+      "name": "faq-320x740",
+      "label": "Existing #faq diagnostic 320x740",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/faq-320x740.png",
+      "width": 320,
+      "height": 740,
+      "scrollY": 1561
+    },
+    {
+      "name": "organizers-320x740",
+      "label": "Existing .organizers diagnostic 320x740",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/organizers-320x740.png",
+      "width": 320,
+      "height": 740,
+      "scrollY": 2317
+    },
+    {
+      "name": "hero-844x390",
+      "label": "Actual Home hero 844x390",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/hero-844x390.png",
+      "width": 844,
+      "height": 390,
+      "scrollY": 0
+    },
+    {
+      "name": "menu-844x390",
+      "label": "Actual open public navigation 844x390",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/menu-844x390.png",
+      "width": 844,
+      "height": 390,
+      "scrollY": 0
+    },
+    {
+      "name": "schedule-844x390",
+      "label": "Existing #schedule diagnostic 844x390",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/schedule-844x390.png",
+      "width": 844,
+      "height": 390,
+      "scrollY": 1248
+    },
+    {
+      "name": "venue-844x390",
+      "label": "Existing #venue diagnostic 844x390",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/venue-844x390.png",
+      "width": 844,
+      "height": 390,
+      "scrollY": 1630
+    },
+    {
+      "name": "rules-844x390",
+      "label": "Existing #rules diagnostic 844x390",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/rules-844x390.png",
+      "width": 844,
+      "height": 390,
+      "scrollY": 1922
+    },
+    {
+      "name": "faq-844x390",
+      "label": "Existing #faq diagnostic 844x390",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/faq-844x390.png",
+      "width": 844,
+      "height": 390,
+      "scrollY": 2370
+    },
+    {
+      "name": "organizers-844x390",
+      "label": "Existing .organizers diagnostic 844x390",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/organizers-844x390.png",
+      "width": 844,
+      "height": 390,
+      "scrollY": 2974
+    },
+    {
+      "name": "hero-cold-reduced-390x844",
+      "label": "Actual cold reduced-motion phone Home",
+      "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home/evidence/v6-home-34d69955/hero-cold-reduced-390x844.png",
+      "width": 390,
+      "height": 844,
+      "scrollY": 0
+    }
+  ],
+  "viewports": [
+    {
+      "key": "1440x900",
+      "initial": {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scrollY": 0,
+        "overflow": false,
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 92.1875,
+          "right": 1440,
+          "bottom": 92.1875
+        },
+        "headerPosition": "absolute",
+        "hero": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1013.328125,
+          "right": 1440,
+          "bottom": 1013.328125
+        },
+        "copy": {
+          "x": 63.359375,
+          "y": 189,
+          "width": 793.390625,
+          "height": 584.328125,
+          "right": 856.75,
+          "bottom": 773.328125
+        },
+        "cta": {
+          "x": 63.359375,
+          "y": 714.53125,
+          "width": 295,
+          "height": 58.796875,
+          "right": 358.359375,
+          "bottom": 773.328125
+        },
+        "register": {
+          "x": 63.359375,
+          "y": 652.53125,
+          "width": 119,
+          "height": 44,
+          "right": 182.359375,
+          "bottom": 696.53125
+        },
+        "date": "Sunday, 1 November 2026 \u00b7 Hosted by Codex Ambassadors",
+        "registerDecoration": "none",
+        "ctaLucide": true,
+        "strip": {
+          "x": 0,
+          "y": 823.328125,
+          "width": 1440,
+          "height": 190,
+          "right": 1440,
+          "bottom": 1013.328125
+        },
+        "stripDisplay": "block",
+        "stripInsideHero": true,
+        "pause": {
+          "x": 1332.640625,
+          "y": 765.328125,
+          "width": 44,
+          "height": 46,
+          "right": 1376.640625,
+          "bottom": 811.328125
+        },
+        "scroll": {
+          "x": 696,
+          "y": 765.6646728515625,
+          "width": 48,
+          "height": 48,
+          "right": 744,
+          "bottom": 813.6646728515625
+        },
+        "cluster": [
+          {
+            "x": 955.1336059570312,
+            "y": 400.57598876953125,
+            "width": 161.15618896484375,
+            "height": 161.15625,
+            "transform": "translate3d(74.3836px, 146.701px, 0px)"
+          },
+          {
+            "x": 1101.8345947265625,
+            "y": 387.1455993652344,
+            "width": 136.359375,
+            "height": 136.35940551757812,
+            "transform": "translate3d(221.085px, 133.271px, 0px)"
+          },
+          {
+            "x": 1080.139404296875,
+            "y": 518.3499755859375,
+            "width": 109.5,
+            "height": 109.5,
+            "transform": "translate3d(199.389px, 264.475px, 0px)"
+          },
+          {
+            "x": 1072.9075927734375,
+            "y": 316.8944396972656,
+            "width": 84.703125,
+            "height": 84.703125,
+            "transform": "translate3d(192.158px, 63.0194px, 0px)"
+          },
+          {
+            "x": 954.1004638671875,
+            "y": 551.4093627929688,
+            "width": 84.703125,
+            "height": 84.703125,
+            "transform": "translate3d(73.3505px, 297.534px, 0px)"
+          },
+          {
+            "x": 1196.8802490234375,
+            "y": 540.0452270507812,
+            "width": 59.90625,
+            "height": 59.90625,
+            "transform": "translate3d(316.13px, 286.17px, 0px)"
+          },
+          {
+            "x": 1192.747802734375,
+            "y": 328.25860595703125,
+            "width": 84.703125,
+            "height": 84.703125,
+            "transform": "translate3d(311.998px, 74.3836px, 0px)"
+          },
+          {
+            "x": 1214.443115234375,
+            "y": 461.5292053222656,
+            "width": 59.90625,
+            "height": 59.906219482421875,
+            "transform": "translate3d(333.693px, 207.654px, 0px)"
+          }
+        ],
+        "stripDiameters": [
+          127.1,
+          86.8,
+          136.4,
+          105.4,
+          80.6,
+          133.3,
+          86.8,
+          133.3,
+          89.9,
+          114.7,
+          136.4,
+          89.9,
+          105.4,
+          136.4,
+          86.8,
+          127.1,
+          80.6,
+          133.3
+        ],
+        "reduced": false,
+        "paused": "false",
+        "hidden": false,
+        "frames": [
+          {
+            "t": 371.7999999977648,
+            "y": [
+              -241.747,
+              -272.74,
+              -273.773,
+              -254.144,
+              -296.501,
+              -239.68,
+              -381.216,
+              -299.601
+            ]
+          },
+          {
+            "t": 421.8999999977648,
+            "y": [
+              -219.298,
+              -249.276,
+              -242.667,
+              -235.815,
+              -262.172,
+              -209.291,
+              -354.886,
+              -270.286
+            ]
+          },
+          {
+            "t": 471.79999999776487,
+            "y": [
+              -157.29,
+              -184.464,
+              -156.746,
+              -185.186,
+              -167.345,
+              -125.349,
+              -282.159,
+              -189.312
+            ]
+          },
+          {
+            "t": 521.7999999977649,
+            "y": [
+              -102.713,
+              -127.42,
+              -81.1226,
+              -140.624,
+              -83.8833,
+              -51.4673,
+              -218.147,
+              -118.043
+            ]
+          },
+          {
+            "t": 571.7999999977649,
+            "y": [
+              -55.0938,
+              -77.6479,
+              -15.1396,
+              -101.744,
+              -11.0614,
+              12.9959,
+              -162.296,
+              -55.8598
+            ]
+          },
+          {
+            "t": 621.7999999977649,
+            "y": [
+              -14.0338,
+              -34.7315,
+              41.7547,
+              -68.2188,
+              51.7298,
+              68.5798,
+              -114.138,
+              -2.24151
+            ]
+          },
+          {
+            "t": 671.7999999977649,
+            "y": [
+              21.1052,
+              1.99631,
+              90.4447,
+              -39.5282,
+              105.466,
+              116.148,
+              -72.9242,
+              43.6448
+            ]
+          },
+          {
+            "t": 721.7999999977649,
+            "y": [
+              50.763,
+              32.995,
+              131.54,
+              -15.3129,
+              150.821,
+              156.297,
+              -38.1394,
+              82.3735
+            ]
+          },
+          {
+            "t": 771.7999999977649,
+            "y": [
+              75.2964,
+              58.6376,
+              165.534,
+              4.71835,
+              188.339,
+              189.508,
+              -9.36487,
+              114.41
+            ]
+          },
+          {
+            "t": 821.7999999977649,
+            "y": [
+              95.2087,
+              79.4502,
+              193.125,
+              20.9765,
+              218.789,
+              216.464,
+              13.9897,
+              140.413
+            ]
+          },
+          {
+            "t": 871.7999999977649,
+            "y": [
+              111.053,
+              96.0111,
+              215.08,
+              33.9134,
+              243.02,
+              237.913,
+              32.5733,
+              161.104
+            ]
+          },
+          {
+            "t": 921.7999999977649,
+            "y": [
+              123.26,
+              108.77,
+              231.995,
+              43.8803,
+              261.687,
+              254.438,
+              46.8905,
+              177.044
+            ]
+          },
+          {
+            "t": 971.7999999977649,
+            "y": [
+              132.319,
+              118.238,
+              244.547,
+              51.2768,
+              275.541,
+              266.701,
+              57.5155,
+              188.874
+            ]
+          },
+          {
+            "t": 1021.7999999977649,
+            "y": [
+              138.659,
+              124.865,
+              253.331,
+              56.453,
+              285.236,
+              275.283,
+              64.951,
+              197.152
+            ]
+          },
+          {
+            "t": 1071.7999999977649,
+            "y": [
+              142.805,
+              129.199,
+              259.077,
+              59.8388,
+              291.577,
+              280.897,
+              69.8147,
+              202.567
+            ]
+          },
+          {
+            "t": 1121.7999999977649,
+            "y": [
+              145.199,
+              131.701,
+              262.394,
+              61.7934,
+              295.238,
+              284.138,
+              72.6225,
+              205.693
+            ]
+          },
+          {
+            "t": 1171.7999999977649,
+            "y": [
+              146.334,
+              132.887,
+              263.967,
+              62.7198,
+              296.973,
+              285.674,
+              73.9532,
+              207.175
+            ]
+          },
+          {
+            "t": 1221.7999999977649,
+            "y": [
+              146.678,
+              133.246,
+              264.443,
+              63.0004,
+              297.499,
+              286.139,
+              74.3562,
+              207.624
+            ]
+          },
+          {
+            "t": 1271.7999999977649,
+            "y": [
+              146.701,
+              133.271,
+              264.475,
+              63.0194,
+              297.534,
+              286.17,
+              74.3836,
+              207.654
+            ]
+          },
+          {
+            "t": 1321.7999999977649,
+            "y": [
+              146.701,
+              133.271,
+              264.475,
+              63.0194,
+              297.534,
+              286.17,
+              74.3836,
+              207.654
+            ]
+          },
+          {
+            "t": 1371.6999999977647,
+            "y": [
+              146.701,
+              133.271,
+              264.475,
+              63.0194,
+              297.534,
+              286.17,
+              74.3836,
+              207.654
+            ]
+          },
+          {
+            "t": 1421.7999999977649,
+            "y": [
+              146.701,
+              133.271,
+              264.475,
+              63.0194,
+              297.534,
+              286.17,
+              74.3836,
+              207.654
+            ]
+          },
+          {
+            "t": 1471.6999999977647,
+            "y": [
+              146.701,
+              133.271,
+              264.475,
+              63.0194,
+              297.534,
+              286.17,
+              74.3836,
+              207.654
+            ]
+          },
+          {
+            "t": 1521.7999999977649,
+            "y": [
+              146.701,
+              133.271,
+              264.475,
+              63.0194,
+              297.534,
+              286.17,
+              74.3836,
+              207.654
+            ]
+          },
+          {
+            "t": 1571.7999999977649,
+            "y": [
+              146.701,
+              133.271,
+              264.475,
+              63.0194,
+              297.534,
+              286.17,
+              74.3836,
+              207.654
+            ]
+          },
+          {
+            "t": 1621.6999999977647,
+            "y": [
+              146.701,
+              133.271,
+              264.475,
+              63.0194,
+              297.534,
+              286.17,
+              74.3836,
+              207.654
+            ]
+          },
+          {
+            "t": 1671.7999999977649,
+            "y": [
+              146.701,
+              133.271,
+              264.475,
+              63.0194,
+              297.534,
+              286.17,
+              74.3836,
+              207.654
+            ]
+          },
+          {
+            "t": 1721.6999999977647,
+            "y": [
+              146.701,
+              133.271,
+              264.475,
+              63.0194,
+              297.534,
+              286.17,
+              74.3836,
+              207.654
+            ]
+          },
+          {
+            "t": 1771.7999999977649,
+            "y": [
+              146.701,
+              133.271,
+              264.475,
+              63.0194,
+              297.534,
+              286.17,
+              74.3836,
+              207.654
+            ]
+          },
+          {
+            "t": 1821.6999999977647,
+            "y": [
+              146.701,
+              133.271,
+              264.475,
+              63.0194,
+              297.534,
+              286.17,
+              74.3836,
+              207.654
+            ]
+          },
+          {
+            "t": 1871.7999999977649,
+            "y": [
+              146.701,
+              133.271,
+              264.475,
+              63.0194,
+              297.534,
+              286.17,
+              74.3836,
+              207.654
+            ]
+          },
+          {
+            "t": 1921.7999999977649,
+            "y": [
+              146.701,
+              133.271,
+              264.475,
+              63.0194,
+              297.534,
+              286.17,
+              74.3836,
+              207.654
+            ]
+          },
+          {
+            "t": 1971.7999999977646,
+            "y": [
+              146.701,
+              133.271,
+              264.475,
+              63.0194,
+              297.534,
+              286.17,
+              74.3836,
+              207.654
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "1733x963",
+      "initial": {
+        "viewport": {
+          "width": 1733,
+          "height": 963
+        },
+        "scrollY": 0,
+        "overflow": false,
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 1733,
+          "height": 92.1875,
+          "right": 1733,
+          "bottom": 92.1875
+        },
+        "headerPosition": "absolute",
+        "hero": {
+          "x": 0,
+          "y": 0,
+          "width": 1733,
+          "height": 1101.78125,
+          "right": 1733,
+          "bottom": 1101.78125
+        },
+        "copy": {
+          "x": 72,
+          "y": 202.21875,
+          "width": 963.0625,
+          "height": 659.5625,
+          "right": 1035.0625,
+          "bottom": 861.78125
+        },
+        "cta": {
+          "x": 72,
+          "y": 802.984375,
+          "width": 295,
+          "height": 58.796875,
+          "right": 367,
+          "bottom": 861.78125
+        },
+        "register": {
+          "x": 72,
+          "y": 740.984375,
+          "width": 119,
+          "height": 44,
+          "right": 191,
+          "bottom": 784.984375
+        },
+        "date": "Sunday, 1 November 2026 \u00b7 Hosted by Codex Ambassadors",
+        "registerDecoration": "none",
+        "ctaLucide": true,
+        "strip": {
+          "x": 0,
+          "y": 911.78125,
+          "width": 1733,
+          "height": 190,
+          "right": 1733,
+          "bottom": 1101.78125
+        },
+        "stripDisplay": "block",
+        "stripInsideHero": true,
+        "pause": {
+          "x": 1617,
+          "y": 853.78125,
+          "width": 44,
+          "height": 46,
+          "right": 1661,
+          "bottom": 899.78125
+        },
+        "scroll": {
+          "x": 842.5,
+          "y": 854.289306640625,
+          "width": 48,
+          "height": 48,
+          "right": 890.5,
+          "bottom": 902.289306640625
+        },
+        "cluster": [
+          {
+            "x": 1149.3531494140625,
+            "y": 434.17962646484375,
+            "width": 195.625,
+            "height": 195.625,
+            "transform": "translate3d(90.2906px, 178.07px, 0px)"
+          },
+          {
+            "x": 1327.42626953125,
+            "y": 417.87701416015625,
+            "width": 165.53125,
+            "height": 165.53125,
+            "transform": "translate3d(268.364px, 161.768px, 0px)"
+          },
+          {
+            "x": 1301.091552734375,
+            "y": 577.138671875,
+            "width": 132.921875,
+            "height": 132.921875,
+            "transform": "translate3d(242.029px, 321.029px, 0px)"
+          },
+          {
+            "x": 1292.313232421875,
+            "y": 332.60321044921875,
+            "width": 102.828125,
+            "height": 102.828125,
+            "transform": "translate3d(233.251px, 76.4938px, 0px)"
+          },
+          {
+            "x": 1148.09912109375,
+            "y": 617.2673950195312,
+            "width": 102.828125,
+            "height": 102.828125,
+            "transform": "translate3d(89.0366px, 361.158px, 0px)"
+          },
+          {
+            "x": 1442.797607421875,
+            "y": 603.4735107421875,
+            "width": 72.71875,
+            "height": 72.71875,
+            "transform": "translate3d(383.735px, 347.364px, 0px)"
+          },
+          {
+            "x": 1437.781494140625,
+            "y": 346.39654541015625,
+            "width": 102.828125,
+            "height": 102.828125,
+            "transform": "translate3d(378.719px, 90.2872px, 0px)"
+          },
+          {
+            "x": 1464.1162109375,
+            "y": 508.1668701171875,
+            "width": 72.71875,
+            "height": 72.71875,
+            "transform": "translate3d(405.054px, 252.057px, 0px)"
+          }
+        ],
+        "stripDiameters": [
+          127.1,
+          86.8,
+          136.4,
+          105.4,
+          80.6,
+          133.3,
+          86.8,
+          133.3,
+          89.9,
+          114.7,
+          136.4,
+          89.9,
+          105.4,
+          136.4,
+          86.8,
+          127.1,
+          80.6,
+          133.3
+        ],
+        "reduced": false,
+        "paused": "false",
+        "hidden": false,
+        "frames": [
+          {
+            "t": 380.3999999985099,
+            "y": [
+              178.073,
+              161.771,
+              321.033,
+              76.4962,
+              361.163,
+              347.368,
+              90.2906,
+              252.061
+            ]
+          },
+          {
+            "t": 430.29999999850986,
+            "y": [
+              -293.445,
+              -331.066,
+              -332.32,
+              -308.493,
+              -359.908,
+              -290.936,
+              -462.739,
+              -363.671
+            ]
+          },
+          {
+            "t": 480.3999999985099,
+            "y": [
+              -215.034,
+              -249.11,
+              -223.671,
+              -244.472,
+              -239.999,
+              -184.791,
+              -370.774,
+              -261.278
+            ]
+          },
+          {
+            "t": 530.2999999985099,
+            "y": [
+              -145.837,
+              -176.785,
+              -127.789,
+              -187.973,
+              -134.179,
+              -91.1171,
+              -289.615,
+              -170.918
+            ]
+          },
+          {
+            "t": 580.3999999985099,
+            "y": [
+              -85.2781,
+              -113.487,
+              -43.8762,
+              -138.527,
+              -41.5688,
+              -9.13662,
+              -218.587,
+              -91.8362
+            ]
+          },
+          {
+            "t": 630.2999999985099,
+            "y": [
+              -32.8779,
+              -58.718,
+              28.7315,
+              -95.7431,
+              38.5645,
+              61.7987,
+              -157.128,
+              -23.4093
+            ]
+          },
+          {
+            "t": 680.2999999985099,
+            "y": [
+              12.231,
+              -11.5697,
+              91.2361,
+              -58.9121,
+              107.547,
+              122.864,
+              -104.221,
+              35.4961
+            ]
+          },
+          {
+            "t": 730.2999999985099,
+            "y": [
+              50.2628,
+              28.1817,
+              143.934,
+              -27.8596,
+              165.708,
+              174.348,
+              -59.6146,
+              85.16
+            ]
+          },
+          {
+            "t": 780.3999999985099,
+            "y": [
+              82.0421,
+              61.3978,
+              187.969,
+              -1.91213,
+              214.306,
+              217.369,
+              -22.3416,
+              126.659
+            ]
+          },
+          {
+            "t": 830.3999999985099,
+            "y": [
+              108.062,
+              88.594,
+              224.023,
+              19.3327,
+              254.097,
+              252.592,
+              8.17628,
+              160.637
+            ]
+          },
+          {
+            "t": 880.3999999985099,
+            "y": [
+              128.898,
+              110.372,
+              252.894,
+              36.3451,
+              285.961,
+              280.798,
+              32.6143,
+              187.846
+            ]
+          },
+          {
+            "t": 930.2999999985099,
+            "y": [
+              145.154,
+              127.363,
+              275.42,
+              49.6183,
+              310.821,
+              302.805,
+              51.681,
+              209.074
+            ]
+          },
+          {
+            "t": 980.2999999985099,
+            "y": [
+              157.343,
+              140.103,
+              292.309,
+              59.5702,
+              329.461,
+              319.305,
+              65.9767,
+              224.991
+            ]
+          },
+          {
+            "t": 1030.29999999851,
+            "y": [
+              166.076,
+              149.232,
+              304.41,
+              66.7011,
+              342.817,
+              331.128,
+              76.22,
+              236.395
+            ]
+          },
+          {
+            "t": 1080.29999999851,
+            "y": [
+              171.931,
+              155.351,
+              312.522,
+              71.4811,
+              351.769,
+              339.053,
+              83.0865,
+              244.04
+            ]
+          },
+          {
+            "t": 1130.29999999851,
+            "y": [
+              175.477,
+              159.057,
+              317.436,
+              74.3762,
+              357.192,
+              343.853,
+              87.2453,
+              248.671
+            ]
+          },
+          {
+            "t": 1180.29999999851,
+            "y": [
+              177.305,
+              160.968,
+              319.969,
+              75.8693,
+              359.988,
+              346.329,
+              89.3901,
+              251.059
+            ]
+          },
+          {
+            "t": 1230.29999999851,
+            "y": [
+              177.977,
+              161.67,
+              320.9,
+              76.4174,
+              361.015,
+              347.237,
+              90.1774,
+              251.935
+            ]
+          },
+          {
+            "t": 1280.29999999851,
+            "y": [
+              178.07,
+              161.767,
+              321.029,
+              76.4934,
+              361.157,
+              347.363,
+              90.2866,
+              252.057
+            ]
+          },
+          {
+            "t": 1330.29999999851,
+            "y": [
+              178.07,
+              161.767,
+              321.029,
+              76.4934,
+              361.157,
+              347.363,
+              90.2866,
+              252.057
+            ]
+          },
+          {
+            "t": 1380.29999999851,
+            "y": [
+              178.07,
+              161.767,
+              321.029,
+              76.4934,
+              361.157,
+              347.363,
+              90.2866,
+              252.057
+            ]
+          },
+          {
+            "t": 1430.29999999851,
+            "y": [
+              178.07,
+              161.767,
+              321.029,
+              76.4934,
+              361.157,
+              347.363,
+              90.2866,
+              252.057
+            ]
+          },
+          {
+            "t": 1480.3999999985099,
+            "y": [
+              178.07,
+              161.767,
+              321.029,
+              76.4934,
+              361.157,
+              347.363,
+              90.2866,
+              252.057
+            ]
+          },
+          {
+            "t": 1530.29999999851,
+            "y": [
+              178.07,
+              161.767,
+              321.029,
+              76.4934,
+              361.157,
+              347.363,
+              90.2866,
+              252.057
+            ]
+          },
+          {
+            "t": 1580.29999999851,
+            "y": [
+              178.07,
+              161.767,
+              321.029,
+              76.4934,
+              361.157,
+              347.363,
+              90.2866,
+              252.057
+            ]
+          },
+          {
+            "t": 1630.3999999985099,
+            "y": [
+              178.07,
+              161.767,
+              321.029,
+              76.4934,
+              361.157,
+              347.363,
+              90.2866,
+              252.057
+            ]
+          },
+          {
+            "t": 1680.29999999851,
+            "y": [
+              178.07,
+              161.767,
+              321.029,
+              76.4934,
+              361.157,
+              347.363,
+              90.2866,
+              252.057
+            ]
+          },
+          {
+            "t": 1730.29999999851,
+            "y": [
+              178.07,
+              161.767,
+              321.029,
+              76.4934,
+              361.157,
+              347.363,
+              90.2866,
+              252.057
+            ]
+          },
+          {
+            "t": 1780.29999999851,
+            "y": [
+              178.07,
+              161.767,
+              321.029,
+              76.4934,
+              361.157,
+              347.363,
+              90.2866,
+              252.057
+            ]
+          },
+          {
+            "t": 1830.29999999851,
+            "y": [
+              178.07,
+              161.767,
+              321.029,
+              76.4934,
+              361.157,
+              347.363,
+              90.2866,
+              252.057
+            ]
+          },
+          {
+            "t": 1880.29999999851,
+            "y": [
+              178.07,
+              161.767,
+              321.029,
+              76.4934,
+              361.157,
+              347.363,
+              90.2866,
+              252.057
+            ]
+          },
+          {
+            "t": 1930.29999999851,
+            "y": [
+              178.07,
+              161.767,
+              321.029,
+              76.4934,
+              361.157,
+              347.363,
+              90.2866,
+              252.057
+            ]
+          },
+          {
+            "t": 1980.29999999851,
+            "y": [
+              178.07,
+              161.768,
+              321.029,
+              76.4938,
+              361.158,
+              347.364,
+              90.2872,
+              252.057
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "1194x834",
+      "initial": {
+        "viewport": {
+          "width": 1194,
+          "height": 834
+        },
+        "scrollY": 0,
+        "overflow": false,
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 1194,
+          "height": 77.1875,
+          "right": 1194,
+          "bottom": 77.1875
+        },
+        "headerPosition": "sticky",
+        "hero": {
+          "x": 0,
+          "y": 77.1875,
+          "width": 1194,
+          "height": 797.078125,
+          "right": 1194,
+          "bottom": 874.265625
+        },
+        "copy": {
+          "x": 52.53125,
+          "y": 121.1875,
+          "width": 655.34375,
+          "height": 513.078125,
+          "right": 707.875,
+          "bottom": 634.265625
+        },
+        "cta": {
+          "x": 52.53125,
+          "y": 575.46875,
+          "width": 295,
+          "height": 58.796875,
+          "right": 347.53125,
+          "bottom": 634.265625
+        },
+        "register": {
+          "x": 52.53125,
+          "y": 513.46875,
+          "width": 106,
+          "height": 44,
+          "right": 158.53125,
+          "bottom": 557.46875
+        },
+        "date": "Sunday, 1 November 2026 \u00b7 Hosted by Codex Ambassadors",
+        "registerDecoration": "none",
+        "ctaLucide": true,
+        "strip": {
+          "x": 0,
+          "y": 684.265625,
+          "width": 1194,
+          "height": 190,
+          "right": 1194,
+          "bottom": 874.265625
+        },
+        "stripDisplay": "block",
+        "stripInsideHero": true,
+        "pause": {
+          "x": 1097.46875,
+          "y": 626.265625,
+          "width": 44,
+          "height": 46,
+          "right": 1141.46875,
+          "bottom": 672.265625
+        },
+        "scroll": {
+          "x": 573,
+          "y": 626.52978515625,
+          "width": 48,
+          "height": 48,
+          "right": 621,
+          "bottom": 674.52978515625
+        },
+        "cluster": [
+          {
+            "x": 793.3140869140625,
+            "y": 311.16949462890625,
+            "width": 133.109375,
+            "height": 133.109375,
+            "transform": "translate3d(61.4391px, 121.169px, 0px)"
+          },
+          {
+            "x": 914.4855346679688,
+            "y": 300.07623291015625,
+            "width": 112.62506103515625,
+            "height": 112.625,
+            "transform": "translate3d(182.611px, 110.076px, 0px)"
+          },
+          {
+            "x": 896.5657958984375,
+            "y": 408.4472351074219,
+            "width": 90.4375,
+            "height": 90.4375,
+            "transform": "translate3d(164.691px, 218.447px, 0px)"
+          },
+          {
+            "x": 890.5925903320312,
+            "y": 242.0509033203125,
+            "width": 69.96875,
+            "height": 69.96875,
+            "transform": "translate3d(158.718px, 52.0509px, 0px)"
+          },
+          {
+            "x": 792.4607543945312,
+            "y": 435.753173828125,
+            "width": 69.96875,
+            "height": 69.96875,
+            "transform": "translate3d(60.5857px, 245.753px, 0px)"
+          },
+          {
+            "x": 992.9910278320312,
+            "y": 426.36700439453125,
+            "width": 49.48431396484375,
+            "height": 49.484375,
+            "transform": "translate3d(261.116px, 236.367px, 0px)"
+          },
+          {
+            "x": 989.5777587890625,
+            "y": 251.4367218017578,
+            "width": 69.96875,
+            "height": 69.96873474121094,
+            "transform": "translate3d(257.703px, 61.4367px, 0px)"
+          },
+          {
+            "x": 1007.4974365234375,
+            "y": 361.5147705078125,
+            "width": 49.484375,
+            "height": 49.484375,
+            "transform": "translate3d(275.622px, 171.515px, 0px)"
+          }
+        ],
+        "stripDiameters": [
+          127.1,
+          86.8,
+          136.4,
+          105.4,
+          80.6,
+          133.3,
+          86.8,
+          133.3,
+          89.9,
+          114.7,
+          136.4,
+          89.9,
+          105.4,
+          136.4,
+          86.8,
+          127.1,
+          80.6,
+          133.3
+        ],
+        "reduced": false,
+        "paused": "false",
+        "hidden": false,
+        "frames": [
+          {
+            "t": 213.39999999925493,
+            "y": [
+              121.171,
+              110.078,
+              218.45,
+              52.0525,
+              245.756,
+              236.37,
+              61.4391,
+              171.517
+            ]
+          },
+          {
+            "t": 263.39999999925493,
+            "y": [
+              -199.677,
+              -225.277,
+              -226.13,
+              -209.917,
+              -244.903,
+              -197.97,
+              -314.875,
+              -247.463
+            ]
+          },
+          {
+            "t": 313.39999999925493,
+            "y": [
+              -146.422,
+              -169.614,
+              -152.338,
+              -166.435,
+              -163.463,
+              -125.878,
+              -252.414,
+              -177.92
+            ]
+          },
+          {
+            "t": 363.29999999925496,
+            "y": [
+              -99.2363,
+              -120.295,
+              -86.9555,
+              -127.908,
+              -91.3035,
+              -62.0015,
+              -197.071,
+              -116.302
+            ]
+          },
+          {
+            "t": 413.39999999925493,
+            "y": [
+              -58.0282,
+              -77.2235,
+              -29.856,
+              -94.2621,
+              -28.2858,
+              -6.2171,
+              -148.739,
+              -62.4907
+            ]
+          },
+          {
+            "t": 463.29999999925496,
+            "y": [
+              -22.3058,
+              -39.886,
+              19.6423,
+              -65.0952,
+              26.3428,
+              42.1411,
+              -106.842,
+              -15.8426
+            ]
+          },
+          {
+            "t": 513.299999999255,
+            "y": [
+              8.3227,
+              -7.87267,
+              62.0824,
+              -40.0873,
+              73.1816,
+              83.6037,
+              -70.9182,
+              24.1537
+            ]
+          },
+          {
+            "t": 563.399999999255,
+            "y": [
+              34.2492,
+              19.226,
+              98.0071,
+              -18.9186,
+              112.83,
+              118.701,
+              -40.5097,
+              58.0098
+            ]
+          },
+          {
+            "t": 613.399999999255,
+            "y": [
+              55.8655,
+              41.8196,
+              127.959,
+              -1.26913,
+              145.887,
+              147.963,
+              -15.1566,
+              86.2375
+            ]
+          },
+          {
+            "t": 663.399999999255,
+            "y": [
+              73.5317,
+              60.2846,
+              152.438,
+              13.1551,
+              172.903,
+              171.879,
+              5.56363,
+              109.307
+            ]
+          },
+          {
+            "t": 713.299999999255,
+            "y": [
+              87.7348,
+              75.1299,
+              172.119,
+              24.7518,
+              194.623,
+              191.106,
+              22.2221,
+              127.854
+            ]
+          },
+          {
+            "t": 763.299999999255,
+            "y": [
+              98.7715,
+              86.6656,
+              187.412,
+              33.7632,
+              211.501,
+              206.046,
+              35.1668,
+              142.266
+            ]
+          },
+          {
+            "t": 813.299999999255,
+            "y": [
+              107.051,
+              95.3197,
+              198.884,
+              40.5235,
+              224.163,
+              217.255,
+              44.8779,
+              153.078
+            ]
+          },
+          {
+            "t": 863.299999999255,
+            "y": [
+              112.998,
+              101.536,
+              207.125,
+              45.3793,
+              233.258,
+              225.306,
+              51.8531,
+              160.845
+            ]
+          },
+          {
+            "t": 913.299999999255,
+            "y": [
+              116.986,
+              105.703,
+              212.65,
+              48.6348,
+              239.355,
+              230.703,
+              56.5296,
+              166.051
+            ]
+          },
+          {
+            "t": 963.299999999255,
+            "y": [
+              119.408,
+              108.235,
+              216.007,
+              50.6129,
+              243.06,
+              233.983,
+              59.371,
+              169.215
+            ]
+          },
+          {
+            "t": 1013.2999999992549,
+            "y": [
+              120.649,
+              109.532,
+              217.726,
+              51.626,
+              244.957,
+              235.662,
+              60.8263,
+              170.835
+            ]
+          },
+          {
+            "t": 1063.2999999992549,
+            "y": [
+              121.106,
+              110.01,
+              218.359,
+              51.9989,
+              245.656,
+              236.281,
+              61.362,
+              171.432
+            ]
+          },
+          {
+            "t": 1113.2999999992549,
+            "y": [
+              121.169,
+              110.076,
+              218.447,
+              52.0506,
+              245.753,
+              236.367,
+              61.4363,
+              171.514
+            ]
+          },
+          {
+            "t": 1163.2999999992549,
+            "y": [
+              121.169,
+              110.076,
+              218.447,
+              52.0506,
+              245.753,
+              236.367,
+              61.4363,
+              171.514
+            ]
+          },
+          {
+            "t": 1213.399999999255,
+            "y": [
+              121.169,
+              110.076,
+              218.447,
+              52.0506,
+              245.753,
+              236.367,
+              61.4363,
+              171.514
+            ]
+          },
+          {
+            "t": 1263.399999999255,
+            "y": [
+              121.169,
+              110.076,
+              218.447,
+              52.0506,
+              245.753,
+              236.367,
+              61.4363,
+              171.514
+            ]
+          },
+          {
+            "t": 1313.2999999992549,
+            "y": [
+              121.169,
+              110.076,
+              218.447,
+              52.0506,
+              245.753,
+              236.367,
+              61.4363,
+              171.514
+            ]
+          },
+          {
+            "t": 1363.2999999992549,
+            "y": [
+              121.169,
+              110.076,
+              218.447,
+              52.0506,
+              245.753,
+              236.367,
+              61.4363,
+              171.514
+            ]
+          },
+          {
+            "t": 1413.2999999992549,
+            "y": [
+              121.169,
+              110.076,
+              218.447,
+              52.0506,
+              245.753,
+              236.367,
+              61.4363,
+              171.514
+            ]
+          },
+          {
+            "t": 1463.2999999992549,
+            "y": [
+              121.169,
+              110.076,
+              218.447,
+              52.0506,
+              245.753,
+              236.367,
+              61.4363,
+              171.514
+            ]
+          },
+          {
+            "t": 1513.399999999255,
+            "y": [
+              121.169,
+              110.076,
+              218.447,
+              52.0506,
+              245.753,
+              236.367,
+              61.4363,
+              171.514
+            ]
+          },
+          {
+            "t": 1563.2999999992549,
+            "y": [
+              121.169,
+              110.076,
+              218.447,
+              52.0506,
+              245.753,
+              236.367,
+              61.4363,
+              171.514
+            ]
+          },
+          {
+            "t": 1613.2999999992549,
+            "y": [
+              121.169,
+              110.076,
+              218.447,
+              52.0506,
+              245.753,
+              236.367,
+              61.4363,
+              171.514
+            ]
+          },
+          {
+            "t": 1663.2999999992549,
+            "y": [
+              121.169,
+              110.076,
+              218.447,
+              52.0506,
+              245.753,
+              236.367,
+              61.4363,
+              171.514
+            ]
+          },
+          {
+            "t": 1713.2999999992549,
+            "y": [
+              121.169,
+              110.076,
+              218.447,
+              52.0506,
+              245.753,
+              236.367,
+              61.4363,
+              171.514
+            ]
+          },
+          {
+            "t": 1763.2999999992549,
+            "y": [
+              121.169,
+              110.076,
+              218.447,
+              52.0506,
+              245.753,
+              236.367,
+              61.4363,
+              171.514
+            ]
+          },
+          {
+            "t": 1813.2999999992549,
+            "y": [
+              121.169,
+              110.076,
+              218.447,
+              52.0509,
+              245.753,
+              236.367,
+              61.4367,
+              171.515
+            ]
+          },
+          {
+            "t": 1863.2999999992549,
+            "y": [
+              121.169,
+              110.076,
+              218.447,
+              52.0509,
+              245.753,
+              236.367,
+              61.4367,
+              171.515
+            ]
+          },
+          {
+            "t": 1913.2999999992549,
+            "y": [
+              121.169,
+              110.076,
+              218.447,
+              52.0509,
+              245.753,
+              236.367,
+              61.4367,
+              171.515
+            ]
+          },
+          {
+            "t": 1963.2999999992549,
+            "y": [
+              121.169,
+              110.076,
+              218.447,
+              52.0509,
+              245.753,
+              236.367,
+              61.4367,
+              171.515
+            ]
+          },
+          {
+            "t": 2013.2999999992549,
+            "y": [
+              121.169,
+              110.076,
+              218.447,
+              52.0509,
+              245.753,
+              236.367,
+              61.4367,
+              171.515
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "834x1194",
+      "initial": {
+        "viewport": {
+          "width": 834,
+          "height": 1194
+        },
+        "scrollY": 0,
+        "overflow": false,
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 834,
+          "height": 77,
+          "right": 834,
+          "bottom": 77
+        },
+        "headerPosition": "sticky",
+        "hero": {
+          "x": 0,
+          "y": 77,
+          "width": 834,
+          "height": 1188.5,
+          "right": 834,
+          "bottom": 1265.5
+        },
+        "copy": {
+          "x": 37,
+          "y": 121,
+          "width": 760,
+          "height": 551.5,
+          "right": 797,
+          "bottom": 672.5
+        },
+        "cta": {
+          "x": 37,
+          "y": 613.703125,
+          "width": 295,
+          "height": 58.796875,
+          "right": 332,
+          "bottom": 672.5
+        },
+        "register": {
+          "x": 37,
+          "y": 551.703125,
+          "width": 93,
+          "height": 44,
+          "right": 130,
+          "bottom": 595.703125
+        },
+        "date": "Sunday, 1 November 2026 \u00b7 Hosted by Codex Ambassadors",
+        "registerDecoration": "none",
+        "ctaLucide": true,
+        "strip": {
+          "x": 0,
+          "y": 1075.5,
+          "width": 834,
+          "height": 190,
+          "right": 834,
+          "bottom": 1265.5
+        },
+        "stripDisplay": "block",
+        "stripInsideHero": true,
+        "pause": {
+          "x": 753.3125,
+          "y": 1017.5,
+          "width": 44,
+          "height": 46,
+          "right": 797.3125,
+          "bottom": 1063.5
+        },
+        "scroll": {
+          "x": 393,
+          "y": 1017.7007446289062,
+          "width": 48,
+          "height": 47.99993896484375,
+          "right": 441,
+          "bottom": 1065.70068359375
+        },
+        "cluster": [
+          {
+            "x": 291,
+            "y": 807,
+            "width": 117,
+            "height": 117,
+            "transform": "translate3d(54px, 106.5px, 0px)"
+          },
+          {
+            "x": 397.5,
+            "y": 797.25,
+            "width": 99,
+            "height": 99,
+            "transform": "translate3d(160.5px, 96.75px, 0px)"
+          },
+          {
+            "x": 381.75,
+            "y": 892.5,
+            "width": 79.5,
+            "height": 79.5,
+            "transform": "translate3d(144.75px, 192px, 0px)"
+          },
+          {
+            "x": 376.5,
+            "y": 746.25,
+            "width": 61.5,
+            "height": 61.5,
+            "transform": "translate3d(139.5px, 45.75px, 0px)"
+          },
+          {
+            "x": 290.25,
+            "y": 916.5,
+            "width": 61.5,
+            "height": 61.5,
+            "transform": "translate3d(53.25px, 216px, 0px)"
+          },
+          {
+            "x": 466.5,
+            "y": 908.25,
+            "width": 43.5,
+            "height": 43.5,
+            "transform": "translate3d(229.5px, 207.75px, 0px)"
+          },
+          {
+            "x": 463.5,
+            "y": 754.5,
+            "width": 61.5,
+            "height": 61.5,
+            "transform": "translate3d(226.5px, 54px, 0px)"
+          },
+          {
+            "x": 479.25,
+            "y": 851.25,
+            "width": 43.5,
+            "height": 43.5,
+            "transform": "translate3d(242.25px, 150.75px, 0px)"
+          }
+        ],
+        "stripDiameters": [
+          89.9842,
+          61.4526,
+          96.5684,
+          74.6211,
+          57.0632,
+          94.3737,
+          61.4526,
+          94.3737,
+          63.6474,
+          81.2053,
+          96.5684,
+          63.6474,
+          74.6211,
+          96.5684,
+          61.4526,
+          89.9842,
+          57.0632,
+          94.3737
+        ],
+        "reduced": false,
+        "paused": "false",
+        "hidden": false,
+        "frames": [
+          {
+            "t": 176.79999999776481,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 226.79999999776481,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 276.7999999977648,
+            "y": [
+              -128.605,
+              -148.985,
+              -133.771,
+              -146.211,
+              -143.536,
+              -110.517,
+              -221.748,
+              -156.262
+            ]
+          },
+          {
+            "t": 326.7999999977648,
+            "y": [
+              -87.2982,
+              -105.81,
+              -76.5343,
+              -112.484,
+              -80.367,
+              -54.5992,
+              -173.301,
+              -102.322
+            ]
+          },
+          {
+            "t": 376.7999999977648,
+            "y": [
+              -51.0021,
+              -67.8732,
+              -26.241,
+              -82.8488,
+              -24.861,
+              -5.46433,
+              -130.73,
+              -54.9243
+            ]
+          },
+          {
+            "t": 426.69999999776485,
+            "y": [
+              -19.605,
+              -35.0566,
+              17.264,
+              -57.2134,
+              23.1532,
+              37.0387,
+              -93.9051,
+              -13.9244
+            ]
+          },
+          {
+            "t": 476.7999999977648,
+            "y": [
+              7.31498,
+              -6.91945,
+              54.5654,
+              -35.2335,
+              64.3208,
+              73.4809,
+              -62.3314,
+              21.2291
+            ]
+          },
+          {
+            "t": 526.7999999977649,
+            "y": [
+              30.1023,
+              16.8981,
+              86.1404,
+              -16.6279,
+              99.1684,
+              104.329,
+              -35.6048,
+              50.986
+            ]
+          },
+          {
+            "t": 576.6999999977648,
+            "y": [
+              49.1013,
+              36.7561,
+              112.466,
+              -1.11546,
+              128.223,
+              130.048,
+              -13.3214,
+              75.7958
+            ]
+          },
+          {
+            "t": 626.6999999977648,
+            "y": [
+              64.6563,
+              53.0145,
+              134.02,
+              11.5851,
+              152.01,
+              151.105,
+              4.92271,
+              96.1084
+            ]
+          },
+          {
+            "t": 676.6999999977648,
+            "y": [
+              77.0898,
+              66.0101,
+              151.248,
+              21.7369,
+              171.024,
+              167.937,
+              19.5056,
+              112.345
+            ]
+          },
+          {
+            "t": 726.6999999977648,
+            "y": [
+              86.8122,
+              76.1721,
+              164.72,
+              29.6751,
+              185.892,
+              181.098,
+              30.9088,
+              125.041
+            ]
+          },
+          {
+            "t": 776.6999999977648,
+            "y": [
+              94.1019,
+              83.7913,
+              174.821,
+              35.6271,
+              197.04,
+              190.966,
+              39.4586,
+              134.56
+            ]
+          },
+          {
+            "t": 826.6999999977648,
+            "y": [
+              99.3252,
+              89.2508,
+              182.058,
+              39.8918,
+              205.028,
+              198.037,
+              45.5848,
+              141.381
+            ]
+          },
+          {
+            "t": 876.6999999977648,
+            "y": [
+              102.826,
+              92.9104,
+              186.91,
+              42.7506,
+              210.382,
+              202.777,
+              49.6914,
+              145.953
+            ]
+          },
+          {
+            "t": 926.6999999977648,
+            "y": [
+              104.947,
+              95.1269,
+              189.848,
+              44.4821,
+              213.625,
+              205.648,
+              52.1787,
+              148.722
+            ]
+          },
+          {
+            "t": 976.6999999977648,
+            "y": [
+              106.041,
+              96.27,
+              191.364,
+              45.3751,
+              215.298,
+              207.128,
+              53.4614,
+              150.15
+            ]
+          },
+          {
+            "t": 1026.7999999977649,
+            "y": [
+              106.443,
+              96.69,
+              191.92,
+              45.7031,
+              215.912,
+              207.672,
+              53.9327,
+              150.675
+            ]
+          },
+          {
+            "t": 1076.6999999977647,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 1126.7999999977649,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 1176.6999999977647,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 1226.6999999977647,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 1276.6999999977647,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 1326.7999999977649,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 1376.6999999977647,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 1426.6999999977647,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 1476.6999999977647,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 1526.6999999977647,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 1576.6999999977647,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 1626.6999999977647,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 1676.6999999977647,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 1726.6999999977647,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 1776.6999999977647,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 1826.6999999977647,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 1876.5999999977648,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 1926.6999999977647,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 1976.6999999977647,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "390x844",
+      "initial": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scrollY": 0,
+        "overflow": false,
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 77,
+          "right": 390,
+          "bottom": 77
+        },
+        "headerPosition": "sticky",
+        "hero": {
+          "x": 0,
+          "y": 77,
+          "width": 390,
+          "height": 768,
+          "right": 390,
+          "bottom": 845
+        },
+        "copy": {
+          "x": 24,
+          "y": 109,
+          "width": 342,
+          "height": 348.890625,
+          "right": 366,
+          "bottom": 457.890625
+        },
+        "cta": {
+          "x": 24,
+          "y": 403.890625,
+          "width": 342,
+          "height": 54,
+          "right": 366,
+          "bottom": 457.890625
+        },
+        "register": {
+          "x": 24,
+          "y": 347.890625,
+          "width": 93,
+          "height": 44,
+          "right": 117,
+          "bottom": 391.890625
+        },
+        "date": "Sunday, 1 November 2026 \u00b7 Hosted by Codex Ambassadors",
+        "registerDecoration": "none",
+        "ctaLucide": true,
+        "strip": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "stripDisplay": "none",
+        "stripInsideHero": true,
+        "pause": {
+          "x": 322,
+          "y": 783,
+          "width": 44,
+          "height": 44,
+          "right": 366,
+          "bottom": 827
+        },
+        "scroll": {
+          "x": 171,
+          "y": 781.607666015625,
+          "width": 48,
+          "height": 48,
+          "right": 219,
+          "bottom": 829.607666015625
+        },
+        "cluster": [
+          {
+            "x": 90,
+            "y": 564.640625,
+            "width": 97.5,
+            "height": 97.5,
+            "transform": "translate3d(45px, 88.75px, 0px)"
+          },
+          {
+            "x": 178.75,
+            "y": 556.515625,
+            "width": 82.5,
+            "height": 82.5,
+            "transform": "translate3d(133.75px, 80.625px, 0px)"
+          },
+          {
+            "x": 165.625,
+            "y": 635.890625,
+            "width": 66.25,
+            "height": 66.25,
+            "transform": "translate3d(120.625px, 160px, 0px)"
+          },
+          {
+            "x": 161.25,
+            "y": 514.015625,
+            "width": 51.25,
+            "height": 51.25,
+            "transform": "translate3d(116.25px, 38.125px, 0px)"
+          },
+          {
+            "x": 89.375,
+            "y": 655.890625,
+            "width": 51.25,
+            "height": 51.25,
+            "transform": "translate3d(44.375px, 180px, 0px)"
+          },
+          {
+            "x": 236.25,
+            "y": 649.015625,
+            "width": 36.25,
+            "height": 36.25,
+            "transform": "translate3d(191.25px, 173.125px, 0px)"
+          },
+          {
+            "x": 233.75,
+            "y": 520.890625,
+            "width": 51.25,
+            "height": 51.25,
+            "transform": "translate3d(188.75px, 45px, 0px)"
+          },
+          {
+            "x": 246.875,
+            "y": 601.515625,
+            "width": 36.25,
+            "height": 36.25,
+            "transform": "translate3d(201.875px, 125.625px, 0px)"
+          }
+        ],
+        "stripDiameters": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "reduced": false,
+        "paused": "false",
+        "hidden": false,
+        "frames": [
+          {
+            "t": 353.89999999925493,
+            "y": [
+              88.75,
+              80.625,
+              160,
+              38.125,
+              180,
+              173.125,
+              45,
+              125.625
+            ]
+          },
+          {
+            "t": 403.89999999925493,
+            "y": [
+              -146.25,
+              -165,
+              -165.625,
+              -153.75,
+              -179.375,
+              -145,
+              -230.625,
+              -181.25
+            ]
+          },
+          {
+            "t": 453.79999999925496,
+            "y": [
+              -119.698,
+              -137.248,
+              -128.834,
+              -132.071,
+              -138.771,
+              -109.057,
+              -199.483,
+              -146.578
+            ]
+          },
+          {
+            "t": 503.899999999255,
+            "y": [
+              -83.7096,
+              -99.632,
+              -78.9667,
+              -102.686,
+              -83.7348,
+              -60.3377,
+              -157.273,
+              -99.5816
+            ]
+          },
+          {
+            "t": 553.799999999255,
+            "y": [
+              -52.1805,
+              -66.6774,
+              -35.2787,
+              -76.9433,
+              -35.5188,
+              -17.656,
+              -120.294,
+              -58.4093
+            ]
+          },
+          {
+            "t": 603.899999999255,
+            "y": [
+              -24.6472,
+              -37.8992,
+              2.87245,
+              -54.4626,
+              6.58668,
+              19.6165,
+              -88.0005,
+              -22.4549
+            ]
+          },
+          {
+            "t": 653.799999999255,
+            "y": [
+              -1.04335,
+              -13.2282,
+              35.5789,
+              -35.1903,
+              42.683,
+              51.5696,
+              -60.3161,
+              8.36826
+            ]
+          },
+          {
+            "t": 703.799999999255,
+            "y": [
+              19.1081,
+              7.83438,
+              63.5015,
+              -18.7369,
+              73.4997,
+              78.8491,
+              -36.6811,
+              34.683
+            ]
+          },
+          {
+            "t": 753.899999999255,
+            "y": [
+              35.9631,
+              25.4514,
+              86.8564,
+              -4.97497,
+              99.2753,
+              101.666,
+              -16.9123,
+              56.6931
+            ]
+          },
+          {
+            "t": 803.799999999255,
+            "y": [
+              49.8272,
+              39.9424,
+              106.067,
+              6.34498,
+              120.477,
+              120.434,
+              -0.651428,
+              74.7977
+            ]
+          },
+          {
+            "t": 853.799999999255,
+            "y": [
+              61.0626,
+              51.6858,
+              121.635,
+              15.5186,
+              137.659,
+              135.644,
+              12.5263,
+              89.4694
+            ]
+          },
+          {
+            "t": 903.899999999255,
+            "y": [
+              69.8812,
+              60.9031,
+              133.855,
+              22.7188,
+              151.145,
+              147.582,
+              22.8693,
+              100.985
+            ]
+          },
+          {
+            "t": 953.799999999255,
+            "y": [
+              76.595,
+              67.9204,
+              143.158,
+              28.2006,
+              161.412,
+              156.67,
+              30.7437,
+              109.752
+            ]
+          },
+          {
+            "t": 1003.7999999992549,
+            "y": [
+              81.4828,
+              73.0292,
+              149.93,
+              32.1914,
+              168.887,
+              163.287,
+              36.4765,
+              116.135
+            ]
+          },
+          {
+            "t": 1053.7999999992549,
+            "y": [
+              84.8507,
+              76.5494,
+              154.597,
+              34.9412,
+              174.037,
+              167.846,
+              40.4266,
+              120.533
+            ]
+          },
+          {
+            "t": 1103.899999999255,
+            "y": [
+              86.9742,
+              78.7689,
+              157.539,
+              36.6751,
+              177.284,
+              170.721,
+              42.9172,
+              123.306
+            ]
+          },
+          {
+            "t": 1153.7999999992549,
+            "y": [
+              88.1403,
+              79.9877,
+              159.155,
+              37.6272,
+              179.068,
+              172.3,
+              44.2849,
+              124.829
+            ]
+          },
+          {
+            "t": 1203.7999999992549,
+            "y": [
+              88.6359,
+              80.5058,
+              159.842,
+              38.0319,
+              179.826,
+              172.971,
+              44.8662,
+              125.476
+            ]
+          },
+          {
+            "t": 1253.7999999992549,
+            "y": [
+              88.7482,
+              80.6231,
+              159.998,
+              38.1235,
+              179.997,
+              173.123,
+              44.9979,
+              125.623
+            ]
+          },
+          {
+            "t": 1303.7999999992549,
+            "y": [
+              88.75,
+              80.625,
+              160,
+              38.125,
+              180,
+              173.125,
+              45,
+              125.625
+            ]
+          },
+          {
+            "t": 1353.7999999992549,
+            "y": [
+              88.75,
+              80.625,
+              160,
+              38.125,
+              180,
+              173.125,
+              45,
+              125.625
+            ]
+          },
+          {
+            "t": 1403.7999999992549,
+            "y": [
+              88.75,
+              80.625,
+              160,
+              38.125,
+              180,
+              173.125,
+              45,
+              125.625
+            ]
+          },
+          {
+            "t": 1453.7999999992549,
+            "y": [
+              88.75,
+              80.625,
+              160,
+              38.125,
+              180,
+              173.125,
+              45,
+              125.625
+            ]
+          },
+          {
+            "t": 1503.7999999992549,
+            "y": [
+              88.75,
+              80.625,
+              160,
+              38.125,
+              180,
+              173.125,
+              45,
+              125.625
+            ]
+          },
+          {
+            "t": 1553.7999999992549,
+            "y": [
+              88.75,
+              80.625,
+              160,
+              38.125,
+              180,
+              173.125,
+              45,
+              125.625
+            ]
+          },
+          {
+            "t": 1603.7999999992549,
+            "y": [
+              88.75,
+              80.625,
+              160,
+              38.125,
+              180,
+              173.125,
+              45,
+              125.625
+            ]
+          },
+          {
+            "t": 1653.7999999992549,
+            "y": [
+              88.75,
+              80.625,
+              160,
+              38.125,
+              180,
+              173.125,
+              45,
+              125.625
+            ]
+          },
+          {
+            "t": 1703.7999999992549,
+            "y": [
+              88.75,
+              80.625,
+              160,
+              38.125,
+              180,
+              173.125,
+              45,
+              125.625
+            ]
+          },
+          {
+            "t": 1753.7999999992549,
+            "y": [
+              88.75,
+              80.625,
+              160,
+              38.125,
+              180,
+              173.125,
+              45,
+              125.625
+            ]
+          },
+          {
+            "t": 1803.7999999992549,
+            "y": [
+              88.75,
+              80.625,
+              160,
+              38.125,
+              180,
+              173.125,
+              45,
+              125.625
+            ]
+          },
+          {
+            "t": 1853.7999999992549,
+            "y": [
+              88.75,
+              80.625,
+              160,
+              38.125,
+              180,
+              173.125,
+              45,
+              125.625
+            ]
+          },
+          {
+            "t": 1903.7999999992549,
+            "y": [
+              88.75,
+              80.625,
+              160,
+              38.125,
+              180,
+              173.125,
+              45,
+              125.625
+            ]
+          },
+          {
+            "t": 1953.7999999992549,
+            "y": [
+              88.75,
+              80.625,
+              160,
+              38.125,
+              180,
+              173.125,
+              45,
+              125.625
+            ]
+          },
+          {
+            "t": 2003.7999999992549,
+            "y": [
+              88.75,
+              80.625,
+              160,
+              38.125,
+              180,
+              173.125,
+              45,
+              125.625
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "320x740",
+      "initial": {
+        "viewport": {
+          "width": 320,
+          "height": 740
+        },
+        "scrollY": 0,
+        "overflow": false,
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 77,
+          "right": 320,
+          "bottom": 77
+        },
+        "headerPosition": "sticky",
+        "hero": {
+          "x": 0,
+          "y": 77,
+          "width": 320,
+          "height": 707.90625,
+          "right": 320,
+          "bottom": 784.90625
+        },
+        "copy": {
+          "x": 24,
+          "y": 109,
+          "width": 272,
+          "height": 319.25,
+          "right": 296,
+          "bottom": 428.25
+        },
+        "cta": {
+          "x": 24,
+          "y": 374.25,
+          "width": 272,
+          "height": 54,
+          "right": 296,
+          "bottom": 428.25
+        },
+        "register": {
+          "x": 24,
+          "y": 318.25,
+          "width": 93,
+          "height": 44,
+          "right": 117,
+          "bottom": 362.25
+        },
+        "date": "Sunday, 1 November 2026 \u00b7 Hosted by Codex Ambassadors",
+        "registerDecoration": "none",
+        "ctaLucide": true,
+        "strip": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "stripDisplay": "none",
+        "stripInsideHero": true,
+        "pause": {
+          "x": 252,
+          "y": 722.90625,
+          "width": 44,
+          "height": 44,
+          "right": 296,
+          "bottom": 766.90625
+        },
+        "scroll": {
+          "x": 136,
+          "y": 721.414306640625,
+          "width": 48,
+          "height": 48,
+          "right": 184,
+          "bottom": 769.414306640625
+        },
+        "cluster": [
+          {
+            "x": 64.80000305175781,
+            "y": 526.71533203125,
+            "width": 88.390625,
+            "height": 88.390625,
+            "transform": "translate3d(40.8px, 80.4653px, 0px)"
+          },
+          {
+            "x": 145.26666259765625,
+            "y": 519.3485717773438,
+            "width": 74.796875,
+            "height": 74.796875,
+            "transform": "translate3d(121.267px, 73.0986px, 0px)"
+          },
+          {
+            "x": 133.36666870117188,
+            "y": 591.3148193359375,
+            "width": 60.0625,
+            "height": 60.0625,
+            "transform": "translate3d(109.367px, 145.065px, 0px)"
+          },
+          {
+            "x": 129.39999389648438,
+            "y": 480.8155517578125,
+            "width": 46.453125,
+            "height": 46.453125,
+            "transform": "translate3d(105.4px, 34.5656px, 0px)"
+          },
+          {
+            "x": 64.23333740234375,
+            "y": 609.4479370117188,
+            "width": 46.453125,
+            "height": 46.453125,
+            "transform": "translate3d(40.2333px, 163.198px, 0px)"
+          },
+          {
+            "x": 197.39999389648438,
+            "y": 603.21484375,
+            "width": 32.859375,
+            "height": 32.859375,
+            "transform": "translate3d(173.4px, 156.965px, 0px)"
+          },
+          {
+            "x": 195.13333129882812,
+            "y": 487.04840087890625,
+            "width": 46.453125,
+            "height": 46.453125,
+            "transform": "translate3d(171.133px, 40.7984px, 0px)"
+          },
+          {
+            "x": 207.03334045410156,
+            "y": 560.1482543945312,
+            "width": 32.859375,
+            "height": 32.859375,
+            "transform": "translate3d(183.033px, 113.898px, 0px)"
+          }
+        ],
+        "stripDiameters": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "reduced": false,
+        "paused": "false",
+        "hidden": false,
+        "frames": [
+          {
+            "t": 205.39999999925493,
+            "y": [
+              80.4667,
+              73.1,
+              145.067,
+              34.5667,
+              163.2,
+              156.967,
+              40.8,
+              113.9
+            ]
+          },
+          {
+            "t": 255.39999999925493,
+            "y": [
+              -132.6,
+              -149.6,
+              -150.167,
+              -139.4,
+              -162.633,
+              -131.467,
+              -209.1,
+              -164.333
+            ]
+          },
+          {
+            "t": 305.29999999925496,
+            "y": [
+              -97.235,
+              -112.636,
+              -101.164,
+              -110.525,
+              -108.551,
+              -83.5923,
+              -167.621,
+              -118.152
+            ]
+          },
+          {
+            "t": 355.29999999925496,
+            "y": [
+              -65.9587,
+              -79.9456,
+              -57.8259,
+              -84.9881,
+              -60.7217,
+              -41.2527,
+              -130.938,
+              -77.3097
+            ]
+          },
+          {
+            "t": 405.29999999925496,
+            "y": [
+              -38.586,
+              -51.3353,
+              -19.8972,
+              -62.6385,
+              -18.8619,
+              -4.19766,
+              -98.8335,
+              -41.565
+            ]
+          },
+          {
+            "t": 455.29999999925496,
+            "y": [
+              -14.8127,
+              -26.4872,
+              13.0439,
+              -43.2279,
+              17.4935,
+              27.9848,
+              -70.9505,
+              -10.5206
+            ]
+          },
+          {
+            "t": 505.29999999925496,
+            "y": [
+              5.52687,
+              -5.22803,
+              41.2272,
+              -26.6209,
+              48.5979,
+              55.5189,
+              -47.0948,
+              16.0398
+            ]
+          },
+          {
+            "t": 555.299999999255,
+            "y": [
+              22.7125,
+              12.7346,
+              65.0402,
+              -12.589,
+              74.8791,
+              78.7834,
+              -26.9383,
+              38.4816
+            ]
+          },
+          {
+            "t": 605.399999999255,
+            "y": [
+              37.0727,
+              27.7441,
+              84.9383,
+              -0.864041,
+              96.8396,
+              98.2232,
+              -10.0956,
+              57.2339
+            ]
+          },
+          {
+            "t": 655.299999999255,
+            "y": [
+              48.8514,
+              40.0554,
+              101.259,
+              8.75317,
+              114.852,
+              114.168,
+              3.71938,
+              72.6152
+            ]
+          },
+          {
+            "t": 705.399999999255,
+            "y": [
+              58.2456,
+              49.8743,
+              114.276,
+              16.4234,
+              129.218,
+              126.886,
+              14.7376,
+              84.8826
+            ]
+          },
+          {
+            "t": 755.299999999255,
+            "y": [
+              65.5787,
+              57.5389,
+              124.437,
+              22.4108,
+              140.433,
+              136.812,
+              23.3383,
+              94.4585
+            ]
+          },
+          {
+            "t": 805.299999999255,
+            "y": [
+              71.0898,
+              63.2992,
+              132.074,
+              26.9106,
+              148.86,
+              144.273,
+              29.8022,
+              101.655
+            ]
+          },
+          {
+            "t": 855.299999999255,
+            "y": [
+              75.0392,
+              67.4271,
+              137.546,
+              30.1352,
+              154.9,
+              149.619,
+              34.4342,
+              106.812
+            ]
+          },
+          {
+            "t": 905.299999999255,
+            "y": [
+              77.6911,
+              70.199,
+              141.221,
+              32.3005,
+              158.955,
+              153.209,
+              37.5446,
+              110.276
+            ]
+          },
+          {
+            "t": 955.299999999255,
+            "y": [
+              79.2934,
+              71.8737,
+              143.441,
+              33.6087,
+              161.406,
+              155.378,
+              39.4239,
+              112.368
+            ]
+          },
+          {
+            "t": 1005.2999999992549,
+            "y": [
+              80.1197,
+              72.7374,
+              144.586,
+              34.2834,
+              162.669,
+              156.497,
+              40.3931,
+              113.447
+            ]
+          },
+          {
+            "t": 1055.2999999992549,
+            "y": [
+              80.4233,
+              73.0547,
+              145.007,
+              34.5313,
+              163.134,
+              156.908,
+              40.7491,
+              113.843
+            ]
+          },
+          {
+            "t": 1105.2999999992549,
+            "y": [
+              80.4651,
+              73.0983,
+              145.064,
+              34.5654,
+              163.198,
+              156.965,
+              40.7981,
+              113.898
+            ]
+          },
+          {
+            "t": 1155.2999999992549,
+            "y": [
+              80.4651,
+              73.0983,
+              145.064,
+              34.5654,
+              163.198,
+              156.965,
+              40.7981,
+              113.898
+            ]
+          },
+          {
+            "t": 1205.2999999992549,
+            "y": [
+              80.4651,
+              73.0983,
+              145.064,
+              34.5654,
+              163.198,
+              156.965,
+              40.7981,
+              113.898
+            ]
+          },
+          {
+            "t": 1255.2999999992549,
+            "y": [
+              80.4651,
+              73.0983,
+              145.064,
+              34.5654,
+              163.198,
+              156.965,
+              40.7981,
+              113.898
+            ]
+          },
+          {
+            "t": 1305.2999999992549,
+            "y": [
+              80.4651,
+              73.0983,
+              145.064,
+              34.5654,
+              163.198,
+              156.965,
+              40.7981,
+              113.898
+            ]
+          },
+          {
+            "t": 1355.2999999992549,
+            "y": [
+              80.4651,
+              73.0983,
+              145.064,
+              34.5654,
+              163.198,
+              156.965,
+              40.7981,
+              113.898
+            ]
+          },
+          {
+            "t": 1405.2999999992549,
+            "y": [
+              80.4651,
+              73.0983,
+              145.064,
+              34.5654,
+              163.198,
+              156.965,
+              40.7981,
+              113.898
+            ]
+          },
+          {
+            "t": 1455.2999999992549,
+            "y": [
+              80.4651,
+              73.0983,
+              145.064,
+              34.5654,
+              163.198,
+              156.965,
+              40.7981,
+              113.898
+            ]
+          },
+          {
+            "t": 1505.2999999992549,
+            "y": [
+              80.4651,
+              73.0983,
+              145.064,
+              34.5654,
+              163.198,
+              156.965,
+              40.7981,
+              113.898
+            ]
+          },
+          {
+            "t": 1555.199999999255,
+            "y": [
+              80.4651,
+              73.0983,
+              145.064,
+              34.5654,
+              163.198,
+              156.965,
+              40.7981,
+              113.898
+            ]
+          },
+          {
+            "t": 1605.199999999255,
+            "y": [
+              80.4651,
+              73.0983,
+              145.064,
+              34.5654,
+              163.198,
+              156.965,
+              40.7981,
+              113.898
+            ]
+          },
+          {
+            "t": 1655.2999999992549,
+            "y": [
+              80.4651,
+              73.0983,
+              145.064,
+              34.5654,
+              163.198,
+              156.965,
+              40.7981,
+              113.898
+            ]
+          },
+          {
+            "t": 1705.2999999992549,
+            "y": [
+              80.4651,
+              73.0983,
+              145.064,
+              34.5654,
+              163.198,
+              156.965,
+              40.7981,
+              113.898
+            ]
+          },
+          {
+            "t": 1755.2999999992549,
+            "y": [
+              80.4651,
+              73.0983,
+              145.064,
+              34.5654,
+              163.198,
+              156.965,
+              40.7981,
+              113.898
+            ]
+          },
+          {
+            "t": 1805.2999999992549,
+            "y": [
+              80.4653,
+              73.0986,
+              145.065,
+              34.5656,
+              163.198,
+              156.965,
+              40.7984,
+              113.898
+            ]
+          },
+          {
+            "t": 1855.2999999992549,
+            "y": [
+              80.4653,
+              73.0986,
+              145.065,
+              34.5656,
+              163.198,
+              156.965,
+              40.7984,
+              113.898
+            ]
+          },
+          {
+            "t": 1905.2999999992549,
+            "y": [
+              80.4653,
+              73.0986,
+              145.065,
+              34.5656,
+              163.198,
+              156.965,
+              40.7984,
+              113.898
+            ]
+          },
+          {
+            "t": 1955.199999999255,
+            "y": [
+              80.4653,
+              73.0986,
+              145.065,
+              34.5656,
+              163.198,
+              156.965,
+              40.7984,
+              113.898
+            ]
+          },
+          {
+            "t": 2005.199999999255,
+            "y": [
+              80.4653,
+              73.0986,
+              145.065,
+              34.5656,
+              163.198,
+              156.965,
+              40.7984,
+              113.898
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "844x390",
+      "initial": {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "scrollY": 0,
+        "overflow": false,
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 77,
+          "right": 844,
+          "bottom": 77
+        },
+        "headerPosition": "sticky",
+        "hero": {
+          "x": 0,
+          "y": 77,
+          "width": 844,
+          "height": 1190.4375,
+          "right": 844,
+          "bottom": 1267.4375
+        },
+        "copy": {
+          "x": 42,
+          "y": 121,
+          "width": 760,
+          "height": 553.4375,
+          "right": 802,
+          "bottom": 674.4375
+        },
+        "cta": {
+          "x": 42,
+          "y": 615.640625,
+          "width": 295,
+          "height": 58.796875,
+          "right": 337,
+          "bottom": 674.4375
+        },
+        "register": {
+          "x": 42,
+          "y": 553.640625,
+          "width": 93,
+          "height": 44,
+          "right": 135,
+          "bottom": 597.640625
+        },
+        "date": "Sunday, 1 November 2026 \u00b7 Hosted by Codex Ambassadors",
+        "registerDecoration": "none",
+        "ctaLucide": true,
+        "strip": {
+          "x": 0,
+          "y": 1077.4375,
+          "width": 844,
+          "height": 190,
+          "right": 844,
+          "bottom": 1267.4375
+        },
+        "stripDisplay": "block",
+        "stripInsideHero": true,
+        "pause": {
+          "x": 762.875,
+          "y": 1019.4375,
+          "width": 44,
+          "height": 46,
+          "right": 806.875,
+          "bottom": 1065.4375
+        },
+        "scroll": {
+          "x": 398,
+          "y": 1019.63818359375,
+          "width": 48,
+          "height": 48,
+          "right": 446,
+          "bottom": 1067.63818359375
+        },
+        "cluster": [
+          {
+            "x": 296,
+            "y": 526.9375,
+            "width": 117,
+            "height": 117,
+            "transform": "translate3d(54px, -175.5px, 0px)"
+          },
+          {
+            "x": 402.5,
+            "y": 504.4375,
+            "width": 99,
+            "height": 99,
+            "transform": "translate3d(160.5px, -198px, 0px)"
+          },
+          {
+            "x": 386.75,
+            "y": 503.6875,
+            "width": 79.5,
+            "height": 79.5,
+            "transform": "translate3d(144.75px, -198.75px, 0px)"
+          },
+          {
+            "x": 381.5,
+            "y": 517.9375,
+            "width": 61.5,
+            "height": 61.5,
+            "transform": "translate3d(139.5px, -184.5px, 0px)"
+          },
+          {
+            "x": 295.25,
+            "y": 487.1875,
+            "width": 61.5,
+            "height": 61.5,
+            "transform": "translate3d(53.25px, -215.25px, 0px)"
+          },
+          {
+            "x": 471.5,
+            "y": 528.4375,
+            "width": 43.5,
+            "height": 43.5,
+            "transform": "translate3d(229.5px, -174px, 0px)"
+          },
+          {
+            "x": 468.5,
+            "y": 425.6875,
+            "width": 61.5,
+            "height": 61.5,
+            "transform": "translate3d(226.5px, -276.75px, 0px)"
+          },
+          {
+            "x": 484.25,
+            "y": 484.9375,
+            "width": 43.5,
+            "height": 43.5,
+            "transform": "translate3d(242.25px, -217.5px, 0px)"
+          }
+        ],
+        "stripDiameters": [
+          91.0632,
+          62.1895,
+          97.7263,
+          75.5158,
+          57.7474,
+          95.5053,
+          62.1895,
+          95.5053,
+          64.4105,
+          82.1789,
+          97.7263,
+          64.4105,
+          75.5158,
+          97.7263,
+          62.1895,
+          91.0632,
+          57.7474,
+          95.5053
+        ],
+        "reduced": false,
+        "paused": "false",
+        "hidden": false,
+        "frames": [
+          {
+            "t": 154.4,
+            "y": [
+              106.5,
+              96.75,
+              192,
+              45.75,
+              216,
+              207.75,
+              54,
+              150.75
+            ]
+          },
+          {
+            "t": 204.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 254.39999999999998,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 304.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 354.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 404.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 454.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 504.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 554.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 604.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 654.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 704.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 754.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 804.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 854.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 904.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 954.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1004.4000000000001,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1054.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1104.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1154.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1204.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1254.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1304.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1354.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1404.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1454.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1504.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1554.3,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1604.3,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1654.3,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1704.3,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1754.3,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1804.3,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1854.3,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1904.3,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 1954.4,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          },
+          {
+            "t": 2004.3,
+            "y": [
+              -175.5,
+              -198,
+              -198.75,
+              -184.5,
+              -215.25,
+              -174,
+              -276.75,
+              -217.5
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "limitations": [
+    "Local compiled preview only; no hosted sign-in or load claim.",
+    "Existing lower sections captured as diagnostics. New design variant is pending.",
+    "Request routing disables HTTP cache. Motion instrumentation is diagnostic, not a performance benchmark.",
+    "Background visibility suspension was not separately exercised; actual offscreen, pause and reduced-motion transforms were checked."
+  ],
+  "browserClosed": true,
+  "workerAfter": "30aa2b2cdea7f6b5c031b187dbb5e2faa538dd8a6b9709b2e166ea3366013f62",
+  "finishedAt": "2026-10-23T18:32:51.109Z",
+  "harnessCorrections": [
+    {
+      "reason": "Initial falling assertion compared first/last samples, which can both be settled home before/after entrance. Full captured traces include the intervening negative-to-home motion. Assertion corrected to observed min/max across every recorded sample; no source or artifact changed."
+    }
+  ],
+  "visuallyInspected": [
+    "hero-1440x900",
+    "hero-390x844",
+    "hero-1194x834",
+    "hero-834x1194",
+    "hero-320x740",
+    "hero-844x390",
+    "schedule-1440x900",
+    "rules-1440x900",
+    "faq-1440x900",
+    "organizers-1440x900",
+    "schedule-390x844",
+    "venue-390x844",
+    "rules-390x844",
+    "faq-390x844",
+    "organizers-390x844",
+    "hero-1733x963",
+    "menu-390x844",
+    "faq-834x1194"
+  ],
+  "findings": [
+    {
+      "severity": "release-blocking",
+      "finding": "Standard desktop/tablet hero grows past first viewport; bottom strip is absent or mostly below the initial fold.",
+      "evidence": [
+        "hero-1440x900",
+        "hero-1194x834",
+        "hero-834x1194"
+      ],
+      "fix": "Prepare hero-only fit correction with sticky header and actual header space."
+    },
+    {
+      "severity": "diagnostic",
+      "finding": "Existing lower Rules has four entries, and organizer portraits are square. New lower variant is pending, so these captures do not validate the requested new design."
+    },
+    {
+      "severity": "diagnostic",
+      "finding": "Mobile organizers scrollIntoView capture places the heading partially under sticky navigation. This is a capture/anchor offset issue that lower-section implementation must address."
+    }
+  ]
+}
