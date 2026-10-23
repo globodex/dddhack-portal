@@ -4572,20 +4572,6 @@ export function Settings({
           <OwnerPolicyControls data={data} run={run} />
         </details>
       )}
-      {data.canManageVenue && (
-        <details className="admin-settings-extra">
-          <summary>
-            Private arrival details
-            <ChevronDown size={20} aria-hidden="true" />
-          </summary>
-          <ContentEditor
-            key={`private-${data.venue?.revision}`}
-            data={data}
-            run={run}
-            scope="private"
-          />
-        </details>
-      )}
       {data.me?.owner && (
         <details className="admin-settings-extra">
           <summary>

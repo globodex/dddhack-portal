@@ -238,7 +238,9 @@ test("settings render has no role selector, private venue editor, general map, r
     const html = renderToStaticMarkup(
       createElement(Settings, { data, run: async () => ({}) }),
     );
-    assert.match(html, /Add Admins/);
+    assert.match(html, /Admin access/);
+    assert.match(html, /type="email"/);
+    assert.doesNotMatch(html, /name="role"/);
     assert.doesNotMatch(
       html,
       /name="reason"|Least-privilege roles|Private arrival details|Private venue management|General venue|General Google Maps URL|public Luma page exposes/,
