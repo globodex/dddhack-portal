@@ -1,0 +1,28 @@
+{
+  "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+  "worker": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+  "actualScreenshot": true,
+  "syntheticOnly": true,
+  "reviewed": true,
+  "receipt": {
+    "operation": "create_library_file",
+    "status": "succeeded",
+    "path": "/admin-refresh.png",
+    "file_id": "file_000000005a3081f58f146e4815eb4a1f",
+    "library_file_id": "libfile_01bda2c553b4819192cb7bace74df007",
+    "file_name": "admin-refresh.png",
+    "current_version_number": 0,
+    "restored_from_version_number": null,
+    "xattrs": [
+      {
+        "name": "user.library-file-version",
+        "value": "0"
+      }
+    ],
+    "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+    "mime_type": "image/png",
+    "library_artifact_type": "image",
+    "file_size_bytes": 89216,
+    "external_connectors_accessed": false
+  }
+}

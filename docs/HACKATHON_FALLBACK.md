@@ -50,7 +50,7 @@ Have a second staff member compare the reconciled receipt, target identity, vers
 
 ## Manual judging and results
 
-Give assigned, non-conflicted judges the same immutable version and evidence for each team. Record reviewer ID, team/version or receipt ID, manual mark **1 to 10**, private notes, time with offset and recorder. Use the existing portal scale; do not invent weights or redistribute missing AI points.
+Give authorized, non-conflicted admins or assigned judges the same immutable version and evidence for each team. Record reviewer ID, team/version or receipt ID, manual mark **1 to 10**, private notes, time with offset and recorder. Use the existing portal scale; do not invent weights or redistribute missing AI points.
 
 An unavailable AI service is unverified evidence, not zero and not an automatic false-claim penalty. Preserve the submitted work. Keep manual marks and proposed rankings private until the announced fallback, required reviews and result prerequisites are resolved. A fallback sheet is not a frozen portal snapshot or a published result.
 

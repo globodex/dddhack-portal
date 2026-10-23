@@ -1,0 +1,92 @@
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProxy environment variables detected. We'll use your proxy for fetch requests.[0m
+
+
+{
+  "source": "436c91885de22ab4be020a198cd8897abe11192c",
+  "workerSha256": "dea84021ecb472fa63d5d3b6ea4fe8a3e9d6ac3924d32a2bef87b7c0913e1a3b",
+  "syntheticOnly": true,
+  "publicationPerformed": false,
+  "standalone": {
+    "landing": 200,
+    "forgedOwnerHeadersAccepted": false,
+    "localAdapterEnabledByEnvironmentOrCookie": false,
+    "privatePagesAndAPIs": 503,
+    "localTestRoute": 404,
+    "compilerEndpointsExposeSourceOrEventStream": false
+  },
+  "syntheticDispatch": {
+    "realChatGPTSignInVerified": false,
+    "creditEncryptionKeyConfigured": false,
+    "eventSettingsConfigured": false,
+    "invalidCreditPoolWithoutKey": 422,
+    "anonymousPrivatePage": 302,
+    "participantProfilePage": 200,
+    "participantDashboardBeforeEventInitialization": 200,
+    "participantPrivateAPI": 200,
+    "anonymousPrivateAPI": 401,
+    "participantAdminPage": 403,
+    "participantExport": 403,
+    "judgeCreditsPage": 403,
+    "verifiedHarnessOwnerAdminPage": 200,
+    "localSignInCommand": 404,
+    "signedInRulesAnonymousAPI": 401,
+    "nestedBraceProfileRoundTrip": true,
+    "nestedBraceTeamLookup": 404,
+    "voucherImportAndRevealWithoutKey": 200
+  },
+  "stagedRelease": {
+    "missingSettingsHaveNoInventedDeadline": true,
+    "repeatedManagedIdentity": 200,
+    "anonymousAfterIdentityRemoved": 401,
+    "appSessionCookieIssued": false,
+    "revealWithoutExplicitIntent": 422,
+    "extensionWithoutConfiguredDeadline": 422,
+    "participantGlobalPolicyPreview": 403,
+    "realManagedLogoutVerified": false
+  },
+  "derivedOperationalPrerequisites": {
+    "actualWindowPublication": 200,
+    "submissionAllowedWithoutManualActivation": true,
+    "checkinAllowedWithoutManualActivation": true,
+    "scoringStillRequiresActualConfiguration": true,
+    "participantWindowChangeDenied": 403,
+    "realChatGPTBrowserSession": false
+  },
+  "rosterGate": {
+    "unmatchedVerifiedEmail": 403,
+    "unmatchedEmailRecoveryShell": 200,
+    "ownerBootstrap": 200,
+    "realParticipantImport": false
+  },
+  "photoAndSEO": {
+    "canonicalPublicSSR": 200,
+    "robots": 200,
+    "sitemap": 200,
+    "participantPhotoUpload": 422,
+    "participantPhotoRoute": 404,
+    "photoUploadsDisabled": true,
+    "privateDataAbsent": true,
+    "browserVisualQA": false
+  },
+  "operationalReadiness": {
+    "environment": "disposable local synthetic D1 only",
+    "operationalSubmissionWithJudgingIncomplete": 200,
+    "scoringStillBlocked": 409,
+    "checkinWithoutManualEnablement": 200,
+    "repeatedAttendanceIsSafe": true,
+    "actualScoringConfigurationStillRequired": true
+  },
+  "revisedExperience": {
+    "registeredTeamCreation": 200,
+    "sharedTeamAccent": true,
+    "allMembersApproved": false,
+    "missingRequiredGender": 422,
+    "projectDraftSave": 403,
+    "privateTeamsAnonymousAPI": 401,
+    "allApprovedVenueVisible": true,
+    "publicVenueSecretAbsent": true,
+    "approvalRevocationRemovesVenue": true,
+    "leaderboardExcludesInternalEvaluation": true,
+    "realChatGPTSignInVerified": false
+  }
+}

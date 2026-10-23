@@ -1,0 +1,53 @@
+{
+  "source": "436c91885de22ab4be020a198cd8897abe11192c",
+  "workerSha256": "dea84021ecb472fa63d5d3b6ea4fe8a3e9d6ac3924d32a2bef87b7c0913e1a3b",
+  "artifactFiles": 206,
+  "typecheck": "passed",
+  "buildAndArtifactReview": "passed",
+  "serialTests": {
+    "passed": 316,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 69454.878734,
+    "command": "node --import tsx --test --test-concurrency=1 tests/*.test.ts"
+  },
+  "compiledSmoke": "passed",
+  "logsSha256": {
+    "serial-tests.log": "9425fae917a2ddc00904f25e36287f698b556e882fe18d3e9f7ca21436b9158e",
+    "build.log": "923ca0653a08568a6bcb29a4fdd304f4f598ef982cf45d245e9c79e4e8334d85",
+    "compiled-smoke.log": "48d1bd15dafc10e760b09d6c68a79ca78f87ef5207c76d2999a3ed4647a68779"
+  },
+  "productionPublished": false,
+  "realProviderCalled": false,
+  "syntheticOnly": true,
+  "priorFunctionalLoadSource": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+  "differenceFromLoadRuntime": [
+    "app/admin-controls.css compact crown layout",
+    "app/admin-leader-transfer.tsx presentation classes only"
+  ],
+  "limitations": [
+    "Not a hosted capacity or physical-device guarantee",
+    "Current code coverage percentage was not measured",
+    "Real AI payload/destination approval and secure runtime configuration remain required",
+    "Selected mockup pixel transfer unavailable; no100% fidelity claim"
+  ],
+  "crownBrowser": {
+    "source": "436c91885de22ab4be020a198cd8897abe11192c",
+    "workerSha256": "dea84021ecb472fa63d5d3b6ea4fe8a3e9d6ac3924d32a2bef87b7c0913e1a3b",
+    "desktop": {
+      "passed": 9,
+      "crownWidth": 44,
+      "crownHeight": 44,
+      "memberRowHeight": 52
+    },
+    "mobile": {
+      "passed": 9,
+      "crownWidth": 44,
+      "crownHeight": 44,
+      "memberRowHeight": 52
+    },
+    "pageErrors": 0,
+    "horizontalOverflow": false,
+    "scope": "fresh disposable resets; actual UI transfer and permission checks plus layout; not managed sessions"
+  }
+}

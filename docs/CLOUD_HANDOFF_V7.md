@@ -1,5 +1,7 @@
 # Cloud continuation after the V6 snapshot
 
+Continuation update: the cloud implementation and current evidence are in [V7_CLOUD_STATUS.md](V7_CLOUD_STATUS.md), with [actual screenshots](V7_SCREENSHOTS.md) and [measured performance](V7_PERFORMANCE.md). Subsequent user instructions accepted the existing scoring implementation as the v7 baseline, removed manual readiness gates, and authorized the implemented credits/crown-transfer flows. The historical handoff below is preserved; no production publication or real AI call was authorized by the continuation.
+
 The user explicitly requested holding development, publishing the current coherent snapshot, then moving development to a saved Codex Cloud task. This file authorizes no new credentials, production mutations or AI calls.
 
 Runtime snapshot: `0e07bc656d6bfa5d6c009813587b9c3658e22cf1`; Worker SHA-256 `2ca635068e527b2afc7cc226001a236201dcbcce0e09d8fd0529d6afcf315bc3`. The publication checkpoint adds documentation only. V6 publication succeeded: source `6cffbc936681147aa91600ff765c1634602b264f`, version6, config3 unchanged. See `evidence/v6-publication.json`. A later GitHub handoff commit adds inert recovery patches only; it is not a separately published version. Repository is exclusively `Param302/dddhack-portal`; preserve all branches, no force pushes/main resets.
