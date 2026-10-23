@@ -403,13 +403,11 @@ try {
             .getByLabel("Email list", { exact: true })
             .fill(`${email};${email};bob@portal.test`);
         else
-          await add
-            .locator("input[type=file]")
-            .setInputFiles({
-              name: "synthetic-add-only.csv",
-              mimeType: "text/csv",
-              buffer: Buffer.from(`email\n${email}\nbob@portal.test\n`),
-            });
+          await add.locator("input[type=file]").setInputFiles({
+            name: "synthetic-add-only.csv",
+            mimeType: "text/csv",
+            buffer: Buffer.from(`email\n${email}\nbob@portal.test\n`),
+          });
         await activate(add.getByRole("button", { name: "Add", exact: true }));
         await confirm({
           target: sourceMode === "Single email" ? email : "1 participant",
@@ -463,11 +461,6 @@ try {
         const menu = row.locator(".admin-status-menu");
         await activate(menu.locator("summary"));
         await menu.locator("select[name=status]").selectOption(status);
-        await menu
-          .getByLabel("Audit reason", { exact: true })
-          .fill(
-            "[Synthetic control audit] Reserved pending participant status.",
-          );
         const responsePromise = page.waitForResponse(
           (r) =>
             r.request().method() === "POST" && r.url().endsWith("/api/portal"),
