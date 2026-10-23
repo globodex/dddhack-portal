@@ -1,0 +1,17 @@
+{
+  "siteProject": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed",
+  "liveVersionBeforePublication": 4,
+  "runtimeConfigRevision": 3,
+  "tests": {
+    "passed": 112,
+    "failed": 0
+  },
+  "typecheck": "passed",
+  "officialSitesBuild": "passed",
+  "artifactFiles": 170,
+  "compiledWorkerSmoke": "passed",
+  "interactiveBrowserQA": "unavailable; supported inventory empty",
+  "publication": "pending fresh source-write credential approval; no deployment attempted",
+  "sourceCredentialsCreated": false,
+  "livePolicyOrDataChanges": false
+}

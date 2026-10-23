@@ -45,9 +45,9 @@
     "canonicalPublicSSR": 200,
     "robots": 200,
     "sitemap": 200,
-    "ownPhoto": 200,
-    "privatePhotoAnonymous": 404,
-    "photoMetadataStripped": true,
+    "participantPhotoUpload": 422,
+    "participantPhotoRoute": 404,
+    "photoUploadsDisabled": true,
     "privateDataAbsent": true,
     "browserVisualQA": false
   },
