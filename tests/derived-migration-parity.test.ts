@@ -7,13 +7,17 @@ import { one, rows, type Database } from "../lib/db";
 import { submission } from "./helpers";
 import { draftPolicy } from "../lib/policy";
 
-async function migrate(db: Database, path: string) {
+async function migrate(db: Database, path: string, excluded: string) {
   const directory = new URL(path, import.meta.url);
   const sql = readdirSync(directory)
-    .filter((name) => name.endsWith(".sql"))
+    .filter((name) => name.endsWith(".sql") && name !== excluded)
     .sort()
     .map((name) => readFileSync(new URL(name, directory), "utf8"))
-    .join("\n")
+    .join("\n");
+  await applyMigration(db, sql);
+}
+async function applyMigration(db: Database, source: string) {
+  const sql = source
     .replaceAll("--> statement-breakpoint", "\n")
     .replace(/^\s*--.*$/gm, "");
   let buffer = "";
@@ -50,7 +54,11 @@ test(
         ["HOSTED", "../drizzle/"],
       ] as const) {
         const db: Database = await mf.getD1Database(binding);
-        await migrate(db, directory);
+        const derived =
+          binding === "LOCAL"
+            ? "0022_derived_operational_gates.sql"
+            : "0025_derived_operational_gates.sql";
+        await migrate(db, directory, derived);
         await seedLocal(db);
         const policy = {
           ...draftPolicy,
@@ -63,6 +71,36 @@ test(
           .bind(JSON.stringify(policy))
           .all();
         const before = await one(db, "SELECT * FROM event_settings");
+        const existingUsers = await rows(
+          db,
+          "SELECT id,email,name FROM users ORDER BY id",
+        );
+        const existingInventory = await rows(
+          db,
+          "SELECT id,type_id,fingerprint FROM credit_inventory ORDER BY id",
+        );
+        await applyMigration(
+          db,
+          readFileSync(new URL(directory + derived, import.meta.url), "utf8"),
+        );
+        assert.deepEqual(
+          await one(db, "SELECT * FROM event_settings"),
+          before,
+          binding + ": upgrade preserves inactive saved policy",
+        );
+        assert.deepEqual(
+          await rows(db, "SELECT id,email,name FROM users ORDER BY id"),
+          existingUsers,
+          binding + ": upgrade preserves existing users",
+        );
+        assert.deepEqual(
+          await rows(
+            db,
+            "SELECT id,type_id,fingerprint FROM credit_inventory ORDER BY id",
+          ),
+          existingInventory,
+          binding + ": upgrade preserves existing inventory",
+        );
         assert.equal(
           (
             await rows(
