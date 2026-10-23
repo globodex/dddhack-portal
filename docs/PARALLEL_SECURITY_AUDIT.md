@@ -149,3 +149,14 @@ Reviewed the isolated `fix/operational-owner-setup` follow-up on a fresh auditor
 - Verified profile categories use a fixed list with server validation; the new public organizer assets/content introduce no private data or capability path within the reviewed diff.
 
 Focused tests passed **14/14**: `tests/owner-operational-setup.test.ts`, `tests/participant-export.test.ts`, and `tests/verified-content.test.ts` via the direct Node/tsx loader. Root owns the separate full-suite/build/smoke run. This verdict covers the requested local follow-up ref only; no live/native publication, credential, real-record or private-venue-value operation was performed.
+
+## Visual-correction security pass — dirty integration based on `68f5d5d`
+
+Reviewed the requested uncommitted server/UI contracts in `.worktrees/visual-integration`, without modifying them. Ordinary missing/null/blank reasons normalize to a server annotation while authenticated actor/action/entity/time remain in the atomic audit path. Profile actions alone skip the confirmation dialog. The owner-only Add Admins command accepts an exact normalized email plus confirmation, requires an existing account, hardcodes admin, and rejects other role/user-ID claims. Import count/email fields are presentation metadata stripped before strict server parsing. Private-settings UI removal retains server disclosure guards.
+
+Two confirmed adversarial findings were reported and then independently verified fixed in that dirty tree:
+
+- **P1 grant/removal race:** a target removed after Add Admins preflight could previously receive an admin role and read participant records. The grant now conditionally checks current target activity within its transaction, followed by a write assertion before cleanup/audit. Repeating the deterministic interleaving rejects, leaves zero role rows and zero successful grant-audit rows, and denies the removed account's staff read. Deactivated actors also lose effective staff role/owner capabilities; `staff()` denies them explicitly.
+- **P2 participant-hash persistence/retry mismatch:** revised submissions previously blanked the hash only after draft serialization/request hashing, while new legacy submissions still required/stored one. Both input schemas now normalize ignored participant hashes before hashing or serialization. Independent checks observed blank draft/version hashes, one committed version across a changed-hash retry, and a blank new legacy version hash. Existing nonblank legacy evidence still requires its original matching hash.
+
+`tests/visual-correction-contracts.test.ts` passed **7/7** with the direct Node/tsx loader after the fixes. No remaining P0/P1/P2 finding arose from this bounded pass. The reviewed tree was dirty and later changes require their own boundary verification; root owns final suite/build/smoke evidence. No browser/headless, live grant, real record, private venue value, provider or credential operation was performed.
