@@ -3,10 +3,12 @@ export default function DotAvatar({
   color = "blue",
   expression = "squeezed",
   size = 64,
+  decorative = false,
 }: {
   color?: string;
   expression?: string;
   size?: number;
+  decorative?: boolean;
 }) {
   const bg = dotColors[color as keyof typeof dotColors] || dotColors.blue,
     marks =
@@ -14,8 +16,10 @@ export default function DotAvatar({
       dotExpressions.squeezed;
   return (
     <svg
-      role="img"
-      aria-label={`${color} ${expression} avatar`}
+      role={decorative ? undefined : "img"}
+      aria-hidden={decorative || undefined}
+      aria-label={decorative ? undefined : `${color} ${expression} avatar`}
+      focusable="false"
       width={size}
       height={size}
       viewBox="0 0 80 80"
@@ -30,9 +34,9 @@ export default function DotAvatar({
         fontFamily="Arial,sans-serif"
         fontWeight="700"
         fontSize="28"
-        letterSpacing="5"
       >
-        {marks}
+        <tspan x="28">{marks[0]}</tspan>
+        <tspan x="52">{marks[1]}</tspan>
       </text>
     </svg>
   );
