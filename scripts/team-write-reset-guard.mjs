@@ -31,7 +31,7 @@ export function assertTeamWriteReset({
   assert.equal(
     manifest.artifactRoot,
     artifactRoot,
-  origin = "http://127.0.0.1:4173",
+    (origin = "http://127.0.0.1:4173"),
     "reset receipt artifact root mismatch",
   );
 }

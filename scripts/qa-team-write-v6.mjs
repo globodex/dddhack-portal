@@ -56,7 +56,11 @@ const report = {
   worker,
   origin,
   viewport: size,
-  inputMode: ["mobile", "tablet"].includes(size) ? "touch-emulation" : size === "keyboard" ? "keyboard" : "mouse",
+  inputMode: ["mobile", "tablet"].includes(size)
+    ? "touch-emulation"
+    : size === "keyboard"
+      ? "keyboard"
+      : "mouse",
   syntheticOnly: true,
   sandbox: true,
   resetTokenHash: createHash("sha256").update(resetToken).digest("hex"),
@@ -80,12 +84,8 @@ const ids = {
   accept: "fake_teamqa_request_accept",
   decline: "fake_teamqa_request_decline",
 };
-const browser = await chromium.launch({
-    headless: true,
-    chromiumSandbox: true,
-    executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium",
-  }),
-  sessions = new Map();
+let browser;
+const sessions = new Map();
 let permit = null;
 const touch = ["mobile", "tablet"].includes(size);
 async function act(locator) {
@@ -214,6 +214,12 @@ async function commit(s, action, data, trigger) {
   return r.json();
 }
 try {
+  browser = await chromium.launch({
+    headless: true,
+    chromiumSandbox: true,
+    executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium",
+  });
+  report.browserStarted = true;
   const leader = await session("leader"),
     member = await session("member"),
     solo = await session("solo"),
@@ -623,8 +629,8 @@ try {
   process.exitCode = 1;
 } finally {
   for (const s of sessions.values()) await s.page.context().close();
-  await browser.close();
-  report.browserClosed = true;
+  if (browser) await browser.close();
+  report.browserClosed = !!browser;
   report.workerAfter = hash();
   report.artifactUnchanged = report.workerAfter === worker;
   writeFileSync(output + "/report.json", JSON.stringify(report, null, 2));

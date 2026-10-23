@@ -29,7 +29,11 @@ test("Team write reset accepts only matching explicit local reset evidence", () 
   assert.doesNotThrow(() =>
     assertTeamWriteReset({ ...alternatePort, origin: "http://127.0.0.1:4176" }),
   );
-  for (const origin of ["https://example.test", "http://localhost:4176", "http://127.0.0.1:4176/path"])
+  for (const origin of [
+    "https://example.test",
+    "http://localhost:4176",
+    "http://127.0.0.1:4176/path",
+  ])
     assert.throws(() => assertTeamWriteReset({ ...fixture(), origin }));
   for (const change of [
     { source: "c".repeat(40) },
