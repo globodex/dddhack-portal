@@ -1,0 +1,146 @@
+{
+  "source": "50c32a2ca8273f5f907e23c6e88671d22a3d74f8",
+  "worker": "e386e26c390c27fe01c38bfeda5d307e669e199ce652b94e351070127b92ff1e",
+  "sandbox": true,
+  "syntheticOnly": true,
+  "readOnly": true,
+  "checks": [
+    {
+      "actor": "anonymous",
+      "path": "/",
+      "links": [
+        "Home",
+        "Projects",
+        "Sign in"
+      ],
+      "touchClose": true,
+      "escapeFocusRestore": true
+    },
+    {
+      "actor": "alice",
+      "path": "/dashboard",
+      "links": [
+        "Dashboard",
+        "Discover",
+        "Projects",
+        "Rules",
+        "Your profile",
+        "Log out"
+      ],
+      "touchClose": true,
+      "escapeFocusRestore": true
+    },
+    {
+      "actor": "admin",
+      "path": "/admin/participants",
+      "links": [
+        "Participants",
+        "Discover",
+        "Teams",
+        "Submissions",
+        "Settings",
+        "Rules",
+        "Your profile",
+        "Workspace",
+        "Log out"
+      ],
+      "touchClose": true,
+      "escapeFocusRestore": true
+    },
+    {
+      "actor": "owner",
+      "path": "/admin/participants",
+      "links": [
+        "Participants",
+        "Discover",
+        "Teams",
+        "Submissions",
+        "Settings",
+        "Rules",
+        "Logs",
+        "Your profile",
+        "Workspace",
+        "Log out"
+      ],
+      "touchClose": true,
+      "escapeFocusRestore": true
+    },
+    {
+      "actor": "judge",
+      "path": "/dashboard",
+      "links": [
+        "Dashboard",
+        "Discover",
+        "Projects",
+        "Rules",
+        "Assigned projects",
+        "Your profile",
+        "Log out"
+      ],
+      "touchClose": true,
+      "escapeFocusRestore": true
+    },
+    {
+      "actor": "mentor",
+      "path": "/dashboard",
+      "links": [
+        "Dashboard",
+        "Discover",
+        "Projects",
+        "Rules",
+        "Assigned projects",
+        "Your profile",
+        "Log out"
+      ],
+      "touchClose": true,
+      "escapeFocusRestore": true
+    },
+    {
+      "actor": "volunteer",
+      "path": "/dashboard",
+      "links": [
+        "Dashboard",
+        "Discover",
+        "Projects",
+        "Rules",
+        "Your profile",
+        "Administration",
+        "Log out"
+      ],
+      "touchClose": true,
+      "escapeFocusRestore": true
+    },
+    {
+      "actor": "pending",
+      "path": "/profile",
+      "links": [
+        "Dashboard",
+        "Discover",
+        "Projects",
+        "Rules",
+        "Your profile",
+        "Log out"
+      ],
+      "touchClose": true,
+      "escapeFocusRestore": true
+    },
+    {
+      "actor": "stranger",
+      "path": "/dashboard",
+      "links": [
+        "Home",
+        "Projects",
+        "Sign in"
+      ],
+      "touchClose": true,
+      "escapeFocusRestore": true
+    }
+  ],
+  "captures": [
+    "/workspace/v7-home/evidence/v7-mobile-navigation/navigation-admin-actual-route-390x844.png",
+    "/workspace/v7-home/evidence/v7-mobile-navigation/navigation-pending-actual-route-390x844.png"
+  ],
+  "limitations": [
+    "Loopback Dispatch fixtures only; no production authentication or physical-device claim."
+  ]
+}

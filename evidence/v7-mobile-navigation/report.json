@@ -1,0 +1,551 @@
+{
+  "source": "ccc8e47faa459fcdedad23eed333080c673d94a1",
+  "worker": "e386e26c390c27fe01c38bfeda5d307e669e199ce652b94e351070127b92ff1e",
+  "readOnly": true,
+  "syntheticOnly": true,
+  "sandbox": true,
+  "checks": [
+    {
+      "width": 320,
+      "role": "anonymous",
+      "fullscreen": true,
+      "keyboardEscapeAndFocus": true,
+      "touchOpen": true,
+      "gutters": [
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "role": "participant",
+      "fullscreen": true,
+      "keyboardEscapeAndFocus": true,
+      "touchOpen": true,
+      "gutters": [
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "role": "admin",
+      "fullscreen": true,
+      "keyboardEscapeAndFocus": true,
+      "touchOpen": true,
+      "gutters": [
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "width": 360,
+      "role": "anonymous",
+      "fullscreen": true,
+      "keyboardEscapeAndFocus": true,
+      "touchOpen": true,
+      "gutters": [
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "width": 360,
+      "role": "participant",
+      "fullscreen": true,
+      "keyboardEscapeAndFocus": true,
+      "touchOpen": true,
+      "gutters": [
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "width": 360,
+      "role": "admin",
+      "fullscreen": true,
+      "keyboardEscapeAndFocus": true,
+      "touchOpen": true,
+      "gutters": [
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "role": "anonymous",
+      "fullscreen": true,
+      "keyboardEscapeAndFocus": true,
+      "touchOpen": true,
+      "gutters": [
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "role": "participant",
+      "fullscreen": true,
+      "keyboardEscapeAndFocus": true,
+      "touchOpen": true,
+      "gutters": [
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "role": "admin",
+      "fullscreen": true,
+      "keyboardEscapeAndFocus": true,
+      "touchOpen": true,
+      "gutters": [
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "role": "anonymous",
+      "fullscreen": true,
+      "keyboardEscapeAndFocus": true,
+      "touchOpen": true,
+      "gutters": [
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "role": "participant",
+      "fullscreen": true,
+      "keyboardEscapeAndFocus": true,
+      "touchOpen": true,
+      "gutters": [
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "role": "admin",
+      "fullscreen": true,
+      "keyboardEscapeAndFocus": true,
+      "touchOpen": true,
+      "gutters": [
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "width": 701,
+      "role": "anonymous",
+      "fullscreen": true,
+      "keyboardEscapeAndFocus": true,
+      "touchOpen": true,
+      "gutters": [
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "width": 701,
+      "role": "participant",
+      "fullscreen": true,
+      "keyboardEscapeAndFocus": true,
+      "touchOpen": true,
+      "gutters": [
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "width": 701,
+      "role": "admin",
+      "fullscreen": true,
+      "keyboardEscapeAndFocus": true,
+      "touchOpen": true,
+      "gutters": [
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "width": 740,
+      "role": "anonymous",
+      "fullscreen": true,
+      "keyboardEscapeAndFocus": true,
+      "touchOpen": true,
+      "gutters": [
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "width": 740,
+      "role": "participant",
+      "fullscreen": true,
+      "keyboardEscapeAndFocus": true,
+      "touchOpen": true,
+      "gutters": [
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "width": 740,
+      "role": "admin",
+      "fullscreen": true,
+      "keyboardEscapeAndFocus": true,
+      "touchOpen": true,
+      "gutters": [
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        },
+        {
+          "left": 20,
+          "right": 20,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "normalMotionTopToBottom": {
+        "start": -844,
+        "middle": -32.5931282043457,
+        "end": 0
+      }
+    }
+  ],
+  "captures": [
+    "/workspace/v7-home/evidence/v7-mobile-navigation/navigation-anonymous-390x844.png",
+    "/workspace/v7-home/evidence/v7-mobile-navigation/venue-390x844.png",
+    "/workspace/v7-home/evidence/v7-mobile-navigation/rules-390x844.png",
+    "/workspace/v7-home/evidence/v7-mobile-navigation/faq-390x844.png",
+    "/workspace/v7-home/evidence/v7-mobile-navigation/navigation-participant-390x844.png",
+    "/workspace/v7-home/evidence/v7-mobile-navigation/navigation-admin-390x844.png",
+    "/workspace/v7-home/evidence/v7-mobile-navigation/hero-1440x900.png",
+    "/workspace/v7-home/evidence/v7-mobile-navigation/faq-1440x900.png"
+  ],
+  "limitations": [
+    "Local rendered UI with synthetic actor API projections; no managed sign-in or physical-device claim."
+  ]
+}
