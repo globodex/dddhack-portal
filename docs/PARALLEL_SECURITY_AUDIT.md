@@ -132,3 +132,9 @@ Focused verification: `node --import tsx --test --test-isolation=none tests/late
 No new P0/P1 privacy or capability finding was identified in this correction pass. One P2 readiness bug remains: `PortalService.compute()` checks `REVIEW_INCOMPLETE` at `lib/service.ts:1878` before checking the project/version tombstone at line 1895. Reproduction: commit a synthetic project without a review, soft-remove its project, then call owner `compute()`; it still throws `REVIEW_INCOMPLETE` instead of excluding that removed record. Move removal filtering before review-readiness validation. This affects scoring availability, not private-data exposure or immutable history. Reported to root for correction.
 
 This verdict is bounded to `7919187`, the focused checks and source paths reviewed. There were no live probes, deployments, credentials, paid providers, real imports/removals or browser operations.
+
+## Final targeted verification — ref `247ddf2`
+
+Verified correction `f102140`: project/latest-submission tombstone filtering now runs at the start of the compute loop, before review lookup or coverage validation. The prior unreviewed-removal reproduction is covered by the focused test `unreviewed removed projects do not block active scoring coverage and cannot be edited, while history remains`, which passed **1/1** using the direct Node/tsx test loader. Removed projects report `canCommit=false`, reject writes with `RECORD_REMOVED`, and retain the committed version.
+
+The last reported P2 is closed. There are no unresolved findings from this bounded integrated audit. The isolated v4-only candidate's previously documented authorization mismatch remains a separate source-boundary observation; it is not a finding against the integrated implementation. Root owns final full-suite, production build/artifact and smoke evidence. No live operations were performed.
