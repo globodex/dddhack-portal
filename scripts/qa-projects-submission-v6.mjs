@@ -82,7 +82,7 @@ async function context(actor, viewport) {
 async function shot(page, name, viewport) {
   await page.evaluate(() => document.fonts.ready);
   const path = join(output, `${name}-${viewport.width}x${viewport.height}.png`);
-  await page.screenshot({ path, animations: "disabled" });
+  await page.screenshot({ path, fullPage: true, animations: "disabled" });
   report.screenshots.push({ name, path, viewport, inspected: false });
   save();
 }
@@ -150,13 +150,22 @@ try {
         await c.close();
       }
     }
+    if (process.argv.includes("--projects-only")) continue;
     const c = await context("alice", viewport),
       page = await c.newPage();
     page.on("pageerror", (error) =>
       report.errors.push({ actor: "alice", viewport, error: error.message }),
     );
     try {
-      await page.goto(base + "/submission", { waitUntil: "networkidle" });
+      await page.goto(base + "/dashboard#project", {
+        waitUntil: "networkidle",
+      });
+      await page.getByRole("tab", { name: "Project", exact: true }).click();
+      const update = page.getByRole("button", {
+        name: "Update project",
+        exact: true,
+      });
+      if (await update.count()) await update.click();
       await page.locator(".submission-v6").waitFor();
       await bounds(page);
       assert.equal(
@@ -174,6 +183,11 @@ try {
       await shot(page, "wizard-1-essentials", viewport);
       await page.getByRole("button", { name: /^Next/ }).click();
       assert.equal(
+        await page.locator("dialog[open]").count(),
+        0,
+        "Next must never open a mutation confirmation",
+      );
+      assert.equal(
         await page.locator('.submission-stage[data-step="2"]').isVisible(),
         true,
       );
@@ -183,17 +197,30 @@ try {
           .count(),
         6,
       );
-      await page.getByRole("radio", { name: "Yes", exact: true }).check();
+      await page
+        .getByRole("radio", { name: "Yes", exact: true })
+        .locator("..")
+        .click();
       await page
         .getByRole("button", { name: "Previous submission step" })
         .click();
       await page.getByRole("button", { name: /^Next/ }).click();
+      assert.equal(
+        await page.locator("dialog[open]").count(),
+        0,
+        "Next must never open a mutation confirmation",
+      );
       assert.equal(
         await page.getByRole("radio", { name: "Yes", exact: true }).isChecked(),
         true,
       );
       await shot(page, "wizard-2-integrations", viewport);
       await page.getByRole("button", { name: /^Next/ }).click();
+      assert.equal(
+        await page.locator("dialog[open]").count(),
+        0,
+        "Next must never open a mutation confirmation",
+      );
       assert.equal(
         await page.locator('.submission-stage[data-step="3"]').isVisible(),
         true,
@@ -202,13 +229,11 @@ try {
         original = await image.getAttribute("src");
       await page.getByRole("button", { name: "Remove logo image" }).click();
       assert.equal(await image.count(), 0);
-      await page
-        .getByLabel("Upload logo", { exact: true })
-        .setInputFiles({
-          name: "synthetic-logo.png",
-          mimeType: "image/png",
-          buffer: Buffer.from(original.split(",")[1], "base64"),
-        });
+      await page.getByLabel("Upload logo", { exact: true }).setInputFiles({
+        name: "synthetic-logo.png",
+        mimeType: "image/png",
+        buffer: Buffer.from(original.split(",")[1], "base64"),
+      });
       await image.waitFor();
       const accuracy = page.getByRole("checkbox", {
         name: "I confirm this submission is accurate.",
