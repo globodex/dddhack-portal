@@ -37,6 +37,7 @@ import {
   X,
 } from "lucide-react";
 import AddAdmins from "./add-admins";
+import { useDiscoverPeople, peopleDirectoryUrl, readPeoplePage } from "./use-discover-people";
 import { HeadingDot } from "./expressive-heading";
 import CenteredLoader from "./centered-loader";
 import DiscoveryProfile, {
@@ -1522,40 +1523,55 @@ export function Discover({
   const [selectedTeam, setSelectedTeam] = useState<Row | null>(null);
   const hashOpened = useRef("");
   const participants = path === "/discover/participants";
+  const people = useDiscoverPeople(data, search, teamFilter, participants);
   const canCreate = data.me?.canParticipate === true && !data.team;
+  const [focusError, setFocusError] = useState("");
   useEffect(() => {
     if (!participants) return;
-    const openHash = () => {
+    let controller: AbortController | null = null;
+    let disposed = false;
+    const openHash = async () => {
+      controller?.abort();
       const hash = window.location.hash;
-      if (!/^#person-[A-Za-z0-9_-]+$/.test(hash)) return;
-      const row = (data.items || []).find(
-        (person: Row) => `#person-${person.id}` === hash,
-      );
-      if (!row || hashOpened.current === hash) return;
+      if (!/^#person-[A-Za-z0-9_-]+$/.test(hash) || hashOpened.current === hash) return;
+      const personId = hash.slice("#person-".length);
+      let row = people.items.find((person: Row) => person.id === personId);
+      if (!row && data.focusedPerson?.id === personId) row = data.focusedPerson;
+      setFocusError("");
+      if (!row) {
+        controller = new AbortController();
+        const request = controller;
+        try {
+          const page = await readPeoplePage(peopleDirectoryUrl({ person: personId }), request.signal);
+          if (disposed || request.signal.aborted || window.location.hash !== hash) return;
+          row = page.focusedPerson || undefined;
+        } catch {
+          if (!disposed && !request.signal.aborted) setFocusError("Profile could not be loaded.");
+          return;
+        }
+      }
+      if (!row || disposed) {
+        if (!disposed) setFocusError("Profile unavailable.");
+        return;
+      }
       hashOpened.current = hash;
-      document
-        .getElementById(`person-${row.id}`)
-        ?.scrollIntoView({ block: "center", behavior: "auto" });
+      document.getElementById(`person-${row.id}`)?.scrollIntoView({ block: "center", behavior: "auto" });
       setSelectedPerson(discoveryProfileProjection(row));
     };
-    // Data refreshes must not reopen a dismissed dialog. A new hash navigation
-    // is an explicit request, including returning to a previously viewed person.
     const navigateHash = () => {
       hashOpened.current = "";
-      openHash();
+      void openHash();
     };
-    openHash();
+    void openHash();
     window.addEventListener("hashchange", navigateHash);
-    return () => window.removeEventListener("hashchange", navigateHash);
-  }, [participants, data.items]);
-  const items = (data.items || []).filter(
-    (row) =>
-      `${row.name || ""} ${row.teamName || ""} ${row.bio || ""}`
-        .toLowerCase()
-        .includes(search.toLowerCase()) &&
-      (!participants ||
-        !teamFilter ||
-        (teamFilter === "in" ? !!row.teamName : !row.teamName)),
+    return () => {
+      disposed = true;
+      controller?.abort();
+      window.removeEventListener("hashchange", navigateHash);
+    };
+  }, [participants, people.items, data.focusedPerson]);
+  const items = participants ? people.items : (data.items || []).filter(
+    (row) => `${row.name || ""} ${row.bio || ""}`.toLowerCase().includes(search.toLowerCase()),
   );
   return (
     <section className="discover-v6">
@@ -1620,7 +1636,9 @@ export function Discover({
         )}
       </div>
       <ul
-        className={`discover-directory ${participants ? "discover-people" : "discover-teams"}`}
+        className={`discover-directory ${participants ? "discover-people discover-people-cards" : "discover-teams"}`}
+        aria-label={participants ? "People" : "Teams"}
+        aria-busy={participants ? people.loading : undefined}
       >
         {items.map((row) => (
           <li key={row.id} id={participants ? `person-${row.id}` : undefined}>
@@ -1712,7 +1730,21 @@ export function Discover({
           </li>
         ))}
       </ul>
-      {!items.length && (
+      {participants && focusError && <p role="status">{focusError}</p>}
+      {participants && (
+        <div className="discover-pagination" ref={people.sentinel}>
+          <p role="status" aria-live="polite">
+            {people.loading ? "Loading people…" : people.error ? "" : people.hasMore ? "" : items.length ? "All people loaded" : ""}
+          </p>
+          {people.error && <p role="alert">{people.error}</p>}
+          {(people.hasMore || people.error) && (
+            <button type="button" disabled={people.loading} onClick={() => void people.loadMore()}>
+              {people.error ? "Retry" : "Load more"}
+            </button>
+          )}
+        </div>
+      )}
+      {!items.length && (!participants || (!people.loading && !people.error)) && (
         <p className="discover-empty">
           {search || teamFilter
             ? "No matches"

@@ -603,3 +603,93 @@ dialog.discover-team-dialog-v6 button:focus-visible {
   outline: 2px solid #006afe;
   outline-offset: 3px;
 }
+
+/* Participant cards keep the selected Discover identity and dialog treatments. */
+.discover-v6 .discover-people-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding-top: 24px;
+}
+.discover-v6 .discover-people-cards > li {
+  grid-template-columns: 56px minmax(0, 1fr) 44px;
+  grid-template-rows: auto auto 1fr;
+  align-content: start;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid #dce3e8;
+  border-radius: 16px;
+  background: #fff;
+}
+.discover-v6 .discover-people-cards > li > svg {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+  width: 56px;
+  height: 56px;
+}
+.discover-v6 .discover-people-cards .discover-identity {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  align-self: start;
+}
+.discover-v6 .discover-people-cards .discover-identity h2 button {
+  min-height: 44px;
+}
+.discover-v6 .discover-people-cards .discover-identity p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.discover-v6 .discover-people-cards .discover-membership {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  margin: 0;
+  white-space: normal;
+}
+.discover-v6 .discover-people-cards .discover-socials {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  align-self: end;
+  justify-content: flex-start;
+  margin: 0 0 -8px -10px;
+}
+.discover-v6 .discover-people-cards .discover-profile-open {
+  grid-column: 3;
+  grid-row: 1;
+}
+.discover-v6 .discover-pagination {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 24px 0;
+  color: #526079;
+  text-align: center;
+}
+.discover-v6 .discover-pagination p {
+  margin: 0;
+}
+.discover-v6 .discover-pagination button {
+  min-height: 44px;
+  padding: 10px 24px;
+  border: 1px solid #cbd6df;
+  border-radius: 10px;
+  background: #fff;
+  color: #111515;
+  font: inherit;
+  font-weight: 650;
+}
+@media (max-width: 1120px) {
+  .discover-v6 .discover-people-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 740px) {
+  .discover-v6 .discover-people-cards {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    padding-top: 20px;
+  }
+}
