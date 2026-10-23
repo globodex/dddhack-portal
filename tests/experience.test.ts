@@ -215,7 +215,7 @@ test("inline profile gate, registered team creation, presets, partial readiness 
     db.close();
   }
 });
-test("private venue never leaves unauthorized projections; Going, approval and membership are checked afresh", async () => {
+test("private venue uses personal Going approval and scoped admin access, never other-team approval or public projections", async () => {
   const { db, service } = await setup();
   const secret = "SYNTHETIC-PRIVATE-ROOM-DO-NOT-LEAK";
   try {
@@ -253,8 +253,8 @@ test("private venue never leaves unauthorized projections; Going, approval and m
       reason: "Synthetic partial approval",
     });
     assert.equal(
-      ((await service("bob").view("/dashboard")) as Row).privateVenue,
-      undefined,
+      ((await service("bob").view("/dashboard")) as Row).privateVenue.location,
+      secret,
     );
     assert.equal(
       ((await service("pending").view("/dashboard")) as Row).privateVenue,
@@ -315,8 +315,8 @@ test("private venue never leaves unauthorized projections; Going, approval and m
       reason: "Synthetic membership removal",
     });
     assert.equal(
-      ((await service("dave").view("/dashboard")) as Row).privateVenue,
-      undefined,
+      ((await service("dave").view("/dashboard")) as Row).privateVenue.location,
+      secret,
     );
     for (const list of [
       "participants",
@@ -514,7 +514,7 @@ test("signed-in engagement permits admins and pending people, is idempotent, and
     await service("admin").command("upvote-project", { projectId: p.id });
     await service("alice").command("comment-project", {
       projectId: p.id,
-      body: "A synthetic public comment.",
+      body: "A synthetic public comment for this project.",
     });
     assert.equal((await rows(db, "SELECT * FROM project_upvotes")).length, 2);
     assert.equal((await rows(db, "SELECT * FROM votes")).length, 0);

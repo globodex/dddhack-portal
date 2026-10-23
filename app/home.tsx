@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 import Dots from "./dots";
 import DelhiWordmark from "./delhi-wordmark";
-import { ist } from "../lib/time";
 import { defaultPublicContent } from "../lib/event-content-contract";
 type Content = typeof defaultPublicContent;
 function Agenda({
@@ -28,7 +27,9 @@ function Agenda({
         !media.matches &&
         innerWidth >= 1000 &&
         innerHeight >= 700 &&
-        items.length > 1;
+        items.length > 1 &&
+        (s.querySelector<HTMLElement>(".agenda-inner")?.scrollHeight || 0) <
+          innerHeight - 80;
       s.dataset.scroll = String(active);
       if (!active) {
         t.style.transform = "";
@@ -42,11 +43,15 @@ function Agenda({
       t.style.transform = `translateX(${-progress * Math.max(0, t.scrollWidth - t.parentElement!.clientWidth)}px)`;
       setStep(Math.round(progress * (items.length - 1)));
     };
+    const observer = new ResizeObserver(update);
+    const inner = section.current?.querySelector(".agenda-inner");
+    if (inner) observer.observe(inner);
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
     media.addEventListener("change", update);
     update();
     return () => {
+      observer.disconnect();
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
       media.removeEventListener("change", update);
@@ -121,7 +126,6 @@ function Agenda({
 export default function Home({
   content = defaultPublicContent,
   signedIn = false,
-  submissionClose = "2026-11-01T10:30:00.000Z",
 }: {
   content?: Content;
   signedIn?: boolean;
@@ -132,7 +136,8 @@ export default function Home({
     [ready, setReady] = useState(false),
     [visible, setVisible] = useState(true);
   const root = useRef<HTMLDivElement>(null),
-    hero = useRef<HTMLElement>(null);
+    hero = useRef<HTMLElement>(null),
+    lastBubble = useRef("");
   useEffect(() => {
     try {
       setPaused(localStorage.getItem("portal-pause-motion") === "true");
@@ -184,7 +189,13 @@ export default function Home({
               "Let’s build!",
               "Ship something fun.",
             ];
-            setBubble(lines[Math.floor(Math.random() * lines.length)]);
+            const available = lines.filter(
+              (line) => line !== lastBubble.current,
+            );
+            const line =
+              available[Math.floor(Math.random() * available.length)];
+            lastBubble.current = line;
+            setBubble(line);
             timer = setTimeout(() => {
               setBubble("");
               schedule();

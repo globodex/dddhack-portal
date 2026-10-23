@@ -1,3 +1,4 @@
+import { engagementState, engagementControl } from "./engagement-control";
 import { removalCommand, notRemoved } from "./record-removal";
 import {
   profileDescriptionChoices,
@@ -168,7 +169,8 @@ export class PortalExperience {
       "SELECT payload FROM roster_prefills WHERE email=?",
       actor.email,
     );
-    const prefill = imported ? JSON.parse(imported.payload) : {};
+    const prefill =
+      imported && !p?.completed_at ? JSON.parse(imported.payload) : {};
     return {
       ...p,
       ...details,
@@ -374,7 +376,17 @@ export class PortalExperience {
               )?.updated_at
             : undefined,
           teamReadiness,
-          status: individual?.status || "Registered",
+          status:
+            individual?.status ||
+            (item.approval !== "approved"
+              ? "Registered"
+              : (await one(
+                    this.s.db,
+                    "SELECT email FROM registration_absences WHERE email=?",
+                    item.email,
+                  ))
+                ? "Absent"
+                : "Going"),
           teamStatus: progress?.status,
           teamLocked: progress?.locked || false,
           teamLockedAt: item.team_id
@@ -453,12 +465,15 @@ export class PortalExperience {
           )
         : [];
     // Feedback has no numeric rating, evaluation report or hidden score fields.
-    const venue = ready.allApproved
-      ? await one<{ published: string | null }>(
-          this.s.db,
-          "SELECT published FROM private_venue WHERE id=1",
-        )
-      : undefined;
+    const venue =
+      (registration?.status === "approved" &&
+        ["Going", "Checked in"].includes(individual.status)) ||
+      (await managesPrivateVenue(this.s, actor))
+        ? await one<{ published: string | null }>(
+            this.s.db,
+            "SELECT published FROM private_venue WHERE id=1",
+          )
+        : undefined;
     const checked = individual.checkedIn;
     const credits =
       checked && actor.role !== "judge" && registration?.status === "approved"
@@ -643,6 +658,7 @@ export class PortalExperience {
       }
       const hasMore = listRoute && all.length > (selectedPage + 1) * 24;
       const me = this.s.identity ? await this.s.actor() : undefined;
+      const engagement = await engagementState(this.s);
       const ownTeam = me ? await this.team(me.id) : undefined;
       const ownAttendance = me
         ? (await personStatus(this.s, me.id)).checkedIn
@@ -653,6 +669,9 @@ export class PortalExperience {
           : all
         ).map(async (p) => ({
           ...(await this.publicProject(p)),
+          canComment: !!me?.canEngage && !engagement.feedbackPaused,
+          engagementPaused:
+            engagement.votingPaused || engagement.feedbackPaused,
           upvoted: me
             ? !!(await one(
                 this.s.db,
@@ -662,7 +681,9 @@ export class PortalExperience {
               ))
             : false,
           canUpvote:
-            !!me?.canEngage && (ownTeam?.id !== p.team_id || ownAttendance),
+            !engagement.votingPaused &&
+            !!me?.canEngage &&
+            (ownTeam?.id !== p.team_id || ownAttendance),
         })),
       );
       const awards =
@@ -691,6 +712,7 @@ export class PortalExperience {
         me,
         hasMore,
         page: selectedPage,
+        engagement,
         scoreStage: scores.stage,
         finalCountdownComplete: scores.complete,
         awards,
@@ -900,6 +922,7 @@ export class PortalExperience {
         : undefined;
       return {
         me,
+        engagement: await engagementState(this.s),
         creditInstructions: await rows(
           this.s.db,
           "SELECT id,name,instructions FROM credit_types WHERE active=1",
@@ -973,13 +996,34 @@ export class PortalExperience {
         "SELECT p.id,p.slug,t.name teamName,json_extract(p.draft,'$.projectName') projectName,CASE WHEN EXISTS(SELECT 1 FROM submission_versions v WHERE v.team_id=p.team_id) THEN 'Submitted' ELSE 'Draft' END status,p.updated_at FROM projects p JOIN teams t ON t.id=p.team_id ";
       return {
         me,
-        items: await rows(
-          this.s.db,
-          me.owner || me.role === "admin"
-            ? query + " ORDER BY p.updated_at DESC LIMIT 1000"
-            : query +
-                " JOIN project_assignments a ON a.project_id=p.id WHERE a.user_id=? AND a.kind=? ORDER BY p.updated_at DESC LIMIT 1000",
-          ...(me.owner || me.role === "admin" ? [] : [me.id, me.role]),
+        items: await Promise.all(
+          (
+            await rows<Record<string, any>>(
+              this.s.db,
+              me.owner || me.role === "admin"
+                ? query + " ORDER BY p.updated_at DESC LIMIT 1000"
+                : query +
+                    " JOIN project_assignments a ON a.project_id=p.id WHERE a.user_id=? AND a.kind=? ORDER BY p.updated_at DESC LIMIT 1000",
+              ...(me.owner || me.role === "admin" ? [] : [me.id, me.role]),
+            )
+          ).map(async (item) => ({
+            ...item,
+            deleted_at: (
+              await one<{ updated_at: string }>(
+                this.s.db,
+                "SELECT updated_at FROM record_removals WHERE kind='project' AND target_id=? AND active=1",
+                item.id,
+              )
+            )?.updated_at,
+            versions:
+              me.owner || me.role === "admin"
+                ? await rows(
+                    this.s.db,
+                    "SELECT v.id,v.attempt,r.updated_at deleted_at FROM projects p JOIN submission_versions v ON v.team_id=p.team_id LEFT JOIN record_removals r ON r.kind='submission' AND r.target_id=v.id AND r.active=1 WHERE p.id=? ORDER BY attempt DESC LIMIT 3",
+                    item.id,
+                  )
+                : undefined,
+          })),
         ),
       };
     }
@@ -991,7 +1035,25 @@ export class PortalExperience {
         v = await this.version(p);
       return {
         me,
-        project: { ...p, draft: JSON.parse(p.draft) },
+        project: {
+          ...p,
+          draft: JSON.parse(p.draft),
+          deleted_at: (
+            await one<{ updated_at: string }>(
+              this.s.db,
+              "SELECT updated_at FROM record_removals WHERE kind='project' AND target_id=? AND active=1",
+              p.id,
+            )
+          )?.updated_at,
+        },
+        versions:
+          me.owner || me.role === "admin"
+            ? await rows(
+                this.s.db,
+                "SELECT v.id,v.attempt,r.updated_at deleted_at FROM submission_versions v LEFT JOIN record_removals r ON r.kind='submission' AND r.target_id=v.id AND r.active=1 WHERE v.team_id=? ORDER BY attempt DESC LIMIT 3",
+                p.team_id,
+              )
+            : undefined,
         version: v ? { ...v, payload: JSON.parse(v.payload) } : undefined,
         reviewKind: kind,
         canRestoreEligibility: kind === "judge",
@@ -1169,6 +1231,8 @@ export class PortalExperience {
           : "Private idea saved. You may edit it until the team locks.",
       };
     }
+    const engagement = await engagementControl(this.s, action, data);
+    if (engagement) return engagement;
     const removed = await removalCommand(this.s, action, data);
     if (removed) return removed;
     const repository = await repositoryCommand(this.s, action, data);
@@ -1311,9 +1375,19 @@ export class PortalExperience {
       );
       const description =
         d.bestDescription ?? currentDetails?.best_description ?? "";
+      const initialPrefill = await one<{ payload: string }>(
+        this.s.db,
+        "SELECT rp.payload FROM roster_prefills rp LEFT JOIN participant_profiles pp ON pp.user_id=? WHERE rp.email=? AND pp.completed_at IS NULL",
+        actor.id,
+        actor.email,
+      );
+      const importedDescription = initialPrefill
+        ? JSON.parse(initialPrefill.payload).bestDescription
+        : undefined;
       demand(
         !description ||
           description === currentDetails?.best_description ||
+          description === importedDescription ||
           profileDescriptionChoices.includes(description),
         422,
         "PROFILE_DESCRIPTION_CHOICES_PENDING",
@@ -1828,11 +1902,21 @@ export class PortalExperience {
       };
     }
     if (action === "upvote-project" || action === "comment-project") {
+      const engagement = await engagementState(this.s);
+      demand(
+        !(action === "upvote-project"
+          ? engagement.votingPaused
+          : engagement.feedbackPaused),
+        409,
+        "ENGAGEMENT_PAUSED",
+      );
       const d = z
           .object({
             projectId: id,
             body:
-              action === "comment-project" ? text(1500) : z.string().optional(),
+              action === "comment-project"
+                ? text(1500).min(30)
+                : z.string().optional(),
           })
           .strict()
           .parse(data),
@@ -2034,8 +2118,8 @@ export class PortalExperience {
           .object({
             projectId: id,
             versionId: id,
-            body: text(4000),
-            rating: z.number().min(0).max(10).optional(),
+            body: z.string().trim().max(4000).default(""),
+            rating: z.number().min(1).max(10).optional(),
           })
           .strict()
           .parse(data),
@@ -2044,10 +2128,26 @@ export class PortalExperience {
         v = await this.version(p);
       demand(v?.id === d.versionId, 409, "PROJECT_VERSION_CHANGED");
       demand(
-        kind === "judge" || d.rating === undefined,
+        kind === "judge" || kind === "admin" || d.rating === undefined,
         403,
         "ONLY_ASSIGNED_JUDGES_SCORE",
       );
+      demand(
+        d.rating !== undefined || d.body.length > 0,
+        422,
+        "REVIEW_CONTENT_REQUIRED",
+      );
+      if (d.rating !== undefined)
+        demand(
+          !(await one(
+            this.s.db,
+            "SELECT user_id FROM memberships WHERE team_id=? AND user_id=?",
+            p.team_id,
+            actor.id,
+          )),
+          403,
+          "JUDGE_CONFLICT",
+        );
       await this.s.unfrozen();
       await this.s.mutate(
         actor.id,

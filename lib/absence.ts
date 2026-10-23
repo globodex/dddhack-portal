@@ -7,7 +7,35 @@ export async function reconcileAbsences(
   requestActorId: string,
 ) {
   if (s.now() < absenceCutoff) return;
-  const predicate = `r.status='approved' AND COALESCE(o.status,'Going')='Going' AND NOT EXISTS(SELECT 1 FROM check_ins c WHERE c.user_id=u.id) AND NOT EXISTS(SELECT 1 FROM manual_checkins c WHERE c.user_id=u.id) AND NOT EXISTS(SELECT 1 FROM automatic_absences a WHERE a.user_id=u.id) AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=u.id AND rr.active=1)`;
+  const missing = await rows<{ email: string }>(
+    s.db,
+    "SELECT r.email FROM registrations r WHERE r.status='approved' AND NOT EXISTS(SELECT 1 FROM users u WHERE u.email=r.email) AND NOT EXISTS(SELECT 1 FROM registration_absences a WHERE a.email=r.email)",
+  );
+  for (const row of missing)
+    await batch(s.db, [
+      [
+        "INSERT INTO registration_absences SELECT r.email,?,? FROM registrations r WHERE r.email=? AND r.status='approved' AND NOT EXISTS(SELECT 1 FROM users u WHERE u.email=r.email) ON CONFLICT DO NOTHING",
+        s.now(),
+        absenceCutoff,
+        row.email,
+      ],
+      [
+        "INSERT INTO audit_logs SELECT ?,?,'automatic-absence',?,?,?,? WHERE changes()=1",
+        crypto.randomUUID(),
+        requestActorId,
+        "registration:" + row.email,
+        JSON.stringify({
+          cutoff: absenceCutoff,
+          mechanism: "request-time-reconciliation",
+          previous: "Going",
+          next: "Absent",
+          neverSignedIn: true,
+        }),
+        "Going registrant never checked in before the event ended.",
+        s.now(),
+      ],
+    ]);
+  const predicate = `r.status='approved' AND COALESCE(o.status,'Going')='Going' AND NOT EXISTS(SELECT 1 FROM check_ins c WHERE c.user_id=u.id) AND NOT EXISTS(SELECT 1 FROM manual_checkins c WHERE c.user_id=u.id) AND NOT EXISTS(SELECT 1 FROM registration_absences ra WHERE ra.email=u.email) AND NOT EXISTS(SELECT 1 FROM automatic_absences a WHERE a.user_id=u.id) AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=u.id AND rr.active=1)`;
   const candidates = await rows<{ id: string }>(
     s.db,
     `SELECT u.id FROM users u JOIN registrations r ON r.email=u.email LEFT JOIN participant_status_overrides o ON o.user_id=u.id WHERE ${predicate}`,

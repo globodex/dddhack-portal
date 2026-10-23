@@ -18,7 +18,8 @@ export default function Dots({
       h = 0,
       visible = true,
       alive = true,
-      previous = 0;
+      previous = 0,
+      entranceStart = 0;
     const point = { x: -9999, y: -9999 };
     const colors = [
       "#f16d00",
@@ -36,12 +37,17 @@ export default function Dots({
       r: number;
       vx: number;
       vy: number;
+      startY: number;
     }[] = [];
-    const draw = (time = 0) => {
+    const draw = (time = performance.now()) => {
       if (!alive) return;
       const dt = previous ? Math.min(2, (time - previous) / 16.67) : 1;
       previous = time;
       ctx.clearRect(0, 0, w, h);
+      if (!entranceStart && time) entranceStart = time;
+      const progress = time ? Math.min(1, (time - entranceStart) / 850) : 0;
+      const ease = 1 - Math.pow(1 - progress, 3);
+      let moving = progress < 1;
       for (let i = 0; i < dots.length; i++) {
         const p = dots[i];
         if (paused || reduced.matches) {
@@ -49,22 +55,20 @@ export default function Dots({
           p.y = p.hy;
           p.vx = p.vy = 0;
         } else {
-          const dx = p.x - point.x,
-            dy = p.y - point.y,
-            d = Math.hypot(dx, dy),
-            range = bottom ? 90 : 120;
-          if (d < range && d > 1) {
-            p.vx += (dx / d) * (range - d) * 0.017;
-            p.vy += (dy / d) * (range - d) * 0.017;
-          }
-          p.vx += (p.hx - p.x) * 0.014 * dt;
-          p.vy += (p.hy - p.y) * 0.014 * dt;
-          p.vx *= 0.87;
-          p.vy *= 0.87;
-          p.x += p.vx * dt;
-          p.y += p.vy * dt;
+          const dx = p.hx - point.x,
+            dy = p.hy - point.y,
+            distance = Math.hypot(dx, dy),
+            range = p.r + (bottom ? 50 : 90),
+            force = distance < range ? 18 * (1 - distance / range) : 0,
+            targetX = p.hx + (distance > 1 ? (dx / distance) * force : 0),
+            targetY = p.hy + (distance > 1 ? (dy / distance) * force : 0);
+          p.vx = (targetX - p.x) * Math.min(1, 0.18 * dt);
+          p.vy = (targetY - p.y) * Math.min(1, 0.18 * dt);
+          p.x += p.vx;
+          p.y = progress < 1 ? p.startY + (p.hy - p.startY) * ease : p.y + p.vy;
           p.x = Math.max(p.r, Math.min(w - p.r, p.x));
-          p.y = Math.max(-h, Math.min(h - p.r, p.y));
+          if (progress === 1) p.y = Math.max(p.r, Math.min(h - p.r, p.y));
+          moving ||= Math.abs(p.vx) + Math.abs(p.vy) > 0.03;
         }
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -89,7 +93,7 @@ export default function Dots({
         ctx.fillText(right, p.x + p.r * 0.42 + attention, p.y + p.r * 0.04);
         ctx.restore();
       }
-      if (!paused && !reduced.matches && visible && !document.hidden)
+      if (!paused && !reduced.matches && moving && visible && !document.hidden)
         frame = requestAnimationFrame(draw);
     };
     const restart = () => {
@@ -106,6 +110,7 @@ export default function Dots({
       canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       const count = bottom ? 12 : 6;
+      entranceStart = 0;
       dots = Array.from({ length: count }, (_, i) => {
         const r = bottom
           ? Math.min(35, (w / count) * 0.43) * (i % 3 === 1 ? 0.6 : 1)
@@ -122,6 +127,7 @@ export default function Dots({
           r,
           vx: 0,
           vy: 0,
+          startY: -r * (i + 2),
         };
       });
       restart();
@@ -133,9 +139,11 @@ export default function Dots({
         y = e.clientY - r.top;
       point.x = x >= 0 && x <= w && y >= 0 && y <= h ? x : -9999;
       point.y = point.x === -9999 ? -9999 : y;
+      restart();
     };
     const leave = () => {
       point.x = point.y = -9999;
+      restart();
     };
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(canvas);

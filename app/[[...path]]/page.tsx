@@ -80,10 +80,8 @@ export async function generateMetadata({
       )) as Record<string, any>;
       return pageMetadata(route, view.project || view.items?.[0]);
     } catch {
-      return {
-        ...pageMetadata(route),
-        robots: { index: false, follow: false },
-      };
+      const { openGraph, twitter, ...metadata } = pageMetadata(route);
+      return { ...metadata, robots: { index: false, follow: false } };
     }
   return pageMetadata(route);
 }

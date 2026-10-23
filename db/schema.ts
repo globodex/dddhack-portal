@@ -982,3 +982,30 @@ export const roster_prefills = sqliteTable("roster_prefills", {
   payload: text("payload").notNull(),
   imported_at: text("imported_at").notNull(),
 });
+
+export const engagement_controls = sqliteTable(
+  "engagement_controls",
+  {
+    id: integer("id").primaryKey(),
+    voting_paused: integer("voting_paused").notNull().default(0),
+    feedback_paused: integer("feedback_paused").notNull().default(0),
+    version: integer("version").notNull().default(1),
+    actor_id: text("actor_id")
+      .notNull()
+      .references(() => users.id),
+    updated_at: text("updated_at").notNull(),
+  },
+  (t) => [
+    check("engagement_singleton", sql`${t.id}=1`),
+    check("engagement_vote_flag", sql`${t.voting_paused} IN (0,1)`),
+    check("engagement_feedback_flag", sql`${t.feedback_paused} IN (0,1)`),
+  ],
+);
+
+export const registration_absences = sqliteTable("registration_absences", {
+  email: text("email")
+    .primaryKey()
+    .references(() => registrations.email),
+  reconciled_at: text("reconciled_at").notNull(),
+  cutoff: text("cutoff").notNull(),
+});

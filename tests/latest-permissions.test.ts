@@ -541,3 +541,207 @@ test("pasted/single emails and explicitly mapped full CSV imports are add-only, 
     db.close();
   }
 });
+
+test("profile imports stop supplying defaults after first save, preserve explicit clears, and accept only exact imported category", async () => {
+  const { db, service } = await setup();
+  try {
+    const csv =
+        "Email,Name,Category,Website\nfresh@portal.test,Fresh Builder,Host supplied category,https://imported.example",
+      fieldMap = {
+        email: "Email",
+        displayName: "Name",
+        bestDescription: "Category",
+        website: "Website",
+      };
+    const preview = await service("admin").command("preview-import", {
+      kind: "roster",
+      csv,
+      fieldMap,
+    });
+    await service("admin").command("commit-import", {
+      kind: "roster",
+      csv,
+      fieldMap,
+      digest: preview.digest,
+    });
+    const user = new PortalService(
+      db,
+      {
+        id: "fresh",
+        email: "fresh@portal.test",
+        name: "Fresh Auth",
+        source: "local-test",
+      },
+      undefined,
+    );
+    await user.command("complete-profile", {
+      displayName: "Edited Name",
+      gender: "non-binary",
+      bio: "Fresh bio",
+      phone: "+919876543210",
+      bestDescription: "Host supplied category",
+      organization: "",
+      openaiOrgId: "",
+      socialLinks: [{ type: "Website", url: "https://edited.example" }],
+    });
+    let p = asRow((await user.view("/profile")).profile);
+    assert.equal(p.best_description, "Host supplied category");
+    assert.deepEqual(p.socialLinks, []);
+    assert.deepEqual(p.socials, ["https://edited.example"]);
+    await user.command("complete-profile", {
+      displayName: "Edited Name",
+      gender: "non-binary",
+      bio: "Fresh bio",
+      phone: "+919876543210",
+      bestDescription: "",
+      organization: "",
+      openaiOrgId: "",
+      socialLinks: [],
+    });
+    p = asRow((await user.view("/profile")).profile);
+    assert.equal(p.best_description, "");
+    assert.deepEqual(p.socials, []);
+    assert.deepEqual(p.socialLinks, []);
+  } finally {
+    db.close();
+  }
+});
+test("in-flight mutation cannot persist after single participant deactivation commits", async () => {
+  const { db, service } = await setup();
+  try {
+    const carol = service("carol"),
+      original = carol.mutate.bind(carol);
+    let reached!: () => void, resume!: () => void;
+    const ready = new Promise<void>((r) => (reached = r)),
+      gate = new Promise<void>((r) => (resume = r));
+    carol.mutate = async (...args) => {
+      reached();
+      await gate;
+      return original(...args);
+    };
+    const pending = carol.command("complete-profile", {
+      displayName: "Carol",
+      gender: "non-binary",
+      bio: "Must never persist after removal",
+      phone: "+12025550100",
+    });
+    await ready;
+    await service("admin").command("participant-deactivate", {
+      userId: "fake_carol",
+      reason: "Synthetic revocation race",
+      confirmation: "REMOVE_PARTICIPANT",
+    });
+    resume();
+    await assert.rejects(pending, /CHECK|PARTICIPANT_REMOVED/);
+    assert.notEqual(
+      (
+        await one<{ bio: string }>(
+          db,
+          "SELECT bio FROM profiles WHERE user_id='fake_carol'",
+        )
+      )?.bio,
+      "Must never persist after removal",
+    );
+  } finally {
+    db.close();
+  }
+});
+test("approved never-login registrants become Absent without inventing a user and retain this state at first sign-in", async () => {
+  const { db, service, clock } = await setup();
+  try {
+    await db
+      .prepare(
+        "INSERT INTO registrations(email,status) VALUES('never@portal.test','approved')",
+      )
+      .all();
+    clock("2026-11-01T18:30:00.000Z");
+    const list = asRow(await service("admin").view("/admin/participants"));
+    assert.equal(
+      list.items.find((x: any) => x.email === "never@portal.test").status,
+      "Absent",
+    );
+    assert.equal(
+      await one(db, "SELECT id FROM users WHERE email='never@portal.test'"),
+      undefined,
+    );
+    const user = new PortalService(
+      db,
+      {
+        id: "never",
+        email: "never@portal.test",
+        name: "Never",
+        source: "local-test",
+      },
+      undefined,
+      () => "2026-11-02T04:00:00.000Z",
+    );
+    await user.actor();
+    assert.equal((await personStatus(user, "never")).status, "Absent");
+  } finally {
+    db.close();
+  }
+});
+test("admin engagement pause is versioned, backend enforced, and reopening preserves one vote per project", async () => {
+  const { db, service, clock } = await setup();
+  try {
+    await activate(db);
+    clock("2026-11-01T04:00:00.000Z");
+    await attend(db, "fake_alice");
+    const commit = await service().command("submit-project", {
+      revision: 0,
+      project,
+    });
+    await eligible(
+      service(),
+      String(commit.projectId),
+      String(commit.versionId),
+    );
+    const pause = {
+      votingPaused: true,
+      feedbackPaused: true,
+      version: 0,
+      reason: "Synthetic pause",
+      confirmation: "CHANGE_ENGAGEMENT",
+    };
+    await assert.rejects(service().command("engagement-control", pause), {
+      code: "ADMIN_REQUIRED",
+    });
+    await service("admin").command("engagement-control", pause);
+    for (const action of ["upvote-project", "comment-project"])
+      await assert.rejects(
+        service("bob").command(action, {
+          projectId: commit.projectId,
+          body: "This is a synthetic comment with enough characters.",
+        }),
+        { code: "ENGAGEMENT_PAUSED" },
+      );
+    let row = asRow(await service("bob").view("/projects")).items[0];
+    assert.equal(row.canUpvote, false);
+    assert.equal(row.canComment, false);
+    await service("admin").command("engagement-control", {
+      ...pause,
+      votingPaused: false,
+      feedbackPaused: false,
+      version: 1,
+    });
+    await service("bob").command("upvote-project", {
+      projectId: commit.projectId,
+    });
+    await service("bob").command("upvote-project", {
+      projectId: commit.projectId,
+    });
+    assert.equal((await rows(db, "SELECT * FROM project_upvotes")).length, 1);
+    await assert.rejects(
+      service("bob").command("comment-project", {
+        projectId: commit.projectId,
+        body: "too short",
+      }),
+    );
+    await service("bob").command("comment-project", {
+      projectId: commit.projectId,
+      body: "Any feedback longer than thirty characters.",
+    });
+  } finally {
+    db.close();
+  }
+});

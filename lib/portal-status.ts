@@ -23,7 +23,7 @@ export async function personStatus(s: PortalService, userId: string) {
     email: string;
   }>(
     s.db,
-    "SELECT COALESCE(r.status,'pending') approval,CASE WHEN a.user_id IS NOT NULL AND (o.updated_at IS NULL OR o.updated_at<a.reconciled_at) THEN 'Absent' ELSE o.status END status,u.email FROM users u LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_status_overrides o ON o.user_id=u.id LEFT JOIN automatic_absences a ON a.user_id=u.id WHERE u.id=?",
+    "SELECT COALESCE(r.status,'pending') approval,CASE WHEN COALESCE(a.reconciled_at,ra.reconciled_at) IS NOT NULL AND (o.updated_at IS NULL OR o.updated_at<COALESCE(a.reconciled_at,ra.reconciled_at)) THEN 'Absent' ELSE o.status END status,u.email FROM users u LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_status_overrides o ON o.user_id=u.id LEFT JOIN automatic_absences a ON a.user_id=u.id LEFT JOIN registration_absences ra ON ra.email=u.email WHERE u.id=?",
     userId,
   );
   demand(user, 404, "USER_NOT_FOUND");

@@ -9,7 +9,12 @@ export async function requireRosterMember(
 ) {
   const me = actor || (await s.actor());
   demand(
-    !me.deactivated,
+    !me.deactivated &&
+      !(await one(
+        s.db,
+        "SELECT target_id FROM record_removals WHERE kind='participant' AND target_id=? AND active=1",
+        me.id,
+      )),
     403,
     "PARTICIPANT_REMOVED",
     "Your participant access has been removed. Contact an organizer.",

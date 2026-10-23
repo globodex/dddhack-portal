@@ -148,6 +148,20 @@
       "when": 1792769148007,
       "tag": "0020_hot_fat_cobra",
       "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "6",
+      "when": 1792769826188,
+      "tag": "0021_fat_magma",
+      "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "6",
+      "when": 1792769925296,
+      "tag": "0022_broad_steve_rogers",
+      "breakpoints": true
     }
   ]
 }
