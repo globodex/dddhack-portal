@@ -112,36 +112,31 @@ export default function OwnerSubmissionWindow({
   }) => Promise<SubmissionWindowPreview>;
 }) {
   const id = useId();
-  const [openInput, setOpen] = useState(() => inputOrEmpty(open));
-  const [closeInput, setClose] = useState(() => inputOrEmpty(close));
-  const [review, setReview] = useState<SubmissionWindowPreview | null>(null);
+  const [openInput, setOpen] = useState(() => inputOrEmpty(open)),
+    [closeInput, setClose] = useState(() => inputOrEmpty(close)),
+    [review, setReview] = useState<SubmissionWindowPreview | null>(null);
   const { busy, error, execute, clearError } = useAdminOperation();
   if (!owner) return null;
-  let converted: { open: string; close: string } | null = null;
-  let validation = "";
+  let converted: { open: string; close: string } | null = null,
+    validation = "";
   try {
     converted = submissionWindowValues(openInput, closeInput);
   } catch (cause) {
     validation = (cause as Error).message;
   }
-  const invalidate = () => {
-    setReview(null);
-    clearError();
-  };
   return (
     <section
-      className="admin-control admin-window"
+      className="admin-control admin-window admin-settings-section"
       aria-labelledby={`${id}-title`}
     >
-      <h2 id={`${id}-title`}>
-        <AdminIcon name="clock" />
-        Submission window
-      </h2>
-
+      <header>
+        <h2 id={`${id}-title`}>Submission window</h2>
+        <span className="admin-timezone">IST</span>
+      </header>
       <fieldset disabled={busy}>
         <div className="admin-control-grid">
           <label>
-            Opening · IST
+            Opens (IST)
             <input
               type="datetime-local"
               step="60"
@@ -149,12 +144,13 @@ export default function OwnerSubmissionWindow({
               value={openInput}
               onChange={(event) => {
                 setOpen(event.target.value);
-                invalidate();
+                setReview(null);
+                clearError();
               }}
             />
           </label>
           <label>
-            Closing · IST
+            Closes (IST)
             <input
               type="datetime-local"
               step="60"
@@ -162,110 +158,73 @@ export default function OwnerSubmissionWindow({
               value={closeInput}
               onChange={(event) => {
                 setClose(event.target.value);
-                invalidate();
+                setReview(null);
+                clearError();
               }}
             />
           </label>
         </div>
-        {converted && (
-          <dl className="admin-window-dates">
-            <dt>Proposed opening</dt>
-            <dd>
-              <time dateTime={converted.open}>
-                {openInput.replace("T", " ")} IST (UTC+05:30)
-              </time>
-              <br />
-              <code>{converted.open}</code>
-            </dd>
-            <dt>Proposed closing</dt>
-            <dd>
-              <time dateTime={converted.close}>
-                {closeInput.replace("T", " ")} IST (UTC+05:30)
-              </time>
-              <br />
-              <code>{converted.close}</code>
-            </dd>
-          </dl>
-        )}
         {validation && (
-          <p className="admin-control-note" role="status">
+          <p className="error-message" role="status">
             {validation}
           </p>
         )}
-        <button
-          type="button"
-          className="button secondary"
-          disabled={busy || !converted}
-          onClick={() =>
-            void execute(async () => {
-              setReview(null);
-              const values = submissionWindowValues(openInput, closeInput);
-              const response = await preview(values);
-              if (
-                !response.token ||
-                !Number.isInteger(response.version) ||
-                !Array.isArray(response.warnings)
-              )
-                throw new Error(
-                  "The server did not return a complete versioned window preview.",
+        {review && review.warnings.length > 0 && (
+          <ul className="admin-window-warnings" role="status">
+            {review.warnings.map((warning, index) => (
+              <li key={index}>{warning}</li>
+            ))}
+          </ul>
+        )}
+        <div className="admin-window-footer">
+          <span>Three committed submissions</span>
+          <button
+            type="button"
+            className="button"
+            disabled={busy || !converted}
+            onClick={() =>
+              void execute(async () => {
+                if (review) {
+                  await run(
+                    "publish-submission-window",
+                    submissionWindowPublishValues(review),
+                  );
+                  setReview(null);
+                  return;
+                }
+                const values = submissionWindowValues(openInput, closeInput),
+                  response = await preview(values);
+                if (
+                  !response.token ||
+                  !Number.isInteger(response.version) ||
+                  !Array.isArray(response.warnings)
+                )
+                  throw new Error(
+                    "The server did not return a complete versioned window preview.",
+                  );
+                if (
+                  Date.parse(response.open) !== Date.parse(values.open) ||
+                  Date.parse(response.close) !== Date.parse(values.close)
+                )
+                  throw new Error(
+                    "The preview differs from the requested dates. Reload and try again.",
+                  );
+                if (response.warnings.length) {
+                  setReview(response);
+                  return;
+                }
+                await run(
+                  "publish-submission-window",
+                  submissionWindowPublishValues(response),
                 );
-              if (
-                Date.parse(response.open) !== Date.parse(values.open) ||
-                Date.parse(response.close) !== Date.parse(values.close)
-              )
-                throw new Error(
-                  "The preview differs from the requested dates. Reload and preview again.",
-                );
-              setReview(response);
-            })
-          }
-        >
-          {busy ? "Waiting…" : "Preview both dates"}
-        </button>
+              })
+            }
+          >
+            <AdminIcon name="clock" />
+            {busy ? "Waiting…" : "Publish"}
+          </button>
+        </div>
       </fieldset>
-      {review && (
-        <form
-          className="admin-window-review"
-          onSubmit={(event) => {
-            event.preventDefault();
-            void execute(async () => {
-              await run(
-                "publish-submission-window",
-                submissionWindowPublishValues(review),
-              );
-              setReview(null);
-            });
-          }}
-        >
-          <h3>Server preview · current version {review.version}</h3>
-          <dl className="admin-window-dates">
-            <dt>Opening</dt>
-            <dd>
-              {review.openIST}
-              <br />
-              <code>{review.open}</code>
-            </dd>
-            <dt>Closing</dt>
-            <dd>
-              {review.closeIST}
-              <br />
-              <code>{review.close}</code>
-            </dd>
-          </dl>
-          {!!review.warnings.length && (
-            <ul>
-              {review.warnings.map((warning, index) => (
-                <li key={index}>{warning}</li>
-              ))}
-            </ul>
-          )}
-          <fieldset disabled={busy}>
-            <button className="button" type="submit" disabled={busy}>
-              {busy ? "Waiting…" : "Review and publish both dates"}
-            </button>
-          </fieldset>
-        </form>
-      )}
       {error && (
         <p role="alert" className="error-message">
           {error}

@@ -4,8 +4,9 @@ import {
   BriefcaseBusiness,
   Clock3,
   Download,
-  Ellipsis,
+  EllipsisVertical,
   ListFilter,
+  Search,
   Ticket,
   Trash2,
   Upload,
@@ -66,7 +67,7 @@ export function AdminIcon({
     filter: ListFilter,
     download: Download,
     users: Users,
-    more: Ellipsis,
+    more: EllipsisVertical,
     ticket: Ticket,
   }[name];
   return (
@@ -185,8 +186,9 @@ export function AdminParticipantFilters({
       className={`admin-control admin-participant-filters${expanded ? " is-expanded" : ""}`}
     >
       <legend className="sr-only">Filter participants</legend>
-      <label>
-        Search
+      <label className="admin-filter-search">
+        <span className="sr-only">Search</span>
+        <Search size={20} aria-hidden="true" className="admin-search-glyph" />
         <input
           type="search"
           value={value.individual}
@@ -197,7 +199,7 @@ export function AdminParticipantFilters({
         />
       </label>
       <label>
-        Status
+        Personal status
         <select
           value={value.status}
           onChange={(event) => update({ status: event.target.value })}

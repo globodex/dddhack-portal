@@ -16,6 +16,7 @@ import Portal, {
   privateReviewValues,
 } from "../app/portal";
 import { filterAdminParticipants } from "../app/admin-participant-actions";
+import AdminImportDialog from "../app/admin-import-dialog";
 const run = async () => {
   throw new Error("Static render must not mutate");
 };
@@ -98,9 +99,6 @@ test("participant admin page wires reviewed imports and only individual removal,
     "Filter participants",
     "Participation record",
     '<option value="removed">Removed</option>',
-    "Single email",
-    "Email list",
-    "CSV",
     "Remove participant",
     "active@example.invalid",
     "Export filtered participants (1)",
@@ -110,6 +108,14 @@ test("participant admin page wires reviewed imports and only individual removal,
     markup,
     /removed@example.invalid|Preview registered emails|Bulk delete|Delete selected/,
   );
+  assert.match(markup, /Add participants/);
+  assert.match(markup, /Locked at/);
+  assert.match(markup, /admin-team-identity/);
+  const dialogMarkup = html(AdminImportDialog, { run, close: () => {} });
+  for (const mode of ["Single email", "Email list", "CSV"])
+    assert.ok(dialogMarkup.includes(mode));
+  assert.match(dialogMarkup, /aria-label="Close add participants"/);
+
   assert.doesNotMatch(markup, /Exports all|CSV export includes/);
   const volunteer = html(AdminParticipants, {
     data: {
@@ -173,8 +179,12 @@ test("review detail wires project management for staff while mentor duties stay 
   };
   const markup = html(Review, { data, run });
   assert.match(markup, /Manage project and submission versions/);
-  assert.match(markup, /Score · 1 to 10, reviewer-private · optional/);
-  assert.match(markup, /min="1" max="10"/);
+  assert.match(markup, /Score \(1 to 10\)/);
+  assert.equal((markup.match(/type="radio" name="rating"/g) || []).length, 10);
+  for (let score = 1; score <= 10; score++)
+    assert.ok(markup.includes(`name="rating" value="${score}"`));
+  assert.match(markup, /Not configured[\s\S]*?disabled=""/);
+  assert.match(markup, /aria-controls="admin-project-details"/);
   const mentor = html(Review, {
     data: {
       ...data,
@@ -279,16 +289,22 @@ test("owner window editor replaces extension-only settings and engagement contro
   assert.match(markup, /Submission window/);
   assert.match(markup, /2026-11-01T08:00/);
   assert.match(markup, /2026-11-01T16:00/);
-  assert.match(markup, /Preview both dates/);
-  assert.match(markup, /Pause community voting/);
+  assert.match(markup, /Opens \(IST\)/);
+  assert.match(markup, /Closes \(IST\)/);
+  assert.match(markup, /Three committed submissions/);
+  assert.match(markup, />Publish<\/button>/);
+  assert.match(markup, /name="votingEnabled"/);
+  assert.doesNotMatch(markup, /name="votingEnabled" checked=""/);
+  assert.match(markup, /name="feedbackEnabled" checked=""/);
   assert.match(markup, /Reveal AI scores[\s\S]*?<button[^>]*disabled=""/);
   assert.doesNotMatch(
     markup,
     /Extend submission deadline|Additional whole minutes/,
   );
   const nonOwner = html(Settings, { data: { ...data, me: admin }, run });
-  assert.doesNotMatch(nonOwner, /Preview both dates/);
-  assert.match(nonOwner, /Pause community voting/);
+  assert.doesNotMatch(nonOwner, /admin-window-footer/);
+  assert.match(nonOwner, /name="votingEnabled"/);
+  assert.doesNotMatch(nonOwner, /Admin access/);
   assert.equal(
     html(AdminEngagementControls, {
       data: { ...data, me: { ...admin, role: "mentor", owner: false } },
@@ -298,7 +314,7 @@ test("owner window editor replaces extension-only settings and engagement contro
   );
   assert.match(
     html(AdminEngagementControls, { data: { me: admin }, run }),
-    /Community engagement/,
+    /Voting and public comments/,
   );
 });
 test("public project engagement is read-only when server flags or per-row capabilities deny it, with no private score leaks", () => {

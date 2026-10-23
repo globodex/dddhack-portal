@@ -12,9 +12,11 @@ export function addAdminValues(value: string) {
 export default function AddAdmins({
   owner,
   run,
+  title = "Add Admins",
 }: {
   owner: boolean;
   run: AdminRun;
+  title?: string;
 }) {
   const id = useId();
   const [email, setEmail] = useState("");
@@ -25,7 +27,7 @@ export default function AddAdmins({
       className="admin-control admin-add-admins"
       aria-labelledby={`${id}-title`}
     >
-      <h2 id={`${id}-title`}>Add Admins</h2>
+      <h2 id={`${id}-title`}>{title}</h2>
       <form
         onSubmit={(event) => {
           event.preventDefault();
@@ -37,7 +39,7 @@ export default function AddAdmins({
       >
         <fieldset disabled={busy} className="admin-email-action">
           <label>
-            Email
+            {title === "Admin access" ? "Add admins" : "Email"}
             <input
               type="email"
               required

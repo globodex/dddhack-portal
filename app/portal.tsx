@@ -67,7 +67,7 @@ import {
 } from "react";
 import Home from "./home";
 import ProfileFlow from "./profile-flow";
-import AdminImportControls from "./admin-import-controls";
+import AdminImportDialog from "./admin-import-dialog";
 import AdminParticipantActions, {
   AdminParticipantFilters,
   AdminIcon,
@@ -2614,7 +2614,8 @@ export function AdminParticipants({
     [status, setStatus] = useState("pending"),
     [reason] = useState("Confirmed portal action"),
     [error, setError] = useState(""),
-    [filtersExpanded, setFiltersExpanded] = useState(false);
+    [filtersExpanded, setFiltersExpanded] = useState(false),
+    [adding, setAdding] = useState(false);
   const canManage = data.me?.owner === true || data.me?.role === "admin";
   const rows = (data.items || []).map(adminParticipantProjection);
   const items = filterAdminParticipants(rows, filters).filter(
@@ -2636,13 +2637,36 @@ export function AdminParticipants({
     setError("");
   };
   return (
-    <>
-      <header className="page-heading">
+    <section className="admin-exact admin-participants-page">
+      <header className="page-heading admin-exact-heading">
         <h1>
+          <HeadingDot color="orange" expression="sleepy" />
           Participants
-          <HeadingDot color="orange" expression="plus" />
         </h1>
+        {canManage && (
+          <div className="admin-heading-actions">
+            <a
+              className="button secondary"
+              aria-label={`Export filtered participants (${items.length})`}
+              href={participantExportHref(filters, recordState)}
+            >
+              <AdminIcon name="download" />
+              Export
+            </a>
+            <button
+              type="button"
+              className="button"
+              onClick={() => setAdding(true)}
+            >
+              <AdminIcon name="person" />
+              Add participants
+            </button>
+          </div>
+        )}
       </header>
+      {canManage && adding && (
+        <AdminImportDialog run={run} close={() => setAdding(false)} />
+      )}
       <div className="admin-mobile-tools">
         <Search
           value={filters.individual}
@@ -2677,22 +2701,28 @@ export function AdminParticipants({
       <div
         className={`toolbar admin-participant-record-tools${filtersExpanded ? " is-expanded" : ""}`}
       >
-        <label>
-          Participation record
-          <select
-            value={recordState}
-            onChange={(e) => {
-              setRecordState(e.target.value as ParticipantRecordState);
-              setSelected([]);
-              if (e.target.value === "removed")
-                setFilters({ ...filters, status: "all", team: "all" });
-            }}
-          >
-            <option value="active">Active</option>
-            <option value="removed">Removed</option>
-            <option value="all">All records</option>
-          </select>
-        </label>
+        <details className="admin-record-disclosure">
+          <summary>
+            <AdminIcon name="filter" />
+            <span>Records</span>
+          </summary>
+          <label>
+            Participation record
+            <select
+              value={recordState}
+              onChange={(e) => {
+                setRecordState(e.target.value as ParticipantRecordState);
+                setSelected([]);
+                if (e.target.value === "removed")
+                  setFilters({ ...filters, status: "all", team: "all" });
+              }}
+            >
+              <option value="active">Active</option>
+              <option value="removed">Removed</option>
+              <option value="all">All records</option>
+            </select>
+          </label>
+        </details>
         {canManage && (
           <a
             className="button secondary"
@@ -2706,13 +2736,14 @@ export function AdminParticipants({
       </div>
 
       {canManage && (
-        <details className="panel admin-import-panel">
-          <summary>
-            <AdminIcon name="person" />
-            Add participants
-          </summary>
-          <AdminImportControls run={run} />
-        </details>
+        <button
+          className="button admin-mobile-add"
+          type="button"
+          onClick={() => setAdding(true)}
+        >
+          <AdminIcon name="person" />
+          Add participants
+        </button>
       )}
       {selected.length > 0 && (
         <div className="bulk-bar">
@@ -2798,11 +2829,11 @@ export function AdminParticipants({
                   }
                 />
               </th>
-              <th>Participant</th>
+              <th>Person</th>
               <th>Team</th>
-              <th>Approval</th>
+              <th>Personal status</th>
               <th>Team status</th>
-              <th>Attendance</th>
+              <th>Locked at</th>
               {canManage && <th>Manage participant</th>}
             </tr>
           </thead>
@@ -2842,23 +2873,40 @@ export function AdminParticipants({
                   </div>
                 </td>
                 <td>
-                  {r.teamName || "Not in a team"}
-                  <small>
-                    {r.teamReadiness?.total
-                      ? `${r.teamReadiness?.approved}/${r.teamReadiness?.total} approved`
-                      : ""}
-                  </small>
+                  {r.teamName ? (
+                    <div className="admin-team-identity">
+                      <TeamAvatar
+                        name={r.teamName}
+                        palette={r.teamPalette}
+                        size={32}
+                      />
+                      <div>
+                        {r.teamName}
+                        <small>
+                          {r.teamReadiness?.total
+                            ? `${r.teamReadiness.approved}/${r.teamReadiness.total} approved`
+                            : ""}
+                        </small>
+                      </div>
+                    </div>
+                  ) : (
+                    "Not in a team"
+                  )}
                 </td>
                 <td>
                   <Pill
-                    tone={r.approval === "approved" ? "positive" : "neutral"}
+                    tone={
+                      ["Going", "Checked in"].includes(r.status)
+                        ? "positive"
+                        : "neutral"
+                    }
                   >
-                    {r.approval === "approved"
-                      ? "Going"
-                      : r.approval === "pending"
-                        ? "Registered"
-                        : r.approval}
+                    {r.status ||
+                      (r.approval === "approved" ? "Going" : "Registered")}
                   </Pill>
+                  {r.checked_in && r.status !== "Checked in" && (
+                    <small>Checked in</small>
+                  )}
                 </td>
                 <td>
                   <Pill
@@ -2872,32 +2920,38 @@ export function AdminParticipants({
                         : "Not in a team")}
                   </Pill>
                 </td>
-                <td>{r.checked_in ? "Checked in" : "Not checked in"}</td>
+                <td className="admin-locked-at">
+                  {r.teamLockedAt ? (
+                    <time dateTime={r.teamLockedAt}>{ist(r.teamLockedAt)}</time>
+                  ) : (
+                    "Not locked"
+                  )}
+                </td>
                 {canManage && (
                   <td>
                     {r.id ? (
                       <div className="admin-row-actions">
-                        {!r.removed && (
-                          <StatusChange
-                            kind="person"
-                            target={r.id}
-                            name={r.name || r.email}
-                            current={r.status}
+                        <StatusChange
+                          kind="person"
+                          target={r.id}
+                          name={r.name || r.email}
+                          current={r.status}
+                          run={run}
+                          compact
+                          disabled={r.removed}
+                        >
+                          <AdminParticipantActions
+                            key={`${r.id}-${r.removed}`}
+                            participant={{
+                              id: r.id,
+                              name: r.name,
+                              email: r.email,
+                              removed: r.removed,
+                            }}
                             run={run}
                             compact
                           />
-                        )}
-                        <AdminParticipantActions
-                          key={`${r.id}-${r.removed}`}
-                          participant={{
-                            id: r.id,
-                            name: r.name,
-                            email: r.email,
-                            removed: r.removed,
-                          }}
-                          run={run}
-                          compact
-                        />
+                        </StatusChange>
                       </div>
                     ) : (
                       <span className="muted">
@@ -2922,7 +2976,7 @@ export function AdminParticipants({
           team filter to see other records.
         </Empty>
       )}
-    </>
+    </section>
   );
 }
 export function privateReviewValues(
@@ -2964,24 +3018,105 @@ export function Review({
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
+  const [reviewTab, setReviewTab] = useState("review");
   const p = data.project,
     v = data.version;
   if (!p) return <Empty>Select a submitted project.</Empty>;
+  const selectReviewTab = (value: string, focus = false) => {
+    setReviewTab(value);
+    if (focus)
+      document
+        .getElementById(
+          value === "details"
+            ? "admin-project-details-tab"
+            : "admin-project-review-tab",
+        )
+        ?.focus();
+  };
+  const reviewTabKey = (event: { key: string; preventDefault: () => void }) => {
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    selectReviewTab(
+      event.key === "Home"
+        ? "details"
+        : event.key === "End"
+          ? "review"
+          : reviewTab === "details"
+            ? "review"
+            : "details",
+      true,
+    );
+  };
   const payload = v?.payload || p.draft;
+  const ownReview = (data.history || []).find(
+    (item: Row) =>
+      item.author_id === data.me?.id &&
+      item.version_id === v?.id &&
+      item.rating != null,
+  );
+  const versionRows: Row[] = data.versions || (v ? [v] : []);
   return (
-    <>
-      <a
-        className="back-link"
-        href={
-          data.me?.owner || data.me?.role === "admin"
-            ? "/admin/submissions"
-            : "/review"
-        }
+    <section
+      className="admin-exact admin-review-page"
+      data-review-tab={reviewTab}
+    >
+      <header className="admin-review-header">
+        <a
+          className="back-link"
+          href={
+            data.me?.owner || data.me?.role === "admin"
+              ? "/admin/submissions"
+              : "/review"
+          }
+        >
+          <ArrowLeft size={20} aria-hidden="true" /> Submissions
+        </a>
+        <div className="admin-review-identity">
+          {p.teamName ? (
+            <TeamAvatar name={p.teamName} palette={p.teamPalette} size={40} />
+          ) : payload.logo ? (
+            <img src={payload.logo} alt="" width={40} height={40} />
+          ) : null}
+          <strong>
+            {p.teamName || payload.projectName || "Project review"}
+          </strong>
+        </div>
+      </header>
+      <div
+        className="admin-review-tabs"
+        role="tablist"
+        aria-label="Project review"
       >
-        <ArrowLeft size={20} aria-hidden="true" /> Submissions
-      </a>
+        <button
+          type="button"
+          role="tab"
+          id="admin-project-details-tab"
+          aria-selected={reviewTab === "details"}
+          aria-controls="admin-project-details"
+          tabIndex={reviewTab === "details" ? 0 : -1}
+          onKeyDown={reviewTabKey}
+          onClick={() => selectReviewTab("details")}
+        >
+          Project details
+        </button>
+        <button
+          type="button"
+          role="tab"
+          id="admin-project-review-tab"
+          aria-selected={reviewTab === "review"}
+          aria-controls="admin-project-review"
+          tabIndex={reviewTab === "review" ? 0 : -1}
+          onKeyDown={reviewTabKey}
+          onClick={() => selectReviewTab("review")}
+        >
+          Review
+        </button>
+      </div>
       <div className="review-layout">
-        <article>
+        <article
+          id="admin-project-details"
+          aria-labelledby="admin-project-details-tab"
+        >
           {payload.logo && payload.banner ? (
             <ProjectBody project={payload} />
           ) : (
@@ -3121,12 +3256,17 @@ export function Review({
               </Form>
             )}
         </article>
-        <aside>
+        <aside
+          id="admin-project-review"
+          aria-labelledby="admin-project-review-tab"
+        >
           <Form
+            key={`${p.id}-${v?.id || "draft"}`}
+            className="panel admin-review-score"
             title={
-              data.reviewKind === "mentor" ? "Private advice" : "Private review"
+              data.reviewKind === "mentor" ? "Private advice" : "Your score"
             }
-            label="Save review"
+            label={data.reviewKind === "mentor" ? "Save advice" : "Save score"}
             onSave={async (f) => {
               await run(
                 "review-project",
@@ -3136,22 +3276,28 @@ export function Review({
             disabled={!v}
           >
             {["admin", "judge"].includes(data.reviewKind) && (
-              <label>
-                Score · 1 to 10, reviewer-private · optional
-                <input
-                  name="rating"
-                  type="number"
-                  min={1}
-                  max={10}
-                  step="any"
-                />
-              </label>
+              <fieldset className="admin-review-score-picker">
+                <legend>Score (1 to 10)</legend>
+                {Array.from({ length: 10 }, (_, index) => index + 1).map(
+                  (rating) => (
+                    <label key={rating}>
+                      <input
+                        type="radio"
+                        name="rating"
+                        value={rating}
+                        defaultChecked={Number(ownReview?.rating) === rating}
+                      />
+                      <span>{rating}</span>
+                    </label>
+                  ),
+                )}
+              </fieldset>
             )}
             <Field
               name="body"
               label={
                 ["admin", "judge"].includes(data.reviewKind)
-                  ? "Feedback for the team · optional when scoring"
+                  ? "Private feedback"
                   : "Feedback for the team"
               }
               type="textarea"
@@ -3166,7 +3312,7 @@ export function Review({
           </Form>
 
           {(data.me?.owner || data.me?.role === "admin") && (
-            <section className="panel">
+            <section className="panel admin-review-ai">
               <h2>AI evaluation</h2>
               <Pill>
                 {data.evaluationConfigured ? "Configured" : "Not configured"}
@@ -3199,6 +3345,39 @@ export function Review({
               ))}
             </section>
           )}
+          <details className="panel admin-review-versions" open>
+            <summary>
+              <span>Versions</span>
+              <span>
+                {versionRows.length
+                  ? Math.max(
+                      ...versionRows.map((item) => Number(item.attempt) || 0),
+                    )
+                  : 0}{" "}
+                / 3
+              </span>
+            </summary>
+            <ul>
+              {versionRows.map((item) => (
+                <li key={item.id}>
+                  <strong>v{item.attempt}</strong>
+                  <span>
+                    {item.deleted_at ? "Removed" : "Committed"}
+                    {item.created_at ? ` · ${ist(item.created_at)}` : ""}
+                  </span>
+                  {item.id === v?.id && !item.deleted_at && (
+                    <button
+                      type="button"
+                      className="button secondary"
+                      onClick={() => setReviewTab("details")}
+                    >
+                      View
+                    </button>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </details>
           <details className="panel">
             <summary>Review history · unrevealed</summary>
             {(data.history || []).map((h: Row) => (
@@ -3250,7 +3429,7 @@ export function Review({
           )}
         </aside>
       </div>
-    </>
+    </section>
   );
 }
 export function AdminList({
@@ -3275,10 +3454,24 @@ export function AdminList({
       (!filter || r.status === filter) &&
       (!lockFilter || (lockFilter === "locked" ? r.locked : !r.locked)),
   );
+  const logActions = [
+    ...new Set(
+      (data.items || []).map((row) => String(row.action || "")).filter(Boolean),
+    ),
+  ].sort();
+  const exportHref = `/api/export?list=${logs ? "logs" : teams ? "teams" : credits ? "credits" : "submissions"}&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}`;
   return (
-    <>
-      <header className="page-heading">
+    <section
+      className={`admin-exact admin-list-page${teams ? " admin-teams-page" : logs ? " admin-logs-page" : credits ? " admin-credits-page" : " admin-submissions-page"}`}
+    >
+      <header className="page-heading admin-exact-heading">
         <h1>
+          <HeadingDot
+            color={logs ? "grey" : teams || credits ? "green" : "purple"}
+            expression={
+              logs || credits ? "cheerful" : teams ? "squeezed" : "plus"
+            }
+          />
           {logs
             ? "Logs"
             : teams
@@ -3286,7 +3479,6 @@ export function AdminList({
               : credits
                 ? "Credits"
                 : "Submissions"}
-          <HeadingDot color="green" expression="cheerful" />
         </h1>
       </header>
       <div
@@ -3297,16 +3489,24 @@ export function AdminList({
           onChange={setQ}
           label={
             teams
-              ? "Search team or member"
-              : credits
-                ? "Search credits"
-                : "Search records"
+              ? "Search teams"
+              : logs
+                ? "Search logs"
+                : credits
+                  ? "Search credits"
+                  : "Search projects"
           }
         />
-        {!logs && !credits && (
+        {!credits && (
           <button
             className="admin-toolbar-icon admin-mobile-filter"
-            aria-label={teams ? "Team filters" : "Submission filters"}
+            aria-label={
+              teams
+                ? "Team filters"
+                : logs
+                  ? "Log filters"
+                  : "Submission filters"
+            }
             aria-expanded={filtersExpanded}
             onClick={() => setFiltersExpanded(!filtersExpanded)}
           >
@@ -3323,8 +3523,8 @@ export function AdminList({
             {(teams
               ? ["Forming", "Locked", "Not submitted", "Submitted"]
               : ["Draft", "Submitted"]
-            ).map((s) => (
-              <option key={s}>{s}</option>
+            ).map((status) => (
+              <option key={status}>{status}</option>
             ))}
           </select>
         )}
@@ -3339,9 +3539,23 @@ export function AdminList({
             <option value="unlocked">Unlocked</option>
           </select>
         )}
+        {logs && (
+          <select
+            aria-label="Log action"
+            value={logActions.includes(q) ? q : ""}
+            onChange={(e) => setQ(e.target.value)}
+          >
+            <option value="">All actions</option>
+            {logActions.map((action) => (
+              <option key={action} value={action}>
+                {action.replace(/[-_]/g, " ")}
+              </option>
+            ))}
+          </select>
+        )}
         {teams && (
           <a
-            className="button secondary"
+            className="button secondary admin-member-export"
             aria-label="Export member emails"
             href={`/api/export?list=team-emails&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}`}
           >
@@ -3351,12 +3565,12 @@ export function AdminList({
         )}
         {path !== "/review" && (
           <a
-            className="button secondary"
+            className="button secondary admin-main-export"
             aria-label="Export CSV"
-            href={`/api/export?list=${logs ? "logs" : teams ? "teams" : credits ? "credits" : "submissions"}&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}`}
+            href={exportHref}
           >
             <AdminIcon name="download" />
-            <span className="admin-export-label">Export CSV</span>
+            <span className="admin-export-label">Export</span>
           </a>
         )}
       </div>
@@ -3398,108 +3612,161 @@ export function AdminList({
         </div>
       ) : teams ? (
         <ul className="admin-team-list">
-          {items.map((t) => (
-            <li key={t.id}>
-              <header className="section-heading">
-                <div className="identity-line">
-                  <TeamAvatar name={t.name} palette={t.palette} />
-                  <h2>{t.name}</h2>
-                  <Pill>{t.status}</Pill>
-                </div>
-                <div className="admin-team-actions">
-                  <Pill tone={t.readiness.allApproved ? "positive" : "waiting"}>
-                    {t.status}
-                  </Pill>
+          {items.map((team) => (
+            <li key={team.id}>
+              <details
+                className="admin-team-disclosure"
+                open={Boolean(team.locked)}
+              >
+                <summary>
+                  <TeamAvatar
+                    name={team.name}
+                    palette={team.palette}
+                    size={48}
+                  />
+                  <div>
+                    <strong>{team.name}</strong>
+                    <small>
+                      {team.status} ·{" "}
+                      {team.readiness?.total
+                        ? `${team.readiness.approved}/${team.readiness.total} approved`
+                        : `${team.members.length} members`}
+                    </small>
+                  </div>
+                  <ChevronDown size={20} aria-hidden="true" />
+                </summary>
+                <div className="admin-team-management">
                   <StatusChange
                     kind="team"
-                    target={t.id}
-                    name={t.name}
-                    current={t.status}
+                    target={team.id}
+                    name={team.name}
+                    current={team.status}
                     run={run}
                     compact
                   />
                 </div>
-              </header>
-              <ul className="member-list">
-                {t.members.map((m: Row) => (
-                  <li key={m.id}>
-                    <div>
-                      <strong>{m.name}</strong>
-                      <small>{m.email}</small>
-                    </div>
-                    <Pill>
-                      {m.approval === "approved" ? "Going" : "Registered"}
-                    </Pill>
-                    {m.id !== t.leader_id && (
-                      <button
-                        className="admin-toolbar-icon admin-icon-danger"
-                        aria-label={`Remove ${m.name || m.email} from ${t.name}`}
-                        title={`Remove ${m.name || m.email}`}
-                        onClick={() => {
-                          void run("remove-workspace-member", {
-                            userId: m.id,
-                            reason: "Administrator updated team membership",
-                          }).catch(() => {});
-                        }}
+                <ul className="member-list">
+                  {team.members.map((member: Row) => (
+                    <li key={member.id}>
+                      <DotAvatar
+                        color={member.avatarColor}
+                        expression={member.avatarExpression}
+                        size={36}
+                        decorative
+                      />
+                      <div>
+                        <strong>{member.name}</strong>
+                      </div>
+                      <Pill
+                        tone={
+                          ["Going", "Checked in"].includes(
+                            member.status ||
+                              (member.approval === "approved"
+                                ? "Going"
+                                : "Registered"),
+                          )
+                            ? "positive"
+                            : "neutral"
+                        }
                       >
-                        <AdminIcon name="trash" />
-                      </button>
-                    )}
-                  </li>
-                ))}
-              </ul>
+                        {member.status ||
+                          (member.approval === "approved"
+                            ? "Going"
+                            : "Registered")}
+                      </Pill>
+                      {member.id !== team.leader_id && (
+                        <button
+                          className="admin-toolbar-icon admin-icon-danger"
+                          aria-label={`Remove ${member.name || member.email} from ${team.name}`}
+                          title={`Remove ${member.name || member.email} (${member.email})`}
+                          onClick={() => {
+                            void run("remove-workspace-member", {
+                              userId: member.id,
+                              name: `${member.name || member.email} (${member.email}) · ${team.name}`,
+                              reason: "Administrator updated team membership",
+                            }).catch(() => {});
+                          }}
+                        >
+                          <AdminIcon name="trash" />
+                        </button>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </details>
             </li>
           ))}
         </ul>
       ) : logs ? (
-        <div className="table-scroll">
-          <table>
-            <thead>
-              <tr>
-                {["Time", "Action", "Reason", "Change summary"].map((x) => (
-                  <th key={x}>{x}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {items.map((r) => (
-                <tr key={r.id}>
-                  <td>{ist(r.created_at)}</td>
-                  <td>{r.action}</td>
-                  <td>{r.reason}</td>
-                  <td className="log-detail">{r.detail}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <ul className="admin-log-list">
+          {items.map((record) => (
+            <li key={record.id}>
+              <details>
+                <summary>
+                  <span className="admin-log-actor">
+                    <UserRound size={22} aria-hidden="true" />
+                  </span>
+                  <div>
+                    <strong>
+                      {record.actorName || record.actor_id || "System"}
+                    </strong>
+                    <span>
+                      {String(record.action || "").replace(/[-_]/g, " ")}
+                    </span>
+                    <time dateTime={record.created_at}>
+                      {ist(record.created_at)}
+                    </time>
+                  </div>
+                  <ChevronRight size={20} aria-hidden="true" />
+                </summary>
+                <dl>
+                  <dt>Reason</dt>
+                  <dd>{record.reason || "None"}</dd>
+                  <dt>Change summary</dt>
+                  <dd className="log-detail">{record.detail}</dd>
+                </dl>
+              </details>
+            </li>
+          ))}
+        </ul>
       ) : (
-        <ul className="submission-list">
-          {items.map((r) => (
-            <li key={r.id}>
+        <ul className="submission-list admin-submission-records">
+          {items.map((record) => (
+            <li key={record.id}>
               <a
-                href={`${path === "/review" ? "/review" : "/admin/submissions"}/${r.slug}`}
+                href={`${path === "/review" ? "/review" : "/admin/submissions"}/${record.slug}`}
               >
+                <TeamAvatar
+                  name={record.teamName || record.projectName}
+                  palette={record.teamPalette}
+                  size={48}
+                />
                 <div>
-                  <h2>{r.projectName || "Untitled draft"}</h2>
-                  <p>Team {r.teamName}</p>
+                  <h2>
+                    {record.teamName || record.projectName || "Untitled draft"}
+                  </h2>
+                  <p>{record.projectName || "Untitled draft"}</p>
+                  <small>
+                    {record.status}
+                    {record.versions?.length
+                      ? ` · Version ${Math.max(...record.versions.map((version: Row) => Number(version.attempt) || 0))} of 3`
+                      : ""}
+                  </small>
                 </div>
-                <Pill>{r.status}</Pill>
-                <span>
-                  Review project <ArrowRight size={20} aria-hidden="true" />
-                </span>
+                <ChevronRight size={20} aria-hidden="true" />
+                <span className="sr-only">Review project</span>
               </a>
               {path === "/admin/submissions" &&
                 (data.me?.owner || data.me?.role === "admin") && (
-                  <details className="panel">
+                  <details className="panel admin-submission-management">
                     <summary>
-                      {r.deleted_at
+                      {record.deleted_at
                         ? "Removed project · manage restoration"
                         : "Manage project and submissions"}
                     </summary>
                     <AdminProjectActions
-                      key={`${r.id}-${r.deleted_at || "active"}-${JSON.stringify(r.versions || [])}`}
-                      {...adminProjectProjection(r)}
+                      key={`${record.id}-${record.deleted_at || "active"}-${JSON.stringify(record.versions || [])}`}
+                      {...adminProjectProjection(record)}
                       run={run}
                     />
                   </details>
@@ -3509,7 +3776,7 @@ export function AdminList({
         </ul>
       )}
       {!items.length && <Empty>No records match this view.</Empty>}
-    </>
+    </section>
   );
 }
 function ContentEditor({
@@ -3792,37 +4059,98 @@ export function AdminEngagementControls({
     typeof settings.feedbackPaused !== "boolean"
   )
     return (
-      <section className="panel">
-        <h2>Community engagement</h2>
+      <section className="admin-settings-section admin-settings-engagement">
+        <h2>Voting and public comments</h2>
       </section>
     );
   return (
     <Form
-      title="Community engagement"
-      label="Review engagement settings"
+      className="admin-settings-section admin-settings-engagement"
+      title="Voting and public comments"
+      label="Save"
       onSave={async (form) => {
         await run("engagement-control", {
-          votingPaused: form.get("votingPaused") === "on",
-          feedbackPaused: form.get("feedbackPaused") === "on",
+          votingPaused: form.get("votingEnabled") !== "on",
+          feedbackPaused: form.get("feedbackEnabled") !== "on",
           version: settings.version,
           reason: form.get("reason"),
           confirmation: "CHANGE_ENGAGEMENT",
         });
       }}
     >
+      <label className="admin-switch-row">
+        <span>Voting</span>
+        <input
+          type="checkbox"
+          role="switch"
+          name="votingEnabled"
+          defaultChecked={!settings.votingPaused}
+        />
+        <span className="admin-switch-track" aria-hidden="true" />
+      </label>
+      <label className="admin-switch-row">
+        <span>Public comments</span>
+        <input
+          type="checkbox"
+          role="switch"
+          name="feedbackEnabled"
+          defaultChecked={!settings.feedbackPaused}
+        />
+        <span className="admin-switch-track" aria-hidden="true" />
+      </label>
+    </Form>
+  );
+}
+function AdminCreditInstructions({
+  providers,
+  run,
+}: {
+  providers: Row[];
+  run: (a: string, d: Row) => Promise<Row>;
+}) {
+  const [selected, setSelected] = useState(providers[0]?.id || "");
+  const provider =
+    providers.find((item) => item.id === selected) || providers[0];
+  if (!provider)
+    return (
+      <section className="admin-settings-section admin-settings-credits">
+        <h2>Credits instructions</h2>
+        <p>No providers configured.</p>
+      </section>
+    );
+  return (
+    <Form
+      key={`${provider.id}-${provider.instructions}`}
+      className="admin-settings-section admin-settings-credits"
+      title="Credits instructions"
+      label="Save"
+      onSave={async (form) => {
+        await run("update-credit-instructions", {
+          typeId: provider.id,
+          markdown: form.get("markdown"),
+          reason: form.get("reason"),
+        });
+      }}
+    >
+      <label>
+        Provider
+        <select
+          value={provider.id}
+          onChange={(event) => setSelected(event.target.value)}
+        >
+          {providers.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.name}
+            </option>
+          ))}
+        </select>
+      </label>
       <Field
-        name="votingPaused"
-        type="checkbox"
-        label="Pause community voting"
-        value={settings.votingPaused}
+        name="markdown"
+        label="Instructions (Markdown)"
+        type="textarea"
+        value={provider.instructions || ""}
       />
-      <Field
-        name="feedbackPaused"
-        type="checkbox"
-        label="Pause public feedback"
-        value={settings.feedbackPaused}
-      />
-      <Field name="reason" label="Audit reason" required minLength={5} />
     </Form>
   );
 }
@@ -3834,132 +4162,37 @@ export function Settings({
   run: (a: string, d: Row) => Promise<Row>;
 }) {
   return (
-    <>
-      <header className="page-heading">
+    <section className="admin-exact admin-settings-page">
+      <header className="page-heading admin-exact-heading">
         <h1>
+          <HeadingDot color="green" expression="squeezed" />
           Settings
-          <HeadingDot color="green" expression="cheerful" />
         </h1>
       </header>
       {data.me?.owner && (
-        <OwnerOperationalSetup
-          key={`operational-${data.policyVersion}`}
+        <OwnerSubmissionWindow
+          key={`${data.policyVersion}-${data.policy?.submissionOpen}-${data.policy?.submissionClose}`}
           owner={true}
-          version={data.policyVersion || 0}
           open={data.policy?.submissionOpen || ""}
-          close={data.policy?.submissionClose || null}
+          close={data.policy?.submissionClose || ""}
           run={run}
         />
       )}
-      <section className="panel">
-        <h2>Operational and scoring readiness</h2>
-        {!data.readiness?.initialized && (
-          <p className="notice">Operational setup required.</p>
-        )}
-        {(
-          [
-            ["submissions", "Submissions"],
-            ["checkin", "Check-in"],
-          ] as const
-        ).map(([scope, label]) => (
-          <div key={scope}>
-            <h3>{label}</h3>
-            <p>{data.readiness?.[scope]?.message}</p>
-
-            {data.me?.owner &&
-              data.readiness?.[scope]?.configured &&
-              !data.readiness[scope].enabled && (
-                <Form
-                  label={`Enable ${label.toLowerCase()}`}
-                  onSave={async (f) => {
-                    await run("activate-operations", {
-                      operation: scope,
-                      version: data.policyVersion,
-                      reason: f.get("reason"),
-                    });
-                  }}
-                >
-                  <Field
-                    name="reason"
-                    label="Enablement reason"
-                    required
-                    minLength={5}
-                  />
-                </Form>
-              )}
-          </div>
-        ))}
-        <h3>Judging and scoring</h3>
-        <Pill tone={data.readiness?.scoring?.ready ? "positive" : "waiting"}>
-          {data.readiness?.scoring?.ready
-            ? "Policy ready · reveal remains explicit"
-            : "Scoring setup incomplete"}
-        </Pill>
-        <ul>
-          {(data.unresolved || []).map((x: string) => (
-            <li key={x}>{x}</li>
-          ))}
-        </ul>
-        <details>
-          <summary>Scoring confirmations still required</summary>
-          <ul>
-            {(data.blockers || []).map((x: string) => (
-              <li key={x}>{x}</li>
-            ))}
-          </ul>
-        </details>
-      </section>
       <AdminEngagementControls
         key={`engagement-${data.engagement?.version ?? "pending"}`}
         data={data}
         run={run}
       />
-      <details className="panel">
-        <summary>Shared credit setup instructions</summary>
-
-        {(data.creditInstructions || []).map((c: Row) => (
-          <Form
-            key={c.id + String(c.instructions)}
-            title={c.name}
-            label="Update instructions"
-            onSave={async (f) => {
-              await run("update-credit-instructions", {
-                typeId: c.id,
-                markdown: f.get("markdown"),
-                reason: f.get("reason"),
-              });
-            }}
-          >
-            <Field
-              name="markdown"
-              label="Markdown instructions"
-              type="textarea"
-              value={c.instructions}
-            />
-            <Field name="reason" label="Reason" required minLength={5} />
-            <details>
-              <summary>Current rendered steps</summary>
-              <CreditInstructions markdown={c.instructions || ""} />
-            </details>
-          </Form>
-        ))}
-      </details>
-      {data.me?.owner && (
-        <>
-          <OwnerSubmissionWindow
-            key={`${data.policyVersion}-${data.policy?.submissionOpen}-${data.policy?.submissionClose}`}
-            owner={true}
-            open={data.policy?.submissionOpen || ""}
-            close={data.policy?.submissionClose || ""}
-            run={run}
-          />
-          <OwnerPolicyControls data={data} run={run} />
-        </>
-      )}
       {(data.me?.owner || data.me?.role === "admin") && (
-        <section className="panel">
-          <h2>Score reveals</h2>
-          <p>Current stage: {data.scoreRelease?.stage || "community"}</p>
+        <section className="admin-settings-section admin-settings-reveals">
+          <h2>Results visibility</h2>
+          <p className="admin-results-state">
+            {data.scoreRelease?.stage === "ai"
+              ? "AI scores revealed"
+              : data.scoreRelease?.stage === "final"
+                ? "Final scores revealed"
+                : "Hidden"}
+          </p>
 
           <Form
             title="Reveal AI scores"
@@ -4044,16 +4277,124 @@ export function Settings({
           )}
         </section>
       )}
-      <AddAdmins owner={!!data.me?.owner} run={run} />
+
+      <AddAdmins owner={!!data.me?.owner} title="Admin access" run={run} />
+      <AdminCreditInstructions
+        providers={data.creditInstructions || []}
+        run={run}
+      />
+      <details className="admin-settings-extra">
+        <summary>
+          Operational setup and readiness
+          <ChevronDown size={20} aria-hidden="true" />
+        </summary>
+        {data.me?.owner && (
+          <OwnerOperationalSetup
+            key={`operational-${data.policyVersion}`}
+            owner={true}
+            version={data.policyVersion || 0}
+            open={data.policy?.submissionOpen || ""}
+            close={data.policy?.submissionClose || null}
+            run={run}
+          />
+        )}
+        <section className="panel">
+          <h2>Operational and scoring readiness</h2>
+          {!data.readiness?.initialized && (
+            <p className="notice">Operational setup required.</p>
+          )}
+          {(
+            [
+              ["submissions", "Submissions"],
+              ["checkin", "Check-in"],
+            ] as const
+          ).map(([scope, label]) => (
+            <div key={scope}>
+              <h3>{label}</h3>
+              <p>{data.readiness?.[scope]?.message}</p>
+
+              {data.me?.owner &&
+                data.readiness?.[scope]?.configured &&
+                !data.readiness[scope].enabled && (
+                  <Form
+                    label={`Enable ${label.toLowerCase()}`}
+                    onSave={async (f) => {
+                      await run("activate-operations", {
+                        operation: scope,
+                        version: data.policyVersion,
+                        reason: f.get("reason"),
+                      });
+                    }}
+                  >
+                    <Field
+                      name="reason"
+                      label="Enablement reason"
+                      required
+                      minLength={5}
+                    />
+                  </Form>
+                )}
+            </div>
+          ))}
+          <h3>Judging and scoring</h3>
+          <Pill tone={data.readiness?.scoring?.ready ? "positive" : "waiting"}>
+            {data.readiness?.scoring?.ready
+              ? "Policy ready · reveal remains explicit"
+              : "Scoring setup incomplete"}
+          </Pill>
+          <ul>
+            {(data.unresolved || []).map((x: string) => (
+              <li key={x}>{x}</li>
+            ))}
+          </ul>
+          <details>
+            <summary>Scoring confirmations still required</summary>
+            <ul>
+              {(data.blockers || []).map((x: string) => (
+                <li key={x}>{x}</li>
+              ))}
+            </ul>
+          </details>
+        </section>
+      </details>
       {data.me?.owner && (
-        <ContentEditor
-          key={`public-${data.content?.revision}`}
-          data={data}
-          run={run}
-          scope="public"
-        />
+        <details className="admin-settings-extra">
+          <summary>
+            Scoring configuration
+            <ChevronDown size={20} aria-hidden="true" />
+          </summary>
+          <OwnerPolicyControls data={data} run={run} />
+        </details>
       )}
-    </>
+      {data.canManageVenue && (
+        <details className="admin-settings-extra">
+          <summary>
+            Private arrival details
+            <ChevronDown size={20} aria-hidden="true" />
+          </summary>
+          <ContentEditor
+            key={`private-${data.venue?.revision}`}
+            data={data}
+            run={run}
+            scope="private"
+          />
+        </details>
+      )}
+      {data.me?.owner && (
+        <details className="admin-settings-extra">
+          <summary>
+            Public event content
+            <ChevronDown size={20} aria-hidden="true" />
+          </summary>
+          <ContentEditor
+            key={`public-${data.content?.revision}`}
+            data={data}
+            run={run}
+            scope="public"
+          />
+        </details>
+      )}
+    </section>
   );
 }
 const canonical = (p: string) =>
@@ -4582,6 +4923,8 @@ function StatusChange({
   current,
   run,
   compact = false,
+  disabled = false,
+  children,
 }: {
   kind: "person" | "team";
   target: string;
@@ -4589,6 +4932,8 @@ function StatusChange({
   current: string;
   run: (a: string, d: Row) => Promise<Row>;
   compact?: boolean;
+  disabled?: boolean;
+  children?: ReactNode;
 }) {
   return (
     <details className={compact ? "admin-status-menu" : undefined}>
@@ -4598,31 +4943,36 @@ function StatusChange({
       >
         {compact ? <AdminIcon name="more" /> : <>Change {name} status</>}
       </summary>
-      <Form
-        title={name}
-        label="Review status change"
-        onSave={async (f) => {
-          await run("admin-status", {
-            kind,
-            targetId: target,
-            status: f.get("status"),
-            reason: f.get("reason"),
-          });
-        }}
-      >
-        <label>
-          New status
-          <select name="status" defaultValue={current}>
-            {(kind === "person"
-              ? ["Registered", "Going", "Checked in", "Absent"]
-              : ["Forming", "Locked", "Not submitted", "Submitted"]
-            ).map((v) => (
-              <option key={v}>{v}</option>
-            ))}
-          </select>
-        </label>
-        <Field name="reason" label="Audit reason" minLength={5} required />
-      </Form>
+      {!disabled && (
+        <Form
+          title={name}
+          label="Review status change"
+          onSave={async (f) => {
+            await run("admin-status", {
+              kind,
+              targetId: target,
+              status: f.get("status"),
+              reason: f.get("reason"),
+            });
+          }}
+        >
+          <label>
+            New status
+            <select name="status" defaultValue={current}>
+              {(kind === "person"
+                ? ["Registered", "Going", "Checked in", "Absent"]
+                : ["Forming", "Locked", "Not submitted", "Submitted"]
+              ).map((v) => (
+                <option key={v}>{v}</option>
+              ))}
+            </select>
+          </label>
+          <Field name="reason" label="Audit reason" minLength={5} required />
+        </Form>
+      )}
+      {children && (
+        <div className="admin-status-target-actions">{children}</div>
+      )}
     </details>
   );
 }
