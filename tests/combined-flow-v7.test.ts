@@ -5,6 +5,7 @@ import { one, rows } from "../lib/db";
 import { PortalService } from "../lib/service";
 import { handlePortal } from "../lib/http";
 import { queueEvaluations } from "../lib/evaluation-background";
+import { createOfflineVerificationEvaluator } from "../lib/offline-verification";
 import { fixtures, LOCAL_CREDIT_KEY } from "../scripts/fixtures";
 
 const row = (value: unknown) => value as Record<string, any>;
@@ -298,6 +299,15 @@ test("combined synthetic journey: profile, membership, locked idea, check-in, dr
         assert.equal(report.versionId, versionId);
         assert.equal(report.dimensions, null);
         assert.deepEqual(report.suspectedFalseClaims, []);
+        const offlineRun = await one<Record<string, any>>(
+          db,
+          "SELECT * FROM evaluation_runs WHERE version_id=?",
+          versionId,
+        );
+        assert.equal(offlineRun!.state, "completed");
+        assert.equal(offlineRun!.provenance, "offline");
+        assert.equal(offlineRun!.score, null);
+        assert.equal(JSON.parse(offlineRun!.report).dimensions, null);
         assert.equal((await rows(db, "SELECT * FROM reviews")).length, 0);
         assert.equal(
           row(await service("bob").view("/projects")).items.length,
@@ -327,6 +337,49 @@ test("combined synthetic journey: profile, membership, locked idea, check-in, dr
           observedAt: "2026-11-01T04:00:00.000Z",
           reason: "Synthetic repository evidence review",
         });
+        // No participant SHA field is introduced: an explicit staff observation
+        // binds this exact immutable version to an offline repository fixture.
+        clock("2026-11-01T10:32:00.000Z");
+        const verifier = service("admin");
+        verifier.evaluator = createOfflineVerificationEvaluator(
+          async (requestedVersion) => ({
+            versionId: requestedVersion,
+            commitSha: "a".repeat(40),
+            complete: true,
+            files: [
+              {
+                path: "src/server.ts",
+                content:
+                  'import OpenAI from "openai";const client=new OpenAI();client.responses.create({});',
+              },
+            ],
+          }),
+        );
+        const job = await one<{ id: string }>(
+          db,
+          "SELECT id FROM astra_jobs WHERE version_id=?",
+          versionId,
+        );
+        await verifier.command("astra-run", { jobId: job!.id });
+        const run = await one<Record<string, any>>(
+          db,
+          "SELECT * FROM evaluation_runs WHERE version_id=? ORDER BY created_at DESC,id DESC",
+          versionId,
+        );
+        assert.equal(run!.provenance, "offline");
+        assert.equal(run!.score, null);
+        assert.equal(JSON.parse(run!.report).revision, "a".repeat(40));
+        const immutable = await one<{ payload: string }>(
+          db,
+          "SELECT payload FROM submission_versions WHERE id=?",
+          versionId,
+        );
+        assert.equal(JSON.parse(immutable!.payload).commitSha, "");
+        assert.equal(
+          row(await verifier.view("/review/" + projectId)).evaluationConfigured,
+          false,
+        );
+        clock("2026-11-01T04:00:00.000Z");
         await service("admin").command("review-project", {
           projectId,
           versionId,

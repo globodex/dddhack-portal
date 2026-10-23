@@ -1515,13 +1515,34 @@ export class PortalService {
       case "astra-recover": {
         await this.staff();
         await this.unfrozen();
-        const d = z.object({jobId: id}).strict().parse(data);
-        const cutoff = new Date(Date.parse(this.now()) - 15 * 60_000).toISOString();
-        await this.mutate(actor.id, action, d.jobId, [
-          ["UPDATE astra_jobs SET state='failed_retryable',error='Processing interrupted; staff retry required',updated_at=? WHERE id=? AND state='running' AND updated_at<=?",this.now(),d.jobId,cutoff],
-          ...assertPreviousWrite(),
-        ], {state: "failed_retryable"});
-        return {message: "Interrupted verification recovered. Staff retry required."};
+        const d = z.object({ jobId: id }).strict().parse(data);
+        const cutoff = new Date(
+          Date.parse(this.now()) - 15 * 60_000,
+        ).toISOString();
+        await this.mutate(
+          actor.id,
+          action,
+          d.jobId,
+          [
+            [
+              "UPDATE astra_jobs SET state='failed_retryable',error='Processing interrupted; staff retry required',updated_at=? WHERE id=? AND state='running' AND updated_at<=?",
+              this.now(),
+              d.jobId,
+              cutoff,
+            ],
+            ...assertPreviousWrite(),
+            [
+              "UPDATE evaluation_runs SET state='stale',error='Processing interrupted; staff retry required',updated_at=? WHERE state='running' AND version_id=(SELECT version_id FROM astra_jobs WHERE id=?) AND config_key=?",
+              this.now(),
+              d.jobId,
+              "offline-verification-v1:" + d.jobId,
+            ],
+          ],
+          { state: "failed_retryable" },
+        );
+        return {
+          message: "Interrupted verification recovered. Staff retry required.",
+        };
       }
       case "astra-run": {
         await this.staff();
@@ -1533,9 +1554,10 @@ export class PortalService {
           state: string;
           attempts: number;
           payload: string;
+          project_id: string | null;
         }>(
           this.db,
-          "SELECT j.*,v.payload FROM astra_jobs j JOIN submission_versions v ON v.id=j.version_id WHERE j.id=?",
+          "SELECT j.*,v.payload,p.id project_id FROM astra_jobs j JOIN submission_versions v ON v.id=j.version_id LEFT JOIN projects p ON p.team_id=v.team_id WHERE j.id=?",
           d.jobId,
         );
         demand(
@@ -1551,6 +1573,8 @@ export class PortalService {
           "SUBMISSION_WINDOW_OPEN",
         );
         const claimedAt = this.now();
+        const runId = crypto.randomUUID();
+        const configKey = "offline-verification-v1:" + j.id;
         const claim = await batch(this.db, [
           [
             "UPDATE astra_jobs SET state='running',attempts=attempts+1,updated_at=? WHERE id=? AND state=? AND attempts=?",
@@ -1559,11 +1583,41 @@ export class PortalService {
             j.state,
             j.attempts,
           ],
+          ...assertPreviousWrite(),
+          ...(j.project_id
+            ? [
+                [
+                  "INSERT INTO evaluation_runs(id,project_id,version_id,config_key,state,score,provenance,created_at,updated_at) VALUES(?,?,?,?,'running',NULL,'offline',?,?)",
+                  runId,
+                  j.project_id,
+                  j.version_id,
+                  configKey,
+                  claimedAt,
+                  claimedAt,
+                ] as SQL,
+              ]
+            : []),
         ]);
         demand(claim[0].meta?.changes === 1, 409, "JOB_ALREADY_CLAIMED");
         try {
+          const payload = JSON.parse(j.payload);
+          const repository = j.project_id
+            ? await one<{ commit_sha: string }>(
+                this.db,
+                "SELECT commit_sha FROM repository_evidence WHERE project_id=? AND version_id=? ORDER BY created_at DESC,id DESC LIMIT 1",
+                j.project_id,
+                j.version_id,
+              )
+            : undefined;
+          // Participant payload remains immutable; a separately recorded staff
+          // observation can bind an offline snapshot to this exact version.
           const report = reportSchema.parse(
-            await this.evaluator.evaluate(j.version_id, JSON.parse(j.payload)),
+            await this.evaluator.evaluate(
+              j.version_id,
+              repository
+                ? { ...payload, commitSha: repository.commit_sha }
+                : payload,
+            ),
           );
           demand(
             report.versionId === j.version_id,
@@ -1577,13 +1631,27 @@ export class PortalService {
             [
               [
                 "UPDATE astra_jobs SET state='needs_review',report=?,error=NULL,updated_at=? WHERE id=? AND state='running' AND attempts=? AND updated_at=?",
-                JSON.stringify({...report, status: "needs_review"}),
+                JSON.stringify({ ...report, status: "needs_review" }),
                 this.now(),
                 j.id,
                 j.attempts + 1,
                 claimedAt,
               ],
               ...assertPreviousWrite(),
+              ...(j.project_id
+                ? [
+                    [
+                      "UPDATE evaluation_runs SET state='completed',report=?,score=NULL,updated_at=? WHERE id=? AND state='running'",
+                      JSON.stringify({
+                        ...report,
+                        status: "needs_review",
+                        dimensions: null,
+                      }),
+                      this.now(),
+                      runId,
+                    ] as SQL,
+                  ]
+                : []),
             ],
             { state: "needs_review" },
           );
@@ -1592,9 +1660,24 @@ export class PortalService {
               "Report stored. Human review required; no automatic deductions.",
           };
         } catch {
-          const lease = await one<{state: string; attempts: number; updated_at: string}>(this.db, "SELECT state,attempts,updated_at FROM astra_jobs WHERE id=?", j.id);
-          if (!lease || lease.state !== "running" || lease.attempts !== j.attempts + 1 || lease.updated_at !== claimedAt)
-            return {message: "Verification was superseded by another staff action."};
+          const lease = await one<{
+            state: string;
+            attempts: number;
+            updated_at: string;
+          }>(
+            this.db,
+            "SELECT state,attempts,updated_at FROM astra_jobs WHERE id=?",
+            j.id,
+          );
+          if (
+            !lease ||
+            lease.state !== "running" ||
+            lease.attempts !== j.attempts + 1 ||
+            lease.updated_at !== claimedAt
+          )
+            return {
+              message: "Verification was superseded by another staff action.",
+            };
           await this.mutate(
             actor.id,
             action,
@@ -1608,6 +1691,15 @@ export class PortalService {
                 claimedAt,
               ],
               ...assertPreviousWrite(),
+              ...(j.project_id
+                ? [
+                    [
+                      "UPDATE evaluation_runs SET state='failed',error='Evaluation unavailable or invalid output',updated_at=? WHERE id=? AND state='running'",
+                      this.now(),
+                      runId,
+                    ] as SQL,
+                  ]
+                : []),
             ],
             { state: "failed_retryable" },
           );
