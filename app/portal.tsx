@@ -4274,7 +4274,10 @@ export function ContentEditor({
             ? "Public event content"
             : "Private arrival details"}
         </h2>
-        <fieldset disabled={!!busy}>
+        <fieldset
+          disabled={!!busy}
+          style={{ border: 0, padding: 0, margin: 0, minWidth: 0 }}
+        >
           {scope === "public" ? (
             <>
               <h3>Agenda</h3>
