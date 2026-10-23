@@ -16,8 +16,13 @@ import { join } from "node:path";
 import { unstable_dev, getPlatformProxy } from "wrangler";
 import { seedLocal } from "./fixtures.ts";
 import { seedRichVisual, seedMockupReview } from "./visual-rich-fixtures.ts";
-const portValue = process.argv.find((value) => value.startsWith("--port="))?.slice(7) || "4173";
-if (!/^\d{4,5}$/.test(portValue) || Number(portValue) < 1024 || Number(portValue) > 65535)
+const portValue =
+  process.argv.find((value) => value.startsWith("--port="))?.slice(7) || "4173";
+if (
+  !/^\d{4,5}$/.test(portValue) ||
+  Number(portValue) < 1024 ||
+  Number(portValue) > 65535
+)
   throw new Error("Preview port must be an integer between 1024 and 65535");
 const previewPort = Number(portValue);
 const previewOrigin = `http://127.0.0.1:${previewPort}`;
@@ -66,11 +71,17 @@ try {
       !process.argv.includes("--mockup-review")
     )
       throw new Error("Control audit requires the fresh rich mockup fixture");
-    await seedControlProjects(platform.env.DB);
+    await seedControlProjects(
+      platform.env.DB,
+      process.argv.includes("--project-extras"),
+    );
     await seedTeamControls(platform.env.DB, {
       scope: "fresh-disposable-local",
     });
-    await seedControlEntries(platform.env.DB);
+    await seedControlEntries(
+      platform.env.DB,
+      process.argv.includes("--project-extras"),
+    );
   }
 } finally {
   await platform.dispose();
@@ -134,6 +145,19 @@ if (process.argv.includes("--control-audit")) {
             email: "first_leader@portal.test",
           },
         },
+        ...(process.argv.includes("--project-extras")
+          ? {
+              projectExtras: {
+                actor: {
+                  id: "fake_first_member",
+                  email: "first_member@portal.test",
+                },
+                unpublishedProjectId: "fake_unpublished_project",
+                deploymentSlug: "synthetic-control-24",
+                deploymentUrl: "https://deployment.example.test/synthetic-demo",
+              },
+            }
+          : {}),
         rootConfirmedReset: true,
         resetToken,
       },

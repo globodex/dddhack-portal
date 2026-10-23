@@ -16,7 +16,7 @@ export const controlProjectIds = Array.from({ length: 25 }, (_, index) => {
   };
 });
 
-export async function seedControlProjects(db: Database) {
+export async function seedControlProjects(db: Database, projectExtras = false) {
   // Requires the root's rich fixture. Do not modify Alice, Eve, settings or time.
   const source = await one<{
     payload: string;
@@ -52,7 +52,10 @@ export async function seedControlProjects(db: Database) {
       description:
         "Disposable local control fixture. This is not an event entry or a verified OpenAI integration.",
       github: `https://github.com/example/${item.slug}`,
-      demo: "",
+      demo:
+        projectExtras && item.projectId === "fake_control_project_24"
+          ? "https://deployment.example.test/synthetic-demo"
+          : "",
       logo: original.logo,
       banner: original.banner,
       tools: "",
