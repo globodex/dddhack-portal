@@ -1,0 +1,78 @@
+{
+  "capturedSource": "08dd4c7d8712ac5c3051a02879f5c6e9fc112076",
+  "capturedWorkerSha256": "e1b2e2ddbb43d79877dc742a20652c8849fa630bbb6f6299e679ff6837f427e9",
+  "rootFreezeAtDelivery": "0a2e3f9",
+  "sourceScope": "Actual rendered editor captures at08dd4c7; no claim that these show every later integrated runtime change.",
+  "actualScreenshots": true,
+  "reviewedCaptures": 6,
+  "reviewScope": "Rendering, mobile/desktop legibility, expected Lucide controls and synthetic/private-field safety.",
+  "comparedToSelectedMockups": false,
+  "syntheticOnly": true,
+  "noProductionData": true,
+  "noProductionActions": true,
+  "nativeHostTransfer": true,
+  "libraryArtifactType": "image",
+  "deliveredAt": "2026-10-23T21:08:18.336Z",
+  "files": [
+    {
+      "original_path": "/workspace/v7-admin/evidence/v7-admin-editor/08dd4c7-final-captures/desktop-agenda.png",
+      "status": "succeeded",
+      "library_file_id": "libfile_fb75bcfd3248819194e38f0d4540f482",
+      "file_id": "file_00000000c4b48230b472737199e99b54",
+      "file_name": "desktop-agenda.png",
+      "path": "/desktop-agenda.png",
+      "current_version_number": 0,
+      "xattrsApplied": true
+    },
+    {
+      "original_path": "/workspace/v7-admin/evidence/v7-admin-editor/08dd4c7-final-captures/desktop-faq.png",
+      "status": "succeeded",
+      "library_file_id": "libfile_a09200a1a4d081919cd145ab158fe370",
+      "file_id": "file_000000000b3c81f59b8f43a5da3a07f6",
+      "file_name": "desktop-faq.png",
+      "path": "/desktop-faq.png",
+      "current_version_number": 0,
+      "xattrsApplied": true
+    },
+    {
+      "original_path": "/workspace/v7-admin/evidence/v7-admin-editor/08dd4c7-final-captures/desktop-actions.png",
+      "status": "succeeded",
+      "library_file_id": "libfile_61ef437389b88191befae8669e858c3e",
+      "file_id": "file_00000000fd4481fd8199b53cac8af8d3",
+      "file_name": "desktop-actions.png",
+      "path": "/desktop-actions.png",
+      "current_version_number": 0,
+      "xattrsApplied": true
+    },
+    {
+      "original_path": "/workspace/v7-admin/evidence/v7-admin-editor/08dd4c7-final-captures/mobile-agenda.png",
+      "status": "succeeded",
+      "library_file_id": "libfile_85150d0dba988191838573958bf8d57c",
+      "file_id": "file_00000000ed2082309baee93e663cd38c",
+      "file_name": "mobile-agenda.png",
+      "path": "/mobile-agenda.png",
+      "current_version_number": 0,
+      "xattrsApplied": true
+    },
+    {
+      "original_path": "/workspace/v7-admin/evidence/v7-admin-editor/08dd4c7-final-captures/mobile-faq.png",
+      "status": "succeeded",
+      "library_file_id": "libfile_ecf9ddccfd1881918e54c0b345cbd496",
+      "file_id": "file_000000009bd88230a0470dce08296daa",
+      "file_name": "mobile-faq.png",
+      "path": "/mobile-faq.png",
+      "current_version_number": 0,
+      "xattrsApplied": true
+    },
+    {
+      "original_path": "/workspace/v7-admin/evidence/v7-admin-editor/08dd4c7-final-captures/mobile-actions.png",
+      "status": "succeeded",
+      "library_file_id": "libfile_ce8ce4a9cd188191998a38a9506d2677",
+      "file_id": "file_000000004cc881fdbe1ff505413f6b20",
+      "file_name": "mobile-actions.png",
+      "path": "/mobile-actions.png",
+      "current_version_number": 0,
+      "xattrsApplied": true
+    }
+  ]
+}
