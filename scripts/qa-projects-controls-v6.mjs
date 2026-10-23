@@ -125,6 +125,21 @@ cases.push([
   "Eligible leader",
   "Step-one Back returns to Dashboard Project without writes",
 ]);
+cases.push([
+  "first-submission-back",
+  "Eligible unpublished leader",
+  "Step-one Back returns to Team without a close loop or write",
+]);
+cases.push([
+  "nonleader-unpublished-read",
+  "Authorized nonleader with unpublished draft",
+  "Saved draft content remains visible with disabled fields",
+]);
+cases.push([
+  "validation-recovery",
+  "Eligible leader",
+  "Corrected essentials, GitHub and checked accuracy remove stale client errors",
+]);
 const matrix = cases.map(([id, roles, scope]) => ({
   id,
   roles,
@@ -406,7 +421,7 @@ async function tabTo(page, locator) {
     }
     await page.keyboard.press("Tab");
   }
-  throw new Error("Control was not reached by Tab traversal");
+  throw new Error(`Control was not reached by Tab traversal: ${locator}`);
 }
 async function activate(s, locator, key = "Enter") {
   const pointerTarget =
@@ -415,8 +430,30 @@ async function activate(s, locator, key = "Enter") {
       : locator;
   if (s.device.mode === "touch") await pointerTarget.tap();
   else if (s.device.mode === "keyboard") {
-    await tabTo(s.page, locator);
-    await s.page.keyboard.press(key);
+    if ((await locator.getAttribute("type")) === "radio") {
+      // Native radio groups expose the checked member as their Tab stop.
+      // Reach that stop with Tab, then use Arrow keys to choose its peer.
+      const group = s.page.locator(".submission-v6").getByRole("radio");
+      const checked = s.page
+        .locator(".submission-v6")
+        .getByRole("radio", { checked: true });
+      await tabTo(
+        s.page,
+        (await checked.count()) ? checked.first() : group.first(),
+      );
+      for (let attempt = 0; attempt < (await group.count()); attempt++) {
+        if (await locator.isChecked()) return;
+        await s.page.keyboard.press("ArrowRight");
+      }
+      assert.equal(
+        await locator.isChecked(),
+        true,
+        "Arrow keys select the requested radio",
+      );
+    } else {
+      await tabTo(s.page, locator);
+      await s.page.keyboard.press(key);
+    }
   } else await pointerTarget.click();
 }
 async function writeValue(s, locator, value) {
@@ -529,14 +566,21 @@ async function next(s) {
   );
 }
 async function openEditor(s) {
-  await visit(s, "/dashboard#project");
+  const destination = origin + "/dashboard#project";
+  if (s.page.url() === destination) {
+    await s.page.reload({ waitUntil: "networkidle" });
+    await s.page.evaluate(() => document.fonts.ready);
+  } else await visit(s, "/dashboard#project");
+  const editor = s.page.locator(".submission-v6");
+  if ((await editor.count()) && (await editor.isVisible())) return true;
   await activate(s, s.page.getByRole("tab", { name: "Project", exact: true }));
+  if ((await editor.count()) && (await editor.isVisible())) return true;
   const update = s.page.getByRole("button", {
     name: "Update project",
     exact: true,
   });
   if (await update.count()) await activate(s, update);
-  return (await s.page.locator(".submission-v6").count()) > 0;
+  return (await editor.count()) > 0;
 }
 async function stage3(s) {
   await next(s);
@@ -664,6 +708,43 @@ try {
                   .count(),
                 0,
               );
+              const projection = await read(s, "/submission");
+              if (projection.status === 200 && projection.body.project?.draft) {
+                const draft = projection.body.project.draft;
+                if (projection.body.project.published_version_id) {
+                  await s.page
+                    .locator(".dashboard-project-card")
+                    .getByText(draft.projectName, { exact: true })
+                    .waitFor();
+                  await s.page
+                    .locator(".dashboard-project-card")
+                    .getByText(draft.problemSolution, { exact: true })
+                    .waitFor();
+                  if (role === "nonleader")
+                    record(
+                      "nonleader-unpublished-read",
+                      "unavailable",
+                      "Current nonleader fixture belongs to a published project; read-only card content verified, unpublished saved-draft browser path requires a separate actor",
+                      device.name,
+                    );
+                } else {
+                  assert.equal(
+                    await s.page.locator('[name="projectName"]').inputValue(),
+                    draft.projectName,
+                  );
+                  assert.equal(
+                    await s.page.locator('[name="projectName"]').isDisabled(),
+                    true,
+                  );
+                  if (role === "nonleader")
+                    record(
+                      "nonleader-unpublished-read",
+                      "passed",
+                      "Authorized saved draft fields readable and disabled",
+                      device.name,
+                    );
+                }
+              }
               record(
                 role === "nonleader"
                   ? "nonleader-disabled"
@@ -895,7 +976,7 @@ try {
       });
       await check("wizard-fields", device.name, async () => {
         for (const field of ["projectName", "problemSolution", "description"]) {
-          const input = s.page.locator(`[name="${field}"]`),
+          const input = s.page.locator(`.submission-v6 [name="${field}"]`),
             original = await input.inputValue();
           await writeValue(s, input, "");
           await next(s);
@@ -929,6 +1010,90 @@ try {
         );
         return "Essentials/GitHub block Next; blank deployment allowed";
       });
+      for (const kind of ["essentials", "github", "accuracy"]) {
+        await check(
+          "validation-recovery",
+          device.name + ":" + kind,
+          async () => {
+            await openEditor(s);
+            if (kind === "essentials") {
+              const name = s.page.locator(
+                  '.submission-v6 [name="projectName"]',
+                ),
+                original = await name.inputValue();
+              await writeValue(s, name, "");
+              await next(s);
+              await s.page
+                .getByRole("alert")
+                .filter({
+                  hasText: "Add a project name, summary and description.",
+                })
+                .waitFor();
+              await writeValue(s, name, original);
+              assert.equal(
+                await s.page
+                  .getByRole("alert")
+                  .filter({
+                    hasText: "Add a project name, summary and description.",
+                  })
+                  .count(),
+                0,
+              );
+            } else if (kind === "github") {
+              await next(s);
+              const field = s.page.locator('.submission-v6 [name="github"]'),
+                original = await field.inputValue();
+              await writeValue(
+                s,
+                field,
+                "https://example.test/invalid-repository",
+              );
+              await next(s);
+              await s.page
+                .getByRole("alert")
+                .filter({ hasText: "Add your GitHub repository." })
+                .waitFor();
+              await writeValue(s, field, original);
+              assert.equal(
+                await s.page
+                  .getByRole("alert")
+                  .filter({ hasText: "Add your GitHub repository." })
+                  .count(),
+                0,
+              );
+            } else {
+              await stage3(s);
+              const accuracy = s.page.getByRole("checkbox", {
+                name: "I confirm this submission is accurate.",
+                exact: true,
+              });
+              if (await accuracy.isChecked())
+                await activate(s, accuracy, "Space");
+              await activate(
+                s,
+                s.page.getByRole("button", { name: "Submit", exact: true }),
+              );
+              await s.page
+                .getByRole("alert")
+                .filter({ hasText: "Confirm this submission is accurate." })
+                .waitFor();
+              await activate(s, accuracy, "Space");
+              assert.equal(
+                await s.page
+                  .getByRole("alert")
+                  .filter({ hasText: "Confirm this submission is accurate." })
+                  .count(),
+                0,
+              );
+            }
+            return (
+              "Corrected " +
+              kind +
+              " clears its matching validation error without a request"
+            );
+          },
+        );
+      }
       await check("wizard-state", device.name, async () => {
         await openEditor(s);
         await next(s);
@@ -1071,6 +1236,58 @@ try {
       });
     } finally {
       await s.context.close();
+    }
+  }
+  for (const device of devices) {
+    if (!manifest.actors.firstLeader) {
+      record(
+        "first-submission-back",
+        "unavailable",
+        "Manifest has no eligible unpublished leader",
+        device.name,
+      );
+      continue;
+    }
+    const first = await session("firstLeader", device);
+    try {
+      await check("first-submission-back", device.name, async () => {
+        await openEditor(first);
+        await first.page.locator(".submission-v6").waitFor();
+        await snapshot(first, "first-submission");
+        const before = await read(first, "/submission");
+        assert.ok(!before.body.project?.published_version_id);
+        await activate(
+          first,
+          first.page.getByRole("button", { name: "Back to Team", exact: true }),
+        );
+        await first.page
+          .locator('#dashboard-tab-team[aria-selected="true"]')
+          .waitFor();
+        assert.equal(
+          await first.page.locator(".submission-v6").isVisible(),
+          false,
+        );
+        await first.page.waitForFunction(
+          () => document.activeElement?.id === "dashboard-tab-team",
+        );
+        assert.equal(
+          await first.page
+            .getByRole("tab", { name: "Team", exact: true })
+            .evaluate((el) => document.activeElement === el),
+          true,
+        );
+        await openEditor(first);
+        await first.page.locator(".submission-v6").waitFor();
+        assert.equal(first.state.posts.length, 0);
+        const after = await read(first, "/submission");
+        assert.equal(
+          after.body.submissionAccess.attemptsUsed,
+          before.body.submissionAccess.attemptsUsed,
+        );
+        return "First Back selects and focuses Team; Project reopens wizard, no writes or attempt use";
+      });
+    } finally {
+      await first.context.close();
     }
   }
   if (!mutations)

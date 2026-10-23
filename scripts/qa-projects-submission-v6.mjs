@@ -82,7 +82,11 @@ async function context(actor, viewport) {
 async function shot(page, name, viewport) {
   await page.evaluate(() => document.fonts.ready);
   const path = join(output, `${name}-${viewport.width}x${viewport.height}.png`);
-  await page.screenshot({ path, fullPage: true, animations: "disabled" });
+  await page.screenshot({
+    path,
+    fullPage: !name.startsWith("projects-"),
+    animations: "disabled",
+  });
   report.screenshots.push({ name, path, viewport, inspected: false });
   save();
 }
@@ -102,7 +106,9 @@ try {
     { width: 390, height: 844 },
     { width: 320, height: 740 },
   ]) {
-    for (const actor of ["bob", "stranger", null]) {
+    for (const actor of process.argv.includes("--wizard-only")
+      ? []
+      : ["bob", "stranger", null]) {
       const c = await context(actor, viewport),
         page = await c.newPage();
       page.on("pageerror", (error) =>
@@ -225,6 +231,7 @@ try {
         await page.locator('.submission-stage[data-step="3"]').isVisible(),
         true,
       );
+      await shot(page, "wizard-3-images", viewport);
       const image = page.locator("img.upload-preview.logo"),
         original = await image.getAttribute("src");
       await page.getByRole("button", { name: "Remove logo image" }).click();
@@ -243,7 +250,7 @@ try {
       await page.getByRole("button", { name: "Submit", exact: true }).click();
       assert.equal(await page.locator("dialog[open]").count(), 0);
       await accuracy.check();
-      await shot(page, "wizard-3-images", viewport);
+      await shot(page, "wizard-3-accuracy-validation", viewport);
       await page.getByRole("button", { name: "Submit", exact: true }).click();
       const dialog = page.locator("dialog[open]");
       await dialog.waitFor();

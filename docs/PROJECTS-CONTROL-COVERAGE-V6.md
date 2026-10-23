@@ -28,7 +28,7 @@ Those wizard captures also show redundant outer Dashboard content compared with 
 | Read-only project access | No enabled mutation action; existing saved unpublished fields retained; committed history Close/Escape                                  | Nonleader and third-attempt leader                                                        |
 | Public privacy           | No private draft, team feedback, credentials, venue or hidden evaluation fields; score stage unchanged                                  | Anonymous and Viewer                                                                      |
 
-The runner reports 26 case groups with per-device results, discovered control inventories, screenshots, denied requests and explicit `passed`, `partial`, `failed`, `blocked` or `unavailable` states. Missing roles, positive pagination or optional deployment are not grounds to claim those controls passed. Physical device testing is not claimed.
+The runner reports 29 case groups with per-device results, discovered control inventories, screenshots, denied requests and explicit `passed`, `partial`, `failed`, `blocked` or `unavailable` states. Missing roles, positive pagination or optional deployment are not grounds to claim those controls passed. Physical device testing is not claimed.
 
 Five modes are available: `desktop-mouse`, `tablet-touch`, `mobile-touch`, `narrow-touch`, and `desktop-keyboard`. Touch contexts set both `hasTouch: true` and `isMobile: true`, and activate controls with `tap()`. Keyboard mode uses actual Tab traversal plus Enter/Space, verifies visible focus and types through keyboard events. File selection uses Playwright's file chooser input API with original valid fixture image bytes. No operating-system file picker or physical-device claim is made.
 
@@ -58,7 +58,11 @@ Root supplies a local JSON manifest after the timed load run and reset. Example 
     "member": { "id": "fake_bob", "email": "bob@portal.test" },
     "leader": { "id": "fake_alice", "email": "alice@portal.test" },
     "nonleader": { "id": "fake_review_one", "email": "review_one@portal.test" },
-    "attempt3": { "id": "fake_eve", "email": "eve@portal.test" }
+    "attempt3": { "id": "fake_eve", "email": "eve@portal.test" },
+    "firstLeader": {
+      "id": "fake_first_leader",
+      "email": "first_leader@portal.test"
+    }
   },
   "rootConfirmedReset": false,
   "resetToken": "<fresh root coordination token>"
@@ -74,3 +78,15 @@ Each mutation run uses the first selected device. Run `--device=desktop-keyboard
 Before any durable mutation, all selected clean role references are captured. The mutation phase holds and rejects one upvote locally to check single pending action and rollback, then exercises an actual vote and duplicate uniqueness, a short-comment rejection and literal-markup escaping, wrong image ratios, a draft save, remaining UI commits through attempt three, locked edit rejection and exact commit retry. Immutable payload hashes and attempts are checked through authorized local projections. The public score stage must remain unchanged. No AI or scoring action is allowlisted, and no production or external API request is permitted.
 
 Remaining limitations must stay visible: real hosted identity is outside this local fixture; optional deployment needs a populated link; unpublished-leader exit needs an eligible first-submission fixture; physical touch and assistive technology are not established by browser emulation. Inspect matching screenshots individually before any visual acceptance or release claim.
+
+## Matching 418f6311 read-only checkpoint
+
+Source `418f6311c1e5a01831897b36f181eeda799c7911`, Worker `6e77794a8831ccb2594f3383171244b1dd9f4ec07c56633f1357ad101b4cfaf5`. Every browser was closed before root resumed integration. No mutation flag was used, and the manifest reset permission did not override the write hold.
+
+Clean baseline: `evidence/v6-projects-submission/418f6311-LsHkx4/report.json`, 16 checks, 40 captures, zero page errors, zero write/external requests. The Next native-activation fix and focused wizard composition work across all four sizes. Clean wizard delivery originals are in `418f6311-DI2bUj`: step 3 was captured before the local validation exercise. The matching error-state screenshot is separately labelled, not offered as a clean reference. Readable viewport list originals and full detail originals are in `418f6311-6i09BT`, 12 checks and 24 captures. Representative desktop, mobile and tablet images were opened and compared with boards 04/06. Synthetic solid rasters remain fixture uploads rather than illustrations copied from the mockup.
+
+Full read-only control report: `evidence/v6-project-controls/418f6311-VHCsa6/report.json`, 90 captures and 190 per-case records. Sixteen groups passed, optional deployment was partial because its field was blank, eight durable-write groups stayed blocked, and the unpublished nonleader browser path was unavailable because the supplied nonleader has a published project. Existing published nonleader content was checked against its authorized projection. There were zero page errors and zero writes; five deliberate GitHub activations were aborted before external navigation. Source tests separately cover the unpublished nonleader read-access regression.
+
+Three groups failed in that bounded run. Stale client validation reproduced for essentials, GitHub and accuracy in all five modes; source correction `1b4543b` is prepared, and actual recovery assertions now await its matching build. Keyboard Cerebras selection used an incorrect harness assumption that every native radio is reachable by Tab; the runner now Tabs to the checked group member and uses Arrow keys. First-submission Back incorrectly asserted DOM removal, although the authorized draft intentionally remains inside the hidden Project panel; the assertion now checks visibility and eventual Team focus.
+
+A separate corrected actual check in `evidence/v6-first-back/418f6311/report.json` passed first-submission entry and Back-to-Team focus in desktop mouse, mobile emulated touch and desktop keyboard, with zero errors or writes. Its mobile before/after originals were opened and inspected. Tablet and narrow first-Back assertions remain in the corrected full runner for the next matching build. None of these results establish durable vote/comment/save/commit coverage, hosted identity, physical touch or overall release acceptance.
