@@ -238,6 +238,7 @@ export function portalTargetName(data: View, values: Row): string {
     ...(data.items || []),
     ...(data.roles || []),
     ...(data.members || []),
+    ...(data.items || []).flatMap((item: Row) => item.members || []),
     ...(data.reviewers || []),
     ...(data.actions || []),
     ...(data.creditInstructions || []),
@@ -3888,7 +3889,6 @@ export function AdminList({
                           onClick={() => {
                             void run("remove-workspace-member", {
                               userId: member.id,
-                              name: `${member.name || member.email} (${member.email}) · ${team.name}`,
                               reason: "Administrator updated team membership",
                             }).catch(() => {});
                           }}
