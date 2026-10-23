@@ -56,7 +56,7 @@ const expected = {
 const browser = await chromium.launch({ headless: true,
   executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium",
   chromiumSandbox: true,
-  args: ["--disable-setuid-sandbox"],
+  args: [],
 }).catch((error) => {
   report.browserLaunchBlocked = true;
   report.failure = error.message;
