@@ -1,6 +1,10 @@
+"use client";
 import DotAvatar from "./dot-avatar";
-import { teamColorKeys, teamDotColors,teamColorLabels } from "../lib/avatar-contract";
-("use client");
+import {
+  teamColorKeys,
+  teamDotColors,
+  teamColorLabels,
+} from "../lib/avatar-contract";
 import {
   useEffect,
   useState,
@@ -39,6 +43,10 @@ type View = Row & {
     owner: boolean;
     avatarColor?: string;
     avatarExpression?: string;
+    mode?: "viewer" | "participant" | "staff";
+    rostered?: boolean;
+    canEngage?: boolean;
+    canParticipate?: boolean;
   };
   items?: Row[];
 };
@@ -53,6 +61,228 @@ async function api(action: string, data: Row) {
   const b = (await r.json()) as Row;
   if (!r.ok) throw new Error(b.message || b.code || "The request failed.");
   return b as Row;
+}
+export function portalConfirmationFor(
+  action: string,
+  values: Row,
+  target: string,
+): Confirmation {
+  const base = confirmationFor(action, values, target);
+  if (action === "delete-own-team")
+    return {
+      ...base,
+      title: "Delete your team",
+      description:
+        "Remove your unlocked, sole-member team after dependency checks. This is recoverable and preserves history. A project or allocation dependency can block deletion.",
+      confirmLabel: "Delete this team",
+      critical: true,
+    };
+  if (action === "participant-deactivate")
+    return {
+      ...base,
+      title: "Remove participant",
+      description:
+        "Remove this specific participant from active participation. Revoke private access, credits and mutation eligibility while retaining their history. Imports cannot restore them. Owner and leader dependencies can block removal.",
+      confirmLabel: "Remove this participant",
+      critical: true,
+    };
+  if (action === "participant-restore")
+    return {
+      ...base,
+      title: "Restore participant",
+      description:
+        "Restore this specific removed participant. The server checks their participation and dependencies again. This does not grant an administrative role.",
+      confirmLabel: "Restore this participant",
+      critical: true,
+    };
+  if (action === "project-soft-delete" || action === "project-restore") {
+    const scope =
+      values.scope === "both"
+        ? "project and selected submission"
+        : values.scope === "submission"
+          ? "selected submission"
+          : "project";
+    const restoring = action === "project-restore";
+    return {
+      ...base,
+      title: `${restoring ? "Restore" : "Remove"} ${scope}`,
+      description: restoring
+        ? "Restore this exact project or submission target under server eligibility checks. Existing votes, comments, immutable history and the used attempt count are preserved."
+        : "Apply a recoverable removal to this exact target. Votes, comments, immutable history and used attempts remain intact. Removing a version does not automatically expose an older version.",
+      confirmLabel: `${restoring ? "Restore" : "Remove"} this target`,
+      critical: true,
+    };
+  }
+  if (action === "publish-submission-window")
+    return {
+      ...base,
+      title: "Publish submission window",
+      description:
+        "Publish the previewed opening and closing times as real portal settings for all teams. Existing commits and attempts remain intact. The fixed repository creation and first-commit cutoff stays 1 November, 08:00 IST.",
+      confirmLabel: "Publish these times",
+      critical: true,
+    };
+  if (action === "commit-import")
+    return {
+      ...base,
+      title: "Add roster entries",
+      description:
+        "Import only new participants from this exact preview and field mapping. Existing profiles and statuses are not updated. Removed participants cannot be restored by an import.",
+      confirmLabel: "Add previewed roster entries",
+      critical: true,
+    };
+  return base;
+}
+type IconName =
+  | "home"
+  | "dashboard"
+  | "discover"
+  | "projects"
+  | "leaderboard"
+  | "rules"
+  | "settings"
+  | "logs"
+  | "menu"
+  | "close"
+  | "eye"
+  | "copy"
+  | "up"
+  | "history"
+  | "person";
+function Icon({ name, size = 20 }: { name: IconName; size?: number }) {
+  const paths: Record<IconName, ReactNode> = {
+    home: (
+      <>
+        <path d="m3 10 9-7 9 7" />
+        <path d="M5 9v12h14V9M9 21v-8h6v8" />
+      </>
+    ),
+    dashboard: (
+      <>
+        <rect x="3" y="3" width="7" height="7" rx="1" />
+        <rect x="14" y="3" width="7" height="7" rx="1" />
+        <rect x="3" y="14" width="7" height="7" rx="1" />
+        <rect x="14" y="14" width="7" height="7" rx="1" />
+      </>
+    ),
+    discover: (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <path d="m16 8-3 5-5 3 3-5 5-3Z" />
+      </>
+    ),
+    projects: (
+      <>
+        <rect x="3" y="6" width="18" height="15" rx="2" />
+        <path d="M8 6V3h8v3M3 12h18M10 12v3h4v-3" />
+      </>
+    ),
+    leaderboard: (
+      <>
+        <path d="M4 21V11h5v10M9 21V4h6v17M15 21v-7h5v7M2 21h20" />
+      </>
+    ),
+    rules: (
+      <>
+        <path d="M5 3h14v18H5zM8 7h8M8 11h8M8 15h5" />
+      </>
+    ),
+    settings: (
+      <>
+        <path d="M4 6h16M4 12h16M4 18h16" />
+        <circle cx="8" cy="6" r="2" />
+        <circle cx="16" cy="12" r="2" />
+        <circle cx="10" cy="18" r="2" />
+      </>
+    ),
+    logs: (
+      <>
+        <path d="M6 3h12v18H6zM9 7h6M9 11h6M9 15h6" />
+      </>
+    ),
+    menu: <path d="M3 6h18M3 12h18M3 18h18" />,
+    close: <path d="m6 6 12 12M18 6 6 18" />,
+    eye: (
+      <>
+        <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z" />
+        <circle cx="12" cy="12" r="3" />
+      </>
+    ),
+    copy: (
+      <>
+        <rect x="8" y="8" width="12" height="13" rx="2" />
+        <path d="M16 8V3H3v13h5" />
+      </>
+    ),
+    up: <path d="m6 10 6-6 6 6M12 4v16" />,
+    history: (
+      <>
+        <path d="M3 4v6h6M3 10a9 9 0 1 1 1 7" />
+        <path d="M12 7v5l3 2" />
+      </>
+    ),
+    person: (
+      <>
+        <circle cx="12" cy="7" r="4" />
+        <path d="M4 21v-3a8 8 0 0 1 16 0v3" />
+      </>
+    ),
+  };
+  return (
+    <svg
+      className="ui-icon"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+    >
+      {paths[name]}
+    </svg>
+  );
+}
+export function safeExternalUrl(value: unknown): string | undefined {
+  if (typeof value !== "string") return;
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" && !url.username && !url.password
+      ? url.href
+      : undefined;
+  } catch {
+    return;
+  }
+}
+export function safeProfileUrl(value: unknown): string | undefined {
+  return typeof value === "string" &&
+    /^\/discover\/participants#person-[a-zA-Z0-9_-]+$/.test(value)
+    ? value
+    : undefined;
+}
+function SocialLinks({ socials = [] }: { socials?: string[] }) {
+  return (
+    <div className="member-socials">
+      {socials.map((url, index) => {
+        const href = safeExternalUrl(url);
+        if (!href) return null;
+        return (
+          <a
+            key={`${url}-${index}`}
+            className="text-link"
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {new URL(href).hostname.replace(/^www\./, "")}
+          </a>
+        );
+      })}
+    </div>
+  );
 }
 function Field({
   name,
@@ -294,7 +524,7 @@ function TeamStyle({
     </details>
   );
 }
-function TeamWorkspace({
+export function TeamWorkspace({
   data,
   run,
 }: {
@@ -302,16 +532,23 @@ function TeamWorkspace({
   run: (a: string, d: Row) => Promise<Row>;
 }) {
   const [search, setSearch] = useState("");
+  const [description, setDescription] = useState(data.idea?.description || "");
   const t = data.team;
+  const leader = !!t && data.me?.id === t.leader_id;
+  const locked = !!(t?.locked || data.ideaLocked);
   if (!t)
     return (
-      <>
-        <Empty>
-          Create a team below, or <a href="/teams">find a team</a> and request
-          to join.
-        </Empty>
-        {data.me?.role === "participant" && <CreateTeam run={run} />}
-      </>
+      <section className="panel">
+        <h3>Find your team</h3>
+        <p>
+          Creating a team is optional. Browse Discover to meet other builders or
+          request to join a team.
+        </p>
+        <a className="button secondary" href="/discover/teams">
+          Discover teams
+        </a>
+        {data.me?.canParticipate === true && <CreateTeam run={run} />}
+      </section>
     );
   return (
     <section className="team-workspace">
@@ -320,80 +557,80 @@ function TeamWorkspace({
           <TeamAvatar name={t.name} palette={t.palette} />
           <div>
             <span className="eyebrow">Your team</span>
-            <h2>{t.name}</h2>
+            <h3>{t.name}</h3>
           </div>
         </div>
-        <Pill tone={data.teamReadiness?.allApproved ? "positive" : "waiting"}>
-          {data.teamStatus || "Forming"}
-        </Pill>
+        <Pill>{data.teamStatus || "Forming"}</Pill>
       </div>
-      {data.me?.id === t.leader_id ? (
+      {leader ? (
         <Form
           title="Team idea"
-          disabled={data.ideaLocked}
-          label="Update team idea"
+          disabled={locked}
+          label="Save team idea"
           onSave={async (f) => {
             await run("save-workspace-idea", {
               title: f.get("title"),
-              core: f.get("core"),
-              description: f.get("description"),
+              description: description.trim(),
             });
           }}
         >
-          <p className="muted">
-            Idea and roster lock together on October 29 at 23:59 IST.
-          </p>
-          <fieldset disabled={data.ideaLocked}>
+          <fieldset disabled={locked}>
             <Field
               name="title"
               label="Idea title"
               value={data.idea?.title}
               required
             />
-            <Field
-              name="core"
-              label="Core concept"
-              type="textarea"
-              value={data.idea?.core}
-              required
-              minLength={10}
-            />
-            <Field
-              name="description"
-              label="Idea details"
-              type="textarea"
-              value={data.idea?.description}
-            />
+            <label>
+              Short description
+              <textarea
+                name="description"
+                required
+                maxLength={500}
+                rows={4}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                aria-describedby="idea-count"
+              />
+              <small id="idea-count">{description.length}/500 characters</small>
+            </label>
           </fieldset>
-          {data.ideaLocked && <Pill>Idea locked</Pill>}
+          <p className="muted">
+            Save your title and description before locking. You can edit them
+            while your team remains unlocked and before the roster freeze.
+          </p>
+          {locked && <Pill>Idea locked</Pill>}
         </Form>
       ) : (
         data.idea && (
           <section className="panel">
             <h3>{data.idea.title}</h3>
-            <p>{data.idea.core}</p>
-            <p>{data.idea.description}</p>
+            <p className="prose">{data.idea.description}</p>
           </section>
         )
       )}
       <div className="form-actions">
         <Pill>{t.locked ? "Team locked" : "Team unlocked"}</Pill>
-        {data.me?.id === t.leader_id && !t.locked && (
+        {leader && !locked && (
           <button
             className="button secondary"
+            disabled={
+              !data.idea?.title?.trim() || !data.idea?.description?.trim()
+            }
             onClick={() => {
-              void run("lock-team", {}).catch(() => {});
+              void run("lock-team", { confirmation: "LOCK_TEAM" }).catch(
+                () => {},
+              );
             }}
           >
             Lock completed team
           </button>
         )}
       </div>
-      {t.leader_id === data.me?.id && !data.ideaLocked && (
+      {leader && !locked && (
         <details className="panel">
           <summary>Rename team</summary>
           <Form
-            title={t.name}
             label="Rename team"
             onSave={async (f) => {
               await run("rename-team", {
@@ -412,58 +649,56 @@ function TeamWorkspace({
           </Form>
         </details>
       )}
-      <details className="panel">
-        <summary>Team and submission rules</summary>
-        <ul>
-          <li>Every member must register. Teams have at most five people.</li>
-          <li>
-            Only individuals Going on the portal can be accommodated. Locking a
-            team is not approval or Going; Luma is registration only.
-          </li>
-          <li>Locking freezes membership and team details for admin review.</li>
-          <li>
-            At least one member must individually check in before team
-            submissions unlock, within the event window.
-          </li>
-          <li>
-            Exactly three committed submissions: the initial entry counts as
-            one, each committed update counts again. After three, no project
-            edits. Draft typing and navigation do not use attempts.
-          </li>
-          <li>
-            Credits belong only to their individually checked-in recipient.
-          </li>
-          <li>
-            Repository creation and first commit must BOTH be strictly after 1
-            November, 08:00 IST. Submit the full commit SHA; dates are
-            operational evidence, not proof of original authorship.
-          </li>
-          <li>
-            Only individually checked-in members qualify for prizes or rewards.
-            Absent members do not disqualify the team.
-          </li>
-          <li>No parking is available.</li>
-        </ul>
-      </details>
       <Search value={search} onChange={setSearch} label="Search team members" />
       <ul className="member-list">
         {(data.members || [])
           .filter((m: Row) =>
-            m.name.toLowerCase().includes(search.toLowerCase()),
+            String(m.name || "")
+              .toLowerCase()
+              .includes(search.toLowerCase()),
           )
           .map((m: Row) => (
             <li key={m.id}>
-              <span className="person-monogram" aria-hidden="true">
-                {String(m.name).slice(0, 2).toUpperCase()}
-              </span>
-              <div>
-                <strong>{m.id === data.me?.id ? "You" : m.name}</strong>
+              <DotAvatar
+                color={m.avatarColor}
+                expression={m.avatarExpression}
+                size={48}
+              />
+              <div className="member-details">
+                <strong>
+                  {safeProfileUrl(m.profileUrl) ? (
+                    <a
+                      className="text-link"
+                      href={safeProfileUrl(m.profileUrl)}
+                    >
+                      {m.name}
+                    </a>
+                  ) : (
+                    m.name
+                  )}
+                  {m.id === data.me?.id && " · You"}
+                </strong>
                 <small>{m.role === "leader" ? "Team leader" : "Member"}</small>
+                {m.bio && <p>{m.bio}</p>}
+                <SocialLinks socials={m.socials} />
+                {m.phone && <small>{m.phone}</small>}
+                {safeExternalUrl(m.whatsappUrl) && (
+                  <a
+                    className="text-link"
+                    href={safeExternalUrl(m.whatsappUrl)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Open WhatsApp chat with ${m.name}`}
+                  >
+                    WhatsApp
+                  </a>
+                )}
               </div>
-              <Pill tone={m.approval === "approved" ? "positive" : "neutral"}>
-                {m.approval === "approved" ? "Going" : "Registered"}
+              <Pill>
+                {m.status ||
+                  (m.approval === "approved" ? "Going" : "Registered")}
               </Pill>
-              {t.leader_id === data.me?.id && m.role !== "leader" && (
+              {leader && !locked && m.role !== "leader" && (
                 <button
                   className="link-button"
                   onClick={() => {
@@ -479,7 +714,7 @@ function TeamWorkspace({
             </li>
           ))}
       </ul>
-      {t.leader_id === data.me?.id && (
+      {leader && !locked && (
         <>
           <details className="panel">
             <summary>Membership requests</summary>
@@ -525,18 +760,93 @@ function TeamWorkspace({
             ) && <p className="muted">No pending requests.</p>}
           </details>
           <TeamStyle team={t} run={run} />
+          {data.members?.length === 1 && (
+            <details className="panel">
+              <summary>Delete your team</summary>
+              <p>
+                Only an unlocked team with you as its sole member can be
+                removed. Its history is retained. Existing project or allocation
+                dependencies may block removal.
+              </p>
+              <Form
+                label="Review team deletion"
+                onSave={async (f) => {
+                  await run("delete-own-team", {
+                    reason: f.get("reason"),
+                    confirmation: "DELETE_OWN_TEAM",
+                  });
+                }}
+              >
+                <Field
+                  name="reason"
+                  label="Reason for deleting your team"
+                  required
+                  minLength={5}
+                />
+              </Form>
+            </details>
+          )}
         </>
       )}
+      <details className="panel">
+        <summary>Team and project rules</summary>
+        <ul>
+          <li>
+            Teams have at most five registered people. Locking freezes
+            membership, name and idea; it does not grant Going status.
+          </li>
+          <li>
+            The leader must personally check in before saving or committing the
+            project during the submission window.
+          </li>
+          <li>
+            Exactly three successful project commits are available. Draft saves
+            and navigation do not consume attempts.
+          </li>
+          <li>
+            Repository creation and first commit must both be strictly after 1
+            November, 08:00 IST.
+          </li>
+          <li>
+            Credits and prize eligibility belong to individually checked-in
+            recipients.
+          </li>
+        </ul>
+        <a className="text-link" href="/rules">
+          Read all rules
+        </a>
+      </details>
     </section>
   );
 }
-function Dashboard({
+export function Dashboard({
   data,
   run,
 }: {
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
+  if (data.me?.mode === "viewer")
+    return (
+      <>
+        <header className="page-heading">
+          <h1>Welcome</h1>
+          <p>
+            You can browse teams, participants and public projects.
+            Participation becomes available when the hosts add your account to
+            the roster.
+          </p>
+        </header>
+        <div className="form-actions">
+          <a className="button" href="/discover/teams">
+            Discover
+          </a>
+          <a className="button secondary" href="/projects">
+            Explore projects
+          </a>
+        </div>
+      </>
+    );
   return (
     <>
       <header className="page-heading">
@@ -549,72 +859,90 @@ function Dashboard({
       <div className="status-strip">
         <div>
           <span>Registration</span>
-          <Pill
-            tone={
-              data.registration?.status === "approved" ? "positive" : "neutral"
-            }
-          >
-            {data.individualStatus || "Registered"}
-          </Pill>
+          <Pill>{data.individualStatus || "Registered"}</Pill>
         </div>
         <div>
           <span>Team</span>
-          <Pill tone={data.teamReadiness?.allApproved ? "positive" : "waiting"}>
-            {data.teamStatus || "No team yet"}
-          </Pill>
-        </div>
-        <div>
-          <span>Attendance / progress</span>
-          <Pill>{data.status || "Registered"}</Pill>
+          <Pill>{data.teamStatus || "No team yet"}</Pill>
         </div>
       </div>
-      <p>
-        <strong>{data.submissionProgress?.status || "Not submitted"}</strong> ·{" "}
-        {data.submissionProgress?.attemptsUsed || 0}/3 committed
-      </p>
-      {data.eligibility?.status === "ineligible" && (
-        <p className="notice">
-          <Pill tone="waiting">Ineligible</Pill> Your submission is excluded
-          from the leaderboard.{" "}
-          {data.eligibility.reason || "Check your private team feedback."}
+      <nav className="dashboard-sections" aria-label="Dashboard sections">
+        <a href="#team">Team</a>
+        <a href="#credits">Credits</a>
+        <a href="#project">Project</a>
+      </nav>
+      <section
+        id="team"
+        className="dashboard-section"
+        aria-labelledby="team-heading"
+      >
+        <h2 id="team-heading">Team</h2>
+        <TeamWorkspace
+          key={`${data.team?.id || "none"}-${data.idea?.description || ""}`}
+          data={data}
+          run={run}
+        />
+      </section>
+      <section
+        id="credits"
+        className="dashboard-section"
+        aria-labelledby="credits-heading"
+      >
+        <h2 id="credits-heading">Credits</h2>
+        <p className="muted">
+          Your personal checked-in allocations. Keep revealed values private.
         </p>
-      )}
-
-      {data.leaderboardUrl && (
-        <a className="button secondary" href={data.leaderboardUrl}>
-          View project on leaderboard
-        </a>
-      )}
-      <TeamWorkspace data={data} run={run} />
-      <div className="workspace-links">
-        {data.submissionAccess?.canAccess ? (
-          <a href="/submission">
-            <strong>Submission</strong>
-            <span>
-              {data.attempts?.length
-                ? `${data.attempts.length} committed version${data.attempts.length === 1 ? "" : "s"}`
-                : "Not submitted"}
-            </span>
-            <span>Open submission →</span>
-          </a>
-        ) : (
-          <span>{data.submissionAccess?.message}</span>
+        {(data.credits || []).map((c: Row) => (
+          <Credit key={c.type_id} credit={c} />
+        ))}
+        {!data.credits?.length && (
+          <p className="muted">No personal credits are available yet.</p>
         )}
-        <details>
-          <summary>
-            Credits <span className="muted">Private to you</span>
-          </summary>
-          {(data.credits || []).map((c: Row) => (
-            <Credit key={c.type_id} credit={c} />
-          ))}
-          {!data.credits?.length && (
-            <p className="muted">No personal credits are available yet.</p>
-          )}
-        </details>
-        <details>
-          <summary>
-            Team feedback <span className="muted">Private to this team</span>
-          </summary>
+      </section>
+      <section
+        id="project"
+        className="dashboard-section"
+        aria-labelledby="project-heading"
+      >
+        <h2 id="project-heading">Project</h2>
+        {data.submissionProgress?.status && (
+          <p>{data.submissionProgress.status}</p>
+        )}
+        {data.projectStats && (
+          <div className="project-summary">
+            <span>
+              {Number.isFinite(data.projectStats.upvotes)
+                ? `${data.projectStats.upvotes} upvotes`
+                : "Upvote count unavailable"}
+            </span>
+            {data.projectStats.result && (
+              <PublicResult result={data.projectStats.result} />
+            )}
+          </div>
+        )}
+        {data.eligibility?.status === "ineligible" && (
+          <p className="notice">
+            Ineligible ·{" "}
+            {data.eligibility.reason || "Check your private team feedback."}
+          </p>
+        )}
+        {data.submissionAccess?.canRead === true ? (
+          <Submission
+            key={`${data.project?.revision || 0}-${data.team?.id || "none"}`}
+            data={data}
+            run={run}
+          />
+        ) : (
+          <p className="notice">
+            {data.submissionAccess?.message ||
+              "Your project workspace is not available yet. The server checks attendance and team access."}
+          </p>
+        )}
+        <section className="panel" aria-label="Private team feedback">
+          <h3>Private team feedback</h3>
+          <p className="muted">
+            Visible to your team. Public project comments are separate.
+          </p>
           {(data.feedback || []).map((f: Row) => (
             <article className="feedback-entry" key={f.id}>
               <p>{f.body}</p>
@@ -626,162 +954,297 @@ function Dashboard({
           ))}
           {!data.feedback?.length && (
             <p className="muted">
-              Feedback will appear here after a reviewer shares it.
+              Feedback will appear after a reviewer shares it.
             </p>
           )}
-        </details>
-        {data.privateVenue ? (
-          <section className="private-arrival">
-            <h2>Your arrival details</h2>
-            <p>{data.privateVenue.location}</p>
-            <p className="prose">{data.privateVenue.directions}</p>
-            {data.privateVenue.mapUrl && (
-              <a
-                className="text-link"
-                target="_blank"
-                rel="noopener noreferrer"
-                href={data.privateVenue.mapUrl}
-              >
-                Open private arrival map
-              </a>
-            )}
-          </section>
-        ) : (
-          <p className="muted">
-            Exact arrival details are available only when every current team
-            member is approved and the hosts publish them.
-          </p>
-        )}
-      </div>
-      {data.team && <TeamContacts members={data.members || []} />}
+        </section>
+      </section>
+      {data.privateVenue ? (
+        <section className="private-arrival">
+          <h2>Your arrival details</h2>
+          <p>{data.privateVenue.location}</p>
+          <p className="prose">{data.privateVenue.directions}</p>
+          {safeExternalUrl(data.privateVenue.mapUrl) && (
+            <a
+              className="text-link"
+              href={safeExternalUrl(data.privateVenue.mapUrl)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open private arrival map
+            </a>
+          )}
+        </section>
+      ) : (
+        <p className="muted">
+          Exact arrival details appear when your team is approved and the hosts
+          publish them.
+        </p>
+      )}
     </>
   );
 }
-function TeamContacts({ members }: { members: Row[] }) {
+function PublicResult({ result }: { result: Row }) {
   return (
-    <section className="panel">
-      <h2>Your team contacts</h2>
-      <ul className="member-list">
-        {members
-          .filter((m) => m.whatsappUrl)
-          .map((m) => (
-            <li key={m.id}>
-              <strong>{m.name}</strong>
-              <a
-                href={m.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Open WhatsApp chat with ${m.name}`}
-              >
-                {m.phone}
-              </a>
-            </li>
-          ))}
-      </ul>
-    </section>
+    <span className="public-result">
+      {typeof result.score === "number" && Number.isFinite(result.score) && (
+        <span>
+          {result.score} {result.stage === "ai" ? "AI" : "final"} score
+        </span>
+      )}
+      {typeof result.rank === "number" && result.rank > 0 && (
+        <span> · Rank {result.rank}</span>
+      )}
+      {typeof result.label === "string" && <span> {result.label}</span>}
+    </span>
   );
 }
-
-function Credit({ credit }: { credit: Row }) {
+export function Credit({ credit }: { credit: Row }) {
   const [value, setValue] = useState(""),
-    [error, setError] = useState("");
+    [error, setError] = useState(""),
+    [busy, setBusy] = useState(false),
+    [copied, setCopied] = useState(false);
+  const pending = useRef(false),
+    active = useRef(true),
+    revealGeneration = useRef(0);
+  useEffect(() => {
+    active.current = true;
+    const hide = () => {
+      ++revealGeneration.current;
+      setValue("");
+      setCopied(false);
+    };
+    const visibility = () => {
+      if (document.hidden) hide();
+    };
+    window.addEventListener("blur", hide);
+    document.addEventListener("visibilitychange", visibility);
+    return () => {
+      active.current = false;
+      window.removeEventListener("blur", hide);
+      document.removeEventListener("visibilitychange", visibility);
+    };
+  }, []);
   return (
-    <div className="credit-row">
-      <strong>{credit.name}</strong>
+    <article className="credit-row">
+      <h3>{credit.name}</h3>
       <CreditInstructions markdown={credit.instructions || ""} />
-      {value ? (
-        <>
-          <code>{value}</code>
-          <button className="link-button" onClick={() => setValue("")}>
-            Hide code
-          </button>
-        </>
-      ) : (
+      <div className="credit-secret">
+        <code
+          aria-label={value ? "Your private allocation" : "Allocation hidden"}
+        >
+          {value || "••••••••••••••••"}
+        </code>
         <button
+          type="button"
           className="button secondary"
-          disabled={!credit.allocated}
+          disabled={!credit.allocated || busy}
+          aria-label={value ? "Hide allocation" : "Reveal my allocation"}
+          aria-pressed={!!value}
           onClick={async () => {
+            if (value) {
+              setValue("");
+              setCopied(false);
+              return;
+            }
+            if (pending.current) return;
+            pending.current = true;
+            const generation = ++revealGeneration.current;
+            setBusy(true);
+            setError("");
             try {
-              setValue(
-                String(
-                  (await api("reveal-credit", { typeId: credit.type_id }))
-                    .value,
-                ),
-              );
+              const result = await api("reveal-credit", {
+                typeId: credit.type_id,
+              });
+              if (typeof result.value !== "string" || !result.value)
+                throw new Error("Your allocation could not be revealed.");
+              if (
+                active.current &&
+                generation === revealGeneration.current &&
+                !document.hidden
+              )
+                setValue(result.value);
             } catch (e) {
-              setError((e as Error).message);
+              if (active.current) setError((e as Error).message);
+            } finally {
+              pending.current = false;
+              if (active.current) setBusy(false);
             }
           }}
         >
-          Reveal my allocation
+          <Icon name="eye" />
+          {busy ? "Revealing…" : value ? "Hide" : "Reveal"}
         </button>
-      )}
+        <button
+          type="button"
+          className="button secondary"
+          disabled={!value || busy}
+          onClick={async () => {
+            setError("");
+            try {
+              await navigator.clipboard.writeText(value);
+              setCopied(true);
+            } catch {
+              setError("Copy failed. Select and copy the revealed value.");
+            }
+          }}
+        >
+          <Icon name="copy" />
+          {copied ? "Copied" : "Copy"}
+        </button>
+      </div>
+      {!credit.allocated && <p className="muted">No allocation assigned.</p>}
       {error && <p role="alert">{error}</p>}
-    </div>
+    </article>
   );
 }
-function Teams({
+export function Discover({
   data,
+  path,
   run,
 }: {
   data: View;
+  path: string;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(""),
+    [teamFilter, setTeamFilter] = useState("");
+  const participants = path === "/discover/participants";
+  useEffect(() => {
+    if (participants && window.location.hash.startsWith("#person-"))
+      document
+        .getElementById(window.location.hash.slice(1))
+        ?.scrollIntoView({ block: "center", behavior: "auto" });
+  }, [participants]);
+  const items = (data.items || []).filter(
+    (row) =>
+      `${row.name || ""} ${row.teamName || ""} ${row.bio || ""}`
+        .toLowerCase()
+        .includes(search.toLowerCase()) &&
+      (!participants ||
+        !teamFilter ||
+        (teamFilter === "in" ? !!row.teamName : !row.teamName)),
+  );
   return (
     <>
       <header className="page-heading">
-        <p className="eyebrow">Signed-in directory · private</p>
+        <p className="eyebrow">Signed-in community directory</p>
         <h1>
-          Teams
+          Discover
           <span className="heading-dot violet" />
         </h1>
         <p className="muted">
-          Find your people. Membership requests go to the team leader.
+          Find people and teams. Creating a team is optional.
         </p>
       </header>
-      <Search value={search} onChange={setSearch} label="Search team names" />
+      <nav className="discovery-tabs" aria-label="Discover">
+        <a
+          href="/discover/teams"
+          aria-current={!participants ? "page" : undefined}
+        >
+          Teams
+        </a>
+        <a
+          href="/discover/participants"
+          aria-current={participants ? "page" : undefined}
+        >
+          Participants
+        </a>
+      </nav>
+      <div className="toolbar">
+        <Search
+          value={search}
+          onChange={setSearch}
+          label={
+            participants ? "Search participants or teams" : "Search team names"
+          }
+        />
+        {participants && (
+          <label>
+            <span className="sr-only">Team membership</span>
+            <select
+              value={teamFilter}
+              onChange={(e) => setTeamFilter(e.target.value)}
+            >
+              <option value="">All participants</option>
+              <option value="in">In a team</option>
+              <option value="out">Not in a team</option>
+            </select>
+          </label>
+        )}
+      </div>
       <ul className="directory-list">
-        {(data.items || [])
-          .filter((t) => t.name.toLowerCase().includes(search.toLowerCase()))
-          .map((t) => (
-            <li key={t.id}>
-              <TeamAvatar name={t.name} palette={t.palette} />
-              <div>
-                <h2>{t.name}</h2>
-                <p>
-                  {t.readiness.total} member{t.readiness.total === 1 ? "" : "s"}{" "}
-                  · {t.readiness.approved} approved
-                </p>
-                <small>{t.bio}</small>
-              </div>
-              {data.team?.id === t.id ? (
+        {items.map((row) => (
+          <li key={row.id} id={participants ? `person-${row.id}` : undefined}>
+            {participants ? (
+              <DotAvatar
+                color={row.avatarColor}
+                expression={row.avatarExpression}
+                size={56}
+              />
+            ) : (
+              <TeamAvatar name={row.name} palette={row.palette} size={56} />
+            )}
+            <div>
+              <h2>{row.name}</h2>
+              {participants ? (
+                <>
+                  <Pill>{row.teamName ? "In a team" : "Not in a team"}</Pill>
+                  {row.teamName && <p>{row.teamName}</p>}
+                  <p>{row.bio}</p>
+                  <SocialLinks socials={row.socials} />
+                </>
+              ) : (
+                <>
+                  <p>
+                    {row.readiness?.total ?? "—"} members ·{" "}
+                    {row.status || (row.locked ? "Locked" : "Forming")}
+                  </p>
+                  <p>{row.bio}</p>
+                </>
+              )}
+            </div>
+            {!participants &&
+              (data.team?.id === row.id ? (
                 <Pill tone="positive">Your team</Pill>
               ) : (
-                <button
-                  className="button secondary"
-                  disabled={
-                    !!data.team ||
-                    t.requested ||
-                    data.me?.role !== "participant"
-                  }
-                  onClick={() => {
-                    void run("request-team", { teamId: t.id }).catch(() => {});
-                  }}
-                >
-                  {t.requested
-                    ? "Requested"
-                    : data.team
-                      ? "Already in a team"
-                      : "Request to join"}
-                </button>
-              )}
-            </li>
-          ))}
+                data.me?.canParticipate === true &&
+                !data.team &&
+                !row.locked && (
+                  <button
+                    className="button secondary"
+                    disabled={!!row.requested}
+                    onClick={() => {
+                      void run("request-team", { teamId: row.id }).catch(
+                        () => {},
+                      );
+                    }}
+                  >
+                    {row.requested ? "Requested" : "Request to join"}
+                  </button>
+                )
+              ))}
+          </li>
+        ))}
       </ul>
-      {!data.items?.length && <Empty>Be the first team to get started.</Empty>}
-      {!data.team && data.me?.role === "participant" && (
-        <CreateTeam run={run} />
+      {!items.length && (
+        <Empty>
+          {search || teamFilter
+            ? "No matches. Try another search or filter."
+            : "No entries are available yet."}
+        </Empty>
+      )}
+      {!participants && !data.team && data.me?.canParticipate === true && (
+        <details className="panel">
+          <summary>Create your own team · optional</summary>
+          <CreateTeam run={run} />
+        </details>
+      )}
+      {data.me?.mode === "viewer" && (
+        <p className="notice">
+          Viewer access lets you explore. Team membership and participation
+          require a roster invitation.
+        </p>
       )}
     </>
   );
@@ -798,7 +1261,7 @@ const emptyProject = {
   attestation: false,
   contributions: [] as Row[],
 };
-function Submission({
+export function Submission({
   data,
   run,
 }: {
@@ -833,6 +1296,16 @@ function Submission({
     setStep(Math.min(3, step + 1));
   };
   const leader = data.team?.leader_id === data.me?.id;
+  const attemptsUsed = Number.isInteger(data.submissionAccess?.attemptsUsed)
+    ? data.submissionAccess.attemptsUsed
+    : data.attempts?.length || 0;
+  const canCommit =
+    leader &&
+    data.me?.canParticipate === true &&
+    data.submissionAccess?.canCommit === true &&
+    !data.submissionAccess?.locked &&
+    attemptsUsed < 3;
+  const saving = useRef(false);
   const set = (name: string, value: unknown) =>
     setProject((p: Row) => ({ ...p, [name]: value }));
   const upload = async (file: File | undefined, kind: string) => {
@@ -853,6 +1326,8 @@ function Submission({
     reader.readAsDataURL(file);
   };
   const save = async (submit = false) => {
+    if (!canCommit || saving.current) return;
+    saving.current = true;
     setBusy(true);
     setError("");
     try {
@@ -872,8 +1347,9 @@ function Submission({
         },
       });
     } catch (e) {
-      setError((e as Error).message);
+      if (!(e instanceof ActionCancelled)) setError((e as Error).message);
     } finally {
+      saving.current = false;
       setBusy(false);
     }
   };
@@ -894,18 +1370,16 @@ function Submission({
     }));
   return (
     <>
-      <header className="page-heading">
-        <p className="eyebrow">Your shared project record</p>
-        <h1>
-          Submission
-          <span className="heading-dot green" />
-        </h1>
-        <p className="muted">
-          Only the team leader can save or commit during the submission window.
-          Eligible committed projects appear automatically on the leaderboard.
+      <p className="muted">
+        The leader must personally be checked in to save or commit during the
+        submission window. Each successful commit is immutable; draft saves and
+        navigation use no attempts.
+      </p>
+      {data.submissionAccess?.canRead !== true ? (
+        <p className="notice">
+          This project is not available for your account.
         </p>
-      </header>
-      {!data.team ? (
+      ) : !data.team ? (
         <Empty>
           Create or join a team in <a href="/teams">Teams</a> first.
         </Empty>
@@ -913,7 +1387,7 @@ function Submission({
         <>
           <div className="status-strip">
             <strong>{data.team.name}</strong>
-            <Pill>{data.attempts?.length || 0}/3 versions committed</Pill>
+            <Pill>{attemptsUsed}/3 versions committed</Pill>
             <Pill
               tone={data.teamReadiness?.allApproved ? "positive" : "waiting"}
             >
@@ -938,12 +1412,10 @@ function Submission({
               void save(false);
             }}
           >
-            <fieldset
-              disabled={!leader || busy || data.submissionAccess?.locked}
-            >
+            <fieldset disabled={!canCommit || busy}>
               <legend>
-                Step {step} of 3 · {3 - (data.attempts?.length || 0)}{" "}
-                submissions remaining
+                Step {step} of 3 · {Math.max(0, 3 - attemptsUsed)} submissions
+                remaining
               </legend>
               <h2 ref={wizardHeading} tabIndex={-1}>
                 {
@@ -952,7 +1424,7 @@ function Submission({
                   ]
                 }
               </h2>
-              <div hidden={step !== 1 && !data.submissionAccess?.locked}>
+              <div hidden={step !== 1 && canCommit}>
                 {[
                   ["projectName", "Project name"],
                   ["problemSolution", "One-line problem and solution"],
@@ -981,7 +1453,7 @@ function Submission({
                   </label>
                 ))}
               </div>
-              <div hidden={step !== 2 && !data.submissionAccess?.locked}>
+              <div hidden={step !== 2 && canCommit}>
                 <div className="media-inputs">
                   {["logo", "banner"].map((kind) => (
                     <label key={kind}>
@@ -1007,7 +1479,7 @@ function Submission({
                   ))}
                 </div>
               </div>
-              <div hidden={step !== 3 && !data.submissionAccess?.locked}>
+              <div hidden={step !== 3 && canCommit}>
                 <h3>Everyone’s contribution</h3>
                 {(data.members || []).map((m: Row) => (
                   <div className="contribution" key={m.id}>
@@ -1060,8 +1532,7 @@ function Submission({
                 </label>
                 <p className="muted">
                   Committing uses one of the team’s three submissions.{" "}
-                  {Math.max(0, 2 - (data.attempts?.length || 0))} will remain
-                  after this commit.
+                  {Math.max(0, 2 - attemptsUsed)} will remain after this commit.
                 </p>
               </div>
               <div className="form-actions">
@@ -1086,12 +1557,7 @@ function Submission({
                   type="button"
                   hidden={step !== 3}
                   className="button secondary"
-                  disabled={
-                    busy ||
-                    !data.submissionAccess?.canAccess ||
-                    data.submissionAccess?.locked ||
-                    (data.attempts?.length || 0) >= 3
-                  }
+                  disabled={busy || !canCommit}
                   onClick={() => {
                     void save(true);
                   }}
@@ -1100,10 +1566,12 @@ function Submission({
                 </button>
               </div>
             </fieldset>
-            {!leader && (
+            {!canCommit && (
               <p className="notice">
-                Only your team leader can edit or commit. This is your team’s
-                saved draft.
+                {data.submissionAccess?.message ||
+                  (attemptsUsed >= 3
+                    ? "All three commits are used. Your project is read-only."
+                    : "Your project is read-only. Editing requires the leader’s personal check-in and an open submission window.")}
               </p>
             )}
             {error && (
@@ -1112,15 +1580,139 @@ function Submission({
               </p>
             )}
           </form>
-          <details className="panel">
-            <summary>Committed version history</summary>
-            {(data.attempts || []).map((v: Row) => (
-              <p key={v.id}>
-                Version {v.attempt} · {new Date(v.created_at).toLocaleString()}
-              </p>
-            ))}
-          </details>
+          <ProjectHistory canRead={data.submissionAccess?.canRead === true} />
         </>
+      )}
+    </>
+  );
+}
+export function ProjectHistory({ canRead }: { canRead: boolean }) {
+  const [open, setOpen] = useState(false),
+    [items, setItems] = useState<Row[]>([]),
+    [busy, setBusy] = useState(false),
+    [error, setError] = useState("");
+  const dialog = useRef<HTMLDialogElement>(null),
+    close = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!open || !canRead) return;
+    const previous = document.activeElement as HTMLElement | null;
+    const controller = new AbortController();
+    dialog.current?.showModal();
+    close.current?.focus();
+    setBusy(true);
+    setError("");
+    setItems([]);
+    void (async () => {
+      try {
+        const response = await fetch("/api/portal?view=%2Fproject-history", {
+          cache: "no-store",
+          credentials: "same-origin",
+          signal: controller.signal,
+        });
+        const body = (await response.json()) as Row;
+        if (!response.ok)
+          throw new Error(body.message || "Project history could not load.");
+        if (!Array.isArray(body.items) || body.items.length > 3)
+          throw new Error("Project history is unavailable. Try again.");
+        if (!controller.signal.aborted) setItems(body.items);
+      } catch (e) {
+        if (!controller.signal.aborted) setError((e as Error).message);
+      } finally {
+        if (!controller.signal.aborted) setBusy(false);
+      }
+    })();
+    return () => {
+      controller.abort();
+      dialog.current?.close();
+      previous?.isConnected && previous.focus();
+    };
+  }, [open, canRead]);
+  if (!canRead) return null;
+  return (
+    <>
+      <button
+        type="button"
+        className="button secondary"
+        onClick={() => setOpen(true)}
+      >
+        <Icon name="history" />
+        View committed history
+      </button>
+      {open && (
+        <dialog
+          className="project-history-dialog"
+          ref={dialog}
+          aria-labelledby="history-title"
+          aria-describedby="history-description"
+          onCancel={(e) => {
+            e.preventDefault();
+            setOpen(false);
+          }}
+        >
+          <div className="section-heading">
+            <h2 id="history-title">Committed history</h2>
+            <button
+              className="button secondary"
+              type="button"
+              ref={close}
+              onClick={() => setOpen(false)}
+            >
+              <Icon name="close" />
+              Close
+            </button>
+          </div>
+          <p id="history-description">
+            Up to three immutable committed versions. History remains available
+            when editing closes.
+          </p>
+          {busy && <p role="status">Loading committed history…</p>}
+          {error && <p role="alert">{error}</p>}
+          {!busy && !error && !items.length && (
+            <p>No successful commits yet.</p>
+          )}
+          {items.map((item) => (
+            <article className="history-version" key={item.id}>
+              <h3>Version {item.attempt}</h3>
+              <p>{new Date(item.created_at).toLocaleString()}</p>
+              <ProjectVersion payload={item.payload} />
+            </article>
+          ))}
+        </dialog>
+      )}
+    </>
+  );
+}
+export function ProjectVersion({ payload }: { payload: Row }) {
+  if (!payload || typeof payload !== "object")
+    return <p>Version contents are unavailable.</p>;
+  return (
+    <>
+      <h4>{payload.projectName}</h4>
+      <p>{payload.problemSolution}</p>
+      <p className="prose">{payload.description}</p>
+      <p className="prose">{payload.tools}</p>
+      {[
+        ["Repository", payload.github],
+        ["Demo", payload.demo],
+      ].map(
+        ([label, url]) =>
+          safeExternalUrl(url) && (
+            <p key={label}>
+              <a
+                className="text-link"
+                href={safeExternalUrl(url)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {label}
+              </a>
+            </p>
+          ),
+      )}
+      {payload.commitSha && (
+        <p>
+          Commit <code>{payload.commitSha}</code>
+        </p>
       )}
     </>
   );
@@ -1169,6 +1761,102 @@ function ProjectBody({ project }: { project: Row }) {
         )}
       </div>
     </>
+  );
+}
+export class UpvoteController {
+  pending = false;
+  async commit(
+    allowed: boolean,
+    mutate: () => Promise<unknown>,
+    optimistic: () => void,
+    rollback: () => void,
+  ) {
+    if (!allowed || this.pending) return false;
+    this.pending = true;
+    optimistic();
+    try {
+      await mutate();
+      return true;
+    } catch (error) {
+      rollback();
+      throw error;
+    } finally {
+      this.pending = false;
+    }
+  }
+}
+export function UpvoteButton({
+  project,
+  canEngage,
+  run,
+}: {
+  project: Row;
+  canEngage: boolean;
+  run: (a: string, d: Row) => Promise<Row>;
+}) {
+  const [voted, setVoted] = useState(project.upvoted === true),
+    [count, setCount] = useState<number | null>(
+      Number.isFinite(project.upvotes) ? project.upvotes : null,
+    ),
+    [busy, setBusy] = useState(false),
+    [error, setError] = useState("");
+  const controller = useRef<UpvoteController | null>(null);
+  if (!controller.current) controller.current = new UpvoteController();
+  useEffect(() => {
+    setVoted(project.upvoted === true);
+    setCount(Number.isFinite(project.upvotes) ? project.upvotes : null);
+  }, [project.id, project.upvoted, project.upvotes]);
+  const allowed = canEngage && project.canUpvote === true && !voted;
+  return (
+    <div className="vote-control">
+      <button
+        type="button"
+        className="upvote-button"
+        aria-label={`${voted ? "Upvoted" : "Upvote"} ${project.projectName}; ${count ?? "unknown"} upvotes`}
+        aria-pressed={voted}
+        aria-busy={busy}
+        disabled={!allowed || busy}
+        title={
+          voted
+            ? "You have upvoted this project"
+            : !allowed
+              ? "Voting is unavailable for your account"
+              : "Upvote this project"
+        }
+        onClick={async () => {
+          setError("");
+          try {
+            await controller.current!.commit(
+              allowed,
+              () => run("upvote-project", { projectId: project.id }),
+              () => {
+                setBusy(true);
+                setVoted(true);
+                if (count !== null) setCount(count + 1);
+              },
+              () => {
+                setVoted(project.upvoted === true);
+                setCount(
+                  Number.isFinite(project.upvotes) ? project.upvotes : null,
+                );
+              },
+            );
+          } catch (e) {
+            if (!(e instanceof ActionCancelled)) setError((e as Error).message);
+          } finally {
+            setBusy(false);
+          }
+        }}
+      >
+        <Icon name="up" size={18} />
+        <span>{count ?? "—"}</span>
+      </button>
+      {error && (
+        <small className="error-message" role="alert">
+          {error}
+        </small>
+      )}
+    </div>
   );
 }
 function Projects({
@@ -1230,31 +1918,23 @@ function Projects({
   const signIn = "/signin-with-chatgpt?return_to=" + encodeURIComponent(path);
   const engagement = (p: Row) => (
     <div className="engagement">
-      <div>
-        {data.me ? (
-          <button
-            className="round-button"
-            aria-label={`Upvote ${p.projectName}`}
-            onClick={() => {
-              void run("upvote-project", { projectId: p.id }).catch(() => {});
-            }}
-          >
-            ↑
-          </button>
-        ) : (
-          <a
-            className="round-button"
-            href={signIn}
-            target="_top"
-            aria-label={`Sign in to upvote ${p.projectName}`}
-          >
-            ↑
-          </a>
-        )}
-        <span>
-          {p.upvotes} upvote{p.upvotes === 1 ? "" : "s"}
-        </span>
-      </div>
+      {data.me ? (
+        <UpvoteButton
+          project={p}
+          canEngage={data.me.canEngage === true}
+          run={run}
+        />
+      ) : (
+        <a
+          className="upvote-button"
+          href={signIn}
+          target="_top"
+          aria-label={`Sign in to upvote ${p.projectName}`}
+        >
+          <Icon name="up" size={18} />
+          <span>{Number.isFinite(p.upvotes) ? p.upvotes : "—"}</span>
+        </a>
+      )}
       <a href={`/projects/${p.slug}#comments`}>
         {p.comments} comment{p.comments === 1 ? "" : "s"}
       </a>
@@ -1284,7 +1964,7 @@ function Projects({
                 <small>{new Date(c.created_at).toLocaleString()}</small>
               </article>
             ))}
-            {data.me ? (
+            {data.me?.canEngage === true ? (
               <Form
                 title="Join the conversation"
                 label="Post comment"
@@ -1302,6 +1982,8 @@ function Projects({
                   required
                 />
               </Form>
+            ) : data.me ? (
+              <p className="muted">Comments are read-only for your account.</p>
             ) : (
               <a className="button" href={signIn} target="_top">
                 Sign in to comment
@@ -2860,9 +3542,12 @@ function Settings({
 const canonical = (p: string) =>
   ({
     "/dashboard/profile": "/profile",
-    "/dashboard/submission": "/submission",
+    "/dashboard/submission": "/dashboard",
+    "/submission": "/dashboard",
+    "/teams": "/discover/teams",
     "/dashboard/team": "/dashboard",
     "/dashboard/credits": "/dashboard",
+    "/credits": "/dashboard",
     "/admin": "/admin/participants",
     "/admin/audit": "/admin/logs",
     "/judge": "/review",
@@ -2917,6 +3602,16 @@ export default function Portal({
   }
   useEffect(() => {
     void load();
+    const refresh = () => {
+      if (document.visibilityState === "visible" && !actionBusy.current)
+        void load();
+    };
+    window.addEventListener("focus", refresh);
+    document.addEventListener("visibilitychange", refresh);
+    return () => {
+      window.removeEventListener("focus", refresh);
+      document.removeEventListener("visibilitychange", refresh);
+    };
   }, [path]);
   useEffect(() => {
     const hide = () => {
@@ -2960,11 +3655,23 @@ export default function Portal({
         : "Check-in operations";
     if (values.position) return `Award ${values.position}`;
     if (values.snapshotId) return `Frozen snapshot ${values.snapshotId}`;
-    if (values.scope)
-      return values.scope === "private"
-        ? "Private venue and directions"
-        : "Public agenda, rules, FAQ and venue";
+    if (values.projectId)
+      return `${record?.projectName || record?.name || values.projectName || values.projectId}${values.versionId ? ` · submission ${values.versionId}` : ""} · ${values.scope === "both" ? "project and submission" : values.scope === "submission" ? "submission" : "project"}`;
+    if (values.open && values.close)
+      return `${ist(values.open)} → ${ist(values.close)}`;
+    if (values.kind === "roster" && values.digest)
+      return `Previewed roster import · digest ${String(values.digest).slice(0, 16)}`;
+    if (values.scope === "private") return "Private venue and directions";
+    if (values.scope === "public") return "Public agenda, rules, FAQ and venue";
     if (values.emails) return (values.emails as string[]).join(", ");
+    if (values.userId)
+      return [
+        record?.name || record?.person_name,
+        record?.email,
+        `ID ${values.userId}`,
+      ]
+        .filter(Boolean)
+        .join(" · ");
     return (
       record?.name ||
       record?.projectName ||
@@ -2983,10 +3690,17 @@ export default function Portal({
     try {
       if (
         !(await gate.current!.ask(
-          confirmationFor(
+          portalConfirmationFor(
             action,
             action === "submit-project"
-              ? { ...values, attemptsUsed: data.attempts?.length || 0 }
+              ? {
+                  ...values,
+                  attemptsUsed: Number.isInteger(
+                    data.submissionAccess?.attemptsUsed,
+                  )
+                    ? data.submissionAccess.attemptsUsed
+                    : data.attempts?.length || 0,
+                }
               : values,
             action === "complete-profile"
               ? data.me?.name || "Your profile"
@@ -3053,6 +3767,7 @@ export default function Portal({
   const nav = admin
     ? [
         ["/admin/participants", "Participants"],
+        ["/discover/teams", "Discover"],
         ["/rules", "Rules"],
         ...(privileged
           ? [
@@ -3071,7 +3786,7 @@ export default function Portal({
           ? [
               ["/dashboard", "Dashboard"],
               ["/rules", "Rules"],
-              ...(data.me.role === "participant" ? [["/teams", "Teams"]] : []),
+              ["/discover/teams", "Discover"],
               ...(reviewer ? [["/review", "Assigned projects"]] : []),
             ]
           : []),
@@ -3152,6 +3867,7 @@ export default function Portal({
           aria-controls="site-navigation"
           onClick={() => setMenu(!menu)}
         >
+          <Icon name={menu ? "close" : "menu"} />
           {menu ? "Close menu" : "Menu"}
         </button>
       </header>
@@ -3173,8 +3889,35 @@ export default function Portal({
             <a
               key={href}
               href={href}
-              aria-current={path === href ? "page" : undefined}
+              aria-current={
+                path === href ||
+                (href === "/discover/teams" &&
+                  path === "/discover/participants")
+                  ? "page"
+                  : undefined
+              }
             >
+              <Icon
+                name={
+                  label === "Home"
+                    ? "home"
+                    : label === "Dashboard"
+                      ? "dashboard"
+                      : label === "Discover" ||
+                          label === "Teams" ||
+                          label === "Participants"
+                        ? "discover"
+                        : label === "Leaderboard"
+                          ? "leaderboard"
+                          : label === "Rules"
+                            ? "rules"
+                            : label === "Settings"
+                              ? "settings"
+                              : label === "Logs"
+                                ? "logs"
+                                : "projects"
+                }
+              />
               {label}
             </a>
           ))}
@@ -3189,13 +3932,20 @@ export default function Portal({
             <>
               <strong>{data.me.name}</strong>
               <small>{data.me.owner ? "Owner" : data.me.role}</small>
-              <a href="/profile" aria-label="Your profile">
-                <DotAvatar
-                  color={data.me.avatarColor}
-                  expression={data.me.avatarExpression}
-                  size={40}
-                />
-              </a>
+              {data.me.mode !== "viewer" && (
+                <a
+                  href="/profile"
+                  aria-label="Your profile"
+                  className="personal-profile-link"
+                >
+                  <DotAvatar
+                    color={data.me.avatarColor}
+                    expression={data.me.avatarExpression}
+                    size={40}
+                  />
+                  <span>Your profile</span>
+                </a>
+              )}
               {(privileged || data.me.role === "volunteer") && (
                 <a href={admin ? "/dashboard" : "/admin/participants"}>
                   {admin ? "Workspace" : "Administration"}
@@ -3311,10 +4061,16 @@ export default function Portal({
         ) : (
           !error && (
             <>
-              {data.profileIncomplete && path !== "/rules" ? (
+              {data.profileIncomplete &&
+              data.me?.mode !== "viewer" &&
+              (path === "/dashboard" || path === "/profile") ? (
                 <Profile data={data} run={run} gated />
               ) : path === "/profile" ? (
-                <Profile data={data} run={run} />
+                data.me?.mode === "viewer" ? (
+                  <Dashboard data={data} run={run} />
+                ) : (
+                  <Profile data={data} run={run} />
+                )
               ) : path === "/rules" ? (
                 <section>
                   <h1>Rules</h1>
@@ -3330,9 +4086,10 @@ export default function Portal({
                   ))}
                 </section>
               ) : path === "/dashboard" ? (
-                <Dashboard data={data} run={clickRun} />
-              ) : path === "/teams" ? (
-                <Teams data={data} run={clickRun} />
+                <Dashboard data={data} run={run} />
+              ) : path === "/discover/teams" ||
+                path === "/discover/participants" ? (
+                <Discover data={data} path={path} run={run} />
               ) : path === "/submission" ? (
                 <Submission
                   key={`${data.project?.revision || 0}-${data.team?.id || "none"}`}
@@ -3340,7 +4097,7 @@ export default function Portal({
                   run={run}
                 />
               ) : path.startsWith("/projects") || path === "/leaderboard" ? (
-                <Projects data={data} path={path} run={clickRun} />
+                <Projects data={data} path={path} run={run} />
               ) : path === "/admin/participants" ? (
                 <AdminParticipants data={data} run={run} />
               ) : path === "/admin/settings" ? (

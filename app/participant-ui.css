@@ -1,0 +1,224 @@
+/* Scoped participant additions; shared design tokens come from style.css. */
+.app-shell .ui-icon {
+  flex: 0 0 auto;
+  vertical-align: middle;
+}
+.app-shell .sidebar nav a,
+.app-shell .personal-profile-link,
+.app-shell .mobile-header button,
+.app-shell .credit-secret button,
+.app-shell .project-history-dialog button,
+.app-shell .upvote-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.app-shell .sidebar nav a {
+  display: flex;
+  min-height: 44px;
+}
+.app-shell .sidebar nav a[aria-current="page"] {
+  font-weight: 700;
+  box-shadow: inset 3px 0 currentColor;
+}
+.app-shell .personal-profile-link {
+  min-height: 48px;
+}
+.app-shell .dashboard-sections,
+.app-shell .discovery-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--line);
+  margin: 24px 0;
+  padding-bottom: 10px;
+}
+.app-shell .dashboard-sections a,
+.app-shell .discovery-tabs a {
+  padding: 12px 18px;
+  border-radius: 10px;
+  min-height: 44px;
+  font-weight: 500;
+}
+.app-shell .discovery-tabs a[aria-current="page"] {
+  color: var(--team-accent);
+  background: var(--team-wash);
+  box-shadow: inset 0 -2px currentColor;
+  font-weight: 700;
+}
+.app-shell .dashboard-section {
+  scroll-margin-top: 24px;
+  margin: 40px 0 56px;
+}
+.app-shell .dashboard-section > h2 {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+.app-shell .dashboard-section .team-workspace > .section-heading h3 {
+  margin-bottom: 0;
+}
+.app-shell .member-details {
+  min-width: 0;
+  display: grid;
+  gap: 5px;
+  flex: 1;
+}
+.app-shell .member-details p {
+  margin: 0;
+}
+.app-shell .member-socials {
+  display: flex;
+  gap: 8px 16px;
+  flex-wrap: wrap;
+  overflow-wrap: anywhere;
+}
+.app-shell .member-list > li > svg,
+.app-shell .directory-list > li > svg {
+  flex: 0 0 auto;
+}
+.app-shell .team-workspace input,
+.app-shell .team-workspace textarea {
+  max-width: 100%;
+}
+.app-shell .project-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px 0;
+}
+.app-shell .public-result {
+  font-weight: 700;
+}
+.app-shell .credit-row {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px;
+  margin: 16px 0;
+  min-width: 0;
+}
+.app-shell .credit-secret {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.app-shell .credit-secret > code {
+  display: block;
+  flex: 1 1 240px;
+  min-width: 0;
+  padding: 14px;
+  background: #f5f6f8;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  user-select: all;
+}
+.app-shell .credit-instructions pre {
+  overflow-x: auto;
+}
+.app-shell .upvote-button {
+  border: 1px solid #bfc4cd;
+  border-radius: 7px;
+  background: #fff;
+  color: #262626;
+  min-width: 62px;
+  min-height: 44px;
+  padding: 10px 12px;
+  justify-content: center;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  text-decoration: none;
+}
+.app-shell .upvote-button[aria-pressed="true"] {
+  background: #087642;
+  border-color: #087642;
+  color: #fff;
+  opacity: 1;
+}
+.app-shell .upvote-button:disabled:not([aria-pressed="true"]) {
+  opacity: 1;
+  color: #626672;
+  background: #f5f6f8;
+}
+.app-shell .upvote-button[aria-busy="true"] {
+  cursor: wait;
+}
+.app-shell .vote-control {
+  display: grid;
+  gap: 6px;
+}
+.app-shell .vote-control [role="alert"] {
+  max-width: 220px;
+}
+.app-shell .project-history-dialog {
+  width: min(760px, calc(100vw - 32px));
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: clamp(18px, 4vw, 32px);
+  color: inherit;
+}
+.app-shell .project-history-dialog::backdrop {
+  background: rgb(0 0 0 / 45%);
+}
+.app-shell .project-history-dialog .section-heading {
+  gap: 16px;
+  align-items: start;
+}
+.app-shell .history-version {
+  padding-top: 24px;
+  margin-top: 24px;
+  border-top: 1px solid var(--line);
+  overflow-wrap: anywhere;
+}
+.app-shell .history-version code {
+  word-break: break-all;
+}
+.app-shell .profile-fields {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.app-shell .profile-fields fieldset {
+  margin-top: 20px;
+}
+.app-shell .required-mark {
+  color: #bd2032;
+}
+.app-shell .profile-flow .avatar-picker label > span {
+  letter-spacing: 3px;
+}
+@media (max-width: 640px) {
+  .app-shell .member-list > li,
+  .app-shell .directory-list > li {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .app-shell .member-details {
+    flex-basis: calc(100% - 70px);
+  }
+  .app-shell .credit-secret > code {
+    flex-basis: 100%;
+  }
+  .app-shell .project-history-dialog .section-heading {
+    flex-wrap: wrap;
+  }
+  .app-shell .dashboard-sections a,
+  .app-shell .discovery-tabs a {
+    flex: 1;
+    text-align: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell .upvote-button,
+  .app-shell .dashboard-sections a,
+  .app-shell .discovery-tabs a {
+    transition: none;
+    animation: none;
+  }
+}
