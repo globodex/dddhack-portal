@@ -1,5 +1,13 @@
 # Sites publication record
 
+## Current authentication repair publication
+
+Version **2**, source **`92a82e22ef32dd79860ab501bbb1edcaafff8178`**, was successfully published on 2026-10-23 as deployment **`appgdep_6adb2a1359f08191bf321bc1b5bd4582`**. Runtime revision **1** contains only `PORTAL_RUNTIME=sites` and `PORTAL_TRUST_SITES_DISPATCH=true`. No credit key was created. Site access remains public and URL unchanged. The Site display title is **DevDay Exchange Community Hackathon: New Delhi**.
+
+The production database has its schema but no event-settings row; the user's subsequent dashboard error is `DATABASE_NOT_INITIALIZED`. A tested read-only inactive draft fallback and corrected HTML title are prepared but not yet published; see `AUTH_REPAIR.md`. Direct HTTP login checks remain blocked by 403 and no interactive browser is available. Evidence: `sites-auth-repair-publication.json` and `sites-auth-repair-live-http.json` under `evidence/`.
+
+## Initial version 1 record
+
 - Title: **DevDay Community Hackathon: New Delhi**
 - Live URL returned by Sites: **https://dddhack-portal.param3021.chatgpt.site**
 - Project: `appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed`

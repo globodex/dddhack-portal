@@ -1,5 +1,23 @@
 # Authentication repair checkpoint
 
+## Published authentication configuration, 2026-10-23
+
+Version 2 is published successfully at <https://dddhack-portal.param3021.chatgpt.site>, source `92a82e22ef32dd79860ab501bbb1edcaafff8178`, deployment `appgdep_6adb2a1359f08191bf321bc1b5bd4582`. Environment revision 1 contains exactly `PORTAL_RUNTIME=sites` and `PORTAL_TRUST_SITES_DISPATCH=true`; no credit key exists. The exact requested Site display title is now **DevDay Exchange Community Hackathon: New Delhi**. The source HTML title correction is included in the follow-up patch below.
+
+The official source helper rebuilt, passed the artifact gate and compiled Worker smoke checks, pushed the exact source and packaged 117 verified files. The approved replacement credential was discarded after use and was never persisted. Direct anonymous sign-in verification returned a Cloudflare-served HTTP 403 and stopped; no redirect was followed or denied route retried. No browser is currently exposed. Native deployment success is verified; interactive sign-in success is not claimed.
+
+## Fresh-database follow-up
+
+After version 2, native production logs show `/api/portal` still returning 503. The user reports `DATABASE_NOT_INITIALIZED` on their signed-in dashboard. Read-only Sites database inspection confirms all 27 expected tables under `DB`, but zero `event_settings` rows. This is missing event bootstrap/configuration, not a missing DB binding or migration schema. `PortalService.view()` called strict `settings()` before every view, including profile and dashboard.
+
+The prepared follow-up uses inactive, unconfirmed draft policy **only for read views** when no settings row exists. It does not persist that fallback, seed users, activate policies, alter data, grant roles or create secrets. Commands retain strict initialization checks; the existing owner-only audited initializer remains explicit. The exact corrected HTML title is included, with no visual redesign.
+
+Typecheck, all 21 unit/D1 tests, official production build/artifact gate and compiled Worker tests pass. The compiled harness deliberately has no credit key and no event-settings row: dashboard/profile 200, anonymous private API 401, participant admin/export 403, judge credit denial, and credit import 503. Unit tests confirm no event-settings row is created by reads and initialization-dependent operations remain blocked.
+
+This follow-up is not yet published. Its Site source push needs another short-lived credential: the one approved for version 2 was used and discarded, and the read-only Site response does not return it for reuse. No additional credential was minted. GitHub commits/pushes remain authorized.
+
+## Historical preparation notes
+
 Local executor: `param302-linux`, checkout `dddhack-portal`, feature branch `feat/devday-exchange-v1`. This checkpoint does not change the public Site's audience, environment, deployment or data.
 
 ## Confirmed cause

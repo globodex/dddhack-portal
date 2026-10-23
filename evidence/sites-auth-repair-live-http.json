@@ -1,0 +1,15 @@
+{
+  "checked_at": "2026-10-23T09:34:51.616856+00:00",
+  "deployment_id": "appgdep_6adb2a1359f08191bf321bc1b5bd4582",
+  "redirects_followed": false,
+  "requests": [
+    {
+      "path": "/signin-with-chatgpt?return_to=%2Fdashboard",
+      "status": 403,
+      "content_type": "text/plain; charset=UTF-8",
+      "server": "cloudflare",
+      "cf_ray": "a4efbf9479d75790-DEL",
+      "body_bytes_observed": 17
+    }
+  ]
+}

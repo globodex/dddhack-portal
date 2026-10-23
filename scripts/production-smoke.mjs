@@ -44,7 +44,7 @@ try {
   assert.equal(landing.status, 200);
   const landingHTML = await landing.text();
   assert.match(landingHTML, /Build what/);
-  assert.match(landingHTML, /DevDay Community Hackathon: New Delhi/);
+  assert.match(landingHTML, /DevDay Exchange Community Hackathon: New Delhi/);
   for (const path of [
     "/dashboard/credits",
     "/admin/permissions",
@@ -108,6 +108,8 @@ try {
         await platform.env.DB.prepare(sql).all();
     }
     await seedLocal(platform.env.DB);
+    // Mirror fresh production: profile/sign-in must work before owner setup.
+    await platform.env.DB.prepare("DELETE FROM event_settings").all();
   } finally {
     await platform.dispose();
   }
@@ -137,6 +139,7 @@ try {
     headers: alice,
   });
   assert.equal(dashboard.status, 200);
+  assert.equal((await worker.fetch("/dashboard", { headers: alice })).status, 200);
   assert.match(dashboard.headers.get("cache-control"), /no-store/);
   const profile = await worker.fetch("/api/portal?view=/dashboard/profile", {
     headers: alice,
@@ -233,9 +236,11 @@ try {
   report.syntheticDispatch = {
     realChatGPTSignInVerified: false,
     creditEncryptionKeyConfigured: false,
+    eventSettingsConfigured: false,
     creditImportWithoutKey: 503,
     anonymousPrivatePage: 302,
     participantProfilePage: 200,
+    participantDashboardBeforeEventInitialization: 200,
     participantPrivateAPI: 200,
     anonymousPrivateAPI: 401,
     participantAdminPage: 403,

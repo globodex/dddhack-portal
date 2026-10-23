@@ -301,6 +301,35 @@ test("fresh hosted schema requires an explicit owner-only, audited draft initial
   db.close();
 });
 
+test("fresh event read views work before explicit initialization and never activate or persist draft settings", async () => {
+  const { db, service } = await setup();
+  try {
+    await db.prepare("DELETE FROM event_settings").all();
+    const publicView = await service("stranger").view("/rules");
+    assert.equal((publicView.policy as { active: boolean }).active, false);
+    const profile = await service("alice").view("/dashboard/profile");
+    assert.equal((profile.me as { id: string }).id, "fake_alice");
+    const adminSetup = await service("owner").view("/admin/settings");
+    assert.deepEqual(
+      (adminSetup.policy as { confirmations: string[] }).confirmations,
+      [],
+    );
+    assert.ok((adminSetup.blockers as string[]).length > 0);
+    await assert.rejects(
+      service("alice").view("/admin/settings"),
+      /OWNER_REQUIRED/,
+    );
+    await assert.rejects(
+      service("owner").settings(),
+      /DATABASE_NOT_INITIALIZED/,
+    );
+    await assert.rejects(service("owner").live(), /DATABASE_NOT_INITIALIZED/);
+    assert.equal((await rows(db, "SELECT * FROM event_settings")).length, 0);
+  } finally {
+    db.close();
+  }
+});
+
 test("slash aliases cannot weaken owner-only settings and permissions reads", async () => {
   const { db, service } = await setup();
   for (const path of [

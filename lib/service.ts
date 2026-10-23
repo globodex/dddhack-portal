@@ -109,11 +109,15 @@ export class PortalService {
     );
     return u;
   }
-  async settings() {
+  async settings(allowUninitializedView = false) {
     const s = (await one<Settings>(
       this.db,
       "SELECT * FROM event_settings WHERE id=1",
     ))!;
+    // Rendering sign-in/profile/admin setup must not require activating or
+    // implicitly initializing an event. Commands retain the default strict path.
+    if (!s && allowUninitializedView)
+      return { active: 0, version: 0, policy: draftPolicy };
     demand(s, 503, "DATABASE_NOT_INITIALIZED");
     return { ...s, policy: policySchema.parse(JSON.parse(s.policy)) };
   }
@@ -1509,7 +1513,7 @@ export class PortalService {
     // Use one permission target for ordinary URL slash aliases as well as API views.
     // In particular, /admin/permissions/ must retain the owner-only requirement.
     path = path.replace(/\/+/g, "/").replace(/\/$/, "") || "/";
-    const s = await this.settings();
+    const s = await this.settings(true);
     const publicPolicy = {
       ideaLock: s.policy.ideaLock,
       membershipFreeze: s.policy.membershipFreeze,

@@ -10,9 +10,11 @@
   "syntheticDispatch": {
     "realChatGPTSignInVerified": false,
     "creditEncryptionKeyConfigured": false,
+    "eventSettingsConfigured": false,
     "creditImportWithoutKey": 503,
     "anonymousPrivatePage": 302,
     "participantProfilePage": 200,
+    "participantDashboardBeforeEventInitialization": 200,
     "participantPrivateAPI": 200,
     "anonymousPrivateAPI": 401,
     "participantAdminPage": 403,

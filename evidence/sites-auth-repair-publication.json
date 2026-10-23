@@ -1,0 +1,81 @@
+{
+  "project_id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed",
+  "title": "DevDay Exchange Community Hackathon: New Delhi",
+  "version": {
+    "id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed~appgver_c518df4972b0819195f5748891c10fdd",
+    "project_id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed",
+    "version_number": 2,
+    "source": {
+      "commit_sha": "92a82e22ef32dd79860ab501bbb1edcaafff8178"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_0000000016fc8230b35fb195ec833f39",
+      "content_hash": "sha256:1c3d0665bfdedcc681f88f7846279bc078af48b58d533f447ccf6251b799eb75",
+      "size_bytes": 2170880,
+      "file_count": 117
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "deployment": {
+    "id": "appgdep_6adb2a1359f08191bf321bc1b5bd4582",
+    "project_id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed",
+    "title": "DevDay Community Hackathon: New Delhi",
+    "version_id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed~appgver_c518df4972b0819195f5748891c10fdd",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://dddhack-portal.param3021.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6ad9ec4bea6c8191b2bb155de7fe00ed",
+    "failure_message": null,
+    "env_set_revision": 1,
+    "updated_at": "2026-10-23T09:34:19.260582+00:00"
+  },
+  "environment": {
+    "project_id": "appgprj_6ad9ec4bea6c8191b2bb155de7fe00ed",
+    "entries": [
+      {
+        "key": "PORTAL_RUNTIME",
+        "value": "sites",
+        "is_secret": false,
+        "type": "envvar"
+      },
+      {
+        "key": "PORTAL_TRUST_SITES_DISPATCH",
+        "value": "true",
+        "is_secret": false,
+        "type": "envvar"
+      }
+    ],
+    "revision": 1,
+    "updated_at": "2026-10-23T09:34:02.211324+00:00"
+  },
+  "credential": {
+    "auth_mode": "http_extra_header",
+    "token_expires_at": "2026-10-23T09:42:39.646Z",
+    "persisted": false,
+    "discarded": true
+  },
+  "verification": {
+    "interactive_sign_in": false,
+    "browser_inventory": {
+      "apps": [],
+      "browsers": []
+    },
+    "log_summary": {
+      "isError": false,
+      "events": [
+        {
+          "timestamp": 1792748088746,
+          "trigger": "GET /api/portal",
+          "request_id": "677975aeb0f27c8a3a99ee4899c1eaae",
+          "status": 503,
+          "outcome": "ok",
+          "script_version": "28f05b7a-e7de-4ab3-a2f3-2d80cd60814a"
+        }
+      ]
+    }
+  }
+}
