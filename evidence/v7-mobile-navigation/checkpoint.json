@@ -31,52 +31,64 @@
     {
       "file": "faq-1440x900.png",
       "sha256": "4bc4cca299df86506325b9509ccbaff29245707d3e3b92ae3c7167c3b8ea6740",
-      "internallyReviewed": true
+      "internallyReviewed": true,
+      "readyForDelivery": false,
+      "note": "Diagnostic only: decorative entrance/offscreen timing; not desktop visual fidelity evidence."
     },
     {
       "file": "faq-390x844.png",
       "sha256": "3b920f97a09cd9804679ccc13665b7b5b329a796454ac425641004058c2aebd8",
-      "internallyReviewed": true
+      "internallyReviewed": true,
+      "readyForDelivery": true
     },
     {
       "file": "hero-1440x900.png",
       "sha256": "e757267d05c7bb8921624deb33247ad4daf790d83e4da2752c3ac7ca7b7a9bda",
-      "internallyReviewed": true
+      "internallyReviewed": true,
+      "readyForDelivery": false,
+      "note": "Diagnostic only: decorative entrance/offscreen timing; not desktop visual fidelity evidence."
     },
     {
       "file": "navigation-admin-390x844.png",
       "sha256": "332e75b5c8db07ea6b8f091126cdca24aebd9f69fcb4f933a8a53f9cbf75024a",
-      "internallyReviewed": true
+      "internallyReviewed": true,
+      "readyForDelivery": true
     },
     {
       "file": "navigation-admin-actual-route-390x844.png",
       "sha256": "454c894b5914af27edcd072bb796b8f61badb197e9c11e5f758615b6045544be",
-      "internallyReviewed": true
+      "internallyReviewed": true,
+      "readyForDelivery": true
     },
     {
       "file": "navigation-anonymous-390x844.png",
       "sha256": "09911522ef10fc6c414e26f412c333b5aa15e6f28b71d62adb39c60e03f27404",
-      "internallyReviewed": true
+      "internallyReviewed": true,
+      "readyForDelivery": true
     },
     {
       "file": "navigation-participant-390x844.png",
       "sha256": "cd13f231bcd74f97580b029c638a374c7d38e6f4d61c23cf71e5e76eae754ad5",
-      "internallyReviewed": true
+      "internallyReviewed": true,
+      "readyForDelivery": true
     },
     {
       "file": "navigation-pending-actual-route-390x844.png",
       "sha256": "55fc08212d390ad61450f5ce673ee4dac49d2268d914c605461e53a69424e930",
-      "internallyReviewed": true
+      "internallyReviewed": true,
+      "readyForDelivery": true
     },
     {
       "file": "rules-390x844.png",
       "sha256": "2dba5e567c1535b8964437d8d0d75bab6b863972232271087831c88efdeb9a82",
-      "internallyReviewed": true
+      "internallyReviewed": true,
+      "readyForDelivery": true
     },
     {
       "file": "venue-390x844.png",
       "sha256": "f509a6b1b44b7ad79efbaf4d1f8b89091281757e0a06af122d72c97f1438e4ed",
-      "internallyReviewed": true
+      "internallyReviewed": true,
+      "readyForDelivery": true
     }
   ],
   "limitations": [
