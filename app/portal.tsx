@@ -242,7 +242,12 @@ export function portalTargetName(data: View, values: Row): string {
     ...(data.reviewers || []),
     ...(data.actions || []),
     ...(data.creditInstructions || []),
-  ].find((r: Row) => r.id === id || r.user_id === id);
+  ].find(
+    (r: Row) =>
+      typeof id === "string" &&
+      id.length > 0 &&
+      (r.id === id || r.user_id === id),
+  );
   if (values.kind === "person" && values.targetId)
     return portalTargetName(data, { userId: values.targetId });
   if (values.minutes && data.policy?.submissionClose)
@@ -4699,14 +4704,6 @@ export default function Portal({
     [errorCode, setErrorCode] = useState(""),
     [message, setMessage] = useState(""),
     [menu, setMenu] = useState(false);
-  const [wideNavigation, setWideNavigation] = useState(false);
-  useEffect(() => {
-    const media = matchMedia("(min-width: 1200px)");
-    const update = () => setWideNavigation(media.matches);
-    update();
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, []);
   const [confirmation, setConfirmation] = useState<Confirmation | null>(null);
   const gate = useRef<ConfirmationGate | null>(null),
     actionBusy = useRef(false),
@@ -4849,7 +4846,6 @@ export default function Portal({
       data.me?.mode !== "viewer");
   const publicBrowse = path.startsWith("/projects") || path === "/leaderboard";
   const workspaceShell = path !== "/" && !publicBrowse && !profileOnboarding;
-  const dashboardDesktop = workspaceShell && wideNavigation;
   const c =
     teamPalettes[(data.team?.palette || "forest") as Palette] ||
     teamPalettes.forest;
@@ -4934,21 +4930,43 @@ export default function Portal({
         </a>
         <button
           className="button secondary"
-          aria-expanded={dashboardDesktop ? !menu : menu}
+          aria-expanded={menu}
           aria-controls="site-navigation"
           onClick={() => setMenu(!menu)}
         >
-          <Icon name={!dashboardDesktop && menu ? "close" : "menu"} />
-          <span className="sr-only">
-            {dashboardDesktop
-              ? menu
-                ? "Show navigation"
-                : "Hide navigation"
-              : menu
-                ? "Close menu"
-                : "Open menu"}
-          </span>
+          <Icon name={menu ? "close" : "menu"} />
+          <span className="sr-only">{menu ? "Close menu" : "Open menu"}</span>
         </button>
+        {data.me && (
+          <a
+            className="header-account"
+            href={
+              privileged ||
+              data.me.role === "volunteer" ||
+              data.me.mode === "viewer"
+                ? "/dashboard"
+                : "/profile"
+            }
+            aria-label={
+              privileged ||
+              data.me.role === "volunteer" ||
+              data.me.mode === "viewer"
+                ? "Your Dashboard"
+                : "Your profile"
+            }
+          >
+            {privileged || data.me.role === "volunteer" ? (
+              <UserRound size={22} aria-hidden="true" />
+            ) : (
+              <DotAvatar
+                color={data.me.avatarColor}
+                expression={data.me.avatarExpression}
+                size={38}
+                decorative
+              />
+            )}
+          </a>
+        )}
       </header>
       <aside className={`sidebar ${menu ? "open" : ""}`}>
         <a className="brand" href="/" aria-label="DevDay Exchange home">

@@ -398,3 +398,45 @@ test("admin credit overview renders metadata counts rather than bogus submission
     /Untitled draft|submissions\/undefined|Submission status|Reveal|ciphertext/,
   );
 });
+
+test("confirmation for a new named entity never borrows an existing unaddressed record", () => {
+  const data = {
+    items: [{ id: "existing", name: "Existing team" }],
+    me: {
+      id: "actor",
+      name: "Actor",
+      email: "actor@portal.test",
+      role: "participant",
+      owner: false,
+    },
+  };
+  assert.equal(
+    portalTargetName(data, { name: "New synthetic team" }),
+    "New synthetic team",
+  );
+  assert.equal(
+    portalTargetName(data, { project: { projectName: "New project" } }),
+    "New project",
+  );
+  assert.equal(portalTargetName(data, { targetId: "unknown" }), "unknown");
+  assert.match(
+    portalTargetName(
+      {
+        items: [
+          {
+            id: "team",
+            members: [
+              {
+                id: "member",
+                name: "Exact member",
+                email: "member@portal.test",
+              },
+            ],
+          },
+        ],
+      },
+      { userId: "member" },
+    ),
+    /^Exact member · member@portal\.test · ID member$/,
+  );
+});

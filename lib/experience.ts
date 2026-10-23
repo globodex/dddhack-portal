@@ -1072,11 +1072,20 @@ export class PortalExperience {
       const me = await this.s.actor(),
         p = await this.project(route.split("/").at(-1)!);
       const kind = await this.canReview(me, p),
-        v = await this.version(p);
+        v = await this.version(p),
+        teamIdentity = await one<{
+          teamName: string;
+          teamPalette: string | null;
+        }>(
+          this.s.db,
+          "SELECT t.name teamName,COALESCE(s.color_key,s.palette) teamPalette FROM teams t LEFT JOIN team_styles s ON s.team_id=t.id WHERE t.id=?",
+          p.team_id,
+        );
       return {
         me,
         project: {
           ...p,
+          ...teamIdentity,
           draft: JSON.parse(p.draft),
           deleted_at: (
             await one<{ updated_at: string }>(

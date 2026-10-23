@@ -784,12 +784,4 @@
     white-space: nowrap;
     border: 0;
   }
-  /* On desktop the existing toggle collapses an already visible sidebar.
-     The root header supplies the matching media-aware ARIA state. */
-  .app-shell.workspace-shell > .sidebar.open {
-    display: none;
-  }
-  .app-shell.workspace-shell:has(> .sidebar.open) > .main {
-    margin-left: 0;
-  }
 }
