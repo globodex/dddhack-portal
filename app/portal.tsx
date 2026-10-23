@@ -4041,12 +4041,17 @@ export default function Portal({
     }
   };
   const { admin, privileged, items: nav } = portalNavigation(path, data.me);
+  const profileOnboarding =
+    (path === "/profile" && data.me?.mode !== "viewer") ||
+    (path === "/dashboard" &&
+      !!data.profileIncomplete &&
+      data.me?.mode !== "viewer");
   const c =
     teamPalettes[(data.team?.palette || "forest") as Palette] ||
     teamPalettes.forest;
   return (
     <div
-      className={`app-shell ${path === "/" ? "public-home-shell" : ""}`}
+      className={`app-shell ${path === "/" ? "public-home-shell" : ""} ${profileOnboarding ? "onboarding-shell" : ""}`.trim()}
       style={{ "--team-accent": c.ink, "--team-wash": c.wash } as CSSProperties}
     >
       {confirmation && (

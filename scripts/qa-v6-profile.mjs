@@ -148,18 +148,18 @@ async function newContext(viewport, options = {}) {
 }
 async function loaded(page) {
   await page.goto(origin + "/profile");
-  await page
-    .getByRole("heading", { name: "Your profile", exact: true })
-    .waitFor();
+  await page.getByRole("heading", { name: "Profile", exact: true }).waitFor();
   await page.evaluate(() => document.fonts.ready);
   assert.equal(await page.locator(".profile-flow").count(), 1);
 }
-async function next(page, title) {
+async function next(page) {
+  const target =
+    Number(await page.locator(".profile-flow").getAttribute("data-step")) + 1;
   await page.getByRole("button", { name: "Next", exact: true }).click();
-  await page.getByRole("heading", { name: title, exact: true }).waitFor();
+  await page.locator(`.profile-flow[data-step="${target}"]`).waitFor();
   assert.equal(
     await page
-      .getByRole("heading", { name: title, exact: true })
+      .getByRole("heading", { name: "Profile", exact: true })
       .evaluate((el) => el === document.activeElement),
     true,
   );
@@ -205,9 +205,43 @@ async function metrics(page, label, { defaultFit = false } = {}) {
     m.documentWidth <= m.viewportWidth + 1,
     `${label}: horizontal overflow ${JSON.stringify(m)}`,
   );
-  assert.ok(
-    m.fields.bottom <= m.footer.y + 1,
-    `${label}: fields overlap actions`,
+  if (m.viewportWidth <= 740) {
+    assert.ok(
+      m.fields.bottom <= m.footer.y + 1,
+      `${label}: fields overlap actions`,
+    );
+  }
+  const overlaps = await page
+    .locator(
+      '.profile-fields input:not([type="radio"]),.profile-fields select,.profile-avatar-choice,.sex-choices label',
+    )
+    .evaluateAll((nodes) => {
+      const action = document
+        .querySelector(".profile-next")
+        .getBoundingClientRect();
+      return nodes
+        .filter((node) => {
+          const r = node.getBoundingClientRect();
+          return (
+            r.width &&
+            r.height &&
+            r.left < action.right - 1 &&
+            r.right > action.left + 1 &&
+            r.top < action.bottom - 1 &&
+            r.bottom > action.top + 1
+          );
+        })
+        .map(
+          (node) =>
+            node.getAttribute("name") ||
+            node.getAttribute("title") ||
+            node.tagName.toLowerCase(),
+        );
+    });
+  assert.deepEqual(
+    overlaps,
+    [],
+    `${label}: primary action obstructs form controls`,
   );
   assert.ok(
     m.toolbar.bottom <= m.fields.y + 1,
@@ -342,7 +376,7 @@ try {
         .getByRole("textbox", { name: "Full name", exact: true })
         .fill("Alice QA");
       await page
-        .getByRole("textbox", { name: /One-line bio/ })
+        .getByRole("textbox", { name: /^Bio/ })
         .fill("Synthetic local profile QA");
       await page
         .getByRole("radio", { name: "Non-binary", exact: true })
@@ -372,7 +406,10 @@ try {
       assert.ok(
         palette.every(
           (p) =>
-            p.width >= 44 && p.height >= 44 && p.swatch >= 18 && p.swatch <= 20,
+            p.width >= 44 &&
+            p.height >= 44 &&
+            p.swatch >= 18 &&
+            p.swatch <= (viewport.width > 740 ? 24 : 20),
         ),
       );
       const rowCount = new Set(palette.map((p) => Math.round(p.y))).size;
@@ -395,7 +432,7 @@ try {
       await metrics(page, `${name} step 1`, { defaultFit: name === "mobile" });
       await shot(page, `${name}-step1-avatar-selected`, viewport);
       await reachable(page, `${name} step 1`);
-      await next(page, "Contact");
+      await next(page);
       await page.getByRole("textbox", { name: /Phone/ }).fill("+12025550100");
       const urls = await fillFiveLinks(page);
       const rows = await page
@@ -442,7 +479,10 @@ try {
         });
         persist();
       }
-      assert.equal(await page.getByText(/Social links.*optional/).count(), 0);
+      assert.equal(
+        await page.getByText(/Social profiles.*optional/).count(),
+        0,
+      );
       if (socialRowsAligned)
         checked(
           `${name}: five social rows align selector, URL and named icon-only trash`,
@@ -463,7 +503,7 @@ try {
         .getByRole("button", { name: "Previous profile step", exact: true })
         .click();
       await page
-        .getByRole("heading", { name: "Your profile", exact: true })
+        .getByRole("heading", { name: "Profile", exact: true })
         .waitFor();
       assert.equal(
         await page
@@ -483,7 +523,7 @@ try {
           .inputValue(),
         "Alice QA",
       );
-      await next(page, "Contact");
+      await next(page);
       assert.deepEqual(
         await page
           .locator(".profile-social-url input")
@@ -506,7 +546,7 @@ try {
         await page.keyboard.press("Escape");
         await shot(page, `${name}-step2-platform-focused`, viewport);
       }
-      await next(page, "About you");
+      await next(page);
       assert.equal(
         await page.locator('select[name="bestDescription"] option').count(),
         7,
@@ -518,7 +558,7 @@ try {
         .getByRole("textbox", { name: "Organization", exact: true })
         .fill("Synthetic QA organization");
       await page
-        .getByRole("textbox", { name: "OpenAI organization ID", exact: true })
+        .getByRole("textbox", { name: "OpenAI org ID", exact: true })
         .fill("");
       await metrics(page, `${name} step 3`, { defaultFit: name === "mobile" });
       await shot(page, `${name}-step3-about`, viewport);
@@ -545,14 +585,14 @@ try {
         .getByRole("textbox", { name: "Full name", exact: true })
         .fill("Alice QA");
       await page
-        .getByRole("textbox", { name: /One-line bio/ })
+        .getByRole("textbox", { name: /^Bio/ })
         .fill("Synthetic local profile QA");
       await page
         .getByRole("radio", { name: "Non-binary", exact: true })
         .check();
-      await next(page, "Contact");
+      await next(page);
       await page.getByRole("textbox", { name: /Phone/ }).fill("+12025550100");
-      await next(page, "About you");
+      await next(page);
       await page
         .locator('select[name="bestDescription"]')
         .selectOption("Independent Developer");
@@ -560,7 +600,7 @@ try {
         .getByRole("textbox", { name: "Organization", exact: true })
         .fill("Synthetic QA organization");
       await page
-        .getByRole("textbox", { name: "OpenAI organization ID", exact: true })
+        .getByRole("textbox", { name: "OpenAI org ID", exact: true })
         .fill("");
       const responsePromise = page.waitForResponse(
         (response) =>

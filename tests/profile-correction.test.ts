@@ -12,6 +12,7 @@ import ProfileFlow, {
 } from "../app/profile-flow";
 import { dotColors, dotExpressions } from "../lib/avatar-contract";
 import { profileDescriptionChoices } from "../lib/profile-contract";
+import Portal from "../app/portal";
 
 const noop = () => {};
 const render = (component: any, props: any) =>
@@ -59,8 +60,8 @@ test("all eight colors and expressions are individually labelled native radios w
     assert.equal((html.match(/name="avatarExpression"/g) || []).length, 8);
     assert.equal((html.match(/checked=""/g) || []).length, 2);
     assert.ok(html.includes(`name="avatarColor" checked="" value="${color}"`));
-    assert.match(html, /<legend>Color<\/legend>/);
-    assert.match(html, /<legend>Expression<\/legend>/);
+    assert.match(html, /<legend class="sr-only">Color<\/legend>/);
+    assert.match(html, /<legend class="sr-only">Expression<\/legend>/);
     assert.match(html, /class="sr-only">Mixed slash/);
     assert.doesNotMatch(html, /profile-avatar-preview|<h2>Your avatar/);
   }
@@ -94,6 +95,40 @@ test("all eight colors and expressions are individually labelled native radios w
       )!
       .props.onChange();
     assert.equal(pickedExpression, value);
+  }
+});
+
+test("multicolor expression previews remain independent from the selected personal color", () => {
+  const colors = [
+    "blue",
+    "green",
+    "purple",
+    "orange",
+    "charcoal",
+    "grey",
+    "coral",
+    "yellow",
+  ];
+  const expected = colors.map(
+    (color) => dotColors[color as keyof typeof dotColors],
+  );
+  for (const color of ["purple", "orange"]) {
+    const html = render(ProfileAvatarPicker, {
+      color,
+      expression: "round",
+      onColor: noop,
+      onExpression: noop,
+    });
+    assert.deepEqual(
+      [...html.matchAll(/<circle[^>]*fill="([^"]+)"/g)].map(
+        (match) => match[1],
+      ),
+      expected,
+    );
+    assert.ok(html.includes(`name="avatarColor" checked="" value="${color}"`));
+    assert.ok(
+      html.includes('name="avatarExpression" checked="" value="round"'),
+    );
   }
 });
 
@@ -171,7 +206,6 @@ test("contact starts with one optional social row; add, select, edit, and remove
 });
 
 test("all profile steps keep one centered title-dot group between equal back spaces", () => {
-  const titles = ["Your profile", "Contact", "About you"];
   for (const step of [1, 2, 3]) {
     let backs = 0;
     const props = {
@@ -187,10 +221,12 @@ test("all profile steps keep one centered title-dot group between equal back spa
     assert.ok(
       html.indexOf('class="profile-progress"') < html.indexOf("<header"),
     );
-    assert.match(
-      html,
-      new RegExp(`<h1 tabindex="-1">${titles[step - 1]}</h1>`),
+    assert.match(html, /<h1 tabindex="-1">Profile<\/h1>/);
+    assert.ok(
+      html.indexOf('class="expressive-heading-dot"') < html.indexOf("<h1"),
     );
+    assert.equal((html.match(/data-active="true"/g) || []).length, 1);
+    assert.ok(html.includes(`<span>${step} of 3</span>`));
     assert.equal(
       (html.match(/class="profile-heading-title"/g) || []).length,
       1,
@@ -217,6 +253,29 @@ test("all profile steps keep one centered title-dot group between equal back spa
         true,
       );
     }
+  }
+});
+
+test("onboarding shell is restricted to profile and incomplete participant dashboard flows", () => {
+  for (const [path, mode, profileIncomplete, expected] of [
+    ["/profile", "participant", false, true],
+    ["/dashboard", "participant", true, true],
+    ["/dashboard", "participant", false, false],
+    ["/profile", "viewer", false, false],
+  ] as const) {
+    const html = render(Portal, {
+      path,
+      initialPublic: {
+        me: {
+          id: "fake_alice",
+          name: "Alice",
+          email: "alice@portal.test",
+          mode,
+        },
+        profileIncomplete,
+      },
+    });
+    assert.equal(/class="app-shell[^\"]*onboarding-shell/.test(html), expected);
   }
 });
 

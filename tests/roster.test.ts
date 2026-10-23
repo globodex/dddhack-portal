@@ -192,7 +192,7 @@ test("new profile requires phone, protects private organization fields and uses 
     assert.ok(
       html.includes("Step 1 of 3") &&
         html.toLowerCase().includes("readonly") &&
-        html.includes("One-line bio") &&
+        html.includes("Bio") &&
         html.includes("Sex"),
     );
     assert.ok(!html.includes("avatar picker") && !html.includes("optional"));

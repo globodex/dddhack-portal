@@ -4,6 +4,7 @@ import { ProfileIcon } from "./profile-icons";
 import { HeadingDot } from "./expressive-heading";
 import { dotColors, dotExpressions } from "../lib/avatar-contract";
 import { useEffect, useRef, useState, type Ref } from "react";
+import { Lock } from "lucide-react";
 import { ActionCancelled } from "../lib/action-confirmation";
 import {
   profileDescriptionChoices,
@@ -71,7 +72,7 @@ export function ProfileDescriptionField({
 }) {
   return (
     <label>
-      What best describes you
+      What best describes you?
       <select
         name="bestDescription"
         value={value}
@@ -128,6 +129,26 @@ const expressionNames: Record<string, string> = {
   "mixed-plus": "Mixed plus",
   "mixed-slash": "Mixed slash",
 };
+const expressionPreviewColors: Record<string, keyof typeof dotColors> = {
+  squeezed: "blue",
+  sleepy: "green",
+  plus: "purple",
+  star: "orange",
+  round: "charcoal",
+  cheerful: "grey",
+  "mixed-plus": "coral",
+  "mixed-slash": "yellow",
+};
+const paletteOrder: (keyof typeof dotColors)[] = [
+  "blue",
+  "green",
+  "purple",
+  "orange",
+  "charcoal",
+  "grey",
+  "coral",
+  "yellow",
+];
 export function ProfileAvatarPicker({
   color,
   expression,
@@ -142,7 +163,7 @@ export function ProfileAvatarPicker({
   return (
     <section className="profile-avatar" aria-label="Your avatar">
       <fieldset className="profile-avatar-options">
-        <legend>Expression</legend>
+        <legend className="sr-only">Expression</legend>
         <div className="profile-expression-grid">
           {Object.keys(dotExpressions).map((value) => (
             <label
@@ -158,7 +179,7 @@ export function ProfileAvatarPicker({
                 onChange={() => onExpression(value)}
               />
               <DotAvatar
-                color={color}
+                color={expressionPreviewColors[value]}
                 expression={value}
                 size={40}
                 decorative
@@ -169,9 +190,9 @@ export function ProfileAvatarPicker({
         </div>
       </fieldset>
       <fieldset className="profile-avatar-options">
-        <legend>Color</legend>
+        <legend className="sr-only">Color</legend>
         <div className="profile-color-grid">
-          {Object.entries(dotColors).map(([value, hex]) => (
+          {paletteOrder.map((value) => (
             <label
               className="profile-avatar-choice"
               key={value}
@@ -186,7 +207,7 @@ export function ProfileAvatarPicker({
               />
               <span
                 className="profile-color-swatch"
-                style={{ backgroundColor: hex }}
+                style={{ backgroundColor: dotColors[value] }}
                 aria-hidden="true"
               />
               <span className="sr-only">
@@ -232,7 +253,7 @@ export function ProfileContactFields({
         />
       </label>
       <fieldset className="profile-social-editor">
-        <legend>Social links</legend>
+        <legend>Social profiles</legend>
         {links.map((link, index) => (
           <div className="profile-social-row" key={index}>
             <label className="profile-platform-select">
@@ -327,10 +348,10 @@ export function ProfileStepHeader({
       <div className="profile-progress" aria-label={`Step ${step} of 3`}>
         <span className="progress-track" aria-hidden="true">
           {[1, 2, 3].map((n) => (
-            <i key={n} data-active={step >= n} />
+            <i key={n} data-active={step === n} />
           ))}
         </span>
-        <span>{step} / 3</span>
+        <span>{step} of 3</span>
       </div>
       <header className="profile-heading">
         {step > 1 ? (
@@ -347,10 +368,10 @@ export function ProfileStepHeader({
           <span className="profile-heading-spacer" aria-hidden="true" />
         )}
         <div className="profile-heading-title">
+          <HeadingDot color={color} expression={expression} size={48} />
           <h1 ref={headingRef} tabIndex={-1}>
-            {step === 1 ? "Your profile" : step === 2 ? "Contact" : "About you"}
+            Profile
           </h1>
-          <HeadingDot color={color} expression={expression} size={40} />
         </div>
         <span className="profile-heading-spacer" aria-hidden="true" />
       </header>
@@ -466,7 +487,10 @@ export default function ProfileFlow({
         }}
       >
         <fieldset disabled={busy} className="profile-fields" tabIndex={0}>
-          <legend className="sr-only">Step {step} of 3</legend>
+          <legend className="sr-only">
+            Step {step} of 3:{" "}
+            {step === 1 ? "Basics" : step === 2 ? "Contact" : "About you"}
+          </legend>
           {step === 1 ? (
             <div className="profile-basics-layout">
               <ProfileAvatarPicker
@@ -488,7 +512,7 @@ export default function ProfileFlow({
                     maxLength={100}
                   />
                 </label>
-                <label>
+                <label className="profile-email-field">
                   Email
                   <input
                     type="email"
@@ -497,10 +521,17 @@ export default function ProfileFlow({
                     readOnly
                     autoComplete="email"
                   />
+                  <Lock
+                    className="profile-email-lock"
+                    size={18}
+                    strokeWidth={1.8}
+                    aria-hidden="true"
+                    focusable="false"
+                  />
                 </label>
                 <label>
                   <span>
-                    One-line bio{" "}
+                    Bio{" "}
                     <span className="required-mark" aria-hidden="true">
                       *
                     </span>
@@ -558,7 +589,7 @@ export default function ProfileFlow({
                 />
               </label>
               <label>
-                OpenAI organization ID
+                OpenAI org ID
                 <input
                   value={orgId}
                   maxLength={200}
@@ -571,7 +602,7 @@ export default function ProfileFlow({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Find ID <ProfileIcon name="external" />
+                <ProfileIcon name="external" /> Find organization ID
               </a>
             </div>
           )}
@@ -580,7 +611,7 @@ export default function ProfileFlow({
           {error && <p role="alert">{error}</p>}
           <button className="button profile-next" disabled={busy}>
             <span>{busy ? "Saving…" : step === 3 ? "Save" : "Next"}</span>
-            {step < 3 && <ProfileIcon name="next" />}
+            <ProfileIcon name="next" />
           </button>
         </div>
       </form>
