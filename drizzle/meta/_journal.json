@@ -134,6 +134,20 @@
       "when": 1792767262713,
       "tag": "0018_modern_wrecking_crew",
       "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "6",
+      "when": 1792769041920,
+      "tag": "0019_personal_checkin",
+      "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "6",
+      "when": 1792769148007,
+      "tag": "0020_hot_fat_cobra",
+      "breakpoints": true
     }
   ]
 }

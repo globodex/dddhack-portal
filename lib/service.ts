@@ -1,4 +1,7 @@
-import {teamPhone} from "./phone";
+import { rosterImport } from "./roster-import";
+import { reconcileAbsences } from "./absence";
+import { notRemoved } from "./record-removal";
+import { teamPhone } from "./phone";
 import { requireRosterMember, normalizeRosterEmail } from "./roster";
 import { commitSha } from "./repository-evidence";
 import { attendancePredicate, personStatus } from "./portal-status";
@@ -107,6 +110,7 @@ export class PortalService {
         i.id,
       ],
     ]);
+    await reconcileAbsences(this, i.id);
     const u = (await one<User>(
       this.db,
       "SELECT id,email,name,role FROM users WHERE id=?",
@@ -117,17 +121,49 @@ export class PortalService {
       display_name: string | null;
       avatar_color: string | null;
       avatar_expression: string | null;
-      completed_at:string|null;gender_confirmed:number|null;bio:string;gender:string;phone:string|null;
+      completed_at: string | null;
+      gender_confirmed: number | null;
+      bio: string;
+      gender: string;
+      phone: string | null;
     }>(
       this.db,
       "SELECT COALESCE(r.role,u.role) role,p.display_name,pd.avatar_color,pd.avatar_expression,p.completed_at,p.gender_confirmed,pr.bio,pr.gender,pd.phone FROM users u LEFT JOIN portal_roles r ON r.user_id=u.id LEFT JOIN participant_profiles p ON p.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN profiles pr ON pr.user_id=u.id WHERE u.id=?",
       i.id,
     );
-    const role=extra?.role||u.role,owner=isOwner(i),rostered=!!await one(this.db,"SELECT email FROM luma_roster WHERE email=?",i.email),ready=!!extra?.completed_at&&extra.gender_confirmed===1&&!!extra.bio?.trim()&&["man","woman","non-binary"].includes(extra.gender)&&!!teamPhone(extra.phone||"").phone;
+    const deactivated = !!(await one(
+      this.db,
+      "SELECT target_id FROM record_removals WHERE kind='participant' AND target_id=? AND active=1",
+      u.id,
+    ));
+    const role = extra?.role || u.role,
+      owner = isOwner(i),
+      rostered = !!(await one(
+        this.db,
+        "SELECT email FROM luma_roster WHERE email=?",
+        i.email,
+      )),
+      ready =
+        !!extra?.completed_at &&
+        extra.gender_confirmed === 1 &&
+        !!extra.bio?.trim() &&
+        ["man", "woman", "non-binary"].includes(extra.gender) &&
+        !!teamPhone(extra.phone || "").phone;
     return {
       ...u,
-      mode:owner||role!=="participant"?"staff":rostered?"participant":"viewer",rostered,
-      canEngage:owner||role==="admin"||(rostered&&ready),canParticipate:role==="participant"&&(rostered||owner)&&ready,
+      mode: deactivated
+        ? "viewer"
+        : owner || role !== "participant"
+          ? "staff"
+          : rostered
+            ? "participant"
+            : "viewer",
+      rostered: rostered && !deactivated,
+      deactivated,
+      canEngage:
+        !deactivated && (owner || role === "admin" || (rostered && ready)),
+      canParticipate:
+        !deactivated && role === "participant" && (rostered || owner) && ready,
       role: extra?.role || u.role,
       name: extra?.display_name || u.name,
       owner: isOwner(i),
@@ -208,7 +244,7 @@ export class PortalService {
   async team(userId: string) {
     return one<Team>(
       this.db,
-      "SELECT t.* FROM teams t JOIN memberships m ON m.team_id=t.id WHERE m.user_id=?",
+      `SELECT t.* FROM teams t JOIN memberships m ON m.team_id=t.id WHERE m.user_id=? AND ${notRemoved("team", "t.id")} AND ${notRemoved("participant", "m.user_id")}`,
       userId,
     );
   }
@@ -273,9 +309,21 @@ export class PortalService {
   ): Promise<Record<string, unknown>> {
     const actor = await this.actor();
     await this.throttle(actor.id);
-    demand(actor.mode!=="viewer",403,"VIEWER_READ_ONLY","Viewer mode is read-only. Use your Luma-registered email or ask an admin to add it.");
-    if(["upvote-project","comment-project","vote","feedback"].includes(action)&&!actor.owner&&actor.role!=="admin"){
-      await requireRosterMember(this,actor);await new PortalExperience(this).completed(actor);
+    demand(
+      actor.mode !== "viewer",
+      403,
+      "VIEWER_READ_ONLY",
+      "Viewer mode is read-only. Use your Luma-registered email or ask an admin to add it.",
+    );
+    if (
+      ["upvote-project", "comment-project", "vote", "feedback"].includes(
+        action,
+      ) &&
+      !actor.owner &&
+      actor.role !== "admin"
+    ) {
+      await requireRosterMember(this, actor);
+      await new PortalExperience(this).completed(actor);
     }
     if (
       [
@@ -822,6 +870,8 @@ export class PortalService {
       }
       case "preview-import":
       case "commit-import": {
+        if ((data as { kind?: string })?.kind === "roster")
+          return rosterImport(this, action, data);
         await this.staff();
         const d = z
           .object({

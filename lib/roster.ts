@@ -8,6 +8,12 @@ export async function requireRosterMember(
   actor?: Awaited<ReturnType<PortalService["actor"]>>,
 ) {
   const me = actor || (await s.actor());
+  demand(
+    !me.deactivated,
+    403,
+    "PARTICIPANT_REMOVED",
+    "Your participant access has been removed. Contact an organizer.",
+  );
   // Only existing, server-authorized owner/admin access may bootstrap the roster.
   if (me.owner || me.role === "admin")
     return { matched: true, bootstrap: true };

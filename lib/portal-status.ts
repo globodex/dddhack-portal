@@ -15,7 +15,7 @@ export const teamStatuses = [
   "Submitted",
 ] as const;
 export const attendancePredicate = (id: string) =>
-  `EXISTS(SELECT 1 FROM users attendance_user WHERE attendance_user.id=${id} AND EXISTS(SELECT 1 FROM registrations ar WHERE ar.email=attendance_user.email AND ar.status='approved') AND COALESCE((SELECT ps.status FROM participant_status_overrides ps WHERE ps.user_id=${id}),'Checked in')='Checked in' AND (EXISTS(SELECT 1 FROM check_ins ci WHERE ci.user_id=${id}) OR EXISTS(SELECT 1 FROM manual_checkins mc WHERE mc.user_id=${id} AND mc.verified_email=lower(attendance_user.email))))`;
+  `EXISTS(SELECT 1 FROM users attendance_user WHERE attendance_user.id=${id} AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=attendance_user.id AND rr.active=1) AND EXISTS(SELECT 1 FROM registrations ar WHERE ar.email=attendance_user.email AND ar.status='approved') AND COALESCE((SELECT ps.status FROM participant_status_overrides ps WHERE ps.user_id=${id}),'Checked in')='Checked in' AND (EXISTS(SELECT 1 FROM check_ins ci WHERE ci.user_id=${id}) OR EXISTS(SELECT 1 FROM manual_checkins mc WHERE mc.user_id=${id} AND mc.verified_email=lower(attendance_user.email))))`;
 export async function personStatus(s: PortalService, userId: string) {
   const user = await one<{
     approval: string;
@@ -23,7 +23,7 @@ export async function personStatus(s: PortalService, userId: string) {
     email: string;
   }>(
     s.db,
-    "SELECT COALESCE(r.status,'pending') approval,o.status,u.email FROM users u LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_status_overrides o ON o.user_id=u.id WHERE u.id=?",
+    "SELECT COALESCE(r.status,'pending') approval,CASE WHEN a.user_id IS NOT NULL AND (o.updated_at IS NULL OR o.updated_at<a.reconciled_at) THEN 'Absent' ELSE o.status END status,u.email FROM users u LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_status_overrides o ON o.user_id=u.id LEFT JOIN automatic_absences a ON a.user_id=u.id WHERE u.id=?",
     userId,
   );
   demand(user, 404, "USER_NOT_FOUND");

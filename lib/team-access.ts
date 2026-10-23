@@ -31,10 +31,27 @@ export async function submissionAccess(s: PortalService, teamId?: string) {
   const checkedInMembers = attendance?.n || 0,
     attemptsUsed = attempts?.n || 0,
     going = teamId ? await teamGoing(s, teamId) : false;
+  const actor = s.identity ? await s.actor() : undefined;
+  const leader = teamId
+    ? await one<{ leader_id: string }>(
+        s.db,
+        "SELECT leader_id FROM teams WHERE id=?",
+        teamId,
+      )
+    : undefined;
+  const personallyCheckedIn = actor
+    ? !!(await personStatus(s, actor.id)).checkedIn
+    : false;
+  const isLeader = !!actor && leader?.leader_id === actor.id;
   const canAccess = !!teamId && checkedInMembers > 0 && operation.allowed;
+  const canCommit =
+    canAccess && isLeader && personallyCheckedIn && attemptsUsed < 3;
   return {
     canAccess,
-    canRead:!!teamId&&checkedInMembers>0,
+    canCommit,
+    isLeader,
+    personallyCheckedIn,
+    canRead: !!teamId && checkedInMembers > 0,
     checkedInMembers,
     going,
     attemptsUsed,
@@ -47,14 +64,19 @@ export async function submissionAccess(s: PortalService, teamId?: string) {
         ? "One team member must check in before submissions unlock."
         : !operation.allowed
           ? operation.message
-          : attemptsUsed >= 3
-            ? "Three submissions committed. This project is now read-only."
-            : "Submission is available.",
+          : !isLeader
+            ? "Only the team leader can submit a project."
+            : !personallyCheckedIn
+              ? "The team leader must personally check in before submitting."
+              : attemptsUsed >= 3
+                ? "Three submissions committed. This project is now read-only."
+                : "Submission is available.",
   };
 }
 export async function requireSubmissionAccess(
   s: PortalService,
   teamId: string,
+  readOnly = false,
 ) {
   const state = await submissionAccess(s, teamId);
 
@@ -63,6 +85,14 @@ export async function requireSubmissionAccess(
     403,
     "TEAM_CHECKIN_REQUIRED",
     "TEAM_CHECKIN_REQUIRED: " + state.message,
+  );
+  if (readOnly) return state;
+  demand(state.isLeader, 403, "LEADER_REQUIRED");
+  demand(
+    state.personallyCheckedIn,
+    403,
+    "LEADER_CHECKIN_REQUIRED",
+    "The submitting leader must personally be checked in.",
   );
   await s.operational("submissions");
   demand(

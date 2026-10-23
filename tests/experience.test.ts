@@ -1,7 +1,7 @@
 import { attend } from "./helpers";
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { mkdtempSync, readFileSync, readdirSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { setup, activate } from "./helpers";
@@ -90,7 +90,7 @@ test("additive local upgrade preserves existing users and is idempotent", () => 
           .prepare("SELECT count(*) n FROM local_schema_migrations")
           .get() as Row
       ).n,
-      15,
+      readdirSync("db/migrations").filter((n) => n.endsWith(".sql")).length,
     );
     assert.ok(
       db.raw

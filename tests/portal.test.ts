@@ -262,12 +262,13 @@ test("CSV previews, duplicate handling, formula protection and AES-GCM integrity
   assert.equal(await unseal(value, LOCAL_CREDIT_KEY), "FAKE");
   await assert.rejects(unseal(value + "x", LOCAL_CREDIT_KEY));
   const { db, service } = await setup();
-  await assert.rejects(
-    service("admin").command("preview-import", {
-      kind: "roster",
-      csv: "email\nA@example.test\na@example.test",
-    }),
-    /CSV_DUPLICATES/,
+  const duplicatePreview = await service("admin").command("preview-import", {
+    kind: "roster",
+    csv: "email\nA@example.test\na@example.test",
+  });
+  assert.equal(
+    (duplicatePreview.counts as { duplicates: number }).duplicates,
+    1,
   );
   await assert.rejects(
     service("admin").command("commit-import", {

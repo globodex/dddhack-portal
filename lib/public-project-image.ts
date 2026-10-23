@@ -11,7 +11,7 @@ export async function publicProjectImage(
   demand(kind === "logo" || kind === "banner", 404, "IMAGE_NOT_FOUND");
   const row = await one<{ payload: string }>(
     db,
-    "SELECT v.payload FROM projects p JOIN submission_versions v ON v.id=p.published_version_id AND v.team_id=p.team_id WHERE p.id=? AND p.published_version_id=? AND COALESCE((SELECT e.status FROM project_eligibility e WHERE e.project_id=p.id AND e.version_id=v.id),(SELECT r.eligibility FROM reviews r WHERE r.team_id=p.team_id AND r.version_id=v.id),'needs_review')='eligible'",
+    "SELECT v.payload FROM projects p JOIN submission_versions v ON v.id=p.published_version_id AND v.team_id=p.team_id WHERE NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.active=1 AND ((rr.kind='project' AND rr.target_id=p.id) OR (rr.kind='submission' AND rr.target_id=v.id))) AND p.id=? AND p.published_version_id=? AND COALESCE((SELECT e.status FROM project_eligibility e WHERE e.project_id=p.id AND e.version_id=v.id),(SELECT r.eligibility FROM reviews r WHERE r.team_id=p.team_id AND r.version_id=v.id),'needs_review')='eligible'",
     id,
     version || "",
   );
@@ -23,7 +23,7 @@ export async function publicProjectImage(
   return new Response(bytes, {
     headers: {
       "Content-Type": header.includes("image/png") ? "image/png" : "image/jpeg",
-      "Cache-Control": "public, max-age=300",
+      "Cache-Control": "private, no-store",
       "X-Content-Type-Options": "nosniff",
       "Content-Security-Policy": "default-src 'none'; sandbox",
     },

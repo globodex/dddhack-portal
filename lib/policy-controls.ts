@@ -12,6 +12,117 @@ export async function policyControl(
   input: unknown,
 ) {
   if (
+    ["preview-submission-window", "publish-submission-window"].includes(action)
+  ) {
+    const actor = await s.staff(true);
+    const d = z
+      .object({
+        open: z.string().datetime(),
+        close: z.string().datetime(),
+        version: z.number().int().min(0).optional(),
+        token: z.string().optional(),
+        reason: z.string().trim().min(5).max(1000).optional(),
+        confirmation: z.literal("CHANGE_SUBMISSION_WINDOW").optional(),
+      })
+      .strict()
+      .parse(input);
+    const open = new Date(d.open).toISOString(),
+      close = new Date(d.close).toISOString();
+    demand(open < close, 422, "INVALID_SUBMISSION_WINDOW");
+    const current = await s.settings(true);
+    const token = await sha256(
+      JSON.stringify({
+        actor: actor.id,
+        version: current.version,
+        open,
+        close,
+      }),
+    );
+    const warnings = [
+      "These are real portal dates. Testing consumes real submission attempts; removing records does not reset the three-attempt limit.",
+      "Repository creation and first commit must still be strictly after 1 November 2026, 08:00 IST; changing this window does not change that rule.",
+      ...(current.policy.judgingClose && close >= current.policy.judgingClose
+        ? [
+            "The close reaches judging close; scoring remains blocked until judging dates are reviewed.",
+          ]
+        : []),
+    ];
+    if (action.startsWith("preview-"))
+      return {
+        token,
+        version: current.version,
+        open,
+        close,
+        openIST: ist(open),
+        closeIST: ist(close),
+        warnings,
+        message: "Preview only. No dates changed.",
+      };
+    demand(
+      d.token === token &&
+        d.version === current.version &&
+        d.confirmation === "CHANGE_SUBMISSION_WINDOW" &&
+        d.reason,
+      422,
+      "POLICY_PREVIEW_CONFIRMATION_REQUIRED",
+    );
+    demand(
+      !(await one(s.db, "SELECT id FROM result_snapshots LIMIT 1")),
+      409,
+      "RESULTS_FROZEN",
+    );
+    const next = policySchema.parse({
+      ...current.policy,
+      submissionOpen: open,
+      submissionClose: close,
+    });
+    const serialized = JSON.stringify(next);
+    await s.mutate(
+      actor.id,
+      action,
+      "event-policy",
+      [
+        ...(current.version === 0
+          ? [
+              [
+                "INSERT INTO event_settings(id,policy,active,version) SELECT 1,?,0,1 WHERE NOT EXISTS(SELECT 1 FROM event_settings) AND NOT EXISTS(SELECT 1 FROM result_snapshots)",
+                serialized,
+              ] as import("./db").SQL,
+            ]
+          : [
+              [
+                "UPDATE event_settings SET policy=?,version=version+1 WHERE id=1 AND version=? AND NOT EXISTS(SELECT 1 FROM result_snapshots)",
+                serialized,
+                current.version,
+              ] as import("./db").SQL,
+            ]),
+        ...assertPreviousWrite(),
+        [
+          "INSERT INTO event_policy_history VALUES(?,?,?,?,?)",
+          current.version + 1,
+          serialized,
+          actor.id,
+          s.now(),
+          d.reason,
+        ],
+      ],
+      {
+        version: current.version + 1,
+        before: {
+          open: current.policy.submissionOpen,
+          close: current.policy.submissionClose,
+        },
+        after: { open, close },
+        repositoryCutoffUnchanged: true,
+      },
+      d.reason,
+    );
+    return {
+      message: `Submission window updated: ${ist(open)} – ${ist(close)}.`,
+      version: current.version + 1,
+    };
+  }
+  if (
     ![
       "preview-submission-extension",
       "publish-submission-extension",

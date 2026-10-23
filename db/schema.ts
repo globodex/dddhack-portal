@@ -529,7 +529,7 @@ export const team_styles = sqliteTable("team_styles", {
     .primaryKey()
     .references(() => teams.id),
   avatar: text("avatar").notNull().default("orbit"),
-  color_key:text("color_key"),
+  color_key: text("color_key"),
   palette: text("palette").notNull().default("forest"),
 });
 export const projects = sqliteTable(
@@ -943,4 +943,42 @@ export const profile_details = sqliteTable("profile_details", {
   best_description: text("best_description").notNull().default(""),
   organization: text("organization").notNull().default(""),
   openai_org_id: text("openai_org_id").notNull().default(""),
+});
+
+// Recoverable removals keep all immutable project/attendance records intact.
+export const record_removals = sqliteTable(
+  "record_removals",
+  {
+    kind: text("kind").notNull(),
+    target_id: text("target_id").notNull(),
+    active: integer("active").notNull().default(1),
+    reason: text("reason").notNull(),
+    actor_id: text("actor_id")
+      .notNull()
+      .references(() => users.id),
+    updated_at: text("updated_at").notNull(),
+    snapshot: text("snapshot").notNull().default("{}"),
+  },
+  (t) => [
+    primaryKey({ columns: [t.kind, t.target_id] }),
+    check(
+      "removal_kind",
+      sql`${t.kind} IN ('participant','team','project','submission')`,
+    ),
+    check("removal_active", sql`${t.active} IN (0,1)`),
+  ],
+);
+export const automatic_absences = sqliteTable("automatic_absences", {
+  user_id: text("user_id")
+    .primaryKey()
+    .references(() => users.id),
+  reconciled_at: text("reconciled_at").notNull(),
+  cutoff: text("cutoff").notNull(),
+});
+export const roster_prefills = sqliteTable("roster_prefills", {
+  email: text("email")
+    .primaryKey()
+    .references(() => luma_roster.email),
+  payload: text("payload").notNull(),
+  imported_at: text("imported_at").notNull(),
 });

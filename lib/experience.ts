@@ -1,8 +1,14 @@
+import { removalCommand, notRemoved } from "./record-removal";
 import {
   profileDescriptionChoices,
   profilePhonePattern,
 } from "./profile-contract";
-import { dotColors, dotExpressions, teamColorKeys,legacyTeamPalette } from "./avatar-contract";
+import {
+  dotColors,
+  dotExpressions,
+  teamColorKeys,
+  legacyTeamPalette,
+} from "./avatar-contract";
 import { normalizePhone, teamPhone } from "./phone";
 import { participantRules } from "./participant-rules";
 import {
@@ -121,7 +127,7 @@ export class PortalExperience {
   async team(userId: string) {
     return one<Team>(
       this.s.db,
-      "SELECT t.*,'initials' avatar,COALESCE(s.color_key,s.palette) palette FROM memberships m JOIN teams t ON t.id=m.team_id LEFT JOIN team_styles s ON s.team_id=t.id WHERE m.user_id=?",
+      `SELECT t.*,'initials' avatar,COALESCE(s.color_key,s.palette) palette FROM memberships m JOIN teams t ON t.id=m.team_id LEFT JOIN team_styles s ON s.team_id=t.id WHERE m.user_id=? AND ${notRemoved("team", "t.id")} AND ${notRemoved("participant", "m.user_id")}`,
       userId,
     );
   }
@@ -157,12 +163,27 @@ export class PortalExperience {
       organization: string;
       openai_org_id: string;
     }>(this.s.db, "SELECT * FROM profile_details WHERE user_id=?", actor.id);
+    const imported = await one<{ payload: string }>(
+      this.s.db,
+      "SELECT payload FROM roster_prefills WHERE email=?",
+      actor.email,
+    );
+    const prefill = imported ? JSON.parse(imported.payload) : {};
     return {
       ...p,
       ...details,
+      bio: p?.bio || prefill.bio || "",
+      gender: p?.gender_confirmed ? p.gender : prefill.gender || p?.gender,
+      gender_prefilled: !!prefill.gender,
+      phone: details?.phone || prefill.phone || "",
+      best_description:
+        details?.best_description || prefill.bestDescription || "",
+      organization: details?.organization || prefill.organization || "",
+      openai_org_id: details?.openai_org_id || prefill.openaiOrgId || "",
+      socialLinks: prefill.socialLinks || [],
       descriptionChoices: profileDescriptionChoices,
       socials: JSON.parse(p?.socials || "[]"),
-      display_name: p?.display_name || actor.name,
+      display_name: p?.display_name || prefill.displayName || actor.name,
       skills: p?.skills || "",
       complete:
         !!p?.completed_at &&
@@ -222,6 +243,15 @@ export class PortalExperience {
     );
   }
   async eligibility(p: Project) {
+    if (
+      await one(
+        this.s.db,
+        "SELECT target_id FROM record_removals WHERE active=1 AND ((kind='project' AND target_id=?) OR (kind='submission' AND target_id=?))",
+        p.id,
+        p.published_version_id || "",
+      )
+    )
+      return { status: "removed", versionId: p.published_version_id };
     const v = await this.version(p);
     if (!v) return { status: "not_submitted", versionId: null };
     const e = await one<{ status: string; reason: string }>(
@@ -334,6 +364,15 @@ export class PortalExperience {
           : readiness(0, 0);
         return {
           ...item,
+          deactivated_at: item.id
+            ? (
+                await one<{ updated_at: string }>(
+                  this.s.db,
+                  "SELECT updated_at FROM record_removals WHERE kind='participant' AND target_id=? AND active=1",
+                  item.id,
+                )
+              )?.updated_at
+            : undefined,
           teamReadiness,
           status: individual?.status || "Registered",
           teamStatus: progress?.status,
@@ -393,7 +432,7 @@ export class PortalExperience {
     const members = team
       ? await rows(
           this.s.db,
-          "SELECT u.id,COALESCE(x.display_name,u.name) name,CASE WHEN u.id=t.leader_id THEN 'leader' ELSE 'member' END role,COALESCE(r.status,'pending') approval,pd.phone FROM memberships m JOIN users u ON u.id=m.user_id JOIN teams t ON t.id=m.team_id LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id WHERE t.id=? AND EXISTS(SELECT 1 FROM memberships viewer WHERE viewer.user_id=? AND viewer.team_id=t.id)",
+          "SELECT u.id,COALESCE(x.display_name,u.name) name,CASE WHEN u.id=t.leader_id THEN 'leader' ELSE 'member' END role,COALESCE(r.status,'pending') approval,pd.phone,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression,p.bio,p.socials,p.public FROM memberships m JOIN users u ON u.id=m.user_id JOIN teams t ON t.id=m.team_id LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN profiles p ON p.user_id=u.id WHERE t.id=? AND EXISTS(SELECT 1 FROM memberships viewer WHERE viewer.user_id=? AND viewer.team_id=t.id) AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=u.id AND rr.active=1)",
           team.id,
           actor.id,
         )
@@ -405,13 +444,14 @@ export class PortalExperience {
           team.id,
         )
       : undefined;
-    const feedback = project && access.canRead
-      ? await rows(
-          this.s.db,
-          "SELECT h.id,h.body,h.kind,h.created_at,h.version_id,u.name author FROM project_review_history h JOIN users u ON u.id=h.author_id WHERE h.project_id=? ORDER BY h.created_at DESC",
-          project.id,
-        )
-      : [];
+    const feedback =
+      project && access.canRead
+        ? await rows(
+            this.s.db,
+            "SELECT h.id,h.body,h.kind,h.created_at,h.version_id,u.name author FROM project_review_history h JOIN users u ON u.id=h.author_id WHERE h.project_id=? ORDER BY h.created_at DESC",
+            project.id,
+          )
+        : [];
     // Feedback has no numeric rating, evaluation report or hidden score fields.
     const venue = ready.allApproved
       ? await one<{ published: string | null }>(
@@ -429,8 +469,22 @@ export class PortalExperience {
             actor.email.toLowerCase(),
           )
         : [];
-    const projectResult=project ? (await publicScores(this.s)).scores.find(r=>r.projectId===project.id&&r.versionId===project.published_version_id):undefined;
-    const projectUpvotes=project ? (await one<{n:number}>(this.s.db,"SELECT count(*) n FROM project_upvotes WHERE project_id=?",project.id))?.n||0:0;
+    const projectResult = project
+      ? (await publicScores(this.s)).scores.find(
+          (r) =>
+            r.projectId === project.id &&
+            r.versionId === project.published_version_id,
+        )
+      : undefined;
+    const projectUpvotes = project
+      ? (
+          await one<{ n: number }>(
+            this.s.db,
+            "SELECT count(*) n FROM project_upvotes WHERE project_id=?",
+            project.id,
+          )
+        )?.n || 0
+      : 0;
     const operational = setupReadiness(
       await this.s.settings(true),
       this.s.now(),
@@ -446,7 +500,7 @@ export class PortalExperience {
         ? { ...team, locked: !!lock, lockedAt: lock?.locked_at }
         : undefined,
       submissionAccess: access,
-      projectStats:{upvotes:projectUpvotes,result:projectResult},
+      projectStats: { upvotes: projectUpvotes, result: projectResult },
       submissionProgress: {
         status: access.progress,
         attemptsUsed: access.attemptsUsed,
@@ -466,10 +520,16 @@ export class PortalExperience {
         : undefined,
       ideaLocked:
         !!lock || this.s.now() >= (await this.s.settings(true)).policy.ideaLock,
-      members: members.map(({ phone, ...m }) => ({
-        ...m,
-        ...(contacts ? teamPhone(String(phone || "")) : {}),
-      })),
+      members: members.map(
+        ({ phone, public: visible, socials, bio, ...m }) => ({
+          ...m,
+          profileUrl: "/discover/participants#person-" + String(m.id),
+          ...(visible
+            ? { bio, socials: JSON.parse(String(socials || "[]")) }
+            : { socials: [] }),
+          ...(contacts ? teamPhone(String(phone || "")) : {}),
+        }),
+      ),
       attempts,
       project:
         project && access.canRead
@@ -509,10 +569,19 @@ export class PortalExperience {
     options: { search?: string; page?: number; focus?: string } = {},
   ): Promise<Record<string, unknown> | null> {
     let route = path.replace(/\/+/g, "/").replace(/\/$/, "") || "/";
-    if(route==="/discover/teams")route="/teams";
-    if(route==="/discover/participants") {
-      const me=await this.s.actor();
-      return {me,discovery:"participants",items:(await rows<Record<string,any>>(this.s.db,"SELECT u.id,COALESCE(pp.display_name,u.name) name,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression,t.name teamName,CASE WHEN m.team_id IS NULL THEN 'Not in a team' ELSE 'In a team' END teamStatus,CASE WHEN p.public=1 THEN p.bio ELSE '' END bio,CASE WHEN p.public=1 THEN p.socials ELSE '[]' END socials FROM users u JOIN luma_roster l ON l.email=u.email JOIN participant_profiles pp ON pp.user_id=u.id LEFT JOIN portal_roles r ON r.user_id=u.id JOIN profiles p ON p.user_id=u.id JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id WHERE COALESCE(r.role,u.role)='participant' AND pp.completed_at IS NOT NULL AND pd.phone<>'' ORDER BY name LIMIT 1000")).map(r=>({...r,socials:JSON.parse(r.socials)}))};
+    if (route === "/discover/teams") route = "/teams";
+    if (route === "/discover/participants") {
+      const me = await this.s.actor();
+      return {
+        me,
+        discovery: "participants",
+        items: (
+          await rows<Record<string, any>>(
+            this.s.db,
+            "SELECT u.id,COALESCE(pp.display_name,u.name) name,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression,t.name teamName,CASE WHEN m.team_id IS NULL THEN 'Not in a team' ELSE 'In a team' END teamStatus,CASE WHEN p.public=1 THEN p.bio ELSE '' END bio,CASE WHEN p.public=1 THEN p.socials ELSE '[]' END socials FROM users u JOIN luma_roster l ON l.email=u.email JOIN participant_profiles pp ON pp.user_id=u.id LEFT JOIN portal_roles r ON r.user_id=u.id JOIN profiles p ON p.user_id=u.id JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id WHERE COALESCE(r.role,u.role)='participant' AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=u.id AND rr.active=1) AND pp.completed_at IS NOT NULL AND pd.phone<>'' ORDER BY name LIMIT 1000",
+          )
+        ).map((r) => ({ ...r, socials: JSON.parse(r.socials) })),
+      };
     }
     if (route === "/rules")
       return {
@@ -541,7 +610,7 @@ export class PortalExperience {
       let all = listRoute
         ? await rows<Project>(
             this.s.db,
-            "SELECT p.* FROM projects p JOIN submission_versions v ON v.id=p.published_version_id JOIN teams t ON t.id=p.team_id WHERE COALESCE((SELECT e.status FROM project_eligibility e WHERE e.project_id=p.id AND e.version_id=v.id),(SELECT r.eligibility FROM reviews r WHERE r.team_id=p.team_id AND r.version_id=v.id),'needs_review')='eligible' AND instr(lower(json_extract(v.payload,'$.projectName') || ' ' || t.name),lower(?))>0 ORDER BY (SELECT count(*) FROM project_upvotes u WHERE u.project_id=p.id) DESC,(SELECT first.created_at FROM submission_versions first WHERE first.team_id=p.team_id ORDER BY first.attempt ASC LIMIT 1) ASC,p.id ASC LIMIT 1000",
+            "SELECT p.* FROM projects p JOIN submission_versions v ON v.id=p.published_version_id JOIN teams t ON t.id=p.team_id WHERE COALESCE((SELECT e.status FROM project_eligibility e WHERE e.project_id=p.id AND e.version_id=v.id),(SELECT r.eligibility FROM reviews r WHERE r.team_id=p.team_id AND r.version_id=v.id),'needs_review')='eligible' AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.active=1 AND ((rr.kind='project' AND rr.target_id=p.id) OR (rr.kind='submission' AND rr.target_id=v.id))) AND instr(lower(json_extract(v.payload,'$.projectName') || ' ' || t.name),lower(?))>0 ORDER BY (SELECT count(*) FROM project_upvotes u WHERE u.project_id=p.id) DESC,(SELECT first.created_at FROM submission_versions first WHERE first.team_id=p.team_id ORDER BY first.attempt ASC LIMIT 1) ASC,p.id ASC LIMIT 1000",
             (options.search || "").slice(0, 200),
           )
         : [await this.project(decodeURIComponent(route.split("/")[2]))];
@@ -573,11 +642,28 @@ export class PortalExperience {
         if (found >= 0) selectedPage = Math.floor(found / 24);
       }
       const hasMore = listRoute && all.length > (selectedPage + 1) * 24;
+      const me = this.s.identity ? await this.s.actor() : undefined;
+      const ownTeam = me ? await this.team(me.id) : undefined;
+      const ownAttendance = me
+        ? (await personStatus(this.s, me.id)).checkedIn
+        : false;
       const items = await Promise.all(
         (listRoute
           ? all.slice(selectedPage * 24, (selectedPage + 1) * 24)
           : all
-        ).map((p) => this.publicProject(p)),
+        ).map(async (p) => ({
+          ...(await this.publicProject(p)),
+          upvoted: me
+            ? !!(await one(
+                this.s.db,
+                "SELECT project_id FROM project_upvotes WHERE project_id=? AND user_id=?",
+                p.id,
+                me.id,
+              ))
+            : false,
+          canUpvote:
+            !!me?.canEngage && (ownTeam?.id !== p.team_id || ownAttendance),
+        })),
       );
       const awards =
         scores.stage === "final"
@@ -600,7 +686,6 @@ export class PortalExperience {
                 }),
             )
           : [];
-      const me = this.s.identity ? await this.s.actor() : undefined;
       return {
         items,
         me,
@@ -621,10 +706,28 @@ export class PortalExperience {
           : {}),
       };
     }
-    if(route==="/project-history") {
-      const me=await this.s.actor(),team=await this.team(me.id);demand(team,403,"TEAM_REQUIRED");
-      const access=await submissionAccess(this.s,team.id);demand(access.canRead,403,"TEAM_CHECKIN_REQUIRED");
-      return {me,items:(await rows<{id:string;attempt:number;payload:string;created_at:string}>(this.s.db,"SELECT id,attempt,payload,created_at FROM submission_versions v WHERE team_id=? AND EXISTS(SELECT 1 FROM memberships m WHERE m.team_id=v.team_id AND m.user_id=?) ORDER BY attempt DESC LIMIT 3",team.id,me.id)).map(v=>({...v,payload:JSON.parse(v.payload)}))};
+    if (route === "/project-history") {
+      const me = await this.s.actor(),
+        team = await this.team(me.id);
+      demand(team, 403, "TEAM_REQUIRED");
+      const access = await submissionAccess(this.s, team.id);
+      demand(access.canRead, 403, "TEAM_CHECKIN_REQUIRED");
+      return {
+        me,
+        items: (
+          await rows<{
+            id: string;
+            attempt: number;
+            payload: string;
+            created_at: string;
+          }>(
+            this.s.db,
+            "SELECT id,attempt,payload,created_at FROM submission_versions v WHERE team_id=? AND EXISTS(SELECT 1 FROM memberships m WHERE m.team_id=v.team_id AND m.user_id=?) ORDER BY attempt DESC LIMIT 3",
+            team.id,
+            me.id,
+          )
+        ).map((v) => ({ ...v, payload: JSON.parse(v.payload) })),
+      };
     }
     if (["/profile", "/dashboard/profile"].includes(route)) {
       const me = await this.s.actor();
@@ -635,7 +738,7 @@ export class PortalExperience {
         profile = await this.profile(me);
       const teams = await rows<Team>(
         this.s.db,
-        "SELECT t.*,'initials' avatar,COALESCE(s.color_key,s.palette) palette FROM teams t LEFT JOIN team_styles s ON s.team_id=t.id ORDER BY t.name",
+        "SELECT t.*,'initials' avatar,COALESCE(s.color_key,s.palette) palette FROM teams t LEFT JOIN team_styles s ON s.team_id=t.id WHERE NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='team' AND rr.target_id=t.id AND rr.active=1) ORDER BY t.name",
       );
       const requestedTeam = route.startsWith("/teams/")
         ? decodeURIComponent(route.split("/")[2])
@@ -647,7 +750,8 @@ export class PortalExperience {
           "TEAM_NOT_FOUND",
         );
       return {
-        me,team:await this.team(me.id),
+        me,
+        team: await this.team(me.id),
         items: await Promise.all(
           teams
             .filter((t) => !requestedTeam || t.id === requestedTeam)
@@ -683,7 +787,7 @@ export class PortalExperience {
         "TEAM_CHECKIN_REQUIRED",
         "At least one team member must check in before submission unlocks.",
       );
-      await requireSubmissionAccess(this.s, team.id);
+      await requireSubmissionAccess(this.s, team.id, true);
       return this.workspace(me, false);
     }
     if (
@@ -745,7 +849,11 @@ export class PortalExperience {
               )
             )?.locked_at,
             status: (await teamStatus(this.s, t.id)).status,
-            idea:await one(this.s.db,"SELECT title,description FROM ideas WHERE team_id=?",t.id),
+            idea: await one(
+              this.s.db,
+              "SELECT title,description FROM ideas WHERE team_id=?",
+              t.id,
+            ),
             readiness: await this.ready(t.id),
             members: await rows(
               this.s.db,
@@ -959,18 +1067,110 @@ export class PortalExperience {
         "MEMBERSHIP_FROZEN",
       );
     }
-    if(action==="save-workspace-idea"||action==="admin-idea-override") {
-      const admin=action==="admin-idea-override";
-      const d=z.object({title:text(120).min(2),description:text(500),core:z.string().max(500).optional(),...(admin?{teamId:id,reason:why,confirmation:z.literal("OVERRIDE_TEAM_IDEA")}:{})}).strict().parse(data) as {title:string;description:string;core?:string;teamId?:string;reason?:string;confirmation?:string};
-      let team:Team|undefined;
-      if(admin){await this.s.staff();team=await one<Team>(this.s.db,"SELECT * FROM teams WHERE id=?",d.teamId);demand(team,404,"TEAM_NOT_FOUND");await this.s.unfrozen();}
-      else {await this.completed(actor);team=await this.team(actor.id);demand(team&&team.leader_id===actor.id,403,"LEADER_REQUIRED");await assertUnlockedTeam(this.s,team.id);demand(this.s.now()<(await this.s.settings(true)).policy.ideaLock,409,"IDEA_LOCKED");}
-      const old=await one(this.s.db,"SELECT * FROM ideas WHERE team_id=?",team.id);if(admin)demand(old,404,"IDEA_REQUIRED");
-      const hash=await sha256(JSON.stringify({title:d.title,description:d.description})),time=this.s.now(),guard="admin-idea:"+team.id;
-      const sql:SQL[]=[...(admin?[["INSERT INTO write_guards VALUES(?,1)",guard] as SQL]:[]),["INSERT INTO ideas VALUES(?,?,?,?,?,?) ON CONFLICT(team_id) DO UPDATE SET title=excluded.title,core=excluded.core,description=excluded.description,hash=excluded.hash,updated_at=excluded.updated_at",team.id,d.title,d.description,d.description,hash,time],["INSERT INTO idea_revisions VALUES(?,?,?,?)",crypto.randomUUID(),team.id,JSON.stringify({title:d.title,core:d.description,description:d.description,hash,author:actor.id,previous:old||null,adminOverride:admin}),time],...(admin?[["DELETE FROM write_guards WHERE token=?",guard] as SQL]:[])];
-      await this.s.mutate(actor.id,action,team.id,sql,{title:d.title,hash,adminOverride:admin},d.reason);
-      return {message:admin?"Private idea override recorded. Membership and lock are unchanged.":"Private idea saved. You may edit it until the team locks."};
+    if (action === "save-workspace-idea" || action === "admin-idea-override") {
+      const admin = action === "admin-idea-override";
+      const d = z
+        .object({
+          title: text(120).min(2),
+          description: text(500),
+          core: z.string().max(500).optional(),
+          ...(admin
+            ? {
+                teamId: id,
+                reason: why,
+                confirmation: z.literal("OVERRIDE_TEAM_IDEA"),
+              }
+            : {}),
+        })
+        .strict()
+        .parse(data) as {
+        title: string;
+        description: string;
+        core?: string;
+        teamId?: string;
+        reason?: string;
+        confirmation?: string;
+      };
+      let team: Team | undefined;
+      if (admin) {
+        await this.s.staff();
+        team = await one<Team>(
+          this.s.db,
+          "SELECT * FROM teams WHERE id=?",
+          d.teamId,
+        );
+        demand(team, 404, "TEAM_NOT_FOUND");
+        await this.s.unfrozen();
+      } else {
+        await this.completed(actor);
+        team = await this.team(actor.id);
+        demand(team && team.leader_id === actor.id, 403, "LEADER_REQUIRED");
+        await assertUnlockedTeam(this.s, team.id);
+        demand(
+          this.s.now() < (await this.s.settings(true)).policy.ideaLock,
+          409,
+          "IDEA_LOCKED",
+        );
+      }
+      const old = await one(
+        this.s.db,
+        "SELECT * FROM ideas WHERE team_id=?",
+        team.id,
+      );
+      if (admin) demand(old, 404, "IDEA_REQUIRED");
+      const hash = await sha256(
+          JSON.stringify({ title: d.title, description: d.description }),
+        ),
+        time = this.s.now(),
+        guard = "admin-idea:" + team.id;
+      const sql: SQL[] = [
+        ...(admin
+          ? [["INSERT INTO write_guards VALUES(?,1)", guard] as SQL]
+          : []),
+        [
+          "INSERT INTO ideas VALUES(?,?,?,?,?,?) ON CONFLICT(team_id) DO UPDATE SET title=excluded.title,core=excluded.core,description=excluded.description,hash=excluded.hash,updated_at=excluded.updated_at",
+          team.id,
+          d.title,
+          d.description,
+          d.description,
+          hash,
+          time,
+        ],
+        [
+          "INSERT INTO idea_revisions VALUES(?,?,?,?)",
+          crypto.randomUUID(),
+          team.id,
+          JSON.stringify({
+            title: d.title,
+            core: d.description,
+            description: d.description,
+            hash,
+            author: actor.id,
+            previous: old || null,
+            adminOverride: admin,
+          }),
+          time,
+        ],
+        ...(admin
+          ? [["DELETE FROM write_guards WHERE token=?", guard] as SQL]
+          : []),
+      ];
+      await this.s.mutate(
+        actor.id,
+        action,
+        team.id,
+        sql,
+        { title: d.title, hash, adminOverride: admin },
+        d.reason,
+      );
+      return {
+        message: admin
+          ? "Private idea override recorded. Membership and lock are unchanged."
+          : "Private idea saved. You may edit it until the team locks.",
+      };
     }
+    const removed = await removalCommand(this.s, action, data);
+    if (removed) return removed;
     const repository = await repositoryCommand(this.s, action, data);
     if (repository) return repository;
     const override = await statusCommand(this.s, action, data);
@@ -1219,7 +1419,13 @@ export class PortalExperience {
             teamId,
             this.s.now(),
           ],
-          ["INSERT INTO team_styles(team_id,avatar,palette,color_key) VALUES(?,?,?,?)", teamId, "fold", legacyTeamPalette(d.palette),d.palette],
+          [
+            "INSERT INTO team_styles(team_id,avatar,palette,color_key) VALUES(?,?,?,?)",
+            teamId,
+            "fold",
+            legacyTeamPalette(d.palette),
+            d.palette,
+          ],
         ],
         { name: d.name, avatar: d.avatar, palette: d.palette },
       );
@@ -1285,7 +1491,8 @@ export class PortalExperience {
             "INSERT INTO team_styles(team_id,avatar,palette,color_key) VALUES(?,?,?,?) ON CONFLICT(team_id) DO UPDATE SET avatar=excluded.avatar,palette=excluded.palette,color_key=excluded.color_key",
             t.id,
             "fold",
-            legacyTeamPalette(d.palette),d.palette,
+            legacyTeamPalette(d.palette),
+            d.palette,
           ],
         ],
         d,
@@ -1551,6 +1758,18 @@ export class PortalExperience {
             ? "Project version committed. Eligible entries appear automatically; eligibility verification remains separate."
             : "Project draft saved.",
         projectId,
+        ...(action === "submit-project"
+          ? {
+              versionId: (
+                await one<{ version_id: string }>(
+                  this.s.db,
+                  "SELECT version_id FROM project_commit_receipts WHERE team_id=? AND request_key=?",
+                  t.id,
+                  requestKey,
+                )
+              )?.version_id,
+            }
+          : {}),
       };
     }
     if (action === "set-project-eligibility") {
@@ -1624,6 +1843,15 @@ export class PortalExperience {
         404,
         "PROJECT_NOT_ELIGIBLE",
       );
+      if (action === "upvote-project") {
+        const own = await this.team(actor.id);
+        if (own?.id === p.team_id)
+          demand(
+            (await personStatus(this.s, actor.id)).checkedIn,
+            403,
+            "OWN_PROJECT_CHECKIN_REQUIRED",
+          );
+      }
       await this.s.mutate(
         actor.id,
         action,

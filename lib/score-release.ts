@@ -48,7 +48,7 @@ export async function publicScores(s: PortalService) {
   // Eligibility/version changes revoke a score immediately; never attach an older version's award.
   const valid = await rows<{ id: string; versionId: string }>(
     s.db,
-    "SELECT p.id,p.published_version_id versionId FROM projects p JOIN submission_versions v ON v.id=p.published_version_id WHERE COALESCE((SELECT status FROM project_eligibility e WHERE e.project_id=p.id AND e.version_id=v.id),(SELECT eligibility FROM reviews r WHERE r.team_id=p.team_id AND r.version_id=v.id),'needs_review')='eligible'",
+    "SELECT p.id,p.published_version_id versionId FROM projects p JOIN submission_versions v ON v.id=p.published_version_id WHERE NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.active=1 AND ((rr.kind='project' AND rr.target_id=p.id) OR (rr.kind='submission' AND rr.target_id=v.id))) AND COALESCE((SELECT status FROM project_eligibility e WHERE e.project_id=p.id AND e.version_id=v.id),(SELECT eligibility FROM reviews r WHERE r.team_id=p.team_id AND r.version_id=v.id),'needs_review')='eligible'",
   );
   const current = state.entries.filter((e) =>
     valid.some((v) => v.id === e.projectId && v.versionId === e.versionId),
