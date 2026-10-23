@@ -1,0 +1,21 @@
+{
+  "source": "bfb0ba4b588d1957bac85536825eab299ddb65a5",
+  "typecheck": "passed",
+  "scopedTests": {
+    "passed": 9,
+    "failed": 0,
+    "files": [
+      "delhi-lossless.test.ts",
+      "delhi-mask.test.ts",
+      "delhi-conditional-loading.test.ts",
+      "public-release.test.ts"
+    ]
+  },
+  "build": "passed",
+  "artifactFiles": 202,
+  "workerSha256": "25a62c490096ac542ca3e1a41f57dff1eaced256e4e98d1c740816043a512605",
+  "originalPngFilesModified": false,
+  "losslessRgbaCompared": true,
+  "browserAudit": "Pending combined integration audit by integration owner",
+  "hostedOrCapacityClaim": false
+}
