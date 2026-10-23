@@ -1,0 +1,44 @@
+{
+  "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+  "worker": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+  "chromiumSandbox": true,
+  "origin": "http://127.0.0.1:4189",
+  "syntheticOnly": true,
+  "writes": false,
+  "checked": [
+    "SSR primes presentation cache without bootstrap API",
+    "browser refresh1 sends exact version and merges omitted labels",
+    "browser refresh2 sends exact version and merges omitted labels",
+    "actor switch cannot use Admin presentation version to bypass fresh authorization",
+    "returning account requests a full presentation after denial clears snapshot",
+    "pagehide clears snapshot and browser pageshow requests full refresh"
+  ],
+  "refreshes": [
+    {
+      "index": 1,
+      "fullJsonBytes": 22157,
+      "deltaJsonBytes": 17939,
+      "savedJsonBytes": 4218,
+      "itemCount": 50,
+      "unchanged": true,
+      "statusFresh": true
+    },
+    {
+      "index": 2,
+      "fullJsonBytes": 22157,
+      "deltaJsonBytes": 17939,
+      "savedJsonBytes": 4218,
+      "itemCount": 50,
+      "unchanged": true,
+      "statusFresh": true
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Fresh status/rename/avatar/locked-idea mutations are verified in the separate actual D1 HTTP test; this browser run performs GET-only refreshes.",
+    "Synthetic trusted identity headers simulate session changes on localhost. Real managed sign-in/session completion is not tested.",
+    "JSON byte counts are decoded response-body sizes, not network/compressed transfer or database cost."
+  ],
+  "browserClosed": true,
+  "finishedAt": "2026-10-23T21:07:15.798Z"
+}
