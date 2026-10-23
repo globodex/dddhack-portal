@@ -925,6 +925,7 @@ try {
         await activate(s, s.page.locator(".project-row-link").first());
         await s.page.locator(".public-project-detail").waitFor();
         await activate(s, s.page.locator(".project-comments-button"));
+        await s.page.waitForURL((url) => url.hash === "#comments");
         assert.equal(new URL(s.page.url()).hash, "#comments");
         await activate(
           s,
