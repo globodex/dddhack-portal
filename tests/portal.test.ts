@@ -43,10 +43,12 @@ test("owner derives only from trusted Sites identity; local header spoofing and 
     "/signin-with-chatgpt?return_to=%2Fdashboard",
   );
 });
-test("draft policies block activation, scoring and submission; approved rehearsal is explicit", async () => {
+test("unresolved scoring content blocks activation while genuine attendance guards submission", async () => {
   const { db, service } = await setup();
   assert(!policyBlockers(draftPolicy).includes("submissionCutoff"));
-  assert(policyBlockers(draftPolicy).includes("diversity"));
+  assert(
+    policyBlockers(draftPolicy).includes("non-demographic diversity rubric"),
+  );
   assert.deepEqual(policyBlockers(rehearsalPolicy), []);
   await assert.rejects(
     service("admin").command("activate", { reason: "test" }),

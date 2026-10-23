@@ -69,7 +69,7 @@ async function save(
   assert.equal(committed.status, 200);
   return { values, preview, result: (await committed.json()) as Row };
 }
-test("real Settings payload and authenticated API configure a fresh inactive event and independently enable check-in/submissions without judging", async () => {
+test("legacy setup API remains auditable while Settings derives operations without enable controls", async () => {
   const { db, service, clock } = await setup();
   try {
     await db.prepare("DELETE FROM event_settings").all();
@@ -96,7 +96,7 @@ test("real Settings payload and authenticated API configure a fresh inactive eve
     const preview = (await p.json()) as Row;
     assert.equal(preview.enablesOperations, false);
     assert.equal(await one(db, "SELECT * FROM event_settings"), undefined);
-    // The same builder used by the Settings review button supplies the confirmed save.
+    // The retained legacy builder supplies an audited policy edit; readiness needs no enable call.
     const saved = await post(
       db,
       "save-operational-setup",
@@ -106,7 +106,7 @@ test("real Settings payload and authenticated API configure a fresh inactive eve
     view = await settings(db);
     assert.equal(view.readiness.initialized, true);
     assert.equal(view.readiness.checkin.configured, true);
-    assert.equal(view.readiness.checkin.enabled, false);
+    assert.equal(view.readiness.checkin.enabled, true);
     assert.equal(view.readiness.submissions.enabled, false);
     assert.equal(view.readiness.scoring.ready, false);
     markup = renderToStaticMarkup(
@@ -124,13 +124,31 @@ test("real Settings payload and authenticated API configure a fresh inactive eve
     assert.equal(view.readiness.checkin.enabled, true);
     assert.equal(view.readiness.submissions.enabled, false);
     assert.equal(view.readiness.scoring.ready, false);
+    // A fresh database has no persisted submission deadline. Configure actual dates
+    // through the version-bound owner date action, not an operational acknowledgment.
+    const dates = {
+      open: draftPolicy.submissionOpen,
+      close: draftPolicy.submissionClose!,
+      reason: "Synthetic actual persisted window",
+    };
+    const datePreview = await post(db, "preview-submission-window", dates);
+    assert.equal(datePreview.status, 200);
+    const dateValues = (await datePreview.json()) as Row;
+    const dateSaved = await post(db, "publish-submission-window", {
+      ...dates,
+      version: dateValues.version,
+      token: dateValues.token,
+      confirmation: "CHANGE_SUBMISSION_WINDOW",
+    });
+    assert.equal(dateSaved.status, 200);
+    view = await settings(db);
     const latest = await save(db, view.policyVersion, "submissions");
     assert.equal(latest.preview.open, draftPolicy.submissionOpen);
     assert.equal(latest.preview.close, draftPolicy.submissionClose);
     assert.equal(latest.preview.retentionNotice, indefiniteRetentionNotice);
     view = await settings(db);
     assert.equal(view.readiness.checkin.enabled, true);
-    assert.equal(view.readiness.submissions.enabled, false);
+    assert.equal(view.readiness.submissions.enabled, true);
     assert.equal(
       (
         await post(db, "activate-operations", {
@@ -170,7 +188,7 @@ test("real Settings payload and authenticated API configure a fresh inactive eve
     );
     assert.equal(
       (await rows(db, "SELECT * FROM event_policy_history")).length,
-      4,
+      3,
     );
   } finally {
     db.close();

@@ -271,23 +271,29 @@ test(
           await db.prepare(sql).all();
       }
       await seedLocal(db);
-      const originalTriggers = readdirSync("db/migrations")
-        .filter((f) => f.endsWith(".sql"))
-        .flatMap((f) =>
-          [
-            ...readFileSync("db/migrations/" + f, "utf8").matchAll(
-              /CREATE TRIGGER (\w+)/g,
-            ),
-          ].map((m) => m[1]),
-        )
-        .sort();
+      const originalTriggers = new Set<string>();
+      for (const file of readdirSync("db/migrations")
+        .filter((name) => name.endsWith(".sql"))
+        .sort()) {
+        for (const match of readFileSync(
+          "db/migrations/" + file,
+          "utf8",
+        ).matchAll(
+          /\b(CREATE|DROP)\s+TRIGGER(?:\s+IF\s+(?:NOT\s+)?EXISTS)?\s+[`"]?(\w+)/gi,
+        )) {
+          if (match[1].toUpperCase() === "DROP")
+            originalTriggers.delete(match[2]);
+          else originalTriggers.add(match[2]);
+        }
+      }
       const migratedTriggers = await rows<{ name: string }>(
         db,
         "SELECT name FROM sqlite_master WHERE type='trigger'",
       );
-      assert.deepEqual(migratedTriggers.map((r) => r.name).sort(), [
-        ...new Set(originalTriggers),
-      ]);
+      assert.deepEqual(
+        migratedTriggers.map((r) => r.name).sort(),
+        [...originalTriggers].sort(),
+      );
       const req = request("fake_alice", "alice@portal.test");
       const response = await runWithSitesRequest(
         req,

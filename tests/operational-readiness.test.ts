@@ -19,10 +19,6 @@ type Row = Record<string, any>;
 export const operationPolicy: Policy = {
   ...draftPolicy,
   operationScopes: [],
-  deploymentRule:
-    "SYNTHETIC: deployment link is optional for all projects; absence does not affect eligibility.",
-  retentionNotice:
-    "SYNTHETIC: retain rehearsal data only until test completion.",
   confirmations: [
     ...draftPolicy.confirmations,
     "submissionOpen",
@@ -66,12 +62,16 @@ async function enable(service: any, operation: "submissions" | "checkin") {
     reason: "Synthetic operational enablement",
   });
 }
-test("operational-only policy accepts valid submissions while judging and reveals remain blocked; scopes never enable each other", async () => {
+test("actual operational data permits check-in and submissions while incomplete scoring and provider data remain blocked", async () => {
   const { db, service, clock } = await setup();
   try {
     await configure(service);
     assert.deepEqual(operationalBlockers(operationPolicy, "submissions"), []);
-    assert.ok(policyBlockers(operationPolicy).includes("diversity"));
+    assert.ok(
+      policyBlockers(operationPolicy).includes(
+        "non-demographic diversity rubric",
+      ),
+    );
     await enable(service, "submissions");
     await attend(db, "fake_alice");
     clock("2026-11-01T04:00:00.000Z");
@@ -80,7 +80,7 @@ test("operational-only policy accepts valid submissions while judging and reveal
     const status = ((await service("owner").view("/admin/settings")) as Row)
       .readiness;
     assert.equal(status.scoring.ready, false);
-    assert.equal(status.checkin.allowed, false);
+    assert.equal(status.checkin.allowed, true);
     await service("alice").command("submit-project", { revision: 0, project });
     assert.equal(
       (await rows(db, "SELECT * FROM submission_versions")).length,
@@ -94,23 +94,25 @@ test("operational-only policy accepts valid submissions while judging and reveal
         confirmation: "PUBLIC_AI",
         reason: "Synthetic premature reveal",
       }),
-      { code: "POLICIES_UNCONFIRMED" },
+      { code: "NO_ELIGIBLE_EVALUATIONS" },
     );
+    await service("admin").command("participant-bulk", {
+      emails: ["alice@portal.test"],
+      checkIn: true,
+      reason: "Synthetic actual Going check-in with no scope flag",
+    });
+    await db
+      .prepare(
+        "INSERT INTO check_ins VALUES('fake_bob','fake_admin','2026-11-01T04:00:00.000Z')",
+      )
+      .all();
     await assert.rejects(
-      service("admin").command("participant-bulk", {
-        emails: ["alice@portal.test"],
-        checkIn: true,
-        reason: "Synthetic no check-in scope",
-      }),
-      { code: "CHECKIN_POLICY_UNCONFIRMED" },
-    );
-    await assert.rejects(
-      batch(db, [
-        [
-          "INSERT INTO check_ins VALUES('fake_alice','fake_admin','2026-11-01')",
-        ],
-      ]),
-      /OPERATION_NOT_ENABLED/,
+      db
+        .prepare(
+          "INSERT INTO check_ins VALUES('fake_pending','fake_admin','2026-11-01T04:00:00.000Z')",
+        )
+        .all(),
+      /PORTAL_GOING_REQUIRED/,
     );
     assert.equal(
       (await service("owner").settings()).policy.confirmations.includes(
@@ -192,7 +194,7 @@ test("operational split preserves server windows, Going, required media, reposit
     db.close();
   }
 });
-test("check-in requires only its operational policy, keeps approval/Luma protections and works without a credit key", async () => {
+test("check-in derives readiness from actual Going approval and valid submissions need no separate scope flag", async () => {
   const { db, service, clock } = await setup();
   try {
     const policy = {
@@ -212,7 +214,7 @@ test("check-in requires only its operational policy, keeps approval/Luma protect
     assert.equal(
       ((await service("owner").view("/admin/settings")) as Row).readiness
         .submissions.configured,
-      false,
+      true,
     );
     await assert.rejects(
       service("admin").command("participant-bulk", {
@@ -247,15 +249,16 @@ test("check-in requires only its operational policy, keeps approval/Luma protect
       0,
     );
     clock("2026-11-01T04:00:00.000Z");
-    await assert.rejects(
-      service("alice").command("submit-project", { revision: 0, project }),
-      { code: "SUBMISSIONS_NOT_ENABLED" },
+    await service("alice").command("submit-project", { revision: 0, project });
+    assert.equal(
+      (await rows(db, "SELECT * FROM submission_versions")).length,
+      1,
     );
   } finally {
     db.close();
   }
 });
-test("fresh setup errors are actionable, owner enablement needs intent/current version, and judging updates cannot weaken enabled operations", async () => {
+test("actual setup errors are actionable and legacy enable compatibility cannot weaken versioned operational dates", async () => {
   const { db, service } = await setup();
   try {
     await configure(service);
@@ -291,7 +294,11 @@ test("fresh setup errors are actionable, owner enablement needs intent/current v
       reason: "Synthetic record a rubric without opening scoring",
     });
     const updated = await service("owner").settings();
-    assert.equal(updated.policy.operationScopes?.includes("submissions"), true);
+    assert.equal(
+      setupReadiness(updated, "2026-11-01T04:00:00.000Z").submissions.allowed,
+      true,
+    );
+    assert.equal(updated.active, 0);
     assert.equal(updated.policy.confirmations.includes("diversity"), false);
     await assert.rejects(
       service("owner").command("settings", {
@@ -322,7 +329,7 @@ test("fresh setup errors are actionable, owner enablement needs intent/current v
     const error = (await response.json()) as Row;
     assert.equal(error.code, "SUBMISSIONS_NOT_ENABLED");
     assert.ok(!JSON.stringify(error).includes("DATABASE_NOT_INITIALIZED"));
-    assert.match(error.message, /Profiles, teams and ideas/i);
+    assert.match(error.message, /valid submission window/i);
     assert.equal(
       ((await service("alice").view("/dashboard")) as Row).submissionStatus
         .state,
@@ -354,7 +361,7 @@ test("diversity validation uses an explicit supported assessment mode, accepts n
   );
 });
 
-test("draft scope hints do not cross-enable operations; legacy full activation enables both with one versioned policy", async () => {
+test("historical scope hints do not gate actual readiness and legacy activation remains a versioned compatibility action", async () => {
   const { db, service } = await setup();
   try {
     await service("owner").command("settings", {
@@ -364,16 +371,37 @@ test("draft scope hints do not cross-enable operations; legacy full activation e
     await enable(service, "submissions");
     await attend(db, "fake_alice");
     let settings = await service("owner").settings();
-    assert.deepEqual(settings.policy.operationScopes, ["submissions"]);
+    assert.deepEqual(settings.policy.operationScopes, ["checkin"]);
+    assert.equal(
+      setupReadiness(settings, "2026-11-01T04:00:00.000Z").submissions.allowed,
+      true,
+    );
+    assert.equal(
+      setupReadiness(settings, "2026-11-01T04:00:00.000Z").checkin.allowed,
+      true,
+    );
     await db.prepare("UPDATE event_settings SET active=0").all();
     const { rehearsalPolicy } = await import("./helpers");
     await service("owner").command("settings", {
-      policy: { ...rehearsalPolicy, operationScopes: [] },
-      reason: "Synthetic complete legacy activation",
+      policy: {
+        ...rehearsalPolicy,
+        operationScopes: [],
+        deploymentRule: settings.policy.deploymentRule,
+        retentionNotice: settings.policy.retentionNotice,
+        capacity: settings.policy.capacity,
+        teamFormationRule: settings.policy.teamFormationRule,
+      },
+      reason:
+        "Synthetic complete scoring content with established operational rules preserved",
     });
     const before = await service("owner").settings();
+    assert.equal(
+      setupReadiness(before, "2026-11-01T04:00:00.000Z").scoring.ready,
+      true,
+    );
     await service("owner").command("activate", {
-      reason: "Synthetic full activation",
+      reason:
+        "Synthetic legacy compatibility action; not a readiness prerequisite",
     });
     settings = await service("owner").settings();
     assert.equal(settings.version, before.version + 1);

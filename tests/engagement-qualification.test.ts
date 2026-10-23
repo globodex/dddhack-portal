@@ -110,9 +110,7 @@ test("scored engagement stays disabled without explicit qualification policy; pu
     const unconfirmed = { ...policy, engagementQualification: null };
     await configure(db, unconfirmed);
     assert.ok(
-      policyBlockers(unconfirmed).includes(
-        "confirmed engagement qualification rules",
-      ),
+      policyBlockers(unconfirmed).includes("engagement qualification rules"),
     );
     await assert.rejects(qualifiedEngagement(db, unconfirmed, id, version), {
       code: "ENGAGEMENT_SCORING_NOT_CONFIGURED",

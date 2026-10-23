@@ -61,19 +61,8 @@ test(
         LOCAL_CREDIT_KEY,
         () => now,
       );
-      for (const [i, operation] of (
-        ["submissions", "checkin"] as const
-      ).entries()) {
-        await owner.command("activate-operations", {
-          operation,
-          version: i + 1,
-          confirmation:
-            operation === "submissions"
-              ? "ENABLE_SUBMISSIONS"
-              : "ENABLE_CHECKIN",
-          reason: "Local D1 scoped enablement test",
-        });
-      }
+      // No manual activation is required for existing actual policy data.
+      assert.equal((await owner.settings()).active, 0);
       assert.equal(
         ((await owner.view("/admin/settings")).readiness as any).checkin
           .allowed,
@@ -138,7 +127,7 @@ test(
       );
       await batch(db, [
         [
-          "UPDATE event_settings SET policy=?,active=1 WHERE id=1",
+          "UPDATE event_settings SET policy=?,active=0 WHERE id=1",
           JSON.stringify(rehearsalPolicy),
         ],
       ]);
