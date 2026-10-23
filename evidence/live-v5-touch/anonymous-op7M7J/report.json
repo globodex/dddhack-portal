@@ -1,0 +1,1913 @@
+{
+  "origin": "https://dddhack-portal.param3021.chatgpt.site",
+  "output": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/live-v5-touch/anonymous-op7M7J",
+  "anonymous": true,
+  "productionMutationsAllowed": false,
+  "browserSandbox": true,
+  "cases": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "isMobile": false,
+      "hasTouch": false,
+      "settleMs": 1000,
+      "requests": [
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": [],
+          "navigation": true
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/css/Cr2vAjzv.css",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/brand/codex-user-supplied.svg",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/fallback-approved-v3.png",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/delhi-fill-overscan.png",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/metro-static.png",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/DOBr5rRY.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/XKyaHtl9.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/CLvDmS2G.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/C--se8fB.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/DFqxsIZv.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/2vlIjqiG.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/text-mask-alpha.png",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.CW0RaeGs.woff2",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.DvUfVpUG.woff2",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/media/dm-sans-latin-900-normal.BmOyECvA.woff2",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/cdn-cgi/challenge-platform/[redacted]",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/CMRVmd7j.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/api/portal",
+          "queryKeys": [
+            "view",
+            "focus"
+          ],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/text-mask-alpha.png",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/signin-with-chatgpt",
+          "queryKeys": [
+            "return_to"
+          ],
+          "navigation": true
+        }
+      ],
+      "blocked": [
+        {
+          "method": "POST",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/cdn-cgi/challenge-platform/[redacted]",
+          "queryKeys": [],
+          "navigation": false,
+          "reason": "All production mutations prohibited"
+        },
+        {
+          "method": "GET",
+          "origin": "https://auth.openai.com",
+          "path": "/cdn-cgi/challenge-platform/[redacted]",
+          "queryKeys": [
+            "ray"
+          ],
+          "navigation": false,
+          "reason": "External resource excluded"
+        }
+      ],
+      "responses": [
+        {
+          "status": 200,
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": [],
+          "redirect": null
+        },
+        {
+          "status": 200,
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/api/portal",
+          "queryKeys": [
+            "view",
+            "focus"
+          ],
+          "redirect": null
+        },
+        {
+          "status": 302,
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/signin-with-chatgpt",
+          "queryKeys": [
+            "return_to"
+          ],
+          "redirect": {
+            "origin": "https://auth.openai.com",
+            "path": "/oauth/authorize",
+            "queryKeys": [
+              "response_type",
+              "client_id",
+              "redirect_uri",
+              "scope",
+              "state",
+              "nonce",
+              "code_challenge",
+              "code_challenge_method"
+            ]
+          }
+        },
+        {
+          "status": 307,
+          "origin": "https://auth.openai.com",
+          "path": "/oauth/authorize",
+          "queryKeys": [
+            "response_type",
+            "client_id",
+            "redirect_uri",
+            "scope",
+            "state",
+            "nonce",
+            "code_challenge",
+            "code_challenge_method"
+          ],
+          "redirect": {
+            "origin": "https://dddhack-portal.param3021.chatgpt.site",
+            "path": "/signin-with-chatgpt",
+            "queryKeys": [
+              "return_to"
+            ]
+          }
+        },
+        {
+          "status": 302,
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/signin-with-chatgpt",
+          "queryKeys": [
+            "return_to"
+          ],
+          "redirect": {
+            "origin": "https://auth.openai.com",
+            "path": "/oauth/authorize",
+            "queryKeys": [
+              "response_type",
+              "client_id",
+              "redirect_uri",
+              "scope",
+              "state",
+              "nonce",
+              "code_challenge",
+              "code_challenge_method"
+            ]
+          }
+        },
+        {
+          "status": 403,
+          "origin": "https://auth.openai.com",
+          "path": "/oauth/authorize",
+          "queryKeys": [
+            "response_type",
+            "client_id",
+            "redirect_uri",
+            "scope",
+            "state",
+            "nonce",
+            "code_challenge",
+            "code_challenge_method"
+          ],
+          "redirect": null
+        }
+      ],
+      "navigations": [
+        {
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": []
+        },
+        {
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": []
+        },
+        {
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": []
+        },
+        {
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": []
+        },
+        {
+          "origin": "https://auth.openai.com",
+          "path": "/oauth/authorize",
+          "queryKeys": [
+            "response_type",
+            "client_id",
+            "redirect_uri",
+            "scope",
+            "state",
+            "nonce",
+            "code_challenge",
+            "code_challenge_method"
+          ]
+        },
+        {
+          "origin": "https://auth.openai.com",
+          "path": "/oauth/authorize",
+          "queryKeys": [
+            "response_type",
+            "client_id",
+            "redirect_uri",
+            "scope",
+            "state",
+            "nonce",
+            "code_challenge",
+            "code_challenge_method",
+            "__cf_chl_rt_tk"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "type": "pointerdown",
+          "target": {
+            "tag": "a",
+            "id": "",
+            "className": "button primary-cta",
+            "anchorPath": "/signin-with-chatgpt"
+          },
+          "trusted": true,
+          "pointerType": "mouse",
+          "cancelable": true,
+          "defaultPrevented": false
+        },
+        {
+          "type": "pointerup",
+          "target": {
+            "tag": "a",
+            "id": "",
+            "className": "button primary-cta",
+            "anchorPath": "/signin-with-chatgpt"
+          },
+          "trusted": true,
+          "pointerType": "mouse",
+          "cancelable": true,
+          "defaultPrevented": false
+        },
+        {
+          "type": "click",
+          "target": {
+            "tag": "a",
+            "id": "",
+            "className": "button primary-cta",
+            "anchorPath": "/signin-with-chatgpt"
+          },
+          "trusted": true,
+          "pointerType": "mouse",
+          "cancelable": true,
+          "defaultPrevented": false
+        }
+      ],
+      "console": [
+        {
+          "type": "error",
+          "message": "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 403 ()"
+        },
+        {
+          "type": "error",
+          "message": "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      ],
+      "errors": [],
+      "screenshots": [
+        "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/live-v5-touch/anonymous-op7M7J/desktop-before-cta.png",
+        "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/live-v5-touch/anonymous-op7M7J/desktop-after-cta.png"
+      ],
+      "initialStatus": 200,
+      "document": {
+        "title": "DevDay Exchange Community Hackathon: New Delhi",
+        "readyState": "complete",
+        "width": 1440,
+        "visualWidth": 1440,
+        "maxTouchPoints": 0,
+        "pointerCoarse": false,
+        "viewportMeta": "width=device-width, initial-scale=1"
+      },
+      "candidates": [
+        {
+          "tag": "a",
+          "text": "Continue with ChatGPT\u2192",
+          "hrefPath": "/signin-with-chatgpt",
+          "hrefQueryKeys": [
+            "return_to"
+          ],
+          "target": "_top"
+        }
+      ],
+      "cta": {
+        "text": "Continue with ChatGPT\u2192",
+        "tag": "a",
+        "hrefPath": "/signin-with-chatgpt",
+        "hrefQueryKeys": [
+          "return_to"
+        ],
+        "target": "_top",
+        "rect": {
+          "x": 57.59375,
+          "y": 748.828125,
+          "width": 292,
+          "height": 63.890625
+        },
+        "style": {
+          "pointerEvents": "auto",
+          "position": "static",
+          "zIndex": "auto",
+          "touchAction": "auto"
+        },
+        "hitBelongsToCta": true,
+        "hits": [
+          {
+            "tag": "a",
+            "id": "",
+            "className": "button primary-cta",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "static",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "div",
+            "id": "",
+            "className": "hero-copy",
+            "pointerEvents": "auto",
+            "zIndex": "1",
+            "position": "relative",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "section",
+            "id": "",
+            "className": "home-hero",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "relative",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "div",
+            "id": "",
+            "className": "home",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "static",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "main",
+            "id": "main",
+            "className": "main home-main",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "static",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "div",
+            "id": "",
+            "className": "app-shell public-home-shell",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "static",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "body",
+            "id": "",
+            "className": "",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "static",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "html",
+            "id": "",
+            "className": "",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "static",
+            "touchAction": "auto"
+          }
+        ]
+      },
+      "tapDispatched": true,
+      "finalUrl": {
+        "origin": "https://auth.openai.com",
+        "path": "/oauth/authorize",
+        "queryKeys": [
+          "response_type",
+          "client_id",
+          "redirect_uri",
+          "scope",
+          "state",
+          "nonce",
+          "code_challenge",
+          "code_challenge_method",
+          "__cf_chl_rt_tk"
+        ]
+      },
+      "requestsAfterTap": [
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/signin-with-chatgpt",
+          "queryKeys": [
+            "return_to"
+          ],
+          "navigation": true
+        }
+      ],
+      "navigationAttempted": true
+    },
+    {
+      "name": "mobile-touch",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "settleMs": 1000,
+      "requests": [
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": [],
+          "navigation": true
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/css/Cr2vAjzv.css",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/brand/codex-user-supplied.svg",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/fallback-approved-v3.png",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/XKyaHtl9.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/CLvDmS2G.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/C--se8fB.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/DOBr5rRY.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/delhi-fill-overscan.png",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/metro-static.png",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/DFqxsIZv.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/2vlIjqiG.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/text-mask-alpha.png",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.CW0RaeGs.woff2",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.DvUfVpUG.woff2",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/media/dm-sans-latin-900-normal.BmOyECvA.woff2",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/cdn-cgi/challenge-platform/[redacted]",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/CMRVmd7j.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/api/portal",
+          "queryKeys": [
+            "view",
+            "focus"
+          ],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/text-mask-alpha.png",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/signin-with-chatgpt",
+          "queryKeys": [
+            "return_to"
+          ],
+          "navigation": true
+        }
+      ],
+      "blocked": [
+        {
+          "method": "POST",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/cdn-cgi/challenge-platform/[redacted]",
+          "queryKeys": [],
+          "navigation": false,
+          "reason": "All production mutations prohibited"
+        },
+        {
+          "method": "GET",
+          "origin": "https://auth.openai.com",
+          "path": "/cdn-cgi/challenge-platform/[redacted]",
+          "queryKeys": [
+            "ray"
+          ],
+          "navigation": false,
+          "reason": "External resource excluded"
+        }
+      ],
+      "responses": [
+        {
+          "status": 200,
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": [],
+          "redirect": null
+        },
+        {
+          "status": 200,
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/api/portal",
+          "queryKeys": [
+            "view",
+            "focus"
+          ],
+          "redirect": null
+        },
+        {
+          "status": 302,
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/signin-with-chatgpt",
+          "queryKeys": [
+            "return_to"
+          ],
+          "redirect": {
+            "origin": "https://auth.openai.com",
+            "path": "/oauth/authorize",
+            "queryKeys": [
+              "response_type",
+              "client_id",
+              "redirect_uri",
+              "scope",
+              "state",
+              "nonce",
+              "code_challenge",
+              "code_challenge_method"
+            ]
+          }
+        },
+        {
+          "status": 307,
+          "origin": "https://auth.openai.com",
+          "path": "/oauth/authorize",
+          "queryKeys": [
+            "response_type",
+            "client_id",
+            "redirect_uri",
+            "scope",
+            "state",
+            "nonce",
+            "code_challenge",
+            "code_challenge_method"
+          ],
+          "redirect": {
+            "origin": "https://dddhack-portal.param3021.chatgpt.site",
+            "path": "/signin-with-chatgpt",
+            "queryKeys": [
+              "return_to"
+            ]
+          }
+        },
+        {
+          "status": 302,
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/signin-with-chatgpt",
+          "queryKeys": [
+            "return_to"
+          ],
+          "redirect": {
+            "origin": "https://auth.openai.com",
+            "path": "/oauth/authorize",
+            "queryKeys": [
+              "response_type",
+              "client_id",
+              "redirect_uri",
+              "scope",
+              "state",
+              "nonce",
+              "code_challenge",
+              "code_challenge_method"
+            ]
+          }
+        },
+        {
+          "status": 403,
+          "origin": "https://auth.openai.com",
+          "path": "/oauth/authorize",
+          "queryKeys": [
+            "response_type",
+            "client_id",
+            "redirect_uri",
+            "scope",
+            "state",
+            "nonce",
+            "code_challenge",
+            "code_challenge_method"
+          ],
+          "redirect": null
+        }
+      ],
+      "navigations": [
+        {
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": []
+        },
+        {
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": []
+        },
+        {
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": []
+        },
+        {
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": []
+        },
+        {
+          "origin": "https://auth.openai.com",
+          "path": "/oauth/authorize",
+          "queryKeys": [
+            "response_type",
+            "client_id",
+            "redirect_uri",
+            "scope",
+            "state",
+            "nonce",
+            "code_challenge",
+            "code_challenge_method"
+          ]
+        },
+        {
+          "origin": "https://auth.openai.com",
+          "path": "/oauth/authorize",
+          "queryKeys": [
+            "response_type",
+            "client_id",
+            "redirect_uri",
+            "scope",
+            "state",
+            "nonce",
+            "code_challenge",
+            "code_challenge_method",
+            "__cf_chl_rt_tk"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "type": "pointerdown",
+          "target": {
+            "tag": "a",
+            "id": "",
+            "className": "button primary-cta",
+            "anchorPath": "/signin-with-chatgpt"
+          },
+          "trusted": true,
+          "pointerType": "touch",
+          "cancelable": true,
+          "defaultPrevented": false
+        },
+        {
+          "type": "touchstart",
+          "target": {
+            "tag": "a",
+            "id": "",
+            "className": "button primary-cta",
+            "anchorPath": "/signin-with-chatgpt"
+          },
+          "trusted": true,
+          "pointerType": null,
+          "cancelable": true,
+          "defaultPrevented": false
+        },
+        {
+          "type": "pointerup",
+          "target": {
+            "tag": "a",
+            "id": "",
+            "className": "button primary-cta",
+            "anchorPath": "/signin-with-chatgpt"
+          },
+          "trusted": true,
+          "pointerType": "touch",
+          "cancelable": true,
+          "defaultPrevented": false
+        },
+        {
+          "type": "touchend",
+          "target": {
+            "tag": "a",
+            "id": "",
+            "className": "button primary-cta",
+            "anchorPath": "/signin-with-chatgpt"
+          },
+          "trusted": true,
+          "pointerType": null,
+          "cancelable": true,
+          "defaultPrevented": false
+        },
+        {
+          "type": "click",
+          "target": {
+            "tag": "a",
+            "id": "",
+            "className": "button primary-cta",
+            "anchorPath": "/signin-with-chatgpt"
+          },
+          "trusted": true,
+          "pointerType": "touch",
+          "cancelable": true,
+          "defaultPrevented": false
+        }
+      ],
+      "console": [
+        {
+          "type": "error",
+          "message": "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 403 ()"
+        },
+        {
+          "type": "error",
+          "message": "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      ],
+      "errors": [],
+      "screenshots": [
+        "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/live-v5-touch/anonymous-op7M7J/mobile-touch-before-cta.png",
+        "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/live-v5-touch/anonymous-op7M7J/mobile-touch-after-cta.png"
+      ],
+      "initialStatus": 200,
+      "document": {
+        "title": "DevDay Exchange Community Hackathon: New Delhi",
+        "readyState": "complete",
+        "width": 390,
+        "visualWidth": 390,
+        "maxTouchPoints": 1,
+        "pointerCoarse": true,
+        "viewportMeta": "width=device-width, initial-scale=1"
+      },
+      "candidates": [
+        {
+          "tag": "a",
+          "text": "Continue with ChatGPT\u2192",
+          "hrefPath": "/signin-with-chatgpt",
+          "hrefQueryKeys": [
+            "return_to"
+          ],
+          "target": "_top"
+        }
+      ],
+      "cta": {
+        "text": "Continue with ChatGPT\u2192",
+        "tag": "a",
+        "hrefPath": "/signin-with-chatgpt",
+        "hrefQueryKeys": [
+          "return_to"
+        ],
+        "target": "_top",
+        "rect": {
+          "x": 20,
+          "y": 411.375,
+          "width": 350,
+          "height": 63.890625
+        },
+        "style": {
+          "pointerEvents": "auto",
+          "position": "static",
+          "zIndex": "auto",
+          "touchAction": "auto"
+        },
+        "hitBelongsToCta": true,
+        "hits": [
+          {
+            "tag": "a",
+            "id": "",
+            "className": "button primary-cta",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "static",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "div",
+            "id": "",
+            "className": "hero-copy",
+            "pointerEvents": "auto",
+            "zIndex": "1",
+            "position": "relative",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "section",
+            "id": "",
+            "className": "home-hero",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "relative",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "div",
+            "id": "",
+            "className": "home",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "static",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "main",
+            "id": "main",
+            "className": "main home-main",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "static",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "div",
+            "id": "",
+            "className": "app-shell public-home-shell",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "static",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "body",
+            "id": "",
+            "className": "",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "static",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "html",
+            "id": "",
+            "className": "",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "static",
+            "touchAction": "auto"
+          }
+        ]
+      },
+      "tapDispatched": true,
+      "finalUrl": {
+        "origin": "https://auth.openai.com",
+        "path": "/oauth/authorize",
+        "queryKeys": [
+          "response_type",
+          "client_id",
+          "redirect_uri",
+          "scope",
+          "state",
+          "nonce",
+          "code_challenge",
+          "code_challenge_method",
+          "__cf_chl_rt_tk"
+        ]
+      },
+      "requestsAfterTap": [
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/signin-with-chatgpt",
+          "queryKeys": [
+            "return_to"
+          ],
+          "navigation": true
+        }
+      ],
+      "navigationAttempted": true
+    },
+    {
+      "name": "tablet-touch",
+      "viewport": {
+        "width": 834,
+        "height": 1194
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "settleMs": 1000,
+      "requests": [
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": [],
+          "navigation": true
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/css/Cr2vAjzv.css",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/brand/codex-user-supplied.svg",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/fallback-approved-v3.png",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/XKyaHtl9.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/CLvDmS2G.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/C--se8fB.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/DOBr5rRY.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/delhi-fill-overscan.png",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/metro-static.png",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/DFqxsIZv.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/2vlIjqiG.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/text-mask-alpha.png",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.CW0RaeGs.woff2",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.DvUfVpUG.woff2",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/media/dm-sans-latin-900-normal.BmOyECvA.woff2",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/cdn-cgi/challenge-platform/[redacted]",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/CMRVmd7j.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/api/portal",
+          "queryKeys": [
+            "view",
+            "focus"
+          ],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/text-mask-alpha.png",
+          "queryKeys": [],
+          "navigation": false
+        }
+      ],
+      "blocked": [
+        {
+          "method": "POST",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/cdn-cgi/challenge-platform/[redacted]",
+          "queryKeys": [],
+          "navigation": false,
+          "reason": "All production mutations prohibited"
+        }
+      ],
+      "responses": [
+        {
+          "status": 200,
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": [],
+          "redirect": null
+        },
+        {
+          "status": 200,
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/api/portal",
+          "queryKeys": [
+            "view",
+            "focus"
+          ],
+          "redirect": null
+        }
+      ],
+      "navigations": [
+        {
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": []
+        },
+        {
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": []
+        },
+        {
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": []
+        },
+        {
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": []
+        }
+      ],
+      "events": [],
+      "console": [
+        {
+          "type": "error",
+          "message": "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      ],
+      "errors": [],
+      "screenshots": [],
+      "initialStatus": 200,
+      "document": {
+        "title": "DevDay Exchange Community Hackathon: New Delhi",
+        "readyState": "complete",
+        "width": 834,
+        "visualWidth": 834,
+        "maxTouchPoints": 1,
+        "pointerCoarse": true,
+        "viewportMeta": "width=device-width, initial-scale=1"
+      },
+      "candidates": [
+        {
+          "tag": "a",
+          "text": "Continue with ChatGPT\u2192",
+          "hrefPath": "/signin-with-chatgpt",
+          "hrefQueryKeys": [
+            "return_to"
+          ],
+          "target": "_top"
+        }
+      ],
+      "failure": "locator.scrollIntoViewIfNeeded: Timeout 5990.103000000001ms exceeded.\nCall log:\n\u001b[2m  - attempting scroll into view action\u001b[22m\n\u001b[2m    2 \u00d7 waiting for element to be stable\u001b[22m\n\u001b[2m      - element is not stable\u001b[22m\n\u001b[2m    - retrying scroll into view action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 \u00d7 waiting for element to be stable\u001b[22m\n\u001b[2m      - element is not stable\u001b[22m\n\u001b[2m    - retrying scroll into view action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    11 \u00d7 waiting for element to be stable\u001b[22m\n\u001b[2m       - element is not stable\u001b[22m\n\u001b[2m     - retrying scroll into view action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n"
+    },
+    {
+      "name": "mobile-touch-early",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "settleMs": 0,
+      "requests": [
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": [],
+          "navigation": true
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/css/Cr2vAjzv.css",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/brand/codex-user-supplied.svg",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/fallback-approved-v3.png",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/XKyaHtl9.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/CLvDmS2G.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/C--se8fB.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/DOBr5rRY.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/delhi-fill-overscan.png",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/metro-static.png",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/DFqxsIZv.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/2vlIjqiG.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/text-mask-alpha.png",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.CW0RaeGs.woff2",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.DvUfVpUG.woff2",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/media/dm-sans-latin-900-normal.BmOyECvA.woff2",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/cdn-cgi/challenge-platform/[redacted]",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/_next/static/chunks/CMRVmd7j.js",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/api/portal",
+          "queryKeys": [
+            "view",
+            "focus"
+          ],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/art/delhi-v3/text-mask-alpha.png",
+          "queryKeys": [],
+          "navigation": false
+        },
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/signin-with-chatgpt",
+          "queryKeys": [
+            "return_to"
+          ],
+          "navigation": true
+        }
+      ],
+      "blocked": [
+        {
+          "method": "POST",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/cdn-cgi/challenge-platform/[redacted]",
+          "queryKeys": [],
+          "navigation": false,
+          "reason": "All production mutations prohibited"
+        },
+        {
+          "method": "GET",
+          "origin": "https://auth.openai.com",
+          "path": "/cdn-cgi/challenge-platform/[redacted]",
+          "queryKeys": [
+            "ray"
+          ],
+          "navigation": false,
+          "reason": "External resource excluded"
+        }
+      ],
+      "responses": [
+        {
+          "status": 200,
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": [],
+          "redirect": null
+        },
+        {
+          "status": 302,
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/signin-with-chatgpt",
+          "queryKeys": [
+            "return_to"
+          ],
+          "redirect": {
+            "origin": "https://auth.openai.com",
+            "path": "/oauth/authorize",
+            "queryKeys": [
+              "response_type",
+              "client_id",
+              "redirect_uri",
+              "scope",
+              "state",
+              "nonce",
+              "code_challenge",
+              "code_challenge_method"
+            ]
+          }
+        },
+        {
+          "status": 307,
+          "origin": "https://auth.openai.com",
+          "path": "/oauth/authorize",
+          "queryKeys": [
+            "response_type",
+            "client_id",
+            "redirect_uri",
+            "scope",
+            "state",
+            "nonce",
+            "code_challenge",
+            "code_challenge_method"
+          ],
+          "redirect": {
+            "origin": "https://dddhack-portal.param3021.chatgpt.site",
+            "path": "/signin-with-chatgpt",
+            "queryKeys": [
+              "return_to"
+            ]
+          }
+        },
+        {
+          "status": 302,
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/signin-with-chatgpt",
+          "queryKeys": [
+            "return_to"
+          ],
+          "redirect": {
+            "origin": "https://auth.openai.com",
+            "path": "/oauth/authorize",
+            "queryKeys": [
+              "response_type",
+              "client_id",
+              "redirect_uri",
+              "scope",
+              "state",
+              "nonce",
+              "code_challenge",
+              "code_challenge_method"
+            ]
+          }
+        },
+        {
+          "status": 403,
+          "origin": "https://auth.openai.com",
+          "path": "/oauth/authorize",
+          "queryKeys": [
+            "response_type",
+            "client_id",
+            "redirect_uri",
+            "scope",
+            "state",
+            "nonce",
+            "code_challenge",
+            "code_challenge_method"
+          ],
+          "redirect": null
+        }
+      ],
+      "navigations": [
+        {
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": []
+        },
+        {
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": []
+        },
+        {
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": []
+        },
+        {
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/",
+          "queryKeys": []
+        },
+        {
+          "origin": "https://auth.openai.com",
+          "path": "/oauth/authorize",
+          "queryKeys": [
+            "response_type",
+            "client_id",
+            "redirect_uri",
+            "scope",
+            "state",
+            "nonce",
+            "code_challenge",
+            "code_challenge_method"
+          ]
+        },
+        {
+          "origin": "https://auth.openai.com",
+          "path": "/oauth/authorize",
+          "queryKeys": [
+            "response_type",
+            "client_id",
+            "redirect_uri",
+            "scope",
+            "state",
+            "nonce",
+            "code_challenge",
+            "code_challenge_method",
+            "__cf_chl_rt_tk"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "type": "pointerdown",
+          "target": {
+            "tag": "a",
+            "id": "",
+            "className": "button primary-cta",
+            "anchorPath": "/signin-with-chatgpt"
+          },
+          "trusted": true,
+          "pointerType": "touch",
+          "cancelable": true,
+          "defaultPrevented": false
+        },
+        {
+          "type": "touchstart",
+          "target": {
+            "tag": "a",
+            "id": "",
+            "className": "button primary-cta",
+            "anchorPath": "/signin-with-chatgpt"
+          },
+          "trusted": true,
+          "pointerType": null,
+          "cancelable": true,
+          "defaultPrevented": false
+        },
+        {
+          "type": "pointerup",
+          "target": {
+            "tag": "a",
+            "id": "",
+            "className": "button primary-cta",
+            "anchorPath": "/signin-with-chatgpt"
+          },
+          "trusted": true,
+          "pointerType": "touch",
+          "cancelable": true,
+          "defaultPrevented": false
+        },
+        {
+          "type": "touchend",
+          "target": {
+            "tag": "a",
+            "id": "",
+            "className": "button primary-cta",
+            "anchorPath": "/signin-with-chatgpt"
+          },
+          "trusted": true,
+          "pointerType": null,
+          "cancelable": true,
+          "defaultPrevented": false
+        },
+        {
+          "type": "click",
+          "target": {
+            "tag": "a",
+            "id": "",
+            "className": "button primary-cta",
+            "anchorPath": "/signin-with-chatgpt"
+          },
+          "trusted": true,
+          "pointerType": "touch",
+          "cancelable": true,
+          "defaultPrevented": false
+        }
+      ],
+      "console": [
+        {
+          "type": "error",
+          "message": "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 403 ()"
+        },
+        {
+          "type": "error",
+          "message": "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      ],
+      "errors": [],
+      "screenshots": [
+        "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/live-v5-touch/anonymous-op7M7J/mobile-touch-early-before-cta.png",
+        "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact/evidence/live-v5-touch/anonymous-op7M7J/mobile-touch-early-after-cta.png"
+      ],
+      "initialStatus": 200,
+      "document": {
+        "title": "DevDay Exchange Community Hackathon: New Delhi",
+        "readyState": "interactive",
+        "width": 390,
+        "visualWidth": 390,
+        "maxTouchPoints": 1,
+        "pointerCoarse": true,
+        "viewportMeta": "width=device-width, initial-scale=1"
+      },
+      "candidates": [
+        {
+          "tag": "a",
+          "text": "Continue with ChatGPT\u2192",
+          "hrefPath": "/signin-with-chatgpt",
+          "hrefQueryKeys": [
+            "return_to"
+          ],
+          "target": "_top"
+        }
+      ],
+      "cta": {
+        "text": "Continue with ChatGPT\u2192",
+        "tag": "a",
+        "hrefPath": "/signin-with-chatgpt",
+        "hrefQueryKeys": [
+          "return_to"
+        ],
+        "target": "_top",
+        "rect": {
+          "x": 20,
+          "y": 411.375,
+          "width": 350,
+          "height": 63.890625
+        },
+        "style": {
+          "pointerEvents": "auto",
+          "position": "static",
+          "zIndex": "auto",
+          "touchAction": "auto"
+        },
+        "hitBelongsToCta": true,
+        "hits": [
+          {
+            "tag": "a",
+            "id": "",
+            "className": "button primary-cta",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "static",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "div",
+            "id": "",
+            "className": "hero-copy",
+            "pointerEvents": "auto",
+            "zIndex": "1",
+            "position": "relative",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "section",
+            "id": "",
+            "className": "home-hero",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "relative",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "div",
+            "id": "",
+            "className": "home",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "static",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "main",
+            "id": "main",
+            "className": "main home-main",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "static",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "div",
+            "id": "",
+            "className": "app-shell public-home-shell",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "static",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "body",
+            "id": "",
+            "className": "",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "static",
+            "touchAction": "auto"
+          },
+          {
+            "tag": "html",
+            "id": "",
+            "className": "",
+            "pointerEvents": "auto",
+            "zIndex": "auto",
+            "position": "static",
+            "touchAction": "auto"
+          }
+        ]
+      },
+      "tapDispatched": true,
+      "finalUrl": {
+        "origin": "https://auth.openai.com",
+        "path": "/oauth/authorize",
+        "queryKeys": [
+          "response_type",
+          "client_id",
+          "redirect_uri",
+          "scope",
+          "state",
+          "nonce",
+          "code_challenge",
+          "code_challenge_method",
+          "__cf_chl_rt_tk"
+        ]
+      },
+      "requestsAfterTap": [
+        {
+          "method": "GET",
+          "origin": "https://dddhack-portal.param3021.chatgpt.site",
+          "path": "/signin-with-chatgpt",
+          "queryKeys": [
+            "return_to"
+          ],
+          "navigation": true
+        }
+      ],
+      "navigationAttempted": true
+    }
+  ],
+  "browserClosed": true,
+  "browser": "156.0.8078.4"
+}
