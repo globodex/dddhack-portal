@@ -1831,8 +1831,25 @@ export function Submission({
     !data.submissionAccess?.locked &&
     attemptsUsed < 3;
   const saving = useRef(false);
-  const set = (name: string, value: unknown) =>
+  const set = (name: string, value: unknown) => {
     setProject((p: Row) => ({ ...p, [name]: value }));
+    const corrected = { ...project, [name]: value };
+    setError((current) =>
+      (current === "Add a project name, summary and description." &&
+        ["projectName", "problemSolution", "description"].includes(name) &&
+        corrected.projectName?.trim() &&
+        corrected.problemSolution?.trim() &&
+        corrected.description?.trim()) ||
+      (current === "Add your GitHub repository." &&
+        name === "github" &&
+        /^https:\/\/github\.com\//.test(String(value))) ||
+      (current === "Confirm this submission is accurate." &&
+        name === "attestation" &&
+        value === true)
+        ? ""
+        : current,
+    );
+  };
   const upload = async (file: File | undefined, kind: string) => {
     if (!file) return;
     if (
