@@ -99,15 +99,18 @@
   }
 }
 
-/* Authenticated mobile shell: keep the full community name beside a usable menu. */
-@media (max-width: 740px) {
+/* Compact shell keeps navigation reachable on phones and tablets. */
+@media (max-width: 1199px) {
   .app-shell:not(.public-home-shell) > .mobile-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     gap: 10px;
-    min-block-size: 76px;
-    padding: 15px 16px;
+    min-block-size: 64px;
+    padding: 10px 18px;
     box-sizing: border-box;
   }
   .app-shell:not(.public-home-shell) > .mobile-header .brand {
@@ -152,5 +155,32 @@
     inline-size: 18px;
     block-size: 18px;
     flex: 0 0 18px;
+  }
+  .app-shell:not(.public-home-shell) > .sidebar {
+    display: none;
+  }
+  .app-shell:not(.public-home-shell) > .sidebar.open {
+    display: flex;
+    position: fixed;
+    inset: 64px 0 auto;
+    width: auto;
+    height: auto;
+    max-height: calc(100dvh - 64px);
+    overflow: auto;
+    z-index: 99;
+    padding: 16px 18px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    gap: 16px;
+  }
+  .app-shell:not(.public-home-shell) > .sidebar > .brand {
+    display: none;
+  }
+  .app-shell:not(.public-home-shell) > .sidebar nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .app-shell:not(.public-home-shell) > .main {
+    margin-left: 0;
+    scroll-margin-top: 80px;
   }
 }
