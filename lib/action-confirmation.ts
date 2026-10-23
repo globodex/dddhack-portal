@@ -11,6 +11,7 @@ export class ActionCancelled extends Error {
   }
 }
 const labels: Record<string, string> = {
+  "transfer-team-leader": "Transfer team leadership",
   "publish-credit-batch": "Publish credit batch",
   "delete-credit-batch": "Delete credit batch",
   "delete-credit-column": "Delete credit column",
@@ -60,6 +61,7 @@ export function confirmationFor(
   target: string,
 ): Confirmation {
   const critical = [
+    "transfer-team-leader",
     "publish-credit-batch",
     "delete-credit-batch",
     "delete-credit-column",
@@ -76,6 +78,8 @@ export function confirmationFor(
   ].includes(action);
   const title = labels[action] || action.replaceAll("-", " ");
   let description = "";
+  if (action === "transfer-team-leader")
+    description = "Move the crown to this current teammate. The team stays locked and its submission history and three-attempt limit are preserved.";
   if (action === "publish-credit-batch")
     description =
       "Publish these headings and instructions. Available codes will be assigned once to eligible checked-in recipients.";
@@ -123,6 +127,7 @@ export function confirmationFor(
     target,
     description,
     confirmLabel:
+      action === "transfer-team-leader" ? "Transfer crown" :
       action === "publish-credit-batch" ? "Publish credits" :
       ["delete-credit-batch","delete-credit-column"].includes(action) ? "Delete credits" :
       action === "submit-project"
@@ -163,6 +168,7 @@ export function revealConfirmation(
   action: string,
   values: Record<string, any>,
 ) {
+  if (action === "transfer-team-leader") return "TRANSFER_TEAM_LEADER";
   if (action === "publish-credit-batch") return "PUBLISH_CREDIT_BATCH";
   if (action === "delete-credit-batch") return "DELETE_CREDIT_BATCH";
   if (action === "delete-credit-column") return "DELETE_CREDIT_COLUMN";

@@ -1,5 +1,6 @@
 import { auditReason } from "./security";
 import { creditBatchCommand, creditBatchesView } from "./credit-batches";
+import { transferTeamLeader } from "./team-leader-transfer";
 import type { PortalViewOptions } from "./discover-participants";
 import { submissionToolChoices } from "./submission-tools";
 import { rosterImport } from "./roster-import";
@@ -366,6 +367,7 @@ export class PortalService {
       await requireRosterMember(this, actor);
     const creditBatch = await creditBatchCommand(this, action, data);
     if (creditBatch !== null) return creditBatch;
+    if (action === "transfer-team-leader") return transferTeamLeader(this, data);
     const revised = await new PortalExperience(this).command(
       action === "idea" ? "save-workspace-idea" : action,
       data,

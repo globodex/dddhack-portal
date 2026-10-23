@@ -1,6 +1,6 @@
 # Current scoring code baseline
 
-Source baseline: `7fd4016ce9a2156d13de4d600818ae0aad9e7ff5`. This records the existing implementation without changing weights or activating scoring. Read the event's current versioned policy before an actual calculation; saved global weights may differ from these defaults. Unresolved scoring decisions remain explicit rather than being invented here.
+Source baseline: `7fd4016ce9a2156d13de4d600818ae0aad9e7ff5`. The user accepted the current scoring implementation as the v7 baseline after the original handoff. This records that implementation without changing weights or activating scoring. Read the event's current versioned policy before an actual calculation; saved global weights may differ from these defaults. Missing configuration or review data remains explicit rather than being invented here.
 
 The defaults in [`lib/policy.ts`](../lib/policy.ts) are:
 

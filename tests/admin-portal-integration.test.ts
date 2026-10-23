@@ -59,6 +59,21 @@ const project = {
   versions,
   draft: { projectName: "Fixture Project", description: "Fixture body" },
 };
+test("team management mounts named crown transfer with explicit old and new leaders", () => {
+  const data = {
+    me: admin,
+    items: [{ id: "locked-team", name: "Locked Team", leader_id: "old-leader", locked: true,
+      members: [{ id: "old-leader", name: "Absent Leader" }, { id: "new-leader", name: "Present Teammate" }] }],
+  };
+  const markup = html(AdminList, { data, path: "/admin/teams", run });
+  assert.match(markup, /Make Present Teammate team leader for Locked Team/);
+  assert.doesNotMatch(markup, /Make Absent Leader team leader/);
+  const values = { teamId: "locked-team", userId: "new-leader", expectedLeaderId: "old-leader" };
+  const confirmation = portalConfirmationFor("transfer-team-leader", values, portalTargetName(data, values));
+  assert.equal(confirmation.target, "Locked Team · Absent Leader → Present Teammate");
+  assert.equal(confirmation.confirmLabel, "Transfer crown");
+  assert.equal(confirmation.critical, true);
+});
 test("admin row adapter preserves server removal metadata and composes Registered/Locked defaults with earliest lock ordering", () => {
   const projected = [
     participant("later"),

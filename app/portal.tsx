@@ -40,6 +40,7 @@ import {
 } from "lucide-react";
 import AddAdmins from "./add-admins";
 import AdminCreditBatches from "./admin-credit-batches";
+import AdminLeaderTransfer from "./admin-leader-transfer";
 import Link from "vinext/shims/link";
 import { useDiscoverPeople, peopleDirectoryUrl, readPeoplePage } from "./use-discover-people";
 import { HeadingDot } from "./expressive-heading";
@@ -243,6 +244,12 @@ export function portalConfirmationFor(
   return base;
 }
 export function portalTargetName(data: View, values: Row): string {
+  if (values.expectedLeaderId && values.teamId && values.userId) {
+    const team = (data.items || []).find((item: Row) => item.id === values.teamId);
+    const oldLeader = team?.members?.find((member: Row) => member.id === values.expectedLeaderId);
+    const nextLeader = team?.members?.find((member: Row) => member.id === values.userId);
+    return `${team?.name || values.teamId} · ${oldLeader?.name || values.expectedLeaderId} → ${nextLeader?.name || values.userId}`;
+  }
   const id =
     values.columnId ||
     values.batchId ||
@@ -4068,6 +4075,12 @@ export function AdminList({
                             ? "Going"
                             : "Registered")}
                       </Pill>
+                      <AdminLeaderTransfer
+                        team={team as { id: string; name: string; leader_id: string }}
+                        member={member as { id: string; name: string; removed?: boolean }}
+                        canTransfer={Boolean(data.me?.owner || data.me?.role === "admin")}
+                        run={run}
+                      />
                       {member.id !== team.leader_id && (
                         <button
                           className="admin-toolbar-icon admin-icon-danger"

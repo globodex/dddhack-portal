@@ -52,6 +52,7 @@ const report = {
   chromiumSandbox: true,
   checks: [],
   actions: [],
+  responses: [],
   errors: [],
   blocked: [],
   screenshots: [],
@@ -175,6 +176,52 @@ await context.route("**/*", async (route) => {
 const page = await context.newPage();
 page.setDefaultTimeout(12000);
 page.on("pageerror", (error) => report.errors.push(error.message));
+const responseReads = [];
+page.on("response", (response) => {
+  if (
+    response.request().method() !== "POST" ||
+    new URL(response.url()).pathname !== "/api/portal"
+  )
+    return;
+  responseReads.push(
+    (async () => {
+      const action = response.request().postDataJSON()?.action;
+      const body = await response.json();
+      report.responses.push({
+        action,
+        status: response.status(),
+        ...(body.message ? { message: body.message } : {}),
+        ...(body.code ? { code: body.code } : {}),
+        ...(body.batchId ? { batchId: body.batchId } : {}),
+        ...(typeof body.rowCount === "number"
+          ? { rowCount: body.rowCount }
+          : {}),
+        ...(Array.isArray(body.columns)
+          ? {
+              columns: body.columns.map(
+                ({ key, heading, instructions, count }) => ({
+                  key,
+                  heading,
+                  instructions,
+                  count,
+                }),
+              ),
+            }
+          : {}),
+        ...(Array.isArray(body.rows)
+          ? {
+              rows: body.rows
+                .slice(0, 5)
+                .map((row) => ({
+                  row: row.row,
+                  cells: row.cells.map((cell) => (cell ? "[masked]" : "")),
+                })),
+            }
+          : {}),
+      });
+    })(),
+  );
+});
 const click = (locator) =>
   mode === "upload" ? locator.tap() : locator.click();
 async function snapshot(name) {
@@ -230,7 +277,7 @@ try {
         .value.includes("SYNTHETIC-RAW"),
     );
   } else await editor.getByLabel("Paste CSV", { exact: true }).fill(csv);
-  await click(editor.getByRole("button", { name: "Preview", exact: true }));
+  await click(editor.getByRole("button", { name: "Add credits", exact: true }));
   const preparing = editor.getByRole("button", {
     name: "Preparing…",
     exact: true,
@@ -240,28 +287,18 @@ try {
   assert.equal(await preparing.getAttribute("aria-busy"), "true");
   assert.equal(await editor.locator(".credit-batch-spinner").count(), 1);
   assert.equal(
-    await editor.getByLabel("Paste CSV", { exact: true }).isEnabled(),
+    await editor.locator('textarea[name="creditsCSV"]').isEnabled(),
     true,
   );
   check(
-    "Preview has immediate local busy feedback without freezing unrelated controls",
+    "Add credits has immediate local busy feedback without freezing unrelated controls",
   );
   releasePreview();
   await editor.locator(".credit-batch-column-editor").first().waitFor();
-  assert.equal(
-    await editor.locator(".credit-batch-samples tbody tr").count(),
-    5,
-  );
-  assert.equal(
-    (await editor.locator(".credit-batch-samples").innerText()).includes(
-      "SYNTHETIC-RAW",
-    ),
-    false,
-  );
+  assert.equal(await editor.locator(".credit-batch-samples").count(), 0);
+  assert.equal((await editor.innerText()).includes("SYNTHETIC-RAW"), false);
   assert.equal(await editor.locator('textarea[name="creditsCSV"]').count(), 0);
-  check(
-    "Preview masks every value, limits samples to five and removes raw CSV from the review DOM",
-  );
+  check("Parsing opens only column editors and removes raw CSV from their DOM");
   await editor
     .getByLabel(`Heading for ${headings[0]}`, { exact: true })
     .fill(finalHeading);
@@ -269,58 +306,47 @@ try {
     await editor
       .getByLabel(`Instructions for ${headings[i]}`, { exact: true })
       .fill(instructions[i]);
-  assert.ok(
-    (
-      await editor.locator(".credit-batch-markdown-preview").first().innerText()
-    ).includes("Redeem Alpha"),
-  );
-  await click(editor.getByRole("button", { name: "Review", exact: true }));
-  await editor
-    .getByRole("button", { name: "Publish credits", exact: true })
-    .waitFor();
   assert.equal(
-    await editor
-      .locator(".credit-batch-column-editor textarea")
-      .first()
-      .getAttribute("readonly"),
-    "",
+    await editor.getByRole("button", { name: /^(Preview|Review)$/ }).count(),
+    0,
+  );
+  assert.equal(
+    await editor.locator(".credit-batch-markdown-preview").count(),
+    0,
   );
   check(
-    "Markdown renders safely and edited columns receive a final server review",
+    "Headings and Markdown are editable without Preview or Review controls",
   );
   await click(
-    editor.getByRole("button", { name: "Edit instructions", exact: true }),
+    editor.getByRole("button", { name: "Publish credits", exact: true }),
   );
-  assert.equal(
-    await editor
-      .getByRole("button", { name: "Publish credits", exact: true })
-      .count(),
-    0,
+  const firstConfirmation = page.locator("dialog[open]");
+  await firstConfirmation.waitFor();
+  assert.equal(counts["preview-credit-batch"], 2);
+  assert.ok((await firstConfirmation.innerText()).includes(finalHeading));
+  await click(
+    firstConfirmation.getByRole("button", { name: "Cancel", exact: true }),
+  );
+  assert.equal(counts["publish-credit-batch"], 0);
+  await page.waitForFunction(
+    () =>
+      !document.querySelector(".credit-batch-column-editor textarea").readOnly,
+  );
+  check(
+    "Publish validates internally then asks exact confirmation; Cancel makes no publish request and retains inputs",
   );
   await editor
     .locator(".credit-batch-column-editor textarea")
     .first()
     .fill(instructions[0] + "\nFinal reviewed steps.");
-  await click(editor.getByRole("button", { name: "Review", exact: true }));
-  await editor
-    .getByRole("button", { name: "Publish credits", exact: true })
-    .waitFor();
+  await snapshot("credit-columns-edited");
+  await click(
+    editor.getByRole("button", { name: "Publish credits", exact: true }),
+  );
+  await page.locator("dialog[open]").waitFor();
+  assert.equal(counts["preview-credit-batch"], 3);
   check(
-    "Editing invalidates publish readiness until the changed instructions are reviewed again",
-  );
-  await snapshot("reviewed-columns-masked");
-  await click(
-    editor.getByRole("button", { name: "Publish credits", exact: true }),
-  );
-  await click(
-    page
-      .locator("dialog[open]")
-      .getByRole("button", { name: "Cancel", exact: true }),
-  );
-  assert.equal(counts["publish-credit-batch"], 0);
-  check("Cancel publication creates no publish request");
-  await click(
-    editor.getByRole("button", { name: "Publish credits", exact: true }),
+    "Edited instructions are revalidated internally on the next Publish click",
   );
   await confirm();
   await page
@@ -408,12 +434,16 @@ try {
   );
   assert.equal(report.errors.length, 0, JSON.stringify(report.errors));
   assert.equal(report.blocked.length, 0, JSON.stringify(report.blocked));
+  await Promise.all(responseReads);
+  assert.equal(report.responses.length, 6);
+  assert.ok(report.responses.every((response) => response.status === 200));
 } catch (error) {
   report.failure = error.stack;
   process.exitCode = 1;
   await snapshot("failure").catch(() => {});
 } finally {
   releasePreview();
+  await Promise.allSettled(responseReads);
   await context.close();
   await browser.close();
   report.browserClosed = true;
