@@ -21,6 +21,7 @@ import {
   History,
   House,
   LayoutDashboard,
+  LogOut,
   Menu,
   SlidersHorizontal,
   UserRound,
@@ -3906,6 +3907,14 @@ export default function Portal({
     [errorCode, setErrorCode] = useState(""),
     [message, setMessage] = useState(""),
     [menu, setMenu] = useState(false);
+  const [wideNavigation, setWideNavigation] = useState(false);
+  useEffect(() => {
+    const media = matchMedia("(min-width: 1200px)");
+    const update = () => setWideNavigation(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
   const [confirmation, setConfirmation] = useState<Confirmation | null>(null);
   const gate = useRef<ConfirmationGate | null>(null),
     actionBusy = useRef(false),
@@ -4046,6 +4055,8 @@ export default function Portal({
     (path === "/dashboard" &&
       !!data.profileIncomplete &&
       data.me?.mode !== "viewer");
+  const dashboardDesktop =
+    path === "/dashboard" && !profileOnboarding && wideNavigation;
   const c =
     teamPalettes[(data.team?.palette || "forest") as Palette] ||
     teamPalettes.forest;
@@ -4119,12 +4130,20 @@ export default function Portal({
         </a>
         <button
           className="button secondary"
-          aria-expanded={menu}
+          aria-expanded={dashboardDesktop ? !menu : menu}
           aria-controls="site-navigation"
           onClick={() => setMenu(!menu)}
         >
-          <Icon name={menu ? "close" : "menu"} />
-          <span className="sr-only">{menu ? "Close menu" : "Open menu"}</span>
+          <Icon name={!dashboardDesktop && menu ? "close" : "menu"} />
+          <span className="sr-only">
+            {dashboardDesktop
+              ? menu
+                ? "Show navigation"
+                : "Hide navigation"
+              : menu
+                ? "Close menu"
+                : "Open menu"}
+          </span>
         </button>
       </header>
       <aside className={`sidebar ${menu ? "open" : ""}`}>
@@ -4216,11 +4235,12 @@ export default function Portal({
                 </a>
               )}
               <button
-                className="link-button"
+                className="link-button account-logout"
                 type="button"
                 onClick={() => void logout()}
               >
-                Log out
+                <LogOut size={20} aria-hidden="true" />
+                <span>Log out</span>
               </button>
             </>
           ) : (
