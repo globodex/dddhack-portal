@@ -1,0 +1,159 @@
+.admin-credit-batches {
+  display: grid;
+  gap: 28px;
+  min-width: 0;
+  margin-block: 24px;
+}
+.admin-credit-batches h2 {
+  margin: 0 0 20px;
+  font-size: 21px;
+}
+.admin-credit-batches h3,
+.admin-credit-batches h4 {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.admin-credit-batches form,
+.credit-batch-column-editors {
+  display: grid;
+  gap: 20px;
+}
+.admin-credit-batches label {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+.admin-credit-batches input,
+.admin-credit-batches textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.admin-credit-batches textarea {
+  resize: vertical;
+}
+.admin-credit-batches .button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  justify-self: start;
+  min-height: 44px;
+}
+.credit-batch-source-actions,
+.credit-batch-preview-heading,
+.credit-batch-existing > header,
+.credit-batch-existing-column > header,
+.credit-batch-column-editor > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.credit-batch-source-actions {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.credit-batch-publish-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.credit-batch-source-actions > span {
+  overflow-wrap: anywhere;
+}
+.credit-batch-editor,
+.credit-batch-existing {
+  padding: 24px;
+  border: 1px solid #e1e8ee;
+  border-radius: 14px;
+  background: #fff;
+}
+.credit-batch-column-editor,
+.credit-batch-existing-column {
+  display: grid;
+  gap: 16px;
+  padding-block: 20px;
+  border-block-start: 1px solid #e1e8ee;
+}
+.credit-batch-existing-column {
+  margin-top: 20px;
+  padding-bottom: 0;
+}
+.credit-batch-column-editor > header span,
+.credit-batch-existing time,
+.credit-batch-existing-column p {
+  color: #526079;
+  font-size: 14px;
+}
+.credit-batch-published {
+  display: grid;
+  gap: 20px;
+}
+.credit-batch-published > h2 {
+  margin-bottom: 0;
+}
+.credit-batch-markdown-preview {
+  padding: 16px;
+  background: #f5f8fa;
+  border-radius: 10px;
+  overflow-wrap: anywhere;
+}
+.credit-batch-markdown-preview > h4 {
+  font-size: 13px;
+  color: #526079;
+  margin-bottom: 12px;
+}
+.credit-batch-samples {
+  max-width: 100%;
+  border: 1px solid #e1e8ee;
+  border-radius: 10px;
+}
+.credit-batch-samples table {
+  min-width: 100%;
+}
+.credit-batch-samples th,
+.credit-batch-samples td {
+  padding: 12px 16px;
+  white-space: nowrap;
+}
+.credit-batch-delete {
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+}
+.credit-batch-delete [role="alert"] {
+  max-width: 280px;
+  margin: 0;
+  color: #ab2735;
+}
+.credit-batch-spinner {
+  animation: credit-batch-spin 900ms linear infinite;
+}
+@keyframes credit-batch-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 740px) {
+  .credit-batch-editor,
+  .credit-batch-existing {
+    padding: 18px;
+  }
+  .credit-batch-existing > header,
+  .credit-batch-existing-column > header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .credit-batch-delete {
+    justify-items: start;
+  }
+  .credit-batch-preview-heading {
+    align-items: flex-start;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .credit-batch-spinner {
+    animation: none;
+  }
+}
