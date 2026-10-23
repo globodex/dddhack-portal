@@ -1189,7 +1189,7 @@ details.panel:has(> .admin-import)[open] {
   color: #5b6770;
   pointer-events: none;
 }
-.main:not(.home-main) .admin-exact .admin-filter-search input {
+.main:not(.home-main) .admin-exact .admin-filter-search input[type="search"] {
   min-height: 52px;
   padding-left: 44px;
   background: #f4f7f8;
@@ -1984,6 +1984,31 @@ details.panel:has(> .admin-import)[open] {
   .main:not(.home-main) .admin-settings-credits > label {
     grid-template-columns: minmax(0, 1fr);
     gap: 8px;
+  }
+  .main:not(.home-main)
+    .admin-settings-page
+    .admin-add-admins
+    .admin-email-action {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: end;
+  }
+  .main:not(.home-main)
+    .admin-settings-page
+    .admin-add-admins
+    .admin-email-action > label {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    min-width: 0;
+  }
+  .main:not(.home-main)
+    .admin-settings-page
+    .admin-add-admins
+    .admin-email-action > .button {
+    width: auto;
+    min-width: 64px;
   }
   .admin-settings-credits > label select {
     max-width: none;
