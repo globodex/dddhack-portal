@@ -208,11 +208,11 @@ export function AdminParticipantFilters({
             })
           }
         >
-          <option value="locked">Locked teams</option>
-          <option value="forming">Forming teams</option>
-          <option value="not submitted">Not submitted teams</option>
-          <option value="submitted">Submitted teams</option>
-          <option value="unlocked">Unlocked teams</option>
+          <option value="locked">Locked</option>
+          <option value="forming">Forming</option>
+          <option value="not submitted">Not submitted</option>
+          <option value="submitted">Submitted</option>
+          <option value="unlocked">Unlocked</option>
           <option value="none">Not in a team</option>
           <option value="all">All people</option>
         </select>
