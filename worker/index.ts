@@ -9,7 +9,7 @@ import {
   unavailableResponse,
   getSitesRuntime,
 } from "../lib/sites-runtime";
-import { PortalService } from "../lib/service";
+import { readSitesView } from "../lib/sites-view";
 import { signInPath } from "../lib/identity";
 import { PortalError } from "../lib/security";
 
@@ -79,12 +79,7 @@ const worker = {
             }
             // Authorize before rendering; framework error pages must not turn
             // permission denials into successful participant/admin shells.
-            const service = new PortalService(
-              runtime.db,
-              runtime.identity,
-              runtime.key,
-            );
-            await service.view(url.pathname);
+            await readSitesView(url.pathname);
           } catch (error) {
             // The page deliberately renders the account-switch recovery shell for
             // a verified email outside the roster. API access still fails closed.

@@ -9,6 +9,7 @@ import { requireChatGPTUser } from "../chatgpt-auth";
 import { getSitesRuntime, protectedPath } from "../../lib/sites-runtime";
 import { PortalService } from "../../lib/service";
 import Portal from "../portal";
+import { readSitesView } from "../../lib/sites-view";
 export const dynamic = "force-dynamic";
 export default async function Page({
   params,
@@ -19,17 +20,12 @@ export default async function Page({
   const routePath = "/" + path.join("/");
   const localTest =
     import.meta.env.DEV && process.env.PORTAL_LOCAL_TEST === "1";
+  let initialView: Record<string, any> | undefined;
   if (!localTest && protectedPath(routePath)) {
-    const runtime = getSitesRuntime();
     await requireChatGPTUser(routePath);
-    const service = new PortalService(
-      runtime.db,
-      runtime.identity,
-      runtime.key,
-    );
     // The service owns per-route roles, assignments, profile gating and projections.
     try {
-      await service.view(routePath);
+      initialView = await readSitesView(routePath);
     } catch (error) {
       if (!(
         error instanceof PortalError && error.code === "LUMA_EMAIL_MISMATCH"
@@ -60,6 +56,7 @@ export default async function Page({
         path={routePath}
         localTest={localTest}
         initialPublic={initialPublic}
+        initialView={initialView}
       />
     </>
   );

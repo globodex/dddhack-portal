@@ -14,6 +14,7 @@ type RequestContext = {
   request: Request;
   env: SitesEnvironment;
   background?: Runtime["background"];
+  views: Map<string, Promise<Record<string, unknown>>>;
 };
 const requests = new AsyncLocalStorage<RequestContext>();
 
@@ -24,7 +25,25 @@ export function runWithSitesRequest<T>(
   run: () => T,
   background?: Runtime["background"],
 ): T {
-  return requests.run({ request, env, background }, run);
+  return requests.run({ request, env, background, views: new Map() }, run);
+}
+export function reuseSitesView(
+  path: string,
+  read: () => Promise<Record<string, unknown>>,
+) {
+  const context = requests.getStore();
+  demand(
+    context && dispatchConfigured(context.env),
+    503,
+    "SITES_DISPATCH_NOT_CONFIGURED",
+  );
+  const key = path.replace(/\/+/g, "/").replace(/\/$/, "") || "/";
+  let view = context.views.get(key);
+  if (!view) {
+    view = read();
+    context.views.set(key, view);
+  }
+  return view;
 }
 export function dispatchConfigured(env: SitesEnvironment) {
   return (

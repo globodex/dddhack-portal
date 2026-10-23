@@ -41,6 +41,7 @@ import { useDiscoverPeople, peopleDirectoryUrl, readPeoplePage } from "./use-dis
 import { HeadingDot } from "./expressive-heading";
 import CenteredLoader from "./centered-loader";
 import MobileNavigation from "./mobile-navigation";
+import { readPortalView } from "../lib/portal-read";
 import DiscoveryProfile, {
   discoverySocialLinks,
   openDiscoveryDialog,
@@ -4739,14 +4740,16 @@ export default function Portal({
   path: original,
   localTest = false,
   initialPublic,
+  initialView,
 }: {
   path: string;
   localTest?: boolean;
   initialPublic?: View;
+  initialView?: View;
 }) {
   const path = canonical(original);
-  const [data, setData] = useState<View>(initialPublic || {}),
-    [loading, setLoading] = useState(!initialPublic && path !== "/"),
+  const [data, setData] = useState<View>(initialView || initialPublic || {}),
+    [loading, setLoading] = useState(!initialView && !initialPublic && path !== "/"),
     [error, setError] = useState(""),
     [errorCode, setErrorCode] = useState(""),
     [message, setMessage] = useState(""),
@@ -4754,39 +4757,56 @@ export default function Portal({
   const [confirmation, setConfirmation] = useState<Confirmation | null>(null);
   const gate = useRef<ConfirmationGate | null>(null),
     actionBusy = useRef(false),
-    loadGeneration = useRef(0);
+    loadGeneration = useRef(0),
+    loadAbort = useRef<AbortController | null>(null),
+    lastRefresh = useRef(0),
+    hydratedView = useRef(initialView),
+    hasLoadedView = useRef(!!initialView || !!initialPublic);
   if (!gate.current) gate.current = new ConfirmationGate(setConfirmation);
   async function load() {
     const generation = ++loadGeneration.current;
+    loadAbort.current?.abort();
+    const controller = new AbortController();
+    loadAbort.current = controller;
+    lastRefresh.current = Date.now();
+    setLoading(!hasLoadedView.current);
     setError("");
     try {
-      const r = await fetch(
+      const {response: r, body} = await readPortalView(
         `/api/portal?view=${encodeURIComponent(path)}&focus=${encodeURIComponent(new URLSearchParams(window.location.search).get("project") || "")}`,
-        {
-          cache: "no-store",
-        },
+        controller.signal,
       );
-      const body = (await r.json()) as View;
       if (generation !== loadGeneration.current) return;
       if (!r.ok) {
         setErrorCode(body.code || "");
+        hasLoadedView.current = false;
         setData({});
         throw new Error(
           body.message || body.code || "This page could not be loaded.",
         );
       }
       setErrorCode("");
+      hasLoadedView.current = true;
       setData(body);
     } catch (e) {
-      if (generation === loadGeneration.current) setError((e as Error).message);
+      if (generation === loadGeneration.current && !controller.signal.aborted) setError((e as Error).message);
     } finally {
       if (generation === loadGeneration.current) setLoading(false);
+      if (loadAbort.current === controller) loadAbort.current = null;
     }
   }
   useEffect(() => {
-    void load();
+    if (initialView && hydratedView.current === initialView) {
+      setData(initialView);
+      hasLoadedView.current = true;
+      setLoading(false);
+      lastRefresh.current=Date.now();
+    } else {
+      void load();
+    }
+    hydratedView.current = undefined;
     const refresh = () => {
-      if (document.visibilityState === "visible" && !actionBusy.current)
+      if (document.visibilityState === "visible" && !actionBusy.current && !loadAbort.current && Date.now()-lastRefresh.current>=2_000)
         void load();
     };
     window.addEventListener("focus", refresh);
@@ -4794,12 +4814,16 @@ export default function Portal({
     return () => {
       window.removeEventListener("focus", refresh);
       document.removeEventListener("visibilitychange", refresh);
+      ++loadGeneration.current;
+      loadAbort.current?.abort();
     };
   }, [path]);
   useEffect(() => {
     const hide = () => {
       ++loadGeneration.current;
+      loadAbort.current?.abort();
       gate.current?.decide(false);
+      hasLoadedView.current = false;
       setData({});
       setLoading(true);
     };
