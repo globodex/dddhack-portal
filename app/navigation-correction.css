@@ -1,0 +1,100 @@
+/* Shared heading/loading components only. Import once from the root layout. */
+.expressive-heading-dot {
+  display: inline-block;
+  inline-size: var(--heading-dot-size, 0.7em);
+  block-size: var(--heading-dot-size, 0.7em);
+  flex: 0 0 auto;
+  margin-inline-start: 0.16em;
+  vertical-align: 0.01em;
+  line-height: 0;
+  border: 0;
+  background: none;
+  pointer-events: none;
+}
+.expressive-heading-dot svg {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.expressive-heading-dot text {
+  transition: transform 140ms ease-out;
+}
+.expressive-heading-dot[data-paused="true"] text {
+  transform: none !important;
+  transition: none;
+}
+.expressive-heading {
+  text-wrap: balance;
+}
+.centered-loader {
+  display: grid;
+  place-items: center;
+  inline-size: 100%;
+  min-block-size: var(
+    --loader-available-height,
+    calc(100svh - var(--loader-top-offset, 0px))
+  );
+  box-sizing: border-box;
+  padding: 24px;
+  border: 0;
+  background: transparent;
+  overflow-anchor: none;
+}
+.centered-loader[data-scope="viewport"] {
+  position: fixed;
+  inset: 0;
+  min-block-size: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+.centered-loader-content {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 16px;
+  max-inline-size: 100%;
+  text-align: center;
+}
+.centered-loader-dots {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  block-size: 20px;
+}
+.centered-loader-dots i {
+  display: block;
+  inline-size: 12px;
+  block-size: 12px;
+  border-radius: 50%;
+  background: #006afe;
+  animation: centered-loading-dot 900ms ease-in-out infinite;
+}
+.centered-loader-dots i:nth-child(2) {
+  background: #924ff7;
+  animation-delay: 150ms;
+}
+.centered-loader-dots i:nth-child(3) {
+  background: #00ab43;
+  animation-delay: 300ms;
+}
+@keyframes centered-loading-dot {
+  50% {
+    transform: translateX(3px) scale(0.7);
+  }
+}
+.centered-loader[data-paused="true"] i {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce), (pointer: coarse), (hover: none) {
+  .expressive-heading-dot text {
+    transform: none !important;
+    transition: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .centered-loader-dots i {
+    animation: none;
+  }
+}

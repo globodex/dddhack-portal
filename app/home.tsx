@@ -81,7 +81,6 @@ function Agenda({
         <header>
           <span className="chapter-number">01</span>
           <h2>Schedule</h2>
-          <p>One day. Many possibilities.</p>
         </header>
         <div className="agenda-window">
           <ol ref={track} className="agenda-track">
