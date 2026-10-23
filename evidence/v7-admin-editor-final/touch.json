@@ -1,0 +1,230 @@
+{
+  "source": "157edeaa1d2f55e3e4b0f86cf9a5d8bb6696daef",
+  "worker": "9dc8809075749621105a420db2ab40e6cf2faf1ee5bc09e197b958dbdf272335",
+  "mode": "touch",
+  "origin": "http://127.0.0.1:4175",
+  "syntheticOnly": true,
+  "browserSandbox": true,
+  "checks": [
+    {
+      "name": "agenda add, cancel removal, confirmed removal and immediate feedback",
+      "passed": true,
+      "networkWrites": 0,
+      "defaultCancel": true
+    },
+    {
+      "name": "faqs add, cancel removal, confirmed removal and immediate feedback",
+      "passed": true,
+      "networkWrites": 0,
+      "defaultCancel": true
+    },
+    {
+      "name": "Draft save cancel preserves server; confirmed save persists exactly once",
+      "passed": true,
+      "revision": 1
+    },
+    {
+      "name": "Saved draft publish cancel preserves public content; confirmed publish changes only synthetic content",
+      "passed": true,
+      "revision": 2
+    }
+  ],
+  "blocked": [],
+  "pageErrors": [],
+  "actions": [
+    {
+      "label": "Add agenda entry",
+      "start": 1307.4000000001397,
+      "at": 1792788790342.5999,
+      "feedbackMs": 2,
+      "status": "Agenda entry added."
+    },
+    {
+      "label": "Remove agenda entry 2: Untitled",
+      "start": 1406.2000000001863,
+      "at": 1792788790441.4,
+      "feedbackMs": 8.199999999953434,
+      "status": "confirmation"
+    },
+    {
+      "label": "Remove agenda entry 2: Untitled",
+      "start": 1608.3000000000466,
+      "at": 1792788790643.5,
+      "feedbackMs": 14.199999999953434,
+      "status": "confirmation"
+    },
+    {
+      "label": "Add question",
+      "start": 1806.9000000001397,
+      "at": 1792788790842.0999,
+      "feedbackMs": 3.800000000046566,
+      "status": "Question added."
+    },
+    {
+      "label": "Remove question 8: Untitled",
+      "start": 1906.3000000000466,
+      "at": 1792788790941.5,
+      "feedbackMs": 5.5,
+      "status": "confirmation"
+    },
+    {
+      "label": "Remove question 8: Untitled",
+      "start": 2107.2000000001863,
+      "at": 1792788791142.4,
+      "feedbackMs": 6.399999999906868,
+      "status": "confirmation"
+    },
+    {
+      "label": "Save draft",
+      "start": 2381.600000000093,
+      "at": 1792788791416.8,
+      "feedbackMs": 13.699999999953434,
+      "status": "confirmation"
+    },
+    {
+      "label": "Save draft",
+      "start": 2606.5,
+      "at": 1792788791641.7,
+      "feedbackMs": 22.100000000093132,
+      "status": "confirmation"
+    },
+    {
+      "label": "Publish saved draft",
+      "start": 2942.100000000093,
+      "at": 1792788791977.3,
+      "feedbackMs": 7.600000000093132,
+      "status": "confirmation"
+    },
+    {
+      "label": "Publish saved draft",
+      "start": 3206.9000000001397,
+      "at": 1792788792242.0999,
+      "feedbackMs": 7.899999999906868,
+      "status": "confirmation"
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "url": "/api/portal?view=%2Fadmin%2Fsettings&focus=",
+      "start": 1792788789439,
+      "status": 200,
+      "headersMs": 41,
+      "finishedMs": 41
+    },
+    {
+      "method": "GET",
+      "url": "/api/portal?view=/admin/settings",
+      "start": 1792788790042,
+      "status": 200,
+      "headersMs": 21,
+      "finishedMs": 22
+    },
+    {
+      "method": "GET",
+      "url": "/api/portal?view=/admin/settings",
+      "start": 1792788791530,
+      "status": 200,
+      "headersMs": 23,
+      "finishedMs": 24
+    },
+    {
+      "method": "POST",
+      "url": "/api/portal",
+      "start": 1792788791766,
+      "action": "content-save",
+      "status": 200,
+      "headersMs": 34,
+      "finishedMs": 34
+    },
+    {
+      "method": "GET",
+      "url": "/api/portal?view=%2Fadmin%2Fsettings&focus=",
+      "start": 1792788791800,
+      "status": 200,
+      "headersMs": 19,
+      "finishedMs": 19
+    },
+    {
+      "method": "GET",
+      "url": "/api/portal?view=/admin/settings",
+      "start": 1792788791865,
+      "status": 200,
+      "headersMs": 27,
+      "finishedMs": 30
+    },
+    {
+      "method": "GET",
+      "url": "/api/portal?view=/admin/settings",
+      "start": 1792788792132,
+      "status": 200,
+      "headersMs": 20,
+      "finishedMs": 22
+    },
+    {
+      "method": "POST",
+      "url": "/api/portal",
+      "start": 1792788792358,
+      "action": "content-publish",
+      "status": 200,
+      "headersMs": 49,
+      "finishedMs": 49
+    },
+    {
+      "method": "GET",
+      "url": "/api/portal?view=%2Fadmin%2Fsettings&focus=",
+      "start": 1792788792409,
+      "status": 200,
+      "headersMs": 23,
+      "finishedMs": 24
+    },
+    {
+      "method": "GET",
+      "url": "/api/portal?view=/admin/settings",
+      "start": 1792788792447,
+      "status": 200,
+      "headersMs": 26,
+      "finishedMs": 26
+    }
+  ],
+  "captures": [
+    {
+      "path": "/workspace/v7-admin/evidence/v7-admin-editor/157edeaa-touch-mvlg5mma/touch-agenda-faq-controls.png",
+      "source": "157edeaa1d2f55e3e4b0f86cf9a5d8bb6696daef",
+      "worker": "9dc8809075749621105a420db2ab40e6cf2faf1ee5bc09e197b958dbdf272335",
+      "mode": "touch",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "actualScreenshot": true
+    }
+  ],
+  "limitations": [
+    "Browser emulation, not physical touch hardware.",
+    "Keyboard button activation uses focus plus Enter/Space; fill uses Playwright inputs.",
+    "Timing measures local click-to-first-visible-feedback and local request waterfall, not hosted latency.",
+    "Only exact public-content fixture save/publish permitted; no Site deployment or production mutation."
+  ],
+  "sourceUnchanged": true,
+  "workerUnchanged": true,
+  "summary": {
+    "checks": 4,
+    "passed": 4,
+    "failed": 0
+  },
+  "feedbackMs": [
+    2,
+    8.199999999953434,
+    14.199999999953434,
+    3.800000000046566,
+    5.5,
+    6.399999999906868,
+    13.699999999953434,
+    22.100000000093132,
+    7.600000000093132,
+    7.899999999906868
+  ],
+  "finishedAt": "2026-10-23T20:53:12.618Z",
+  "processExitCode": 0
+}

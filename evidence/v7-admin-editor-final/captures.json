@@ -1,0 +1,89 @@
+{
+  "source": "08dd4c7d8712ac5c3051a02879f5c6e9fc112076",
+  "worker": "e1b2e2ddbb43d79877dc742a20652c8849fa630bbb6f6299e679ff6837f427e9",
+  "readOnly": true,
+  "syntheticOnly": true,
+  "chromiumSandbox": true,
+  "captures": [
+    {
+      "path": "evidence/v7-admin-editor/08dd4c7-final-captures/desktop-agenda.png",
+      "mode": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "actualScreenshot": true
+    },
+    {
+      "path": "evidence/v7-admin-editor/08dd4c7-final-captures/desktop-faq.png",
+      "mode": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "actualScreenshot": true
+    },
+    {
+      "path": "evidence/v7-admin-editor/08dd4c7-final-captures/desktop-actions.png",
+      "mode": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "actualScreenshot": true
+    },
+    {
+      "path": "evidence/v7-admin-editor/08dd4c7-final-captures/mobile-agenda.png",
+      "mode": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "actualScreenshot": true
+    },
+    {
+      "path": "evidence/v7-admin-editor/08dd4c7-final-captures/mobile-faq.png",
+      "mode": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "actualScreenshot": true
+    },
+    {
+      "path": "evidence/v7-admin-editor/08dd4c7-final-captures/mobile-actions.png",
+      "mode": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "actualScreenshot": true
+    }
+  ],
+  "blocked": [],
+  "layout": [
+    {
+      "mode": "desktop",
+      "width": 1440,
+      "documentWidth": 1440,
+      "fieldset": {
+        "border": "0px",
+        "padding": "0px",
+        "width": 1098
+      }
+    },
+    {
+      "mode": "mobile",
+      "width": 390,
+      "documentWidth": 390,
+      "fieldset": {
+        "border": "0px",
+        "padding": "0px",
+        "width": 316
+      }
+    }
+  ],
+  "reviewedCaptures": 6,
+  "reviewScope": "Actual rendering, responsive layout, legibility and synthetic/private-field safety",
+  "comparedToSelectedMockups": false
+}

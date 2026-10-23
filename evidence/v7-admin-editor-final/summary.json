@@ -1,0 +1,83 @@
+{
+  "runtimeSource": "08dd4c7d8712ac5c3051a02879f5c6e9fc112076",
+  "interactionSource": "157edeaa1d2f55e3e4b0f86cf9a5d8bb6696daef",
+  "workerSha256": "e1b2e2ddbb43d79877dc742a20652c8849fa630bbb6f6299e679ff6837f427e9",
+  "scope": [
+    "Agenda and FAQ actual Lucide Plus/Trash2/Save/Send controls",
+    "Exact per-row accessible remove labels and cancel-first native confirmation",
+    "Local add/remove feedback with zero network writes",
+    "Confirmed draft save and local publication persist exactly once; cancellation preserves state",
+    "Manual operational attestation and Event controls UI completely removed",
+    "Results uses actual per-action resultControls projection, with safe unavailable fallback and accessible concise reasons"
+  ],
+  "unitAndRenderedRegression": {
+    "passed": 17,
+    "failed": 0,
+    "command": "node --import tsx --test --test-concurrency=1 tests/admin-content-editor.test.ts tests/admin-settings-simplification.test.ts tests/admin-portal-integration.test.ts"
+  },
+  "typecheck": "passed",
+  "productionBuildAndArtifactReview": {
+    "status": "passed",
+    "artifactFiles": 185
+  },
+  "interactionRuns": [
+    {
+      "mode": "mouse",
+      "passed": 4,
+      "failed": 0,
+      "processExitCode": 0,
+      "receipt": "evidence/v7-admin-editor-final/mouse.json"
+    },
+    {
+      "mode": "keyboard",
+      "passed": 4,
+      "failed": 0,
+      "processExitCode": 0,
+      "receipt": "evidence/v7-admin-editor-final/keyboard.json"
+    },
+    {
+      "mode": "touch",
+      "passed": 4,
+      "failed": 0,
+      "processExitCode": 0,
+      "receipt": "evidence/v7-admin-editor-final/touch.json"
+    }
+  ],
+  "scenarioChecks": 12,
+  "clickToFirstFeedback": {
+    "samples": 30,
+    "minMs": 1.5999999998603016,
+    "maxMs": 55.5,
+    "allSamplesUnder1s": true,
+    "scope": "Local disposable compiled Worker only; not hosted latency or capacity"
+  },
+  "waterfall": {
+    "localPostRequests": 6,
+    "postsPerMode": 2,
+    "postFinishedMinMs": 29,
+    "postFinishedMaxMs": 55,
+    "getFinishedMinMs": 18,
+    "getFinishedMaxMs": 64,
+    "editorAddRemoveNetworkWrites": 0
+  },
+  "actualScreenshots": {
+    "interactionCaptures": 3,
+    "finalLayoutReadOnlyCaptures": 6,
+    "allReviewed": true,
+    "capturesReceipt": "evidence/v7-admin-editor-final/captures.json",
+    "mockupMatchClaim": false
+  },
+  "integrationDependency": "Results controls require backend data.resultControls.{ai,freeze,final}.{allowed,reason}; backend derivation is owned and tested by integration lane. Standalone admin lane deliberately disables absent projections.",
+  "supersedes": "Prior374209c Event controls relocation is superseded by explicit later request to remove all manual operation attestations. Earlier43scenario admin evidence remains source-bound to its earlier runtime.",
+  "noProductionActions": true,
+  "noProviderCalls": true,
+  "noCredentialsChanged": true,
+  "noSiteDeployment": true,
+  "ownedPreviewStopped": true,
+  "disposableFixturesDiscarded": true,
+  "remaining": [
+    "Physical-device/native keyboard input coverage",
+    "Selected mockup comparison",
+    "Full integrated backend/UI Results prerequisite validation in integration lane"
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "source": "157edeaa1d2f55e3e4b0f86cf9a5d8bb6696daef",
+  "worker": "9dc8809075749621105a420db2ab40e6cf2faf1ee5bc09e197b958dbdf272335",
+  "mode": "mouse",
+  "origin": "http://127.0.0.1:4175",
+  "syntheticOnly": true,
+  "browserSandbox": true,
+  "checks": [
+    {
+      "name": "agenda add, cancel removal, confirmed removal and immediate feedback",
+      "passed": true,
+      "networkWrites": 0,
+      "defaultCancel": true
+    },
+    {
+      "name": "faqs add, cancel removal, confirmed removal and immediate feedback",
+      "passed": true,
+      "networkWrites": 0,
+      "defaultCancel": true
+    },
+    {
+      "name": "Draft save cancel preserves server; confirmed save persists exactly once",
+      "passed": true,
+      "revision": 1
+    },
+    {
+      "name": "Saved draft publish cancel preserves public content; confirmed publish changes only synthetic content",
+      "passed": true,
+      "revision": 2
+    }
+  ],
+  "blocked": [],
+  "pageErrors": [],
+  "actions": [
+    {
+      "label": "Add agenda entry",
+      "start": 1724.1999999999534,
+      "at": 1792788765118.5,
+      "feedbackMs": 10,
+      "status": "Agenda entry added."
+    },
+    {
+      "label": "Remove agenda entry 2: Untitled",
+      "start": 1927.1999999999534,
+      "at": 1792788765321.5,
+      "feedbackMs": 55.5,
+      "status": "confirmation"
+    },
+    {
+      "label": "Remove agenda entry 2: Untitled",
+      "start": 2268.7999999998137,
+      "at": 1792788765663.1,
+      "feedbackMs": 9.700000000186265,
+      "status": "confirmation"
+    },
+    {
+      "label": "Add question",
+      "start": 2590.6999999999534,
+      "at": 1792788765985,
+      "feedbackMs": 1.5999999998603016,
+      "status": "Question added."
+    },
+    {
+      "label": "Remove question 8: Untitled",
+      "start": 2694.1999999999534,
+      "at": 1792788766088.5,
+      "feedbackMs": 18.199999999953434,
+      "status": "confirmation"
+    },
+    {
+      "label": "Remove question 8: Untitled",
+      "start": 2963.1999999999534,
+      "at": 1792788766357.5,
+      "feedbackMs": 11.599999999860302,
+      "status": "confirmation"
+    },
+    {
+      "label": "Save draft",
+      "start": 3296.0999999998603,
+      "at": 1792788766690.4001,
+      "feedbackMs": 26.9000000001397,
+      "status": "confirmation"
+    },
+    {
+      "label": "Save draft",
+      "start": 3623.5,
+      "at": 1792788767017.8,
+      "feedbackMs": 9.099999999860302,
+      "status": "confirmation"
+    },
+    {
+      "label": "Publish saved draft",
+      "start": 4005.899999999907,
+      "at": 1792788767400.2,
+      "feedbackMs": 26,
+      "status": "confirmation"
+    },
+    {
+      "label": "Publish saved draft",
+      "start": 4301.699999999953,
+      "at": 1792788767696.1,
+      "feedbackMs": 11.899999999906868,
+      "status": "confirmation"
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "url": "/api/portal?view=%2Fadmin%2Fsettings&focus=",
+      "start": 1792788764125,
+      "status": 200,
+      "headersMs": 64,
+      "finishedMs": 64
+    },
+    {
+      "method": "GET",
+      "url": "/api/portal?view=/admin/settings",
+      "start": 1792788764816,
+      "status": 200,
+      "headersMs": 29,
+      "finishedMs": 36
+    },
+    {
+      "method": "GET",
+      "url": "/api/portal?view=/admin/settings",
+      "start": 1792788766889,
+      "status": 200,
+      "headersMs": 42,
+      "finishedMs": 42
+    },
+    {
+      "method": "POST",
+      "url": "/api/portal",
+      "start": 1792788767158,
+      "action": "content-save",
+      "status": 200,
+      "headersMs": 49,
+      "finishedMs": 55
+    },
+    {
+      "method": "GET",
+      "url": "/api/portal?view=%2Fadmin%2Fsettings&focus=",
+      "start": 1792788767215,
+      "status": 200,
+      "headersMs": 34,
+      "finishedMs": 34
+    },
+    {
+      "method": "GET",
+      "url": "/api/portal?view=/admin/settings",
+      "start": 1792788767298,
+      "status": 200,
+      "headersMs": 25,
+      "finishedMs": 26
+    },
+    {
+      "method": "GET",
+      "url": "/api/portal?view=/admin/settings",
+      "start": 1792788767590,
+      "status": 200,
+      "headersMs": 25,
+      "finishedMs": 33
+    },
+    {
+      "method": "POST",
+      "url": "/api/portal",
+      "start": 1792788767827,
+      "action": "content-publish",
+      "status": 200,
+      "headersMs": 37,
+      "finishedMs": 38
+    },
+    {
+      "method": "GET",
+      "url": "/api/portal?view=%2Fadmin%2Fsettings&focus=",
+      "start": 1792788767865,
+      "status": 200,
+      "headersMs": 26,
+      "finishedMs": 26
+    },
+    {
+      "method": "GET",
+      "url": "/api/portal?view=/admin/settings",
+      "start": 1792788767912,
+      "status": 200,
+      "headersMs": 24,
+      "finishedMs": 27
+    }
+  ],
+  "captures": [
+    {
+      "path": "/workspace/v7-admin/evidence/v7-admin-editor/157edeaa-mouse-mvlg52qb/mouse-agenda-faq-controls.png",
+      "source": "157edeaa1d2f55e3e4b0f86cf9a5d8bb6696daef",
+      "worker": "9dc8809075749621105a420db2ab40e6cf2faf1ee5bc09e197b958dbdf272335",
+      "mode": "mouse",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "actualScreenshot": true
+    }
+  ],
+  "limitations": [
+    "Browser emulation, not physical touch hardware.",
+    "Keyboard button activation uses focus plus Enter/Space; fill uses Playwright inputs.",
+    "Timing measures local click-to-first-visible-feedback and local request waterfall, not hosted latency.",
+    "Only exact public-content fixture save/publish permitted; no Site deployment or production mutation."
+  ],
+  "sourceUnchanged": true,
+  "workerUnchanged": true,
+  "summary": {
+    "checks": 4,
+    "passed": 4,
+    "failed": 0
+  },
+  "feedbackMs": [
+    10,
+    55.5,
+    9.700000000186265,
+    1.5999999998603016,
+    18.199999999953434,
+    11.599999999860302,
+    26.9000000001397,
+    9.099999999860302,
+    26,
+    11.899999999906868
+  ],
+  "finishedAt": "2026-10-23T20:52:48.181Z",
+  "processExitCode": 0
+}

@@ -1,0 +1,25 @@
+{
+  "baseline": "6cffbc936681147aa91600ff765c1634602b264f",
+  "method": "Read-only source audit, no production requests or mutations",
+  "resultsVisibility": {
+    "liveV6": "Reveal AI scores, owner-only Freeze final scores, Reveal Final score each disable when data.readiness.scoring.ready is not true.",
+    "readinessDefinition": "settings version>0, active event, zero policyBlockers. The disabled click itself changes nothing.",
+    "serverPrerequisites": ["AI reveal requires explicit PUBLIC_AI confirmation, eligible current-version completed finalized provider evaluations; mocks cannot qualify", "Freeze requires owner and valid actual scoring prerequisites", "Final reveal requires explicit PUBLIC_FINAL confirmation and current-policy frozen snapshot with confirmed criteria/weightage"],
+    "remedy": "Confirm the actual unresolved scoring decisions and satisfy real evaluation/snapshot prerequisites; never invent weights or bypass controls.",
+    "v7Ui": "Consumes resultControls.ai/freeze/final allowed+reason derived by integration backend; absent projection disables safely with Reload result controls. No manual readiness checkbox UI remains."
+  },
+  "participantImport": {
+    "sequence": "Add participants → Single email / Email list / CSV → Add → count/email confirmation → Confirm",
+    "internalValidation": "Add internally calls preview-import for validation, exact new count and digest; no separate user-facing Preview step. commit-import consumes matching digest after confirmation.",
+    "csvMapping": "A CSV without an explicitly recognizable email column asks for mapping; no column is guessed.",
+    "changeRequired": false
+  },
+  "adminReview": {
+    "sequence": "Submissions → project row → /admin/submissions/{slug} → Project details / Review",
+    "controls": ["Private score and feedback", "Eligibility", "Final rubric when actual prerequisites permit", "AI evaluation status and re-evaluation when configured", "Versions and private history"],
+    "authority": "canReview returns admin for owner or every admin without assignment. Assignment gates apply to judge/mentor roles.",
+    "assignedProjectsNavigation": "Only judge and mentor roles receive /review Assigned projects navigation; admin rows already link directly into Submissions detail.",
+    "changeRequired": false
+  },
+  "credits": "See evidence/v6-credit-ui-audit.json: liveV6 exposes shared instructions and inventory counts but no upload/allocation UI. Visible attendance controls do not allocate. No API workaround or production action executed."
+}

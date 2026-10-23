@@ -1,8 +1,8 @@
 {
   "lane": "v7/admin-controls",
   "handoff": "8a9daadb96e360340620ab5f0619d0489b2d3e50",
-  "testSource": "6f46425f",
-  "runtimeUnchangedFromHandoff": true,
+  "testSource": "6f46425f94ce66552a3ce27f32e49766f3618e9d",
+  "runtimeUnchangedFromHandoff": false,
   "positiveSyntheticHttpTests": {
     "file": "tests/admin-positive-writes.test.ts",
     "passed": 2,
@@ -28,29 +28,91 @@
   "productionBuildAndArtifactGate": {
     "status": "passed",
     "files": 185,
-    "workerSha256": "9ea4529e7d2c05f9f801799b142c46971115ed7e049f15cc977e70a588cef3d3",
-    "runtimeSource": "8a9daadb96e360340620ab5f0619d0489b2d3e50",
-    "note": "Only QA scripts and tests changed after handoff; generated artifact evidence was not substituted for the published receipt."
+    "workerSha256": "b5f194c4f2afce2e93f7b8f09c6bc3b766d00b048b3770baa47e966c5510d678",
+    "runtimeSource": "374209cd8aa1b7809e2d7fef8f5cdb90ba6f5260",
+    "qaSource": "c6657c5830daa44a32c142f43720b493228e3c5e",
+    "note": "Runtime Settings change built at374209c; subsequent c6657c5 changes affect only the QA runner. All three final runs bound the same compiled Worker hash and frozen QA source."
   },
   "browser": {
-    "acceptedInteractionChecks": 0,
-    "status": "blocked",
-    "action": "Launch /usr/bin/chromium through playwright-core with chromiumSandbox:true",
-    "reason": "Chromium aborts: SUID sandbox helper is not configured correctly; chrome-sandbox must be root-owned mode 4755. No sandbox bypass permitted by docs/V6_FRESH_HANDOFF.md.",
-    "deniedByTool": false,
-    "noBrowserActionsExecutedBySandboxedAttempt": true,
+    "status": "passed-scoped",
+    "source": "c6657c5830daa44a32c142f43720b493228e3c5e",
+    "sandbox": "Chromium154.0.8037.57 with chromiumSandbox:true; executor escalation approved outside nested namespace; no Chromium sandbox bypass",
+    "runs": [
+      {
+        "mode": "mouse",
+        "checks": 14,
+        "passed": 14,
+        "processExitCode": 0,
+        "receipt": "evidence/v7-admin-controls-c6657c58/mouse.json",
+        "actualScreenshots": 6
+      },
+      {
+        "mode": "keyboard",
+        "checks": 15,
+        "passed": 15,
+        "processExitCode": 0,
+        "receipt": "evidence/v7-admin-controls-c6657c58/keyboard.json",
+        "actualScreenshots": 6
+      },
+      {
+        "mode": "touch",
+        "checks": 14,
+        "passed": 14,
+        "processExitCode": 0,
+        "receipt": "evidence/v7-admin-controls-c6657c58/touch.json",
+        "actualScreenshots": 6
+      }
+    ],
+    "scenarioChecks": 43,
+    "uiInteractionScenarios": 40,
+    "apiNegativeProbes": 3,
+    "actionResponses": 54,
+    "expected409Responses": 6,
+    "unexpectedErrors": 0,
+    "actualScreenshots": 18,
+    "reviewedScreenshots": 18,
+    "comparedToSelectedMockups": false,
+    "noProductionTargets": true,
+    "previousBlockerResolved": true,
     "diagnosticsExcluded": true,
-    "diagnosticNote": "Two earlier isolated local runs used stale --no-sandbox configuration. All their interaction counts are invalid and excluded. The first ended on an obsolete Audit reason selector; the second was stopped. Disposable fixtures were discarded, owned harness stopped, and lease released. No production target was accessed.",
-    "remaining": ["Mouse, keyboard and emulated touch execution of prepared admin runner", "Corrected admin actual screenshots", "Physical-device coverage", "Managed sign-in completion"]
+    "diagnosticNote": "Earlier no-sandbox diagnostics remain invalid and excluded. Initial sandboxed telemetry runs are superseded by these fresh-reset final runs; no uncertain reset reused.",
+    "remaining": [
+      "Physical-device coverage",
+      "Managed sign-in completion",
+      "Reference mockup comparison",
+      "Controls outside this explicit runner allowlist"
+    ]
   },
   "preparedRunner": {
     "file": "scripts/qa-admin-synthetic-writes.mjs",
     "manifest": "ADMIN_WRITE_MANIFEST from disposable visual-preview --control-audit --rich --mockup-review --port=4175",
     "inputMode": "ADMIN_WRITE_MODE=mouse|keyboard|touch; fresh reset per mode",
-    "guards": ["Loopback origin only", "Exact source and Worker hash", "Synthetic reset manifest", "Single-use reset token", "Exclusive per-port writer lease", "Exact synthetic action allowlist", "External requests blocked", "Sandbox required", "Fail fast and inspect uncertain outcomes before any retry"]
+    "guards": [
+      "Loopback origin only",
+      "Exact source and Worker hash",
+      "Synthetic reset manifest",
+      "Single-use reset token",
+      "Exclusive per-port writer lease",
+      "Exact synthetic action allowlist",
+      "External requests blocked",
+      "Sandbox required",
+      "Fail fast and inspect uncertain outcomes before any retry"
+    ],
+    "status": "executed for all three modes on separate fresh disposable fixtures"
   },
   "productionWrites": false,
   "providerCalls": false,
   "credentialsChanged": false,
-  "publication": false
+  "publication": false,
+  "settingsSimplification": {
+    "source": "374209cd8aa1b7809e2d7fef8f5cdb90ba6f5260",
+    "matchingTestsPassed": 19,
+    "matchingTestsFailed": 0,
+    "change": "Removed readiness section, notices and blocker lists; retained owner-only existing preview/save and conditional Enable actions under Event controls. Essential confirmation and permission guards unchanged.",
+    "typecheck": "passed",
+    "buildAndArtifactGate": "passed",
+    "artifactFiles": 185,
+    "supersededBy": "7531702 removes all manual operational attestations and Event controls UI, per later explicit instruction;190d1df uses actual per-action Results availability."
+  },
+  "currentUiEvidence": "evidence/v7-admin-editor-final/summary.json"
 }
