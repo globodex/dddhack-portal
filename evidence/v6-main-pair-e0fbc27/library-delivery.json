@@ -1,0 +1,171 @@
+{
+  "source": "e0fbc27c87449ff499427589108b201ab7829365",
+  "worker": "cd37903033f7f01ca7bb19aa6c33c79fcdf0552727b434b7bf26b76949f54241",
+  "originalScreenshots": true,
+  "syntheticOnly": true,
+  "internallyCompared": true,
+  "userAccepted": false,
+  "published": false,
+  "results": [
+    {
+      "path": "/reference-desktop-step1-original--alice--1440x900--e0fbc27.png",
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "file_id": "file_00000000d76881fdb999958772f1ed01",
+      "library_file_id": "libfile_896037ef9ef48191bc45590472e38f20",
+      "file_name": "reference-desktop-step1-original--alice--1440x900--e0fbc27.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 53261
+    },
+    {
+      "path": "/reference-mobile-step1-original--alice--390x844--e0fbc27.png",
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "file_id": "file_000000004b5c81fdbcd95003b9fb79fa",
+      "library_file_id": "libfile_567e35e4e23c8191a9c629ca60fb74e7",
+      "file_name": "reference-mobile-step1-original--alice--390x844--e0fbc27.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 35676
+    },
+    {
+      "path": "/reference-mobile-step2-original--alice--390x844--e0fbc27.png",
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "file_id": "file_00000000d11081fda67184387a7d2758",
+      "library_file_id": "libfile_0081e8ab6b808191a603449f8d02e65e",
+      "file_name": "reference-mobile-step2-original--alice--390x844--e0fbc27.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 26652
+    },
+    {
+      "path": "/reference-mobile-step3-original--alice--390x844--e0fbc27.png",
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "file_id": "file_000000000e1081f885623a9ae57e1783",
+      "library_file_id": "libfile_b6dc525da1348191b7c23c2f4a197ac3",
+      "file_name": "reference-mobile-step3-original--alice--390x844--e0fbc27.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 21856
+    },
+    {
+      "path": "/01-team-locked-desktop-1440x900.png",
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "file_id": "file_00000000bb0c81fdb0f25599fffb13bb",
+      "library_file_id": "libfile_cd79284d5d988191bab1db1614b8634d",
+      "file_name": "01-team-locked-desktop-1440x900.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 80064
+    },
+    {
+      "path": "/01-team-locked-mobile-390x844.png",
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "file_id": "file_00000000b3fc81fd85639af57be31af0",
+      "library_file_id": "libfile_39d08e293fb881919037bc050b596ba2",
+      "file_name": "01-team-locked-mobile-390x844.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 48186
+    },
+    {
+      "path": "/02-credits-masked-mobile-390x844.png",
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "file_id": "file_00000000fbf082308177247d6c193af4",
+      "library_file_id": "libfile_32b2ea5439b08191b791e5e1b17fee38",
+      "file_name": "02-credits-masked-mobile-390x844.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 23886
+    },
+    {
+      "path": "/05-project-third-attempt-readonly-mobile-390x844.png",
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "file_id": "file_00000000d2a481fdbe6bd0c89d70a830",
+      "library_file_id": "libfile_e8fb72f2ae08819189e50c4c2d2d538d",
+      "file_name": "05-project-third-attempt-readonly-mobile-390x844.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 42023
+    }
+  ]
+}
