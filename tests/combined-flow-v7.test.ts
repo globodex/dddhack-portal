@@ -4,6 +4,7 @@ import { setup, activate, submission } from "./helpers";
 import { one, rows } from "../lib/db";
 import { PortalService } from "../lib/service";
 import { handlePortal } from "../lib/http";
+import { queueEvaluations } from "../lib/evaluation-background";
 import { fixtures, LOCAL_CREDIT_KEY } from "../scripts/fixtures";
 
 const row = (value: unknown) => value as Record<string, any>;
@@ -252,6 +253,62 @@ test("combined synthetic journey: profile, membership, locked idea, check-in, dr
           row(await service("bob").view("/projects")).items.length,
           0,
         );
+      },
+    );
+    await t.test(
+      "queued offline verification preserves submission and waits for human review",
+      async () => {
+        const pending = await rows<{ id: string; state: string }>(
+          db,
+          "SELECT id,state FROM astra_jobs WHERE version_id=?",
+          versionId,
+        );
+        assert.equal(pending.length, 1);
+        assert.equal(pending[0].state, "pending");
+        const tasks: Promise<unknown>[] = [];
+        await assert.rejects(
+          queueEvaluations(service("admin"), { limit: 1 }, (task) =>
+            tasks.push(task),
+          ),
+          { code: "SUBMISSION_WINDOW_OPEN" },
+        );
+        assert.equal(tasks.length, 0);
+        clock("2026-11-01T10:31:00.000Z");
+        const queued = await queueEvaluations(
+          service("admin"),
+          { limit: 1 },
+          (task) => tasks.push(task),
+        );
+        assert.equal(queued.accepted, 1);
+        assert.deepEqual(queued.jobIds, [pending[0].id]);
+        assert.equal(tasks.length, 1);
+        await Promise.all(tasks);
+        const finished = await one<{
+          state: string;
+          attempts: number;
+          report: string;
+        }>(
+          db,
+          "SELECT state,attempts,report FROM astra_jobs WHERE id=?",
+          pending[0].id,
+        );
+        assert.equal(finished!.state, "needs_review");
+        assert.equal(finished!.attempts, 1);
+        const report = JSON.parse(finished!.report);
+        assert.equal(report.versionId, versionId);
+        assert.equal(report.dimensions, null);
+        assert.deepEqual(report.suspectedFalseClaims, []);
+        assert.equal((await rows(db, "SELECT * FROM reviews")).length, 0);
+        assert.equal(
+          row(await service("bob").view("/projects")).items.length,
+          0,
+        );
+        assert.equal(
+          (await rows(db, "SELECT * FROM result_snapshots")).length,
+          0,
+        );
+        assert.equal(networkAttempts, 0);
+        clock("2026-11-01T04:00:00.000Z");
       },
     );
     await t.test(
