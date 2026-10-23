@@ -1,0 +1,1085 @@
+{
+  "sourceHead": "722c04d055b1d13ad0b7735069bc20d0855d66b5",
+  "workerSha256": "e06ce1a3af228b75ab4aaab5d6e1e66f1139eb66a8e2743aa93ba50cc84c13a0",
+  "origin": "http://127.0.0.1:4173",
+  "syntheticOnly": true,
+  "sandbox": true,
+  "captures": [
+    {
+      "id": "admin-participants-admin-desktop-default-fullpage-722c04d0-e06ce1a3",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-participants-admin-desktop-default-fullpage-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "be2ee451608e4b9b18e538fd8e65b111a4b118c2cbedd9411b36a9ace4030f90",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ],
+        "participantFirstRowTop": 350.5,
+        "collapsedImportHeight": 44
+      },
+      "inspected": true,
+      "library": null
+    },
+    {
+      "id": "admin-participants-admin-desktop-default-viewport-722c04d0-e06ce1a3",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-participants-admin-desktop-default-viewport-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "be2ee451608e4b9b18e538fd8e65b111a4b118c2cbedd9411b36a9ace4030f90",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ],
+        "participantFirstRowTop": 350.5,
+        "collapsedImportHeight": 44
+      },
+      "inspected": true,
+      "library": null
+    },
+    {
+      "id": "admin-participants-admin-mobile-default-fullpage-722c04d0-e06ce1a3",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-participants-admin-mobile-default-fullpage-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 390,
+        "height": 1128
+      },
+      "sha256": "5d0b02812821c2b4fdb220ce860ccf0b8cafa039d2e73cc63aa88e08dffcc90f",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 1128,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ],
+        "participantFirstRowTop": 437,
+        "collapsedImportHeight": 44
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-participants-admin-mobile-default-viewport-722c04d0-e06ce1a3",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-participants-admin-mobile-default-viewport-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "61cd0e47cd7fe77b6468ca2fcb9038e69e978b2eca62115dc1b900c52df85b7b",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 1128,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ],
+        "participantFirstRowTop": 437,
+        "collapsedImportHeight": 44
+      },
+      "inspected": true,
+      "library": null
+    },
+    {
+      "id": "admin-teams-admin-desktop-default-fullpage-722c04d0-e06ce1a3",
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-teams-admin-desktop-default-fullpage-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 1440,
+        "height": 1118
+      },
+      "sha256": "20c8307b4e37ecd11cd75b6e12cd571c3dbe4ed63c0efadf64e663d3b7bc40b5",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 1118,
+        "headings": [
+          "Teams^^",
+          "Common Ground",
+          "Common Ground",
+          "Small Wonder",
+          "Small Wonder",
+          "The Fifth Element",
+          "The Fifth Element"
+        ],
+        "participantFirstRowTop": null,
+        "collapsedImportHeight": null
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-teams-admin-desktop-default-viewport-722c04d0-e06ce1a3",
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-teams-admin-desktop-default-viewport-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "c3004537736200aef699fe8894c5ff76b892997e7fa1ca565f461c8ff3114609",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 1118,
+        "headings": [
+          "Teams^^",
+          "Common Ground",
+          "Common Ground",
+          "Small Wonder",
+          "Small Wonder",
+          "The Fifth Element",
+          "The Fifth Element"
+        ],
+        "participantFirstRowTop": null,
+        "collapsedImportHeight": null
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-teams-admin-mobile-default-fullpage-722c04d0-e06ce1a3",
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-teams-admin-mobile-default-fullpage-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 390,
+        "height": 1637
+      },
+      "sha256": "3adbad18f75978031f450d341c57d44e53320934f774d7df352b468015e5f443",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 1637,
+        "headings": [
+          "Teams^^",
+          "Common Ground",
+          "Common Ground",
+          "Small Wonder",
+          "Small Wonder",
+          "The Fifth Element",
+          "The Fifth Element"
+        ],
+        "participantFirstRowTop": null,
+        "collapsedImportHeight": null
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-teams-admin-mobile-default-viewport-722c04d0-e06ce1a3",
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-teams-admin-mobile-default-viewport-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "bb722fac012707f444b67ba10690591447c59780f5145a30cefa01a15cbc2fe8",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 1637,
+        "headings": [
+          "Teams^^",
+          "Common Ground",
+          "Common Ground",
+          "Small Wonder",
+          "Small Wonder",
+          "The Fifth Element",
+          "The Fifth Element"
+        ],
+        "participantFirstRowTop": null,
+        "collapsedImportHeight": null
+      },
+      "inspected": true,
+      "library": null
+    },
+    {
+      "id": "admin-submissions-admin-desktop-default-fullpage-722c04d0-e06ce1a3",
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-submissions-admin-desktop-default-fullpage-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "ebdc81cc18712ca458e9c74861d79dbb46707609a230732181a48673c17f373f",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Submissions^^",
+          "Small Wonder",
+          "The Fifth Element"
+        ],
+        "participantFirstRowTop": null,
+        "collapsedImportHeight": null
+      },
+      "inspected": true,
+      "library": null
+    },
+    {
+      "id": "admin-submissions-admin-desktop-default-viewport-722c04d0-e06ce1a3",
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-submissions-admin-desktop-default-viewport-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "ebdc81cc18712ca458e9c74861d79dbb46707609a230732181a48673c17f373f",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Submissions^^",
+          "Small Wonder",
+          "The Fifth Element"
+        ],
+        "participantFirstRowTop": null,
+        "collapsedImportHeight": null
+      },
+      "inspected": true,
+      "library": null
+    },
+    {
+      "id": "admin-submissions-admin-mobile-default-fullpage-722c04d0-e06ce1a3",
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-submissions-admin-mobile-default-fullpage-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "843d650b91de13c128954f544ba0767e111b0b465c4657d0912b1c5cae4674f4",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 844,
+        "headings": [
+          "Submissions^^",
+          "Small Wonder",
+          "The Fifth Element"
+        ],
+        "participantFirstRowTop": null,
+        "collapsedImportHeight": null
+      },
+      "inspected": true,
+      "library": null
+    },
+    {
+      "id": "admin-submissions-admin-mobile-default-viewport-722c04d0-e06ce1a3",
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-submissions-admin-mobile-default-viewport-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "843d650b91de13c128954f544ba0767e111b0b465c4657d0912b1c5cae4674f4",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 844,
+        "headings": [
+          "Submissions^^",
+          "Small Wonder",
+          "The Fifth Element"
+        ],
+        "participantFirstRowTop": null,
+        "collapsedImportHeight": null
+      },
+      "inspected": true,
+      "library": null
+    },
+    {
+      "id": "admin-review-admin-desktop-default-fullpage-722c04d0-e06ce1a3",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-review-admin-desktop-default-fullpage-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 1440,
+        "height": 1528
+      },
+      "sha256": "12278e8fa25d01db4bedfe6ee242c7f50c13a538e5ec6c9b1dd5a5e87992f5a6",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 1528,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ],
+        "participantFirstRowTop": null,
+        "collapsedImportHeight": null
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-review-admin-desktop-default-viewport-722c04d0-e06ce1a3",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-review-admin-desktop-default-viewport-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "27626f808702fbd2f969a995af247459549ca862e5b2dd8f832dd646bccace14",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 1528,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ],
+        "participantFirstRowTop": null,
+        "collapsedImportHeight": null
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-review-admin-mobile-default-fullpage-722c04d0-e06ce1a3",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-review-admin-mobile-default-fullpage-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 390,
+        "height": 2347
+      },
+      "sha256": "562483f25f0e0e30e6928cda7415b6b17061a47928bbd7fa54acf86eaa454d64",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 2347,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ],
+        "participantFirstRowTop": null,
+        "collapsedImportHeight": null
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-review-admin-mobile-default-viewport-722c04d0-e06ce1a3",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-review-admin-mobile-default-viewport-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "b48a3e4b6aef1fb2679deb47b21780d1d9c7a06de0779b7e3c20a925e84ae00c",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 2347,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ],
+        "participantFirstRowTop": null,
+        "collapsedImportHeight": null
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-credits-admin-desktop-default-fullpage-722c04d0-e06ce1a3",
+      "route": "/admin/credits",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-credits-admin-desktop-default-fullpage-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "e6cfec62c571ceddd06cfec93ebdd13c760940a01b129db035a8e60be992ca2c",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Credits^^"
+        ],
+        "participantFirstRowTop": null,
+        "collapsedImportHeight": null
+      },
+      "inspected": true,
+      "library": null
+    },
+    {
+      "id": "admin-credits-admin-desktop-default-viewport-722c04d0-e06ce1a3",
+      "route": "/admin/credits",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-credits-admin-desktop-default-viewport-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "e6cfec62c571ceddd06cfec93ebdd13c760940a01b129db035a8e60be992ca2c",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Credits^^"
+        ],
+        "participantFirstRowTop": null,
+        "collapsedImportHeight": null
+      },
+      "inspected": true,
+      "library": null
+    },
+    {
+      "id": "admin-credits-admin-mobile-default-fullpage-722c04d0-e06ce1a3",
+      "route": "/admin/credits",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "fullpage",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-credits-admin-mobile-default-fullpage-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "a0b24f90bf1d5f268ae7f5f7bfd71ee06f802d490dea720cf3d8f8983e90632e",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 844,
+        "headings": [
+          "Credits^^"
+        ],
+        "participantFirstRowTop": null,
+        "collapsedImportHeight": null
+      },
+      "inspected": true,
+      "library": null
+    },
+    {
+      "id": "admin-credits-admin-mobile-default-viewport-722c04d0-e06ce1a3",
+      "route": "/admin/credits",
+      "role": "admin",
+      "viewport": "mobile",
+      "state": "default",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-credits-admin-mobile-default-viewport-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "a0b24f90bf1d5f268ae7f5f7bfd71ee06f802d490dea720cf3d8f8983e90632e",
+      "metrics": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "pageHeight": 844,
+        "headings": [
+          "Credits^^"
+        ],
+        "participantFirstRowTop": null,
+        "collapsedImportHeight": null
+      },
+      "inspected": true,
+      "library": null
+    },
+    {
+      "id": "admin-single-admin-desktop-single-form-viewport-722c04d0-e06ce1a3",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "single-form",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-single-admin-desktop-single-form-viewport-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "3921641e7e04202ce72e196f120caa15e7d9565f21ded7807917a8877979cdc6",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ],
+        "participantFirstRowTop": 494.5,
+        "collapsedImportHeight": null
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-single-admin-desktop-single-confirm-cancel-viewport-722c04d0-e06ce1a3",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "single-confirm-cancel",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-single-admin-desktop-single-confirm-cancel-viewport-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "dba691929309c765c0eff9116fef4464fd09437aa187ee4cbcc06b40a78d1f0d",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ],
+        "participantFirstRowTop": 494.5,
+        "collapsedImportHeight": null
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-list-admin-desktop-list-form-viewport-722c04d0-e06ce1a3",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "list-form",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-list-admin-desktop-list-form-viewport-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "3e7f633ea534351362e172b01bf1a74648b488112d30d838c8cd7476a39eebce",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ],
+        "participantFirstRowTop": 502.5,
+        "collapsedImportHeight": null
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-list-admin-desktop-list-confirm-cancel-viewport-722c04d0-e06ce1a3",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "list-confirm-cancel",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-list-admin-desktop-list-confirm-cancel-viewport-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "b4e541966dcadf243d93faf73fb55b180d4366c0182eded38732ead32382f36c",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ],
+        "participantFirstRowTop": 502.5,
+        "collapsedImportHeight": null
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-csv-admin-desktop-csv-form-viewport-722c04d0-e06ce1a3",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "csv-form",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-csv-admin-desktop-csv-form-viewport-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "ac95c94c26ac10b741a3e5b62c228f5dd60e34056e760802e68b7fbacbd52067",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ],
+        "participantFirstRowTop": 569.5,
+        "collapsedImportHeight": null
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-csv-admin-desktop-csv-confirm-cancel-viewport-722c04d0-e06ce1a3",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "csv-confirm-cancel",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-csv-admin-desktop-csv-confirm-cancel-viewport-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "bc3a38a5229cf70be3f86f7757281ddebf2c2e5e3f969f0c52acf992dafd41a8",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ],
+        "participantFirstRowTop": 569.5,
+        "collapsedImportHeight": null
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-participant-remove-admin-desktop-participant-remove-viewport-722c04d0-e06ce1a3",
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "participant-remove",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-participant-remove-admin-desktop-participant-remove-viewport-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "5e643fdb0b909d672a6370cb8cf8908c8ff891b960b63d612e05c5e704b466cd",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 900,
+        "headings": [
+          "Participants++",
+          "Add participants",
+          "Bob",
+          "Carol",
+          "Dave"
+        ],
+        "participantFirstRowTop": 350.5,
+        "collapsedImportHeight": 44
+      },
+      "inspected": false,
+      "library": null
+    },
+    {
+      "id": "admin-project-remove-admin-desktop-project-remove-viewport-722c04d0-e06ce1a3",
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "state": "project-remove",
+      "kind": "viewport",
+      "path": "evidence/admin-batch-722c04d0-e06ce1a3/admin-project-remove-admin-desktop-project-remove-viewport-722c04d0-e06ce1a3.png",
+      "image": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "b84b8c494af2f703dadf5361b7c100b87f20107774e7853b80e27553c38ac99d",
+      "metrics": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "pageHeight": 1647,
+        "headings": [
+          "Small Wonder",
+          "Record verified rubric evidence",
+          "Eligibility check",
+          "Private review",
+          "AI evaluation",
+          "Assign a reviewer"
+        ],
+        "participantFirstRowTop": null,
+        "collapsedImportHeight": null
+      },
+      "inspected": false,
+      "library": null
+    }
+  ],
+  "checks": [
+    {
+      "name": "single-confirm-cancel",
+      "route": "/admin/participants",
+      "cancelFocused": true
+    },
+    {
+      "name": "list-confirm-cancel",
+      "route": "/admin/participants",
+      "cancelFocused": true
+    },
+    {
+      "name": "csv-confirm-cancel",
+      "route": "/admin/participants",
+      "cancelFocused": true
+    },
+    {
+      "name": "participant-remove",
+      "route": "/admin/participants",
+      "cancelFocused": true
+    },
+    {
+      "name": "project-remove",
+      "route": "/admin/submissions/synthetic-alice",
+      "cancelFocused": true
+    }
+  ],
+  "blocked": [],
+  "requests": [
+    {
+      "method": "POST",
+      "action": "preview-import"
+    },
+    {
+      "method": "POST",
+      "action": "preview-import"
+    },
+    {
+      "method": "POST",
+      "action": "preview-import"
+    }
+  ],
+  "pageErrors": [],
+  "browser": "156.0.8078.4",
+  "corePlan": [
+    {
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/participants",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/teams",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/submissions",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/submissions/synthetic-alice",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/credits",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/credits",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/credits",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/credits",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/settings",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/settings",
+      "role": "admin",
+      "viewport": "desktop",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/settings",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/settings",
+      "role": "admin",
+      "viewport": "mobile",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/settings",
+      "role": "owner",
+      "viewport": "desktop",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/settings",
+      "role": "owner",
+      "viewport": "desktop",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/settings",
+      "role": "owner",
+      "viewport": "mobile",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/settings",
+      "role": "owner",
+      "viewport": "mobile",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/logs",
+      "role": "owner",
+      "viewport": "desktop",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/logs",
+      "role": "owner",
+      "viewport": "desktop",
+      "kind": "viewport"
+    },
+    {
+      "route": "/admin/logs",
+      "role": "owner",
+      "viewport": "mobile",
+      "kind": "fullpage"
+    },
+    {
+      "route": "/admin/logs",
+      "role": "owner",
+      "viewport": "mobile",
+      "kind": "viewport"
+    }
+  ],
+  "failure": {
+    "stage": "dialogs",
+    "offset": 0,
+    "error": "locator.selectOption: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.admin-project-action').getByLabel('Target', { exact: true })\u001b[22m\n"
+  },
+  "pausedForHandoff": true,
+  "browserClosed": true,
+  "libraryUploadsStartedForThisBuild": false,
+  "inspectionNote": "Seven viewport PNGs opened visually; byte-identical duplicate images share inspection. Remaining images preserved but not inspected or delivered."
+}
