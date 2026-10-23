@@ -221,7 +221,7 @@
   }
 }
 
-/* Profile completion: one bounded step, with its own accessible scrolling fields. */
+/* Profile completion: one active step, safe field scrolling and a fixed action row. */
 .app-shell .profile-flow {
   display: flex;
   flex-direction: column;
@@ -238,54 +238,67 @@
 }
 .app-shell .profile-toolbar {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   flex: 0 0 auto;
-  align-items: center;
-  gap: 16px;
-  margin: 0 0 24px;
+  gap: 12px;
+  margin: 0 0 20px;
 }
 .app-shell .profile-progress {
+  align-self: center;
+  min-height: 20px;
   margin: 0;
   gap: 12px;
   white-space: nowrap;
   font-size: 13px;
 }
 .app-shell .profile-progress .progress-track {
-  width: 72px;
+  width: 120px;
   gap: 4px;
 }
 .app-shell .profile-progress .progress-track i {
   height: 4px;
 }
 .app-shell .profile-flow .profile-heading {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+}
+.app-shell .profile-heading-title {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   min-width: 0;
-  margin: 0;
 }
 .app-shell .profile-flow h1 {
   margin: 0;
   font-size: 36px;
   letter-spacing: -0.045em;
-  line-height: 1.2;
+  line-height: 40px;
+  text-align: center;
 }
-.app-shell .profile-heading > .expressive-heading-dot {
-  flex: 0 0 auto;
+.app-shell .profile-heading-title > .expressive-heading-dot {
+  margin: 0;
+}
+.app-shell .profile-heading-spacer {
+  width: 44px;
+  height: 44px;
 }
 .app-shell .profile-back {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 44px;
   width: 44px;
   min-height: 44px;
   margin: 0;
   padding: 10px;
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 50%;
-  color: #141414;
+  color: #111515;
   background: #fff;
 }
 .app-shell .profile-control-icon {
@@ -324,7 +337,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(248px, 1fr);
   align-items: start;
-  gap: 40px;
+  gap: 48px;
 }
 .app-shell .profile-basics-fields {
   grid-column: 1;
@@ -335,29 +348,33 @@
   grid-column: 2;
   grid-row: 1;
   min-width: 0;
+  container-type: inline-size;
 }
 .app-shell .profile-basics-fields > label,
 .app-shell .profile-contact-fields > label,
 .app-shell .profile-about-fields > label {
   display: grid;
-  gap: 8px;
-  margin: 0 0 20px;
+  gap: 6px;
+  margin: 0 0 16px;
   font-size: 14px;
   font-weight: 500;
 }
-.app-shell .profile-flow input:not([type="radio"]),
-.app-shell .profile-flow select {
-  min-height: 48px;
+.app-shell .profile-flow .profile-fields input:not([type="radio"]),
+.app-shell .profile-flow .profile-fields select {
+  min-height: 44px;
+  height: 44px;
   width: 100%;
   max-width: 100%;
-  border-color: #d1d5dc;
-  border-radius: 9px;
+  padding: 10px 12px;
+  border-color: #dce3e8;
+  border-radius: 10px;
   box-shadow: none;
+  font-size: 16px;
 }
 .app-shell .profile-flow input[readonly] {
-  color: #626672;
+  color: #5b6770;
   background: #f4f5f7;
-  border-color: #f4f5f7;
+  border-color: #e8ecf0;
 }
 .app-shell .profile-flow .sex-choices {
   display: flex;
@@ -368,7 +385,7 @@
   border: 0;
 }
 .app-shell .profile-flow .sex-choices legend {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   font-size: 14px;
   font-weight: 500;
 }
@@ -390,31 +407,17 @@
 }
 .app-shell .profile-flow .sex-choices span {
   min-height: 44px;
-  padding: 10px 6px;
+  padding: 11px 6px;
   font-size: 13px;
-}
-.app-shell .profile-avatar-preview {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin: 0 0 20px;
-}
-.app-shell .profile-avatar-preview > svg {
-  flex: 0 0 auto;
-}
-.app-shell .profile-avatar h2 {
-  margin: 0;
-  font-size: 18px;
-  letter-spacing: -0.025em;
 }
 .app-shell .profile-fields .profile-avatar-options {
   border: 0;
   padding: 0;
-  margin: 0 0 16px;
+  margin: 0 0 10px;
 }
 .app-shell .profile-avatar-options legend {
   padding: 0;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   font-size: 13px;
   font-weight: 500;
 }
@@ -422,7 +425,7 @@
 .app-shell .profile-color-grid {
   display: grid;
   grid-template-columns: repeat(4, 44px);
-  gap: 6px 12px;
+  gap: 6px 8px;
 }
 .app-shell .profile-avatar-choice {
   position: relative;
@@ -431,27 +434,30 @@
   justify-content: center;
   width: 44px;
   min-width: 44px;
+  height: 44px;
   min-height: 44px;
   margin: 0;
   padding: 0;
-  border: 2px solid transparent;
+  border: 0;
   border-radius: 50%;
   cursor: pointer;
 }
 .app-shell .profile-avatar-choice:hover {
   background: #f4f5f7;
 }
-.app-shell .profile-avatar-choice:has(input:checked) {
-  border-color: #141414;
-  background: #f4f5f7;
+.app-shell .profile-avatar-choice:has(input:checked) > svg,
+.app-shell .profile-avatar-choice:has(input:checked) > .profile-color-swatch {
+  outline: 2px solid #111515;
+  outline-offset: 2px;
 }
 .app-shell .profile-avatar-choice:has(input:focus-visible) {
   outline: 3px solid #006afe;
-  outline-offset: 2px;
+  outline-offset: 1px;
 }
 .app-shell .profile-avatar-choice svg {
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
   pointer-events: none;
 }
 .app-shell .profile-color-swatch {
@@ -460,6 +466,12 @@
   height: 18px;
   border-radius: 50%;
   pointer-events: none;
+}
+@container (min-width: 352px) {
+  .app-shell .profile-color-grid {
+    grid-template-columns: repeat(8, 44px);
+    column-gap: 0;
+  }
 }
 .app-shell .profile-contact-fields,
 .app-shell .profile-about-fields {
@@ -470,34 +482,36 @@
 .app-shell .profile-fields .profile-social-editor {
   border: 0;
   padding: 0;
-  margin: 28px 0 0;
+  margin: 20px 0 0;
 }
 .app-shell .profile-social-editor legend {
   padding: 0;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-size: 14px;
   font-weight: 500;
 }
-.app-shell .profile-optional {
-  font-weight: 400;
-  color: var(--muted);
-}
 .app-shell .profile-social-row {
   display: grid;
-  grid-template-columns: 144px minmax(0, 1fr) 44px;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
   gap: 8px;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 .app-shell .profile-social-row label {
   margin: 0;
   min-width: 0;
 }
-.app-shell .profile-flow .profile-platform-select > select {
-  padding: 12px 8px 12px 42px;
-}
 .app-shell .profile-platform-select {
   position: relative;
+}
+.app-shell .profile-flow .profile-fields .profile-platform-select > select {
+  appearance: none;
+  color: transparent;
+  padding: 10px;
+  cursor: pointer;
+}
+.app-shell .profile-platform-select option {
+  color: #111515;
 }
 .app-shell .profile-platform-icon {
   position: absolute;
@@ -511,11 +525,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   min-height: 44px;
   padding: 10px 12px;
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 10px;
-  color: inherit;
+  color: #5b6770;
   background: #fff;
   font-size: 14px;
   font-weight: 500;
@@ -523,17 +538,16 @@
 .app-shell .profile-remove-link {
   width: 44px;
   padding: 10px;
-  border-color: transparent;
-  color: #626672;
 }
 .app-shell .profile-remove-link:hover,
 .app-shell .profile-add-link:hover,
 .app-shell .profile-back:hover {
   background: #f4f5f7;
+  color: #111515;
 }
 .app-shell .profile-add-link {
-  margin-top: 4px;
-  padding-inline: 16px;
+  margin-top: 0;
+  padding-inline: 0 8px;
 }
 .app-shell .profile-actions {
   display: flex;
@@ -555,10 +569,21 @@
   min-height: 48px;
   margin: 0;
   padding: 12px 20px;
-  border: 1px solid #141414;
+  border: 1px solid #111515;
   border-radius: 12px;
-  background: #141414;
+  background: #111515;
   color: #fff;
+}
+.app-shell .profile-about-fields > .text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  font-size: 14px;
+}
+.app-shell .profile-about-fields > .text-link svg {
+  width: 16px;
+  height: 16px;
 }
 .app-shell .profile-actions [role="alert"] {
   align-self: stretch;
@@ -572,7 +597,7 @@
   }
   .app-shell .profile-basics-layout {
     grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
+    gap: 12px;
   }
   .app-shell .profile-avatar {
     grid-column: 1;
@@ -584,77 +609,57 @@
     grid-row: 2;
   }
 }
-@media (max-width: 580px) {
-  .app-shell .profile-expression-grid,
-  .app-shell .profile-color-grid {
-    grid-template-columns: repeat(4, 44px);
-    gap: 4px 12px;
-  }
-}
-@media (max-width: 480px) {
+@media (max-width: 740px) {
   .app-shell .profile-flow {
-    height: calc(100dvh - 112px);
+    height: calc(100dvh - 128px);
     min-height: 420px;
-    padding: 16px 12px 0;
-    border-radius: 16px;
+    max-width: none;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
   }
   .app-shell .profile-toolbar {
-    gap: 12px;
-    margin-bottom: 18px;
-  }
-  .app-shell .profile-flow h1 {
-    font-size: 27px;
-    line-height: 1.2;
-  }
-  .app-shell .profile-flow .profile-heading {
     gap: 8px;
-  }
-  .app-shell .profile-heading > .expressive-heading-dot {
-    --heading-dot-size: 32px !important;
-  }
-  .app-shell .profile-fields {
-    scrollbar-gutter: auto;
-  }
-  .app-shell .profile-avatar-preview {
-    gap: 12px;
     margin-bottom: 16px;
   }
-  .app-shell .profile-avatar-preview > svg {
-    width: 56px;
-    height: 56px;
+  .app-shell .profile-flow h1 {
+    font-size: 28px;
+    line-height: 34px;
   }
-  .app-shell .profile-social-row {
-    grid-template-columns: 60px minmax(0, 1fr) 44px;
-    gap: 6px;
+  .app-shell .profile-heading-title > .expressive-heading-dot {
+    --heading-dot-size: 32px !important;
   }
-  .app-shell .profile-flow .profile-platform-select > select {
-    appearance: none;
-    color: transparent;
-    padding-left: 32px;
+  .app-shell .profile-flow .profile-fields {
+    padding: 4px 0 12px;
+    scrollbar-gutter: auto;
   }
-  .app-shell .profile-flow .profile-platform-select::after {
-    content: "";
-    position: absolute;
-    right: 10px;
-    top: calc(50% - 5px);
-    width: 7px;
-    height: 7px;
-    border-right: 2px solid currentColor;
-    border-bottom: 2px solid currentColor;
-    transform: rotate(45deg);
-    pointer-events: none;
+  .app-shell .profile-expression-grid {
+    justify-content: space-between;
   }
-  .app-shell .profile-platform-select option {
-    color: #141414;
-  }
-  .app-shell .profile-platform-icon {
-    left: 10px;
+  .app-shell .profile-avatar-options:last-child {
+    margin-bottom: 0;
   }
   .app-shell .profile-next {
     width: 100%;
   }
   .app-shell .profile-actions {
-    padding-block: 14px;
+    padding: 14px 0 max(14px, env(safe-area-inset-bottom));
+    border-top: 0;
+  }
+}
+@media (max-width: 350px) {
+  .app-shell .profile-heading {
+    gap: 4px;
+  }
+  .app-shell .profile-heading-title {
+    gap: 6px;
+  }
+  .app-shell .profile-flow h1 {
+    font-size: 25px;
+    line-height: 30px;
+  }
+  .app-shell .profile-heading-title > .expressive-heading-dot {
+    --heading-dot-size: 28px !important;
   }
   .app-shell .profile-flow .sex-choices {
     gap: 6px;
@@ -665,17 +670,5 @@
   .app-shell .profile-flow .sex-choices span {
     padding-inline: 4px;
     font-size: 12px;
-  }
-}
-@media (max-width: 350px) {
-  .app-shell .profile-flow h1 {
-    font-size: 23px;
-  }
-  .app-shell .profile-flow {
-    padding-inline: 8px;
-  }
-  .app-shell .profile-expression-grid,
-  .app-shell .profile-color-grid {
-    column-gap: 8px;
   }
 }

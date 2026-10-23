@@ -6,6 +6,7 @@ import ProfileFlow, {
   ProfileAvatarPicker,
   ProfileContactFields,
   ProfileDescriptionField,
+  ProfileStepHeader,
   profileSocialRows,
   profileSocialPayload,
 } from "../app/profile-flow";
@@ -61,6 +62,7 @@ test("all eight colors and expressions are individually labelled native radios w
     assert.match(html, /<legend>Color<\/legend>/);
     assert.match(html, /<legend>Expression<\/legend>/);
     assert.match(html, /class="sr-only">Mixed slash/);
+    assert.doesNotMatch(html, /profile-avatar-preview|<h2>Your avatar/);
   }
   let pickedColor = "blue",
     pickedExpression = "squeezed";
@@ -132,7 +134,7 @@ test("contact starts with one optional social row; add, select, edit, and remove
   assert.equal((html.match(/type="url"/g) || []).length, 1);
   assert.match(html, /src="\/icons\/social\/linkedin.svg"/);
   assert.match(html, /<select title="LinkedIn">/);
-  assert.equal((html.match(/optional/g) || []).length, 2); // class and one shared label
+  assert.doesNotMatch(html, /optional/);
   assert.match(html, /type="tel"[^>]*required=""/);
   assert.doesNotMatch(html, /type="url"[^>]*required/);
   let tree = elements(ProfileContactFields(props()));
@@ -166,6 +168,56 @@ test("contact starts with one optional social row; add, select, edit, and remove
     )!.props.disabled,
     true,
   );
+});
+
+test("all profile steps keep one centered title-dot group between equal back spaces", () => {
+  const titles = ["Your profile", "Contact", "About you"];
+  for (const step of [1, 2, 3]) {
+    let backs = 0;
+    const props = {
+      step,
+      busy: false,
+      color: "coral" as const,
+      expression: "mixed-plus" as const,
+      onBack: () => {
+        backs += 1;
+      },
+    };
+    const html = render(ProfileStepHeader, props);
+    assert.ok(
+      html.indexOf('class="profile-progress"') < html.indexOf("<header"),
+    );
+    assert.match(
+      html,
+      new RegExp(`<h1 tabindex="-1">${titles[step - 1]}</h1>`),
+    );
+    assert.equal(
+      (html.match(/class="profile-heading-title"/g) || []).length,
+      1,
+    );
+    assert.equal(
+      (html.match(/class="expressive-heading-dot"/g) || []).length,
+      1,
+    );
+    assert.equal(
+      (html.match(/class="profile-heading-spacer"/g) || []).length,
+      step === 1 ? 2 : 1,
+    );
+    const back = elements(ProfileStepHeader(props)).find(
+      (node) => node.props.className === "profile-back",
+    );
+    if (step === 1) assert.equal(back, undefined);
+    else {
+      back!.props.onClick();
+      assert.equal(backs, 1);
+      assert.equal(
+        elements(ProfileStepHeader({ ...props, busy: true })).find(
+          (node) => node.props.className === "profile-back",
+        )!.props.disabled,
+        true,
+      );
+    }
+  }
 });
 
 test("about-you choices retain exactly the verified Luma options", () => {

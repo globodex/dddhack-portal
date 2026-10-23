@@ -3,7 +3,7 @@ import DotAvatar from "./dot-avatar";
 import { ProfileIcon } from "./profile-icons";
 import { HeadingDot } from "./expressive-heading";
 import { dotColors, dotExpressions } from "../lib/avatar-contract";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type Ref } from "react";
 import { ActionCancelled } from "../lib/action-confirmation";
 import {
   profileDescriptionChoices,
@@ -141,10 +141,6 @@ export function ProfileAvatarPicker({
 }) {
   return (
     <section className="profile-avatar" aria-label="Your avatar">
-      <div className="profile-avatar-preview">
-        <DotAvatar color={color} expression={expression} size={64} />
-        <h2>Your avatar</h2>
-      </div>
       <fieldset className="profile-avatar-options">
         <legend>Expression</legend>
         <div className="profile-expression-grid">
@@ -236,9 +232,7 @@ export function ProfileContactFields({
         />
       </label>
       <fieldset className="profile-social-editor">
-        <legend>
-          Social links <span className="profile-optional">(optional)</span>
-        </legend>
+        <legend>Social links</legend>
         {links.map((link, index) => (
           <div className="profile-social-row" key={index}>
             <label className="profile-platform-select">
@@ -292,8 +286,8 @@ export function ProfileContactFields({
             <button
               type="button"
               className="profile-remove-link"
-              aria-label={`Remove social link ${index + 1}`}
-              title={`Remove social link ${index + 1}`}
+              aria-label={`Remove ${link.type} link ${index + 1}`}
+              title={`Remove ${link.type} link ${index + 1}`}
               onClick={() => onLinks(links.filter((_, i) => i !== index))}
             >
               <ProfileIcon name="trash" />
@@ -306,9 +300,60 @@ export function ProfileContactFields({
           disabled={links.length >= 8}
           onClick={() => onLinks([...links, { type: "Website", url: "" }])}
         >
+          <ProfileIcon name="plus" />
           Add another
         </button>
       </fieldset>
+    </div>
+  );
+}
+export function ProfileStepHeader({
+  step,
+  busy,
+  color,
+  expression,
+  headingRef,
+  onBack,
+}: {
+  step: number;
+  busy: boolean;
+  color: keyof typeof dotColors;
+  expression: keyof typeof dotExpressions;
+  headingRef?: Ref<HTMLHeadingElement>;
+  onBack: () => void;
+}) {
+  return (
+    <div className="profile-toolbar">
+      <div className="profile-progress" aria-label={`Step ${step} of 3`}>
+        <span className="progress-track" aria-hidden="true">
+          {[1, 2, 3].map((n) => (
+            <i key={n} data-active={step >= n} />
+          ))}
+        </span>
+        <span>{step} / 3</span>
+      </div>
+      <header className="profile-heading">
+        {step > 1 ? (
+          <button
+            className="profile-back"
+            type="button"
+            aria-label="Previous profile step"
+            disabled={busy}
+            onClick={onBack}
+          >
+            <ProfileIcon name="back" />
+          </button>
+        ) : (
+          <span className="profile-heading-spacer" aria-hidden="true" />
+        )}
+        <div className="profile-heading-title">
+          <h1 ref={headingRef} tabIndex={-1}>
+            {step === 1 ? "Your profile" : step === 2 ? "Contact" : "About you"}
+          </h1>
+          <HeadingDot color={color} expression={expression} size={40} />
+        </div>
+        <span className="profile-heading-spacer" aria-hidden="true" />
+      </header>
     </div>
   );
 }
@@ -358,40 +403,17 @@ export default function ProfileFlow({
       data-step={step}
       aria-label="Your profile"
     >
-      <div className="profile-toolbar">
-        <header className="profile-heading">
-          {step > 1 && (
-            <button
-              className="profile-back"
-              type="button"
-              aria-label="Previous profile step"
-              disabled={busy}
-              onClick={() => {
-                setError("");
-                setStep(step - 1);
-              }}
-            >
-              <ProfileIcon name="back" />
-            </button>
-          )}
-          <h1 ref={heading} tabIndex={-1}>
-            {step === 1 ? "Your profile" : step === 2 ? "Contact" : "About you"}
-          </h1>
-          <HeadingDot
-            color={avatarColor as keyof typeof dotColors}
-            expression={avatarExpression as keyof typeof dotExpressions}
-            size={40}
-          />
-        </header>
-        <div className="profile-progress" aria-label={`Step ${step} of 3`}>
-          <span className="progress-track" aria-hidden="true">
-            {[1, 2, 3].map((n) => (
-              <i key={n} data-active={step >= n} />
-            ))}
-          </span>
-          <span>{step} / 3</span>
-        </div>
-      </div>
+      <ProfileStepHeader
+        step={step}
+        busy={busy}
+        color={avatarColor as keyof typeof dotColors}
+        expression={avatarExpression as keyof typeof dotExpressions}
+        headingRef={heading}
+        onBack={() => {
+          setError("");
+          setStep(step - 1);
+        }}
+      />
       <form
         aria-busy={busy}
         key={step}
@@ -549,7 +571,7 @@ export default function ProfileFlow({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Find ID ↗
+                Find ID <ProfileIcon name="external" />
               </a>
             </div>
           )}

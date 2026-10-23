@@ -42,12 +42,12 @@ test("social trash controls preserve accessible names and remove only their own 
   };
   const tree = ProfileContactFields(props);
   const button = elements(tree).find(
-    (node) => node.props["aria-label"] === "Remove social link 1",
+    (node) => node.props["aria-label"] === "Remove GitHub link 1",
   )!;
   button.props.onClick();
   assert.deepEqual(result, [links[1]]);
   const html = render(ProfileContactFields, props);
-  assert.match(html, /aria-label="Remove social link 1"[^>]*><svg/);
+  assert.match(html, /aria-label="Remove GitHub link 1"[^>]*><svg/);
   assert.doesNotMatch(html, />Remove<|required=""[^>]*type="url"/);
 });
 test("official Lucide controls remain decorative SVGs within named buttons", () => {
