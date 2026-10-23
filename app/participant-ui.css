@@ -460,8 +460,9 @@
 .app-shell .profile-social-row label {
   margin: 0;
 }
-.app-shell .profile-social-row select {
-  padding: 12px 8px 12px 38px;
+/* Outrank the shared .main label > select padding so icons retain their own space. */
+.app-shell .profile-flow .profile-platform-select > select {
+  padding: 12px 8px 12px 42px;
 }
 .app-shell .profile-platform-select {
   position: relative;
@@ -584,7 +585,7 @@
     grid-template-columns: 64px minmax(0, 1fr);
     gap: 6px;
   }
-  .app-shell .profile-platform-select select {
+  .app-shell .profile-flow .profile-platform-select > select {
     color: transparent;
     padding-left: 32px;
   }
