@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import Dots from "./dots";
 import DelhiWordmark from "./delhi-wordmark";
+import OrganizerSection from "./organizer-section";
 import { defaultPublicContent } from "../lib/event-content-contract";
 import {
   agendaDestination,
@@ -50,12 +51,6 @@ const faqs = [
     "Where will I see event updates?",
     "Check your Dashboard and the event registration page for updates from the organizers.",
   ],
-];
-const hosts = [
-  ["Parampreet Singh", "Codex Ambassador", "Param3021"],
-  ["Shivay Lamba", "Codex Ambassador", "HowDevelop"],
-  ["Nikhil Shukla", "Codex Ambassador", "nikhilsbuilds"],
-  ["Shresth Shukla", "Cerebras Ambassador", "callmeshuklaji"],
 ];
 // The portrait layout is still under design review. Do not mount extra motion
 // fields there, or turn the approved desktop decoration into a mobile layout.
@@ -523,38 +518,7 @@ export default function Home({
         </button>
       </section>
       <Chapters items={content.agenda} paused={paused} />
-      <section className="organizers">
-        <h2>Meet the Organizers behind</h2>
-        <ul className="host-badges">
-          {hosts.map(([name, role, handle]) => (
-            <li key={handle}>
-              <a
-                href={`https://x.com/${handle}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  className="host-photo"
-                  src={`/organizers/${handle}-x.jpg`}
-                  width={200}
-                  height={200}
-                  alt={name}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span className="host-name">{name}</span>
-                <small>{role}</small>
-                <span className="host-handle">
-                  @{handle} <ArrowUpRight size={18} aria-hidden="true" />
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
-        <p className="partner-note">
-          Community partner <strong>Cerebras</strong>
-        </p>
-      </section>
+      <OrganizerSection paused={paused} />
       <footer className="home-footer">
         <a
           href="https://luma.com/6t5uk4lo"
