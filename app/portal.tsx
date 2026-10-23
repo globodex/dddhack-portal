@@ -14,6 +14,15 @@ import {
 } from "react";
 import Home from "./home";
 import ProfileFlow from "./profile-flow";
+import AdminImportControls from "./admin-import-controls";
+import AdminParticipantActions, {
+  AdminParticipantFilters,
+  defaultAdminParticipantFilters,
+  filterAdminParticipants,
+  type AdminParticipantFiltersValue,
+} from "./admin-participant-actions";
+import AdminProjectActions from "./admin-project-actions";
+import OwnerSubmissionWindow from "./owner-submission-window";
 import CreditInstructions from "./credit-instructions";
 import ConfirmationDialog from "./confirmation-dialog";
 import {
@@ -122,6 +131,14 @@ export function portalConfirmationFor(
       confirmLabel: "Publish these times",
       critical: true,
     };
+  if (action === "engagement-control")
+    return {
+      ...base,
+      title: "Change community engagement",
+      description: `Voting will be ${values.votingPaused ? "paused" : "open"}; public feedback will be ${values.feedbackPaused ? "paused" : "open"}. This applies to community actions across projects. Existing votes, comments and frozen scores remain unchanged.`,
+      confirmLabel: "Apply engagement settings",
+      critical: true,
+    };
   if (action === "commit-import")
     return {
       ...base,
@@ -132,6 +149,76 @@ export function portalConfirmationFor(
       critical: true,
     };
   return base;
+}
+export function portalTargetName(data: View, values: Row): string {
+  const id =
+    values.targetId ||
+    values.userId ||
+    values.projectId ||
+    values.teamId ||
+    values.typeId;
+  const record = [
+    ...(data.project ? [data.project] : []),
+    ...(data.items || []),
+    ...(data.roles || []),
+    ...(data.members || []),
+    ...(data.reviewers || []),
+    ...(data.actions || []),
+    ...(data.creditInstructions || []),
+  ].find((r: Row) => r.id === id || r.user_id === id);
+  if (values.kind === "person" && values.targetId)
+    return portalTargetName(data, { userId: values.targetId });
+  if (values.minutes && data.policy?.submissionClose)
+    return `Submission deadline → ${ist(new Date(Date.parse(data.policy.submissionClose) + Number(values.minutes) * 60000).toISOString())}`;
+  if (
+    typeof values.votingPaused === "boolean" &&
+    typeof values.feedbackPaused === "boolean"
+  )
+    return `All projects · voting ${values.votingPaused ? "paused" : "open"} · public feedback ${values.feedbackPaused ? "paused" : "open"} · settings version ${values.version}`;
+  if (values.weights) return "Global scoring weights — all teams";
+  if (values.operation)
+    return values.operation === "submissions"
+      ? "Submission operations"
+      : "Check-in operations";
+  if (values.position) return `Award ${values.position}`;
+  if (values.snapshotId) return `Frozen snapshot ${values.snapshotId}`;
+  if (values.projectId) {
+    const version = (
+      record?.versions ||
+      data.versions ||
+      data.project?.versions ||
+      []
+    ).find((v: Row) => v.id === values.versionId);
+    return `${record?.projectName || record?.draft?.projectName || record?.name || values.projectName || values.projectId} · ID ${values.projectId}${values.versionId ? ` · ${version?.attempt ? `Version ${version.attempt}` : "submission"} (ID ${values.versionId})` : ""} · ${values.scope === "both" ? "project and submission" : values.scope === "submission" ? "submission" : "project"}`;
+  }
+  if (values.open && values.close)
+    return `${ist(values.open)} → ${ist(values.close)}`;
+  if (values.kind === "roster" && values.digest)
+    return `Previewed roster import · digest ${String(values.digest).slice(0, 16)}`;
+  if (values.scope === "private") return "Private venue and directions";
+  if (values.scope === "public") return "Public agenda, rules, FAQ and venue";
+  if (values.userIds)
+    return (values.userIds as string[])
+      .map((userId) => portalTargetName(data, { userId }))
+      .join("; ");
+  if (values.emails) return (values.emails as string[]).join(", ");
+  if (values.userId)
+    return [
+      record?.name || record?.person_name,
+      record?.email,
+      `ID ${values.userId}`,
+    ]
+      .filter(Boolean)
+      .join(" · ");
+  return (
+    record?.name ||
+    record?.projectName ||
+    record?.person_name ||
+    record?.email ||
+    values.project?.projectName ||
+    values.name ||
+    (id ? String(id) : data.team?.name || data.me?.name || "This portal record")
+  );
 }
 type IconName =
   | "home"
@@ -977,8 +1064,8 @@ export function Dashboard({
         </section>
       ) : (
         <p className="muted">
-          Exact arrival details appear when your team is approved and the hosts
-          publish them.
+          Arrival details appear when the server confirms your personal
+          attendance eligibility and the hosts publish them.
         </p>
       )}
     </>
@@ -1859,7 +1946,7 @@ export function UpvoteButton({
     </div>
   );
 }
-function Projects({
+export function Projects({
   data,
   path,
   run,
@@ -1921,7 +2008,9 @@ function Projects({
       {data.me ? (
         <UpvoteButton
           project={p}
-          canEngage={data.me.canEngage === true}
+          canEngage={
+            data.me.canEngage === true && !listing.engagement?.votingPaused
+          }
           run={run}
         />
       ) : (
@@ -1955,6 +2044,21 @@ function Projects({
             </p>
           )}
           {engagement(p)}
+          {(p.engagementPaused ||
+            data.engagement?.votingPaused ||
+            data.engagement?.feedbackPaused) && (
+            <p className="notice" role="status">
+              Engagement paused. The hosts have paused{" "}
+              {data.engagement?.votingPaused && data.engagement?.feedbackPaused
+                ? "community voting and public feedback"
+                : data.engagement?.feedbackPaused
+                  ? "public feedback"
+                  : data.engagement?.votingPaused
+                    ? "community voting"
+                    : "one or more community actions"}
+              .
+            </p>
+          )}
           <section id="comments">
             <h2>Comments</h2>
             {(data.comments || []).map((c: Row) => (
@@ -1964,7 +2068,9 @@ function Projects({
                 <small>{new Date(c.created_at).toLocaleString()}</small>
               </article>
             ))}
-            {data.me?.canEngage === true ? (
+            {data.me?.canEngage === true &&
+            p.canComment === true &&
+            !data.engagement?.feedbackPaused ? (
               <Form
                 title="Join the conversation"
                 label="Post comment"
@@ -2010,6 +2116,13 @@ function Projects({
         }}
         label="Search projects or teams"
       />
+      {(listing.engagement?.votingPaused ||
+        listing.engagement?.feedbackPaused) && (
+        <p className="notice" role="status">
+          Engagement paused. Existing projects, votes and public feedback remain
+          readable.
+        </p>
+      )}
       {board && (
         <p className="notice">
           {listing.scoreStage === "ai"
@@ -2118,33 +2231,82 @@ function Projects({
     </>
   );
 }
-function AdminParticipants({
+export function adminParticipantProjection(
+  row: Row,
+): Row & { id: string; name: string; removed: boolean } {
+  return {
+    ...row,
+    id: typeof row.id === "string" ? row.id : "",
+    name: row.name || row.email || "Not signed in yet",
+    teamId: row.teamId ?? row.team_id ?? null,
+    teamName: row.teamName ?? row.team_name ?? null,
+    teamLocked: row.teamLocked === true,
+    teamLockedAt: row.teamLockedAt || null,
+    removed: !!row.deactivated_at,
+  };
+}
+export function adminProjectProjection(project: Row, suppliedVersions?: Row[]) {
+  const versions = Array.isArray(suppliedVersions)
+    ? suppliedVersions
+    : Array.isArray(project.versions)
+      ? project.versions
+      : [];
+  return {
+    project: {
+      id: project.id,
+      name:
+        project.projectName ||
+        project.draft?.projectName ||
+        project.name ||
+        "Untitled draft",
+      removed: !!project.deleted_at,
+    },
+    versions: versions
+      .filter((v) => typeof v.id === "string" && v.id)
+      .map((v) => ({
+        id: v.id,
+        label: Number.isInteger(v.attempt)
+          ? `Version ${v.attempt}`
+          : "Submission",
+        removed: !!v.deleted_at,
+      })),
+  };
+}
+export function AdminParticipants({
   data,
   run,
 }: {
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
-  const [q, setQ] = useState(""),
-    [filter, setFilter] = useState(""),
-    [teamFilter, setTeamFilter] = useState(""),
+  const [filters, setFilters] = useState<AdminParticipantFiltersValue>({
+      ...defaultAdminParticipantFilters,
+    }),
+    [recordState, setRecordState] = useState("active"),
     [selected, setSelected] = useState<string[]>([]),
     [status, setStatus] = useState("pending"),
     [reason, setReason] = useState(""),
-    [emails, setEmails] = useState(""),
-    [preview, setPreview] = useState<Row | null>(null),
     [error, setError] = useState("");
-  const items = (data.items || []).filter(
+  const canManage = data.me?.owner === true || data.me?.role === "admin";
+  const rows = (data.items || []).map(adminParticipantProjection);
+  const items = filterAdminParticipants(rows, filters).filter(
     (r) =>
-      `${r.name || ""} ${r.email} ${r.team_name || ""}`
-        .toLowerCase()
-        .includes(q.toLowerCase()) &&
-      (!filter || r.status === filter) &&
-      (!teamFilter || r.teamStatus === teamFilter),
+      recordState === "all" ||
+      (recordState === "removed" ? r.removed : !r.removed),
   );
-  const csv =
-    "email\n" +
-    [...new Set(emails.split(/[\s,;]+/).filter(Boolean))].join("\n");
+  const selectable = items.filter((r) => !r.removed);
+  useEffect(() => {
+    setSelected((previous) =>
+      previous.filter((email) =>
+        rows.some((r) => r.email === email && !r.removed),
+      ),
+    );
+  }, [data.items]);
+  const updateFilters = (value: AdminParticipantFiltersValue) => {
+    setFilters(value);
+    setSelected([]);
+    setError("");
+  };
   return (
     <>
       <header className="page-heading">
@@ -2158,118 +2320,45 @@ function AdminParticipants({
           <span className="heading-dot orange" />
         </h1>
       </header>
+      <AdminParticipantFilters value={filters} onChange={updateFilters} />
       <div className="toolbar">
-        <Search value={q} onChange={setQ} label="Search name, email or team" />
         <label>
-          <span className="sr-only">Status filter</span>
-          <select value={filter} onChange={(e) => setFilter(e.target.value)}>
-            <option value="">Status: all</option>
-            {["Registered", "Going", "Checked in", "Absent"].map((s) => (
-              <option key={s}>{s}</option>
-            ))}
+          Participation record
+          <select
+            value={recordState}
+            onChange={(e) => {
+              setRecordState(e.target.value);
+              setSelected([]);
+              if (e.target.value === "removed")
+                setFilters({ ...filters, status: "all", team: "all" });
+            }}
+          >
+            <option value="active">Active participants</option>
+            <option value="removed">Removed participants</option>
+            <option value="all">All records</option>
           </select>
         </label>
-        <select
-          aria-label="Team progress filter"
-          value={teamFilter}
-          onChange={(e) => setTeamFilter(e.target.value)}
-        >
-          <option value="">Team: all</option>
-          {["Forming", "Locked", "Not submitted", "Submitted"].map((v) => (
-            <option key={v}>{v}</option>
-          ))}
-        </select>
-        {!data.lookupOnly && (
-          <a
-            className="button secondary"
-            href={`/api/export?list=participants&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&teamStatus=${encodeURIComponent(teamFilter)}`}
-          >
-            Export CSV
+        {canManage && (
+          <a className="button secondary" href="/api/export?list=participants">
+            Export full participant list
           </a>
         )}
       </div>
-      {!data.lookupOnly && (
+      {canManage && (
+        <p className="muted">
+          CSV export includes the full server-authorized participant list,
+          independently of these table filters.
+        </p>
+      )}
+      {canManage && (
         <details className="panel">
           <summary>Add emails or import a roster</summary>
-          <label>
-            Emails · one per line or separated by commas
-            <textarea
-              rows={4}
-              value={emails}
-              onChange={(e) => {
-                setEmails(e.target.value);
-                setPreview(null);
-              }}
-            />
-          </label>
-          <label>
-            Or load an email CSV
-            <input
-              type="file"
-              accept="text/csv,.csv"
-              onChange={async (e) => {
-                const file = e.target.files?.[0];
-                if (!file) return;
-                if (file.size > 512000) {
-                  setError("CSV must be at most 512 KB.");
-                  return;
-                }
-                const text = await file.text();
-                setEmails(text.replace(/^email\s*\r?\n/i, ""));
-                setPreview(null);
-              }}
-            />
-          </label>
-          <div className="form-actions">
-            <button
-              className="button secondary"
-              onClick={async () => {
-                setError("");
-                try {
-                  setPreview(
-                    await api("preview-import", { kind: "roster", csv }),
-                  );
-                } catch (e) {
-                  setError((e as Error).message);
-                }
-              }}
-            >
-              Preview registered emails
-            </button>
-            {preview && (
-              <button
-                className="button"
-                onClick={async () => {
-                  try {
-                    await run("commit-import", {
-                      kind: "roster",
-                      csv,
-                      digest: preview.digest,
-                    });
-                    setPreview(null);
-                    setEmails("");
-                  } catch (e) {
-                    setError((e as Error).message);
-                  }
-                }}
-              >
-                Add new roster entries
-              </button>
-            )}
-          </div>
-          {preview && (
-            <p>
-              {preview.rows
-                ?.map((r: Row) => `${r.email} · ${r.action || "Add"}`)
-                .join("; ")}
-            </p>
-          )}
-          {error && <p role="alert">{error}</p>}
+          <AdminImportControls run={run} />
         </details>
       )}
       <div className="bulk-bar">
         <strong>{selected.length} selected</strong>
-        {!data.lookupOnly && (
+        {canManage && (
           <label>
             <span className="sr-only">Individual approval status</span>
             <select value={status} onChange={(e) => setStatus(e.target.value)}>
@@ -2288,7 +2377,7 @@ function AdminParticipants({
             onChange={(e) => setReason(e.target.value)}
           />
         </label>
-        {!data.lookupOnly && (
+        {canManage && (
           <button
             className="button secondary"
             disabled={!selected.length || reason.trim().length < 5}
@@ -2350,14 +2439,15 @@ function AdminParticipants({
               <th>
                 <input
                   type="checkbox"
-                  aria-label="Select visible participants"
+                  aria-label="Select visible active participants"
+                  disabled={!selectable.length}
                   checked={
-                    !!items.length &&
-                    items.every((r) => selected.includes(r.email))
+                    !!selectable.length &&
+                    selectable.every((r) => selected.includes(r.email))
                   }
                   onChange={(e) =>
                     setSelected(
-                      e.target.checked ? items.map((r) => r.email) : [],
+                      e.target.checked ? selectable.map((r) => r.email) : [],
                     )
                   }
                 />
@@ -2367,6 +2457,7 @@ function AdminParticipants({
               <th>Approval</th>
               <th>Progress</th>
               <th>Attendance</th>
+              {canManage && <th>Manage participant</th>}
             </tr>
           </thead>
           <tbody>
@@ -2376,6 +2467,7 @@ function AdminParticipants({
                   <input
                     type="checkbox"
                     aria-label={`Select ${r.email}`}
+                    disabled={r.removed}
                     checked={selected.includes(r.email)}
                     onChange={(e) =>
                       setSelected(
@@ -2389,12 +2481,13 @@ function AdminParticipants({
                 <td>
                   <strong>{r.name || "Not signed in yet"}</strong>
                   <small>{r.email}</small>
+                  {r.removed && <Pill>Removed</Pill>}
                 </td>
                 <td>
-                  {r.team_name || "No team"}
+                  {r.teamName || "Not in a team"}
                   <small>
-                    {r.teamReadiness.total
-                      ? `${r.teamReadiness.approved}/${r.teamReadiness.total} approved`
+                    {r.teamReadiness?.total
+                      ? `${r.teamReadiness?.approved}/${r.teamReadiness?.total} approved`
                       : ""}
                   </small>
                 </td>
@@ -2412,7 +2505,7 @@ function AdminParticipants({
                 </td>
                 <td>
                   {r.checked_in ? "Checked in" : "Not checked in"}
-                  {!data.lookupOnly && r.id && (
+                  {canManage && r.id && !r.removed && (
                     <StatusChange
                       kind="person"
                       target={r.id}
@@ -2422,16 +2515,85 @@ function AdminParticipants({
                     />
                   )}
                 </td>
+                {canManage && (
+                  <td>
+                    {r.id ? (
+                      <details>
+                        <summary>
+                          {r.removed
+                            ? "Restore participant"
+                            : "Remove participant"}
+                        </summary>
+                        <AdminParticipantActions
+                          key={`${r.id}-${r.removed}`}
+                          participant={{
+                            id: r.id,
+                            name: r.name,
+                            email: r.email,
+                            removed: r.removed,
+                          }}
+                          run={run}
+                        />
+                      </details>
+                    ) : (
+                      <span className="muted">
+                        Account has not signed in yet.
+                      </span>
+                    )}
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      {!items.length && <Empty>No participants match this search.</Empty>}
+      {error && (
+        <p className="error-message" role="alert">
+          {error}
+        </p>
+      )}
+      {!items.length && (
+        <Empty>
+          No participants match these combined filters. Change the status or
+          team filter to see other records.
+        </Empty>
+      )}
     </>
   );
 }
-function Review({
+export function privateReviewValues(
+  form: FormData,
+  kind: string,
+  projectId: string,
+  versionId: string | undefined,
+) {
+  if (!versionId)
+    throw new Error(
+      "A committed version is required before a review can be saved.",
+    );
+  const body = String(form.get("body") || "").trim();
+  const supplied = String(form.get("rating") || "").trim();
+  const canScore = kind === "admin" || kind === "judge";
+  const rating = canScore && supplied ? Number(supplied) : undefined;
+  if (
+    rating !== undefined &&
+    (!Number.isFinite(rating) || rating < 1 || rating > 10)
+  )
+    throw new Error("Enter a private score from 1 to 10.");
+  if (!body && rating === undefined)
+    throw new Error(
+      canScore
+        ? "Add a private score or written feedback."
+        : "Add your written feedback.",
+    );
+  return {
+    projectId,
+    versionId,
+    ...(body ? { body } : {}),
+    ...(rating !== undefined ? { rating } : {}),
+  };
+}
+export function Review({
   data,
   run,
 }: {
@@ -2467,11 +2629,28 @@ function Review({
           <p className="muted">
             {v ? `Committed version ${v.attempt}` : "Draft — not submitted"}
           </p>
+          {(data.me?.owner || data.me?.role === "admin") && (
+            <details className="panel">
+              <summary>Manage project and submission versions</summary>
+              <AdminProjectActions
+                key={`${p.id}-${p.deleted_at || "active"}-${JSON.stringify(data.versions || p.versions || [])}`}
+                {...adminProjectProjection(p, data.versions)}
+                run={run}
+              />
+            </details>
+          )}
           {(data.me?.owner || data.me?.role === "admin") && v && (
             <details className="panel">
               <summary>Final judging rubric · reviewer private</summary>
+              {data.scoringReady !== true && (
+                <p className="notice">
+                  Judging setup is pending. Rubric scoring is inactive until the
+                  server confirms readiness.
+                </p>
+              )}
               <Form
                 title="Record verified rubric evidence"
+                disabled={data.scoringReady !== true}
                 onSave={async (f) => {
                   await run("review", {
                     teamId: p.team_id,
@@ -2595,33 +2774,39 @@ function Review({
             }
             label="Save review"
             onSave={async (f) => {
-              await run("review-project", {
-                projectId: p.id,
-                versionId: v?.id,
-                body: f.get("body"),
-                ...(data.reviewKind === "judge"
-                  ? { rating: Number(f.get("rating")) }
-                  : {}),
-              });
+              await run(
+                "review-project",
+                privateReviewValues(f, data.reviewKind, p.id, v?.id),
+              );
             }}
+            disabled={!v}
           >
-            {data.reviewKind === "judge" && (
-              <Field
-                name="rating"
-                type="number"
-                label="Score · 0 to 10, reviewer-private"
-                required
-              />
+            {["admin", "judge"].includes(data.reviewKind) && (
+              <label>
+                Score · 1 to 10, reviewer-private · optional
+                <input
+                  name="rating"
+                  type="number"
+                  min={1}
+                  max={10}
+                  step="any"
+                />
+              </label>
             )}
             <Field
               name="body"
-              label="Feedback for the team"
+              label={
+                ["admin", "judge"].includes(data.reviewKind)
+                  ? "Feedback for the team · optional when scoring"
+                  : "Feedback for the team"
+              }
               type="textarea"
-              required
+              required={!["admin", "judge"].includes(data.reviewKind)}
             />
             <p className="muted">
-              Only this team and authorized reviewers can read this feedback.
-              Keep numeric scores out of team-facing copy.
+              Written feedback is private to this team and authorized reviewers.
+              Numeric scores stay reviewer-private and are separate from the
+              feedback text.
             </p>
             {!v && (
               <p className="notice">
@@ -2644,6 +2829,7 @@ function Review({
                 className="button secondary"
                 disabled={
                   !data.evaluationConfigured ||
+                  data.scoringReady !== true ||
                   !v ||
                   (data.runs || []).some((r: Row) =>
                     ["queued", "running"].includes(r.state),
@@ -2723,7 +2909,7 @@ function Review({
     </>
   );
 }
-function AdminList({
+export function AdminList({
   data,
   path,
   run,
@@ -2893,6 +3079,21 @@ function AdminList({
                 <Pill>{r.status}</Pill>
                 <span>Review project →</span>
               </a>
+              {path === "/admin/submissions" &&
+                (data.me?.owner || data.me?.role === "admin") && (
+                  <details className="panel">
+                    <summary>
+                      {r.deleted_at
+                        ? "Removed project · manage restoration"
+                        : "Manage project and submissions"}
+                    </summary>
+                    <AdminProjectActions
+                      key={`${r.id}-${r.deleted_at || "active"}-${JSON.stringify(r.versions || [])}`}
+                      {...adminProjectProjection(r)}
+                      run={run}
+                    />
+                  </details>
+                )}
             </li>
           ))}
         </ul>
@@ -3122,39 +3323,15 @@ function OwnerPolicyControls({
   const weights = data.policy?.weights || {};
   return (
     <section className="panel">
-      <h2>Deadline and global weights</h2>
+      <h2>Global scoring weights</h2>
       <p>
         Submission deadline: {ist(data.policy.submissionClose)}. Roster and idea
         lock: October 29 at 23:59 IST. No strict participant cap; teams remain
         at most five.
       </p>
       <Form
-        title="Extend submission deadline"
-        label="Preview extension"
-        onSave={async (f) => {
-          setError("");
-          const values = {
-            version: data.policyVersion,
-            minutes: Number(f.get("minutes")),
-          };
-          const result = await api("preview-submission-extension", values);
-          setPreview({
-            kind: "extension",
-            values: { ...values, reason: f.get("reason") },
-            ...result,
-          });
-        }}
-      >
-        <Field
-          name="minutes"
-          type="number"
-          label="Additional whole minutes"
-          required
-        />
-        <Field name="reason" label="Reason" required minLength={5} />
-      </Form>
-      <Form
         title="Global scoring weights"
+        disabled={data.readiness?.scoring?.ready !== true}
         label="Preview global weights"
         onSave={async (f) => {
           setError("");
@@ -3188,7 +3365,7 @@ function OwnerPolicyControls({
         <div className="policy-preview" role="status">
           <h3>Preview · not published</h3>
           <p>
-            {preview.kind === "extension" ? "New deadline: " : "All teams: "}
+            All teams:
             <strong>{preview.label}</strong>
           </p>
           {(preview.warnings || []).map((warning: string) => (
@@ -3203,20 +3380,17 @@ function OwnerPolicyControls({
           <button
             className="button"
             onClick={() => {
-              void run(
-                preview.kind === "extension"
-                  ? "publish-submission-extension"
-                  : "publish-policy-weights",
-                { ...preview.values, preview: preview.preview },
-              )
+              void run("publish-policy-weights", {
+                ...preview.values,
+                preview: preview.preview,
+              })
                 .then(() => setPreview(null))
                 .catch((e) => {
                   if (!(e instanceof ActionCancelled)) setError(e.message);
                 });
             }}
           >
-            Review and publish{" "}
-            {preview.kind === "extension" ? "extension" : "global weights"}
+            Review and publish global weights
           </button>
           <button className="button secondary" onClick={() => setPreview(null)}>
             Discard preview
@@ -3227,7 +3401,65 @@ function OwnerPolicyControls({
     </section>
   );
 }
-function Settings({
+export function AdminEngagementControls({
+  data,
+  run,
+}: {
+  data: View;
+  run: (a: string, d: Row) => Promise<Row>;
+}) {
+  if (!(data.me?.owner || data.me?.role === "admin")) return null;
+  const settings = data.engagement;
+  if (
+    !settings ||
+    !Number.isInteger(settings.version) ||
+    typeof settings.votingPaused !== "boolean" ||
+    typeof settings.feedbackPaused !== "boolean"
+  )
+    return (
+      <section className="panel">
+        <h2>Community engagement</h2>
+        <p className="muted">
+          Engagement settings are unavailable. Reload to retrieve the current
+          server settings.
+        </p>
+      </section>
+    );
+  return (
+    <Form
+      title="Community engagement"
+      label="Review engagement settings"
+      onSave={async (form) => {
+        await run("engagement-control", {
+          votingPaused: form.get("votingPaused") === "on",
+          feedbackPaused: form.get("feedbackPaused") === "on",
+          version: settings.version,
+          reason: form.get("reason"),
+          confirmation: "CHANGE_ENGAGEMENT",
+        });
+      }}
+    >
+      <p>
+        Pause or reopen public voting and public feedback independently.
+        Existing votes, comments and frozen scores stay intact.
+      </p>
+      <Field
+        name="votingPaused"
+        type="checkbox"
+        label="Pause community voting"
+        value={settings.votingPaused}
+      />
+      <Field
+        name="feedbackPaused"
+        type="checkbox"
+        label="Pause public feedback"
+        value={settings.feedbackPaused}
+      />
+      <Field name="reason" label="Audit reason" required minLength={5} />
+    </Form>
+  );
+}
+export function Settings({
   data,
   run,
 }: {
@@ -3314,6 +3546,11 @@ function Settings({
           blocked.
         </p>
       </section>
+      <AdminEngagementControls
+        key={`engagement-${data.engagement?.version ?? "pending"}`}
+        data={data}
+        run={run}
+      />
       <details className="panel">
         <summary>Shared credit setup instructions</summary>
         <p>
@@ -3347,7 +3584,18 @@ function Settings({
           </Form>
         ))}
       </details>
-      {data.me?.owner && <OwnerPolicyControls data={data} run={run} />}
+      {data.me?.owner && (
+        <>
+          <OwnerSubmissionWindow
+            key={`${data.policyVersion}-${data.policy?.submissionOpen}-${data.policy?.submissionClose}`}
+            owner={true}
+            open={data.policy?.submissionOpen || ""}
+            close={data.policy?.submissionClose || ""}
+            run={run}
+          />
+          <OwnerPolicyControls data={data} run={run} />
+        </>
+      )}
       {(data.me?.owner || data.me?.role === "admin") && (
         <section className="panel">
           <h2>Score reveals</h2>
@@ -3359,6 +3607,7 @@ function Settings({
           </p>
           <Form
             title="Reveal AI scores"
+            disabled={data.readiness?.scoring?.ready !== true}
             label="Reveal AI scores"
             onSave={async (f) => {
               await run("reveal-ai-scores", { reason: f.get("reason") });
@@ -3369,6 +3618,7 @@ function Settings({
           {data.me?.owner && (
             <Form
               title="Freeze final judging snapshot"
+              disabled={data.readiness?.scoring?.ready !== true}
               label="Freeze final scores"
               onSave={async (f) => {
                 await run("freeze-results", { reason: f.get("reason") });
@@ -3384,6 +3634,7 @@ function Settings({
           )}
           <Form
             title="Reveal Final score"
+            disabled={data.readiness?.scoring?.ready !== true}
             label="Reveal Final score"
             onSave={async (f) => {
               await run("reveal-final-scores", {
@@ -3407,6 +3658,7 @@ function Settings({
           {data.scoreRelease?.remainingAwards?.length > 0 && (
             <Form
               title="Unveil one award"
+              disabled={data.readiness?.scoring?.ready !== true}
               label="Unveil selected award"
               onSave={async (f) => {
                 await run("unveil-winner", {
@@ -3631,59 +3883,6 @@ export default function Portal({
       gate.current?.decide(false);
     };
   }, [path]);
-  const targetName = (values: Row) => {
-    const id =
-      values.targetId ||
-      values.userId ||
-      values.projectId ||
-      values.teamId ||
-      values.typeId;
-    const record = [
-      ...(data.items || []),
-      ...(data.roles || []),
-      ...(data.members || []),
-      ...(data.reviewers || []),
-      ...(data.actions || []),
-      ...(data.creditInstructions || []),
-    ].find((r: Row) => r.id === id || r.user_id === id);
-    if (values.minutes && data.policy?.submissionClose)
-      return `Submission deadline → ${ist(new Date(Date.parse(data.policy.submissionClose) + Number(values.minutes) * 60000).toISOString())}`;
-    if (values.weights) return "Global scoring weights — all teams";
-    if (values.operation)
-      return values.operation === "submissions"
-        ? "Submission operations"
-        : "Check-in operations";
-    if (values.position) return `Award ${values.position}`;
-    if (values.snapshotId) return `Frozen snapshot ${values.snapshotId}`;
-    if (values.projectId)
-      return `${record?.projectName || record?.name || values.projectName || values.projectId}${values.versionId ? ` · submission ${values.versionId}` : ""} · ${values.scope === "both" ? "project and submission" : values.scope === "submission" ? "submission" : "project"}`;
-    if (values.open && values.close)
-      return `${ist(values.open)} → ${ist(values.close)}`;
-    if (values.kind === "roster" && values.digest)
-      return `Previewed roster import · digest ${String(values.digest).slice(0, 16)}`;
-    if (values.scope === "private") return "Private venue and directions";
-    if (values.scope === "public") return "Public agenda, rules, FAQ and venue";
-    if (values.emails) return (values.emails as string[]).join(", ");
-    if (values.userId)
-      return [
-        record?.name || record?.person_name,
-        record?.email,
-        `ID ${values.userId}`,
-      ]
-        .filter(Boolean)
-        .join(" · ");
-    return (
-      record?.name ||
-      record?.projectName ||
-      record?.person_name ||
-      record?.email ||
-      values.project?.projectName ||
-      values.name ||
-      (id
-        ? String(id)
-        : data.team?.name || data.me?.name || "This portal record")
-    );
-  };
   const run = async (action: string, values: Row) => {
     if (actionBusy.current) throw new ActionCancelled();
     actionBusy.current = true;
@@ -3704,7 +3903,7 @@ export default function Portal({
               : values,
             action === "complete-profile"
               ? data.me?.name || "Your profile"
-              : targetName(values),
+              : portalTargetName(data, values),
           ),
         ))
       )
@@ -3751,14 +3950,6 @@ export default function Portal({
       setMessage((e as Error).message);
     } finally {
       actionBusy.current = false;
-    }
-  };
-  // Button actions report rejected operations without unhandled promise noise.
-  const clickRun = async (a: string, d: Row) => {
-    try {
-      return await run(a, d);
-    } catch {
-      return {};
     }
   };
   const admin = path.startsWith("/admin"),
@@ -4105,7 +4296,7 @@ export default function Portal({
               ) : /^\/(admin\/submissions|review)\//.test(path) ? (
                 <Review data={data} run={run} />
               ) : path.startsWith("/admin") || path === "/review" ? (
-                <AdminList data={data} path={path} run={clickRun} />
+                <AdminList data={data} path={path} run={run} />
               ) : (
                 <Empty>Choose a page from the navigation.</Empty>
               )}
