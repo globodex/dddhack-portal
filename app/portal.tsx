@@ -37,7 +37,7 @@ import {
   X,
 } from "lucide-react";
 import AddAdmins from "./add-admins";
-import Link from "next/link";
+import Link from "vinext/shims/link";
 import { useDiscoverPeople, peopleDirectoryUrl, readPeoplePage } from "./use-discover-people";
 import { HeadingDot } from "./expressive-heading";
 import RouteSkeleton from "./route-skeleton";
