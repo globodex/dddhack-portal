@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { delhiOffset } from "../lib/delhi-motion";
+import { loadDelhiMask } from "../lib/delhi-mask";
 const base = "/art/delhi-v3/";
 export default function DelhiWordmark({
   paused = false,
@@ -9,9 +10,18 @@ export default function DelhiWordmark({
 }) {
   const root = useRef<HTMLSpanElement>(null),
     fill = useRef<HTMLImageElement>(null),
-    layerLoad = useRef<Promise<void> | null>(null);
+    layerLoad = useRef<Promise<string> | null>(null),
+    controller = useRef<AbortController | null>(null);
   const [active, setActive] = useState(false),
-    [loaded, setLoaded] = useState(false);
+    [maskUrl, setMaskUrl] = useState<string | null>(null);
+  useEffect(() => {
+    const abort = new AbortController();
+    controller.current = abort;
+    return () => {
+      abort.abort();
+      layerLoad.current = null;
+    };
+  }, []);
   useEffect(() => {
     const media = matchMedia(
       "(prefers-reduced-motion: reduce), (pointer: coarse), (hover: none)",
@@ -33,12 +43,11 @@ export default function DelhiWordmark({
       // Static SSR/first paint stays visible. Coarse/reduced devices never request
       // the motion artwork; eligible devices reveal it only after every decode.
       if (!layerLoad.current) {
-        layerLoad.current = Promise.all(
-          [
-            "text-mask-alpha.png",
-            "delhi-fill-overscan.png",
-            "metro-static.png",
-          ].map(
+        const signal = controller.current!.signal;
+        const mask = loadDelhiMask(signal);
+        layerLoad.current = Promise.all([
+          mask,
+          ...["delhi-fill-overscan.png", "metro-static.png"].map(
             (src) =>
               new Promise<void>((resolve, reject) => {
                 const image = new Image();
@@ -51,15 +60,24 @@ export default function DelhiWordmark({
                 image.src = base + src;
               }),
           ),
-        ).then(() => undefined);
+        ]).then(
+          ([readyMask]) => readyMask.url,
+          (error) => {
+            void mask.then(
+              (readyMask) => readyMask.dispose(),
+              () => undefined,
+            );
+            throw error;
+          },
+        );
       }
       layerLoad.current.then(
-        () => {
-          if (alive) setLoaded(true);
+        (url) => {
+          if (alive) setMaskUrl(url);
         },
         () => {
           if (alive) {
-            setLoaded(false);
+            setMaskUrl(null);
             setActive(false);
           }
           layerLoad.current = null;
@@ -77,11 +95,11 @@ export default function DelhiWordmark({
     };
   }, [paused]);
   const showFallback = () => {
-    setLoaded(false);
+    setMaskUrl(null);
     setActive(false);
     layerLoad.current = null;
   };
-  const motion = active && loaded && !paused;
+  const motion = active && !!maskUrl && !paused;
   return (
     <span
       ref={root}
@@ -115,7 +133,13 @@ export default function DelhiWordmark({
         />
         {motion && (
           <>
-            <span className="delhi-mask">
+            <span
+              className="delhi-mask"
+              style={{
+                maskImage: `url("${maskUrl}")`,
+                WebkitMaskImage: `url("${maskUrl}")`,
+              }}
+            >
               <img
                 ref={fill}
                 onError={showFallback}

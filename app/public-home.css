@@ -269,10 +269,8 @@
 .delhi-mask {
   position: absolute;
   inset: 0;
-  mask-image: url("/art/delhi-v3/text-mask-alpha.png");
   mask-size: 100% 100%;
   mask-mode: alpha;
-  -webkit-mask-image: url("/art/delhi-v3/text-mask-alpha.png");
   -webkit-mask-size: 100% 100%;
   overflow: hidden;
   background: #258965;
