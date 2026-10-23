@@ -1,0 +1,505 @@
+{
+  "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+  "workerSha": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+  "reports": {
+    "organizers": {
+      "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+      "workerSha": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+      "output": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-organizers/8e904504-901580c9-2026-10-23T19-39-35-014Z",
+      "browserClosed": true,
+      "sourceUnchanged": true,
+      "workerUnchanged": true,
+      "errors": [],
+      "blocked": [],
+      "defects": [],
+      "fullReportPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-organizers/8e904504-901580c9-2026-10-23T19-39-35-014Z/report.json",
+      "fullReportSha256": "a589617e16f870d63e0ae8aa9202ce4a711fbec72b99dd5464f0548da45e16fc",
+      "checks": [
+        {
+          "name": "1440: original portraits, ring size, text and settled bounds",
+          "passed": true
+        },
+        {
+          "name": "1440: whole-unit slide has correct origin and rigid portrait attachment",
+          "passed": true
+        },
+        {
+          "name": "1440: focus is reachable and never clipped by moving content",
+          "passed": true
+        },
+        {
+          "name": "1440: venue lower-section text stays in its55% column clear of dots",
+          "passed": true
+        },
+        {
+          "name": "1440: faq lower-section text stays in its55% column clear of dots",
+          "passed": true
+        },
+        {
+          "name": "1024: original portraits, ring size, text and settled bounds",
+          "passed": true
+        },
+        {
+          "name": "1024: whole-unit slide has correct origin and rigid portrait attachment",
+          "passed": true
+        },
+        {
+          "name": "1024: focus is reachable and never clipped by moving content",
+          "passed": true
+        },
+        {
+          "name": "1024: venue lower-section text stays in its55% column clear of dots",
+          "passed": true
+        },
+        {
+          "name": "1024: faq lower-section text stays in its55% column clear of dots",
+          "passed": true
+        },
+        {
+          "name": "834: original portraits, ring size, text and settled bounds",
+          "passed": true
+        },
+        {
+          "name": "834: whole-unit slide has correct origin and rigid portrait attachment",
+          "passed": true
+        },
+        {
+          "name": "834: focus is reachable and never clipped by moving content",
+          "passed": true
+        },
+        {
+          "name": "834: venue lower-section text stays in its55% column clear of dots",
+          "passed": true
+        },
+        {
+          "name": "834: faq lower-section text stays in its55% column clear of dots",
+          "passed": true
+        },
+        {
+          "name": "390: original portraits, ring size, text and settled bounds",
+          "passed": true
+        },
+        {
+          "name": "390: whole-unit slide has correct origin and rigid portrait attachment",
+          "passed": true
+        },
+        {
+          "name": "390: focus is reachable and never clipped by moving content",
+          "passed": true
+        },
+        {
+          "name": "320: original portraits, ring size, text and settled bounds",
+          "passed": true
+        },
+        {
+          "name": "320: whole-unit slide has correct origin and rigid portrait attachment",
+          "passed": true
+        },
+        {
+          "name": "320: focus is reachable and never clipped by moving content",
+          "passed": true
+        },
+        {
+          "name": "reduced: immediately readable stable organizer units",
+          "passed": true
+        },
+        {
+          "name": "paused: immediately readable stable organizer units",
+          "passed": true
+        },
+        {
+          "name": "offscreen: organizer compositor animations stop and no entry loop occurs",
+          "passed": true
+        }
+      ],
+      "captures": [
+        {
+          "name": "organizers-settled",
+          "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-organizers/8e904504-901580c9-2026-10-23T19-39-35-014Z/organizers-settled-1440x900.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+          "workerSha": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+          "kind": "actual visible viewport",
+          "inspected": false,
+          "visuallyInspected": false,
+          "sha256": "e7a0fd7cf934505e566bd91cd45b95c0679a94c5d921023b4d9e293927a3d2b3"
+        },
+        {
+          "name": "lower-venue",
+          "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-organizers/8e904504-901580c9-2026-10-23T19-39-35-014Z/lower-venue-1440x900.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+          "workerSha": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+          "kind": "actual visible viewport",
+          "inspected": false,
+          "visuallyInspected": true,
+          "sha256": "06099b8f55c43133e62381e66c8711a334ec2fd10c718f9c2185925d2c8c4143"
+        },
+        {
+          "name": "lower-faq",
+          "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-organizers/8e904504-901580c9-2026-10-23T19-39-35-014Z/lower-faq-1440x900.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+          "workerSha": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+          "kind": "actual visible viewport",
+          "inspected": false,
+          "visuallyInspected": false,
+          "sha256": "60734c93b0787ec77b9c850005cc390946a747b898dbf3d1c3c568d2fd455e0a"
+        },
+        {
+          "name": "organizers-settled",
+          "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-organizers/8e904504-901580c9-2026-10-23T19-39-35-014Z/organizers-settled-1024x768.png",
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          },
+          "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+          "workerSha": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+          "kind": "actual visible viewport",
+          "inspected": false,
+          "visuallyInspected": true,
+          "sha256": "e6cb2de902579ab1712019ae3a665eceadf45ed8adf42a8d785cd94ecd845a4d"
+        },
+        {
+          "name": "lower-venue",
+          "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-organizers/8e904504-901580c9-2026-10-23T19-39-35-014Z/lower-venue-1024x768.png",
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          },
+          "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+          "workerSha": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+          "kind": "actual visible viewport",
+          "inspected": false,
+          "visuallyInspected": false,
+          "sha256": "35fece8fefd2905ca855673a5aa74f61da68d60bc8fefc8e1ae61370e6505ff9"
+        },
+        {
+          "name": "lower-faq",
+          "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-organizers/8e904504-901580c9-2026-10-23T19-39-35-014Z/lower-faq-1024x768.png",
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          },
+          "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+          "workerSha": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+          "kind": "actual visible viewport",
+          "inspected": false,
+          "visuallyInspected": false,
+          "sha256": "a402cdeb1c0610db9938bde08eb8d07dd99bcb1db8cc14dcf85ad1281068c7be"
+        },
+        {
+          "name": "organizers-settled",
+          "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-organizers/8e904504-901580c9-2026-10-23T19-39-35-014Z/organizers-settled-834x1194.png",
+          "viewport": {
+            "width": 834,
+            "height": 1194
+          },
+          "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+          "workerSha": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+          "kind": "actual visible viewport",
+          "inspected": false,
+          "visuallyInspected": false,
+          "sha256": "7deda77083127c4e3b5f6711dfd511caf54d5481a8fd6a60a60d7ccab10cf1d6"
+        },
+        {
+          "name": "lower-venue",
+          "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-organizers/8e904504-901580c9-2026-10-23T19-39-35-014Z/lower-venue-834x1194.png",
+          "viewport": {
+            "width": 834,
+            "height": 1194
+          },
+          "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+          "workerSha": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+          "kind": "actual visible viewport",
+          "inspected": false,
+          "visuallyInspected": true,
+          "sha256": "14e6b0226bc0c9ee5ebe1a0c2bf0ade448ebd102f09e571d6338e2f3a728729b"
+        },
+        {
+          "name": "lower-faq",
+          "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-organizers/8e904504-901580c9-2026-10-23T19-39-35-014Z/lower-faq-834x1194.png",
+          "viewport": {
+            "width": 834,
+            "height": 1194
+          },
+          "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+          "workerSha": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+          "kind": "actual visible viewport",
+          "inspected": false,
+          "visuallyInspected": false,
+          "sha256": "bd8d11517810bbe1c92a6de88822e07c20981e4a8ab1354d9bc75571f475ec09"
+        },
+        {
+          "name": "organizers-settled",
+          "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-organizers/8e904504-901580c9-2026-10-23T19-39-35-014Z/organizers-settled-390x844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+          "workerSha": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+          "kind": "actual visible viewport",
+          "inspected": false,
+          "visuallyInspected": false,
+          "sha256": "320397ef3b86eebc7aa9ce150c00ff894121da5f3c7f04a0c0ef6c720ea1af43"
+        },
+        {
+          "name": "organizers-settled",
+          "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-organizers/8e904504-901580c9-2026-10-23T19-39-35-014Z/organizers-settled-320x740.png",
+          "viewport": {
+            "width": 320,
+            "height": 740
+          },
+          "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+          "workerSha": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+          "kind": "actual visible viewport",
+          "inspected": false,
+          "visuallyInspected": false,
+          "sha256": "012cc807a3660cbf1e98bf5fdefa6680ae769d891c531a0a74dce71bc030efd6"
+        },
+        {
+          "name": "organizers-reduced",
+          "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-organizers/8e904504-901580c9-2026-10-23T19-39-35-014Z/organizers-reduced-390x844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+          "workerSha": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+          "kind": "actual visible viewport",
+          "inspected": false,
+          "visuallyInspected": false,
+          "sha256": "43c4eed3580547c8ae971f82177f5d8ac3845c328c1ed1236fd11e4f535b273f"
+        },
+        {
+          "name": "organizers-paused",
+          "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-organizers/8e904504-901580c9-2026-10-23T19-39-35-014Z/organizers-paused-390x844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+          "workerSha": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+          "kind": "actual visible viewport",
+          "inspected": false,
+          "visuallyInspected": false,
+          "sha256": "43c4eed3580547c8ae971f82177f5d8ac3845c328c1ed1236fd11e4f535b273f"
+        }
+      ]
+    },
+    "backdrop": {
+      "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+      "workerSha": "901580c960143319604987bfb37f67e336b5bd228c0d6d8244dcd87515daea13",
+      "output": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-backdrop/8e904504-901580c9-2026-10-23T19-38-19-240Z",
+      "browserClosed": true,
+      "sourceUnchanged": true,
+      "workerUnchanged": true,
+      "errors": [],
+      "blocked": [],
+      "defects": [],
+      "fullReportPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-backdrop/8e904504-901580c9-2026-10-23T19-38-19-240Z/report.json",
+      "fullReportSha256": "3bc68a9bb75632ec467b128f69f9641b172db0797429a630b45a88290035b384",
+      "checks": [
+        {
+          "name": "390: one portrait layer, four initial approved dots, no overflow",
+          "passed": true
+        },
+        {
+          "name": "390: progressive accumulation caps at36 and pile target reaches80%",
+          "passed": true
+        },
+        {
+          "name": "390: settled transforms stop; foreground remains hit-testable",
+          "passed": true
+        },
+        {
+          "name": "390: real touch pan scrolls natively and releases motion",
+          "passed": true
+        },
+        {
+          "name": "390: Pause freezes progress and all36 transforms during scroll",
+          "passed": true
+        },
+        {
+          "name": "320: one portrait layer, four initial approved dots, no overflow",
+          "passed": true
+        },
+        {
+          "name": "320: progressive accumulation caps at36 and pile target reaches80%",
+          "passed": true
+        },
+        {
+          "name": "320: settled transforms stop; foreground remains hit-testable",
+          "passed": true
+        },
+        {
+          "name": "320: real touch pan scrolls natively and releases motion",
+          "passed": true
+        },
+        {
+          "name": "320: Pause freezes progress and all36 transforms during scroll",
+          "passed": true
+        },
+        {
+          "name": "834: one portrait layer, four initial approved dots, no overflow",
+          "passed": true
+        },
+        {
+          "name": "834: progressive accumulation caps at36 and pile target reaches80%",
+          "passed": true
+        },
+        {
+          "name": "834: settled transforms stop; foreground remains hit-testable",
+          "passed": true
+        },
+        {
+          "name": "834: real touch pan scrolls natively and releases motion",
+          "passed": true
+        },
+        {
+          "name": "834: Pause freezes progress and all36 transforms during scroll",
+          "passed": true
+        },
+        {
+          "name": "reduced motion: stable visible initial pile does not animate or accumulate on scroll",
+          "passed": true
+        },
+        {
+          "name": "desktop: portrait backdrop absent",
+          "passed": true
+        }
+      ],
+      "captures": [
+        {
+          "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-backdrop/8e904504-901580c9-2026-10-23T19-38-19-240Z/dense-organizers-390x844.png",
+          "visuallyInspected": true,
+          "sha256": "6e850efb97b87abb57457bbac8eb83258b2f8dbcf78ef5bf00517802fba3e3e6"
+        },
+        {
+          "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-backdrop/8e904504-901580c9-2026-10-23T19-38-19-240Z/dense-organizers-320x740.png",
+          "visuallyInspected": false,
+          "sha256": "069063a76706ba602afb826fcfa417e121053fa10fa552428bc0bb5593ef0449"
+        },
+        {
+          "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-backdrop/8e904504-901580c9-2026-10-23T19-38-19-240Z/dense-organizers-834x1194.png",
+          "visuallyInspected": true,
+          "sha256": "a35d011139a9deb1195ef53e38951b0703addd95b8dd1c4ae7dc3407eabd3839"
+        },
+        {
+          "path": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-backdrop/8e904504-901580c9-2026-10-23T19-38-19-240Z/reduced-organizers-390x844.png",
+          "visuallyInspected": false,
+          "sha256": "52148ba25039ddf3f5ed3748ae3c654fe426cd0caa5cf15695b19eefc6ba2852"
+        }
+      ],
+      "progression": [
+        {
+          "width": 390,
+          "counts": [
+            4,
+            10,
+            16,
+            23,
+            29,
+            36
+          ],
+          "fillRatios": [
+            0.14,
+            0.259,
+            0.394,
+            0.53,
+            0.665,
+            0.8
+          ]
+        },
+        {
+          "width": 320,
+          "counts": [
+            4,
+            10,
+            16,
+            23,
+            29,
+            36
+          ],
+          "fillRatios": [
+            0.14,
+            0.259,
+            0.394,
+            0.53,
+            0.665,
+            0.8
+          ]
+        },
+        {
+          "width": 834,
+          "counts": [
+            4,
+            10,
+            17,
+            23,
+            30,
+            36
+          ],
+          "fillRatios": [
+            0.14,
+            0.266,
+            0.399,
+            0.533,
+            0.666,
+            0.8
+          ]
+        }
+      ]
+    },
+    "landing": {
+      "source": "8e90450443fd3dc61ddad88448ca4cec8395d494",
+      "workerSha": null,
+      "output": null,
+      "browserClosed": true,
+      "sourceUnchanged": true,
+      "workerUnchanged": true,
+      "errors": [],
+      "blocked": [],
+      "defects": null,
+      "fullReportPath": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-landing-batch/8e904504-901580c9/report.json",
+      "fullReportSha256": "13cdabae724f9044c7fb23715627c5a955e94f8831b3546b01825aa991367136",
+      "checks": [],
+      "captures": [
+        "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-landing-batch/8e904504-901580c9/hero-1440x900.png",
+        "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-landing-batch/8e904504-901580c9/schedule-1440x900.png",
+        "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-landing-batch/8e904504-901580c9/venue-1440x900.png",
+        "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-landing-batch/8e904504-901580c9/rules-1440x900.png",
+        "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-landing-batch/8e904504-901580c9/faq-1440x900.png",
+        "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-landing-batch/8e904504-901580c9/organizers-1440x900.png",
+        "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-landing-batch/8e904504-901580c9/hero-390x844.png",
+        "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-landing-batch/8e904504-901580c9/organizers-390x844.png",
+        "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-landing-batch/8e904504-901580c9/hero-320x740.png",
+        "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers/evidence/v6-landing-batch/8e904504-901580c9/organizers-320x740.png"
+      ]
+    }
+  },
+  "correction": {
+    "supersededDirectory": "evidence/v6-organizers/8e904504-901580c9-2026-10-23T19-32-00-734Z",
+    "reason": "Earlier lower Venue screenshots show FAQ because scrollIntoViewIfNeeded measured an already sticky chapter. Those screenshots are invalid Venue evidence. Geometry measurements alone did not prove frontmost content. Corrected runner resets scroll before measuring natural chapter position and asserts frontmost heading ownership. Corrected24-check run and sequential landing capture are authoritative."
+  },
+  "visualFindings": [
+    "Selected73355 organizer structure, original photos, ring diameter and attached one-unit slide verified.",
+    "Dense portrait backdrop appears as orderly four-column rows. Jar aesthetics remain a visual quality issue despite functional17-check pass.",
+    "Desktop organizer lower8px and320mobile footer are outside first-batch viewport framing, without clipped names or roles."
+  ],
+  "limits": [
+    "No visual acceptance claim.",
+    "Background-tab and off-home backdrop lifecycle not directly reproduced in headless actual QA. Source listeners were inspected; settled stops, Pause and reduced runtime were checked.",
+    "No production or hosted capacity proof; local disposable preview only."
+  ]
+}
