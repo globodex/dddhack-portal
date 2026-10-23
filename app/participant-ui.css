@@ -586,8 +586,21 @@
     gap: 6px;
   }
   .app-shell .profile-flow .profile-platform-select > select {
+    appearance: none;
     color: transparent;
     padding-left: 32px;
+  }
+  .app-shell .profile-flow .profile-platform-select::after {
+    content: "";
+    position: absolute;
+    right: 12px;
+    top: calc(50% - 5px);
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    pointer-events: none;
   }
   .app-shell .profile-platform-select option {
     color: #141414;
