@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { Dashboard, TeamWorkspace } from "../app/portal";
+import { Dashboard, Submission, TeamWorkspace } from "../app/portal";
 
 const run = async () => ({});
 const me = {
@@ -103,4 +103,32 @@ test("Team rows show one expression avatar each, keep initials only on the team 
   assert.match(html, /Server-controlled directions/);
   assert.match(html, /aria-label="Synthetic Leader on GitHub"/);
   assert.doesNotMatch(html, /Remove .* from team|Rename team|Save team idea/);
+});
+
+test("focused project editor has a real button exit without duplicate history actions", () => {
+  for (const exitLabel of ["Back to your project", "Back to Team"]) {
+    const html = renderToStaticMarkup(
+      createElement(Submission, {
+        data: {
+          me,
+          team,
+          submissionAccess: { canRead: true, canCommit: true, attemptsUsed: 1 },
+        },
+        run,
+        onExit: () => {},
+        exitLabel,
+      }),
+    );
+    assert.match(
+      html,
+      new RegExp(
+        `<button type="button" class="submission-back" aria-label="${exitLabel}"`,
+      ),
+    );
+    assert.doesNotMatch(
+      html,
+      /submission-history-actions|View committed history|href="\/dashboard#project"/,
+    );
+    assert.match(html, /Step 1 of 3/);
+  }
 });

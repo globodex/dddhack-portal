@@ -944,11 +944,18 @@ function DashboardVenue({ venue }: { venue: Row }) {
 function DashboardProject({
   data,
   run,
+  editing,
+  editorOpen,
+  setEditing,
+  onExit,
 }: {
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
+  editing: boolean;
+  editorOpen: boolean;
+  setEditing: (value: boolean) => void;
+  onExit: () => void;
 }) {
-  const [editing, setEditing] = useState(false);
   const project = data.project,
     draft = project?.draft || {},
     used = Number.isInteger(data.submissionAccess?.attemptsUsed)
@@ -961,6 +968,20 @@ function DashboardProject({
       data.submissionAccess?.canCommit === true &&
       used < 3 &&
       !data.submissionAccess?.locked;
+  if (editorOpen && canRead && canEdit)
+    return (
+      <Submission
+        key={`${project?.revision || 0}-${data.team?.id || "none"}`}
+        data={data}
+        run={run}
+        onExit={onExit}
+        exitLabel={
+          project?.published_version_id
+            ? "Back to your project"
+            : "Back to Team"
+        }
+      />
+    );
   return (
     <>
       <div className="dashboard-project-heading">
@@ -1015,6 +1036,7 @@ function DashboardProject({
             {canEdit && project?.published_version_id && (
               <button
                 className="button secondary"
+                id="dashboard-project-edit"
                 type="button"
                 aria-expanded={editing}
                 onClick={() => setEditing(!editing)}
@@ -1023,7 +1045,7 @@ function DashboardProject({
               </button>
             )}
           </div>
-          {project?.published_version_id && !editing && (
+          {project?.published_version_id && !editorOpen && (
             <article className="dashboard-project-card">
               {draft.banner && (
                 <img
@@ -1038,13 +1060,6 @@ function DashboardProject({
                 <p className="prose">{draft.description}</p>
               )}
             </article>
-          )}
-          {(!project?.published_version_id || editing) && (
-            <Submission
-              key={`${project?.revision || 0}-${data.team?.id || "none"}`}
-              data={data}
-              run={run}
-            />
           )}
         </>
       ) : (
@@ -1092,7 +1107,8 @@ export function Dashboard({
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
-  const [tab, setTab] = useState("team");
+  const [tab, setTab] = useState("team"),
+    [projectEditing, setProjectEditing] = useState(false);
   useEffect(() => {
     const sync = () => {
       const value = location.hash.slice(1);
@@ -1106,6 +1122,27 @@ export function Dashboard({
     setTab(value);
     history.replaceState(null, "", `#${value}`);
     if (focus) document.getElementById(`dashboard-tab-${value}`)?.focus();
+  };
+  const editorOpen =
+    tab === "project" &&
+    data.submissionAccess?.canRead === true &&
+    data.me?.canParticipate === true &&
+    data.team?.leader_id === data.me?.id &&
+    data.submissionAccess?.canCommit === true &&
+    !data.submissionAccess?.locked &&
+    (data.submissionAccess?.attemptsUsed ?? data.attempts?.length ?? 0) < 3 &&
+    (!data.project?.published_version_id || projectEditing);
+  const exitProjectEditor = () => {
+    setProjectEditing(false);
+    const published = !!data.project?.published_version_id;
+    select(published ? "project" : "team");
+    requestAnimationFrame(() =>
+      document
+        .getElementById(
+          published ? "dashboard-project-edit" : "dashboard-tab-team",
+        )
+        ?.focus(),
+    );
   };
   if (data.me?.mode === "viewer")
     return (
@@ -1124,8 +1161,8 @@ export function Dashboard({
       </>
     );
   return (
-    <div className="dashboard-v6">
-      <header className="page-heading dashboard-heading">
+    <div className="dashboard-v6" data-editor-open={editorOpen}>
+      <header className="page-heading dashboard-heading" hidden={editorOpen}>
         <h1>
           <HeadingDot
             color={(data.me?.avatarColor || "green") as keyof typeof dotColors}
@@ -1151,6 +1188,7 @@ export function Dashboard({
         </Pill>
       </header>
       <nav
+        hidden={editorOpen}
         className="dashboard-sections"
         role="tablist"
         aria-label="Dashboard sections"
@@ -1213,12 +1251,20 @@ export function Dashboard({
       </section>
       <section
         id="project"
-        role="tabpanel"
+        role={editorOpen ? "region" : "tabpanel"}
         hidden={tab !== "project"}
         className="dashboard-section"
-        aria-labelledby="dashboard-tab-project"
+        aria-label={editorOpen ? "Project submission" : undefined}
+        aria-labelledby={editorOpen ? undefined : "dashboard-tab-project"}
       >
-        <DashboardProject data={data} run={run} />
+        <DashboardProject
+          data={data}
+          run={run}
+          editing={projectEditing}
+          editorOpen={editorOpen}
+          setEditing={setProjectEditing}
+          onExit={exitProjectEditor}
+        />
       </section>
     </div>
   );
@@ -1725,9 +1771,13 @@ const emptyProject = {
 export function Submission({
   data,
   run,
+  onExit,
+  exitLabel = "Back to your project",
 }: {
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
+  onExit?: () => void;
+  exitLabel?: string;
 }) {
   const initial = { ...emptyProject, ...data.project?.draft };
   const [project, setProject] = useState(initial),
@@ -1860,6 +1910,15 @@ export function Submission({
                 setError("");
                 setStep(step - 1);
               }}
+            >
+              <ArrowLeft size={20} aria-hidden="true" />
+            </button>
+          ) : onExit ? (
+            <button
+              type="button"
+              className="submission-back"
+              aria-label={exitLabel}
+              onClick={onExit}
             >
               <ArrowLeft size={20} aria-hidden="true" />
             </button>
@@ -2145,14 +2204,16 @@ export function Submission({
           </p>
         )}
       </form>
-      <div className="submission-history-actions">
-        <ProjectHistory canRead={data.submissionAccess?.canRead === true} />
-        {data.leaderboardUrl && (
-          <a className="button secondary" href={data.leaderboardUrl}>
-            View project <ExternalLink size={18} aria-hidden="true" />
-          </a>
-        )}
-      </div>
+      {!onExit && (
+        <div className="submission-history-actions">
+          <ProjectHistory canRead={data.submissionAccess?.canRead === true} />
+          {data.leaderboardUrl && (
+            <a className="button secondary" href={data.leaderboardUrl}>
+              View project <ExternalLink size={18} aria-hidden="true" />
+            </a>
+          )}
+        </div>
+      )}
     </section>
   );
 }

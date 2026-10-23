@@ -32,3 +32,11 @@ Seventeen focused rendering/permissions/tool/timezone regressions passed, includ
 ## Visual QA status
 
 **Pending matching compiled screenshots and interaction verification.** Source implementation and static checks do not establish pixel fidelity. Root must inspect desktop/tablet/mobile captures against these exact two boards, especially shared-header placement, native input/checkbox metrics, file-input focus, every wizard step, final confirmation cancellation, long text, narrow/short-height scrolling, vote states and comment permissions. Do not mark this visually accepted or release-ready from the mockups or source checks.
+
+## Focused Dashboard editor correction
+
+The actual compiled capture showed duplicated Dashboard heading, tabs, project actions, history links and private feedback around the wizard. While the authorized leader is editing, Dashboard now keeps its active sidebar entry but hides its title and tabs, and the Project panel renders only Submission. The project panel is then an accessible named region rather than a tab panel labelled by hidden navigation. Outer history and feedback return after leaving the editor. Submission receives an optional `onExit` callback, so its duplicate history/link footer is omitted in this composition.
+
+For a published project, step-one Back closes the editor and restores focus to Update project. For an unpublished project, Back selects Team and focuses its tab; selecting Project again enters the first-submission flow. There is no automatic save, confirmation or attempt consumption on exit. Existing server-saved drafts and immutable versions retain their semantics. Later Back buttons still move between steps. The project card remains visible when a third commit locks editing.
+
+This correction is isolated from the separately committed Next native-activation fix and Projects breakpoint fix. Eighteen focused tests and TypeScript pass. Matching compiled screenshots, touch, mouse and keyboard interactions remain required before acceptance.
