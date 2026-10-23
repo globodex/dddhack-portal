@@ -84,13 +84,12 @@ export type AdminParticipantTarget = {
 };
 export function participantActionValues(
   participant: AdminParticipantTarget,
-  reason: string,
+  reason = "",
 ) {
-  if (!participant.id || !reason.trim())
-    throw new Error("A participant and audit reason are required.");
+  if (!participant.id) throw new Error("Choose a participant.");
   return {
     userId: participant.id,
-    reason: reason.trim(),
+    ...(reason.trim() ? { reason: reason.trim() } : {}),
     confirmation: participant.removed
       ? "RESTORE_PARTICIPANT"
       : "REMOVE_PARTICIPANT",
@@ -104,7 +103,6 @@ export default function AdminParticipantActions({
   participant: AdminParticipantTarget;
   run: AdminRun;
 }) {
-  const [reason, setReason] = useState("");
   const { busy, error, execute } = useAdminOperation();
   return (
     <form
@@ -116,49 +114,26 @@ export default function AdminParticipantActions({
             participant.removed
               ? "participant-restore"
               : "participant-deactivate",
-            participantActionValues(participant, reason),
+            participantActionValues(participant),
           ),
         );
       }}
     >
-      <h3>
-        <AdminIcon name="person" />
-        {participant.removed ? "Restore participant" : "Remove participant"}
-      </h3>
-      <p>
+      <div className="admin-action-target">
         <strong>{participant.name}</strong>
-        {participant.email && <> · {participant.email}</>}
-      </p>
-      <p className="admin-control-note">
-        {participant.removed
-          ? "Restore this account’s roster eligibility. History stays intact; the server rechecks team and access rules."
-          : "Remove this person’s participation and revoke their sessions, private team access and credits access. History is preserved and removal is recoverable. Protected accounts and leadership dependencies may block removal."}
-      </p>
-      <fieldset disabled={busy}>
-        <label>
-          <span>
-            Audit reason <span aria-hidden="true">*</span>
-          </span>
-          <textarea
-            value={reason}
-            onChange={(event) => setReason(event.target.value)}
-            required
-            maxLength={1000}
-            rows={2}
-          />
-        </label>
-        <button
-          className={`button ${participant.removed ? "secondary" : "admin-control-danger"}`}
-          type="submit"
-          disabled={!reason.trim() || busy}
-        >
-          {busy
-            ? "Waiting…"
-            : participant.removed
-              ? "Review restoration"
-              : "Review removal"}
-        </button>
-      </fieldset>
+        {participant.email && <span>{participant.email}</span>}
+      </div>
+      <button
+        className={`button ${participant.removed ? "secondary" : "admin-control-danger"}`}
+        type="submit"
+        disabled={busy}
+      >
+        {busy
+          ? "Waiting…"
+          : participant.removed
+            ? "Restore participant"
+            : "Remove participant"}
+      </button>
       {error && (
         <p className="error-message" role="alert">
           {error}
@@ -192,9 +167,9 @@ export function AdminParticipantFilters({
     onChange({ ...value, ...patch });
   return (
     <fieldset className="admin-control admin-participant-filters">
-      <legend>Filter participants</legend>
+      <legend className="sr-only">Filter participants</legend>
       <label>
-        Individual
+        Search participants
         <input
           type="search"
           value={value.individual}
@@ -203,7 +178,7 @@ export function AdminParticipantFilters({
         />
       </label>
       <label>
-        Team name
+        Search teams
         <input
           type="search"
           value={value.teamQuery}
@@ -230,7 +205,7 @@ export function AdminParticipantFilters({
         </select>
       </label>
       <label>
-        Team membership
+        Team status
         <select
           value={value.team}
           onChange={(event) =>
@@ -248,10 +223,6 @@ export function AdminParticipantFilters({
           <option value="all">All people</option>
         </select>
       </label>
-      <p className="admin-control-note">
-        Filters combine. Ordered by earliest team lock; unknown lock times
-        follow known times.
-      </p>
     </fieldset>
   );
 }

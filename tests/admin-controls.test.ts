@@ -220,8 +220,9 @@ test("single-person and exact-project payloads have no bulk removal or reset pat
     ).confirmation,
     "RESTORE_PARTICIPANT",
   );
-  assert.throws(() =>
-    participantActionValues({ id: "person-1", name: "Person" }, ""),
+  assert.equal(
+    "reason" in participantActionValues({ id: "person-1", name: "Person" }),
+    false,
   );
   for (const restore of [false, true]) {
     for (const scope of ["project", "submission", "both"] as const) {
@@ -313,10 +314,8 @@ test("controls render target, audit and real-attempt consequences without mutati
     }),
   );
   assert.ok(participant.includes("Person &lt;One&gt;"));
-  assert.ok(
-    participant.includes("sessions, private team access and credits access"),
-  );
-  assert.ok(participant.includes("Audit reason"));
+  assert.ok(participant.includes("Remove participant"));
+  assert.ok(!participant.includes("Audit reason"));
   assert.ok(!participant.includes("bulk"));
   const project = renderToStaticMarkup(
     createElement(AdminProjectActions, {
@@ -326,8 +325,8 @@ test("controls render target, audit and real-attempt consequences without mutati
     }),
   );
   assert.ok(project.includes("Exact Project"));
-  assert.ok(project.includes("One submission only"));
-  assert.ok(project.includes("never reset the hard limit of three"));
+  assert.ok(project.includes("Submission"));
+  assert.ok(!project.includes("Audit reason"));
   const props = {
     open: "2026-11-01T02:30:00Z",
     close: "2026-11-01T10:30:00Z",
@@ -353,10 +352,11 @@ test("controls render target, audit and real-attempt consequences without mutati
   const imports = renderToStaticMarkup(
     createElement(AdminImportControls, { run: noMutation }),
   );
-  assert.ok(imports.includes("Removed accounts stay removed"));
-  assert.ok(imports.includes("All social links are optional"));
+  assert.ok(imports.includes("Single email"));
+  assert.ok(imports.includes("Email list"));
+  assert.ok(imports.includes("CSV"));
   assert.ok(
     !imports.includes("Review add-only import"),
-    "commit is absent before preview",
+    "separate import review screen is absent",
   );
 });

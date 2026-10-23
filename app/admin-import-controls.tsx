@@ -1,7 +1,6 @@
 "use client";
 import { useId, useState } from "react";
 import {
-  AdminIcon,
   useAdminOperation,
   type AdminRow,
   type AdminRun,
@@ -109,28 +108,75 @@ function previewError(error: NonNullable<ImportPreview["errors"]>[number]) {
     : `${error.row ? `Row ${error.row}: ` : ""}${error.message || error.code || "Invalid row"}`;
 }
 
+export type ParticipantImportMode = "single" | "emails" | "csv";
+
+export function confirmedImportValues(
+  csv: string,
+  fieldMap: ImportFieldMap,
+  mode: ParticipantImportMode,
+  review: ImportPreview,
+) {
+  if (!review.digest || !review.counts || !Array.isArray(review.rows))
+    throw new Error("Unable to validate participants. Try again.");
+  if (!canCommitImport(review))
+    throw new Error(
+      review.errors?.length
+        ? review.errors.slice(0, 3).map(previewError).join(" ")
+        : "Fix invalid emails before adding participants.",
+    );
+  const additions = review.rows.filter((row) => !row.existing);
+  if (
+    !Number.isSafeInteger(review.counts.new) ||
+    review.counts.new !== additions.length
+  )
+    throw new Error("Participant count changed. Try again.");
+  if (review.counts.new < 1) throw new Error("No new participants to add.");
+  if (mode === "single" && additions.length !== 1)
+    throw new Error("Enter one email address.");
+  return {
+    ...importRequest(csv, fieldMap),
+    digest: review.digest,
+    newCount: review.counts.new,
+    ...(mode === "single" ? { singleEmail: additions[0].email } : {}),
+  };
+}
+
+export async function addParticipants(
+  csv: string,
+  fieldMap: ImportFieldMap,
+  mode: ParticipantImportMode,
+  preview: (request: ImportPreviewRequest) => Promise<ImportPreview>,
+  run: AdminRun,
+  onPreview?: (response: ImportPreview) => void,
+) {
+  const response = await preview(importRequest(csv, fieldMap));
+  onPreview?.(response);
+  return run(
+    "commit-import",
+    confirmedImportValues(csv, response.fieldMap || fieldMap, mode, response),
+  );
+}
+
 export default function AdminImportControls({
   run,
   preview = (request) =>
     previewAdminAction<ImportPreview>("preview-import", request),
+  initialMode = "single",
 }: {
   run: AdminRun;
   preview?: (request: ImportPreviewRequest) => Promise<ImportPreview>;
+  initialMode?: ParticipantImportMode;
 }) {
   const id = useId();
-  const [mode, setMode] = useState<"emails" | "csv" | "single">("emails");
+  const [mode, setMode] = useState<ParticipantImportMode>(initialMode);
   const [csv, setCSV] = useState("");
   const [fieldMap, setFieldMap] = useState<ImportFieldMap>({});
   const [headers, setHeaders] = useState<string[]>([]);
-  const [review, setReview] = useState<ImportPreview | null>(null);
-  const [fileError, setFileError] = useState("");
   const { busy, error, execute, clearError } = useAdminOperation();
   const changeSource = (value: string) => {
     setCSV(value);
     setFieldMap({});
     setHeaders([]);
-    setReview(null);
-    setFileError("");
     clearError();
   };
   return (
@@ -138,240 +184,173 @@ export default function AdminImportControls({
       className="admin-control admin-import"
       aria-labelledby={`${id}-title`}
     >
-      <h2 id={`${id}-title`}>
-        <AdminIcon name="upload" />
-        Add participants
-      </h2>
-      <p className="admin-control-note">
-        Add-only import. Existing profiles, statuses, Going/check-in history and
-        participant edits stay unchanged. Removed accounts stay removed. A
-        roster addition lets an existing viewer activate with the same account.
-        All social links are optional.
-      </p>
-      <fieldset disabled={busy}>
-        <label>
-          Source
-          <select
-            value={mode}
-            onChange={(event) => {
-              setMode(event.target.value as typeof mode);
-              changeSource("");
-            }}
-          >
-            <option value="emails">Pasted email list</option>
-            <option value="csv">Email-only or full Luma CSV</option>
-            <option value="single">One extra email</option>
-          </select>
-        </label>
-        {mode === "single" ? (
-          <label>
-            Email
-            <input
-              type="email"
-              value={csv}
-              onChange={(event) => changeSource(event.target.value)}
-              autoComplete="off"
-            />
-          </label>
-        ) : (
-          <label>
-            {mode === "csv"
-              ? "Paste CSV with its actual header row"
-              : "Emails separated by lines, commas or semicolons"}
-            <textarea
-              rows={6}
-              value={csv}
-              onChange={(event) => changeSource(event.target.value)}
-              autoComplete="off"
-              spellCheck={false}
-            />
-          </label>
-        )}
-        {mode === "csv" && (
-          <label>
-            Or choose a CSV file
-            <input
-              type="file"
-              accept=".csv,text/csv"
-              onChange={(event) => {
-                const file = event.target.files?.[0];
-                if (!file) return;
-                setReview(null);
-                setFileError("");
-                if (file.size > 512000) {
-                  changeSource("");
-                  setFileError("CSV must be at most 512 KB.");
-                  return;
-                }
-                void execute(async () => changeSource(await file.text()));
-              }}
-            />
-          </label>
-        )}
-        {headers.length > 0 && (
-          <div className="admin-import-mapping">
-            <h3>Supplied columns → approved fields</h3>
-            <p className="admin-control-note">
-              Choose the actual supplied header for each field. Unmapped columns
-              are ignored. Values are validated by the server; no category
-              values are assumed.
-            </p>
-            <div className="admin-control-grid">
-              {approvedImportFields.map((field) => (
-                <label key={field}>
-                  {fieldLabels[field]}
-                  <select
-                    value={fieldMap[field] || ""}
-                    onChange={(event) => {
-                      const next = { ...fieldMap };
-                      if (event.target.value) next[field] = event.target.value;
-                      else delete next[field];
-                      setFieldMap(next);
-                      setReview(null);
-                    }}
-                  >
-                    <option value="">
-                      {field === "email"
-                        ? "Choose email column"
-                        : "Do not import"}
-                    </option>
-                    {headers.map((header) => (
-                      <option
-                        key={header}
-                        value={header}
-                        disabled={Object.entries(fieldMap).some(
-                          ([other, mapped]) =>
-                            other !== field && mapped === header,
-                        )}
-                      >
-                        {header}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              ))}
-            </div>
-          </div>
-        )}
-        <div className="form-actions">
-          <button
-            type="button"
-            className="button secondary"
-            disabled={
-              busy || !csv.trim() || Boolean(headers.length && !fieldMap.email)
-            }
-            onClick={() =>
-              void execute(async () => {
-                setReview(null);
-                const response = await preview(importRequest(csv, fieldMap));
+      <h2 id={`${id}-title`}>Add participants</h2>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          void execute(async () => {
+            await addParticipants(
+              csv,
+              fieldMap,
+              mode,
+              preview,
+              run,
+              (response) => {
                 if (
-                  !response.digest ||
-                  !Array.isArray(response.headers) ||
-                  !response.counts ||
-                  !Array.isArray(response.rows)
-                )
-                  throw new Error(
-                    "The server did not return a complete import preview.",
-                  );
-                setHeaders(response.headers);
-                setFieldMap(response.fieldMap || {});
-                setReview(response);
-              })
-            }
+                  mode === "csv" &&
+                  Array.isArray(response.headers) &&
+                  !response.fieldMap?.email
+                ) {
+                  setHeaders(response.headers);
+                  setFieldMap(response.fieldMap || {});
+                  throw new Error("Choose the email column.");
+                }
+              },
+            );
+            changeSource("");
+          });
+        }}
+      >
+        <fieldset disabled={busy}>
+          <div
+            className="admin-source-options"
+            role="group"
+            aria-label="Participant source"
           >
-            {busy ? "Waiting…" : "Preview import"}
-          </button>
-        </div>
-      </fieldset>
-      {review && (
-        <div className="admin-import-review" aria-live="polite">
-          <h3>Import preview</h3>
-          <dl className="admin-import-counts">
             {(
               [
-                ["new", "New emails"],
-                ["existing", "Existing, unchanged"],
-                ["invalid", "Invalid rows"],
-                ["duplicates", "Duplicates"],
-                ["prefills", "New profile prefills"],
+                ["single", "Single email"],
+                ["emails", "Email list"],
+                ["csv", "CSV"],
               ] as const
-            ).map(([key, label]) => (
-              <div key={key}>
-                <dt>{label}</dt>
-                <dd>{review.counts[key]}</dd>
-              </div>
+            ).map(([value, label]) => (
+              <button
+                key={value}
+                type="button"
+                aria-pressed={mode === value}
+                onClick={() => {
+                  setMode(value);
+                  changeSource("");
+                }}
+              >
+                {label}
+              </button>
             ))}
-          </dl>
-          {!!review.errors?.length && (
-            <div role="alert">
-              <p>Resolve these issues and preview again.</p>
-              <ul>
-                {review.errors.map((issue, index) => (
-                  <li key={index}>{previewError(issue)}</li>
-                ))}
-              </ul>
+          </div>
+          <div className="admin-import-entry">
+            {mode === "single" ? (
+              <label>
+                Email
+                <input
+                  type="email"
+                  required
+                  autoComplete="off"
+                  value={csv}
+                  onChange={(event) => changeSource(event.target.value)}
+                  placeholder="name@example.com"
+                />
+              </label>
+            ) : mode === "emails" ? (
+              <label>
+                Email list
+                <textarea
+                  required
+                  rows={3}
+                  value={csv}
+                  onChange={(event) => changeSource(event.target.value)}
+                  placeholder="name@example.com, another@example.com"
+                  autoComplete="off"
+                  spellCheck={false}
+                />
+              </label>
+            ) : (
+              <div className="admin-csv-source">
+                <label>
+                  CSV with header row
+                  <input
+                    type="file"
+                    accept=".csv,text/csv"
+                    onChange={(event) => {
+                      const file = event.target.files?.[0];
+                      if (!file) return;
+                      void execute(async () => {
+                        if (file.size > 512000) {
+                          changeSource("");
+                          throw new Error("CSV must be at most 512 KB.");
+                        }
+                        changeSource(await file.text());
+                      });
+                    }}
+                  />
+                </label>
+                <textarea
+                  aria-label="Paste CSV with header row"
+                  rows={3}
+                  value={csv}
+                  onChange={(event) => changeSource(event.target.value)}
+                  placeholder="Or paste CSV with header row"
+                  autoComplete="off"
+                  spellCheck={false}
+                />
+              </div>
+            )}
+            <button
+              className="button"
+              type="submit"
+              disabled={
+                busy ||
+                !csv.trim() ||
+                Boolean(headers.length && !fieldMap.email)
+              }
+            >
+              {busy ? "Waiting…" : "Add"}
+            </button>
+          </div>
+          {headers.length > 0 && (
+            <div className="admin-csv-columns">
+              {headers.map((header) => {
+                const selected =
+                  approvedImportFields.find(
+                    (field) => fieldMap[field] === header,
+                  ) || "";
+                return (
+                  <label key={header}>
+                    {header}
+                    <select
+                      value={selected}
+                      onChange={(event) => {
+                        const next = { ...fieldMap };
+                        for (const field of approvedImportFields)
+                          if (next[field] === header) delete next[field];
+                        if (event.target.value)
+                          next[event.target.value as ImportField] = header;
+                        setFieldMap(next);
+                        clearError();
+                      }}
+                    >
+                      <option value="">Ignore column</option>
+                      {approvedImportFields.map((field) => (
+                        <option
+                          value={field}
+                          key={field}
+                          disabled={Boolean(
+                            fieldMap[field] && fieldMap[field] !== header,
+                          )}
+                        >
+                          {fieldLabels[field]}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                );
+              })}
             </div>
           )}
-          <div
-            className="admin-control-table"
-            role="region"
-            aria-label="Import preview rows"
-            tabIndex={0}
-          >
-            <table>
-              <caption>Supplied emails and proposed actions</caption>
-              <thead>
-                <tr>
-                  <th scope="col">Row</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Action</th>
-                  <th scope="col">Warnings</th>
-                </tr>
-              </thead>
-              <tbody>
-                {review.rows.map((row, index) => (
-                  <tr key={`${row.row}-${index}`}>
-                    <td>{row.row}</td>
-                    <td>{row.email}</td>
-                    <td>
-                      {row.existing ? "Existing · unchanged" : row.action}
-                    </td>
-                    <td>{row.warnings?.join("; ") || "—"}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="admin-control-note">
-            The preview shows emails and validation only. Profile details and
-            phone values are not displayed or exported here. Import requires
-            confirmation.
-          </p>
-          <button
-            className="button"
-            type="button"
-            disabled={
-              busy ||
-              !canCommitImport(review) ||
-              Boolean(headers.length && !fieldMap.email)
-            }
-            onClick={() =>
-              void execute(async () => {
-                await run("commit-import", {
-                  ...importRequest(csv, fieldMap),
-                  digest: review.digest,
-                });
-                setReview(null);
-              })
-            }
-          >
-            {busy ? "Waiting…" : "Review add-only import"}
-          </button>
-        </div>
-      )}
-      {(error || fileError) && (
+        </fieldset>
+      </form>
+      {error && (
         <p className="error-message" role="alert">
-          {fileError || error}
+          {error}
         </p>
       )}
     </section>

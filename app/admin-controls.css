@@ -176,3 +176,159 @@
     width: 100%;
   }
 }
+
+/* Compact administrative controls; existing server filters/export stay shared. */
+.admin-control label {
+  margin: 0;
+  gap: 6px;
+  font-size: 13px;
+}
+.admin-control > fieldset,
+.admin-control form > fieldset {
+  gap: 12px;
+  margin-top: 12px;
+}
+.admin-control h2 {
+  margin-bottom: 14px;
+  font-size: 20px;
+  letter-spacing: -0.025em;
+}
+.admin-control :is(input, select, textarea) {
+  border-radius: 9px;
+  padding: 10px 12px;
+}
+.admin-control.admin-participant-filters {
+  grid-template-columns: minmax(200px, 1.8fr) minmax(160px, 1.3fr) minmax(
+      140px,
+      1fr
+    ) minmax(160px, 1fr);
+  gap: 12px;
+  padding: 0;
+  border: 0;
+  margin-block: 14px 18px;
+}
+.admin-control.admin-participant-action {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin: 8px 0;
+  padding: 0;
+  border: 0;
+}
+.admin-action-target {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+.admin-action-target span {
+  color: var(--muted, #626672);
+  font-size: 12px;
+}
+.admin-control.admin-project-action {
+  padding: 14px;
+  margin-block: 10px;
+}
+.admin-action-project-name {
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.admin-project-action > .admin-project-fields {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.admin-project-fields label {
+  flex: 1 1 130px;
+}
+.admin-control .error-message {
+  flex-basis: 100%;
+  margin: 10px 0 0;
+  font-size: 13px;
+}
+.panel > .admin-import {
+  margin: 0;
+  padding: 12px 0 0;
+  border: 0;
+}
+.panel > .admin-import > h2 {
+  display: none;
+}
+.admin-source-options {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  width: fit-content;
+  padding: 4px;
+  background: #f2f3f5;
+  border-radius: 12px;
+}
+.admin-source-options button {
+  min-height: 44px;
+  padding: 9px 16px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  color: #555b66;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+}
+.admin-source-options button[aria-pressed="true"] {
+  color: #005b39;
+  background: #fff;
+  border-color: #dce4df;
+  box-shadow: 0 1px 2px #1020180a;
+}
+.admin-import-entry,
+.admin-add-admins .admin-email-action {
+  display: flex;
+  align-items: end;
+  gap: 12px;
+}
+.admin-import-entry > :first-child,
+.admin-email-action label {
+  flex: 1;
+  min-width: 0;
+}
+.admin-import-entry > .button,
+.admin-email-action > .button {
+  flex: 0 0 auto;
+}
+.admin-csv-source {
+  display: grid;
+  gap: 10px;
+}
+.admin-csv-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+.admin-add-admins {
+  margin-block: 18px;
+}
+@media (max-width: 1050px) {
+  .admin-control.admin-participant-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .admin-control.admin-participant-filters {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+  .admin-import-entry,
+  .admin-add-admins .admin-email-action {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .admin-source-options {
+    width: 100%;
+  }
+  .admin-source-options button {
+    flex: 1;
+    padding-inline: 10px;
+  }
+}
