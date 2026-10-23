@@ -213,7 +213,7 @@ try {
   );
   assert.equal(creditImport.status, 503);
   assert.equal((await creditImport.json()).code, "CREDIT_KEY_UNAVAILABLE");
-  assert.equal((await worker.fetch("/api/portal?view=/rules")).status, 200);
+  assert.equal((await worker.fetch("/api/portal?view=/rules")).status, 401);
   const nestedBraces = "{".repeat(256) + "literal text" + "}".repeat(256);
   const profileMutation = await worker.fetch(
     `http://${worker.address}:${worker.port}/api/portal`,
@@ -254,7 +254,7 @@ try {
     judgeCreditsPage: 403,
     verifiedHarnessOwnerAdminPage: 200,
     localSignInCommand: 404,
-    publicRulesAPI: 200,
+    signedInRulesAnonymousAPI: 401,
     nestedBraceProfileRoundTrip: true,
     nestedBraceTeamLookup: 404,
   };
@@ -285,7 +285,7 @@ try {
   });
   const pendingData = await pendingWorkspace.json();
   assert.equal(pendingData.team.palette, "cobalt");
-  assert.equal(pendingData.teamReadiness.going, false);
+  assert.equal(pendingData.teamReadiness.allApproved, false);
   assert.equal(pendingData.status, "Registered");
   const missingGender = await post(pending, "complete-profile", {
     displayName: "Synthetic Builder",
@@ -308,7 +308,7 @@ try {
       attestation: false,
     },
   });
-  assert.equal(draft.status, 200, await draft.text());
+  assert.equal(draft.status, 403, await draft.text());
   assert.equal((await worker.fetch("/api/portal?view=/teams")).status, 401);
   const privateMarker = "COMPILED-SYNTHETIC-PRIVATE-ARRIVAL";
   const venueDraft = await post(owner, "content-save", {
@@ -450,6 +450,14 @@ try {
     status: "approved",
     reason: "Synthetic approval restore",
   });
+  const attendance = await post(owner, "admin-status", {
+    kind: "person",
+    targetId: "fake_alice",
+    status: "Checked in",
+    reason: "Synthetic disposable physical attendance",
+    confirmation: "CHANGE_STATUS",
+  });
+  assert.equal(attendance.status, 200, await attendance.text());
   const committed = await post(alice, "submit-project", {
     revision: 0,
     project: {
@@ -457,6 +465,7 @@ try {
       problemSolution: "Verify submission without judging policy",
       description: "Synthetic reproducible instructions",
       github: "https://github.com/example/rehearsal",
+      commitSha: "a".repeat(40),
       demo: "",
       logo: syntheticImage(64, 64),
       banner: syntheticImage(160, 90),
@@ -500,6 +509,53 @@ try {
     ).status,
     200,
   );
+  const photoSaved = await post(alice, "complete-profile", {
+    displayName: "Synthetic Alice",
+    gender: "non-binary",
+    bio: "Synthetic builder",
+    photo: syntheticImage(64, 64),
+  });
+  assert.equal(photoSaved.status, 200, await photoSaved.text());
+  const ownPhoto = await worker.fetch("/api/profile-photo/fake_alice", {
+    headers: alice,
+  });
+  assert.equal(ownPhoto.status, 200);
+  assert.equal(ownPhoto.headers.get("content-type"), "image/png");
+  assert.match(ownPhoto.headers.get("cache-control"), /no-store/);
+  assert.equal(
+    (await worker.fetch("/api/profile-photo/fake_alice")).status,
+    404,
+  );
+  const robots = await worker.fetch("/robots.txt");
+  assert.equal(robots.status, 200);
+  assert.match(await robots.text(), /Disallow: \/admin/);
+  const sitemap = await worker.fetch("/sitemap.xml");
+  assert.equal(sitemap.status, 200);
+  const xml = await sitemap.text();
+  assert.match(
+    xml,
+    /https:\/\/dddhack-portal\.param3021\.chatgpt\.site\/projects/,
+  );
+  assert.ok(!xml.includes("fake_alice") && !xml.includes("/admin"));
+  const publicSSR = await worker.fetch("/projects");
+  assert.equal(publicSSR.status, 200);
+  const projectHTML = await publicSSR.text();
+  assert.match(projectHTML, /<h1[^>]*>Projects/);
+  assert.match(projectHTML, /rel="canonical"/);
+  const homeSEO = await worker.fetch("/");
+  const homeSEOHTML = await homeSEO.text();
+  assert.match(homeSEOHTML, /application\/ld\+json/);
+  assert.ok(!homeSEOHTML.includes(privateMarker));
+  report.photoAndSEO = {
+    canonicalPublicSSR: 200,
+    robots: 200,
+    sitemap: 200,
+    ownPhoto: 200,
+    privatePhotoAnonymous: 404,
+    photoMetadataStripped: true,
+    privateDataAbsent: true,
+    browserVisualQA: false,
+  };
   report.operationalReadiness = {
     environment: "disposable local synthetic D1 only",
     operationalSubmissionWithJudgingIncomplete: 200,
@@ -511,11 +567,11 @@ try {
   report.revisedExperience = {
     registeredTeamCreation: 200,
     sharedTeamAccent: true,
-    partialTeamGoing: false,
+    allMembersApproved: false,
     missingRequiredGender: 422,
-    projectDraftSave: 200,
+    projectDraftSave: 403,
     privateTeamsAnonymousAPI: 401,
-    goingVenueVisible: true,
+    allApprovedVenueVisible: true,
     publicVenueSecretAbsent: true,
     approvalRevocationRemovesVenue: true,
     leaderboardExcludesInternalEvaluation: true,

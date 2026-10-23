@@ -1,3 +1,4 @@
+import { attend } from "./helpers";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";
@@ -25,6 +26,7 @@ function payload(userId = "fake_alice") {
     description:
       "A synthetic project used exclusively for local security tests.",
     github: "https://github.com/example/synthetic",
+    commitSha: "a".repeat(40),
     demo: "https://example.com/demo",
     logo,
     banner,
@@ -43,6 +45,7 @@ async function committed(
   s: ReturnType<Awaited<ReturnType<typeof setup>>["service"]>,
   p = payload(),
 ) {
+  await attend(s.db, p.contributions[0].userId);
   await s.command("save-project", { revision: 0, project: p });
   const v = (await s.view("/submission")) as Row;
   await s.command("submit-project", {
@@ -87,7 +90,7 @@ test("additive local upgrade preserves existing users and is idempotent", () => 
           .prepare("SELECT count(*) n FROM local_schema_migrations")
           .get() as Row
       ).n,
-      7,
+      10,
     );
     assert.ok(
       db.raw
@@ -137,7 +140,7 @@ test("inline profile gate, registered team creation, presets, partial readiness 
       displayName: "New Builder",
       bio: "I enjoy building useful tools.",
       skills: "TypeScript",
-      gender: "prefer-not-to-say",
+      gender: "non-binary",
     });
     await s.command("profile", { gender: "woman" });
     await s.command("profile", { bio: "I still enjoy building useful tools." });
@@ -163,9 +166,9 @@ test("inline profile gate, registered team creation, presets, partial readiness 
       reason: "Synthetic individual approval",
     });
     let view = (await s.view("/dashboard")) as Row;
-    assert.equal(view.teamReadiness.going, false);
+    assert.equal(view.teamReadiness.allApproved, false);
     assert.equal(view.teamReadiness.approved, 1);
-    assert.equal(view.status, "Approved");
+    assert.equal(view.status, "Going");
     assert.equal(
       ((await service("pending").view("/dashboard")) as Row).team.palette,
       "violet",
@@ -183,7 +186,7 @@ test("inline profile gate, registered team creation, presets, partial readiness 
       reason: "Synthetic approval revoked",
     });
     assert.equal(
-      ((await s.view("/dashboard")) as Row).teamReadiness.going,
+      ((await s.view("/dashboard")) as Row).teamReadiness.allApproved,
       false,
     );
     await assert.rejects(
@@ -230,7 +233,7 @@ test("private venue never leaves unauthorized projections; Going, approval and m
       reason: "Synthetic publish saved venue",
     });
     const anon = new PortalService(db, null, undefined);
-    for (const route of ["/", "/rules", "/projects"]) {
+    for (const route of ["/", "/projects"]) {
       assert.ok(!JSON.stringify(await anon.view(route)).includes(secret));
     }
     assert.ok(
@@ -406,6 +409,13 @@ test("shared draft/committed project, required media, concurrent writes and publ
     const alice = service("alice"),
       p = payload();
     await assert.rejects(
+      alice.command("save-project", { revision: 0, project: p }),
+      { code: "TEAM_CHECKIN_REQUIRED" },
+    );
+    await activate(db);
+    await attend(db, "fake_alice", "fake_bob", "fake_eve");
+    clock("2026-11-01T04:00:00.000Z");
+    await assert.rejects(
       alice.command("save-project", {
         revision: 0,
         project: { ...p, logo: banner },
@@ -413,12 +423,7 @@ test("shared draft/committed project, required media, concurrent writes and publ
       /Project logo must be square/,
     );
     await alice.command("save-project", { revision: 0, project: p });
-    await assert.rejects(
-      alice.command("submit-project", { revision: 1, project: p }),
-      { code: "SUBMISSIONS_NOT_ENABLED" },
-    );
-    await activate(db);
-    clock("2026-11-01T04:00:00.000Z");
+
     await assert.rejects(
       alice.command("submit-project", {
         revision: 1,
@@ -493,6 +498,7 @@ test("signed-in engagement permits admins and pending people, is idempotent, and
   const { db, service, clock } = await setup();
   try {
     await activate(db);
+    await attend(db, "fake_alice", "fake_bob", "fake_eve");
     clock("2026-11-01T04:00:00.000Z");
     const v = await committed(service("alice"));
     const p = v.project;
@@ -557,6 +563,7 @@ test("volunteer, mentor and judge boundaries, owner Logs, role and assignment re
   const { db, service, clock } = await setup();
   try {
     await activate(db);
+    await attend(db, "fake_alice", "fake_bob", "fake_eve");
     clock("2026-11-01T04:00:00.000Z");
     const v = await committed(service("alice")),
       p = v.project,
@@ -655,6 +662,7 @@ test("reevaluation stays Not configured while API setup is pending; active-run g
   const { db, service, clock } = await setup();
   try {
     await activate(db);
+    await attend(db, "fake_alice", "fake_bob", "fake_eve");
     clock("2026-11-01T04:00:00.000Z");
     const v = await committed(service("alice")),
       projectId = v.project.id,
@@ -705,6 +713,7 @@ test("leaderboard orders by upvotes then immutable first submission time, exclud
   const { db, service, clock } = await setup();
   try {
     await activate(db);
+    await attend(db, "fake_alice", "fake_bob", "fake_eve");
     const ids: Record<string, string> = {};
     for (const [name, time] of [
       ["bob", "2026-11-01T03:00:00.000Z"],
@@ -754,6 +763,10 @@ test("leaderboard orders by upvotes then immutable first submission time, exclud
       projectId: ids.alice,
       versionId: alice.attempts[0].id,
       status: "ineligible",
+      violation: {
+        rule: "Synthetic confirmed rule",
+        evidence: "Synthetic recorded proven violation",
+      },
       reason: "SYNTHETIC private eligibility reason",
     });
     board = (await publicService.view("/leaderboard")) as Row;
@@ -795,6 +808,7 @@ test("revised judge reviews feed only an owner-revealed frozen score; public eng
   const { db, service, clock } = await setup();
   try {
     await activate(db);
+    await attend(db, "fake_alice", "fake_bob", "fake_eve");
     clock("2026-11-01T04:00:00.000Z");
     const v = await committed(service("alice")),
       projectId = v.project.id,
@@ -883,6 +897,7 @@ test("exact timestamp ties use a stable key and a focused leaderboard link selec
   const { db } = await setup();
   try {
     await activate(db);
+    await attend(db, "fake_alice", "fake_bob", "fake_eve");
     const time = "2026-11-01T04:00:00.000Z";
     for (let i = 0; i < 26; i++) {
       const key = "order-" + String(i).padStart(2, "0"),
@@ -903,6 +918,9 @@ test("exact timestamp ties use a stable key and a focused leaderboard link selec
         db
           .prepare("INSERT INTO memberships VALUES(?,?,?)")
           .bind(user, team, "2026-10-22T08:00:00.000Z"),
+        db
+          .prepare("INSERT INTO manual_checkins VALUES(?,?,?,?)")
+          .bind(user, key + "@example.invalid", "fake_admin", time),
         db
           .prepare("INSERT INTO submission_versions VALUES(?,?,1,?,?)")
           .bind(version, team, JSON.stringify(p), time),

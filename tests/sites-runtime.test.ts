@@ -147,7 +147,7 @@ test("Sites runtime authorizes anonymous, participant, judge and owner requests 
         : handlePortal(req, getSitesRuntime()),
     );
   };
-  assert.equal((await call(undefined, "/api/portal?view=/rules")).status, 200);
+  assert.equal((await call(undefined, "/api/portal?view=/rules")).status, 401);
   assert.equal(
     (await call(undefined, "/api/portal?view=/dashboard/credits")).status,
     401,
@@ -291,6 +291,7 @@ test("fresh hosted schema requires an explicit owner-only, audited draft initial
     "submissionCutoff",
     "submissionOpen",
     "deploymentRule",
+    "lumaPolicy",
   ]);
   assert.equal(
     (await rows(db, "SELECT * FROM audit_logs WHERE action='initialize-event'"))
@@ -310,7 +311,7 @@ test("fresh event read views work before explicit initialization and never activ
   const { db, service } = await setup();
   try {
     await db.prepare("DELETE FROM event_settings").all();
-    const publicView = await service("stranger").view("/rules");
+    const publicView = await service("stranger").view("/");
     assert.ok(publicView.content);
     const profile = await service("alice").view("/dashboard/profile");
     assert.equal((profile.me as { id: string }).id, "fake_alice");
@@ -323,6 +324,7 @@ test("fresh event read views work before explicit initialization and never activ
         "submissionCutoff",
         "submissionOpen",
         "deploymentRule",
+        "lumaPolicy",
       ],
     );
     assert.ok((adminSetup.blockers as string[]).length > 0);

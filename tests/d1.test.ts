@@ -1,3 +1,4 @@
+import { attend } from "./helpers";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "node:fs";
@@ -149,7 +150,12 @@ test(
         () => now,
       );
       const outcomes = await Promise.allSettled(
-        Array.from({ length: 10 }, () => leader.command("submit", submission)),
+        Array.from({ length: 10 }, (_, i) =>
+          leader.command("submit", {
+            ...submission,
+            projectName: "Attempt " + i,
+          }),
+        ),
       );
       assert.equal(outcomes.filter((o) => o.status === "fulfilled").length, 3);
       assert.equal(

@@ -1,3 +1,4 @@
+import { attend } from "./helpers";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -43,6 +44,13 @@ async function data(count = 6) {
       ["INSERT INTO teams VALUES(?,?,?,'',?)", t, "Team " + k, u, "2026-10-22"],
       ["INSERT INTO memberships VALUES(?,?,?)", u, t, "2026-10-22"],
       [
+        "INSERT INTO manual_checkins VALUES(?,?,?,?)",
+        u,
+        k + "@stage.invalid",
+        "fake_admin",
+        "2026-11-01T02:30:01Z",
+      ],
+      [
         "INSERT INTO submission_versions VALUES(?,?,1,?,?)",
         v,
         t,
@@ -51,6 +59,7 @@ async function data(count = 6) {
           problemSolution: "Synthetic example",
           description: "Synthetic public description",
           github: "https://github.com/example/rehearsal",
+          commitSha: "a".repeat(40),
           demo: "",
           logo,
           banner,

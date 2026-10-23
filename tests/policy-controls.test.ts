@@ -1,3 +1,4 @@
+import { attend } from "./helpers";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { setup, activate, submission } from "./helpers";
@@ -22,6 +23,7 @@ test("owner-only positive extension previews IST rollover, requires matching con
   const { db, service, clock } = await setup();
   try {
     await activate(db);
+    await attend(db, "fake_alice");
     const configured = JSON.parse(
       (await one<Row>(db, "SELECT policy FROM event_settings"))!.policy,
     );
@@ -119,6 +121,7 @@ test("global weights use one preview/version for all teams, reject per-team over
   const { db, service } = await setup();
   try {
     await activate(db);
+    await attend(db, "fake_alice");
     const version = (await one<Row>(db, "SELECT version FROM event_settings"))!
       .version;
     const weights = { ...baseWeights, human: 60, ai: 20 };

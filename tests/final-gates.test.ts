@@ -1,3 +1,4 @@
+import { attend } from "./helpers";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { setup, activate, submission } from "./helpers";
@@ -5,6 +6,7 @@ import { batch, one } from "../lib/db";
 test("ties need complete owner adjudication; altered score breakdown invalidates earlier order", async () => {
   const { db, clock, service } = await setup();
   await activate(db);
+  await attend(db, "fake_alice", "fake_bob", "fake_eve");
   clock("2026-11-01T06:00:00.000Z");
   const a = await service("alice").command("submit", submission);
   const b = await service("bob").command("submit", {

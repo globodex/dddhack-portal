@@ -1,3 +1,4 @@
+import { attend } from "./helpers";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { setup, activate, rehearsalPolicy } from "./helpers";
@@ -11,6 +12,7 @@ const project = {
   problemSolution: "Synthetic points separation",
   description: "Reproducible synthetic test",
   github: "https://github.com/example/rehearsal",
+  commitSha: "a".repeat(40),
   demo: "",
   logo: syntheticImage(64, 64),
   banner: syntheticImage(160, 90),
@@ -42,6 +44,7 @@ const policy: Policy = {
 async function prepared() {
   const ctx = await setup();
   await activate(ctx.db);
+  await attend(ctx.db, "fake_alice");
   ctx.clock("2026-11-01T04:00:00.000Z");
   await ctx
     .service("alice")

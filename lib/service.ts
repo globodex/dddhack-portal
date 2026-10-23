@@ -1,3 +1,11 @@
+import { commitSha } from "./repository-evidence";
+import { attendancePredicate, personStatus } from "./portal-status";
+import {
+  assertUnlockedTeam,
+  requireSubmissionAccess,
+  requireGoingForCheckin,
+} from "./team-access";
+import { validateProjectImage } from "./project-media";
 import { qualifiedEngagement } from "./engagement-scoring";
 import { z } from "zod";
 import {
@@ -469,6 +477,7 @@ export class PortalService {
       }
       case "remove-member": {
         const { u, t } = await this.lead();
+        await assertUnlockedTeam(this, t.id);
         const d = z.object({ userId: id }).parse(data);
         demand(d.userId !== t.leader_id, 409, "CANNOT_REMOVE_LEADER");
         demand(
@@ -650,6 +659,7 @@ export class PortalService {
         await this.staff();
         await this.operational("checkin");
         const d = z.object({ userId: id, reason }).parse(data);
+        await requireGoingForCheckin(this, d.userId);
         await this.mutate(
           actor.id,
           action,
@@ -660,6 +670,10 @@ export class PortalService {
               d.userId,
               actor.id,
               this.now(),
+            ],
+            [
+              "DELETE FROM participant_status_overrides WHERE user_id=?",
+              d.userId,
             ],
           ],
           {},
@@ -698,16 +712,65 @@ export class PortalService {
         );
         return { id: typeId };
       }
+      case "update-credit-instructions": {
+        await this.staff();
+        const d = z
+          .object({
+            typeId: id,
+            markdown: z.string().max(10000),
+            reason: text(1000).min(5),
+          })
+          .strict()
+          .parse(data);
+        demand(
+          await one(
+            this.db,
+            "SELECT id FROM credit_types WHERE id=?",
+            d.typeId,
+          ),
+          404,
+          "CREDIT_TYPE_REQUIRED",
+        );
+        await this.mutate(
+          actor.id,
+          action,
+          d.typeId,
+          [
+            [
+              "UPDATE credit_types SET instructions=? WHERE id=?",
+              d.markdown,
+              d.typeId,
+            ],
+          ],
+          { fields: ["instructions"], sha256: await sha256(d.markdown) },
+          d.reason,
+        );
+        return {
+          message:
+            "Shared setup instructions updated. Personal credits are unchanged.",
+        };
+      }
       case "reveal-credit": {
         await this.approved();
         demand(actor.role !== "judge", 403, "JUDGES_CANNOT_ACCESS_CREDITS");
+        demand(
+          await one(
+            this.db,
+            `SELECT id FROM users WHERE id=? AND ${attendancePredicate("users.id")}`,
+            actor.id,
+          ),
+          403,
+          "CHECKIN_REQUIRED",
+        );
         requireCreditKey(this.creditKey);
-        const d = z.object({ typeId: id }).parse(data);
+        const d = z.object({ typeId: id }).strict().parse(data);
         const c = await one<{ ciphertext: string }>(
           this.db,
-          "SELECT i.ciphertext FROM credit_allocations a JOIN credit_inventory i ON i.id=a.inventory_id WHERE a.user_id=? AND a.type_id=?",
+          `SELECT i.ciphertext FROM credit_allocations a JOIN credit_inventory i ON i.id=a.inventory_id JOIN users u ON u.id=a.user_id WHERE ${attendancePredicate("a.user_id")} AND a.user_id=? AND a.type_id=? AND lower(a.recipient_email)=? AND lower(u.email)=?`,
           actor.id,
           d.typeId,
+          actor.email.toLowerCase(),
+          actor.email.toLowerCase(),
         );
         demand(c, 404, "ALLOCATION_PENDING");
         await this.mutate(actor.id, action, d.typeId, []);
@@ -1037,13 +1100,16 @@ export class PortalService {
         );
         await this.unfrozen();
         const { u, t } = await this.lead();
-        await this.operational("submissions");
+        await requireSubmissionAccess(this, t.id);
         const d = z
           .object({
             projectName: text(120),
+            logo: z.string().max(180000),
+            banner: z.string().max(180000),
             problemSolution: text(500),
             description: text(6000),
             github: githubUrl,
+            commitSha,
             demo: optionalUrl,
             video: optionalUrl,
             gtm: text(3000),
@@ -1058,6 +1124,8 @@ export class PortalService {
             attestation: bool,
           })
           .parse(data);
+        validateProjectImage(d.logo, "logo");
+        validateProjectImage(d.banner, "banner");
         demand(d.attestation, 422, "ATTESTATION_REQUIRED");
         const members = await rows<{ user_id: string }>(
           this.db,
@@ -1094,32 +1162,65 @@ export class PortalService {
           409,
           "IDEA_REQUIRED",
         );
-        const versionId = crypto.randomUUID();
-        await this.mutate(
-          u.id,
-          action,
-          t.id,
-          [
-            [
-              "INSERT INTO submission_versions SELECT ?,?,COALESCE(MAX(attempt),0)+1,?,? FROM submission_versions WHERE team_id=?",
-              versionId,
-              t.id,
-              JSON.stringify({ ...d, contributions }),
-              this.now(),
-              t.id,
-            ],
-            [
-              "INSERT INTO astra_jobs(id,version_id,updated_at) VALUES(?,?,?)",
-              crypto.randomUUID(),
-              versionId,
-              this.now(),
-            ],
-          ],
-          { versionId },
+        const requestKey = await sha256(
+          JSON.stringify({ ...d, contributions }),
         );
+        const prior = await one<{ id: string }>(
+          this.db,
+          "SELECT id FROM submission_versions WHERE team_id=? AND json_extract(payload,'$._requestKey')=?",
+          t.id,
+          requestKey,
+        );
+        if (prior)
+          return {
+            id: prior.id,
+            message: "This submission was already committed.",
+          };
+        const versionId = crypto.randomUUID();
+        try {
+          await this.mutate(
+            u.id,
+            action,
+            t.id,
+            [
+              [
+                "INSERT INTO submission_versions SELECT ?,?,COALESCE(MAX(attempt),0)+1,?,? FROM submission_versions WHERE team_id=?",
+                versionId,
+                t.id,
+                JSON.stringify({
+                  ...d,
+                  contributions,
+                  _requestKey: requestKey,
+                }),
+                this.now(),
+                t.id,
+              ],
+              [
+                "INSERT INTO astra_jobs(id,version_id,updated_at) VALUES(?,?,?)",
+                crypto.randomUUID(),
+                versionId,
+                this.now(),
+              ],
+            ],
+            { versionId },
+          );
+        } catch (error) {
+          const prior = await one<{ id: string }>(
+            this.db,
+            "SELECT id FROM submission_versions WHERE team_id=? AND json_extract(payload,'$._requestKey')=?",
+            t.id,
+            requestKey,
+          );
+          if (prior)
+            return {
+              id: prior.id,
+              message: "This submission was already committed.",
+            };
+          throw error;
+        }
         return {
           id: versionId,
-          message: "Submission committed. Review is queued independently.",
+          message: "Submission committed.",
         };
       }
       case "vote":
@@ -1356,7 +1457,11 @@ export class PortalService {
             teamId: id,
             versionId: id,
             eligibility: z.enum(["eligible", "ineligible", "needs_review"]),
-            astra: number.min(0).max(30),
+            astra: number.min(0).max(30).nullable(),
+            violation: z
+              .object({ rule: text(1000).min(5), evidence: text(3000).min(10) })
+              .strict()
+              .optional(),
             codex: number.min(0).max(5),
             diversity: number.min(0).max(10),
             falseClaims: number.int().min(0).max(2),
@@ -1370,6 +1475,18 @@ export class PortalService {
           d.teamId,
         );
         demand(latest?.id === d.versionId, 409, "STALE_SUBMISSION");
+        demand(
+          d.eligibility !== "ineligible" ||
+            !!d.violation ||
+            !!(await one(
+              this.db,
+              "SELECT e.project_id FROM project_eligibility e JOIN projects p ON p.id=e.project_id WHERE p.team_id=? AND e.version_id=? AND e.status='ineligible'",
+              d.teamId,
+              d.versionId,
+            )),
+          422,
+          "ESTABLISHED_VIOLATION_REQUIRED",
+        );
         const claims = JSON.parse(latest.payload);
         demand(
           d.falseClaims <=
@@ -1570,7 +1687,7 @@ export class PortalService {
     demand(
       await one(
         this.db,
-        "SELECT user_id FROM check_ins WHERE user_id=?",
+        `SELECT id FROM users WHERE id=? AND ${attendancePredicate("users.id")}`,
         userId,
       ),
       409,
@@ -1581,9 +1698,10 @@ export class PortalService {
       "SELECT id FROM credit_types WHERE active=1",
     );
     const sql: SQL[] = types.map((t) => [
-      "INSERT INTO credit_allocations(inventory_id,type_id,user_id,assigned_at) SELECT i.id,i.type_id,?,? FROM credit_inventory i WHERE i.type_id=? AND NOT EXISTS(SELECT 1 FROM credit_allocations a WHERE a.inventory_id=i.id) AND NOT EXISTS(SELECT 1 FROM credit_allocations a WHERE a.user_id=? AND a.type_id=?) ORDER BY i.id LIMIT 1",
+      "INSERT INTO credit_allocations(inventory_id,type_id,user_id,assigned_at,recipient_email) SELECT i.id,i.type_id,?,?,(SELECT lower(email) FROM users WHERE id=?) FROM credit_inventory i WHERE i.type_id=? AND NOT EXISTS(SELECT 1 FROM credit_allocations a WHERE a.inventory_id=i.id) AND NOT EXISTS(SELECT 1 FROM credit_allocations a WHERE a.user_id=? AND a.type_id=?) ORDER BY i.id LIMIT 1",
       userId,
       this.now(),
+      userId,
       t.id,
       userId,
       t.id,
@@ -1659,7 +1777,7 @@ export class PortalService {
       if (review.eligibility === "eligible") {
         demand(
           human.length >= s.policy.minJudges &&
-            review.astra !== null &&
+            (s.policy.weights.ai === 0 || review.astra !== null) &&
             review.codex !== null &&
             review.diversity !== null,
           409,
@@ -1722,7 +1840,7 @@ export class PortalService {
       components: score({
         weights: s.policy.weights,
         human: e.human,
-        astra: e.review.astra!,
+        astra: e.review.astra ?? 0,
         codex: e.review.codex!,
         diversity: e.review.diversity!,
         votes: e.voteCount,
@@ -1971,12 +2089,18 @@ export class PortalService {
     if (path === "/dashboard/credits") {
       await this.approved();
       demand(u.role !== "judge", 403, "JUDGES_CANNOT_ACCESS_CREDITS");
+      demand(
+        (await personStatus(this, u.id)).checkedIn,
+        403,
+        "CHECKIN_REQUIRED",
+      );
       return {
         ...base,
         items: await rows(
           this.db,
-          "SELECT t.id type_id,t.name,t.instructions,CASE WHEN a.inventory_id IS NOT NULL THEN 1 ELSE 0 END allocated FROM credit_types t LEFT JOIN credit_allocations a ON a.type_id=t.id AND a.user_id=? WHERE t.active=1",
+          "SELECT t.id type_id,t.name,t.instructions,CASE WHEN a.inventory_id IS NOT NULL THEN 1 ELSE 0 END allocated FROM credit_types t LEFT JOIN credit_allocations a ON a.type_id=t.id AND a.user_id=? AND lower(a.recipient_email)=? WHERE t.active=1",
           u.id,
+          u.email.toLowerCase(),
         ),
       };
     }
@@ -2042,6 +2166,20 @@ export class PortalService {
     );
   }
   async adminList(list: string) {
+    if (list === "team-emails") {
+      await this.staff();
+      const view = await new PortalExperience(this).view("/admin/teams");
+      return (view!.items as any[]).flatMap((t) =>
+        t.members.map((m: any) => ({
+          email: m.email,
+          team: t.name,
+          status: t.status,
+          teamStatus: t.status,
+          teamLocked: t.locked,
+        })),
+      );
+    }
+
     if (["audit", "logs", "permissions", "settings"].includes(list))
       await this.staff(true);
     if (list === "participants")

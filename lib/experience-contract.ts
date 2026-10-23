@@ -42,10 +42,10 @@ export function readiness(total: number, approved: number) {
   return {
     total,
     approved,
-    going: total > 0 && approved === total,
+    allApproved: total > 0 && approved === total,
     label:
       total > 0 && approved === total
-        ? "Going"
+        ? `${approved}/${total} individual approvals`
         : total
           ? `Waiting for approval · ${approved}/${total}`
           : "No team yet",
@@ -59,8 +59,7 @@ export function participantStatus(input: {
 }) {
   if (input.submitted) return "Submitted";
   if (input.checkedIn) return "Checked in";
-  if (input.going) return "Going";
-  if (input.approval === "approved") return "Approved";
+  if (input.approval === "approved") return "Going";
   if (input.approval === "rejected") return "Not approved";
   if (input.approval === "cancelled") return "Cancelled";
   return "Registered";

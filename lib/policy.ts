@@ -166,6 +166,7 @@ export const draftPolicy: Policy = {
     "submissionCutoff",
     "submissionOpen",
     "deploymentRule",
+    "lumaPolicy",
   ],
   weights: baseWeights,
   capacityRule: "no-strict-cap",
@@ -257,6 +258,8 @@ export function operationalBlockers(p: Policy, operation: Operation): string[] {
     (key) => !p.confirmations.includes(key),
   );
   if (!p.retentionNotice.trim()) blockers.push("retention notice");
+  if (operation === "checkin" && p.lumaRequired)
+    blockers.push("Luma is registration only; portal Going governs check-in");
   if (operation === "submissions") {
     if (!p.submissionClose || p.submissionClose <= p.submissionOpen)
       blockers.push("valid submission window");

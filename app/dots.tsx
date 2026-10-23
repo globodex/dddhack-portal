@@ -21,12 +21,12 @@ export default function Dots({
       previous = 0;
     const point = { x: -9999, y: -9999 };
     const colors = [
-      "#0969ff",
-      "#d9d9d9",
-      "#863fff",
-      "#00a251",
-      "#ff7900",
-      "#202020",
+      "#f16d00",
+      "#00ab43",
+      "#006afe",
+      "#924ff7",
+      "#232323",
+      "#e0e0e0",
     ];
     let dots: {
       x: number;
@@ -70,6 +70,24 @@ export default function Dots({
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = colors[i % colors.length];
         ctx.fill();
+        // Reference-style typographic marks, without eyeballs or pupils.
+        ctx.save();
+        ctx.fillStyle = i % 6 === 4 ? "#fff" : "#111";
+        ctx.strokeStyle = ctx.fillStyle;
+        ctx.lineWidth = Math.max(2, p.r * 0.055);
+        const attention =
+          Math.max(-1, Math.min(1, (point.x - p.x) / Math.max(w, 1))) *
+          p.r *
+          0.045;
+        const glyphs = ["−", "+", ">", "O", "∧", "∗"],
+          left = glyphs[i % 6],
+          right = i % 6 === 2 ? "<" : left;
+        ctx.font = `${i % 6 === 4 ? 400 : 700} ${p.r * (i % 6 === 2 ? 0.65 : 0.62)}px Arial`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(left, p.x - p.r * 0.42 + attention, p.y + p.r * 0.04);
+        ctx.fillText(right, p.x + p.r * 0.42 + attention, p.y + p.r * 0.04);
+        ctx.restore();
       }
       if (!paused && !reduced.matches && visible && !document.hidden)
         frame = requestAnimationFrame(draw);
@@ -87,17 +105,15 @@ export default function Dots({
       canvas.width = w * dpr;
       canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = bottom ? 12 : 8;
+      const count = bottom ? 12 : 6;
       dots = Array.from({ length: count }, (_, i) => {
         const r = bottom
           ? Math.min(35, (w / count) * 0.43) * (i % 3 === 1 ? 0.6 : 1)
-          : Math.min(w * 0.17, h * 0.15) * (i % 3 === 1 ? 0.48 : 1);
+          : Math.min(w * 0.245, h * 0.24) * [0.7, 0.85, 1, 0.86, 0.48, 0.53][i];
         const hx = bottom
           ? ((i + 0.5) * w) / count
-          : [0.25, 0.78, 0.38, 0.77, 0.21, 0.82, 0.59, 0.42][i] * w;
-        const hy = bottom
-          ? h * 0.56
-          : [0.32, 0.15, 0.59, 0.5, 0.77, 0.82, 0.31, 0.87][i] * h;
+          : [0.66, 0.76, 0.35, 0.26, 0.62, 0.77][i] * w;
+        const hy = bottom ? h * 0.56 : [0.2, 0.48, 0.4, 0.72, 0.7, 0.85][i] * h;
         return {
           x: hx,
           y: paused || reduced.matches ? hy : -r * (i + 2),

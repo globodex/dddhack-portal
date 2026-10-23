@@ -90,6 +90,7 @@ export const credit_allocations = sqliteTable(
       .notNull()
       .references((): AnySQLiteColumn => users.id),
     assigned_at: text("assigned_at").notNull(),
+    recipient_email: text("recipient_email"),
   },
   (table) => [unique().on(table.type_id, table.user_id)],
 );
@@ -793,3 +794,132 @@ export const project_feedback_reviews = sqliteTable(
     ),
   ],
 );
+
+export const team_locks = sqliteTable("team_locks", {
+  team_id: text("team_id")
+    .primaryKey()
+    .references(() => teams.id),
+  locked_by: text("locked_by")
+    .notNull()
+    .references(() => users.id),
+  locked_at: text("locked_at").notNull(),
+});
+export const project_commit_receipts = sqliteTable(
+  "project_commit_receipts",
+  {
+    team_id: text("team_id")
+      .notNull()
+      .references(() => teams.id),
+    request_key: text("request_key").notNull(),
+    project_id: text("project_id")
+      .notNull()
+      .references(() => projects.id),
+    version_id: text("version_id")
+      .notNull()
+      .references(() => submission_versions.id),
+    created_at: text("created_at").notNull(),
+  },
+  (t) => [
+    primaryKey({ columns: [t.team_id, t.request_key] }),
+    unique().on(t.version_id),
+  ],
+);
+
+export const participant_status_overrides = sqliteTable(
+  "participant_status_overrides",
+  {
+    user_id: text("user_id")
+      .primaryKey()
+      .references(() => users.id),
+    status: text("status").notNull(),
+    reason: text("reason").notNull(),
+    actor_id: text("actor_id")
+      .notNull()
+      .references(() => users.id),
+    updated_at: text("updated_at").notNull(),
+  },
+  (t) => [
+    check(
+      "person_override_status",
+      sql`${t.status} IN ('Registered','Going','Checked in','Absent')`,
+    ),
+  ],
+);
+export const manual_checkins = sqliteTable(
+  "manual_checkins",
+  {
+    user_id: text("user_id")
+      .notNull()
+      .references(() => users.id),
+    verified_email: text("verified_email").notNull(),
+    actor_id: text("actor_id")
+      .notNull()
+      .references(() => users.id),
+    created_at: text("created_at").notNull(),
+  },
+  (t) => [primaryKey({ columns: [t.user_id, t.verified_email] })],
+);
+export const team_status_overrides = sqliteTable(
+  "team_status_overrides",
+  {
+    team_id: text("team_id")
+      .primaryKey()
+      .references(() => teams.id),
+    status: text("status").notNull(),
+    reason: text("reason").notNull(),
+    rule_reference: text("rule_reference"),
+    evidence: text("evidence"),
+    actor_id: text("actor_id")
+      .notNull()
+      .references(() => users.id),
+    updated_at: text("updated_at").notNull(),
+  },
+  (t) => [
+    check(
+      "team_override_status",
+      sql`${t.status} IN ('Forming','Locked','Not submitted','Submitted')`,
+    ),
+  ],
+);
+
+export const repository_evidence = sqliteTable("repository_evidence", {
+  id: text("id").primaryKey(),
+  project_id: text("project_id")
+    .notNull()
+    .references(() => projects.id),
+  version_id: text("version_id")
+    .notNull()
+    .references(() => submission_versions.id),
+  commit_sha: text("commit_sha").notNull(),
+  status: text("status").notNull(),
+  evidence: text("evidence").notNull(),
+  reason: text("reason").notNull(),
+  actor_id: text("actor_id")
+    .notNull()
+    .references(() => users.id),
+  created_at: text("created_at").notNull(),
+});
+export const eligibility_history = sqliteTable("eligibility_history", {
+  id: text("id").primaryKey(),
+  project_id: text("project_id")
+    .notNull()
+    .references(() => projects.id),
+  version_id: text("version_id")
+    .notNull()
+    .references(() => submission_versions.id),
+  status: text("status").notNull(),
+  reason: text("reason").notNull(),
+  evidence: text("evidence").notNull(),
+  actor_id: text("actor_id")
+    .notNull()
+    .references(() => users.id),
+  created_at: text("created_at").notNull(),
+});
+
+export const profile_photos = sqliteTable("profile_photos", {
+  user_id: text("user_id")
+    .primaryKey()
+    .references(() => users.id),
+  png: text("png").notNull(),
+  updated_at: text("updated_at").notNull(),
+});

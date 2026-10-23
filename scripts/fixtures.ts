@@ -56,7 +56,7 @@ export async function seedLocal(db: Database) {
         ...unknown[],
       ],
       [
-        "UPDATE profiles SET bio='Synthetic local builder profile' WHERE user_id=?",
+        "UPDATE profiles SET bio='Synthetic local builder profile',gender='non-binary' WHERE user_id=?",
         i.id,
       ] as [string, ...unknown[]],
       [

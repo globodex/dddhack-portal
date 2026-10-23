@@ -1,3 +1,4 @@
+import { syntheticImage } from "./fixture-images";
 import { LocalDatabase } from "../lib/local-test/sqlite";
 import { fixtures, seedLocal, LOCAL_CREDIT_KEY } from "../scripts/fixtures";
 import { PortalService } from "../lib/service";
@@ -54,7 +55,22 @@ export async function activate(db: LocalDatabase) {
     ],
   ]);
 }
+export async function attend(
+  db: import("../lib/db").Database,
+  ...ids: string[]
+) {
+  await batch(
+    db,
+    ids.map((id) => [
+      "INSERT INTO manual_checkins SELECT id,lower(email),'fake_admin','2026-11-01T02:30:01.000Z' FROM users WHERE id=? ON CONFLICT DO NOTHING",
+      id,
+    ]),
+  );
+}
 export const submission = {
+  logo: syntheticImage(64, 64),
+  banner: syntheticImage(160, 90),
+  commitSha: "a".repeat(40),
   projectName: "Fake project",
   problemSolution: "A useful project solving a clear problem.",
   description: "A fake project built in rehearsal.",

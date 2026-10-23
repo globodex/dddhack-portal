@@ -1,3 +1,23 @@
+import { normalizeProfilePhoto } from "./profile-photo";
+import { participantRules } from "./participant-rules";
+import {
+  repositoryCommand,
+  eligibilityReviewer,
+  eligibilityWrite,
+  commitSha,
+} from "./repository-evidence";
+import {
+  statusCommand,
+  teamStatus,
+  personStatus,
+  attendancePredicate,
+} from "./portal-status";
+import {
+  submissionAccess,
+  requireSubmissionAccess,
+  assertUnlockedTeam,
+  requireGoingForCheckin,
+} from "./team-access";
 import { qualificationCommand } from "./engagement-scoring";
 import { z } from "zod";
 import type { PortalService } from "./service";
@@ -55,6 +75,7 @@ type Payload = {
   problemSolution: string;
   description: string;
   github: string;
+  commitSha?: string;
   demo: string;
   logo: string;
   banner: string;
@@ -76,6 +97,7 @@ const draftSchema = z
     problemSolution: z.string().max(500).default(""),
     description: z.string().max(6000).default(""),
     github: z.string().max(2048).default(""),
+    commitSha: z.string().max(40).default(""),
     demo: z.string().max(2048).default(""),
     logo: z.string().max(180000).default(""),
     banner: z.string().max(180000).default(""),
@@ -130,6 +152,13 @@ export class PortalExperience {
     );
     return {
       ...p,
+      photoUrl: (await one(
+        this.s.db,
+        "SELECT user_id FROM profile_photos WHERE user_id=?",
+        actor.id,
+      ))
+        ? "/api/profile-photo/" + encodeURIComponent(actor.id)
+        : undefined,
       socials: JSON.parse(p?.socials || "[]"),
       display_name: p?.display_name || actor.name,
       skills: p?.skills || "",
@@ -137,8 +166,8 @@ export class PortalExperience {
         !!p?.completed_at &&
         p.gender_confirmed === 1 &&
         !!p.display_name?.trim() &&
-        (p.bio?.trim().length || 0) >= 10 &&
-        (p.skills?.trim().length || 0) >= 2,
+        !!p.bio?.trim() &&
+        ["man", "woman", "non-binary"].includes(p.gender),
     };
   }
   async completed(actor: Actor) {
@@ -290,20 +319,43 @@ export class PortalExperience {
     );
     return Promise.all(
       items.map(async (item) => {
+        const individual = item.id
+          ? await personStatus(this.s, item.id)
+          : undefined;
+        const progress = item.team_id
+          ? await teamStatus(this.s, item.team_id)
+          : undefined;
         const teamReadiness = item.team_id
           ? await this.ready(item.team_id)
           : readiness(0, 0);
         return {
           ...item,
           teamReadiness,
-          status: participantStatus({
-            submitted: !!item.submitted,
-            checkedIn: !!item.checked_in,
-            going: teamReadiness.going,
-            approval: item.approval,
-          }),
+          status: individual?.status || "Registered",
+          teamStatus: progress?.status,
+          teamLocked: progress?.locked || false,
+          teamLockedAt: item.team_id
+            ? (
+                await one<{ locked_at: string }>(
+                  this.s.db,
+                  "SELECT locked_at FROM team_locks WHERE team_id=?",
+                  item.team_id,
+                )
+              )?.locked_at
+            : null,
+          checked_in: individual?.checkedIn
+            ? item.checked_in || "Manually checked in"
+            : null,
         };
       }),
+    ).then((list) =>
+      list.sort(
+        (a, b) =>
+          Number(b.teamLocked && b.status === "Registered") -
+            Number(a.teamLocked && a.status === "Registered") ||
+          (a.teamLockedAt || "9999").localeCompare(b.teamLockedAt || "9999") ||
+          a.email.localeCompare(b.email),
+      ),
     );
   }
   async workspace(actor: Actor) {
@@ -316,7 +368,17 @@ export class PortalExperience {
         "SELECT status,luma_confirmed FROM registrations WHERE email=?",
         actor.email,
       );
+    const teamProgress = team ? await teamStatus(this.s, team.id) : undefined;
+    const individual = await personStatus(this.s, actor.id);
     const ready = team ? await this.ready(team.id) : readiness(0, 0);
+    const access = await submissionAccess(this.s, team?.id);
+    const lock = team
+      ? await one(
+          this.s.db,
+          "SELECT locked_at,locked_by FROM team_locks WHERE team_id=?",
+          team.id,
+        )
+      : undefined;
     const attempts = team
       ? await rows(
           this.s.db,
@@ -346,23 +408,20 @@ export class PortalExperience {
         )
       : [];
     // Feedback has no numeric rating, evaluation report or hidden score fields.
-    const venue = ready.going
+    const venue = ready.allApproved
       ? await one<{ published: string | null }>(
           this.s.db,
           "SELECT published FROM private_venue WHERE id=1",
         )
       : undefined;
-    const checked = !!(await one(
-      this.s.db,
-      "SELECT user_id FROM check_ins WHERE user_id=?",
-      actor.id,
-    ));
+    const checked = individual.checkedIn;
     const credits =
-      actor.role !== "judge" && registration?.status === "approved"
+      checked && actor.role !== "judge" && registration?.status === "approved"
         ? await rows(
             this.s.db,
-            "SELECT t.id type_id,t.name,t.instructions,CASE WHEN a.inventory_id IS NOT NULL THEN 1 ELSE 0 END allocated FROM credit_types t LEFT JOIN credit_allocations a ON a.type_id=t.id AND a.user_id=? WHERE t.active=1",
+            "SELECT t.id type_id,t.name,t.instructions,CASE WHEN a.inventory_id IS NOT NULL THEN 1 ELSE 0 END allocated FROM credit_types t LEFT JOIN credit_allocations a ON a.type_id=t.id AND a.user_id=? AND lower(a.recipient_email)=? WHERE t.active=1",
             actor.id,
+            actor.email.toLowerCase(),
           )
         : [];
     const operational = setupReadiness(
@@ -376,8 +435,20 @@ export class PortalExperience {
         ...registration,
         status: registration?.status || "pending",
       },
-      team,
+      team: team
+        ? { ...team, locked: !!lock, lockedAt: lock?.locked_at }
+        : undefined,
+      submissionAccess: access,
+      submissionProgress: {
+        status: access.progress,
+        attemptsUsed: access.attemptsUsed,
+        maxAttempts: 3,
+        locked: access.locked,
+      },
       teamReadiness: ready,
+      teamStatus: teamProgress?.status,
+      teamFacts: teamProgress,
+      individualStatus: individual.status,
       idea: team
         ? await one(
             this.s.db,
@@ -385,12 +456,14 @@ export class PortalExperience {
             team.id,
           )
         : undefined,
-      ideaLocked: this.s.now() >= (await this.s.settings(true)).policy.ideaLock,
+      ideaLocked:
+        !!lock || this.s.now() >= (await this.s.settings(true)).policy.ideaLock,
       members,
       attempts,
-      project: project
-        ? { ...project, draft: JSON.parse(project.draft) }
-        : undefined,
+      project:
+        project && access.canAccess
+          ? { ...project, draft: JSON.parse(project.draft) }
+          : undefined,
       feedback,
       eligibility: project
         ? await this.eligibility(project)
@@ -404,12 +477,7 @@ export class PortalExperience {
           : undefined,
       credits,
       checkedIn: checked,
-      status: participantStatus({
-        submitted: attempts.length > 0,
-        checkedIn: checked,
-        going: ready.going,
-        approval: registration?.status,
-      }),
+      status: individual.status,
       actions: await rows(
         this.s.db,
         "SELECT a.*,t.name team_name,u.name person_name FROM team_actions a JOIN teams t ON t.id=a.team_id JOIN users u ON u.id=a.user_id WHERE a.user_id=? OR t.leader_id=?",
@@ -430,7 +498,14 @@ export class PortalExperience {
     options: { search?: string; page?: number; focus?: string } = {},
   ): Promise<Record<string, unknown> | null> {
     const route = path.replace(/\/+/g, "/").replace(/\/$/, "") || "/";
-    if (route === "/" || route === "/rules")
+    if (route === "/rules")
+      return {
+        me: await this.s.actor(),
+        categories: participantRules(
+          (await this.s.settings(true)).policy.submissionClose,
+        ),
+      };
+    if (route === "/")
       return {
         content: await publicEventContent(this.s),
         submissionClose: (await this.s.settings(true)).policy.submissionClose,
@@ -562,6 +637,18 @@ export class PortalExperience {
               bio: t.bio,
               avatar: t.avatar,
               palette: t.palette,
+              locked: !!(await one(
+                this.s.db,
+                "SELECT team_id FROM team_locks WHERE team_id=?",
+                t.id,
+              )),
+              status: (await one(
+                this.s.db,
+                "SELECT team_id FROM team_locks WHERE team_id=?",
+                t.id,
+              ))
+                ? "Locked"
+                : "Unlocked",
               readiness: await this.ready(t.id),
               requested: !!(await one(
                 this.s.db,
@@ -572,6 +659,18 @@ export class PortalExperience {
             })),
         ),
       };
+    }
+    if (["/submission", "/dashboard/submission"].includes(route)) {
+      const me = await this.s.actor(),
+        team = await this.team(me.id);
+      demand(
+        team,
+        403,
+        "TEAM_CHECKIN_REQUIRED",
+        "At least one team member must check in before submission unlocks.",
+      );
+      await requireSubmissionAccess(this.s, team.id);
+      return this.workspace(me);
     }
     if (
       [
@@ -619,6 +718,19 @@ export class PortalExperience {
         items: await Promise.all(
           all.map(async (t) => ({
             ...t,
+            locked: !!(await one(
+              this.s.db,
+              "SELECT team_id FROM team_locks WHERE team_id=?",
+              t.id,
+            )),
+            lockedAt: (
+              await one<{ locked_at: string }>(
+                this.s.db,
+                "SELECT locked_at FROM team_locks WHERE team_id=?",
+                t.id,
+              )
+            )?.locked_at,
+            status: (await teamStatus(this.s, t.id)).status,
             readiness: await this.ready(t.id),
             members: await rows(
               this.s.db,
@@ -626,6 +738,24 @@ export class PortalExperience {
               t.id,
             ),
           })),
+        ).then((list) =>
+          list.sort((a, b) => {
+            const priority = (r: typeof a) =>
+              r.status === "Locked"
+                ? r.readiness.allApproved
+                  ? 1
+                  : 0
+                : r.status === "Forming"
+                  ? 2
+                  : r.status === "Not submitted"
+                    ? 3
+                    : 4;
+            return (
+              priority(a) - priority(b) ||
+              (a.lockedAt || "9999").localeCompare(b.lockedAt || "9999") ||
+              a.name.localeCompare(b.name)
+            );
+          }),
         ),
       };
     }
@@ -647,6 +777,10 @@ export class PortalExperience {
         : undefined;
       return {
         me,
+        creditInstructions: await rows(
+          this.s.db,
+          "SELECT id,name,instructions FROM credit_types WHERE active=1",
+        ),
         policy: settings.policy,
         policyVersion: settings.version,
         readiness: setupReadiness(settings, this.s.now()),
@@ -737,7 +871,16 @@ export class PortalExperience {
         project: { ...p, draft: JSON.parse(p.draft) },
         version: v ? { ...v, payload: JSON.parse(v.payload) } : undefined,
         reviewKind: kind,
+        canRestoreEligibility: kind === "judge",
         eligibility: await this.eligibility(p),
+        repositoryEvidence:
+          kind === "admin" || kind === "judge"
+            ? await rows(
+                this.s.db,
+                "SELECT id,version_id,commit_sha,status,evidence,reason,created_at FROM repository_evidence WHERE project_id=? ORDER BY created_at DESC",
+                p.id,
+              )
+            : undefined,
         rubricReview:
           me.owner || me.role === "admin"
             ? await one(
@@ -790,6 +933,7 @@ export class PortalExperience {
         "team-respond",
         "remove-member",
         "remove-workspace-member",
+        "team-style",
       ].includes(action)
     ) {
       const settings = await this.s.settings(true);
@@ -803,6 +947,7 @@ export class PortalExperience {
       await this.completed(actor);
       const team = await this.team(actor.id);
       demand(team && team.leader_id === actor.id, 403, "LEADER_REQUIRED");
+      await assertUnlockedTeam(this.s, team.id);
       const settings = await this.s.settings(true);
       demand(this.s.now() < settings.policy.ideaLock, 409, "IDEA_LOCKED");
       const d = z
@@ -846,6 +991,10 @@ export class PortalExperience {
           "Team idea saved. It locks with the roster on October 29 at 23:59 IST.",
       };
     }
+    const repository = await repositoryCommand(this.s, action, data);
+    if (repository) return repository;
+    const override = await statusCommand(this.s, action, data);
+    if (override) return override;
     const qualification = await qualificationCommand(this.s, action, data);
     if (qualification) return qualification;
     const policy = await policyControl(this.s, action, data);
@@ -854,26 +1003,98 @@ export class PortalExperience {
     if (reveal) return reveal;
     const content = await eventContentCommand(this.s, action, data);
     if (content) return content;
+    if (action === "lock-team") {
+      z.object({ confirmation: z.literal("LOCK_TEAM") })
+        .strict()
+        .parse(data);
+      await this.completed(actor);
+      const t = await this.team(actor.id);
+      demand(t && t.leader_id === actor.id, 403, "LEADER_REQUIRED");
+      if (
+        await one(
+          this.s.db,
+          "SELECT team_id FROM team_locks WHERE team_id=?",
+          t.id,
+        )
+      )
+        return { message: "Team is already locked." };
+      const idea = await one<{ title: string; core: string }>(
+        this.s.db,
+        "SELECT title,core FROM ideas WHERE team_id=?",
+        t.id,
+      );
+      demand(
+        idea?.title.trim() && idea.core.trim(),
+        422,
+        "TEAM_IDEA_REQUIRED",
+        "Save the completed team idea before locking.",
+      );
+      const members = await rows<{ user_id: string }>(
+        this.s.db,
+        "SELECT user_id FROM memberships WHERE team_id=?",
+        t.id,
+      );
+      demand(members.length > 0 && members.length <= 5, 409, "TEAM_SIZE");
+      for (const m of members) {
+        const profile = await this.profile({ ...actor, id: m.user_id });
+        demand(
+          profile.complete,
+          409,
+          "MEMBER_PROFILE_REQUIRED",
+          "Every member must complete their profile before the leader locks the team.",
+        );
+      }
+      await this.s.mutate(
+        actor.id,
+        action,
+        t.id,
+        [
+          [
+            "INSERT INTO team_locks VALUES(?,?,?) ON CONFLICT DO NOTHING",
+            t.id,
+            actor.id,
+            this.s.now(),
+          ],
+        ],
+        { locked: true, members: members.length },
+      );
+      return {
+        message:
+          "Team locked for admin review. Approval and Going remain separate; Luma updates are manual.",
+      };
+    }
     if (action === "complete-profile") {
       const d = z
         .object({
+          photo: z.string().max(180000).optional(),
           displayName: text(100).min(2),
-          bio: text(2000).min(10),
-          skills: text(500).min(2),
+          bio: text(240).refine(
+            (v) => !/[\r\n]/.test(v),
+            "Use a one-line bio.",
+          ),
+          skills: z.string().max(500).optional(),
+          socialLinks: z
+            .array(
+              z
+                .object({
+                  type: z.enum(["X", "LinkedIn", "Instagram", "Website"]),
+                  url: httpsUrl,
+                })
+                .strict(),
+            )
+            .max(8)
+            .optional(),
           socials: z.string().max(12000).default(""),
           public: z.boolean().default(false),
-          gender: z.enum([
-            "woman",
-            "man",
-            "non-binary",
-            "self-described",
-            "prefer-not-to-say",
-          ]),
+          gender: z.enum(["woman", "man", "non-binary"]),
           genderDescription: z.string().max(100).default(""),
         })
         .strict()
         .parse(data);
-      const links = d.socials
+      const photo = d.photo ? await normalizeProfilePhoto(d.photo) : undefined;
+      const links = (
+        d.socialLinks ? d.socialLinks.map((v) => v.url).join("\n") : d.socials
+      )
         .split(/\r?\n/)
         .map((v) => v.trim())
         .filter(Boolean);
@@ -885,11 +1106,12 @@ export class PortalExperience {
         actor.id,
         [
           [
-            "INSERT INTO participant_profiles(user_id,display_name,skills,completed_at,gender_confirmed) VALUES(?,?,?,?,1) ON CONFLICT(user_id) DO UPDATE SET display_name=excluded.display_name,skills=excluded.skills,completed_at=excluded.completed_at,gender_confirmed=1",
+            "INSERT INTO participant_profiles(user_id,display_name,skills,completed_at,gender_confirmed) VALUES(?,?,?,?,1) ON CONFLICT(user_id) DO UPDATE SET display_name=excluded.display_name,skills=COALESCE(?,participant_profiles.skills),completed_at=excluded.completed_at,gender_confirmed=1",
             actor.id,
             d.displayName,
-            d.skills,
+            d.skills || "",
             this.s.now(),
+            d.skills ?? null,
           ],
           [
             "UPDATE profiles SET bio=?,socials=?,gender=?,gender_description=?,public=? WHERE user_id=?",
@@ -900,8 +1122,26 @@ export class PortalExperience {
             d.public ? 1 : 0,
             actor.id,
           ],
+          ...(photo
+            ? [
+                [
+                  "INSERT INTO profile_photos VALUES(?,?,?) ON CONFLICT(user_id) DO UPDATE SET png=excluded.png,updated_at=excluded.updated_at",
+                  actor.id,
+                  photo,
+                  this.s.now(),
+                ] as SQL,
+              ]
+            : []),
         ],
-        { fields: ["name", "bio", "skills", "socials", "consent"] },
+        {
+          fields: [
+            "name",
+            "bio",
+            "socials",
+            "private-sex",
+            ...(photo ? ["photo"] : []),
+          ],
+        },
       );
       return { message: "Profile saved. Your workspace is ready." };
     }
@@ -970,6 +1210,7 @@ export class PortalExperience {
           .parse(data),
         t = await this.team(actor.id);
       demand(t && t.leader_id === actor.id, 403, "LEADER_REQUIRED");
+      await assertUnlockedTeam(this.s, t.id);
       await this.s.mutate(
         actor.id,
         action,
@@ -995,6 +1236,7 @@ export class PortalExperience {
         403,
         "TEAM_MANAGER_REQUIRED",
       );
+      await assertUnlockedTeam(this.s, t.id);
       demand(d.userId !== t.leader_id, 409, "TRANSFER_LEADERSHIP_FIRST");
       await this.s.unfrozen();
       const settings = await this.s.settings(true);
@@ -1028,6 +1270,7 @@ export class PortalExperience {
         demand(actor.role === "participant", 403, "PARTICIPANT_REQUIRED");
         const d = z.object({ teamId: id }).strict().parse(data);
         demand(!(await this.team(actor.id)), 409, "ALREADY_IN_TEAM");
+        await assertUnlockedTeam(this.s, d.teamId);
         demand(
           await one(this.s.db, "SELECT id FROM teams WHERE id=?", d.teamId),
           404,
@@ -1066,6 +1309,7 @@ export class PortalExperience {
           d.requestId,
         );
       demand(r && r.leader_id === actor.id, 403, "LEADER_REQUIRED");
+      await assertUnlockedTeam(this.s, r.team_id);
       demand(r.status === "pending", 409, "REQUEST_ALREADY_RESOLVED");
       await this.s.mutate(
         actor.id,
@@ -1102,6 +1346,7 @@ export class PortalExperience {
       const t = await this.team(actor.id);
       demand(t && t.leader_id === actor.id, 403, "LEADER_REQUIRED");
       await this.s.unfrozen();
+      const access = await requireSubmissionAccess(this.s, t.id);
       const d = z
           .object({ revision: z.number().int().min(0), project: draftSchema })
           .strict()
@@ -1111,6 +1356,29 @@ export class PortalExperience {
           "SELECT * FROM projects WHERE team_id=?",
           t.id,
         );
+      const requestKey = await sha256(
+        JSON.stringify({ revision: d.revision, project: d.project }),
+      );
+      if (action === "submit-project") {
+        const receipt = await one<{ project_id: string; version_id: string }>(
+          this.s.db,
+          "SELECT project_id,version_id FROM project_commit_receipts WHERE team_id=? AND request_key=?",
+          t.id,
+          requestKey,
+        );
+        if (receipt)
+          return {
+            message: "This submission was already committed.",
+            projectId: receipt.project_id,
+            versionId: receipt.version_id,
+          };
+      }
+      demand(
+        !access.locked,
+        409,
+        "PROJECT_LOCKED_AFTER_THIRD_SUBMISSION",
+        "Three submissions are committed. No more project edits are allowed.",
+      );
       demand((p?.revision || 0) === d.revision, 409, "PROJECT_CHANGED_RELOAD");
       if (d.project.logo) validateProjectImage(d.project.logo, "logo");
       if (d.project.banner) validateProjectImage(d.project.banner, "banner");
@@ -1139,12 +1407,12 @@ export class PortalExperience {
       sql.push(...assertPreviousWrite());
       if (action === "submit-project") {
         await this.s.operational("submissions");
-        const ready = await this.ready(t.id);
-        demand(ready.going, 409, "TEAM_APPROVAL_INCOMPLETE");
+
         text(120).parse(d.project.projectName);
         text(500).parse(d.project.problemSolution);
         text(6000).parse(d.project.description);
         githubUrl.parse(d.project.github);
+        d.project.commitSha = commitSha.parse(d.project.commitSha);
         if (d.project.demo) httpsUrl.parse(d.project.demo);
         validateProjectImage(d.project.logo, "logo");
         validateProjectImage(d.project.banner, "banner");
@@ -1181,12 +1449,37 @@ export class PortalExperience {
           versionId,
           projectId,
         ]);
+        sql.push([
+          "INSERT INTO project_commit_receipts VALUES(?,?,?,?,?)",
+          t.id,
+          requestKey,
+          projectId,
+          versionId,
+          this.s.now(),
+        ]);
       }
-      const result = await this.s.mutate(actor.id, action, projectId, sql, {
-        fields: ["project", "media", "contributions"],
-        submitted: action === "submit-project",
-      });
-      demand(result[0].meta?.changes === 1, 409, "PROJECT_CHANGED_RELOAD");
+      try {
+        await this.s.mutate(actor.id, action, projectId, sql, {
+          fields: ["project", "media", "contributions"],
+          submitted: action === "submit-project",
+        });
+      } catch (error) {
+        if (action === "submit-project") {
+          const receipt = await one<{ project_id: string; version_id: string }>(
+            this.s.db,
+            "SELECT project_id,version_id FROM project_commit_receipts WHERE team_id=? AND request_key=?",
+            t.id,
+            requestKey,
+          );
+          if (receipt)
+            return {
+              message: "This submission was already committed.",
+              projectId: receipt.project_id,
+              versionId: receipt.version_id,
+            };
+        }
+        throw error;
+      }
       return {
         message:
           action === "submit-project"
@@ -1196,40 +1489,58 @@ export class PortalExperience {
       };
     }
     if (action === "set-project-eligibility") {
-      await this.s.staff();
       const d = z
-          .object({
-            projectId: id,
-            versionId: id,
-            status: z.enum(["eligible", "ineligible", "needs_review"]),
-            reason: why,
-          })
-          .strict()
-          .parse(data),
-        p = await this.project(d.projectId),
+        .object({
+          projectId: id,
+          versionId: id,
+          status: z.enum(["eligible", "ineligible", "needs_review"]),
+          reason: why,
+          violation: z
+            .object({
+              rule: z.string().trim().min(5).max(1000),
+              evidence: z.string().trim().min(10).max(3000),
+            })
+            .strict()
+            .optional(),
+        })
+        .strict()
+        .parse(data);
+      await eligibilityReviewer(this.s, d.projectId, d.status === "eligible");
+      await this.s.unfrozen();
+      const p = await this.project(d.projectId),
         v = await this.version(p);
       demand(v?.id === d.versionId, 409, "PROJECT_VERSION_CHANGED");
+      demand(
+        d.status !== "ineligible" || !!d.violation,
+        422,
+        "ESTABLISHED_VIOLATION_REQUIRED",
+        "A proven rule violation and private evidence are required. An API timeout is unverifiable, not a violation.",
+      );
       await this.s.mutate(
         actor.id,
         action,
         p.id,
-        [
-          [
-            "INSERT INTO project_eligibility VALUES(?,?,?,?,?,?) ON CONFLICT(project_id) DO UPDATE SET version_id=excluded.version_id,status=excluded.status,reason=excluded.reason,decided_by=excluded.decided_by,updated_at=excluded.updated_at",
-            p.id,
-            v.id,
-            d.status,
-            d.reason,
-            actor.id,
-            this.s.now(),
-          ],
-        ],
+        eligibilityWrite(
+          {
+            id: p.id,
+            versionId: v.id,
+            status: d.status,
+            reason: d.reason,
+            evidence: {
+              manual: true,
+              violation: d.violation || null,
+              commitSha: JSON.parse(v.payload).commitSha || null,
+            },
+          },
+          actor.id,
+          this.s.now(),
+        ),
         { versionId: v.id, status: d.status },
-        "Eligibility evidence recorded; no score change",
+        d.reason,
       );
       return {
         message:
-          "Eligibility recorded. Eligible entries appear automatically; scores remain private.",
+          "Eligibility recorded for the committed version. Team progress remains Submitted; private evidence stays private.",
       };
     }
     if (action === "upvote-project" || action === "comment-project") {
@@ -1309,21 +1620,30 @@ export class PortalExperience {
             email,
           );
           demand(u, 422, "PARTICIPANT_NOT_SIGNED_IN");
-          sql.push([
-            "INSERT INTO check_ins VALUES(?,?,?) ON CONFLICT(user_id) DO NOTHING",
-            u.id,
-            actor.id,
-            this.s.now(),
-          ]);
+          await requireGoingForCheckin(this.s, u.id);
+          sql.push(
+            [
+              "INSERT INTO check_ins VALUES(?,?,?) ON CONFLICT(user_id) DO NOTHING",
+              u.id,
+              actor.id,
+              this.s.now(),
+            ],
+            ["DELETE FROM participant_status_overrides WHERE user_id=?", u.id],
+          );
         }
       } else {
         demand(d.status, 422, "STATUS_REQUIRED");
-        for (const email of emails)
+        for (const email of emails) {
           sql.push([
             "INSERT INTO registrations(email,status) VALUES(?,?) ON CONFLICT(email) DO UPDATE SET status=excluded.status",
             email,
             d.status,
           ]);
+          sql.push([
+            "DELETE FROM participant_status_overrides WHERE user_id=(SELECT id FROM users WHERE email=?)",
+            email,
+          ]);
+        }
       }
       await this.s.mutate(
         actor.id,
@@ -1334,7 +1654,10 @@ export class PortalExperience {
         d.reason,
       );
       return {
-        message: "Participant facts updated. Team readiness recalculated.",
+        message:
+          d.status === "approved"
+            ? "You’re Going. Individual approvals updated."
+            : "Participant status updated.",
       };
     }
     if (action === "portal-role") {

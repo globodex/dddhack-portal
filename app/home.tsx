@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Dots from "./dots";
+import DelhiWordmark from "./delhi-wordmark";
 import { ist } from "../lib/time";
 import { defaultPublicContent } from "../lib/event-content-contract";
 type Content = typeof defaultPublicContent;
@@ -88,29 +89,31 @@ function Agenda({
             ))}
           </ol>
         </div>
-        <div className="agenda-controls">
-          <button
-            className="button secondary"
-            onClick={() => go(Math.max(0, step - 1))}
-            disabled={step === 0}
-          >
-            Previous
-          </button>
-          <button
-            className="button secondary"
-            onClick={() => go(Math.min(items.length - 1, step + 1))}
-            disabled={step >= items.length - 1}
-          >
-            Next
-          </button>
-          <button
-            className="link-button"
-            aria-pressed={list}
-            onClick={() => setList(!list)}
-          >
-            {list ? "Use scroll progression" : "Show normal list"}
-          </button>
-        </div>
+        {items.length > 1 && (
+          <div className="agenda-controls">
+            <button
+              className="button secondary"
+              onClick={() => go(Math.max(0, step - 1))}
+              disabled={step === 0}
+            >
+              Previous
+            </button>
+            <button
+              className="button secondary"
+              onClick={() => go(Math.min(items.length - 1, step + 1))}
+              disabled={step >= items.length - 1}
+            >
+              Next
+            </button>
+            <button
+              className="link-button"
+              aria-pressed={list}
+              onClick={() => setList(!list)}
+            >
+              {list ? "Use scroll progression" : "Show normal list"}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -185,10 +188,10 @@ export default function Home({
             timer = setTimeout(() => {
               setBubble("");
               schedule();
-            }, 2500);
+            }, 3500);
           } else schedule();
         },
-        7000 + Math.random() * 5000,
+        12000 + Math.random() * 8000,
       );
     };
     const reset = () => {
@@ -207,65 +210,25 @@ export default function Home({
     };
   }, [paused, ready, visible]);
   return (
-    <div className="home" ref={root}>
+    <div className="home" ref={root} data-paused={paused}>
       <section className="home-hero" aria-labelledby="home-title" ref={hero}>
         <div className="hero-copy">
-          <p className="eyebrow">November 1, 2026 · New Delhi</p>
-          <h1 id="home-title">
-            DevDay Exchange
-            <br />
-            <span className="hero-secondary">Community Hackathon:</span>
-            <br />
-            <em>New Delhi</em>
+          <h1
+            id="home-title"
+            aria-label="DevDay Exchange Community Hackathon: New Delhi"
+          >
+            <span aria-hidden="true">
+              DevDay
+              <br />
+              Exchange
+              <br />
+              Community
+              <br />
+              Hackathon:
+            </span>
+            <span className="sr-only">New Delhi</span>
+            <DelhiWordmark paused={paused || !ready} />
           </h1>
-          <p className="hero-intro">
-            A day to experiment. A community to build with.
-            <br />
-            Bring your curiosity. Leave with something real.
-          </p>
-          {submissionClose && (
-            <p className="submission-deadline">
-              Submissions close {ist(submissionClose)}
-            </p>
-          )}
-          <p className="host-label">Hosted by Codex Ambassadors</p>
-          <ul className="host-badges">
-            <li>
-              <span className="host-monogram" aria-hidden="true">
-                PS
-              </span>
-              <span>
-                Parampreet Singh<small>Codex Ambassador</small>
-              </span>
-            </li>
-            <li>
-              <span className="host-monogram" aria-hidden="true">
-                SL
-              </span>
-              <span title="Full surname awaiting confirmation">
-                Shivay L<small>Codex Ambassador</small>
-              </span>
-            </li>
-            <li>
-              <span className="host-monogram" aria-hidden="true">
-                NS
-              </span>
-              <span>
-                Nikhil Shukla<small>Codex Ambassador</small>
-              </span>
-            </li>
-            <li>
-              <span className="host-monogram" aria-hidden="true">
-                SS
-              </span>
-              <span>
-                Shresth Shukla<small>Cerebras Ambassador</small>
-              </span>
-            </li>
-          </ul>
-          <p className="partner-note">
-            Community partner <strong>Cerebras</strong>
-          </p>
           <a
             className="button primary-cta"
             href={
@@ -278,22 +241,24 @@ export default function Home({
             {signedIn ? "Open your workspace" : "Continue with ChatGPT"}
             <span aria-hidden="true">→</span>
           </a>
-          <nav className="chapter-links" aria-label="On this page">
-            <a href="#schedule">Schedule</a>
-            <a href="#venue">Venue</a>
-            <a href="#rules">Rules</a>
-            <a href="#faq">FAQ</a>
-          </nav>
         </div>
         <div className="hero-art" aria-hidden="true">
           <Dots paused={paused || !ready} />
           {bubble && <span className="speech-bubble">{bubble}</span>}
         </div>
+        <a
+          className="scroll-cue"
+          href="#schedule"
+          aria-label="Scroll to schedule"
+        >
+          <span aria-hidden="true">↓</span>
+        </a>
       </section>
       <div className="home-motion-strip">
         <Dots paused={paused || !ready} bottom />
         <button
           className="motion-toggle button secondary"
+          aria-label={paused ? "Resume animations" : "Pause animations"}
           aria-pressed={paused}
           onClick={() => {
             const next = !paused;
@@ -303,7 +268,7 @@ export default function Home({
             } catch {}
           }}
         >
-          {paused ? "Resume motion" : "Pause motion"}
+          <span aria-hidden="true">{paused ? "▶" : "Ⅱ"}</span>
         </button>
       </div>
       <Agenda
@@ -343,10 +308,6 @@ export default function Home({
         </header>
         <div className="chapter-body prose">
           <p>{content.rules}</p>
-          <p className="muted">
-            Capacity, team-formation dates and the final submission cutoff
-            remain under review.
-          </p>
         </div>
       </section>
       <section id="faq" className="chapter stacked">
@@ -362,6 +323,46 @@ export default function Home({
             </details>
           ))}
         </div>
+      </section>
+      <section className="organizers">
+        <h2>Meet the Organizers behind</h2>
+        <ul className="host-badges">
+          <li>
+            <span className="host-monogram" aria-hidden="true">
+              PS
+            </span>
+            <span>
+              Parampreet Singh<small>Codex Ambassador</small>
+            </span>
+          </li>
+          <li>
+            <span className="host-monogram" aria-hidden="true">
+              SL
+            </span>
+            <span title="Full surname awaiting confirmation">
+              Shivay L<small>Codex Ambassador</small>
+            </span>
+          </li>
+          <li>
+            <span className="host-monogram" aria-hidden="true">
+              NS
+            </span>
+            <span>
+              Nikhil Shukla<small>Codex Ambassador</small>
+            </span>
+          </li>
+          <li>
+            <span className="host-monogram" aria-hidden="true">
+              SS
+            </span>
+            <span>
+              Shresth Shukla<small>Cerebras Ambassador</small>
+            </span>
+          </li>
+        </ul>
+        <p className="partner-note">
+          Community partner <strong>Cerebras</strong>
+        </p>
       </section>
       <footer className="home-footer">
         Built for people who build.{" "}

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "approvedSource": {
+    "libraryFileId": "libfile_24a1836818d48191984dc9bc51ea6f93",
+    "version": 3,
+    "sha256": "18d26b3d5cd123b624f1d005458cfcb536476f34ba91fa2c80263a858069dfb0"
+  },
+  "canvas": {
+    "width": 2048,
+    "height": 768,
+    "background": "#ffffff",
+    "aspectRatio": "8/3"
+  },
+  "assets": {
+    "mask": {
+      "path": "assets/text-mask-alpha.png",
+      "width": 2048,
+      "height": 768,
+      "x": 0,
+      "y": 0,
+      "channel": "alpha",
+      "moves": false
+    },
+    "fill": {
+      "path": "assets/delhi-fill-overscan.png",
+      "width": 2112,
+      "height": 832,
+      "x": -32,
+      "y": -32,
+      "overscan": 32,
+      "moves": true
+    },
+    "metro": {
+      "path": "assets/metro-static.png",
+      "width": 2048,
+      "height": 768,
+      "x": 0,
+      "y": 0,
+      "moves": false
+    },
+    "fallback": {
+      "path": "assets/fallback-approved-v3.png",
+      "width": 2048,
+      "height": 768,
+      "byteIdenticalToApprovedSource": true
+    }
+  },
+  "motion": {
+    "direction": "opposite-pointer",
+    "recommendedSourcePx": {
+      "x": 6,
+      "y": 4
+    },
+    "maximumSourcePx": {
+      "x": 10,
+      "y": 6
+    },
+    "easeMs": [
+      120,
+      180
+    ],
+    "scaleDisplacementByRenderedWidthOver": 2048,
+    "touch": "static-fallback",
+    "reducedMotion": "static-fallback"
+  },
+  "limitations": [
+    "Flattened source; hidden content reconstructed and edge-continued.",
+    "Rest recomposition visually close; not byte-identical.",
+    "Raster alpha mask; no editable font or vector outlines.",
+    "No repository or website integration."
+  ],
+  "files": {
+    "assets/delhi-fill-overscan.png": {
+      "bytes": 1585270,
+      "sha256": "17f8e31b0803566388bedca68f8471307a64205b4556cac8c2a757a29f640d0b"
+    },
+    "assets/fallback-approved-v3.png": {
+      "bytes": 1689967,
+      "sha256": "18d26b3d5cd123b624f1d005458cfcb536476f34ba91fa2c80263a858069dfb0"
+    },
+    "assets/metro-static.png": {
+      "bytes": 302684,
+      "sha256": "f52185c3282c5df1f18909c0407f624910b43469575b187324adaa675d043110"
+    },
+    "assets/text-mask-alpha.png": {
+      "bytes": 82153,
+      "sha256": "4cb67a233957b75b3a4323c54e51bf84cbbace0b823367a69ebce0f85279caf0"
+    }
+  }
+}

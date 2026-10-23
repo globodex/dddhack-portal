@@ -1,3 +1,9 @@
+import {
+  pageMetadata,
+  publicPath,
+  eventStructuredData,
+  safeJSONLD,
+} from "../../lib/seo";
 import { requireChatGPTUser } from "../chatgpt-auth";
 import { getSitesRuntime, protectedPath } from "../../lib/sites-runtime";
 import { PortalService } from "../../lib/service";
@@ -24,21 +30,52 @@ export default async function Page({
     await service.view(routePath);
   }
   let initialPublic: Record<string, any> | undefined;
-  if (!localTest && routePath === "/") {
+  if (!localTest && publicPath(routePath)) {
     try {
       const runtime = getSitesRuntime();
       initialPublic = await new PortalService(runtime.db, null, undefined).view(
-        "/",
+        routePath,
       );
     } catch {
-      initialPublic = { submissionClose: null };
+      if (routePath === "/") initialPublic = { submissionClose: null };
     }
   }
   return (
-    <Portal
-      path={routePath}
-      localTest={localTest}
-      initialPublic={initialPublic}
-    />
+    <>
+      {routePath === "/" && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: safeJSONLD(eventStructuredData) }}
+        />
+      )}
+      <Portal
+        path={routePath}
+        localTest={localTest}
+        initialPublic={initialPublic}
+      />
+    </>
   );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ path?: string[] }>;
+}) {
+  const { path = [] } = await params;
+  const route = "/" + path.join("/");
+  if (/^\/projects\/[^/]+$/.test(route))
+    try {
+      const runtime = getSitesRuntime();
+      const view = (await new PortalService(runtime.db, null, undefined).view(
+        route,
+      )) as Record<string, any>;
+      return pageMetadata(route, view.project || view.items?.[0]);
+    } catch {
+      return {
+        ...pageMetadata(route),
+        robots: { index: false, follow: false },
+      };
+    }
+  return pageMetadata(route);
 }

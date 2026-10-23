@@ -1,3 +1,4 @@
+import { attend } from "./helpers";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { setup, activate, submission, rehearsalPolicy } from "./helpers";
@@ -56,7 +57,7 @@ test("draft policies block activation, scoring and submission; approved rehearsa
     /diversity/,
   );
   await assert.rejects(service().command("submit", submission), {
-    code: "SUBMISSIONS_NOT_ENABLED",
+    code: "TEAM_CHECKIN_REQUIRED",
   });
   db.close();
 });
@@ -64,7 +65,7 @@ test("registered approval, single membership and five-person constraints; reques
   const { db, service } = await setup();
   await assert.rejects(
     service("pending").command("create-team", { name: "No" }),
-    /APPROVAL/,
+    /APPROVAL_REQUIRED/,
   );
   await assert.rejects(
     service("alice").command("create-team", { name: "No" }),
@@ -158,7 +159,7 @@ test("check-in allocations are idempotent, encrypted, private and retryable afte
       userId: "fake_pending",
       reason: "test",
     }),
-    /APPROVAL/,
+    /PORTAL_GOING_REQUIRED/,
   );
   await Promise.all(
     Array.from({ length: 20 }, () =>
@@ -177,14 +178,17 @@ test("check-in allocations are idempotent, encrypted, private and retryable afte
     ).length,
     1,
   );
-  const c = await service().command("reveal-credit", {
-    typeId: "fake_credit",
-    userId: "fake_bob",
-  });
+  await assert.rejects(
+    service().command("reveal-credit", {
+      typeId: "fake_credit",
+      userId: "fake_bob",
+    }),
+  );
+  const c = await service().command("reveal-credit", { typeId: "fake_credit" });
   assert.match(String(c.value), /^FAKE-NOT-REDEEMABLE/);
   await assert.rejects(
     service("bob").command("reveal-credit", { typeId: "fake_credit" }),
-    /ALLOCATION_PENDING/,
+    /CHECKIN_REQUIRED/,
   );
   await assert.rejects(
     service("judge").view("/dashboard/credits"),
@@ -289,6 +293,7 @@ test("CSV previews, duplicate handling, formula protection and AES-GCM integrity
 test("only leader can commit; exactly three successful versions, invalid fields/cutoff do not consume attempts", async () => {
   const { db, service, clock } = await setup();
   await activate(db);
+  await attend(db, "fake_alice", "fake_bob", "fake_eve");
   clock("2026-11-01T06:00:00.000Z");
   await assert.rejects(
     service("carol").command("submit", submission),
@@ -302,7 +307,12 @@ test("only leader can commit; exactly three successful versions, invalid fields/
   );
   assert.equal((await rows(db, "SELECT * FROM submission_versions")).length, 0);
   const outcomes = await Promise.allSettled(
-    Array.from({ length: 10 }, () => service().command("submit", submission)),
+    Array.from({ length: 10 }, (_, i) =>
+      service().command("submit", {
+        ...submission,
+        projectName: "Attempt " + i,
+      }),
+    ),
   );
   assert.equal(outcomes.filter((o) => o.status === "fulfilled").length, 3);
   assert.equal((await rows(db, "SELECT * FROM astra_jobs")).length, 3);
@@ -319,8 +329,8 @@ test("external evaluation failure and invalid model output preserve submission; 
   assert.equal(
     githubEligibility({
       public: true,
-      createdAt: "2026-10-31T18:30:00Z",
-      firstCommit: "2026-10-31T18:31:00Z",
+      createdAt: "2026-11-01T02:30:01Z",
+      firstCommit: "2026-11-01T02:30:02Z",
     }),
     "ELIGIBLE",
   );
@@ -338,7 +348,7 @@ test("external evaluation failure and invalid model output preserve submission; 
       createdAt: "2026-11-01T00:00:00Z",
       firstCommit: "2026-11-01T00:00:00Z",
     }),
-    "INELIGIBLE",
+    "NEEDS_MANUAL_REVIEW",
   );
   assert.equal(
     githubEligibility({
@@ -350,6 +360,7 @@ test("external evaluation failure and invalid model output preserve submission; 
   );
   const { db, service, clock } = await setup();
   await activate(db);
+  await attend(db, "fake_alice", "fake_bob", "fake_eve");
   clock("2026-11-01T06:00:00.000Z");
   await service().command("submit", submission);
   clock("2026-11-01T11:00:00.000Z");
@@ -381,6 +392,7 @@ test("external evaluation failure and invalid model output preserve submission; 
 test("three distinct votes, no own-team or duplicate votes, meaningful feedback and bounded scoring", async () => {
   const { db, service, clock } = await setup();
   await activate(db);
+  await attend(db, "fake_alice", "fake_bob", "fake_eve");
   clock("2026-11-01T06:00:00.000Z");
   await service().command("submit", submission);
   for (const leader of ["bob", "eve"]) {
@@ -484,6 +496,7 @@ test("three distinct votes, no own-team or duplicate votes, meaningful feedback 
 test("full mock rehearsal: two equal-weight judges, human review, owner freeze, immutable private snapshot and publication", async () => {
   const { db, service, clock } = await setup();
   await activate(db);
+  await attend(db, "fake_alice", "fake_bob", "fake_eve");
   clock("2026-11-01T06:00:00.000Z");
   const v = await service().command("submit", submission);
   await service("owner").command("assign-judge", {

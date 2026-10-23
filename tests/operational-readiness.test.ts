@@ -1,3 +1,4 @@
+import { attend } from "./helpers";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { setup } from "./helpers";
@@ -35,6 +36,7 @@ const project = {
   problemSolution: "Synthetic test project",
   description: "Synthetic reproducible project instructions",
   github: "https://github.com/example/rehearsal",
+  commitSha: "a".repeat(40),
   demo: "",
   logo: syntheticImage(64, 64),
   banner: syntheticImage(160, 90),
@@ -71,6 +73,7 @@ test("operational-only policy accepts valid submissions while judging and reveal
     assert.deepEqual(operationalBlockers(operationPolicy, "submissions"), []);
     assert.ok(policyBlockers(operationPolicy).includes("diversity"));
     await enable(service, "submissions");
+    await attend(db, "fake_alice");
     clock("2026-11-01T04:00:00.000Z");
     const workspace = (await service("alice").view("/dashboard")) as Row;
     assert.equal(workspace.submissionStatus.allowed, true);
@@ -124,6 +127,7 @@ test("operational split preserves server windows, Going, required media, reposit
   try {
     await configure(service);
     await enable(service, "submissions");
+    await attend(db, "fake_alice");
     clock("2026-11-01T02:29:59.999Z");
     await assert.rejects(
       service("alice").command("submit-project", { revision: 0, project }),
@@ -142,6 +146,7 @@ test("operational split preserves server windows, Going, required media, reposit
       service("alice").command("submit-project", {
         revision: 0,
         project: { ...project, github: "https://example.com/not-github" },
+        commitSha: "a".repeat(40),
       }),
     );
     await service("owner").command("participant-bulk", {
@@ -151,7 +156,7 @@ test("operational split preserves server windows, Going, required media, reposit
     });
     await assert.rejects(
       service("alice").command("submit-project", { revision: 0, project }),
-      /TEAM_APPROVAL_INCOMPLETE/,
+      /TEAM_CHECKIN_REQUIRED/,
     );
     await service("owner").command("participant-bulk", {
       emails: ["alice@portal.test"],
@@ -171,7 +176,7 @@ test("operational split preserves server windows, Going, required media, reposit
         revision: v.project.revision,
         project,
       }),
-      /SUBMISSION_LIMIT|attempt BETWEEN 1 AND 3/,
+      { code: "PROJECT_LOCKED_AFTER_THIRD_SUBMISSION" },
     );
     clock("2026-11-01T10:30:00.000Z");
     assert.equal(
@@ -192,7 +197,7 @@ test("check-in requires only its operational policy, keeps approval/Luma protect
   try {
     const policy = {
       ...operationPolicy,
-      lumaRequired: true,
+      lumaRequired: false,
       confirmations: operationPolicy.confirmations.filter(
         (k) => !["submissionOpen", "deploymentRule"].includes(k),
       ),
@@ -215,23 +220,11 @@ test("check-in requires only its operational policy, keeps approval/Luma protect
         checkIn: true,
         reason: "Synthetic unapproved check-in",
       }),
-      /APPROVAL_REQUIRED/,
+      /PORTAL_GOING_REQUIRED/,
     );
     await batch(db, [
       [
         "UPDATE registrations SET luma_confirmed=0 WHERE email='alice@portal.test'",
-      ],
-    ]);
-    await assert.rejects(
-      service("admin").command("check-in", {
-        userId: "fake_alice",
-        reason: "Synthetic missing Luma confirmation",
-      }),
-      /APPROVAL_REQUIRED/,
-    );
-    await batch(db, [
-      [
-        "UPDATE registrations SET luma_confirmed=1 WHERE email='alice@portal.test'",
       ],
     ]);
     const noKey = new PortalService(
@@ -286,6 +279,7 @@ test("fresh setup errors are actionable, owner enablement needs intent/current v
       /EXPLICIT_OPERATION/,
     );
     await enable(service, "submissions");
+    await attend(db, "fake_alice");
     const active = await service("owner").settings();
     await service("owner").command("settings", {
       policy: {
@@ -368,6 +362,7 @@ test("draft scope hints do not cross-enable operations; legacy full activation e
       reason: "Synthetic draft scope hint",
     });
     await enable(service, "submissions");
+    await attend(db, "fake_alice");
     let settings = await service("owner").settings();
     assert.deepEqual(settings.policy.operationScopes, ["submissions"]);
     await db.prepare("UPDATE event_settings SET active=0").all();

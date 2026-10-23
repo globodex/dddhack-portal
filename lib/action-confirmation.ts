@@ -11,6 +11,11 @@ export class ActionCancelled extends Error {
   }
 }
 const labels: Record<string, string> = {
+  "admin-status-bulk": "Change selected participant statuses",
+  "admin-status": "Change individual or team status",
+  "record-repository-evidence": "Record repository evidence",
+  "lock-team": "Lock completed team",
+  "update-credit-instructions": "Update shared Markdown instructions",
   "activate-operations": "Enable event operation",
   "qualify-project-feedback": "Record scoring feedback qualification",
   "save-workspace-idea": "Update team idea",
@@ -55,6 +60,8 @@ export function confirmationFor(
     "freeze-results",
     "content-publish",
     "activate-operations",
+    "lock-team",
+    "submit-project",
     "publish-submission-extension",
     "publish-policy-weights",
   ].includes(action);
@@ -83,6 +90,14 @@ export function confirmationFor(
   if (action === "activate-operations")
     description =
       "Enable only the selected operation under its confirmed operational rules. Judging and score reveals remain separately gated.";
+  if (["admin-status", "admin-status-bulk"].includes(action))
+    description =
+      "Record this manual status with an audit reason. Attendance history, team lock and the three-submission limit remain intact. A Submitted label alone creates no public project. Checked in records manual attendance; personal credits remain bound to their recipient.";
+  if (action === "lock-team")
+    description =
+      "Freeze this team’s membership and details for admin review. There is no unlock action. This does not approve any member.";
+  if (action === "submit-project")
+    description = `Commit submission ${Number(values.attemptsUsed || 0) + 1} of 3. This consumes one attempt; ${Math.max(0, 2 - Number(values.attemptsUsed || 0))} remain afterward. The third committed submission makes the entire project read-only. Draft saves consume no attempts.`;
   if (action === "logout")
     description =
       "End this Site session using managed ChatGPT sign-out. You can sign in again later.";
@@ -94,11 +109,15 @@ export function confirmationFor(
     target,
     description,
     confirmLabel:
-      action === "logout"
-        ? "Log out"
-        : critical
-          ? "Confirm public action"
-          : "Confirm change",
+      action === "submit-project"
+        ? "Commit submission"
+        : action === "lock-team"
+          ? "Lock team"
+          : action === "logout"
+            ? "Log out"
+            : critical
+              ? "Confirm public action"
+              : "Confirm change",
     critical,
   };
 }
@@ -128,19 +147,23 @@ export function revealConfirmation(
   action: string,
   values: Record<string, any>,
 ) {
-  return action === "activate-operations"
-    ? values.operation === "submissions"
-      ? "ENABLE_SUBMISSIONS"
-      : "ENABLE_CHECKIN"
-    : action === "publish-submission-extension"
-      ? "EXTEND_DEADLINE"
-      : action === "publish-policy-weights"
-        ? "GLOBAL_SCORING"
-        : action === "reveal-ai-scores"
-          ? "PUBLIC_AI"
-          : action === "reveal-final-scores"
-            ? "PUBLIC_FINAL"
-            : action === "unveil-winner"
-              ? `UNVEIL_${values.position}`
-              : undefined;
+  return ["admin-status", "admin-status-bulk"].includes(action)
+    ? "CHANGE_STATUS"
+    : action === "lock-team"
+      ? "LOCK_TEAM"
+      : action === "activate-operations"
+        ? values.operation === "submissions"
+          ? "ENABLE_SUBMISSIONS"
+          : "ENABLE_CHECKIN"
+        : action === "publish-submission-extension"
+          ? "EXTEND_DEADLINE"
+          : action === "publish-policy-weights"
+            ? "GLOBAL_SCORING"
+            : action === "reveal-ai-scores"
+              ? "PUBLIC_AI"
+              : action === "reveal-final-scores"
+                ? "PUBLIC_FINAL"
+                : action === "unveil-winner"
+                  ? `UNVEIL_${values.position}`
+                  : undefined;
 }

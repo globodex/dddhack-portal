@@ -78,16 +78,11 @@ export function githubEligibility(
     !Number.isFinite(Date.parse(meta.firstCommit))
   )
     return "NEEDS_MANUAL_REVIEW";
-  const date = (s: string) =>
-    new Intl.DateTimeFormat("en-CA", {
-      timeZone: "Asia/Kolkata",
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    }).format(new Date(s));
-  return meta.public &&
-    date(meta.createdAt) === "2026-11-01" &&
-    date(meta.firstCommit) === "2026-11-01"
+  const cutoff = Date.parse("2026-11-01T02:30:00Z");
+  // Inaccessibility/private repositories cannot establish a timing violation.
+  if (!meta.public) return "NEEDS_MANUAL_REVIEW";
+  return Date.parse(meta.createdAt) > cutoff &&
+    Date.parse(meta.firstCommit) > cutoff
     ? "ELIGIBLE"
     : "INELIGIBLE";
 }

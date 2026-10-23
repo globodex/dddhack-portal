@@ -7,6 +7,8 @@ import {
   type CSSProperties,
 } from "react";
 import Home from "./home";
+import ProfileFlow from "./profile-flow";
+import CreditInstructions from "./credit-instructions";
 import ConfirmationDialog from "./confirmation-dialog";
 import {
   ActionCancelled,
@@ -190,107 +192,9 @@ function Profile({
   run: (a: string, d: Row) => Promise<Row>;
   gated?: boolean;
 }) {
-  const p = data.profile || {};
-  return (
-    <div className="profile-layout">
-      <div>
-        <p className="eyebrow">
-          {gated ? "Before your workspace" : "Your profile"}
-        </p>
-        <h1>
-          {gated ? "First, a quick introduction." : "Make yourself known."}
-        </h1>
-        <p className="muted">
-          Signed in as {data.me?.email}. Your introduction and skills help your
-          team work together. Gender is required and private; prefer not to say
-          is an available response.
-        </p>
-      </div>
-      <Form
-        key={p.completed_at || data.me?.id}
-        title="A little about you"
-        label={gated ? "Continue to your workspace" : "Save profile"}
-        onSave={async (f) => {
-          await run("complete-profile", {
-            displayName: f.get("displayName"),
-            bio: f.get("bio"),
-            skills: f.get("skills"),
-            socials: f.get("socials"),
-            gender: f.get("gender"),
-            genderDescription: f.get("genderDescription"),
-            public: f.get("public") === "on",
-          });
-        }}
-      >
-        <Field
-          name="displayName"
-          label="Full name"
-          value={p.display_name || data.me?.name}
-          required
-          minLength={2}
-        />
-        <Field
-          name="bio"
-          label="Short introduction · at least 10 characters"
-          type="textarea"
-          value={p.bio}
-          required
-          minLength={10}
-        />
-        <Field
-          name="skills"
-          label="What do you enjoy building?"
-          value={p.skills}
-          required
-          minLength={2}
-        />
-        <Field
-          name="socials"
-          label="Links · one HTTPS link per line, optional"
-          type="textarea"
-          value={Array.isArray(p.socials) ? p.socials.join("\n") : ""}
-        />
-        <Field name="gender" label="Gender · required and private">
-          <select
-            name="gender"
-            required
-            defaultValue={
-              p.gender_confirmed || p.gender !== "prefer-not-to-say"
-                ? p.gender
-                : ""
-            }
-          >
-            <option value="" disabled>
-              Choose your response
-            </option>
-            <option value="prefer-not-to-say">Prefer not to say</option>
-            <option value="woman">Woman</option>
-            <option value="man">Man</option>
-            <option value="non-binary">Non-binary</option>
-            <option value="self-described">Self-described</option>
-          </select>
-        </Field>
-        <details>
-          <summary>Optional details and visibility</summary>
-          <Field
-            name="genderDescription"
-            label="Self-description · optional"
-            value={p.gender_description}
-          />
-          <Field
-            name="public"
-            label="Allow my introduction and links to appear with my team"
-            type="checkbox"
-            value={p.public}
-          />
-          <p className="muted">
-            Gender is never part of your public profile or scoring.
-          </p>
-        </details>
-      </Form>
-    </div>
-  );
+  return <ProfileFlow data={data} run={run} />;
 }
+
 function AvatarChooser({
   avatar,
   setAvatar,
@@ -431,8 +335,8 @@ function TeamWorkspace({
             <h2>{t.name}</h2>
           </div>
         </div>
-        <Pill tone={data.teamReadiness?.going ? "positive" : "waiting"}>
-          {data.teamReadiness?.label}
+        <Pill tone={data.teamReadiness?.allApproved ? "positive" : "waiting"}>
+          {data.teamStatus || "Forming"}
         </Pill>
       </div>
       {data.me?.id === t.leader_id ? (
@@ -484,6 +388,52 @@ function TeamWorkspace({
           </section>
         )
       )}
+      <div className="form-actions">
+        <Pill>{t.locked ? "Team locked" : "Team unlocked"}</Pill>
+        {data.me?.id === t.leader_id && !t.locked && (
+          <button
+            className="button secondary"
+            onClick={() => {
+              void run("lock-team", {}).catch(() => {});
+            }}
+          >
+            Lock completed team
+          </button>
+        )}
+      </div>
+      <details className="panel">
+        <summary>Team and submission rules</summary>
+        <ul>
+          <li>Every member must register. Teams have at most five people.</li>
+          <li>
+            Only individuals Going on the portal can be accommodated. Locking a
+            team is not approval or Going; Luma is registration only.
+          </li>
+          <li>Locking freezes membership and team details for admin review.</li>
+          <li>
+            At least one member must individually check in before team
+            submissions unlock, within the event window.
+          </li>
+          <li>
+            Exactly three committed submissions: the initial entry counts as
+            one, each committed update counts again. After three, no project
+            edits. Draft typing and navigation do not use attempts.
+          </li>
+          <li>
+            Credits belong only to their individually checked-in recipient.
+          </li>
+          <li>
+            Repository creation and first commit must BOTH be strictly after 1
+            November, 08:00 IST. Submit the full commit SHA; dates are
+            operational evidence, not proof of original authorship.
+          </li>
+          <li>
+            Only individually checked-in members qualify for prizes or rewards.
+            Absent members do not disqualify the team.
+          </li>
+          <li>No parking is available.</li>
+        </ul>
+      </details>
       <Search value={search} onChange={setSearch} label="Search team members" />
       <ul className="member-list">
         {(data.members || [])
@@ -500,7 +450,7 @@ function TeamWorkspace({
                 <small>{m.role === "leader" ? "Team leader" : "Member"}</small>
               </div>
               <Pill tone={m.approval === "approved" ? "positive" : "neutral"}>
-                {m.approval === "approved" ? "Approved" : "Registered"}
+                {m.approval === "approved" ? "Going" : "Registered"}
               </Pill>
               {t.leader_id === data.me?.id && m.role !== "leader" && (
                 <button
@@ -593,24 +543,24 @@ function Dashboard({
               data.registration?.status === "approved" ? "positive" : "neutral"
             }
           >
-            {data.registration?.status === "approved"
-              ? "Approved"
-              : data.registration?.status === "rejected"
-                ? "Not approved"
-                : "Registered"}
+            {data.individualStatus || "Registered"}
           </Pill>
         </div>
         <div>
           <span>Team</span>
-          <Pill tone={data.teamReadiness?.going ? "positive" : "waiting"}>
-            {data.teamReadiness?.label || "No team yet"}
+          <Pill tone={data.teamReadiness?.allApproved ? "positive" : "waiting"}>
+            {data.teamStatus || "No team yet"}
           </Pill>
         </div>
         <div>
-          <span>Progress</span>
+          <span>Attendance / progress</span>
           <Pill>{data.status || "Registered"}</Pill>
         </div>
       </div>
+      <p>
+        <strong>{data.submissionProgress?.status || "Not submitted"}</strong> ·{" "}
+        {data.submissionProgress?.attemptsUsed || 0}/3 committed
+      </p>
       {data.eligibility?.status === "ineligible" && (
         <p className="notice">
           <Pill tone="waiting">Ineligible</Pill> Your submission is excluded
@@ -626,15 +576,19 @@ function Dashboard({
       )}
       <TeamWorkspace data={data} run={run} />
       <div className="workspace-links">
-        <a href="/submission">
-          <strong>Submission</strong>
-          <span>
-            {data.attempts?.length
-              ? `${data.attempts.length} committed version${data.attempts.length === 1 ? "" : "s"}`
-              : "Not submitted"}
-          </span>
-          <span>Open submission →</span>
-        </a>
+        {data.submissionAccess?.canAccess ? (
+          <a href="/submission">
+            <strong>Submission</strong>
+            <span>
+              {data.attempts?.length
+                ? `${data.attempts.length} committed version${data.attempts.length === 1 ? "" : "s"}`
+                : "Not submitted"}
+            </span>
+            <span>Open submission →</span>
+          </a>
+        ) : (
+          <span>{data.submissionAccess?.message}</span>
+        )}
         <details>
           <summary>
             Credits <span className="muted">Private to you</span>
@@ -697,7 +651,7 @@ function Credit({ credit }: { credit: Row }) {
   return (
     <div className="credit-row">
       <strong>{credit.name}</strong>
-      <p>{credit.instructions}</p>
+      <CreditInstructions markdown={credit.instructions || ""} />
       {value ? (
         <>
           <code>{value}</code>
@@ -817,7 +771,30 @@ function Submission({
   const initial = { ...emptyProject, ...data.project?.draft };
   const [project, setProject] = useState(initial),
     [busy, setBusy] = useState(false),
-    [error, setError] = useState("");
+    [error, setError] = useState(""),
+    [step, setStep] = useState(1);
+  const wizardHeading = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    if (step !== 1) wizardHeading.current?.focus();
+  }, [step]);
+  const next = () => {
+    setError("");
+    if (
+      step === 1 &&
+      (!project.projectName?.trim() ||
+        !project.problemSolution?.trim() ||
+        !project.description?.trim() ||
+        !/^https:\/\/github\.com\//.test(project.github || ""))
+    ) {
+      setError("Add a project name, description and GitHub repository.");
+      return;
+    }
+    if (step === 2 && (!project.logo || !project.banner)) {
+      setError("Add your square logo and 16:9 banner.");
+      return;
+    }
+    setStep(Math.min(3, step + 1));
+  };
   const leader = data.team?.leader_id === data.me?.id;
   const set = (name: string, value: unknown) =>
     setProject((p: Row) => ({ ...p, [name]: value }));
@@ -887,7 +864,7 @@ function Submission({
           <span className="heading-dot green" />
         </h1>
         <p className="muted">
-          Save a draft anytime. Only the team leader can commit a version.
+          Only the team leader can save or commit during the submission window.
           Eligible committed projects appear automatically on the leaderboard.
         </p>
       </header>
@@ -900,8 +877,10 @@ function Submission({
           <div className="status-strip">
             <strong>{data.team.name}</strong>
             <Pill>{data.attempts?.length || 0}/3 versions committed</Pill>
-            <Pill tone={data.teamReadiness?.going ? "positive" : "waiting"}>
-              {data.teamReadiness?.label}
+            <Pill
+              tone={data.teamReadiness?.allApproved ? "positive" : "waiting"}
+            >
+              {data.teamStatus || "Forming"}
             </Pill>
           </div>
           {data.eligibility?.status === "ineligible" && (
@@ -922,110 +901,158 @@ function Submission({
               void save(false);
             }}
           >
-            <fieldset disabled={!leader || busy}>
-              <legend>Project essentials</legend>
-              {[
-                ["projectName", "Project name"],
-                ["problemSolution", "One-line problem and solution"],
-                ["description", "Project description"],
-                ["github", "GitHub repository"],
-                ["demo", "Demo URL · optional"],
-                ["tools", "Tools and how you used them"],
-              ].map(([name, label]) => (
-                <label key={name}>
-                  {label}
-                  {name === "description" || name === "tools" ? (
-                    <textarea
-                      rows={4}
-                      value={project[name]}
-                      onChange={(e) => set(name, e.target.value)}
-                    />
-                  ) : (
-                    <input
-                      value={project[name]}
-                      type={
-                        name === "github" || name === "demo" ? "url" : "text"
-                      }
-                      onChange={(e) => set(name, e.target.value)}
-                    />
-                  )}
-                </label>
-              ))}
-              <div className="media-inputs">
-                {["logo", "banner"].map((kind) => (
-                  <label key={kind}>
-                    {kind === "logo"
-                      ? "Project logo · required, 1:1"
-                      : "Project banner · required, 16:9"}
-                    <input
-                      type="file"
-                      accept="image/png,image/jpeg"
-                      onChange={(e) => {
-                        void upload(e.target.files?.[0], kind);
-                      }}
-                    />
-                    <small>PNG or JPEG · at most 128 KB</small>
-                    {project[kind] && (
-                      <img
-                        className={`upload-preview ${kind}`}
-                        src={project[kind]}
-                        alt={`${kind} preview`}
+            <fieldset
+              disabled={!leader || busy || data.submissionAccess?.locked}
+            >
+              <legend>
+                Step {step} of 3 · {3 - (data.attempts?.length || 0)}{" "}
+                submissions remaining
+              </legend>
+              <h2 ref={wizardHeading} tabIndex={-1}>
+                {
+                  ["Project essentials", "Project images", "Review and commit"][
+                    step - 1
+                  ]
+                }
+              </h2>
+              <div hidden={step !== 1 && !data.submissionAccess?.locked}>
+                {[
+                  ["projectName", "Project name"],
+                  ["problemSolution", "One-line problem and solution"],
+                  ["description", "Project description"],
+                  ["github", "GitHub repository"],
+                  ["demo", "Demo URL · optional"],
+                  ["tools", "Tools and how you used them"],
+                ].map(([name, label]) => (
+                  <label key={name}>
+                    {label}
+                    {name === "description" || name === "tools" ? (
+                      <textarea
+                        rows={4}
+                        value={project[name]}
+                        onChange={(e) => set(name, e.target.value)}
+                      />
+                    ) : (
+                      <input
+                        value={project[name]}
+                        type={
+                          name === "github" || name === "demo" ? "url" : "text"
+                        }
+                        onChange={(e) => set(name, e.target.value)}
                       />
                     )}
                   </label>
                 ))}
               </div>
-              <h2>Everyone’s contribution</h2>
-              {(data.members || []).map((m: Row) => (
-                <div className="contribution" key={m.id}>
-                  <h3>{m.name}</h3>
-                  <label>
-                    Contribution
-                    <input
-                      value={
-                        project.contributions.find(
-                          (c: Row) => c.userId === m.id,
-                        )?.role || ""
-                      }
-                      onChange={(e) =>
-                        contribution(m.id, "role", e.target.value)
-                      }
-                    />
-                  </label>
-                  <label>
-                    Use of Codex or other tools
-                    <input
-                      value={
-                        project.contributions.find(
-                          (c: Row) => c.userId === m.id,
-                        )?.codex || ""
-                      }
-                      onChange={(e) =>
-                        contribution(m.id, "codex", e.target.value)
-                      }
-                    />
-                  </label>
+              <div hidden={step !== 2 && !data.submissionAccess?.locked}>
+                <div className="media-inputs">
+                  {["logo", "banner"].map((kind) => (
+                    <label key={kind}>
+                      {kind === "logo"
+                        ? "Project logo · required, 1:1"
+                        : "Project banner · required, 16:9"}
+                      <input
+                        type="file"
+                        accept="image/png,image/jpeg"
+                        onChange={(e) => {
+                          void upload(e.target.files?.[0], kind);
+                        }}
+                      />
+                      <small>PNG or JPEG · at most 128 KB</small>
+                      {project[kind] && (
+                        <img
+                          className={`upload-preview ${kind}`}
+                          src={project[kind]}
+                          alt={`${kind} preview`}
+                        />
+                      )}
+                    </label>
+                  ))}
                 </div>
-              ))}
-              <label className="check-label">
-                <input
-                  type="checkbox"
-                  checked={!!project.attestation}
-                  onChange={(e) => set("attestation", e.target.checked)}
-                />
-                We confirm this submission accurately describes our team’s work.
-              </label>
+              </div>
+              <div hidden={step !== 3 && !data.submissionAccess?.locked}>
+                <h3>Everyone’s contribution</h3>
+                {(data.members || []).map((m: Row) => (
+                  <div className="contribution" key={m.id}>
+                    <h3>{m.name}</h3>
+                    <label>
+                      Contribution
+                      <input
+                        value={
+                          project.contributions.find(
+                            (c: Row) => c.userId === m.id,
+                          )?.role || ""
+                        }
+                        onChange={(e) =>
+                          contribution(m.id, "role", e.target.value)
+                        }
+                      />
+                    </label>
+                    <label>
+                      Use of Codex or other tools
+                      <input
+                        value={
+                          project.contributions.find(
+                            (c: Row) => c.userId === m.id,
+                          )?.codex || ""
+                        }
+                        onChange={(e) =>
+                          contribution(m.id, "codex", e.target.value)
+                        }
+                      />
+                    </label>
+                  </div>
+                ))}
+                <label>
+                  Submitted commit SHA
+                  <input
+                    value={project.commitSha || ""}
+                    pattern="[a-fA-F0-9]{40}"
+                    maxLength={40}
+                    onChange={(e) => set("commitSha", e.target.value)}
+                  />
+                </label>
+                <label className="check-label">
+                  <input
+                    type="checkbox"
+                    checked={!!project.attestation}
+                    onChange={(e) => set("attestation", e.target.checked)}
+                  />
+                  We confirm this submission accurately describes our team’s
+                  work.
+                </label>
+                <p className="muted">
+                  Committing uses one of the team’s three submissions.{" "}
+                  {Math.max(0, 2 - (data.attempts?.length || 0))} will remain
+                  after this commit.
+                </p>
+              </div>
               <div className="form-actions">
+                {step > 1 && (
+                  <button
+                    type="button"
+                    className="button secondary"
+                    onClick={() => setStep(step - 1)}
+                  >
+                    Back
+                  </button>
+                )}
+                {step < 3 && (
+                  <button type="button" className="button" onClick={next}>
+                    Next →
+                  </button>
+                )}
                 <button className="button" disabled={busy}>
                   Save draft
                 </button>
                 <button
                   type="button"
+                  hidden={step !== 3}
                   className="button secondary"
                   disabled={
                     busy ||
-                    !data.submissionStatus?.allowed ||
-                    !data.teamReadiness?.going ||
+                    !data.submissionAccess?.canAccess ||
+                    data.submissionAccess?.locked ||
                     (data.attempts?.length || 0) >= 3
                   }
                   onClick={() => {
@@ -1381,6 +1408,7 @@ function AdminParticipants({
 }) {
   const [q, setQ] = useState(""),
     [filter, setFilter] = useState(""),
+    [teamFilter, setTeamFilter] = useState(""),
     [selected, setSelected] = useState<string[]>([]),
     [status, setStatus] = useState("pending"),
     [reason, setReason] = useState(""),
@@ -1392,7 +1420,8 @@ function AdminParticipants({
       `${r.name || ""} ${r.email} ${r.team_name || ""}`
         .toLowerCase()
         .includes(q.toLowerCase()) &&
-      (!filter || r.status === filter),
+      (!filter || r.status === filter) &&
+      (!teamFilter || r.teamStatus === teamFilter),
   );
   const csv =
     "email\n" +
@@ -1416,23 +1445,25 @@ function AdminParticipants({
           <span className="sr-only">Status filter</span>
           <select value={filter} onChange={(e) => setFilter(e.target.value)}>
             <option value="">Status: all</option>
-            {[
-              "Registered",
-              "Approved",
-              "Going",
-              "Checked in",
-              "Submitted",
-              "Not approved",
-              "Cancelled",
-            ].map((s) => (
+            {["Registered", "Going", "Checked in", "Absent"].map((s) => (
               <option key={s}>{s}</option>
             ))}
           </select>
         </label>
+        <select
+          aria-label="Team progress filter"
+          value={teamFilter}
+          onChange={(e) => setTeamFilter(e.target.value)}
+        >
+          <option value="">Team: all</option>
+          {["Forming", "Locked", "Not submitted", "Submitted"].map((v) => (
+            <option key={v}>{v}</option>
+          ))}
+        </select>
         {!data.lookupOnly && (
           <a
             className="button secondary"
-            href={`/api/export?list=participants&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}`}
+            href={`/api/export?list=participants&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&teamStatus=${encodeURIComponent(teamFilter)}`}
           >
             Export CSV
           </a>
@@ -1520,9 +1551,9 @@ function AdminParticipants({
             <span className="sr-only">Individual approval status</span>
             <select value={status} onChange={(e) => setStatus(e.target.value)}>
               <option value="pending">Registered</option>
-              <option value="approved">Approved</option>
-              <option value="rejected">Not approved</option>
-              <option value="cancelled">Cancelled</option>
+              <option value="approved">Going</option>
+              <option value="checked">Checked in</option>
+              <option value="absent">Absent</option>
             </select>
           </label>
         )}
@@ -1539,11 +1570,27 @@ function AdminParticipants({
             className="button secondary"
             disabled={!selected.length || reason.trim().length < 5}
             onClick={() => {
-              void run("participant-bulk", {
-                emails: selected,
-                status,
-                reason,
-              }).catch(() => {});
+              if (["checked", "absent"].includes(status)) {
+                const people = (data.items || []).filter((r) =>
+                  selected.includes(r.email),
+                );
+                if (people.some((r) => !r.id)) {
+                  setError(
+                    "Selected people must sign in before a manual attendance status can be recorded.",
+                  );
+                  return;
+                }
+                void run("admin-status-bulk", {
+                  userIds: people.map((r) => r.id),
+                  status: status === "checked" ? "Checked in" : "Absent",
+                  reason,
+                }).catch(() => {});
+              } else
+                void run("participant-bulk", {
+                  emails: selected,
+                  status,
+                  reason,
+                }).catch(() => {});
             }}
           >
             Update approval
@@ -1570,7 +1617,7 @@ function AdminParticipants({
       {!data.checkInConfigured && (
         <p className="muted">
           {data.checkInStatus?.message || "Check-in setup is pending."} Going is
-          derived from the complete team, never set as an individual status.
+          an individual approval on this portal. Luma is registration only.
         </p>
       )}
       <div className="table-scroll">
@@ -1630,7 +1677,7 @@ function AdminParticipants({
                 </td>
                 <td>
                   {r.approval === "approved"
-                    ? "Approved"
+                    ? "Going"
                     : r.approval === "pending"
                       ? "Registered"
                       : r.approval}
@@ -1640,7 +1687,18 @@ function AdminParticipants({
                     {r.status}
                   </Pill>
                 </td>
-                <td>{r.checked_in ? "Checked in" : "Not checked in"}</td>
+                <td>
+                  {r.checked_in ? "Checked in" : "Not checked in"}
+                  {!data.lookupOnly && r.id && (
+                    <StatusChange
+                      kind="person"
+                      target={r.id}
+                      name={r.name || r.email}
+                      current={r.status}
+                      run={run}
+                    />
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -1749,43 +1807,63 @@ function Review({
               </Form>
             </details>
           )}
-          {(data.me?.owner || data.me?.role === "admin") && v && (
-            <Form
-              className="panel"
-              title="Eligibility check"
-              label="Record eligibility"
-              onSave={async (f) => {
-                await run("set-project-eligibility", {
-                  projectId: p.id,
-                  versionId: v.id,
-                  status: f.get("status"),
-                  reason: f.get("reason"),
-                });
-              }}
-            >
-              <p>
-                Eligibility is separate from evaluation. Verified eligible
-                submissions appear automatically. Leave unverified external
-                checks pending.
-              </p>
-              <Field name="status" label="Eligibility">
-                <select
-                  name="status"
-                  defaultValue={data.eligibility?.status || "needs_review"}
-                >
-                  <option value="needs_review">Checks pending</option>
-                  <option value="eligible">Eligible</option>
-                  <option value="ineligible">Ineligible</option>
-                </select>
-              </Field>
-              <Field
-                name="reason"
-                label="Verified evidence or reason"
-                required
-                minLength={5}
-              />
-            </Form>
-          )}
+          {(data.me?.owner ||
+            data.me?.role === "admin" ||
+            data.canRestoreEligibility) &&
+            v && (
+              <Form
+                className="panel"
+                title="Eligibility check"
+                label="Record eligibility"
+                onSave={async (f) => {
+                  await run("set-project-eligibility", {
+                    projectId: p.id,
+                    versionId: v.id,
+                    status: f.get("status"),
+                    reason: f.get("reason"),
+                    ...(f.get("status") === "ineligible"
+                      ? {
+                          violation: {
+                            rule: f.get("rule"),
+                            evidence: f.get("evidence"),
+                          },
+                        }
+                      : {}),
+                  });
+                }}
+              >
+                <Field
+                  name="rule"
+                  label="Confirmed rule (required for Ineligible)"
+                />
+                <Field
+                  name="evidence"
+                  label="Private evidence (required for Ineligible)"
+                  type="textarea"
+                />
+                <p>
+                  Eligibility is separate from evaluation. Verified eligible
+                  submissions appear automatically. Leave unverified external
+                  checks pending.
+                </p>
+                <Field name="status" label="Eligibility">
+                  <select
+                    name="status"
+                    defaultValue={data.eligibility?.status || "needs_review"}
+                  >
+                    <option value="needs_review">Checks pending</option>
+                    <option value="eligible">Eligible</option>
+                    <option value="ineligible">Ineligible</option>
+                  </select>
+                </Field>
+                <Field
+                  name="reason"
+                  label="Verified evidence or reason"
+                  required
+                  minLength={5}
+                />
+              </Form>
+            )}
         </article>
         <aside>
           <Form
@@ -1932,13 +2010,15 @@ function AdminList({
   run: (a: string, d: Row) => Promise<Row>;
 }) {
   const [q, setQ] = useState(""),
-    [filter, setFilter] = useState("");
+    [filter, setFilter] = useState(""),
+    [lockFilter, setLockFilter] = useState("");
   const teams = path === "/admin/teams",
     logs = path === "/admin/logs";
   const items = (data.items || []).filter(
     (r) =>
       JSON.stringify(r).toLowerCase().includes(q.toLowerCase()) &&
-      (!filter || r.status === filter),
+      (!filter || r.status === filter) &&
+      (!lockFilter || (lockFilter === "locked" ? r.locked : !r.locked)),
   );
   return (
     <>
@@ -1961,22 +2041,44 @@ function AdminList({
           onChange={setQ}
           label={teams ? "Search team or member" : "Search records"}
         />
-        {!teams && !logs && (
+        {!logs && (
           <select
-            aria-label="Submission status"
+            aria-label={teams ? "Team lock status" : "Submission status"}
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
           >
             <option value="">All statuses</option>
-            {["Draft", "Submitted"].map((s) => (
+            {(teams
+              ? ["Forming", "Locked", "Not submitted", "Submitted"]
+              : ["Draft", "Submitted"]
+            ).map((s) => (
               <option key={s}>{s}</option>
             ))}
           </select>
         )}
+        {teams && (
+          <select
+            aria-label="Membership lock filter"
+            value={lockFilter}
+            onChange={(e) => setLockFilter(e.target.value)}
+          >
+            <option value="">Lock: all</option>
+            <option value="locked">Locked</option>
+            <option value="unlocked">Unlocked</option>
+          </select>
+        )}
+        {teams && (
+          <a
+            className="button secondary"
+            href={`/api/export?list=team-emails&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}`}
+          >
+            Export member emails
+          </a>
+        )}
         {path !== "/review" && (
           <a
             className="button secondary"
-            href={`/api/export?list=${logs ? "logs" : teams ? "teams" : "submissions"}&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}`}
+            href={`/api/export?list=${logs ? "logs" : teams ? "teams" : "submissions"}&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}`}
           >
             Export CSV
           </a>
@@ -1990,11 +2092,19 @@ function AdminList({
                 <div className="identity-line">
                   <TeamAvatar avatar={t.avatar} palette={t.palette} />
                   <h2>{t.name}</h2>
+                  <Pill>{t.status}</Pill>
                 </div>
-                <Pill tone={t.readiness.going ? "positive" : "waiting"}>
-                  {t.readiness.label}
+                <Pill tone={t.readiness.allApproved ? "positive" : "waiting"}>
+                  {t.status}
                 </Pill>
               </header>
+              <StatusChange
+                kind="team"
+                target={t.id}
+                name={t.name}
+                current={t.status}
+                run={run}
+              />
               <ul className="member-list">
                 {t.members.map((m: Row) => (
                   <li key={m.id}>
@@ -2003,7 +2113,7 @@ function AdminList({
                       <small>{m.email}</small>
                     </div>
                     <Pill>
-                      {m.approval === "approved" ? "Approved" : "Registered"}
+                      {m.approval === "approved" ? "Going" : "Registered"}
                     </Pill>
                     {m.id !== t.leader_id && (
                       <button
@@ -2481,6 +2591,39 @@ function Settings({
           blocked.
         </p>
       </section>
+      <details className="panel">
+        <summary>Shared credit setup instructions</summary>
+        <p>
+          Setup steps only; assigned codes stay in each checked-in recipient’s
+          private vault.
+        </p>
+        {(data.creditInstructions || []).map((c: Row) => (
+          <Form
+            key={c.id + String(c.instructions)}
+            title={c.name}
+            label="Update instructions"
+            onSave={async (f) => {
+              await run("update-credit-instructions", {
+                typeId: c.id,
+                markdown: f.get("markdown"),
+                reason: f.get("reason"),
+              });
+            }}
+          >
+            <Field
+              name="markdown"
+              label="Markdown instructions"
+              type="textarea"
+              value={c.instructions}
+            />
+            <Field name="reason" label="Reason" required minLength={5} />
+            <details>
+              <summary>Current rendered steps</summary>
+              <CreditInstructions markdown={c.instructions || ""} />
+            </details>
+          </Form>
+        ))}
+      </details>
       {data.me?.owner && <OwnerPolicyControls data={data} run={run} />}
       {(data.me?.owner || data.me?.role === "admin") && (
         <section className="panel">
@@ -2694,7 +2837,7 @@ export default function Portal({
 }) {
   const path = canonical(original);
   const [data, setData] = useState<View>(initialPublic || {}),
-    [loading, setLoading] = useState(path !== "/"),
+    [loading, setLoading] = useState(!initialPublic && path !== "/"),
     [error, setError] = useState(""),
     [message, setMessage] = useState(""),
     [menu, setMenu] = useState(false);
@@ -2750,13 +2893,19 @@ export default function Portal({
     };
   }, [path]);
   const targetName = (values: Row) => {
-    const id = values.userId || values.projectId || values.teamId;
+    const id =
+      values.targetId ||
+      values.userId ||
+      values.projectId ||
+      values.teamId ||
+      values.typeId;
     const record = [
       ...(data.items || []),
       ...(data.roles || []),
       ...(data.members || []),
       ...(data.reviewers || []),
       ...(data.actions || []),
+      ...(data.creditInstructions || []),
     ].find((r: Row) => r.id === id || r.user_id === id);
     if (values.minutes && data.policy?.submissionClose)
       return `Submission deadline → ${ist(new Date(Date.parse(data.policy.submissionClose) + Number(values.minutes) * 60000).toISOString())}`;
@@ -2792,7 +2941,9 @@ export default function Portal({
         !(await gate.current!.ask(
           confirmationFor(
             action,
-            values,
+            action === "submit-project"
+              ? { ...values, attemptsUsed: data.attempts?.length || 0 }
+              : values,
             action === "complete-profile"
               ? data.me?.name || "Your profile"
               : targetName(values),
@@ -2858,6 +3009,7 @@ export default function Portal({
   const nav = admin
     ? [
         ["/admin/participants", "Participants"],
+        ["/rules", "Rules"],
         ...(privileged
           ? [
               ["/admin/teams", "Teams"],
@@ -2874,10 +3026,13 @@ export default function Portal({
         ...(data.me
           ? [
               ["/dashboard", "Dashboard"],
+              ["/rules", "Rules"],
               ...(data.me.role === "participant"
                 ? [
                     ["/teams", "Teams"],
-                    ["/submission", "Submission"],
+                    ...(data.submissionAccess?.canAccess
+                      ? [["/submission", "Submission"]]
+                      : []),
                   ]
                 : []),
               ...(reviewer ? [["/review", "Assigned projects"]] : []),
@@ -2889,7 +3044,7 @@ export default function Portal({
     teamPalettes.forest;
   return (
     <div
-      className="app-shell"
+      className={`app-shell ${path === "/" ? "public-home-shell" : ""}`}
       style={{ "--team-accent": c.ink, "--team-wash": c.wash } as CSSProperties}
     >
       {confirmation && (
@@ -2902,9 +3057,57 @@ export default function Portal({
       <a className="skip-link" href="#main">
         Skip to content
       </a>
+      {path === "/" && (
+        <header className="public-header">
+          <a className="public-brand" href="/">
+            <img
+              src="/brand/codex-user-supplied.svg"
+              width="32"
+              height="32"
+              alt=""
+            />
+            Codex Community New Delhi
+          </a>
+          <button
+            className="public-menu button secondary"
+            aria-controls="public-navigation"
+            aria-expanded={menu}
+            onClick={() => setMenu(!menu)}
+          >
+            Menu
+          </button>
+          <nav
+            id="public-navigation"
+            aria-label="Public navigation"
+            data-open={menu}
+          >
+            <a href="/" aria-current="page">
+              Home
+            </a>
+            <a href="/projects">Projects</a>
+            <a
+              className="button"
+              href={
+                data.me
+                  ? "/dashboard"
+                  : "/signin-with-chatgpt?return_to=%2Fdashboard"
+              }
+              target="_top"
+            >
+              {data.me ? "Dashboard" : "Sign in"}
+            </a>
+          </nav>
+        </header>
+      )}
       <header className="mobile-header">
         <a className="brand" href="/" aria-label="DevDay Exchange home">
-          D<span>/</span>E
+          <img
+            src="/brand/codex-user-supplied.svg"
+            width="32"
+            height="32"
+            alt=""
+          />
+          <span>Codex Community New Delhi</span>
         </a>
         <button
           className="button secondary"
@@ -2917,7 +3120,13 @@ export default function Portal({
       </header>
       <aside className={`sidebar ${menu ? "open" : ""}`}>
         <a className="brand" href="/" aria-label="DevDay Exchange home">
-          D<span>/</span>E
+          <img
+            src="/brand/codex-user-supplied.svg"
+            width="32"
+            height="32"
+            alt=""
+          />
+          <span>Codex Community New Delhi</span>
         </a>
         <nav
           id="site-navigation"
@@ -3036,14 +3245,35 @@ export default function Portal({
             ))}
           </section>
         ) : loading ? (
-          <p role="status">Loading your workspace…</p>
+          <div className="loading-state" role="status">
+            <span className="loading-dots" aria-hidden="true">
+              <i />
+              <i />
+              <i />
+            </span>
+            <span>Loading</span>
+          </div>
         ) : (
           !error && (
             <>
-              {data.profileIncomplete ? (
+              {data.profileIncomplete && path !== "/rules" ? (
                 <Profile data={data} run={run} gated />
               ) : path === "/profile" ? (
                 <Profile data={data} run={run} />
+              ) : path === "/rules" ? (
+                <section>
+                  <h1>Rules</h1>
+                  {(data.categories || []).map((c: Row) => (
+                    <section key={c.title} className="panel">
+                      <h2>{c.title}</h2>
+                      <ul>
+                        {c.items.map((t: string) => (
+                          <li key={t}>{t}</li>
+                        ))}
+                      </ul>
+                    </section>
+                  ))}
+                </section>
               ) : path === "/dashboard" ? (
                 <Dashboard data={data} run={clickRun} />
               ) : path === "/teams" ? (
@@ -3072,5 +3302,50 @@ export default function Portal({
         )}
       </main>
     </div>
+  );
+}
+
+function StatusChange({
+  kind,
+  target,
+  name,
+  current,
+  run,
+}: {
+  kind: "person" | "team";
+  target: string;
+  name: string;
+  current: string;
+  run: (a: string, d: Row) => Promise<Row>;
+}) {
+  return (
+    <details>
+      <summary>Change {name} status</summary>
+      <Form
+        title={name}
+        label="Review status change"
+        onSave={async (f) => {
+          await run("admin-status", {
+            kind,
+            targetId: target,
+            status: f.get("status"),
+            reason: f.get("reason"),
+          });
+        }}
+      >
+        <label>
+          New status
+          <select name="status" defaultValue={current}>
+            {(kind === "person"
+              ? ["Registered", "Going", "Checked in", "Absent"]
+              : ["Forming", "Locked", "Not submitted", "Submitted"]
+            ).map((v) => (
+              <option key={v}>{v}</option>
+            ))}
+          </select>
+        </label>
+        <Field name="reason" label="Audit reason" minLength={5} required />
+      </Form>
+    </details>
   );
 }

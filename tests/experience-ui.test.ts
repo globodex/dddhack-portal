@@ -29,7 +29,7 @@ test("original preset shapes, safe contrast and semantic responsive shell render
     "Shivay L",
     "Nikhil Shukla",
     "Shresth Shukla",
-    "Pause motion",
+    "Pause animations",
     "Skip to content",
     "IIIT Delhi",
   ])

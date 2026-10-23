@@ -44,7 +44,7 @@ function errorResponse(error: unknown) {
     );
   const msg = error instanceof Error ? error.message : "";
   const constraint = msg.match(
-    /TEAM_FULL|APPROVAL_REQUIRED|MEMBERSHIP_FROZEN|ALREADY_IN_TEAM|IDEA_LOCKED|SUBMISSIONS_CLOSED|EVENT_DRAFT|VOTE_LIMIT|OWN_TEAM|CHECKIN_REQUIRED|RESULTS_FROZEN|SCORING_CHANGED_RETRY|IMMUTABLE/,
+    /PROJECT_LOCKED_AFTER_THIRD_SUBMISSION|TEAM_LOCKED|TEAM_CHECKIN_REQUIRED|OPERATION_NOT_ENABLED|TEAM_FULL|APPROVAL_REQUIRED|MEMBERSHIP_FROZEN|ALREADY_IN_TEAM|IDEA_LOCKED|SUBMISSIONS_CLOSED|EVENT_DRAFT|VOTE_LIMIT|OWN_TEAM|CHECKIN_REQUIRED|RESULTS_FROZEN|SCORING_CHANGED_RETRY|IMMUTABLE/,
   );
   if (constraint || /constraint|UNIQUE|CHECK/.test(msg))
     return Response.json(
@@ -191,6 +191,7 @@ export async function handleExport(request: Request, runtime: Runtime) {
         "participants",
         "credits",
         "teams",
+        "team-emails",
         "submissions",
         "settings",
         "permissions",
@@ -211,11 +212,21 @@ export async function handleExport(request: Request, runtime: Runtime) {
     const status = (
       new URL(request.url).searchParams.get("status") || ""
     ).slice(0, 40);
+    const params = new URL(request.url).searchParams,
+      teamStatus = (params.get("teamStatus") || "").slice(0, 40),
+      lock = params.get("lock");
     data = data.filter(
       (row) =>
         (!query || JSON.stringify(row).toLowerCase().includes(query)) &&
-        (!status || row.status === status),
+        (!status || row.status === status) &&
+        (!teamStatus || row.teamStatus === teamStatus) &&
+        (!lock ||
+          (lock === "locked"
+            ? row.teamLocked === true || row.locked === true
+            : row.teamLocked === false || row.locked === false)),
     );
+    if (list === "team-emails")
+      data = data.map((row) => ({ email: row.email }));
     await service.mutate(actor.id, "export", list, [], {
       rows: data.length,
       secretValues: false,
