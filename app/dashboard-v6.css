@@ -1,0 +1,571 @@
+/* Dashboard follows the selected Team / Credits / Project board. Data and
+   permission gates remain the server's existing projections. */
+.app-shell .dashboard-v6 {
+  max-width: 1100px;
+  min-width: 0;
+  container-type: inline-size;
+}
+.app-shell .dashboard-v6 .dashboard-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.app-shell .dashboard-v6 .dashboard-heading h1 {
+  gap: 18px;
+  font-size: 36px;
+  letter-spacing: -0.035em;
+  margin: 0;
+}
+.app-shell .dashboard-v6 .dashboard-heading .expressive-heading-dot {
+  margin-inline-start: 0;
+  width: 56px;
+  height: 56px;
+}
+.app-shell .dashboard-v6 .pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 7px 11px;
+  border-radius: 10px;
+  min-width: 0;
+  width: auto;
+  flex: 0 0 auto;
+  font-size: 13px;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+.app-shell .dashboard-v6 .pill.positive {
+  background: #e6faf1;
+  color: #007b49;
+}
+.app-shell .dashboard-v6 .pill.locked {
+  color: #465669;
+  background: #eff3f6;
+}
+.app-shell .dashboard-v6 .dashboard-heading > .pill {
+  padding: 10px 14px;
+  font-size: 15px;
+}
+.app-shell .dashboard-v6 .dashboard-sections {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  padding: 0;
+  margin: 15px 0 24px;
+  border-bottom: 1px solid #dce3e8;
+}
+.app-shell .dashboard-v6 .dashboard-sections [role="tab"] {
+  flex: 0 1 124px;
+  min-height: 50px;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 2px solid transparent;
+  padding: 13px 16px;
+  color: #465568;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.app-shell .dashboard-v6 .dashboard-sections [aria-selected="true"] {
+  border-bottom-color: #00a56b;
+  color: #007f50;
+  font-weight: 700;
+}
+.app-shell .dashboard-v6 .dashboard-sections [role="tab"]:focus-visible {
+  outline: 2px solid #006afe;
+  outline-offset: -4px;
+}
+.app-shell .dashboard-v6 .dashboard-section {
+  margin: 0;
+  padding: 0;
+}
+.app-shell .dashboard-v6 [hidden] {
+  display: none !important;
+}
+.app-shell .dashboard-v6 .team-avatar {
+  padding: 0;
+  border-radius: 50%;
+}
+.app-shell .dashboard-v6 .dashboard-team-heading {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 0 0 20px;
+}
+.app-shell .dashboard-v6 .dashboard-team-heading h3 {
+  font-size: 26px;
+  margin: 0;
+  letter-spacing: -0.035em;
+}
+.app-shell .dashboard-v6 .dashboard-team-heading > .pill {
+  font-size: 15px;
+}
+.app-shell .dashboard-v6 .dashboard-venue {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 18px;
+  margin: 0 0 24px;
+  border-radius: 12px;
+  background: #f0f5f8;
+  color: #293749;
+}
+.app-shell .dashboard-v6 .dashboard-venue > svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
+.app-shell .dashboard-v6 .dashboard-venue > div {
+  min-width: 0;
+  flex: 1;
+}
+.app-shell .dashboard-v6 .dashboard-venue h3 {
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+.app-shell .dashboard-v6 .dashboard-venue p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.app-shell .dashboard-v6 .dashboard-venue a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #008d56;
+  font-size: 14px;
+  white-space: nowrap;
+  align-self: center;
+}
+.app-shell .dashboard-v6 .dashboard-members > h3,
+.app-shell .dashboard-v6 .dashboard-idea > h3,
+.app-shell .dashboard-v6 .dashboard-feedback > h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+}
+.app-shell .dashboard-v6 .dashboard-member-list {
+  margin: 0;
+  padding: 0;
+}
+.app-shell .dashboard-v6 .dashboard-member-list > li {
+  display: grid;
+  grid-template-columns: 40px minmax(90px, 1fr) auto auto auto auto;
+  align-items: center;
+  gap: 10px 14px;
+  padding: 10px 0;
+  min-height: 64px;
+  border: 0;
+  border-top: 1px solid #dce3e8;
+}
+.app-shell .dashboard-v6 .dashboard-member-list > li:last-child {
+  border-bottom: 1px solid #dce3e8;
+}
+.app-shell .dashboard-v6 .dashboard-member-list > li > svg {
+  width: 40px;
+  height: 40px;
+}
+.app-shell .dashboard-v6 .dashboard-member-list > li > div {
+  min-width: 0;
+}
+.app-shell .dashboard-v6 .dashboard-member-name strong {
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.app-shell .dashboard-v6 .dashboard-member-name .text-link {
+  color: #15202b;
+}
+.app-shell .dashboard-v6 .dashboard-member-list .pill {
+  margin: 0;
+  font-size: 12px;
+  padding: 6px 9px;
+}
+.app-shell .dashboard-v6 .dashboard-member-links {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.app-shell .dashboard-v6 .dashboard-member-links a,
+.app-shell .dashboard-v6 .dashboard-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: 8px;
+  flex: 0 0 auto;
+}
+.app-shell .dashboard-v6 .dashboard-member-links img {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+.app-shell .dashboard-v6 .dashboard-member-links .dashboard-whatsapp {
+  color: #00a63c;
+}
+.app-shell .dashboard-v6 .dashboard-member-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.app-shell .dashboard-v6 .dashboard-member-phone svg {
+  color: #526176;
+  flex: 0 0 auto;
+}
+.app-shell .dashboard-v6 .dashboard-remove {
+  color: #a52c3d;
+  cursor: pointer;
+}
+.app-shell .dashboard-v6 .dashboard-member-links a:hover,
+.app-shell .dashboard-v6 .dashboard-icon-button:hover {
+  background: #f0f5f8;
+}
+.app-shell .dashboard-v6 .dashboard-idea {
+  margin-top: 24px;
+}
+.app-shell .dashboard-v6 .dashboard-locked-idea {
+  background: #f0f5f8;
+  border-radius: 12px;
+  padding: 16px 18px 12px;
+}
+.app-shell .dashboard-v6 .dashboard-locked-idea > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+}
+.app-shell .dashboard-v6 .dashboard-locked-idea h4 {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.4;
+}
+.app-shell .dashboard-v6 .dashboard-locked-idea p {
+  margin: 7px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.app-shell .dashboard-v6 .dashboard-locked-idea svg {
+  color: #465669;
+  flex: 0 0 auto;
+}
+.app-shell .dashboard-v6 .dashboard-idea-count {
+  display: block;
+  text-align: right;
+  font-size: 13px;
+  color: #77879a;
+}
+.app-shell .dashboard-v6 .dashboard-idea-form {
+  padding: 0;
+  background: transparent;
+}
+.app-shell .dashboard-v6 .dashboard-team-controls {
+  margin-top: 24px;
+}
+.app-shell .dashboard-v6 .dashboard-credit {
+  padding: 22px 0 32px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #dce3e8;
+  max-width: 640px;
+}
+.app-shell .dashboard-v6 .dashboard-credit + .dashboard-credit {
+  padding-top: 32px;
+}
+.app-shell .dashboard-v6 .dashboard-credit:last-child {
+  border-bottom: 0;
+}
+.app-shell .dashboard-v6 .dashboard-credit h3 {
+  font-size: 22px;
+  line-height: 1.35;
+  letter-spacing: -0.035em;
+  margin: 0 0 12px;
+}
+.app-shell .dashboard-v6 .credit-instructions {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #465568;
+}
+.app-shell .dashboard-v6 .credit-instructions p {
+  margin: 8px 0;
+}
+.app-shell .dashboard-v6 .credit-instructions a {
+  color: #008d56;
+}
+.app-shell .dashboard-v6 .credit-secret {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 48px 48px;
+  gap: 0;
+  border: 1px solid #dce3e8;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 16px;
+  align-items: stretch;
+}
+.app-shell .dashboard-v6 .credit-secret > code {
+  width: 100%;
+  min-width: 0;
+  padding: 13px 15px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: white;
+  font-size: 15px;
+  line-height: 1.5;
+  align-self: center;
+}
+.app-shell .dashboard-v6 .credit-secret > button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  min-height: 48px;
+  padding: 0;
+  margin: 0;
+  background: #f4f7f9;
+  border: 0;
+  border-left: 1px solid #e3e9ee;
+  border-radius: 0;
+  color: #465669;
+}
+.app-shell .dashboard-v6 .credit-secret > button:disabled {
+  opacity: 0.45;
+}
+.app-shell .dashboard-v6 .credit-secret > button:focus-visible {
+  outline: 2px solid #006afe;
+  outline-offset: -4px;
+}
+.app-shell .dashboard-v6 .dashboard-project-heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 4px 0 16px;
+}
+.app-shell .dashboard-v6 .dashboard-project-heading .identity-line {
+  gap: 12px;
+  min-width: 0;
+}
+.app-shell .dashboard-v6 .dashboard-project-heading h3 {
+  font-size: 18px;
+  line-height: 1.35;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.app-shell .dashboard-v6 .dashboard-upvotes {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  font-size: 16px;
+  color: #263446;
+}
+.app-shell .dashboard-v6 .dashboard-project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.app-shell .dashboard-v6 .dashboard-project-actions > .button {
+  flex: 1 1 130px;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 12px;
+  font-size: 14px;
+  border-color: #dce3e8;
+}
+.app-shell .dashboard-v6 .dashboard-project-card {
+  margin-bottom: 28px;
+}
+.app-shell .dashboard-v6 .dashboard-project-banner {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  margin-bottom: 14px;
+}
+.app-shell .dashboard-v6 .dashboard-project-card h3 {
+  font-size: 21px;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+  margin: 0 0 5px;
+}
+.app-shell .dashboard-v6 .dashboard-project-card p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #465568;
+  margin: 5px 0;
+}
+.app-shell .dashboard-v6 .dashboard-feedback {
+  margin-top: 28px;
+}
+.app-shell .dashboard-v6 .dashboard-feedback .feedback-entry {
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  border: 0;
+  border-radius: 12px;
+  background: #f0f5f8;
+}
+.app-shell .dashboard-v6 .dashboard-feedback-heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 14px;
+}
+.app-shell .dashboard-v6 .dashboard-feedback-heading > .pill {
+  margin-left: auto;
+  font-size: 12px;
+}
+.app-shell .dashboard-v6 .dashboard-feedback .feedback-entry p {
+  margin: 12px 0 8px;
+  line-height: 1.5;
+  font-size: 14px;
+}
+.app-shell .dashboard-v6 .dashboard-feedback .feedback-entry small {
+  color: #67778a;
+  font-size: 12px;
+}
+@container (max-width: 560px) {
+  .app-shell .dashboard-v6 .dashboard-member-list > li {
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    gap: 5px 12px;
+    padding: 11px 0;
+  }
+  .app-shell .dashboard-v6 .dashboard-member-links {
+    grid-column: 2 / 4;
+    justify-content: flex-start;
+  }
+  .app-shell .dashboard-v6 .dashboard-member-phone {
+    grid-column: 2 / 4;
+  }
+  .app-shell .dashboard-v6 .dashboard-remove {
+    grid-column: 3;
+    grid-row: 2;
+    justify-self: end;
+  }
+  .app-shell .dashboard-v6 .dashboard-venue {
+    flex-wrap: wrap;
+  }
+  .app-shell .dashboard-v6 .dashboard-venue a {
+    margin-left: 46px;
+  }
+}
+@media (max-width: 640px) {
+  .app-shell .dashboard-v6 .dashboard-heading {
+    gap: 9px;
+  }
+  .app-shell .dashboard-v6 .dashboard-heading h1 {
+    gap: 11px;
+    font-size: 24px;
+    letter-spacing: -0.04em;
+  }
+  .app-shell .dashboard-v6 .dashboard-heading .expressive-heading-dot {
+    width: 40px;
+    height: 40px;
+  }
+  .app-shell .dashboard-v6 .dashboard-heading > .pill {
+    padding: 8px 9px;
+    font-size: 12px;
+    gap: 5px;
+    border-radius: 10px;
+  }
+  .app-shell .dashboard-v6 .dashboard-heading > .pill svg {
+    width: 15px;
+    height: 15px;
+  }
+  .app-shell .dashboard-v6 .dashboard-sections {
+    gap: 0;
+    margin: 12px 0 20px;
+  }
+  .app-shell .dashboard-v6 .dashboard-sections [role="tab"] {
+    flex: 1;
+    min-width: 0;
+    padding: 11px 8px;
+    min-height: 48px;
+    font-size: 14px;
+  }
+  .app-shell .dashboard-v6 .dashboard-team-heading {
+    gap: 12px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .app-shell .dashboard-v6 .dashboard-team-heading > .team-avatar {
+    width: 48px;
+    height: 48px;
+  }
+  .app-shell .dashboard-v6 .dashboard-team-heading h3 {
+    font-size: 22px;
+  }
+  .app-shell .dashboard-v6 .dashboard-team-heading > .pill {
+    font-size: 12px;
+  }
+  .app-shell .dashboard-v6 .dashboard-team-heading > .pill svg {
+    width: 15px;
+    height: 15px;
+  }
+  .app-shell .dashboard-v6 .dashboard-venue {
+    padding: 15px;
+    gap: 12px;
+  }
+  .app-shell .dashboard-v6 .dashboard-venue a {
+    margin-left: 40px;
+  }
+  .app-shell .dashboard-v6 .dashboard-venue h3 {
+    font-size: 14px;
+  }
+  .app-shell .dashboard-v6 .dashboard-members > h3,
+  .app-shell .dashboard-v6 .dashboard-idea > h3,
+  .app-shell .dashboard-v6 .dashboard-feedback > h3 {
+    font-size: 17px;
+  }
+  .app-shell .dashboard-v6 .dashboard-project-heading {
+    gap: 9px;
+  }
+  .app-shell .dashboard-v6 .dashboard-project-heading .identity-line {
+    gap: 10px;
+  }
+  .app-shell .dashboard-v6 .dashboard-project-heading h3 {
+    font-size: 16px;
+  }
+  .app-shell .dashboard-v6 .dashboard-project-heading .pill {
+    font-size: 11px;
+    padding: 6px 8px;
+  }
+  .app-shell .dashboard-v6 .dashboard-credit {
+    padding-top: 20px;
+  }
+  .app-shell .dashboard-v6 .dashboard-credit h3 {
+    font-size: 22px;
+  }
+}
+@media (max-width: 359px) {
+  .app-shell .dashboard-v6 .dashboard-heading h1 {
+    font-size: 21px;
+    gap: 8px;
+  }
+  .app-shell .dashboard-v6 .dashboard-heading .expressive-heading-dot {
+    width: 32px;
+    height: 32px;
+  }
+  .app-shell .dashboard-v6 .dashboard-heading > .pill {
+    font-size: 11px;
+    padding: 7px;
+  }
+}

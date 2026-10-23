@@ -3,6 +3,14 @@ import {
   ArrowLeft,
   ArrowRight,
   ArrowUp,
+  CircleCheck,
+  ExternalLink,
+  EyeOff,
+  LockKeyhole,
+  MapPin,
+  MessageCircle,
+  Phone,
+  Trash2,
   BriefcaseBusiness,
   ChartNoAxesColumnIncreasing,
   ClipboardList,
@@ -23,7 +31,10 @@ import {
 import AddAdmins from "./add-admins";
 import { HeadingDot } from "./expressive-heading";
 import CenteredLoader from "./centered-loader";
-import DiscoveryProfile, { type DiscoveryPerson } from "./discovery-profile";
+import DiscoveryProfile, {
+  discoverySocialLinks,
+  type DiscoveryPerson,
+} from "./discovery-profile";
 import { portalNavigation } from "../lib/navigation";
 import {
   submissionToolChoices,
@@ -36,6 +47,8 @@ import {
 } from "../lib/participant-filters";
 import DotAvatar from "./dot-avatar";
 import {
+  dotColors,
+  dotExpressions,
   teamColorKeys,
   teamDotColors,
   teamColorLabels,
@@ -608,16 +621,14 @@ export function TeamWorkspace({
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
-  const [search, setSearch] = useState("");
   const [description, setDescription] = useState(data.idea?.description || "");
   const t = data.team;
   const leader = !!t && data.me?.id === t.leader_id;
   const locked = !!(t?.locked || data.ideaLocked);
   if (!t)
     return (
-      <section className="panel">
+      <section className="panel dashboard-empty-team">
         <h3>Find your team</h3>
-
         <a className="button secondary" href="/discover/teams">
           Discover teams
         </a>
@@ -625,115 +636,32 @@ export function TeamWorkspace({
       </section>
     );
   return (
-    <section className="team-workspace">
-      <div className="section-heading">
-        <div className="identity-line">
-          <TeamAvatar name={t.name} palette={t.palette} />
-          <div>
-            <h3>{t.name}</h3>
-          </div>
-        </div>
-        <Pill>{data.teamStatus || "Forming"}</Pill>
+    <section className="team-workspace dashboard-team">
+      <div className="dashboard-team-heading">
+        <TeamAvatar name={t.name} palette={t.palette} size={64} />
+        <h3>{t.name}</h3>
+        <Pill tone={locked ? "locked" : "neutral"}>
+          {locked && <LockKeyhole size={18} aria-hidden="true" />}
+          {locked ? "Locked" : data.teamStatus || "Forming"}
+        </Pill>
       </div>
-      {leader && !locked ? (
-        <Form
-          title="Team idea"
-          disabled={locked}
-          label="Save team idea"
-          onSave={async (f) => {
-            await run("save-workspace-idea", {
-              title: f.get("title"),
-              description: description.trim(),
-            });
-          }}
-        >
-          <fieldset disabled={locked}>
-            <Field
-              name="title"
-              label="Idea title"
-              value={data.idea?.title}
-              required
-            />
-            <label>
-              Short description
-              <textarea
-                name="description"
-                required
-                maxLength={500}
-                rows={4}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                aria-describedby="idea-count"
-              />
-              <small id="idea-count">{description.length}/500 characters</small>
-            </label>
-          </fieldset>
-
-          {locked && <Pill>Idea locked</Pill>}
-        </Form>
-      ) : (
-        data.idea && (
-          <section className="panel">
-            <h3>{data.idea.title}</h3>
-            <p className="prose">{data.idea.description}</p>
-          </section>
-        )
-      )}
-      <div className="form-actions">
-        {leader && !locked && (
-          <button
-            className="button secondary"
-            disabled={
-              !data.idea?.title?.trim() || !data.idea?.description?.trim()
-            }
-            onClick={() => {
-              void run("lock-team", { confirmation: "LOCK_TEAM" }).catch(
-                () => {},
-              );
-            }}
-          >
-            Lock completed team
-          </button>
-        )}
-      </div>
-      {leader && !locked && (
-        <details className="panel">
-          <summary>Rename team</summary>
-          <Form
-            label="Rename team"
-            onSave={async (f) => {
-              await run("rename-team", {
-                name: f.get("name"),
-                reason: "Leader renamed unlocked team",
-              });
-            }}
-          >
-            <Field
-              name="name"
-              label="Team name"
-              value={t.name}
-              required
-              minLength={2}
-            />
-          </Form>
-        </details>
-      )}
-      <Search value={search} onChange={setSearch} label="Search team members" />
-      <ul className="member-list">
-        {(data.members || [])
-          .filter((m: Row) =>
-            String(m.name || "")
-              .toLowerCase()
-              .includes(search.toLowerCase()),
-          )
-          .map((m: Row) => (
+      {data.privateVenue && <DashboardVenue venue={data.privateVenue} />}
+      <section
+        className="dashboard-members"
+        aria-labelledby="dashboard-members-heading"
+      >
+        <h3 id="dashboard-members-heading">
+          Team members ({data.members?.length || 0})
+        </h3>
+        <ul className="member-list dashboard-member-list">
+          {(data.members || []).map((m: Row) => (
             <li key={m.id}>
               <DotAvatar
                 color={m.avatarColor}
                 expression={m.avatarExpression}
-                size={48}
+                size={40}
               />
-              <div className="member-details">
+              <div className="dashboard-member-name">
                 <strong>
                   {safeProfileUrl(m.profileUrl) ? (
                     <a
@@ -745,31 +673,58 @@ export function TeamWorkspace({
                   ) : (
                     m.name
                   )}
-                  {m.id === data.me?.id && " · You"}
                 </strong>
-                <small>{m.role === "leader" ? "Team leader" : "Member"}</small>
-                {m.bio && <p>{m.bio}</p>}
-                <SocialLinks socials={m.socials} />
-                {m.phone && <small>{m.phone}</small>}
+                <span className="sr-only">
+                  {m.status ||
+                    (m.approval === "approved" ? "Going" : "Registered")}
+                </span>
+              </div>
+              {m.role === "leader" && <Pill tone="positive">Leader</Pill>}
+              <div className="dashboard-member-links">
+                {discoverySocialLinks(
+                  Array.isArray(m.socials) ? m.socials : [],
+                ).map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${m.name} on ${link.label}`}
+                    title={link.label}
+                  >
+                    <img
+                      src={`/icons/social/${link.icon}.svg`}
+                      width={22}
+                      height={22}
+                      alt=""
+                    />
+                  </a>
+                ))}
                 {safeExternalUrl(m.whatsappUrl) && (
                   <a
-                    className="text-link"
+                    className="dashboard-whatsapp"
                     href={safeExternalUrl(m.whatsappUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Open WhatsApp chat with ${m.name}`}
+                    title="WhatsApp"
                   >
-                    WhatsApp
+                    <MessageCircle size={23} aria-hidden="true" />
                   </a>
                 )}
               </div>
-              <Pill>
-                {m.status ||
-                  (m.approval === "approved" ? "Going" : "Registered")}
-              </Pill>
+              {m.phone && (
+                <span className="dashboard-member-phone">
+                  <Phone size={17} aria-hidden="true" />
+                  {m.phone}
+                </span>
+              )}
               {leader && !locked && m.role !== "leader" && (
                 <button
-                  className="link-button"
+                  type="button"
+                  className="dashboard-icon-button dashboard-remove"
+                  aria-label={`Remove ${m.name} from team`}
+                  title={`Remove ${m.name}`}
                   onClick={() => {
                     void run("remove-workspace-member", {
                       userId: m.id,
@@ -777,14 +732,111 @@ export function TeamWorkspace({
                     }).catch(() => {});
                   }}
                 >
-                  Remove
+                  <Trash2 size={19} aria-hidden="true" />
                 </button>
               )}
             </li>
           ))}
-      </ul>
+        </ul>
+      </section>
+      <section
+        className="dashboard-idea"
+        aria-labelledby="dashboard-idea-heading"
+      >
+        <h3 id="dashboard-idea-heading">
+          Team idea{locked ? " (locked)" : ""}
+        </h3>
+        {leader && !locked ? (
+          <Form
+            className="dashboard-idea-form"
+            disabled={locked}
+            label="Save team idea"
+            onSave={async (f) => {
+              await run("save-workspace-idea", {
+                title: f.get("title"),
+                description: description.trim(),
+              });
+            }}
+          >
+            <fieldset disabled={locked}>
+              <Field
+                name="title"
+                label="Idea title"
+                value={data.idea?.title}
+                required
+              />
+              <label>
+                Short description
+                <textarea
+                  name="description"
+                  required
+                  maxLength={500}
+                  rows={4}
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  aria-describedby="idea-count"
+                />
+                <small id="idea-count">
+                  {description.length}/500 characters
+                </small>
+              </label>
+            </fieldset>
+          </Form>
+        ) : data.idea ? (
+          <div className="dashboard-locked-idea">
+            <div>
+              <h4>{data.idea.title}</h4>
+              {locked && <LockKeyhole size={18} aria-label="Locked" />}
+            </div>
+            <p className="prose">{data.idea.description}</p>
+            <span className="dashboard-idea-count">
+              {String(data.idea.description || "").length}/500
+            </span>
+          </div>
+        ) : (
+          <p>No team idea yet.</p>
+        )}
+        {leader && !locked && (
+          <div className="form-actions">
+            <button
+              className="button secondary"
+              disabled={
+                !data.idea?.title?.trim() || !data.idea?.description?.trim()
+              }
+              onClick={() => {
+                void run("lock-team", { confirmation: "LOCK_TEAM" }).catch(
+                  () => {},
+                );
+              }}
+            >
+              <LockKeyhole size={18} aria-hidden="true" />
+              Lock completed team
+            </button>
+          </div>
+        )}
+      </section>
       {leader && !locked && (
-        <>
+        <div className="dashboard-team-controls">
+          <details className="panel">
+            <summary>Rename team</summary>
+            <Form
+              label="Rename team"
+              onSave={async (f) => {
+                await run("rename-team", {
+                  name: f.get("name"),
+                  reason: "Leader renamed unlocked team",
+                });
+              }}
+            >
+              <Field
+                name="name"
+                label="Team name"
+                value={t.name}
+                required
+                minLength={2}
+              />
+            </Form>
+          </details>
           <details className="panel">
             <summary>Membership requests</summary>
             {(data.actions || [])
@@ -826,7 +878,6 @@ export function TeamWorkspace({
           {data.members?.length === 1 && (
             <details className="panel">
               <summary>Delete your team</summary>
-
               <Form
                 label="Review team deletion"
                 onSave={async (f) => {
@@ -845,37 +896,178 @@ export function TeamWorkspace({
               </Form>
             </details>
           )}
-        </>
+        </div>
       )}
-      <details className="panel">
-        <summary>Team and project rules</summary>
-        <ul>
-          <li>
-            Teams have at most five registered people. Locking freezes
-            membership, name and idea; it does not grant Going status.
-          </li>
-          <li>
-            The leader must personally check in before saving or committing the
-            project during the submission window.
-          </li>
-          <li>
-            Exactly three successful project commits are available. Draft saves
-            and navigation do not consume attempts.
-          </li>
-          <li>
-            Repository creation and first commit must both be strictly after 1
-            November, 08:00 IST.
-          </li>
-          <li>
-            Credits and prize eligibility belong to individually checked-in
-            recipients.
-          </li>
-        </ul>
-        <a className="text-link" href="/rules">
-          Read all rules
-        </a>
-      </details>
     </section>
+  );
+}
+function DashboardVenue({ venue }: { venue: Row }) {
+  return (
+    <section
+      className="private-arrival dashboard-venue"
+      aria-label="Your arrival details"
+    >
+      <MapPin size={28} aria-hidden="true" />
+      <div>
+        <h3>{venue.location}</h3>
+        {venue.directions && <p className="prose">{venue.directions}</p>}
+      </div>
+      {safeExternalUrl(venue.mapUrl) && (
+        <a
+          className="text-link"
+          href={safeExternalUrl(venue.mapUrl)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <ExternalLink size={20} aria-hidden="true" />
+          Google Maps
+        </a>
+      )}
+    </section>
+  );
+}
+function DashboardProject({
+  data,
+  run,
+}: {
+  data: View;
+  run: (a: string, d: Row) => Promise<Row>;
+}) {
+  const [editing, setEditing] = useState(false);
+  const project = data.project,
+    draft = project?.draft || {},
+    used = Number.isInteger(data.submissionAccess?.attemptsUsed)
+      ? data.submissionAccess.attemptsUsed
+      : data.attempts?.length || 0,
+    canRead = data.submissionAccess?.canRead === true,
+    canEdit =
+      data.me?.canParticipate === true &&
+      data.team?.leader_id === data.me?.id &&
+      data.submissionAccess?.canCommit === true &&
+      used < 3 &&
+      !data.submissionAccess?.locked;
+  return (
+    <>
+      <div className="dashboard-project-heading">
+        {data.team && (
+          <div className="identity-line">
+            <TeamAvatar
+              name={data.team.name}
+              palette={data.team.palette}
+              size={42}
+            />
+            <h3>{data.team.name}</h3>
+          </div>
+        )}
+        <Pill tone={used ? "positive" : "neutral"}>
+          {used ? "Submitted" : "Not submitted"}
+        </Pill>
+        {data.projectStats && (
+          <span
+            className="dashboard-upvotes"
+            aria-label={
+              Number.isFinite(data.projectStats.upvotes)
+                ? `${data.projectStats.upvotes} upvotes`
+                : "Upvote count unavailable"
+            }
+          >
+            <ArrowUp size={22} aria-hidden="true" />
+            <span aria-hidden="true">
+              {Number.isFinite(data.projectStats.upvotes)
+                ? data.projectStats.upvotes
+                : "?"}
+            </span>
+          </span>
+        )}
+      </div>
+      {data.projectStats?.result && (
+        <PublicResult result={data.projectStats.result} />
+      )}
+      {canRead ? (
+        <>
+          <div className="dashboard-project-actions">
+            {project?.published_version_id &&
+              data.eligibility?.status === "eligible" && (
+                <a
+                  className="button secondary"
+                  href={`/projects/${encodeURIComponent(project.slug)}`}
+                >
+                  View project
+                  <ExternalLink size={17} aria-hidden="true" />
+                </a>
+              )}
+            <ProjectHistory canRead={canRead} label={`Versions ${used}/3`} />
+            {canEdit && project?.published_version_id && (
+              <button
+                className="button secondary"
+                type="button"
+                aria-expanded={editing}
+                onClick={() => setEditing(!editing)}
+              >
+                {editing ? "Close editor" : "Update project"}
+              </button>
+            )}
+          </div>
+          {project?.published_version_id && !editing && (
+            <article className="dashboard-project-card">
+              {draft.banner && (
+                <img
+                  className="dashboard-project-banner"
+                  src={draft.banner}
+                  alt=""
+                />
+              )}
+              <h3>{draft.projectName}</h3>
+              {draft.problemSolution && <p>{draft.problemSolution}</p>}
+              {draft.description && (
+                <p className="prose">{draft.description}</p>
+              )}
+            </article>
+          )}
+          {(!project?.published_version_id || editing) && (
+            <Submission
+              key={`${project?.revision || 0}-${data.team?.id || "none"}`}
+              data={data}
+              run={run}
+            />
+          )}
+        </>
+      ) : (
+        <p className="notice">
+          {data.submissionAccess?.message ||
+            "Your project workspace is not available yet."}
+        </p>
+      )}
+      {data.eligibility?.status === "ineligible" && (
+        <p className="notice">
+          Ineligible ·{" "}
+          {data.eligibility.reason || "Check your private team feedback."}
+        </p>
+      )}
+      <section
+        className="dashboard-feedback"
+        aria-label="Private team feedback"
+      >
+        <h3>Feedback ({data.feedback?.length || 0})</h3>
+        {(data.feedback || []).map((f: Row) => (
+          <article className="feedback-entry" key={f.id}>
+            <div className="dashboard-feedback-heading">
+              <UserRound size={22} aria-hidden="true" />
+              <strong>{f.author}</strong>
+              <span className="pill locked">
+                <LockKeyhole size={14} aria-hidden="true" />
+                Private
+              </span>
+            </div>
+            <p>{f.body}</p>
+            <small>
+              {f.kind} · {ist(f.created_at)}
+            </small>
+          </article>
+        ))}
+        {!data.feedback?.length && <p>No feedback yet.</p>}
+      </section>
+    </>
   );
 }
 export function Dashboard({
@@ -885,6 +1077,21 @@ export function Dashboard({
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
+  const [tab, setTab] = useState("team");
+  useEffect(() => {
+    const sync = () => {
+      const value = location.hash.slice(1);
+      if (["team", "credits", "project"].includes(value)) setTab(value);
+    };
+    sync();
+    window.addEventListener("hashchange", sync);
+    return () => window.removeEventListener("hashchange", sync);
+  }, []);
+  const select = (value: string, focus = false) => {
+    setTab(value);
+    history.replaceState(null, "", `#${value}`);
+    if (focus) document.getElementById(`dashboard-tab-${value}`)?.focus();
+  };
   if (data.me?.mode === "viewer")
     return (
       <>
@@ -902,34 +1109,75 @@ export function Dashboard({
       </>
     );
   return (
-    <>
-      <header className="page-heading">
+    <div className="dashboard-v6">
+      <header className="page-heading dashboard-heading">
         <h1>
+          <HeadingDot
+            color={(data.me?.avatarColor || "green") as keyof typeof dotColors}
+            expression={
+              (data.me?.avatarExpression ||
+                "squeezed") as keyof typeof dotExpressions
+            }
+          />
           Dashboard
-          <HeadingDot color="blue" expression="squeezed" />
         </h1>
+        <Pill
+          tone={
+            data.individualStatus === "Checked in" ||
+            data.individualStatus === "Going"
+              ? "positive"
+              : "neutral"
+          }
+        >
+          {data.individualStatus === "Checked in" && (
+            <CircleCheck size={18} aria-hidden="true" />
+          )}
+          {data.individualStatus || "Registered"}
+        </Pill>
       </header>
-      <div className="status-strip">
-        <div>
-          <span>Registration</span>
-          <Pill>{data.individualStatus || "Registered"}</Pill>
-        </div>
-        <div>
-          <span>Team</span>
-          <Pill>{data.teamStatus || "No team yet"}</Pill>
-        </div>
-      </div>
-      <nav className="dashboard-sections" aria-label="Dashboard sections">
-        <a href="#team">Team</a>
-        <a href="#credits">Credits</a>
-        <a href="#project">Project</a>
+      <nav
+        className="dashboard-sections"
+        role="tablist"
+        aria-label="Dashboard sections"
+      >
+        {[
+          ["team", "Team"],
+          ["credits", "Credits"],
+          ["project", "Project"],
+        ].map(([value, label], index) => (
+          <button
+            type="button"
+            key={value}
+            role="tab"
+            id={`dashboard-tab-${value}`}
+            aria-controls={value}
+            aria-selected={tab === value}
+            tabIndex={tab === value ? 0 : -1}
+            onClick={() => select(value)}
+            onKeyDown={(event) => {
+              const keys = ["ArrowLeft", "ArrowRight", "Home", "End"];
+              if (!keys.includes(event.key)) return;
+              event.preventDefault();
+              const next =
+                event.key === "Home"
+                  ? 0
+                  : event.key === "End"
+                    ? 2
+                    : (index + (event.key === "ArrowRight" ? 1 : 2)) % 3;
+              select(["team", "credits", "project"][next], true);
+            }}
+          >
+            {label}
+          </button>
+        ))}
       </nav>
       <section
         id="team"
+        role="tabpanel"
+        hidden={tab !== "team"}
         className="dashboard-section"
-        aria-labelledby="team-heading"
+        aria-labelledby="dashboard-tab-team"
       >
-        <h2 id="team-heading">Team</h2>
         <TeamWorkspace
           key={`${data.team?.id || "none"}-${data.idea?.description || ""}`}
           data={data}
@@ -938,88 +1186,26 @@ export function Dashboard({
       </section>
       <section
         id="credits"
-        className="dashboard-section"
-        aria-labelledby="credits-heading"
+        role="tabpanel"
+        hidden={tab !== "credits"}
+        className="dashboard-section dashboard-credits"
+        aria-labelledby="dashboard-tab-credits"
       >
-        <h2 id="credits-heading">Credits</h2>
-
         {(data.credits || []).map((c: Row) => (
-          <Credit key={c.type_id} credit={c} />
+          <Credit key={`${tab}-${c.type_id}`} credit={c} />
         ))}
         {!data.credits?.length && <p>No credits assigned.</p>}
       </section>
       <section
         id="project"
+        role="tabpanel"
+        hidden={tab !== "project"}
         className="dashboard-section"
-        aria-labelledby="project-heading"
+        aria-labelledby="dashboard-tab-project"
       >
-        <h2 id="project-heading">Project</h2>
-        {data.submissionProgress?.status && (
-          <p>{data.submissionProgress.status}</p>
-        )}
-        {data.projectStats && (
-          <div className="project-summary">
-            <span>
-              {Number.isFinite(data.projectStats.upvotes)
-                ? `${data.projectStats.upvotes} upvotes`
-                : "Upvote count unavailable"}
-            </span>
-            {data.projectStats.result && (
-              <PublicResult result={data.projectStats.result} />
-            )}
-          </div>
-        )}
-        {data.eligibility?.status === "ineligible" && (
-          <p className="notice">
-            Ineligible ·{" "}
-            {data.eligibility.reason || "Check your private team feedback."}
-          </p>
-        )}
-        {data.submissionAccess?.canRead === true ? (
-          <Submission
-            key={`${data.project?.revision || 0}-${data.team?.id || "none"}`}
-            data={data}
-            run={run}
-          />
-        ) : (
-          <p className="notice">
-            {data.submissionAccess?.message ||
-              "Your project workspace is not available yet. The server checks attendance and team access."}
-          </p>
-        )}
-        <section className="panel" aria-label="Private team feedback">
-          <h3>Private team feedback</h3>
-
-          {(data.feedback || []).map((f: Row) => (
-            <article className="feedback-entry" key={f.id}>
-              <p>{f.body}</p>
-              <small>
-                {f.author} · {f.kind} ·{" "}
-                {new Date(f.created_at).toLocaleDateString()}
-              </small>
-            </article>
-          ))}
-          {!data.feedback?.length && <p>No feedback yet.</p>}
-        </section>
+        <DashboardProject data={data} run={run} />
       </section>
-      {data.privateVenue ? (
-        <section className="private-arrival">
-          <h2>Your arrival details</h2>
-          <p>{data.privateVenue.location}</p>
-          <p className="prose">{data.privateVenue.directions}</p>
-          {safeExternalUrl(data.privateVenue.mapUrl) && (
-            <a
-              className="text-link"
-              href={safeExternalUrl(data.privateVenue.mapUrl)}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Open private arrival map
-            </a>
-          )}
-        </section>
-      ) : null}
-    </>
+    </div>
   );
 }
 function PublicResult({ result }: { result: Row }) {
@@ -1064,7 +1250,7 @@ export function Credit({ credit }: { credit: Row }) {
     };
   }, []);
   return (
-    <article className="credit-row">
+    <article className="credit-row dashboard-credit">
       <h3>{credit.name}</h3>
       <CreditInstructions markdown={credit.instructions || ""} />
       <div className="credit-secret">
@@ -1110,13 +1296,20 @@ export function Credit({ credit }: { credit: Row }) {
             }
           }}
         >
-          <Icon name="eye" />
-          {busy ? "Revealing…" : value ? "Hide" : "Reveal"}
+          {value ? (
+            <EyeOff size={20} aria-hidden="true" />
+          ) : (
+            <Eye size={20} aria-hidden="true" />
+          )}
+          <span className="sr-only">
+            {busy ? "Revealing…" : value ? "Hide" : "Reveal"}
+          </span>
         </button>
         <button
           type="button"
           className="button secondary"
           disabled={!value || busy}
+          aria-label={copied ? "Copied allocation" : "Copy allocation"}
           onClick={async () => {
             setError("");
             try {
@@ -1127,8 +1320,8 @@ export function Credit({ credit }: { credit: Row }) {
             }
           }}
         >
-          <Icon name="copy" />
-          {copied ? "Copied" : "Copy"}
+          <Copy size={20} aria-hidden="true" />
+          <span className="sr-only">{copied ? "Copied" : "Copy"}</span>
         </button>
       </div>
 
@@ -1636,7 +1829,13 @@ export function Submission({
     </>
   );
 }
-export function ProjectHistory({ canRead }: { canRead: boolean }) {
+export function ProjectHistory({
+  canRead,
+  label = "View committed history",
+}: {
+  canRead: boolean;
+  label?: string;
+}) {
   const [open, setOpen] = useState(false),
     [items, setItems] = useState<Row[]>([]),
     [busy, setBusy] = useState(false),
@@ -1686,7 +1885,7 @@ export function ProjectHistory({ canRead }: { canRead: boolean }) {
         onClick={() => setOpen(true)}
       >
         <Icon name="history" />
-        View committed history
+        {label}
       </button>
       {open && (
         <dialog

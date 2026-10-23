@@ -6,6 +6,7 @@ import "./participant-ui.css";
 import "./admin-controls.css";
 import "./navigation-correction.css";
 import "./discovery-profile.css";
+import "./dashboard-v6.css";
 export const metadata = {
   title: "DevDay Exchange Community Hackathon: New Delhi",
   description:
