@@ -4,7 +4,7 @@ Prepared in `.worktrees/load-300`, branch `test/load-300-compiled`, from `bd6eb9
 
 ## Current status
 
-Offline fixture and determinism assertions pass. The script's dry plan makes no request, starts no server and writes no database. **Execution waits for root's new combined artifact-ready signal.** There are no compiled HTTP measurements or actual seeded D1 counts yet.
+**Completed:** an actual compiled Worker + disposable D1 HTTP run passed on 2026-10-23, using root-approved source `0e7756c60e2fff88a4f7fb1e3eca31efc20349d0` and Worker SHA-256 `75a667d2c42a821611c3cbbea72447ee464e2ad5f2f6165fbbba647764e69ce6`. Root confirmed public/profile/admin browsers closed and paused builds/tests during the timed workload. See [measured results](load-300-results.md) and [sanitized samples](load-300-baseline.json). This is a local diagnostic, not hosting-capacity evidence.
 
 Exactly 300 unique synthetic participant identities are allocated reproducibly across 90 teams. The algorithm shuffles participants with seeded xorshift32/Fisher-Yates, assigns one leader/member to each team, and distributes the remaining 210 only among teams below five members. Default seed `0x30090005` produces team sizes 1/2/3/4/5 with counts 4/25/21/17/23. Membership total is 300; no team exceeds five. Assignment SHA-256 is `2f0ad7380b518a15b2ab815c4f1d67e08122751f96c536057e4931101ed945ae`.
 
@@ -20,7 +20,7 @@ Fixture setup deliberately opens a local operational submission window around te
 
 ## Bounded workload
 
-Concurrency is always 1/4/8/16, never 300. Requests have a 20-second timeout, responses are consumed before the next item, and there are no automatic retries masking errors. Deliberate retry cases are labelled explicitly.
+Concurrency is always 1/4/8/16, never 300. The complete planned workload has 1,986 requests (314 GET, 1,672 POST), including 116 expected rejections. An eight-minute abort budget begins only after the coordination hold is released. Requests have a 20-second timeout, responses are consumed before the next item, and there are no automatic retries masking errors. Deliberate retry cases are labelled explicitly.
 
 - Commit the first version through HTTP for every one of the 90 real seeded leaders. Retry each identical request and prove 90 versions/receipts remain.
 - Four distinct teams exercise identical-request races at concurrency 1/4/8/16, then competing final commits at those same levels. Exactly one distinct final request per team can win.
@@ -45,8 +45,10 @@ node scripts/load-300-run.mjs
 After root confirms a matching fresh compiled build and coordinates competing browser/performance work:
 
 ```sh
-node --import ../visual-integration/node_modules/tsx/dist/loader.mjs scripts/load-300-run.mjs --artifact-ready
+node --import ../visual-integration/node_modules/tsx/dist/loader.mjs scripts/load-300-run.mjs --artifact-ready --hold-after-seed
 ```
+
+Use a PTY to keep stdin open for a held run. After preparation prints `waiting:true`, send `RUN_LOAD_300` followed by a newline on stdin only after root releases the coordination hold. `STOP_LOAD_300` cancels before timed HTTP. Miniflare receives an explicit list of unchanged compiled ES modules because automatic discovery cannot resolve the bundler's computed dynamic imports. The first preparation attempt failed at that graph-discovery step with no timed requests; this is a harness setup issue, separate from application measurements.
 
 The TS loader is needed only to read the matching checkout's policy constants; production traffic still executes the compiled Worker. No package installation is part of the script. Artifact Worker/config/client-manifest SHA-256 values are recorded before/after; a changed build invalidates that run. Reports are written only to this worktree's ignored `outputs/load-300/<run>/report.json` before temporary D1 cleanup.
 

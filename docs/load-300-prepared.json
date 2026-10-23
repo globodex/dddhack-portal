@@ -1,0 +1,105 @@
+{
+  "plan": {
+    "base": "http://127.0.0.1:4183",
+    "fixture": {
+      "participants": 300,
+      "teams": 90,
+      "memberships": 300,
+      "operationalAdmins": 2,
+      "ownerActionsExercised": false,
+      "minTeamSize": 1,
+      "maxTeamSize": 5,
+      "teamSizeDistribution": {
+        "1": 4,
+        "2": 25,
+        "3": 21,
+        "4": 17,
+        "5": 23
+      },
+      "assignmentSHA256": "2f0ad7380b518a15b2ab815c4f1d67e08122751f96c536057e4931101ed945ae"
+    },
+    "concurrency": [
+      1,
+      4,
+      8,
+      16
+    ],
+    "timeoutMs": 20000,
+    "maxInFlight": 16,
+    "plannedRequests": 1986,
+    "plannedGET": 314,
+    "plannedPOST": 1672,
+    "workloadBudgetMs": 480000,
+    "actualCompiledWorker": true,
+    "actualD1": true,
+    "disposable": true,
+    "externalFetch": "deny all Worker outbound requests",
+    "AI": "inactive/no model calls",
+    "runtime": "local workerd through Miniflare; not hosted capacity",
+    "ownerActions": false,
+    "operationalAdmins": 2,
+    "mutations": "only synthetic local submissions, explicit fixture eligibility decisions and upvotes",
+    "artifactRoot": "/home/param302/Dev/DDEHack-portal/.worktrees/visual-integration"
+  },
+  "artifactBefore": {
+    "dist/server/index.js": "75a667d2c42a821611c3cbbea72447ee464e2ad5f2f6165fbbba647764e69ce6",
+    "dist/server/wrangler.json": "49bbd6084f83a674625e0e5d6a5d349100780600fb31cf9a066a34a0ac5eb8f3",
+    "dist/client/.vite/manifest.json": "10a348339ab13289e6eed4ecd9f54f1c283e3e3f89a6062958271f4b804475d2"
+  },
+  "checks": [
+    {
+      "label": "seeded-exact-cardinality",
+      "participants": 300,
+      "operationalAdmins": 2,
+      "teams": 90,
+      "memberships": 300,
+      "projects": 0,
+      "versions": 0,
+      "receipts": 0,
+      "upvotes": 0,
+      "maxTeamSize": 5,
+      "maxAttempts": 0,
+      "evaluationRuns": 0,
+      "astraJobs": 0
+    },
+    {
+      "label": "seeded-database-distribution",
+      "databaseSizes": [
+        {
+          "size": 1,
+          "teams": 4
+        },
+        {
+          "size": 2,
+          "teams": 25
+        },
+        {
+          "size": 3,
+          "teams": 21
+        },
+        {
+          "size": 4,
+          "teams": 17
+        },
+        {
+          "size": 5,
+          "teams": 23
+        }
+      ]
+    }
+  ],
+  "fixtureSetup": {
+    "policyWindow": {
+      "open": "2026-10-23T16:56:06.705Z",
+      "close": "2026-10-23T19:56:06.705Z"
+    },
+    "localOperationalPolicySeed": true,
+    "productionPolicyChanged": false,
+    "repositoryCutoffChanged": false,
+    "aiConfigured": false,
+    "creditsSeeded": false
+  },
+  "preparedAt": "2026-10-23T17:56:15.135Z",
+  "timedHTTPRequests": 0,
+  "status": "seeded-and-held; not an HTTP load-test pass"
+}

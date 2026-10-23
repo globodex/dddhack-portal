@@ -1,0 +1,93 @@
+{
+  "runId": "2026-10-23T18-01-28.879Z-208492",
+  "artifactBefore": {
+    "dist/server/index.js": "75a667d2c42a821611c3cbbea72447ee464e2ad5f2f6165fbbba647764e69ce6",
+    "dist/server/wrangler.json": "49bbd6084f83a674625e0e5d6a5d349100780600fb31cf9a066a34a0ac5eb8f3",
+    "dist/client/.vite/manifest.json": "10a348339ab13289e6eed4ecd9f54f1c283e3e3f89a6062958271f4b804475d2"
+  },
+  "samples": [
+    {
+      "sequence": 0,
+      "phase": "precommit-public-empty",
+      "concurrency": 1,
+      "actor": "anonymous",
+      "method": "GET",
+      "view": "/projects",
+      "action": null,
+      "status": 404,
+      "code": "SyntaxError",
+      "expectedRejection": false,
+      "unexpectedError": true,
+      "elapsedMs": 25.10046599999987,
+      "requestBytes": 0,
+      "responseBytes": 0,
+      "failure": "Unexpected end of JSON input"
+    }
+  ],
+  "checks": [
+    {
+      "label": "seeded-exact-cardinality",
+      "participants": 300,
+      "operationalAdmins": 2,
+      "teams": 90,
+      "memberships": 300,
+      "projects": 0,
+      "versions": 0,
+      "receipts": 0,
+      "upvotes": 0,
+      "maxTeamSize": 5,
+      "maxAttempts": 0,
+      "evaluationRuns": 0,
+      "astraJobs": 0
+    },
+    {
+      "label": "seeded-database-distribution",
+      "databaseSizes": [
+        {
+          "size": 1,
+          "teams": 4
+        },
+        {
+          "size": 2,
+          "teams": 25
+        },
+        {
+          "size": 3,
+          "teams": 21
+        },
+        {
+          "size": 4,
+          "teams": 17
+        },
+        {
+          "size": 5,
+          "teams": 23
+        }
+      ]
+    },
+    {
+      "label": "failure-observed-counts",
+      "participants": 300,
+      "operationalAdmins": 2,
+      "teams": 90,
+      "memberships": 300,
+      "projects": 0,
+      "versions": 0,
+      "receipts": 0,
+      "upvotes": 0,
+      "maxTeamSize": 5,
+      "maxAttempts": 0,
+      "evaluationRuns": 0,
+      "astraJobs": 0
+    }
+  ],
+  "failure": "AssertionError [ERR_ASSERTION]: precommit-public-empty: expected200 got404/SyntaxError\n\n404 !== 200\n\n    at expectOK (/home/param302/Dev/DDEHack-portal/.worktrees/load-300/scripts/load-300-run.mjs:234:10)\n    at <anonymous> (/home/param302/Dev/DDEHack-portal/.worktrees/load-300/scripts/load-300-run.mjs:498:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+  "totals": {
+    "requests": 1,
+    "GET": 1,
+    "POST": 0,
+    "expectedRejections": 0,
+    "unexpectedErrors": 1
+  },
+  "blockedOutbound": []
+}

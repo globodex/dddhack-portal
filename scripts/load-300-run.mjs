@@ -2,6 +2,7 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import {
+  cpSync,
   existsSync,
   mkdirSync,
   mkdtempSync,
@@ -28,6 +29,10 @@ const plan = {
   concurrency: [1, 4, 8, 16],
   timeoutMs: 20000,
   maxInFlight: 16,
+  plannedRequests: 1986,
+  plannedGET: 314,
+  plannedPOST: 1672,
+  workloadBudgetMs: 480000,
   actualCompiledWorker: true,
   actualD1: true,
   disposable: true,
@@ -56,15 +61,20 @@ if (!process.argv.includes("--artifact-ready")) {
   process.exit(0);
 }
 const hash = (value) => createHash("sha256").update(value).digest("hex");
-const fingerprint = () =>
+const fingerprint = (root = artifactRoot) =>
   Object.fromEntries(
     [
       "dist/server/index.js",
       "dist/server/wrangler.json",
       "dist/client/.vite/manifest.json",
-    ].map((file) => [file, hash(readFileSync(join(artifactRoot, file)))]),
+    ].map((file) => [file, hash(readFileSync(join(root, file)))]),
   );
-const artifactBefore = fingerprint();
+const sourceArtifactBefore = fingerprint();
+assert.equal(
+  sourceArtifactBefore["dist/server/index.js"],
+  "75a667d2c42a821611c3cbbea72447ee464e2ad5f2f6165fbbba647764e69ce6",
+  "Root-approved Worker fingerprint differs; wait for fresh readiness.",
+);
 const compiledConfig = JSON.parse(
   readFileSync(join(artifactRoot, "dist/server/wrangler.json"), "utf8"),
 );
@@ -77,6 +87,22 @@ const runId = `${new Date().toISOString().replaceAll(":", "-")}-${process.pid}`;
 const output = join(ownRoot, "outputs", "load-300", runId);
 mkdirSync(output, { recursive: true });
 const temporary = mkdtempSync(join(tmpdir(), "ddehack-load-300-"));
+const snapshotRoot = join(temporary, "artifact");
+mkdirSync(snapshotRoot);
+cpSync(join(artifactRoot, "dist"), join(snapshotRoot, "dist"), {
+  recursive: true,
+});
+cpSync(join(artifactRoot, "drizzle"), join(snapshotRoot, "drizzle"), {
+  recursive: true,
+});
+const artifactBefore = fingerprint(snapshotRoot);
+assert.deepEqual(
+  artifactBefore,
+  sourceArtifactBefore,
+  "Artifact changed while copying immutable snapshot.",
+);
+const workloadAbort = new AbortController();
+let workloadTimer;
 process.env.CLOUDFLARE_CF_FETCH_ENABLED = "false";
 process.env.WRANGLER_SEND_METRICS = "false";
 const report = {
@@ -84,6 +110,9 @@ const report = {
   startedAt: new Date().toISOString(),
   plan,
   artifactBefore,
+  sourceArtifactBefore,
+  rootProvidedSourceRevision: "0e7756c60e2fff88a4f7fb1e3eca31efc20349d0",
+  immutableSnapshot: true,
   samples: [],
   groups: [],
   checks: [],
@@ -179,7 +208,10 @@ async function request({
       body,
       redirect: "error",
       cache: "no-store",
-      signal: AbortSignal.timeout(plan.timeoutMs),
+      signal: AbortSignal.any([
+        AbortSignal.timeout(plan.timeoutMs),
+        workloadAbort.signal,
+      ]),
     });
     sample.status = response.status;
     const bytes = await response.arrayBuffer();
@@ -285,6 +317,7 @@ async function counts(label) {
     evaluationRuns: await scalar("SELECT count(*) n FROM evaluation_runs"),
     astraJobs: await scalar("SELECT count(*) n FROM astra_jobs"),
   };
+  report.checks.push(count);
   assert.equal(count.participants, 300);
   assert.equal(count.operationalAdmins, 2);
   assert.equal(count.teams, 90);
@@ -293,7 +326,6 @@ async function counts(label) {
   assert(count.maxAttempts <= 3);
   assert.equal(count.evaluationRuns, 0);
   assert.equal(count.astraJobs, 0);
-  report.checks.push(count);
   return count;
 }
 function leader(state) {
@@ -347,23 +379,44 @@ try {
   const { draftPolicy } = await import(
     pathToFileURL(join(artifactRoot, "lib/policy.ts")).href
   );
+  // Enumerate unchanged compiled modules: automatic graph discovery cannot
+  // resolve the bundler's computed dynamic imports.
+  const serverRoot = join(snapshotRoot, "dist/server");
+  const compiledModules = [];
+  function collectModules(directory) {
+    for (const entry of readdirSync(directory, { withFileTypes: true })) {
+      const path = join(directory, entry.name);
+      if (entry.isDirectory()) collectModules(path);
+      else if (/\.m?js$/.test(entry.name))
+        compiledModules.push({ type: "ESModule", path });
+    }
+  }
+  collectModules(serverRoot);
+  const entryPath = join(serverRoot, "index.js");
+  compiledModules.sort((a, b) =>
+    a.path === entryPath ? -1 : b.path === entryPath ? 1 : a.path.localeCompare(b.path),
+  );
+  report.compiledModules = compiledModules.length;
   mf = new Miniflare({
     name: "ddehack-load-300-local",
-    scriptPath: join(artifactRoot, "dist/server/index.js"),
-    modules: true,
-    modulesRoot: join(artifactRoot, "dist/server"),
-    modulesRules: [
-      { type: "ESModule", include: ["**/*.js", "**/*.mjs"], fallthrough: true },
-    ],
+    modules: compiledModules,
+    modulesRoot: serverRoot,
     compatibilityDate: compiledConfig.compatibility_date,
     compatibilityFlags: compiledConfig.compatibility_flags,
     host: "127.0.0.1",
     port: 4183,
     inspectorPort: 0,
     d1Databases: { DB: "ddehack-load-300-disposable" },
-    d1Persist: temporary,
+    d1Persist: join(temporary, "d1"),
     bindings: { PORTAL_RUNTIME: "sites", PORTAL_TRUST_SITES_DISPATCH: "true" },
-    assets: { directory: join(artifactRoot, "dist/client"), binding: "ASSETS" },
+    assets: {
+      directory: join(snapshotRoot, "dist/client"),
+      binding: "ASSETS",
+      routerConfig: {
+        has_user_worker: true,
+        invoke_user_worker_ahead_of_assets: true,
+      },
+    },
     outboundService: async (request) => {
       report.blockedOutbound.push({ url: request.url, method: request.method });
       return new Response("External traffic blocked by local load harness", {
@@ -373,10 +426,10 @@ try {
   });
   await mf.ready;
   db = await mf.getD1Database("DB");
-  for (const file of readdirSync(join(artifactRoot, "drizzle"))
+  for (const file of readdirSync(join(snapshotRoot, "drizzle"))
     .filter((file) => file.endsWith(".sql"))
     .sort())
-    for (const sql of readFileSync(join(artifactRoot, "drizzle", file), "utf8")
+    for (const sql of readFileSync(join(snapshotRoot, "drizzle", file), "utf8")
       .split("--> statement-breakpoint")
       .filter((sql) => sql.trim()))
       await db.prepare(sql).all();
@@ -394,6 +447,68 @@ try {
     ),
   );
   report.checks.push({ label: "seeded-database-distribution", databaseSizes });
+  report.preparedAt = new Date().toISOString();
+  writeFileSync(
+    join(output, "prepared.json"),
+    JSON.stringify(
+      {
+        plan,
+        artifactBefore,
+        checks: report.checks,
+        fixtureSetup: report.fixtureSetup,
+        preparedAt: report.preparedAt,
+        timedHTTPRequests: 0,
+      },
+      null,
+      2,
+    ) + "\n",
+  );
+  console.log(
+    JSON.stringify({
+      prepared: true,
+      url: base,
+      fixture: fixture.summary,
+      actualD1: report.checks[0],
+      snapshotWorkerSHA: artifactBefore["dist/server/index.js"],
+      timedHTTPRequests: 0,
+      waiting: process.argv.includes("--hold-after-seed"),
+    }),
+  );
+  if (process.argv.includes("--hold-after-seed")) {
+    await new Promise((resolve, reject) => {
+      let input = "";
+      const closed = () => {
+        process.stdin.off("data", receive);
+        reject(new Error("Coordination stdin closed before release; use a PTY or rerun only after explicit root release."));
+      };
+      const receive = (chunk) => {
+        input += chunk;
+        if (input.includes("RUN_LOAD_300\n")) {
+          process.stdin.off("data", receive);
+          process.stdin.off("end", closed);
+          process.stdin.pause();
+          resolve();
+        } else if (input.includes("STOP_LOAD_300\n")) {
+          process.stdin.off("data", receive);
+          process.stdin.off("end", closed);
+          process.stdin.pause();
+          reject(new Error("Held load cancelled before HTTP workload."));
+        }
+      };
+      process.stdin.setEncoding("utf8");
+      process.stdin.on("data", receive);
+      process.stdin.once("end", closed);
+      process.stdin.resume();
+    });
+  }
+  report.workloadStartedAt = new Date().toISOString();
+  workloadTimer = setTimeout(
+    () =>
+      workloadAbort.abort(
+        new Error("Eight-minute bounded workload budget exceeded."),
+      ),
+    plan.workloadBudgetMs,
+  );
   const initial = expectOK(
     await request({
       view: "/projects",
@@ -708,6 +823,10 @@ try {
   assert.equal(final.upvotes, 600);
   assert.equal(report.blockedOutbound.length, 0);
   assert.equal(report.samples.filter((s) => s.unexpectedError).length, 0);
+  assert.equal(report.samples.length, plan.plannedRequests);
+  assert.equal(report.samples.filter((s) => s.method === "GET").length, plan.plannedGET);
+  assert.equal(report.samples.filter((s) => s.method === "POST").length, plan.plannedPOST);
+  assert.equal(report.samples.filter((s) => s.expectedRejection).length, 116);
   report.checks.push({
     label: "unique-user-project/foreign-keys/AI-inactive",
     duplicateVoteRows: 0,
@@ -718,10 +837,21 @@ try {
   });
 } catch (error) {
   report.failure = error.stack || String(error);
+  if (db) {
+    try {
+      await counts("failure-observed-counts");
+    } catch (readError) {
+      report.failureCountReadError = readError.message;
+    }
+  }
   process.exitCode = 1;
 } finally {
   try {
-    report.artifactAfter = fingerprint();
+    report.artifactAfter = fingerprint(snapshotRoot);
+    report.sourceArtifactAfter = fingerprint();
+    report.sourceArtifactChangedAfterSnapshot =
+      JSON.stringify(sourceArtifactBefore) !==
+      JSON.stringify(report.sourceArtifactAfter);
     report.artifactChangedDuringRun =
       JSON.stringify(artifactBefore) !== JSON.stringify(report.artifactAfter);
     if (report.artifactChangedDuringRun) {
@@ -733,6 +863,7 @@ try {
     report.failure ||= error.message;
     process.exitCode = 1;
   }
+  if (workloadTimer) clearTimeout(workloadTimer);
   report.totals = {
     requests: report.samples.length,
     GET: report.samples.filter((s) => s.method === "GET").length,
