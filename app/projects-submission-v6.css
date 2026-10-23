@@ -1,0 +1,813 @@
+/* Boards 04 and 06. Scoped to project browsing and the submission editor. */
+.main .projects-v6 {
+  max-width: 1160px;
+  margin-inline: auto;
+  color: #111515;
+}
+.main .projects-v6 .projects-heading {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin: 12px 0 34px;
+}
+.main .projects-v6 .projects-heading h1 {
+  margin: 0;
+  font-size: 44px;
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+}
+.projects-v6 .expressive-heading-dot {
+  margin: 0;
+}
+.projects-v6 .project-search {
+  position: relative;
+  margin-bottom: 34px;
+}
+.projects-v6 .project-search > svg {
+  position: absolute;
+  z-index: 1;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #5b677b;
+  pointer-events: none;
+}
+.projects-v6 .project-search .search-label {
+  display: block;
+  margin: 0;
+}
+.main:not(.home-main)
+  .projects-v6
+  .project-search
+  label
+  > input[type="search"] {
+  height: 54px;
+  margin: 0;
+  padding: 12px 18px 12px 56px;
+  border: 1px solid #dce4eb;
+  border-radius: 10px;
+  background: #f5f8fa;
+  font-size: 17px;
+}
+.main .projects-v6 .project-list {
+  border-top: 1px solid #dce4eb;
+}
+.main .projects-v6 .project-list > li {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 132px;
+  padding: 24px 0;
+  border-bottom: 1px solid #dce4eb;
+}
+.main .projects-v6 .project-row-link {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-width: 0;
+}
+.main .projects-v6 .row-logo {
+  width: 76px;
+  height: 76px;
+  flex: 0 0 76px;
+  border-radius: 12px;
+  object-fit: contain;
+}
+.main .projects-v6 .project-row-link h2 {
+  margin: 0 0 5px;
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  overflow-wrap: anywhere;
+}
+.projects-v6 .project-row-link > div,
+.public-project-detail .project-identity > div {
+  min-width: 0;
+}
+.main .projects-v6 .project-row-link p {
+  margin: 0 0 5px;
+  color: #44516a;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.main .projects-v6 .project-row-link small {
+  color: #74839a;
+  font-size: 15px;
+  line-height: 1.4;
+}
+.main .projects-v6 .engagement {
+  display: flex;
+  align-items: start;
+  gap: 12px;
+  margin: 0;
+}
+.main .projects-v6 .engagement .vote-control {
+  display: grid;
+  gap: 6px;
+  max-width: 140px;
+}
+.main .projects-v6 .upvote-button,
+.main .projects-v6 .project-comments-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  min-width: 82px;
+  min-height: 46px;
+  padding: 10px 14px;
+  border: 1px solid #c4cedb;
+  border-radius: 8px;
+  background: #fff;
+  color: #111b2c;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+}
+.main .projects-v6 .upvote-button[aria-pressed="true"] {
+  border-color: #008b5d;
+  background: #008b5d;
+  color: #fff;
+  opacity: 1;
+}
+.main .projects-v6 .upvote-button:disabled:not([aria-pressed="true"]) {
+  background: #f7f9fb;
+  color: #59677e;
+  opacity: 1;
+}
+.main .projects-v6 .project-pagination {
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px;
+  margin-top: 24px;
+  font-size: 13px;
+}
+.main .public-project-detail {
+  max-width: 900px;
+}
+.project-detail-topline {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 22px;
+  font-size: 19px;
+}
+.main .project-detail-topline .back-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  color: #111515;
+  flex: 0 0 44px;
+}
+.main .public-project-detail .project-detail {
+  margin: 0;
+  max-width: none;
+}
+.main .public-project-detail .project-banner {
+  display: block;
+  border-radius: 10px;
+  margin: 0 0 22px;
+}
+.main .public-project-detail .project-identity {
+  gap: 18px;
+  margin: 0 0 20px;
+}
+.main .public-project-detail .project-logo {
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+  flex: 0 0 76px;
+}
+.main .public-project-detail .project-identity h1 {
+  margin: 0 0 4px;
+  font-size: 28px;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+}
+.main .public-project-detail .project-identity p,
+.main .public-project-detail .project-description {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #44516a;
+}
+.main .public-project-detail .project-description {
+  margin-bottom: 16px;
+}
+.main .public-project-detail .prose {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+.main .public-project-detail .form-actions {
+  justify-content: flex-start;
+  gap: 12px;
+  margin-block: 18px 24px;
+}
+.main .public-project-detail .form-actions .button {
+  min-height: 44px;
+  gap: 10px;
+  font-size: 14px;
+}
+.main .public-project-detail .project-detail > .engagement {
+  padding: 18px 0;
+  margin-block: 24px 30px;
+  border-block: 1px solid #dce4eb;
+}
+.main .public-project-detail #comments {
+  scroll-margin-top: 100px;
+}
+.main .public-project-detail #comments h2 {
+  margin: 0 0 24px;
+  font-size: 24px;
+  line-height: 1.25;
+}
+.main .public-project-detail .public-comment {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 12px;
+  padding: 0;
+  margin: 0 0 24px;
+  border: 0;
+  background: none;
+}
+.public-comment-content header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 5px;
+}
+.public-comment-content strong {
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.public-comment-content small {
+  color: #63718a;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.main .public-project-detail .public-comment p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #44516a;
+  overflow-wrap: anywhere;
+}
+.main .public-project-detail .project-comment-composer {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 44px;
+  gap: 8px;
+  align-items: center;
+  margin-top: 28px;
+  padding: 12px;
+  border: 1px solid #dce4eb;
+  border-radius: 14px;
+  background: #fff;
+}
+.main .public-project-detail .project-comment-composer textarea {
+  width: 100%;
+  min-height: 44px;
+  max-height: 180px;
+  margin: 0;
+  padding: 12px;
+  border: 0;
+  border-radius: 24px;
+  background: #f4f7f9;
+  color: #111515;
+  font-size: 14px;
+  resize: vertical;
+}
+.project-send-comment {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #008b5d;
+  color: #fff;
+  cursor: pointer;
+}
+.project-send-comment:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.project-comment-composer > p {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+.main .submission-v6 {
+  max-width: 1060px;
+  margin-inline: auto;
+  color: #111515;
+}
+.submission-wizard-header {
+  position: relative;
+  margin-bottom: 24px;
+}
+.submission-progress {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  margin: 2px auto 20px;
+  color: #53627b;
+  font-size: 12px;
+}
+.submission-progress-bars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  width: 180px;
+}
+.submission-progress-bars i {
+  height: 7px;
+  border-radius: 8px;
+  background: #dce4eb;
+}
+.submission-progress-bars i[data-active="true"] {
+  background: #006afe;
+}
+.submission-window-status {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: grid;
+  justify-items: end;
+  gap: 5px;
+  font-size: 13px;
+}
+.submission-window-status > span {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.submission-window-status i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #00ab43;
+}
+.submission-window-status small {
+  color: #53627b;
+  font-size: 12px;
+}
+.submission-heading {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 12px;
+}
+.submission-heading > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.submission-heading .expressive-heading-dot {
+  margin: 0;
+}
+.main .submission-heading h1 {
+  margin: 0;
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: -0.035em;
+}
+.submission-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  color: #111515;
+  background: transparent;
+  text-decoration: none;
+}
+.main .submission-v6 .project-editor {
+  max-width: 800px;
+  margin-inline: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.submission-v6 .project-editor > fieldset {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 430px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.submission-stage {
+  display: grid;
+  gap: 22px;
+  min-width: 0;
+}
+.submission-stage[hidden] {
+  display: none !important;
+}
+.main .submission-v6 .submission-stage label {
+  display: block;
+  margin: 0;
+  color: #111515;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.main
+  .submission-v6
+  .project-editor
+  .submission-stage
+  label
+  > input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+.main .submission-v6 .project-editor .submission-stage label > textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  margin-top: 6px;
+  padding: 10px 13px;
+  border: 1px solid #cfdae5;
+  border-radius: 8px;
+  color: #111515;
+  background: #fff;
+  font-size: 16px;
+  line-height: 1.45;
+}
+.main .submission-v6 .project-editor .submission-stage label > textarea {
+  min-height: 118px;
+  resize: vertical;
+}
+.submission-v6 .required-marker {
+  color: #c92c42;
+}
+.submission-icon-field {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+  min-height: 44px;
+  margin-top: 6px;
+  padding: 0 12px;
+  border: 1px solid #cfdae5;
+  border-radius: 8px;
+  background: #fff;
+}
+.submission-icon-field > svg,
+.submission-icon-field > img {
+  flex: 0 0 20px;
+}
+.main .submission-v6 .project-editor .submission-icon-field > input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+  padding: 9px 0;
+  border: 0;
+  border-radius: 0;
+  font-size: 16px;
+  box-shadow: none;
+}
+.submission-icon-field:focus-within {
+  outline: 2px solid #006afe;
+  outline-offset: 2px;
+}
+.submission-v6 .submission-tools {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.submission-v6 .submission-tools legend {
+  width: 100%;
+  margin: 0 0 8px;
+  padding: 0;
+  color: #111515;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+.submission-ecosystem-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.main .submission-v6 .submission-ecosystem-options .check-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 1px solid #d7e1eb;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.main
+  .submission-v6
+  .project-editor
+  .submission-stage
+  .check-label
+  > input[type="checkbox"],
+.main
+  .submission-v6
+  .project-editor
+  .submission-stage
+  .check-label
+  > input[type="radio"] {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  min-height: 18px;
+  margin: 0;
+  padding: 0;
+  accent-color: #008b5d;
+}
+.submission-cerebras > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  overflow: hidden;
+  border: 1px solid #dce4eb;
+  border-radius: 8px;
+  background: #f0f4f7;
+}
+.main .submission-v6 .submission-cerebras .check-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 9px 12px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.main
+  .submission-v6
+  .project-editor
+  .submission-cerebras
+  .check-label
+  > input[type="radio"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  min-height: 1px;
+  clip-path: inset(50%);
+}
+.submission-cerebras .check-label[data-selected="true"] {
+  background: #008b5d;
+  color: #fff !important;
+}
+.submission-cerebras .check-label:focus-within,
+.submission-file-button:focus-within {
+  outline: 2px solid #006afe;
+  outline-offset: 2px;
+}
+.submission-upload-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.submission-upload-content {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.submission-upload-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.main .submission-v6 .submission-upload-actions .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  margin: 0;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.main .submission-v6 .submission-upload-actions .submission-remove-image {
+  width: 44px;
+  padding: 9px;
+}
+.submission-v6 .upload-preview {
+  margin: 0;
+  object-fit: contain;
+}
+.submission-v6 .upload-preview.logo {
+  width: 80px;
+  height: 80px;
+  flex: 0 0 80px;
+}
+.submission-upload-banner .submission-upload-content {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+.submission-v6 .upload-preview.banner {
+  width: min(100%, 420px);
+  aspect-ratio: 16 / 9;
+}
+.main .submission-v6 .submission-stage .submission-attestation {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+}
+.main .submission-v6 .submission-stage .submission-attestation input {
+  margin-top: 2px;
+  flex: 0 0 18px;
+}
+.submission-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 28px;
+}
+.submission-remaining {
+  display: none;
+}
+.main .submission-v6 .submission-actions .button {
+  justify-content: center;
+  gap: 12px;
+  min-width: 140px;
+  min-height: 46px;
+  padding: 11px 22px;
+  border-radius: 9px;
+  background: #111515;
+  border-color: #111515;
+  color: #fff;
+  font-size: 15px;
+}
+.main .submission-v6 .submission-actions .button.secondary {
+  border-color: #cbd6e2;
+  background: #fff;
+  color: #111515;
+}
+.submission-history-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 800px;
+  margin: 24px auto 0;
+}
+.submission-v6[data-readonly="true"] .submission-stage + .submission-stage {
+  margin-top: 26px;
+}
+.submission-v6[data-readonly="true"] .project-editor > fieldset {
+  min-height: 0;
+}
+@media (max-width: 740px) {
+  .main .projects-v6 .projects-heading {
+    gap: 14px;
+    margin-block: 2px 26px;
+  }
+  .main .projects-v6 .projects-heading h1 {
+    font-size: 32px;
+  }
+  .projects-v6 .projects-heading .expressive-heading-dot {
+    width: 44px;
+    height: 44px;
+  }
+  .main .projects-v6 .project-list > li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    min-height: 0;
+    padding-block: 20px;
+  }
+  .main .projects-v6 .project-row-link {
+    gap: 14px;
+  }
+  .main .projects-v6 .row-logo {
+    width: 60px;
+    height: 60px;
+    flex-basis: 60px;
+  }
+  .main .projects-v6 .project-row-link h2 {
+    font-size: 20px;
+  }
+  .main .projects-v6 .project-row-link p {
+    font-size: 14px;
+  }
+  .main .projects-v6 .project-row-link small {
+    font-size: 13px;
+  }
+  .main .projects-v6 .project-list > li > .engagement {
+    justify-content: flex-start;
+    margin-left: 74px;
+  }
+  .main .projects-v6 .project-pagination {
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .main .projects-v6 .project-pagination .button {
+    min-width: 0;
+    padding: 9px 10px;
+    font-size: 12px;
+  }
+  .main .public-project-detail .project-identity h1 {
+    font-size: 24px;
+  }
+  .main .public-project-detail .project-identity {
+    gap: 14px;
+  }
+  .main .public-project-detail .project-logo {
+    width: 72px;
+    height: 72px;
+    flex-basis: 72px;
+  }
+  .main .public-project-detail .project-detail > .engagement > * {
+    flex: 1;
+  }
+  .main .public-project-detail .upvote-button,
+  .main .public-project-detail .project-comments-button {
+    width: 100%;
+  }
+  .public-comment-content header {
+    flex-wrap: wrap;
+    gap: 3px 10px;
+  }
+  .public-comment-content small {
+    font-size: 11px;
+  }
+  .main .public-project-detail .form-actions .button {
+    flex: 1 1 110px;
+    padding: 10px;
+  }
+  .main .submission-v6 {
+    margin-top: 0;
+  }
+  .submission-window-status {
+    display: none;
+  }
+  .submission-progress {
+    margin-bottom: 16px;
+  }
+  .submission-heading {
+    gap: 4px;
+  }
+  .submission-heading > div {
+    gap: 10px;
+  }
+  .main .submission-heading h1 {
+    font-size: 22px;
+    line-height: 28px;
+  }
+  .submission-heading .expressive-heading-dot {
+    width: 32px;
+    height: 32px;
+  }
+  .submission-v6 .project-editor > fieldset {
+    min-height: max(410px, calc(100svh - 286px));
+  }
+  .submission-stage {
+    gap: 22px;
+  }
+  .main .submission-v6 .project-editor .submission-stage label > textarea {
+    min-height: 158px;
+  }
+  .submission-v6 .upload-preview.banner {
+    width: 100%;
+  }
+  .submission-actions {
+    justify-content: stretch;
+    gap: 10px;
+    padding-top: 26px;
+  }
+  .submission-remaining {
+    display: block;
+    flex-basis: 100%;
+    text-align: right;
+    color: #536170;
+    font-size: 12px;
+  }
+  .main .submission-v6 .submission-actions .button {
+    flex: 1;
+    min-width: 0;
+    padding-inline: 16px;
+  }
+  .submission-history-actions .button {
+    min-height: 44px;
+    font-size: 12px;
+  }
+}

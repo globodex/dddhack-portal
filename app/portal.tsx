@@ -12,6 +12,10 @@ import {
   EyeOff,
   LockKeyhole,
   MapPin,
+  MessageSquare,
+  Send,
+  Upload,
+  Link2,
   Phone,
   Trash2,
   BriefcaseBusiness,
@@ -1729,14 +1733,13 @@ export function Submission({
       step === 1 &&
       (!project.projectName?.trim() ||
         !project.problemSolution?.trim() ||
-        !project.description?.trim() ||
-        !/^https:\/\/github\.com\//.test(project.github || ""))
+        !project.description?.trim())
     ) {
-      setError("Add a project name, description and GitHub repository.");
+      setError("Add a project name, summary and description.");
       return;
     }
-    if (step === 2 && (!project.logo || !project.banner)) {
-      setError("Add your square logo and 16:9 banner.");
+    if (step === 2 && !/^https:\/\/github\.com\//.test(project.github || "")) {
+      setError("Add your GitHub repository.");
       return;
     }
     setStep(Math.min(3, step + 1));
@@ -1745,6 +1748,7 @@ export function Submission({
   const attemptsUsed = Number.isInteger(data.submissionAccess?.attemptsUsed)
     ? data.submissionAccess.attemptsUsed
     : data.attempts?.length || 0;
+  const remaining = Math.max(0, 3 - attemptsUsed);
   const canCommit =
     leader &&
     data.me?.canParticipate === true &&
@@ -1773,6 +1777,14 @@ export function Submission({
   };
   const save = async (submit = false) => {
     if (!canCommit || saving.current) return;
+    if (submit && (!project.logo || !project.banner || !project.attestation)) {
+      setError(
+        !project.logo || !project.banner
+          ? "Add your square logo and 16:9 banner."
+          : "Confirm this submission is accurate.",
+      );
+      return;
+    }
     saving.current = true;
     setBusy(true);
     setError("");
@@ -1794,218 +1806,333 @@ export function Submission({
       setBusy(false);
     }
   };
+  if (data.submissionAccess?.canRead !== true)
+    return (
+      <p className="notice">This project is not available for your account.</p>
+    );
+  if (!data.team)
+    return (
+      <Empty>
+        Create or join a team in <a href="/teams">Teams</a> first.
+      </Empty>
+    );
   return (
-    <>
-      {data.submissionAccess?.canRead !== true ? (
-        <p className="notice">
-          This project is not available for your account.
-        </p>
-      ) : !data.team ? (
-        <Empty>
-          Create or join a team in <a href="/teams">Teams</a> first.
-        </Empty>
-      ) : (
-        <>
-          <div className="status-strip">
-            <strong>{data.team.name}</strong>
-            <Pill>{attemptsUsed}/3 versions committed</Pill>
-            <Pill
-              tone={data.teamReadiness?.allApproved ? "positive" : "waiting"}
-            >
-              {data.teamStatus || "Forming"}
-            </Pill>
-          </div>
-          {data.eligibility?.status === "ineligible" && (
-            <p className="notice">Ineligible · excluded from leaderboard</p>
+    <section className="submission-v6" data-readonly={!canCommit}>
+      <header className="submission-wizard-header">
+        <div className="submission-progress" aria-label={`Step ${step} of 3`}>
+          <span className="submission-progress-bars" aria-hidden="true">
+            {[1, 2, 3].map((n) => (
+              <i key={n} data-active={n === step} />
+            ))}
+          </span>
+          <span>{step} of 3</span>
+        </div>
+        <div className="submission-window-status">
+          {(data.submissionStatus?.allowed === true || canCommit) && (
+            <span>
+              <i aria-hidden="true" />
+              Submission window open
+            </span>
           )}
-          {data.leaderboardUrl && (
-            <a className="button secondary" href={data.leaderboardUrl}>
-              View project on leaderboard
+          <small>
+            {remaining} {remaining === 1 ? "submission" : "submissions"}{" "}
+            remaining
+          </small>
+        </div>
+        <div className="submission-heading">
+          {step > 1 && canCommit ? (
+            <button
+              type="button"
+              className="submission-back"
+              aria-label="Previous submission step"
+              onClick={() => {
+                setError("");
+                setStep(step - 1);
+              }}
+            >
+              <ArrowLeft size={20} aria-hidden="true" />
+            </button>
+          ) : (
+            <a
+              className="submission-back"
+              href="/dashboard#project"
+              aria-label="Back to your project"
+            >
+              <ArrowLeft size={20} aria-hidden="true" />
             </a>
           )}
-          {data.submissionStatus && !data.submissionStatus.allowed && (
-            <p className="notice">{data.submissionStatus.message}</p>
-          )}
-          <form
-            className="panel project-editor"
-            onSubmit={(e) => {
-              e.preventDefault();
-              void save(false);
-            }}
+          <div>
+            <HeadingDot color="blue" expression="squeezed" size={40} />
+            <h1 ref={wizardHeading} tabIndex={-1}>
+              Submit project
+            </h1>
+          </div>
+          <span aria-hidden="true" />
+        </div>
+      </header>
+      {data.eligibility?.status === "ineligible" && (
+        <p className="notice">Ineligible · excluded from leaderboard</p>
+      )}
+      {data.submissionStatus && !data.submissionStatus.allowed && (
+        <p className="notice">{data.submissionStatus.message}</p>
+      )}
+      <form
+        className="project-editor"
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (step < 3) next();
+          else void save(false);
+        }}
+      >
+        <fieldset disabled={!canCommit || busy}>
+          <legend className="sr-only">
+            Step {step} of 3 · {remaining} submissions remaining
+          </legend>
+          <div
+            className="submission-stage submission-essentials"
+            data-step="1"
+            hidden={step !== 1 && canCommit}
           >
-            <fieldset disabled={!canCommit || busy}>
-              <legend>
-                Step {step} of 3 · {Math.max(0, 3 - attemptsUsed)} submissions
-                remaining
-              </legend>
-              <h2 ref={wizardHeading} tabIndex={-1}>
-                {
-                  ["Project essentials", "Project images", "Review and commit"][
-                    step - 1
-                  ]
-                }
-              </h2>
-              <div hidden={step !== 1 && canCommit}>
-                {[
-                  ["projectName", "Project name"],
-                  ["problemSolution", "One-line problem and solution"],
-                  ["description", "Project description"],
-                  ["github", "GitHub repository"],
-                  ["demo", "Demo URL · optional"],
-                ].map(([name, label]) => (
-                  <label key={name}>
-                    {label}
-                    {name === "description" ? (
-                      <textarea
-                        rows={4}
-                        value={project[name]}
-                        onChange={(e) => set(name, e.target.value)}
-                      />
-                    ) : (
-                      <input
-                        value={project[name]}
-                        type={
-                          name === "github" || name === "demo" ? "url" : "text"
-                        }
-                        onChange={(e) => set(name, e.target.value)}
-                      />
-                    )}
+            {[
+              ["projectName", "Project name"],
+              ["problemSolution", "One-line summary"],
+              ["description", "Description"],
+            ].map(([name, label]) => (
+              <label key={name}>
+                {label}{" "}
+                <span className="required-marker" aria-hidden="true">
+                  *
+                </span>
+                {name === "description" ? (
+                  <textarea
+                    name={name}
+                    rows={5}
+                    aria-required="true"
+                    value={project[name]}
+                    onChange={(e) => set(name, e.target.value)}
+                  />
+                ) : (
+                  <input
+                    name={name}
+                    aria-required="true"
+                    value={project[name]}
+                    onChange={(e) => set(name, e.target.value)}
+                  />
+                )}
+              </label>
+            ))}
+          </div>
+          <div
+            className="submission-stage submission-integration"
+            data-step="2"
+            hidden={step !== 2 && canCommit}
+          >
+            <label>
+              GitHub repository{" "}
+              <span className="required-marker" aria-hidden="true">
+                *
+              </span>
+              <span className="submission-icon-field">
+                <img
+                  src="/icons/social/github.svg"
+                  width="20"
+                  height="20"
+                  alt=""
+                />
+                <input
+                  name="github"
+                  type="url"
+                  aria-required="true"
+                  value={project.github}
+                  onChange={(e) => set("github", e.target.value)}
+                />
+              </span>
+            </label>
+            <label>
+              Deployment URL
+              <span className="submission-icon-field">
+                <Link2 size={20} aria-hidden="true" />
+                <input
+                  name="demo"
+                  type="url"
+                  value={project.demo}
+                  onChange={(e) => set("demo", e.target.value)}
+                />
+              </span>
+            </label>
+            <fieldset className="submission-tools">
+              <legend>How have you integrated OpenAI ecosystem in it?</legend>
+              <div className="submission-ecosystem-options">
+                {submissionToolChoices.map((tool) => (
+                  <label className="check-label" key={tool}>
+                    <input
+                      type="checkbox"
+                      checked={selectedSubmissionTools(
+                        project.ecosystemSelections ?? project.tools,
+                      ).includes(tool)}
+                      onChange={(e) => {
+                        const selected = selectedSubmissionTools(
+                          project.ecosystemSelections ?? project.tools,
+                        );
+                        const choices = e.target.checked
+                          ? [...selected, tool]
+                          : selected.filter((item) => item !== tool);
+                        setProject((p: Row) => ({
+                          ...p,
+                          tools: choices.join("\n"),
+                          ecosystemSelections: choices,
+                        }));
+                      }}
+                    />
+                    {tool}
                   </label>
                 ))}
-                <fieldset className="submission-tools">
-                  <legend>
-                    How have you integrated OpenAI ecosystem in it?
-                  </legend>
-                  {submissionToolChoices.map((tool) => (
-                    <label className="check-label" key={tool}>
-                      <input
-                        type="checkbox"
-                        checked={selectedSubmissionTools(
-                          project.ecosystemSelections ?? project.tools,
-                        ).includes(tool)}
-                        onChange={(e) => {
-                          const selected = selectedSubmissionTools(
-                            project.ecosystemSelections ?? project.tools,
-                          );
-                          const choices = e.target.checked
-                            ? [...selected, tool]
-                            : selected.filter((item) => item !== tool);
-                          setProject((p: Row) => ({
-                            ...p,
-                            tools: choices.join("\n"),
-                            ecosystemSelections: choices,
-                          }));
-                        }}
-                      />
-                      {tool}
-                    </label>
-                  ))}
-                </fieldset>
-                <fieldset className="submission-tools">
-                  <legend>
-                    Does {project.projectName?.trim() || "your project"}{" "}
-                    integrate Cerebras?
-                  </legend>
-                  {(["yes", "no"] as const).map((answer) => (
-                    <label className="check-label" key={answer}>
-                      <input
-                        type="radio"
-                        name="cerebras-integration"
-                        value={answer}
-                        checked={project.cerebrasIntegration === answer}
-                        onChange={() => set("cerebrasIntegration", answer)}
-                      />
-                      {answer === "yes" ? "Yes" : "No"}
-                    </label>
-                  ))}
-                </fieldset>
-              </div>
-              <div hidden={step !== 2 && canCommit}>
-                <div className="media-inputs">
-                  {["logo", "banner"].map((kind) => (
-                    <label key={kind}>
-                      {kind === "logo"
-                        ? "Project logo · required, 1:1"
-                        : "Project banner · required, 16:9"}
-                      <input
-                        type="file"
-                        accept="image/png,image/jpeg"
-                        onChange={(e) => {
-                          void upload(e.target.files?.[0], kind);
-                        }}
-                      />
-                      <small>PNG or JPEG · at most 128 KB</small>
-                      {project[kind] && (
-                        <img
-                          className={`upload-preview ${kind}`}
-                          src={project[kind]}
-                          alt={`${kind} preview`}
-                        />
-                      )}
-                    </label>
-                  ))}
-                </div>
-              </div>
-              <div hidden={step !== 3 && canCommit}>
-                <label className="check-label">
-                  <input
-                    type="checkbox"
-                    checked={!!project.attestation}
-                    onChange={(e) => set("attestation", e.target.checked)}
-                  />
-                  We confirm this submission accurately describes our team’s
-                  work.
-                </label>
-              </div>
-              <div className="form-actions">
-                {step > 1 && (
-                  <button
-                    type="button"
-                    className="button secondary"
-                    onClick={() => setStep(step - 1)}
-                  >
-                    Back
-                  </button>
-                )}
-                {step < 3 && (
-                  <button type="button" className="button" onClick={next}>
-                    Next <ArrowRight size={20} aria-hidden="true" />
-                  </button>
-                )}
-                <button className="button" disabled={busy}>
-                  Save draft
-                </button>
-                <button
-                  type="button"
-                  hidden={step !== 3}
-                  className="button secondary"
-                  disabled={busy || !canCommit}
-                  onClick={() => {
-                    void save(true);
-                  }}
-                >
-                  Commit submission
-                </button>
               </div>
             </fieldset>
-            {!canCommit && (
-              <p className="notice">
-                {data.submissionAccess?.message ||
-                  (attemptsUsed >= 3
-                    ? "All three commits are used. Your project is read-only."
-                    : "Your project is read-only. Editing requires the leader’s personal check-in and an open submission window.")}
-              </p>
-            )}
-            {error && (
-              <p role="alert" className="error-message">
-                {error}
-              </p>
-            )}
-          </form>
-          <ProjectHistory canRead={data.submissionAccess?.canRead === true} />
-        </>
-      )}
-    </>
+            <fieldset className="submission-tools submission-cerebras">
+              <legend>
+                Does {project.projectName?.trim() || "your project"} integrate
+                Cerebras?
+              </legend>
+              <div>
+                {(["yes", "no"] as const).map((answer) => (
+                  <label
+                    className="check-label"
+                    key={answer}
+                    data-selected={project.cerebrasIntegration === answer}
+                  >
+                    <input
+                      type="radio"
+                      name="cerebras-integration"
+                      value={answer}
+                      checked={project.cerebrasIntegration === answer}
+                      onChange={() => set("cerebrasIntegration", answer)}
+                    />
+                    {answer === "yes" ? "Yes" : "No"}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+          </div>
+          <div
+            className="submission-stage submission-media"
+            data-step="3"
+            hidden={step !== 3 && canCommit}
+          >
+            {(["logo", "banner"] as const).map((kind) => (
+              <div
+                className={`submission-upload submission-upload-${kind}`}
+                key={kind}
+              >
+                <span className="submission-upload-label">
+                  {kind === "logo" ? "Logo (1:1)" : "Banner (16:9)"}{" "}
+                  <span className="required-marker" aria-hidden="true">
+                    *
+                  </span>
+                </span>
+                <div className="submission-upload-content">
+                  {project[kind] && (
+                    <img
+                      className={`upload-preview ${kind}`}
+                      src={project[kind]}
+                      alt={`${kind} preview`}
+                    />
+                  )}
+                  <div className="submission-upload-actions">
+                    <label className="button secondary submission-file-button">
+                      <Upload size={20} aria-hidden="true" />
+                      <span>{project[kind] ? "Change" : `Upload ${kind}`}</span>
+                      <input
+                        className="sr-only"
+                        type="file"
+                        accept="image/png,image/jpeg"
+                        aria-label={`Upload ${kind}`}
+                        onChange={(e) => {
+                          void upload(e.target.files?.[0], kind);
+                          e.currentTarget.value = "";
+                        }}
+                      />
+                    </label>
+                    {project[kind] && (
+                      <button
+                        type="button"
+                        className="button secondary submission-remove-image"
+                        aria-label={`Remove ${kind} image`}
+                        onClick={() => set(kind, "")}
+                      >
+                        <Trash2 size={20} aria-hidden="true" />
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+            <label className="check-label submission-attestation">
+              <input
+                type="checkbox"
+                checked={!!project.attestation}
+                onChange={(e) => set("attestation", e.target.checked)}
+              />
+              I confirm this submission is accurate.
+            </label>
+          </div>
+          {canCommit && (
+            <footer className="submission-actions">
+              {step < 3 ? (
+                <button type="button" className="button" onClick={next}>
+                  Next <ArrowRight size={20} aria-hidden="true" />
+                </button>
+              ) : (
+                <>
+                  <button
+                    type="submit"
+                    className="button secondary"
+                    disabled={busy}
+                  >
+                    Save draft
+                  </button>
+                  <button
+                    type="button"
+                    className="button"
+                    disabled={busy}
+                    onClick={() => {
+                      void save(true);
+                    }}
+                  >
+                    Submit
+                  </button>
+                  <small className="submission-remaining">
+                    {remaining} {remaining === 1 ? "submission" : "submissions"}{" "}
+                    remaining
+                  </small>
+                </>
+              )}
+            </footer>
+          )}
+        </fieldset>
+        {!canCommit && (
+          <p className="notice">
+            {data.submissionAccess?.message ||
+              (attemptsUsed >= 3
+                ? "All three commits are used. Your project is read-only."
+                : "Your project is read-only. Editing requires the leader’s personal check-in and an open submission window.")}
+          </p>
+        )}
+        {error && (
+          <p role="alert" className="error-message">
+            {error}
+          </p>
+        )}
+      </form>
+      <div className="submission-history-actions">
+        <ProjectHistory canRead={data.submissionAccess?.canRead === true} />
+        {data.leaderboardUrl && (
+          <a className="button secondary" href={data.leaderboardUrl}>
+            View project <ExternalLink size={18} aria-hidden="true" />
+          </a>
+        )}
+      </div>
+    </section>
   );
 }
 export function ProjectHistory({
@@ -2140,7 +2267,13 @@ export function ProjectVersion({ payload }: { payload: Row }) {
     </>
   );
 }
-function ProjectBody({ project }: { project: Row }) {
+function ProjectBody({
+  project,
+  publicView = false,
+}: {
+  project: Row;
+  publicView?: boolean;
+}) {
   return (
     <>
       <img
@@ -2156,23 +2289,43 @@ function ProjectBody({ project }: { project: Row }) {
         />
         <div>
           <h1>{project.projectName}</h1>
-          <p>Team {project.teamName || "project team"}</p>
+          <p>
+            {publicView ? "by " : "Team "}
+            {project.teamName || "project team"}
+          </p>
         </div>
       </div>
       <p className="project-description">{project.problemSolution}</p>
       <p className="prose">{project.description}</p>
       <div className="form-actions">
+        {publicView && project.github && (
+          <a
+            className="button secondary"
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/icons/social/github.svg" width="20" height="20" alt="" />{" "}
+            GitHub
+          </a>
+        )}
         {project.demo && (
           <a
-            className="button"
+            className={publicView ? "button secondary" : "button"}
             href={project.demo}
             target="_blank"
             rel="noopener noreferrer"
           >
-            Open demo
+            {publicView ? (
+              <>
+                <ExternalLink size={20} aria-hidden="true" /> Visit project
+              </>
+            ) : (
+              "Open demo"
+            )}
           </a>
         )}
-        {project.github && (
+        {!publicView && project.github && (
           <a
             className="button secondary"
             href={project.github}
@@ -2294,11 +2447,15 @@ export function Projects({
   const [q, setQ] = useState(""),
     [page, setPage] = useState(0),
     [listing, setListing] = useState<View>(data),
-    [searchError, setSearchError] = useState("");
+    [searchError, setSearchError] = useState(""),
+    [comment, setComment] = useState(""),
+    [commentBusy, setCommentBusy] = useState(false),
+    [commentError, setCommentError] = useState("");
   const board = path === "/leaderboard",
     detail = path !== "/projects" && !board,
     p = data.items?.[0];
-  const highlighted = useRef(false);
+  const highlighted = useRef(false),
+    commentPending = useRef(false);
   useEffect(() => {
     if (highlighted.current || !window.location.hash) return;
     const target = document.getElementById(
@@ -2360,19 +2517,32 @@ export function Projects({
           <span>{Number.isFinite(p.upvotes) ? p.upvotes : "?"}</span>
         </a>
       )}
-      <a href={`/projects/${p.slug}#comments`}>
-        {p.comments} comment{p.comments === 1 ? "" : "s"}
+      <a
+        className="project-comments-button"
+        href={`/projects/${p.slug}#comments`}
+        aria-label={`${p.comments} ${p.comments === 1 ? "comment" : "comments"} on ${p.projectName}`}
+      >
+        <MessageSquare size={20} aria-hidden="true" />
+        <span>{p.comments}</span>
       </a>
     </div>
   );
   if (detail && p)
     return (
-      <>
-        <a className="back-link" href="/projects">
-          <ArrowLeft size={20} aria-hidden="true" /> Projects
-        </a>
+      <section className="projects-v6 public-project-detail">
+        <header className="project-detail-topline">
+          <a
+            className="back-link"
+            href="/projects"
+            aria-label="Back to Projects"
+          >
+            <ArrowLeft size={20} aria-hidden="true" />
+          </a>
+          <HeadingDot color="purple" expression="squeezed" size={40} />
+          <strong>{p.teamName || p.projectName}</strong>
+        </header>
         <article className="project-detail">
-          <ProjectBody project={p} />
+          <ProjectBody project={p} publicView />
           {p.result && (
             <p className="notice">
               Revealed {p.result.stage === "ai" ? "AI" : "final"} score{" "}
@@ -2399,31 +2569,73 @@ export function Projects({
             <h2>Comments</h2>
             {(data.comments || []).map((c: Row) => (
               <article className="public-comment" key={c.id}>
-                <strong>{c.author}</strong>
-                <p>{c.body}</p>
-                <small>{ist(c.created_at)}</small>
+                <DotAvatar
+                  color={c.avatarColor || "blue"}
+                  expression={c.avatarExpression || "squeezed"}
+                  size={40}
+                  decorative
+                />
+                <div className="public-comment-content">
+                  <header>
+                    <strong>{c.author}</strong>
+                    <small>{ist(c.created_at)}</small>
+                  </header>
+                  <p>{c.body}</p>
+                </div>
               </article>
             ))}
             {data.me?.canEngage === true &&
             p.canComment === true &&
             !data.engagement?.feedbackPaused ? (
-              <Form
-                title="Join the conversation"
-                label="Post comment"
-                onSave={async (f) => {
-                  await run("comment-project", {
-                    projectId: p.id,
-                    body: f.get("body"),
-                  });
+              <form
+                className="project-comment-composer"
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  if (commentPending.current || !comment.trim()) return;
+                  commentPending.current = true;
+                  setCommentBusy(true);
+                  setCommentError("");
+                  try {
+                    await run("comment-project", {
+                      projectId: p.id,
+                      body: comment,
+                    });
+                    setComment("");
+                  } catch (error) {
+                    if (!(error instanceof ActionCancelled))
+                      setCommentError((error as Error).message);
+                  } finally {
+                    commentPending.current = false;
+                    setCommentBusy(false);
+                  }
                 }}
               >
-                <Field
-                  name="body"
-                  label="Public comment"
-                  type="textarea"
-                  required
+                <DotAvatar
+                  color={data.me.avatarColor || "blue"}
+                  expression={data.me.avatarExpression || "squeezed"}
+                  size={40}
+                  decorative
                 />
-              </Form>
+                <textarea
+                  name="body"
+                  aria-label="Public comment"
+                  placeholder="Add a comment…"
+                  rows={1}
+                  required
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                  disabled={commentBusy}
+                />
+                <button
+                  className="project-send-comment"
+                  type="submit"
+                  aria-label="Post comment"
+                  disabled={commentBusy || !comment.trim()}
+                >
+                  <Send size={20} aria-hidden="true" />
+                </button>
+                {commentError && <p role="alert">{commentError}</p>}
+              </form>
             ) : data.me ? null : (
               <a className="button" href={signIn} target="_top">
                 Sign in to comment
@@ -2431,24 +2643,25 @@ export function Projects({
             )}
           </section>
         </article>
-      </>
+      </section>
     );
   return (
-    <>
-      <header className="page-heading">
-        <h1>
-          {board ? "Leaderboard" : "Projects"}
-          <HeadingDot color="purple" expression="round" />
-        </h1>
+    <section className="projects-v6 public-project-list">
+      <header className="page-heading projects-heading">
+        <HeadingDot color="purple" expression="squeezed" size={64} />
+        <h1>{board ? "Leaderboard" : "Projects"}</h1>
       </header>
-      <Search
-        value={q}
-        onChange={(v) => {
-          setQ(v);
-          setPage(0);
-        }}
-        label="Search projects or teams"
-      />
+      <div className="project-search">
+        <SearchIcon size={24} aria-hidden="true" />
+        <Search
+          value={q}
+          onChange={(v) => {
+            setQ(v);
+            setPage(0);
+          }}
+          label="Search projects"
+        />
+      </div>
       {(listing.engagement?.votingPaused ||
         listing.engagement?.feedbackPaused) && (
         <p className="notice" role="status">
@@ -2501,21 +2714,14 @@ export function Projects({
                 <img
                   loading="lazy"
                   decoding="async"
-                  className="row-banner"
-                  src={p.banner}
-                  alt=""
-                />
-                <img
-                  loading="lazy"
-                  decoding="async"
                   className="row-logo"
                   src={p.logo}
                   alt=""
                 />
                 <div>
                   <h2>{p.projectName}</h2>
-                  <p>Team {p.teamName}</p>
-                  <small>{p.problemSolution}</small>
+                  <p>{p.problemSolution}</p>
+                  <small>by {p.teamName}</small>
                 </div>
               </a>
               {board ? (
@@ -2538,7 +2744,7 @@ export function Projects({
           Eligible submitted projects will appear here automatically.
         </Empty>
       )}
-      <div className="form-actions">
+      <div className="form-actions project-pagination">
         <button
           className="button secondary"
           disabled={!page}
@@ -2555,7 +2761,7 @@ export function Projects({
           Next page
         </button>
       </div>
-    </>
+    </section>
   );
 }
 export function adminParticipantProjection(

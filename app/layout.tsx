@@ -9,6 +9,7 @@ import "./navigation-correction.css";
 import "./discovery-profile.css";
 import "./dashboard-v6.css";
 import "./discover-rules-v6.css";
+import "./projects-submission-v6.css";
 import "./portal-shell.css";
 export const metadata = {
   title: "DevDay Exchange Community Hackathon: New Delhi",
