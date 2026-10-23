@@ -1,0 +1,316 @@
+{
+  "worktrees": [
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/dddhack-portal",
+      "HEAD": "708783479cfe100b367e9e14b094211d9efb16b9",
+      "branch": "refs/heads/wip/parallel-portal-20261023",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-correction",
+      "HEAD": "abb0afe1b3ec26e5bc406fc41fb5816e11ed7dba",
+      "branch": "refs/heads/fix/admin-visual-correction",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-rendered",
+      "HEAD": "79d1df18ce5b524c40891774b814a9fef8b8964d",
+      "branch": "refs/heads/fix/visual-admin-rendered",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/admin-ui",
+      "HEAD": "bc12ac8ebf29c90f206ab20c5b57b86b7cfa901f",
+      "branch": "refs/heads/feat/admin-ui-parallel",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/discovery-dialog",
+      "HEAD": "8ec4f82bba5160834bb46d4e5b1a4eba748804ed",
+      "branch": "refs/heads/fix/discovery-dialog",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/load-300",
+      "HEAD": "37a754379275e900e7f33bbb7f09c2731e7a5a2c",
+      "branch": "refs/heads/test/load-300-compiled",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/lucide-system",
+      "HEAD": "722c04d055b1d13ad0b7735069bc20d0855d66b5",
+      "branch": "refs/heads/fix/lucide-system",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/navigation-correction",
+      "HEAD": "e5bd843a1d860da671e5249f781be686564b9444",
+      "branch": "refs/heads/fix/navigation-visual-correction",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/navigation-rendered",
+      "HEAD": "39f884e649c4819db2619c96d04e81167292e814",
+      "branch": "refs/heads/fix/visual-navigation-rendered",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/participant-export",
+      "HEAD": "5222aea8aa2c48b72884dc18fbd1918e0aef286f",
+      "branch": "refs/heads/fix/operational-owner-setup",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/participant-ui",
+      "HEAD": "99ed99f7ed1bbe9b23ec783ad3f49c20bd6527bb",
+      "branch": "refs/heads/feat/visual-performance-evidence",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/performance-evidence",
+      "HEAD": "71127b0c93a2977e6a57aa3c596f27a041bf09af",
+      "branch": "refs/heads/feat/performance-evidence",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/profile-correction",
+      "HEAD": "4ffeb761faa2b0def9b1fda77d7c356a00c87343",
+      "branch": "refs/heads/fix/profile-visual-correction",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/profile-rendered",
+      "HEAD": "b74868079e92a0aa294db704a1732f12e03a645f",
+      "branch": "refs/heads/fix/visual-profile-rendered",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/public-home",
+      "HEAD": "49732cf33e817663dec093e8b2313a897ed37033",
+      "branch": "refs/heads/release/public-home-20261023",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/public-home-approved",
+      "HEAD": "061c84e6aebf424da287b92e4e4885c4692512a8",
+      "branch": "refs/heads/feat/approved-home-20261023",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/read-query-batching",
+      "HEAD": "722c04d055b1d13ad0b7735069bc20d0855d66b5",
+      "branch": "refs/heads/perf/read-query-batching",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/retired-submission-tests",
+      "HEAD": "fc0a50e9450e206f69cfb6ba16d58d9d1f18971f",
+      "branch": "refs/heads/test/retired-submission-fields",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/security-audit",
+      "HEAD": "3c53a3939b12c61fb22f6f9f462a6d52c75fc887",
+      "branch": "refs/heads/audit/reason-role-plan",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin",
+      "HEAD": "751ecdb20ed7b4e9006ad9620b682dd7e6474b54",
+      "branch": "refs/heads/fix/v6-admin",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-admin-exact",
+      "HEAD": "431f60d7b79b128ecfa1f5e48b0ee96480966402",
+      "branch": "refs/heads/fix/v6-admin-exact",
+      "trackedChanges": [
+        " M scripts/qa-admin-synthetic-writes.mjs"
+      ],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-dashboard",
+      "HEAD": "f12be81b9bb65f935824a46e181ce7a41f4bb7bc",
+      "branch": "refs/heads/fix/v6-dashboard",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-discover-pagination",
+      "HEAD": "0e07bc656d6bfa5d6c009813587b9c3658e22cf1",
+      "branch": "refs/heads/feat/v6-discover-pagination",
+      "trackedChanges": [
+        " M lib/experience.ts",
+        " M lib/http.ts",
+        " M lib/service.ts"
+      ],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-discover-rules",
+      "HEAD": "2354e524a61521e0ac3cf8fff53d42cd95462380",
+      "branch": "refs/heads/fix/v6-discover-rules",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-icons-home",
+      "HEAD": "41776e9066909c54e05836cb99c950163cf3e676",
+      "branch": "refs/heads/fix/v6-icons-home",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-lower-desktop",
+      "HEAD": "3d848096c684d2ad4142c34d8e515ece0b6022b4",
+      "branch": "refs/heads/feat/v6-lower-desktop",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-organizers",
+      "HEAD": "79adc954c17066de640f7c3b78c14b3e51115db5",
+      "branch": "refs/heads/feat/v6-organizer-tubes",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-performance",
+      "HEAD": "98750487a000a29b641fca8ff0e10d283740e914",
+      "branch": "refs/heads/perf/v6-bulk-reads",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile",
+      "HEAD": "be88d813ef4b879cda6c935cea5ba1c64d80936a",
+      "branch": "refs/heads/fix/v6-profile",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-profile-exact",
+      "HEAD": "89a2a286eebfd7aea71a3d9abf04b933796bfb70",
+      "branch": "refs/heads/fix/v6-profile-exact",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-project-performance",
+      "HEAD": "e2a42f225a4f25c684d0e0aabde11b76cc29e596",
+      "branch": "refs/heads/perf/v6-public-projects",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-project-ui",
+      "HEAD": "5822482c2b56b5c2aa6aebe5dd5cd7740b5dce34",
+      "branch": "refs/heads/fix/v6-project-ui",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-publish",
+      "HEAD": "2c43cc6e63c5955254bac15061fc55e3f2653d8f",
+      "branch": "refs/heads/release/v6-publish-20261023",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-team-controls",
+      "HEAD": "997ae71301ac4fb60a062a7bf3b433d558de053c",
+      "branch": "refs/heads/fix/v6-team-controls",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/v6-wizard-composition",
+      "HEAD": "1b4543b36e82b61bc1f6fe92420d36c353f0dd21",
+      "branch": "refs/heads/fix/v6-wizard-composition",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/visual-integration",
+      "HEAD": "0e07bc656d6bfa5d6c009813587b9c3658e22cf1",
+      "branch": "refs/heads/fix/visual-correction-integration",
+      "trackedChanges": [
+        " M design-qa.md",
+        " M docs/RELEASE-STATE.md",
+        " M docs/VISUAL_CORRECTION_CHECKLIST.md",
+        " M evidence/sites-artifact-reachability.json",
+        " M evidence/sites-production-smoke.json"
+      ],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    },
+    {
+      "worktree": "/home/param302/Dev/DDEHack-portal/.worktrees/voucher-credits",
+      "HEAD": "76715d8e951ae0ed294119b2867f37f5c7197c91",
+      "branch": "refs/heads/feat/voucher-only-credits",
+      "trackedChanges": [],
+      "preservation": "Preserved locally; do not reset, clean or delete.",
+      "cloudRepresentation": "Current source in release checkpoint; active unfinished drafts in docs/deferred-v7. Historical worktree metadata only, no automatic merge."
+    }
+  ],
+  "count": 37,
+  "secretValuesIncluded": false,
+  "productionRowsIncluded": false,
+  "note": "Metadata and tracked-change filenames only. Ignored screenshots/caches, local D1 and credentials are not exported. This does not assert every historical experiment is merged or uploaded."
+}

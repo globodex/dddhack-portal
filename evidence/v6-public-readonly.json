@@ -1,0 +1,54 @@
+{
+  "requests": "anonymous GET only",
+  "production_mutations": false,
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "bytes": 47130,
+      "location": null,
+      "contentType": "text/html; charset=utf-8",
+      "sha256": "a312180ca0443c073be3c472593027e31b5dc871c2b9095178470047b70de61a"
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "bytes": 363,
+      "location": null,
+      "contentType": "text/plain; charset=utf-8",
+      "sha256": "6f89c351a0b640d0122cb9dd6659a28dfa8d4ff59f90edadf929873be1f35ce8"
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "bytes": 330,
+      "location": null,
+      "contentType": "application/xml; charset=utf-8",
+      "sha256": "f425bf755484482b9b2a30736e05a7f8c8581b9f3a6d756e62473b0fa59d4676"
+    },
+    {
+      "path": "/projects",
+      "status": 200,
+      "bytes": 17792,
+      "location": null,
+      "contentType": "text/html; charset=utf-8",
+      "sha256": "2f4420d649ec25bcbd567b70929e620f3916aef186f1a3f5f5edc5feea9a0af9"
+    },
+    {
+      "path": "/dashboard",
+      "status": 302,
+      "bytes": 0,
+      "location": "https://dddhack-portal.param3021.chatgpt.site/signin-with-chatgpt?return_to=%2Fdashboard",
+      "contentType": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/api/portal?view=%2Fadmin%2Fparticipants",
+      "status": 401,
+      "bytes": 56,
+      "location": null,
+      "contentType": "application/json",
+      "sha256": "500d4b81348de05c1138c2ac55f950ba1c31b3e7c9ad65b1d4da4da4cf21d2f3"
+    }
+  ]
+}

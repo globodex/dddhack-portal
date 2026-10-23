@@ -46,3 +46,7 @@ First priority: implement and test AI verification/background processing, and co
 Second priority: broader UI and visual polish, per user's latest instruction. V6 remains responsible for functional, responsive and accessibility defects.
 
 Additional performance work still unimplemented: client navigation, role/editor code splitting and measured focus/visibility refresh coalescing. The measured read-path improvement above does not imply those are implemented. Private responses/history remain no-store. Physical Android/iOS and managed sign-in/session completion remain unverified; touch results are browser emulation.
+
+## Post-publication read-only verification
+
+Anonymous GET checks after publication passed: Home, Projects, robots.txt and sitemap returned200; Dashboard returned302 to sign-in; protected admin Participants API returned401. No production mutation requests were sent. Exact status/byte/hash receipt: `evidence/v6-public-readonly.json`. The general web-fetch tool could not access the Site, so direct read-only HTTPS verified the boundary instead. This does not verify managed signed-in sessions or physical devices.
