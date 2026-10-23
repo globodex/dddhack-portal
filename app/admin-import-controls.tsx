@@ -64,6 +64,26 @@ const fieldLabels: Record<ImportField, string> = {
   website: "Website",
 };
 
+export function adminPreviewError(action: string, body: AdminRow): string {
+  const messages: Record<string, string> = {
+    CSV_EMPTY: "Enter valid emails or a CSV with a header row.",
+    INVALID_CSV_QUOTE: "Check CSV quotes and try again.",
+    CSV_COLUMN_MISMATCH: "Each CSV row must match the header columns.",
+    CSV_DUPLICATE_HEADERS: "Use a unique name for each CSV column.",
+    CSV_MAPPING_HEADER_MISSING: "Choose an existing CSV column.",
+    CSV_MAPPING_DUPLICATE: "Use each CSV column once.",
+    CSV_ROW_LIMIT: "Use at most 1,000 CSV rows.",
+    CSV_TOO_LARGE: "CSV must be at most 512 KB.",
+  };
+  const code = String(body.code || body.message || "");
+  return (
+    (action === "preview-import" && messages[code]) ||
+    body.message ||
+    body.code ||
+    "Preview is unavailable."
+  );
+}
+
 /** Preview only; commit always goes through the supplied confirmation-aware run. */
 export async function previewAdminAction<T>(
   action: string,
@@ -77,8 +97,7 @@ export async function previewAdminAction<T>(
     body: JSON.stringify({ action, data }),
   });
   const body = (await response.json()) as AdminRow;
-  if (!response.ok)
-    throw new Error(body.message || body.code || "Preview is unavailable.");
+  if (!response.ok) throw new Error(adminPreviewError(action, body));
   return body as T;
 }
 export function importRequest(
