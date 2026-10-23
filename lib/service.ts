@@ -2064,7 +2064,7 @@ export class PortalService {
           );
       if (review.eligibility === "eligible") {
         demand(
-          human.length > 0 &&
+          human.length >= s.policy.minJudges &&
             (s.policy.weights.ai === 0 || review.astra !== null) &&
             review.codex !== null &&
             review.diversity !== null,
