@@ -40,6 +40,7 @@ const report = {
   source: manifest.source, workerSha: manifest.worker, mode, viewport,
   resetToken: manifest.resetToken, syntheticOnly: true, input: mode,
   browserEmulation: true, physicalDevice: false,
+  browserSandbox: true,
   checks: [], writes: [], blocked: [], errors: [], screenshots: [], browserClosed: false,
 };
 const persist = () => writeFileSync(join(output, "report.json"), JSON.stringify(report, null, 2));
@@ -54,7 +55,14 @@ const expected = {
 };
 const browser = await chromium.launch({ headless: true,
   executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium",
-  args: ["--no-sandbox"],
+  chromiumSandbox: true,
+  args: ["--disable-setuid-sandbox"],
+}).catch((error) => {
+  report.browserLaunchBlocked = true;
+  report.failure = error.message;
+  persist();
+  console.error(JSON.stringify({ report: join(output, "report.json"), browserLaunchBlocked: true }));
+  process.exit(1);
 });
 report.browser = browser.version();
 let writes = 0;

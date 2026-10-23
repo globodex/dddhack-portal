@@ -1,0 +1,104 @@
+{
+  "source": "b3d6eabe615122771b710cefcbc930e3d2027c92",
+  "workerSha": "534d5308221c6854e54db4fa4869a41d5bc089a866724254165ee11acfaac605",
+  "mode": "keyboard",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "resetToken": "7aefdf6b-52d4-4d29-91ca-aa5ef1e05088",
+  "syntheticOnly": true,
+  "input": "keyboard",
+  "browserEmulation": true,
+  "physicalDevice": false,
+  "checks": [
+    {
+      "name": "Authenticated email is read-only; own profile response is no-store",
+      "passed": true
+    },
+    {
+      "name": "Native radio arrow navigation preserves one color selection",
+      "passed": true
+    },
+    {
+      "name": "Step 2: heading focus and no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "Invalid phone prevents navigation and any write",
+      "passed": true
+    },
+    {
+      "name": "Social add/platform/edit/remove affects only the selected row",
+      "passed": true
+    },
+    {
+      "name": "Step 1: heading focus and no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "Step 2: heading focus and no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "Back/Next retains basics, avatar, phone and social link",
+      "passed": true
+    },
+    {
+      "name": "Step 3: heading focus and no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "Save commits one positive synthetic request and navigates to Teams",
+      "passed": true
+    },
+    {
+      "name": "Fresh server read verifies every saved field and unchanged public visibility",
+      "passed": true
+    },
+    {
+      "name": "Full page reload retains the committed profile",
+      "passed": true
+    }
+  ],
+  "writes": [
+    {
+      "action": "complete-profile",
+      "actor": "fake_alice",
+      "requestCount": 1
+    }
+  ],
+  "blocked": [],
+  "errors": [],
+  "screenshots": [
+    {
+      "path": "/workspace/v7-profile/evidence/v7-profile-controls/keyboard-b3d6eab-wkw1ts/before-save-1440x900.png",
+      "route": "/profile",
+      "mode": "keyboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "b3d6eabe615122771b710cefcbc930e3d2027c92",
+      "workerSha": "534d5308221c6854e54db4fa4869a41d5bc089a866724254165ee11acfaac605",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/v7-profile/evidence/v7-profile-controls/keyboard-b3d6eab-wkw1ts/persisted-profile-1440x900.png",
+      "route": "/profile",
+      "mode": "keyboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "b3d6eabe615122771b710cefcbc930e3d2027c92",
+      "workerSha": "534d5308221c6854e54db4fa4869a41d5bc089a866724254165ee11acfaac605",
+      "inspected": false
+    }
+  ],
+  "browserClosed": true,
+  "browser": "154.0.8037.57",
+  "acceptedInteractionCoverage": false,
+  "browserSandbox": false,
+  "excludedReason": "Diagnostic run used stale no-sandbox launch before V6_FRESH_HANDOFF browser constraint was read. Excluded from accepted browser coverage. Corrected runner now requires sandbox; sandbox launch failed No usable sandbox."
+}

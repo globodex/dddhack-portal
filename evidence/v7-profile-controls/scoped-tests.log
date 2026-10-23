@@ -1,0 +1,24 @@
+✔ eight symbolic expressions and eight approved colors validate server-side; profile upload is rejected; teams use initials (106.938464ms)
+✔ phone visibility is limited to current own-team members, revoked on leaving/transfer and absent from discovery/admin/public projections (85.565555ms)
+✔ leader rename requires roster and unlocked pre-freeze team, preserves identity/history and never deletes a team (72.162092ms)
+✔ profile mounts one step with a keyboard-focusable field region and named Next action (17.448053ms)
+✔ social trash controls preserve accessible names and remove only their own row (4.03121ms)
+✔ official Lucide controls remain decorative SVGs within named buttons (2.023267ms)
+✔ profile keeps authenticated email, required basics, and avatar before fields in mobile reading order (18.495661ms)
+✔ all eight colors and expressions are individually labelled native radios with exactly one selection per group (25.124072ms)
+✔ multicolor expression previews remain independent from the selected personal color (6.744586ms)
+✔ social prefill retains multiple links per platform and typed labels, deduplicates legacy URLs, and omits empty rows on save (0.617119ms)
+✔ contact starts with one optional social row; add, select, edit, and remove callbacks preserve other rows (6.699909ms)
+✔ all profile steps keep one centered title-dot group between equal back spaces (4.64913ms)
+✔ onboarding shell is restricted to profile and incomplete participant dashboard flows (22.162923ms)
+✔ about-you choices retain exactly the verified Luma options (0.626624ms)
+✔ positive profile Save crosses HTTP boundary and persists every field without private audit values (88.536599ms)
+✔ invalid Save cannot partially replace an already saved profile or emit a successful audit (49.046925ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1053.648013

@@ -1,0 +1,40 @@
+{
+  "lane": "profile",
+  "base": "8a9daadb96e360340620ab5f0619d0489b2d3e50",
+  "compiledSource": "b3d6eabe615122771b710cefcbc930e3d2027c92",
+  "workerSha256": "534d5308221c6854e54db4fa4869a41d5bc089a866724254165ee11acfaac605",
+  "productSourceChanged": false,
+  "typecheck": "passed",
+  "buildArtifactReview": { "passed": true, "artifactFiles": 185 },
+  "scopedTests": { "passed": 16, "failed": 0, "newTests": 2, "log": "scoped-tests.log" },
+  "httpCoverage": [
+    "One complete-profile POST persists all profile fields and normalized phone",
+    "Fresh own-profile GET verifies saved fields, completeness and no-store",
+    "Another synthetic participant profile remains unchanged",
+    "Exactly one successful audit entry omits private field values",
+    "Invalid phone, HTTP social URL, invented category and email override each return422 without partial replacement or successful audit"
+  ],
+  "acceptedBrowserInteractionChecks": 0,
+  "browserBlocker": {
+    "action": "Launch Chromium with chromiumSandbox:true and --disable-setuid-sandbox",
+    "target": "/usr/bin/chromium in cloud environment",
+    "outcome": "failed before browser pages or requests",
+    "reason": "No usable sandbox",
+    "automaticApprovalDenial": false,
+    "bypassRetried": false
+  },
+  "diagnosticRunsExcluded": [
+    "keyboard-b3d6eab-wkw1ts/report.json",
+    "desktop-b3d6eab-daj6oI/report.json"
+  ],
+  "diagnosticNote": "These two earlier synthetic runs used stale no-sandbox launch before the V6_FRESH_HANDOFF browser constraint was read. Each wrote one fake Alice profile into a fresh disposable local D1; both previews were stopped and deleted their local databases. They are excluded from accepted interaction coverage. The corrected runner requires the sandbox and reports a launch blocker.",
+  "remaining": [
+    "Run corrected profile runner in keyboard, desktop and touch modes with one fresh reset per mode after sandboxed browser is available",
+    "Review new screenshots against selected profile mockup before Library delivery",
+    "Final integrated-source browser recheck"
+  ],
+  "physicalDeviceCoverage": false,
+  "productionAccess": false,
+  "realProviderCalls": false,
+  "publication": false
+}
