@@ -1,5 +1,14 @@
 "use client";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import {
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUp,
+  ArrowUpRight,
+  Pause,
+  Play,
+} from "lucide-react";
 import Dots from "./dots";
 import DelhiWordmark from "./delhi-wordmark";
 import { defaultPublicContent } from "../lib/event-content-contract";
@@ -233,14 +242,14 @@ function Chapters({
                       disabled={step === 0}
                       onClick={() => go(Math.max(0, step - 1))}
                     >
-                      Previous
+                      <ArrowLeft size={18} aria-hidden="true" /> Previous
                     </button>
                     <button
                       className="button secondary"
                       disabled={step === agenda.length - 1}
                       onClick={() => go(Math.min(agenda.length - 1, step + 1))}
                     >
-                      Next
+                      Next <ArrowRight size={18} aria-hidden="true" />
                     </button>
                     <button
                       className="link-button"
@@ -402,14 +411,16 @@ export default function Home({
             <span className="sr-only">New Delhi</span>
             <DelhiWordmark paused={paused || !ready || !visible} />
           </h1>
-          <p className="hero-date">Sunday, 1 November 2026</p>
+          <p className="hero-date">
+            Sunday, 1 November 2026 · Hosted by Codex Ambassadors
+          </p>
           <a
             className="hero-register"
             href="https://luma.com/6t5uk4lo"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Register <span aria-hidden="true">↗</span>
+            Register <ArrowUpRight size={20} aria-hidden="true" />
           </a>
           <a
             className="button primary-cta"
@@ -421,7 +432,7 @@ export default function Home({
             target="_top"
           >
             {signedIn ? "Open your Dashboard" : "Continue with ChatGPT"}
-            <span aria-hidden="true">→</span>
+            <ArrowRight size={20} aria-hidden="true" />
           </a>
         </div>
         <div className="hero-art" aria-hidden="true">
@@ -436,7 +447,7 @@ export default function Home({
           href="#schedule"
           aria-label="Scroll to schedule"
         >
-          <span aria-hidden="true">↓</span>
+          <ArrowDown size={20} aria-hidden="true" />
         </a>
         <button
           className="motion-toggle button secondary"
@@ -450,7 +461,11 @@ export default function Home({
             } catch {}
           }}
         >
-          <span aria-hidden="true">{paused ? "▶" : "Ⅱ"}</span>
+          {paused ? (
+            <Play size={20} aria-hidden="true" />
+          ) : (
+            <Pause size={20} aria-hidden="true" />
+          )}
         </button>
       </section>
       <Chapters items={content.agenda} paused={paused} />
@@ -476,7 +491,7 @@ export default function Home({
                 <span className="host-name">{name}</span>
                 <small>{role}</small>
                 <span className="host-handle">
-                  @{handle} <span aria-hidden="true">↗</span>
+                  @{handle} <ArrowUpRight size={18} aria-hidden="true" />
                 </span>
               </a>
             </li>
@@ -492,9 +507,12 @@ export default function Home({
           target="_blank"
           rel="noopener noreferrer"
         >
-          Event registration on Luma <span aria-hidden="true">↗</span>
+          Event registration on Luma{" "}
+          <ArrowUpRight size={18} aria-hidden="true" />
         </a>
-        <a href="#home-title">Back to top ↑</a>
+        <a href="#home-title">
+          Back to top <ArrowUp size={18} aria-hidden="true" />
+        </a>
       </footer>
     </div>
   );

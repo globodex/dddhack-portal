@@ -102,8 +102,7 @@
   width: max-content;
   min-height: 44px;
   font-size: 18px;
-  text-decoration: underline;
-  text-underline-offset: 5px;
+  text-decoration: none;
 }
 .public-home-shell .primary-cta {
   display: flex;
@@ -188,9 +187,9 @@
   z-index: 0;
 }
 .public-home-shell .bottom-dots .public-dot {
-  left: calc((var(--strip-index) + 0.5) * 100% / 12);
+  left: calc((var(--strip-index) + 0.5) * 100% / var(--strip-count));
   top: 100%;
-  width: clamp(40px, 9vw, 136px);
+  width: var(--strip-width);
   transform: translate(-50%, -65%);
 }
 .public-home-shell
@@ -1170,5 +1169,74 @@
 @media (max-width: 700px) {
   .public-home-shell .home-hero h1 {
     font-size: 8.15vw;
+  }
+}
+
+/* Current hero controls and sticky compact navigation. */
+.public-home-shell .hero-date {
+  max-width: 37ch;
+  font-size: clamp(16px, 1.55vw, 23px);
+  line-height: 1.4;
+}
+.public-home-shell .hero-register {
+  text-decoration: none;
+}
+.public-home-shell .hero-register svg {
+  flex: 0 0 auto;
+  transition: transform 160ms ease;
+}
+.public-home-shell .hero-register:is(:hover, :focus-visible) svg {
+  transform: translate(2px, -2px);
+}
+.public-home-shell .primary-cta svg {
+  display: block;
+  flex: 0 0 20px;
+}
+.public-home-shell .host-badges a svg,
+.public-home-shell .home-footer a svg {
+  vertical-align: middle;
+}
+@media (max-width: 1199px) {
+  .public-home-shell .public-header {
+    position: sticky;
+    top: 0;
+    inset-inline: auto;
+    min-height: 76px;
+    padding-block: 16px;
+    border-bottom: 1px solid #e7e9e8;
+  }
+  .public-home-shell .home-hero {
+    min-height: calc(100svh - 76px);
+    padding-top: 44px;
+  }
+  .public-home-shell #schedule {
+    scroll-margin-top: 76px;
+  }
+}
+@media (max-width: 700px) {
+  .public-home-shell .home-hero {
+    padding-top: 32px;
+  }
+  .public-home-shell .hero-date {
+    font-size: 16px;
+  }
+}
+@media (max-width: 700px) and (orientation: landscape) {
+  .public-home-shell .home-motion-strip {
+    display: block;
+    height: 140px;
+  }
+  .public-home-shell .home-hero {
+    padding-bottom: 196px;
+  }
+  .public-home-shell .motion-toggle,
+  .public-home-shell .scroll-cue {
+    bottom: 146px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .public-home-shell .hero-register svg {
+    transition: none;
+    transform: none;
   }
 }

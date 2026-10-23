@@ -123,7 +123,10 @@ export default function Dots({
       dots = descriptors.map((item, i) => {
         const r = (item.diameter * scale) / 2;
         const homeX = bottom
-          ? ((i + 0.5) * width) / descriptors.length
+          ? Math.max(
+              r,
+              Math.min(width - r, ((i + 0.5) * width) / descriptors.length),
+            )
           : item.x * scale;
         const homeY = bottom ? height - r * 0.65 : item.y * scale;
         nodes[i].style.display = "block";
@@ -222,7 +225,7 @@ export default function Dots({
       ref={root}
       className={bottom ? "dot-field bottom-dots" : "dot-field hero-dots"}
       aria-hidden="true"
-      data-dot-count={bottom ? 12 : 8}
+      data-dot-count={items.length}
     >
       {items.map((dot, i) => (
         <span
@@ -231,6 +234,8 @@ export default function Dots({
           style={
             {
               "--strip-index": i,
+              "--strip-count": items.length,
+              "--strip-width": `min(${dot.diameter * 1.55}px, calc(100vw * ${dot.diameter} / 760))`,
               "--desktop-x": `${(dot.x / 480) * 100}%`,
               "--desktop-y": `${(dot.y / 440) * 100}%`,
               "--desktop-width": `${(dot.diameter / 480) * 100}%`,

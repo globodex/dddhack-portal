@@ -104,12 +104,12 @@ test("airblower substantially moves multiple nearby dots and settles home inside
     );
   }
   assert.equal(desktopDots.length, 8);
-  assert.equal(mobileDots.length, 6);
-  assert.equal(stripDots.length, 12);
+  assert.equal(mobileDots.length, 8);
+  assert.equal(stripDots.length, 18);
 });
 test("approved Home SSR has exact day/actions, real organizers and unenhanced readable chapters with no fabricated agenda", () => {
   const html = renderToStaticMarkup(createElement(Home));
-  assert.match(html, /Sunday, 1 November 2026/);
+  assert.match(html, /Sunday, 1 November 2026 · Hosted by Codex Ambassadors/);
   assert.doesNotMatch(html, /—/);
   assert.match(html, /Continue with ChatGPT/);
   assert.match(html, /https:\/\/luma.com\/6t5uk4lo/);
