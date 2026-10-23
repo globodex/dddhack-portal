@@ -98,6 +98,10 @@ async function act(locator) {
   await locator.focus();
   return locator.press("Enter");
 }
+async function expand(summary) {
+  if (!(await summary.locator("..").evaluate((e) => e.open)))
+    await act(summary);
+}
 async function session(actor) {
   assert.ok(["leader", "member", "accept", "decline", "solo"].includes(actor));
   if (sessions.has(actor)) return sessions.get(actor);
@@ -418,7 +422,9 @@ try {
     );
   });
   const renamed = "Synthetic Renamed Loop";
-  await act(leader.panel.locator("summary").filter({ hasText: "Rename team" }));
+  await expand(
+    leader.panel.locator("summary").filter({ hasText: "Rename team" }),
+  );
   await record("rename required and minimum length validation", async () => {
     const name = leader.panel.getByLabel("Team name", { exact: true });
     await name.fill("");
@@ -449,7 +455,7 @@ try {
     );
     assert.equal((await reload(leader)).team.name, renamed);
   });
-  await act(
+  await expand(
     leader.panel
       .locator("summary")
       .filter({ hasText: "Customize your team badge and accent" }),
@@ -490,7 +496,7 @@ try {
     );
     assert.equal((await reload(leader)).team.palette, "coral");
   });
-  await act(
+  await expand(
     leader.panel.locator("summary").filter({ hasText: "Membership requests" }),
   );
   await record("accept request persists membership", async () => {
@@ -510,7 +516,7 @@ try {
     assert.equal(l.members.length, 3);
     assert.equal((await reload(accept)).team.id, ids.forming);
   });
-  await act(
+  await expand(
     leader.panel.locator("summary").filter({ hasText: "Membership requests" }),
   );
   await record("decline request leaves applicant teamless", async () => {
@@ -580,7 +586,7 @@ try {
     },
   );
   await capture(leader, "locked");
-  await act(
+  await expand(
     solo.panel.locator("summary").filter({ hasText: "Delete your team" }),
   );
   const deletionReason = "Synthetic sole-team replacement QA";
@@ -605,7 +611,7 @@ try {
       await act(dialog.getByRole("button", { name: "Cancel", exact: true }));
       await dialog.waitFor({ state: "hidden" });
       assert.equal((await reload(solo)).team.id, ids.solo);
-      await act(
+      await expand(
         solo.panel.locator("summary").filter({ hasText: "Delete your team" }),
       );
       await solo.panel
@@ -706,6 +712,19 @@ try {
   );
 } catch (e) {
   report.failure = e.message;
+  const leader = sessions.get("leader");
+  if (leader)
+    report.failureState = {
+      requests: await leader.panel.locator(".request-row").allTextContents(),
+      details: await leader.panel
+        .locator("details")
+        .evaluateAll((nodes) =>
+          nodes.map((n) => ({
+            summary: n.querySelector("summary")?.textContent,
+            open: n.open,
+          })),
+        ),
+    };
   process.exitCode = 1;
 } finally {
   for (const s of sessions.values()) await s.page.context().close();
