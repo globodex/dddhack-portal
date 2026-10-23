@@ -1,0 +1,94 @@
+{
+  "results": [
+    {
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/hero-anonymous-390x844.png",
+      "file_id": "file_00000000e95c823094d7c8328f0f4b8a",
+      "library_file_id": "libfile_b91cd664689481919e639b66e7cea42b",
+      "file_name": "hero-anonymous-390x844.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 83645,
+      "original_local_path": "/workspace/v7-mobile-cta/evidence/v7-mobile-cta/hero-anonymous-390x844.png",
+      "local_xattrs_applied": true
+    },
+    {
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/hero-signed-in-390x844.png",
+      "file_id": "file_00000000bb9c820ca6abe5ea51124401",
+      "library_file_id": "libfile_94e6821f1c7c81918cfa00ec71abb19d",
+      "file_name": "hero-signed-in-390x844.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 83673,
+      "original_local_path": "/workspace/v7-mobile-cta/evidence/v7-mobile-cta/hero-signed-in-390x844.png",
+      "local_xattrs_applied": true
+    },
+    {
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/hero-anonymous-390x480.png",
+      "file_id": "file_00000000fdfc82309db1b89f21a5f40f",
+      "library_file_id": "libfile_9f0bb74bdd008191a03f810e899b6bcf",
+      "file_name": "hero-anonymous-390x480.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 75667,
+      "original_local_path": "/workspace/v7-mobile-cta/evidence/v7-mobile-cta/hero-anonymous-390x480.png",
+      "local_xattrs_applied": true
+    },
+    {
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/hero-signed-in-390x480.png",
+      "file_id": "file_000000007f1c81f899838e927cad8b4f",
+      "library_file_id": "libfile_9954fb2bfce481918665a7533c60c192",
+      "file_name": "hero-signed-in-390x480.png",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "libdir_69befcd6e3008191bbb5a6103ef9c438",
+      "mime_type": "image/png",
+      "library_artifact_type": "image",
+      "file_size_bytes": 75690,
+      "original_local_path": "/workspace/v7-mobile-cta/evidence/v7-mobile-cta/hero-signed-in-390x480.png",
+      "local_xattrs_applied": true
+    }
+  ],
+  "warnings": [],
+  "external_connectors_accessed": false
+}
