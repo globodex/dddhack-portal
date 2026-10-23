@@ -168,88 +168,18 @@ export default function AdminParticipantActions({
   );
 }
 
-export type AdminParticipantFiltersValue = {
-  status: string;
-  team:
-    | "locked"
-    | "forming"
-    | "not submitted"
-    | "submitted"
-    | "unlocked"
-    | "none"
-    | "all";
-  individual: string;
-  teamQuery: string;
-};
-export const defaultAdminParticipantFilters: AdminParticipantFiltersValue = {
-  status: "registered",
-  team: "locked",
-  individual: "",
-  teamQuery: "",
-};
-export type FilterableAdminParticipant = AdminParticipantTarget & {
-  status?: string;
-  teamId?: string | null;
-  teamName?: string | null;
-  teamLocked?: boolean;
-  teamLockedAt?: string | null;
-  teamStatus?: string | null;
-};
-export function filterAdminParticipants<T extends FilterableAdminParticipant>(
-  rows: readonly T[],
-  filters: AdminParticipantFiltersValue = defaultAdminParticipantFilters,
-): T[] {
-  const normalize = (value: string) => value.trim().toLocaleLowerCase("en");
-  return rows
-    .filter((row) => {
-      if (
-        filters.status !== "all" &&
-        normalize(row.status || "") !== normalize(filters.status)
-      )
-        return false;
-      if (
-        filters.team === "locked" &&
-        (!row.teamId ||
-          (row.teamStatus
-            ? normalize(row.teamStatus) !== "locked"
-            : !row.teamLocked))
-      )
-        return false;
-      if (
-        ["forming", "not submitted", "submitted"].includes(filters.team) &&
-        normalize(row.teamStatus || "") !== filters.team
-      )
-        return false;
-      if (filters.team === "unlocked" && (!row.teamId || row.teamLocked))
-        return false;
-      if (filters.team === "none" && row.teamId) return false;
-      if (
-        filters.individual &&
-        !normalize(`${row.name} ${row.email || ""}`).includes(
-          normalize(filters.individual),
-        )
-      )
-        return false;
-      if (
-        filters.teamQuery &&
-        !normalize(row.teamName || "").includes(normalize(filters.teamQuery))
-      )
-        return false;
-      return true;
-    })
-    .sort((a, b) => {
-      const time = (row: T) =>
-        row.teamLockedAt && Number.isFinite(Date.parse(row.teamLockedAt))
-          ? Date.parse(row.teamLockedAt)
-          : Infinity;
-      const delta = time(a) - time(b);
-      return (
-        (Number.isNaN(delta) ? 0 : delta) ||
-        a.name.localeCompare(b.name) ||
-        a.id.localeCompare(b.id)
-      );
-    });
-}
+export {
+  filterParticipants as filterAdminParticipants,
+  defaultParticipantFilters as defaultAdminParticipantFilters,
+} from "../lib/participant-filters";
+export type {
+  ParticipantFilters as AdminParticipantFiltersValue,
+  ParticipantFilterRow as FilterableAdminParticipant,
+} from "../lib/participant-filters";
+import {
+  defaultParticipantFilters as defaultAdminParticipantFilters,
+  type ParticipantFilters as AdminParticipantFiltersValue,
+} from "../lib/participant-filters";
 
 export function AdminParticipantFilters({
   value = defaultAdminParticipantFilters,

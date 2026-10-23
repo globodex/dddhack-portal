@@ -1,4 +1,8 @@
 "use client";
+import {
+  participantExportHref,
+  type ParticipantRecordState,
+} from "../lib/participant-filters";
 import DotAvatar from "./dot-avatar";
 import {
   teamColorKeys,
@@ -2282,7 +2286,7 @@ export function AdminParticipants({
   const [filters, setFilters] = useState<AdminParticipantFiltersValue>({
       ...defaultAdminParticipantFilters,
     }),
-    [recordState, setRecordState] = useState("active"),
+    [recordState, setRecordState] = useState<ParticipantRecordState>("active"),
     [selected, setSelected] = useState<string[]>([]),
     [status, setStatus] = useState("pending"),
     [reason, setReason] = useState(""),
@@ -2327,7 +2331,7 @@ export function AdminParticipants({
           <select
             value={recordState}
             onChange={(e) => {
-              setRecordState(e.target.value);
+              setRecordState(e.target.value as ParticipantRecordState);
               setSelected([]);
               if (e.target.value === "removed")
                 setFilters({ ...filters, status: "all", team: "all" });
@@ -2339,15 +2343,18 @@ export function AdminParticipants({
           </select>
         </label>
         {canManage && (
-          <a className="button secondary" href="/api/export?list=participants">
-            Export full participant list
+          <a
+            className="button secondary"
+            href={participantExportHref(filters, recordState)}
+          >
+            Export filtered participants ({items.length})
           </a>
         )}
       </div>
       {canManage && (
         <p className="muted">
-          CSV export includes the full server-authorized participant list,
-          independently of these table filters.
+          Exports all {items.length} matching participants in the displayed
+          order. Private phone, profile and credit fields are excluded.
         </p>
       )}
       {canManage && (
@@ -3258,8 +3265,9 @@ function ContentEditor({
         <>
           <p className="notice">
             These fields are never included in public content or ordinary
-            exports. Published details are returned only to fully approved teams
-            and authorized venue managers.
+            exports. Published details are returned only to personally Going or
+            Checked in people with current approval and authorized venue
+            managers.
           </p>
           {[
             ["location", "Exact room or entry location"],

@@ -1,3 +1,7 @@
+import {
+  participantExportSelection,
+  participantCSV,
+} from "./participant-export";
 import { z } from "zod";
 import { PortalService } from "./service";
 import {
@@ -206,6 +210,38 @@ export async function handleExport(request: Request, runtime: Runtime) {
     let data: Record<string, unknown>[] = await service.adminList(
       list === "logs" ? "audit" : list,
     );
+    if (list === "participants") {
+      const selection = participantExportSelection(
+        data,
+        new URL(request.url).searchParams,
+      );
+      // Re-read authorization after asynchronous projection/filter work.
+      await service.staff();
+      await service.mutate(actor.id, "export", list, [], {
+        rows: selection.exported,
+        totalMatches: selection.total,
+        scope: selection.scope,
+        page: selection.scope === "page" ? selection.page : undefined,
+        pageSize: selection.scope === "page" ? selection.pageSize : undefined,
+        secretValues: false,
+      });
+      return new Response(participantCSV(selection.rows), {
+        headers: {
+          ...safeHeaders,
+          "Content-Type": "text/csv; charset=utf-8",
+          "Content-Disposition": "attachment; filename=devday-participants.csv",
+          "X-Total-Count": String(selection.total),
+          "X-Exported-Count": String(selection.exported),
+          "X-Export-Scope": selection.scope,
+          ...(selection.scope === "page"
+            ? {
+                "X-Page": String(selection.page),
+                "X-Page-Size": String(selection.pageSize),
+              }
+            : {}),
+        },
+      });
+    }
     const query = (new URL(request.url).searchParams.get("q") || "")
       .slice(0, 200)
       .toLowerCase();

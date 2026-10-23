@@ -103,14 +103,14 @@ test("participant admin page wires reviewed imports and only individual removal,
     "Preview import",
     "Remove participant",
     "active@example.invalid",
-    "Export full participant list",
+    "Export filtered participants (1)",
   ])
     assert.ok(markup.includes(text), text);
   assert.doesNotMatch(
     markup,
     /removed@example.invalid|Preview registered emails|Bulk delete|Delete selected/,
   );
-  assert.match(markup, /independently of these table filters/);
+  assert.match(markup, /Exports all/);
   const volunteer = html(AdminParticipants, {
     data: {
       me: { ...admin, role: "volunteer" },

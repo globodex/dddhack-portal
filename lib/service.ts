@@ -2333,8 +2333,10 @@ export class PortalService {
 
     if (["audit", "logs", "permissions", "settings"].includes(list))
       await this.staff(true);
-    if (list === "participants")
+    if (list === "participants") {
+      await this.staff();
       return new PortalExperience(this).participantRows();
+    }
     if (list === "teams" || list === "submissions") {
       const view = await new PortalExperience(this).view("/admin/" + list);
       return (view?.items || []) as Record<string, unknown>[];
