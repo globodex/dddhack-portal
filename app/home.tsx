@@ -307,8 +307,8 @@ export default function Home({
             </a>
           )}
           <p className="muted">
-            Exact arrival details are shared privately with teams whose members
-            are all approved.
+            Exact arrival details are shared privately with people marked Going
+            or Checked in on the portal.
           </p>
         </div>
       </section>
@@ -339,33 +339,56 @@ export default function Home({
         <h2>Meet the Organizers behind</h2>
         <ul className="host-badges">
           <li>
-            <span className="host-monogram" aria-hidden="true">
-              PS
-            </span>
+            <img
+              className="host-photo"
+              src="/organizers/Param3021-x.jpg"
+              width={28}
+              height={28}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
             <span>
               Parampreet Singh<small>Codex Ambassador</small>
             </span>
           </li>
           <li>
-            <span className="host-monogram" aria-hidden="true">
+            <span
+              className="host-monogram"
+              role="img"
+              aria-label="Shivay Lamba: photo pending"
+              title="Photo pending"
+            >
               SL
             </span>
-            <span title="Full surname awaiting confirmation">
-              Shivay L<small>Codex Ambassador</small>
+            <span>
+              Shivay Lamba<small>Codex Ambassador</small>
             </span>
           </li>
           <li>
-            <span className="host-monogram" aria-hidden="true">
-              NS
-            </span>
+            <img
+              className="host-photo"
+              src="/organizers/nikhilsbuilds-x.jpg"
+              width={28}
+              height={28}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
             <span>
               Nikhil Shukla<small>Codex Ambassador</small>
             </span>
           </li>
           <li>
-            <span className="host-monogram" aria-hidden="true">
-              SS
-            </span>
+            <img
+              className="host-photo"
+              src="/organizers/callmeshuklaji-x.jpg"
+              width={28}
+              height={28}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
             <span>
               Shresth Shukla<small>Cerebras Ambassador</small>
             </span>

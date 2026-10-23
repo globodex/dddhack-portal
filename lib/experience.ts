@@ -1390,8 +1390,8 @@ export class PortalExperience {
           description === importedDescription ||
           profileDescriptionChoices.includes(description),
         422,
-        "PROFILE_DESCRIPTION_CHOICES_PENDING",
-        "The host has not configured that profile choice.",
+        "PROFILE_DESCRIPTION_INVALID",
+        "Choose one of the event's profile categories.",
       );
       const links = (
         d.socialLinks ? d.socialLinks.map((v) => v.url).join("\n") : d.socials

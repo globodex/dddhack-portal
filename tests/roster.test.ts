@@ -167,7 +167,7 @@ test("new profile requires phone, protects private organization fields and uses 
         ...profile,
         bestDescription: "Invented category",
       }),
-      { code: "PROFILE_DESCRIPTION_CHOICES_PENDING" },
+      { code: "PROFILE_DESCRIPTION_INVALID" },
     );
     const publicJSON = JSON.stringify(
       await new PortalService(db, null, undefined).view("/projects"),

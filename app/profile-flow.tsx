@@ -3,7 +3,10 @@ import DotAvatar from "./dot-avatar";
 import { dotColors, dotExpressions } from "../lib/avatar-contract";
 import { useEffect, useRef, useState } from "react";
 import { ActionCancelled } from "../lib/action-confirmation";
-import { profilePhonePattern } from "../lib/profile-contract";
+import {
+  profileDescriptionChoices,
+  profilePhonePattern,
+} from "../lib/profile-contract";
 type Row = Record<string, any>;
 const platforms = ["LinkedIn", "GitHub", "X", "Instagram", "Website"];
 function platform(url: string) {
@@ -50,6 +53,34 @@ export function profileInitialLinks(profile: Row) {
     extras: all.filter((url) => !Object.values(initialLinks).includes(url)),
   };
 }
+export function ProfileDescriptionField({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (value: string) => void;
+}) {
+  return (
+    <label>
+      What best describes you
+      <select
+        name="bestDescription"
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+      >
+        <option value="">Choose</option>
+        {profileDescriptionChoices.map((choice) => (
+          <option key={choice} value={choice}>
+            {choice}
+          </option>
+        ))}
+      </select>
+      {value && !profileDescriptionChoices.includes(value) && (
+        <small className="muted">Saved: {value}</small>
+      )}
+    </label>
+  );
+}
 export default function ProfileFlow({
   data,
   run,
@@ -88,12 +119,6 @@ export default function ProfileFlow({
     }
     heading.current?.focus();
   }, [step]);
-  const choices = [
-    ...new Set([
-      ...(p.descriptionChoices || []),
-      ...(p.best_description ? [p.best_description] : []),
-    ]),
-  ] as string[];
   return (
     <section className="profile-flow" aria-label="Your profile">
       <div className="profile-progress" aria-label={`Step ${step} of 3`}>
@@ -330,21 +355,10 @@ export default function ProfileFlow({
             </>
           ) : (
             <>
-              <label>
-                What best describes you
-                <select
-                  value={description}
-                  disabled={!choices.length}
-                  onChange={(e) => setDescription(e.target.value)}
-                >
-                  <option value="">
-                    {choices.length ? "Choose" : "Awaiting host choices"}
-                  </option>
-                  {choices.map((v) => (
-                    <option key={v}>{v}</option>
-                  ))}
-                </select>
-              </label>
+              <ProfileDescriptionField
+                value={description}
+                onChange={setDescription}
+              />
               <label>
                 Organization
                 <input

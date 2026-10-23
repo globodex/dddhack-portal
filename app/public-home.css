@@ -429,3 +429,11 @@
     position: static !important;
   }
 }
+
+.organizers .host-photo {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 50%;
+}

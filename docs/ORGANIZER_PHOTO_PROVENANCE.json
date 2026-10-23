@@ -1,0 +1,33 @@
+{
+  "verified": [
+    {
+      "name": "Parampreet Singh",
+      "profile_url": "https://x.com/Param3021",
+      "photo_source_url": "https://pbs.twimg.com/profile_images/1952994177106755585/0fCtQGE8_200x200.jpg",
+      "asset": "/organizers/Param3021-x.jpg",
+      "sha256": "f19b21c25dbe9eb91c2ece9027adcb1ec24d28979ca633e7607703d54297fe17",
+      "bytes": 10300
+    },
+    {
+      "name": "Nikhil Shukla",
+      "profile_url": "https://x.com/nikhilsbuilds",
+      "photo_source_url": "https://pbs.twimg.com/profile_images/2096715105996283904/9v2ziHPC_200x200.jpg",
+      "asset": "/organizers/nikhilsbuilds-x.jpg",
+      "sha256": "83bd86997050bb01ae2e5b0ade6c0090f7e3930d1dc2733b9b8f7ee8a5956b12",
+      "bytes": 9603
+    },
+    {
+      "name": "Shresth Shukla",
+      "profile_url": "https://x.com/callmeshuklaji",
+      "photo_source_url": "https://pbs.twimg.com/profile_images/2076696135763398656/wES9kFq9_200x200.jpg",
+      "asset": "/organizers/callmeshuklaji-x.jpg",
+      "sha256": "f2224e0c9867efab2f1517efa441eed598dbd5d9a7f9122a27481b227e7ae48d",
+      "bytes": 12626
+    }
+  ],
+  "pending": {
+    "name": "Shivay Lamba",
+    "name_source": "Explicit user confirmation",
+    "photo": "Unavailable; labelled initials placeholder retained. Prior denied fallback was not retried."
+  }
+}
