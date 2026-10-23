@@ -70,37 +70,39 @@ export default function DelhiWordmark({
           r.height,
         );
         if (fill.current)
-          fill.current.style.transform = `translate(${p.x}px,${p.y}px)`;
+          fill.current.style.transform = `translate(${(p.x * 2048) / 1927}px,${(p.y * 2048) / 1927}px)`;
       }}
       onPointerLeave={() => {
         if (fill.current) fill.current.style.transform = "translate(0px,0px)";
       }}
     >
-      <img
-        className="delhi-fallback"
-        src={base + "fallback-approved-v3.png"}
-        width={2048}
-        height={768}
-        alt=""
-        fetchPriority="high"
-      />
-      <span className="delhi-mask">
+      <span className="delhi-canvas">
         <img
-          ref={fill}
-          className="delhi-fill"
-          src={base + "delhi-fill-overscan.png"}
+          className="delhi-fallback"
+          src={base + "fallback-approved-v3.png"}
+          width={2048}
+          height={768}
           alt=""
-          width={2112}
-          height={832}
+          fetchPriority="high"
+        />
+        <span className="delhi-mask">
+          <img
+            ref={fill}
+            className="delhi-fill"
+            src={base + "delhi-fill-overscan.png"}
+            alt=""
+            width={2112}
+            height={832}
+          />
+        </span>
+        <img
+          className="delhi-metro"
+          src={base + "metro-static.png"}
+          alt=""
+          width={2048}
+          height={768}
         />
       </span>
-      <img
-        className="delhi-metro"
-        src={base + "metro-static.png"}
-        alt=""
-        width={2048}
-        height={768}
-      />
     </span>
   );
 }

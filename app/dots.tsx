@@ -1,5 +1,15 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
+import DotAvatar from "./dot-avatar";
+import {
+  desktopDots,
+  mobileDots,
+  stripDots,
+  airblowerTarget,
+  advanceDot,
+  type DotState,
+} from "./home-motion";
+
 export default function Dots({
   paused = false,
   bottom = false,
@@ -7,175 +17,234 @@ export default function Dots({
   paused?: boolean;
   bottom?: boolean;
 }) {
-  const ref = useRef<HTMLCanvasElement>(null);
+  const root = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const canvas = ref.current,
-      ctx = canvas?.getContext("2d");
-    if (!canvas || !ctx) return;
+    const stage = root.current;
+    if (!stage) return;
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
-    let frame = 0,
-      w = 0,
-      h = 0,
+    const nodes = [...stage.querySelectorAll<HTMLElement>(".public-dot")];
+    const marks = nodes.map((node) =>
+      node.querySelector<SVGTextElement>("text"),
+    );
+    let width = 0,
+      height = 0,
+      left = 0,
+      top = 0,
+      frame = 0,
+      previous = 0;
+    let entrance = 0,
       visible = true,
       alive = true,
-      previous = 0,
-      entranceStart = 0;
-    const point = { x: -9999, y: -9999 };
-    const colors = [
-      "#f16d00",
-      "#00ab43",
-      "#006afe",
-      "#924ff7",
-      "#232323",
-      "#e0e0e0",
-    ];
-    let dots: {
-      x: number;
-      y: number;
-      hx: number;
-      hy: number;
-      r: number;
-      vx: number;
-      vy: number;
-      startY: number;
-    }[] = [];
-    const draw = (time = performance.now()) => {
-      if (!alive) return;
-      const dt = previous ? Math.min(2, (time - previous) / 16.67) : 1;
-      previous = time;
-      ctx.clearRect(0, 0, w, h);
-      if (!entranceStart && time) entranceStart = time;
-      const progress = time ? Math.min(1, (time - entranceStart) / 850) : 0;
+      active = false;
+    let pointer: { x: number; y: number } | null = null;
+    let touchTimer: ReturnType<typeof setTimeout> | undefined;
+    let dots: (DotState & { startY: number; angle: number })[] = [];
+    const paint = () => {
+      dots.forEach((dot, i) => {
+        nodes[i].style.transform =
+          `translate3d(${dot.x - dot.r}px,${dot.y - dot.r}px,0)`;
+        if (marks[i]) {
+          const attention =
+            pointer && !paused && !reduced.matches
+              ? Math.max(-3, Math.min(3, (pointer.x - dot.x) / 80))
+              : 0;
+          marks[i]!.style.transform =
+            `translate(${attention}px,0px) rotate(${dot.angle}deg)`;
+          marks[i]!.style.transformOrigin = "40px 40px";
+        }
+      });
+    };
+    const draw = (now: number) => {
+      frame = 0;
+      if (!alive || !visible || document.hidden || paused || reduced.matches)
+        return;
+      const dt = previous ? (now - previous) / 16.67 : 1;
+      previous = now;
+      if (!entrance) entrance = now;
+      const progress = Math.min(1, (now - entrance) / 850);
       const ease = 1 - Math.pow(1 - progress, 3);
       let moving = progress < 1;
-      for (let i = 0; i < dots.length; i++) {
-        const p = dots[i];
-        if (paused || reduced.matches) {
-          p.x = p.hx;
-          p.y = p.hy;
-          p.vx = p.vy = 0;
-        } else {
-          const dx = p.hx - point.x,
-            dy = p.hy - point.y,
-            distance = Math.hypot(dx, dy),
-            range = p.r + (bottom ? 50 : 90),
-            force = distance < range ? 18 * (1 - distance / range) : 0,
-            targetX = p.hx + (distance > 1 ? (dx / distance) * force : 0),
-            targetY = p.hy + (distance > 1 ? (dy / distance) * force : 0);
-          p.vx = (targetX - p.x) * Math.min(1, 0.18 * dt);
-          p.vy = (targetY - p.y) * Math.min(1, 0.18 * dt);
-          p.x += p.vx;
-          p.y = progress < 1 ? p.startY + (p.hy - p.startY) * ease : p.y + p.vy;
-          p.x = Math.max(p.r, Math.min(w - p.r, p.x));
-          if (progress === 1) p.y = Math.max(p.r, Math.min(h - p.r, p.y));
-          moving ||= Math.abs(p.vx) + Math.abs(p.vy) > 0.03;
-        }
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = colors[i % colors.length];
-        ctx.fill();
-        // Reference-style typographic marks, without eyeballs or pupils.
-        ctx.save();
-        ctx.fillStyle = i % 6 === 4 ? "#fff" : "#111";
-        ctx.strokeStyle = ctx.fillStyle;
-        ctx.lineWidth = Math.max(2, p.r * 0.055);
-        const attention =
-          Math.max(-1, Math.min(1, (point.x - p.x) / Math.max(w, 1))) *
-          p.r *
-          0.045;
-        const glyphs = ["−", "+", ">", "O", "∧", "∗"],
-          left = glyphs[i % 6],
-          right = i % 6 === 2 ? "<" : left;
-        ctx.font = `${i % 6 === 4 ? 400 : 700} ${p.r * (i % 6 === 2 ? 0.65 : 0.62)}px Arial`;
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText(left, p.x - p.r * 0.42 + attention, p.y + p.r * 0.04);
-        ctx.fillText(right, p.x + p.r * 0.42 + attention, p.y + p.r * 0.04);
-        ctx.restore();
-      }
-      if (!paused && !reduced.matches && moving && visible && !document.hidden)
+      dots.forEach((dot) => {
+        if (progress < 1) dot.y = dot.startY + (dot.homeY - dot.startY) * ease;
+        else
+          moving =
+            advanceDot(
+              dot,
+              airblowerTarget(dot, pointer, width, height, bottom),
+              dt,
+              width,
+              height,
+              bottom,
+            ) || moving;
+      });
+      paint();
+      if (moving) frame = requestAnimationFrame(draw);
+    };
+    const start = () => {
+      if (
+        !frame &&
+        !paused &&
+        !reduced.matches &&
+        visible &&
+        !document.hidden &&
+        width &&
+        height
+      )
         frame = requestAnimationFrame(draw);
     };
-    const restart = () => {
+    const reset = () => {
       cancelAnimationFrame(frame);
+      frame = 0;
       previous = 0;
-      if (visible && !document.hidden) draw();
+      pointer = null;
+      if (paused || reduced.matches) {
+        dots.forEach((dot) => {
+          dot.x = dot.homeX;
+          dot.y = dot.homeY;
+          dot.vx = dot.vy = 0;
+        });
+        paint();
+      } else start();
     };
-    const resize = () => {
-      const rect = canvas.getBoundingClientRect();
-      w = rect.width;
-      h = rect.height;
-      const dpr = Math.min(devicePixelRatio || 1, 2);
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = bottom ? 12 : 6;
-      entranceStart = 0;
-      dots = Array.from({ length: count }, (_, i) => {
-        const r = bottom
-          ? Math.min(35, (w / count) * 0.43) * (i % 3 === 1 ? 0.6 : 1)
-          : Math.min(w * 0.245, h * 0.24) * [0.7, 0.85, 1, 0.86, 0.48, 0.53][i];
-        const hx = bottom
-          ? ((i + 0.5) * w) / count
-          : [0.66, 0.76, 0.35, 0.26, 0.62, 0.77][i] * w;
-        const hy = bottom ? h * 0.56 : [0.2, 0.48, 0.4, 0.72, 0.7, 0.85][i] * h;
+    const measure = () => {
+      const rect = stage.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      left = rect.left + window.scrollX;
+      top = rect.top + window.scrollY;
+      active = width > 0 && height > 0;
+      const compact = innerWidth < 1000;
+      const descriptors = bottom
+        ? stripDots
+        : compact
+          ? mobileDots
+          : desktopDots;
+      const scale = bottom ? Math.min(1, width / 1100) : width / 480;
+      dots = descriptors.map((item, i) => {
+        const r = (item.diameter * scale) / 2;
+        const homeX = bottom
+          ? ((i + 0.5) * width) / descriptors.length
+          : item.x * scale;
+        const homeY = bottom ? height - r * 0.65 : item.y * scale;
+        nodes[i].style.display = "block";
+        nodes[i].style.width = nodes[i].style.height = `${r * 2}px`;
+        nodes[i].querySelector("circle")?.setAttribute("fill", item.fill);
+        const startY = -r * (i + 2);
         return {
-          x: hx,
-          y: paused || reduced.matches ? hy : -r * (i + 2),
-          hx,
-          hy,
+          x: homeX,
+          y: paused || reduced.matches ? homeY : startY,
+          homeX,
+          homeY,
           r,
           vx: 0,
           vy: 0,
-          startY: -r * (i + 2),
+          startY,
+          angle: item.angle || 0,
         };
       });
-      restart();
+      nodes.slice(descriptors.length).forEach((node) => {
+        node.style.display = "none";
+      });
+      entrance = 0;
+      previous = 0;
+      paint();
+      reset();
     };
-    const move = (e: PointerEvent) => {
-      if (e.pointerType !== "mouse" && !e.buttons) return;
-      const r = canvas.getBoundingClientRect();
-      const x = e.clientX - r.left,
-        y = e.clientY - r.top;
-      point.x = x >= 0 && x <= w && y >= 0 && y <= h ? x : -9999;
-      point.y = point.x === -9999 ? -9999 : y;
-      restart();
+    const move = (event: PointerEvent) => {
+      if (
+        !active ||
+        paused ||
+        reduced.matches ||
+        (!bottom && event.pointerType !== "mouse")
+      )
+        return;
+      if (event.pointerType !== "mouse" && event.type !== "pointerdown") return;
+      const x = event.pageX - left,
+        y = event.pageY - top;
+      pointer = x >= 0 && x <= width && y >= 0 && y <= height ? { x, y } : null;
+      if (event.pointerType !== "mouse") {
+        clearTimeout(touchTimer);
+        touchTimer = setTimeout(() => {
+          pointer = null;
+          start();
+        }, 250);
+      }
+      start();
     };
     const leave = () => {
-      point.x = point.y = -9999;
-      restart();
+      pointer = null;
+      start();
     };
-    const resizeObserver = new ResizeObserver(resize);
-    resizeObserver.observe(canvas);
+    const visibility = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(frame);
+        frame = 0;
+        previous = 0;
+        pointer = null;
+      } else start();
+    };
+    const resize = new ResizeObserver(measure);
+    resize.observe(stage);
     const intersection = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
-      restart();
+      if (!visible) {
+        cancelAnimationFrame(frame);
+        frame = 0;
+        previous = 0;
+        pointer = null;
+      } else start();
     });
-    intersection.observe(canvas);
+    intersection.observe(stage);
     window.addEventListener("pointermove", move, { passive: true });
     window.addEventListener("pointerdown", move, { passive: true });
-    window.addEventListener("pointerup", leave, { passive: true });
     window.addEventListener("pointercancel", leave, { passive: true });
-    document.addEventListener("visibilitychange", restart);
-    reduced.addEventListener("change", restart);
+    window.addEventListener("blur", leave);
+    document.addEventListener("visibilitychange", visibility);
+    reduced.addEventListener("change", reset);
+    measure();
     return () => {
       alive = false;
       cancelAnimationFrame(frame);
-      resizeObserver.disconnect();
+      clearTimeout(touchTimer);
+      resize.disconnect();
       intersection.disconnect();
       window.removeEventListener("pointermove", move);
       window.removeEventListener("pointerdown", move);
-      window.removeEventListener("pointerup", leave);
       window.removeEventListener("pointercancel", leave);
-      document.removeEventListener("visibilitychange", restart);
-      reduced.removeEventListener("change", restart);
+      window.removeEventListener("blur", leave);
+      document.removeEventListener("visibilitychange", visibility);
+      reduced.removeEventListener("change", reset);
     };
   }, [paused, bottom]);
+  const items = bottom ? stripDots : desktopDots;
   return (
-    <canvas
-      ref={ref}
-      className={bottom ? "bottom-dots" : "hero-dots"}
+    <div
+      ref={root}
+      className={bottom ? "dot-field bottom-dots" : "dot-field hero-dots"}
       aria-hidden="true"
-    />
+      data-dot-count={bottom ? 12 : 8}
+    >
+      {items.map((dot, i) => (
+        <span
+          key={i}
+          className="public-dot"
+          style={
+            {
+              "--strip-index": i,
+              "--desktop-x": `${(dot.x / 480) * 100}%`,
+              "--desktop-y": `${(dot.y / 440) * 100}%`,
+              "--desktop-width": `${(dot.diameter / 480) * 100}%`,
+            } as CSSProperties
+          }
+        >
+          <DotAvatar
+            color={dot.color}
+            expression={dot.expression}
+            size={80}
+            decorative
+          />
+        </span>
+      ))}
+    </div>
   );
 }
