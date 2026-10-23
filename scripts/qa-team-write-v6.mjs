@@ -2,33 +2,51 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { chromium } from "/tmp/ddehack-playwright-runner/node_modules/playwright/index.mjs";
-const origin = "http://127.0.0.1:4173",
-  artifact =
-    "/home/param302/Dev/DDEHack-portal/.worktrees/visual-integration/dist/server/index.js";
+import { isDeepStrictEqual } from "node:util";
+import { resolve, join } from "node:path";
+import { chromium } from "playwright-core";
+import { assertTeamWriteReset } from "./team-write-reset-guard.mjs";
+const origin = process.env.TEAM_WRITE_ORIGIN || "http://127.0.0.1:4173",
+  artifactRoot = resolve(process.env.TEAM_WRITE_ARTIFACT_ROOT || process.cwd()),
+  artifact = join(artifactRoot, "dist/server/index.js");
 const source = process.env.DASHBOARD_QA_SOURCE,
   worker = process.env.DASHBOARD_QA_WORKER,
-  resetToken = process.env.TEAM_WRITE_RESET_TOKEN;
+  resetToken = process.env.TEAM_WRITE_RESET_TOKEN,
+  manifestPath = process.env.TEAM_WRITE_RESET_MANIFEST;
 if (
   process.env.TEAM_WRITE_READY !== "1" ||
   process.env.TEAM_WRITE_FRESH_FIXTURE !== "1" ||
   !/^[a-f0-9]{40}$/.test(source || "") ||
   !/^[a-f0-9]{64}$/.test(worker || "") ||
-  !/^[a-f0-9]{32}$/.test(resetToken || "")
+  !/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(
+    resetToken || "",
+  ) ||
+  manifestPath !== "/tmp/ddehack-controls-" + resetToken + ".json"
 ) {
   console.log(
-    "Prepared only. Requires coordinator write-phase signal, fresh disposable reset, unique 32-hex reset token and matching source/Worker.",
+    "Prepared only. Requires coordinator write-phase signal, exact fresh reset manifest/UUID and matching source/Worker.",
   );
   process.exit(0);
 }
 const hash = () =>
   createHash("sha256").update(readFileSync(artifact)).digest("hex");
 assert.equal(hash(), worker);
+const manifestBytes = readFileSync(manifestPath);
+assertTeamWriteReset({
+  manifest: JSON.parse(manifestBytes.toString("utf8")),
+  path: manifestPath,
+  token: resetToken,
+  source,
+  worker,
+  artifactRoot,
+  origin,
+});
 const size = process.env.TEAM_WRITE_VIEWPORT || "mobile";
 const sizes = {
   desktop: { width: 1440, height: 900 },
   mobile: { width: 390, height: 844 },
   tablet: { width: 834, height: 1194 },
+  keyboard: { width: 1440, height: 900 },
 };
 assert.ok(Object.hasOwn(sizes, size));
 const output = process.env.DASHBOARD_QA_OUTPUT || "evidence/team-write-v6";
@@ -38,14 +56,18 @@ const report = {
   worker,
   origin,
   viewport: size,
+  inputMode: touch ? "touch-emulation" : size === "keyboard" ? "keyboard" : "mouse",
   syntheticOnly: true,
   sandbox: true,
   resetTokenHash: createHash("sha256").update(resetToken).digest("hex"),
+  resetManifestPath: manifestPath,
+  resetManifestHash: createHash("sha256").update(manifestBytes).digest("hex"),
   checks: [],
   writes: [],
   blocked: [],
   pageErrors: [],
   captures: [],
+  confirmations: [],
 };
 // A consumed token cannot be retried, even after a failure. Reset the disposable
 // database and obtain a new coordinator token before any fresh attempt.
@@ -61,11 +83,21 @@ const ids = {
 const browser = await chromium.launch({
     headless: true,
     chromiumSandbox: true,
+    executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium",
   }),
   sessions = new Map();
 let permit = null;
-const touch = size !== "desktop",
-  act = (locator) => (touch ? locator.tap() : locator.click());
+const touch = ["mobile", "tablet"].includes(size);
+async function act(locator) {
+  if (size !== "keyboard") return touch ? locator.tap() : locator.click();
+  const radio = locator.locator("input[type=radio]");
+  if (await radio.count()) {
+    await radio.focus();
+    return radio.press("Space");
+  }
+  await locator.focus();
+  return locator.press("Enter");
+}
 async function session(actor) {
   assert.ok(["leader", "member", "accept", "decline", "solo"].includes(actor));
   if (sessions.has(actor)) return sessions.get(actor);
@@ -93,7 +125,7 @@ async function session(actor) {
         !permit ||
         permit.actor !== actor ||
         body?.action !== permit.action ||
-        JSON.stringify(body?.data) !== JSON.stringify(permit.data)
+        !isDeepStrictEqual(body?.data, permit.data)
       ) {
         report.blocked.push({
           kind: "unallowlisted-write",
@@ -161,6 +193,13 @@ async function commit(s, action, data, trigger) {
       .evaluate((e) => e === document.activeElement),
     true,
   );
+  const target = await dialog.locator("#confirmation-target").innerText();
+  if (action === "delete-own-team") assert.equal(target, "Synthetic Solo Team");
+  if (action === "remove-workspace-member") {
+    assert.match(target, /Synthetic Team Accept/);
+    assert.match(target, /fake_teamqa_accept/);
+  }
+  report.confirmations.push({ actor: s.actor, action, target });
   permit = { actor: s.actor, action, data };
   const response = s.page.waitForResponse(
     (r) =>
@@ -241,13 +280,45 @@ try {
   );
   const idea = {
     title: "Synthetic control idea",
-    description:
-      "Synthetic local saved idea for the isolated Team write phase.",
+    description: "Synthetic local saved idea. ".repeat(30).slice(0, 499) + ".",
   };
   await leader.panel.getByLabel("Idea title", { exact: true }).fill(idea.title);
+  await record(
+    "description is required before any save confirmation",
+    async () => {
+      await act(
+        leader.panel.getByRole("button", {
+          name: "Save team idea",
+          exact: true,
+        }),
+      );
+      assert.equal(
+        await leader.panel
+          .locator("textarea[name=description]")
+          .evaluate((e) => e.validity.valueMissing),
+        true,
+      );
+      assert.equal(await leader.page.getByRole("dialog").count(), 0);
+      assert.equal(report.writes.length, 0);
+    },
+  );
   await leader.panel
     .locator("textarea[name=description]")
     .fill(idea.description);
+  await record(
+    "500-character description boundary is enforced by real typing",
+    async () => {
+      const description = leader.panel.locator("textarea[name=description]");
+      await description.press("End");
+      await description.press("x");
+      assert.equal((await description.inputValue()).length, 500);
+      assert.match(
+        await leader.panel.locator("#idea-count").innerText(),
+        /^500\/500/,
+      );
+      assert.equal(await description.inputValue(), idea.description);
+    },
+  );
   await record("save idea persists and enables Lock", async () => {
     await commit(leader, "save-workspace-idea", idea, () =>
       act(
@@ -269,6 +340,20 @@ try {
   });
   const renamed = "Synthetic Renamed Loop";
   await act(leader.panel.locator("summary").filter({ hasText: "Rename team" }));
+  await record("rename required and minimum length validation", async () => {
+    const name = leader.panel.getByLabel("Team name", { exact: true });
+    await name.fill("");
+    await act(
+      leader.panel.getByRole("button", { name: "Rename team", exact: true }),
+    );
+    assert.equal(await name.evaluate((e) => e.validity.valueMissing), true);
+    await name.pressSequentially("x");
+    await act(
+      leader.panel.getByRole("button", { name: "Rename team", exact: true }),
+    );
+    assert.equal(await name.evaluate((e) => e.validity.tooShort), true);
+    assert.equal(await leader.page.getByRole("dialog").count(), 0);
+  });
   await leader.panel.getByLabel("Team name", { exact: true }).fill(renamed);
   await record("rename persists", async () => {
     await commit(
@@ -420,6 +505,29 @@ try {
     solo.panel.locator("summary").filter({ hasText: "Delete your team" }),
   );
   await record(
+    "cancelled named deletion keeps the sole team intact",
+    async () => {
+      await act(
+        solo.panel.getByRole("button", {
+          name: "Review team deletion",
+          exact: true,
+        }),
+      );
+      const dialog = solo.page.getByRole("dialog");
+      await dialog.waitFor();
+      assert.equal(
+        await dialog.locator("#confirmation-target").innerText(),
+        "Synthetic Solo Team",
+      );
+      await act(dialog.getByRole("button", { name: "Cancel", exact: true }));
+      await dialog.waitFor({ state: "hidden" });
+      assert.equal((await reload(solo)).team.id, ids.solo);
+      await act(
+        solo.panel.locator("summary").filter({ hasText: "Delete your team" }),
+      );
+    },
+  );
+  await record(
     "named sole unlocked deletion returns leader to teamless state",
     async () => {
       await commit(
@@ -438,6 +546,14 @@ try {
     },
   );
   const createdName = "Synthetic Team QA Created";
+  await record("replacement team name remains required", async () => {
+    const name = solo.panel.getByLabel("Team name", { exact: true });
+    await act(
+      solo.panel.getByRole("button", { name: "Create team", exact: true }),
+    );
+    assert.equal(await name.evaluate((e) => e.validity.valueMissing), true);
+    assert.equal(await solo.page.getByRole("dialog").count(), 0);
+  });
   await solo.panel.getByLabel("Team name", { exact: true }).fill(createdName);
   let createdId;
   await record(
@@ -466,14 +582,12 @@ try {
   await record(
     "teamless applicant can request the newly created team",
     async () => {
-      const row = decline.page
-        .locator("li")
-        .filter({
-          has: decline.page.getByRole("heading", {
-            name: createdName,
-            exact: true,
-          }),
-        });
+      const row = decline.page.locator("li").filter({
+        has: decline.page.getByRole("heading", {
+          name: createdName,
+          exact: true,
+        }),
+      });
       await commit(decline, "request-team", { teamId: createdId }, () =>
         act(row.getByRole("button", { name: "Request to join", exact: true })),
       );
