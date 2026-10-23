@@ -185,6 +185,11 @@ try {
     return result;
   }
   async function shot(page, name, label) {
+    // Form controls can scroll the document. Route captures start at the top;
+    // modal captures retain the actual backdrop position.
+    await page.evaluate(() => {
+      if (!document.querySelector("dialog[open]")) window.scrollTo(0, 0);
+    });
     await page.waitForTimeout(100);
     const path = output + "/" + name + ".png";
     await page.screenshot({ path, fullPage: false, animations: "disabled" });
@@ -367,25 +372,116 @@ try {
             );
           },
         );
-        await check(key + " safe profile hash link opens modal", async () => {
-          await load(
-            page,
-            "/discover/participants#person-" + person.id,
-            "Discover",
-          );
-          await page.locator("dialog.discovery-profile-v6[open]").waitFor();
+        await check(key + " same-document profile hash lifecycle", async () => {
+          const opener = page.getByRole("button", {
+            name: person.name,
+            exact: true,
+          });
+          await opener.focus();
+          const hash = "#person-" + person.id;
+          const event = await page.evaluate((nextHash) => {
+            if (window.location.hash === nextHash)
+              throw new Error("Regression setup needs a changed hash");
+            return new Promise((resolve) => {
+              window.addEventListener("hashchange", () => resolve(true), {
+                once: true,
+              });
+              window.location.hash = nextHash;
+            });
+          }, hash);
+          assert.equal(event, true, "A real changed-hash navigation fired");
+          const dialog = page.locator("dialog.discovery-profile-v6[open]");
+          await dialog.waitFor();
           assert.equal(
-            await page
-              .locator("dialog.discovery-profile-v6")
+            await dialog
               .getByRole("heading", { name: person.name, exact: true })
               .count(),
             1,
           );
+          assert.doesNotMatch(await dialog.innerText(), privacyPattern);
           await page.keyboard.press("Escape");
           await page.waitForSelector("dialog.discovery-profile-v6", {
             state: "detached",
           });
+          assert.equal(
+            await opener.evaluate(
+              (element) => document.activeElement === element,
+            ),
+            true,
+            "Escape restores the element focused before hash navigation",
+          );
+          const refreshed = page.waitForResponse((response) => {
+            const url = new URL(response.url());
+            return (
+              url.origin === origin &&
+              url.pathname === "/api/portal" &&
+              url.searchParams.get("view") === "/discover/participants" &&
+              response.request().method() === "GET"
+            );
+          });
+          await page.evaluate(() => window.dispatchEvent(new Event("focus")));
+          await (await refreshed).finished();
+          await page.waitForTimeout(250);
+          assert.equal(
+            await page.locator("dialog.discovery-profile-v6").count(),
+            0,
+            "A real data refresh must not reopen the dismissed hash profile",
+          );
+          await page.evaluate(() => {
+            window.location.hash = "#person-NOT_IN_SAFE_PROJECTION";
+          });
+          await page.waitForTimeout(150);
+          assert.equal(
+            await page.locator("dialog.discovery-profile-v6").count(),
+            0,
+          );
+          // Returning from a different hash is an explicit new navigation. Assigning
+          // an unchanged hash is deliberately not assumed to produce an event.
+          await page.evaluate((nextHash) => {
+            return new Promise((resolve) => {
+              window.addEventListener("hashchange", () => resolve(true), {
+                once: true,
+              });
+              window.location.hash = nextHash;
+            });
+          }, hash);
+          await dialog.waitFor();
+          await page.keyboard.press("Escape");
+          await page.waitForSelector("dialog.discovery-profile-v6", {
+            state: "detached",
+          });
+          return {
+            changedHashEvent: true,
+            escapeFocus: true,
+            noRefreshReopen: true,
+            unknownHashRejected: true,
+            returnNavigation: true,
+          };
         });
+        await check(
+          key + " initial-document safe profile hash link",
+          async () => {
+            await load(page, "/rules", "Rules");
+            await load(
+              page,
+              "/discover/participants#person-" + person.id,
+              "Discover",
+            );
+            const dialog = page.locator("dialog.discovery-profile-v6[open]");
+            await dialog.waitFor();
+            assert.equal(
+              await dialog
+                .getByRole("heading", { name: person.name, exact: true })
+                .count(),
+              1,
+            );
+            assert.doesNotMatch(await dialog.innerText(), privacyPattern);
+            await page.keyboard.press("Escape");
+            await page.waitForSelector("dialog.discovery-profile-v6", {
+              state: "detached",
+            });
+          },
+        );
       } else
         report.limitations.push(
           key + ": no discoverable person available for modal/hash checks.",

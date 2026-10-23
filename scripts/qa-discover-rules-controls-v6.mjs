@@ -578,6 +578,17 @@ try {
             });
           }
         }
+        if (
+          teamData.me.canParticipate === true &&
+          !teamData.team &&
+          !teams.some(
+            (team) => !team.locked && Number(team.readiness?.total) < 5,
+          )
+        )
+          record("teams.request.available-open-team", "untested", {
+            reason:
+              "No unlocked team with space exists in the read-only fixture; positive request confirmation cannot be exercised",
+          });
         if (teams.length > 24)
           record("teams.remaining-rows", "untested", {
             reason: "bounded24rowbudget",
@@ -644,12 +655,7 @@ try {
               if (spec.mode === "keyboard") {
                 await radio.focus();
                 await page.keyboard.press("Space");
-              } else
-                await activate(
-                  page,
-                  create.locator("label").filter({ has: radio }),
-                  spec.mode,
-                );
+              } else await activate(page, radio.locator(".."), spec.mode);
               assert.equal(await radio.isChecked(), true);
               assert.equal(
                 await create
@@ -667,10 +673,25 @@ try {
             );
             const dialog = page.locator("dialog.confirmation-dialog[open]");
             await dialog.waitFor();
-            assert.ok(
-              (await dialog.innerText()).includes(
-                "Synthetic Control Rehearsal",
-              ),
+            const target = await dialog
+              .locator("#confirmation-target")
+              .innerText();
+            record(
+              "teams.create.confirmation-target",
+              target.includes("Synthetic Control Rehearsal")
+                ? "checked"
+                : "error",
+              {
+                evidence: "actual valid form submission opens the confirmation",
+                observedTarget: target,
+                expectedTarget: "Synthetic Control Rehearsal",
+                ...(target.includes("Synthetic Control Rehearsal")
+                  ? {}
+                  : {
+                      error:
+                        "Create confirmation names a different team than the entered name",
+                    }),
+              },
             );
             await activate(
               page,
