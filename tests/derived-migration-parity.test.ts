@@ -27,6 +27,7 @@ async function applyMigration(db: Database, source: string) {
       line.trim().endsWith(";") &&
       (!buffer.trim().startsWith("CREATE TRIGGER") ||
         line.trim() === "END;" ||
+        (line.trim().startsWith("BEGIN ") && /\bEND;$/.test(line.trim())) ||
         line.trim().startsWith("CREATE TRIGGER"))
     ) {
       await db.prepare(buffer).all();
