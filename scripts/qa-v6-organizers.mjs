@@ -372,9 +372,10 @@ try {
         for (const trace of traces) {
           assert.equal(trace.target, "organizer-unit");
           const from = trace.frames[0].transform;
-          const parts = /translate3d\((-?[\d.]+)px,\s*(-?[\d.]+)px,\s*0(?:px)?\)/.exec(
-            from,
-          );
+          const parts =
+            /translate3d\((-?[\d.]+)px,\s*(-?[\d.]+)px,\s*0(?:px)?\)/.exec(
+              from,
+            );
           assert.ok(parts, from);
           const x = Number(parts[1]),
             y = Number(parts[2]);
@@ -427,7 +428,20 @@ try {
     );
     if (viewport.width >= 741)
       for (const id of ["venue", "faq"]) {
-        await page.locator("#" + id).scrollIntoViewIfNeeded();
+        // A chapter already pinned in the stack has a sticky viewport rect.
+        // Reset first so the next measurement is its natural document location.
+        await page.evaluate(() => scrollTo(0, 0));
+        await page.waitForTimeout(100);
+        await page.locator("#" + id).evaluate((section) => {
+          const header = document.querySelector(".public-header");
+          scrollTo(
+            0,
+            section.getBoundingClientRect().top +
+              scrollY -
+              header.getBoundingClientRect().height -
+              12,
+          );
+        });
         await page.waitForTimeout(950);
         await check(
           `${viewport.width}: ${id} lower-section text stays in its55% column clear of dots`,
@@ -440,7 +454,16 @@ try {
                 d = dots.getBoundingClientRect(),
                 c = content.getBoundingClientRect(),
                 s = getComputedStyle(content);
+              const heading = section
+                .querySelector("h2")
+                .getBoundingClientRect();
+              const front = document.elementFromPoint(
+                heading.x + 5,
+                heading.y + 5,
+              );
               return {
+                frontmost: section.contains(front),
+                heading: section.querySelector("h2").textContent,
                 bodyRight: b.right,
                 decorationLeft: d.left,
                 bodyWidth: b.width,
@@ -452,6 +475,11 @@ try {
               };
             });
             assert.equal(m.display, "block");
+            assert.equal(
+              m.frontmost,
+              true,
+              "Capture shows the labeled chapter",
+            );
             assert.ok(
               m.bodyRight <= m.decorationLeft + 1,
               "Visible text column clears decoration field",
