@@ -1,0 +1,447 @@
+{
+  "source": "6e5e8432b4fff84895982a3396b59f7280bdd9ee",
+  "worker": "6ab766fc3843fec865504b9643b207c16cf56421877c7aad155021fce1d75d2b",
+  "artifact": "/workspace/v7-testing",
+  "output": "evidence/v6-project-recovery/6e5e8432-xyLb4j",
+  "readOnly": true,
+  "physicalDeviceTested": false,
+  "checks": [
+    {
+      "id": "essentials-validation-recovery",
+      "mode": "desktop-mouse",
+      "passed": true
+    },
+    {
+      "id": "github-validation-recovery",
+      "mode": "desktop-mouse",
+      "passed": true
+    },
+    {
+      "id": "native-radio-and-back-state",
+      "mode": "desktop-mouse",
+      "passed": true
+    },
+    {
+      "id": "accuracy-validation-recovery",
+      "mode": "desktop-mouse",
+      "passed": true
+    },
+    {
+      "id": "published-first-back-focus",
+      "mode": "desktop-mouse",
+      "passed": true
+    },
+    {
+      "id": "unpublished-first-back-focus",
+      "mode": "desktop-mouse",
+      "passed": true
+    },
+    {
+      "id": "essentials-validation-recovery",
+      "mode": "tablet-touch",
+      "passed": true
+    },
+    {
+      "id": "github-validation-recovery",
+      "mode": "tablet-touch",
+      "passed": true
+    },
+    {
+      "id": "native-radio-and-back-state",
+      "mode": "tablet-touch",
+      "passed": true
+    },
+    {
+      "id": "accuracy-validation-recovery",
+      "mode": "tablet-touch",
+      "passed": true
+    },
+    {
+      "id": "published-first-back-focus",
+      "mode": "tablet-touch",
+      "passed": true
+    },
+    {
+      "id": "unpublished-first-back-focus",
+      "mode": "tablet-touch",
+      "passed": true
+    },
+    {
+      "id": "essentials-validation-recovery",
+      "mode": "mobile-touch",
+      "passed": true
+    },
+    {
+      "id": "github-validation-recovery",
+      "mode": "mobile-touch",
+      "passed": true
+    },
+    {
+      "id": "native-radio-and-back-state",
+      "mode": "mobile-touch",
+      "passed": true
+    },
+    {
+      "id": "accuracy-validation-recovery",
+      "mode": "mobile-touch",
+      "passed": true
+    },
+    {
+      "id": "published-first-back-focus",
+      "mode": "mobile-touch",
+      "passed": true
+    },
+    {
+      "id": "unpublished-first-back-focus",
+      "mode": "mobile-touch",
+      "passed": true
+    },
+    {
+      "id": "essentials-validation-recovery",
+      "mode": "narrow-touch",
+      "passed": true
+    },
+    {
+      "id": "github-validation-recovery",
+      "mode": "narrow-touch",
+      "passed": true
+    },
+    {
+      "id": "native-radio-and-back-state",
+      "mode": "narrow-touch",
+      "passed": true
+    },
+    {
+      "id": "accuracy-validation-recovery",
+      "mode": "narrow-touch",
+      "passed": true
+    },
+    {
+      "id": "published-first-back-focus",
+      "mode": "narrow-touch",
+      "passed": true
+    },
+    {
+      "id": "unpublished-first-back-focus",
+      "mode": "narrow-touch",
+      "passed": true
+    },
+    {
+      "id": "essentials-validation-recovery",
+      "mode": "desktop-keyboard",
+      "passed": true
+    },
+    {
+      "id": "github-validation-recovery",
+      "mode": "desktop-keyboard",
+      "passed": true
+    },
+    {
+      "id": "native-radio-and-back-state",
+      "mode": "desktop-keyboard",
+      "passed": true
+    },
+    {
+      "id": "accuracy-validation-recovery",
+      "mode": "desktop-keyboard",
+      "passed": true
+    },
+    {
+      "id": "published-first-back-focus",
+      "mode": "desktop-keyboard",
+      "passed": true
+    },
+    {
+      "id": "unpublished-first-back-focus",
+      "mode": "desktop-keyboard",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    {
+      "label": "clean-step1",
+      "role": "leader",
+      "mode": "desktop-mouse",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/clean-step1-leader-desktop-mouse.png",
+      "inspected": true,
+      "inspection": "Opened original image. Legible required fields, coherent three-step header, no horizontal clipping observed. Visual review only; selected mockup comparison not performed in this lane."
+    },
+    {
+      "label": "essentials-corrected",
+      "role": "leader",
+      "mode": "desktop-mouse",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/essentials-corrected-leader-desktop-mouse.png",
+      "inspected": false
+    },
+    {
+      "label": "github-corrected",
+      "role": "leader",
+      "mode": "desktop-mouse",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/github-corrected-leader-desktop-mouse.png",
+      "inspected": false
+    },
+    {
+      "label": "radio-back-state",
+      "role": "leader",
+      "mode": "desktop-mouse",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/radio-back-state-leader-desktop-mouse.png",
+      "inspected": false
+    },
+    {
+      "label": "clean-step3",
+      "role": "leader",
+      "mode": "desktop-mouse",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/clean-step3-leader-desktop-mouse.png",
+      "inspected": false
+    },
+    {
+      "label": "accuracy-corrected",
+      "role": "leader",
+      "mode": "desktop-mouse",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/accuracy-corrected-leader-desktop-mouse.png",
+      "inspected": false
+    },
+    {
+      "label": "clean-first-submission",
+      "role": "firstLeader",
+      "mode": "desktop-mouse",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/clean-first-submission-firstLeader-desktop-mouse.png",
+      "inspected": false
+    },
+    {
+      "label": "first-back-team",
+      "role": "firstLeader",
+      "mode": "desktop-mouse",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/first-back-team-firstLeader-desktop-mouse.png",
+      "inspected": false
+    },
+    {
+      "label": "clean-step1",
+      "role": "leader",
+      "mode": "tablet-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/clean-step1-leader-tablet-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "essentials-corrected",
+      "role": "leader",
+      "mode": "tablet-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/essentials-corrected-leader-tablet-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "github-corrected",
+      "role": "leader",
+      "mode": "tablet-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/github-corrected-leader-tablet-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "radio-back-state",
+      "role": "leader",
+      "mode": "tablet-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/radio-back-state-leader-tablet-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "clean-step3",
+      "role": "leader",
+      "mode": "tablet-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/clean-step3-leader-tablet-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "accuracy-corrected",
+      "role": "leader",
+      "mode": "tablet-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/accuracy-corrected-leader-tablet-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "clean-first-submission",
+      "role": "firstLeader",
+      "mode": "tablet-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/clean-first-submission-firstLeader-tablet-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "first-back-team",
+      "role": "firstLeader",
+      "mode": "tablet-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/first-back-team-firstLeader-tablet-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "clean-step1",
+      "role": "leader",
+      "mode": "mobile-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/clean-step1-leader-mobile-touch.png",
+      "inspected": true,
+      "inspection": "Opened original image. Legible required fields, coherent three-step header, no horizontal clipping observed. Visual review only; selected mockup comparison not performed in this lane."
+    },
+    {
+      "label": "essentials-corrected",
+      "role": "leader",
+      "mode": "mobile-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/essentials-corrected-leader-mobile-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "github-corrected",
+      "role": "leader",
+      "mode": "mobile-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/github-corrected-leader-mobile-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "radio-back-state",
+      "role": "leader",
+      "mode": "mobile-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/radio-back-state-leader-mobile-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "clean-step3",
+      "role": "leader",
+      "mode": "mobile-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/clean-step3-leader-mobile-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "accuracy-corrected",
+      "role": "leader",
+      "mode": "mobile-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/accuracy-corrected-leader-mobile-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "clean-first-submission",
+      "role": "firstLeader",
+      "mode": "mobile-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/clean-first-submission-firstLeader-mobile-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "first-back-team",
+      "role": "firstLeader",
+      "mode": "mobile-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/first-back-team-firstLeader-mobile-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "clean-step1",
+      "role": "leader",
+      "mode": "narrow-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/clean-step1-leader-narrow-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "essentials-corrected",
+      "role": "leader",
+      "mode": "narrow-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/essentials-corrected-leader-narrow-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "github-corrected",
+      "role": "leader",
+      "mode": "narrow-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/github-corrected-leader-narrow-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "radio-back-state",
+      "role": "leader",
+      "mode": "narrow-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/radio-back-state-leader-narrow-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "clean-step3",
+      "role": "leader",
+      "mode": "narrow-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/clean-step3-leader-narrow-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "accuracy-corrected",
+      "role": "leader",
+      "mode": "narrow-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/accuracy-corrected-leader-narrow-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "clean-first-submission",
+      "role": "firstLeader",
+      "mode": "narrow-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/clean-first-submission-firstLeader-narrow-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "first-back-team",
+      "role": "firstLeader",
+      "mode": "narrow-touch",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/first-back-team-firstLeader-narrow-touch.png",
+      "inspected": false
+    },
+    {
+      "label": "clean-step1",
+      "role": "leader",
+      "mode": "desktop-keyboard",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/clean-step1-leader-desktop-keyboard.png",
+      "inspected": false
+    },
+    {
+      "label": "essentials-corrected",
+      "role": "leader",
+      "mode": "desktop-keyboard",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/essentials-corrected-leader-desktop-keyboard.png",
+      "inspected": false
+    },
+    {
+      "label": "github-corrected",
+      "role": "leader",
+      "mode": "desktop-keyboard",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/github-corrected-leader-desktop-keyboard.png",
+      "inspected": false
+    },
+    {
+      "label": "radio-back-state",
+      "role": "leader",
+      "mode": "desktop-keyboard",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/radio-back-state-leader-desktop-keyboard.png",
+      "inspected": false
+    },
+    {
+      "label": "clean-step3",
+      "role": "leader",
+      "mode": "desktop-keyboard",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/clean-step3-leader-desktop-keyboard.png",
+      "inspected": false
+    },
+    {
+      "label": "accuracy-corrected",
+      "role": "leader",
+      "mode": "desktop-keyboard",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/accuracy-corrected-leader-desktop-keyboard.png",
+      "inspected": false
+    },
+    {
+      "label": "clean-first-submission",
+      "role": "firstLeader",
+      "mode": "desktop-keyboard",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/clean-first-submission-firstLeader-desktop-keyboard.png",
+      "inspected": false
+    },
+    {
+      "label": "first-back-team",
+      "role": "firstLeader",
+      "mode": "desktop-keyboard",
+      "path": "evidence/v6-project-recovery/6e5e8432-xyLb4j/first-back-team-firstLeader-desktop-keyboard.png",
+      "inspected": false
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "browserClosed": true
+}

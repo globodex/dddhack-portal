@@ -1,0 +1,76 @@
+{
+  "source": "473c1c1f00b31c6291dcea11bc5f305d90c7261b",
+  "worker": "6ab766fc3843fec865504b9643b207c16cf56421877c7aad155021fce1d75d2b",
+  "origin": "http://127.0.0.1:4174",
+  "syntheticOnly": true,
+  "readOnly": true,
+  "physicalDeviceTested": false,
+  "checks": [
+    {
+      "id": "unpublished-nonleader-readonly",
+      "mode": "desktop-mouse",
+      "passed": true
+    },
+    {
+      "id": "optional-deployment-link",
+      "mode": "desktop-mouse",
+      "passed": true
+    },
+    {
+      "id": "unpublished-nonleader-readonly",
+      "mode": "desktop-keyboard",
+      "passed": true
+    },
+    {
+      "id": "optional-deployment-link",
+      "mode": "desktop-keyboard",
+      "passed": true
+    },
+    {
+      "id": "unpublished-nonleader-readonly",
+      "mode": "mobile-touch",
+      "passed": true
+    },
+    {
+      "id": "optional-deployment-link",
+      "mode": "mobile-touch",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "blockedWrites": [],
+  "expectedExternalBlocks": [
+    {
+      "mode": "desktop-mouse",
+      "url": "https://deployment.example.test/synthetic-demo"
+    },
+    {
+      "mode": "desktop-keyboard",
+      "url": "https://deployment.example.test/synthetic-demo"
+    },
+    {
+      "mode": "mobile-touch",
+      "url": "https://deployment.example.test/synthetic-demo"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "evidence/v7-project-extra/473c1c1f-3VL5cm/unpublished-nonleader-desktop-mouse.png",
+      "mode": "desktop-mouse",
+      "inspected": true,
+      "inspection": "Opened original. Synthetic content, legible labels and no page-level horizontal clipping observed. Source-bound visual inspection; selected-board comparison not performed in this lane."
+    },
+    {
+      "path": "evidence/v7-project-extra/473c1c1f-3VL5cm/unpublished-nonleader-desktop-keyboard.png",
+      "mode": "desktop-keyboard",
+      "inspected": false
+    },
+    {
+      "path": "evidence/v7-project-extra/473c1c1f-3VL5cm/unpublished-nonleader-mobile-touch.png",
+      "mode": "mobile-touch",
+      "inspected": true,
+      "inspection": "Opened original. Synthetic content, legible labels and no page-level horizontal clipping observed. Source-bound visual inspection; selected-board comparison not performed in this lane."
+    }
+  ],
+  "browserClosed": true
+}

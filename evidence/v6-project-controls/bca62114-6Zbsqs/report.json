@@ -1,0 +1,6407 @@
+{
+  "source": "bca62114f3ccf91ba2837c503d3c32b80618c93f",
+  "worker": "6ab766fc3843fec865504b9643b207c16cf56421877c7aad155021fce1d75d2b",
+  "artifact": "/workspace/v7-testing",
+  "origin": "http://127.0.0.1:4179",
+  "output": "evidence/v6-project-controls/bca62114-6Zbsqs",
+  "syntheticOnly": true,
+  "physicalDeviceTested": false,
+  "mutationsEnabled": true,
+  "matrix": [
+    {
+      "id": "route-role",
+      "roles": "All supplied roles",
+      "scope": "List, detail and submission capabilities",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch:anonymous",
+          "detail": "List/detail plus applicable submission role"
+        },
+        {
+          "status": "passed",
+          "device": "mobile-touch:viewer",
+          "detail": "List/detail plus applicable submission role"
+        },
+        {
+          "status": "passed",
+          "device": "mobile-touch:member",
+          "detail": "List/detail plus applicable submission role"
+        },
+        {
+          "status": "passed",
+          "device": "mobile-touch:leader",
+          "detail": "List/detail plus applicable submission role"
+        },
+        {
+          "status": "passed",
+          "device": "mobile-touch:nonleader",
+          "detail": "List/detail plus applicable submission role"
+        },
+        {
+          "status": "passed",
+          "device": "mobile-touch:attempt3",
+          "detail": "List/detail plus applicable submission role"
+        }
+      ]
+    },
+    {
+      "id": "clean-reference",
+      "roles": "All supplied roles and device modes",
+      "scope": "Screenshots before any mutations",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch:anonymous",
+          "detail": "Clean fixture screenshots before mutations"
+        },
+        {
+          "status": "passed",
+          "device": "mobile-touch:viewer",
+          "detail": "Clean fixture screenshots before mutations"
+        },
+        {
+          "status": "passed",
+          "device": "mobile-touch:member",
+          "detail": "Clean fixture screenshots before mutations"
+        },
+        {
+          "status": "passed",
+          "device": "mobile-touch:leader",
+          "detail": "Clean fixture screenshots before mutations"
+        },
+        {
+          "status": "passed",
+          "device": "mobile-touch:nonleader",
+          "detail": "Clean fixture screenshots before mutations"
+        },
+        {
+          "status": "passed",
+          "device": "mobile-touch:attempt3",
+          "detail": "Clean fixture screenshots before mutations"
+        }
+      ]
+    },
+    {
+      "id": "search",
+      "roles": "Member",
+      "scope": "Query, no result and clear",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "No-result, matching query and cleared query"
+        }
+      ]
+    },
+    {
+      "id": "pagination",
+      "roles": "Member",
+      "scope": "Previous disabled, Next and Previous; requires more than one page",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "Next/Previous mouse, touch or Enter"
+        }
+      ]
+    },
+    {
+      "id": "detail-back",
+      "roles": "Member",
+      "scope": "List row, comments anchor and Back to Projects",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "Row → detail → comments → back"
+        }
+      ]
+    },
+    {
+      "id": "external-links",
+      "roles": "Member",
+      "scope": "GitHub and optional deployment activation; destination blocked",
+      "status": "partial",
+      "results": [
+        {
+          "status": "unavailable",
+          "device": "mobile-touch",
+          "detail": "Optional deployment link is blank in this fixture; GitHub remains tested"
+        },
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "1 HTTPS links activated and blocked before network"
+        }
+      ]
+    },
+    {
+      "id": "keyboard-focus",
+      "roles": "Member and leader",
+      "scope": "Actual Tab traversal, visible focus and Enter/Space",
+      "status": "unavailable",
+      "results": []
+    },
+    {
+      "id": "viewer-disabled",
+      "roles": "Viewer",
+      "scope": "No enabled upvote or comment composer",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "No enabled engagement controls"
+        }
+      ]
+    },
+    {
+      "id": "nonleader-disabled",
+      "roles": "Nonleader",
+      "scope": "Disabled submission controls and no commit action",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "Editor disabled and no mutation actions"
+        }
+      ]
+    },
+    {
+      "id": "attempt3-disabled",
+      "roles": "Leader with three commits",
+      "scope": "Read-only controls and retained history",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "Editor disabled and no mutation actions"
+        }
+      ]
+    },
+    {
+      "id": "vote-pending-rollback",
+      "roles": "Eligible member, unvoted target",
+      "scope": "One pending request, synthetic HTTP error, rollback and retry enabled",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "Exactly one held request; HTTP503 rollback restores count and retry"
+        }
+      ]
+    },
+    {
+      "id": "vote-positive-unique",
+      "roles": "Eligible member, unvoted target",
+      "scope": "Vote persists, UI disables, direct duplicate creates no second vote",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "One durable vote despite duplicate API request"
+        }
+      ]
+    },
+    {
+      "id": "comment-empty-error",
+      "roles": "Eligible member",
+      "scope": "Empty disabled; too-short server rejection",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "Empty disabled; server rejects below30 characters and preserves input"
+        }
+      ]
+    },
+    {
+      "id": "comment-valid-escaped",
+      "roles": "Eligible member",
+      "scope": "Valid literal markup is escaped, trimmed and persists once",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "One trimmed literal comment; executable markup absent from DOM"
+        }
+      ]
+    },
+    {
+      "id": "wizard-fields",
+      "roles": "Eligible leader",
+      "scope": "Required essentials and GitHub validation; optional deployment blank",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "Essentials/GitHub block Next; blank deployment allowed"
+        }
+      ]
+    },
+    {
+      "id": "wizard-state",
+      "roles": "Eligible leader",
+      "scope": "Three steps, Back/Next, six exact checkbox choices, separate Cerebras radios",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "Exact optional options, separate mutually exclusive Cerebras, state retained"
+        }
+      ]
+    },
+    {
+      "id": "upload-mime-size",
+      "roles": "Eligible leader",
+      "scope": "Invalid MIME and oversized image rejected locally",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "Local MIME and size rejection; no writes"
+        }
+      ]
+    },
+    {
+      "id": "upload-ratio",
+      "roles": "Eligible leader",
+      "scope": "Real fixture banner in logo slot and logo in banner slot rejected by server",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "Both wrong aspect ratios server-rejected without saved revision"
+        }
+      ]
+    },
+    {
+      "id": "upload-valid-remove",
+      "roles": "Eligible leader",
+      "scope": "Existing real fixture bytes replace both images; remove and restore",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "Both fixture images removed and restored from original bytes"
+        }
+      ]
+    },
+    {
+      "id": "accuracy-cancel",
+      "roles": "Eligible leader",
+      "scope": "Missing accuracy blocks dialog; final Cancel/Escape makes no request",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "Accuracy, final Cancel and Escape produce zero POSTs"
+        }
+      ]
+    },
+    {
+      "id": "draft-immutable",
+      "roles": "Eligible leader",
+      "scope": "Save draft persists, consumes no attempt, preserves committed payload hashes",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "Revision increased once, attempts unchanged, committed payloads unchanged"
+        }
+      ]
+    },
+    {
+      "id": "commit-max3",
+      "roles": "Eligible leader with remaining attempts",
+      "scope": "UI commits remaining versions then UI and server reject further edits",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "Third commit locks UI and server; earlier version payload hashes unchanged"
+        }
+      ]
+    },
+    {
+      "id": "commit-idempotent",
+      "roles": "Same leader",
+      "scope": "Exact repeated request returns same version without fourth attempt",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "Exact retry returns receipt without fourth attempt"
+        }
+      ]
+    },
+    {
+      "id": "public-privacy",
+      "roles": "Anonymous and Viewer",
+      "scope": "Public projection omits private fields; no new score stage",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch:anonymous",
+          "detail": "No private projection keys"
+        },
+        {
+          "status": "passed",
+          "device": "mobile-touch:viewer",
+          "detail": "No private projection keys"
+        },
+        {
+          "status": "passed",
+          "device": "final",
+          "detail": "Final anonymous projection still private and score disclosure stage unchanged"
+        }
+      ]
+    },
+    {
+      "id": "history-dialog",
+      "roles": "Leader/nonleader/attempt3",
+      "scope": "Committed history, Close, Escape and focus return",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch:leader",
+          "detail": "Authorized immutable history has at most 3 versions; Close and Escape work"
+        },
+        {
+          "status": "passed",
+          "device": "mobile-touch:nonleader",
+          "detail": "Authorized immutable history has at most 3 versions; Close and Escape work"
+        },
+        {
+          "status": "passed",
+          "device": "mobile-touch:attempt3",
+          "detail": "Authorized immutable history has at most 3 versions; Close and Escape work"
+        }
+      ]
+    },
+    {
+      "id": "wizard-exit",
+      "roles": "Eligible leader",
+      "scope": "Step-one Back returns to Dashboard Project without writes",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "Back exits editor to Project without saving"
+        }
+      ]
+    },
+    {
+      "id": "first-submission-back",
+      "roles": "Eligible unpublished leader",
+      "scope": "Step-one Back returns to Team without a close loop or write",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch",
+          "detail": "First Back selects and focuses Team; Project reopens wizard, no writes or attempt use"
+        }
+      ]
+    },
+    {
+      "id": "nonleader-unpublished-read",
+      "roles": "Authorized nonleader with unpublished draft",
+      "scope": "Saved draft content remains visible with disabled fields",
+      "status": "unavailable",
+      "results": [
+        {
+          "status": "unavailable",
+          "device": "mobile-touch",
+          "detail": "Current nonleader fixture belongs to a published project; read-only card content verified, unpublished saved-draft browser path requires a separate actor"
+        }
+      ]
+    },
+    {
+      "id": "validation-recovery",
+      "roles": "Eligible leader",
+      "scope": "Corrected essentials, GitHub and checked accuracy remove stale client errors",
+      "status": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "device": "mobile-touch:essentials",
+          "detail": "Corrected essentials clears its matching validation error without a request"
+        },
+        {
+          "status": "passed",
+          "device": "mobile-touch:github",
+          "detail": "Corrected github clears its matching validation error without a request"
+        },
+        {
+          "status": "passed",
+          "device": "mobile-touch:accuracy",
+          "detail": "Corrected accuracy clears its matching validation error without a request"
+        }
+      ]
+    }
+  ],
+  "inventory": [
+    {
+      "role": "anonymous",
+      "device": "mobile-touch",
+      "route": "/projects",
+      "controls": [
+        {
+          "tag": "INPUT",
+          "type": "search",
+          "name": null,
+          "label": "Search projects",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Small WonderA synthetic project for visual testing.by Small Wonder",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Small Wonder",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "1 comment on Small Wonder",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "The Fifth ElementA synthetic project for visual testing.by The Fifth Element",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote The Fifth Element",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "1 comment on The Fifth Element",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 00Synthetic local project for pagination and control testing.by Synthetic Control Project 00 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 00",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 00",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 01Synthetic local project for pagination and control testing.by Synthetic Control Project 01 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 01",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 01",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 02Synthetic local project for pagination and control testing.by Synthetic Control Project 02 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 02",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 02",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 03Synthetic local project for pagination and control testing.by Synthetic Control Project 03 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 03",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 03",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 04Synthetic local project for pagination and control testing.by Synthetic Control Project 04 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 04",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 04",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 05Synthetic local project for pagination and control testing.by Synthetic Control Project 05 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 05",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 05",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 06Synthetic local project for pagination and control testing.by Synthetic Control Project 06 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 06",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 06",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 07Synthetic local project for pagination and control testing.by Synthetic Control Project 07 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 07",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 07",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 08Synthetic local project for pagination and control testing.by Synthetic Control Project 08 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 08",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 08",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 09Synthetic local project for pagination and control testing.by Synthetic Control Project 09 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 09",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 09",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 10Synthetic local project for pagination and control testing.by Synthetic Control Project 10 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 10",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 10",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 11Synthetic local project for pagination and control testing.by Synthetic Control Project 11 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 11",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 11",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 12Synthetic local project for pagination and control testing.by Synthetic Control Project 12 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 12",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 12",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 13Synthetic local project for pagination and control testing.by Synthetic Control Project 13 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 13",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 13",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 14Synthetic local project for pagination and control testing.by Synthetic Control Project 14 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 14",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 14",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 15Synthetic local project for pagination and control testing.by Synthetic Control Project 15 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 15",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 15",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 16Synthetic local project for pagination and control testing.by Synthetic Control Project 16 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 16",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 16",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 17Synthetic local project for pagination and control testing.by Synthetic Control Project 17 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 17",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 17",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 18Synthetic local project for pagination and control testing.by Synthetic Control Project 18 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 18",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 18",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 19Synthetic local project for pagination and control testing.by Synthetic Control Project 19 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 19",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 19",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 20Synthetic local project for pagination and control testing.by Synthetic Control Project 20 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 20",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 20",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 21Synthetic local project for pagination and control testing.by Synthetic Control Project 21 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Synthetic Control Project 21",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 21",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Previous page",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Next page",
+          "disabled": false,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "role": "anonymous",
+      "device": "mobile-touch",
+      "route": "/projects/synthetic-alice",
+      "controls": [
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Back to Projects",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "GitHub",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to upvote Small Wonder",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "1 comment on Small Wonder",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Sign in to comment",
+          "disabled": false,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "role": "viewer",
+      "device": "mobile-touch",
+      "route": "/projects",
+      "controls": [
+        {
+          "tag": "INPUT",
+          "type": "search",
+          "name": null,
+          "label": "Search projects",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Small WonderA synthetic project for visual testing.by Small Wonder",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Small Wonder; 1 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "1 comment on Small Wonder",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "The Fifth ElementA synthetic project for visual testing.by The Fifth Element",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote The Fifth Element; 1 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "1 comment on The Fifth Element",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 00Synthetic local project for pagination and control testing.by Synthetic Control Project 00 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 00; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 00",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 01Synthetic local project for pagination and control testing.by Synthetic Control Project 01 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 01; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 01",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 02Synthetic local project for pagination and control testing.by Synthetic Control Project 02 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 02; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 02",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 03Synthetic local project for pagination and control testing.by Synthetic Control Project 03 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 03; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 03",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 04Synthetic local project for pagination and control testing.by Synthetic Control Project 04 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 04; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 04",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 05Synthetic local project for pagination and control testing.by Synthetic Control Project 05 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 05; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 05",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 06Synthetic local project for pagination and control testing.by Synthetic Control Project 06 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 06; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 06",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 07Synthetic local project for pagination and control testing.by Synthetic Control Project 07 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 07; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 07",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 08Synthetic local project for pagination and control testing.by Synthetic Control Project 08 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 08; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 08",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 09Synthetic local project for pagination and control testing.by Synthetic Control Project 09 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 09; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 09",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 10Synthetic local project for pagination and control testing.by Synthetic Control Project 10 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 10; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 10",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 11Synthetic local project for pagination and control testing.by Synthetic Control Project 11 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 11; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 11",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 12Synthetic local project for pagination and control testing.by Synthetic Control Project 12 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 12; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 12",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 13Synthetic local project for pagination and control testing.by Synthetic Control Project 13 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 13; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 13",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 14Synthetic local project for pagination and control testing.by Synthetic Control Project 14 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 14; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 14",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 15Synthetic local project for pagination and control testing.by Synthetic Control Project 15 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 15; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 15",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 16Synthetic local project for pagination and control testing.by Synthetic Control Project 16 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 16; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 16",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 17Synthetic local project for pagination and control testing.by Synthetic Control Project 17 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 17; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 17",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 18Synthetic local project for pagination and control testing.by Synthetic Control Project 18 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 18; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 18",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 19Synthetic local project for pagination and control testing.by Synthetic Control Project 19 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 19; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 19",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 20Synthetic local project for pagination and control testing.by Synthetic Control Project 20 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 20; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 20",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 21Synthetic local project for pagination and control testing.by Synthetic Control Project 21 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 21; 0 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 21",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Previous page",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Next page",
+          "disabled": false,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "role": "viewer",
+      "device": "mobile-touch",
+      "route": "/projects/synthetic-alice",
+      "controls": [
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Back to Projects",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "GitHub",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Small Wonder; 1 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "1 comment on Small Wonder",
+          "disabled": false,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "role": "member",
+      "device": "mobile-touch",
+      "route": "/projects",
+      "controls": [
+        {
+          "tag": "INPUT",
+          "type": "search",
+          "name": null,
+          "label": "Search projects",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Small WonderA synthetic project for visual testing.by Small Wonder",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvoted Small Wonder; 1 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "1 comment on Small Wonder",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "The Fifth ElementA synthetic project for visual testing.by The Fifth Element",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvoted The Fifth Element; 1 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "1 comment on The Fifth Element",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 00Synthetic local project for pagination and control testing.by Synthetic Control Project 00 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 00; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 00",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 01Synthetic local project for pagination and control testing.by Synthetic Control Project 01 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 01; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 01",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 02Synthetic local project for pagination and control testing.by Synthetic Control Project 02 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 02; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 02",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 03Synthetic local project for pagination and control testing.by Synthetic Control Project 03 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 03; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 03",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 04Synthetic local project for pagination and control testing.by Synthetic Control Project 04 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 04; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 04",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 05Synthetic local project for pagination and control testing.by Synthetic Control Project 05 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 05; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 05",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 06Synthetic local project for pagination and control testing.by Synthetic Control Project 06 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 06; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 06",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 07Synthetic local project for pagination and control testing.by Synthetic Control Project 07 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 07; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 07",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 08Synthetic local project for pagination and control testing.by Synthetic Control Project 08 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 08; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 08",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 09Synthetic local project for pagination and control testing.by Synthetic Control Project 09 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 09; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 09",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 10Synthetic local project for pagination and control testing.by Synthetic Control Project 10 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 10; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 10",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 11Synthetic local project for pagination and control testing.by Synthetic Control Project 11 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 11; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 11",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 12Synthetic local project for pagination and control testing.by Synthetic Control Project 12 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 12; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 12",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 13Synthetic local project for pagination and control testing.by Synthetic Control Project 13 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 13; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 13",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 14Synthetic local project for pagination and control testing.by Synthetic Control Project 14 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 14; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 14",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 15Synthetic local project for pagination and control testing.by Synthetic Control Project 15 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 15; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 15",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 16Synthetic local project for pagination and control testing.by Synthetic Control Project 16 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 16; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 16",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 17Synthetic local project for pagination and control testing.by Synthetic Control Project 17 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 17; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 17",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 18Synthetic local project for pagination and control testing.by Synthetic Control Project 18 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 18; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 18",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 19Synthetic local project for pagination and control testing.by Synthetic Control Project 19 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 19; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 19",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 20Synthetic local project for pagination and control testing.by Synthetic Control Project 20 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 20; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 20",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 21Synthetic local project for pagination and control testing.by Synthetic Control Project 21 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 21; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 21",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Previous page",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Next page",
+          "disabled": false,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "role": "member",
+      "device": "mobile-touch",
+      "route": "/projects/synthetic-alice",
+      "controls": [
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Back to Projects",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "GitHub",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvoted Small Wonder; 1 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "1 comment on Small Wonder",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": null,
+          "name": "body",
+          "label": "Public comment",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "submit",
+          "name": null,
+          "label": "Post comment",
+          "disabled": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "role": "leader",
+      "device": "mobile-touch",
+      "route": "/projects",
+      "controls": [
+        {
+          "tag": "INPUT",
+          "type": "search",
+          "name": null,
+          "label": "Search projects",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Small WonderA synthetic project for visual testing.by Small Wonder",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Small Wonder; 1 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "1 comment on Small Wonder",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "The Fifth ElementA synthetic project for visual testing.by The Fifth Element",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote The Fifth Element; 1 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "1 comment on The Fifth Element",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 00Synthetic local project for pagination and control testing.by Synthetic Control Project 00 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 00; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 00",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 01Synthetic local project for pagination and control testing.by Synthetic Control Project 01 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 01; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 01",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 02Synthetic local project for pagination and control testing.by Synthetic Control Project 02 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 02; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 02",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 03Synthetic local project for pagination and control testing.by Synthetic Control Project 03 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 03; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 03",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 04Synthetic local project for pagination and control testing.by Synthetic Control Project 04 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 04; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 04",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 05Synthetic local project for pagination and control testing.by Synthetic Control Project 05 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 05; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 05",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 06Synthetic local project for pagination and control testing.by Synthetic Control Project 06 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 06; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 06",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 07Synthetic local project for pagination and control testing.by Synthetic Control Project 07 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 07; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 07",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 08Synthetic local project for pagination and control testing.by Synthetic Control Project 08 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 08; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 08",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 09Synthetic local project for pagination and control testing.by Synthetic Control Project 09 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 09; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 09",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 10Synthetic local project for pagination and control testing.by Synthetic Control Project 10 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 10; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 10",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 11Synthetic local project for pagination and control testing.by Synthetic Control Project 11 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 11; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 11",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 12Synthetic local project for pagination and control testing.by Synthetic Control Project 12 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 12; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 12",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 13Synthetic local project for pagination and control testing.by Synthetic Control Project 13 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 13; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 13",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 14Synthetic local project for pagination and control testing.by Synthetic Control Project 14 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 14; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 14",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 15Synthetic local project for pagination and control testing.by Synthetic Control Project 15 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 15; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 15",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 16Synthetic local project for pagination and control testing.by Synthetic Control Project 16 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 16; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 16",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 17Synthetic local project for pagination and control testing.by Synthetic Control Project 17 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 17; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 17",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 18Synthetic local project for pagination and control testing.by Synthetic Control Project 18 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 18; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 18",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 19Synthetic local project for pagination and control testing.by Synthetic Control Project 19 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 19; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 19",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 20Synthetic local project for pagination and control testing.by Synthetic Control Project 20 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 20; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 20",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 21Synthetic local project for pagination and control testing.by Synthetic Control Project 21 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 21; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 21",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Previous page",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Next page",
+          "disabled": false,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "role": "leader",
+      "device": "mobile-touch",
+      "route": "/projects/synthetic-alice",
+      "controls": [
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Back to Projects",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "GitHub",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Small Wonder; 1 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "1 comment on Small Wonder",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": null,
+          "name": "body",
+          "label": "Public comment",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "submit",
+          "name": null,
+          "label": "Post comment",
+          "disabled": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "role": "leader",
+      "device": "mobile-touch",
+      "route": "/dashboard",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Team",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Credits",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Project",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Google Maps",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Alice",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Alice on GitHub",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Alice on example.test",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Open WhatsApp chat with Alice",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Member One",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Member One on GitHub",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Open WhatsApp chat with Synthetic Member One",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Member Two",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Member Two on GitHub",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Open WhatsApp chat with Synthetic Member Two",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Reveal my allocation",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Copy allocation",
+          "disabled": true,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Back to your project",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": null,
+          "name": "projectName",
+          "label": "Project name *",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": null,
+          "name": "problemSolution",
+          "label": "One-line summary *",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": null,
+          "name": "description",
+          "label": "Description *Synthetic local version 2. Synthetic local version 1. This is disposable local fixture content for checking the project layout. It is not a real event entry.",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": "url",
+          "name": "github",
+          "label": "GitHub repository *",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "url",
+          "name": "demo",
+          "label": "Deployment URL",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "OpenAI API",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "Codex",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "ChatGPT Sites",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "Parallel Agents",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "Parallel worktrees",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "ChatGPT",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "cerebras-integration",
+          "label": "Yes",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "cerebras-integration",
+          "label": "No",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "file",
+          "name": null,
+          "label": "Upload logo",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Remove logo image",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "file",
+          "name": null,
+          "label": "Upload banner",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Remove banner image",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "I confirm this submission is accurate.",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Next",
+          "disabled": false,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "role": "leader",
+      "device": "mobile-touch",
+      "route": "/dashboard",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Team",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Credits",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Project",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Google Maps",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Alice",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Alice on GitHub",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Alice on example.test",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Open WhatsApp chat with Alice",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Member One",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Member One on GitHub",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Open WhatsApp chat with Synthetic Member One",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Member Two",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Member Two on GitHub",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Open WhatsApp chat with Synthetic Member Two",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Reveal my allocation",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Copy allocation",
+          "disabled": true,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Previous submission step",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": null,
+          "name": "projectName",
+          "label": "Project name *",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": null,
+          "name": "problemSolution",
+          "label": "One-line summary *",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": null,
+          "name": "description",
+          "label": "Description *Synthetic local version 2. Synthetic local version 1. This is disposable local fixture content for checking the project layout. It is not a real event entry.",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "url",
+          "name": "github",
+          "label": "GitHub repository *",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": "url",
+          "name": "demo",
+          "label": "Deployment URL",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "OpenAI API",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "Codex",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "ChatGPT Sites",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "Parallel Agents",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "Parallel worktrees",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "ChatGPT",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "cerebras-integration",
+          "label": "Yes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "cerebras-integration",
+          "label": "No",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": "file",
+          "name": null,
+          "label": "Upload logo",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Remove logo image",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "file",
+          "name": null,
+          "label": "Upload banner",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Remove banner image",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "I confirm this submission is accurate.",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Next",
+          "disabled": false,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "role": "leader",
+      "device": "mobile-touch",
+      "route": "/dashboard",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Team",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Credits",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Project",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Google Maps",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Alice",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Alice on GitHub",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Alice on example.test",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Open WhatsApp chat with Alice",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Member One",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Member One on GitHub",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Open WhatsApp chat with Synthetic Member One",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Member Two",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Member Two on GitHub",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Open WhatsApp chat with Synthetic Member Two",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Reveal my allocation",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Copy allocation",
+          "disabled": true,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Previous submission step",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": null,
+          "name": "projectName",
+          "label": "Project name *",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": null,
+          "name": "problemSolution",
+          "label": "One-line summary *",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": null,
+          "name": "description",
+          "label": "Description *Synthetic local version 2. Synthetic local version 1. This is disposable local fixture content for checking the project layout. It is not a real event entry.",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "url",
+          "name": "github",
+          "label": "GitHub repository *",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "url",
+          "name": "demo",
+          "label": "Deployment URL",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "OpenAI API",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "Codex",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "ChatGPT Sites",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "Parallel Agents",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "Parallel worktrees",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "ChatGPT",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "cerebras-integration",
+          "label": "Yes",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "cerebras-integration",
+          "label": "No",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "file",
+          "name": null,
+          "label": "Upload logo",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Remove logo image",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": "file",
+          "name": null,
+          "label": "Upload banner",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Remove banner image",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "I confirm this submission is accurate.",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "submit",
+          "name": null,
+          "label": "Save draft",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Submit",
+          "disabled": false,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "role": "nonleader",
+      "device": "mobile-touch",
+      "route": "/projects",
+      "controls": [
+        {
+          "tag": "INPUT",
+          "type": "search",
+          "name": null,
+          "label": "Search projects",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Small WonderA synthetic project for visual testing.by Small Wonder",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Small Wonder; 1 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "1 comment on Small Wonder",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "The Fifth ElementA synthetic project for visual testing.by The Fifth Element",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote The Fifth Element; 1 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "1 comment on The Fifth Element",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 00Synthetic local project for pagination and control testing.by Synthetic Control Project 00 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 00; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 00",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 01Synthetic local project for pagination and control testing.by Synthetic Control Project 01 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 01; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 01",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 02Synthetic local project for pagination and control testing.by Synthetic Control Project 02 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 02; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 02",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 03Synthetic local project for pagination and control testing.by Synthetic Control Project 03 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 03; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 03",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 04Synthetic local project for pagination and control testing.by Synthetic Control Project 04 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 04; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 04",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 05Synthetic local project for pagination and control testing.by Synthetic Control Project 05 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 05; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 05",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 06Synthetic local project for pagination and control testing.by Synthetic Control Project 06 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 06; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 06",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 07Synthetic local project for pagination and control testing.by Synthetic Control Project 07 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 07; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 07",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 08Synthetic local project for pagination and control testing.by Synthetic Control Project 08 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 08; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 08",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 09Synthetic local project for pagination and control testing.by Synthetic Control Project 09 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 09; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 09",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 10Synthetic local project for pagination and control testing.by Synthetic Control Project 10 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 10; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 10",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 11Synthetic local project for pagination and control testing.by Synthetic Control Project 11 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 11; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 11",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 12Synthetic local project for pagination and control testing.by Synthetic Control Project 12 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 12; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 12",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 13Synthetic local project for pagination and control testing.by Synthetic Control Project 13 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 13; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 13",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 14Synthetic local project for pagination and control testing.by Synthetic Control Project 14 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 14; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 14",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 15Synthetic local project for pagination and control testing.by Synthetic Control Project 15 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 15; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 15",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 16Synthetic local project for pagination and control testing.by Synthetic Control Project 16 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 16; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 16",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 17Synthetic local project for pagination and control testing.by Synthetic Control Project 17 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 17; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 17",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 18Synthetic local project for pagination and control testing.by Synthetic Control Project 18 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 18; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 18",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 19Synthetic local project for pagination and control testing.by Synthetic Control Project 19 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 19; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 19",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 20Synthetic local project for pagination and control testing.by Synthetic Control Project 20 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 20; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 20",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 21Synthetic local project for pagination and control testing.by Synthetic Control Project 21 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 21; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 21",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Previous page",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Next page",
+          "disabled": false,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "role": "nonleader",
+      "device": "mobile-touch",
+      "route": "/projects/synthetic-alice",
+      "controls": [
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Back to Projects",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "GitHub",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Small Wonder; 1 upvotes",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "1 comment on Small Wonder",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": null,
+          "name": "body",
+          "label": "Public comment",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "submit",
+          "name": null,
+          "label": "Post comment",
+          "disabled": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "role": "nonleader",
+      "device": "mobile-touch",
+      "route": "/dashboard",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Credits",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Project",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Google Maps",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Alice",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Alice on GitHub",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Alice on example.test",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Open WhatsApp chat with Alice",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Member One",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Member One on GitHub",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Open WhatsApp chat with Synthetic Member One",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Member Two",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Member Two on GitHub",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Open WhatsApp chat with Synthetic Member Two",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "View project",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Versions 2/3",
+          "disabled": false,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "role": "attempt3",
+      "device": "mobile-touch",
+      "route": "/projects",
+      "controls": [
+        {
+          "tag": "INPUT",
+          "type": "search",
+          "name": null,
+          "label": "Search projects",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Small WonderA synthetic project for visual testing.by Small Wonder",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Small Wonder; 1 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "1 comment on Small Wonder",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "The Fifth ElementA synthetic project for visual testing.by The Fifth Element",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote The Fifth Element; 1 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "1 comment on The Fifth Element",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 00Synthetic local project for pagination and control testing.by Synthetic Control Project 00 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 00; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 00",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 01Synthetic local project for pagination and control testing.by Synthetic Control Project 01 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 01; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 01",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 02Synthetic local project for pagination and control testing.by Synthetic Control Project 02 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 02; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 02",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 03Synthetic local project for pagination and control testing.by Synthetic Control Project 03 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 03; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 03",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 04Synthetic local project for pagination and control testing.by Synthetic Control Project 04 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 04; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 04",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 05Synthetic local project for pagination and control testing.by Synthetic Control Project 05 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 05; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 05",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 06Synthetic local project for pagination and control testing.by Synthetic Control Project 06 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 06; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 06",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 07Synthetic local project for pagination and control testing.by Synthetic Control Project 07 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 07; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 07",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 08Synthetic local project for pagination and control testing.by Synthetic Control Project 08 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 08; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 08",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 09Synthetic local project for pagination and control testing.by Synthetic Control Project 09 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 09; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 09",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 10Synthetic local project for pagination and control testing.by Synthetic Control Project 10 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 10; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 10",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 11Synthetic local project for pagination and control testing.by Synthetic Control Project 11 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 11; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 11",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 12Synthetic local project for pagination and control testing.by Synthetic Control Project 12 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 12; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 12",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 13Synthetic local project for pagination and control testing.by Synthetic Control Project 13 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 13; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 13",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 14Synthetic local project for pagination and control testing.by Synthetic Control Project 14 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 14; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 14",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 15Synthetic local project for pagination and control testing.by Synthetic Control Project 15 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 15; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 15",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 16Synthetic local project for pagination and control testing.by Synthetic Control Project 16 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 16; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 16",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 17Synthetic local project for pagination and control testing.by Synthetic Control Project 17 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 17; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 17",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 18Synthetic local project for pagination and control testing.by Synthetic Control Project 18 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 18; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 18",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 19Synthetic local project for pagination and control testing.by Synthetic Control Project 19 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 19; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 19",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 20Synthetic local project for pagination and control testing.by Synthetic Control Project 20 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 20; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 20",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic Control Project 21Synthetic local project for pagination and control testing.by Synthetic Control Project 21 Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Synthetic Control Project 21; 0 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "0 comments on Synthetic Control Project 21",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Previous page",
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Next page",
+          "disabled": false,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "role": "attempt3",
+      "device": "mobile-touch",
+      "route": "/projects/synthetic-alice",
+      "controls": [
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Back to Projects",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "GitHub",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Upvote Small Wonder; 1 upvotes",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "1 comment on Small Wonder",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": null,
+          "name": "body",
+          "label": "Public comment",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "submit",
+          "name": null,
+          "label": "Post comment",
+          "disabled": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "role": "attempt3",
+      "device": "mobile-touch",
+      "route": "/dashboard",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Credits",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Project",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Google Maps",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Eve",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Open WhatsApp chat with Eve",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Frank",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Open WhatsApp chat with Frank",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Remove Frank from team",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Gina",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Open WhatsApp chat with Gina",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Remove Gina from team",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Hari",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Open WhatsApp chat with Hari",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Remove Hari from team",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Ivy",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Open WhatsApp chat with Ivy",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Remove Ivy from team",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "title",
+          "label": "Idea title",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": null,
+          "name": "description",
+          "label": "Short descriptionA local rehearsal description.30/500 characters",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Save team idea",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Lock completed team",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "SUMMARY",
+          "type": null,
+          "name": null,
+          "label": "Rename team",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "name",
+          "label": "Team name",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Rename team",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "SUMMARY",
+          "type": null,
+          "name": null,
+          "label": "Membership requests",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "SUMMARY",
+          "type": null,
+          "name": null,
+          "label": "Customize your team badge and accent",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "palette",
+          "label": "Blue",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "palette",
+          "label": "Green",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "palette",
+          "label": "Purple",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "palette",
+          "label": "Orange",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "palette",
+          "label": "Charcoal",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "palette",
+          "label": "Yellow",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "palette",
+          "label": "Coral",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "palette",
+          "label": "Grey",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Update team identity",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Reveal my allocation",
+          "disabled": true,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Copy allocation",
+          "disabled": true,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "View project",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Versions 3/3",
+          "disabled": false,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "role": "firstLeader",
+      "device": "mobile-touch",
+      "route": "/dashboard",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Team",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Credits",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Project",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Google Maps",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Synthetic First Leader",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "A",
+          "type": null,
+          "name": null,
+          "label": "Open WhatsApp chat with Synthetic First Leader",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "title",
+          "label": "Idea title",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": null,
+          "name": "description",
+          "label": "Short description0/500 characters",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Save team idea",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Lock completed team",
+          "disabled": true,
+          "visible": false
+        },
+        {
+          "tag": "SUMMARY",
+          "type": null,
+          "name": null,
+          "label": "Rename team",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "name": "name",
+          "label": "Team name",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Rename team",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "SUMMARY",
+          "type": null,
+          "name": null,
+          "label": "Membership requests",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "SUMMARY",
+          "type": null,
+          "name": null,
+          "label": "Customize your team badge and accent",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "palette",
+          "label": "Blue",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "palette",
+          "label": "Green",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "palette",
+          "label": "Purple",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "palette",
+          "label": "Orange",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "palette",
+          "label": "Charcoal",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "palette",
+          "label": "Yellow",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "palette",
+          "label": "Coral",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "palette",
+          "label": "Grey",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Update team identity",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "SUMMARY",
+          "type": null,
+          "name": null,
+          "label": "Delete your team",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": null,
+          "name": null,
+          "label": "Review team deletion",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Reveal my allocation",
+          "disabled": true,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Copy allocation",
+          "disabled": true,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Back to Team",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": null,
+          "name": "projectName",
+          "label": "Project name *",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": null,
+          "name": "problemSolution",
+          "label": "One-line summary *",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": null,
+          "name": "description",
+          "label": "Description *",
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "tag": "INPUT",
+          "type": "url",
+          "name": "github",
+          "label": "GitHub repository *",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "url",
+          "name": "demo",
+          "label": "Deployment URL",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "OpenAI API",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "Codex",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "ChatGPT Sites",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "Parallel Agents",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "Parallel worktrees",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "ChatGPT",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "cerebras-integration",
+          "label": "Yes",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "radio",
+          "name": "cerebras-integration",
+          "label": "No",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "file",
+          "name": null,
+          "label": "Upload logo",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "file",
+          "name": null,
+          "label": "Upload banner",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "INPUT",
+          "type": "checkbox",
+          "name": null,
+          "label": "I confirm this submission is accurate.",
+          "disabled": false,
+          "visible": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "name": null,
+          "label": "Next",
+          "disabled": false,
+          "visible": true
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "label": "projects",
+      "role": "anonymous",
+      "device": "mobile-touch",
+      "path": "evidence/v6-project-controls/bca62114-6Zbsqs/projects-anonymous-mobile-touch.png",
+      "inspected": false,
+      "cleanFixture": true
+    },
+    {
+      "label": "detail",
+      "role": "anonymous",
+      "device": "mobile-touch",
+      "path": "evidence/v6-project-controls/bca62114-6Zbsqs/detail-anonymous-mobile-touch.png",
+      "inspected": false,
+      "cleanFixture": true
+    },
+    {
+      "label": "projects",
+      "role": "viewer",
+      "device": "mobile-touch",
+      "path": "evidence/v6-project-controls/bca62114-6Zbsqs/projects-viewer-mobile-touch.png",
+      "inspected": false,
+      "cleanFixture": true
+    },
+    {
+      "label": "detail",
+      "role": "viewer",
+      "device": "mobile-touch",
+      "path": "evidence/v6-project-controls/bca62114-6Zbsqs/detail-viewer-mobile-touch.png",
+      "inspected": false,
+      "cleanFixture": true
+    },
+    {
+      "label": "projects",
+      "role": "member",
+      "device": "mobile-touch",
+      "path": "evidence/v6-project-controls/bca62114-6Zbsqs/projects-member-mobile-touch.png",
+      "inspected": false,
+      "cleanFixture": true
+    },
+    {
+      "label": "detail",
+      "role": "member",
+      "device": "mobile-touch",
+      "path": "evidence/v6-project-controls/bca62114-6Zbsqs/detail-member-mobile-touch.png",
+      "inspected": false,
+      "cleanFixture": true
+    },
+    {
+      "label": "projects",
+      "role": "leader",
+      "device": "mobile-touch",
+      "path": "evidence/v6-project-controls/bca62114-6Zbsqs/projects-leader-mobile-touch.png",
+      "inspected": false,
+      "cleanFixture": true
+    },
+    {
+      "label": "detail",
+      "role": "leader",
+      "device": "mobile-touch",
+      "path": "evidence/v6-project-controls/bca62114-6Zbsqs/detail-leader-mobile-touch.png",
+      "inspected": false,
+      "cleanFixture": true
+    },
+    {
+      "label": "project-editor-state",
+      "role": "leader",
+      "device": "mobile-touch",
+      "path": "evidence/v6-project-controls/bca62114-6Zbsqs/project-editor-state-leader-mobile-touch.png",
+      "inspected": false,
+      "cleanFixture": true
+    },
+    {
+      "label": "wizard-2",
+      "role": "leader",
+      "device": "mobile-touch",
+      "path": "evidence/v6-project-controls/bca62114-6Zbsqs/wizard-2-leader-mobile-touch.png",
+      "inspected": false,
+      "cleanFixture": true
+    },
+    {
+      "label": "wizard-3",
+      "role": "leader",
+      "device": "mobile-touch",
+      "path": "evidence/v6-project-controls/bca62114-6Zbsqs/wizard-3-leader-mobile-touch.png",
+      "inspected": false,
+      "cleanFixture": true
+    },
+    {
+      "label": "projects",
+      "role": "nonleader",
+      "device": "mobile-touch",
+      "path": "evidence/v6-project-controls/bca62114-6Zbsqs/projects-nonleader-mobile-touch.png",
+      "inspected": false,
+      "cleanFixture": true
+    },
+    {
+      "label": "detail",
+      "role": "nonleader",
+      "device": "mobile-touch",
+      "path": "evidence/v6-project-controls/bca62114-6Zbsqs/detail-nonleader-mobile-touch.png",
+      "inspected": false,
+      "cleanFixture": true
+    },
+    {
+      "label": "project-editor-state",
+      "role": "nonleader",
+      "device": "mobile-touch",
+      "path": "evidence/v6-project-controls/bca62114-6Zbsqs/project-editor-state-nonleader-mobile-touch.png",
+      "inspected": false,
+      "cleanFixture": true
+    },
+    {
+      "label": "projects",
+      "role": "attempt3",
+      "device": "mobile-touch",
+      "path": "evidence/v6-project-controls/bca62114-6Zbsqs/projects-attempt3-mobile-touch.png",
+      "inspected": false,
+      "cleanFixture": true
+    },
+    {
+      "label": "detail",
+      "role": "attempt3",
+      "device": "mobile-touch",
+      "path": "evidence/v6-project-controls/bca62114-6Zbsqs/detail-attempt3-mobile-touch.png",
+      "inspected": false,
+      "cleanFixture": true
+    },
+    {
+      "label": "project-editor-state",
+      "role": "attempt3",
+      "device": "mobile-touch",
+      "path": "evidence/v6-project-controls/bca62114-6Zbsqs/project-editor-state-attempt3-mobile-touch.png",
+      "inspected": false,
+      "cleanFixture": true
+    },
+    {
+      "label": "first-submission",
+      "role": "firstLeader",
+      "device": "mobile-touch",
+      "path": "evidence/v6-project-controls/bca62114-6Zbsqs/first-submission-firstLeader-mobile-touch.png",
+      "inspected": false,
+      "cleanFixture": true
+    }
+  ],
+  "pageErrors": [],
+  "deniedRequests": [],
+  "expectedExternalBlocks": [
+    {
+      "role": "member",
+      "device": "mobile-touch",
+      "kind": "intentional-link",
+      "protocol": "https:"
+    }
+  ],
+  "requests": [
+    {
+      "role": "member",
+      "device": "mobile-touch",
+      "action": "upvote-project",
+      "transport": "injected-rejection"
+    },
+    {
+      "role": "member",
+      "device": "mobile-touch",
+      "action": "upvote-project",
+      "transport": "loopback-backend"
+    },
+    {
+      "role": "member",
+      "device": "mobile-touch",
+      "action": "upvote-project",
+      "transport": "loopback-backend"
+    },
+    {
+      "role": "member",
+      "device": "mobile-touch",
+      "action": "comment-project",
+      "transport": "loopback-backend"
+    },
+    {
+      "role": "member",
+      "device": "mobile-touch",
+      "action": "comment-project",
+      "transport": "loopback-backend"
+    },
+    {
+      "role": "leader",
+      "device": "mobile-touch",
+      "action": "save-project",
+      "transport": "loopback-backend"
+    },
+    {
+      "role": "leader",
+      "device": "mobile-touch",
+      "action": "save-project",
+      "transport": "loopback-backend"
+    },
+    {
+      "role": "leader",
+      "device": "mobile-touch",
+      "action": "save-project",
+      "transport": "loopback-backend"
+    },
+    {
+      "role": "leader",
+      "device": "mobile-touch",
+      "action": "submit-project",
+      "transport": "loopback-backend"
+    },
+    {
+      "role": "leader",
+      "device": "mobile-touch",
+      "action": "save-project",
+      "transport": "loopback-backend"
+    },
+    {
+      "role": "leader",
+      "device": "mobile-touch",
+      "action": "submit-project",
+      "transport": "loopback-backend"
+    },
+    {
+      "role": "leader",
+      "device": "mobile-touch",
+      "action": "submit-project",
+      "transport": "loopback-backend"
+    }
+  ],
+  "limitations": [
+    "Emulated touch, mouse and keyboard only. No physical device claim.",
+    "Screenshot files require visual inspection before acceptance.",
+    "Fixture roles/routes absent from the manifest are recorded unavailable, never passed."
+  ],
+  "writeScope": {
+    "device": "mobile-touch",
+    "member": "fake_bob",
+    "engagementProject": "fake_control_project_00",
+    "leader": "fake_alice",
+    "leaderProject": "visual_project_alice",
+    "attemptsAtReset": 2,
+    "origin": "http://127.0.0.1:4179",
+    "path": "/api/portal",
+    "actions": [
+      "upvote-project",
+      "comment-project",
+      "save-project",
+      "submit-project"
+    ]
+  },
+  "browserClosed": true,
+  "summary": {
+    "passed": 26,
+    "partial": 1,
+    "failed": 0,
+    "blocked": 0,
+    "unavailable": 2
+  }
+}

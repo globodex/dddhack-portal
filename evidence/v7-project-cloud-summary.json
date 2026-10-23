@@ -1,0 +1,92 @@
+{
+  "syntheticOnly": true,
+  "productionRecordsCreated": false,
+  "providerCalls": false,
+  "published": false,
+  "builtSource": "6e5e8432b4fff84895982a3396b59f7280bdd9ee",
+  "worker": "6ab766fc3843fec865504b9643b207c16cf56421877c7aad155021fce1d75d2b",
+  "artifactFiles": 185,
+  "browser": "System Chromium with chromiumSandbox:true; approved host execution; no sandbox disabling flags",
+  "physicalDeviceTested": false,
+  "recovery": {
+    "report": "evidence/v6-project-recovery/6e5e8432-xyLb4j/report.json",
+    "passed": 30,
+    "failed": 0,
+    "modes": [
+      "desktop-mouse",
+      "tablet-touch",
+      "mobile-touch",
+      "narrow-touch",
+      "desktop-keyboard"
+    ]
+  },
+  "controls": [
+    {
+      "mode": "desktop-mouse",
+      "source": "6e5e8432b4fff84895982a3396b59f7280bdd9ee",
+      "report": "evidence/v6-project-controls/6e5e8432-TXqJSq/report.json",
+      "passedGroups": 26,
+      "partialGroups": 1,
+      "unavailableGroups": 2,
+      "failedGroups": 0
+    },
+    {
+      "mode": "desktop-keyboard",
+      "source": "bca62114f3ccf91ba2837c503d3c32b80618c93f",
+      "report": "evidence/v6-project-controls/bca62114-40q7fE/report.json",
+      "passedGroups": 27,
+      "partialGroups": 1,
+      "unavailableGroups": 1,
+      "failedGroups": 0
+    },
+    {
+      "mode": "mobile-touch",
+      "source": "bca62114f3ccf91ba2837c503d3c32b80618c93f",
+      "report": "evidence/v6-project-controls/bca62114-6Zbsqs/report.json",
+      "passedGroups": 26,
+      "partialGroups": 1,
+      "unavailableGroups": 2,
+      "failedGroups": 0
+    }
+  ],
+  "positiveWriteScope": {
+    "originPorts": [
+      4174,
+      4179
+    ],
+    "actions": [
+      "upvote-project",
+      "comment-project",
+      "save-project",
+      "submit-project"
+    ],
+    "engagementProject": "fake_control_project_00",
+    "leaderProject": "visual_project_alice",
+    "freshDatabaseAndResetPerMode": true
+  },
+  "extraCoverage": {
+    "report": "evidence/v7-project-extra/473c1c1f-3VL5cm/report.json",
+    "source": "473c1c1f00b31c6291dcea11bc5f305d90c7261b",
+    "passed": 6,
+    "failed": 0,
+    "readOnly": true,
+    "scope": [
+      "optional deployment link across3modes, reserved.test destination blocked",
+      "unpublished authorized nonleader draft across3modes, fields disabled"
+    ],
+    "pageErrors": 0,
+    "writeRequests": 0
+  },
+  "preservedFailedRun": {
+    "report": "evidence/v6-project-controls/6e5e8432-TYUQbw/report.json",
+    "failedGroups": 1,
+    "cause": "Immediate keyboard hash assertion raced asynchronous navigation. waitForURL fix bca6211; fresh-reset rerun passed. No product defect established."
+  },
+  "limits": [
+    "All evidence is lane/Worker bound, not a final integrated release or hosted capacity claim.",
+    "Mouse/touch matrix records keyboard-focus unavailable by mode; actual keyboard coverage is in its dedicated run.",
+    "Main fixture optional-link and unpublished-nonleader gaps are covered separately by extra fixture6checks.",
+    "Screenshots require selected-reference comparison and user acceptance separately.",
+    "Managed sign-in and physical devices not verified."
+  ]
+}
