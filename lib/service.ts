@@ -205,7 +205,11 @@ export class PortalService {
     // Rendering sign-in/profile/admin setup must not require activating or
     // implicitly initializing an event. Commands retain the default strict path.
     if (!s && allowUninitializedView)
-      return { active: 0, version: 0, policy: draftPolicy };
+      return {
+        active: 0,
+        version: 0,
+        policy: { ...draftPolicy, submissionClose: null },
+      };
     demand(
       s,
       409,
@@ -1069,33 +1073,33 @@ export class PortalService {
         const old = await this.settings();
         await this.unfrozen();
         const p = policySchema.parse(json(d.policy));
-        if (old.active) {
-          const protectedKeys = [
-            "timezone",
-            "ideaLock",
-            "membershipFreeze",
-            "ideaReveal",
-            "submissionOpen",
-            "submissionClose",
-            "deploymentRule",
-            "lumaRequired",
-            "retentionNotice",
-            "capacityRule",
-            "capacity",
-            "teamFormationRule",
-            "operationScopes",
-            "weights",
-          ] as const;
+        if (
+          old.active ||
+          (old.policy.submissionClose &&
+            old.policy.submissionClose > old.policy.submissionOpen)
+        ) {
+          const protectedKeys = old.active
+            ? ([
+                "timezone",
+                "ideaLock",
+                "membershipFreeze",
+                "ideaReveal",
+                "submissionOpen",
+                "submissionClose",
+                "deploymentRule",
+                "lumaRequired",
+                "retentionNotice",
+                "capacityRule",
+                "capacity",
+                "teamFormationRule",
+                "weights",
+              ] as const)
+            : (["submissionOpen", "submissionClose", "weights"] as const);
           demand(
             protectedKeys.every(
               (key) =>
                 JSON.stringify(p[key]) === JSON.stringify(old.policy[key]),
-            ) &&
-              operationalDecisions.every(
-                (key) =>
-                  !old.policy.confirmations.includes(key) ||
-                  p.confirmations.includes(key),
-              ),
+            ),
             409,
             "ACTIVE_OPERATION_POLICY_PROTECTED",
             "Enabled operational rules cannot be changed through judging setup. Use the dedicated deadline or global-weight preview controls.",
@@ -2307,7 +2311,13 @@ export class PortalService {
           policy: s.policy,
           blockers: policyBlockers(s.policy),
         };
-      return { ...base, items: await this.adminList(list), ...(list === "credits" ? {creditBatches: await creditBatchesView(this)} : {}) };
+      return {
+        ...base,
+        items: await this.adminList(list),
+        ...(list === "credits"
+          ? { creditBatches: await creditBatchesView(this) }
+          : {}),
+      };
     }
     if (path.startsWith("/judge")) {
       demand(u.role === "judge", 403, "JUDGE_REQUIRED");

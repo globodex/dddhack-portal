@@ -13,6 +13,7 @@ export function portalNavigation(path: string, me?: NavigationActor) {
           ? [
               ["/admin/teams", "Teams"],
               ["/admin/submissions", "Submissions"],
+              ["/admin/credits", "Credits"],
               ["/admin/settings", "Settings"],
             ]
           : []),

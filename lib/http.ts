@@ -4,6 +4,7 @@ import {
 } from "./participant-export";
 import { z } from "zod";
 import { PortalService } from "./service";
+import { prepareAdminPresentation } from "./admin-presentation";
 import {
   queueEvaluations,
   type BackgroundDispatch,
@@ -108,29 +109,37 @@ export async function handlePortal(request: Request, runtime: Runtime) {
     if (request.method === "GET") {
       const params = new URL(request.url).searchParams;
       const view = params.get("view") || "/";
+      const options = {
+        ...(view.replace(/\/+/g, "/").replace(/\/$/, "") ===
+        "/discover/participants"
+          ? participantPagingFromParams(params)
+          : {}),
+        focus: (new URL(request.url).searchParams.get("focus") || "").slice(
+          0,
+          150,
+        ),
+        search: (new URL(request.url).searchParams.get("q") || "").slice(
+          0,
+          200,
+        ),
+        page: Math.min(
+          1000,
+          Math.max(
+            0,
+            Number(new URL(request.url).searchParams.get("page")) || 0,
+          ),
+        ),
+      };
+      const projected = await service.view(view, options);
+      const optimized = await prepareAdminPresentation(
+        projected,
+        view,
+        { search: options.search, page: options.page, focus: options.focus },
+        params.get("presentation") || undefined,
+      );
       return Response.json(
         {
-          ...(await service.view(view, {
-            ...(view.replace(/\/+/g, "/").replace(/\/$/, "") ===
-            "/discover/participants"
-              ? participantPagingFromParams(params)
-              : {}),
-            focus: (new URL(request.url).searchParams.get("focus") || "").slice(
-              0,
-              150,
-            ),
-            search: (new URL(request.url).searchParams.get("q") || "").slice(
-              0,
-              200,
-            ),
-            page: Math.min(
-              1000,
-              Math.max(
-                0,
-                Number(new URL(request.url).searchParams.get("page")) || 0,
-              ),
-            ),
-          })),
+          ...optimized,
           localTest: !!runtime.localTest,
         },
         { headers: safeHeaders },

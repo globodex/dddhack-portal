@@ -183,6 +183,13 @@
       "when": 1792788555458,
       "tag": "0025_derived_operational_gates",
       "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "6",
+      "when": 1792789098151,
+      "tag": "0026_admin_leader_transfer",
+      "breakpoints": true
     }
   ]
 }

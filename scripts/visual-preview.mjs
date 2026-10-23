@@ -130,7 +130,6 @@ if (process.argv.includes("--control-audit")) {
   );
   writeFileSync(
     controlManifestPath,
-    directoryManifestPath,
     JSON.stringify(
       {
         disposable: true,

@@ -36,6 +36,7 @@ import {
   Users,
   UsersRound,
   X,
+  Ticket,
 } from "lucide-react";
 import AddAdmins from "./add-admins";
 import AdminCreditBatches from "./admin-credit-batches";
@@ -45,6 +46,7 @@ import { HeadingDot } from "./expressive-heading";
 import RouteSkeleton from "./route-skeleton";
 import MobileNavigation from "./mobile-navigation";
 import { readPortalView } from "../lib/portal-read";
+import {AdminPresentationCache, AdminPresentationCacheMiss} from "../lib/admin-presentation";
 import DiscoveryProfile, {
   discoverySocialLinks,
   openDiscoveryDialog,
@@ -298,6 +300,7 @@ export function portalTargetName(data: View, values: Row): string {
     return `${ist(values.open)} → ${ist(values.close)}`;
   if (values.kind === "roster" && values.digest)
     return `Previewed roster import · digest ${String(values.digest).slice(0, 16)}`;
+  if(values.columns && Array.isArray(values.columns)) return values.columns.map((column:Row)=>column.heading).join(", ")+(values.newCount?` · ${values.newCount} codes`:"");
   if (values.scope === "private") return "Private venue and directions";
   if (values.scope === "public") return "Public agenda, rules, FAQ and venue";
   if (values.userIds)
@@ -340,9 +343,11 @@ type IconName =
   | "history"
   | "person"
   | "users"
-  | "team";
+  | "team"
+  | "credits";
 function Icon({ name, size = 20 }: { name: IconName; size?: number }) {
   const Component = {
+    credits: Ticket,
     home: House,
     dashboard: LayoutDashboard,
     discover: Compass,
@@ -4848,7 +4853,8 @@ export default function Portal({
     loadGeneration = useRef(0),
     loadAbort = useRef<AbortController | null>(null),
     lastRefresh = useRef(0),
-    hasLoadedView = useRef(!!initialView || !!initialPublic);
+    hasLoadedView = useRef(!!initialView || !!initialPublic),
+    presentationCache = useRef(new AdminPresentationCache());
   if (!gate.current) gate.current = new ConfirmationGate(setConfirmation);
   async function load() {
     const generation = ++loadGeneration.current;
@@ -4859,12 +4865,14 @@ export default function Portal({
     setLoading(!hasLoadedView.current);
     setError("");
     try {
-      const {response: r, body} = await readPortalView(
-        `/api/portal?view=${encodeURIComponent(path)}&focus=${encodeURIComponent(new URLSearchParams(window.location.search).get("project") || "")}`,
-        controller.signal,
-      );
+      const focus=new URLSearchParams(window.location.search).get("project") || "";
+      const options={search:"",page:0,focus};
+      const version=await presentationCache.current.knownVersion(path,data.me,options);
+      const url=`/api/portal?view=${encodeURIComponent(path)}&focus=${encodeURIComponent(focus)}`;
+      let {response: r,body}=await readPortalView(url+(version?"&presentation="+encodeURIComponent(version):""),controller.signal);
       if (generation !== loadGeneration.current) return;
       if (!r.ok) {
+        presentationCache.current.clear();
         setErrorCode(body.code || "");
         hasLoadedView.current = false;
         setData({});
@@ -4872,9 +4880,18 @@ export default function Portal({
           body.message || body.code || "This page could not be loaded.",
         );
       }
+      let hydrated: View;
+      try {hydrated=await presentationCache.current.merge(body,path,options);}
+      catch(error){
+        if(!(error instanceof AdminPresentationCacheMiss))throw error;
+        const full=await readPortalView(url,controller.signal);
+        if(!full.response.ok)throw new Error(full.body.message || "This page could not be loaded.");
+        hydrated=await presentationCache.current.merge(full.body,path,options);
+      }
+      if(generation!==loadGeneration.current || controller.signal.aborted)return;
       setErrorCode("");
       hasLoadedView.current = true;
-      setData(body);
+      setData(hydrated);
     } catch (e) {
       if (generation === loadGeneration.current && !controller.signal.aborted) setError((e as Error).message);
     } finally {
@@ -4884,6 +4901,7 @@ export default function Portal({
   }
   useEffect(() => {
     if (initialView) {
+      void presentationCache.current.merge(initialView,path,{search:"",page:0,focus:""}).catch(()=>{});
       setData(initialView);
       hasLoadedView.current = true;
       setLoading(false);
@@ -4915,6 +4933,7 @@ export default function Portal({
       ++loadGeneration.current;
       loadAbort.current?.abort();
       gate.current?.decide(false);
+      presentationCache.current.clear();
       hasLoadedView.current = false;
       setData({});
       setLoading(true);
@@ -4992,6 +5011,7 @@ export default function Portal({
         return;
       }
       if (localTest) await api("local-signout", {});
+      presentationCache.current.clear();
       setData({});
       setMessage("Signing out…");
       const link = document.createElement("a");
@@ -5181,7 +5201,7 @@ export default function Portal({
                               ? "leaderboard"
                               : label === "Rules"
                                 ? "rules"
-                                : label === "Settings"
+                                : label === "Credits" ? "credits" : label === "Settings"
                                   ? "settings"
                                   : label === "Logs"
                                     ? "logs"

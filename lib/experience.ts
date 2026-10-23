@@ -1236,14 +1236,12 @@ export class PortalExperience {
         ...(admin
           ? [["INSERT INTO write_guards VALUES(?,1)", guard] as SQL]
           : []),
-        [
+        admin ? [
+          "UPDATE ideas SET title=?,core=?,description=?,hash=?,updated_at=? WHERE team_id=?",
+          d.title,d.description,d.description,hash,time,team.id,
+        ] : [
           "INSERT INTO ideas VALUES(?,?,?,?,?,?) ON CONFLICT(team_id) DO UPDATE SET title=excluded.title,core=excluded.core,description=excluded.description,hash=excluded.hash,updated_at=excluded.updated_at",
-          team.id,
-          d.title,
-          d.description,
-          d.description,
-          hash,
-          time,
+          team.id,d.title,d.description,d.description,hash,time,
         ],
         [
           "INSERT INTO idea_revisions VALUES(?,?,?,?)",
