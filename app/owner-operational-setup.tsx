@@ -69,7 +69,7 @@ export default function OwnerOperationalSetup({
   };
   return (
     <section className="panel" aria-labelledby="operational-setup-title">
-      <h2 id="operational-setup-title">Operational setup</h2>
+      <h2 id="operational-setup-title">Configuration</h2>
 
       <form
         onSubmit={async (event) => {
@@ -118,27 +118,17 @@ export default function OwnerOperationalSetup({
             </select>
           </label>
           {operation === "submissions" ? (
-            <ul>
-              <li>
-                Submission window: {open ? ist(open) : "Not configured"} to{" "}
-                {close ? ist(close) : "Not configured"}. Edit both dates in
-                Submission window below.
-              </li>
-              <li>
-                Deployment link is optional. Only the personally checked-in
-                leader can submit, with at most three committed versions.
-              </li>
-              <li>
-                Repository creation and first commit must both be strictly after
-                1 November2026,08:00IST. Changing the submission window does not
-                change this rule.
-              </li>
-            </ul>
+            <p>
+              {open ? ist(open) : "Not configured"} to{" "}
+              {close ? ist(close) : "Not configured"}. Deployment is optional.
+              Only the personally checked-in leader may submit up to three
+              versions. Repository creation and first commit must be strictly
+              after 1 November 2026, 08:00 IST.
+            </p>
           ) : (
             <p>
-              Individual portal Going approval is required for check-in. Luma is
-              registration only. Attendance and personal credits stay
-              individually scoped.
+              Individual Going approval is required for check-in. Luma is
+              registration only.
             </p>
           )}
           <label>

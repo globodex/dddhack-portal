@@ -84,7 +84,7 @@ test("real Settings payload and authenticated API configure a fresh inactive eve
         },
       }),
     );
-    assert.match(markup, /Operational setup/);
+    assert.match(markup, /Event controls/);
     assert.match(markup, /Preview operational setup/);
     assert.doesNotMatch(markup, />Enable check-in</);
     assert.doesNotMatch(markup, />Enable submissions</);

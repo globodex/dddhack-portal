@@ -4650,12 +4650,12 @@ export function Settings({
         providers={data.creditInstructions || []}
         run={run}
       />
-      <details className="admin-settings-extra">
-        <summary>
-          Operational setup and readiness
-          <ChevronDown size={20} aria-hidden="true" />
-        </summary>
-        {data.me?.owner && (
+      {data.me?.owner && (
+        <details className="admin-settings-extra admin-event-controls">
+          <summary>
+            Event controls
+            <ChevronDown size={20} aria-hidden="true" />
+          </summary>
           <OwnerOperationalSetup
             key={`operational-${data.policyVersion}`}
             owner={true}
@@ -4664,66 +4664,38 @@ export function Settings({
             close={data.policy?.submissionClose || null}
             run={run}
           />
-        )}
-        <section className="panel">
-          <h2>Operational and scoring readiness</h2>
-          {!data.readiness?.initialized && (
-            <p className="notice">Operational setup required.</p>
-          )}
-          {(
-            [
-              ["submissions", "Submissions"],
-              ["checkin", "Check-in"],
-            ] as const
-          ).map(([scope, label]) => (
-            <div key={scope}>
-              <h3>{label}</h3>
-              <p>{data.readiness?.[scope]?.message}</p>
-
-              {data.me?.owner &&
-                data.readiness?.[scope]?.configured &&
-                !data.readiness[scope].enabled && (
-                  <Form
-                    label={`Enable ${label.toLowerCase()}`}
-                    onSave={async (f) => {
-                      await run("activate-operations", {
-                        operation: scope,
-                        version: data.policyVersion,
-                        reason: f.get("reason"),
-                      });
-                    }}
-                  >
-                    <Field
-                      name="reason"
-                      label="Enablement reason"
-                      required
-                      minLength={5}
-                    />
-                  </Form>
-                )}
-            </div>
-          ))}
-          <h3>Judging and scoring</h3>
-          <Pill tone={data.readiness?.scoring?.ready ? "positive" : "waiting"}>
-            {data.readiness?.scoring?.ready
-              ? "Policy ready · reveal remains explicit"
-              : "Scoring setup incomplete"}
-          </Pill>
-          <ul>
-            {(data.unresolved || []).map((x: string) => (
-              <li key={x}>{x}</li>
-            ))}
-          </ul>
-          <details>
-            <summary>Scoring confirmations still required</summary>
-            <ul>
-              {(data.blockers || []).map((x: string) => (
-                <li key={x}>{x}</li>
-              ))}
-            </ul>
-          </details>
-        </section>
-      </details>
+          <div className="form-actions">
+            {(
+              [
+                ["submissions", "Submissions"],
+                ["checkin", "Check-in"],
+              ] as const
+            ).map(([scope, label]) =>
+              data.readiness?.[scope]?.configured &&
+              !data.readiness[scope].enabled ? (
+                <Form
+                  key={scope}
+                  label={`Enable ${label.toLowerCase()}`}
+                  onSave={async (f) => {
+                    await run("activate-operations", {
+                      operation: scope,
+                      version: data.policyVersion,
+                      reason: f.get("reason"),
+                    });
+                  }}
+                >
+                  <Field
+                    name="reason"
+                    label="Enablement reason"
+                    required
+                    minLength={5}
+                  />
+                </Form>
+              ) : null,
+            )}
+          </div>
+        </details>
+      )}
       {data.me?.owner && (
         <details className="admin-settings-extra">
           <summary>
