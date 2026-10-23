@@ -39,7 +39,7 @@ import {
 import AddAdmins from "./add-admins";
 import { useDiscoverPeople, peopleDirectoryUrl, readPeoplePage } from "./use-discover-people";
 import { HeadingDot } from "./expressive-heading";
-import CenteredLoader from "./centered-loader";
+import RouteSkeleton from "./route-skeleton";
 import MobileNavigation from "./mobile-navigation";
 import { readPortalView } from "../lib/portal-read";
 import DiscoveryProfile, {
@@ -5244,13 +5244,7 @@ export default function Portal({
             ))}
           </section>
         ) : loading ? (
-          <CenteredLoader
-            label={
-              /^\/(dashboard|profile|teams|submission)(\/|$)/.test(path)
-                ? "Checking registration…"
-                : "Loading…"
-            }
-          />
+          <RouteSkeleton path={path} />
         ) : (
           !error && (
             <>
