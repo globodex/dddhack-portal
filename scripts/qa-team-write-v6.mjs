@@ -372,7 +372,7 @@ try {
   );
   if (size === "keyboard") {
     await record(
-      "confirmation traps Tab and cancels with Escape without writing",
+      "native confirmation supports Tab, Shift+Tab and Escape without writing",
       async () => {
         await act(
           leader.panel.getByRole("button", {
@@ -391,12 +391,13 @@ try {
           await cancel.evaluate((e) => e === document.activeElement),
           true,
         );
-        await cancel.press("Shift+Tab");
+        assert.equal(await dialog.evaluate((e) => e.matches(":modal")), true);
+        await cancel.press("Tab");
         assert.equal(
           await confirm.evaluate((e) => e === document.activeElement),
           true,
         );
-        await confirm.press("Tab");
+        await confirm.press("Shift+Tab");
         assert.equal(
           await cancel.evaluate((e) => e === document.activeElement),
           true,
