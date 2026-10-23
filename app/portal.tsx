@@ -695,66 +695,68 @@ export function TeamWorkspace({
                 </span>
               </div>
               {m.role === "leader" && <Pill tone="positive">Leader</Pill>}
-              <div className="dashboard-member-links">
-                {discoverySocialLinks(
-                  Array.isArray(m.socials) ? m.socials : [],
-                ).map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${m.name} on ${link.label}`}
-                    title={link.label}
+              <div className="dashboard-member-contact">
+                <div className="dashboard-member-links">
+                  {discoverySocialLinks(
+                    Array.isArray(m.socials) ? m.socials : [],
+                  ).map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${m.name} on ${link.label}`}
+                      title={link.label}
+                    >
+                      <img
+                        src={`/icons/social/${link.icon}.svg`}
+                        width={22}
+                        height={22}
+                        alt=""
+                      />
+                    </a>
+                  ))}
+                  {safeExternalUrl(m.whatsappUrl) && (
+                    <a
+                      className="dashboard-whatsapp"
+                      href={safeExternalUrl(m.whatsappUrl)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Open WhatsApp chat with ${m.name}`}
+                      title="WhatsApp"
+                    >
+                      <img
+                        src="/icons/social/whatsapp.svg"
+                        width={23}
+                        height={23}
+                        alt=""
+                      />
+                    </a>
+                  )}
+                </div>
+                {m.phone && (
+                  <span className="dashboard-member-phone">
+                    <Phone size={17} aria-hidden="true" />
+                    {m.phone}
+                  </span>
+                )}
+                {leader && !locked && m.role !== "leader" && (
+                  <button
+                    type="button"
+                    className="dashboard-icon-button dashboard-remove"
+                    aria-label={`Remove ${m.name} from team`}
+                    title={`Remove ${m.name}`}
+                    onClick={() => {
+                      void run("remove-workspace-member", {
+                        userId: m.id,
+                        reason: "Team leader removed membership",
+                      }).catch(() => {});
+                    }}
                   >
-                    <img
-                      src={`/icons/social/${link.icon}.svg`}
-                      width={22}
-                      height={22}
-                      alt=""
-                    />
-                  </a>
-                ))}
-                {safeExternalUrl(m.whatsappUrl) && (
-                  <a
-                    className="dashboard-whatsapp"
-                    href={safeExternalUrl(m.whatsappUrl)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Open WhatsApp chat with ${m.name}`}
-                    title="WhatsApp"
-                  >
-                    <img
-                      src="/icons/social/whatsapp.svg"
-                      width={23}
-                      height={23}
-                      alt=""
-                    />
-                  </a>
+                    <Trash2 size={19} aria-hidden="true" />
+                  </button>
                 )}
               </div>
-              {m.phone && (
-                <span className="dashboard-member-phone">
-                  <Phone size={17} aria-hidden="true" />
-                  {m.phone}
-                </span>
-              )}
-              {leader && !locked && m.role !== "leader" && (
-                <button
-                  type="button"
-                  className="dashboard-icon-button dashboard-remove"
-                  aria-label={`Remove ${m.name} from team`}
-                  title={`Remove ${m.name}`}
-                  onClick={() => {
-                    void run("remove-workspace-member", {
-                      userId: m.id,
-                      reason: "Team leader removed membership",
-                    }).catch(() => {});
-                  }}
-                >
-                  <Trash2 size={19} aria-hidden="true" />
-                </button>
-              )}
             </li>
           ))}
         </ul>
@@ -817,7 +819,7 @@ export function TeamWorkspace({
           <p>No team idea yet.</p>
         )}
         {leader && !locked && (
-          <div className="form-actions">
+          <div className="form-actions dashboard-lock-actions">
             <button
               className="button secondary"
               disabled={
