@@ -51,7 +51,9 @@ export function deriveOperational(
     enabled: configured,
     allowed: state === "open",
     state,
-    message: messages[state],
+    message: Number.isFinite(current)
+      ? messages[state]
+      : "Submission availability could not be determined.",
     blockers,
   };
 }
