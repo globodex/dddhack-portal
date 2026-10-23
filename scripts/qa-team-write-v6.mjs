@@ -225,6 +225,42 @@ try {
     solo = await session("solo"),
     accept = await session("accept"),
     decline = await session("decline");
+  if (size === "keyboard") {
+    await record(
+      "dashboard tabs support Arrow keys, Home and End",
+      async () => {
+        let current = leader.page.getByRole("tab", {
+          name: "Team",
+          exact: true,
+        });
+        await current.focus();
+        for (const [key, label, hash] of [
+          ["ArrowRight", "Credits", "#credits"],
+          ["ArrowRight", "Project", "#project"],
+          ["ArrowRight", "Team", "#team"],
+          ["ArrowLeft", "Project", "#project"],
+          ["Home", "Team", "#team"],
+          ["End", "Project", "#project"],
+          ["Home", "Team", "#team"],
+        ]) {
+          await current.press(key);
+          current = leader.page.getByRole("tab", { name: label, exact: true });
+          assert.equal(await current.getAttribute("aria-selected"), "true");
+          assert.equal(
+            await current.evaluate((e) => e === document.activeElement),
+            true,
+          );
+          assert.equal(new URL(leader.page.url()).hash, hash);
+          assert.equal(
+            await leader.page
+              .getByRole("tabpanel", { name: label, exact: true })
+              .isVisible(),
+            true,
+          );
+        }
+      },
+    );
+  }
   await record(
     "fresh reserved fixture gate before the first write",
     async () => {
@@ -325,6 +361,43 @@ try {
       assert.equal(await description.inputValue(), idea.description);
     },
   );
+  if (size === "keyboard") {
+    await record(
+      "confirmation traps Tab and cancels with Escape without writing",
+      async () => {
+        await act(
+          leader.panel.getByRole("button", {
+            name: "Save team idea",
+            exact: true,
+          }),
+        );
+        const dialog = leader.page.getByRole("dialog");
+        await dialog.waitFor();
+        const cancel = dialog.getByRole("button", {
+          name: "Cancel",
+          exact: true,
+        });
+        const confirm = dialog.getByRole("button").last();
+        assert.equal(
+          await cancel.evaluate((e) => e === document.activeElement),
+          true,
+        );
+        await cancel.press("Shift+Tab");
+        assert.equal(
+          await confirm.evaluate((e) => e === document.activeElement),
+          true,
+        );
+        await confirm.press("Tab");
+        assert.equal(
+          await cancel.evaluate((e) => e === document.activeElement),
+          true,
+        );
+        await cancel.press("Escape");
+        await dialog.waitFor({ state: "hidden" });
+        assert.equal(report.writes.length, 0);
+      },
+    );
+  }
   await record("save idea persists and enables Lock", async () => {
     await commit(leader, "save-workspace-idea", idea, () =>
       act(
