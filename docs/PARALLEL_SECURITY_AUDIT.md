@@ -72,3 +72,46 @@ These checks are bounded by the inspected snapshot and synthetic tests, not a pr
 - `npm test` uses the `tsx` CLI, whose IPC pipe is unavailable in the sandbox. The direct Node loader ran the same test sources without that pipe; no dependencies were installed.
 - Two successful in-memory adversarial reproductions demonstrate gaps absent from the current green suite: unchecked-in leader commit and unchecked-in own-project vote. The public candidate reproduction demonstrates unlisted profile/team mutation.
 - No build/artifact or browser acceptance claim is made by this report. The root integrates and validates the final candidate separately. Awaiting an integrated ref for the required fresh second audit.
+
+## Second audit — integrated ref `379c568`
+
+This pass used a new `audit/portal-integrated` branch in the auditor's own worktree. It includes root correctness commit `6d92802` and both UI agent commits. No other worktree was reset or modified. The original snapshot findings above remain historical evidence rather than unresolved assertions about this ref.
+
+### Resolved original findings
+
+- Leader personal attendance is now required by `requireSubmissionAccess`, revised and legacy project commands, and database insert/update guards in migration `0016_personal_checkin.sql`. Any teammate's attendance still permits the separate read/history path.
+- Own-team upvote now checks the individual voter in API and database; other-project votes remain available without check-in or a global quota/window. Project rows provide authoritative `canUpvote` and `upvoted`.
+- Public media now returns `private, no-store`; current project/submission tombstones are checked by public JSON, image and public-score projections. Removal preserves attempts/history, without publishing a previous version.
+- New requests by deactivated users lose Viewer engagement/participation capabilities and private roster routes; ordinary reimports cannot restore them. Sole unlocked own-team removal and both-date versioned window publication have focused tests.
+
+### P1 — Mapped profile category cannot be saved; imported values overwrite later edits
+
+Locations at `379c568`: `lib/experience.ts:166–190` (profile prefill projection), `lib/experience.ts:1305–1315` (description validation), `app/profile-flow.tsx:25–49` (typed links take priority).
+
+Reproduction: preview/commit a synthetic explicitly mapped CSV containing a new email, `bestDescription='Imported category'`, and Website `https://imported.example`. Sign in as that new identity. The profile projection shows the imported category and the UI supplies it as a selectable option. Completing the profile with that exact value fails `PROFILE_DESCRIPTION_CHOICES_PENDING`: only the stored profile-details value or the still-empty official list is accepted. An administrator's trusted imported value is neither.
+
+Then complete with an empty description and Website `https://edited.example`. The database social URL is edited correctly, but the next profile projection always attaches imported `socialLinks`, and `profileInitialLinks()` chooses the old `https://imported.example`. The supposedly cleared description is also restored by `details?.best_description || prefill.bestDescription`. A later ordinary save can therefore resurrect stale imports and removed social URLs. No existing row was changed by import itself; the incorrect overwrite happens through later projection/UI save.
+
+Preserve exact trusted imported values for initial review/save, without inventing categories, and stop applying import prefills after first successful completion. Treat intentional blanks as edits. Root acknowledged and is correcting this; a newer ref is required to verify the fix.
+
+### P1 — In-flight profile command can finish after participant deactivation commits
+
+Locations at `379c568`: `lib/service.ts:309–316` captures `actor`, awaits `throttle`, then checks the stale mode; `lib/roster.ts:11–19` trusts a supplied actor's stale deactivated field; complete-profile SQL has no transaction-time active-actor guard.
+
+Deterministic reproduction: instantiate synthetic Carol's service; override only that instance's `throttle()` to complete `service('admin').command('participant-deactivate', {userId:'fake_carol',reason:'Concurrent synthetic removal',confirmation:'REMOVE_PARTICIPANT'})`; then resume Carol's `complete-profile` with a valid body. The resulting tombstone is active, response is `Profile saved. Your workspace is ready.`, and the changed bio persists after removal. Overriding this hook only creates the real asynchronous ordering between initial actor read and domain write; production source was not changed.
+
+Fresh requests correctly fail. This finding concerns an already-in-flight stale authorization snapshot. Enforce current active actor within the same atomic mutation transaction; recheck roster tombstones independently of a supplied actor object. Root acknowledged and is adding a central transaction-time guard. Verify the rejection rolls back the entire domain batch and creates no successful mutation audit.
+
+### P2 — Approved registrations without an account never reconcile to Absent
+
+Locations: `lib/absence.ts:9–14` only scans `users`; `lib/experience.ts:352–379` defaults rows without a user ID to Registered.
+
+Reproduction: create only a synthetic approved registration for `never@portal.test`, advance after the absence cutoff, and request `/admin/participants`. Its response remains `{approval:'approved',status:'Registered',id:null}`. It was never eligible for check-in and no automatic-absence record is possible until first sign-in. This also mislabels its Going status before cutoff. If the user's Going/Absent requirement includes approved people who never create an account, reconcile by verified registration email without manufacturing user identities. Reported to root for explicit scope resolution.
+
+### Additional correctness concerns passed to root
+
+- `PortalService.compute()` at `379c568:1860+` includes latest versions of removed projects/submissions when calculating active scores and vote normalization; public-score filtering only hides them later. Whether to exclude them from future active computation must follow the user's removal/scoring intent while preserving frozen snapshots. Root is separately revising engagement scoring; no private-score exposure is claimed here.
+- Legacy action `idea` still accepts a separate core up to 2,000 characters while revised canonical ideas use title plus description up to 500. The database description cap prevents a long description, but not divergent private core data. Align or reject the alias to maintain the single canonical model.
+- The isolated v4 public candidate still requires its own final source-boundary verification; no inference of latest backend compliance follows from these integrated fixes.
+
+Validation for this exact integrated ref: `npm run typecheck` passed; `node --import tsx --test --test-isolation=none tests/*.test.ts` with approved local loopback passed **94/94**, including D1 transactions/migrations. The additional import and in-flight-removal reproductions above also succeeded and expose coverage gaps despite that green suite. No live/network browser operation, real record, venue value, secret or paid provider was involved. Awaiting the root's correction ref for final verification; this pass does not certify changes made after `379c568`.
