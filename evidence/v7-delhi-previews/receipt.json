@@ -1,0 +1,38 @@
+{
+  "source": "c16b0ca34a2d31c4f07d7e51431386dd2a1bd574",
+  "previewOnly": true,
+  "productionReplacement": false,
+  "landmarkScale": 0.76,
+  "outlineSourceRadius": 2,
+  "sandbox": true,
+  "captures": [
+    {
+      "number": 1,
+      "path": "/workspace/v7-delhi-preview/evidence/v7-delhi-previews/1-new-delhi-smaller-landmarks-1440x500.png",
+      "sha256": "32598e879f359731fc9ca4189d56ce2c13e5875db4b33018a0dbd08b9a2b23c7",
+      "size": {
+        "width": 1440,
+        "height": 500
+      },
+      "metro": {
+        "href": "/art/metro-static.png",
+        "width": "2048",
+        "height": "768"
+      }
+    },
+    {
+      "number": 2,
+      "path": "/workspace/v7-delhi-preview/evidence/v7-delhi-previews/2-new-delhi-smaller-landmarks-outline-1440x500.png",
+      "sha256": "94f2c95610364e6324f691ce5fb11b6f9826189fbd93008796158eeec21af59e",
+      "size": {
+        "width": 1440,
+        "height": 500
+      },
+      "metro": {
+        "href": "/art/metro-static.png",
+        "width": "2048",
+        "height": "768"
+      }
+    }
+  ]
+}
