@@ -47,7 +47,7 @@ async function capture(spec,page,locator){
  const mask=[page.getByText(ownerEmail,{exact:false}),page.locator(`input[value="${ownerEmail}"]`)];
  if(locator)await locator.screenshot({path,animations:'disabled',mask});else await page.screenshot({path,fullPage:spec.kind==='fullpage',animations:'disabled',mask});
  const bytes=readFileSync(path),image={width:bytes.readUInt32BE(16),height:bytes.readUInt32BE(20)};
- const metrics=await page.evaluate(()=>({viewport:innerWidth,pageWidth:document.documentElement.scrollWidth,pageHeight:document.documentElement.scrollHeight,headings:[...document.querySelectorAll('main h1,main h2,main h3')].map(node=>node.textContent.trim())}));
+ const metrics=await page.evaluate(()=>({viewport:innerWidth,pageWidth:document.documentElement.scrollWidth,pageHeight:document.documentElement.scrollHeight,headings:[...document.querySelectorAll('main h1,main h2,main h3')].map(node=>node.textContent.trim()),participantFirstRowTop:document.querySelector('.admin-participant-filters ~ .table-scroll tbody tr')?.getBoundingClientRect().top??null,collapsedImportHeight:document.querySelector('details.panel:has(> .admin-import):not([open])')?.getBoundingClientRect().height??null}));
  const item={id:name,route:spec.path,role:spec.role,viewport:spec.viewport,state:spec.state||'default',kind:spec.kind,path,image,sha256:createHash('sha256').update(bytes).digest('hex'),metrics,inspected:false,library:null};
  const existing=ledger.captures.findIndex(row=>row.id===name);if(existing<0)ledger.captures.push(item);else ledger.captures[existing]=item;
  persist();console.log(JSON.stringify({captured:item.id,path,itemDimensions:image}));return item;
@@ -82,11 +82,11 @@ async function dialogStage(){
    if(plan.state==='csv'){await region.getByRole('button',{name:'CSV',exact:true}).click();await region.locator('input[type=file]').setInputFiles({name:'synthetic-only.csv',mimeType:'text/csv',buffer:Buffer.from('email\nqa-batch-first@portal.test\nqa-batch-second@portal.test\nbob@portal.test\n')});}
    await region.scrollIntoViewIfNeeded();await capture({...spec,state:`${plan.state}-form`},page);await region.getByRole('button',{name:'Add',exact:true}).click();await dialog(page,{...spec,state:`${plan.state}-confirm-cancel`});
   }else if(plan.state==='participant-remove'){
-   const first=page.locator('.participants-table tbody tr').first();await first.locator('summary').filter({hasText:'Remove participant'}).click();await first.getByRole('button',{name:'Remove participant',exact:true}).click();await dialog(page,spec);
+   const first=page.locator('.participants-table tbody tr').first();const button=first.getByRole('button',{name:/^Remove participant(?::|$)/});if(!await button.isVisible())await first.locator('summary').filter({hasText:'Remove participant'}).click();await button.click();await dialog(page,spec);
   }else if(['project-remove','version-remove'].includes(plan.state)){
    const region=page.locator('.admin-project-action');await page.locator('details').filter({has:region}).first().locator('summary').first().click();
    if(plan.state==='version-remove'){await region.getByLabel('Target',{exact:true}).selectOption('submission');await region.getByLabel('Version',{exact:true}).selectOption({index:1});}
-   await region.getByRole('button',{name:'Remove',exact:true}).click();await dialog(page,spec);
+   await region.getByRole('button',{name:/^Remove(?:$| project:| submission:| project and submission:)/}).click();await dialog(page,spec);
   }else if(plan.state==='add-admin'){
    const region=page.locator('.admin-add-admins');await region.getByLabel('Email',{exact:true}).fill('alice@portal.test');await region.getByRole('button',{name:'Add',exact:true}).click();await dialog(page,spec);
   }else{
