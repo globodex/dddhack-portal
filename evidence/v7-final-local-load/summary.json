@@ -1,0 +1,89 @@
+{
+  "source": "0a2e3f97b457d4ba8fd1a71333887b50633d84e3",
+  "workerSHA256": "b127925d2aaa0eea1f44f6526d4e1437038549e9aa2ca6ac7371a55f092a13c7",
+  "suite": {
+    "integrationSource": "153eccd4f6b22c638186cbd5ed7c0dd286846054",
+    "testingLane": "c27004340d6c484bcc63d03e967d0935c7d6da77",
+    "command": "node --import tsx --test --test-concurrency=1 tests/*.test.ts",
+    "passed": 315,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 77633.499183,
+    "typecheck": "passed"
+  },
+  "reportSHA256": "e54eda156f28c5107795fed8d8c2b82ac2d7c8ede046bd1658234ecd035f48be",
+  "totals": {
+    "requests": 1986,
+    "GET": 314,
+    "POST": 1672,
+    "expectedRejections": 116,
+    "unexpectedErrors": 0
+  },
+  "finalIntegrity": {
+    "label": "final-integrity",
+    "participants": 300,
+    "operationalAdmins": 2,
+    "teams": 90,
+    "memberships": 300,
+    "projects": 90,
+    "versions": 270,
+    "receipts": 270,
+    "upvotes": 600,
+    "maxTeamSize": 5,
+    "maxAttempts": 3,
+    "evaluationRuns": 0,
+    "astraJobs": 270,
+    "nonpendingJobs": 0
+  },
+  "AI": {
+    "label": "unique-user-project/foreign-keys/AI-inactive",
+    "duplicateVoteRows": 0,
+    "foreignKeyViolations": 0,
+    "externalCallsAttempted": 0,
+    "evaluationRuns": 0,
+    "astraJobs": 270,
+    "nonpendingJobs": 0
+  },
+  "reads": [
+    {
+      "name": "normal-reads-c1",
+      "concurrency": 1,
+      "requestCount": 75,
+      "p50Ms": 13.605145000001357,
+      "p95Ms": 48.82258799999909
+    },
+    {
+      "name": "normal-reads-c4",
+      "concurrency": 4,
+      "requestCount": 75,
+      "p50Ms": 62.892837999999756,
+      "p95Ms": 139.58388200000263
+    },
+    {
+      "name": "normal-reads-c8",
+      "concurrency": 8,
+      "requestCount": 75,
+      "p50Ms": 110.02593700000216,
+      "p95Ms": 239.69743999999992
+    },
+    {
+      "name": "normal-reads-c16",
+      "concurrency": 16,
+      "requestCount": 75,
+      "p50Ms": 247.2182099999991,
+      "p95Ms": 563.6792289999976
+    }
+  ],
+  "started": "2026-10-23T21:04:47.747Z",
+  "finished": "2026-10-23T21:05:18.679Z",
+  "artifactChanged": false,
+  "sourceArtifactChanged": false,
+  "blockedOutbound": 0,
+  "limitations": [
+    "Local compiled Worker + local D1 only; not hosted capacity.",
+    "Full serial suite and root browser work ran concurrently; timing is not an exclusive or matched before/after baseline.",
+    "No percentage code coverage collected by this final run; 315 passing tests is a test count, not whole-repository coverage.",
+    "No external provider executed; all 270 verification jobs remain pending with attempts=0 and no report.",
+    "HTTP/API workload only. Actual browser/screenshot evidence is separately indexed."
+  ]
+}
