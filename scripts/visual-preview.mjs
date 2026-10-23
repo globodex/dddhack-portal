@@ -16,6 +16,11 @@ import { join } from "node:path";
 import { unstable_dev, getPlatformProxy } from "wrangler";
 import { seedLocal } from "./fixtures.ts";
 import { seedRichVisual, seedMockupReview } from "./visual-rich-fixtures.ts";
+const portValue = process.argv.find((value) => value.startsWith("--port="))?.slice(7) || "4173";
+if (!/^\d{4,5}$/.test(portValue) || Number(portValue) < 1024 || Number(portValue) > 65535)
+  throw new Error("Preview port must be an integer between 1024 and 65535");
+const previewPort = Number(portValue);
+const previewOrigin = `http://127.0.0.1:${previewPort}`;
 const persistTo = mkdtempSync(join(tmpdir(), "ddehack-visual-"));
 process.env.CLOUDFLARE_CF_FETCH_ENABLED = "false";
 process.env.WRANGLER_SEND_METRICS = "false";
@@ -75,7 +80,7 @@ const worker = await unstable_dev("dist/server/index.js", {
   envFiles: [],
   local: true,
   ip: "127.0.0.1",
-  port: 4173,
+  port: previewPort,
   inspectorPort: 0,
   logLevel: "error",
   persist: true,
@@ -101,7 +106,7 @@ if (process.argv.includes("--control-audit")) {
       {
         disposable: true,
         syntheticOnly: true,
-        origin: "http://127.0.0.1:4173",
+        origin: previewOrigin,
         source: execFileSync("git", ["rev-parse", "HEAD"], {
           encoding: "utf8",
         }).trim(),
