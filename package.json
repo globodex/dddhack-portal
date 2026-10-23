@@ -29,7 +29,8 @@
     "vinext": "1.3.0",
     "zod": "4.1.12",
     "drizzle-orm": "0.45.2",
-    "raw-body": "3.0.2"
+    "raw-body": "3.0.2",
+    "lucide-react": "1.61.0"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",
