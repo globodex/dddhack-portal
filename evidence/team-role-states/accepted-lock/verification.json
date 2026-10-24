@@ -1,0 +1,445 @@
+{
+  "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+  "sourceAtEnd": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+  "mutations": [
+    {
+      "actor": "bob",
+      "action": "remove-workspace-member",
+      "status": 200,
+      "result": {
+        "message": "Membership removed. Readiness and private venue access recalculated."
+      }
+    },
+    {
+      "actor": "bob",
+      "action": "team-invite",
+      "status": 200,
+      "result": {
+        "message": "Saved in portal. No email sent."
+      }
+    },
+    {
+      "actor": "carol",
+      "action": "team-respond",
+      "status": 200,
+      "result": {
+        "message": "Team response saved."
+      }
+    },
+    {
+      "actor": "bob",
+      "action": "save-workspace-idea",
+      "status": 200,
+      "result": {
+        "message": "Private idea saved. You may edit it until the team locks."
+      }
+    },
+    {
+      "actor": "bob",
+      "action": "lock-team",
+      "status": 200,
+      "result": {
+        "message": "Team locked for admin review. Approval and Going remain separate; Luma updates are manual."
+      }
+    }
+  ],
+  "capturedStates": 22,
+  "pixelsViewed": 22,
+  "pageErrors": [],
+  "externalRequests": [],
+  "browserClosed": true,
+  "expectedDeniedRole": {
+    "actor": "stranger",
+    "request": "GET /api/portal?view=%2Fdashboard",
+    "status": 403,
+    "code": "LUMA_EMAIL_MISMATCH",
+    "message": "Please sign in with your Luma-registered email",
+    "privateFieldsReceived": false,
+    "screen": "viewer-dashboard-390x844.png"
+  },
+  "harnessNote": "All five actual writes, locked readback and five-member limit checks passed before the final optional Viewer assertion assumed me existed. A separate harmless read verified the intended403 gate; the native gate screenshot was inspected. Raw report retains the assertion for transparency.",
+  "unavailable": [
+    {
+      "action": "Member Leave team confirmation/outcome",
+      "target": "fake_pending",
+      "reason": "No Leave team UI or server action exists. remove-workspace-member authorizes only leader/admin/owner. No self-removal request made and no permission changed."
+    }
+  ],
+  "pendingReinviteConflict": "Preserved in parent checkpoint; no retry or history cleanup. Separate Carol recipient path was explicitly authorized.",
+  "captures": [
+    {
+      "name": "remove-carol-confirmation",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/remove-carol-confirmation-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false,
+      "nativePng": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "7b7810878430e4ba110808c1d59ccc814ae605e6177c171f732bb2bc20b0ae26",
+      "pixelsViewed": true
+    },
+    {
+      "name": "remove-carol-confirmation-short",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/remove-carol-confirmation-short-390x480.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false,
+      "nativePng": {
+        "width": 390,
+        "height": 480
+      },
+      "sha256": "69cc76abeee47b31b980b4cc404982297116ea09650cdf620cff1842fb531434",
+      "pixelsViewed": true
+    },
+    {
+      "name": "leader-removal-outcome",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/leader-removal-outcome-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true,
+      "nativePng": {
+        "width": 1440,
+        "height": 1164
+      },
+      "sha256": "06b433cb25a7535c251ef54173bafbfe1e9db6610790cbf81c2211df4150a3d6",
+      "pixelsViewed": true
+    },
+    {
+      "name": "removed-carol-teamless",
+      "actor": "carol",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/removed-carol-teamless-390x844.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true,
+      "nativePng": {
+        "width": 390,
+        "height": 1049
+      },
+      "sha256": "49d6b0f78a7f0e2916c501112b2bcbf6fe8f2c7e4b228d8c3474c5506ed4491a",
+      "pixelsViewed": true
+    },
+    {
+      "name": "carol-outgoing-invitation",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/carol-outgoing-invitation-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false,
+      "nativePng": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "1bbe2946055b22e2984a4d3643876682ea9b62184c85991422dda1ae07626862",
+      "pixelsViewed": true
+    },
+    {
+      "name": "carol-incoming-invitation",
+      "actor": "carol",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/carol-incoming-invitation-390x844.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true,
+      "nativePng": {
+        "width": 390,
+        "height": 1231
+      },
+      "sha256": "37af2468f8fbce9ff844b966a0ce4fe77d650c60abd8ad11f205315b3988c3ca",
+      "pixelsViewed": true
+    },
+    {
+      "name": "decline-dialog-correct-team-target-short",
+      "actor": "carol",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/decline-dialog-correct-team-target-short-390x480.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false,
+      "nativePng": {
+        "width": 390,
+        "height": 480
+      },
+      "sha256": "44fa9d99dc86364fe17661b44c282080f2ca5eaf4cf203c03300addd7bddfb80",
+      "pixelsViewed": true
+    },
+    {
+      "name": "accept-confirmation-correct-target-short",
+      "actor": "carol",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/accept-confirmation-correct-target-short-390x480.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false,
+      "nativePng": {
+        "width": 390,
+        "height": 480
+      },
+      "sha256": "e3fdd7c5bd19b6adc92e82e93b75cae10081ce998bf335a71cffbae86d1ab455",
+      "pixelsViewed": true
+    },
+    {
+      "name": "accepted-carol-member-unlocked",
+      "actor": "carol",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/accepted-carol-member-unlocked-390x844.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true,
+      "nativePng": {
+        "width": 390,
+        "height": 1494
+      },
+      "sha256": "cb727ee767799d4dc382a80b55149f8acce511928d3ef615ca6c05ac47187ca8",
+      "pixelsViewed": true
+    },
+    {
+      "name": "accepted-carol-member-desktop",
+      "actor": "carol",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/accepted-carol-member-desktop-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true,
+      "nativePng": {
+        "width": 1440,
+        "height": 1036
+      },
+      "sha256": "2d7916e2e3279f5dafd73f570a75471abbacbe23cc169f80caee4f5e7af9ad58",
+      "pixelsViewed": true
+    },
+    {
+      "name": "idea-saved-leader-current",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/idea-saved-leader-current-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true,
+      "nativePng": {
+        "width": 1440,
+        "height": 1164
+      },
+      "sha256": "ccab0d65da523bcb47eb14af6cdcca4f26f61fb061e0bc4af191fb06020ba6bd",
+      "pixelsViewed": true
+    },
+    {
+      "name": "idea-save-confirmation",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/idea-save-confirmation-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false,
+      "nativePng": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "fcbefd75d46a97a6272f526bb50ade145bcfe59a83e49fb238b248a1291a1b0d",
+      "pixelsViewed": true
+    },
+    {
+      "name": "idea-save-success-current",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/idea-save-success-current-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false,
+      "nativePng": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "b022abfed8e1ec057612054ef181f14f1b45829f61fba69277ac22da8aaaf331",
+      "pixelsViewed": true
+    },
+    {
+      "name": "lock-confirmation",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/lock-confirmation-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false,
+      "nativePng": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "29b94639f74f64e46afc29213a7d71855f76c94a3342a1f4a7b12a95727bd630",
+      "pixelsViewed": true
+    },
+    {
+      "name": "lock-confirmation-short",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/lock-confirmation-short-390x480.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false,
+      "nativePng": {
+        "width": 390,
+        "height": 480
+      },
+      "sha256": "2d51eac95011a8168e1bc53b9e76b54fc0016f89ae5f3c42d6f483be3840a72d",
+      "pixelsViewed": true
+    },
+    {
+      "name": "leader-locked",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/leader-locked-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true,
+      "nativePng": {
+        "width": 1440,
+        "height": 1036
+      },
+      "sha256": "5b8ad2a26bd8d44554192eccf193b9b4852b75b8ede695e299f32047da917743",
+      "pixelsViewed": true
+    },
+    {
+      "name": "leader-locked-mobile",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/leader-locked-mobile-390x844.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true,
+      "nativePng": {
+        "width": 390,
+        "height": 1519
+      },
+      "sha256": "2cae12ea7d76e5ba9f7f718f8d0d98bd428698cf7b7ae461ed3dadd61821ee51",
+      "pixelsViewed": true
+    },
+    {
+      "name": "leader-locked-short",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/leader-locked-short-390x480.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false,
+      "nativePng": {
+        "width": 390,
+        "height": 480
+      },
+      "sha256": "d97bb1652a841246a829b36169fd43c2ad826fcad343cb79edc33b2159928199",
+      "pixelsViewed": true
+    },
+    {
+      "name": "member-locked",
+      "actor": "carol",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/member-locked-390x844.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true,
+      "nativePng": {
+        "width": 390,
+        "height": 1494
+      },
+      "sha256": "ffad5111fa99ba023de22cbeba8c57716e8f6e9123378ca8cb8b757601b50e40",
+      "pixelsViewed": true
+    },
+    {
+      "name": "member-locked-desktop",
+      "actor": "carol",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/member-locked-desktop-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true,
+      "nativePng": {
+        "width": 1440,
+        "height": 1036
+      },
+      "sha256": "81f9b7176b64faf50400f06d2016ae012f8bc93e95a1e53c7eef54a82c766817",
+      "pixelsViewed": true
+    },
+    {
+      "name": "full-five-member-team",
+      "actor": "eve",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/full-five-member-team-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true,
+      "nativePng": {
+        "width": 1440,
+        "height": 1729
+      },
+      "sha256": "aeb0dc37b5ec034f686b157185ca21659379e75c0b4e79a490b2a51d27721bf3",
+      "pixelsViewed": true
+    },
+    {
+      "name": "viewer-dashboard",
+      "actor": "stranger",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/viewer-dashboard-390x844.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true,
+      "nativePng": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "06d391dc20194b306331e139adb5e9e7205526d0f20197cf11a968e7a21ec94b",
+      "pixelsViewed": true
+    }
+  ]
+}
