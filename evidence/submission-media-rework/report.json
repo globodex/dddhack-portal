@@ -1,0 +1,1074 @@
+{
+  "source": "28ebbfc81a49ab839316b0d9121902e3cf645173",
+  "fixtureBackend": 8834,
+  "syntheticOnly": true,
+  "mutations": [],
+  "screenshots": [
+    {
+      "name": "step1",
+      "path": "evidence/submission-media-rework/step1-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 1425,
+        "clientWidth": 1440
+      },
+      "sha256": "ddf1c940b450b5ac0640a042621a5b8741a108a5d78698cc28bf001290e9db98"
+    },
+    {
+      "name": "step2",
+      "path": "evidence/submission-media-rework/step2-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 1425,
+        "clientWidth": 1440
+      },
+      "sha256": "89e238e1b8228abd7ac686edf475e248d9057e9aa0bd41a5d395c44147fc0409"
+    },
+    {
+      "name": "step3",
+      "path": "evidence/submission-media-rework/step3-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 1425,
+        "clientWidth": 1440
+      },
+      "sha256": "e8003b5bad547aa8bbdf7bfa8b53dccd65bf02f7e59e7d40ae343e7098c327f6"
+    },
+    {
+      "name": "step3-actions-visible",
+      "path": "evidence/submission-media-rework/step3-actions-visible-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": false,
+      "dimensions": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 1425,
+        "clientWidth": 1440
+      },
+      "sha256": "148f128bfbf9045159fe225bb1cab65be9813c9c5a5969d6723621257736c897"
+    },
+    {
+      "name": "portrait",
+      "path": "evidence/submission-media-rework/portrait-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 1425,
+        "clientWidth": 1440
+      },
+      "sha256": "1e1f81adaf0efa4687cda640a887be59260de1e7264d9f9757d1d85d967dbd20"
+    },
+    {
+      "name": "square-alpha",
+      "path": "evidence/submission-media-rework/square-alpha-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 1425,
+        "clientWidth": 1440
+      },
+      "sha256": "02c60048fa75ea62341188ea0a2823937a4ab5161570daf4e4c5cf5a64b2e5bc"
+    },
+    {
+      "name": "ultrawide",
+      "path": "evidence/submission-media-rework/ultrawide-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 1425,
+        "clientWidth": 1440
+      },
+      "sha256": "7ca0a5263341a3e5fedd5bc4d3864f53d4ca8a4495c164075ce85a92782be997"
+    },
+    {
+      "name": "portrait-jpeg",
+      "path": "evidence/submission-media-rework/portrait-jpeg-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 1425,
+        "clientWidth": 1440
+      },
+      "sha256": "7d1da0fd70c3a102e019406d22b4ce95e9ce7aa05149e6d99e3e01fa5e34b8f1"
+    },
+    {
+      "name": "orientation6",
+      "path": "evidence/submission-media-rework/orientation6-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 1425,
+        "clientWidth": 1440
+      },
+      "sha256": "0ce86bb4a4b027b3f7666eb102d3b17b241e381d1175f4c9d5dc5a617cc11507"
+    },
+    {
+      "name": "source-too-large-inline-error",
+      "path": "evidence/submission-media-rework/source-too-large-inline-error-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 1425,
+        "clientWidth": 1440
+      },
+      "sha256": "a1e7dba37c4d3098fcbedc5179b3b23925b0756fbd6b6af70765c633ec5218fa"
+    },
+    {
+      "name": "exact-5MB-banner-prepared",
+      "path": "evidence/submission-media-rework/exact-5MB-banner-prepared-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 1425,
+        "clientWidth": 1440
+      },
+      "sha256": "fb660b6e232f197483ef591a2701ed829fb7cff6354c87d1d145ac7c3ca985df"
+    },
+    {
+      "name": "exact-1MB-logo-prepared",
+      "path": "evidence/submission-media-rework/exact-1MB-logo-prepared-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 1425,
+        "clientWidth": 1440
+      },
+      "sha256": "60f84e44189a509273443575e95617069bf400885b7d0b022e34167a0c991452"
+    },
+    {
+      "name": "removed-logo-inline-error",
+      "path": "evidence/submission-media-rework/removed-logo-inline-error-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 1425,
+        "clientWidth": 1440
+      },
+      "sha256": "ce662968c9b6a8541dbc048e78ea53af96f2260926659da3e8e5cb22330927f9"
+    },
+    {
+      "name": "commit-confirmation",
+      "path": "evidence/submission-media-rework/commit-confirmation-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": false,
+      "dimensions": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 1425,
+        "clientWidth": 1440
+      },
+      "sha256": "05ead9c36fb0dd327b9ef94cad964ac1049db9df7e90aed3875d74808fd7aedb"
+    },
+    {
+      "name": "step1",
+      "path": "evidence/submission-media-rework/step1-390x844.png",
+      "mode": "390x844",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 390,
+        "outerHeight": 844,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "sha256": "d151792b69f806862f595a2e6bbceafdf335e7ccc454d576c1c8755f499c11ef"
+    },
+    {
+      "name": "step2",
+      "path": "evidence/submission-media-rework/step2-390x844.png",
+      "mode": "390x844",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 390,
+        "outerHeight": 844,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "sha256": "e08fb77b53efe0ffccafdfc70dbd6b40ee8fbdd8c4d1f8c887a1868e7db1d4d8"
+    },
+    {
+      "name": "step3",
+      "path": "evidence/submission-media-rework/step3-390x844.png",
+      "mode": "390x844",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 390,
+        "outerHeight": 844,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "sha256": "af1bb80e84908e1943be30457084752c36a43179ea6bf9942bcc80aec95e58df"
+    },
+    {
+      "name": "step3-actions-visible",
+      "path": "evidence/submission-media-rework/step3-actions-visible-390x844.png",
+      "mode": "390x844",
+      "fullPage": false,
+      "dimensions": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 390,
+        "outerHeight": 844,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "sha256": "c15060c65f569012d284bbe3bdeddee605bc98075b3f5e00d362cdbb5e801b6d"
+    },
+    {
+      "name": "portrait",
+      "path": "evidence/submission-media-rework/portrait-390x844.png",
+      "mode": "390x844",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 390,
+        "outerHeight": 844,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "sha256": "b1478c15bc91f9eec8e0febc78067c9747e82b43de7b88cdede276d72057f3b1"
+    },
+    {
+      "name": "square-alpha",
+      "path": "evidence/submission-media-rework/square-alpha-390x844.png",
+      "mode": "390x844",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 390,
+        "outerHeight": 844,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "sha256": "1e80def494467c7951992870d7ba7ecf207826a9444a5a1096a4e3c5cdfc54f4"
+    },
+    {
+      "name": "ultrawide",
+      "path": "evidence/submission-media-rework/ultrawide-390x844.png",
+      "mode": "390x844",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 390,
+        "outerHeight": 844,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "sha256": "630ae6ef586ad86071507c2da41eae1525e668b0626fc41ec7026c65871edeb4"
+    },
+    {
+      "name": "portrait-jpeg",
+      "path": "evidence/submission-media-rework/portrait-jpeg-390x844.png",
+      "mode": "390x844",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 390,
+        "outerHeight": 844,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "sha256": "cd2a20862065425c681e87b56223981fa1b0f7874e67871ef0551cabae5f732d"
+    },
+    {
+      "name": "orientation6",
+      "path": "evidence/submission-media-rework/orientation6-390x844.png",
+      "mode": "390x844",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 390,
+        "outerHeight": 844,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "sha256": "bee56b1369eda05057c24b48122d1639d22a2b31434506dcc0a6bf6d54b780fe"
+    },
+    {
+      "name": "source-too-large-inline-error",
+      "path": "evidence/submission-media-rework/source-too-large-inline-error-390x844.png",
+      "mode": "390x844",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 390,
+        "outerHeight": 844,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "sha256": "321e4b0c9c5ab0901524883906ac9e0376a65bc4caef0e3cf36d7e88fd84c9b2"
+    },
+    {
+      "name": "exact-5MB-banner-prepared",
+      "path": "evidence/submission-media-rework/exact-5MB-banner-prepared-390x844.png",
+      "mode": "390x844",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 390,
+        "outerHeight": 844,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "sha256": "17bcf6d7f90147850adee805c97bca9d30a92e054a505ead21b20e9bc38148f6"
+    },
+    {
+      "name": "exact-1MB-logo-prepared",
+      "path": "evidence/submission-media-rework/exact-1MB-logo-prepared-390x844.png",
+      "mode": "390x844",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 390,
+        "outerHeight": 844,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "sha256": "d750aa19f2cc4ac17ed59baa95747454f7b643142c3597ea51cd0b5488e85c27"
+    },
+    {
+      "name": "removed-logo-inline-error",
+      "path": "evidence/submission-media-rework/removed-logo-inline-error-390x844.png",
+      "mode": "390x844",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 390,
+        "outerHeight": 844,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "sha256": "73bfa044810a11f8e56a024f8b3ce9f559dc6463ad3dee265333022569462acb"
+    },
+    {
+      "name": "commit-confirmation",
+      "path": "evidence/submission-media-rework/commit-confirmation-390x844.png",
+      "mode": "390x844",
+      "fullPage": false,
+      "dimensions": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 390,
+        "outerHeight": 844,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "sha256": "795d8a244a329a8b628ff41b1dc21f4c6833e960b0ee9f0eea55a7d69c209ea0"
+    },
+    {
+      "name": "step1",
+      "path": "evidence/submission-media-rework/step1-320x720.png",
+      "mode": "320x720",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 320,
+        "innerHeight": 720,
+        "outerWidth": 320,
+        "outerHeight": 720,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 320,
+        "clientWidth": 320
+      },
+      "sha256": "c9689f2e4f3a971d65ed540134e443cc1da782d9226990b9ab2c2969ebcde6cb"
+    },
+    {
+      "name": "step2",
+      "path": "evidence/submission-media-rework/step2-320x720.png",
+      "mode": "320x720",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 320,
+        "innerHeight": 720,
+        "outerWidth": 320,
+        "outerHeight": 720,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 320,
+        "clientWidth": 320
+      },
+      "sha256": "0400356be3487b17916ac05cda7dfb68cb4ec867dd3233a4b7ae637e37f22f3b"
+    },
+    {
+      "name": "step3",
+      "path": "evidence/submission-media-rework/step3-320x720.png",
+      "mode": "320x720",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 320,
+        "innerHeight": 720,
+        "outerWidth": 320,
+        "outerHeight": 720,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 320,
+        "clientWidth": 320
+      },
+      "sha256": "cc513da1365b0c707f1b98e5282b7eb78210282533c77777fa2673947f28b831"
+    },
+    {
+      "name": "step3-actions-visible",
+      "path": "evidence/submission-media-rework/step3-actions-visible-320x720.png",
+      "mode": "320x720",
+      "fullPage": false,
+      "dimensions": {
+        "innerWidth": 320,
+        "innerHeight": 720,
+        "outerWidth": 320,
+        "outerHeight": 720,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 320,
+        "clientWidth": 320
+      },
+      "sha256": "e55172fac9a020284d6e9db3c05cbaec482a8800f4bf0973acfe757afd43dd4b"
+    },
+    {
+      "name": "commit-confirmation",
+      "path": "evidence/submission-media-rework/commit-confirmation-320x720.png",
+      "mode": "320x720",
+      "fullPage": false,
+      "dimensions": {
+        "innerWidth": 320,
+        "innerHeight": 720,
+        "outerWidth": 320,
+        "outerHeight": 720,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 320,
+        "clientWidth": 320
+      },
+      "sha256": "e94025cb498909a92afc57271ca800e730258b86ac4a1edee7904be9016e8ae2"
+    },
+    {
+      "name": "step1",
+      "path": "evidence/submission-media-rework/step1-768x1024.png",
+      "mode": "768x1024",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 768,
+        "innerHeight": 1024,
+        "outerWidth": 768,
+        "outerHeight": 1024,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "sha256": "f55cb2ee9de8c2b9a6bb99ed02e97aa35f928d9da84ffd44980fe59f29100439"
+    },
+    {
+      "name": "step2",
+      "path": "evidence/submission-media-rework/step2-768x1024.png",
+      "mode": "768x1024",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 768,
+        "innerHeight": 1024,
+        "outerWidth": 768,
+        "outerHeight": 1024,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "sha256": "4c7388389e90bfd475c61a827368a3c04cefb06e88430c1d5e3e530b0e979a65"
+    },
+    {
+      "name": "step3",
+      "path": "evidence/submission-media-rework/step3-768x1024.png",
+      "mode": "768x1024",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 768,
+        "innerHeight": 1024,
+        "outerWidth": 768,
+        "outerHeight": 1024,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "sha256": "789db2b1de3a3c7c55486eb00d92edf6f3207ace72c4371962361a169c226bc1"
+    },
+    {
+      "name": "step3-actions-visible",
+      "path": "evidence/submission-media-rework/step3-actions-visible-768x1024.png",
+      "mode": "768x1024",
+      "fullPage": false,
+      "dimensions": {
+        "innerWidth": 768,
+        "innerHeight": 1024,
+        "outerWidth": 768,
+        "outerHeight": 1024,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "sha256": "e940ed52badb050385714cee885b2d9e691df27eacf2225e72b5190fdb4ecf24"
+    },
+    {
+      "name": "commit-confirmation",
+      "path": "evidence/submission-media-rework/commit-confirmation-768x1024.png",
+      "mode": "768x1024",
+      "fullPage": false,
+      "dimensions": {
+        "innerWidth": 768,
+        "innerHeight": 1024,
+        "outerWidth": 768,
+        "outerHeight": 1024,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "sha256": "c8bc0e4a0cf8eb975458f214c8f189cf730f93134827c9f688b319a29ecf5f5b"
+    },
+    {
+      "name": "step1",
+      "path": "evidence/submission-media-rework/step1-390x480.png",
+      "mode": "390x480",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 390,
+        "innerHeight": 480,
+        "outerWidth": 390,
+        "outerHeight": 480,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "sha256": "5ff1cc8913502a86b32981c93299db6441d3483344a139d25dcc12da6c068429"
+    },
+    {
+      "name": "step2",
+      "path": "evidence/submission-media-rework/step2-390x480.png",
+      "mode": "390x480",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 390,
+        "innerHeight": 480,
+        "outerWidth": 390,
+        "outerHeight": 480,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "sha256": "e08fb77b53efe0ffccafdfc70dbd6b40ee8fbdd8c4d1f8c887a1868e7db1d4d8"
+    },
+    {
+      "name": "step3",
+      "path": "evidence/submission-media-rework/step3-390x480.png",
+      "mode": "390x480",
+      "fullPage": true,
+      "dimensions": {
+        "innerWidth": 390,
+        "innerHeight": 480,
+        "outerWidth": 390,
+        "outerHeight": 480,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "sha256": "af1bb80e84908e1943be30457084752c36a43179ea6bf9942bcc80aec95e58df"
+    },
+    {
+      "name": "step3-actions-visible",
+      "path": "evidence/submission-media-rework/step3-actions-visible-390x480.png",
+      "mode": "390x480",
+      "fullPage": false,
+      "dimensions": {
+        "innerWidth": 390,
+        "innerHeight": 480,
+        "outerWidth": 390,
+        "outerHeight": 480,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "sha256": "38124e7fa0996199eb8cc96e31edbf50cf53a677859ada09c8c037f46bfbb814"
+    },
+    {
+      "name": "commit-confirmation",
+      "path": "evidence/submission-media-rework/commit-confirmation-390x480.png",
+      "mode": "390x480",
+      "fullPage": false,
+      "dimensions": {
+        "innerWidth": 390,
+        "innerHeight": 480,
+        "outerWidth": 390,
+        "outerHeight": 480,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "sha256": "5ca15dcf77ed6dc28698110a25f03b64cb189381399c54deba15ffe663520dfe"
+    },
+    {
+      "name": "step1",
+      "path": "evidence/submission-media-rework/step1-native200-outer1440.png",
+      "mode": "native200-outer1440",
+      "fullPage": false,
+      "dimensions": {
+        "innerWidth": 720,
+        "innerHeight": 378,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 2,
+        "scale": 1,
+        "scrollWidth": 712,
+        "clientWidth": 720
+      },
+      "sha256": "3c8eb8139553168c1c9bce00f19ac83773c1b7ffd6fcdbd9b8159330b9435055"
+    },
+    {
+      "name": "step2",
+      "path": "evidence/submission-media-rework/step2-native200-outer1440.png",
+      "mode": "native200-outer1440",
+      "fullPage": false,
+      "dimensions": {
+        "innerWidth": 720,
+        "innerHeight": 378,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 2,
+        "scale": 1,
+        "scrollWidth": 712,
+        "clientWidth": 720
+      },
+      "sha256": "7ef2f5e08fa9a3d795379fcebfe65b7e1513239ff32f403fa4c64a7c6f1bb4ca"
+    },
+    {
+      "name": "step3",
+      "path": "evidence/submission-media-rework/step3-native200-outer1440.png",
+      "mode": "native200-outer1440",
+      "fullPage": false,
+      "dimensions": {
+        "innerWidth": 720,
+        "innerHeight": 378,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 2,
+        "scale": 1,
+        "scrollWidth": 712,
+        "clientWidth": 720
+      },
+      "sha256": "1762c74bb4a99b875009f39ac7f26f6a0c5e77e42764e8ad5cd73702b29193c7"
+    },
+    {
+      "name": "step3-actions-visible",
+      "path": "evidence/submission-media-rework/step3-actions-visible-native200-outer1440.png",
+      "mode": "native200-outer1440",
+      "fullPage": false,
+      "dimensions": {
+        "innerWidth": 720,
+        "innerHeight": 378,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 2,
+        "scale": 1,
+        "scrollWidth": 712,
+        "clientWidth": 720
+      },
+      "sha256": "5cc166f1ee864a3d62eb9e156e340e308034f59538874149e40d1109c34320d6"
+    },
+    {
+      "name": "commit-confirmation",
+      "path": "evidence/submission-media-rework/commit-confirmation-native200-outer1440.png",
+      "mode": "native200-outer1440",
+      "fullPage": false,
+      "dimensions": {
+        "innerWidth": 720,
+        "innerHeight": 378,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 2,
+        "scale": 1,
+        "scrollWidth": 712,
+        "clientWidth": 720
+      },
+      "sha256": "e536f7022b589552b9dfd374957310f0a81a09e493335a5486770710182bb851"
+    }
+  ],
+  "imageMeasurements": [
+    {
+      "mode": "1440x900",
+      "kind": "banner",
+      "name": "portrait",
+      "width": 128,
+      "height": 300,
+      "encodedBytes": 1947,
+      "type": "image/png",
+      "objectFit": "contain",
+      "frameWash": "rgb(232, 247, 239)",
+      "centerAlpha": 0,
+      "hasExif": false,
+      "preparationAndRenderMs": 146
+    },
+    {
+      "mode": "1440x900",
+      "kind": "logo",
+      "name": "square-alpha",
+      "width": 192,
+      "height": 192,
+      "encodedBytes": 1619,
+      "type": "image/png",
+      "objectFit": "contain",
+      "frameWash": "rgb(232, 247, 239)",
+      "centerAlpha": 0,
+      "hasExif": false,
+      "preparationAndRenderMs": 109
+    },
+    {
+      "mode": "1440x900",
+      "kind": "banner",
+      "name": "ultrawide",
+      "width": 1600,
+      "height": 26,
+      "encodedBytes": 1126,
+      "type": "image/png",
+      "objectFit": "contain",
+      "frameWash": "rgb(232, 247, 239)",
+      "centerAlpha": 0,
+      "hasExif": false,
+      "preparationAndRenderMs": 109
+    },
+    {
+      "mode": "1440x900",
+      "kind": "banner",
+      "name": "portrait-jpeg",
+      "width": 127,
+      "height": 301,
+      "encodedBytes": 2337,
+      "type": "image/jpeg",
+      "objectFit": "contain",
+      "frameWash": "rgb(232, 247, 239)",
+      "centerAlpha": 255,
+      "hasExif": false,
+      "preparationAndRenderMs": 104
+    },
+    {
+      "mode": "1440x900",
+      "kind": "banner",
+      "name": "orientation6",
+      "width": 64,
+      "height": 128,
+      "encodedBytes": 809,
+      "type": "image/jpeg",
+      "objectFit": "contain",
+      "frameWash": "rgb(232, 247, 239)",
+      "centerAlpha": 255,
+      "hasExif": false,
+      "preparationAndRenderMs": 91
+    },
+    {
+      "mode": "1440x900",
+      "kind": "banner",
+      "name": "exact-5MB",
+      "width": 192,
+      "height": 192,
+      "encodedBytes": 1619,
+      "type": "image/png",
+      "objectFit": "contain",
+      "frameWash": "rgb(232, 247, 239)",
+      "centerAlpha": 0,
+      "hasExif": false
+    },
+    {
+      "mode": "1440x900",
+      "kind": "logo",
+      "name": "exact-1MB",
+      "width": 192,
+      "height": 192,
+      "encodedBytes": 1619,
+      "type": "image/png",
+      "objectFit": "contain",
+      "frameWash": "rgb(232, 247, 239)",
+      "centerAlpha": 0,
+      "hasExif": false
+    },
+    {
+      "mode": "390x844",
+      "kind": "banner",
+      "name": "portrait",
+      "width": 128,
+      "height": 300,
+      "encodedBytes": 1947,
+      "type": "image/png",
+      "objectFit": "contain",
+      "frameWash": "rgb(232, 247, 239)",
+      "centerAlpha": 0,
+      "hasExif": false,
+      "preparationAndRenderMs": 156
+    },
+    {
+      "mode": "390x844",
+      "kind": "logo",
+      "name": "square-alpha",
+      "width": 192,
+      "height": 192,
+      "encodedBytes": 1619,
+      "type": "image/png",
+      "objectFit": "contain",
+      "frameWash": "rgb(232, 247, 239)",
+      "centerAlpha": 0,
+      "hasExif": false,
+      "preparationAndRenderMs": 95
+    },
+    {
+      "mode": "390x844",
+      "kind": "banner",
+      "name": "ultrawide",
+      "width": 1600,
+      "height": 26,
+      "encodedBytes": 1126,
+      "type": "image/png",
+      "objectFit": "contain",
+      "frameWash": "rgb(232, 247, 239)",
+      "centerAlpha": 0,
+      "hasExif": false,
+      "preparationAndRenderMs": 78
+    },
+    {
+      "mode": "390x844",
+      "kind": "banner",
+      "name": "portrait-jpeg",
+      "width": 127,
+      "height": 301,
+      "encodedBytes": 2337,
+      "type": "image/jpeg",
+      "objectFit": "contain",
+      "frameWash": "rgb(232, 247, 239)",
+      "centerAlpha": 255,
+      "hasExif": false,
+      "preparationAndRenderMs": 104
+    },
+    {
+      "mode": "390x844",
+      "kind": "banner",
+      "name": "orientation6",
+      "width": 64,
+      "height": 128,
+      "encodedBytes": 809,
+      "type": "image/jpeg",
+      "objectFit": "contain",
+      "frameWash": "rgb(232, 247, 239)",
+      "centerAlpha": 255,
+      "hasExif": false,
+      "preparationAndRenderMs": 163
+    },
+    {
+      "mode": "390x844",
+      "kind": "banner",
+      "name": "exact-5MB",
+      "width": 192,
+      "height": 192,
+      "encodedBytes": 1619,
+      "type": "image/png",
+      "objectFit": "contain",
+      "frameWash": "rgb(232, 247, 239)",
+      "centerAlpha": 0,
+      "hasExif": false
+    },
+    {
+      "mode": "390x844",
+      "kind": "logo",
+      "name": "exact-1MB",
+      "width": 192,
+      "height": 192,
+      "encodedBytes": 1619,
+      "type": "image/png",
+      "objectFit": "contain",
+      "frameWash": "rgb(232, 247, 239)",
+      "centerAlpha": 0,
+      "hasExif": false
+    }
+  ],
+  "checks": [
+    {
+      "mode": "1440x900",
+      "passed": true,
+      "name": "All3steps aligned; full-aspectmedia and44pxCTAs fit; no overflow or mutation"
+    },
+    {
+      "mode": "390x844",
+      "passed": true,
+      "name": "All3steps aligned; full-aspectmedia and44pxCTAs fit; no overflow or mutation"
+    },
+    {
+      "mode": "320x720",
+      "passed": true,
+      "name": "All3steps aligned; full-aspectmedia and44pxCTAs fit; no overflow or mutation"
+    },
+    {
+      "mode": "768x1024",
+      "passed": true,
+      "name": "All3steps aligned; full-aspectmedia and44pxCTAs fit; no overflow or mutation"
+    },
+    {
+      "mode": "390x480",
+      "passed": true,
+      "name": "All3steps aligned; full-aspectmedia and44pxCTAs fit; no overflow or mutation"
+    },
+    {
+      "mode": "native200-outer1440",
+      "passed": true,
+      "name": "All3steps aligned; full-aspectmedia and44pxCTAs fit; no overflow or mutation"
+    }
+  ],
+  "errors": [],
+  "fingerprint": {
+    "app/portal.tsx": "2b7f71c485f9666c533df59aa8f547b77280cb1c8a2b1ef13e041745e6aea374",
+    "app/project-media-field.tsx": "cea6b1720017337a8a44229d581d4748383eaa7ad8ce12052230c864fe8e423c",
+    "app/prepare-project-image.ts": "0469a25fc13da6b39ea09837d340cad5c2993af254ff70fc41cae01d60365276",
+    "app/projects-rules-experience.css": "8edc84868154cca5b76fda7e022e2a702eff0f6e17807a027629015e64579b01",
+    "lib/project-media-policy.ts": "536169318d8fd9f7ad7f6baa8643071d8c1ed2146ca7e8fa04c290384436b4ee"
+  },
+  "before": {
+    "attempts": 2,
+    "revision": 2,
+    "teamPalette": null
+  },
+  "after": {
+    "attempts": 2,
+    "revision": 2
+  },
+  "fingerprintAtEnd": {
+    "app/portal.tsx": "2b7f71c485f9666c533df59aa8f547b77280cb1c8a2b1ef13e041745e6aea374",
+    "app/project-media-field.tsx": "cea6b1720017337a8a44229d581d4748383eaa7ad8ce12052230c864fe8e423c",
+    "app/prepare-project-image.ts": "0469a25fc13da6b39ea09837d340cad5c2993af254ff70fc41cae01d60365276",
+    "app/projects-rules-experience.css": "8edc84868154cca5b76fda7e022e2a702eff0f6e17807a027629015e64579b01",
+    "lib/project-media-policy.ts": "536169318d8fd9f7ad7f6baa8643071d8c1ed2146ca7e8fa04c290384436b4ee"
+  }
+}
