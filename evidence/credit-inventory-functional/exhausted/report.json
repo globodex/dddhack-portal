@@ -1,0 +1,29 @@
+{
+  "source": "8875a3c4f3867910abf6a6f750e782c35de75040",
+  "backend": "0a0b30b62725fe781dbad95945710a80169b1a20",
+  "syntheticOnly": true,
+  "checks": [
+    "Checked-in Admin with pending teammate sees honest Out of stock, no fake mask or reveal/copy controls"
+  ],
+  "captures": [
+    "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/exhausted/personal-out-of-stock-1440x900.png",
+    "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/exhausted/personal-out-of-stock-390x480.png",
+    "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/exhausted/personal-out-of-stock-320x480.png",
+    "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/exhausted/admin-out-of-stock-1440x900.png",
+    "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/exhausted/admin-restock-recovers-waiting-1440x900.png"
+  ],
+  "summary": {
+    "id": "2b30d6fc-dd66-4bbd-a341-bccac002d54c",
+    "name": "OpenAI credits",
+    "instructions": "## Set up your account\nUse your assigned credit with your own account.",
+    "active": 1,
+    "total": 105,
+    "assigned": 10,
+    "available": 95,
+    "waiting": 0,
+    "inventory": 105,
+    "exhausted": false
+  },
+  "failure": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Next page', exact: true })\u001b[22m\n\n    at /tmp/ddd-credit-ui-exhausted.mjs:5:2499",
+  "browserClosed": true
+}
