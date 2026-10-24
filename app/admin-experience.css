@@ -1517,6 +1517,10 @@
 }
 .admin-team-action-dialog .error-message {
   margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #a72d28;
   font-size: 13px;
   line-height: 1.5;
 }
