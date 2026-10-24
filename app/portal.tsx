@@ -219,8 +219,9 @@ export function portalConfirmationFor(
     return {
       ...base,
       title: "Publish submission window",
-      description:
-        "Publish the previewed opening and closing times as real portal settings for all teams. Existing commits and attempts remain intact. The fixed repository creation and first-commit cutoff stays 1 November, 08:00 IST.",
+      description: Array.isArray(values.windowWarnings) && values.windowWarnings.length
+        ? values.windowWarnings.filter((warning: unknown) => typeof warning === "string").slice(0, 3).join(" ")
+        : "Save both times as real portal settings. Existing attempts and the fixed repository cutoff of 1 November, 08:00 IST stay unchanged.",
       confirmLabel: "Publish these times",
       critical: true,
     };
@@ -5758,7 +5759,7 @@ export default function Portal({
       )
         throw new ActionCancelled();
       const token = revealConfirmation(action, values);
-      const { newCount: _count, singleEmail: _email, ...payload } = values;
+      const { newCount: _count, singleEmail: _email, windowWarnings: _windowWarnings, ...payload } = values;
       const result = await api(
         action,
         token ? { ...payload, confirmation: token } : payload,

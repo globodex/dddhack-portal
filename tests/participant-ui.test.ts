@@ -418,6 +418,10 @@ test("destructive and publishing confirmations identify exact scope and preserve
     /real portal settings/,
   );
   assert.equal(
+    portalConfirmationFor("publish-submission-window", { windowWarnings: ["The repository cutoff is unchanged.", "Closing reaches judging close."] }, "24 Oct 08:00 IST → 1 Nov 20:00 IST").description,
+    "The repository cutoff is unchanged. Closing reaches judging close.",
+  );
+  assert.equal(
     portalConfirmationFor("commit-import", { newCount: 2 }, "Previewed roster")
       .description,
     "",
