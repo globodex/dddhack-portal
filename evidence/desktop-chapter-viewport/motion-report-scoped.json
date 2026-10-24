@@ -1,0 +1,45 @@
+{
+  "source": "2f124a874730ccff3aafe0fee34a9ee427b2a33c",
+  "scope": ".home-hero .hero-dots .public-dot",
+  "checks": [
+    {
+      "name": "hero fully offscreen",
+      "passed": true
+    },
+    {
+      "name": "scoped offscreen hero transforms stop",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "counts": {
+    "allDots": 16,
+    "heroDots": 8,
+    "organizerDots": 8
+  },
+  "hero": {
+    "top": -3485,
+    "bottom": -2642.03125
+  },
+  "before": [
+    "translate3d(73.5164px, 48.727px, 0px)",
+    "translate3d(218.507px, 31.1008px, 0px)",
+    "translate3d(197.065px, 128.005px, 0px)",
+    "translate3d(189.917px, -16.3136px, 0px)",
+    "translate3d(72.4953px, 146.854px, 0px)",
+    "translate3d(312.445px, 152.52px, 0px)",
+    "translate3d(308.36px, -39.3886px, 0px)",
+    "translate3d(329.803px, 79.5272px, 0px)"
+  ],
+  "after": [
+    "translate3d(73.5164px, 48.727px, 0px)",
+    "translate3d(218.507px, 31.1008px, 0px)",
+    "translate3d(197.065px, 128.005px, 0px)",
+    "translate3d(189.917px, -16.3136px, 0px)",
+    "translate3d(72.4953px, 146.854px, 0px)",
+    "translate3d(312.445px, 152.52px, 0px)",
+    "translate3d(308.36px, -39.3886px, 0px)",
+    "translate3d(329.803px, 79.5272px, 0px)"
+  ],
+  "browserClosed": true
+}

@@ -1,0 +1,12 @@
+{
+  "phase": "before-live",
+  "origin": "https://dddhack-portal.itsparam.in",
+  "source": "0aa85b55840dc26b2e9306e48fd592e83eae054c",
+  "anonymousGETOnly": true,
+  "captures": [],
+  "states": [],
+  "errors": [],
+  "checks": [],
+  "failure": "page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://dddhack-portal.itsparam.in/\nCall log:\n\u001b[2m  - navigating to \"https://dddhack-portal.itsparam.in/\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at /workspace/ddd-desktop-hero-fix/scripts/qa-desktop-chapter-viewport.mjs:11:490",
+  "browserClosed": true
+}

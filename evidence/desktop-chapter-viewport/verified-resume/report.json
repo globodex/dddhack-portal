@@ -1,0 +1,3978 @@
+{
+  "source": "2f124a874730ccff3aafe0fee34a9ee427b2a33c",
+  "localSyntheticOnly": true,
+  "checks": [
+    {
+      "name": "1847x1023 SSR reserves full chapter stages",
+      "passed": true,
+      "viewport": {
+        "width": 1847,
+        "height": 1023
+      },
+      "documentWidth": 1832,
+      "scrollY": 979,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1832,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 94,
+          "bottom": 999,
+          "height": 905,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 998,
+          "bottom": 1889,
+          "height": 891,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1888,
+          "bottom": 2765,
+          "height": 877,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2764,
+          "bottom": 3627,
+          "height": 863,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 151,
+          "bottom": 256.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 1055,
+          "bottom": 1160.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 1945,
+          "bottom": 2050.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 2821,
+          "bottom": 2926.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        }
+      ]
+    },
+    {
+      "name": "1847x1023 official wordmark enlarged without stretching",
+      "passed": true,
+      "logo": {
+        "width": 113.203125,
+        "height": 50,
+        "naturalWidth": 360,
+        "naturalHeight": 159,
+        "top": 631.390625
+      },
+      "hostBottom": 626.203125,
+      "cta": {
+        "top": 751.390625,
+        "bottom": 810.1875,
+        "height": 58.796875,
+        "visible": true,
+        "hit": true
+      },
+      "settlingVisible": 140,
+      "documentWidth": 1832
+    },
+    {
+      "name": "1847x1023 full width full height and large chapter headings",
+      "passed": true,
+      "viewport": {
+        "width": 1847,
+        "height": 1023
+      },
+      "documentWidth": 1832,
+      "scrollY": 979,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1832,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "true",
+      "mobile": "false",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 94,
+          "bottom": 999,
+          "height": 905,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "sticky",
+          "pin": 94,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 998,
+          "bottom": 1889,
+          "height": 891,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "sticky",
+          "pin": 108,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1888,
+          "bottom": 2765,
+          "height": 877,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "sticky",
+          "pin": 122,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2764,
+          "bottom": 3627,
+          "height": 863,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "sticky",
+          "pin": 136,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 151,
+          "bottom": 256.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 1055,
+          "bottom": 1160.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 1945,
+          "bottom": 2050.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 2821,
+          "bottom": 2926.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        }
+      ]
+    },
+    {
+      "name": "1847x1023 no compact-to-full-height hydration jump",
+      "passed": true,
+      "noJS": [
+        905,
+        891,
+        877,
+        863
+      ],
+      "hydrated": [
+        905,
+        891,
+        877,
+        863
+      ]
+    },
+    {
+      "name": "1847x1023 native desktop stack overlap progresses",
+      "passed": true
+    },
+    {
+      "name": "1920x1080 SSR reserves full chapter stages",
+      "passed": true,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "documentWidth": 1905,
+      "scrollY": 1036,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1905,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 94,
+          "bottom": 1056,
+          "height": 962,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 1055,
+          "bottom": 2003,
+          "height": 948,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 2002,
+          "bottom": 2936,
+          "height": 934,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2935,
+          "bottom": 3855,
+          "height": 920,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 151,
+          "bottom": 256.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        },
+        {
+          "id": "",
+          "top": 1112,
+          "bottom": 1217.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        },
+        {
+          "id": "",
+          "top": 2059,
+          "bottom": 2164.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        },
+        {
+          "id": "",
+          "top": 2992,
+          "bottom": 3097.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        }
+      ]
+    },
+    {
+      "name": "1920x1080 official wordmark enlarged without stretching",
+      "passed": true,
+      "logo": {
+        "width": 113.203125,
+        "height": 50,
+        "naturalWidth": 360,
+        "naturalHeight": 159,
+        "top": 653.65625
+      },
+      "hostBottom": 648.46875,
+      "cta": {
+        "top": 773.65625,
+        "bottom": 832.453125,
+        "height": 58.796875,
+        "visible": true,
+        "hit": true
+      },
+      "settlingVisible": 140,
+      "documentWidth": 1905
+    },
+    {
+      "name": "1920x1080 full width full height and large chapter headings",
+      "passed": true,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "documentWidth": 1905,
+      "scrollY": 1036,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1905,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "true",
+      "mobile": "false",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 94,
+          "bottom": 1056,
+          "height": 962,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "sticky",
+          "pin": 94,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 1055,
+          "bottom": 2003,
+          "height": 948,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "sticky",
+          "pin": 108,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 2002,
+          "bottom": 2936,
+          "height": 934,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "sticky",
+          "pin": 122,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2935,
+          "bottom": 3855,
+          "height": 920,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "sticky",
+          "pin": 136,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 151,
+          "bottom": 256.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        },
+        {
+          "id": "",
+          "top": 1112,
+          "bottom": 1217.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        },
+        {
+          "id": "",
+          "top": 2059,
+          "bottom": 2164.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        },
+        {
+          "id": "",
+          "top": 2992,
+          "bottom": 3097.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        }
+      ]
+    },
+    {
+      "name": "1920x1080 no compact-to-full-height hydration jump",
+      "passed": true,
+      "noJS": [
+        962,
+        948,
+        934,
+        920
+      ],
+      "hydrated": [
+        962,
+        948,
+        934,
+        920
+      ]
+    },
+    {
+      "name": "1920x1080 native desktop stack overlap progresses",
+      "passed": true
+    },
+    {
+      "name": "expanded desktop FAQ is remeasured without clipping",
+      "passed": true,
+      "id": "faq",
+      "top": 79.96875,
+      "bottom": 1032.96875,
+      "height": 953,
+      "width": 1338.625,
+      "left": 43.1875,
+      "position": "sticky",
+      "pin": -77,
+      "fontSize": "15px"
+    },
+    {
+      "name": "expanded desktop last FAQ has visible text and unobstructed44px focus target",
+      "passed": true,
+      "top": 840.46875,
+      "bottom": 900.46875,
+      "viewportHeight": 900,
+      "headerBottom": 80,
+      "center": {
+        "x": 964.2734375,
+        "y": 870.46875
+      },
+      "full44pxCenterVisible": true,
+      "target44pxHits": true,
+      "text": [
+        {
+          "top": 857.46875,
+          "bottom": 883.46875
+        }
+      ],
+      "textFullyVisible": true,
+      "focused": true
+    },
+    {
+      "name": "1440x600-short natural readable chapter fallback",
+      "passed": true,
+      "viewport": {
+        "width": 1440,
+        "height": 600
+      },
+      "documentWidth": 1425,
+      "scrollY": 1384,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1425,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "false",
+      "desktop": "false",
+      "mobile": "false",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": -494.59375,
+          "bottom": -178.40625,
+          "height": 316.1875,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": -179.40625,
+          "bottom": 94.578125,
+          "height": 273.984375,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 93.578125,
+          "bottom": 685.578125,
+          "height": 592,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 684.578125,
+          "bottom": 1299.953125,
+          "height": 615.375,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": -437.59375,
+          "bottom": -347.3125,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": -122.40625,
+          "bottom": -32.125,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 150.578125,
+          "bottom": 240.859375,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 741.578125,
+          "bottom": 831.859375,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        }
+      ]
+    },
+    {
+      "name": "1847x1023-reduced natural readable chapter fallback",
+      "passed": true,
+      "viewport": {
+        "width": 1847,
+        "height": 1023
+      },
+      "documentWidth": 1832,
+      "scrollY": 1567,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1832,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "false",
+      "desktop": "false",
+      "mobile": "false",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": -494,
+          "bottom": -177.8125,
+          "height": 316.1875,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": -178.8125,
+          "bottom": 95.171875,
+          "height": 273.984375,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 94.171875,
+          "bottom": 686.171875,
+          "height": 592,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 685.171875,
+          "bottom": 1273.359375,
+          "height": 588.1875,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": -437,
+          "bottom": -331.40625,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": -121.8125,
+          "bottom": -16.21875,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 151.171875,
+          "bottom": 256.765625,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 742.171875,
+          "bottom": 847.765625,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        }
+      ]
+    },
+    {
+      "name": "390x844 official wordmark enlarged without stretching",
+      "passed": true,
+      "logo": {
+        "width": 113.203125,
+        "height": 50,
+        "naturalWidth": 360,
+        "naturalHeight": 159,
+        "top": 431.34375
+      },
+      "hostBottom": 427.34375,
+      "cta": {
+        "top": 681.34375,
+        "bottom": 739.34375,
+        "height": 58,
+        "visible": true,
+        "hit": true
+      },
+      "settlingVisible": 104.65625,
+      "documentWidth": 390
+    },
+    {
+      "name": "390x844 larger logo keeps thumb CTA and settling area visible",
+      "passed": true,
+      "logo": {
+        "width": 113.203125,
+        "height": 50,
+        "naturalWidth": 360,
+        "naturalHeight": 159,
+        "top": 431.34375
+      },
+      "hostBottom": 427.34375,
+      "cta": {
+        "top": 681.34375,
+        "bottom": 739.34375,
+        "height": 58,
+        "visible": true,
+        "hit": true
+      },
+      "settlingVisible": 104.65625,
+      "documentWidth": 390
+    },
+    {
+      "name": "390x844 mobile stack policy preserved",
+      "passed": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentWidth": 390,
+      "scrollY": 0,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 64,
+        "height": 64,
+        "width": 390,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "false",
+      "mobile": "true",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 907.34375,
+          "bottom": 1226.734375,
+          "height": 319.390625,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 78,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 1225.734375,
+          "bottom": 1491.109375,
+          "height": 265.375,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 86,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1490.109375,
+          "bottom": 2201.109375,
+          "height": 711,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 94,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2200.109375,
+          "bottom": 2820.28125,
+          "height": 620.171875,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 102,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 934.34375,
+          "bottom": 978.34375,
+          "height": 44,
+          "width": 204.71875,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 205,
+          "clientWidth": 205
+        },
+        {
+          "id": "",
+          "top": 1252.734375,
+          "bottom": 1296.734375,
+          "height": 44,
+          "width": 157.09375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 157,
+          "clientWidth": 157
+        },
+        {
+          "id": "",
+          "top": 1517.109375,
+          "bottom": 1561.109375,
+          "height": 44,
+          "width": 141.4375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 141,
+          "clientWidth": 141
+        },
+        {
+          "id": "",
+          "top": 2227.109375,
+          "bottom": 2271.109375,
+          "height": 44,
+          "width": 119.65625,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 120,
+          "clientWidth": 120
+        }
+      ]
+    },
+    {
+      "name": "390x844 mobile native stack still overlaps",
+      "passed": true
+    },
+    {
+      "name": "390x844 enlarged logo leaves touch CTA reachable",
+      "passed": true,
+      "top": 405.34375,
+      "bottom": 463.34375,
+      "height": 58,
+      "hit": true,
+      "x": 195,
+      "y": 434.34375
+    },
+    {
+      "name": "390x844 touch CTA reaches sign-in with return path",
+      "passed": true
+    },
+    {
+      "name": "390x480 official wordmark enlarged without stretching",
+      "passed": true,
+      "logo": {
+        "width": 113.203125,
+        "height": 50,
+        "naturalWidth": 360,
+        "naturalHeight": 159,
+        "top": 431.34375
+      },
+      "hostBottom": 427.34375,
+      "cta": {
+        "top": 681.34375,
+        "bottom": 739.34375,
+        "height": 58,
+        "visible": false,
+        "hit": false
+      },
+      "settlingVisible": -259.34375,
+      "documentWidth": 390
+    },
+    {
+      "name": "390x480 mobile stack policy preserved",
+      "passed": true,
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "documentWidth": 390,
+      "scrollY": 0,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 64,
+        "height": 64,
+        "width": 390,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "false",
+      "mobile": "true",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 907.34375,
+          "bottom": 1226.734375,
+          "height": 319.390625,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 78,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 1225.734375,
+          "bottom": 1491.109375,
+          "height": 265.375,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 86,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1490.109375,
+          "bottom": 2201.109375,
+          "height": 711,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": -247,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2200.109375,
+          "bottom": 2820.28125,
+          "height": 620.171875,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": -157,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 934.34375,
+          "bottom": 978.34375,
+          "height": 44,
+          "width": 204.71875,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 205,
+          "clientWidth": 205
+        },
+        {
+          "id": "",
+          "top": 1252.734375,
+          "bottom": 1296.734375,
+          "height": 44,
+          "width": 157.09375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 157,
+          "clientWidth": 157
+        },
+        {
+          "id": "",
+          "top": 1517.109375,
+          "bottom": 1561.109375,
+          "height": 44,
+          "width": 141.4375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 141,
+          "clientWidth": 141
+        },
+        {
+          "id": "",
+          "top": 2227.109375,
+          "bottom": 2271.109375,
+          "height": 44,
+          "width": 119.65625,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 120,
+          "clientWidth": 120
+        }
+      ]
+    },
+    {
+      "name": "390x480 mobile native stack still overlaps",
+      "passed": true
+    },
+    {
+      "name": "390x480 enlarged logo leaves touch CTA reachable",
+      "passed": true,
+      "top": 223.34375,
+      "bottom": 281.34375,
+      "height": 58,
+      "hit": true,
+      "x": 195,
+      "y": 252.34375
+    },
+    {
+      "name": "390x480 touch CTA reaches sign-in with return path",
+      "passed": true
+    },
+    {
+      "name": "320x480 official wordmark enlarged without stretching",
+      "passed": true,
+      "logo": {
+        "width": 113.203125,
+        "height": 50,
+        "naturalWidth": 360,
+        "naturalHeight": 159,
+        "top": 392.828125
+      },
+      "hostBottom": 388.828125,
+      "cta": {
+        "top": 642.828125,
+        "bottom": 700.828125,
+        "height": 58,
+        "visible": false,
+        "hit": false
+      },
+      "settlingVisible": -220.828125,
+      "documentWidth": 320
+    },
+    {
+      "name": "320x480 mobile stack policy preserved",
+      "passed": true,
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "documentWidth": 320,
+      "scrollY": 0,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 64,
+        "height": 64,
+        "width": 320,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "false",
+      "mobile": "true",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 868.828125,
+          "bottom": 1188.21875,
+          "height": 319.390625,
+          "width": 288,
+          "left": 16,
+          "position": "sticky",
+          "pin": 78,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 1187.21875,
+          "bottom": 1452.59375,
+          "height": 265.375,
+          "width": 288,
+          "left": 16,
+          "position": "sticky",
+          "pin": 86,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1451.59375,
+          "bottom": 2252.59375,
+          "height": 801,
+          "width": 288,
+          "left": 16,
+          "position": "sticky",
+          "pin": -337,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2251.59375,
+          "bottom": 2954.890625,
+          "height": 703.296875,
+          "width": 288,
+          "left": 16,
+          "position": "sticky",
+          "pin": -240,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 895.828125,
+          "bottom": 939.828125,
+          "height": 44,
+          "width": 204.71875,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 205,
+          "clientWidth": 205
+        },
+        {
+          "id": "",
+          "top": 1214.21875,
+          "bottom": 1258.21875,
+          "height": 44,
+          "width": 157.09375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 157,
+          "clientWidth": 157
+        },
+        {
+          "id": "",
+          "top": 1478.59375,
+          "bottom": 1522.59375,
+          "height": 44,
+          "width": 141.4375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 141,
+          "clientWidth": 141
+        },
+        {
+          "id": "",
+          "top": 2278.59375,
+          "bottom": 2322.59375,
+          "height": 44,
+          "width": 119.65625,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 120,
+          "clientWidth": 120
+        }
+      ]
+    },
+    {
+      "name": "320x480 mobile native stack still overlaps",
+      "passed": true
+    },
+    {
+      "name": "320x480 enlarged logo leaves touch CTA reachable",
+      "passed": true,
+      "top": 222.828125,
+      "bottom": 280.828125,
+      "height": 58,
+      "hit": true,
+      "x": 160,
+      "y": 251.828125
+    },
+    {
+      "name": "320x480 touch CTA reaches sign-in with return path",
+      "passed": true
+    },
+    {
+      "name": "1440x900-long-agenda six published fixture rows rendered",
+      "passed": true
+    },
+    {
+      "name": "1440x900-long-agenda oversized agenda retains native negative bottom pin",
+      "passed": true,
+      "pin": -837
+    },
+    {
+      "name": "1440x900-long-agenda row 1 readable before next card",
+      "passed": true,
+      "top": 100.359375,
+      "bottom": 347.359375,
+      "hit": true
+    },
+    {
+      "name": "1440x900-long-agenda row 2 readable before next card",
+      "passed": true,
+      "top": 100.359375,
+      "bottom": 347.359375,
+      "hit": true
+    },
+    {
+      "name": "1440x900-long-agenda row 3 readable before next card",
+      "passed": true,
+      "top": 100.359375,
+      "bottom": 347.359375,
+      "hit": true
+    },
+    {
+      "name": "1440x900-long-agenda row 4 readable before next card",
+      "passed": true,
+      "top": 100.359375,
+      "bottom": 347.359375,
+      "hit": true
+    },
+    {
+      "name": "1440x900-long-agenda row 5 readable before next card",
+      "passed": true,
+      "top": 324.390625,
+      "bottom": 571.390625,
+      "hit": true
+    },
+    {
+      "name": "1440x900-long-agenda row 6 readable before next card",
+      "passed": true,
+      "top": 571.390625,
+      "bottom": 818.390625,
+      "hit": true
+    },
+    {
+      "name": "1847x1023-long-agenda six published fixture rows rendered",
+      "passed": true
+    },
+    {
+      "name": "1847x1023-long-agenda oversized agenda retains native negative bottom pin",
+      "passed": true,
+      "pin": -714
+    },
+    {
+      "name": "1847x1023-long-agenda row 1 readable before next card",
+      "passed": true,
+      "top": 100.390625,
+      "bottom": 347.390625,
+      "hit": true
+    },
+    {
+      "name": "1847x1023-long-agenda row 2 readable before next card",
+      "passed": true,
+      "top": 100.390625,
+      "bottom": 347.390625,
+      "hit": true
+    },
+    {
+      "name": "1847x1023-long-agenda row 3 readable before next card",
+      "passed": true,
+      "top": 100.390625,
+      "bottom": 347.390625,
+      "hit": true
+    },
+    {
+      "name": "1847x1023-long-agenda row 4 readable before next card",
+      "passed": true,
+      "top": 200.390625,
+      "bottom": 447.390625,
+      "hit": true
+    },
+    {
+      "name": "1847x1023-long-agenda row 5 readable before next card",
+      "passed": true,
+      "top": 447.390625,
+      "bottom": 694.390625,
+      "hit": true
+    },
+    {
+      "name": "1847x1023-long-agenda row 6 readable before next card",
+      "passed": true,
+      "top": 694.390625,
+      "bottom": 941.390625,
+      "hit": true
+    }
+  ],
+  "states": [
+    {
+      "label": "1847x1023-no-JS",
+      "viewport": {
+        "width": 1847,
+        "height": 1023
+      },
+      "documentWidth": 1832,
+      "scrollY": 979,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1832,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 94,
+          "bottom": 999,
+          "height": 905,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 998,
+          "bottom": 1889,
+          "height": 891,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1888,
+          "bottom": 2765,
+          "height": 877,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2764,
+          "bottom": 3627,
+          "height": 863,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 151,
+          "bottom": 256.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 1055,
+          "bottom": 1160.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 1945,
+          "bottom": 2050.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 2821,
+          "bottom": 2926.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        }
+      ]
+    },
+    {
+      "label": "1847x1023-hydrated",
+      "viewport": {
+        "width": 1847,
+        "height": 1023
+      },
+      "documentWidth": 1832,
+      "scrollY": 979,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1832,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "true",
+      "mobile": "false",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 94,
+          "bottom": 999,
+          "height": 905,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "sticky",
+          "pin": 94,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 998,
+          "bottom": 1889,
+          "height": 891,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "sticky",
+          "pin": 108,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1888,
+          "bottom": 2765,
+          "height": 877,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "sticky",
+          "pin": 122,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2764,
+          "bottom": 3627,
+          "height": 863,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "sticky",
+          "pin": 136,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 151,
+          "bottom": 256.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 1055,
+          "bottom": 1160.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 1945,
+          "bottom": 2050.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 2821,
+          "bottom": 2926.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        }
+      ]
+    },
+    {
+      "label": "1847x1023-overlap1",
+      "viewport": {
+        "width": 1847,
+        "height": 1023
+      },
+      "documentWidth": 1832,
+      "scrollY": 1002,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1832,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "true",
+      "mobile": "false",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 94,
+          "bottom": 999,
+          "height": 905,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "sticky",
+          "pin": 94,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 975,
+          "bottom": 1866,
+          "height": 891,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "sticky",
+          "pin": 108,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1865,
+          "bottom": 2742,
+          "height": 877,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "sticky",
+          "pin": 122,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2741,
+          "bottom": 3604,
+          "height": 863,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "sticky",
+          "pin": 136,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 151,
+          "bottom": 256.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 1032,
+          "bottom": 1137.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 1922,
+          "bottom": 2027.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 2798,
+          "bottom": 2903.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        }
+      ]
+    },
+    {
+      "label": "1847x1023-overlap2",
+      "viewport": {
+        "width": 1847,
+        "height": 1023
+      },
+      "documentWidth": 1832,
+      "scrollY": 1122,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1832,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "true",
+      "mobile": "false",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 94,
+          "bottom": 999,
+          "height": 905,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "sticky",
+          "pin": 94,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 855,
+          "bottom": 1746,
+          "height": 891,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "sticky",
+          "pin": 108,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1745,
+          "bottom": 2622,
+          "height": 877,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "sticky",
+          "pin": 122,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2621,
+          "bottom": 3484,
+          "height": 863,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "sticky",
+          "pin": 136,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 151,
+          "bottom": 256.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 912,
+          "bottom": 1017.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 1802,
+          "bottom": 1907.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 2678,
+          "bottom": 2783.59375,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        }
+      ]
+    },
+    {
+      "label": "1920x1080-no-JS",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "documentWidth": 1905,
+      "scrollY": 1036,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1905,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 94,
+          "bottom": 1056,
+          "height": 962,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 1055,
+          "bottom": 2003,
+          "height": 948,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 2002,
+          "bottom": 2936,
+          "height": 934,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2935,
+          "bottom": 3855,
+          "height": 920,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 151,
+          "bottom": 256.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        },
+        {
+          "id": "",
+          "top": 1112,
+          "bottom": 1217.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        },
+        {
+          "id": "",
+          "top": 2059,
+          "bottom": 2164.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        },
+        {
+          "id": "",
+          "top": 2992,
+          "bottom": 3097.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        }
+      ]
+    },
+    {
+      "label": "1920x1080-hydrated",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "documentWidth": 1905,
+      "scrollY": 1036,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1905,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "true",
+      "mobile": "false",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 94,
+          "bottom": 1056,
+          "height": 962,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "sticky",
+          "pin": 94,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 1055,
+          "bottom": 2003,
+          "height": 948,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "sticky",
+          "pin": 108,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 2002,
+          "bottom": 2936,
+          "height": 934,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "sticky",
+          "pin": 122,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2935,
+          "bottom": 3855,
+          "height": 920,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "sticky",
+          "pin": 136,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 151,
+          "bottom": 256.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        },
+        {
+          "id": "",
+          "top": 1112,
+          "bottom": 1217.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        },
+        {
+          "id": "",
+          "top": 2059,
+          "bottom": 2164.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        },
+        {
+          "id": "",
+          "top": 2992,
+          "bottom": 3097.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        }
+      ]
+    },
+    {
+      "label": "1920x1080-overlap1",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "documentWidth": 1905,
+      "scrollY": 1059,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1905,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "true",
+      "mobile": "false",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 94,
+          "bottom": 1056,
+          "height": 962,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "sticky",
+          "pin": 94,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 1032,
+          "bottom": 1980,
+          "height": 948,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "sticky",
+          "pin": 108,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1979,
+          "bottom": 2913,
+          "height": 934,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "sticky",
+          "pin": 122,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2912,
+          "bottom": 3832,
+          "height": 920,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "sticky",
+          "pin": 136,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 151,
+          "bottom": 256.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        },
+        {
+          "id": "",
+          "top": 1089,
+          "bottom": 1194.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        },
+        {
+          "id": "",
+          "top": 2036,
+          "bottom": 2141.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        },
+        {
+          "id": "",
+          "top": 2969,
+          "bottom": 3074.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        }
+      ]
+    },
+    {
+      "label": "1920x1080-overlap2",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "documentWidth": 1905,
+      "scrollY": 1179,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1905,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "true",
+      "mobile": "false",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 94,
+          "bottom": 1056,
+          "height": 962,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "sticky",
+          "pin": 94,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 912,
+          "bottom": 1860,
+          "height": 948,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "sticky",
+          "pin": 108,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1859,
+          "bottom": 2793,
+          "height": 934,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "sticky",
+          "pin": 122,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2792,
+          "bottom": 3712,
+          "height": 920,
+          "width": 1789.8125,
+          "left": 57.59375,
+          "position": "sticky",
+          "pin": 136,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 151,
+          "bottom": 256.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        },
+        {
+          "id": "",
+          "top": 969,
+          "bottom": 1074.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        },
+        {
+          "id": "",
+          "top": 1916,
+          "bottom": 2021.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        },
+        {
+          "id": "",
+          "top": 2849,
+          "bottom": 2954.59375,
+          "height": 105.59375,
+          "width": 640.09375,
+          "left": 114.59375,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 640,
+          "clientWidth": 640
+        }
+      ]
+    },
+    {
+      "label": "1440x900-expanded-FAQ",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "documentWidth": 1425,
+      "scrollY": 3194,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1425,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "true",
+      "mobile": "false",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 94,
+          "bottom": 876,
+          "height": 782,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 94,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 108,
+          "bottom": 876,
+          "height": 768,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 108,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 122,
+          "bottom": 876,
+          "height": 754,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 122,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 79.96875,
+          "bottom": 1032.96875,
+          "height": 953,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": -77,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 151,
+          "bottom": 241.28125,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 165,
+          "bottom": 255.28125,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 179,
+          "bottom": 269.28125,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 136.96875,
+          "bottom": 227.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        }
+      ]
+    },
+    {
+      "label": "1440x600-short",
+      "viewport": {
+        "width": 1440,
+        "height": 600
+      },
+      "documentWidth": 1425,
+      "scrollY": 1384,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1425,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "false",
+      "desktop": "false",
+      "mobile": "false",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": -494.59375,
+          "bottom": -178.40625,
+          "height": 316.1875,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": -179.40625,
+          "bottom": 94.578125,
+          "height": 273.984375,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 93.578125,
+          "bottom": 685.578125,
+          "height": 592,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 684.578125,
+          "bottom": 1299.953125,
+          "height": 615.375,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": -437.59375,
+          "bottom": -347.3125,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": -122.40625,
+          "bottom": -32.125,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 150.578125,
+          "bottom": 240.859375,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 741.578125,
+          "bottom": 831.859375,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        }
+      ]
+    },
+    {
+      "label": "1847x1023-reduced",
+      "viewport": {
+        "width": 1847,
+        "height": 1023
+      },
+      "documentWidth": 1832,
+      "scrollY": 1567,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1832,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "false",
+      "desktop": "false",
+      "mobile": "false",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": -494,
+          "bottom": -177.8125,
+          "height": 316.1875,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": -178.8125,
+          "bottom": 95.171875,
+          "height": 273.984375,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 94.171875,
+          "bottom": 686.171875,
+          "height": 592,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 685.171875,
+          "bottom": 1273.359375,
+          "height": 588.1875,
+          "width": 1721.1875,
+          "left": 55.40625,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": -437,
+          "bottom": -331.40625,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": -121.8125,
+          "bottom": -16.21875,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 151.171875,
+          "bottom": 256.765625,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        },
+        {
+          "id": "",
+          "top": 742.171875,
+          "bottom": 847.765625,
+          "height": 105.59375,
+          "width": 613.234375,
+          "left": 112.40625,
+          "position": "static",
+          "pin": null,
+          "fontSize": "96px",
+          "scrollWidth": 613,
+          "clientWidth": 613
+        }
+      ]
+    },
+    {
+      "label": "390x844-mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentWidth": 390,
+      "scrollY": 0,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 64,
+        "height": 64,
+        "width": 390,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "false",
+      "mobile": "true",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 907.34375,
+          "bottom": 1226.734375,
+          "height": 319.390625,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 78,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 1225.734375,
+          "bottom": 1491.109375,
+          "height": 265.375,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 86,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1490.109375,
+          "bottom": 2201.109375,
+          "height": 711,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 94,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2200.109375,
+          "bottom": 2820.28125,
+          "height": 620.171875,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 102,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 934.34375,
+          "bottom": 978.34375,
+          "height": 44,
+          "width": 204.71875,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 205,
+          "clientWidth": 205
+        },
+        {
+          "id": "",
+          "top": 1252.734375,
+          "bottom": 1296.734375,
+          "height": 44,
+          "width": 157.09375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 157,
+          "clientWidth": 157
+        },
+        {
+          "id": "",
+          "top": 1517.109375,
+          "bottom": 1561.109375,
+          "height": 44,
+          "width": 141.4375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 141,
+          "clientWidth": 141
+        },
+        {
+          "id": "",
+          "top": 2227.109375,
+          "bottom": 2271.109375,
+          "height": 44,
+          "width": 119.65625,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 120,
+          "clientWidth": 120
+        }
+      ]
+    },
+    {
+      "label": "390x844-mobile-overlap1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentWidth": 390,
+      "scrollY": 976,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 64,
+        "height": 64,
+        "width": 390,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "false",
+      "mobile": "true",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 78,
+          "bottom": 397.390625,
+          "height": 319.390625,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 78,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 249.734375,
+          "bottom": 515.109375,
+          "height": 265.375,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 86,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 514.109375,
+          "bottom": 1225.109375,
+          "height": 711,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 94,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 1224.109375,
+          "bottom": 1844.28125,
+          "height": 620.171875,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 102,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 105,
+          "bottom": 149,
+          "height": 44,
+          "width": 204.71875,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 205,
+          "clientWidth": 205
+        },
+        {
+          "id": "",
+          "top": 276.734375,
+          "bottom": 320.734375,
+          "height": 44,
+          "width": 157.09375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 157,
+          "clientWidth": 157
+        },
+        {
+          "id": "",
+          "top": 541.109375,
+          "bottom": 585.109375,
+          "height": 44,
+          "width": 141.4375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 141,
+          "clientWidth": 141
+        },
+        {
+          "id": "",
+          "top": 1251.109375,
+          "bottom": 1295.109375,
+          "height": 44,
+          "width": 119.65625,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 120,
+          "clientWidth": 120
+        }
+      ]
+    },
+    {
+      "label": "390x844-mobile-overlap2",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentWidth": 390,
+      "scrollY": 1096,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 64,
+        "height": 64,
+        "width": 390,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "false",
+      "mobile": "true",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 78,
+          "bottom": 397.390625,
+          "height": 319.390625,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 78,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 129.734375,
+          "bottom": 395.109375,
+          "height": 265.375,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 86,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 394.109375,
+          "bottom": 1105.109375,
+          "height": 711,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 94,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 1104.109375,
+          "bottom": 1724.28125,
+          "height": 620.171875,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 102,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 105,
+          "bottom": 149,
+          "height": 44,
+          "width": 204.71875,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 205,
+          "clientWidth": 205
+        },
+        {
+          "id": "",
+          "top": 156.734375,
+          "bottom": 200.734375,
+          "height": 44,
+          "width": 157.09375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 157,
+          "clientWidth": 157
+        },
+        {
+          "id": "",
+          "top": 421.109375,
+          "bottom": 465.109375,
+          "height": 44,
+          "width": 141.4375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 141,
+          "clientWidth": 141
+        },
+        {
+          "id": "",
+          "top": 1131.109375,
+          "bottom": 1175.109375,
+          "height": 44,
+          "width": 119.65625,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 120,
+          "clientWidth": 120
+        }
+      ]
+    },
+    {
+      "label": "390x480-mobile",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "documentWidth": 390,
+      "scrollY": 0,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 64,
+        "height": 64,
+        "width": 390,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "false",
+      "mobile": "true",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 907.34375,
+          "bottom": 1226.734375,
+          "height": 319.390625,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 78,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 1225.734375,
+          "bottom": 1491.109375,
+          "height": 265.375,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 86,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1490.109375,
+          "bottom": 2201.109375,
+          "height": 711,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": -247,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2200.109375,
+          "bottom": 2820.28125,
+          "height": 620.171875,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": -157,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 934.34375,
+          "bottom": 978.34375,
+          "height": 44,
+          "width": 204.71875,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 205,
+          "clientWidth": 205
+        },
+        {
+          "id": "",
+          "top": 1252.734375,
+          "bottom": 1296.734375,
+          "height": 44,
+          "width": 157.09375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 157,
+          "clientWidth": 157
+        },
+        {
+          "id": "",
+          "top": 1517.109375,
+          "bottom": 1561.109375,
+          "height": 44,
+          "width": 141.4375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 141,
+          "clientWidth": 141
+        },
+        {
+          "id": "",
+          "top": 2227.109375,
+          "bottom": 2271.109375,
+          "height": 44,
+          "width": 119.65625,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 120,
+          "clientWidth": 120
+        }
+      ]
+    },
+    {
+      "label": "390x480-mobile-overlap1",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "documentWidth": 390,
+      "scrollY": 976,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 64,
+        "height": 64,
+        "width": 390,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "false",
+      "mobile": "true",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 78,
+          "bottom": 397.390625,
+          "height": 319.390625,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 78,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 249.734375,
+          "bottom": 515.109375,
+          "height": 265.375,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 86,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 514.109375,
+          "bottom": 1225.109375,
+          "height": 711,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": -247,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 1224.109375,
+          "bottom": 1844.28125,
+          "height": 620.171875,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": -157,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 105,
+          "bottom": 149,
+          "height": 44,
+          "width": 204.71875,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 205,
+          "clientWidth": 205
+        },
+        {
+          "id": "",
+          "top": 276.734375,
+          "bottom": 320.734375,
+          "height": 44,
+          "width": 157.09375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 157,
+          "clientWidth": 157
+        },
+        {
+          "id": "",
+          "top": 541.109375,
+          "bottom": 585.109375,
+          "height": 44,
+          "width": 141.4375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 141,
+          "clientWidth": 141
+        },
+        {
+          "id": "",
+          "top": 1251.109375,
+          "bottom": 1295.109375,
+          "height": 44,
+          "width": 119.65625,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 120,
+          "clientWidth": 120
+        }
+      ]
+    },
+    {
+      "label": "390x480-mobile-overlap2",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "documentWidth": 390,
+      "scrollY": 1096,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 64,
+        "height": 64,
+        "width": 390,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "false",
+      "mobile": "true",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 78,
+          "bottom": 397.390625,
+          "height": 319.390625,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 78,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 129.734375,
+          "bottom": 395.109375,
+          "height": 265.375,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": 86,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 394.109375,
+          "bottom": 1105.109375,
+          "height": 711,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": -247,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 1104.109375,
+          "bottom": 1724.28125,
+          "height": 620.171875,
+          "width": 358,
+          "left": 16,
+          "position": "sticky",
+          "pin": -157,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 105,
+          "bottom": 149,
+          "height": 44,
+          "width": 204.71875,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 205,
+          "clientWidth": 205
+        },
+        {
+          "id": "",
+          "top": 156.734375,
+          "bottom": 200.734375,
+          "height": 44,
+          "width": 157.09375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 157,
+          "clientWidth": 157
+        },
+        {
+          "id": "",
+          "top": 421.109375,
+          "bottom": 465.109375,
+          "height": 44,
+          "width": 141.4375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 141,
+          "clientWidth": 141
+        },
+        {
+          "id": "",
+          "top": 1131.109375,
+          "bottom": 1175.109375,
+          "height": 44,
+          "width": 119.65625,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 120,
+          "clientWidth": 120
+        }
+      ]
+    },
+    {
+      "label": "320x480-mobile",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "documentWidth": 320,
+      "scrollY": 0,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 64,
+        "height": 64,
+        "width": 320,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "false",
+      "mobile": "true",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 868.828125,
+          "bottom": 1188.21875,
+          "height": 319.390625,
+          "width": 288,
+          "left": 16,
+          "position": "sticky",
+          "pin": 78,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 1187.21875,
+          "bottom": 1452.59375,
+          "height": 265.375,
+          "width": 288,
+          "left": 16,
+          "position": "sticky",
+          "pin": 86,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1451.59375,
+          "bottom": 2252.59375,
+          "height": 801,
+          "width": 288,
+          "left": 16,
+          "position": "sticky",
+          "pin": -337,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2251.59375,
+          "bottom": 2954.890625,
+          "height": 703.296875,
+          "width": 288,
+          "left": 16,
+          "position": "sticky",
+          "pin": -240,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 895.828125,
+          "bottom": 939.828125,
+          "height": 44,
+          "width": 204.71875,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 205,
+          "clientWidth": 205
+        },
+        {
+          "id": "",
+          "top": 1214.21875,
+          "bottom": 1258.21875,
+          "height": 44,
+          "width": 157.09375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 157,
+          "clientWidth": 157
+        },
+        {
+          "id": "",
+          "top": 1478.59375,
+          "bottom": 1522.59375,
+          "height": 44,
+          "width": 141.4375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 141,
+          "clientWidth": 141
+        },
+        {
+          "id": "",
+          "top": 2278.59375,
+          "bottom": 2322.59375,
+          "height": 44,
+          "width": 119.65625,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 120,
+          "clientWidth": 120
+        }
+      ]
+    },
+    {
+      "label": "320x480-mobile-overlap1",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "documentWidth": 320,
+      "scrollY": 937,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 64,
+        "height": 64,
+        "width": 320,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "false",
+      "mobile": "true",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 78,
+          "bottom": 397.390625,
+          "height": 319.390625,
+          "width": 288,
+          "left": 16,
+          "position": "sticky",
+          "pin": 78,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 250.21875,
+          "bottom": 515.59375,
+          "height": 265.375,
+          "width": 288,
+          "left": 16,
+          "position": "sticky",
+          "pin": 86,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 514.59375,
+          "bottom": 1315.59375,
+          "height": 801,
+          "width": 288,
+          "left": 16,
+          "position": "sticky",
+          "pin": -337,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 1314.59375,
+          "bottom": 2017.890625,
+          "height": 703.296875,
+          "width": 288,
+          "left": 16,
+          "position": "sticky",
+          "pin": -240,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 105,
+          "bottom": 149,
+          "height": 44,
+          "width": 204.71875,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 205,
+          "clientWidth": 205
+        },
+        {
+          "id": "",
+          "top": 277.21875,
+          "bottom": 321.21875,
+          "height": 44,
+          "width": 157.09375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 157,
+          "clientWidth": 157
+        },
+        {
+          "id": "",
+          "top": 541.59375,
+          "bottom": 585.59375,
+          "height": 44,
+          "width": 141.4375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 141,
+          "clientWidth": 141
+        },
+        {
+          "id": "",
+          "top": 1341.59375,
+          "bottom": 1385.59375,
+          "height": 44,
+          "width": 119.65625,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 120,
+          "clientWidth": 120
+        }
+      ]
+    },
+    {
+      "label": "320x480-mobile-overlap2",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "documentWidth": 320,
+      "scrollY": 1057,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 64,
+        "height": 64,
+        "width": 320,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "false",
+      "mobile": "true",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 78,
+          "bottom": 397.390625,
+          "height": 319.390625,
+          "width": 288,
+          "left": 16,
+          "position": "sticky",
+          "pin": 78,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 130.21875,
+          "bottom": 395.59375,
+          "height": 265.375,
+          "width": 288,
+          "left": 16,
+          "position": "sticky",
+          "pin": 86,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 394.59375,
+          "bottom": 1195.59375,
+          "height": 801,
+          "width": 288,
+          "left": 16,
+          "position": "sticky",
+          "pin": -337,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 1194.59375,
+          "bottom": 1897.890625,
+          "height": 703.296875,
+          "width": 288,
+          "left": 16,
+          "position": "sticky",
+          "pin": -240,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 105,
+          "bottom": 149,
+          "height": 44,
+          "width": 204.71875,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 205,
+          "clientWidth": 205
+        },
+        {
+          "id": "",
+          "top": 157.21875,
+          "bottom": 201.21875,
+          "height": 44,
+          "width": 157.09375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 157,
+          "clientWidth": 157
+        },
+        {
+          "id": "",
+          "top": 421.59375,
+          "bottom": 465.59375,
+          "height": 44,
+          "width": 141.4375,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 141,
+          "clientWidth": 141
+        },
+        {
+          "id": "",
+          "top": 1221.59375,
+          "bottom": 1265.59375,
+          "height": 44,
+          "width": 119.65625,
+          "left": 39,
+          "position": "static",
+          "pin": null,
+          "fontSize": "36px",
+          "scrollWidth": 120,
+          "clientWidth": 120
+        }
+      ]
+    }
+  ],
+  "captures": [
+    "evidence/desktop-chapter-viewport/verified-resume/1847x1023-no-JS-schedule.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1847x1023-hero-larger-logo.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1847x1023-schedule.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1847x1023-venue.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1847x1023-rules.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1847x1023-faq.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1847x1023-schedule-to-venue-overlap.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1920x1080-no-JS-schedule.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1920x1080-hero-larger-logo.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1920x1080-schedule.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1920x1080-venue.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1920x1080-rules.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1920x1080-faq.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1920x1080-schedule-to-venue-overlap.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1440x900-expanded-FAQ-last-focused.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1440x600-short.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1847x1023-reduced.png",
+    "evidence/desktop-chapter-viewport/verified-resume/390x844-hero-larger-logo.png",
+    "evidence/desktop-chapter-viewport/verified-resume/390x844-mobile-stack.png",
+    "evidence/desktop-chapter-viewport/verified-resume/390x844-CTA-reachable.png",
+    "evidence/desktop-chapter-viewport/verified-resume/390x480-hero-larger-logo.png",
+    "evidence/desktop-chapter-viewport/verified-resume/390x480-mobile-stack.png",
+    "evidence/desktop-chapter-viewport/verified-resume/390x480-CTA-reachable.png",
+    "evidence/desktop-chapter-viewport/verified-resume/320x480-hero-larger-logo.png",
+    "evidence/desktop-chapter-viewport/verified-resume/320x480-mobile-stack.png",
+    "evidence/desktop-chapter-viewport/verified-resume/320x480-CTA-reachable.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1440x900-long-agenda-row-1.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1440x900-long-agenda-row-6.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1847x1023-long-agenda-row-1.png",
+    "evidence/desktop-chapter-viewport/verified-resume/1847x1023-long-agenda-row-6.png"
+  ],
+  "errors": [],
+  "limits": [
+    "Functional geometry only; no hosted or performance claim.",
+    "No-JS versus hydrated height parity is not a complete CLS measurement."
+  ],
+  "priorEvidence": {
+    "report": "../verified/report.json",
+    "acceptedChecks": 6,
+    "harnessFailure": "Strict summary outer-edge predicate rejected0.46875px clipping; focused center hit already true"
+  },
+  "syntheticAgenda": {
+    "ownedFixture": "/tmp/ddd-desktop-chapter-0aa.sqlite",
+    "rows": 6,
+    "temporary": true
+  },
+  "syntheticAgendaRestored": true,
+  "browserClosed": true
+}

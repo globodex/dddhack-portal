@@ -1,0 +1,1634 @@
+{
+  "phase": "before-live",
+  "origin": "https://dddhack-portal.itsparam.in",
+  "source": "0aa85b55840dc26b2e9306e48fd592e83eae054c",
+  "anonymousGETOnly": true,
+  "anonymousBrowserTLSInspectionException": true,
+  "captures": [
+    "evidence/desktop-chapter-viewport/before-live/1440x900-schedule.png",
+    "evidence/desktop-chapter-viewport/before-live/1440x900-venue.png",
+    "evidence/desktop-chapter-viewport/before-live/1440x900-rules.png",
+    "evidence/desktop-chapter-viewport/before-live/1440x900-faq.png",
+    "evidence/desktop-chapter-viewport/before-live/1847x1023-schedule.png",
+    "evidence/desktop-chapter-viewport/before-live/1847x1023-venue.png",
+    "evidence/desktop-chapter-viewport/before-live/1847x1023-rules.png",
+    "evidence/desktop-chapter-viewport/before-live/1847x1023-faq.png",
+    "evidence/desktop-chapter-viewport/before-live/1920x1080-schedule.png",
+    "evidence/desktop-chapter-viewport/before-live/1920x1080-venue.png",
+    "evidence/desktop-chapter-viewport/before-live/1920x1080-rules.png",
+    "evidence/desktop-chapter-viewport/before-live/1920x1080-faq.png"
+  ],
+  "states": [
+    {
+      "name": "1440x900-schedule",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scrollY": 806,
+      "documentWidth": 1425,
+      "enhanced": "true",
+      "header": {
+        "id": "",
+        "x": 0,
+        "y": 0,
+        "width": 1425,
+        "height": 80,
+        "bottom": 80,
+        "position": "sticky",
+        "top": "0px",
+        "minHeight": "80px",
+        "fontSize": "15px"
+      },
+      "stack": {
+        "id": "",
+        "x": 12.5,
+        "y": 94,
+        "width": 1400,
+        "height": 2081.171875,
+        "bottom": 2175.171875,
+        "position": "relative",
+        "top": "0px",
+        "minHeight": "0px",
+        "fontSize": "15px"
+      },
+      "chapters": [
+        {
+          "id": "schedule",
+          "x": 55.6875,
+          "y": 94,
+          "width": 1313.625,
+          "height": 316.1875,
+          "bottom": 410.1875,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "x": 55.6875,
+          "y": 409.1875,
+          "width": 1313.625,
+          "height": 273.984375,
+          "bottom": 683.171875,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "x": 55.6875,
+          "y": 682.171875,
+          "width": 1313.625,
+          "height": 754,
+          "bottom": 1436.171875,
+          "position": "sticky",
+          "top": "122px",
+          "minHeight": "754px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "x": 55.6875,
+          "y": 1435.171875,
+          "width": 1313.625,
+          "height": 740,
+          "bottom": 2175.171875,
+          "position": "sticky",
+          "top": "136px",
+          "minHeight": "740px",
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "x": 112.6875,
+          "y": 151,
+          "width": 386.53125,
+          "height": 66,
+          "bottom": 217,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 112.6875,
+          "y": 466.1875,
+          "width": 386.53125,
+          "height": 66,
+          "bottom": 532.1875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 112.6875,
+          "y": 739.171875,
+          "width": 386.53125,
+          "height": 66,
+          "bottom": 805.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 112.6875,
+          "y": 1492.171875,
+          "width": 386.53125,
+          "height": 66,
+          "bottom": 1558.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        }
+      ]
+    },
+    {
+      "name": "1440x900-venue",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scrollY": 1121,
+      "documentWidth": 1425,
+      "enhanced": "true",
+      "header": {
+        "id": "",
+        "x": 0,
+        "y": 0,
+        "width": 1425,
+        "height": 80,
+        "bottom": 80,
+        "position": "sticky",
+        "top": "0px",
+        "minHeight": "80px",
+        "fontSize": "15px"
+      },
+      "stack": {
+        "id": "",
+        "x": 12.5,
+        "y": -221,
+        "width": 1400,
+        "height": 2081.171875,
+        "bottom": 1860.171875,
+        "position": "relative",
+        "top": "0px",
+        "minHeight": "0px",
+        "fontSize": "15px"
+      },
+      "chapters": [
+        {
+          "id": "schedule",
+          "x": 55.6875,
+          "y": -221,
+          "width": 1313.625,
+          "height": 316.1875,
+          "bottom": 95.1875,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "x": 55.6875,
+          "y": 94.1875,
+          "width": 1313.625,
+          "height": 273.984375,
+          "bottom": 368.171875,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "x": 55.6875,
+          "y": 367.171875,
+          "width": 1313.625,
+          "height": 754,
+          "bottom": 1121.171875,
+          "position": "sticky",
+          "top": "122px",
+          "minHeight": "754px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "x": 55.6875,
+          "y": 1120.171875,
+          "width": 1313.625,
+          "height": 740,
+          "bottom": 1860.171875,
+          "position": "sticky",
+          "top": "136px",
+          "minHeight": "740px",
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "x": 112.6875,
+          "y": -164,
+          "width": 386.53125,
+          "height": 66,
+          "bottom": -98,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 112.6875,
+          "y": 151.1875,
+          "width": 386.53125,
+          "height": 66,
+          "bottom": 217.1875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 112.6875,
+          "y": 424.171875,
+          "width": 386.53125,
+          "height": 66,
+          "bottom": 490.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 112.6875,
+          "y": 1177.171875,
+          "width": 386.53125,
+          "height": 66,
+          "bottom": 1243.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        }
+      ]
+    },
+    {
+      "name": "1440x900-rules",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scrollY": 1394,
+      "documentWidth": 1425,
+      "enhanced": "true",
+      "header": {
+        "id": "",
+        "x": 0,
+        "y": 0,
+        "width": 1425,
+        "height": 80,
+        "bottom": 80,
+        "position": "sticky",
+        "top": "0px",
+        "minHeight": "80px",
+        "fontSize": "15px"
+      },
+      "stack": {
+        "id": "",
+        "x": 12.5,
+        "y": -494,
+        "width": 1400,
+        "height": 2081.171875,
+        "bottom": 1587.171875,
+        "position": "relative",
+        "top": "0px",
+        "minHeight": "0px",
+        "fontSize": "15px"
+      },
+      "chapters": [
+        {
+          "id": "schedule",
+          "x": 55.6875,
+          "y": -494,
+          "width": 1313.625,
+          "height": 316.1875,
+          "bottom": -177.8125,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "x": 55.6875,
+          "y": -178.8125,
+          "width": 1313.625,
+          "height": 273.984375,
+          "bottom": 95.171875,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "x": 55.6875,
+          "y": 122,
+          "width": 1313.625,
+          "height": 754,
+          "bottom": 876,
+          "position": "sticky",
+          "top": "122px",
+          "minHeight": "754px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "x": 55.6875,
+          "y": 847.171875,
+          "width": 1313.625,
+          "height": 740,
+          "bottom": 1587.171875,
+          "position": "sticky",
+          "top": "136px",
+          "minHeight": "740px",
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "x": 112.6875,
+          "y": -437,
+          "width": 386.53125,
+          "height": 66,
+          "bottom": -371,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 112.6875,
+          "y": -121.8125,
+          "width": 386.53125,
+          "height": 66,
+          "bottom": -55.8125,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 112.6875,
+          "y": 179,
+          "width": 386.53125,
+          "height": 66,
+          "bottom": 245,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 112.6875,
+          "y": 904.171875,
+          "width": 386.53125,
+          "height": 66,
+          "bottom": 970.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        }
+      ]
+    },
+    {
+      "name": "1440x900-faq",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scrollY": 2147,
+      "documentWidth": 1425,
+      "enhanced": "true",
+      "header": {
+        "id": "",
+        "x": 0,
+        "y": 0,
+        "width": 1425,
+        "height": 80,
+        "bottom": 80,
+        "position": "sticky",
+        "top": "0px",
+        "minHeight": "80px",
+        "fontSize": "15px"
+      },
+      "stack": {
+        "id": "",
+        "x": 12.5,
+        "y": -1247,
+        "width": 1400,
+        "height": 2081.171875,
+        "bottom": 834.171875,
+        "position": "relative",
+        "top": "0px",
+        "minHeight": "0px",
+        "fontSize": "15px"
+      },
+      "chapters": [
+        {
+          "id": "schedule",
+          "x": 55.6875,
+          "y": -1247,
+          "width": 1313.625,
+          "height": 316.1875,
+          "bottom": -930.8125,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "x": 55.6875,
+          "y": -931.8125,
+          "width": 1313.625,
+          "height": 273.984375,
+          "bottom": -657.828125,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "x": 55.6875,
+          "y": 80.171875,
+          "width": 1313.625,
+          "height": 754,
+          "bottom": 834.171875,
+          "position": "sticky",
+          "top": "122px",
+          "minHeight": "754px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "x": 55.6875,
+          "y": 94.171875,
+          "width": 1313.625,
+          "height": 740,
+          "bottom": 834.171875,
+          "position": "sticky",
+          "top": "136px",
+          "minHeight": "740px",
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "x": 112.6875,
+          "y": -1190,
+          "width": 386.53125,
+          "height": 66,
+          "bottom": -1124,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 112.6875,
+          "y": -874.8125,
+          "width": 386.53125,
+          "height": 66,
+          "bottom": -808.8125,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 112.6875,
+          "y": 137.171875,
+          "width": 386.53125,
+          "height": 66,
+          "bottom": 203.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 112.6875,
+          "y": 151.171875,
+          "width": 386.53125,
+          "height": 66,
+          "bottom": 217.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        }
+      ]
+    },
+    {
+      "name": "1847x1023-schedule",
+      "viewport": {
+        "width": 1847,
+        "height": 1023
+      },
+      "scrollY": 929,
+      "documentWidth": 1832,
+      "enhanced": "true",
+      "header": {
+        "id": "",
+        "x": 0,
+        "y": 0,
+        "width": 1832,
+        "height": 80,
+        "bottom": 80,
+        "position": "sticky",
+        "top": "0px",
+        "minHeight": "80px",
+        "fontSize": "15px"
+      },
+      "stack": {
+        "id": "",
+        "x": 216,
+        "y": 94,
+        "width": 1400,
+        "height": 2327.171875,
+        "bottom": 2421.171875,
+        "position": "relative",
+        "top": "0px",
+        "minHeight": "0px",
+        "fontSize": "15px"
+      },
+      "chapters": [
+        {
+          "id": "schedule",
+          "x": 260,
+          "y": 94,
+          "width": 1312,
+          "height": 316.1875,
+          "bottom": 410.1875,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "x": 260,
+          "y": 409.1875,
+          "width": 1312,
+          "height": 273.984375,
+          "bottom": 683.171875,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "x": 260,
+          "y": 682.171875,
+          "width": 1312,
+          "height": 877,
+          "bottom": 1559.171875,
+          "position": "sticky",
+          "top": "122px",
+          "minHeight": "877px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "x": 260,
+          "y": 1558.171875,
+          "width": 1312,
+          "height": 863,
+          "bottom": 2421.171875,
+          "position": "sticky",
+          "top": "136px",
+          "minHeight": "863px",
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "x": 317,
+          "y": 151,
+          "width": 386,
+          "height": 66,
+          "bottom": 217,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 317,
+          "y": 466.1875,
+          "width": 386,
+          "height": 66,
+          "bottom": 532.1875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 317,
+          "y": 739.171875,
+          "width": 386,
+          "height": 66,
+          "bottom": 805.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 317,
+          "y": 1615.171875,
+          "width": 386,
+          "height": 66,
+          "bottom": 1681.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        }
+      ]
+    },
+    {
+      "name": "1847x1023-venue",
+      "viewport": {
+        "width": 1847,
+        "height": 1023
+      },
+      "scrollY": 1244,
+      "documentWidth": 1832,
+      "enhanced": "true",
+      "header": {
+        "id": "",
+        "x": 0,
+        "y": 0,
+        "width": 1832,
+        "height": 80,
+        "bottom": 80,
+        "position": "sticky",
+        "top": "0px",
+        "minHeight": "80px",
+        "fontSize": "15px"
+      },
+      "stack": {
+        "id": "",
+        "x": 216,
+        "y": -221,
+        "width": 1400,
+        "height": 2327.171875,
+        "bottom": 2106.171875,
+        "position": "relative",
+        "top": "0px",
+        "minHeight": "0px",
+        "fontSize": "15px"
+      },
+      "chapters": [
+        {
+          "id": "schedule",
+          "x": 260,
+          "y": -221,
+          "width": 1312,
+          "height": 316.1875,
+          "bottom": 95.1875,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "x": 260,
+          "y": 94.1875,
+          "width": 1312,
+          "height": 273.984375,
+          "bottom": 368.171875,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "x": 260,
+          "y": 367.171875,
+          "width": 1312,
+          "height": 877,
+          "bottom": 1244.171875,
+          "position": "sticky",
+          "top": "122px",
+          "minHeight": "877px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "x": 260,
+          "y": 1243.171875,
+          "width": 1312,
+          "height": 863,
+          "bottom": 2106.171875,
+          "position": "sticky",
+          "top": "136px",
+          "minHeight": "863px",
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "x": 317,
+          "y": -164,
+          "width": 386,
+          "height": 66,
+          "bottom": -98,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 317,
+          "y": 151.1875,
+          "width": 386,
+          "height": 66,
+          "bottom": 217.1875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 317,
+          "y": 424.171875,
+          "width": 386,
+          "height": 66,
+          "bottom": 490.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 317,
+          "y": 1300.171875,
+          "width": 386,
+          "height": 66,
+          "bottom": 1366.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        }
+      ]
+    },
+    {
+      "name": "1847x1023-rules",
+      "viewport": {
+        "width": 1847,
+        "height": 1023
+      },
+      "scrollY": 1517,
+      "documentWidth": 1832,
+      "enhanced": "true",
+      "header": {
+        "id": "",
+        "x": 0,
+        "y": 0,
+        "width": 1832,
+        "height": 80,
+        "bottom": 80,
+        "position": "sticky",
+        "top": "0px",
+        "minHeight": "80px",
+        "fontSize": "15px"
+      },
+      "stack": {
+        "id": "",
+        "x": 216,
+        "y": -494,
+        "width": 1400,
+        "height": 2327.171875,
+        "bottom": 1833.171875,
+        "position": "relative",
+        "top": "0px",
+        "minHeight": "0px",
+        "fontSize": "15px"
+      },
+      "chapters": [
+        {
+          "id": "schedule",
+          "x": 260,
+          "y": -494,
+          "width": 1312,
+          "height": 316.1875,
+          "bottom": -177.8125,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "x": 260,
+          "y": -178.8125,
+          "width": 1312,
+          "height": 273.984375,
+          "bottom": 95.171875,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "x": 260,
+          "y": 122,
+          "width": 1312,
+          "height": 877,
+          "bottom": 999,
+          "position": "sticky",
+          "top": "122px",
+          "minHeight": "877px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "x": 260,
+          "y": 970.171875,
+          "width": 1312,
+          "height": 863,
+          "bottom": 1833.171875,
+          "position": "sticky",
+          "top": "136px",
+          "minHeight": "863px",
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "x": 317,
+          "y": -437,
+          "width": 386,
+          "height": 66,
+          "bottom": -371,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 317,
+          "y": -121.8125,
+          "width": 386,
+          "height": 66,
+          "bottom": -55.8125,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 317,
+          "y": 179,
+          "width": 386,
+          "height": 66,
+          "bottom": 245,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 317,
+          "y": 1027.171875,
+          "width": 386,
+          "height": 66,
+          "bottom": 1093.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        }
+      ]
+    },
+    {
+      "name": "1847x1023-faq",
+      "viewport": {
+        "width": 1847,
+        "height": 1023
+      },
+      "scrollY": 2393,
+      "documentWidth": 1832,
+      "enhanced": "true",
+      "header": {
+        "id": "",
+        "x": 0,
+        "y": 0,
+        "width": 1832,
+        "height": 80,
+        "bottom": 80,
+        "position": "sticky",
+        "top": "0px",
+        "minHeight": "80px",
+        "fontSize": "15px"
+      },
+      "stack": {
+        "id": "",
+        "x": 216,
+        "y": -1370,
+        "width": 1400,
+        "height": 2327.171875,
+        "bottom": 957.171875,
+        "position": "relative",
+        "top": "0px",
+        "minHeight": "0px",
+        "fontSize": "15px"
+      },
+      "chapters": [
+        {
+          "id": "schedule",
+          "x": 260,
+          "y": -1370,
+          "width": 1312,
+          "height": 316.1875,
+          "bottom": -1053.8125,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "x": 260,
+          "y": -1054.8125,
+          "width": 1312,
+          "height": 273.984375,
+          "bottom": -780.828125,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "x": 260,
+          "y": 80.171875,
+          "width": 1312,
+          "height": 877,
+          "bottom": 957.171875,
+          "position": "sticky",
+          "top": "122px",
+          "minHeight": "877px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "x": 260,
+          "y": 94.171875,
+          "width": 1312,
+          "height": 863,
+          "bottom": 957.171875,
+          "position": "sticky",
+          "top": "136px",
+          "minHeight": "863px",
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "x": 317,
+          "y": -1313,
+          "width": 386,
+          "height": 66,
+          "bottom": -1247,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 317,
+          "y": -997.8125,
+          "width": 386,
+          "height": 66,
+          "bottom": -931.8125,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 317,
+          "y": 137.171875,
+          "width": 386,
+          "height": 66,
+          "bottom": 203.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 317,
+          "y": 151.171875,
+          "width": 386,
+          "height": 66,
+          "bottom": 217.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        }
+      ]
+    },
+    {
+      "name": "1920x1080-schedule",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scrollY": 986,
+      "documentWidth": 1905,
+      "enhanced": "true",
+      "header": {
+        "id": "",
+        "x": 0,
+        "y": 0,
+        "width": 1905,
+        "height": 80,
+        "bottom": 80,
+        "position": "sticky",
+        "top": "0px",
+        "minHeight": "80px",
+        "fontSize": "15px"
+      },
+      "stack": {
+        "id": "",
+        "x": 252.5,
+        "y": 94,
+        "width": 1400,
+        "height": 2441.171875,
+        "bottom": 2535.171875,
+        "position": "relative",
+        "top": "0px",
+        "minHeight": "0px",
+        "fontSize": "15px"
+      },
+      "chapters": [
+        {
+          "id": "schedule",
+          "x": 296.5,
+          "y": 94,
+          "width": 1312,
+          "height": 316.1875,
+          "bottom": 410.1875,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "x": 296.5,
+          "y": 409.1875,
+          "width": 1312,
+          "height": 273.984375,
+          "bottom": 683.171875,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "x": 296.5,
+          "y": 682.171875,
+          "width": 1312,
+          "height": 934,
+          "bottom": 1616.171875,
+          "position": "sticky",
+          "top": "122px",
+          "minHeight": "934px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "x": 296.5,
+          "y": 1615.171875,
+          "width": 1312,
+          "height": 920,
+          "bottom": 2535.171875,
+          "position": "sticky",
+          "top": "136px",
+          "minHeight": "920px",
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "x": 353.5,
+          "y": 151,
+          "width": 386,
+          "height": 66,
+          "bottom": 217,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 353.5,
+          "y": 466.1875,
+          "width": 386,
+          "height": 66,
+          "bottom": 532.1875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 353.5,
+          "y": 739.171875,
+          "width": 386,
+          "height": 66,
+          "bottom": 805.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 353.5,
+          "y": 1672.171875,
+          "width": 386,
+          "height": 66,
+          "bottom": 1738.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        }
+      ]
+    },
+    {
+      "name": "1920x1080-venue",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scrollY": 1301,
+      "documentWidth": 1905,
+      "enhanced": "true",
+      "header": {
+        "id": "",
+        "x": 0,
+        "y": 0,
+        "width": 1905,
+        "height": 80,
+        "bottom": 80,
+        "position": "sticky",
+        "top": "0px",
+        "minHeight": "80px",
+        "fontSize": "15px"
+      },
+      "stack": {
+        "id": "",
+        "x": 252.5,
+        "y": -221,
+        "width": 1400,
+        "height": 2441.171875,
+        "bottom": 2220.171875,
+        "position": "relative",
+        "top": "0px",
+        "minHeight": "0px",
+        "fontSize": "15px"
+      },
+      "chapters": [
+        {
+          "id": "schedule",
+          "x": 296.5,
+          "y": -221,
+          "width": 1312,
+          "height": 316.1875,
+          "bottom": 95.1875,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "x": 296.5,
+          "y": 94.1875,
+          "width": 1312,
+          "height": 273.984375,
+          "bottom": 368.171875,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "x": 296.5,
+          "y": 367.171875,
+          "width": 1312,
+          "height": 934,
+          "bottom": 1301.171875,
+          "position": "sticky",
+          "top": "122px",
+          "minHeight": "934px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "x": 296.5,
+          "y": 1300.171875,
+          "width": 1312,
+          "height": 920,
+          "bottom": 2220.171875,
+          "position": "sticky",
+          "top": "136px",
+          "minHeight": "920px",
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "x": 353.5,
+          "y": -164,
+          "width": 386,
+          "height": 66,
+          "bottom": -98,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 353.5,
+          "y": 151.1875,
+          "width": 386,
+          "height": 66,
+          "bottom": 217.1875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 353.5,
+          "y": 424.171875,
+          "width": 386,
+          "height": 66,
+          "bottom": 490.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 353.5,
+          "y": 1357.171875,
+          "width": 386,
+          "height": 66,
+          "bottom": 1423.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        }
+      ]
+    },
+    {
+      "name": "1920x1080-rules",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scrollY": 1574,
+      "documentWidth": 1905,
+      "enhanced": "true",
+      "header": {
+        "id": "",
+        "x": 0,
+        "y": 0,
+        "width": 1905,
+        "height": 80,
+        "bottom": 80,
+        "position": "sticky",
+        "top": "0px",
+        "minHeight": "80px",
+        "fontSize": "15px"
+      },
+      "stack": {
+        "id": "",
+        "x": 252.5,
+        "y": -494,
+        "width": 1400,
+        "height": 2441.171875,
+        "bottom": 1947.171875,
+        "position": "relative",
+        "top": "0px",
+        "minHeight": "0px",
+        "fontSize": "15px"
+      },
+      "chapters": [
+        {
+          "id": "schedule",
+          "x": 296.5,
+          "y": -494,
+          "width": 1312,
+          "height": 316.1875,
+          "bottom": -177.8125,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "x": 296.5,
+          "y": -178.8125,
+          "width": 1312,
+          "height": 273.984375,
+          "bottom": 95.171875,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "x": 296.5,
+          "y": 122,
+          "width": 1312,
+          "height": 934,
+          "bottom": 1056,
+          "position": "sticky",
+          "top": "122px",
+          "minHeight": "934px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "x": 296.5,
+          "y": 1027.171875,
+          "width": 1312,
+          "height": 920,
+          "bottom": 1947.171875,
+          "position": "sticky",
+          "top": "136px",
+          "minHeight": "920px",
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "x": 353.5,
+          "y": -437,
+          "width": 386,
+          "height": 66,
+          "bottom": -371,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 353.5,
+          "y": -121.8125,
+          "width": 386,
+          "height": 66,
+          "bottom": -55.8125,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 353.5,
+          "y": 179,
+          "width": 386,
+          "height": 66,
+          "bottom": 245,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 353.5,
+          "y": 1084.171875,
+          "width": 386,
+          "height": 66,
+          "bottom": 1150.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        }
+      ]
+    },
+    {
+      "name": "1920x1080-faq",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scrollY": 2507,
+      "documentWidth": 1905,
+      "enhanced": "true",
+      "header": {
+        "id": "",
+        "x": 0,
+        "y": 0,
+        "width": 1905,
+        "height": 80,
+        "bottom": 80,
+        "position": "sticky",
+        "top": "0px",
+        "minHeight": "80px",
+        "fontSize": "15px"
+      },
+      "stack": {
+        "id": "",
+        "x": 252.5,
+        "y": -1427,
+        "width": 1400,
+        "height": 2441.171875,
+        "bottom": 1014.171875,
+        "position": "relative",
+        "top": "0px",
+        "minHeight": "0px",
+        "fontSize": "15px"
+      },
+      "chapters": [
+        {
+          "id": "schedule",
+          "x": 296.5,
+          "y": -1427,
+          "width": 1312,
+          "height": 316.1875,
+          "bottom": -1110.8125,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "x": 296.5,
+          "y": -1111.8125,
+          "width": 1312,
+          "height": 273.984375,
+          "bottom": -837.828125,
+          "position": "relative",
+          "top": "0px",
+          "minHeight": "0px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "x": 296.5,
+          "y": 80.171875,
+          "width": 1312,
+          "height": 934,
+          "bottom": 1014.171875,
+          "position": "sticky",
+          "top": "122px",
+          "minHeight": "934px",
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "x": 296.5,
+          "y": 94.171875,
+          "width": 1312,
+          "height": 920,
+          "bottom": 1014.171875,
+          "position": "sticky",
+          "top": "136px",
+          "minHeight": "920px",
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "x": 353.5,
+          "y": -1370,
+          "width": 386,
+          "height": 66,
+          "bottom": -1304,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 353.5,
+          "y": -1054.8125,
+          "width": 386,
+          "height": 66,
+          "bottom": -988.8125,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 353.5,
+          "y": 137.171875,
+          "width": 386,
+          "height": 66,
+          "bottom": 203.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        },
+        {
+          "id": "",
+          "x": 353.5,
+          "y": 151.171875,
+          "width": 386,
+          "height": 66,
+          "bottom": 217.171875,
+          "position": "static",
+          "top": "auto",
+          "minHeight": "0px",
+          "fontSize": "60px"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "checks": [],
+  "browserClosed": true
+}

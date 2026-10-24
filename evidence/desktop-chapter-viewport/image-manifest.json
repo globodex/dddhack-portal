@@ -1,0 +1,478 @@
+[
+  {
+    "path": "evidence/desktop-chapter-viewport/after-local/1440x900-faq.png",
+    "sha256": "b0c30ece265af885055b9cd5b56309ebc67c51067d0a1765b4a8ba106bcf970e",
+    "bytes": 69708,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/after-local/1440x900-rules.png",
+    "sha256": "7fc446e8f33995f1769b45674a9c41a5da9b9e04c6c8922ebf4549fd81cf2391",
+    "bytes": 66296,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/after-local/1440x900-schedule.png",
+    "sha256": "170fabd33e362779ae012fe8b42b515f18e57b7e8f057aca393837f8d86e4001",
+    "bytes": 39857,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/after-local/1440x900-venue.png",
+    "sha256": "c8269ad8b41bfb3d9d4860a06e05ef64a9351535b36709a0b42c755f5af80ca2",
+    "bytes": 26763,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/after-local/1847x1023-faq.png",
+    "sha256": "075dbe2b9a0f1271059a010cf9c94d55eced247200d73228461ef446aba63d19",
+    "bytes": 70141,
+    "width": 1847,
+    "height": 1023
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/after-local/1847x1023-rules.png",
+    "sha256": "a8273e4884104a4257e27d158f185b9ebd56bf4b60da9d90e116e58b2ff80555",
+    "bytes": 69697,
+    "width": 1847,
+    "height": 1023
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/after-local/1847x1023-schedule.png",
+    "sha256": "697d5475061a1d7712af5d2ec4611f9544af88f80b6336e9dbcf147a733a618f",
+    "bytes": 39607,
+    "width": 1847,
+    "height": 1023
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/after-local/1847x1023-venue.png",
+    "sha256": "3557b2bb33caf4dbd86ad98a5a306002d47e7bd498ebbff0330a9e3da14e5dbc",
+    "bytes": 31118,
+    "width": 1847,
+    "height": 1023
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/after-local/1920x1080-faq.png",
+    "sha256": "bbf3c61015a9a87fa14a8da98b653b4c1869b46fdebffa9afbde66cfde6b45ee",
+    "bytes": 70357,
+    "width": 1920,
+    "height": 1080
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/after-local/1920x1080-rules.png",
+    "sha256": "9965623731cfac6c2a525371c8d510c7b731b92e122f8fecfcb14229bc8833c1",
+    "bytes": 70292,
+    "width": 1920,
+    "height": 1080
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/after-local/1920x1080-schedule.png",
+    "sha256": "405403a2972fe9f85e6c449a4055c99e166e6c9d46219aac3f46edc400a8aab0",
+    "bytes": 40186,
+    "width": 1920,
+    "height": 1080
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/after-local/1920x1080-venue.png",
+    "sha256": "3c11f657efb5e50344a96228223810074182bcc4d23c252f769a749c657d8626",
+    "bytes": 31909,
+    "width": 1920,
+    "height": 1080
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/before-live/1440x900-faq.png",
+    "sha256": "cae4b51009110e405e1778e2a6951447e7f84cbed92a6cc3b06d96629a6b7c96",
+    "bytes": 59556,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/before-live/1440x900-rules.png",
+    "sha256": "26363003f5d1258d2f6838ad0e7ca023c9d72a90a9badf842b405f245127440c",
+    "bytes": 58147,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/before-live/1440x900-schedule.png",
+    "sha256": "b1442cd4143b24cb6f9ad6d7aeb1ddc91e917680401016c6583d52f461be26dd",
+    "bytes": 59527,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/before-live/1440x900-venue.png",
+    "sha256": "940682bc72d1edb5ee0cfa636574a213afe0d7d5e01086620dc5e2377b490677",
+    "bytes": 66913,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/before-live/1847x1023-faq.png",
+    "sha256": "089bfe889d767797b3e1236ea7d150151620d258be587b37a2aa88972f30cf84",
+    "bytes": 62729,
+    "width": 1847,
+    "height": 1023
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/before-live/1847x1023-rules.png",
+    "sha256": "c4cc11ac0028e4521d7fb4ac26e881d0b460ebe7e9bdbe1ab0abc74a92ca99b5",
+    "bytes": 61146,
+    "width": 1847,
+    "height": 1023
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/before-live/1847x1023-schedule.png",
+    "sha256": "4f11347e61ff86f41a73dbfd2169d0ee356645cd09e35f20fac965a85ed2bb1e",
+    "bytes": 73227,
+    "width": 1847,
+    "height": 1023
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/before-live/1847x1023-venue.png",
+    "sha256": "b0f5f929c59e87bf1ebfa788b258ba8a3b4e7f1cf6ad3fa8baabe0a59a01f173",
+    "bytes": 70903,
+    "width": 1847,
+    "height": 1023
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/before-live/1920x1080-faq.png",
+    "sha256": "b263ea8a1a3044a0779db1cfd1f10345f8cd391976a6a5d823fc85b63e32bfa2",
+    "bytes": 63362,
+    "width": 1920,
+    "height": 1080
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/before-live/1920x1080-rules.png",
+    "sha256": "8569e4ff65df4a59e76e1f4741c6bd279e83d7895dac17856edb2d129a4badc5",
+    "bytes": 61999,
+    "width": 1920,
+    "height": 1080
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/before-live/1920x1080-schedule.png",
+    "sha256": "77196eccf137ff072725c312cf5772cdefd9ab93faddfb842ae3ed2bb9516948",
+    "bytes": 79376,
+    "width": 1920,
+    "height": 1080
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/before-live/1920x1080-venue.png",
+    "sha256": "01d41e368f721655445e6579c8dd178e4bd5cabcfb7b1dc7ee45f59e03c4720b",
+    "bytes": 71501,
+    "width": 1920,
+    "height": 1080
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified/1440x900-faq.png",
+    "sha256": "10afadff24b53e0d97e08eb7b3de68fde3f7c98b1f59ebf27358680e9648e070",
+    "bytes": 67312,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified/1440x900-hero-larger-logo.png",
+    "sha256": "7f195e126c7879aa8963ac2b261a230305a489237070d535c6830c9f6589e056",
+    "bytes": 322651,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified/1440x900-no-JS-schedule.png",
+    "sha256": "8784aeb396f32d587cd90aca2b12c936653e69e976dc5599eaa272e8f02b248f",
+    "bytes": 40254,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified/1440x900-rules.png",
+    "sha256": "7fc446e8f33995f1769b45674a9c41a5da9b9e04c6c8922ebf4549fd81cf2391",
+    "bytes": 66296,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified/1440x900-schedule-to-venue-overlap.png",
+    "sha256": "a05716b43b2b9fe285c11453b7f9b84c3fc9b13c3471a6a8b9c6356633834778",
+    "bytes": 45704,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified/1440x900-schedule.png",
+    "sha256": "2d48f7354391d8b56f793fb97a0d38c1efdf773cd837ff7027162ff5bef7ebf8",
+    "bytes": 38788,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified/1440x900-venue.png",
+    "sha256": "c8269ad8b41bfb3d9d4860a06e05ef64a9351535b36709a0b42c755f5af80ca2",
+    "bytes": 26763,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-final/1440x900-hero-larger-logo.png",
+    "sha256": "4009a9f4003129d9cb2cbbf9751b0284396f013c90e5710bd6d9806cb9c4888b",
+    "bytes": 276241,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-final/320x480-CTA-reachable.png",
+    "sha256": "2f310914c69ec52e86238523fd3b70d773fb06fea49c6b035fccb70422d358ec",
+    "bytes": 17794,
+    "width": 320,
+    "height": 480
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-final/320x480-hero-larger-logo.png",
+    "sha256": "3e3e6a9ef0d55f608a0bde9265e0b4086f3456b189ee59db96ae29d5e9246f05",
+    "bytes": 65136,
+    "width": 320,
+    "height": 480
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-final/390x844-hero-larger-logo.png",
+    "sha256": "09eff91e12aa927894b53ad3c69d88a18c640ec2ae4d0a37f341fa85be2c37d2",
+    "bytes": 101662,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-final-supplement/320x480-CTA-reachable.png",
+    "sha256": "22f3ffc30f97be9fdf2496459ccac0e2ee64291d330c48d789c44d31525283f0",
+    "bytes": 25484,
+    "width": 320,
+    "height": 480
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-final-supplement/320x480-hero-larger-logo.png",
+    "sha256": "3e3e6a9ef0d55f608a0bde9265e0b4086f3456b189ee59db96ae29d5e9246f05",
+    "bytes": 65136,
+    "width": 320,
+    "height": 480
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-final-supplement/768x1024-hero-larger-logo.png",
+    "sha256": "f21275d78a7107eaf8ad6fe59edec8c5efcc44eea5a87188c59569dc3defd508",
+    "bytes": 232512,
+    "width": 768,
+    "height": 1024
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1440x600-short.png",
+    "sha256": "1a3b3ef75c2da513c09d393f264a3375c8edc4f57abd0b3a46d82c39d3a0a688",
+    "bytes": 59073,
+    "width": 1440,
+    "height": 600
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1440x900-expanded-FAQ-last-focused.png",
+    "sha256": "f348d2f9b45b8c653f9f0e341dd56c80bcd0b8417bf395657ad9d1c9027f36ba",
+    "bytes": 92411,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1440x900-long-agenda-row-1.png",
+    "sha256": "672f3549320955492d50cb540aa070dd43eede847c96d0c2488e74c9a47ba386",
+    "bytes": 114848,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1440x900-long-agenda-row-6.png",
+    "sha256": "d0ac1d28b3b0b9bf9ef5dfce8cec4059ef7617d84e8fdfbd254b56df5786510a",
+    "bytes": 110500,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1847x1023-faq.png",
+    "sha256": "eb7b1caf5dd9f15faa5388fd36a0d265ef42e808b3c7765a775acef45056e8ca",
+    "bytes": 69639,
+    "width": 1847,
+    "height": 1023
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1847x1023-hero-larger-logo.png",
+    "sha256": "348368073dec273a16cdcc85edb26a38dd952a9874bf2bd8b3c98702fc5ad7b5",
+    "bytes": 367394,
+    "width": 1847,
+    "height": 1023
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1847x1023-long-agenda-row-1.png",
+    "sha256": "0456918c84d8ecebb4d744e92ee599bb3487f3853e4fe877ff2b19e0d5500137",
+    "bytes": 143287,
+    "width": 1847,
+    "height": 1023
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1847x1023-long-agenda-row-6.png",
+    "sha256": "3fb6c44642f31f0e56715a19fc0fe0001f74cccc115cd3cbcc350fc5cf0e921d",
+    "bytes": 132209,
+    "width": 1847,
+    "height": 1023
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1847x1023-no-JS-schedule.png",
+    "sha256": "b2f8bc7b101e07bced0cfa236bf16e0ac7b656952fe7920c825230b70d316182",
+    "bytes": 43838,
+    "width": 1847,
+    "height": 1023
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1847x1023-reduced.png",
+    "sha256": "9f5532bccec7b289867d05905fef651b022ad5cb2fcd836d16d8075b12965375",
+    "bytes": 98358,
+    "width": 1847,
+    "height": 1023
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1847x1023-rules.png",
+    "sha256": "a8273e4884104a4257e27d158f185b9ebd56bf4b60da9d90e116e58b2ff80555",
+    "bytes": 69697,
+    "width": 1847,
+    "height": 1023
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1847x1023-schedule-to-venue-overlap.png",
+    "sha256": "a02a5e9e8683c92051f423da0cc2558f08f2217f352bc6f93e78ef6383ebf683",
+    "bytes": 51283,
+    "width": 1847,
+    "height": 1023
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1847x1023-schedule.png",
+    "sha256": "f03bdaf53e75b392bc45da948baa930b772e61103d1e2c213805cd32921de6da",
+    "bytes": 45066,
+    "width": 1847,
+    "height": 1023
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1847x1023-venue.png",
+    "sha256": "3557b2bb33caf4dbd86ad98a5a306002d47e7bd498ebbff0330a9e3da14e5dbc",
+    "bytes": 31118,
+    "width": 1847,
+    "height": 1023
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1920x1080-faq.png",
+    "sha256": "4216c686375e49670a8cc1514fd966241a9575105f5927cf768bba30517818f7",
+    "bytes": 70992,
+    "width": 1920,
+    "height": 1080
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1920x1080-hero-larger-logo.png",
+    "sha256": "9b06a55c7f275e2a38e8d3783e31bf53627e2ba00b5321fb4e9660d047a70070",
+    "bytes": 393634,
+    "width": 1920,
+    "height": 1080
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1920x1080-no-JS-schedule.png",
+    "sha256": "53b976a61f6c73195c7abc74d697ec1d80803dbd43b6f95f18f1aa7266179813",
+    "bytes": 44466,
+    "width": 1920,
+    "height": 1080
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1920x1080-rules.png",
+    "sha256": "9965623731cfac6c2a525371c8d510c7b731b92e122f8fecfcb14229bc8833c1",
+    "bytes": 70292,
+    "width": 1920,
+    "height": 1080
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1920x1080-schedule-to-venue-overlap.png",
+    "sha256": "7692749235a133788570ec87a4516e675e1913ba131c03cd31acf4207c9ef37c",
+    "bytes": 51974,
+    "width": 1920,
+    "height": 1080
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1920x1080-schedule.png",
+    "sha256": "dcc33ea6ee9de81020b89d1241d57a45753ffe0d5bfd300bae66af9668fd2fef",
+    "bytes": 43734,
+    "width": 1920,
+    "height": 1080
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/1920x1080-venue.png",
+    "sha256": "3c11f657efb5e50344a96228223810074182bcc4d23c252f769a749c657d8626",
+    "bytes": 31909,
+    "width": 1920,
+    "height": 1080
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/320x480-CTA-reachable.png",
+    "sha256": "0e1ddc2f1e0f287ee7725e68ef388da6273b64faaac7b784af69f09e2d144bb2",
+    "bytes": 16611,
+    "width": 320,
+    "height": 480
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/320x480-hero-larger-logo.png",
+    "sha256": "8d2f90df11f2ece75ca07f9bb3840249c17c2b6b5e88a24a4b8c6b318b99280c",
+    "bytes": 67998,
+    "width": 320,
+    "height": 480
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/320x480-mobile-stack.png",
+    "sha256": "18aad7516eb01b7fbc536dd042b1cdbd983142764af1ef9d16b41fa66043be1d",
+    "bytes": 18525,
+    "width": 320,
+    "height": 480
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/390x480-CTA-reachable.png",
+    "sha256": "4fe5c6de51a4ce0635ed95e94796d8e15738c0225d670726dcbce69872705aad",
+    "bytes": 13747,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/390x480-hero-larger-logo.png",
+    "sha256": "ba1119fa586de89c6e614109a8ffd5cac25151e4712436d9c486c48a0b167700",
+    "bytes": 83628,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/390x480-mobile-stack.png",
+    "sha256": "03575f37501b319ca98101a7d691c325afaa03f3ca790926e11e023b7b8f83d4",
+    "bytes": 19639,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/390x844-CTA-reachable.png",
+    "sha256": "3da5f67b2bd0280e22219dfab5be2cdbb449c2a691b09531f2da820598858d23",
+    "bytes": 67472,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/390x844-hero-larger-logo.png",
+    "sha256": "22827a677a462dbc4950936cd353370ab84050c89d62f9ad8d90c1ad11e03360",
+    "bytes": 97374,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/desktop-chapter-viewport/verified-resume/390x844-mobile-stack.png",
+    "sha256": "2414f72284fc87981c57b5c92844fb41c6b755eebc3a5d2be1cac88971a423a6",
+    "bytes": 39983,
+    "width": 390,
+    "height": 844
+  }
+]

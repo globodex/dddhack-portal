@@ -1,0 +1,45 @@
+{
+  "applicationSource": "2f124a874730ccff3aafe0fee34a9ee427b2a33c",
+  "baseSource": "0aa85b55840dc26b2e9306e48fd592e83eae054c",
+  "createdAt": "2026-10-24T18:48:04.513Z",
+  "sourceFiles": {
+    "app/home.tsx": "ab76791fb27b84f4a9c505c3d66ca75668339d8ab4dbec2ddf234b0ed625c63e",
+    "app/home-geometry.ts": "8daac8cbb80178aa950ea3a74dfdf63f55488d9ed45363a3881e7f2afc04f486",
+    "app/home-lower.css": "3bc1dc9d67d32b2d9ccafee61accccf8f14c0512ca8aaaec5b51b8d2d692125b"
+  },
+  "applicationDiffSinceSource": "",
+  "mobileHelperBytesIdentical": true,
+  "overallHeroMarkupBytesIdentical": true,
+  "acceptedFunctionalChecks": 52,
+  "acceptedMotionChecks": 5,
+  "acceptedBrowserChecks": 57,
+  "unitTestObservation": {
+    "command": "node --import tsx --test --test-concurrency=1 tests/desktop-chapter-viewport.test.ts tests/mobile-home-stack.test.ts tests/approved-home-interaction.test.ts tests/organizer-motion.test.ts",
+    "pass": 12,
+    "fail": 0,
+    "toolSession": 40393
+  },
+  "nativePNGFiles": 68,
+  "temporarySyntheticContentRestored": true,
+  "ownedRuntimeCleanup": {
+    "absentPids": [
+      182239,
+      182263,
+      182242
+    ],
+    "portsVerifiedClosed": [
+      3010,
+      8855
+    ],
+    "frontendSessionExit": 0,
+    "backendSessionExit": 143,
+    "allBrowsersClosed": true
+  },
+  "pushes": 0,
+  "hostedWrites": 0,
+  "providerChanges": 0,
+  "newDependencies": 0,
+  "scope": "desktop chapters plus separately authorized logo size only",
+  "afterLocalBeforeCommitBinding": "Initial after-local captures used the same uncommitted application patch now committed as2f; final verified reports record2f directly.",
+  "rootOwns": "Final integrated typecheck/build/relevant tests/publication; no backend archive change required."
+}

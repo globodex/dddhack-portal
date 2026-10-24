@@ -1,0 +1,24 @@
+{
+  "source": "2f124a874730ccff3aafe0fee34a9ee427b2a33c",
+  "checks": [
+    {
+      "name": "desktop pointer repels existing expression dots",
+      "passed": true,
+      "changed": 8
+    },
+    {
+      "name": "pause freezes hero dot transforms",
+      "passed": true
+    },
+    {
+      "name": "pause restores ordinary desktop chapter flow",
+      "passed": true
+    },
+    {
+      "name": "offscreen hero dot transforms stop",
+      "passed": false
+    }
+  ],
+  "errors": [],
+  "browserClosed": true
+}

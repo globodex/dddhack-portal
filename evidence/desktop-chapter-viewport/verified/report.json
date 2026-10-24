@@ -1,0 +1,943 @@
+{
+  "source": "2f124a874730ccff3aafe0fee34a9ee427b2a33c",
+  "localSyntheticOnly": true,
+  "checks": [
+    {
+      "name": "1440x900 SSR reserves full chapter stages",
+      "passed": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "documentWidth": 1425,
+      "scrollY": 879,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1425,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 93.96875,
+          "bottom": 875.96875,
+          "height": 782,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 874.96875,
+          "bottom": 1642.96875,
+          "height": 768,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1641.96875,
+          "bottom": 2395.96875,
+          "height": 754,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2394.96875,
+          "bottom": 3134.96875,
+          "height": 740,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 150.96875,
+          "bottom": 241.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 931.96875,
+          "bottom": 1022.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 1698.96875,
+          "bottom": 1789.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 2451.96875,
+          "bottom": 2542.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        }
+      ]
+    },
+    {
+      "name": "1440x900 official wordmark enlarged without stretching",
+      "passed": true,
+      "logo": {
+        "width": 113.203125,
+        "height": 50,
+        "naturalWidth": 360,
+        "naturalHeight": 159,
+        "top": 580.171875
+      },
+      "hostBottom": 574.9375,
+      "cta": {
+        "top": 700.171875,
+        "bottom": 758.96875,
+        "height": 58.796875,
+        "visible": true,
+        "hit": true
+      },
+      "settlingVisible": 117.03125,
+      "documentWidth": 1425
+    },
+    {
+      "name": "1440x900 full width full height and large chapter headings",
+      "passed": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "documentWidth": 1425,
+      "scrollY": 879,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1425,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "true",
+      "mobile": "false",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 94,
+          "bottom": 876,
+          "height": 782,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 94,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 874.96875,
+          "bottom": 1642.96875,
+          "height": 768,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 108,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1641.96875,
+          "bottom": 2395.96875,
+          "height": 754,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 122,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2394.96875,
+          "bottom": 3134.96875,
+          "height": 740,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 136,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 151,
+          "bottom": 241.28125,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 931.96875,
+          "bottom": 1022.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 1698.96875,
+          "bottom": 1789.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 2451.96875,
+          "bottom": 2542.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        }
+      ]
+    },
+    {
+      "name": "1440x900 no compact-to-full-height hydration jump",
+      "passed": true,
+      "noJS": [
+        782,
+        768,
+        754,
+        740
+      ],
+      "hydrated": [
+        782,
+        768,
+        754,
+        740
+      ]
+    },
+    {
+      "name": "1440x900 native desktop stack overlap progresses",
+      "passed": true
+    },
+    {
+      "name": "expanded desktop FAQ is remeasured without clipping",
+      "passed": true,
+      "id": "faq",
+      "top": 79.96875,
+      "bottom": 1032.96875,
+      "height": 953,
+      "width": 1338.625,
+      "left": 43.1875,
+      "position": "sticky",
+      "pin": -77,
+      "fontSize": "15px"
+    },
+    {
+      "name": "expanded desktop last FAQ focus remains accessible",
+      "passed": false,
+      "top": 840.46875,
+      "bottom": 900.46875,
+      "hit": true,
+      "focused": true
+    }
+  ],
+  "states": [
+    {
+      "label": "1440x900-no-JS",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "documentWidth": 1425,
+      "scrollY": 879,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1425,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 93.96875,
+          "bottom": 875.96875,
+          "height": 782,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 874.96875,
+          "bottom": 1642.96875,
+          "height": 768,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1641.96875,
+          "bottom": 2395.96875,
+          "height": 754,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2394.96875,
+          "bottom": 3134.96875,
+          "height": 740,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "relative",
+          "pin": 0,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 150.96875,
+          "bottom": 241.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 931.96875,
+          "bottom": 1022.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 1698.96875,
+          "bottom": 1789.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 2451.96875,
+          "bottom": 2542.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        }
+      ]
+    },
+    {
+      "label": "1440x900-hydrated",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "documentWidth": 1425,
+      "scrollY": 879,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1425,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "true",
+      "mobile": "false",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 94,
+          "bottom": 876,
+          "height": 782,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 94,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 874.96875,
+          "bottom": 1642.96875,
+          "height": 768,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 108,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1641.96875,
+          "bottom": 2395.96875,
+          "height": 754,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 122,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2394.96875,
+          "bottom": 3134.96875,
+          "height": 740,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 136,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 151,
+          "bottom": 241.28125,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 931.96875,
+          "bottom": 1022.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 1698.96875,
+          "bottom": 1789.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 2451.96875,
+          "bottom": 2542.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        }
+      ]
+    },
+    {
+      "label": "1440x900-overlap1",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "documentWidth": 1425,
+      "scrollY": 902,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1425,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "true",
+      "mobile": "false",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 94,
+          "bottom": 876,
+          "height": 782,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 94,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 851.96875,
+          "bottom": 1619.96875,
+          "height": 768,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 108,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1618.96875,
+          "bottom": 2372.96875,
+          "height": 754,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 122,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2371.96875,
+          "bottom": 3111.96875,
+          "height": 740,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 136,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 151,
+          "bottom": 241.28125,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 908.96875,
+          "bottom": 999.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 1675.96875,
+          "bottom": 1766.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 2428.96875,
+          "bottom": 2519.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        }
+      ]
+    },
+    {
+      "label": "1440x900-overlap2",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "documentWidth": 1425,
+      "scrollY": 1022,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1425,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "true",
+      "mobile": "false",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 94,
+          "bottom": 876,
+          "height": 782,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 94,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 731.96875,
+          "bottom": 1499.96875,
+          "height": 768,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 108,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 1498.96875,
+          "bottom": 2252.96875,
+          "height": 754,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 122,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 2251.96875,
+          "bottom": 2991.96875,
+          "height": 740,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 136,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 151,
+          "bottom": 241.28125,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 788.96875,
+          "bottom": 879.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 1555.96875,
+          "bottom": 1646.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 2308.96875,
+          "bottom": 2399.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        }
+      ]
+    },
+    {
+      "label": "1440x900-expanded-FAQ",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "documentWidth": 1425,
+      "scrollY": 3194,
+      "header": {
+        "id": "",
+        "top": 0,
+        "bottom": 80,
+        "height": 80,
+        "width": 1425,
+        "left": 0,
+        "position": "sticky",
+        "pin": 0,
+        "fontSize": "15px"
+      },
+      "enhanced": "true",
+      "desktop": "true",
+      "mobile": "false",
+      "chapters": [
+        {
+          "id": "schedule",
+          "top": 94,
+          "bottom": 876,
+          "height": 782,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 94,
+          "fontSize": "15px"
+        },
+        {
+          "id": "venue",
+          "top": 108,
+          "bottom": 876,
+          "height": 768,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 108,
+          "fontSize": "15px"
+        },
+        {
+          "id": "rules",
+          "top": 122,
+          "bottom": 876,
+          "height": 754,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": 122,
+          "fontSize": "15px"
+        },
+        {
+          "id": "faq",
+          "top": 79.96875,
+          "bottom": 1032.96875,
+          "height": 953,
+          "width": 1338.625,
+          "left": 43.1875,
+          "position": "sticky",
+          "pin": -77,
+          "fontSize": "15px"
+        }
+      ],
+      "headings": [
+        {
+          "id": "",
+          "top": 151,
+          "bottom": 241.28125,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 165,
+          "bottom": 255.28125,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 179,
+          "bottom": 269.28125,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        },
+        {
+          "id": "",
+          "top": 136.96875,
+          "bottom": 227.25,
+          "height": 90.28125,
+          "width": 463.546875,
+          "left": 100.1875,
+          "position": "static",
+          "pin": null,
+          "fontSize": "82.08px",
+          "scrollWidth": 464,
+          "clientWidth": 464
+        }
+      ]
+    }
+  ],
+  "captures": [
+    "evidence/desktop-chapter-viewport/verified/1440x900-no-JS-schedule.png",
+    "evidence/desktop-chapter-viewport/verified/1440x900-hero-larger-logo.png",
+    "evidence/desktop-chapter-viewport/verified/1440x900-schedule.png",
+    "evidence/desktop-chapter-viewport/verified/1440x900-venue.png",
+    "evidence/desktop-chapter-viewport/verified/1440x900-rules.png",
+    "evidence/desktop-chapter-viewport/verified/1440x900-faq.png",
+    "evidence/desktop-chapter-viewport/verified/1440x900-schedule-to-venue-overlap.png"
+  ],
+  "errors": [],
+  "limits": [
+    "Functional geometry only; no hosted or performance claim.",
+    "No-JS versus hydrated height parity is not a complete CLS measurement."
+  ],
+  "failure": "Error: expanded desktop last FAQ focus remains accessible\n    at check (file:///workspace/ddd-desktop-hero-fix/scripts/verify-desktop-chapter-viewport.mjs:10:103)\n    at file:///workspace/ddd-desktop-hero-fix/scripts/verify-desktop-chapter-viewport.mjs:24:827\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:502:9)",
+  "browserClosed": true
+}

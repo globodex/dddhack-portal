@@ -1,0 +1,54 @@
+{
+  "source": "2f124a874730ccff3aafe0fee34a9ee427b2a33c",
+  "syntheticLocalGETOnly": true,
+  "normalMotionDelayMs": 2200,
+  "captures": [
+    "evidence/desktop-chapter-viewport/verified-final/1440x900-hero-larger-logo.png",
+    "evidence/desktop-chapter-viewport/verified-final/390x844-hero-larger-logo.png",
+    "evidence/desktop-chapter-viewport/verified-final/320x480-hero-larger-logo.png",
+    "evidence/desktop-chapter-viewport/verified-final/320x480-CTA-reachable.png"
+  ],
+  "geometry": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "cta": {
+        "top": 700.171875,
+        "bottom": 758.96875,
+        "height": 58.796875,
+        "hit": true
+      },
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "cta": {
+        "top": 681.34375,
+        "bottom": 739.34375,
+        "height": 58,
+        "hit": true
+      },
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "cta": {
+        "top": 222.828125,
+        "bottom": 280.828125,
+        "height": 58,
+        "hit": true
+      },
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "browserClosed": true
+}
