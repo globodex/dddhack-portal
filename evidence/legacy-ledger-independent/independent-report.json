@@ -1,0 +1,37 @@
+{
+  "source": "626e6bcc349413d5d209e6adc86a177f123debab",
+  "baseline": "bcb271a59e123ad83359bed26c2c3a218f6eb96d",
+  "uniqueCases": 6,
+  "uniqueCasesPassed": 6,
+  "firstRun": {
+    "passed": 5,
+    "failed": 1,
+    "log": "first-harness-run.log",
+    "failure": "Owned fixture supplied a JSDate to the scalar-only SQL adapter; not a source defect"
+  },
+  "focusedRerun": {
+    "passed": 1,
+    "failed": 0,
+    "log": "malformed-ledger-tests.log",
+    "change": "Read original applied_at as exact PostgreSQL text; added inspect and apply no-DDL refusal for all6malformed variants"
+  },
+  "canonicalPlanDigest": "498280b69647485b4f55c35331a0f8af486983d819ee2dc25fb1840f1e657506",
+  "historicalRowsPreserved": 7,
+  "canonicalFeatureMigrationsApplied": [
+    "0102_credit_stock.sql",
+    "0103_project_media_limits.sql"
+  ],
+  "existingStock": 20,
+  "existingAllocations": 1,
+  "repeatApplied": [],
+  "genericMigratorChanged": false,
+  "sourceSqlChanged": false,
+  "approvedBaselineChanged": false,
+  "hostedRead": false,
+  "hostedApply": false,
+  "limitations": [
+    "Actual disposable PGlite/production adapter; no native multi-connection PostgreSQL or hosted operation",
+    "No fresh six-case single-process rerun claimed after test-only fixture correction",
+    "Root and source owner own full typecheck/CLI output validation"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "source": "bcb271a",
+  "canonicalPlanDigest": "498280b69647485b4f55c35331a0f8af486983d819ee2dc25fb1840f1e657506",
+  "historical": [
+    {
+      "name": "0000_compatibility.sql",
+      "lf": "5e5f7c29d376532f6a32771f556f965aaed666c3bd8bf6fc32d2f00bd9f0ac66",
+      "crlf": "22db8c707ddc39ecd16115f8bff30167ff0829a87128302eb9b2334853220932"
+    },
+    {
+      "name": "0001_portal.sql",
+      "lf": "f9e5a1379f598c6c7bc86c771148f16c4c7d5767c773dffbcb14e50e7285b031",
+      "crlf": "c2588cec29a4b754f4b6a63bd0e6b9673e4fc41a3ff3039b590b72c70be40820"
+    },
+    {
+      "name": "0002_invariants.sql",
+      "lf": "abdea4e04ea373c8a86ba2848d10a0122ab09308f52c1e51d439d138a8670928",
+      "crlf": "01806e47a4b58dd37d39f320180259757c976a98b8b26d696252b566d45f4a70"
+    },
+    {
+      "name": "0003_transaction_safety.sql",
+      "lf": "9e3e440b4d0a14d1fee077a3a4c9ab92fd972d61e377931f602f46d0f5bbed24",
+      "crlf": "7ad7e333e068ef0e1f09bdea1122d5fbcd61c416dd388cfe98d7977fa67f310d"
+    },
+    {
+      "name": "0004_media_uploads.sql",
+      "lf": "32cf9496df32661e65299f846359da306b8efca2a15f4c6070b8f0f8a1cab8e7",
+      "crlf": "b4448e94e981049727b64062545f636f6fb5bfa6dcb52fafd01e89a9c55ff365"
+    },
+    {
+      "name": "0100_auth.sql",
+      "lf": "d7a7d26116c1cf892f129edfbbf70ee4a7b3014165667e5b4b7cda8a916d6bbf",
+      "crlf": "3e8a6135c6f634a7722b290961d1a38db27396a70ee92c07bc7f8bd36e47dc47"
+    },
+    {
+      "name": "0101_approved_evaluation.sql",
+      "lf": "21929ac1cf790d34644b385fa4506c69db6df9be3d5ddaae00db9ee2bccb5797",
+      "crlf": "114234eb2c484a278a110890f1c0eb87336d100774d35ae85585a399023a9e5a"
+    }
+  ],
+  "proof": "Exact byte-derived LF to CRLF hashes from approved canonical source. No hosted ledger read or rewrite.",
+  "hostedRead": false,
+  "hostedApply": false
+}

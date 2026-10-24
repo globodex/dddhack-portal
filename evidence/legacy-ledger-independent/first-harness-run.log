@@ -1,0 +1,28 @@
+✔ independent legacy ledger: exact seven CRLF aliases derive from pinned LF source while canonical nine-entry digest stays fixed (133.017351ms)
+✔ independent legacy ledger: canonical LF history and an existing canonical receipt without the new mode field stay valid (11835.174464ms)
+✔ independent actual CRLF history: readonly inspect, populated7→9 canonical features, unchanged legacy ledger/data and repeat[] (6315.641928ms)
+✖ independent legacy ledger: mixed, arbitrary, missing, unknown and CRLF/out-of-order feature rows refuse without ledger or domain writes (5411.893014ms)
+✔ independent legacy ledger: canonical alias mode changes after receipt are rejected under the same lock before DDL (14493.914278ms)
+✔ independent legacy ledger: feature collision rolls back all new schema and retains seven original CRLF ledger rows and populated records (12754.868838ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 53525.841071
+
+✖ failing tests:
+
+test at tests/legacy-ledger-compatibility-independent.test.ts:1:5433
+✖ independent legacy ledger: mixed, arbitrary, missing, unknown and CRLF/out-of-order feature rows refuse without ledger or domain writes (5411.893014ms)
+  UnsupportedPortalSql: UNSUPPORTED_PORTAL_SQL: parameters must be scalar strings, numbers, booleans or null
+      at compilePortalSql (/workspace/ddd-legacy-ledger-audit/neon/db/sql.ts:231:11)
+      at <anonymous> (/workspace/ddd-legacy-ledger-audit/neon/db/adapter.ts:90:14)
+      at Array.map (<anonymous>)
+      at PostgresDatabase.batch (/workspace/ddd-legacy-ledger-audit/neon/db/adapter.ts:82:33)
+      at batch (/workspace/ddd-legacy-ledger-audit/lib/db.ts:44:13)
+      at TestContext.<anonymous> (/workspace/ddd-legacy-ledger-audit/tests/legacy-ledger-compatibility-independent.test.ts:265:13)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

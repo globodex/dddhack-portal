@@ -1,0 +1,9 @@
+✔ independent legacy ledger: mixed, arbitrary, missing, unknown and CRLF/out-of-order feature rows refuse without ledger or domain writes (10249.858019ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12354.766086
