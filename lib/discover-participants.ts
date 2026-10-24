@@ -1,4 +1,5 @@
-import { rows, type Database } from "./db";
+import { one, rows, type Database } from "./db";
+import { teamPhone } from "./phone";
 import { demand, PortalError } from "./security";
 import { registeredEmailPredicate } from "./roster";
 
@@ -108,8 +109,8 @@ function decodeCursor(
   }
 }
 
-// Explicit allowlist shared by pages and hash-target lookup. Private profile fields
-// never enter either response or search, and soft removals are re-read every time.
+// Directory pages/search keep this public allowlist. Only an explicit selected
+// lookup can add authorized facts; soft removals are re-read for both paths.
 const selection = `SELECT u.id,COALESCE(pp.display_name,u.name) name,
  pd.avatar_color avatarColor,pd.avatar_expression avatarExpression,
  t.name teamName,COALESCE(ts.color_key,ts.palette) teamPalette,
@@ -134,9 +135,43 @@ const project = (row: DirectoryRow) => ({
   socials: JSON.parse(row.socials),
 });
 
+// Supplied only by the freshly authenticated service actor, never query params.
+type ProfileViewer = { id: string; role: string; owner?: boolean; deactivated?: boolean; canParticipate?: boolean };
+async function selectedPerson(db: Database, row: DirectoryRow, viewer?: ProfileViewer) {
+  const publicPerson = project(row);
+  const admin = !!viewer && !viewer.deactivated && (viewer.owner || viewer.role === "admin");
+  const participant = !!viewer && !viewer.deactivated && viewer.canParticipate === true;
+  if (!admin && !participant) return { ...publicPerson, details: {} };
+  const self = participant && viewer!.id === row.id;
+  const extra = await one<{
+    bio: string; socials: string; gender: string; genderDescription: string;
+    profession: string; organization: string; openaiOrgId: string; phone: string; sameTeam: number;
+  }>(db, `SELECT p.bio,p.socials,p.gender,p.gender_description genderDescription,
+    pd.best_description profession,pd.organization,pd.openai_org_id openaiOrgId,pd.phone,
+    CASE WHEN EXISTS(SELECT 1 FROM memberships target JOIN memberships viewer ON viewer.team_id=target.team_id WHERE target.user_id=? AND viewer.user_id=?) THEN 1 ELSE 0 END sameTeam
+    FROM profiles p JOIN profile_details pd ON pd.user_id=p.user_id WHERE p.user_id=?`, row.id, viewer!.id, row.id);
+  if (!extra) return { ...publicPerson, details: {} };
+  const personal = admin || self;
+  return {
+    ...publicPerson,
+    ...(personal ? { bio: extra.bio, socials: JSON.parse(extra.socials || "[]") } : {}),
+    details: {
+      ...(personal ? {
+        ...(extra.profession?.trim() ? { profession: extra.profession } : {}),
+        ...(extra.organization?.trim() ? { organization: extra.organization } : {}),
+        ...(extra.gender ? { gender: extra.gender } : {}),
+        ...(extra.genderDescription?.trim() ? { genderDescription: extra.genderDescription } : {}),
+      } : {}),
+      ...(admin && /^org-[A-Za-z0-9_-]+$/.test(extra.openaiOrgId || "") ? { openaiOrgId: extra.openaiOrgId } : {}),
+      ...(admin || (participant && extra.sameTeam === 1) ? teamPhone(extra.phone) : {}),
+    },
+  };
+}
+
 export async function discoverParticipants(
   db: Database,
   options: PortalViewOptions = {},
+  viewer?: ProfileViewer,
 ) {
   const limit = options.limit ?? 24;
   demand(
@@ -181,6 +216,7 @@ export async function discoverParticipants(
   const hasMore = found.length > limit;
   const page = found.slice(0, limit);
   const last = page.at(-1);
+  const focused = options.person ? (await rows<DirectoryRow>(db, `${selection} AND u.id=? LIMIT 1`, options.person))[0] : undefined;
   return {
     items: page.map(project),
     limit,
@@ -197,14 +233,7 @@ export async function discoverParticipants(
         : null,
     ...(options.person
       ? {
-          focusedPerson:
-            (
-              await rows<DirectoryRow>(
-                db,
-                `${selection} AND u.id=? LIMIT 1`,
-                options.person,
-              )
-            ).map(project)[0] || null,
+          focusedPerson: focused ? await selectedPerson(db, focused, viewer) : null,
         }
       : {}),
   };

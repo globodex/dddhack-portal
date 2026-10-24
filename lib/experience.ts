@@ -603,7 +603,7 @@ export class PortalExperience {
       return {
         me,
         discovery: "participants",
-        ...(await discoverParticipants(this.s.db, options)),
+        ...(await discoverParticipants(this.s.db, options, me)),
       };
     }
     if (route === "/rules") {
