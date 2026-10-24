@@ -1,0 +1,370 @@
+{
+  "source": "9e6091e67148b17804845c602cb29406cc39184c",
+  "database": "/tmp/ddd-team-studio.sqlite",
+  "syntheticOnly": true,
+  "captures": [
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-first/team-1487x1058.png",
+      "viewport": {
+        "width": 1487,
+        "height": 1058
+      },
+      "geometry": {
+        "width": 1487,
+        "scrollWidth": 1472,
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 1472,
+          "height": 88,
+          "top": 0,
+          "right": 1472,
+          "bottom": 88,
+          "left": 0
+        },
+        "hero": {
+          "x": 44,
+          "y": 229,
+          "width": 1384,
+          "height": 150.59375,
+          "top": 229,
+          "right": 1428,
+          "bottom": 379.59375,
+          "left": 44
+        },
+        "grid": {
+          "x": 44,
+          "y": 556.59375,
+          "width": 1384,
+          "height": 390,
+          "top": 556.59375,
+          "right": 1428,
+          "bottom": 946.59375,
+          "left": 44
+        },
+        "idea": {
+          "x": 44,
+          "y": 556.59375,
+          "width": 828.546875,
+          "height": 390,
+          "top": 556.59375,
+          "right": 872.546875,
+          "bottom": 946.59375,
+          "left": 44
+        },
+        "card": {
+          "x": 916.546875,
+          "y": 556.59375,
+          "width": 511.453125,
+          "height": 390,
+          "top": 556.59375,
+          "right": 1428,
+          "bottom": 946.59375,
+          "left": 916.546875
+        },
+        "progress": {
+          "x": 44,
+          "y": 976.59375,
+          "width": 1384,
+          "height": 56,
+          "top": 976.59375,
+          "right": 1428,
+          "bottom": 1032.59375,
+          "left": 44
+        },
+        "count": "112/500"
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-first/team-1440x1024.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1024
+      },
+      "geometry": {
+        "width": 1440,
+        "scrollWidth": 1425,
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 1425,
+          "height": 88,
+          "top": 0,
+          "right": 1425,
+          "bottom": 88,
+          "left": 0
+        },
+        "hero": {
+          "x": 44,
+          "y": 229,
+          "width": 1337,
+          "height": 150,
+          "top": 229,
+          "right": 1381,
+          "bottom": 379,
+          "left": 44
+        },
+        "grid": {
+          "x": 44,
+          "y": 556,
+          "width": 1337,
+          "height": 390,
+          "top": 556,
+          "right": 1381,
+          "bottom": 946,
+          "left": 44
+        },
+        "idea": {
+          "x": 44,
+          "y": 556,
+          "width": 799.484375,
+          "height": 390,
+          "top": 556,
+          "right": 843.484375,
+          "bottom": 946,
+          "left": 44
+        },
+        "card": {
+          "x": 887.484375,
+          "y": 556,
+          "width": 493.515625,
+          "height": 390,
+          "top": 556,
+          "right": 1381,
+          "bottom": 946,
+          "left": 887.484375
+        },
+        "progress": {
+          "x": 44,
+          "y": 976,
+          "width": 1337,
+          "height": 56,
+          "top": 976,
+          "right": 1381,
+          "bottom": 1032,
+          "left": 44
+        },
+        "count": "112/500"
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-first/team-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "geometry": {
+        "width": 1440,
+        "scrollWidth": 1425,
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 1425,
+          "height": 88,
+          "top": 0,
+          "right": 1425,
+          "bottom": 88,
+          "left": 0
+        },
+        "hero": {
+          "x": 44,
+          "y": 229,
+          "width": 1337,
+          "height": 150,
+          "top": 229,
+          "right": 1381,
+          "bottom": 379,
+          "left": 44
+        },
+        "grid": {
+          "x": 44,
+          "y": 556,
+          "width": 1337,
+          "height": 390,
+          "top": 556,
+          "right": 1381,
+          "bottom": 946,
+          "left": 44
+        },
+        "idea": {
+          "x": 44,
+          "y": 556,
+          "width": 799.484375,
+          "height": 390,
+          "top": 556,
+          "right": 843.484375,
+          "bottom": 946,
+          "left": 44
+        },
+        "card": {
+          "x": 887.484375,
+          "y": 556,
+          "width": 493.515625,
+          "height": 390,
+          "top": 556,
+          "right": 1381,
+          "bottom": 946,
+          "left": 887.484375
+        },
+        "progress": {
+          "x": 44,
+          "y": 976,
+          "width": 1337,
+          "height": 56,
+          "top": 976,
+          "right": 1381,
+          "bottom": 1032,
+          "left": 44
+        },
+        "count": "112/500"
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-first/team-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "geometry": {
+        "width": 390,
+        "scrollWidth": 390,
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 72,
+          "top": 0,
+          "right": 390,
+          "bottom": 72,
+          "left": 0
+        },
+        "hero": {
+          "x": 20,
+          "y": 198,
+          "width": 350,
+          "height": 168.4375,
+          "top": 198,
+          "right": 370,
+          "bottom": 366.4375,
+          "left": 20
+        },
+        "grid": {
+          "x": 20,
+          "y": 763.625,
+          "width": 350,
+          "height": 582.125,
+          "top": 763.625,
+          "right": 370,
+          "bottom": 1345.75,
+          "left": 20
+        },
+        "idea": {
+          "x": 20,
+          "y": 763.625,
+          "width": 350,
+          "height": 333.1875,
+          "top": 763.625,
+          "right": 370,
+          "bottom": 1096.8125,
+          "left": 20
+        },
+        "card": {
+          "x": 20,
+          "y": 1120.8125,
+          "width": 350,
+          "height": 224.9375,
+          "top": 1120.8125,
+          "right": 370,
+          "bottom": 1345.75,
+          "left": 20
+        },
+        "progress": {
+          "x": 20,
+          "y": 1375.75,
+          "width": 350,
+          "height": 132,
+          "top": 1375.75,
+          "right": 370,
+          "bottom": 1507.75,
+          "left": 20
+        },
+        "count": "112/500"
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-first/team-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "geometry": {
+        "width": 390,
+        "scrollWidth": 390,
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 72,
+          "top": 0,
+          "right": 390,
+          "bottom": 72,
+          "left": 0
+        },
+        "hero": {
+          "x": 20,
+          "y": 198,
+          "width": 350,
+          "height": 168.4375,
+          "top": 198,
+          "right": 370,
+          "bottom": 366.4375,
+          "left": 20
+        },
+        "grid": {
+          "x": 20,
+          "y": 763.625,
+          "width": 350,
+          "height": 582.125,
+          "top": 763.625,
+          "right": 370,
+          "bottom": 1345.75,
+          "left": 20
+        },
+        "idea": {
+          "x": 20,
+          "y": 763.625,
+          "width": 350,
+          "height": 333.1875,
+          "top": 763.625,
+          "right": 370,
+          "bottom": 1096.8125,
+          "left": 20
+        },
+        "card": {
+          "x": 20,
+          "y": 1120.8125,
+          "width": 350,
+          "height": 224.9375,
+          "top": 1120.8125,
+          "right": 370,
+          "bottom": 1345.75,
+          "left": 20
+        },
+        "progress": {
+          "x": 20,
+          "y": 1375.75,
+          "width": 350,
+          "height": 132,
+          "top": 1375.75,
+          "right": 370,
+          "bottom": 1507.75,
+          "left": 20
+        },
+        "count": "112/500"
+      }
+    }
+  ],
+  "errors": [],
+  "completed": true,
+  "browserClosed": true
+}
