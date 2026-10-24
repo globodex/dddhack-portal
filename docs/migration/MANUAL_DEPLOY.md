@@ -82,7 +82,7 @@ Verify Google login/logout, verified email-to-existing-user linking, role bounda
 
 Verify submission attempt races, check-in, credits instructions/mappings/deletions and staged score disclosure using isolated synthetic targets. Local native PostgreSQL and offline/provider fixtures are already tested; they do not prove hosted SMTP, OAuth, Object Storage or latency. Preserve cache/motion/image budgets and reduced-motion behavior. No production-data transfer or DNS/Sites cutover is included.
 
-Queue processing remains an explicit bounded request using durable job leases/retries; automatic cron activation is separate. Before enabling any scheduler, verify worker authentication, current-admin authorization, model configuration, approved snapshot payloads and idempotency. Never rely on process memory or waitUntil alone for durable jobs.
+Queue processing is an explicit authenticated `astra-run` or `astra-process` portal request. Provider batches are capped at one and awaited in that invocation; durable leases/results allow safe recovery. Automatic cron activation is separate. Before enabling any scheduler, verify worker authentication, current-admin authorization, model configuration, approved snapshot payloads and idempotency. Never rely on process memory or waitUntil alone for durable jobs.
 
 ## Codex Cloud environment note
 

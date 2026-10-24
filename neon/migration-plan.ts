@@ -6,10 +6,25 @@ import { loadPortalMigrations, type PortalMigration } from "./db/migrate";
 // media baseline. One checksum ledger orders the final deployable schema.
 export async function loadMigrationPlan(): Promise<PortalMigration[]> {
   const portal = await loadPortalMigrations();
-  const sql = await readFile(new URL("./auth-migrations/0001_auth.sql", import.meta.url), "utf8");
-  const approved = await readFile(new URL("./auth-migrations/0002_approved_evaluation.sql", import.meta.url), "utf8");
-  return [...portal, {
-    name: "0100_auth.sql", sql,
-    checksum: createHash("sha256").update(sql).digest("hex"),
-  }, { name: "0101_approved_evaluation.sql", sql: approved, checksum: createHash("sha256").update(approved).digest("hex") }];
+  const sql = await readFile(
+    new URL("./auth-migrations/0001_auth.sql", import.meta.url),
+    "utf8",
+  );
+  const approved = await readFile(
+    new URL("./auth-migrations/0002_approved_evaluation.sql", import.meta.url),
+    "utf8",
+  );
+  return [
+    ...portal,
+    {
+      name: "0100_auth.sql",
+      sql,
+      checksum: createHash("sha256").update(sql).digest("hex"),
+    },
+    {
+      name: "0101_approved_evaluation.sql",
+      sql: approved,
+      checksum: createHash("sha256").update(approved).digest("hex"),
+    },
+  ];
 }

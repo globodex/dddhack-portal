@@ -21,7 +21,8 @@ const privateHeaders = {
 };
 function equalSecret(actual: string | null, expected: string | undefined) {
   if (!actual || !expected || expected.length < 32) return false;
-  const a = Buffer.from(actual), b = Buffer.from(expected);
+  const a = Buffer.from(actual),
+    b = Buffer.from(expected);
   return a.length === b.length && timingSafeEqual(a, b);
 }
 
@@ -29,9 +30,19 @@ function equalSecret(actual: string | null, expected: string | undefined) {
 // configured frontend; identity is always derived again from a backend session.
 export function trustedProxyRequest(request: Request, env: BackendEnvironment) {
   const origin = env.APP_ORIGIN && new URL(env.APP_ORIGIN);
-  if (!origin || origin.origin !== env.APP_ORIGIN || origin.username || origin.password)
+  if (
+    !origin ||
+    origin.origin !== env.APP_ORIGIN ||
+    origin.username ||
+    origin.password
+  )
     throw new PortalError(503, "BACKEND_ORIGIN_NOT_CONFIGURED");
-  if (!equalSecret(request.headers.get("x-portal-proxy-secret"), env.PORTAL_PROXY_SECRET))
+  if (
+    !equalSecret(
+      request.headers.get("x-portal-proxy-secret"),
+      env.PORTAL_PROXY_SECRET,
+    )
+  )
     throw new PortalError(403, "UNTRUSTED_PROXY");
   if (request.headers.get("x-portal-forwarded-origin") !== origin.origin)
     throw new PortalError(403, "UNTRUSTED_PROXY_ORIGIN");
@@ -43,8 +54,14 @@ export function trustedProxyRequest(request: Request, env: BackendEnvironment) {
   external.search = url.search;
   const headers = new Headers(request.headers);
   for (const key of [...headers.keys()]) {
-    if (key.startsWith("oai-authenticated-") || key.startsWith("x-portal-user-") ||
-        ["host", "forwarded", "x-forwarded-host", "x-forwarded-proto"].includes(key)) headers.delete(key);
+    if (
+      key.startsWith("oai-authenticated-") ||
+      key.startsWith("x-portal-user-") ||
+      ["host", "forwarded", "x-forwarded-host", "x-forwarded-proto"].includes(
+        key,
+      )
+    )
+      headers.delete(key);
   }
   return new Request(external, {
     method: request.method,
@@ -57,29 +74,51 @@ export function trustedProxyRequest(request: Request, env: BackendEnvironment) {
 export function backendError(error: unknown) {
   return Response.json(
     { code: error instanceof PortalError ? error.code : "BACKEND_UNAVAILABLE" },
-    { status: error instanceof PortalError ? error.status : 503, headers: privateHeaders },
+    {
+      status: error instanceof PortalError ? error.status : 503,
+      headers: privateHeaders,
+    },
   );
 }
 
-export function createPortalBackend(env: BackendEnvironment, dependencies: BackendDependencies) {
+export function createPortalBackend(
+  env: BackendEnvironment,
+  dependencies: BackendDependencies,
+) {
   return async (incoming: Request): Promise<Response> => {
     try {
       const request = trustedProxyRequest(incoming, env);
       const path = new URL(request.url).pathname;
-      if (path.startsWith("/api/auth/")) return await dependencies.auth(request);
+      if (path.startsWith("/api/auth/"))
+        return await dependencies.auth(request);
       if (path === "/api/health" && request.method === "GET")
-        return Response.json({ ok: true, runtime: "neon-functions" }, { headers: privateHeaders });
+        return Response.json(
+          { ok: true, runtime: "neon-functions" },
+          { headers: privateHeaders },
+        );
       const runtime = await dependencies.runtime(request);
       if (path.startsWith("/api/evaluation/") && dependencies.evaluation)
         return await dependencies.evaluation(request, runtime);
       if (path === "/api/portal") return await handlePortal(request, runtime);
-      if (path === "/api/export" && request.method === "GET") return await handleExport(request, runtime);
-      if ((path.startsWith("/api/storage/") || path.startsWith("/api/media/")) && dependencies.storage)
+      if (path === "/api/export" && request.method === "GET")
+        return await handleExport(request, runtime);
+      if (
+        (path.startsWith("/api/storage/") || path.startsWith("/api/media/")) &&
+        dependencies.storage
+      )
         return await dependencies.storage(request, runtime);
       const image = /^\/api\/project-image\/([^/]+)\/(logo|banner)$/.exec(path);
       if (image && request.method === "GET")
-        return await publicProjectImage(runtime.db, decodeURIComponent(image[1]), image[2], new URL(request.url).searchParams.get("version"));
-      return Response.json({ code: "NOT_FOUND" }, { status: 404, headers: privateHeaders });
+        return await publicProjectImage(
+          runtime.db,
+          decodeURIComponent(image[1]),
+          image[2],
+          new URL(request.url).searchParams.get("version"),
+        );
+      return Response.json(
+        { code: "NOT_FOUND" },
+        { status: 404, headers: privateHeaders },
+      );
     } catch (error) {
       return backendError(error);
     }

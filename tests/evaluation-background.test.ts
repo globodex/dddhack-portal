@@ -14,6 +14,52 @@ async function submitted() {
   await f.service().command("submit", submission);
   return f;
 }
+test("provider processing requires an explicit single-job request and retains an unscored human-review report", async () => {
+  const f = await submitted();
+  try {
+    f.clock("2026-11-01T11:00:00.000Z");
+    const service = f.service("admin");
+    let providerCalls = 0;
+    service.evaluator = {
+      provenance: "provider",
+      configuration: "synthetic-provider-evidence",
+      async evaluate(versionId) {
+        providerCalls++;
+        return {
+          versionId,
+          model: "synthetic-fixture",
+          status: "needs_review",
+          rubricVersion: 1,
+          revision: "a".repeat(40),
+          checks: [],
+          dimensions: null,
+          suspectedFalseClaims: [],
+        };
+      },
+    };
+    const tasks: Promise<unknown>[] = [];
+    await assert.rejects(
+      queueEvaluations(service, { limit: 2 }, (p) => tasks.push(p)),
+      { code: "PROVIDER_BATCH_LIMIT_ONE" },
+    );
+    assert.equal(providerCalls, 0);
+    assert.equal(tasks.length, 0);
+    const result = await queueEvaluations(service, { limit: 1 }, (p) =>
+      tasks.push(p),
+    );
+    await Promise.all(tasks);
+    assert.equal(result.accepted, 1);
+    assert.equal(providerCalls, 1);
+    const job = await one<{ report: string }>(
+      f.db,
+      "SELECT report FROM astra_jobs",
+    );
+    assert.equal(JSON.parse(job!.report).dimensions, null);
+    assert.equal(JSON.parse(job!.report).status, "needs_review");
+  } finally {
+    f.db.close();
+  }
+});
 test("explicit bounded offline background batch preserves human review and never activates scoring", async () => {
   const f = await submitted();
   const tasks: Promise<unknown>[] = [];

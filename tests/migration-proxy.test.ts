@@ -1,6 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { proxyBackendRequest } from "../lib/next-backend";
+import {
+  proxyBackendRequest,
+  readAnonymousBackendView,
+} from "../lib/next-backend";
 
 const app = "https://synthetic.portal.test";
 const backend = "https://synthetic.function.test";
@@ -12,6 +15,31 @@ const config = {
   PORTAL_PROXY_SECRET: secret,
   PORTAL_LOCAL_TEST: undefined,
 };
+
+test("anonymous public projections never invoke session lookup or forward caller cookies", async (t) => {
+  await configured(async () => {
+    let requests = 0;
+    t.mock.method(
+      globalThis,
+      "fetch",
+      async (input: URL, init: RequestInit) => {
+        requests++;
+        assert.equal(
+          String(input),
+          backend + "/api/portal?view=%2Fprojects&page=2",
+        );
+        assert.equal(new Headers(init.headers).get("cookie"), null);
+        assert.equal(init.cache, "no-store");
+        return Response.json({ items: [], hasMore: false });
+      },
+    );
+    assert.deepEqual(await readAnonymousBackendView("/projects", 2), {
+      items: [],
+      hasMore: false,
+    });
+    assert.equal(requests, 1);
+  });
+});
 async function configured(
   run: () => Promise<void>,
   overrides: Record<string, string | undefined> = {},

@@ -60,7 +60,7 @@ Conservative screening rejects recognizable provider keys, private keys, credent
 
 `prepareApprovedSnapshot(input, {versionId,commitSha})` validates and returns `{snapshotJson,snapshotSha256,commitSha}`. It performs no write or authorization itself. Call it only after an authenticated operational admin is authorized for the project/version and the commit is bound to existing immutable repository evidence.
 
-`readApprovedSnapshot(db, versionId)` reads an unrevoked record, verifies the stored JSON digest, and revalidates the embedded version/SHA and allowlist. Missing/revoked records return null; corrupted/unavailable storage fails with a fixed error. Root integration owns the migration, administrative route, authorization, transactional race guards and audit records. The proposed table is:
+`readApprovedSnapshot(db, versionId)` reads an unrevoked record, verifies the stored JSON digest, and revalidates the embedded version/SHA and allowlist. Missing/revoked records return null; corrupted/unavailable storage fails with a fixed error. The versioned0101 migration and authenticated POST /api/evaluation/snapshots route enforce current admin authorization and current published repository evidence. POST /api/evaluation/snapshots/revoke makes approval permanently inactive. Records and source contents remain in private Postgres; audits include only the digest and selected-file count. The table is:
 
 ```sql
 CREATE TABLE approved_evaluation_snapshots (
@@ -82,7 +82,7 @@ The Responses request uses `text.format` with a strict JSON schema and `addition
 
 The final report always has `status:"needs_review"`, `dimensions:null` and `suspectedFalseClaims:[]`. Model observations are `UNKNOWN` or `NEEDS_MANUAL_REVIEW`. The sole automatic PASS establishes locally checked snapshot binding; it does not establish runtime behavior, provider success, eligibility or authorship. The existing scoring formula and human review requirements are unchanged.
 
-Provider calls have at most two 5-second attempts, with a 200 ms retry delay, and at most 3,000 output tokens/128 KiB response content. Only explicit HTTP 429/500/502/503/504 failures retry once. Authentication/validation failures, refusals, malformed output, network errors and ambiguous timeouts are not automatically retried. Provider bodies, submitted contents, credentials and raw validation details are never retained in thrown errors. Job processing can preserve the submission and offer an authorized retry/fallback through existing service behavior.
+Provider calls have at most two 20-second attempts, with a 200 ms retry delay, and at most 3,000 output tokens/128 KiB response content. Only explicit HTTP 429/500/502/503/504 failures retry once. Authentication/validation failures, refusals, malformed output, network errors and ambiguous timeouts are not automatically retried. Provider bodies, submitted contents, credentials and raw validation details are never retained in thrown errors. Job processing can preserve the submission and offer an authorized retry/fallback through existing service behavior.
 
 ## Validation and remaining live check
 
@@ -95,3 +95,7 @@ Official references checked for this implementation:
 - [Responses API](https://developers.openai.com/api/reference/resources/responses/methods/create)
 - [Structured Outputs, refusals and incomplete responses](https://developers.openai.com/api/docs/guides/structured-outputs)
 - [OpenAI data controls and Responses storage](https://developers.openai.com/api/docs/guides/your-data)
+
+Runtime integration injects the evaluator only when the explicit server flag is true. Provider batches are limited to one job per explicit request, while offline fixture batches retain their existing maximum of five. The Neon handler awaits bounded processing in that same invocation; durable leases/results remain in Postgres. There is no automatic cron or in-memory background loop. Provider evidence is labeled `provider` with its explicit model configuration while numeric scores stay null, so reveal prerequisites are not fabricated.
+
+An explicitly approved one-request synthetic smoke is available with `PORTAL_OPENAI_SMOKE_APPROVED=1 node --env-file=.env.backend.local --import tsx neon/scripts/evaluation-smoke.ts`. It requires the explicit model/key, reads no repository or user records, permits at most one outbound request (including retries), and prints metadata only. The real project evaluation flow still requires a reviewed selected snapshot.
