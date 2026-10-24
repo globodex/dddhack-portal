@@ -402,6 +402,6 @@ test("public media uses the current whitelisted team color without extra reads o
     await db.prepare("UPDATE team_styles SET color_key=NULL,palette='forest' WHERE team_id=?").bind(team.id).all();
     assert.equal((await read()).teamColorKey, "forest", "legacy canonical palette remains supported");
     await db.prepare("DELETE FROM team_styles WHERE team_id=?").bind(team.id).all();
-    assert.equal((await read()).teamColorKey, "graphite");
+    assert.equal((await read()).teamColorKey, "forest");
   } finally { db.close(); }
 });

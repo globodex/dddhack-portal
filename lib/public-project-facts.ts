@@ -1,5 +1,5 @@
 import { rows, type Database } from "./db";
-import { teamColorKeys } from "./avatar-contract";
+import { resolveTeamColor } from "./team-color";
 
 export type PublicProjectFact = {
   id: string;
@@ -59,7 +59,7 @@ export async function publicProjectFacts(
     );
     for (const fact of result) {
       const { public_media_payload, ...selectedFact } = fact;
-      facts.set(fact.id, { ...selectedFact, teamColorKey: teamColorKeys.includes(selectedFact.teamColorKey as typeof teamColorKeys[number]) ? selectedFact.teamColorKey : "graphite", payload: public_media_payload });
+      facts.set(fact.id, { ...selectedFact, teamColorKey: resolveTeamColor(selectedFact.teamColorKey).key, payload: public_media_payload });
     }
   }
   return facts;

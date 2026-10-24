@@ -82,6 +82,7 @@ import {
 } from "react";
 import Home from "./home";
 import ProjectMediaField from "./project-media-field";
+import { resolveTeamColor } from "../lib/team-color";
 import { prepareProjectImage } from "./prepare-project-image";
 import ProfileFlow from "./profile-flow";
 import AdminImportDialog from "./admin-import-dialog";
@@ -2211,9 +2212,8 @@ function upvoteCountLabel(count: number | null) {
 }
 
 function projectMediaStyle(colorKey: unknown): CSSProperties {
-  const key = typeof colorKey === "string" && teamColorKeys.includes(colorKey as typeof teamColorKeys[number])
-    ? colorKey as typeof teamColorKeys[number] : "graphite";
-  return { "--project-team-color": teamDotColors[key] } as CSSProperties;
+  const color = resolveTeamColor(colorKey);
+  return { "--project-team-color": color.fill, "--project-team-wash": color.wash } as CSSProperties;
 }
 
 const emptyProject = {
