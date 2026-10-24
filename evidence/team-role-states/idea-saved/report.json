@@ -1,0 +1,77 @@
+{
+  "source": "244d68febfea4a7ba7ff5966001310db107c7828",
+  "syntheticOnly": true,
+  "fixtureDatabase": "Root isolated synthetic API8821 copy; original API8789 untouched",
+  "responses": [
+    {
+      "actor": "bob",
+      "action": "save-workspace-idea",
+      "status": 200,
+      "result": {
+        "message": "Private idea saved. You may edit it until the team locks."
+      }
+    }
+  ],
+  "captures": [
+    {
+      "name": "idea-editor",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/idea-saved/idea-editor-1440x900.png",
+      "source": "244d68febfea4a7ba7ff5966001310db107c7828",
+      "fullPage": true
+    },
+    {
+      "name": "idea-editor-short",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/idea-saved/idea-editor-short-390x480.png",
+      "source": "244d68febfea4a7ba7ff5966001310db107c7828",
+      "fullPage": false
+    },
+    {
+      "name": "idea-saved",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/idea-saved/idea-saved-1440x900.png",
+      "source": "244d68febfea4a7ba7ff5966001310db107c7828",
+      "fullPage": false
+    },
+    {
+      "name": "member-saved-idea-readonly",
+      "actor": "carol",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/idea-saved/member-saved-idea-readonly-390x844.png",
+      "source": "244d68febfea4a7ba7ff5966001310db107c7828",
+      "fullPage": true
+    }
+  ],
+  "checks": [
+    "Leader saves 500-character private idea through confirmation and fresh API read matches",
+    "Current nonleader member reads saved idea without edit or lock controls"
+  ],
+  "unavailable": [
+    {
+      "action": "Member Leave team confirmation/outcome",
+      "target": "fake_pending",
+      "reason": "No Leave team UI or server action exists. remove-workspace-member authorizes only leader/admin/owner. No self-removal request made and no permission changed."
+    }
+  ],
+  "pageErrors": [],
+  "externalRequests": [],
+  "completed": true,
+  "browserClosed": true,
+  "sourceAtEnd": "244d68febfea4a7ba7ff5966001310db107c7828"
+}
