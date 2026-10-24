@@ -1,0 +1,517 @@
+{
+  "method": "Existing56-sample raw CDP responses/resource timing only; no server/browser rerun.",
+  "variants": {
+    "baseline": {
+      "styleTimings": [
+        {
+          "file": "614a4aca95eb4c7a.css",
+          "startMedianMs": 118.5,
+          "endMedianMs": 180.5,
+          "millisecondsBeforeFCPMedian": 320.5,
+          "lastBlockingCount": 0
+        },
+        {
+          "file": "6e69855840ff679f.css",
+          "startMedianMs": 121.69999999925494,
+          "endMedianMs": 233.19999999925494,
+          "millisecondsBeforeFCPMedian": 255.60000000149012,
+          "lastBlockingCount": 4
+        },
+        {
+          "file": "1df01e941ed5ccbd.css",
+          "startMedianMs": 121.80000000074506,
+          "endMedianMs": 233.39999999850988,
+          "millisecondsBeforeFCPMedian": 267.69999999925494,
+          "lastBlockingCount": 3
+        }
+      ],
+      "headers": [
+        {
+          "file": "/dashboard",
+          "type": "Document",
+          "protocol": "http/1.1",
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+          "etag": null,
+          "wireBytes": 9041
+        },
+        {
+          "file": "/_next/static/css/614a4aca95eb4c7a.css",
+          "type": "Stylesheet",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"ff05-1a16e844920\"",
+          "wireBytes": 13447
+        },
+        {
+          "file": "/icons/social/whatsapp.svg",
+          "type": "Image",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=0",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"4cf-1a16e82fbd4\"",
+          "wireBytes": 1081
+        },
+        {
+          "file": "/_next/static/chunks/webpack-74d2bb02f2fbf9ce.js",
+          "type": "Script",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"d1c-1a16e844920\"",
+          "wireBytes": 2161
+        },
+        {
+          "file": "/_next/static/css/6e69855840ff679f.css",
+          "type": "Stylesheet",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"135ee-1a16e844920\"",
+          "wireBytes": 13326
+        },
+        {
+          "file": "/_next/static/chunks/8706df1e-a1d71d4401eeccae.js",
+          "type": "Script",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"31bc9-1a16e844920\"",
+          "wireBytes": 64558
+        },
+        {
+          "file": "/_next/static/chunks/main-app-32277aadbaba61c6.js",
+          "type": "Script",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": null,
+          "contentLength": "513",
+          "vary": "Accept-Encoding",
+          "etag": "W/\"201-1a16e844918\"",
+          "wireBytes": 923
+        },
+        {
+          "file": "/icons/social/github.svg",
+          "type": "Image",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=0",
+          "encoding": null,
+          "contentLength": "681",
+          "vary": "Accept-Encoding",
+          "etag": "W/\"2a9-1a16e82fbd4\"",
+          "wireBytes": 1049
+        },
+        {
+          "file": "/icons/social/linkedin.svg",
+          "type": "Image",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=0",
+          "encoding": null,
+          "contentLength": "569",
+          "vary": "Accept-Encoding",
+          "etag": "W/\"239-1a16e82fbd4\"",
+          "wireBytes": 937
+        },
+        {
+          "file": "/_next/static/chunks/636-ffb384086c34c920.js",
+          "type": "Script",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"3b37b-1a16e844920\"",
+          "wireBytes": 67676
+        },
+        {
+          "file": "/brand/codex-user-supplied.svg",
+          "type": "Image",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=0",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"2947-1a16e82fbd0\"",
+          "wireBytes": 2890
+        },
+        {
+          "file": "/_next/static/css/1df01e941ed5ccbd.css",
+          "type": "Stylesheet",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"8c5e-1a16e844920\"",
+          "wireBytes": 7068
+        },
+        {
+          "file": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "type": "Font",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": null,
+          "contentLength": "14200",
+          "vary": null,
+          "etag": "W/\"3778-1a16e844904\"",
+          "wireBytes": 14563
+        },
+        {
+          "file": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "type": "Font",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": null,
+          "contentLength": "14348",
+          "vary": null,
+          "etag": "W/\"380c-1a16e844904\"",
+          "wireBytes": 14711
+        },
+        {
+          "file": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "type": "Font",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": null,
+          "contentLength": "14304",
+          "vary": null,
+          "etag": "W/\"37e0-1a16e844904\"",
+          "wireBytes": 14667
+        },
+        {
+          "file": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page-6afe0f484501e7ec.js",
+          "type": "Script",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"30ca8-1a16e844920\"",
+          "wireBytes": 55941
+        },
+        {
+          "file": "/_next/static/chunks/992-8fa86547648050f9.js",
+          "type": "Script",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"1aa0c-1a16e844924\"",
+          "wireBytes": 33001
+        },
+        {
+          "file": "/brand/codex-user-supplied.svg",
+          "type": "Other",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=0",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"2947-1a16e82fbd0\"",
+          "wireBytes": 2890
+        }
+      ],
+      "lastBlockingCssMedianMs": 233.39999999850988,
+      "lastFontMedianMs": 319.8999999985099
+    },
+    "final": {
+      "styleTimings": [
+        {
+          "file": "8809e623ff52f09d.css",
+          "startMedianMs": 160.19999999925494,
+          "endMedianMs": 202,
+          "millisecondsBeforeFCPMedian": 394,
+          "lastBlockingCount": 0
+        },
+        {
+          "file": "6e69855840ff679f.css",
+          "startMedianMs": 160.59999999776483,
+          "endMedianMs": 243.69999999925494,
+          "millisecondsBeforeFCPMedian": 352.30000000074506,
+          "lastBlockingCount": 1
+        },
+        {
+          "file": "eb86810ad77fc3a3.css",
+          "startMedianMs": 160.69999999925494,
+          "endMedianMs": 301.8999999985099,
+          "millisecondsBeforeFCPMedian": 294.1000000014901,
+          "lastBlockingCount": 2
+        },
+        {
+          "file": "55bbc64ae4d39192.css",
+          "startMedianMs": 161.19999999925494,
+          "endMedianMs": 306.5,
+          "millisecondsBeforeFCPMedian": 289.5,
+          "lastBlockingCount": 1
+        },
+        {
+          "file": "3be7d25f586b063e.css",
+          "startMedianMs": 161,
+          "endMedianMs": 320.8999999985099,
+          "millisecondsBeforeFCPMedian": 275.1000000014901,
+          "lastBlockingCount": 3
+        }
+      ],
+      "headers": [
+        {
+          "file": "/dashboard",
+          "type": "Document",
+          "protocol": "http/1.1",
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+          "etag": null,
+          "wireBytes": 10125
+        },
+        {
+          "file": "/_next/static/css/8809e623ff52f09d.css",
+          "type": "Stylesheet",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"10fa4-1a16e8462f3\"",
+          "wireBytes": 14091
+        },
+        {
+          "file": "/_next/static/css/6e69855840ff679f.css",
+          "type": "Stylesheet",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"135ee-1a16e8462f3\"",
+          "wireBytes": 13326
+        },
+        {
+          "file": "/icons/social/github.svg",
+          "type": "Image",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=0",
+          "encoding": null,
+          "contentLength": "681",
+          "vary": "Accept-Encoding",
+          "etag": "W/\"2a9-1a16e8328e0\"",
+          "wireBytes": 1049
+        },
+        {
+          "file": "/brand/codex-user-supplied.svg",
+          "type": "Image",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=0",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"2947-1a16e8328dc\"",
+          "wireBytes": 2890
+        },
+        {
+          "file": "/_next/static/css/55bbc64ae4d39192.css",
+          "type": "Stylesheet",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"64c3-1a16e8462f3\"",
+          "wireBytes": 4738
+        },
+        {
+          "file": "/_next/static/css/eb86810ad77fc3a3.css",
+          "type": "Stylesheet",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"10b57-1a16e8462f3\"",
+          "wireBytes": 12188
+        },
+        {
+          "file": "/icons/social/linkedin.svg",
+          "type": "Image",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=0",
+          "encoding": null,
+          "contentLength": "569",
+          "vary": "Accept-Encoding",
+          "etag": "W/\"239-1a16e8328e0\"",
+          "wireBytes": 937
+        },
+        {
+          "file": "/_next/static/css/3be7d25f586b063e.css",
+          "type": "Stylesheet",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"1507e-1a16e8462f3\"",
+          "wireBytes": 12808
+        },
+        {
+          "file": "/icons/social/whatsapp.svg",
+          "type": "Image",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=0",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"4cf-1a16e8328e0\"",
+          "wireBytes": 1081
+        },
+        {
+          "file": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "type": "Font",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": null,
+          "contentLength": "14200",
+          "vary": null,
+          "etag": "W/\"3778-1a16e8462e7\"",
+          "wireBytes": 14563
+        },
+        {
+          "file": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "type": "Font",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": null,
+          "contentLength": "14348",
+          "vary": null,
+          "etag": "W/\"380c-1a16e8462e7\"",
+          "wireBytes": 14711
+        },
+        {
+          "file": "/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+          "type": "Font",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": null,
+          "contentLength": "14232",
+          "vary": null,
+          "etag": "W/\"3798-1a16e8462e7\"",
+          "wireBytes": 14595
+        },
+        {
+          "file": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "type": "Font",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": null,
+          "contentLength": "14304",
+          "vary": null,
+          "etag": "W/\"37e0-1a16e8462e7\"",
+          "wireBytes": 14667
+        },
+        {
+          "file": "/_next/static/chunks/webpack-2c10f90d120e4d90.js",
+          "type": "Script",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"d5e-1a16e8462f3\"",
+          "wireBytes": 2207
+        },
+        {
+          "file": "/_next/static/chunks/main-app-32277aadbaba61c6.js",
+          "type": "Script",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": null,
+          "contentLength": "513",
+          "vary": "Accept-Encoding",
+          "etag": "W/\"201-1a16e8462eb\"",
+          "wireBytes": 923
+        },
+        {
+          "file": "/_next/static/chunks/8706df1e-a1d71d4401eeccae.js",
+          "type": "Script",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"31bc9-1a16e8462f3\"",
+          "wireBytes": 64558
+        },
+        {
+          "file": "/_next/static/chunks/636-ffb384086c34c920.js",
+          "type": "Script",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"3b37b-1a16e8462f3\"",
+          "wireBytes": 67676
+        },
+        {
+          "file": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page-7d330e6961fa396b.js",
+          "type": "Script",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": null,
+          "contentLength": "179",
+          "vary": "Accept-Encoding",
+          "etag": "W/\"b3-1a16e8462ef\"",
+          "wireBytes": 588
+        },
+        {
+          "file": "/_next/static/chunks/330-4c357f8dea252b4d.js",
+          "type": "Script",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"1c052-1a16e8462f3\"",
+          "wireBytes": 34556
+        },
+        {
+          "file": "/_next/static/chunks/46-25dc4d392de3b32b.js",
+          "type": "Script",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"3be64-1a16e8462f7\"",
+          "wireBytes": 68137
+        },
+        {
+          "file": "/brand/codex-user-supplied.svg",
+          "type": "Other",
+          "protocol": "http/1.1",
+          "cacheControl": "public, max-age=0",
+          "encoding": "gzip",
+          "contentLength": null,
+          "vary": "Accept-Encoding",
+          "etag": "W/\"2947-1a16e8328dc\"",
+          "wireBytes": 2890
+        }
+      ],
+      "lastBlockingCssMedianMs": 320.8999999985099,
+      "lastFontMedianMs": 456.69999999925494
+    }
+  }
+}
