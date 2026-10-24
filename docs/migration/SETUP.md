@@ -18,7 +18,7 @@ Use one browser origin (`APP_ORIGIN=https://dddhack-portal.vercel.app`, availabi
 
 Automatically injected when services are enabled, do not redundantly copy/provision: `DATABASE_URL` (pooled), `DATABASE_URL_UNPOOLED` (direct for migrations/interactive transactions), `NEON_BRANCH`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_ENDPOINT_URL_S3`, `AWS_REGION`.
 
-User-managed backend configuration: `APP_ORIGIN`, `AUTH_BASE_URL` (same APP_ORIGIN), `BETTER_AUTH_SECRET`, `PORTAL_PROXY_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`, `CREDIT_ENCRYPTION_KEY`, `NEON_MEDIA_BUCKET=project-media`, `JOB_RUNNER_SECRET`. Secrets are provisioned securely later, never in chat or Git. Preserve owner/participant identity linking by verified normalized email, no arbitrary role grant on login. Owner bootstrap remains explicit and controlled.
+User-managed backend configuration: `APP_ORIGIN`, `AUTH_BASE_URL` (optional, defaults to APP_ORIGIN), `BETTER_AUTH_SECRET`, `PORTAL_PROXY_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`, `CREDIT_ENCRYPTION_KEY`, `NEON_MEDIA_BUCKET=project-media`, `JOB_RUNNER_SECRET`. Secrets are provisioned securely later, never in chat or Git. Preserve owner/participant identity linking by verified normalized email, no arbitrary role grant on login. Owner bootstrap remains explicit and controlled.
 
 SMTP requires a selected provider, verified sending domain/address, SPF/DKIM and preferably DMARC. Use TLS (465 implicit or 587 STARTTLS), provider SMTP credentials, a From address allowed by that provider and deliverability testing. The user selected Gmail SMTP on smtp.gmail.com:465 with implicit TLS and a privately entered app password. No test email has been sent. Runtime outbound SMTP connectivity remains unverified. Google requires a Web OAuth client and the exact callback above registered; separate preview/local clients or exact callback entries, never wildcard callbacks.
 
@@ -30,7 +30,7 @@ Functions are request/response handlers, not durable background loops. Queue run
 
 ## OpenAI gate
 
-No usable OPENAI_API_KEY was found in this Cloud environment. The user chose reuse and manual migration of the existing key into the backend. Agent credential extraction is not authorized; private-data/destination approval remains pending. Never extract the Sites key. Future backend configuration must use an explicitly approved `OPENAI_MODEL` rather than an invented Astra model ID. No credentials or model calls are required for independent migration and synthetic offline fixtures.
+No usable OPENAI_API_KEY was found in this Cloud environment. The user chose reuse and manual migration of the existing key into the backend. Agent credential extraction is not authorized; the user later approved bounded project descriptions, explicitly selected source files and commit metadata to OpenAI. Credentials, voucher values, phones and unrelated profiles remain excluded. Current task key presence remains no, so no real call has run. Never extract the Sites key. Future backend configuration must use an explicitly approved `OPENAI_MODEL` rather than an invented Astra model ID. No credentials or model calls are required for independent migration and synthetic offline fixtures.
 
 ## Verified official references (24 October 2026)
 
