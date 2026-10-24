@@ -1,0 +1,49 @@
+{
+  "source": "927845c5a3cf6755f94a219d8c9cf0060774fd58",
+  "syntheticOnly": true,
+  "postRequests": 0,
+  "captures": [
+    "/workspace/ddd-team-studio/evidence/team-studio-scroll/identity-body-scroll-320x480.png",
+    "/workspace/ddd-team-studio/evidence/team-studio-scroll/idea-native200.png",
+    "/workspace/ddd-team-studio/evidence/team-studio-scroll/next-native200.png",
+    "/workspace/ddd-team-studio/evidence/team-studio-scroll/progress-native200.png"
+  ],
+  "before": {
+    "body": "auto",
+    "html": "scroll",
+    "y": 80,
+    "width": 288
+  },
+  "open": {
+    "body": "hidden",
+    "html": "hidden",
+    "y": 80,
+    "width": 288
+  },
+  "backdrop": {
+    "body": "hidden",
+    "html": "hidden",
+    "y": 80,
+    "width": 288
+  },
+  "internalScroll": {
+    "before": 0,
+    "after": 170,
+    "saveReachable": true
+  },
+  "restored": {
+    "body": "auto",
+    "html": "scroll",
+    "y": 80,
+    "width": 288
+  },
+  "nestedConfirm": "Nested rename confirmation Cancel preserves Studio lock; browserBack closes Studio and restores exact previous overflow/scroll/width",
+  "native": {
+    "innerWidth": 720,
+    "innerHeight": 378,
+    "dpr": 2,
+    "scale": 1
+  },
+  "completed": true,
+  "browserClosed": true
+}

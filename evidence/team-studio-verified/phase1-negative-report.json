@@ -1,0 +1,46 @@
+{
+  "source": "c1ad8d3f945c431677101e7a8cf35323a6508b6a",
+  "backend": "0a0b30b62725fe781dbad95945710a80169b1a20",
+  "syntheticOnly": true,
+  "database": "/tmp/ddd-team-studio.sqlite",
+  "captures": [
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/identity-orange-preview-short-390x480.png",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "full": false
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/invite-short-390x480.png",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "full": false
+    }
+  ],
+  "checks": [
+    "Actual Team appearance saves Orange200; compact hidden accessible radios, ShiftTab stays inside, Escape and browserBack dismiss and return focus"
+  ],
+  "responses": [
+    {
+      "action": "team-style",
+      "status": 200,
+      "message": "Team identity updated for every member."
+    },
+    {
+      "action": "team-invite",
+      "status": 422,
+      "message": "REGISTERED_ACCOUNT_REQUIRED",
+      "code": "REGISTERED_ACCOUNT_REQUIRED"
+    }
+  ],
+  "errors": [],
+  "failure": "AssertionError [ERR_ASSERTION]: {\"code\":\"REGISTERED_ACCOUNT_REQUIRED\",\"message\":\"REGISTERED_ACCOUNT_REQUIRED\"}\n\n422 !== 200\n\n    at action (file:///tmp/ddd-studio-behavior.mjs:4:437)\n    at async file:///tmp/ddd-studio-behavior.mjs:5:1434",
+  "failureUrl": "http://localhost:3003/dashboard",
+  "browserClosed": true
+}
