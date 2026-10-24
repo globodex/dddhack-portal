@@ -35,7 +35,11 @@ export function trustedProxyRequest(request: Request, env: BackendEnvironment) {
   if (request.headers.get("x-portal-forwarded-origin") !== origin.origin)
     throw new PortalError(403, "UNTRUSTED_PROXY_ORIGIN");
   const url = new URL(request.url);
-  const external = new URL(url.pathname + url.search, origin);
+  if (!url.pathname.startsWith("/api/") || url.pathname.includes("\\"))
+    throw new PortalError(404, "NOT_FOUND");
+  const external = new URL(origin);
+  external.pathname = url.pathname;
+  external.search = url.search;
   const headers = new Headers(request.headers);
   for (const key of [...headers.keys()]) {
     if (key.startsWith("oai-authenticated-") || key.startsWith("x-portal-user-") ||
