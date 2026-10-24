@@ -1,5 +1,6 @@
 import { projectMediaPolicy } from "./project-media-policy";
 import { adminTeamCandidates, adminTeamCorrection } from "./admin-team-corrections";
+import { publicTeamMembers } from "./public-team-members";
 import { OWNER_EMAIL } from "./identity";
 import { adminAccessView, revokeAdminAccess } from "./admin-access";
 import { auditReason } from "./security";
@@ -799,7 +800,8 @@ export class PortalExperience {
           this.s.db,
           selected.map((t) => t.id),
           me.id,
-        );
+        ),
+        members = await publicTeamMembers(this.s.db, selected.map((t) => t.id));
       return {
         me,
         team: await this.team(me.id),
@@ -815,6 +817,7 @@ export class PortalExperience {
             status: fact.status,
             readiness: fact.readiness,
             requested: fact.requested,
+            members: members.get(t.id) || [],
           };
         }),
       };
