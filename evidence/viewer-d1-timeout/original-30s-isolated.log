@@ -1,0 +1,15 @@
+✖ actual local D1 binding: schema, trigger rollback, batch atomicity and concurrent credit/submission commands (30087.476063ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 0
+ℹ cancelled 1
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 39489.002138
+
+✖ failing tests:
+
+test at tests/d1.test.ts:1:342
+✖ actual local D1 binding: schema, trigger rollback, batch atomicity and concurrent credit/submission commands (30087.476063ms)
+  'test timed out after 30000ms'
