@@ -1,0 +1,26 @@
+✔ sqlite: independent stock1 exact50/10, later10 and canonical100 restock preserve assignments/metadata (225.111428ms)
+✔ sqlite: independent stock2 failed assignment rolls entire import/history/receipt back and same prepared retry works (88.969374ms)
+✔ sqlite: independent stock3 allocation failure rolls back bulk attendance and overrides without consuming stock (88.550646ms)
+✔ sqlite: independent stock4 self checked-in admin needs no profile/team/roster and revocation cannot leak a value (115.687154ms)
+ℹ Removed personal-credit GET: status 403 code PARTICIPANT_REMOVED; no credit payload returned
+✔ sqlite: independent stock5 global duplicates/retired codes cannot recycle or move an existing allocation owner (91.227658ms)
+✔ postgres: independent stock1 exact50/10, later10 and canonical100 restock preserve assignments/metadata (5247.103736ms)
+✔ postgres: independent stock2 failed assignment rolls entire import/history/receipt back and same prepared retry works (3520.788004ms)
+✔ postgres: independent stock3 allocation failure rolls back bulk attendance and overrides without consuming stock (3169.87795ms)
+✔ postgres: independent stock4 self checked-in admin needs no profile/team/roster and revocation cannot leak a value (3704.940348ms)
+ℹ Removed personal-credit GET: status 403 code PARTICIPANT_REMOVED; no credit payload returned
+✔ postgres: independent stock5 global duplicates/retired codes cannot recycle or move an existing allocation owner (5478.966162ms)
+✔ sqlite: independent stock7 overlapping new imports with different display edits cannot split one canonical header (112.113633ms)
+ℹ Overlapping canonical-header categories: [{"id":"5ad14d6e-961f-48d0-83a3-1195f12f1059","name":"Second display","source_heading":"INDEPENDENT OVERLAP","assigned":1}]
+✔ postgres: independent stock7 overlapping new imports with different display edits cannot split one canonical header (5151.263649ms)
+ℹ Overlapping canonical-header categories: [{"id":"6de7a592-a3a1-4999-a195-3bbadd92fc9f","name":"Second display","source_heading":"INDEPENDENT OVERLAP","assigned":1}]
+✔ sqlite: independent stock6 real migrator atomically rejects source-header and assigned-fingerprint legacy collisions (124.257873ms)
+✔ postgres: independent stock6 real migrator atomically rejects source-header and assigned-fingerprint legacy collisions (9275.563512ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 37560.929896

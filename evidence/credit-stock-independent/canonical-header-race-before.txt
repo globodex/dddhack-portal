@@ -1,0 +1,53 @@
+✖ sqlite: independent stock7 overlapping new imports with different display edits cannot split one canonical header (138.416785ms)
+ℹ Overlapping canonical-header categories: [{"id":"9da01091-479d-4f3e-ba6a-5a32ab6d1a49","name":"First display","source_heading":"Independent overlap","assigned":1},{"id":"bdad05ee-4f69-4e12-8d5c-d6d23a90dca3","name":"Second display","source_heading":"INDEPENDENT OVERLAP","assigned":1}]
+✖ postgres: independent stock7 overlapping new imports with different display edits cannot split one canonical header (6072.684265ms)
+ℹ Overlapping canonical-header categories: [{"id":"3bced6cc-ce1a-4537-a515-29d12b5861d3","name":"First display","source_heading":"Independent overlap","assigned":1},{"id":"a260961f-9278-4fa8-b6ec-20ba33c4bd96","name":"Second display","source_heading":"INDEPENDENT OVERLAP","assigned":1}]
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7407.202286
+
+✖ failing tests:
+
+test at tests/credit-stock-independent-audit.test.ts:1:12427
+✖ sqlite: independent stock7 overlapping new imports with different display edits cannot split one canonical header (138.416785ms)
+  AssertionError [ERR_ASSERTION]: One canonical CSV header must remain one category after an intervening import
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (/workspace/ddd-checkin-audit/tests/credit-stock-independent-audit.test.ts:550:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/credit-stock-independent-audit.test.ts:1:12427
+✖ postgres: independent stock7 overlapping new imports with different display edits cannot split one canonical header (6072.684265ms)
+  AssertionError [ERR_ASSERTION]: One canonical CSV header must remain one category after an intervening import
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (/workspace/ddd-checkin-audit/tests/credit-stock-independent-audit.test.ts:550:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
