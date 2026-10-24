@@ -8,6 +8,7 @@ import {
   Copy,
   Eye,
   EyeOff,
+  LoaderCircle,
   Search,
 } from "lucide-react";
 import { portalErrorText } from "../lib/ui-feedback";
@@ -323,7 +324,13 @@ export default function AdminCreditStock({
                                   }
                                 }}
                               >
-                                {value ? (
+                                {busy ? (
+                                  <LoaderCircle
+                                    size={18}
+                                    className="credit-batch-spinner"
+                                    aria-hidden="true"
+                                  />
+                                ) : value ? (
                                   <EyeOff size={18} aria-hidden="true" />
                                 ) : (
                                   <Eye size={18} aria-hidden="true" />

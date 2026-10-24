@@ -7,11 +7,13 @@ import {
   Copy,
   Eye,
   EyeOff,
+  LoaderCircle,
   Ticket,
 } from "lucide-react";
 import CreditInstructions from "./credit-instructions";
 import { HeadingDot } from "./expressive-heading";
 import { portalErrorText } from "../lib/ui-feedback";
+import InformationNavigation from "./information-navigation";
 
 type CreditRecord = Record<string, any>;
 
@@ -115,7 +117,13 @@ export function Credit({ credit }: { credit: CreditRecord }) {
               }
             }}
           >
-            {value ? (
+            {busy ? (
+              <LoaderCircle
+                size={20}
+                className="credit-batch-spinner"
+                aria-hidden="true"
+              />
+            ) : value ? (
               <EyeOff size={20} aria-hidden="true" />
             ) : (
               <Eye size={20} aria-hidden="true" />
@@ -222,15 +230,18 @@ export function PersonalCreditsAccess({
 }) {
   return (
     <main className="personal-credit-access">
-      <a href="/" className="personal-credit-access-brand">
-        <img
-          src="/brand/codex-user-supplied.svg"
-          width={28}
-          height={28}
-          alt=""
-        />
-        Codex Community New Delhi
-      </a>
+      <header>
+        <a href="/" className="personal-credit-access-brand">
+          <img
+            src="/brand/codex-user-supplied.svg"
+            width={28}
+            height={28}
+            alt=""
+          />
+          Codex Community New Delhi
+        </a>
+        <InformationNavigation path="/personal/credits" />
+      </header>
       <section>
         <Ticket size={30} aria-hidden="true" />
         <h1>

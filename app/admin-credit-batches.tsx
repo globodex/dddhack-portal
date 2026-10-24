@@ -267,7 +267,10 @@ function CategoryStock({
   disabled: boolean;
 }) {
   const [open, setOpen] = useState(false),
-    [live, setLive] = useState<StockSummary | null>(null),
+    [live, setLive] = useState<{
+      version: string;
+      summary: StockSummary;
+    } | null>(null),
     id = useId();
   const total = category.total ?? category.inventory,
     assigned = category.assigned,
@@ -276,7 +279,8 @@ function CategoryStock({
       (typeof total === "number" && typeof assigned === "number"
         ? Math.max(0, total - assigned)
         : undefined),
-    stock = live || {
+    version = JSON.stringify([total, assigned, available, category.waiting]),
+    stock = (live?.version === version ? live.summary : null) || {
       total,
       assigned,
       available,
@@ -345,7 +349,8 @@ function CategoryStock({
           <StockTable
             typeId={category.id}
             heading={category.name}
-            onSummary={setLive}
+            key={version}
+            onSummary={(summary) => setLive({ version, summary })}
           />
         </div>
       )}
@@ -397,7 +402,8 @@ export default function AdminCreditBatches({
     input = useRef<HTMLInputElement>(null),
     editor = useRef<HTMLDetailsElement>(null);
   const previewOp = useAdminOperation(),
-    publishOp = useAdminOperation();
+    publishOp = useAdminOperation(),
+    assignmentOp = useAdminOperation();
   const reset = () => {
     ++generation.current;
     setPreview(null);
@@ -429,13 +435,35 @@ export default function AdminCreditBatches({
       editor.current?.scrollIntoView({ block: "start" }),
     );
   };
-  const busy = previewOp.busy || publishOp.busy;
+  const busy = previewOp.busy || publishOp.busy || assignmentOp.busy;
+  const waitingForAssignment = catalog.some(
+    (category) => (category.waiting || 0) > 0 && (category.available || 0) > 0,
+  );
   return (
     <div className="admin-credit-batches">
+      {waitingForAssignment && (
+        <div className="credit-stock-assign-waiting">
+          <button
+            type="button"
+            className="button secondary"
+            disabled={busy || !hydrated}
+            aria-busy={assignmentOp.busy}
+            onClick={() =>
+              void assignmentOp.execute(async () => {
+                await run("repair-credit-allocations", {});
+                document.getElementById("main")?.focus({ preventScroll: true });
+              })
+            }
+          >
+            {assignmentOp.busy ? "Assigning…" : "Assign waiting"}
+          </button>
+          {assignmentOp.error && <p role="alert">{assignmentOp.error}</p>}
+        </div>
+      )}
       <div className="credit-stock-categories" aria-label="Credit stock">
         {catalog.map((category) => (
           <CategoryStock
-            key={`${category.id}-${category.total ?? category.inventory}-${category.assigned}-${category.waiting}`}
+            key={category.id}
             category={category}
             onAddMore={() => addMore(category.name)}
             disabled={busy || !hydrated}

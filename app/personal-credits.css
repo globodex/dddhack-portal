@@ -203,3 +203,27 @@
     font-size: 26px;
   }
 }
+.personal-credit-access > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-width: 0;
+}
+.personal-credit-access .information-menu-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border: 0;
+  border-radius: 50%;
+  background: #202320;
+  color: #fffefa;
+}
+.personal-credit-access .information-menu-button:focus-visible {
+  outline: 2px solid #006afe;
+  outline-offset: 3px;
+}

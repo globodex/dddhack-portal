@@ -548,3 +548,13 @@
 .app-shell .credit-stock-pagination-skeleton {
   height: 44px;
 }
+.app-shell .credit-stock-assign-waiting {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+}
+.app-shell .credit-stock-assign-waiting [role="alert"] {
+  margin: 0;
+  color: #a43e39;
+  font-size: 13px;
+}

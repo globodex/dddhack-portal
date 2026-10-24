@@ -35,7 +35,11 @@ export default async function PersonalCreditsPage() {
           error.status === 403 && /CHECK.?IN|CHECKED_IN/.test(error.code)
         }
         title={
-          error.status === 403 ? "Your credits are not available." : undefined
+          error.code === "PARTICIPANT_REMOVED"
+            ? "Your participation was removed. Contact an organizer."
+            : error.status === 403
+              ? "Your credits are not available."
+              : undefined
         }
       />
     );
