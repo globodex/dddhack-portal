@@ -6,8 +6,8 @@ Native Chromium 200% zoom was confirmed in a disposable profile: outer width 144
 
 At this effective 720px width, profile step 1 stacks the avatar above the fields, but keeps two grid columns and a vertical avatar divider. The fields therefore occupy only the left half of the page. The control/overflow tests pass, but the rendered layout is visibly wrong.
 
-- [Before: avatar area](before-native-200pct-step1.png)
-- [Before: half-width fields](before-native-200pct-fields.png)
+- [Before: avatar area](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/profile-breakpoint-667222d/before-native-200pct-step1.png)
+- [Before: half-width fields](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/profile-breakpoint-667222d/before-native-200pct-fields.png)
 
 The legacy stylesheet reorders the avatar and fields at 740px. The later profile stylesheet previously applied its tablet grid from 641px and only switched to a single column below 641px. This two-line CSS correction aligns those ranges: mobile through 740px, tablet from 741px. It changes no form behavior, persistence, field requirements or shared tokens.
 

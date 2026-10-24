@@ -16,7 +16,7 @@ The auth handler, 15-minute expiry, browser-bound token, scanner-safe GET confir
 - Native browser screenshots at 1440x900 and 390x844 were opened and inspected. Both show the complete fallback link and a 52px primary action without horizontal overflow. There were no page errors or external asset requests.
 - No mail was sent, no live sign-in URL was used and no provider configuration changed.
 
-Evidence: [desktop screenshot](../evidence/signin-email/signin-email-1440x900.png), [mobile screenshot](../evidence/signin-email/signin-email-390x844.png), [capture report](../evidence/signin-email/report.json), [test output](../evidence/signin-email/tests.log). The standalone [HTML preview](../previews/signin-email/signin.html) uses an explicitly invalid synthetic token.
+Evidence: [desktop screenshot](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/signin-email/signin-email-1440x900.png), [mobile screenshot](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/signin-email/signin-email-390x844.png), [capture report](../evidence/signin-email/report.json), [test output](../evidence/signin-email/tests.log). The standalone [HTML preview](../previews/signin-email/signin.html) uses an explicitly invalid synthetic token.
 
 ## Reproduce
 

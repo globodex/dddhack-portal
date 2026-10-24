@@ -12,11 +12,11 @@ Captured and inspected actual pixels:
 
 | State | Evidence |
 | --- | --- |
-| Unlocked leader | [Desktop](leader-unlocked-1440x900.png) |
-| Outgoing invitation after successful send | [Mobile](outgoing-invitation-mobile-390x844.png) |
-| Incoming invitation | [Mobile full page](incoming-invitation-390x844.png) |
-| Decline confirmation | [Short mobile](decline-confirmation-short-390x480.png) |
-| Declined outcome | [Mobile full page](declined-outcome-390x844.png) |
+| Unlocked leader | [Desktop](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/leader-unlocked-1440x900.png) |
+| Outgoing invitation after successful send | [Mobile](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/outgoing-invitation-mobile-390x844.png) |
+| Incoming invitation | [Mobile full page](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/incoming-invitation-390x844.png) |
+| Decline confirmation | [Short mobile](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/decline-confirmation-short-390x480.png) |
+| Declined outcome | [Mobile full page](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/declined-outcome-390x844.png) |
 
 Actual responses: invitation 200, decline 200, then re-invitation 409 CONFLICT. The response states that no changes were committed. The unique `(team_id,user_id,kind)` constraint conflicts with the existing insert-only invitation path after a declined row. The re-invitation was not retried, and no invitation history was deleted. See [raw report](report.json). Bob/Common Ground remains unlocked with its three original members; Pending remains teamless. Acceptance and removal dependent on that invitation are not captured at this checkpoint.
 

@@ -26,10 +26,10 @@ All28 HTTP responses200; zero initial browser API requests, page errors, blocked
 
 `capture-loading.mjs` activates existing prefetch=false navigation links and delays only the existing destination RSC GET, then captures the actual RouteSkeleton inside the stable shell. No DOM replacement, app-style injection, extra API request or mutation. The accepted nine-frame set is:
 
-- Studio desktop: [1440](loading/studio-1440x900.png).
-- Studio corrected mobile: [390](loading-studio-final/studio-390x844.png), [320 short](loading-studio-final/studio-320x480.png).
-- Stock inventory: [1440](loading/inventory-1440x900.png), [390](loading/inventory-390x844.png), [320 short](loading/inventory-320x480.png).
-- Personal credits: [1440](loading/personal-1440x900.png), [390](loading/personal-390x844.png), [320 short](loading/personal-320x480.png).
+- Studio desktop: [1440](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-performance-current/loading/studio-1440x900.png).
+- Studio corrected mobile: [390](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-performance-current/loading-studio-final/studio-390x844.png), [320 short](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-performance-current/loading-studio-final/studio-320x480.png).
+- Stock inventory: [1440](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-performance-current/loading/inventory-1440x900.png), [390](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-performance-current/loading/inventory-390x844.png), [320 short](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-performance-current/loading/inventory-320x480.png).
+- Personal credits: [1440](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-performance-current/loading/personal-1440x900.png), [390](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-performance-current/loading/personal-390x844.png), [320 short](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-performance-current/loading/personal-320x480.png).
 
 All accepted frames were viewed. Seven unchanged frames bind f7c8620 (root venue CSS5b926d2); the two final Studio frames bind4053872/root2657. Later changes affect only Studio placeholder tabs, so other seven frames remain valid. Origin sidebar context stays during the pending transition. Actual skeleton geometry now follows the Studio header/roster/60:40 idea and Next panels, inventory counters and dedicated personal credit card. Each navigation held one RSC GET and no API request.
 

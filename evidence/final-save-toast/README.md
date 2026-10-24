@@ -8,10 +8,10 @@ After Save refreshed the editor toStep1, the success toast remained visible imme
 
 Four original1440×900 PNGs were individually opened and inspected:
 
-- [Save confirmation before the only POST](one-save-confirmation.png).
-- [Saved success with refreshed visible Step1](saved-success-before-visible-input-focus.png).
-- [Toast cleared and Project name visibly focused](save-success-cleared-visible-input-focused.png).
-- [Actionable name error remains after another input receives focus](required-field-error-retained-after-other-input-focus.png).
+- [Save confirmation before the only POST](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-save-toast/one-save-confirmation.png).
+- [Saved success with refreshed visible Step1](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-save-toast/saved-success-before-visible-input-focus.png).
+- [Toast cleared and Project name visibly focused](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-save-toast/save-success-cleared-visible-input-focused.png).
+- [Actionable name error remains after another input receives focus](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-save-toast/required-field-error-retained-after-other-input-focus.png).
 
 [Original report](report.json) preserves an execution bookkeeping failure after both browser assertions passed: it expected only `projects` and `audit_logs` to change, overlooking `request_buckets`. The real `PortalService.command()` calls `throttle(actor.id)` before dispatch, which persists one request bucket. No product failure was reproduced. The future script's allowed-table assertion now includes that exact expected table and one-count delta; the save was not rerun.
 

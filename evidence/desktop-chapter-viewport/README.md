@@ -17,14 +17,14 @@ Validation:
 
 Native before/after screenshots:
 
-- [Live before, 1847×1023](before-live/1847x1023-schedule.png)
-- [Local after, 1847×1023](verified-resume/1847x1023-schedule.png)
-- [Local after, 1440×900](verified/1440x900-schedule.png)
-- [Local after, 1920×1080](verified-resume/1920x1080-schedule.png)
-- [Larger logo on desktop](verified-final/1440x900-hero-larger-logo.png)
-- [Larger logo on mobile](verified-final/390x844-hero-larger-logo.png)
-- [Short mobile CTA and settled dots](verified-final-supplement/320x480-CTA-reachable.png)
-- [Long agenda last row](verified-resume/1847x1023-long-agenda-row-6.png)
+- [Live before, 1847×1023](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/desktop-chapter-viewport/before-live/1847x1023-schedule.png)
+- [Local after, 1847×1023](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/desktop-chapter-viewport/verified-resume/1847x1023-schedule.png)
+- [Local after, 1440×900](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/desktop-chapter-viewport/verified/1440x900-schedule.png)
+- [Local after, 1920×1080](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/desktop-chapter-viewport/verified-resume/1920x1080-schedule.png)
+- [Larger logo on desktop](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/desktop-chapter-viewport/verified-final/1440x900-hero-larger-logo.png)
+- [Larger logo on mobile](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/desktop-chapter-viewport/verified-final/390x844-hero-larger-logo.png)
+- [Short mobile CTA and settled dots](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/desktop-chapter-viewport/verified-final-supplement/320x480-CTA-reachable.png)
+- [Long agenda last row](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/desktop-chapter-viewport/verified-resume/1847x1023-long-agenda-row-6.png)
 
 Selected actual pixels were viewed, including the matching live/after desktop frames, no-JavaScript full-height frame, larger logos, short-mobile settled pile, long agenda and expanded FAQ focus. All native PNGs are preserved separately with hashes and dimensions.
 

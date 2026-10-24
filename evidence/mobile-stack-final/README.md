@@ -20,13 +20,13 @@ Selected native captures were viewed, including each mobile transition, Rules la
 
 Useful screenshots:
 
-- [Current desktop hero](verified/1440x900-hero.png)
-- [Current mobile hero](after/390x844-hero.png)
-- [Normal mobile stack](verified-normal-first-run/390x844-schedule-to-venue-overlap.png)
-- [Short mobile stack](verified/390x480-schedule-to-venue-overlap.png)
-- [Short Rules last row](verified/390x480-rules-last-row-visible.png)
-- [Short expanded FAQ focus](verified/390x480-faq-expanded-last-focused.png)
-- [Long synthetic agenda last row](verified/390x480-synthetic-long-agenda-row-6.png)
+- [Current desktop hero](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/mobile-stack-final/verified/1440x900-hero.png)
+- [Current mobile hero](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/mobile-stack-final/after/390x844-hero.png)
+- [Normal mobile stack](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/mobile-stack-final/verified-normal-first-run/390x844-schedule-to-venue-overlap.png)
+- [Short mobile stack](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/mobile-stack-final/verified/390x480-schedule-to-venue-overlap.png)
+- [Short Rules last row](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/mobile-stack-final/verified/390x480-rules-last-row-visible.png)
+- [Short expanded FAQ focus](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/mobile-stack-final/verified/390x480-faq-expanded-last-focused.png)
+- [Long synthetic agenda last row](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/mobile-stack-final/verified/390x480-synthetic-long-agenda-row-6.png)
 
 Evidence boundaries: `before/` contains 16 complete before captures. `after/` contains 16 initial exploratory captures; the old anchor algorithm produced unreliable incoming-section filenames after sticky positioning, so those progress frames are excluded from overlap proof (its hero pixels remain valid). `verified-normal-first-run/` contains accepted native normal-height frames and nine passing checks, followed by a harness-only URL-regex timeout: it incorrectly rejected the successful sign-in URL's returnTo query. The continuation uses a pathname predicate and proves the intended navigation. `verified/` contains 21 captures and 48 passing checks. The earlier zero-capture network-idle/lazy-image-decode harness failures remain preserved and excluded from application findings.
 

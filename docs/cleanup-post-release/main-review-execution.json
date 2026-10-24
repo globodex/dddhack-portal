@@ -1,0 +1,2560 @@
+{
+  "base": "bddb869f3209adcb6cc4ea6161014d51f340cd96",
+  "deletedImages": 2198,
+  "deletedBytes": 181474626,
+  "manifestSHA256": "0fef74aaed140ed072ec4c71e835e117d10ecf9ab4733252b6c6613672561819",
+  "documentsUpdated": [
+    "docs/LANDING_SIGNIN_REDESIGN_QA.md",
+    "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+    "docs/PUBLIC_RESPONSIVE_ALIGNMENT_QA.md",
+    "docs/SIGNIN_EMAIL_EXPERIENCE.md",
+    "docs/migration/UI.md",
+    "evidence/PROJECTS_RULES_DELIVERY.md",
+    "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+    "evidence/admin-action-refinement/README.md",
+    "evidence/admin-alignment-checkpoint-2a6d865/README.md",
+    "evidence/admin-final-private8834/README.md",
+    "evidence/admin-long-name-wrap/README.md",
+    "evidence/admin-owner-access-final-hydrated/README.md",
+    "evidence/admin-quick-check-in-layout/README.md",
+    "evidence/admin-redesign-2026-10-24/README.md",
+    "evidence/admin-selection-before/README.md",
+    "evidence/create-team-repair/README.md",
+    "evidence/desktop-chapter-viewport/README.md",
+    "evidence/final-performance-current/README.md",
+    "evidence/final-save-toast/README.md",
+    "evidence/final-submission-shell/README.md",
+    "evidence/mobile-stack-final/README.md",
+    "evidence/organizer-desktop-refinement/README.md",
+    "evidence/owner-mobile-account-navigation-7157436/QA.md",
+    "evidence/owner-mobile-account-navigation-7cb01dc/QA.md",
+    "evidence/performance-content-boundary/RESULTS.md",
+    "evidence/performance-production/RESULTS.md",
+    "evidence/private-reinvite-8834/QA.md",
+    "evidence/profile-breakpoint-667222d/QA.md",
+    "evidence/profile-breakpoint-after-182c2bd/QA.md",
+    "evidence/redesign-landing/README.md",
+    "evidence/redesign-profile/QA.md",
+    "evidence/responsive-profile-discovery-2a6d865/QA.md",
+    "evidence/responsive-profile-discovery-667222d/QA.md",
+    "evidence/responsive-public-audit/README.md",
+    "evidence/seo-legal-0f5f823/QA.md",
+    "evidence/team-role-states/README.md",
+    "evidence/team-role-states/accepted-lock/README.md",
+    "evidence/team-role-states/idea-saved/README.md",
+    "evidence/team-studio-independent/design-qa.md"
+  ],
+  "linksRepointed": [
+    {
+      "document": "docs/LANDING_SIGNIN_REDESIGN_QA.md",
+      "original": "../evidence/redesign-landing/mobile-target-comparison-final.png",
+      "path": "evidence/redesign-landing/mobile-target-comparison-final.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/mobile-target-comparison-final.png"
+    },
+    {
+      "document": "docs/LANDING_SIGNIN_REDESIGN_QA.md",
+      "original": "../evidence/redesign-landing/mobile-cta-detail-comparison-final.png",
+      "path": "evidence/redesign-landing/mobile-cta-detail-comparison-final.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/mobile-cta-detail-comparison-final.png"
+    },
+    {
+      "document": "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+      "original": "../evidence/final-combined-ui/admin-submissions-desktop1440.png",
+      "path": "evidence/final-combined-ui/admin-submissions-desktop1440.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-combined-ui/admin-submissions-desktop1440.png"
+    },
+    {
+      "document": "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+      "original": "../evidence/final-combined-ui/admin-submissions-mobile390.png",
+      "path": "evidence/final-combined-ui/admin-submissions-mobile390.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-combined-ui/admin-submissions-mobile390.png"
+    },
+    {
+      "document": "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+      "original": "../evidence/final-combined-ui/admin-project-detail-desktop1440.png",
+      "path": "evidence/final-combined-ui/admin-project-detail-desktop1440.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-combined-ui/admin-project-detail-desktop1440.png"
+    },
+    {
+      "document": "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+      "original": "../evidence/final-combined-ui/admin-project-detail-mobile390.png",
+      "path": "evidence/final-combined-ui/admin-project-detail-mobile390.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-combined-ui/admin-project-detail-mobile390.png"
+    },
+    {
+      "document": "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+      "original": "../evidence/final-combined-ui/people-compact-1440x900.png",
+      "path": "evidence/final-combined-ui/people-compact-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-combined-ui/people-compact-1440x900.png"
+    },
+    {
+      "document": "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+      "original": "../evidence/final-combined-ui/people-compact-390x844.png",
+      "path": "evidence/final-combined-ui/people-compact-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-combined-ui/people-compact-390x844.png"
+    },
+    {
+      "document": "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+      "original": "../evidence/final-combined-ui/teams-desktop1440.png",
+      "path": "evidence/final-combined-ui/teams-desktop1440.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-combined-ui/teams-desktop1440.png"
+    },
+    {
+      "document": "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+      "original": "../evidence/final-combined-ui/teams-mobile390.png",
+      "path": "evidence/final-combined-ui/teams-mobile390.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-combined-ui/teams-mobile390.png"
+    },
+    {
+      "document": "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+      "original": "../evidence/final-combined-ui/project-detail-desktop1440.png",
+      "path": "evidence/final-combined-ui/project-detail-desktop1440.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-combined-ui/project-detail-desktop1440.png"
+    },
+    {
+      "document": "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+      "original": "../evidence/final-combined-ui/project-detail-mobile390.png",
+      "path": "evidence/final-combined-ui/project-detail-mobile390.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-combined-ui/project-detail-mobile390.png"
+    },
+    {
+      "document": "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+      "original": "../evidence/final-combined-ui/project-share-desktop1440.png",
+      "path": "evidence/final-combined-ui/project-share-desktop1440.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-combined-ui/project-share-desktop1440.png"
+    },
+    {
+      "document": "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+      "original": "../evidence/final-combined-ui/project-share-mobile390.png",
+      "path": "evidence/final-combined-ui/project-share-mobile390.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-combined-ui/project-share-mobile390.png"
+    },
+    {
+      "document": "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+      "original": "../evidence/discover-profile-completeness/public-gender/admin-bob-1440x900.png",
+      "path": "evidence/discover-profile-completeness/public-gender/admin-bob-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/discover-profile-completeness/public-gender/admin-bob-1440x900.png"
+    },
+    {
+      "document": "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+      "original": "../evidence/discover-profile-completeness/public-gender/admin-bob-390x844.png",
+      "path": "evidence/discover-profile-completeness/public-gender/admin-bob-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/discover-profile-completeness/public-gender/admin-bob-390x844.png"
+    },
+    {
+      "document": "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+      "original": "../evidence/final-combined-ui/stock-aligned-1440x900.png",
+      "path": "evidence/final-combined-ui/stock-aligned-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-combined-ui/stock-aligned-1440x900.png"
+    },
+    {
+      "document": "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+      "original": "../evidence/final-combined-ui/stock-aligned-390x844.png",
+      "path": "evidence/final-combined-ui/stock-aligned-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-combined-ui/stock-aligned-390x844.png"
+    },
+    {
+      "document": "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+      "original": "../evidence/final-combined-ui/dashboard-project-toolbar-desktop1440.png",
+      "path": "evidence/final-combined-ui/dashboard-project-toolbar-desktop1440.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-combined-ui/dashboard-project-toolbar-desktop1440.png"
+    },
+    {
+      "document": "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+      "original": "../evidence/final-combined-ui/dashboard-project-history-mobile390.png",
+      "path": "evidence/final-combined-ui/dashboard-project-history-mobile390.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-combined-ui/dashboard-project-history-mobile390.png"
+    },
+    {
+      "document": "docs/PORTAL_REFINEMENT_RELEASE_2026_10_24.md",
+      "original": "../evidence/discover-profile-completeness/public-gender/stranger-bob-390x844.png",
+      "path": "evidence/discover-profile-completeness/public-gender/stranger-bob-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/discover-profile-completeness/public-gender/stranger-bob-390x844.png"
+    },
+    {
+      "document": "docs/PUBLIC_RESPONSIVE_ALIGNMENT_QA.md",
+      "original": "../evidence/responsive-public-audit/before/dom-stress-agenda-320x844.png",
+      "path": "evidence/responsive-public-audit/before/dom-stress-agenda-320x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/before/dom-stress-agenda-320x844.png"
+    },
+    {
+      "document": "docs/PUBLIC_RESPONSIVE_ALIGNMENT_QA.md",
+      "original": "../evidence/responsive-public-audit/after/dom-stress-agenda-320x844.png",
+      "path": "evidence/responsive-public-audit/after/dom-stress-agenda-320x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/dom-stress-agenda-320x844.png"
+    },
+    {
+      "document": "docs/PUBLIC_RESPONSIVE_ALIGNMENT_QA.md",
+      "original": "../evidence/responsive-public-audit/after/dom-stress-faq-320x844.png",
+      "path": "evidence/responsive-public-audit/after/dom-stress-faq-320x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/dom-stress-faq-320x844.png"
+    },
+    {
+      "document": "docs/SIGNIN_EMAIL_EXPERIENCE.md",
+      "original": "../evidence/signin-email/signin-email-1440x900.png",
+      "path": "evidence/signin-email/signin-email-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/signin-email/signin-email-1440x900.png"
+    },
+    {
+      "document": "docs/SIGNIN_EMAIL_EXPERIENCE.md",
+      "original": "../evidence/signin-email/signin-email-390x844.png",
+      "path": "evidence/signin-email/signin-email-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/signin-email/signin-email-390x844.png"
+    },
+    {
+      "document": "docs/migration/UI.md",
+      "original": "../../evidence/migration/next-home-hydrated/home-1440x900-viewport.png",
+      "path": "evidence/migration/next-home-hydrated/home-1440x900-viewport.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/migration/next-home-hydrated/home-1440x900-viewport.png"
+    },
+    {
+      "document": "docs/migration/UI.md",
+      "original": "../../evidence/migration/next-home-hydrated/home-390x844-viewport.png",
+      "path": "evidence/migration/next-home-hydrated/home-390x844-viewport.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/migration/next-home-hydrated/home-390x844-viewport.png"
+    },
+    {
+      "document": "docs/migration/UI.md",
+      "original": "../../evidence/migration/v7-home-hydrated/home-1440x900-viewport.png",
+      "path": "evidence/migration/v7-home-hydrated/home-1440x900-viewport.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/migration/v7-home-hydrated/home-1440x900-viewport.png"
+    },
+    {
+      "document": "docs/migration/UI.md",
+      "original": "../../evidence/migration/v7-home-hydrated/home-390x844-viewport.png",
+      "path": "evidence/migration/v7-home-hydrated/home-390x844-viewport.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/migration/v7-home-hydrated/home-390x844-viewport.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-selected/rules-1440x900.png",
+      "path": "evidence/projects-rules-selected/rules-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-selected/rules-1440x900.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-selected/rules-390x844.png",
+      "path": "evidence/projects-rules-selected/rules-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-selected/rules-390x844.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-selected/projects-1440x900.png",
+      "path": "evidence/projects-rules-selected/projects-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-selected/projects-1440x900.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-selected/projects-390x844.png",
+      "path": "evidence/projects-rules-selected/projects-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-selected/projects-390x844.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-selected/project-detail-1440x900.png",
+      "path": "evidence/projects-rules-selected/project-detail-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-selected/project-detail-1440x900.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-selected/project-detail-390x844.png",
+      "path": "evidence/projects-rules-selected/project-detail-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-selected/project-detail-390x844.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-selected/leaderboard-1440x900.png",
+      "path": "evidence/projects-rules-selected/leaderboard-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-selected/leaderboard-1440x900.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-selected/leaderboard-390x844.png",
+      "path": "evidence/projects-rules-selected/leaderboard-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-selected/leaderboard-390x844.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-verified/wizard-step1-1440x900.png",
+      "path": "evidence/projects-rules-verified/wizard-step1-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-verified/wizard-step1-1440x900.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-verified/wizard-step1-390x844.png",
+      "path": "evidence/projects-rules-verified/wizard-step1-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-verified/wizard-step1-390x844.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-verified/wizard-step2-1440x900.png",
+      "path": "evidence/projects-rules-verified/wizard-step2-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-verified/wizard-step2-1440x900.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-verified/wizard-step2-390x844.png",
+      "path": "evidence/projects-rules-verified/wizard-step2-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-verified/wizard-step2-390x844.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-verified/wizard-step3-1440x900.png",
+      "path": "evidence/projects-rules-verified/wizard-step3-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-verified/wizard-step3-1440x900.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-verified/wizard-step3-390x844.png",
+      "path": "evidence/projects-rules-verified/wizard-step3-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-verified/wizard-step3-390x844.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-verified/wizard-field-error-1440x900.png",
+      "path": "evidence/projects-rules-verified/wizard-field-error-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-verified/wizard-field-error-1440x900.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-verified/wizard-field-error-390x844.png",
+      "path": "evidence/projects-rules-verified/wizard-field-error-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-verified/wizard-field-error-390x844.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-states/project-search-loading-1440x900.png",
+      "path": "evidence/projects-rules-states/project-search-loading-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-states/project-search-loading-1440x900.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-states/project-search-loading-390x844.png",
+      "path": "evidence/projects-rules-states/project-search-loading-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-states/project-search-loading-390x844.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-states/project-search-error-1440x900.png",
+      "path": "evidence/projects-rules-states/project-search-error-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-states/project-search-error-1440x900.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-states/project-search-error-390x844.png",
+      "path": "evidence/projects-rules-states/project-search-error-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-states/project-search-error-390x844.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-states/history-loaded-1440x900.png",
+      "path": "evidence/projects-rules-states/history-loaded-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-states/history-loaded-1440x900.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-states/history-loaded-390x844.png",
+      "path": "evidence/projects-rules-states/history-loaded-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-states/history-loaded-390x844.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-verified/wizard-step3-390x480.png",
+      "path": "evidence/projects-rules-verified/wizard-step3-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-verified/wizard-step3-390x480.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-verified/submission-confirmation-390x480.png",
+      "path": "evidence/projects-rules-verified/submission-confirmation-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-verified/submission-confirmation-390x480.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-states/history-loading-390x480.png",
+      "path": "evidence/projects-rules-states/history-loading-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-states/history-loading-390x480.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-states/history-error-390x480.png",
+      "path": "evidence/projects-rules-states/history-error-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-states/history-error-390x480.png"
+    },
+    {
+      "document": "evidence/PROJECTS_RULES_DELIVERY.md",
+      "original": "projects-rules-states/history-empty-390x480.png",
+      "path": "evidence/projects-rules-states/history-empty-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/projects-rules-states/history-empty-390x480.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-current/submission-step1-1440x900.png",
+      "path": "evidence/project-credit-current/submission-step1-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-current/submission-step1-1440x900.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-current/submission-step2-1440x900.png",
+      "path": "evidence/project-credit-current/submission-step2-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-current/submission-step2-1440x900.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-current/submission-step3-1440x900-full.png",
+      "path": "evidence/project-credit-current/submission-step3-1440x900-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-current/submission-step3-1440x900-full.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-current/submission-step1-390x844-full.png",
+      "path": "evidence/project-credit-current/submission-step1-390x844-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-current/submission-step1-390x844-full.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-current/submission-step2-390x844-full.png",
+      "path": "evidence/project-credit-current/submission-step2-390x844-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-current/submission-step2-390x844-full.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-current/submission-step3-390x844-full.png",
+      "path": "evidence/project-credit-current/submission-step3-390x844-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-current/submission-step3-390x844-full.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-responsive-final/submission-step1-long-name-320x720.png",
+      "path": "evidence/project-credit-responsive-final/submission-step1-long-name-320x720.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-responsive-final/submission-step1-long-name-320x720.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-responsive-final/submission-step2-long-urls-320x720.png",
+      "path": "evidence/project-credit-responsive-final/submission-step2-long-urls-320x720.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-responsive-final/submission-step2-long-urls-320x720.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-responsive-final/submission-step3-320x720.png",
+      "path": "evidence/project-credit-responsive-final/submission-step3-320x720.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-responsive-final/submission-step3-320x720.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-responsive-final/submission-required-error-320x720.png",
+      "path": "evidence/project-credit-responsive-final/submission-required-error-320x720.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-responsive-final/submission-required-error-320x720.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-responsive-final/submission-repository-error-320x720.png",
+      "path": "evidence/project-credit-responsive-final/submission-repository-error-320x720.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-responsive-final/submission-repository-error-320x720.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-responsive-final/submission-attestation-error-390x480.png",
+      "path": "evidence/project-credit-responsive-final/submission-attestation-error-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-responsive-final/submission-attestation-error-390x480.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-positive-retry/draft-saved-feedback-1440x900.png",
+      "path": "evidence/project-credit-positive-retry/draft-saved-feedback-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-positive-retry/draft-saved-feedback-1440x900.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-followup/history-after-draft-save-1440x900.png",
+      "path": "evidence/project-credit-followup/history-after-draft-save-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-followup/history-after-draft-save-1440x900.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "credit-copy-final/masked-320x720.png",
+      "path": "evidence/credit-copy-final/masked-320x720.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/credit-copy-final/masked-320x720.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "credit-copy-final/copied-visible-320x720.png",
+      "path": "evidence/credit-copy-final/copied-visible-320x720.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/credit-copy-final/copied-visible-320x720.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "credit-copy-final/copied-visible-1440x900.png",
+      "path": "evidence/credit-copy-final/copied-visible-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/credit-copy-final/copied-visible-1440x900.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-final-submit/third-submission-confirmation-desktop.png",
+      "path": "evidence/project-final-submit/third-submission-confirmation-desktop.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-final-submit/third-submission-confirmation-desktop.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-final-submit/third-submission-success-toast-desktop.png",
+      "path": "evidence/project-final-submit/third-submission-success-toast-desktop.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-final-submit/third-submission-success-toast-desktop.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-final-submit/project-locked-after-third-desktop.png",
+      "path": "evidence/project-final-submit/project-locked-after-third-desktop.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-final-submit/project-locked-after-third-desktop.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-final-submit/project-locked-after-third-320.png",
+      "path": "evidence/project-final-submit/project-locked-after-third-320.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-final-submit/project-locked-after-third-320.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-final-submit/history-three-versions-desktop.png",
+      "path": "evidence/project-final-submit/history-three-versions-desktop.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-final-submit/history-three-versions-desktop.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-final-submit/history-three-versions-320.png",
+      "path": "evidence/project-final-submit/history-three-versions-320.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-final-submit/history-three-versions-320.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-final-submit/submission-alias-locked-320x720.png",
+      "path": "evidence/project-final-submit/submission-alias-locked-320x720.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-final-submit/submission-alias-locked-320x720.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-responsive-final/submission-step2-long-urls-native-200-percent-outer1440x900.png",
+      "path": "evidence/project-credit-responsive-final/submission-step2-long-urls-native-200-percent-outer1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-responsive-final/submission-step2-long-urls-native-200-percent-outer1440x900.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-responsive-final/submission-confirmation-native-200-percent-outer1440x900.png",
+      "path": "evidence/project-credit-responsive-final/submission-confirmation-native-200-percent-outer1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-responsive-final/submission-confirmation-native-200-percent-outer1440x900.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-responsive-final/navigation-native-200-percent-outer1440x900.png",
+      "path": "evidence/project-credit-responsive-final/navigation-native-200-percent-outer1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-responsive-final/navigation-native-200-percent-outer1440x900.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-responsive-final/projects-native200-ready.png",
+      "path": "evidence/project-credit-responsive-final/projects-native200-ready.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-responsive-final/projects-native200-ready.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-responsive-final/project-detail-native200-ready.png",
+      "path": "evidence/project-credit-responsive-final/project-detail-native200-ready.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-responsive-final/project-detail-native200-ready.png"
+    },
+    {
+      "document": "evidence/PROJECT_SUBMISSION_CREDITS_CURRENT.md",
+      "original": "project-credit-responsive-final/leaderboard-native200-ready.png",
+      "path": "evidence/project-credit-responsive-final/leaderboard-native200-ready.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/project-credit-responsive-final/leaderboard-native200-ready.png"
+    },
+    {
+      "document": "evidence/admin-action-refinement/README.md",
+      "original": "team-actions/locked-team-five-members-320-hydrated.png",
+      "path": "evidence/admin-action-refinement/team-actions/locked-team-five-members-320-hydrated.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-action-refinement/team-actions/locked-team-five-members-320-hydrated.png"
+    },
+    {
+      "document": "evidence/admin-action-refinement/README.md",
+      "original": "team-actions/credit-trash-cancel-focus-restored.png",
+      "path": "evidence/admin-action-refinement/team-actions/credit-trash-cancel-focus-restored.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-action-refinement/team-actions/credit-trash-cancel-focus-restored.png"
+    },
+    {
+      "document": "evidence/admin-alignment-checkpoint-2a6d865/README.md",
+      "original": "../admin-alignment-2a6d865-320-final/participant-import.png",
+      "path": "evidence/admin-alignment-2a6d865-320-final/participant-import.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-alignment-2a6d865-320-final/participant-import.png"
+    },
+    {
+      "document": "evidence/admin-alignment-checkpoint-2a6d865/README.md",
+      "original": "../admin-alignment-2a6d865-320-final/participant-status.png",
+      "path": "evidence/admin-alignment-2a6d865-320-final/participant-status.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-alignment-2a6d865-320-final/participant-status.png"
+    },
+    {
+      "document": "evidence/admin-alignment-checkpoint-2a6d865/README.md",
+      "original": "team-expanded-real-name.png",
+      "path": "evidence/admin-alignment-checkpoint-2a6d865/team-expanded-real-name.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-alignment-checkpoint-2a6d865/team-expanded-real-name.png"
+    },
+    {
+      "document": "evidence/admin-alignment-checkpoint-2a6d865/README.md",
+      "original": "../admin-alignment-2a6d865-320-final/submission-management.png",
+      "path": "evidence/admin-alignment-2a6d865-320-final/submission-management.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-alignment-2a6d865-320-final/submission-management.png"
+    },
+    {
+      "document": "evidence/admin-alignment-checkpoint-2a6d865/README.md",
+      "original": "../admin-alignment-2a6d865-320-final/review-DOM-long-URL.png",
+      "path": "evidence/admin-alignment-2a6d865-320-final/review-DOM-long-URL.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-alignment-2a6d865-320-final/review-DOM-long-URL.png"
+    },
+    {
+      "document": "evidence/admin-alignment-checkpoint-2a6d865/README.md",
+      "original": "../admin-alignment-2a6d865-320-final/settings-results.png",
+      "path": "evidence/admin-alignment-2a6d865-320-final/settings-results.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-alignment-2a6d865-320-final/settings-results.png"
+    },
+    {
+      "document": "evidence/admin-alignment-checkpoint-2a6d865/README.md",
+      "original": "../admin-alignment-2a6d865-320-final/settings-scoring.png",
+      "path": "evidence/admin-alignment-2a6d865-320-final/settings-scoring.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-alignment-2a6d865-320-final/settings-scoring.png"
+    },
+    {
+      "document": "evidence/admin-alignment-checkpoint-2a6d865/README.md",
+      "original": "../admin-alignment-2a6d865-320-final/owner-logs-expanded-viewport.png",
+      "path": "evidence/admin-alignment-2a6d865-320-final/owner-logs-expanded-viewport.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-alignment-2a6d865-320-final/owner-logs-expanded-viewport.png"
+    },
+    {
+      "document": "evidence/admin-final-private8834/README.md",
+      "original": "quick-idle-320.png",
+      "path": "evidence/admin-final-private8834/quick-idle-320.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-final-private8834/quick-idle-320.png"
+    },
+    {
+      "document": "evidence/admin-final-private8834/README.md",
+      "original": "quick-pending-stable-320.png",
+      "path": "evidence/admin-final-private8834/quick-pending-stable-320.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-final-private8834/quick-pending-stable-320.png"
+    },
+    {
+      "document": "evidence/admin-final-private8834/README.md",
+      "original": "quick-persisted-checked-in.png",
+      "path": "evidence/admin-final-private8834/quick-persisted-checked-in.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-final-private8834/quick-persisted-checked-in.png"
+    },
+    {
+      "document": "evidence/admin-final-private8834/README.md",
+      "original": "quick-fresh-status-dropdown.png",
+      "path": "evidence/admin-final-private8834/quick-fresh-status-dropdown.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-final-private8834/quick-fresh-status-dropdown.png"
+    },
+    {
+      "document": "evidence/admin-final-private8834/README.md",
+      "original": "one-error-selection-retained.png",
+      "path": "evidence/admin-final-private8834/one-error-selection-retained.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-final-private8834/one-error-selection-retained.png"
+    },
+    {
+      "document": "evidence/admin-final-private8834/README.md",
+      "original": "date-first-click-confirmation.png",
+      "path": "evidence/admin-final-private8834/date-first-click-confirmation.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-final-private8834/date-first-click-confirmation.png"
+    },
+    {
+      "document": "evidence/admin-final-private8834/README.md",
+      "original": "dates-persist-after-reload.png",
+      "path": "evidence/admin-final-private8834/dates-persist-after-reload.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-final-private8834/dates-persist-after-reload.png"
+    },
+    {
+      "document": "evidence/admin-final-private8834/README.md",
+      "original": "alice-project-input-editable-no-save.png",
+      "path": "evidence/admin-final-private8834/alice-project-input-editable-no-save.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-final-private8834/alice-project-input-editable-no-save.png"
+    },
+    {
+      "document": "evidence/admin-long-name-wrap/README.md",
+      "original": "team-name-before-320.png",
+      "path": "evidence/admin-long-name-wrap/team-name-before-320.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-long-name-wrap/team-name-before-320.png"
+    },
+    {
+      "document": "evidence/admin-long-name-wrap/README.md",
+      "original": "../admin-alignment-2a6d865-320-final/submission-DOM-long-name.png",
+      "path": "evidence/admin-alignment-2a6d865-320-final/submission-DOM-long-name.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-alignment-2a6d865-320-final/submission-DOM-long-name.png"
+    },
+    {
+      "document": "evidence/admin-owner-access-final-hydrated/README.md",
+      "original": "owner-list-1440.png",
+      "path": "evidence/admin-owner-access-final-hydrated/owner-list-1440.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-owner-access-final-hydrated/owner-list-1440.png"
+    },
+    {
+      "document": "evidence/admin-owner-access-final-hydrated/README.md",
+      "original": "owner-list-390.png",
+      "path": "evidence/admin-owner-access-final-hydrated/owner-list-390.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-owner-access-final-hydrated/owner-list-390.png"
+    },
+    {
+      "document": "evidence/admin-owner-access-final-hydrated/README.md",
+      "original": "owner-list-320.png",
+      "path": "evidence/admin-owner-access-final-hydrated/owner-list-320.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-owner-access-final-hydrated/owner-list-320.png"
+    },
+    {
+      "document": "evidence/admin-owner-access-final-hydrated/README.md",
+      "original": "revoke-confirmation-320.png",
+      "path": "evidence/admin-owner-access-final-hydrated/revoke-confirmation-320.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-owner-access-final-hydrated/revoke-confirmation-320.png"
+    },
+    {
+      "document": "evidence/admin-owner-access-final-hydrated/README.md",
+      "original": "failed-revoke-row-retained.png",
+      "path": "evidence/admin-owner-access-final-hydrated/failed-revoke-row-retained.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-owner-access-final-hydrated/failed-revoke-row-retained.png"
+    },
+    {
+      "document": "evidence/admin-owner-access-final-hydrated/README.md",
+      "original": "revoked-admin-list.png",
+      "path": "evidence/admin-owner-access-final-hydrated/revoked-admin-list.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-owner-access-final-hydrated/revoked-admin-list.png"
+    },
+    {
+      "document": "evidence/admin-owner-access-final-hydrated/README.md",
+      "original": "admin-restored-390.png",
+      "path": "evidence/admin-owner-access-final-hydrated/admin-restored-390.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-owner-access-final-hydrated/admin-restored-390.png"
+    },
+    {
+      "document": "evidence/admin-owner-access-final-hydrated/README.md",
+      "original": "dates-hydrated-read-only.png",
+      "path": "evidence/admin-owner-access-final-hydrated/dates-hydrated-read-only.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-owner-access-final-hydrated/dates-hydrated-read-only.png"
+    },
+    {
+      "document": "evidence/admin-quick-check-in-layout/README.md",
+      "original": "before-idle-320.png",
+      "path": "evidence/admin-quick-check-in-layout/before-idle-320.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-quick-check-in-layout/before-idle-320.png"
+    },
+    {
+      "document": "evidence/admin-quick-check-in-layout/README.md",
+      "original": "before-pending-320.png",
+      "path": "evidence/admin-quick-check-in-layout/before-pending-320.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-quick-check-in-layout/before-pending-320.png"
+    },
+    {
+      "document": "evidence/admin-redesign-2026-10-24/README.md",
+      "original": "../redesign-admin-6b66023/settings-source-before-after.png",
+      "path": "evidence/redesign-admin-6b66023/settings-source-before-after.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-admin-6b66023/settings-source-before-after.png"
+    },
+    {
+      "document": "evidence/admin-redesign-2026-10-24/README.md",
+      "original": "../redesign-admin-6b66023/settings-event-1440x900.png",
+      "path": "evidence/redesign-admin-6b66023/settings-event-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-admin-6b66023/settings-event-1440x900.png"
+    },
+    {
+      "document": "evidence/admin-redesign-2026-10-24/README.md",
+      "original": "../redesign-admin-6b66023/settings-access-390x844.png",
+      "path": "evidence/redesign-admin-6b66023/settings-access-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-admin-6b66023/settings-access-390x844.png"
+    },
+    {
+      "document": "evidence/admin-redesign-2026-10-24/README.md",
+      "original": "../redesign-admin-10bf102/settings-scoring-768x1024.png",
+      "path": "evidence/redesign-admin-10bf102/settings-scoring-768x1024.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-admin-10bf102/settings-scoring-768x1024.png"
+    },
+    {
+      "document": "evidence/admin-redesign-2026-10-24/README.md",
+      "original": "../redesign-admin-6b66023/participants-populated-1440x900.png",
+      "path": "evidence/redesign-admin-6b66023/participants-populated-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-admin-6b66023/participants-populated-1440x900.png"
+    },
+    {
+      "document": "evidence/admin-redesign-2026-10-24/README.md",
+      "original": "../redesign-admin-6b66023/participants-filters-390x844.png",
+      "path": "evidence/redesign-admin-6b66023/participants-filters-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-admin-6b66023/participants-filters-390x844.png"
+    },
+    {
+      "document": "evidence/admin-redesign-2026-10-24/README.md",
+      "original": "../redesign-admin-6b66023/participants-status-dialog-390x480.png",
+      "path": "evidence/redesign-admin-6b66023/participants-status-dialog-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-admin-6b66023/participants-status-dialog-390x480.png"
+    },
+    {
+      "document": "evidence/admin-redesign-2026-10-24/README.md",
+      "original": "../redesign-admin-10bf102/team-locked-idea-1440x900.png",
+      "path": "evidence/redesign-admin-10bf102/team-locked-idea-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-admin-10bf102/team-locked-idea-1440x900.png"
+    },
+    {
+      "document": "evidence/admin-redesign-2026-10-24/README.md",
+      "original": "../redesign-admin-10bf102/review-eligibility-evidence-390x844.png",
+      "path": "evidence/redesign-admin-10bf102/review-eligibility-evidence-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-admin-10bf102/review-eligibility-evidence-390x844.png"
+    },
+    {
+      "document": "evidence/admin-redesign-2026-10-24/README.md",
+      "original": "../redesign-admin-4166f69/project-management-390x844.png",
+      "path": "evidence/redesign-admin-4166f69/project-management-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-admin-4166f69/project-management-390x844.png"
+    },
+    {
+      "document": "evidence/admin-redesign-2026-10-24/README.md",
+      "original": "../redesign-admin-10bf102/credits-editor-390x844.png",
+      "path": "evidence/redesign-admin-10bf102/credits-editor-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-admin-10bf102/credits-editor-390x844.png"
+    },
+    {
+      "document": "evidence/admin-redesign-2026-10-24/README.md",
+      "original": "../redesign-admin-10bf102/credits-published-1440x900.png",
+      "path": "evidence/redesign-admin-10bf102/credits-published-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-admin-10bf102/credits-published-1440x900.png"
+    },
+    {
+      "document": "evidence/admin-redesign-2026-10-24/README.md",
+      "original": "../redesign-admin-4166f69/credit-existing-heading-error.png",
+      "path": "evidence/redesign-admin-4166f69/credit-existing-heading-error.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-admin-4166f69/credit-existing-heading-error.png"
+    },
+    {
+      "document": "evidence/admin-redesign-2026-10-24/README.md",
+      "original": "../redesign-admin-4166f69/import-csv-confirmation.png",
+      "path": "evidence/redesign-admin-4166f69/import-csv-confirmation.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-admin-4166f69/import-csv-confirmation.png"
+    },
+    {
+      "document": "evidence/admin-redesign-2026-10-24/README.md",
+      "original": "../redesign-admin-4166f69/credit-column-delete-confirmation.png",
+      "path": "evidence/redesign-admin-4166f69/credit-column-delete-confirmation.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-admin-4166f69/credit-column-delete-confirmation.png"
+    },
+    {
+      "document": "evidence/admin-redesign-2026-10-24/README.md",
+      "original": "../redesign-admin-10bf102/log-expanded-390x480.png",
+      "path": "evidence/redesign-admin-10bf102/log-expanded-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-admin-10bf102/log-expanded-390x480.png"
+    },
+    {
+      "document": "evidence/admin-selection-before/README.md",
+      "original": "before-stale-selection-full.png",
+      "path": "evidence/admin-selection-before/before-stale-selection-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-selection-before/before-stale-selection-full.png"
+    },
+    {
+      "document": "evidence/admin-selection-before/README.md",
+      "original": "before-stale-selection-short.png",
+      "path": "evidence/admin-selection-before/before-stale-selection-short.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/admin-selection-before/before-stale-selection-short.png"
+    },
+    {
+      "document": "evidence/create-team-repair/README.md",
+      "original": "geometry-short/create-team-320x480-error.png",
+      "path": "evidence/create-team-repair/geometry-short/create-team-320x480-error.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/create-team-repair/geometry-short/create-team-320x480-error.png"
+    },
+    {
+      "document": "evidence/create-team-repair/README.md",
+      "original": "geometry-short/create-team-390x480-error.png",
+      "path": "evidence/create-team-repair/geometry-short/create-team-390x480-error.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/create-team-repair/geometry-short/create-team-390x480-error.png"
+    },
+    {
+      "document": "evidence/create-team-repair/README.md",
+      "original": "create-team-after-1440x900.png",
+      "path": "evidence/create-team-repair/create-team-after-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/create-team-repair/create-team-after-1440x900.png"
+    },
+    {
+      "document": "evidence/create-team-repair/README.md",
+      "original": "create-team-after-390x844.png",
+      "path": "evidence/create-team-repair/create-team-after-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/create-team-repair/create-team-after-390x844.png"
+    },
+    {
+      "document": "evidence/create-team-repair/README.md",
+      "original": "create-team-after-390x480.png",
+      "path": "evidence/create-team-repair/create-team-after-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/create-team-repair/create-team-after-390x480.png"
+    },
+    {
+      "document": "evidence/create-team-repair/README.md",
+      "original": "create-team-after-390x480-scrolled.png",
+      "path": "evidence/create-team-repair/create-team-after-390x480-scrolled.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/create-team-repair/create-team-after-390x480-scrolled.png"
+    },
+    {
+      "document": "evidence/create-team-repair/README.md",
+      "original": "create-team-after-320x480.png",
+      "path": "evidence/create-team-repair/create-team-after-320x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/create-team-repair/create-team-after-320x480.png"
+    },
+    {
+      "document": "evidence/create-team-repair/README.md",
+      "original": "create-team-after-320x480-scrolled.png",
+      "path": "evidence/create-team-repair/create-team-after-320x480-scrolled.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/create-team-repair/create-team-after-320x480-scrolled.png"
+    },
+    {
+      "document": "evidence/create-team-repair/README.md",
+      "original": "create-team-320x480-long-name-and-url.png",
+      "path": "evidence/create-team-repair/create-team-320x480-long-name-and-url.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/create-team-repair/create-team-320x480-long-name-and-url.png"
+    },
+    {
+      "document": "evidence/create-team-repair/README.md",
+      "original": "create-team-320x480-retry-error.png",
+      "path": "evidence/create-team-repair/create-team-320x480-retry-error.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/create-team-repair/create-team-320x480-retry-error.png"
+    },
+    {
+      "document": "evidence/create-team-repair/README.md",
+      "original": "create-team-after-desktop-browser-zoom200.png",
+      "path": "evidence/create-team-repair/create-team-after-desktop-browser-zoom200.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/create-team-repair/create-team-after-desktop-browser-zoom200.png"
+    },
+    {
+      "document": "evidence/create-team-repair/README.md",
+      "original": "create-team-after-desktop-browser-zoom200-scrolled.png",
+      "path": "evidence/create-team-repair/create-team-after-desktop-browser-zoom200-scrolled.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/create-team-repair/create-team-after-desktop-browser-zoom200-scrolled.png"
+    },
+    {
+      "document": "evidence/desktop-chapter-viewport/README.md",
+      "original": "before-live/1847x1023-schedule.png",
+      "path": "evidence/desktop-chapter-viewport/before-live/1847x1023-schedule.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/desktop-chapter-viewport/before-live/1847x1023-schedule.png"
+    },
+    {
+      "document": "evidence/desktop-chapter-viewport/README.md",
+      "original": "verified-resume/1847x1023-schedule.png",
+      "path": "evidence/desktop-chapter-viewport/verified-resume/1847x1023-schedule.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/desktop-chapter-viewport/verified-resume/1847x1023-schedule.png"
+    },
+    {
+      "document": "evidence/desktop-chapter-viewport/README.md",
+      "original": "verified/1440x900-schedule.png",
+      "path": "evidence/desktop-chapter-viewport/verified/1440x900-schedule.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/desktop-chapter-viewport/verified/1440x900-schedule.png"
+    },
+    {
+      "document": "evidence/desktop-chapter-viewport/README.md",
+      "original": "verified-resume/1920x1080-schedule.png",
+      "path": "evidence/desktop-chapter-viewport/verified-resume/1920x1080-schedule.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/desktop-chapter-viewport/verified-resume/1920x1080-schedule.png"
+    },
+    {
+      "document": "evidence/desktop-chapter-viewport/README.md",
+      "original": "verified-final/1440x900-hero-larger-logo.png",
+      "path": "evidence/desktop-chapter-viewport/verified-final/1440x900-hero-larger-logo.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/desktop-chapter-viewport/verified-final/1440x900-hero-larger-logo.png"
+    },
+    {
+      "document": "evidence/desktop-chapter-viewport/README.md",
+      "original": "verified-final/390x844-hero-larger-logo.png",
+      "path": "evidence/desktop-chapter-viewport/verified-final/390x844-hero-larger-logo.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/desktop-chapter-viewport/verified-final/390x844-hero-larger-logo.png"
+    },
+    {
+      "document": "evidence/desktop-chapter-viewport/README.md",
+      "original": "verified-final-supplement/320x480-CTA-reachable.png",
+      "path": "evidence/desktop-chapter-viewport/verified-final-supplement/320x480-CTA-reachable.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/desktop-chapter-viewport/verified-final-supplement/320x480-CTA-reachable.png"
+    },
+    {
+      "document": "evidence/desktop-chapter-viewport/README.md",
+      "original": "verified-resume/1847x1023-long-agenda-row-6.png",
+      "path": "evidence/desktop-chapter-viewport/verified-resume/1847x1023-long-agenda-row-6.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/desktop-chapter-viewport/verified-resume/1847x1023-long-agenda-row-6.png"
+    },
+    {
+      "document": "evidence/final-performance-current/README.md",
+      "original": "loading/studio-1440x900.png",
+      "path": "evidence/final-performance-current/loading/studio-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-performance-current/loading/studio-1440x900.png"
+    },
+    {
+      "document": "evidence/final-performance-current/README.md",
+      "original": "loading-studio-final/studio-390x844.png",
+      "path": "evidence/final-performance-current/loading-studio-final/studio-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-performance-current/loading-studio-final/studio-390x844.png"
+    },
+    {
+      "document": "evidence/final-performance-current/README.md",
+      "original": "loading-studio-final/studio-320x480.png",
+      "path": "evidence/final-performance-current/loading-studio-final/studio-320x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-performance-current/loading-studio-final/studio-320x480.png"
+    },
+    {
+      "document": "evidence/final-performance-current/README.md",
+      "original": "loading/inventory-1440x900.png",
+      "path": "evidence/final-performance-current/loading/inventory-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-performance-current/loading/inventory-1440x900.png"
+    },
+    {
+      "document": "evidence/final-performance-current/README.md",
+      "original": "loading/inventory-390x844.png",
+      "path": "evidence/final-performance-current/loading/inventory-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-performance-current/loading/inventory-390x844.png"
+    },
+    {
+      "document": "evidence/final-performance-current/README.md",
+      "original": "loading/inventory-320x480.png",
+      "path": "evidence/final-performance-current/loading/inventory-320x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-performance-current/loading/inventory-320x480.png"
+    },
+    {
+      "document": "evidence/final-performance-current/README.md",
+      "original": "loading/personal-1440x900.png",
+      "path": "evidence/final-performance-current/loading/personal-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-performance-current/loading/personal-1440x900.png"
+    },
+    {
+      "document": "evidence/final-performance-current/README.md",
+      "original": "loading/personal-390x844.png",
+      "path": "evidence/final-performance-current/loading/personal-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-performance-current/loading/personal-390x844.png"
+    },
+    {
+      "document": "evidence/final-performance-current/README.md",
+      "original": "loading/personal-320x480.png",
+      "path": "evidence/final-performance-current/loading/personal-320x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-performance-current/loading/personal-320x480.png"
+    },
+    {
+      "document": "evidence/final-save-toast/README.md",
+      "original": "one-save-confirmation.png",
+      "path": "evidence/final-save-toast/one-save-confirmation.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-save-toast/one-save-confirmation.png"
+    },
+    {
+      "document": "evidence/final-save-toast/README.md",
+      "original": "saved-success-before-visible-input-focus.png",
+      "path": "evidence/final-save-toast/saved-success-before-visible-input-focus.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-save-toast/saved-success-before-visible-input-focus.png"
+    },
+    {
+      "document": "evidence/final-save-toast/README.md",
+      "original": "save-success-cleared-visible-input-focused.png",
+      "path": "evidence/final-save-toast/save-success-cleared-visible-input-focused.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-save-toast/save-success-cleared-visible-input-focused.png"
+    },
+    {
+      "document": "evidence/final-save-toast/README.md",
+      "original": "required-field-error-retained-after-other-input-focus.png",
+      "path": "evidence/final-save-toast/required-field-error-retained-after-other-input-focus.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-save-toast/required-field-error-retained-after-other-input-focus.png"
+    },
+    {
+      "document": "evidence/final-submission-shell/README.md",
+      "original": "step1-1440x900.png",
+      "path": "evidence/final-submission-shell/step1-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step1-1440x900.png"
+    },
+    {
+      "document": "evidence/final-submission-shell/README.md",
+      "original": "step2-1440x900.png",
+      "path": "evidence/final-submission-shell/step2-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step2-1440x900.png"
+    },
+    {
+      "document": "evidence/final-submission-shell/README.md",
+      "original": "step3-1440x900.png",
+      "path": "evidence/final-submission-shell/step3-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step3-1440x900.png"
+    },
+    {
+      "document": "evidence/final-submission-shell/README.md",
+      "original": "step1-390x844.png",
+      "path": "evidence/final-submission-shell/step1-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step1-390x844.png"
+    },
+    {
+      "document": "evidence/final-submission-shell/README.md",
+      "original": "step2-390x844.png",
+      "path": "evidence/final-submission-shell/step2-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step2-390x844.png"
+    },
+    {
+      "document": "evidence/final-submission-shell/README.md",
+      "original": "step3-390x844.png",
+      "path": "evidence/final-submission-shell/step3-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step3-390x844.png"
+    },
+    {
+      "document": "evidence/final-submission-shell/README.md",
+      "original": "studio-menu-390x844.png",
+      "path": "evidence/final-submission-shell/studio-menu-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/studio-menu-390x844.png"
+    },
+    {
+      "document": "evidence/final-submission-shell/README.md",
+      "original": "step3-320x480.png",
+      "path": "evidence/final-submission-shell/step3-320x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step3-320x480.png"
+    },
+    {
+      "document": "evidence/final-submission-shell/README.md",
+      "original": "step3-footer-320x480.png",
+      "path": "evidence/final-submission-shell/step3-footer-320x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step3-footer-320x480.png"
+    },
+    {
+      "document": "evidence/final-submission-shell/README.md",
+      "original": "step3-inline-media-error-320x480.png",
+      "path": "evidence/final-submission-shell/step3-inline-media-error-320x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step3-inline-media-error-320x480.png"
+    },
+    {
+      "document": "evidence/final-submission-shell/README.md",
+      "original": "step3-valid-media-focus-320x480.png",
+      "path": "evidence/final-submission-shell/step3-valid-media-focus-320x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step3-valid-media-focus-320x480.png"
+    },
+    {
+      "document": "evidence/final-submission-shell/README.md",
+      "original": "step3-valid-media-full-320x480.png",
+      "path": "evidence/final-submission-shell/step3-valid-media-full-320x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step3-valid-media-full-320x480.png"
+    },
+    {
+      "document": "evidence/final-submission-shell/README.md",
+      "original": "saved-window-enabled-after-reload-390x844.png",
+      "path": "evidence/final-submission-shell/saved-window-enabled-after-reload-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/saved-window-enabled-after-reload-390x844.png"
+    },
+    {
+      "document": "evidence/mobile-stack-final/README.md",
+      "original": "verified/1440x900-hero.png",
+      "path": "evidence/mobile-stack-final/verified/1440x900-hero.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/mobile-stack-final/verified/1440x900-hero.png"
+    },
+    {
+      "document": "evidence/mobile-stack-final/README.md",
+      "original": "after/390x844-hero.png",
+      "path": "evidence/mobile-stack-final/after/390x844-hero.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/mobile-stack-final/after/390x844-hero.png"
+    },
+    {
+      "document": "evidence/mobile-stack-final/README.md",
+      "original": "verified-normal-first-run/390x844-schedule-to-venue-overlap.png",
+      "path": "evidence/mobile-stack-final/verified-normal-first-run/390x844-schedule-to-venue-overlap.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/mobile-stack-final/verified-normal-first-run/390x844-schedule-to-venue-overlap.png"
+    },
+    {
+      "document": "evidence/mobile-stack-final/README.md",
+      "original": "verified/390x480-schedule-to-venue-overlap.png",
+      "path": "evidence/mobile-stack-final/verified/390x480-schedule-to-venue-overlap.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/mobile-stack-final/verified/390x480-schedule-to-venue-overlap.png"
+    },
+    {
+      "document": "evidence/mobile-stack-final/README.md",
+      "original": "verified/390x480-rules-last-row-visible.png",
+      "path": "evidence/mobile-stack-final/verified/390x480-rules-last-row-visible.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/mobile-stack-final/verified/390x480-rules-last-row-visible.png"
+    },
+    {
+      "document": "evidence/mobile-stack-final/README.md",
+      "original": "verified/390x480-faq-expanded-last-focused.png",
+      "path": "evidence/mobile-stack-final/verified/390x480-faq-expanded-last-focused.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/mobile-stack-final/verified/390x480-faq-expanded-last-focused.png"
+    },
+    {
+      "document": "evidence/mobile-stack-final/README.md",
+      "original": "verified/390x480-synthetic-long-agenda-row-6.png",
+      "path": "evidence/mobile-stack-final/verified/390x480-synthetic-long-agenda-row-6.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/mobile-stack-final/verified/390x480-synthetic-long-agenda-row-6.png"
+    },
+    {
+      "document": "evidence/organizer-desktop-refinement/README.md",
+      "original": "before/organizers-1440x900.png",
+      "path": "evidence/organizer-desktop-refinement/before/organizers-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/before/organizers-1440x900.png"
+    },
+    {
+      "document": "evidence/organizer-desktop-refinement/README.md",
+      "original": "after/organizers-1440x900.png",
+      "path": "evidence/organizer-desktop-refinement/after/organizers-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/after/organizers-1440x900.png"
+    },
+    {
+      "document": "evidence/organizer-desktop-refinement/README.md",
+      "original": "after/organizers-component-1440x900.png",
+      "path": "evidence/organizer-desktop-refinement/after/organizers-component-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/after/organizers-component-1440x900.png"
+    },
+    {
+      "document": "evidence/organizer-desktop-refinement/README.md",
+      "original": "before/organizers-1024x768.png",
+      "path": "evidence/organizer-desktop-refinement/before/organizers-1024x768.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/before/organizers-1024x768.png"
+    },
+    {
+      "document": "evidence/organizer-desktop-refinement/README.md",
+      "original": "after/organizers-1024x768.png",
+      "path": "evidence/organizer-desktop-refinement/after/organizers-1024x768.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/after/organizers-1024x768.png"
+    },
+    {
+      "document": "evidence/organizer-desktop-refinement/README.md",
+      "original": "after/organizers-component-1024x768.png",
+      "path": "evidence/organizer-desktop-refinement/after/organizers-component-1024x768.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/after/organizers-component-1024x768.png"
+    },
+    {
+      "document": "evidence/organizer-desktop-refinement/README.md",
+      "original": "after/organizers-768x1024.png",
+      "path": "evidence/organizer-desktop-refinement/after/organizers-768x1024.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/after/organizers-768x1024.png"
+    },
+    {
+      "document": "evidence/organizer-desktop-refinement/README.md",
+      "original": "after/organizers-390x844.png",
+      "path": "evidence/organizer-desktop-refinement/after/organizers-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/after/organizers-390x844.png"
+    },
+    {
+      "document": "evidence/organizer-desktop-refinement/README.md",
+      "original": "organizer-comparison-1440.png",
+      "path": "evidence/organizer-desktop-refinement/organizer-comparison-1440.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/organizer-comparison-1440.png"
+    },
+    {
+      "document": "evidence/organizer-desktop-refinement/README.md",
+      "original": "organizer-comparison-1024.png",
+      "path": "evidence/organizer-desktop-refinement/organizer-comparison-1024.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/organizer-comparison-1024.png"
+    },
+    {
+      "document": "evidence/owner-mobile-account-navigation-7157436/QA.md",
+      "original": "02-owner-menu-workspace.png",
+      "path": "evidence/owner-mobile-account-navigation-7157436/02-owner-menu-workspace.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/owner-mobile-account-navigation-7157436/02-owner-menu-workspace.png"
+    },
+    {
+      "document": "evidence/owner-mobile-account-navigation-7157436/QA.md",
+      "original": "03-workspace-first-tap-dashboard.png",
+      "path": "evidence/owner-mobile-account-navigation-7157436/03-workspace-first-tap-dashboard.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/owner-mobile-account-navigation-7157436/03-workspace-first-tap-dashboard.png"
+    },
+    {
+      "document": "evidence/owner-mobile-account-navigation-7157436/QA.md",
+      "original": "07-profile-first-tap-profile.png",
+      "path": "evidence/owner-mobile-account-navigation-7157436/07-profile-first-tap-profile.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/owner-mobile-account-navigation-7157436/07-profile-first-tap-profile.png"
+    },
+    {
+      "document": "evidence/owner-mobile-account-navigation-7157436/QA.md",
+      "original": "04-escape-restores-credits-focus.png",
+      "path": "evidence/owner-mobile-account-navigation-7157436/04-escape-restores-credits-focus.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/owner-mobile-account-navigation-7157436/04-escape-restores-credits-focus.png"
+    },
+    {
+      "document": "evidence/owner-mobile-account-navigation-7157436/QA.md",
+      "original": "05-back-dismisses-menu-focus.png",
+      "path": "evidence/owner-mobile-account-navigation-7157436/05-back-dismisses-menu-focus.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/owner-mobile-account-navigation-7157436/05-back-dismisses-menu-focus.png"
+    },
+    {
+      "document": "evidence/owner-mobile-account-navigation-7157436/QA.md",
+      "original": "01-owner-credits-before.png",
+      "path": "evidence/owner-mobile-account-navigation-7157436/01-owner-credits-before.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/owner-mobile-account-navigation-7157436/01-owner-credits-before.png"
+    },
+    {
+      "document": "evidence/owner-mobile-account-navigation-7cb01dc/QA.md",
+      "original": "01-owner-credits-before.png",
+      "path": "evidence/owner-mobile-account-navigation-7cb01dc/01-owner-credits-before.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/owner-mobile-account-navigation-7cb01dc/01-owner-credits-before.png"
+    },
+    {
+      "document": "evidence/owner-mobile-account-navigation-7cb01dc/QA.md",
+      "original": "02-owner-menu-workspace.png",
+      "path": "evidence/owner-mobile-account-navigation-7cb01dc/02-owner-menu-workspace.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/owner-mobile-account-navigation-7cb01dc/02-owner-menu-workspace.png"
+    },
+    {
+      "document": "evidence/owner-mobile-account-navigation-7cb01dc/QA.md",
+      "original": "workspace-FIRST-TAP-FAIL.png",
+      "path": "evidence/owner-mobile-account-navigation-7cb01dc/workspace-FIRST-TAP-FAIL.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/owner-mobile-account-navigation-7cb01dc/workspace-FIRST-TAP-FAIL.png"
+    },
+    {
+      "document": "evidence/owner-mobile-account-navigation-7cb01dc/QA.md",
+      "original": "workspace-FINAL-FAIL.png",
+      "path": "evidence/owner-mobile-account-navigation-7cb01dc/workspace-FINAL-FAIL.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/owner-mobile-account-navigation-7cb01dc/workspace-FINAL-FAIL.png"
+    },
+    {
+      "document": "evidence/performance-content-boundary/RESULTS.md",
+      "original": "final-home-nojs.png",
+      "path": "evidence/performance-content-boundary/final-home-nojs.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/performance-content-boundary/final-home-nojs.png"
+    },
+    {
+      "document": "evidence/performance-content-boundary/RESULTS.md",
+      "original": "final-mobile-menu-390.png",
+      "path": "evidence/performance-content-boundary/final-mobile-menu-390.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/performance-content-boundary/final-mobile-menu-390.png"
+    },
+    {
+      "document": "evidence/performance-content-boundary/RESULTS.md",
+      "original": "final-mobile-home-390.png",
+      "path": "evidence/performance-content-boundary/final-mobile-home-390.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/performance-content-boundary/final-mobile-home-390.png"
+    },
+    {
+      "document": "evidence/performance-production/RESULTS.md",
+      "original": "baseline-dashboard-1440x900.png",
+      "path": "evidence/performance-production/baseline-dashboard-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/performance-production/baseline-dashboard-1440x900.png"
+    },
+    {
+      "document": "evidence/performance-production/RESULTS.md",
+      "original": "final-dashboard-1440x900.png",
+      "path": "evidence/performance-production/final-dashboard-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/performance-production/final-dashboard-1440x900.png"
+    },
+    {
+      "document": "evidence/performance-production/RESULTS.md",
+      "original": "baseline-people-1440x900.png",
+      "path": "evidence/performance-production/baseline-people-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/performance-production/baseline-people-1440x900.png"
+    },
+    {
+      "document": "evidence/performance-production/RESULTS.md",
+      "original": "final-people-1440x900.png",
+      "path": "evidence/performance-production/final-people-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/performance-production/final-people-1440x900.png"
+    },
+    {
+      "document": "evidence/private-reinvite-8834/QA.md",
+      "original": "01-bob-first-invitation-sent.png",
+      "path": "evidence/private-reinvite-8834/01-bob-first-invitation-sent.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/private-reinvite-8834/01-bob-first-invitation-sent.png"
+    },
+    {
+      "document": "evidence/private-reinvite-8834/QA.md",
+      "original": "02-pending-invitation-before-decline.png",
+      "path": "evidence/private-reinvite-8834/02-pending-invitation-before-decline.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/private-reinvite-8834/02-pending-invitation-before-decline.png"
+    },
+    {
+      "document": "evidence/private-reinvite-8834/QA.md",
+      "original": "03-pending-declined-teamless.png",
+      "path": "evidence/private-reinvite-8834/03-pending-declined-teamless.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/private-reinvite-8834/03-pending-declined-teamless.png"
+    },
+    {
+      "document": "evidence/private-reinvite-8834/QA.md",
+      "original": "04-bob-resend-success.png",
+      "path": "evidence/private-reinvite-8834/04-bob-resend-success.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/private-reinvite-8834/04-bob-resend-success.png"
+    },
+    {
+      "document": "evidence/private-reinvite-8834/QA.md",
+      "original": "05-pending-fresh-invitation.png",
+      "path": "evidence/private-reinvite-8834/05-pending-fresh-invitation.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/private-reinvite-8834/05-pending-fresh-invitation.png"
+    },
+    {
+      "document": "evidence/private-reinvite-8834/QA.md",
+      "original": "06-pending-accepted-team-members.png",
+      "path": "evidence/private-reinvite-8834/06-pending-accepted-team-members.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/private-reinvite-8834/06-pending-accepted-team-members.png"
+    },
+    {
+      "document": "evidence/private-reinvite-8834/QA.md",
+      "original": "FAIL-current-ui.png",
+      "path": "evidence/private-reinvite-8834/FAIL-current-ui.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/private-reinvite-8834/FAIL-current-ui.png"
+    },
+    {
+      "document": "evidence/profile-breakpoint-667222d/QA.md",
+      "original": "before-native-200pct-step1.png",
+      "path": "evidence/profile-breakpoint-667222d/before-native-200pct-step1.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/profile-breakpoint-667222d/before-native-200pct-step1.png"
+    },
+    {
+      "document": "evidence/profile-breakpoint-667222d/QA.md",
+      "original": "before-native-200pct-fields.png",
+      "path": "evidence/profile-breakpoint-667222d/before-native-200pct-fields.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/profile-breakpoint-667222d/before-native-200pct-fields.png"
+    },
+    {
+      "document": "evidence/profile-breakpoint-after-182c2bd/QA.md",
+      "original": "profile-native-200pct-baseline.png",
+      "path": "evidence/profile-breakpoint-after-182c2bd/profile-native-200pct-baseline.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/profile-breakpoint-after-182c2bd/profile-native-200pct-baseline.png"
+    },
+    {
+      "document": "evidence/profile-breakpoint-after-182c2bd/QA.md",
+      "original": "profile-native-200pct-step1-fields.png",
+      "path": "evidence/profile-breakpoint-after-182c2bd/profile-native-200pct-step1-fields.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/profile-breakpoint-after-182c2bd/profile-native-200pct-step1-fields.png"
+    },
+    {
+      "document": "evidence/profile-breakpoint-after-182c2bd/QA.md",
+      "original": "profile-native-200pct-step2.png",
+      "path": "evidence/profile-breakpoint-after-182c2bd/profile-native-200pct-step2.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/profile-breakpoint-after-182c2bd/profile-native-200pct-step2.png"
+    },
+    {
+      "document": "evidence/profile-breakpoint-after-182c2bd/QA.md",
+      "original": "profile-native-200pct-step2-actions.png",
+      "path": "evidence/profile-breakpoint-after-182c2bd/profile-native-200pct-step2-actions.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/profile-breakpoint-after-182c2bd/profile-native-200pct-step2-actions.png"
+    },
+    {
+      "document": "evidence/profile-breakpoint-after-182c2bd/QA.md",
+      "original": "profile-native-200pct-step3.png",
+      "path": "evidence/profile-breakpoint-after-182c2bd/profile-native-200pct-step3.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/profile-breakpoint-after-182c2bd/profile-native-200pct-step3.png"
+    },
+    {
+      "document": "evidence/profile-breakpoint-after-182c2bd/QA.md",
+      "original": "profile-native-200pct-step3-actions.png",
+      "path": "evidence/profile-breakpoint-after-182c2bd/profile-native-200pct-step3-actions.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/profile-breakpoint-after-182c2bd/profile-native-200pct-step3-actions.png"
+    },
+    {
+      "document": "evidence/profile-breakpoint-after-182c2bd/QA.md",
+      "original": "profile-740x1000-baseline.png",
+      "path": "evidence/profile-breakpoint-after-182c2bd/profile-740x1000-baseline.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/profile-breakpoint-after-182c2bd/profile-740x1000-baseline.png"
+    },
+    {
+      "document": "evidence/profile-breakpoint-after-182c2bd/QA.md",
+      "original": "profile-740x1000-step2.png",
+      "path": "evidence/profile-breakpoint-after-182c2bd/profile-740x1000-step2.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/profile-breakpoint-after-182c2bd/profile-740x1000-step2.png"
+    },
+    {
+      "document": "evidence/profile-breakpoint-after-182c2bd/QA.md",
+      "original": "profile-740x1000-step3.png",
+      "path": "evidence/profile-breakpoint-after-182c2bd/profile-740x1000-step3.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/profile-breakpoint-after-182c2bd/profile-740x1000-step3.png"
+    },
+    {
+      "document": "evidence/profile-breakpoint-after-182c2bd/QA.md",
+      "original": "profile-741x1000-baseline.png",
+      "path": "evidence/profile-breakpoint-after-182c2bd/profile-741x1000-baseline.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/profile-breakpoint-after-182c2bd/profile-741x1000-baseline.png"
+    },
+    {
+      "document": "evidence/profile-breakpoint-after-182c2bd/QA.md",
+      "original": "profile-741x1000-step2.png",
+      "path": "evidence/profile-breakpoint-after-182c2bd/profile-741x1000-step2.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/profile-breakpoint-after-182c2bd/profile-741x1000-step2.png"
+    },
+    {
+      "document": "evidence/profile-breakpoint-after-182c2bd/QA.md",
+      "original": "profile-741x1000-step3.png",
+      "path": "evidence/profile-breakpoint-after-182c2bd/profile-741x1000-step3.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/profile-breakpoint-after-182c2bd/profile-741x1000-step3.png"
+    },
+    {
+      "document": "evidence/profile-breakpoint-after-182c2bd/QA.md",
+      "original": "profile-768x1024-baseline.png",
+      "path": "evidence/profile-breakpoint-after-182c2bd/profile-768x1024-baseline.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/profile-breakpoint-after-182c2bd/profile-768x1024-baseline.png"
+    },
+    {
+      "document": "evidence/profile-breakpoint-after-182c2bd/QA.md",
+      "original": "profile-768x1024-step2.png",
+      "path": "evidence/profile-breakpoint-after-182c2bd/profile-768x1024-step2.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/profile-breakpoint-after-182c2bd/profile-768x1024-step2.png"
+    },
+    {
+      "document": "evidence/profile-breakpoint-after-182c2bd/QA.md",
+      "original": "profile-768x1024-step3.png",
+      "path": "evidence/profile-breakpoint-after-182c2bd/profile-768x1024-step3.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/profile-breakpoint-after-182c2bd/profile-768x1024-step3.png"
+    },
+    {
+      "document": "evidence/profile-breakpoint-after-182c2bd/QA.md",
+      "original": "../responsive-profile-discovery-667222d/profile-native-200pct-baseline.png",
+      "path": "evidence/responsive-profile-discovery-667222d/profile-native-200pct-baseline.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-667222d/profile-native-200pct-baseline.png"
+    },
+    {
+      "document": "evidence/profile-breakpoint-after-182c2bd/QA.md",
+      "original": "../responsive-profile-discovery-667222d/profile-native-200pct-step1-validation.png",
+      "path": "evidence/responsive-profile-discovery-667222d/profile-native-200pct-step1-validation.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-667222d/profile-native-200pct-step1-validation.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "integrated/normal-hero-390x844.png",
+      "path": "evidence/redesign-landing/integrated/normal-hero-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/integrated/normal-hero-390x844.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "integrated-final/normal-short-cta-settled-390x480.png",
+      "path": "evidence/redesign-landing/integrated-final/normal-short-cta-settled-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/integrated-final/normal-short-cta-settled-390x480.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "integrated/shared-signin-navigation-390x844.png",
+      "path": "evidence/redesign-landing/integrated/shared-signin-navigation-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/integrated/shared-signin-navigation-390x844.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "integrated-final/compact-schedule-venue-1440x900.png",
+      "path": "evidence/redesign-landing/integrated-final/compact-schedule-venue-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/integrated-final/compact-schedule-venue-1440x900.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "integrated-final/compact-schedule-venue-768x1024.png",
+      "path": "evidence/redesign-landing/integrated-final/compact-schedule-venue-768x1024.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/integrated-final/compact-schedule-venue-768x1024.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "integrated-final/compact-schedule-venue-390x844.png",
+      "path": "evidence/redesign-landing/integrated-final/compact-schedule-venue-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/integrated-final/compact-schedule-venue-390x844.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "final-signed-in-hero-390x844.png",
+      "path": "evidence/redesign-landing/final-signed-in-hero-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/final-signed-in-hero-390x844.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "final-hero-390x844.png",
+      "path": "evidence/redesign-landing/final-hero-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/final-hero-390x844.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "final-hero-768x1024.png",
+      "path": "evidence/redesign-landing/final-hero-768x1024.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/final-hero-768x1024.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "final-hero-1440x900.png",
+      "path": "evidence/redesign-landing/final-hero-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/final-hero-1440x900.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "final-short-cta-reachable-390x480.png",
+      "path": "evidence/redesign-landing/final-short-cta-reachable-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/final-short-cta-reachable-390x480.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "after-signin-empty-390x844.png",
+      "path": "evidence/redesign-landing/after-signin-empty-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/after-signin-empty-390x844.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "after-signin-empty-1440x900.png",
+      "path": "evidence/redesign-landing/after-signin-empty-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/after-signin-empty-1440x900.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "after-signin-error-390x844.png",
+      "path": "evidence/redesign-landing/after-signin-error-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/after-signin-error-390x844.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "after-signin-loading-390x844.png",
+      "path": "evidence/redesign-landing/after-signin-loading-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/after-signin-loading-390x844.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "final-signin-google-loading-390x844.png",
+      "path": "evidence/redesign-landing/final-signin-google-loading-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/final-signin-google-loading-390x844.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "after-schedule-390x844.png",
+      "path": "evidence/redesign-landing/after-schedule-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/after-schedule-390x844.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "after-schedule-1440x900.png",
+      "path": "evidence/redesign-landing/after-schedule-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/after-schedule-1440x900.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "after-rules-390x844.png",
+      "path": "evidence/redesign-landing/after-rules-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/after-rules-390x844.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "after-faq-390x844.png",
+      "path": "evidence/redesign-landing/after-faq-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/after-faq-390x844.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "after-organizers-390x844.png",
+      "path": "evidence/redesign-landing/after-organizers-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/after-organizers-390x844.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "mobile-target-comparison-final.png",
+      "path": "evidence/redesign-landing/mobile-target-comparison-final.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/mobile-target-comparison-final.png"
+    },
+    {
+      "document": "evidence/redesign-landing/README.md",
+      "original": "mobile-cta-detail-comparison-final.png",
+      "path": "evidence/redesign-landing/mobile-cta-detail-comparison-final.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-landing/mobile-cta-detail-comparison-final.png"
+    },
+    {
+      "document": "evidence/redesign-profile/QA.md",
+      "original": "profile-step-1-1440x900.png",
+      "path": "evidence/redesign-profile/profile-step-1-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-profile/profile-step-1-1440x900.png"
+    },
+    {
+      "document": "evidence/redesign-profile/QA.md",
+      "original": "profile-step-2-1440x900.png",
+      "path": "evidence/redesign-profile/profile-step-2-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-profile/profile-step-2-1440x900.png"
+    },
+    {
+      "document": "evidence/redesign-profile/QA.md",
+      "original": "profile-step-3-1440x900.png",
+      "path": "evidence/redesign-profile/profile-step-3-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-profile/profile-step-3-1440x900.png"
+    },
+    {
+      "document": "evidence/redesign-profile/QA.md",
+      "original": "profile-step-1-390x844.png",
+      "path": "evidence/redesign-profile/profile-step-1-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-profile/profile-step-1-390x844.png"
+    },
+    {
+      "document": "evidence/redesign-profile/QA.md",
+      "original": "profile-step-2-390x844.png",
+      "path": "evidence/redesign-profile/profile-step-2-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-profile/profile-step-2-390x844.png"
+    },
+    {
+      "document": "evidence/redesign-profile/QA.md",
+      "original": "profile-step-3-390x844.png",
+      "path": "evidence/redesign-profile/profile-step-3-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-profile/profile-step-3-390x844.png"
+    },
+    {
+      "document": "evidence/redesign-profile/QA.md",
+      "original": "profile-mobile-navigation-390x844.png",
+      "path": "evidence/redesign-profile/profile-mobile-navigation-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/redesign-profile/profile-mobile-navigation-390x844.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-2a6d865/QA.md",
+      "original": "profile-320x640-step1-validation.png",
+      "path": "evidence/responsive-profile-discovery-2a6d865/profile-320x640-step1-validation.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-2a6d865/profile-320x640-step1-validation.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-2a6d865/QA.md",
+      "original": "profile-320x640-step2-validation.png",
+      "path": "evidence/responsive-profile-discovery-2a6d865/profile-320x640-step2-validation.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-2a6d865/profile-320x640-step2-validation.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-2a6d865/QA.md",
+      "original": "profile-320x640-step2-eight-long-unsaved-socials.png",
+      "path": "evidence/responsive-profile-discovery-2a6d865/profile-320x640-step2-eight-long-unsaved-socials.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-2a6d865/profile-320x640-step2-eight-long-unsaved-socials.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-2a6d865/QA.md",
+      "original": "profile-320x640-step3-long-unsaved-save-visible.png",
+      "path": "evidence/responsive-profile-discovery-2a6d865/profile-320x640-step3-long-unsaved-save-visible.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-2a6d865/profile-320x640-step3-long-unsaved-save-visible.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-2a6d865/QA.md",
+      "original": "dashboard-team-320x640-baseline.png",
+      "path": "evidence/responsive-profile-discovery-2a6d865/dashboard-team-320x640-baseline.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-2a6d865/dashboard-team-320x640-baseline.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-2a6d865/QA.md",
+      "original": "dashboard-team-320x640-members-long-DOM-fixture.png",
+      "path": "evidence/responsive-profile-discovery-2a6d865/dashboard-team-320x640-members-long-DOM-fixture.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-2a6d865/dashboard-team-320x640-members-long-DOM-fixture.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-2a6d865/QA.md",
+      "original": "dashboard-team-320x640-idea-long-DOM-fixture.png",
+      "path": "evidence/responsive-profile-discovery-2a6d865/dashboard-team-320x640-idea-long-DOM-fixture.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-2a6d865/dashboard-team-320x640-idea-long-DOM-fixture.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-2a6d865/QA.md",
+      "original": "participants-320x640-long-DOM-fixture.png",
+      "path": "evidence/responsive-profile-discovery-2a6d865/participants-320x640-long-DOM-fixture.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-2a6d865/participants-320x640-long-DOM-fixture.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-2a6d865/QA.md",
+      "original": "participants-320x640-dialog.png",
+      "path": "evidence/responsive-profile-discovery-2a6d865/participants-320x640-dialog.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-2a6d865/participants-320x640-dialog.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-2a6d865/QA.md",
+      "original": "participants-320x640-dialog-long-DOM-fixture.png",
+      "path": "evidence/responsive-profile-discovery-2a6d865/participants-320x640-dialog-long-DOM-fixture.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-2a6d865/participants-320x640-dialog-long-DOM-fixture.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-2a6d865/QA.md",
+      "original": "teams-320x640-baseline.png",
+      "path": "evidence/responsive-profile-discovery-2a6d865/teams-320x640-baseline.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-2a6d865/teams-320x640-baseline.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-2a6d865/QA.md",
+      "original": "teams-320x640-long-DOM-fixture.png",
+      "path": "evidence/responsive-profile-discovery-2a6d865/teams-320x640-long-DOM-fixture.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-2a6d865/teams-320x640-long-DOM-fixture.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-2a6d865/QA.md",
+      "original": "navigation-320x640-open.png",
+      "path": "evidence/responsive-profile-discovery-2a6d865/navigation-320x640-open.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-2a6d865/navigation-320x640-open.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-667222d/QA.md",
+      "original": "profile-native-200pct-baseline.png",
+      "path": "evidence/responsive-profile-discovery-667222d/profile-native-200pct-baseline.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-667222d/profile-native-200pct-baseline.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-667222d/QA.md",
+      "original": "profile-native-200pct-step1-validation.png",
+      "path": "evidence/responsive-profile-discovery-667222d/profile-native-200pct-step1-validation.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-667222d/profile-native-200pct-step1-validation.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-667222d/QA.md",
+      "original": "profile-native-200pct-step2.png",
+      "path": "evidence/responsive-profile-discovery-667222d/profile-native-200pct-step2.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-667222d/profile-native-200pct-step2.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-667222d/QA.md",
+      "original": "profile-native-200pct-step2-eight-long-unsaved-socials.png",
+      "path": "evidence/responsive-profile-discovery-667222d/profile-native-200pct-step2-eight-long-unsaved-socials.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-667222d/profile-native-200pct-step2-eight-long-unsaved-socials.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-667222d/QA.md",
+      "original": "profile-native-200pct-step3-long-unsaved-save-visible.png",
+      "path": "evidence/responsive-profile-discovery-667222d/profile-native-200pct-step3-long-unsaved-save-visible.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-667222d/profile-native-200pct-step3-long-unsaved-save-visible.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-667222d/QA.md",
+      "original": "dashboard-team-320x640-baseline.png",
+      "path": "evidence/responsive-profile-discovery-667222d/dashboard-team-320x640-baseline.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-667222d/dashboard-team-320x640-baseline.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-667222d/QA.md",
+      "original": "dashboard-team-320x640-idea-long-DOM-fixture.png",
+      "path": "evidence/responsive-profile-discovery-667222d/dashboard-team-320x640-idea-long-DOM-fixture.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-667222d/dashboard-team-320x640-idea-long-DOM-fixture.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-667222d/QA.md",
+      "original": "dashboard-team-native-200pct-idea-long-DOM-fixture.png",
+      "path": "evidence/responsive-profile-discovery-667222d/dashboard-team-native-200pct-idea-long-DOM-fixture.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-667222d/dashboard-team-native-200pct-idea-long-DOM-fixture.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-667222d/QA.md",
+      "original": "participants-native-200pct-dialog.png",
+      "path": "evidence/responsive-profile-discovery-667222d/participants-native-200pct-dialog.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-667222d/participants-native-200pct-dialog.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-667222d/QA.md",
+      "original": "participants-native-200pct-dialog-long-DOM-fixture.png",
+      "path": "evidence/responsive-profile-discovery-667222d/participants-native-200pct-dialog-long-DOM-fixture.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-667222d/participants-native-200pct-dialog-long-DOM-fixture.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-667222d/QA.md",
+      "original": "teams-320x640-dialog.png",
+      "path": "evidence/responsive-profile-discovery-667222d/teams-320x640-dialog.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-667222d/teams-320x640-dialog.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-667222d/QA.md",
+      "original": "teams-320x640-dialog-long-DOM-fixture.png",
+      "path": "evidence/responsive-profile-discovery-667222d/teams-320x640-dialog-long-DOM-fixture.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-667222d/teams-320x640-dialog-long-DOM-fixture.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-667222d/QA.md",
+      "original": "teams-native-200pct-dialog.png",
+      "path": "evidence/responsive-profile-discovery-667222d/teams-native-200pct-dialog.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-667222d/teams-native-200pct-dialog.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-667222d/QA.md",
+      "original": "teams-native-200pct-dialog-long-DOM-fixture.png",
+      "path": "evidence/responsive-profile-discovery-667222d/teams-native-200pct-dialog-long-DOM-fixture.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-667222d/teams-native-200pct-dialog-long-DOM-fixture.png"
+    },
+    {
+      "document": "evidence/responsive-profile-discovery-667222d/QA.md",
+      "original": "navigation-native-200pct-open.png",
+      "path": "evidence/responsive-profile-discovery-667222d/navigation-native-200pct-open.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-profile-discovery-667222d/navigation-native-200pct-open.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/home-rest-320x844.png",
+      "path": "evidence/responsive-public-audit/after/home-rest-320x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/home-rest-320x844.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/home-cta-rest-320x480.png",
+      "path": "evidence/responsive-public-audit/after/home-cta-rest-320x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/home-cta-rest-320x480.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/home-cta-rest-390x480.png",
+      "path": "evidence/responsive-public-audit/after/home-cta-rest-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/home-cta-rest-390x480.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/home-rest-768x1024.png",
+      "path": "evidence/responsive-public-audit/after/home-rest-768x1024.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/home-rest-768x1024.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/home-rest-1440x900.png",
+      "path": "evidence/responsive-public-audit/after/home-rest-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/home-rest-1440x900.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "before/dom-stress-agenda-320x844.png",
+      "path": "evidence/responsive-public-audit/before/dom-stress-agenda-320x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/before/dom-stress-agenda-320x844.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/dom-stress-agenda-320x844.png",
+      "path": "evidence/responsive-public-audit/after/dom-stress-agenda-320x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/dom-stress-agenda-320x844.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/dom-stress-faq-320x844.png",
+      "path": "evidence/responsive-public-audit/after/dom-stress-faq-320x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/dom-stress-faq-320x844.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/home-cta-rest-native-zoom-200pct-1440x900.png",
+      "path": "evidence/responsive-public-audit/after/home-cta-rest-native-zoom-200pct-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/home-cta-rest-native-zoom-200pct-1440x900.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/dom-stress-agenda-url-detail-native-zoom-200pct-1440x900.png",
+      "path": "evidence/responsive-public-audit/after/dom-stress-agenda-url-detail-native-zoom-200pct-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/dom-stress-agenda-url-detail-native-zoom-200pct-1440x900.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/dom-stress-faq-native-zoom-200pct-1440x900.png",
+      "path": "evidence/responsive-public-audit/after/dom-stress-faq-native-zoom-200pct-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/dom-stress-faq-native-zoom-200pct-1440x900.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/home-organizers-320x844.png",
+      "path": "evidence/responsive-public-audit/after/home-organizers-320x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/home-organizers-320x844.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/home-organizers-end-settled-320x480.png",
+      "path": "evidence/responsive-public-audit/after/home-organizers-end-settled-320x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/home-organizers-end-settled-320x480.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/home-organizer-4-settled-native-zoom-200pct-1440x900.png",
+      "path": "evidence/responsive-public-audit/after/home-organizer-4-settled-native-zoom-200pct-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/home-organizer-4-settled-native-zoom-200pct-1440x900.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/signin-320x844.png",
+      "path": "evidence/responsive-public-audit/after/signin-320x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/signin-320x844.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/signin-submit-reachable-320x480.png",
+      "path": "evidence/responsive-public-audit/after/signin-submit-reachable-320x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/signin-submit-reachable-320x480.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/signin-submit-reachable-native-zoom-200pct-1440x900.png",
+      "path": "evidence/responsive-public-audit/after/signin-submit-reachable-native-zoom-200pct-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/signin-submit-reachable-native-zoom-200pct-1440x900.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/privacy-header-320x844.png",
+      "path": "evidence/responsive-public-audit/after/privacy-header-320x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/privacy-header-320x844.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/terms-header-320x844.png",
+      "path": "evidence/responsive-public-audit/after/terms-header-320x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/terms-header-320x844.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/menus/signin-hydration-held-20s-320x480.png",
+      "path": "evidence/responsive-public-audit/after/menus/signin-hydration-held-20s-320x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/menus/signin-hydration-held-20s-320x480.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/menus/signin-menu-rest-320x480.png",
+      "path": "evidence/responsive-public-audit/after/menus/signin-menu-rest-320x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/menus/signin-menu-rest-320x480.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/menus/privacy-menu-rest-320x480.png",
+      "path": "evidence/responsive-public-audit/after/menus/privacy-menu-rest-320x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/menus/privacy-menu-rest-320x480.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/menus/terms-menu-rest-320x480.png",
+      "path": "evidence/responsive-public-audit/after/menus/terms-menu-rest-320x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/menus/terms-menu-rest-320x480.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/menus/signin-menu-rest-native200.png",
+      "path": "evidence/responsive-public-audit/after/menus/signin-menu-rest-native200.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/menus/signin-menu-rest-native200.png"
+    },
+    {
+      "document": "evidence/responsive-public-audit/README.md",
+      "original": "after/menus/terms-native200-decimal-viewport-confirmed.png",
+      "path": "evidence/responsive-public-audit/after/menus/terms-native200-decimal-viewport-confirmed.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/responsive-public-audit/after/menus/terms-native200-decimal-viewport-confirmed.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "privacy-1440x900-viewport.png",
+      "path": "evidence/seo-legal-0f5f823/privacy-1440x900-viewport.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/privacy-1440x900-viewport.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "privacy-1440x900-full.png",
+      "path": "evidence/seo-legal-0f5f823/privacy-1440x900-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/privacy-1440x900-full.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "privacy-390x844-viewport.png",
+      "path": "evidence/seo-legal-0f5f823/privacy-390x844-viewport.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/privacy-390x844-viewport.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "privacy-390x844-full.png",
+      "path": "evidence/seo-legal-0f5f823/privacy-390x844-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/privacy-390x844-full.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "privacy-390x480-viewport.png",
+      "path": "evidence/seo-legal-0f5f823/privacy-390x480-viewport.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/privacy-390x480-viewport.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "privacy-390x480-full.png",
+      "path": "evidence/seo-legal-0f5f823/privacy-390x480-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/privacy-390x480-full.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "terms-1440x900-viewport.png",
+      "path": "evidence/seo-legal-0f5f823/terms-1440x900-viewport.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/terms-1440x900-viewport.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "terms-1440x900-full.png",
+      "path": "evidence/seo-legal-0f5f823/terms-1440x900-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/terms-1440x900-full.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "terms-390x844-viewport.png",
+      "path": "evidence/seo-legal-0f5f823/terms-390x844-viewport.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/terms-390x844-viewport.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "terms-390x844-full.png",
+      "path": "evidence/seo-legal-0f5f823/terms-390x844-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/terms-390x844-full.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "terms-390x480-viewport.png",
+      "path": "evidence/seo-legal-0f5f823/terms-390x480-viewport.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/terms-390x480-viewport.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "terms-390x480-full.png",
+      "path": "evidence/seo-legal-0f5f823/terms-390x480-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/terms-390x480-full.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "privacy-1440x900-menu.png",
+      "path": "evidence/seo-legal-0f5f823/privacy-1440x900-menu.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/privacy-1440x900-menu.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "privacy-390x844-menu.png",
+      "path": "evidence/seo-legal-0f5f823/privacy-390x844-menu.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/privacy-390x844-menu.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "privacy-390x480-menu.png",
+      "path": "evidence/seo-legal-0f5f823/privacy-390x480-menu.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/privacy-390x480-menu.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "privacy-768x1024-viewport.png",
+      "path": "evidence/seo-legal-0f5f823/privacy-768x1024-viewport.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/privacy-768x1024-viewport.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "privacy-768x1024-full.png",
+      "path": "evidence/seo-legal-0f5f823/privacy-768x1024-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/privacy-768x1024-full.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "terms-768x1024-viewport.png",
+      "path": "evidence/seo-legal-0f5f823/terms-768x1024-viewport.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/terms-768x1024-viewport.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "terms-768x1024-full.png",
+      "path": "evidence/seo-legal-0f5f823/terms-768x1024-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/terms-768x1024-full.png"
+    },
+    {
+      "document": "evidence/seo-legal-0f5f823/QA.md",
+      "original": "privacy-390x844-retention.png",
+      "path": "evidence/seo-legal-0f5f823/privacy-390x844-retention.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/seo-legal-0f5f823/privacy-390x844-retention.png"
+    },
+    {
+      "document": "evidence/team-role-states/README.md",
+      "original": "leader-unlocked-1440x900.png",
+      "path": "evidence/team-role-states/leader-unlocked-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/leader-unlocked-1440x900.png"
+    },
+    {
+      "document": "evidence/team-role-states/README.md",
+      "original": "outgoing-invitation-mobile-390x844.png",
+      "path": "evidence/team-role-states/outgoing-invitation-mobile-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/outgoing-invitation-mobile-390x844.png"
+    },
+    {
+      "document": "evidence/team-role-states/README.md",
+      "original": "incoming-invitation-390x844.png",
+      "path": "evidence/team-role-states/incoming-invitation-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/incoming-invitation-390x844.png"
+    },
+    {
+      "document": "evidence/team-role-states/README.md",
+      "original": "decline-confirmation-short-390x480.png",
+      "path": "evidence/team-role-states/decline-confirmation-short-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/decline-confirmation-short-390x480.png"
+    },
+    {
+      "document": "evidence/team-role-states/README.md",
+      "original": "declined-outcome-390x844.png",
+      "path": "evidence/team-role-states/declined-outcome-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/declined-outcome-390x844.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "remove-carol-confirmation-1440x900.png",
+      "path": "evidence/team-role-states/accepted-lock/remove-carol-confirmation-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/remove-carol-confirmation-1440x900.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "remove-carol-confirmation-short-390x480.png",
+      "path": "evidence/team-role-states/accepted-lock/remove-carol-confirmation-short-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/remove-carol-confirmation-short-390x480.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "leader-removal-outcome-1440x900.png",
+      "path": "evidence/team-role-states/accepted-lock/leader-removal-outcome-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/leader-removal-outcome-1440x900.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "removed-carol-teamless-390x844.png",
+      "path": "evidence/team-role-states/accepted-lock/removed-carol-teamless-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/removed-carol-teamless-390x844.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "carol-outgoing-invitation-1440x900.png",
+      "path": "evidence/team-role-states/accepted-lock/carol-outgoing-invitation-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/carol-outgoing-invitation-1440x900.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "carol-incoming-invitation-390x844.png",
+      "path": "evidence/team-role-states/accepted-lock/carol-incoming-invitation-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/carol-incoming-invitation-390x844.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "decline-dialog-correct-team-target-short-390x480.png",
+      "path": "evidence/team-role-states/accepted-lock/decline-dialog-correct-team-target-short-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/decline-dialog-correct-team-target-short-390x480.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "accept-confirmation-correct-target-short-390x480.png",
+      "path": "evidence/team-role-states/accepted-lock/accept-confirmation-correct-target-short-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/accept-confirmation-correct-target-short-390x480.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "accepted-carol-member-desktop-1440x900.png",
+      "path": "evidence/team-role-states/accepted-lock/accepted-carol-member-desktop-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/accepted-carol-member-desktop-1440x900.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "accepted-carol-member-unlocked-390x844.png",
+      "path": "evidence/team-role-states/accepted-lock/accepted-carol-member-unlocked-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/accepted-carol-member-unlocked-390x844.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "idea-saved-leader-current-1440x900.png",
+      "path": "evidence/team-role-states/accepted-lock/idea-saved-leader-current-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/idea-saved-leader-current-1440x900.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "idea-save-confirmation-1440x900.png",
+      "path": "evidence/team-role-states/accepted-lock/idea-save-confirmation-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/idea-save-confirmation-1440x900.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "idea-save-success-current-1440x900.png",
+      "path": "evidence/team-role-states/accepted-lock/idea-save-success-current-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/idea-save-success-current-1440x900.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "lock-confirmation-1440x900.png",
+      "path": "evidence/team-role-states/accepted-lock/lock-confirmation-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/lock-confirmation-1440x900.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "lock-confirmation-short-390x480.png",
+      "path": "evidence/team-role-states/accepted-lock/lock-confirmation-short-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/lock-confirmation-short-390x480.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "leader-locked-1440x900.png",
+      "path": "evidence/team-role-states/accepted-lock/leader-locked-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/leader-locked-1440x900.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "leader-locked-mobile-390x844.png",
+      "path": "evidence/team-role-states/accepted-lock/leader-locked-mobile-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/leader-locked-mobile-390x844.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "leader-locked-short-390x480.png",
+      "path": "evidence/team-role-states/accepted-lock/leader-locked-short-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/leader-locked-short-390x480.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "member-locked-desktop-1440x900.png",
+      "path": "evidence/team-role-states/accepted-lock/member-locked-desktop-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/member-locked-desktop-1440x900.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "member-locked-390x844.png",
+      "path": "evidence/team-role-states/accepted-lock/member-locked-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/member-locked-390x844.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "full-five-member-team-1440x900.png",
+      "path": "evidence/team-role-states/accepted-lock/full-five-member-team-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/full-five-member-team-1440x900.png"
+    },
+    {
+      "document": "evidence/team-role-states/accepted-lock/README.md",
+      "original": "viewer-dashboard-390x844.png",
+      "path": "evidence/team-role-states/accepted-lock/viewer-dashboard-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/accepted-lock/viewer-dashboard-390x844.png"
+    },
+    {
+      "document": "evidence/team-role-states/idea-saved/README.md",
+      "original": "idea-editor-1440x900.png",
+      "path": "evidence/team-role-states/idea-saved/idea-editor-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/idea-saved/idea-editor-1440x900.png"
+    },
+    {
+      "document": "evidence/team-role-states/idea-saved/README.md",
+      "original": "idea-editor-short-390x480.png",
+      "path": "evidence/team-role-states/idea-saved/idea-editor-short-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/idea-saved/idea-editor-short-390x480.png"
+    },
+    {
+      "document": "evidence/team-role-states/idea-saved/README.md",
+      "original": "idea-saved-1440x900.png",
+      "path": "evidence/team-role-states/idea-saved/idea-saved-1440x900.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/idea-saved/idea-saved-1440x900.png"
+    },
+    {
+      "document": "evidence/team-role-states/idea-saved/README.md",
+      "original": "member-saved-idea-readonly-390x844.png",
+      "path": "evidence/team-role-states/idea-saved/member-saved-idea-readonly-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-role-states/idea-saved/member-saved-idea-readonly-390x844.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "selected-source.png",
+      "path": "evidence/team-studio-independent/selected-source.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/selected-source.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "first/focused-idea-next.png",
+      "path": "evidence/team-studio-independent/first/focused-idea-next.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/first/focused-idea-next.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "final-7d22631/comparison-1487-normalized-local-banner.png",
+      "path": "evidence/team-studio-independent/final-7d22631/comparison-1487-normalized-local-banner.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/final-7d22631/comparison-1487-normalized-local-banner.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "final-7d22631/next-short-390x480.png",
+      "path": "evidence/team-studio-independent/final-7d22631/next-short-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/final-7d22631/next-short-390x480.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "scroll-fix-927845c/next-native200.png",
+      "path": "evidence/team-studio-independent/scroll-fix-927845c/next-native200.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/scroll-fix-927845c/next-native200.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "first/focused-timeline.png",
+      "path": "evidence/team-studio-independent/first/focused-timeline.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/first/focused-timeline.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "final-7d22631/team-768x1024-full.png",
+      "path": "evidence/team-studio-independent/final-7d22631/team-768x1024-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/final-7d22631/team-768x1024-full.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "scroll-fix-927845c/progress-native200.png",
+      "path": "evidence/team-studio-independent/scroll-fix-927845c/progress-native200.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/scroll-fix-927845c/progress-native200.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "after-c1ad8d3/identity-orange-preview-short-390x480.png",
+      "path": "evidence/team-studio-independent/after-c1ad8d3/identity-orange-preview-short-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/after-c1ad8d3/identity-orange-preview-short-390x480.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "final-7d22631/identity-palette-short-320x480.png",
+      "path": "evidence/team-studio-independent/final-7d22631/identity-palette-short-320x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/final-7d22631/identity-palette-short-320x480.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "final-7d22631/identity-palette-short-390x480.png",
+      "path": "evidence/team-studio-independent/final-7d22631/identity-palette-short-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/final-7d22631/identity-palette-short-390x480.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "final-7d22631/identity-native200.png",
+      "path": "evidence/team-studio-independent/final-7d22631/identity-native200.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/final-7d22631/identity-native200.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "read-only-before-scroll-lock/02-identity-320-short.png",
+      "path": "evidence/team-studio-independent/read-only-before-scroll-lock/02-identity-320-short.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/read-only-before-scroll-lock/02-identity-320-short.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "read-only-before-scroll-lock/FAIL-current-ui.png",
+      "path": "evidence/team-studio-independent/read-only-before-scroll-lock/FAIL-current-ui.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/read-only-before-scroll-lock/FAIL-current-ui.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "first/comparison-1487x1058.png",
+      "path": "evidence/team-studio-independent/first/comparison-1487x1058.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/first/comparison-1487x1058.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "first/comparison-1440x1024.png",
+      "path": "evidence/team-studio-independent/first/comparison-1440x1024.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/first/comparison-1440x1024.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "final-7d22631/comparison-1487x1058.png",
+      "path": "evidence/team-studio-independent/final-7d22631/comparison-1487x1058.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/final-7d22631/comparison-1487x1058.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "final-7d22631/comparison-1440x1024.png",
+      "path": "evidence/team-studio-independent/final-7d22631/comparison-1440x1024.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/final-7d22631/comparison-1440x1024.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "final-7d22631/comparison-1487-normalized-local-banner.png",
+      "path": "evidence/team-studio-independent/final-7d22631/comparison-1487-normalized-local-banner.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/final-7d22631/comparison-1487-normalized-local-banner.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "final-7d22631/team-1487x1058-full.png",
+      "path": "evidence/team-studio-independent/final-7d22631/team-1487x1058-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/final-7d22631/team-1487x1058-full.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "first/focused-hero.png",
+      "path": "evidence/team-studio-independent/first/focused-hero.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/first/focused-hero.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "first/focused-members.png",
+      "path": "evidence/team-studio-independent/first/focused-members.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/first/focused-members.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "first/focused-idea-next.png",
+      "path": "evidence/team-studio-independent/first/focused-idea-next.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/first/focused-idea-next.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "first/focused-timeline.png",
+      "path": "evidence/team-studio-independent/first/focused-timeline.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/first/focused-timeline.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "final-7d22631/team-768x1024-full.png",
+      "path": "evidence/team-studio-independent/final-7d22631/team-768x1024-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/final-7d22631/team-768x1024-full.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "final-7d22631/team-390x844-full.png",
+      "path": "evidence/team-studio-independent/final-7d22631/team-390x844-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/final-7d22631/team-390x844-full.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "final-7d22631/team-320x480-full.png",
+      "path": "evidence/team-studio-independent/final-7d22631/team-320x480-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/final-7d22631/team-320x480-full.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "final-7d22631/idea-short-390x480.png",
+      "path": "evidence/team-studio-independent/final-7d22631/idea-short-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/final-7d22631/idea-short-390x480.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "final-7d22631/next-short-390x480.png",
+      "path": "evidence/team-studio-independent/final-7d22631/next-short-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/final-7d22631/next-short-390x480.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "final-7d22631/team-native200-1440.png",
+      "path": "evidence/team-studio-independent/final-7d22631/team-native200-1440.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/final-7d22631/team-native200-1440.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "scroll-fix-927845c/idea-native200.png",
+      "path": "evidence/team-studio-independent/scroll-fix-927845c/idea-native200.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/scroll-fix-927845c/idea-native200.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "scroll-fix-927845c/next-native200.png",
+      "path": "evidence/team-studio-independent/scroll-fix-927845c/next-native200.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/scroll-fix-927845c/next-native200.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "scroll-fix-927845c/progress-native200.png",
+      "path": "evidence/team-studio-independent/scroll-fix-927845c/progress-native200.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/scroll-fix-927845c/progress-native200.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "final-7d22631/identity-native200.png",
+      "path": "evidence/team-studio-independent/final-7d22631/identity-native200.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/final-7d22631/identity-native200.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "read-only/01-team-320-short.png",
+      "path": "evidence/team-studio-independent/read-only/01-team-320-short.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/read-only/01-team-320-short.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "read-only/02-identity-320-short.png",
+      "path": "evidence/team-studio-independent/read-only/02-identity-320-short.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/read-only/02-identity-320-short.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "read-only/03-invite-320-short.png",
+      "path": "evidence/team-studio-independent/read-only/03-invite-320-short.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/read-only/03-invite-320-short.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "read-only/04-next-320-short.png",
+      "path": "evidence/team-studio-independent/read-only/04-next-320-short.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/read-only/04-next-320-short.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "after-c1ad8d3/idea-dirty-mobile-390x844.png",
+      "path": "evidence/team-studio-independent/after-c1ad8d3/idea-dirty-mobile-390x844.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/after-c1ad8d3/idea-dirty-mobile-390x844.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "after-c1ad8d3/lock-confirmation-short-390x480.png",
+      "path": "evidence/team-studio-independent/after-c1ad8d3/lock-confirmation-short-390x480.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/after-c1ad8d3/lock-confirmation-short-390x480.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "after-c1ad8d3/leader-locked-1440x900-full.png",
+      "path": "evidence/team-studio-independent/after-c1ad8d3/leader-locked-1440x900-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/after-c1ad8d3/leader-locked-1440x900-full.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "after-c1ad8d3/member-locked-mobile-390x844-full.png",
+      "path": "evidence/team-studio-independent/after-c1ad8d3/member-locked-mobile-390x844-full.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/after-c1ad8d3/member-locked-mobile-390x844-full.png"
+    },
+    {
+      "document": "evidence/team-studio-independent/design-qa.md",
+      "original": "read-only-focus-harness-attempt/FAIL-current-ui.png",
+      "path": "evidence/team-studio-independent/read-only-focus-harness-attempt/FAIL-current-ui.png",
+      "replacement": "https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/team-studio-independent/read-only-focus-harness-attempt/FAIL-current-ui.png"
+    }
+  ],
+  "runtimeAndNonimageFilesDeleted": 0,
+  "historyRewritten": false,
+  "pushPerformed": false
+}

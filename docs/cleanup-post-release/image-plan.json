@@ -1,0 +1,79 @@
+{
+  "observedUTC": "2026-10-24T20:16:15.543904+00:00",
+  "remote": "https://github.com/Param302/dddhack-portal.git",
+  "imageExtensions": [
+    "png",
+    "jpg",
+    "jpeg",
+    "gif",
+    "webp",
+    "avif",
+    "svg",
+    "ico"
+  ],
+  "execution": "Main/review image removal prepared locally; validation pending; no push or remote branch deletion",
+  "branches": [
+    {
+      "branches": "main+feat/portal-experience-rework",
+      "base": "bddb869f3209adcb6cc4ea6161014d51f340cd96",
+      "treeFiles": 4105,
+      "treeBytes": 253014535,
+      "imageCount": 2227,
+      "imageBytes": 189001390,
+      "deleteManifest": "main-review-images-delete.tsv",
+      "deleteManifestSHA256": "0fef74aaed140ed072ec4c71e835e117d10ecf9ab4733252b6c6613672561819",
+      "deleteCount": 2198,
+      "tipTreeBytesSaved": 181474626,
+      "preserveImageCount": 29,
+      "preserveImageBytes": 7526764,
+      "preserveManifest": "main-review-images-preserve.tsv",
+      "remainingTreeBytesBeforeNewAuditDocs": 71539909
+    },
+    {
+      "branches": "test/dashboard-performance-source-audit",
+      "base": "6fcb7d5be117d234ae60a4a4b04af966f9134af8",
+      "treeFiles": 2682,
+      "treeBytes": 170510086,
+      "imageCount": 1501,
+      "imageBytes": 135593138,
+      "deleteManifest": "performance-audit-images-delete.tsv",
+      "deleteManifestSHA256": "27cd4fd1f7961e7acb79051c70649741af84b287bc9a726aa272f2c531f9fa2c",
+      "deleteCount": 1482,
+      "tipTreeBytesSaved": 129925052,
+      "preserveImageCount": 19,
+      "preserveImageBytes": 5668086,
+      "preserveManifest": "performance-audit-images-preserve.tsv",
+      "remainingTreeBytesBeforeNewAuditDocs": 40585034
+    },
+    {
+      "branches": "feat/devday-exchange-v1",
+      "base": "dc92672c0e9a50ebcfe458f2e7c692058a1483b7",
+      "treeFiles": 677,
+      "treeBytes": 24957519,
+      "imageCount": 19,
+      "imageBytes": 5668086,
+      "deleteManifest": "sites-images-delete.tsv",
+      "deleteManifestSHA256": "8f87effa3cea2950ccbcb7f1b087cbb8976f7dca419a0c6bf45a4714113a6906",
+      "deleteCount": 0,
+      "tipTreeBytesSaved": 0,
+      "preserveImageCount": 19,
+      "preserveImageBytes": 5668086,
+      "preserveManifest": "sites-images-preserve.tsv",
+      "remainingTreeBytesBeforeNewAuditDocs": 24957519
+    }
+  ],
+  "nativeDeliveryConfirmed": {
+    "source": "Parent delegation2026-10-24",
+    "files": [
+      "evidence/final-combined-ui/admin-submissions-desktop1440.png",
+      "evidence/final-combined-ui/admin-submissions-mobile390.png",
+      "evidence/final-combined-ui/admin-project-detail-desktop1440.png",
+      "evidence/final-combined-ui/admin-project-detail-mobile390.png",
+      "evidence/final-combined-ui/stock-aligned-1440x900.png",
+      "evidence/final-combined-ui/stock-aligned-390x844.png",
+      "evidence/discover-profile-completeness/public-gender/admin-bob-1440x900.png",
+      "evidence/discover-profile-completeness/public-gender/admin-bob-390x844.png"
+    ],
+    "libraryIDs": "Held by parent; no IDs guessed"
+  }
+}

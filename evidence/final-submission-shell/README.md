@@ -8,12 +8,12 @@ The parent authorized this narrow retake after review correctly found that earli
 
 Every PNG below was individually opened and visually inspected at native pixels:
 
-- [Step1 desktop](step1-1440x900.png), [Step2 desktop](step2-1440x900.png), [Step3 desktop](step3-1440x900.png).
-- [Step1 mobile](step1-390x844.png), [Step2 mobile](step2-390x844.png), [Step3 mobile](step3-390x844.png).
-- [Current Studio mobile menu](studio-menu-390x844.png).
-- [Short320 Step3 full page](step3-320x480.png), [reachable footer viewport](step3-footer-320x480.png).
-- [Single linked media error](step3-inline-media-error-320x480.png), [valid portrait with visible focus](step3-valid-media-focus-320x480.png), [valid media full page](step3-valid-media-full-320x480.png).
-- [Enabled persisted window inputs after reload](saved-window-enabled-after-reload-390x844.png).
+- [Step1 desktop](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step1-1440x900.png), [Step2 desktop](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step2-1440x900.png), [Step3 desktop](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step3-1440x900.png).
+- [Step1 mobile](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step1-390x844.png), [Step2 mobile](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step2-390x844.png), [Step3 mobile](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step3-390x844.png).
+- [Current Studio mobile menu](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/studio-menu-390x844.png).
+- [Short320 Step3 full page](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step3-320x480.png), [reachable footer viewport](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step3-footer-320x480.png).
+- [Single linked media error](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step3-inline-media-error-320x480.png), [valid portrait with visible focus](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step3-valid-media-focus-320x480.png), [valid media full page](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/step3-valid-media-full-320x480.png).
+- [Enabled persisted window inputs after reload](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/final-submission-shell/saved-window-enabled-after-reload-390x844.png).
 
 The current Studio header uses the black menu and real avatar; desktop omits the earlier sidebar. The wizard remains centered, aligns Back/title/progress, and retains a wide banner plus compact logo/attestation desktop grid. Mobile stacks content with normal scrolling. All inspected widths have no horizontal overflow. Both final actions measure at least44px in each axis and remain within the short viewport after ordinary scrolling. The actual menu has visible destination icons and red Logout; Escape closes it without a mutation.
 

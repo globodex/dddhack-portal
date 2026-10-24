@@ -2,7 +2,7 @@
 
 The comparison is complete and shows an unresolved **cold Dashboard cost**. Median FCP rose436→596ms (+160ms); cached repeat FCP remained132ms. Cold transfer rose319,930→373,304 bytes (+16.68%). No performance source change was made. These results support a measured tradeoff, not a claim that the redesign is faster.
 
-[Full56-sample report](report.json), [statistics](summary.json), [waterfalls](waterfalls.csv), [attribution](attribution.json), and [runner](measure-production.mjs) preserve the evidence. All4 benchmark PNG originals were opened and viewed: [before Dashboard](baseline-dashboard-1440x900.png), [final Dashboard](final-dashboard-1440x900.png), [before People](baseline-people-1440x900.png), [final People](final-people-1440x900.png).
+[Full56-sample report](report.json), [statistics](summary.json), [waterfalls](waterfalls.csv), [attribution](attribution.json), and [runner](measure-production.mjs) preserve the evidence. All4 benchmark PNG originals were opened and viewed: [before Dashboard](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/performance-production/baseline-dashboard-1440x900.png), [final Dashboard](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/performance-production/final-dashboard-1440x900.png), [before People](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/performance-production/baseline-people-1440x900.png), [final People](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/performance-production/final-people-1440x900.png).
 
 ## Sources and controls
 

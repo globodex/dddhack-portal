@@ -1,0 +1,30 @@
+path	git_blob	bytes	reason
+evidence/actual-hero-og/hero-native-1440x756.png	889c6c0042d84ac18d2b31b45339ea441accb9a4	228257	Input to scripts/qa-actual-hero-og-encode.mjs; regenerates the required runtime homepage OG image
+public/art/delhi-v3/delhi-fill-overscan.png	77baecca73143eebb4ac07c3a71cf2cb2be45258	1544882	Runtime/public asset outside generated evidence
+public/art/delhi-v3/delhi-fill-overscan.webp	32d036e2246d2e57100fb469e39d1570dd78b207	989474	Runtime/public asset outside generated evidence
+public/art/delhi-v3/fallback-approved-v3.png	d9766f0b950305064f314c7a7a88f715764509b1	1371819	Runtime/public asset outside generated evidence
+public/art/delhi-v3/fallback-approved-v3.webp	2a0307eaefb6c7eee18a215239ad5aea8ba71f19	1148080	Runtime/public asset outside generated evidence
+public/art/delhi-v3/metro-static.png	5b85987887914fedd994398c8b295d0cf5ce171f	296153	Runtime/public asset outside generated evidence
+public/art/delhi-v3/metro-static.webp	0b939fff44826aa52206c0a994a684d95ba88e36	162268	Runtime/public asset outside generated evidence
+public/art/delhi-v3/text-mask-alpha.png	1a172c7bb3e5e43f507eb7bdb73889bde0276a7b	66193	Runtime/public asset outside generated evidence
+public/art/delhi-v3/text-mask-alpha.webp	d34fdaf60104081a0fbc4ade2d16b097f7373e18	33340	Runtime/public asset outside generated evidence
+public/brand/cerebras-official.webp	96aa377f2ba0de21436284a93d5ba3ad2b2353cb	15820	Runtime/public asset outside generated evidence
+public/brand/codex-user-supplied.svg	b50f5a88fcebd78a6a9ac2df4f9f6918fbaf4ff8	10567	Runtime/public asset outside generated evidence
+public/icons/social/facebook.svg	594b28a28900da9e1378e4fee1037f54b06111ee	442	Runtime/public asset outside generated evidence
+public/icons/social/github.svg	2084b5c263f2fe5baf259670855848eab895f234	681	Runtime/public asset outside generated evidence
+public/icons/social/instagram.svg	2e3c9034ad731bb61f2ad7f022e08b1b922be3d4	532	Runtime/public asset outside generated evidence
+public/icons/social/linkedin.svg	939a9ec7b50970b0a8fc92618760546b9ee8c300	569	Runtime/public asset outside generated evidence
+public/icons/social/website.svg	d8c29cd38ba88ac7fe3d05aed8e067dedf48a162	533	Runtime/public asset outside generated evidence
+public/icons/social/whatsapp.svg	529fdfb0ef6bb6034fd07b14a9476eea0b0e4ed9	1231	Runtime/public asset outside generated evidence
+public/icons/social/x.svg	9128c2683a3f0e78d5abab88fde33bbbc0207028	452	Runtime/public asset outside generated evidence
+public/og/devday-new-delhi-home.jpg	52d8f88e439c9051f33b2bc1b6bde01ccd1dbe67	85741	Runtime/public asset outside generated evidence
+public/organizers/HowDevelop-x.jpg	14fc02b427b5165e24791b9bb7ae81607662e80c	8783	Runtime/public asset outside generated evidence
+public/organizers/Param3021-x.jpg	f54bcf4c0f122e7ff7983164a5de9150e0f30327	10300	Runtime/public asset outside generated evidence
+public/organizers/callmeshuklaji-x.jpg	bfe27f35745de2c8145dc41deea91aac38e05ed6	12626	Runtime/public asset outside generated evidence
+public/organizers/nikhilsbuilds-x.jpg	b834386ae559b28a1ca64c9489f63a8e711225f7	9603	Runtime/public asset outside generated evidence
+evidence/performance-content-boundary/baseline-dashboard-1440x900.png	270623bfeaddca3b5956a9cbee31ea67a4520b87	120194	Required pixel-comparison input to evidence/performance-content-boundary/summarize.py
+evidence/performance-content-boundary/baseline-home-1440x900.png	0ee77c03974120e6ec1e7b659677426f8e3a2cd7	483633	Required pixel-comparison input to evidence/performance-content-boundary/summarize.py
+evidence/performance-content-boundary/baseline-people-1440x900.png	b433f7a3f653e9556c04267c5e24b2c4743423da	160382	Required pixel-comparison input to evidence/performance-content-boundary/summarize.py
+evidence/performance-content-boundary/final-dashboard-1440x900.png	270623bfeaddca3b5956a9cbee31ea67a4520b87	120194	Required pixel-comparison input to evidence/performance-content-boundary/summarize.py
+evidence/performance-content-boundary/final-home-1440x900.png	0ee77c03974120e6ec1e7b659677426f8e3a2cd7	483633	Required pixel-comparison input to evidence/performance-content-boundary/summarize.py
+evidence/performance-content-boundary/final-people-1440x900.png	b433f7a3f653e9556c04267c5e24b2c4743423da	160382	Required pixel-comparison input to evidence/performance-content-boundary/summarize.py

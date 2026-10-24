@@ -2,16 +2,16 @@
 
 Before `244d68febfea4a7ba7ff5966001310db107c7828`; after `182c2bd2077d139a7b5f50b89e9730e5961e397c`. Final owned organizer source `69ee2775d6562988d341fdee8e602bd31725ab89`; rendered CSS hash matches it exactly. All native PNGs use local synthetic fixtures and were inspected.
 
-- [1440before native viewport](before/organizers-1440x900.png)
-- [1440after native viewport](after/organizers-1440x900.png)
-- [1440after complete component](after/organizers-component-1440x900.png)
-- [1024before native viewport](before/organizers-1024x768.png)
-- [1024after native viewport](after/organizers-1024x768.png)
-- [1024after complete component](after/organizers-component-1024x768.png)
-- [768portrait unchanged](after/organizers-768x1024.png)
-- [390mobile unchanged](after/organizers-390x844.png)
-- [1440same-scale comparison](organizer-comparison-1440.png)
-- [1024same-scale comparison](organizer-comparison-1024.png)
+- [1440before native viewport](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/before/organizers-1440x900.png)
+- [1440after native viewport](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/after/organizers-1440x900.png)
+- [1440after complete component](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/after/organizers-component-1440x900.png)
+- [1024before native viewport](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/before/organizers-1024x768.png)
+- [1024after native viewport](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/after/organizers-1024x768.png)
+- [1024after complete component](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/after/organizers-component-1024x768.png)
+- [768portrait unchanged](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/after/organizers-768x1024.png)
+- [390mobile unchanged](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/after/organizers-390x844.png)
+- [1440same-scale comparison](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/organizer-comparison-1440.png)
+- [1024same-scale comparison](https://github.com/Param302/dddhack-portal/blob/bddb869f3209adcb6cc4ea6161014d51f340cd96/evidence/organizer-desktop-refinement/organizer-comparison-1024.png)
 
 The comparisons are labelled composites from the actual native captures, resized to the same scale in each pair. Gray space under the shorter after image belongs to the comparison canvas. Original native files remain above.
 
