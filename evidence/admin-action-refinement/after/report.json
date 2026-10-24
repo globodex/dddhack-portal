@@ -1,0 +1,174 @@
+{
+  "source": "f54306b76c17f5dc5b101354c17142583b3efe09",
+  "fingerprints": {
+    "app/portal.tsx": "6977d0179d8f2af00d7213d9727aea2cabac485f2f7095c8a14fb1cf00241a73",
+    "app/admin-credit-batches.tsx": "35d0e690260aa026f789938f3671c6f5c03af7f64451d6c87d422f8dc1062b7d",
+    "app/admin-team-card.tsx": "f979ad81238424248d952300f97a55f2d038fbc9726ee909cf5955ce7634b6c2",
+    "app/admin-experience.css": "b60d7d6612be38e36554264c271a6eeb36a687b8c2c6deeb8eca8207b4dd15be"
+  },
+  "checks": [
+    {
+      "name": "participant action order and targets 1440",
+      "passed": true
+    },
+    {
+      "name": "participant action order and targets 768",
+      "passed": true
+    },
+    {
+      "name": "participant action order and targets 390",
+      "passed": true
+    },
+    {
+      "name": "participant action order and targets 320",
+      "passed": true
+    },
+    {
+      "name": "team header and long name fit 1440",
+      "passed": true
+    },
+    {
+      "name": "team header and long name fit 768",
+      "passed": true
+    },
+    {
+      "name": "team header and long name fit 390",
+      "passed": true
+    },
+    {
+      "name": "team header and long name fit 320",
+      "passed": true
+    },
+    {
+      "name": "team kebab Enter does not toggle card; Escape restores focus",
+      "passed": true
+    },
+    {
+      "name": "icon-only credit column control 1440",
+      "passed": true
+    },
+    {
+      "name": "icon-only credit column control 390",
+      "passed": true
+    },
+    {
+      "name": "icon-only credit column control 320",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "evidence/admin-action-refinement/after/participants-going-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/after/participants-going-768.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/after/participants-going-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/after/participants-going-320.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/after/teams-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/after/teams-768.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/after/teams-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/after/teams-320.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/after/team-menu-320.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "fullPage": false,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/after/credits-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/after/credits-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/after/credits-320.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true
+    }
+  ],
+  "errors": [],
+  "mutations": [],
+  "closed": true,
+  "runtimeSourceCommitVerifiedAfterCapture": "bdf0e42edd7403747919fa06595fcf8bcebf4dec",
+  "runtimeFilesMatchCommittedBlobs": true
+}

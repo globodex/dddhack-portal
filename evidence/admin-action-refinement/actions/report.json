@@ -1,0 +1,123 @@
+{
+  "syntheticOnly": true,
+  "checks": [
+    {
+      "name": "one selected participant still requires bulk confirmation and cancel keeps selection",
+      "passed": true
+    },
+    {
+      "name": "quick action no confirmation, dedupes double click, stable pending and persists checked-in status",
+      "passed": true
+    },
+    {
+      "name": "Registered, Absent, checked-in and Viewer rows have no quick action; Viewer has no actions",
+      "passed": true
+    },
+    {
+      "name": "503 keeps Going action and selection with one full actionable error",
+      "passed": true
+    },
+    {
+      "name": "column icon opens named confirmation and preserves other columns after confirmed delete",
+      "passed": true
+    },
+    {
+      "name": "volunteer has own quick action cell and touch check-in without management menu",
+      "passed": true
+    }
+  ],
+  "requests": [
+    {
+      "role": "owner",
+      "action": "quick-check-in",
+      "data": {
+        "emails": [
+          "bob@portal.test"
+        ]
+      }
+    },
+    {
+      "role": "owner",
+      "action": "quick-check-in",
+      "data": {
+        "emails": [
+          "carol@portal.test"
+        ]
+      }
+    },
+    {
+      "role": "owner",
+      "action": "delete-credit-column",
+      "data": {
+        "batchId": "580984a9-df2e-424c-ab64-1330eef745c3",
+        "columnId": "df6f0d42-1fec-410a-8b86-45fb8b8269d1",
+        "confirmation": "DELETE_CREDIT_COLUMN"
+      }
+    },
+    {
+      "role": "volunteer",
+      "action": "quick-check-in",
+      "data": {
+        "emails": [
+          "carol@portal.test"
+        ]
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "evidence/admin-action-refinement/actions/bulk-one-confirmation.png",
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/actions/quick-pending.png",
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/actions/quick-checked-in.png",
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/actions/viewer-no-actions.png",
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/actions/quick-failure-selection-retained.png",
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/actions/delete-column-confirmation.png",
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/actions/deleted-one-column.png",
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/actions/volunteer-quick-action.png",
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/actions/volunteer-checked-in.png",
+      "inspected": true
+    }
+  ],
+  "errors": [],
+  "artificialPendingDelayMs": 1200,
+  "quickIdleRect": {
+    "x": 154,
+    "y": 367,
+    "width": 132,
+    "height": 44
+  },
+  "quickPendingRect": {
+    "x": 154,
+    "y": 367,
+    "width": 132,
+    "height": 44
+  },
+  "deleteCancelFocusRestored": false,
+  "closed": true,
+  "runtimeSourceCommitVerifiedAfterCapture": "bdf0e42edd7403747919fa06595fcf8bcebf4dec",
+  "runtimeFilesMatchCommittedBlobs": true
+}

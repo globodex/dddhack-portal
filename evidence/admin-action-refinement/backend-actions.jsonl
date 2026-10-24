@@ -1,0 +1,4 @@
+{"action":"quick-check-in","data":{"emails":["dave@portal.test"]}}
+{"action":"quick-check-in","data":{"emails":["bob@portal.test"]}}
+{"action":"delete-credit-column","data":{"batchId":"580984a9-df2e-424c-ab64-1330eef745c3","columnId":"df6f0d42-1fec-410a-8b86-45fb8b8269d1","confirmation":"DELETE_CREDIT_COLUMN"}}
+{"action":"quick-check-in","data":{"emails":["carol@portal.test"]}}

@@ -1,0 +1,71 @@
+{
+  "source": "f54306b76c17f5dc5b101354c17142583b3efe09",
+  "fingerprints": {
+    "app/portal.tsx": "0cf7533a17f906f28a655139d86a88b8ed9373dc6eaae0418d092f5a8b1732b2",
+    "app/admin-credit-batches.tsx": "06af25e263e91b51d19ac7804df1b75a9eb19975a51beba34a14498a08cfddff",
+    "app/admin-experience.css": "eab8d356a4736a5fdff96f551c0b27d1739f4a82cafb95804890bc6a85e2b304"
+  },
+  "screenshots": [
+    {
+      "path": "evidence/admin-action-refinement/before/participants-going-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/before/participants-going-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/before/participants-going-320.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/before/credits-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/before/credits-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/before/teams-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/before/teams-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "inspected": true
+    }
+  ],
+  "errors": [],
+  "mutations": [],
+  "closed": true,
+  "runtimeSourceCommitVerifiedAfterCapture": "f54306b76c17f5dc5b101354c17142583b3efe09",
+  "runtimeFilesMatchCommittedBlobs": true
+}

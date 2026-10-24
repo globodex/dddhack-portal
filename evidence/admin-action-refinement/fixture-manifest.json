@@ -1,0 +1,13 @@
+{
+  "source": "f54306b76c17f5dc5b101354c17142583b3efe09",
+  "database": "/tmp/ddd-admin-action-refinement-8856.sqlite",
+  "origin": "http://localhost:3011",
+  "backendPort": 8856,
+  "freshSeedNotCopy": true,
+  "syntheticOnly": true,
+  "users": 17,
+  "longNames": {
+    "fake_carol": "Alexandria Montgomery Richardson with a deliberately long synthetic participant display name",
+    "fake_dave": "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"
+  }
+}
