@@ -1592,8 +1592,6 @@ function DashboardProject({
       {data.projectStats?.result && (
         <PublicResult result={data.projectStats.result} />
       )}
-      {canRead ? (
-        <>
           <div className="dashboard-project-toolbar">
             <div className="dashboard-project-metrics">
               {data.projectStats && <span className="dashboard-upvotes" aria-label={Number.isFinite(data.projectStats.upvotes) ? upvoteCountLabel(data.projectStats.upvotes) : "Upvote count unavailable"}>
@@ -1603,7 +1601,7 @@ function DashboardProject({
                 <MessageSquare size={20} aria-hidden="true" /><span aria-hidden="true">{data.feedback?.length || 0}</span>
               </span>
             </div>
-            {project?.published_version_id &&
+            {canRead && project?.published_version_id &&
               typeof project.slug === "string" && project.slug.trim() &&
               data.eligibility?.status === "eligible" && (
                 <a
@@ -1614,7 +1612,7 @@ function DashboardProject({
                   <ExternalLink size={17} aria-hidden="true" />
                 </a>
               )}
-            {canEdit && project?.published_version_id && (
+            {canRead && canEdit && project?.published_version_id && (
               <button
                 className="button dashboard-project-update"
                 id="dashboard-project-edit"
@@ -1626,6 +1624,8 @@ function DashboardProject({
               </button>
             )}
           </div>
+      {canRead ? (
+        <>
           {project?.published_version_id && !editorOpen && (
             <CommittedSubmissions
               key={`${project.revision || 0}-${project.published_version_id}`}

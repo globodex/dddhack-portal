@@ -31,13 +31,18 @@ test("Dashboard tab panels keep default Team visible and published project mutat
         individualStatus: "Checked in",
         project: {
           slug: "synthetic-project",
-          published_version_id: "synthetic_version",
+          published_version_id: "synthetic_version2",
           draft: {
             projectName: "Actual synthetic project",
             description: "Actual permitted description",
           },
         },
         projectStats: { upvotes: 12 },
+        attempts: [3, 2, 1].map((attempt) => ({
+          id: `synthetic_version${attempt}`,
+          attempt,
+          created_at: `2026-11-01T0${attempt}:30:00.000Z`,
+        })),
         submissionAccess: {
           canRead: true,
           canCommit: false,
@@ -52,7 +57,11 @@ test("Dashboard tab panels keep default Team visible and published project mutat
   assert.match(html, /id="dashboard-tab-team"[^>]+aria-selected="true"/);
   assert.match(html, /id="credits"[^>]+hidden=""/);
   assert.match(html, /id="project"[^>]+hidden=""/);
-  assert.match(html, /Versions 3\/3/);
+  assert.equal((html.match(/<details class="committed-submission"/g) || []).length, 3);
+  assert.equal((html.match(/class="committed-submission-current"/g) || []).length, 1);
+  assert.match(html, /Submission 2<span class="committed-submission-current">Current/);
+  assert.match(html, /dateTime="2026-11-01T03:30:00.000Z"/);
+  assert.doesNotMatch(html, /Actual permitted description|dashboard-project-card|Versions 3\/3/);
   assert.match(html, /aria-label="12 upvotes"/);
   assert.match(html, /href="\/projects\/synthetic-project"/);
   assert.doesNotMatch(
