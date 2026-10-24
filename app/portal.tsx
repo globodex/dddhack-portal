@@ -2801,10 +2801,10 @@ function ProjectBody({
         />
         <div>
           <h1>{project.projectName}</h1>
-          <p>
+          {project.teamName && <p>
             {publicView ? "by " : "Team "}
-            {project.teamName || "project team"}
-          </p>
+            {project.teamName}
+          </p>}
         </div>
       </div>
       <p className="project-description">{project.problemSolution}</p>

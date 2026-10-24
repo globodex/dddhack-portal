@@ -18,6 +18,7 @@ const save = () => writeFileSync(join(output, "report.json"), JSON.stringify(rep
 const check = (name) => { report.checks.push({ name, passed: true }); save(); };
 const browser = await chromium.launch({ executablePath: "/usr/bin/chromium", headless: true, chromiumSandbox: false });
 const viewports = [{ width: 1440, height: 900 }, { width: 768, height: 1024 }, { width: 390, height: 844 }, { width: 390, height: 480 }];
+const controlsOnly = process.env.QA_CONTROLS_ONLY === "1";
 async function screenshot(page, name, viewport, fullPage = false) {
   const path = join(output, name + "-" + viewport.width + "x" + viewport.height + (fullPage ? "-full" : "") + ".png");
   await page.evaluate(() => document.fonts.ready);
@@ -45,7 +46,8 @@ try {
     const page = await context.newPage();
     page.on("pageerror", (error) => report.errors.push({ viewport, error: error.message }));
     const activate = async (locator) => touch ? locator.tap() : (await locator.focus(), await locator.press("Enter"));
-    for (const [name, path] of [["rules", "/rules"], ["projects", "/projects"], ["project-detail", "/projects/synthetic-alice"], ["leaderboard", "/leaderboard"]]) {
+    const staticScreens = controlsOnly ? (viewport.width === 1440 ? [["project-detail", "/projects/synthetic-alice"]] : []) : [["rules", "/rules"], ["projects", "/projects"], ["project-detail", "/projects/synthetic-alice"], ["leaderboard", "/leaderboard"]];
+    for (const [name, path] of staticScreens) {
       await loaded(page, path);
       await screenshot(page, name, viewport);
       await screenshot(page, name, viewport, true);
