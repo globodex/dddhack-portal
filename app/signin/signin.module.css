@@ -1,0 +1,147 @@
+.page {
+  min-height: 100svh;
+  padding: 32px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fafaf9;
+  color: #141414;
+}
+.back {
+  align-self: flex-start;
+  font-size: 14px;
+  color: #4b4b4b;
+}
+.card {
+  width: 100%;
+  max-width: 430px;
+  margin: auto;
+  padding: 44px 0;
+}
+.mark {
+  display: block;
+  margin-bottom: 32px;
+}
+.eyebrow {
+  color: #626262;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+.card h1 {
+  font-size: clamp(32px, 7vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+  font-weight: 500;
+  margin: 0 0 16px;
+}
+.description {
+  color: #606060;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 360px;
+}
+.google,
+.submit {
+  min-height: 50px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 16px;
+}
+.google {
+  border: 1px solid #d5d5d3;
+  background: #fff;
+  color: #222;
+}
+.google:hover {
+  background: #f4f4f2;
+}
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12px;
+  color: #737373;
+  margin: 24px 0;
+}
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #e3e3e0;
+}
+.label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.input {
+  display: block;
+  width: 100%;
+  min-height: 50px;
+  border: 1px solid #d5d5d3;
+  border-radius: 8px;
+  background: #fff;
+  padding: 12px 14px;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+.input::placeholder {
+  color: #838383;
+}
+.submit {
+  color: #fff;
+  border: 1px solid #141414;
+  background: #141414;
+}
+.submit:hover {
+  background: #303030;
+}
+.help {
+  color: #666;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 16px 0 0;
+}
+.notice,
+.error {
+  font-size: 14px;
+  line-height: 1.6;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 20px 0 0;
+}
+.notice {
+  background: #e8f7ef;
+  color: #135c3a;
+}
+.error {
+  background: #fcebe9;
+  color: #8b2525;
+}
+.footer {
+  font-size: 12px;
+  color: #777;
+  margin: 24px 0 0;
+}
+.page :is(a, button, input):focus-visible {
+  outline: 3px solid #006b43;
+  outline-offset: 3px;
+}
+@media (max-width: 480px) {
+  .page {
+    padding: 24px 20px;
+  }
+  .card {
+    padding: 48px 0 32px;
+  }
+}

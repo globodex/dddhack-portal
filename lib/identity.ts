@@ -3,7 +3,8 @@ export type Identity = {
   id: string;
   email: string;
   name: string;
-  source: "sites" | "local-test";
+  source: "sites" | "neon" | "local-test";
+  emailVerified?: boolean;
   localOwner?: boolean;
 };
 export const OWNER_EMAIL = "connectwithparam.30@gmail.com";
@@ -31,18 +32,67 @@ export function sitesIdentity(
     } catch {
       name = email;
     }
-  return { id, email: email.toLowerCase().trim(), name, source: "sites" };
+  return {
+    id,
+    email: email.toLowerCase().trim(),
+    name,
+    source: "sites",
+    emailVerified: true,
+  };
 }
 export function isOwner(i: Identity) {
-  return i.source === "sites" ? i.email === OWNER_EMAIL : i.localOwner === true;
+  if (i.source === "local-test") return i.localOwner === true;
+  return (
+    i.emailVerified === true && i.email.trim().toLowerCase() === OWNER_EMAIL
+  );
 }
-export function signInPath(returnTo = "/dashboard") {
+export function safeReturnTo(value: unknown, fallback = "/dashboard") {
+  if (value == null || value === "") return fallback;
   demand(
-    returnTo.startsWith("/") &&
-      !returnTo.startsWith("//") &&
-      !/[\\\r\n]/.test(returnTo),
+    typeof value === "string" && value.length <= 2048,
     422,
     "INVALID_RETURN_PATH",
   );
-  return "/signin-with-chatgpt?return_to=" + encodeURIComponent(returnTo);
+  // Validate decoded forms too: browsers and reverse proxies may normalize them.
+  let decoded = value;
+  for (let depth = 0; depth < 4; depth++) {
+    demand(
+      decoded.startsWith("/") &&
+        !decoded.startsWith("//") &&
+        !/[\\\u0000-\u0020\u007f]/.test(decoded),
+      422,
+      "INVALID_RETURN_PATH",
+    );
+    let next: string;
+    try {
+      next = decodeURIComponent(decoded);
+    } catch {
+      demand(false, 422, "INVALID_RETURN_PATH");
+    }
+    if (next === decoded) break;
+    decoded = next;
+    demand(depth < 3, 422, "INVALID_RETURN_PATH");
+  }
+  const parsed = new URL(value, "https://portal.invalid");
+  const decodedParsed = new URL(decoded, "https://portal.invalid");
+  demand(
+    parsed.origin === "https://portal.invalid" &&
+      decodedParsed.origin === "https://portal.invalid" &&
+      !parsed.pathname.startsWith("//") &&
+      !decodedParsed.pathname.startsWith("//"),
+    422,
+    "INVALID_RETURN_PATH",
+  );
+  // Never bounce a fresh login back into an auth endpoint.
+  demand(
+    !/^\/(?:api\/auth(?:\/|$)|signin(?:\/|$)|signin-with-chatgpt(?:\/|$)|signout-with-chatgpt(?:\/|$))/.test(
+      decodedParsed.pathname,
+    ),
+    422,
+    "INVALID_RETURN_PATH",
+  );
+  return parsed.pathname + parsed.search + parsed.hash;
+}
+export function signInPath(returnTo = "/dashboard") {
+  return "/signin?returnTo=" + encodeURIComponent(safeReturnTo(returnTo));
 }
