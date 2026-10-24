@@ -15,6 +15,11 @@ export default function AdminStatusMenu({
   const trigger = useRef<HTMLButtonElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
+  const [pending, setPending] = useState(false);
+  const hasPendingAction = () => !!dialog.current?.querySelector('[aria-busy="true"]');
+  const dismiss = () => {
+    if (!hasPendingAction()) setOpen(false);
+  };
 
   useEffect(() => {
     if (!open || !dialog.current || !trigger.current) return;
@@ -28,6 +33,12 @@ export default function AdminStatusMenu({
       popup.style.top = `${Math.max(16, Math.min(anchor.bottom + gap + bounds.height <= innerHeight - 16 ? anchor.bottom + gap : anchor.top - bounds.height - gap, innerHeight - bounds.height - 16))}px`;
     };
     popup.showModal();
+    // A nested confirmation closes before its request settles. Keep a second
+    // tap from dismissing this menu and concealing a later contextual error.
+    const updatePending = () => setPending(hasPendingAction());
+    const operation = new MutationObserver(updatePending);
+    operation.observe(popup, { attributes: true, attributeFilter: ["aria-busy"], childList: true, subtree: true });
+    updatePending();
     const stopHistory = trackDialogHistory(() => setOpen(false), button);
     position();
     popup
@@ -47,6 +58,8 @@ export default function AdminStatusMenu({
     window.addEventListener("resize", position);
     return () => {
       stopHistory();
+      operation.disconnect();
+      setPending(false);
       document.removeEventListener("wheel", preventBackgroundScroll);
       document.removeEventListener("touchmove", preventBackgroundScroll);
       window.removeEventListener("resize", position);
@@ -62,6 +75,7 @@ export default function AdminStatusMenu({
         type="button"
         title={`Change ${name} status`}
         aria-label={`Change ${name} status`}
+        aria-busy={pending}
         aria-haspopup="dialog"
         aria-expanded={open}
         aria-controls={id}
@@ -81,10 +95,11 @@ export default function AdminStatusMenu({
         onKeyDown={trapDialogFocus}
         onCancel={(event) => {
           event.preventDefault();
-          setOpen(false);
+          dismiss();
         }}
         onClick={(event) => {
           if (event.target !== event.currentTarget) return;
+          if (hasPendingAction()) return;
           const bounds = event.currentTarget.getBoundingClientRect();
           if (
             event.clientX < bounds.left ||
@@ -99,7 +114,8 @@ export default function AdminStatusMenu({
           className="admin-toolbar-icon admin-status-close"
           type="button"
           aria-label="Close status menu"
-          onClick={() => setOpen(false)}
+          disabled={pending}
+          onClick={dismiss}
         >
           <X size={20} aria-hidden="true" />
         </button>

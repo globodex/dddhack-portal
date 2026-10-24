@@ -90,6 +90,11 @@ test("Team rows show one expression avatar each, keep initials only on the team 
       socials: [],
     },
   ];
+  const privateVenue = {
+    location: "SERVER-PRIVATE-ARRIVAL",
+    directions: "Server-controlled directions",
+    mapUrl: "javascript:alert(1)",
+  };
   const html = renderToStaticMarkup(
     createElement(TeamWorkspace, {
       run,
@@ -97,19 +102,18 @@ test("Team rows show one expression avatar each, keep initials only on the team 
         me,
         team,
         members,
-        privateVenue: {
-          location: "SERVER-PRIVATE-ARRIVAL",
-          directions: "Server-controlled directions",
-          mapUrl: "javascript:alert(1)",
-        },
+        privateVenue,
       },
     }),
   );
   assert.equal((html.match(/aria-label="[^"]+ avatar"/g) || []).length, 2);
   assert.equal((html.match(/team badge/g) || []).length, 1);
   assert.doesNotMatch(html, /person-monogram|initials avatar|href="javascript/);
-  assert.match(html, /SERVER-PRIVATE-ARRIVAL/);
-  assert.match(html, /Server-controlled directions/);
+  assert.doesNotMatch(html, /SERVER-PRIVATE-ARRIVAL/);
+  const dashboard = renderToStaticMarkup(createElement(Dashboard, { run, data: { me, team, members, privateVenue } }));
+  assert.match(dashboard, /SERVER-PRIVATE-ARRIVAL/);
+  assert.match(dashboard, /Server-controlled directions/);
+  assert.doesNotMatch(dashboard, /href="javascript/);
   assert.match(html, /aria-label="Synthetic Leader on GitHub"/);
   assert.doesNotMatch(html, /Remove .* from team|Rename team|Save team idea/);
 });
