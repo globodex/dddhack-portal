@@ -631,7 +631,8 @@ function CreateTeam({ run }: { run: (a: string, d: Row) => Promise<Row> }) {
     [palette, setPalette] = useState("forest");
   return (
     <Form
-      title="Start your team"
+      title="Create your team"
+      className="panel team-create-form"
       label="Create team"
       onSave={async (f) => {
         await run("create-workspace-team", {
@@ -642,22 +643,130 @@ function CreateTeam({ run }: { run: (a: string, d: Row) => Promise<Row> }) {
         });
       }}
     >
-      <label>
-        Team name
-        <input
-          name="name"
-          required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </label>
-      <Field
-        name="bio"
-        label="What would you like to build? · optional"
-        type="textarea"
-      />
-      <AvatarChooser name={name} {...{ palette, setPalette }} />
+      <div className="team-create-layout">
+        <div className="team-create-fields">
+          <label>
+            <span>
+              Team name{" "}
+              <span className="required-mark" aria-hidden="true">
+                *
+              </span>
+            </span>
+            <input
+              name="name"
+              required
+              maxLength={80}
+              autoComplete="off"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
+          <Field
+            name="bio"
+            label="What would you like to build?"
+            type="textarea"
+          />
+        </div>
+        <div className="team-create-identity">
+          <AvatarChooser name={name || "Team"} {...{ palette, setPalette }} />
+        </div>
+      </div>
     </Form>
+  );
+}
+function TeamAction({
+  action,
+  values,
+  run,
+  children,
+  className = "button secondary",
+  disabled = false,
+}: {
+  action: string;
+  values: Row;
+  run: (a: string, d: Row) => Promise<Row>;
+  children: ReactNode;
+  className?: string;
+  disabled?: boolean;
+}) {
+  const [busy, setBusy] = useState(false),
+    [error, setError] = useState("");
+  const pending = useRef(false);
+  return (
+    <div className="team-inline-action">
+      <button
+        type="button"
+        className={className}
+        disabled={disabled || busy}
+        aria-busy={busy}
+        onClick={async () => {
+          if (pending.current) return;
+          pending.current = true;
+          setBusy(true);
+          setError("");
+          try {
+            await run(action, values);
+          } catch (error) {
+            if (!(error instanceof ActionCancelled))
+              setError((error as Error).message);
+          } finally {
+            pending.current = false;
+            setBusy(false);
+          }
+        }}
+      >
+        {children}
+      </button>
+      {error && (
+        <p className="team-action-error" role="alert">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
+function TeamInvitations({
+  data,
+  run,
+}: {
+  data: View;
+  run: (a: string, d: Row) => Promise<Row>;
+}) {
+  const invitations = (data.actions || []).filter(
+    (action: Row) =>
+      action.kind === "invite" &&
+      action.status === "pending" &&
+      action.user_id === data.me?.id,
+  );
+  if (!invitations.length) return null;
+  return (
+    <section className="team-invitations" aria-label="Team invitations">
+      <h3>
+        Invitations <span>{invitations.length}</span>
+      </h3>
+      {invitations.map((invitation: Row) => (
+        <div className="team-request-item" key={invitation.id}>
+          <strong>{invitation.team_name}</strong>
+          <div className="team-request-actions">
+            <TeamAction
+              action="team-respond"
+              values={{ id: invitation.id, decision: "accepted" }}
+              run={run}
+            >
+              Accept invitation
+            </TeamAction>
+            <TeamAction
+              action="team-respond"
+              values={{ id: invitation.id, decision: "declined" }}
+              run={run}
+              className="link-button"
+            >
+              Decline
+            </TeamAction>
+          </div>
+        </div>
+      ))}
+    </section>
   );
 }
 function TeamStyle({
@@ -669,18 +778,17 @@ function TeamStyle({
 }) {
   const [palette, setPalette] = useState(team.palette || "forest");
   return (
-    <details className="panel">
-      <summary>Customize your team badge and accent</summary>
+    <section className="team-settings-appearance">
       <Form
         className="inset-form"
         onSave={async () => {
           await run("team-style", { avatar: "initials", palette });
         }}
-        label="Update team identity"
+        label="Save appearance"
       >
         <AvatarChooser name={team.name} {...{ palette, setPalette }} />
       </Form>
-    </details>
+    </section>
   );
 }
 export function TeamWorkspace({
@@ -694,285 +802,346 @@ export function TeamWorkspace({
   const t = data.team;
   const leader = !!t && data.me?.id === t.leader_id;
   const locked = !!(t?.locked || data.ideaLocked);
+  const requests = (data.actions || []).filter(
+    (action: Row) =>
+      action.kind === "request" &&
+      action.status === "pending" &&
+      action.team_id === t?.id,
+  );
+  const invitations = (data.actions || []).filter(
+    (action: Row) =>
+      action.kind === "invite" &&
+      action.status === "pending" &&
+      action.team_id === t?.id,
+  );
   if (!t)
     return (
-      <section className="panel dashboard-empty-team">
-        <h3>Find your team</h3>
-        <a className="button secondary" href="/discover/teams">
-          Discover teams
-        </a>
+      <div className="dashboard-empty-team">
+        <TeamInvitations data={data} run={run} />
+        <section className="team-find-panel">
+          <div className="team-empty-mark">
+            <UsersRound size={28} aria-hidden="true" />
+          </div>
+          <h3>Find your people.</h3>
+          <a className="button secondary" href="/discover/teams">
+            Discover teams <ArrowRight size={18} aria-hidden="true" />
+          </a>
+        </section>
         {data.me?.canParticipate === true && <CreateTeam run={run} />}
-      </section>
+      </div>
     );
   return (
     <section className="team-workspace dashboard-team">
       <div className="dashboard-team-heading">
         <TeamAvatar name={t.name} palette={t.palette} size={64} />
-        <h3>{t.name}</h3>
+        <div className="dashboard-team-title">
+          <h3>{t.name}</h3>
+          {t.bio && <p>{t.bio}</p>}
+        </div>
         <Pill tone={locked ? "locked" : "neutral"}>
-          {locked && <LockKeyhole size={18} aria-hidden="true" />}
+          {locked && <LockKeyhole size={16} aria-hidden="true" />}
           {locked ? "Locked" : data.teamStatus || "Forming"}
         </Pill>
       </div>
       {data.privateVenue && <DashboardVenue venue={data.privateVenue} />}
-      <section
-        className="dashboard-members"
-        aria-labelledby="dashboard-members-heading"
-      >
-        <h3 id="dashboard-members-heading">
-          Team members ({data.members?.length || 0})
-        </h3>
-        <ul className="member-list dashboard-member-list">
-          {(data.members || []).map((m: Row) => (
-            <li key={m.id}>
-              <DotAvatar
-                color={m.avatarColor}
-                expression={m.avatarExpression}
-                size={40}
-              />
-              <div className="dashboard-member-name">
-                <strong>
-                  {safeProfileUrl(m.profileUrl) ? (
+      <div className="dashboard-team-grid">
+        <section
+          className="dashboard-members"
+          aria-labelledby="dashboard-members-heading"
+        >
+          <div className="team-section-heading">
+            <h3 id="dashboard-members-heading">Team members</h3>
+            <span>{data.members?.length || 0}/5</span>
+          </div>
+          <ul className="member-list dashboard-member-list">
+            {(data.members || []).map((m: Row) => (
+              <li key={m.id}>
+                <DotAvatar
+                  color={m.avatarColor}
+                  expression={m.avatarExpression}
+                  size={40}
+                />
+                <div className="dashboard-member-name">
+                  <strong>
+                    {safeProfileUrl(m.profileUrl) ? (
+                      <a
+                        className="text-link"
+                        href={safeProfileUrl(m.profileUrl)}
+                      >
+                        {m.name}
+                      </a>
+                    ) : (
+                      m.name
+                    )}
+                  </strong>
+                  <span className="sr-only">
+                    {m.status ||
+                      (m.approval === "approved" ? "Going" : "Registered")}
+                  </span>
+                  {m.role === "leader" && <Pill tone="positive">Leader</Pill>}
+                </div>
+                <div className="dashboard-member-contact">
+                  <div className="dashboard-member-links">
+                    {discoverySocialLinks(
+                      Array.isArray(m.socials) ? m.socials : [],
+                    ).map((link) => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${m.name} on ${link.label}`}
+                        title={link.label}
+                      >
+                        <img
+                          src={`/icons/social/${link.icon}.svg`}
+                          width={22}
+                          height={22}
+                          alt=""
+                        />
+                      </a>
+                    ))}
+                    {safeExternalUrl(m.whatsappUrl) && (
+                      <a
+                        className="dashboard-whatsapp"
+                        href={safeExternalUrl(m.whatsappUrl)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Open WhatsApp chat with ${m.name}`}
+                        title="WhatsApp"
+                      >
+                        <img
+                          src="/icons/social/whatsapp.svg"
+                          width={23}
+                          height={23}
+                          alt=""
+                        />
+                      </a>
+                    )}
+                  </div>
+                  {m.phone && (
                     <a
-                      className="text-link"
-                      href={safeProfileUrl(m.profileUrl)}
+                      className="dashboard-member-phone"
+                      href={`tel:${String(m.phone).replace(/[^+0-9]/g, "")}`}
                     >
-                      {m.name}
-                    </a>
-                  ) : (
-                    m.name
-                  )}
-                </strong>
-                <span className="sr-only">
-                  {m.status ||
-                    (m.approval === "approved" ? "Going" : "Registered")}
-                </span>
-              </div>
-              {m.role === "leader" && <Pill tone="positive">Leader</Pill>}
-              <div className="dashboard-member-contact">
-                <div className="dashboard-member-links">
-                  {discoverySocialLinks(
-                    Array.isArray(m.socials) ? m.socials : [],
-                  ).map((link) => (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${m.name} on ${link.label}`}
-                      title={link.label}
-                    >
-                      <img
-                        src={`/icons/social/${link.icon}.svg`}
-                        width={22}
-                        height={22}
-                        alt=""
-                      />
-                    </a>
-                  ))}
-                  {safeExternalUrl(m.whatsappUrl) && (
-                    <a
-                      className="dashboard-whatsapp"
-                      href={safeExternalUrl(m.whatsappUrl)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Open WhatsApp chat with ${m.name}`}
-                      title="WhatsApp"
-                    >
-                      <img
-                        src="/icons/social/whatsapp.svg"
-                        width={23}
-                        height={23}
-                        alt=""
-                      />
+                      <Phone size={15} aria-hidden="true" />
+                      {m.phone}
                     </a>
                   )}
                 </div>
-                {m.phone && (
-                  <span className="dashboard-member-phone">
-                    <Phone size={17} aria-hidden="true" />
-                    {m.phone}
-                  </span>
-                )}
                 {leader && !locked && m.role !== "leader" && (
-                  <button
-                    type="button"
+                  <TeamAction
+                    action="remove-workspace-member"
+                    values={{
+                      userId: m.id,
+                      reason: "Team leader removed membership",
+                    }}
+                    run={run}
                     className="dashboard-icon-button dashboard-remove"
-                    aria-label={`Remove ${m.name} from team`}
-                    title={`Remove ${m.name}`}
-                    onClick={() => {
-                      void run("remove-workspace-member", {
-                        userId: m.id,
-                        reason: "Team leader removed membership",
-                      }).catch(() => {});
-                    }}
                   >
-                    <Trash2 size={19} aria-hidden="true" />
-                  </button>
+                    <Trash2 size={18} aria-hidden="true" />
+                    <span className="sr-only">Remove {m.name} from team</span>
+                  </TeamAction>
                 )}
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
-      <section
-        className="dashboard-idea"
-        aria-labelledby="dashboard-idea-heading"
-      >
-        <h3 id="dashboard-idea-heading">
-          Team idea{locked ? " (locked)" : ""}
-        </h3>
-        {leader && !locked ? (
-          <Form
-            className="dashboard-idea-form"
-            disabled={locked}
-            label="Save team idea"
-            onSave={async (f) => {
-              await run("save-workspace-idea", {
-                title: f.get("title"),
-                description: description.trim(),
-              });
-            }}
-          >
-            <fieldset disabled={locked}>
-              <Field
-                name="title"
-                label="Idea title"
-                value={data.idea?.title}
-                required
-              />
-              <label>
-                Short description
-                <textarea
-                  name="description"
-                  required
-                  maxLength={500}
-                  rows={4}
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  aria-describedby="idea-count"
-                />
-                <small id="idea-count">
-                  {description.length}/500 characters
-                </small>
-              </label>
-            </fieldset>
-          </Form>
-        ) : data.idea ? (
-          <div className="dashboard-locked-idea">
-            <div>
-              <h4>{data.idea.title}</h4>
-              {locked && <LockKeyhole size={18} aria-label="Locked" />}
-            </div>
-            <p className="prose">{data.idea.description}</p>
-            <span className="dashboard-idea-count">
-              {String(data.idea.description || "").length}/500
-            </span>
-          </div>
-        ) : (
-          <p>No team idea yet.</p>
-        )}
-        {leader && !locked && (
-          <div className="form-actions dashboard-lock-actions">
-            <button
-              className="button secondary"
-              disabled={
-                !data.idea?.title?.trim() || !data.idea?.description?.trim()
-              }
-              onClick={() => {
-                void run("lock-team", { confirmation: "LOCK_TEAM" }).catch(
-                  () => {},
-                );
-              }}
+              </li>
+            ))}
+          </ul>
+          {leader && !locked && Number(data.members?.length || 0) < 5 && (
+            <a className="team-find-people" href="/discover/participants">
+              <Plus size={17} aria-hidden="true" />
+              Find teammates
+            </a>
+          )}
+          {leader && !locked && requests.length > 0 && (
+            <section
+              className="team-membership-requests"
+              aria-label="Membership requests"
             >
-              <LockKeyhole size={18} aria-hidden="true" />
-              Lock completed team
-            </button>
-          </div>
-        )}
-      </section>
-      {leader && !locked && (
-        <div className="dashboard-team-controls">
-          <details className="panel">
-            <summary>Rename team</summary>
-            <Form
-              label="Rename team"
-              onSave={async (f) => {
-                await run("rename-team", {
-                  name: f.get("name"),
-                  reason: "Leader renamed unlocked team",
-                });
-              }}
-            >
-              <Field
-                name="name"
-                label="Team name"
-                value={t.name}
-                required
-                minLength={2}
-              />
-            </Form>
-          </details>
-          <details className="panel">
-            <summary>Membership requests</summary>
-            {(data.actions || [])
-              .filter(
-                (r: Row) =>
-                  r.kind === "request" &&
-                  r.status === "pending" &&
-                  r.team_id === t.id,
-              )
-              .map((r: Row) => (
-                <div className="request-row" key={r.id}>
+              <h4>
+                Requests <span>{requests.length}</span>
+              </h4>
+              {requests.map((r: Row) => (
+                <div className="team-request-item" key={r.id}>
                   <strong>{r.person_name}</strong>
-                  <button
-                    className="button secondary"
-                    onClick={() => {
-                      void run("respond-team", {
-                        requestId: r.id,
-                        accept: true,
-                      }).catch(() => {});
-                    }}
-                  >
-                    Accept
-                  </button>
-                  <button
-                    className="link-button"
-                    onClick={() => {
-                      void run("respond-team", {
-                        requestId: r.id,
-                        accept: false,
-                      }).catch(() => {});
-                    }}
-                  >
-                    Decline
-                  </button>
+                  <div className="team-request-actions">
+                    <TeamAction
+                      action="respond-team"
+                      values={{ requestId: r.id, accept: true }}
+                      run={run}
+                    >
+                      Accept
+                    </TeamAction>
+                    <TeamAction
+                      action="respond-team"
+                      values={{ requestId: r.id, accept: false }}
+                      run={run}
+                      className="link-button"
+                    >
+                      Decline
+                    </TeamAction>
+                  </div>
                 </div>
               ))}
-          </details>
-          <TeamStyle team={t} run={run} />
-          {data.members?.length === 1 && (
-            <details className="panel">
-              <summary>Delete your team</summary>
+            </section>
+          )}
+        </section>
+        <section
+          className="dashboard-idea"
+          aria-labelledby="dashboard-idea-heading"
+        >
+          <div className="team-section-heading">
+            <h3 id="dashboard-idea-heading">Team idea</h3>
+            <LockKeyhole
+              size={16}
+              aria-label="Private to team members and admins"
+            />
+          </div>
+          {leader && !locked ? (
+            <>
               <Form
-                label="Review team deletion"
+                className="dashboard-idea-form"
+                disabled={locked}
+                label="Save team idea"
                 onSave={async (f) => {
-                  await run("delete-own-team", {
-                    reason: f.get("reason"),
-                    confirmation: "DELETE_OWN_TEAM",
+                  await run("save-workspace-idea", {
+                    title: f.get("title"),
+                    description: description.trim(),
+                  });
+                }}
+              >
+                <fieldset disabled={locked}>
+                  <Field
+                    name="title"
+                    label="Idea title"
+                    value={data.idea?.title}
+                    required
+                  />
+                  <label>
+                    <span>
+                      Short description{" "}
+                      <span className="required-mark" aria-hidden="true">
+                        *
+                      </span>
+                    </span>
+                    <textarea
+                      name="description"
+                      required
+                      maxLength={500}
+                      rows={5}
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                      aria-describedby="idea-count"
+                    />
+                    <small id="idea-count">{description.length}/500</small>
+                  </label>
+                </fieldset>
+              </Form>
+              <div className="dashboard-lock-actions">
+                <TeamAction
+                  action="lock-team"
+                  values={{ confirmation: "LOCK_TEAM" }}
+                  run={run}
+                  disabled={
+                    !data.idea?.title?.trim() || !data.idea?.description?.trim()
+                  }
+                >
+                  <LockKeyhole size={17} aria-hidden="true" />
+                  Lock team
+                </TeamAction>
+              </div>
+            </>
+          ) : data.idea ? (
+            <div className="dashboard-locked-idea">
+              <div>
+                <h4>{data.idea.title}</h4>
+                {locked && <LockKeyhole size={17} aria-label="Locked" />}
+              </div>
+              <p className="prose">{data.idea.description}</p>
+              <span className="dashboard-idea-count">
+                {String(data.idea.description || "").length}/500
+              </span>
+            </div>
+          ) : (
+            <p className="team-empty-copy">No team idea yet.</p>
+          )}
+        </section>
+      </div>
+      {leader && !locked && (
+        <details className="dashboard-team-settings">
+          <summary>
+            <SlidersHorizontal size={18} aria-hidden="true" />
+            Team settings
+            <ChevronDown size={18} aria-hidden="true" />
+          </summary>
+          <div className="team-settings-grid">
+            <section>
+              <h3>Team name</h3>
+              <Form
+                className="inset-form"
+                label="Rename team"
+                onSave={async (f) => {
+                  await run("rename-team", {
+                    name: f.get("name"),
+                    reason: "Leader renamed unlocked team",
                   });
                 }}
               >
                 <Field
-                  name="reason"
-                  label="Reason for deleting your team"
+                  name="name"
+                  label="Team name"
+                  value={t.name}
                   required
-                  minLength={5}
+                  minLength={2}
                 />
               </Form>
-            </details>
+            </section>
+            <section className="team-settings-invite">
+              <h3>Invite a teammate</h3>
+              <Form
+                className="inset-form"
+                label="Send invitation"
+                disabled={Number(data.members?.length || 0) >= 5}
+                disabledReason={
+                  Number(data.members?.length || 0) >= 5
+                    ? "Your team has five members."
+                    : undefined
+                }
+                onSave={async (f) => {
+                  await run("team-invite", {
+                    teamId: t.id,
+                    email: f.get("email"),
+                  });
+                }}
+              >
+                <Field name="email" label="Email" type="email" required />
+              </Form>
+              {invitations.length > 0 && (
+                <ul className="team-pending-invites">
+                  {invitations.map((r: Row) => (
+                    <li key={r.id}>
+                      <span>{r.person_name}</span>
+                      <span>Invited</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
+            <TeamStyle team={t} run={run} />
+          </div>
+          {data.members?.length === 1 && (
+            <div className="team-delete-action">
+              <TeamAction
+                action="delete-own-team"
+                values={{ confirmation: "DELETE_OWN_TEAM" }}
+                run={run}
+                className="link-button"
+              >
+                <Trash2 size={17} aria-hidden="true" />
+                Delete team
+              </TeamAction>
+            </div>
           )}
-        </div>
+        </details>
       )}
     </section>
   );
@@ -1131,10 +1300,13 @@ function DashboardProject({
           )}
         </>
       ) : (
-        <p className="notice">
-          {data.submissionAccess?.message ||
-            "Your project workspace is not available yet."}
-        </p>
+        <div className="dashboard-empty-state">
+          <FileText size={28} aria-hidden="true" />
+          <p>
+            {data.submissionAccess?.message ||
+              "Your project workspace is not available yet."}
+          </p>
+        </div>
       )}
       {data.eligibility?.status === "ineligible" && (
         <p className="notice">
@@ -1315,7 +1487,12 @@ export function Dashboard({
         {(data.credits || []).map((c: Row) => (
           <Credit key={`${tab}-${c.type_id}`} credit={c} />
         ))}
-        {!data.credits?.length && <p>No credits assigned.</p>}
+        {!data.credits?.length && (
+          <div className="dashboard-empty-state">
+            <Ticket size={28} aria-hidden="true" />
+            <h3>No credits assigned.</h3>
+          </div>
+        )}
       </section>
       <section
         id="project"
@@ -1549,6 +1726,43 @@ function DiscoverTeamDialog({
   );
 }
 
+function CreateTeamDialog({
+  run,
+  onClose,
+}: {
+  run: (a: string, d: Row) => Promise<Row>;
+  onClose: () => void;
+}) {
+  const dialog = useRef<HTMLDialogElement>(null),
+    callback = useRef(onClose);
+  useEffect(() => {
+    callback.current = onClose;
+  }, [onClose]);
+  useEffect(() => {
+    if (dialog.current)
+      return openDiscoveryDialog(dialog.current, () => callback.current());
+  }, []);
+  return (
+    <dialog
+      ref={dialog}
+      className="team-create-dialog"
+      onKeyDown={trapDialogFocus}
+      aria-label="Create team"
+    >
+      <button
+        type="button"
+        className="discover-dialog-close"
+        autoFocus
+        aria-label="Close team creation"
+        onClick={() => dialog.current?.close()}
+      >
+        <X size={22} aria-hidden="true" />
+      </button>
+      <CreateTeam run={run} />
+    </dialog>
+  );
+}
+
 export function Discover({
   data,
   path,
@@ -1564,6 +1778,7 @@ export function Discover({
     null,
   );
   const [selectedTeam, setSelectedTeam] = useState<Row | null>(null);
+  const [creating, setCreating] = useState(false);
   const hashOpened = useRef("");
   const participants = path === "/discover/participants";
   const people = useDiscoverPeople(data, search, teamFilter, participants);
@@ -1576,7 +1791,8 @@ export function Discover({
     const openHash = async () => {
       controller?.abort();
       const hash = window.location.hash;
-      if (!/^#person-[A-Za-z0-9_-]+$/.test(hash) || hashOpened.current === hash) return;
+      if (!/^#person-[A-Za-z0-9_-]+$/.test(hash) || hashOpened.current === hash)
+        return;
       const personId = hash.slice("#person-".length);
       let row = people.items.find((person: Row) => person.id === personId);
       if (!row && data.focusedPerson?.id === personId) row = data.focusedPerson;
@@ -1585,11 +1801,20 @@ export function Discover({
         controller = new AbortController();
         const request = controller;
         try {
-          const page = await readPeoplePage(peopleDirectoryUrl({ person: personId }), request.signal);
-          if (disposed || request.signal.aborted || window.location.hash !== hash) return;
+          const page = await readPeoplePage(
+            peopleDirectoryUrl({ person: personId }),
+            request.signal,
+          );
+          if (
+            disposed ||
+            request.signal.aborted ||
+            window.location.hash !== hash
+          )
+            return;
           row = page.focusedPerson || undefined;
         } catch {
-          if (!disposed && !request.signal.aborted) setFocusError("Profile could not be loaded.");
+          if (!disposed && !request.signal.aborted)
+            setFocusError("Profile could not be loaded.");
           return;
         }
       }
@@ -1598,7 +1823,9 @@ export function Discover({
         return;
       }
       hashOpened.current = hash;
-      document.getElementById(`person-${row.id}`)?.scrollIntoView({ block: "center", behavior: "auto" });
+      document
+        .getElementById(`person-${row.id}`)
+        ?.scrollIntoView({ block: "center", behavior: "auto" });
       setSelectedPerson(discoveryProfileProjection(row));
     };
     const navigateHash = () => {
@@ -1613,9 +1840,13 @@ export function Discover({
       window.removeEventListener("hashchange", navigateHash);
     };
   }, [participants, people.items, data.focusedPerson]);
-  const items = participants ? people.items : (data.items || []).filter(
-    (row) => `${row.name || ""} ${row.bio || ""}`.toLowerCase().includes(search.toLowerCase()),
-  );
+  const items = participants
+    ? people.items
+    : (data.items || []).filter((row) =>
+        `${row.name || ""} ${row.bio || ""}`
+          .toLowerCase()
+          .includes(search.toLowerCase()),
+      );
   return (
     <section className="discover-v6">
       <header className="discover-heading">
@@ -1627,6 +1858,17 @@ export function Discover({
           />
           Discover
         </h1>
+        {!participants && canCreate && (
+          <button
+            type="button"
+            className="button discover-create-trigger"
+            aria-haspopup="dialog"
+            onClick={() => setCreating(true)}
+          >
+            <Plus size={18} aria-hidden="true" />
+            Create team
+          </button>
+        )}
       </header>
       <nav className="discover-tabs" aria-label="Discover">
         <a
@@ -1684,7 +1926,11 @@ export function Discover({
         aria-busy={participants ? people.loading : undefined}
       >
         {items.map((row) => (
-          <li key={row.id} id={participants ? `person-${row.id}` : undefined}>
+          <li
+            key={row.id}
+            id={participants ? `person-${row.id}` : undefined}
+            data-has-bio={!!row.bio}
+          >
             {participants ? (
               <>
                 <DotAvatar
@@ -1694,24 +1940,21 @@ export function Discover({
                   decorative
                 />
                 <div className="discover-identity">
-                  <h2>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setSelectedPerson(discoveryProfileProjection(row))
-                      }
-                      aria-haspopup="dialog"
-                    >
-                      {row.name}
-                    </button>
-                  </h2>
+                  <h2>{row.name}</h2>
                   {row.bio && <p>{row.bio}</p>}
                 </div>
-                <span
-                  className={`discover-membership ${row.teamName ? "joined" : "unjoined"}`}
-                >
-                  {row.teamName ? "In a team" : "Not in a team"}
-                </span>
+                <div className="discover-card-membership">
+                  <span
+                    className={`discover-membership ${row.teamName ? "joined" : "unjoined"}`}
+                  >
+                    {row.teamName ? "In a team" : "Not in a team"}
+                  </span>
+                  {row.teamName && (
+                    <span className="discover-card-team-name">
+                      {row.teamName}
+                    </span>
+                  )}
+                </div>
                 <DiscoverSocials socials={row.socials} />
                 <button
                   type="button"
@@ -1729,7 +1972,15 @@ export function Discover({
               <>
                 <TeamAvatar name={row.name} palette={row.palette} size={56} />
                 <div className="discover-identity">
-                  <h2>{row.name}</h2>
+                  <h2>
+                    <button
+                      type="button"
+                      aria-haspopup="dialog"
+                      onClick={() => setSelectedTeam(row)}
+                    >
+                      {row.name}
+                    </button>
+                  </h2>
                   <p>{row.readiness?.total ?? "?"}/5 members</p>
                 </div>
                 <span
@@ -1737,6 +1988,7 @@ export function Discover({
                 >
                   {row.status || (row.locked ? "Locked" : "Forming")}
                 </span>
+                {row.bio && <p className="discover-team-summary">{row.bio}</p>}
                 <div className="discover-team-action">
                   {data.team?.id === row.id ? (
                     <a href="/dashboard" className="discover-view-team">
@@ -1745,18 +1997,15 @@ export function Discover({
                   ) : canCreate &&
                     !row.locked &&
                     Number(row.readiness?.total) < 5 ? (
-                    <button
-                      type="button"
+                    <TeamAction
+                      action="request-team"
+                      values={{ teamId: row.id }}
+                      run={run}
                       className="discover-request"
                       disabled={!!row.requested}
-                      onClick={() => {
-                        void run("request-team", { teamId: row.id }).catch(
-                          () => {},
-                        );
-                      }}
                     >
                       {row.requested ? "Requested" : "Request to join"}
-                    </button>
+                    </TeamAction>
                   ) : (
                     <button
                       type="button"
@@ -1772,38 +2021,70 @@ export function Discover({
             )}
           </li>
         ))}
+        {participants &&
+          people.loading &&
+          Array.from({ length: items.length ? 3 : 6 }, (_, index) => (
+            <li
+              className="discover-person-skeleton"
+              key={`loading-${index}`}
+              aria-hidden="true"
+            >
+              <span className="discover-skeleton-avatar" />
+              <span className="discover-skeleton-name" />
+              <span className="discover-skeleton-bio" />
+              <span className="discover-skeleton-badge" />
+            </li>
+          ))}
       </ul>
-      {participants && focusError && <p role="status">{focusError}</p>}
+      {participants && focusError && (
+        <p className="team-action-error" role="alert">
+          {focusError}
+        </p>
+      )}
       {participants && (
         <div className="discover-pagination" ref={people.sentinel}>
           <p role="status" aria-live="polite">
-            {people.loading ? "Loading people…" : people.error ? "" : people.hasMore ? "" : items.length ? "All people loaded" : ""}
+            {people.loading
+              ? "Loading people…"
+              : people.error
+                ? ""
+                : people.hasMore
+                  ? ""
+                  : items.length
+                    ? "All people loaded"
+                    : ""}
           </p>
           {people.error && <p role="alert">{people.error}</p>}
           {(people.hasMore || people.error) && (
-            <button type="button" disabled={people.loading} onClick={() => void people.loadMore()}>
+            <button
+              type="button"
+              disabled={people.loading}
+              onClick={() => void people.loadMore()}
+            >
               {people.error ? "Retry" : "Load more"}
             </button>
           )}
         </div>
       )}
-      {!items.length && (!participants || (!people.loading && !people.error)) && (
-        <p className="discover-empty">
-          {search || teamFilter
-            ? "No matches"
-            : participants
-              ? "No people yet"
-              : "No teams yet"}
-        </p>
-      )}
-      {!participants && canCreate && (
-        <details className="discover-create">
-          <summary>
-            <Plus size={20} aria-hidden="true" />
-            Create team
-          </summary>
-          <CreateTeam run={run} />
-        </details>
+      {!items.length &&
+        (!participants || (!people.loading && !people.error)) && (
+          <p className="discover-empty">
+            {search || teamFilter
+              ? "No matches"
+              : participants
+                ? "No people yet"
+                : "No teams yet"}
+          </p>
+        )}
+      {creating && canCreate && (
+        <CreateTeamDialog
+          onClose={() => setCreating(false)}
+          run={async (action, values) => {
+            const result = await run(action, values);
+            if (action === "create-workspace-team") setCreating(false);
+            return result;
+          }}
+        />
       )}
       {selectedPerson && (
         <DiscoveryProfile
