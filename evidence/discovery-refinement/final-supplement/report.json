@@ -1,0 +1,26 @@
+{
+  "source": "618cb98bdde1d03a9fe0c85e9a1eedc40f79d02f",
+  "GETOnly": true,
+  "synthetic": true,
+  "checks": [
+    "768 Teams no horizontal overflow",
+    "320 Teams no horizontal overflow",
+    "short dialog can reach last saved member",
+    "narrow saved name uses full card width",
+    "320 touch card opens actual eligible detail",
+    "project engagement shares card gutter",
+    "project card keyboard link opens actual eligible detail"
+  ],
+  "captures": [
+    "evidence/discovery-refinement/final-supplement/768x1024-teams.png",
+    "evidence/discovery-refinement/final-supplement/320x480-teams.png",
+    "evidence/discovery-refinement/final-supplement/320x480-team-card-name.png",
+    "evidence/discovery-refinement/final-supplement/320x480-dialog-last-member.png",
+    "evidence/discovery-refinement/final-supplement/320x480-person-card-name.png",
+    "evidence/discovery-refinement/final-supplement/320x480-project-card.png",
+    "evidence/discovery-refinement/final-supplement/320x480-project-first-touch-detail.png",
+    "evidence/discovery-refinement/final-supplement/390x844-projects-aligned-footer.png"
+  ],
+  "errors": [],
+  "browserClosed": true
+}

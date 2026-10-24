@@ -1,0 +1,10 @@
+{
+  "frontend": {"port":3009,"cliPid":190865,"serverPid":191005,"stopped":true,"sessionExitCode":0},
+  "backend": {"port":8854,"pid":202939,"stopped":true,"sessionExitCode":143},
+  "listenersVerifiedClosed":[3009,8854],
+  "allCaptureRunsFinishedOrStopped":true,
+  "browsersClosed":true,
+  "hostedActions":false,
+  "pushed":false,
+  "source":"618cb98bdde1d03a9fe0c85e9a1eedc40f79d02f"
+}

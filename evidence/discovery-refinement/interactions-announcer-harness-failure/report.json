@@ -1,0 +1,94 @@
+{
+  "source": "b6efc6f53a3e1c4c494512fa5d1a9bb679a4da97",
+  "backendSource": "9e85133b6d8477b7b8bf9ee8ddb39d1508839817",
+  "syntheticViewer": true,
+  "GETOnly": true,
+  "checks": [
+    "768: no document overflow",
+    "768: team arrow44px",
+    "768: saved members only",
+    {
+      "viewport": "768x1024",
+      "dialogGeometry": {
+        "top": 282.984375,
+        "bottom": 741.015625,
+        "height": 458.03125,
+        "viewport": 1024,
+        "scroll": "hidden",
+        "width": 768,
+        "bodyHeight": 291,
+        "bodyScroll": 291
+      }
+    },
+    "768: dialog fits viewport",
+    "768: modal locks scroll without layout shift",
+    "768: keyboard focus contained",
+    "768: Escape returns initiating focus",
+    "768: body overflow restored",
+    "768: Back closes only modal",
+    "320: no document overflow",
+    "320: team arrow44px",
+    "320: saved members only",
+    {
+      "viewport": "320x480",
+      "dialogGeometry": {
+        "top": 16,
+        "bottom": 464,
+        "height": 448,
+        "viewport": 480,
+        "scroll": "hidden",
+        "width": 320,
+        "bodyHeight": 161,
+        "bodyScroll": 283
+      }
+    },
+    "320: dialog fits viewport",
+    "320: modal locks scroll without layout shift",
+    "320: keyboard focus contained",
+    "320: Escape returns initiating focus",
+    "320: body overflow restored",
+    "320: Back closes only modal",
+    "390: no document overflow",
+    "390: team arrow44px",
+    "390: saved members only",
+    {
+      "viewport": "390x844",
+      "dialogGeometry": {
+        "top": 190.78125,
+        "bottom": 653.21875,
+        "height": 462.4375,
+        "viewport": 844,
+        "scroll": "hidden",
+        "width": 390,
+        "bodyHeight": 283,
+        "bodyScroll": 283
+      }
+    },
+    "390: dialog fits viewport",
+    "390: modal locks scroll without layout shift",
+    "390: keyboard focus contained",
+    "390: Escape returns initiating focus",
+    "390: body overflow restored",
+    "390: Back closes only modal",
+    "member profile opens on first link without history rollback",
+    "search loading resolves"
+  ],
+  "captures": [
+    "evidence/discovery-refinement/interactions/768x1024-team-dialog.png",
+    "evidence/discovery-refinement/interactions/768x1024-participants.png",
+    "evidence/discovery-refinement/interactions/320x480-team-dialog.png",
+    "evidence/discovery-refinement/interactions/390x844-team-dialog.png",
+    "evidence/discovery-refinement/interactions/390x844-member-profile.png",
+    "evidence/discovery-refinement/interactions/390x844-loading.png",
+    "evidence/discovery-refinement/interactions/390x844-error.png"
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fdiscover%2Fparticipants&q=Builder&membership=all&limit=24"
+    }
+  ],
+  "failure": "AssertionError [ERR_ASSERTION]: actionable directory error keeps Retry\n    at check (file:///workspace/ddd-discovery-refinement/scripts/qa-discovery-interactions.mjs:9:35)\n    at file:///workspace/ddd-discovery-refinement/scripts/qa-discovery-interactions.mjs:25:1031",
+  "browserClosed": true
+}

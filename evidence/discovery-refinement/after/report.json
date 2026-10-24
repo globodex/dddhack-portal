@@ -1,0 +1,225 @@
+{
+  "source": "018724575d9500284be8eba90390c48e8285edf8",
+  "phase": "after",
+  "syntheticViewer": true,
+  "GETOnly": true,
+  "captures": [
+    "evidence/discovery-refinement/after/1440x900-teams.png",
+    "evidence/discovery-refinement/after/1440x900-team-dialog.png",
+    "evidence/discovery-refinement/after/1440x900-participants.png",
+    "evidence/discovery-refinement/after/390x844-teams.png",
+    "evidence/discovery-refinement/after/390x844-participants.png",
+    "evidence/discovery-refinement/after/390x844-menu.png",
+    "evidence/discovery-refinement/after/390x844-empty-search.png",
+    "evidence/discovery-refinement/after/320x480-teams.png",
+    "evidence/discovery-refinement/after/320x480-participants.png"
+  ],
+  "states": [
+    {
+      "key": "1440x900",
+      "kind": "teams",
+      "overflow": false,
+      "cards": [
+        {
+          "height": 264,
+          "width": 539.984375,
+          "top": 359,
+          "hasBio": "false"
+        },
+        {
+          "height": 264,
+          "width": 539.984375,
+          "top": 359,
+          "hasBio": "true"
+        },
+        {
+          "height": 264,
+          "width": 539.984375,
+          "top": 641,
+          "hasBio": "false"
+        }
+      ]
+    },
+    {
+      "key": "1440x900",
+      "kind": "participants",
+      "overflow": false,
+      "cards": [
+        {
+          "height": 296.78125,
+          "width": 353.984375,
+          "top": 363,
+          "hasBio": "true"
+        },
+        {
+          "height": 296.78125,
+          "width": 353.984375,
+          "top": 363,
+          "hasBio": "false"
+        },
+        {
+          "height": 296.78125,
+          "width": 354,
+          "top": 363,
+          "hasBio": "false"
+        },
+        {
+          "height": 288,
+          "width": 353.984375,
+          "top": 677.78125,
+          "hasBio": "false"
+        },
+        {
+          "height": 288,
+          "width": 353.984375,
+          "top": 677.78125,
+          "hasBio": "false"
+        },
+        {
+          "height": 288,
+          "width": 354,
+          "top": 677.78125,
+          "hasBio": "true"
+        }
+      ]
+    },
+    {
+      "key": "390x844",
+      "kind": "teams",
+      "overflow": false,
+      "cards": [
+        {
+          "height": 264,
+          "width": 350,
+          "top": 330,
+          "hasBio": "false"
+        },
+        {
+          "height": 264,
+          "width": 350,
+          "top": 612,
+          "hasBio": "true"
+        },
+        {
+          "height": 264,
+          "width": 350,
+          "top": 894,
+          "hasBio": "false"
+        }
+      ]
+    },
+    {
+      "key": "390x844",
+      "kind": "participants",
+      "overflow": false,
+      "cards": [
+        {
+          "height": 292.78125,
+          "width": 350,
+          "top": 396,
+          "hasBio": "true"
+        },
+        {
+          "height": 288,
+          "width": 350,
+          "top": 706.78125,
+          "hasBio": "false"
+        },
+        {
+          "height": 288,
+          "width": 350,
+          "top": 1012.78125,
+          "hasBio": "false"
+        },
+        {
+          "height": 288,
+          "width": 350,
+          "top": 1318.78125,
+          "hasBio": "false"
+        },
+        {
+          "height": 288,
+          "width": 350,
+          "top": 1624.78125,
+          "hasBio": "false"
+        },
+        {
+          "height": 288,
+          "width": 350,
+          "top": 1930.78125,
+          "hasBio": "true"
+        }
+      ]
+    },
+    {
+      "key": "320x480",
+      "kind": "teams",
+      "overflow": false,
+      "cards": [
+        {
+          "height": 264,
+          "width": 280,
+          "top": 344,
+          "hasBio": "false"
+        },
+        {
+          "height": 264,
+          "width": 280,
+          "top": 626,
+          "hasBio": "true"
+        },
+        {
+          "height": 264,
+          "width": 280,
+          "top": 908,
+          "hasBio": "false"
+        }
+      ]
+    },
+    {
+      "key": "320x480",
+      "kind": "participants",
+      "overflow": false,
+      "cards": [
+        {
+          "height": 367.171875,
+          "width": 280,
+          "top": 410,
+          "hasBio": "true"
+        },
+        {
+          "height": 288,
+          "width": 280,
+          "top": 795.171875,
+          "hasBio": "false"
+        },
+        {
+          "height": 288,
+          "width": 280,
+          "top": 1101.171875,
+          "hasBio": "false"
+        },
+        {
+          "height": 288,
+          "width": 280,
+          "top": 1407.171875,
+          "hasBio": "false"
+        },
+        {
+          "height": 288,
+          "width": 280,
+          "top": 1713.171875,
+          "hasBio": "false"
+        },
+        {
+          "height": 288,
+          "width": 280,
+          "top": 2019.171875,
+          "hasBio": "true"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "browserClosed": true
+}

@@ -1,0 +1,22 @@
+✔ participant cards retain safe dialog controls and accessible pagination without exposing private input fields (20.661574ms)
+✔ directory fetch keeps full search, membership, cursor and focus in distinct encoded parameters (144.848189ms)
+✔ an actually empty collection has no search or fake project and offers the actor's real next route (26.427628ms)
+✔ a real collection retains search, canonical detail/comment links and existing engagement counts (4.402644ms)
+✔ team details render only authoritative current member identities and safe existing profile routes (10.392489ms)
+✔ an older safe team response does not invent members from readiness count (2.592396ms)
+✔ redesigned team discovery keeps viewer browsing read-only and offers safe team details (16.866568ms)
+✔ only eligible teamless members receive join/create controls, and full/locked teams remain read-only (8.509228ms)
+✔ profile Team card copies only safe team identity and never private row fields (3.695508ms)
+✔ shared Rules exposes every authoritative category and rule in scannable groups (24.746916ms)
+✔ measured organizer units begin fully beyond their origin edge, including the attached portrait (1.068191ms)
+✔ organizer content remains immediately readable without motion or JS and uses only verified original photos (13.65904ms)
+✔ server-rendered project forms cannot put private draft fields into a native GET before hydration (45.27451ms)
+✔ project detail omits a team caption when no authoritative team name is supplied (3.122534ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6945.119937

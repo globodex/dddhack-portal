@@ -1,0 +1,39 @@
+{
+  "source": "f54306b76c17f5dc5b101354c17142583b3efe09",
+  "phase": "before",
+  "syntheticViewer": true,
+  "GETOnly": true,
+  "captures": [
+    "evidence/discovery-refinement/before/1440x900-teams.png"
+  ],
+  "states": [
+    {
+      "key": "1440x900",
+      "kind": "teams",
+      "overflow": false,
+      "cards": [
+        {
+          "height": 192.671875,
+          "width": 540.984375,
+          "top": 359,
+          "hasBio": "false"
+        },
+        {
+          "height": 214.484375,
+          "width": 540.984375,
+          "top": 359,
+          "hasBio": "true"
+        },
+        {
+          "height": 176.796875,
+          "width": 540.984375,
+          "top": 589.484375,
+          "hasBio": "false"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "failure": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('dialog') to be visible\u001b[22m\n\n    at /workspace/ddd-discovery-refinement/scripts/qa-discovery-refinement-capture.mjs:8:1433",
+  "browserClosed": true
+}

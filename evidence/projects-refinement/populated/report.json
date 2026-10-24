@@ -1,0 +1,84 @@
+{
+  "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8",
+  "phase": "populated",
+  "synthetic": true,
+  "GETOnly": true,
+  "checks": [
+    "1440: no document overflow",
+    "1440: populated collection retains search",
+    "1440: real synthetic eligible project count",
+    "1440: saved detail links",
+    "768: no document overflow",
+    "768: populated collection retains search",
+    "768: real synthetic eligible project count",
+    "768: saved detail links",
+    "390: no document overflow",
+    "390: populated collection retains search",
+    "390: real synthetic eligible project count",
+    "390: saved detail links",
+    "zero matches keeps search and Clear search",
+    "Clear search restores collection without extra default fetch",
+    "search error remains actionable and retry recovers",
+    "320: no document overflow",
+    "320: populated collection retains search",
+    "320: real synthetic eligible project count",
+    "320: saved detail links"
+  ],
+  "captures": [
+    "evidence/projects-refinement/populated/1440x900-projects.png",
+    "evidence/projects-refinement/populated/768x1024-projects.png",
+    "evidence/projects-refinement/populated/390x844-projects.png",
+    "evidence/projects-refinement/populated/390x844-search-loading.png",
+    "evidence/projects-refinement/populated/390x844-no-search-matches.png",
+    "evidence/projects-refinement/populated/390x844-search-error.png",
+    "evidence/projects-refinement/populated/320x480-projects.png",
+    "evidence/projects-refinement/populated/failure-current.png"
+  ],
+  "errors": [
+    {
+      "console": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    }
+  ],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fprojects&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fprojects&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fprojects&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fprojects&q=not-a-match&page=0",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fprojects&q=Small&page=0",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fprojects&q=Small&page=0",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fprojects&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fprojects%2Fsynthetic-alice&focus=",
+      "method": "GET"
+    }
+  ],
+  "failure": "locator.waitFor: Error: strict mode violation: getByRole('article') resolved to 2 elements:\n    1) <article class=\"project-detail\">…</article> aka getByRole('article').filter({ hasText: 'Small Wonderby North Star' })\n    2) <article class=\"public-comment\">…</article> aka getByText('><Bob25 Oct 2026, 12:57 am')\n\nCall log:\n\u001b[2m  - waiting for getByRole('article') to be visible\u001b[22m\n\n    at /workspace/ddd-discovery-refinement/scripts/qa-project-showcase.mjs:9:163",
+  "lastState": {
+    "url": "http://127.0.0.1:3009/projects/synthetic-alice",
+    "ready": "complete",
+    "body": "Skip to content\nCodex Community New Delhi\nOpen menu\nLocal rehearsal · synthetic accounts only Switch fixture\n><\nNorth Star Builders\nSmall Wonder\n\nby North Star Builders\n\nA synthetic project for visual testing.\n\nGitHub\nAbout the project\n\nSynthetic local version 2. Synthetic local version 1. This is disposable local fixture content for checking the project layout. It is not a real event entry.\n\n1\n1\nComments\n1\n><\nBob\n25 Oct 2026, 12:57 am IST\n\nThis is a synthetic public comment for the layout preview.",
+    "hydrated": "true"
+  },
+  "browserClosed": true
+}

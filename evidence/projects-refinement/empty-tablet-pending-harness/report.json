@@ -1,0 +1,40 @@
+{
+  "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8",
+  "phase": "empty",
+  "synthetic": true,
+  "GETOnly": true,
+  "checks": [
+    "1440: no document overflow",
+    "1440: true empty has no search",
+    "1440: Viewer gets actual team-directory action",
+    "1440: no invented project cards",
+    "768: no document overflow",
+    "768: true empty has no search",
+    "768: Viewer gets actual team-directory action",
+    "768: no invented project cards",
+    "390: no document overflow",
+    "390: true empty has no search",
+    "390: Viewer gets actual team-directory action",
+    "390: no invented project cards"
+  ],
+  "captures": [
+    "evidence/projects-refinement/empty/1440x900-projects.png",
+    "evidence/projects-refinement/empty/768x1024-projects.png",
+    "evidence/projects-refinement/empty/390x844-projects.png"
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fprojects&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fprojects&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fprojects&focus=",
+      "method": "GET"
+    }
+  ]
+}

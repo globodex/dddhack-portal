@@ -1,0 +1,546 @@
+[
+  {
+    "file": "evidence/discovery-refinement/after/1440x900-participants.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 90800,
+    "sha256": "62c75a8c08593016af582e4e7aae15a75692353b5e52d8956eed050db53abb0d",
+    "source": "018724575d9500284be8eba90390c48e8285edf8"
+  },
+  {
+    "file": "evidence/discovery-refinement/after/1440x900-team-dialog.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 134546,
+    "sha256": "9936628fc55afd8bbdfc7349b01821d4627c4eaaa24c81d7c2c39c0b0d314cc6",
+    "source": "018724575d9500284be8eba90390c48e8285edf8"
+  },
+  {
+    "file": "evidence/discovery-refinement/after/1440x900-teams.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 223298,
+    "sha256": "cccaf9bfce34ef1551ef42c00261b7149389ece20726fcbb5775e9d3c7921654",
+    "source": "018724575d9500284be8eba90390c48e8285edf8"
+  },
+  {
+    "file": "evidence/discovery-refinement/after/320x480-participants.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 23800,
+    "sha256": "35fa7b60e411c7d5914379f95cd7a3870790235611c33be8714ca1dbb5ca7fac",
+    "source": "018724575d9500284be8eba90390c48e8285edf8"
+  },
+  {
+    "file": "evidence/discovery-refinement/after/320x480-teams.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 39733,
+    "sha256": "d20320b2aeecf468b97474de7791733b402a8f7e2a36d588ce141e7d8d37a6d0",
+    "source": "018724575d9500284be8eba90390c48e8285edf8"
+  },
+  {
+    "file": "evidence/discovery-refinement/after/390x844-empty-search.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 27183,
+    "sha256": "59c94a2e713b682502f35d44cb8634a6bed33022cad5deb6e7666e5118af8dfa",
+    "source": "018724575d9500284be8eba90390c48e8285edf8"
+  },
+  {
+    "file": "evidence/discovery-refinement/after/390x844-menu.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 16213,
+    "sha256": "5159ecebecd64c679e078ad99a7de473113b494852482c100b35e8cdeb58f16f",
+    "source": "018724575d9500284be8eba90390c48e8285edf8"
+  },
+  {
+    "file": "evidence/discovery-refinement/after/390x844-participants.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 44406,
+    "sha256": "24fbef560cd77c8c98c5bd224a4993b001300153c7e6ce581fe616450700f468",
+    "source": "018724575d9500284be8eba90390c48e8285edf8"
+  },
+  {
+    "file": "evidence/discovery-refinement/after/390x844-teams.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 103215,
+    "sha256": "c17cfeea2110a7f6cb8539f23aa7c44da350376618e122285dc6dd59ca7a5877",
+    "source": "018724575d9500284be8eba90390c48e8285edf8"
+  },
+  {
+    "file": "evidence/discovery-refinement/before/1440x900-participants.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 84037,
+    "sha256": "b911d545c9758f9f53dbf2d39df2ba61737c8b1c9cf17a0fb3ca12a5f55bf179",
+    "source": "f54306b76c17f5dc5b101354c17142583b3efe09"
+  },
+  {
+    "file": "evidence/discovery-refinement/before/1440x900-team-dialog.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 69549,
+    "sha256": "7dba01b8c5301271e3666148807df774c9692ea1630a2e6b74cadb587a6a2cf0",
+    "source": "f54306b76c17f5dc5b101354c17142583b3efe09"
+  },
+  {
+    "file": "evidence/discovery-refinement/before/1440x900-teams.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 63519,
+    "sha256": "6f76b75422217f7a62000d1099d586abd3a8e4cd16a84815f4e381b3edb7ebb2",
+    "source": "f54306b76c17f5dc5b101354c17142583b3efe09"
+  },
+  {
+    "file": "evidence/discovery-refinement/before/390x844-participants.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 43449,
+    "sha256": "7cb49cefd7c6923c5444d6cb5ecc07ee13af6b18fed55931e96b962c4672e8d3",
+    "source": "f54306b76c17f5dc5b101354c17142583b3efe09"
+  },
+  {
+    "file": "evidence/discovery-refinement/before/390x844-teams.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 44887,
+    "sha256": "3f9aab92f382f0641b2db82e7c00ca0c3a4e0267d265b2055aa8722debadb1e4",
+    "source": "f54306b76c17f5dc5b101354c17142583b3efe09"
+  },
+  {
+    "file": "evidence/discovery-refinement/before/768x1024-participants.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 61589,
+    "sha256": "e1a67e09a9fdd2efd3efe1709a73c92298d025459536df0928acfee91c3238dd",
+    "source": "f54306b76c17f5dc5b101354c17142583b3efe09"
+  },
+  {
+    "file": "evidence/discovery-refinement/before/768x1024-teams.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 53485,
+    "sha256": "cc53d75794a0c40ae63cc53af1a401095f23dd091debf4d96298ad6174b90f7e",
+    "source": "f54306b76c17f5dc5b101354c17142583b3efe09"
+  },
+  {
+    "file": "evidence/discovery-refinement/before-dialog-close-navigation-race/1440x900-team-dialog.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 69549,
+    "sha256": "7dba01b8c5301271e3666148807df774c9692ea1630a2e6b74cadb587a6a2cf0",
+    "source": "f54306b76c17f5dc5b101354c17142583b3efe09"
+  },
+  {
+    "file": "evidence/discovery-refinement/before-dialog-close-navigation-race/1440x900-teams.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 63519,
+    "sha256": "6f76b75422217f7a62000d1099d586abd3a8e4cd16a84815f4e381b3edb7ebb2",
+    "source": "f54306b76c17f5dc5b101354c17142583b3efe09"
+  },
+  {
+    "file": "evidence/discovery-refinement/before-first-cold-click/1440x900-teams.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 63519,
+    "sha256": "6f76b75422217f7a62000d1099d586abd3a8e4cd16a84815f4e381b3edb7ebb2",
+    "source": "f54306b76c17f5dc5b101354c17142583b3efe09"
+  },
+  {
+    "file": "evidence/discovery-refinement/final/1440x900-participants.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 87813,
+    "sha256": "8a5247914972116538570fe2f43fb1cd4ae0f5f0a921eb9610aae935e47a0d77",
+    "source": "b6efc6f53a3e1c4c494512fa5d1a9bb679a4da97"
+  },
+  {
+    "file": "evidence/discovery-refinement/final/1440x900-team-dialog.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 124596,
+    "sha256": "1374a949cec2a6e301d44df307d54b804014ff51ed6cfe075a2342f2dd449211",
+    "source": "b6efc6f53a3e1c4c494512fa5d1a9bb679a4da97"
+  },
+  {
+    "file": "evidence/discovery-refinement/final/1440x900-teams.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 196349,
+    "sha256": "6dc15abbd69bef7ba3d9802239ec33f2b14d7cef99f65cd1aa52d7875763f3f6",
+    "source": "b6efc6f53a3e1c4c494512fa5d1a9bb679a4da97"
+  },
+  {
+    "file": "evidence/discovery-refinement/final/320x480-participants.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 23786,
+    "sha256": "fd658e10133999cdd8599b550ea8fcd68bc728383669dc91e1b02fd8f2dc3e24",
+    "source": "b6efc6f53a3e1c4c494512fa5d1a9bb679a4da97"
+  },
+  {
+    "file": "evidence/discovery-refinement/final/320x480-teams.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 38955,
+    "sha256": "407c6a4452a14af2486fa691ed59b44771924003929b0de9f9059f1c4c87c2ee",
+    "source": "b6efc6f53a3e1c4c494512fa5d1a9bb679a4da97"
+  },
+  {
+    "file": "evidence/discovery-refinement/final/390x844-empty-search.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 27183,
+    "sha256": "59c94a2e713b682502f35d44cb8634a6bed33022cad5deb6e7666e5118af8dfa",
+    "source": "b6efc6f53a3e1c4c494512fa5d1a9bb679a4da97"
+  },
+  {
+    "file": "evidence/discovery-refinement/final/390x844-menu.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 16213,
+    "sha256": "5159ecebecd64c679e078ad99a7de473113b494852482c100b35e8cdeb58f16f",
+    "source": "b6efc6f53a3e1c4c494512fa5d1a9bb679a4da97"
+  },
+  {
+    "file": "evidence/discovery-refinement/final/390x844-participants.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 44400,
+    "sha256": "361afc7bca138883a316f0fc9819446ec78f41e3bbb11f531384530ff95960bf",
+    "source": "b6efc6f53a3e1c4c494512fa5d1a9bb679a4da97"
+  },
+  {
+    "file": "evidence/discovery-refinement/final/390x844-teams.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 99278,
+    "sha256": "d0122954d8ef87c9c8ba3effd399e514ab01c31799b7a215f3a292b3037d21f3",
+    "source": "b6efc6f53a3e1c4c494512fa5d1a9bb679a4da97"
+  },
+  {
+    "file": "evidence/discovery-refinement/final-supplement/320x480-dialog-last-member.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 21291,
+    "sha256": "2a2b044e032cc21b29297a85033a71cb0a2c023e53dea50018bb3e7e317e1723",
+    "source": "618cb98bdde1d03a9fe0c85e9a1eedc40f79d02f"
+  },
+  {
+    "file": "evidence/discovery-refinement/final-supplement/320x480-person-card-name.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 25001,
+    "sha256": "cba736eace8c12f2cac330b0e6e933aa833f5ae58efadfeec9ec56916575c589",
+    "source": "618cb98bdde1d03a9fe0c85e9a1eedc40f79d02f"
+  },
+  {
+    "file": "evidence/discovery-refinement/final-supplement/320x480-project-card.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 45390,
+    "sha256": "895c2298593164ae0b07feae8a2f269c3b77b5ab1f7012929bc0e39799a33913",
+    "source": "618cb98bdde1d03a9fe0c85e9a1eedc40f79d02f"
+  },
+  {
+    "file": "evidence/discovery-refinement/final-supplement/320x480-project-first-touch-detail.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 19648,
+    "sha256": "7763927114495b67e0da49c7a013e2660717f986d7c511a63862cbdc3dba1963",
+    "source": "618cb98bdde1d03a9fe0c85e9a1eedc40f79d02f"
+  },
+  {
+    "file": "evidence/discovery-refinement/final-supplement/320x480-team-card-name.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 42366,
+    "sha256": "625cf47a1f9314fdcb1e104d04b34cfca008798b175e0f45e85144577cc7b0e9",
+    "source": "618cb98bdde1d03a9fe0c85e9a1eedc40f79d02f"
+  },
+  {
+    "file": "evidence/discovery-refinement/final-supplement/320x480-teams.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 37991,
+    "sha256": "626dace12b7fdc935bdc154c6462b995a601d22a373b8789921e37ec5652d3f8",
+    "source": "618cb98bdde1d03a9fe0c85e9a1eedc40f79d02f"
+  },
+  {
+    "file": "evidence/discovery-refinement/final-supplement/390x844-projects-aligned-footer.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 87478,
+    "sha256": "3e54344536134c59dac998f26769fc25e7a2cd8730094d4dcc038ac034fefce9",
+    "source": "618cb98bdde1d03a9fe0c85e9a1eedc40f79d02f"
+  },
+  {
+    "file": "evidence/discovery-refinement/final-supplement/768x1024-teams.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 142785,
+    "sha256": "4990ec0f6f808a684d92fe0923d3b29d46cb48c238a9a48f06f910fb9935a0c0",
+    "source": "618cb98bdde1d03a9fe0c85e9a1eedc40f79d02f"
+  },
+  {
+    "file": "evidence/discovery-refinement/interactions/320x480-team-dialog.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 25030,
+    "sha256": "aa1323a47aa12a609bc399423e3d144e1c5dad7d101e7ce775a46bf13e9f029d",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/discovery-refinement/interactions/390x844-error.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 27180,
+    "sha256": "b89450bf0fd2d1633b56609aa33e39850ba05e4cc6a1ae4a59a6e3b22ad60871",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/discovery-refinement/interactions/390x844-loading.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 26387,
+    "sha256": "fd8c79f9474fcd8aaf9feb71a91bd5c3d8d7507a2cd0f990bf44079cc8a9759e",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/discovery-refinement/interactions/390x844-member-profile.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 30621,
+    "sha256": "59eee6a882637f4a4f7d81e98504925028eced9a0ca798a6664cddbd2eb7d0d1",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/discovery-refinement/interactions/390x844-team-dialog.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 54683,
+    "sha256": "13e6fe07f62ac3f38db1df4d6c1da6c031fb35af99658c66b6d1d8e2cdedb382",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/discovery-refinement/interactions/768x1024-participants.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 67517,
+    "sha256": "3670400be8f7ef5b163ef6fbe09e1c1b1157059c074b9418c0aa0e9ef18ceb00",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/discovery-refinement/interactions/768x1024-team-dialog.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 64173,
+    "sha256": "8d2f35ce4512eda8e38831550d7ec11b812496a86c83c1600d78dfa624de54ec",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/discovery-refinement/interactions-announcer-harness-failure/320x480-team-dialog.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 23516,
+    "sha256": "8c3493007e6c741e240041a71bddc404ce6bb41f5fbffc23ec7a67c9ee4c24f4",
+    "source": "b6efc6f53a3e1c4c494512fa5d1a9bb679a4da97"
+  },
+  {
+    "file": "evidence/discovery-refinement/interactions-announcer-harness-failure/390x844-error.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 27421,
+    "sha256": "ba2d24f366117bae63cad5091cd973299304eafe92a2b31c305015856d000be6",
+    "source": "b6efc6f53a3e1c4c494512fa5d1a9bb679a4da97"
+  },
+  {
+    "file": "evidence/discovery-refinement/interactions-announcer-harness-failure/390x844-loading.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 26387,
+    "sha256": "fd8c79f9474fcd8aaf9feb71a91bd5c3d8d7507a2cd0f990bf44079cc8a9759e",
+    "source": "b6efc6f53a3e1c4c494512fa5d1a9bb679a4da97"
+  },
+  {
+    "file": "evidence/discovery-refinement/interactions-announcer-harness-failure/390x844-member-profile.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 30621,
+    "sha256": "59eee6a882637f4a4f7d81e98504925028eced9a0ca798a6664cddbd2eb7d0d1",
+    "source": "b6efc6f53a3e1c4c494512fa5d1a9bb679a4da97"
+  },
+  {
+    "file": "evidence/discovery-refinement/interactions-announcer-harness-failure/390x844-team-dialog.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 54683,
+    "sha256": "13e6fe07f62ac3f38db1df4d6c1da6c031fb35af99658c66b6d1d8e2cdedb382",
+    "source": "b6efc6f53a3e1c4c494512fa5d1a9bb679a4da97"
+  },
+  {
+    "file": "evidence/discovery-refinement/interactions-announcer-harness-failure/768x1024-participants.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 67517,
+    "sha256": "3670400be8f7ef5b163ef6fbe09e1c1b1157059c074b9418c0aa0e9ef18ceb00",
+    "source": "b6efc6f53a3e1c4c494512fa5d1a9bb679a4da97"
+  },
+  {
+    "file": "evidence/discovery-refinement/interactions-announcer-harness-failure/768x1024-team-dialog.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 64173,
+    "sha256": "8d2f35ce4512eda8e38831550d7ec11b812496a86c83c1600d78dfa624de54ec",
+    "source": "b6efc6f53a3e1c4c494512fa5d1a9bb679a4da97"
+  },
+  {
+    "file": "evidence/projects-refinement/before/1440x900-empty.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 34196,
+    "sha256": "e54d27933b2eac75940f884bc85951c475c92c6dace64b28fcb9f8998fa25842",
+    "source": null
+  },
+  {
+    "file": "evidence/projects-refinement/before/390x844-empty.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 23196,
+    "sha256": "474cc843e5bb8f9b46f83064c3a1a7467b6a0beea6235ed236447ada278f9fa2",
+    "source": null
+  },
+  {
+    "file": "evidence/projects-refinement/empty/1440x900-projects.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 136777,
+    "sha256": "a7e3c2a6f2e16badf22601c08f40c81051fdf2763b8af6cd83b424cd4a6b07f6",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/projects-refinement/empty/320x480-projects.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 55257,
+    "sha256": "36f940f0dc2e055db4e6b2956c760564139699965a08ebbd281653dd8c6bc078",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/projects-refinement/empty/390x844-home-hashtags.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 116118,
+    "sha256": "d773c163608423087b857ec479587fdb5733c8a1afe2ce38a157134f5a1be4bc",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/projects-refinement/empty/390x844-projects.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 64674,
+    "sha256": "ae47646ecc2c3217d6705c2dcb988919d48d65df57eb55b5d8773d827381f77d",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/projects-refinement/empty/768x1024-projects.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 95357,
+    "sha256": "723074ca4c34b8ef1a765e055b21f15809ff9661d3e9ae84676277aaf26076e7",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/projects-refinement/empty-tablet-pending-harness/1440x900-projects.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 136777,
+    "sha256": "a7e3c2a6f2e16badf22601c08f40c81051fdf2763b8af6cd83b424cd4a6b07f6",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/projects-refinement/empty-tablet-pending-harness/390x844-projects.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 64674,
+    "sha256": "ae47646ecc2c3217d6705c2dcb988919d48d65df57eb55b5d8773d827381f77d",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/projects-refinement/empty-tablet-pending-harness/768x1024-projects.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 95357,
+    "sha256": "723074ca4c34b8ef1a765e055b21f15809ff9661d3e9ae84676277aaf26076e7",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/projects-refinement/populated/1440x900-projects.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 135731,
+    "sha256": "e2b01da9c43934324e92789508c0abbcbc2de8fda48686a0f6379f43d67e1c81",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/projects-refinement/populated/320x480-projects.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 46060,
+    "sha256": "8bc9e28dca541109a85bd41b31a43696e30d8554b8101cc7a99382ed7d519b68",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/projects-refinement/populated/390x844-no-search-matches.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 69329,
+    "sha256": "1a23942c2539ee5287e88f6a65f3cd087ec34ac1440bf38d9dc96623284f1d3b",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/projects-refinement/populated/390x844-projects.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 88624,
+    "sha256": "0b3ab3be9078cb00c3b1a8662bbef7c9eaf214e8f591e9e5cf746e51e3a09560",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/projects-refinement/populated/390x844-search-error.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 63432,
+    "sha256": "08405d7261e5b44ee1d454c86df8749f409e69e262242ddbd2336cf82a3a6f27",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/projects-refinement/populated/390x844-search-loading.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 69344,
+    "sha256": "7513244131291db9a71a14b6c6e3fbd1dd6c46835fde37f4b9b8a03f5f885e18",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/projects-refinement/populated/768x1024-projects.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 131248,
+    "sha256": "4497e7b231ab0bd1e94d719123abe742724e548c6136ace6acbb2b810605c07c",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  },
+  {
+    "file": "evidence/projects-refinement/populated/failure-current.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 19648,
+    "sha256": "7763927114495b67e0da49c7a013e2660717f986d7c511a63862cbdc3dba1963",
+    "source": "1f127f44ff9aadf1def53d3d6d5ae548dcd295a8"
+  }
+]

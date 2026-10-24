@@ -1,0 +1,155 @@
+{
+  "source": "f54306b76c17f5dc5b101354c17142583b3efe09",
+  "phase": "before",
+  "syntheticViewer": true,
+  "GETOnly": true,
+  "captures": [
+    "evidence/discovery-refinement/before/1440x900-teams.png",
+    "evidence/discovery-refinement/before/1440x900-team-dialog.png",
+    "evidence/discovery-refinement/before/1440x900-participants.png",
+    "evidence/discovery-refinement/before/768x1024-teams.png",
+    "evidence/discovery-refinement/before/768x1024-participants.png",
+    "evidence/discovery-refinement/before/390x844-teams.png"
+  ],
+  "states": [
+    {
+      "key": "1440x900",
+      "kind": "teams",
+      "overflow": false,
+      "cards": [
+        {
+          "height": 192.671875,
+          "width": 540.984375,
+          "top": 359,
+          "hasBio": "false"
+        },
+        {
+          "height": 214.484375,
+          "width": 540.984375,
+          "top": 359,
+          "hasBio": "true"
+        },
+        {
+          "height": 176.796875,
+          "width": 540.984375,
+          "top": 589.484375,
+          "hasBio": "false"
+        }
+      ]
+    },
+    {
+      "key": "1440x900",
+      "kind": "participants",
+      "overflow": false,
+      "cards": [
+        {
+          "height": 319.75,
+          "width": 355.3125,
+          "top": 363,
+          "hasBio": "true"
+        },
+        {
+          "height": 179,
+          "width": 355.328125,
+          "top": 363,
+          "hasBio": "false"
+        },
+        {
+          "height": 201,
+          "width": 355.3125,
+          "top": 363,
+          "hasBio": "false"
+        },
+        {
+          "height": 179,
+          "width": 355.3125,
+          "top": 698.75,
+          "hasBio": "false"
+        },
+        {
+          "height": 179,
+          "width": 355.328125,
+          "top": 698.75,
+          "hasBio": "false"
+        },
+        {
+          "height": 295.0625,
+          "width": 355.3125,
+          "top": 698.75,
+          "hasBio": "true"
+        }
+      ]
+    },
+    {
+      "key": "768x1024",
+      "kind": "teams",
+      "overflow": false,
+      "cards": [
+        {
+          "height": 215.609375,
+          "width": 344.5,
+          "top": 356,
+          "hasBio": "false"
+        },
+        {
+          "height": 236.171875,
+          "width": 344.5,
+          "top": 356,
+          "hasBio": "true"
+        },
+        {
+          "height": 176.796875,
+          "width": 344.5,
+          "top": 608.171875,
+          "hasBio": "false"
+        }
+      ]
+    },
+    {
+      "key": "768x1024",
+      "kind": "participants",
+      "overflow": false,
+      "cards": [
+        {
+          "height": 319.75,
+          "width": 344.5,
+          "top": 426,
+          "hasBio": "true"
+        },
+        {
+          "height": 179,
+          "width": 344.5,
+          "top": 426,
+          "hasBio": "false"
+        },
+        {
+          "height": 201,
+          "width": 344.5,
+          "top": 761.75,
+          "hasBio": "false"
+        },
+        {
+          "height": 179,
+          "width": 344.5,
+          "top": 761.75,
+          "hasBio": "false"
+        },
+        {
+          "height": 179,
+          "width": 344.5,
+          "top": 978.75,
+          "hasBio": "false"
+        },
+        {
+          "height": 295.0625,
+          "width": 344.5,
+          "top": 978.75,
+          "hasBio": "true"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "failure": "locator.evaluate: Target page, context or browser has been closed\n    at /workspace/ddd-discovery-refinement/scripts/qa-discovery-refinement-capture.mjs:8:1219",
+  "browserClosed": true
+}

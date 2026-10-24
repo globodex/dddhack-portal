@@ -1,0 +1,41 @@
+✔ participant cards retain safe dialog controls and accessible pagination without exposing private input fields (26.00202ms)
+✔ directory fetch keeps full search, membership, cursor and focus in distinct encoded parameters (52.23155ms)
+✔ an actually empty collection has no search or fake project and offers the actor's real next route (174.4027ms)
+✔ a real collection retains search, canonical detail/comment links and existing engagement counts (18.9365ms)
+✔ team details render only authoritative current member identities and safe existing profile routes (10.564094ms)
+✔ an older safe team response does not invent members from readiness count (23.447367ms)
+✔ redesigned team discovery keeps viewer browsing read-only and offers safe team details (99.597528ms)
+✔ only eligible teamless members receive join/create controls, and full/locked teams remain read-only (102.729563ms)
+✔ profile Team card copies only safe team identity and never private row fields (13.68476ms)
+✔ shared Rules exposes every authoritative category and rule in scannable groups (131.975663ms)
+✔ Discovery renders only allowlisted profile fields in a labelled native dialog (41.541817ms)
+✔ socials reject unsafe schemes and credentials and deduplicate canonical URLs (1.272511ms)
+✔ platform icons require exact platform hosts, including supported www aliases (0.298293ms)
+✔ empty bio and socials omit empty sections without disclosing extra fields (7.945969ms)
+✔ native modal close restores its opener and calls onClose once (2.124451ms)
+✔ Escape cancel closes the native dialog, and unmount cleanup never calls onClose (3.63402ms)
+✔ a queued native close from cleanup cannot dismiss the reopened modal lifetime (0.456266ms)
+✔ directory dialog projection never forwards private row fields (851.210002ms)
+✔ measured organizer units begin fully beyond their origin edge, including the attached portrait (3.168307ms)
+✔ organizer content remains immediately readable without motion or JS and uses only verified original photos (38.475307ms)
+✔ profile starts a three-step flow with authenticated email and eight approved symbolic avatar choices (94.465983ms)
+✔ Dashboard consolidates Team, Credits and Project and keeps upvotes read-only and private feedback separate (194.392565ms)
+✔ team idea is capped, saved before lock and uses safe teammate profiles, symbolic avatars and supplied phone links (262.278412ms)
+✔ viewer discovery and dashboard remain read-only without forcing profile completion (201.365953ms)
+✔ project mutation controls fail closed unless server grants canCommit to this leader, with history available after edit close (272.762695ms)
+✔ credit allocations start masked and never expose secret fields from the projection (36.417393ms)
+✔ showcase votes use server capabilities and persistent pressed state without a downvote action (20.596415ms)
+✔ vote controller permits one pending action, rolls back rejection and can retry after failure (6.61455ms)
+✔ profile and external links are constrained; immutable version view renders explicit project fields only (14.711329ms)
+✔ destructive and publishing confirmations identify exact scope and preserve policy/history (9.944944ms)
+✔ explicit sex and typed social prefills are preserved for review without inventing selections (87.375809ms)
+✔ server-rendered project forms cannot put private draft fields into a native GET before hydration (179.173518ms)
+✔ project detail omits a team caption when no authoritative team name is supplied (12.804127ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 29593.117565
