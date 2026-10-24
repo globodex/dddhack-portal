@@ -394,9 +394,11 @@ test("historical Windows CRLF: stale receipt data and whole-encoding switch are 
       f.target,
       now,
     );
-    await f.engine.exec(
-      "INSERT INTO users(id,email,name,created_at) VALUES('synthetic-count-race','count-race@example.invalid','Synthetic race','2026-10-22T08:00:00.000Z')",
-    );
+    await batch(f.db, [
+      [
+        "INSERT INTO users(id,email,name,created_at) VALUES('synthetic-count-race','count-race@example.invalid','Synthetic race','2026-10-22T08:00:00.000Z')",
+      ],
+    ]);
     const before = await f.snapshot();
     const queries: string[] = [];
     await assert.rejects(
@@ -483,7 +485,7 @@ test("historical Windows CRLF: failed postcondition rolls feature DDL, new ledge
     assert.deepEqual(await f.snapshot(), before);
     assert.equal(
       (
-        await f.engine.query(
+        await f.engine.query<{ history: string | null }>(
           "SELECT to_regclass('public.credit_code_history') history",
         )
       ).rows[0].history,
