@@ -1,0 +1,137 @@
+{
+  "source": "09263f33c7d5877038124806d0fef59f6c9a17ff",
+  "syntheticOnly": true,
+  "writes": false,
+  "screenshots": [
+    {
+      "label": "team",
+      "file": "/workspace/dddhack-portal/evidence/redesign-priority-review/team-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/dashboard"
+    },
+    {
+      "label": "participants",
+      "file": "/workspace/dddhack-portal/evidence/redesign-priority-review/participants-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/discover/participants"
+    },
+    {
+      "label": "teams",
+      "file": "/workspace/dddhack-portal/evidence/redesign-priority-review/teams-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/discover/teams"
+    },
+    {
+      "label": "profile-step1",
+      "file": "/workspace/dddhack-portal/evidence/redesign-priority-review/profile-step1-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/profile"
+    },
+    {
+      "label": "profile-step2",
+      "file": "/workspace/dddhack-portal/evidence/redesign-priority-review/profile-step2-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/profile"
+    },
+    {
+      "label": "profile-step3",
+      "file": "/workspace/dddhack-portal/evidence/redesign-priority-review/profile-step3-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/profile"
+    },
+    {
+      "label": "team",
+      "file": "/workspace/dddhack-portal/evidence/redesign-priority-review/team-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/dashboard"
+    },
+    {
+      "label": "participants",
+      "file": "/workspace/dddhack-portal/evidence/redesign-priority-review/participants-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/discover/participants"
+    },
+    {
+      "label": "teams",
+      "file": "/workspace/dddhack-portal/evidence/redesign-priority-review/teams-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/discover/teams"
+    },
+    {
+      "label": "profile-step1",
+      "file": "/workspace/dddhack-portal/evidence/redesign-priority-review/profile-step1-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/profile"
+    },
+    {
+      "label": "profile-step2",
+      "file": "/workspace/dddhack-portal/evidence/redesign-priority-review/profile-step2-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/profile"
+    },
+    {
+      "label": "profile-step3",
+      "file": "/workspace/dddhack-portal/evidence/redesign-priority-review/profile-step3-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/profile"
+    },
+    {
+      "label": "mobile-navigation",
+      "file": "/workspace/dddhack-portal/evidence/redesign-priority-review/mobile-navigation-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/profile"
+    }
+  ],
+  "checks": [
+    {
+      "logoutColor": "rgb(177, 45, 38)"
+    },
+    {
+      "menuStyle": {
+        "background": "rgb(32, 35, 32)",
+        "radius": "50%"
+      }
+    }
+  ],
+  "errors": [],
+  "sourceAtEnd": "09263f33c7d5877038124806d0fef59f6c9a17ff"
+}
