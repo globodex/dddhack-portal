@@ -106,6 +106,7 @@
 .app-shell .submission-v6 .submission-icon-field { border-color: #cdd2c4; background: var(--surface, #fffefa); }
 .app-shell .submission-v6 .project-editor .submission-icon-field > input { background: transparent; font-size: 15px; }
 .app-shell .submission-v6 .submission-tools legend { color: var(--ink, #202320); font-size: 13px; }
+.app-shell .submission-v6 .submission-tools legend { overflow-wrap: anywhere; }
 .app-shell .submission-v6 .submission-ecosystem-options .check-label { border-color: var(--line, #e3e4db); border-radius: 8px; background: #f6f7ef; font-size: 13px; }
 .app-shell .submission-v6 .submission-ecosystem-options .check-label:has(input:checked) { border-color: #a4b79a; background: #e9f0e0; }
 .app-shell .submission-v6 .submission-cerebras > div { background: #eeeee6; border-color: var(--line, #e3e4db); }
@@ -199,4 +200,9 @@
   .app-shell .project-history-dialog { padding: 22px 20px; }
   .project-history-dialog .section-heading h2 { font-size: 22px; }
   .project-history-dialog .history-version > header { flex-direction: column; align-items: flex-start; gap: 5px; }
+}
+@media (max-width: 360px) {
+  .app-shell .submission-v6 .submission-heading { grid-template-columns: 44px minmax(0, 1fr); gap: 8px; }
+  .app-shell .submission-v6 .submission-heading > div { justify-content: flex-start; }
+  .app-shell .submission-v6 .submission-heading > span[aria-hidden="true"] { display: none; }
 }
