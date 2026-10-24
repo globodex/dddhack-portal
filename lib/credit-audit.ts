@@ -96,8 +96,8 @@ export type CreditAuditColumn = {
   values: string[];
 };
 
-export function creditAuditMetadata(columns: CreditAuditColumn[]) {
-  const allValues = columns.flatMap((column) => column.values);
+export function creditAuditMetadata(columns: CreditAuditColumn[], additionalValues: string[] = []) {
+  const allValues = [...additionalValues, ...columns.flatMap((column) => column.values)];
   return columns.map((column) => ({
     heading: sanitizeCreditAuditText(column.heading, allValues),
     instructions: sanitizeCreditAuditText(column.instructions, allValues),

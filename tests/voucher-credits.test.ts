@@ -65,12 +65,14 @@ test("voucher-only import, real check-in allocation and authorized reveal work k
         (row) => row.ciphertext === "" && vouchers.includes(row.voucher_value),
       ),
     );
-    await assert.rejects(
-      withoutKey(f).command("commit-import", {
-        ...data,
-        digest: preview.digest,
-      }),
-      { code: "PREVIEW_REQUIRED" },
+    assert.equal(
+      (
+        await withoutKey(f).command("commit-import", {
+          ...data,
+          digest: preview.digest,
+        })
+      ).alreadyImported,
+      true,
     );
     const checkin = await post(f, "admin", "check-in", {
       userId: "fake_alice",
@@ -103,12 +105,14 @@ test("voucher-only import, real check-in allocation and authorized reveal work k
     assert.deepEqual(Object.keys(revealed), ["value"]);
     assert.ok(vouchers.includes(revealed.value));
     const duplicate = await withoutKey(f).command("preview-import", data);
-    await assert.rejects(
-      withoutKey(f).command("commit-import", {
-        ...data,
-        digest: duplicate.digest,
-      }),
-      /UNIQUE/,
+    assert.equal(
+      (
+        await withoutKey(f).command("commit-import", {
+          ...data,
+          digest: duplicate.digest,
+        })
+      ).added,
+      0,
     );
     assert.equal(
       (
@@ -145,7 +149,7 @@ test("keyless vouchers retain admin import RBAC, individual attendance, recipien
     );
     await assert.rejects(
       withoutKey(f, "stranger").command("reveal-credit", { typeId }),
-      { code: "VIEWER_READ_ONLY" },
+      { code: "CHECKIN_REQUIRED" },
     );
     await assert.rejects(
       withoutKey(f, "carol").command("reveal-credit", { typeId }),
@@ -153,7 +157,7 @@ test("keyless vouchers retain admin import RBAC, individual attendance, recipien
     );
     await assert.rejects(
       withoutKey(f, "judge").command("reveal-credit", { typeId }),
-      { code: "JUDGES_CANNOT_ACCESS_CREDITS" },
+      { code: "ALLOCATION_PENDING" },
     );
     await assert.rejects(
       withoutKey(f, "bob").command("reveal-credit", { typeId }),
@@ -171,7 +175,7 @@ test("keyless vouchers retain admin import RBAC, individual attendance, recipien
     });
     await assert.rejects(
       withoutKey(f, "alice").command("reveal-credit", { typeId }),
-      { code: "APPROVAL_REQUIRED" },
+      { code: "CHECKIN_REQUIRED" },
     );
   } finally {
     f.db.close();
@@ -195,7 +199,7 @@ test("voucher allocation email remains bound to current verified email and remov
     });
     await assert.rejects(
       withoutKey(f, "carol").command("reveal-credit", { typeId }),
-      { code: "VIEWER_READ_ONLY" },
+      { code: "CHECKIN_REQUIRED" },
     );
     const csv = "email\nchanged@portal.test",
       admin = withoutKey(f);
@@ -365,7 +369,10 @@ test("legacy ciphertext and allocations remain untouched; legacy reveal alone ne
       before,
     );
     assert.deepEqual(
-      await rows(f.db, "SELECT * FROM credit_allocations"),
+      await rows(
+        f.db,
+        "SELECT * FROM credit_allocations WHERE type_id='fake_credit'",
+      ),
       allocations,
     );
   } finally {

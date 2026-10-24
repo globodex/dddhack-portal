@@ -112,7 +112,7 @@ export const credit_inventory = pgTable(
     fingerprint: text("fingerprint").notNull(),
     created_at: text("created_at").notNull(),
   },
-  (table) => [unique().on(table.type_id, table.fingerprint)],
+  (table) => [unique().on(table.type_id, table.fingerprint), uniqueIndex("credit_inventory_global_fingerprint").on(table.fingerprint)],
 );
 
 export const credit_types = pgTable(
@@ -1060,6 +1060,25 @@ export const credit_batch_columns = pgTable(
     unique().on(table.type_id),
   ],
 );
+
+export const credit_category_keys = pgTable("credit_category_keys", {
+  source_key: text("source_key").primaryKey(),
+  type_id: text("type_id").notNull().unique().references(() => credit_types.id),
+});
+export const credit_code_history = pgTable("credit_code_history", {
+  fingerprint: text("fingerprint").primaryKey(),
+  inventory_id: text("inventory_id").notNull().unique(),
+  type_id: text("type_id").notNull(),
+  source_key: text("source_key").notNull(),
+  first_seen_at: text("first_seen_at").notNull(),
+  assigned: integer("assigned").notNull().default(0),
+  exposed: integer("exposed").notNull().default(0),
+}, table => [check("credit_code_history_assigned_check", sql`${table.assigned} IN (0,1)`), check("credit_code_history_exposed_check", sql`${table.exposed} IN (0,1)`)]);
+export const credit_stock_imports = pgTable("credit_stock_imports", {
+  digest: text("digest").primaryKey(),
+  created_at: text("created_at").notNull(),
+  result: text("result").notNull(),
+}, table => [check("credit_stock_imports_check", sql`portal_json_valid(${table.result})`)]);
 
 // Upload receipts bind a private object to one actor/team/draft revision. Version
 // binding and consumption happen atomically with immutable submission insertion.

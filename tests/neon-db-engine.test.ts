@@ -19,17 +19,17 @@ test("PostgreSQL baseline installs every portal table/trigger and checksum migra
     const tables = await engine.query<{ count: number }>(
       "SELECT count(*)::int count FROM pg_tables WHERE schemaname='public' AND tablename <> 'portal_schema_migrations'",
     );
-    assert.equal(tables.rows[0].count, 64);
+    assert.equal(tables.rows[0].count, 67);
     const triggers = await engine.query<{ count: number }>(
       "SELECT count(*)::int count FROM pg_trigger WHERE NOT tgisinternal",
     );
-    assert.equal(triggers.rows[0].count, 191 + 64);
+    assert.equal(triggers.rows[0].count, 191 + 9 + 67);
     const triggerNames = await engine.query<{ tgname: string }>(
       "SELECT tgname FROM pg_trigger WHERE NOT tgisinternal AND tgname <> 'portal_serializable' ORDER BY tgname",
     );
     assert.deepEqual(
       triggerNames.rows.map((row) => row.tgname),
-      manifest.triggers,
+      [...manifest.triggers, "credit_stock_not_retired", "credit_stock_record", "credit_stock_immutable", "credit_history_no_delete", "credit_history_immutable", "credit_assignment_not_recycled", "credit_assignment_record", "credit_import_no_update", "credit_import_no_delete"].sort(),
     );
     const columns = await engine.query<{
       table_name: string;

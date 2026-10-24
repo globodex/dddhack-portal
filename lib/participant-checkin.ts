@@ -3,6 +3,7 @@ import type { PortalService } from "./service";
 import { one, assertPreviousWrite, type SQL } from "./db";
 import { attendancePredicate, personStatus } from "./portal-status";
 import { auditReason, demand, emailSchema, PortalError } from "./security";
+import { creditAssignmentStatements } from "./credit-stock";
 
 type Operator = { id: string; owner: boolean; role: string };
 
@@ -90,6 +91,7 @@ export async function checkInParticipants(
       ],
     );
   }
+  statements.push(...await creditAssignmentStatements(s));
   try {
     await s.mutate(
       actor.id,

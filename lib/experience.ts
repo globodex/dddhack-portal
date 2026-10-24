@@ -1,5 +1,6 @@
 import { auditReason } from "./security";
 import { checkInParticipants } from "./participant-checkin";
+import { personalCreditRows } from "./credit-stock";
 import { resultControls } from "./result-controls";
 import { discoverParticipants, type PortalViewOptions } from "./discover-participants";
 import { teamFacts, personFacts, selectedRows } from "./directory-facts";
@@ -467,13 +468,8 @@ export class PortalExperience {
         : undefined;
     const checked = individual.checkedIn;
     const credits =
-      checked && actor.role !== "judge" && registration?.status === "approved"
-        ? await rows(
-            this.s.db,
-            "SELECT t.id type_id,t.name,t.instructions,CASE WHEN a.inventory_id IS NOT NULL THEN 1 ELSE 0 END allocated FROM credit_types t LEFT JOIN credit_allocations a ON a.type_id=t.id AND a.user_id=? AND lower(a.recipient_email)=? WHERE t.active=1",
-            actor.id,
-            actor.email.toLowerCase(),
-          )
+      checked
+        ? await personalCreditRows(this.s, actor)
         : [];
     const projectResult = project
       ? (await publicScores(this.s)).scores.find(

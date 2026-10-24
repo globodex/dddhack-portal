@@ -199,5 +199,5 @@ export function revealConfirmation(
 }
 
 export function requiresActionConfirmation(action: string) {
-  return !["complete-profile", "profile", "quick-check-in"].includes(action);
+  return !["complete-profile", "profile", "quick-check-in", "admin-reveal-credit", "repair-credit-allocations"].includes(action);
 }
