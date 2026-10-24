@@ -120,7 +120,7 @@ test("team idea is capped, saved before lock and uses safe teammate profiles, sy
   assert.match(html, /href="\/discover\/participants#person-fixture-leader"/);
   assert.match(html, /purple mixed-slash avatar/);
   assert.match(html, /href="https:\/\/wa.me\/12025550101"/);
-  assert.match(html, /Delete your team/);
+  assert.match(html, /Delete team/);
   assert.doesNotMatch(
     markup(TeamWorkspace, {
       data: {
@@ -130,14 +130,14 @@ test("team idea is capped, saved before lock and uses safe teammate profiles, sy
       },
       run,
     }),
-    /Delete your team/,
+    /Delete team/,
   );
   assert.doesNotMatch(
     markup(TeamWorkspace, {
       data: { me, team: { ...team, locked: true }, members: [member] },
       run,
     }),
-    /Rename team|Delete your team|Lock completed team|>Remove</,
+    /Rename team|Delete team|Lock team|>Remove</,
   );
 });
 test("viewer discovery and dashboard remain read-only without forcing profile completion", () => {
@@ -203,7 +203,9 @@ test("project mutation controls fail closed unless server grants canCommit to th
     },
     run,
   });
-  assert.doesNotMatch(allowed, /<fieldset disabled="">/);
+  assert.match(allowed, /data-readonly="false"/);
+  assert.match(allowed, /<form[^>]*method="post"/);
+  assert.match(allowed, /<form[^>]*inert=""/);
   const other = markup(Submission, {
     data: {
       ...base,
@@ -213,6 +215,7 @@ test("project mutation controls fail closed unless server grants canCommit to th
     run,
   });
   assert.match(other, /<fieldset disabled="">/);
+  assert.match(other, /data-readonly="true"/);
   assert.equal(markup(ProjectHistory, { canRead: false }), "");
   assert.match(
     markup(ProjectHistory, { canRead: true }),

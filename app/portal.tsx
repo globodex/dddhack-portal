@@ -458,7 +458,7 @@ function Field({
         (type === "textarea" ? (
           <textarea
             name={name}
-            defaultValue={String(value || "")}
+            defaultValue={String(value ?? "")}
             required={required}
             minLength={minLength}
             rows={4}
@@ -469,7 +469,7 @@ function Field({
           <input
             name={name}
             type={type}
-            defaultValue={String(value || "")}
+            defaultValue={String(value ?? "")}
             required={required}
             minLength={minLength}
           />

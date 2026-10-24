@@ -381,7 +381,8 @@ test("retained legacy setup component stays unmounted from Settings and preserve
   const html = renderToStaticMarkup(
     createElement(OwnerOperationalSetup, props),
   );
-  assert.match(html, /indefinitely until authorized manual removal/);
+  assert.match(html, /90-day retention period after the event/);
+  assert.match(html, /Owner-only audit logs are retained indefinitely/);
   assert.match(html, /name="/);
   assert.equal((html.match(/type="checkbox"/g) || []).length, 2);
   assert.doesNotMatch(html, /<input[^>]*type="checkbox"[^>]*checked=/);
