@@ -655,9 +655,13 @@ function CreateTeam({
     [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
     [hydrated, setHydrated] = useState(false);
-  const fallbackTitle = useId(), errorId = useId(), submitting = useRef(false);
+  const fallbackTitle = useId(), errorId = useId(), submitting = useRef(false),
+    closeButton = useRef<HTMLButtonElement>(null);
   const headingId = titleId || fallbackTitle;
   useEffect(() => setHydrated(true), []);
+  useEffect(() => {
+    if (hydrated) closeButton.current?.focus({ preventScroll: true });
+  }, [hydrated]);
   return (
     <form
       className="panel team-create-form"
@@ -691,7 +695,7 @@ function CreateTeam({
       <header className="team-creation-header">
         <h2 id={headingId}>Create your team</h2>
         {onClose && (
-          <button type="button" className="team-creation-close" autoFocus aria-label="Close team creation" onClick={onClose}>
+          <button ref={closeButton} type="button" className="team-creation-close" autoFocus aria-label="Close team creation" onClick={onClose}>
             <X size={22} aria-hidden="true" />
           </button>
         )}
