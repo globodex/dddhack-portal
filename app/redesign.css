@@ -240,3 +240,12 @@ dialog::backdrop { background: #20232066; }
     margin-inline-start: 46px;
   }
 }
+
+.app-shell .main .dashboard-v6 .dashboard-locked-idea > div {
+  min-width: 0;
+  max-width: 100%;
+}
+.app-shell .main .dashboard-v6 .dashboard-locked-idea h4 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
