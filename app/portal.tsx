@@ -6066,12 +6066,12 @@ export default function Portal({
           <a href="/signin?returnTo=%2Fdashboard" target="_top"><Icon name="person" />Sign in</a>
         ) : (
           <>
-            {data.me.mode !== "viewer" && <a href="/profile"><Icon name="person" />Your profile</a>}
+            {data.me.mode !== "viewer" && <Link prefetch={false} href="/profile" onNavigate={(event) => navigate(event, "/profile")}><Icon name="person" />Your profile</Link>}
             {(privileged || data.me.role === "volunteer") && (
-              <a href={admin ? "/dashboard" : "/admin/participants"}>
+              <Link prefetch={false} href={admin ? "/dashboard" : "/admin/participants"} onNavigate={(event) => navigate(event, admin ? "/dashboard" : "/admin/participants")}>
                 <Icon name={admin ? "dashboard" : "settings"} />
                 {admin ? "Workspace" : "Administration"}
-              </a>
+              </Link>
             )}
             <button className="navigation-logout" type="button" onClick={() => { setMenu(false); requestAnimationFrame(() => void logout()); }}><LogOut size={24} aria-hidden="true" />Log out</button>
           </>
