@@ -641,52 +641,98 @@ function AvatarChooser({
   );
 }
 
-function CreateTeam({ run }: { run: (a: string, d: Row) => Promise<Row> }) {
+function CreateTeam({
+  run,
+  onClose,
+  titleId,
+}: {
+  run: (a: string, d: Row) => Promise<Row>;
+  onClose?: () => void;
+  titleId?: string;
+}) {
   const [name, setName] = useState(""),
-    [palette, setPalette] = useState("forest");
+    [palette, setPalette] = useState("forest"),
+    [busy, setBusy] = useState(false),
+    [error, setError] = useState(""),
+    [hydrated, setHydrated] = useState(false);
+  const fallbackTitle = useId(), errorId = useId(), submitting = useRef(false);
+  const headingId = titleId || fallbackTitle;
+  useEffect(() => setHydrated(true), []);
   return (
-    <Form
-      title="Create your team"
+    <form
       className="panel team-create-form"
-      label="Create team"
-      onSave={async (f) => {
-        await run("create-workspace-team", {
-          name: f.get("name"),
-          bio: f.get("bio"),
-          avatar: "initials",
-          palette,
-        });
+      aria-labelledby={headingId}
+      aria-busy={busy}
+      data-hydrated={hydrated}
+      onSubmit={async (event) => {
+        event.preventDefault();
+        if (!hydrated || submitting.current) return;
+        const values = new FormData(event.currentTarget);
+        submitting.current = true;
+        setBusy(true);
+        setError("");
+        try {
+          await run("create-workspace-team", {
+            name: values.get("name"),
+            bio: values.get("bio"),
+            avatar: "initials",
+            palette,
+          });
+        } catch (cause) {
+          if (!(cause instanceof ActionCancelled)) setError((cause as Error).message);
+        } finally {
+          submitting.current = false;
+          setBusy(false);
+        }
       }}
     >
-      <div className="team-create-layout">
-        <div className="team-create-fields">
-          <label>
-            <span>
-              Team name{" "}
-              <span className="required-mark" aria-hidden="true">
-                *
-              </span>
-            </span>
-            <input
-              name="name"
-              required
-              maxLength={80}
-              autoComplete="off"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
-          <Field
-            name="bio"
-            label="What would you like to build?"
-            type="textarea"
-          />
-        </div>
-        <div className="team-create-identity">
-          <AvatarChooser name={name || "Team"} {...{ palette, setPalette }} />
-        </div>
+      <header className="team-creation-header">
+        <h2 id={headingId}>Create your team</h2>
+        {onClose && (
+          <button type="button" className="team-creation-close" autoFocus aria-label="Close team creation" onClick={onClose}>
+            <X size={22} aria-hidden="true" />
+          </button>
+        )}
+      </header>
+      <div className="team-creation-body">
+        <fieldset className="team-creation-controls" disabled={busy || !hydrated}>
+          <legend className="sr-only">Team details</legend>
+          <section className="team-creation-identity" aria-label="Team identity">
+            <div className="team-creation-preview">
+              <TeamAvatar name={name || "Team"} palette={palette} size={64} />
+            </div>
+            <fieldset className="team-creation-color">
+              <legend>Team color <output aria-live="polite">{teamColorLabels[palette]}</output></legend>
+              <div className="team-creation-palette">
+                {teamColorKeys.map((key) => (
+                  <label key={key} title={teamColorLabels[key]} data-selected={palette === key}>
+                    <input type="radio" name="palette" value={key} checked={palette === key} onChange={() => setPalette(key)} />
+                    <span className="team-creation-swatch" style={{ backgroundColor: teamDotColors[key] }} aria-hidden="true" />
+                    <span className="sr-only">{teamColorLabels[key]}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+          </section>
+          <div className="team-creation-fields">
+            <label>
+              <span>Team name <span className="required-mark" aria-hidden="true">*</span></span>
+              <input name="name" required maxLength={80} autoComplete="off" value={name} onChange={(event) => setName(event.target.value)} />
+            </label>
+            <label>
+              <span>Team intro</span>
+              <textarea name="bio" rows={3} maxLength={1000} />
+            </label>
+          </div>
+        </fieldset>
       </div>
-    </Form>
+      <footer className="team-creation-footer">
+        {error && <p className="team-creation-error" id={errorId} role="alert">{error}</p>}
+        <button className="button" type="submit" disabled={busy || !hydrated} aria-describedby={error ? errorId : undefined}>
+          {busy ? "Creating…" : "Create team"}
+        </button>
+      </footer>
+    </form>
   );
 }
 function TeamAction({
@@ -1747,7 +1793,8 @@ function CreateTeamDialog({
   onClose: () => void;
 }) {
   const dialog = useRef<HTMLDialogElement>(null),
-    callback = useRef(onClose);
+    callback = useRef(onClose),
+    titleId = useId();
   useEffect(() => {
     callback.current = onClose;
   }, [onClose]);
@@ -1756,22 +1803,8 @@ function CreateTeamDialog({
       return openDiscoveryDialog(dialog.current, () => callback.current());
   }, []);
   return (
-    <dialog
-      ref={dialog}
-      className="team-create-dialog"
-      onKeyDown={trapDialogFocus}
-      aria-label="Create team"
-    >
-      <button
-        type="button"
-        className="discover-dialog-close"
-        autoFocus
-        aria-label="Close team creation"
-        onClick={() => dialog.current?.close()}
-      >
-        <X size={22} aria-hidden="true" />
-      </button>
-      <CreateTeam run={run} />
+    <dialog ref={dialog} className="team-create-dialog" onKeyDown={trapDialogFocus} aria-labelledby={titleId}>
+      <CreateTeam run={run} titleId={titleId} onClose={() => dialog.current?.close()} />
     </dialog>
   );
 }
