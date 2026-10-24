@@ -1,0 +1,104 @@
+{
+  "source": "/workspace/library-files/team-studio/selected.png",
+  "libraryId": "libfile_f7d0d261d73c8191bb726a86f2f1a0df",
+  "sha256": "324ffc5d15ab19a0bd59e380f88c30fb3d21c5ddee186369971b0347414e2f3f",
+  "pixels": {
+    "width": 1487,
+    "height": 1058
+  },
+  "status": "source inspected; implementation comparison pending",
+  "measurementsApproximate": true,
+  "regions": {
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 1487,
+      "height": 86
+    },
+    "tabs": {
+      "x": 0,
+      "y": 86,
+      "width": 1487,
+      "height": 56
+    },
+    "hero": {
+      "x": 44,
+      "y": 185,
+      "width": 1399,
+      "height": 152
+    },
+    "members": {
+      "x": 44,
+      "y": 373,
+      "width": 1100,
+      "height": 90
+    },
+    "divider": {
+      "x": 44,
+      "y": 505,
+      "width": 1399,
+      "height": 1
+    },
+    "idea": {
+      "x": 44,
+      "y": 548,
+      "width": 841,
+      "height": 382
+    },
+    "next": {
+      "x": 930,
+      "y": 530,
+      "width": 513,
+      "height": 413
+    },
+    "timeline": {
+      "x": 44,
+      "y": 965,
+      "width": 1399,
+      "height": 63
+    }
+  },
+  "approxTypography": {
+    "heroTitle": 76,
+    "ideaTitle": 50,
+    "nextTitle": 55,
+    "description": 28,
+    "smallUi": 18
+  },
+  "samples": {
+    "paper": [
+      253,
+      252,
+      249
+    ],
+    "ink": [
+      16,
+      16,
+      18
+    ],
+    "teamFill": [
+      253,
+      186,
+      142
+    ],
+    "nextSurface": [
+      237,
+      252,
+      217
+    ],
+    "button": [
+      1,
+      133,
+      86
+    ]
+  },
+  "requiredChecks": [
+    "same-state full1487x1058 combined comparison",
+    "1440x1024 proportional comparison",
+    "focused hero/member/idea/next/timeline comparison",
+    "390/320/short480/768 layouts",
+    "actual count and description length",
+    "leader/member controls and privacy",
+    "touch and keyboard dialog closure"
+  ]
+}
