@@ -17,6 +17,7 @@ import { HeadingDot } from "./expressive-heading";
 import { defaultPublicContent } from "../lib/public-content-defaults";
 import {
   confirmedAgenda,
+  desktopChapterGeometry,
   mobileStackGeometry,
   stackGeometry,
 } from "./home-geometry";
@@ -99,9 +100,20 @@ function Chapters({
         }),
         paused || reduced.matches,
       );
-      const layout = mobile.enabled ? mobile : desktop;
+      const viewportDesktop = desktopChapterGeometry(
+        innerWidth,
+        innerHeight - headerHeight,
+        mobile.stages,
+        paused || reduced.matches,
+      );
+      const layout = mobile.enabled
+        ? mobile
+        : viewportDesktop.enabled
+          ? viewportDesktop
+          : desktop;
       node.dataset.enhanced = String(layout.enabled);
       node.dataset.mobileStack = String(mobile.enabled);
+      node.dataset.desktopStack = String(viewportDesktop.enabled);
       chapters.forEach((chapter, index) => {
         chapter.style.setProperty(
           "--chapter-top",

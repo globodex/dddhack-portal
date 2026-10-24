@@ -19,6 +19,29 @@ export function stackGeometry(
       stages.every((stage, i) => stage >= 520 && naturalHeights[i] <= stage),
   };
 }
+/** Desktop chapters fill their stage; oversized content scrolls before pinning. */
+export function desktopChapterGeometry(
+  width: number,
+  height: number,
+  naturalHeights: number[],
+  disabled = false,
+) {
+  const layers = naturalHeights.map((_, index) => 14 + index * 14);
+  return {
+    enabled:
+      !disabled &&
+      width >= 1000 &&
+      height >= 600 &&
+      naturalHeights.length > 0 &&
+      naturalHeights.every((value) => Number.isFinite(value) && value > 0),
+    tops: naturalHeights.map((natural, index) =>
+      Math.min(layers[index], height - natural - 24),
+    ),
+    stages: naturalHeights.map((natural, index) =>
+      Math.max(height - layers[index] - 24, natural),
+    ),
+  };
+}
 /** Native mobile stacking lets long cards pass fully before their bottom pins. */
 export function mobileStackGeometry(
   width: number,
