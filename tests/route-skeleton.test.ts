@@ -6,7 +6,7 @@ import RouteSkeleton, { routeSkeletonLayout } from "../app/route-skeleton";
 import Portal from "../app/portal";
 
 test("route skeletons describe one busy region and keep decorative placeholders outside the accessibility tree", () => {
-  for (const path of ["/dashboard", "/profile", "/discover/participants", "/discover/teams", "/projects", "/projects/fake", "/admin/participants", "/admin/settings", "/review/fake"]) {
+  for (const path of ["/dashboard", "/profile", "/discover/participants", "/discover/teams", "/projects", "/projects/fake", "/admin/participants", "/admin/settings", "/personal/credits", "/admin/credits", "/review/fake"]) {
     const html = renderToStaticMarkup(createElement(RouteSkeleton, { path }));
     assert.match(html, /aria-busy="true" aria-label="Page loading"/);
     assert.equal((html.match(/role="status"/g) || []).length, 1);
@@ -27,6 +27,7 @@ test("route shapes preserve distinct profile, dashboard, cards, table and form s
   assert.equal(routeSkeletonLayout("/discover/teams"), "teams");
   assert.equal(routeSkeletonLayout("/admin/teams"), "teams");
   assert.equal(routeSkeletonLayout("/admin/credits"), "credits");
+  assert.equal(routeSkeletonLayout("/personal/credits"), "personal-credits");
   assert.equal(routeSkeletonLayout("/rules"), "rules");
 });
 

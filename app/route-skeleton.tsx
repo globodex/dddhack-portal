@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 
-type SkeletonLayout = "dashboard" | "profile" | "people" | "teams" | "credits" | "rules" | "list" | "table" | "detail" | "form";
+type SkeletonLayout = "dashboard" | "profile" | "people" | "teams" | "credits" | "personal-credits" | "rules" | "list" | "table" | "detail" | "form";
 
 export function routeSkeletonLayout(path: string): SkeletonLayout {
   if (path === "/profile" || path === "/dashboard/profile") return "profile";
@@ -8,6 +8,7 @@ export function routeSkeletonLayout(path: string): SkeletonLayout {
   if (path === "/discover/participants") return "people";
   if (path === "/discover/teams" || path === "/admin/teams") return "teams";
   if (path === "/admin/credits") return "credits";
+  if (path === "/personal/credits") return "personal-credits";
   if (path === "/rules") return "rules";
   if (/^\/(projects|review|admin\/submissions)\/[^/]+/.test(path)) return "detail";
   if (path === "/admin/settings" || path === "/submission") return "form";
@@ -42,21 +43,24 @@ export default function RouteSkeleton({ path }: { path: string }) {
   return <section className="route-skeleton" data-layout={layout} aria-busy="true" aria-label="Page loading">
     <p className="sr-only" role="status" aria-live="polite">Loading…</p>
     <div className="route-skeleton-shapes" aria-hidden="true">
-      <div className="route-skeleton-heading"><Block shape="avatar" /><Block width="11rem" shape="title" /></div>
+      {layout !== "dashboard" && <div className="route-skeleton-heading">{layout !== "personal-credits" && <Block shape="avatar" />}<Block width="11rem" shape="title" /></div>}
       {layout === "profile" ? <div className="route-skeleton-profile">
         <Fields />
         <div className="route-skeleton-palette">{Array.from({ length: 8 }, (_, index) => <Block key={index} shape="avatar" />)}</div>
         <Block shape="action" />
       </div> : layout === "dashboard" ? <>
         <div className="route-skeleton-tabs"><Block width="6rem" /><Block width="6rem" /><Block width="6rem" /></div>
-        <div className="route-skeleton-panel route-skeleton-team-identity"><Block shape="avatar" /><Block width="34%" shape="title" /><Block shape="action" /></div>
-        <div className="route-skeleton-workspace"><div className="route-skeleton-panel"><Block width="42%" /><Rows count={3} /></div><div className="route-skeleton-panel"><Block width="32%" /><Fields /><Block shape="action" /></div></div>
+        <div className="route-skeleton-studio-identity"><Block shape="avatar" /><div className="route-skeleton-copy"><Block width="6rem" /><Block width="80%" shape="title" /><Block width="5rem" /></div><Block shape="action" /></div>
+        <div className="route-skeleton-studio-roster">{[0, 1, 2].map(index => <div className="route-skeleton-row" key={index}><Block shape="avatar" /><div className="route-skeleton-copy"><Block width="5rem" /><Block width="4rem" /></div></div>)}</div>
+        <div className="route-skeleton-studio-workspace"><div className="route-skeleton-studio-idea"><Block width="7rem" /><Block width="90%" shape="title" /><Block /><Block width="92%" /><Block width="65%" /><Block width="3rem" /></div><div className="route-skeleton-panel route-skeleton-studio-next"><Block width="6rem" shape="title" /><Block width="5rem" /><Block width="90%" shape="title" /><Block width="8rem" /><Block shape="action" /></div></div>
+        <div className="route-skeleton-studio-track">{[0, 1, 2, 3].map(index => <div className="route-skeleton-row" key={index}><Block shape="avatar" /><Block width="6rem" /></div>)}</div>
       </> : layout === "people" ? <>
         <div className="route-skeleton-tabs"><Block width="6rem" /><Block width="6rem" /></div>
         <div className="route-skeleton-toolbar"><Block shape="input" width="40%" /><Block shape="action" /></div>
         <div className="route-skeleton-cards">{[0, 1, 2, 3, 4, 5].map((index) => <div className="route-skeleton-panel" key={index}><Block shape="avatar" /><Block width="64%" /><Block width="82%" /><Block shape="action" /></div>)}</div>
       </> : layout === "teams" ? <><div className="route-skeleton-toolbar"><Block shape="input" width="40%" /><Block shape="action" /></div><div className="route-skeleton-team-cards">{[0,1,2,3].map(index => <div key={index} className="route-skeleton-panel"><div className="route-skeleton-heading"><Block shape="avatar" /><Block width="52%" /></div><Block width="82%" /><Block width="62%" /><Block shape="action" /></div>)}</div></>
-        : layout === "credits" ? <><div className="route-skeleton-panel"><Block width="30%" shape="title" /><Block shape="input" /><Block shape="action" /></div><div className="route-skeleton-team-cards">{[0,1].map(index => <div className="route-skeleton-panel" key={index}><Block width="50%" /><Fields /></div>)}</div></>
+        : layout === "credits" ? <><div className="route-skeleton-toolbar"><Block width="40%" shape="input" /><Block shape="action" /></div>{[0, 1].map(index => <div className="route-skeleton-panel route-skeleton-stock-card" key={index}><div className="route-skeleton-toolbar"><Block width="40%" shape="title" /><Block width="5rem" /></div><div className="route-skeleton-stock-metrics">{[0, 1, 2, 3].map(metric => <div className="route-skeleton-field" key={metric}><Block width="4rem" /><Block width="3rem" shape="title" /></div>)}</div><div className="route-skeleton-tabs"><Block shape="action" /><Block shape="action" /></div></div>)}<Block shape="input" /><Block shape="input" /></>
+        : layout === "personal-credits" ? <div className="route-skeleton-panel"><div className="route-skeleton-toolbar"><Block width="45%" shape="title" /><Block width="5rem" /></div><Block width="90%" /><Block width="65%" /><div className="route-skeleton-secret"><Block shape="input" /><Block shape="action" /><Block shape="action" /></div></div>
         : layout === "rules" ? <div className="route-skeleton-team-cards">{[0,1,2,3].map(index => <div className="route-skeleton-panel" key={index}><Block width="60%" shape="title" /><Block /><Block width="82%" /><Block width="92%" /></div>)}</div>
         : layout === "form" ? <><div className="route-skeleton-tabs"><Block width="6rem" /><Block width="6rem" /><Block width="6rem" /><Block width="6rem" /></div><div className="route-skeleton-panel"><Fields /><Block shape="action" /></div></>
         : layout === "detail" ? <div className="route-skeleton-panel"><Block shape="banner" /><Block width="68%" shape="title" /><Block /><Block width="82%" /><Block width="60%" /></div>
