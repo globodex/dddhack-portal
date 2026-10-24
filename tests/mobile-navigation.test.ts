@@ -100,7 +100,7 @@ test("all role shells share one mobile dialog with ordinary role-authorized link
   }
 });
 
-test("modal lifetime locks page scroll, dismisses on desktop resize and restores trigger without moving the page", () => {
+test("modal lifetime locks page scroll, stays open across desktop resize and restores trigger without moving the page", () => {
   const events = new Map<string, () => void>();
   let opened = 0,
     closed = 0,
@@ -134,11 +134,10 @@ test("modal lifetime locks page scroll, dismisses on desktop resize and restores
   assert.equal(opened, 1);
   assert.equal(doc.body.style.overflow, "hidden");
   assert.equal(doc.documentElement.style.overflow, "hidden");
-  events.get("resize")!();
-  assert.equal(desktop, 0);
-  view.innerWidth = 1200;
-  events.get("resize")!();
-  assert.equal(desktop, 1);
+  assert.equal(events.has("resize"), false);
+  view.innerWidth = 1440;
+  events.get("resize")?.();
+  assert.equal(desktop, 0, "desktop navigation remains open");
   cleanup();
   assert.equal(closed, 1);
   assert.equal(doc.body.style.overflow, "clip");

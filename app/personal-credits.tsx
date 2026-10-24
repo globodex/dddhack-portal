@@ -13,7 +13,7 @@ import {
 import CreditInstructions from "./credit-instructions";
 import { HeadingDot } from "./expressive-heading";
 import { portalErrorText } from "../lib/ui-feedback";
-import InformationNavigation from "./information-navigation";
+import { InformationHeader } from "./information-navigation";
 
 type CreditRecord = Record<string, any>;
 
@@ -229,31 +229,22 @@ export function PersonalCreditsAccess({
   title?: string;
 }) {
   return (
-    <main className="personal-credit-access">
-      <header>
-        <a href="/" className="personal-credit-access-brand">
-          <img
-            src="/brand/codex-user-supplied.svg"
-            width={28}
-            height={28}
-            alt=""
-          />
-          Codex Community New Delhi
-        </a>
-        <InformationNavigation path="/personal/credits" />
-      </header>
-      <section>
-        <Ticket size={30} aria-hidden="true" />
-        <h1>
-          {checkInRequired
-            ? "Credits unlock at check-in."
-            : title || "Your credits could not load."}
-        </h1>
-        <a className="button secondary" href="/dashboard#credits">
-          <ArrowLeft size={18} aria-hidden="true" />
-          Back to Dashboard
-        </a>
-      </section>
-    </main>
+    <>
+      <InformationHeader path="/personal/credits" />
+      <main className="personal-credit-access">
+        <section>
+          <Ticket size={30} aria-hidden="true" />
+          <h1>
+            {checkInRequired
+              ? "Credits unlock at check-in."
+              : title || "Your credits could not load."}
+          </h1>
+          <a className="button secondary" href="/dashboard#credits">
+            <ArrowLeft size={18} aria-hidden="true" />
+            Back to Dashboard
+          </a>
+        </section>
+      </main>
+    </>
   );
 }

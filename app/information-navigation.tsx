@@ -6,10 +6,10 @@ import {
   FileText,
   House,
   LayoutDashboard,
-  Menu,
   ShieldCheck,
 } from "lucide-react";
 import MobileNavigation from "./mobile-navigation";
+import NavigationHeader, { NavigationControls } from "./navigation-header";
 
 export default function InformationNavigation({ path }: { path: string }) {
   const [open, setOpen] = useState(false);
@@ -24,21 +24,11 @@ export default function InformationNavigation({ path }: { path: string }) {
   ];
   return (
     <>
-      <button
-        type="button"
-        className="information-menu-button"
-        aria-label="Open navigation"
-        aria-expanded={open}
-        aria-controls="mobile-navigation"
-        aria-haspopup="dialog"
-        disabled={!hydrated}
-        onClick={(event) => {
-          event.currentTarget.focus();
-          setOpen(true);
-        }}
-      >
-        <Menu size={22} aria-hidden="true" />
-      </button>
+      <NavigationControls
+        open={open}
+        hydrated={hydrated}
+        onOpen={() => setOpen(true)}
+      />
       <MobileNavigation open={open} onClose={() => setOpen(false)}>
         {destinations.map(({ href, label, Icon }) => (
           <a
@@ -52,5 +42,14 @@ export default function InformationNavigation({ path }: { path: string }) {
         ))}
       </MobileNavigation>
     </>
+  );
+}
+
+// No identity read is added to these static legal/auth/access documents.
+export function InformationHeader({ path }: { path: string }) {
+  return (
+    <NavigationHeader>
+      <InformationNavigation path={path} />
+    </NavigationHeader>
   );
 }

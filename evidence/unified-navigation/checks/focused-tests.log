@@ -1,0 +1,31 @@
+✔ restocking keeps server metadata exactly and new categories still require instructions (2.584124ms)
+✔ stock overview is bounded metadata with counters and no plaintext inventory fields (67.589075ms)
+✔ unallocated personal categories never imply that a private secret exists (7.683266ms)
+✔ personal display stays masked for assigned recipients and closed before check-in (14.082546ms)
+✔ assignment recovery is explicit only when both waiting recipients and stock exist (105.043277ms)
+✔ navigation replaces the temporary menu entry without a cleanup Back racing the router (2.139895ms)
+✔ all role shells share one mobile dialog with ordinary role-authorized links and no section labels (488.442028ms)
+✔ modal lifetime locks page scroll, stays open across desktop resize and restores trigger without moving the page (3.538803ms)
+✔ participant primary navigation stays focused and admin discovery retains management context (9.477788ms)
+✔ locked team idea is a concise read-only view while unlocked leader retains editor (4764.640345ms)
+✔ configured canonical origin accepts an exact HTTPS origin and rejects credential or path variants (1.268759ms)
+✔ public titles, descriptions, canonical and social URLs are unique and use the configured origin (0.879935ms)
+✔ private, authentication, directory and draft legal routes never publish indexable social metadata (0.488239ms)
+✔ project metadata selects published fields only and rejects arbitrary social-image URLs (1.19152ms)
+✔ sitemap includes only home and bounded valid public project paths across pages (41.313997ms)
+✔ robots lets crawlers read HTML noindex, blocks API crawling and permits only public project media (0.43928ms)
+✔ event structured data uses only approved public facts and no invented commercial claims or private room (0.307648ms)
+✔ legal drafts render server-side semantic content with verified controller, contact and retention categories (29.76364ms)
+✔ legal header reuses the hydrated shared menu with named icon destinations and no visible Menu label (4.160448ms)
+✔ privacy draft acknowledges the confirmed active Cloudflare proxy and distinguishes hiding from erasure (7.507864ms)
+✔ saved participant and staff avatars use the same header, without a separate desktop sidebar (93.438914ms)
+✔ missing profile is an explicit neutral placeholder, while old saved projections remain compatible (1.643643ms)
+✔ standalone information/auth headers keep an anonymous sign-in affordance without inventing an actor (22.738065ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9955.325141

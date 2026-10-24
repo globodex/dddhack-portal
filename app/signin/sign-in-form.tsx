@@ -2,18 +2,14 @@
 import { useEffect, useState, type FormEvent } from "react";
 import styles from "./signin.module.css";
 import {
-  ArrowLeft,
   ArrowRight,
   CalendarDays,
-  House,
-  BriefcaseBusiness,
   CircleAlert,
   CircleCheck,
   LoaderCircle,
-  Menu,
 } from "lucide-react";
 import DotAvatar from "../dot-avatar";
-import MobileNavigation from "../mobile-navigation";
+import { InformationHeader } from "../information-navigation";
 
 const messages: Record<string, string> = {
   AUTH_RATE_LIMITED: "Too many attempts. Please wait 15 minutes and try again.",
@@ -33,7 +29,6 @@ const unavailable =
 export default function SignInForm() {
   const [email, setEmail] = useState("");
   const [hydrated, setHydrated] = useState(false);
-  const [menu, setMenu] = useState(false);
   const [emailInvalid, setEmailInvalid] = useState(false);
   const [returnTo, setReturnTo] = useState("/dashboard");
   const [busy, setBusy] = useState<"email" | "google" | null>(null);
@@ -104,46 +99,7 @@ export default function SignInForm() {
   }
   return (
     <div className={styles.page}>
-      <header className={styles.header}>
-        <a className={styles.brand} href="/">
-          <img
-            src="/brand/codex-user-supplied.svg"
-            alt=""
-            width={28}
-            height={28}
-          />
-          <span>Codex Community New Delhi</span>
-        </a>
-        <a className={styles.back} href="/">
-          <ArrowLeft size={18} aria-hidden="true" />
-          Back to event
-        </a>
-        <button
-          className={styles.menu}
-          type="button"
-          aria-label="Open navigation"
-          aria-controls="mobile-navigation"
-          aria-haspopup="dialog"
-          aria-expanded={menu}
-          disabled={!hydrated}
-          onClick={(event) => {
-            event.currentTarget.focus();
-            setMenu(true);
-          }}
-        >
-          <Menu size={22} aria-hidden="true" />
-        </button>
-      </header>
-      <MobileNavigation open={menu} onClose={() => setMenu(false)}>
-        <a href="/">
-          <House size={22} aria-hidden="true" />
-          Event home
-        </a>
-        <a href="/projects">
-          <BriefcaseBusiness size={22} aria-hidden="true" />
-          Projects
-        </a>
-      </MobileNavigation>
+      <InformationHeader path="/signin" />
       <main className={styles.body}>
         <aside className={styles.event} aria-label="The event">
           <DotAvatar color="blue" expression="squeezed" size={104} decorative />

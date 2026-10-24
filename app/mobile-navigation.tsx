@@ -1,30 +1,27 @@
 "use client";
 import { useEffect, useRef, type ReactNode } from "react";
 import { X } from "lucide-react";
-import { consumeDialogHistoryForNavigation, trackDialogHistory } from "./dialog-history";
+import {
+  consumeDialogHistoryForNavigation,
+  trackDialogHistory,
+} from "./dialog-history";
 
 // Native showModal supplies the focus trap and makes the page behind it inert.
 // Keep our scroll/focus cleanup paired with that same modal lifetime.
 export function openMobileNavigation(
   node: HTMLDialogElement,
-  onDesktop: () => void,
+  onDismiss: () => void,
 ) {
   const doc = node.ownerDocument;
-  const view = doc.defaultView!;
   const trigger = doc.activeElement as HTMLElement | null;
   const bodyOverflow = doc.body.style.overflow;
   const htmlOverflow = doc.documentElement.style.overflow;
   node.showModal();
-  const releaseHistory = trackDialogHistory(onDesktop, trigger);
+  const releaseHistory = trackDialogHistory(onDismiss, trigger);
   doc.body.style.overflow = "hidden";
   doc.documentElement.style.overflow = "hidden";
-  const resize = () => {
-    if (view.innerWidth >= 1200) onDesktop();
-  };
-  view.addEventListener("resize", resize);
   return () => {
     releaseHistory();
-    view.removeEventListener("resize", resize);
     node.close();
     doc.body.style.overflow = bodyOverflow;
     doc.documentElement.style.overflow = htmlOverflow;
@@ -57,11 +54,25 @@ export default function MobileNavigation({
       aria-label="Navigation"
       onClose={onClose}
       onClick={(event) => {
-        const link = (event.target as HTMLElement).closest<HTMLAnchorElement>("a[href]");
+        const link = (event.target as HTMLElement).closest<HTMLAnchorElement>(
+          "a[href]",
+        );
         if (!link) return;
-        if (!event.defaultPrevented && event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey && !link.hasAttribute("download") && (!link.target || link.target === "_self")) {
+        if (
+          !event.defaultPrevented &&
+          event.button === 0 &&
+          !event.metaKey &&
+          !event.ctrlKey &&
+          !event.shiftKey &&
+          !event.altKey &&
+          !link.hasAttribute("download") &&
+          (!link.target || link.target === "_self")
+        ) {
           const destination = new URL(link.href, window.location.href);
-          if (destination.origin === window.location.origin && consumeDialogHistoryForNavigation()) {
+          if (
+            destination.origin === window.location.origin &&
+            consumeDialogHistoryForNavigation()
+          ) {
             event.preventDefault();
             window.location.replace(destination.href);
           }
@@ -110,9 +121,7 @@ export default function MobileNavigation({
           <X size={24} aria-hidden="true" />
         </button>
       </div>
-      <nav aria-label="Mobile navigation">
-        {children}
-      </nav>
+      <nav aria-label="Site navigation">{children}</nav>
     </dialog>
   );
 }

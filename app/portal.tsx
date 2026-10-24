@@ -31,8 +31,8 @@ import {
   LogOut,
   Menu,
   SlidersHorizontal,
-  UserRound,
   Users,
+  UserRound,
   UsersRound,
   X,
   Ticket,
@@ -51,6 +51,7 @@ import RouteSkeleton from "./route-skeleton";
 import ViewerWelcome from "./viewer-welcome";
 import { portalLoadFailure, type PortalLoadFailure } from "../lib/portal-load-state";
 import MobileNavigation from "./mobile-navigation";
+import NavigationHeader from "./navigation-header";
 import { useHydrated } from "./use-hydrated";
 import { portalErrorText, portalSuccessText } from "../lib/ui-feedback";
 import { readPortalView } from "../lib/portal-read";
@@ -133,6 +134,7 @@ type View = Row & {
     owner: boolean;
     avatarColor?: string;
     avatarExpression?: string;
+    hasProfileAvatar?: boolean;
     mode?: "viewer" | "participant" | "staff";
     rostered?: boolean;
     deactivated?: boolean;
@@ -5962,7 +5964,7 @@ export default function Portal({
     teamPalettes.forest;
   return (
     <div
-      className={`app-shell ${path === "/" ? "public-home-shell" : ""} ${profileOnboarding ? "onboarding-shell" : ""} ${workspaceShell ? "workspace-shell" : ""} ${publicBrowse ? "public-project-shell" : ""} ${studioDashboard ? "studio-dashboard-shell" : ""}`.trim()}
+      className={`app-shell navigation-shell ${path === "/" ? "public-home-shell" : ""} ${profileOnboarding ? "onboarding-shell" : ""} ${workspaceShell ? "workspace-shell" : ""} ${publicBrowse ? "public-project-shell" : ""} ${studioDashboard ? "studio-dashboard-shell" : ""}`.trim()}
       data-hydrated={hydrated}
       style={{ "--team-accent": c.ink, "--team-wash": c.wash } as CSSProperties}
     >
@@ -5976,230 +5978,17 @@ export default function Portal({
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      {(path === "/" || publicBrowse) && (
-        <header className="public-header">
-          <a className="public-brand" href="/">
-            <img
-              src="/brand/codex-user-supplied.svg"
-              width="32"
-              height="32"
-              alt=""
-            />
-            Codex Community New Delhi
-          </a>
-          <button
-            className="public-menu button secondary"
-            disabled={!hydrated}
-            aria-controls="mobile-navigation"
-            aria-haspopup="dialog"
-            aria-expanded={menu}
-            onClick={(event) => { event.currentTarget.focus(); setMenu(!menu); }}
-          >
-            <Icon name={menu ? "close" : "menu"} />
-            <span className="sr-only">{menu ? "Close menu" : "Open menu"}</span>
-          </button>
-          <nav
-            id="public-navigation"
-            aria-label="Public navigation"
-            data-open={false}
-          >
-            <Link prefetch={false} href="/" onNavigate={(event) => navigate(event, "/")} aria-current={path === "/" ? "page" : undefined}>
-              {publicBrowse && <Icon name="home" />}
-              Home
-            </Link>
-            <Link
-              prefetch={false}
-              href="/projects"
-              onNavigate={(event) => navigate(event, "/projects")}
-              aria-current={publicBrowse ? "page" : undefined}
-            >
-              {publicBrowse && <Icon name="projects" />}Projects
-            </Link>
-            <a
-              className={publicBrowse ? "public-dashboard-link" : "button"}
-              href={
-                data.me
-                  ? "/dashboard"
-                  : "/signin?returnTo=%2Fdashboard"
-              }
-              target="_top"
-            >
-              {publicBrowse && <Icon name="person" />}
-              {data.me
-                ? data.me.mode === "viewer" ? "Explore the portal" : publicBrowse
-                  ? "Open your Dashboard"
-                  : "Dashboard"
-                : "Sign in"}
-            </a>
-          </nav>
-        </header>
-      )}
-      <header className="mobile-header">
-        <a className="brand" href="/" aria-label="DevDay Exchange home">
-          <img
-            src="/brand/codex-user-supplied.svg"
-            width="32"
-            height="32"
-            alt=""
-          />
-          <span>Codex Community New Delhi</span>
-        </a>
-        <button
-          className="button secondary"
-          disabled={!hydrated}
-          aria-expanded={menu}
-          aria-controls="mobile-navigation"
-          aria-haspopup="dialog"
-          onClick={(event) => { event.currentTarget.focus(); setMenu(!menu); }}
-        >
-          <Icon name={menu ? "close" : "menu"} />
-          <span className="sr-only">{menu ? "Close menu" : "Open menu"}</span>
-        </button>
-        {data.me && (
-          <a
-            className="header-account"
-            href={
-              privileged ||
-              data.me.role === "volunteer" ||
-              data.me.mode === "viewer"
-                ? "/dashboard"
-                : "/profile"
-            }
-            aria-label={
-              privileged ||
-              data.me.role === "volunteer" ||
-              data.me.mode === "viewer"
-                ? data.me.mode === "viewer" ? "Viewer mode" : "Your Dashboard"
-                : "Your profile"
-            }
-          >
-            {privileged || data.me.role === "volunteer" ? (
-              <UserRound size={22} aria-hidden="true" />
-            ) : (
-              <DotAvatar
-                color={data.me.avatarColor}
-                expression={data.me.avatarExpression}
-                size={38}
-                decorative
-              />
-            )}
-          </a>
-        )}
-      </header>
-      <aside className="sidebar">
-        <a className="brand" href="/" aria-label="DevDay Exchange home">
-          <img
-            src="/brand/codex-user-supplied.svg"
-            width="32"
-            height="32"
-            alt=""
-          />
-          <span>Codex Community New Delhi</span>
-        </a>
-        <nav
-          id="site-navigation"
-          aria-label={admin ? "Administration" : "Main navigation"}
-        >
-          {nav.map(([href, label]) => (
-            <Link
-              prefetch={false}
-              key={href}
-              href={href}
-              onNavigate={(event) => navigate(event, href)}
-              aria-current={
-                path === href ||
-                (href === "/dashboard" && path === "/submission") ||
-                (href === "/discover/teams" &&
-                  path === "/discover/participants")
-                  ? "page"
-                  : undefined
-              }
-            >
-              <Icon
-                name={
-                  label === "Home"
-                    ? "home"
-                    : label === "Dashboard"
-                      ? "dashboard"
-                      : label === "Participants"
-                        ? "users"
-                        : label === "Teams"
-                          ? "team"
-                          : label === "Discover"
-                            ? "discover"
-                            : label === "Leaderboard"
-                              ? "leaderboard"
-                              : label === "Rules"
-                                ? "rules"
-                                : label === "Credits" ? "credits" : label === "Settings"
-                                  ? "settings"
-                                  : label === "Logs"
-                                    ? "logs"
-                                    : "projects"
-                }
-              />
-              {label}
-            </Link>
-          ))}
-          {!data.me && (
-            <a href="/signin?returnTo=%2Fdashboard" target="_top">
-              Sign in
-            </a>
-          )}
-        </nav>
-        <div className="account-controls">
-          {data.me ? (
-            <>
-              <strong>{data.me.name}</strong>
-              <small>
-                {data.me.owner
-                  ? "Owner"
-                  : data.me.mode === "viewer"
-                    ? "Viewer"
-                    : data.me.role}
-              </small>
-              {data.me.mode !== "viewer" && (
-                <a
-                  href="/profile"
-                  aria-label="Your profile"
-                  className="personal-profile-link"
-                >
-                  <DotAvatar
-                    color={data.me.avatarColor}
-                    expression={data.me.avatarExpression}
-                    size={40}
-                  />
-                  <span>Your profile</span>
-                </a>
-              )}
-              {(privileged || data.me.role === "volunteer") && (
-                <a href={admin ? "/dashboard" : "/admin/participants"}>
-                  {admin ? "Workspace" : "Administration"}
-                </a>
-              )}
-              {data.me.mode !== "viewer" && <Link className="personal-credit-nav-link" prefetch={false} href="/personal/credits" onNavigate={(event) => navigate(event, "/personal/credits")} aria-current={path === "/personal/credits" ? "page" : undefined}>
-                <Icon name="credits" /> My credits
-              </Link>}
-              <button
-                className="link-button account-logout"
-                type="button"
-                onClick={() => void logout()}
-              >
-                <LogOut size={20} aria-hidden="true" />
-                <span>Log out</span>
-              </button>
-            </>
-          ) : (
-            <p>
-              November 1<br />
-              New Delhi
-            </p>
-          )}
-        </div>
-      </aside>
+      <NavigationHeader
+        open={menu}
+        hydrated={hydrated}
+        onOpen={() => setMenu(true)}
+        account={data.me}
+        accountHref={data.me ? privileged || data.me.role === "volunteer" || data.me.mode === "viewer" ? "/dashboard" : "/profile" : undefined}
+        accountLabel={data.me ? data.me.mode === "viewer" ? "Viewer mode" : privileged || data.me.role === "volunteer" ? "Your Dashboard" : "Your profile" : undefined}
+      />
       <MobileNavigation open={menu} onClose={() => setMenu(false)}>
         {nav.map(([href, label]) => (
-          <Link prefetch={false} key={href} href={href} onNavigate={(event) => navigate(event, href)} aria-current={path === href ? "page" : undefined}><Icon name={navigationIcon(label)} />{label}</Link>
+          <Link prefetch={false} key={href} href={href} onNavigate={(event) => navigate(event, href)} aria-current={path === href || (href === "/discover/teams" && path === "/discover/participants") ? "page" : undefined}><Icon name={navigationIcon(label)} />{label}</Link>
         ))}
         {!data.me ? (
           <a href="/signin?returnTo=%2Fdashboard" target="_top"><Icon name="person" />Sign in</a>

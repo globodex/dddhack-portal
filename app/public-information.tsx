@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { HeadingDot } from "./expressive-heading";
-import InformationNavigation from "./information-navigation";
+import { InformationHeader } from "./information-navigation";
 
 export const privacyContact = "hey@itsparam.in";
 export const portalOperator = "Parampreet Singh";
@@ -360,18 +360,7 @@ export default function PublicInformation({
       <a className="information-skip" href="#information-main">
         Skip to content
       </a>
-      <header className="information-header">
-        <a className="information-brand" href="/">
-          <img
-            src="/brand/codex-user-supplied.svg"
-            width={28}
-            height={28}
-            alt=""
-          />
-          <span>Codex Community New Delhi</span>
-        </a>
-        <InformationNavigation path={`/${kind}`} />
-      </header>
+      <InformationHeader path={`/${kind}`} />
       <main id="information-main" className="information-layout">
         <header className="information-title">
           <span className="information-draft">Draft for organizer review</span>
