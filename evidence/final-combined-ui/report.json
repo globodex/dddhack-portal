@@ -1,5 +1,5 @@
 {
-  "source": "34236a144eb90837310e305274d5b2a6b518c30e",
+  "source": "53479587bc70fe718344066d1b7678f180a36356",
   "tree": "fbfcf2d4769d71a095275bd4bf90d8971e74403b",
   "runtime": {
     "frontend": 3018,
@@ -378,6 +378,54 @@
         ]
       },
       "sha256": "2763fad856ba5cd4f7fa2193a4ba6f3337f00fa2cf399c309a972e0cf69a1e90"
+    },
+    {
+      "name": "people-compact-1440x900",
+      "path": "evidence/final-combined-ui/people-compact-1440x900.png",
+      "url": "/discover/participants",
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "scrollWidth": 1425,
+        "openDialogs": []
+      },
+      "sha256": "c078b25c1b6416202d17bcfe9adefc45806dfdc55537b6ee3fbc8946b42f80f4"
+    },
+    {
+      "name": "people-compact-390x844",
+      "path": "evidence/final-combined-ui/people-compact-390x844.png",
+      "url": "/discover/participants",
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 375,
+        "openDialogs": []
+      },
+      "sha256": "991b914f6f985816fdd6650d1092b293d93f844388849e9bc71b8811ad0df80d"
+    },
+    {
+      "name": "people-compact-320x480",
+      "path": "evidence/final-combined-ui/people-compact-320x480.png",
+      "url": "/discover/participants",
+      "geometry": {
+        "width": 320,
+        "height": 480,
+        "scrollWidth": 305,
+        "openDialogs": []
+      },
+      "sha256": "4019bb823565d76352ea3a4fc6ab35a3c6ac4564caeae7ac9d8d9e5fc9ed821b"
+    },
+    {
+      "name": "admin-credit-stock-desktop1440",
+      "path": "evidence/final-combined-ui/admin-credit-stock-desktop1440.png",
+      "url": "/admin/credits",
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "scrollWidth": 1425,
+        "openDialogs": []
+      },
+      "sha256": "dd93ca6b68345f2a0a12c5115caf2bf0e430357cc5993d3937e8c78c96d6660c"
     }
   ],
   "checks": [
@@ -392,7 +440,185 @@
     "Current inline committed history: touch opens current2, Enter opens saved1, one bounded GET for both, keyboard focus remains on summary, no modal or writes",
     "short320 Common Ground3safe current members; Escape restores opener focus",
     "Short320 admin score targets remain44px with no horizontal overflow",
-    "project-share-short320 actual local link copy; Escape closes and restores focus"
+    "project-share-short320 actual local link copy; Escape closes and restores focus",
+    {
+      "check": "Compact no-bio People cards",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "cards": [
+        {
+          "width": 361.328125,
+          "height": 176
+        },
+        {
+          "width": 361.328125,
+          "height": 176
+        },
+        {
+          "width": 361.34375,
+          "height": 176
+        },
+        {
+          "width": 361.328125,
+          "height": 176
+        },
+        {
+          "width": 361.328125,
+          "height": 176
+        },
+        {
+          "width": 361.34375,
+          "height": 176
+        },
+        {
+          "width": 361.328125,
+          "height": 176
+        },
+        {
+          "width": 361.328125,
+          "height": 176
+        },
+        {
+          "width": 361.34375,
+          "height": 176
+        },
+        {
+          "width": 361.328125,
+          "height": 176
+        },
+        {
+          "width": 361.328125,
+          "height": 176
+        }
+      ]
+    },
+    {
+      "check": "Compact no-bio People cards",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "cards": [
+        {
+          "width": 335,
+          "height": 176
+        },
+        {
+          "width": 335,
+          "height": 176
+        },
+        {
+          "width": 335,
+          "height": 176
+        },
+        {
+          "width": 335,
+          "height": 176
+        },
+        {
+          "width": 335,
+          "height": 176
+        },
+        {
+          "width": 335,
+          "height": 176
+        },
+        {
+          "width": 335,
+          "height": 176
+        },
+        {
+          "width": 335,
+          "height": 176
+        },
+        {
+          "width": 335,
+          "height": 176
+        },
+        {
+          "width": 335,
+          "height": 176
+        },
+        {
+          "width": 335,
+          "height": 176
+        }
+      ]
+    },
+    {
+      "check": "Compact no-bio People cards",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "cards": [
+        {
+          "width": 265,
+          "height": 190
+        },
+        {
+          "width": 265,
+          "height": 190
+        },
+        {
+          "width": 265,
+          "height": 190
+        },
+        {
+          "width": 265,
+          "height": 190
+        },
+        {
+          "width": 265,
+          "height": 190
+        },
+        {
+          "width": 265,
+          "height": 190
+        },
+        {
+          "width": 265,
+          "height": 190
+        },
+        {
+          "width": 265,
+          "height": 190
+        },
+        {
+          "width": 265,
+          "height": 190
+        },
+        {
+          "width": 265,
+          "height": 190
+        },
+        {
+          "width": 265,
+          "height": 190
+        }
+      ]
+    },
+    {
+      "check": "320touch internal team scroll reaches last member without background motion",
+      "reach": {
+        "height": 72,
+        "visible": true,
+        "hit": true,
+        "scrollTop": 100
+      }
+    },
+    {
+      "check": "Allocation requests only on explicit stock expansion; devStrictMode may abort first mount",
+      "requestDelta": 2
+    },
+    "Admin stock has0initial allocation GETs; explicit expansion fetches only bounded page0 and actual fake-code Copy works",
+    {
+      "check": "Mobile Logout rendered in menu",
+      "color": "rgb(177, 45, 38)"
+    },
+    "Mobile menu Escape restores hamburger; Logout opens confirmation; Cancel sends no POST"
   ],
   "payloads": [
     {
@@ -463,6 +689,14 @@
     {
       "path": "/api/portal?view=%2Fadmin%2Fcredit-stock%2Ffake_credit&q=&page=0",
       "method": "GET"
+    },
+    {
+      "path": "/api/portal?view=%2Fadmin%2Fcredit-stock%2Ffake_credit&q=&page=0",
+      "method": "GET"
+    },
+    {
+      "path": "/api/portal?view=%2Fadmin%2Fcredit-stock%2Ffake_credit&q=&page=0",
+      "method": "GET"
     }
   ],
   "inputs": {
@@ -470,15 +704,405 @@
     "app/portal.tsx": "274c7e4373deaddabe1465d35207cf2361f28b62f6334d253259c715257fe106",
     "app/navigation-header.tsx": "0e49d8773e38f2c798b654947a32520a67141e735a1689db38c5f9375cfa535a",
     "app/unified-navigation.css": "40352ff6ec09aa27bc1d708d5bae01292dcfb15b8817f1e9edb641401bc30878",
-    "app/discovery-profile.tsx": "a379b7b2672bb5c2714d8be52e60e4ca411cb6ebbe440da082f7f0ca387ac1a6",
-    "app/discovery-profile.css": "490e1c7da4cdd838a73a742f2405df311b301016b84e62924c8355eb14a7028e",
+    "app/discovery-profile.tsx": "1bd8e80cf1cfb98ce60eeb78e2f71169ed6eafae6225c6b8645e081ac483dc71",
+    "app/discovery-profile.css": "22e3acf54ca02a812a06a84f373d47351bf2eb8c2a49f0db3649049d8a6113bb",
     "app/project-share.tsx": "68b859ac5530ce609a9ef6c9e428bcccaa300866ddf5a3572709433db5ca555e",
     "app/admin-credit-stock.tsx": "03f4f8a10838b46b8b3db33ba574df6b8512f34a38d3189e6a092f24ed3fd7b8",
     "lib/experience.ts": "c79bb1eac7a34ac191c1b9f50aeba5f7596ef233cf12134953c78ca519228b3e",
     "lib/service.ts": "38f9f8b2680c1c5840035a58b42c9c2370cc410426eb06835b232f382e939dbb"
   },
-  "finishedAt": "2026-10-24T19:58:43.892Z",
-  "previousHarnessFailure": "locator.tap: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'View committed history', exact: true })\u001b[22m\n\n    at /workspace/ddd-final-combined-qa/evidence/final-combined-ui/capture.mjs:35:415",
-  "supplementStartedAt": "2026-10-24T19:57:37.740Z",
-  "failure": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('table', { name: 'Builder boost (FAKE) allocation table', exact: true }) to be visible\u001b[22m\n\n    at /workspace/ddd-final-combined-qa/evidence/final-combined-ui/supplement.mjs:27:290"
+  "finishedAt": "2026-10-24T20:02:03.436Z",
+  "previousHarnessFailure": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('table', { name: 'Builder boost (FAKE) allocation table', exact: true }) to be visible\u001b[22m\n\n    at /workspace/ddd-final-combined-qa/evidence/final-combined-ui/supplement.mjs:27:290",
+  "supplementStartedAt": "2026-10-24T20:01:09.393Z",
+  "refreshSource": "53479587bc70fe718344066d1b7678f180a36356",
+  "refreshTarget": "a57b229b8214d148c6fa197c0d7e2bcde639ddb9",
+  "sourceEquivalence": "",
+  "requestFailures": [
+    {
+      "path": "/api/portal?view=%2Fadmin%2Fcredit-stock%2Ffake_credit&q=&page=0",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "chosenScreenshots": [
+    {
+      "name": "teams-desktop1440",
+      "path": "evidence/final-combined-ui/teams-desktop1440.png",
+      "url": "/discover/teams",
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "scrollWidth": 1425,
+        "openDialogs": []
+      },
+      "sha256": "16f459a096cf77fe8a28d8133575e396e031f9ebf65d20181d57de5111a3a1ee"
+    },
+    {
+      "name": "team-members-desktop1440",
+      "path": "evidence/final-combined-ui/team-members-desktop1440.png",
+      "url": "/discover/teams",
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "scrollWidth": 1425,
+        "openDialogs": [
+          {
+            "label": "discover-team-title",
+            "x": 432.5,
+            "y": 204.578125,
+            "width": 560,
+            "height": 490.84375,
+            "scrollHeight": 489,
+            "clientHeight": 489
+          }
+        ]
+      },
+      "sha256": "17b6ecc40a22ba9dbeccbba0f49eaa3aa37b7aad655bcf3aba92718edcda03f0"
+    },
+    {
+      "name": "projects-desktop1440",
+      "path": "evidence/final-combined-ui/projects-desktop1440.png",
+      "url": "/projects",
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "scrollWidth": 1425,
+        "openDialogs": []
+      },
+      "sha256": "635d1528ffc7c2fadec7e03d4ae2849837ab0cc06af0078290532157cf18d5ae"
+    },
+    {
+      "name": "project-detail-desktop1440",
+      "path": "evidence/final-combined-ui/project-detail-desktop1440.png",
+      "url": "/projects/synthetic-alice",
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "scrollWidth": 1425,
+        "openDialogs": []
+      },
+      "sha256": "cdf14e5faae9a1b6385b86e511335423f38d7dca79b49e487678a2b081a013e5"
+    },
+    {
+      "name": "project-share-desktop1440",
+      "path": "evidence/final-combined-ui/project-share-desktop1440.png",
+      "url": "/projects/synthetic-alice",
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "scrollWidth": 1425,
+        "openDialogs": [
+          {
+            "label": "_r_0_-title",
+            "x": 482.5,
+            "y": 259.796875,
+            "width": 460,
+            "height": 380.390625,
+            "scrollHeight": 378,
+            "clientHeight": 378
+          }
+        ]
+      },
+      "sha256": "84b822c7d8b30e4e6cebd7cd31ece25809d234c9066990d0711dfbcc0e4357ca"
+    },
+    {
+      "name": "admin-submissions-desktop1440",
+      "path": "evidence/final-combined-ui/admin-submissions-desktop1440.png",
+      "url": "/admin/submissions",
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "scrollWidth": 1425,
+        "openDialogs": []
+      },
+      "sha256": "45d3f0a0646f504f02fcf3df7e07564d7af3fc947088f7939224bc3e9f5df94a"
+    },
+    {
+      "name": "admin-project-detail-desktop1440",
+      "path": "evidence/final-combined-ui/admin-project-detail-desktop1440.png",
+      "url": "/admin/submissions/visual_project_alice",
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "scrollWidth": 1425,
+        "openDialogs": []
+      },
+      "sha256": "62871cfbb5e9b0999dadc6be8a1550a4c4eae2ebce4e62329a42c6c848c81ed0"
+    },
+    {
+      "name": "admin-team-actions-desktop1440",
+      "path": "evidence/final-combined-ui/admin-team-actions-desktop1440.png",
+      "url": "/admin/teams",
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "scrollWidth": 1425,
+        "openDialogs": [
+          {
+            "label": "Change Common Ground status",
+            "x": 207.5,
+            "y": 383,
+            "width": 480,
+            "height": 329.265625,
+            "scrollHeight": 329,
+            "clientHeight": 329
+          }
+        ]
+      },
+      "sha256": "7bcadf10a7ce36513f93ec569394047afbcea93d2aa510366e1f0a894cee6145"
+    },
+    {
+      "name": "dashboard-project-toolbar-desktop1440",
+      "path": "evidence/final-combined-ui/dashboard-project-toolbar-desktop1440.png",
+      "url": "/dashboard#project",
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "scrollWidth": 1425,
+        "openDialogs": []
+      },
+      "sha256": "c4e73a5fc23e6713a0771c4613a785fb29268c8aa7c0bd5e96a65e375c0b4198"
+    },
+    {
+      "name": "teams-mobile390",
+      "path": "evidence/final-combined-ui/teams-mobile390.png",
+      "url": "/discover/teams",
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 375,
+        "openDialogs": []
+      },
+      "sha256": "50e2fd000e637cc726c4f3945d33ed45fc43d2acc1149d6b825745d8184aa7e7"
+    },
+    {
+      "name": "team-members-mobile390",
+      "path": "evidence/final-combined-ui/team-members-mobile390.png",
+      "url": "/discover/teams",
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 375,
+        "openDialogs": [
+          {
+            "label": "discover-team-title",
+            "x": 8.5,
+            "y": 186.375,
+            "width": 358,
+            "height": 471.25,
+            "scrollHeight": 469,
+            "clientHeight": 469
+          }
+        ]
+      },
+      "sha256": "f16d843390770a5698cd0fb7ec86ecc287c6b9ca463eb827e2755f4ab66a38c6"
+    },
+    {
+      "name": "projects-mobile390",
+      "path": "evidence/final-combined-ui/projects-mobile390.png",
+      "url": "/projects",
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 375,
+        "openDialogs": []
+      },
+      "sha256": "91d598fe8ac96ce3fae36433fcaea80aab6c794657707d27d91ce95a2752b4cc"
+    },
+    {
+      "name": "project-detail-mobile390",
+      "path": "evidence/final-combined-ui/project-detail-mobile390.png",
+      "url": "/projects/synthetic-alice",
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 375,
+        "openDialogs": []
+      },
+      "sha256": "497bbf4389058f4feafdd90dcdc046fad3ec96d634245fe5a12020eec6940bf0"
+    },
+    {
+      "name": "project-share-mobile390",
+      "path": "evidence/final-combined-ui/project-share-mobile390.png",
+      "url": "/projects/synthetic-alice",
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 375,
+        "openDialogs": [
+          {
+            "label": "_r_0_-title",
+            "x": 8.5,
+            "y": 230.796875,
+            "width": 358,
+            "height": 382.390625,
+            "scrollHeight": 380,
+            "clientHeight": 380
+          }
+        ]
+      },
+      "sha256": "74cf251ab6a2759e9a75bdf63d5a537d980a751a398e7b94b41719a0d5bbecbf"
+    },
+    {
+      "name": "admin-submissions-mobile390",
+      "path": "evidence/final-combined-ui/admin-submissions-mobile390.png",
+      "url": "/admin/submissions",
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 375,
+        "openDialogs": []
+      },
+      "sha256": "e52915701a16bcf80954543bb7d5a7b65e0f1ec6440d9e86d71362c2debbf830"
+    },
+    {
+      "name": "admin-project-detail-mobile390",
+      "path": "evidence/final-combined-ui/admin-project-detail-mobile390.png",
+      "url": "/admin/submissions/visual_project_alice",
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 375,
+        "openDialogs": []
+      },
+      "sha256": "7b0e2c019efae3c4e994cd830c6392c9626aed79c5e56eb43d3a632220d582a2"
+    },
+    {
+      "name": "admin-team-actions-mobile390",
+      "path": "evidence/final-combined-ui/admin-team-actions-mobile390.png",
+      "url": "/admin/teams",
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 375,
+        "openDialogs": [
+          {
+            "label": "Change Common Ground status",
+            "x": 16,
+            "y": 340,
+            "width": 358,
+            "height": 329.265625,
+            "scrollHeight": 329,
+            "clientHeight": 329
+          }
+        ]
+      },
+      "sha256": "e6669f7132d2bb7ff8699e48a7a6141d78b7b6252e5fdbd00857cb09391dc62a"
+    },
+    {
+      "name": "dashboard-project-history-mobile390",
+      "path": "evidence/final-combined-ui/dashboard-project-history-mobile390.png",
+      "url": "/dashboard#project",
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 375,
+        "openDialogs": []
+      },
+      "sha256": "52efdcc7a39af004fc4a328e81ecbc01387b44a8bdce87f9b62fd1369bc79599"
+    },
+    {
+      "name": "team-members-short320",
+      "path": "evidence/final-combined-ui/team-members-short320.png",
+      "url": "/discover/teams",
+      "geometry": {
+        "width": 320,
+        "height": 480,
+        "scrollWidth": 305,
+        "openDialogs": [
+          {
+            "label": "discover-team-title",
+            "x": 8.5,
+            "y": 16,
+            "width": 288,
+            "height": 448,
+            "scrollHeight": 446,
+            "clientHeight": 446
+          }
+        ]
+      },
+      "sha256": "4dbe005ac5ff95d4fea56c1b8065c49cd03dfa9adf5405a5e7862ed3b27a7c73"
+    },
+    {
+      "name": "admin-project-detail-short320",
+      "path": "evidence/final-combined-ui/admin-project-detail-short320.png",
+      "url": "/admin/submissions/visual_project_alice",
+      "geometry": {
+        "width": 320,
+        "height": 480,
+        "scrollWidth": 305,
+        "openDialogs": []
+      },
+      "sha256": "bbc54c8e790c8331ea099d1bcb8a37fa8ae3e980f1e2440df5ba184e648ddbc7"
+    },
+    {
+      "name": "project-share-short320",
+      "path": "evidence/final-combined-ui/project-share-short320.png",
+      "url": "/projects/synthetic-alice",
+      "geometry": {
+        "width": 320,
+        "height": 480,
+        "scrollWidth": 305,
+        "openDialogs": [
+          {
+            "label": "_r_0_-title",
+            "x": 8.5,
+            "y": 54.796875,
+            "width": 288,
+            "height": 370.390625,
+            "scrollHeight": 368,
+            "clientHeight": 368
+          }
+        ]
+      },
+      "sha256": "2763fad856ba5cd4f7fa2193a4ba6f3337f00fa2cf399c309a972e0cf69a1e90"
+    },
+    {
+      "name": "people-compact-1440x900",
+      "path": "evidence/final-combined-ui/people-compact-1440x900.png",
+      "url": "/discover/participants",
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "scrollWidth": 1425,
+        "openDialogs": []
+      },
+      "sha256": "c078b25c1b6416202d17bcfe9adefc45806dfdc55537b6ee3fbc8946b42f80f4"
+    },
+    {
+      "name": "people-compact-390x844",
+      "path": "evidence/final-combined-ui/people-compact-390x844.png",
+      "url": "/discover/participants",
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 375,
+        "openDialogs": []
+      },
+      "sha256": "991b914f6f985816fdd6650d1092b293d93f844388849e9bc71b8811ad0df80d"
+    },
+    {
+      "name": "people-compact-320x480",
+      "path": "evidence/final-combined-ui/people-compact-320x480.png",
+      "url": "/discover/participants",
+      "geometry": {
+        "width": 320,
+        "height": 480,
+        "scrollWidth": 305,
+        "openDialogs": []
+      },
+      "sha256": "4019bb823565d76352ea3a4fc6ab35a3c6ac4564caeae7ac9d8d9e5fc9ed821b"
+    },
+    {
+      "name": "admin-credit-stock-desktop1440",
+      "path": "evidence/final-combined-ui/admin-credit-stock-desktop1440.png",
+      "url": "/admin/credits",
+      "geometry": {
+        "width": 1440,
+        "height": 900,
+        "scrollWidth": 1425,
+        "openDialogs": []
+      },
+      "sha256": "dd93ca6b68345f2a0a12c5115caf2bf0e430357cc5993d3937e8c78c96d6660c"
+    }
+  ]
 }

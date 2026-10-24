@@ -1,0 +1,10 @@
+{
+  "source": "53479587bc70fe718344066d1b7678f180a36356",
+  "equivalentProductSource": "a57b229b8214d148c6fa197c0d7e2bcde639ddb9",
+  "syntheticOnly": true,
+  "postCount": 0,
+  "errors": [],
+  "path": "evidence/final-combined-ui/admin-credit-stock-desktop1440.png",
+  "sha256": "823e60dc544236cb9f915988855444f5ff86d036c20caf48937b49cac10ef562",
+  "check": "Assigned filter shows actual saved fakeAlice/email/voucher/time/status mapping; actual clipboard copy succeeds; no writes"
+}

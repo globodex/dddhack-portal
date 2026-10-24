@@ -1,0 +1,27 @@
+{
+  "browsersClosed": true,
+  "portsStopped": [
+    3018,
+    8867
+  ],
+  "listenerCheck": "ss shows no listeners",
+  "countsBefore": {
+    "users": 17,
+    "teams": 3,
+    "memberships": 9,
+    "projects": 2,
+    "submission_versions": 5,
+    "credit_inventory": 21
+  },
+  "countsAfter": {
+    "users": 17,
+    "teams": 3,
+    "memberships": 9,
+    "projects": 2,
+    "submission_versions": 5,
+    "credit_inventory": 21
+  },
+  "domainCountsUnchanged": true,
+  "databaseSha256After": "5752c995c6beb0a7caedf443574b8622bd526cbff1be4c4fb350bf80bd160e76",
+  "appSourceUnchangedByQALane": true
+}
