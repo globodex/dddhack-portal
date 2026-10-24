@@ -97,7 +97,7 @@ test("SQLite populated0025 upgrade: transactional failure restores guards/data;0
   }
 });
 
-test("PostgreSQL full populated0104 ledger upgrade preserves auth/audit/all old rows, then removes approved source/media only for target terminal team", async () => {
+test("PostgreSQL full populated0104 ledger upgrade preserves auth/audit/all old rows, then removes target source/media while retaining the deleted former leader's surviving-team draft assets", async () => {
   const full = await loadMigrationPlan();
   const migration = full.find(
     (m) => m.name === "0105_terminal_record_deletion.sql",
@@ -133,7 +133,7 @@ test("PostgreSQL full populated0104 ledger upgrade preserves auth/audit/all old 
         now,
       ],
       [
-        "INSERT INTO portal_media_uploads(id,actor_id,team_id,revision,kind,bucket,staging_key,content_type,byte_length,expires_at,state) VALUES('synthetic-unrelated-upload','fake_alice','fake_team1',2,'logo','synthetic-cascade-bucket','synthetic-unrelated-staging','image/png',100,?,'pending')",
+        "INSERT INTO portal_media_uploads(id,actor_id,team_id,revision,kind,bucket,staging_key,content_type,byte_length,expires_at,state) VALUES('synthetic-unrelated-upload','fake_eve','fake_team1',2,'logo','synthetic-cascade-bucket','synthetic-unrelated-staging','image/png',100,?,'pending')",
         now,
       ],
       [

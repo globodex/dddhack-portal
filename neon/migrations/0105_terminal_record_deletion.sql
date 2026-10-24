@@ -232,8 +232,6 @@ BEGIN
  IF NEW.kind='team' THEN
   DELETE FROM portal_media_uploads WHERE team_id=NEW.target_id;
   IF to_regclass('approved_evaluation_snapshots') IS NOT NULL THEN EXECUTE 'DELETE FROM approved_evaluation_snapshots WHERE version_id IN (SELECT id FROM submission_versions WHERE team_id=$1)' USING NEW.target_id; END IF;
- ELSE
-  DELETE FROM portal_media_uploads WHERE actor_id=NEW.target_id AND version_id IS NULL;
  END IF;
  RETURN NEW;
 END;
