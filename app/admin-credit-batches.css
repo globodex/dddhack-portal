@@ -32,6 +32,13 @@
 .admin-credit-batches textarea {
   resize: vertical;
 }
+/* Preserve the native file picker's visually hidden dimensions. */
+.admin-credit-batches input.sr-only {
+  width: 1px;
+  height: 1px;
+  min-height: 0;
+  padding: 0;
+}
 .admin-credit-batches .button {
   display: inline-flex;
   justify-content: center;

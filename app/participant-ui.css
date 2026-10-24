@@ -452,7 +452,7 @@ body:has(.onboarding-shell) {
   font-size: 16px;
 }
 .app-shell .profile-flow .profile-fields label > input[readonly] {
-  color: #778594;
+  color: #526079;
   background: #edf2f5;
   border-color: #e1e9ef;
   padding-right: 40px;
@@ -532,7 +532,7 @@ body:has(.onboarding-shell) {
 }
 .app-shell .profile-flow .sex-choices input:checked + span {
   border-radius: 8px;
-  background: #008d66;
+  background: #008656;
   color: #fff;
   box-shadow: none;
   font-weight: 700;
