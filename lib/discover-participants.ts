@@ -141,7 +141,7 @@ async function selectedPerson(db: Database, row: DirectoryRow, viewer?: ProfileV
   const publicPerson = project(row);
   const admin = !!viewer && !viewer.deactivated && (viewer.owner || viewer.role === "admin");
   const participant = !!viewer && !viewer.deactivated && viewer.canParticipate === true;
-  if (!admin && !participant) return { ...publicPerson, details: {} };
+  if (!viewer) return { ...publicPerson, details: {} };
   const self = participant && viewer!.id === row.id;
   const extra = await one<{
     bio: string; socials: string; gender: string; genderDescription: string;
@@ -156,10 +156,12 @@ async function selectedPerson(db: Database, row: DirectoryRow, viewer?: ProfileV
     ...publicPerson,
     ...(personal ? { bio: extra.bio, socials: JSON.parse(extra.socials || "[]") } : {}),
     details: {
+      // The owner explicitly approved the saved gender value in selected profiles.
+      // This does not add it to directory cards or publish the freeform description.
+      ...(extra.gender ? { gender: extra.gender } : {}),
       ...(personal ? {
         ...(extra.profession?.trim() ? { profession: extra.profession } : {}),
         ...(extra.organization?.trim() ? { organization: extra.organization } : {}),
-        ...(extra.gender ? { gender: extra.gender } : {}),
         ...(extra.genderDescription?.trim() ? { genderDescription: extra.genderDescription } : {}),
       } : {}),
       ...(admin && /^org-[A-Za-z0-9_-]+$/.test(extra.openaiOrgId || "") ? { openaiOrgId: extra.openaiOrgId } : {}),
