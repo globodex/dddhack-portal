@@ -1,0 +1,45 @@
+{
+  "source": "f8b4788ccb527c18b53fcaf4071168a874fdde11",
+  "screenshots": [
+    {
+      "path": "evidence/redesign-profile/profile-step-1-1440x900.png",
+      "nativeOriginal": true,
+      "viewed": true
+    },
+    {
+      "path": "evidence/redesign-profile/profile-step-2-1440x900.png",
+      "nativeOriginal": true,
+      "viewed": true
+    },
+    {
+      "path": "evidence/redesign-profile/profile-step-3-1440x900.png",
+      "nativeOriginal": true,
+      "viewed": true
+    },
+    {
+      "path": "evidence/redesign-profile/profile-step-1-390x844.png",
+      "nativeOriginal": true,
+      "viewed": true
+    },
+    {
+      "path": "evidence/redesign-profile/profile-step-2-390x844.png",
+      "nativeOriginal": true,
+      "viewed": true
+    },
+    {
+      "path": "evidence/redesign-profile/profile-step-3-390x844.png",
+      "nativeOriginal": true,
+      "viewed": true
+    }
+  ],
+  "library": {
+    "status": "blocked",
+    "action": "Create six screenshot Library files through current prepared-upload helper",
+    "reason": "Hosted apps tools/list request failed with HTTP status 401",
+    "writePrepared": false,
+    "newLibraryIds": []
+  },
+  "syntheticOnly": true,
+  "visualCheckpoint": true,
+  "completionClaim": false
+}
