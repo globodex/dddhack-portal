@@ -1,0 +1,1079 @@
+{
+  "label": "root-ready",
+  "sourceRoot": "/workspace/dddhack-portal",
+  "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+  "origin": "http://localhost:3001",
+  "runtime": "next-migration",
+  "backend": "synthetic-sqlite",
+  "syntheticOnly": true,
+  "disposable": true,
+  "browserSandbox": false,
+  "scenarios": [
+    {
+      "label": "dashboard-ready",
+      "route": "/dashboard",
+      "actor": "alice"
+    },
+    {
+      "label": "project-ready",
+      "route": "/dashboard",
+      "actor": "alice",
+      "tab": "Project"
+    }
+  ],
+  "runtimeFingerprint": "9331c031152a15c5fe242593fb36641405218f9855f02348cd92a189fa1f11e7",
+  "sourceHasUncommittedRuntimeChanges": false,
+  "startedAt": "2026-10-24T09:47:51.349Z",
+  "writes": false,
+  "screenshots": [
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-ready/dashboard-ready-1440x900-viewport.png",
+      "route": "/dashboard",
+      "actor": "alice",
+      "tab": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "6adfd1ad668ab4a3c7285ee02ffb283648d0f09431d65316001f9888e06ef9f8",
+      "inspected": true,
+      "inspection": "QA inspected actual rendered synthetic UI: correct responsive shell/forms and no clipping; ready Dashboard shows checked-in fixture with existing committed history."
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-ready/project-ready-1440x900-viewport.png",
+      "route": "/dashboard",
+      "actor": "alice",
+      "tab": "Project",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "2f7e82fd552fd4dfcef53a32ab1279dafe9155fb84166b47e1220037d20e798c",
+      "inspected": true,
+      "inspection": "QA inspected actual rendered synthetic UI: correct responsive shell/forms and no clipping; ready Dashboard shows checked-in fixture with existing committed history."
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-ready/dashboard-ready-390x844-viewport.png",
+      "route": "/dashboard",
+      "actor": "alice",
+      "tab": null,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "d915d3cc10b09dda6e58c17d69705b4138ab2e13982d5f630c62d8c674759b0b",
+      "inspected": true,
+      "inspection": "QA inspected actual rendered synthetic UI: correct responsive shell/forms and no clipping; ready Dashboard shows checked-in fixture with existing committed history."
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-ready/project-ready-390x844-viewport.png",
+      "route": "/dashboard",
+      "actor": "alice",
+      "tab": "Project",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "40f3c2490763688b7ad43790bf47369f551324a36812847de9ff50d8a9923378",
+      "inspected": true,
+      "inspection": "QA inspected actual rendered synthetic UI: correct responsive shell/forms and no clipping; ready Dashboard shows checked-in fixture with existing committed history."
+    }
+  ],
+  "samples": [
+    {
+      "scenario": "dashboard-ready",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "elapsedToCaptureMs": 1433.5939859999999,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "><Dashboard",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/dashboard",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 932.5,
+          "navigationId": 787,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 1,
+          "domainLookupStart": 1,
+          "domainLookupEnd": 1,
+          "connectStart": 1,
+          "secureConnectionStart": 0,
+          "connectEnd": 1,
+          "requestStart": 21,
+          "responseStart": 421.79999999981374,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 421.79999999981374,
+          "responseEnd": 430.5,
+          "transferSize": 9866,
+          "encodedBodySize": 9566,
+          "decodedBodySize": 40024,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 905.1000000000931,
+          "domContentLoadedEventStart": 905.1000000000931,
+          "domContentLoadedEventEnd": 905.2999999998137,
+          "domComplete": 932.3999999999069,
+          "loadEventStart": 932.5,
+          "loadEventEnd": 932.5,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 64
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 64,
+          "width": 232,
+          "height": 836
+        },
+        {
+          "selector": "#main",
+          "x": 232,
+          "y": 64,
+          "width": 1208,
+          "height": 1332.46875
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/dashboard",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/icons/social/whatsapp.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0
+    },
+    {
+      "scenario": "project-ready",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "elapsedToCaptureMs": 1655.4881420000002,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "><Dashboard",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/dashboard",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 586.6999999997206,
+          "navigationId": 2304,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.5,
+          "domainLookupStart": 0.5,
+          "domainLookupEnd": 0.5,
+          "connectStart": 0.5,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.5,
+          "requestStart": 3.7999999998137355,
+          "responseStart": 124.6999999997206,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 124.6999999997206,
+          "responseEnd": 127.5,
+          "transferSize": 9866,
+          "encodedBodySize": 9566,
+          "decodedBodySize": 40024,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 535,
+          "domContentLoadedEventStart": 535,
+          "domContentLoadedEventEnd": 535.5,
+          "domComplete": 586.6000000000931,
+          "loadEventStart": 586.6000000000931,
+          "loadEventEnd": 586.6999999997206,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 64
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 64,
+          "width": 232,
+          "height": 836
+        },
+        {
+          "selector": "#main",
+          "x": 232,
+          "y": 64,
+          "width": 1208,
+          "height": 1288.328125
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/dashboard",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/icons/social/whatsapp.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0
+    },
+    {
+      "scenario": "dashboard-ready",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "elapsedToCaptureMs": 1165.8352909999994,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "><Dashboard",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/dashboard",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 673.5,
+          "navigationId": 8918,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.6000000000931323,
+          "domainLookupStart": 0.6000000000931323,
+          "domainLookupEnd": 0.6000000000931323,
+          "connectStart": 0.6000000000931323,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.6000000000931323,
+          "requestStart": 9.600000000093132,
+          "responseStart": 157.79999999981374,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 157.79999999981374,
+          "responseEnd": 160.39999999990687,
+          "transferSize": 9866,
+          "encodedBodySize": 9566,
+          "decodedBodySize": 40024,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 609.3999999999069,
+          "domContentLoadedEventStart": 609.3999999999069,
+          "domContentLoadedEventEnd": 609.7999999998137,
+          "domComplete": 673.3999999999069,
+          "loadEventStart": 673.3999999999069,
+          "loadEventEnd": 673.5,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 65
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "#main",
+          "x": 0,
+          "y": 65,
+          "width": 390,
+          "height": 1292.6875
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/dashboard",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/icons/social/whatsapp.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0
+    },
+    {
+      "scenario": "project-ready",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "elapsedToCaptureMs": 1527.6503590000002,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "><Dashboard",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/dashboard",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 514.3000000002794,
+          "navigationId": 5816,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.40000000037252903,
+          "domainLookupStart": 0.40000000037252903,
+          "domainLookupEnd": 0.40000000037252903,
+          "connectStart": 0.40000000037252903,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.40000000037252903,
+          "requestStart": 6.800000000279397,
+          "responseStart": 102.3000000002794,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 102.3000000002794,
+          "responseEnd": 115.8000000002794,
+          "transferSize": 9865,
+          "encodedBodySize": 9565,
+          "decodedBodySize": 40024,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 313.70000000018626,
+          "domContentLoadedEventStart": 313.8000000002794,
+          "domContentLoadedEventEnd": 313.90000000037253,
+          "domComplete": 514.3000000002794,
+          "loadEventStart": 514.3000000002794,
+          "loadEventEnd": 514.3000000002794,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 65
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "#main",
+          "x": 0,
+          "y": 65,
+          "width": 390,
+          "height": 953.3125
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/dashboard",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/icons/social/whatsapp.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0
+    }
+  ],
+  "accessibility": [],
+  "findings": [],
+  "errors": [],
+  "blocked": [],
+  "limitations": [
+    "Local development runtime and disposable synthetic fixtures; no hosted timing, real sign-in, physical-device or production-data evidence.",
+    "Cold timings are one unthrottled diagnostic observation per route, not a benchmark or capacity estimate.",
+    "Screenshots use reduced motion and identical viewports. They prove the captured runtime only; mock API captures are explicitly labelled.",
+    "Chromium native sandbox is unavailable in this container (sandbox helper owner/user namespaces). Browser launched without it against allowlisted localhost only, fresh disposable contexts, and denied external DNS/requests."
+  ],
+  "browser": "154.0.8037.57",
+  "browserClosed": true,
+  "finishedAt": "2026-10-24T09:47:58.085Z"
+}

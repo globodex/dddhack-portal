@@ -75,6 +75,118 @@
       "sha256": "a1a82eb155fc0563746d373e8b9e9cf79bf7ad00cac3cf7a3c076b5348dbe424",
       "inspected": true,
       "inspection": "Reviewed against matching viewport by QA and UI; wordmark/Metro registration and composition preserved. CTA intentionally changed to new auth entry."
+    },
+    {
+      "path": "evidence/migration/root-final/signin-1440x900-viewport.png",
+      "route": "/signin",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "01f649e37bf884b051a3f7e1f1550752098a882c2ee4d6396bd7a7f4e6263258",
+      "inspected": true,
+      "inspection": "QA inspected actual rendered synthetic UI: correct responsive shell/forms and no clipping; ready Dashboard shows checked-in fixture with existing committed history."
+    },
+    {
+      "path": "evidence/migration/root-final/signin-390x844-viewport.png",
+      "route": "/signin",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "a54a5a2a85632baa784c41fb666c018fce45a3ba03faab3628d353cbdc1dcced",
+      "inspected": true,
+      "inspection": "QA inspected actual rendered synthetic UI: correct responsive shell/forms and no clipping; ready Dashboard shows checked-in fixture with existing committed history."
+    },
+    {
+      "path": "evidence/migration/root-ready/dashboard-ready-1440x900-viewport.png",
+      "route": "/dashboard",
+      "actor": "alice",
+      "tab": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "6adfd1ad668ab4a3c7285ee02ffb283648d0f09431d65316001f9888e06ef9f8",
+      "inspected": true,
+      "inspection": "QA inspected actual rendered synthetic UI: correct responsive shell/forms and no clipping; ready Dashboard shows checked-in fixture with existing committed history."
+    },
+    {
+      "path": "evidence/migration/root-ready/project-ready-1440x900-viewport.png",
+      "route": "/dashboard",
+      "actor": "alice",
+      "tab": "Project",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "2f7e82fd552fd4dfcef53a32ab1279dafe9155fb84166b47e1220037d20e798c",
+      "inspected": true,
+      "inspection": "QA inspected actual rendered synthetic UI: correct responsive shell/forms and no clipping; ready Dashboard shows checked-in fixture with existing committed history."
+    },
+    {
+      "path": "evidence/migration/root-ready/dashboard-ready-390x844-viewport.png",
+      "route": "/dashboard",
+      "actor": "alice",
+      "tab": null,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "d915d3cc10b09dda6e58c17d69705b4138ab2e13982d5f630c62d8c674759b0b",
+      "inspected": true,
+      "inspection": "QA inspected actual rendered synthetic UI: correct responsive shell/forms and no clipping; ready Dashboard shows checked-in fixture with existing committed history."
+    },
+    {
+      "path": "evidence/migration/root-ready/project-ready-390x844-viewport.png",
+      "route": "/dashboard",
+      "actor": "alice",
+      "tab": "Project",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "40f3c2490763688b7ad43790bf47369f551324a36812847de9ff50d8a9923378",
+      "inspected": true,
+      "inspection": "QA inspected actual rendered synthetic UI: correct responsive shell/forms and no clipping; ready Dashboard shows checked-in fixture with existing committed history."
     }
   ]
 }

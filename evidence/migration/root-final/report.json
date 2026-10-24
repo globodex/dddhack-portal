@@ -1,0 +1,4809 @@
+{
+  "label": "root-final",
+  "sourceRoot": "/workspace/dddhack-portal",
+  "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+  "origin": "http://localhost:3001",
+  "runtime": "next-migration",
+  "backend": "synthetic-sqlite",
+  "syntheticOnly": true,
+  "disposable": true,
+  "browserSandbox": false,
+  "scenarios": [
+    {
+      "label": "home",
+      "route": "/",
+      "actor": null,
+      "axe": true
+    },
+    {
+      "label": "rules",
+      "route": "/rules",
+      "actor": "alice",
+      "axe": true
+    },
+    {
+      "label": "dashboard",
+      "route": "/dashboard",
+      "actor": "alice",
+      "axe": true
+    },
+    {
+      "label": "profile",
+      "route": "/profile",
+      "actor": "alice",
+      "axe": true
+    },
+    {
+      "label": "discover",
+      "route": "/discover/participants",
+      "actor": "alice"
+    },
+    {
+      "label": "admin-participants",
+      "route": "/admin/participants",
+      "actor": "admin"
+    },
+    {
+      "label": "admin-teams",
+      "route": "/admin/teams",
+      "actor": "admin"
+    },
+    {
+      "label": "admin-credits",
+      "route": "/admin/credits",
+      "actor": "admin",
+      "nativeFileChooser": true
+    },
+    {
+      "label": "signin",
+      "route": "/signin",
+      "actor": null
+    }
+  ],
+  "runtimeFingerprint": "9331c031152a15c5fe242593fb36641405218f9855f02348cd92a189fa1f11e7",
+  "sourceHasUncommittedRuntimeChanges": false,
+  "startedAt": "2026-10-24T09:43:27.004Z",
+  "writes": false,
+  "screenshots": [
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-final/home-1440x900-viewport.png",
+      "route": "/",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "5556ba9ba38f58cbdbea1ae10a20d02fe944cb00f935e7c9a755b31c3ddb0849",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-final/rules-1440x900-viewport.png",
+      "route": "/rules",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "f990b6f8cecd018fa6048400bb8ca742dac0afbd56901ffa75b345cb6f70e0fa",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-final/dashboard-1440x900-viewport.png",
+      "route": "/dashboard",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "992131898847408622ab216b6d048eb952d6776e74931c6351f6f6ebd8d4a8d3",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-final/profile-1440x900-viewport.png",
+      "route": "/profile",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "12b43f16e1b30bd87615c00b166041c7827f074482314d6e61fd07c40d80e32a",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-final/discover-1440x900-viewport.png",
+      "route": "/discover/participants",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "627aedb115035fa164e7c687826902e673b29de883dbc7b5ab357df513116d50",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-final/admin-participants-1440x900-viewport.png",
+      "route": "/admin/participants",
+      "actor": "admin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "7329b90c52d1d428b95a3e750e2410d4b629a283441e245117cd99f31eb45b99",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-final/admin-teams-1440x900-viewport.png",
+      "route": "/admin/teams",
+      "actor": "admin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "e0c279d6a1dc6b345248ea470f974a00ee926205b1a2af709a27e8b4733ce5df",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-final/admin-credits-1440x900-viewport.png",
+      "route": "/admin/credits",
+      "actor": "admin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "3b42796ab7b2312814cd7a2a61be152e17375413c5d14aaaba2b38d200515e56",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-final/signin-1440x900-viewport.png",
+      "route": "/signin",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "01f649e37bf884b051a3f7e1f1550752098a882c2ee4d6396bd7a7f4e6263258",
+      "inspected": true,
+      "inspection": "QA inspected actual rendered synthetic UI: correct responsive shell/forms and no clipping; ready Dashboard shows checked-in fixture with existing committed history."
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-final/home-390x844-viewport.png",
+      "route": "/",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "a1a82eb155fc0563746d373e8b9e9cf79bf7ad00cac3cf7a3c076b5348dbe424",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-final/rules-390x844-viewport.png",
+      "route": "/rules",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "b3cc55455a782493f0d1d446c3f5d44126e68dcfae469b2efb675674a0e51a43",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-final/dashboard-390x844-viewport.png",
+      "route": "/dashboard",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "ca511090fd24c690cdfef713f2a0e06cc8ce90e1ac708079513902802d354a1e",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-final/profile-390x844-viewport.png",
+      "route": "/profile",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "d02ad49dd6f526536be7d909da43837b54da9f86ef4902ae002b33d6a01e579d",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-final/discover-390x844-viewport.png",
+      "route": "/discover/participants",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "05e98d02f6abcd30b553094684bf5fb959677e75733d9ae4fc167e2fe28b57a2",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-final/admin-participants-390x844-viewport.png",
+      "route": "/admin/participants",
+      "actor": "admin",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "ad917e8f65e13d6e0736f9944d966f36a2cd561e712cd8bff81fbc089b5fa67a",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-final/admin-teams-390x844-viewport.png",
+      "route": "/admin/teams",
+      "actor": "admin",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "dc2c1b86afe892eda0918a06e1ace060b2e0dca47b8a4e9e3338396817e42dbc",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-final/admin-credits-390x844-viewport.png",
+      "route": "/admin/credits",
+      "actor": "admin",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "98a83801e99338232aaef1c16975dec503a1c6c248aaf833ce176435e528cda8",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/root-final/signin-390x844-viewport.png",
+      "route": "/signin",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "78b2fd476323956c4c4f3885ab64d7cab3aa2fa5",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "a54a5a2a85632baa784c41fb666c018fce45a3ba03faab3628d353cbdc1dcced",
+      "inspected": true,
+      "inspection": "QA inspected actual rendered synthetic UI: correct responsive shell/forms and no clipping; ready Dashboard shows checked-in fixture with existing committed history."
+    }
+  ],
+  "samples": [
+    {
+      "scenario": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "elapsedToCaptureMs": 3852.1218000000003,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "DevDay ExchangeCommunity Hackathon:New Delhi",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 3231.4000000003725,
+          "navigationId": 5182,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.7000000001862645,
+          "domainLookupStart": 0.7000000001862645,
+          "domainLookupEnd": 0.7000000001862645,
+          "connectStart": 0.7000000001862645,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.7000000001862645,
+          "requestStart": 14.300000000279397,
+          "responseStart": 2870.4000000003725,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 2870.4000000003725,
+          "responseEnd": 2874.7000000001863,
+          "transferSize": 9714,
+          "encodedBodySize": 9414,
+          "decodedBodySize": 50864,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 3194.7000000001863,
+          "domContentLoadedEventStart": 3194.7000000001863,
+          "domContentLoadedEventEnd": 3195,
+          "domComplete": 3231.3000000002794,
+          "loadEventStart": 3231.4000000003725,
+          "loadEventEnd": 3231.4000000003725,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "#main",
+          "x": 0,
+          "y": 80,
+          "width": 1440,
+          "height": 4120.03125
+        },
+        {
+          "selector": "home-hero",
+          "x": 0,
+          "y": 114,
+          "width": 1440,
+          "height": 820
+        },
+        {
+          "selector": "delhi-wordmark",
+          "x": 63.359375,
+          "y": 324.671875,
+          "width": 792.5625,
+          "height": 182.1875
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 880.75,
+          "y": 187.15625,
+          "width": 495.890625,
+          "height": 454.5625
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 894.125,
+          "y": 973,
+          "width": 490,
+          "height": 449.15625
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 894.125,
+          "y": 1535,
+          "width": 490,
+          "height": 449.15625
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 894.125,
+          "y": 2097,
+          "width": 490,
+          "height": 449.15625
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 894.125,
+          "y": 2705.46875,
+          "width": 490,
+          "height": 449.15625
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 1074.59375,
+          "y": 3323.328125,
+          "width": 302.046875,
+          "height": 276.875
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/art/delhi-v3/fallback-approved-v3.webp",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-900-normal.01rgh-jimrwzu.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        },
+        {
+          "method": "GET",
+          "path": "/api/portal",
+          "resourceType": "fetch"
+        }
+      ],
+      "portalApiRequests": 1
+    },
+    {
+      "scenario": "rules",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "elapsedToCaptureMs": 984.4108379999998,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "--Rules",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/rules",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 572.7000000001863,
+          "navigationId": 2293,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.5,
+          "domainLookupStart": 0.5,
+          "domainLookupEnd": 0.5,
+          "connectStart": 0.5,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.5,
+          "requestStart": 4.7999999998137355,
+          "responseStart": 150,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 150,
+          "responseEnd": 153.5,
+          "transferSize": 7787,
+          "encodedBodySize": 7487,
+          "decodedBodySize": 25858,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 485.60000000009313,
+          "domContentLoadedEventStart": 485.60000000009313,
+          "domContentLoadedEventEnd": 486.10000000009313,
+          "domComplete": 572.6000000000931,
+          "loadEventStart": 572.7000000001863,
+          "loadEventEnd": 572.7000000001863,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 64
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 64,
+          "width": 232,
+          "height": 836
+        },
+        {
+          "selector": "#main",
+          "x": 232,
+          "y": 64,
+          "width": 1208,
+          "height": 836
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/rules",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-900-normal.01rgh-jimrwzu.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0
+    },
+    {
+      "scenario": "dashboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "elapsedToCaptureMs": 948.6992380000002,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "><Dashboard",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/dashboard",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 510.09999999962747,
+          "navigationId": 1401,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.39999999990686774,
+          "domainLookupStart": 0.39999999990686774,
+          "domainLookupEnd": 0.39999999990686774,
+          "connectStart": 0.39999999990686774,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.39999999990686774,
+          "requestStart": 6.5,
+          "responseStart": 137.79999999981374,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 137.79999999981374,
+          "responseEnd": 143.59999999962747,
+          "transferSize": 8053,
+          "encodedBodySize": 7753,
+          "decodedBodySize": 29657,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 467.79999999981374,
+          "domContentLoadedEventStart": 467.79999999981374,
+          "domContentLoadedEventEnd": 468,
+          "domComplete": 510.09999999962747,
+          "loadEventStart": 510.09999999962747,
+          "loadEventEnd": 510.09999999962747,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 64
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 64,
+          "width": 232,
+          "height": 836
+        },
+        {
+          "selector": "#main",
+          "x": 232,
+          "y": 64,
+          "width": 1208,
+          "height": 1332.46875
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/dashboard",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/icons/social/whatsapp.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0
+    },
+    {
+      "scenario": "profile",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "elapsedToCaptureMs": 963.071328,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "Profile",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/profile",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 511.90000000037253,
+          "navigationId": 9370,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.40000000037252903,
+          "domainLookupStart": 0.40000000037252903,
+          "domainLookupEnd": 0.40000000037252903,
+          "connectStart": 0.40000000037252903,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.40000000037252903,
+          "requestStart": 4,
+          "responseStart": 121.5,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 121.5,
+          "responseEnd": 126.70000000018626,
+          "transferSize": 6981,
+          "encodedBodySize": 6681,
+          "decodedBodySize": 28725,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 466.70000000018626,
+          "domContentLoadedEventStart": 466.70000000018626,
+          "domContentLoadedEventEnd": 467.3000000002794,
+          "domComplete": 511.8000000002794,
+          "loadEventStart": 511.90000000037253,
+          "loadEventEnd": 511.90000000037253,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 57,
+          "y": 25,
+          "width": 1326,
+          "height": 64
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "#main",
+          "x": 57,
+          "y": 89,
+          "width": 1326,
+          "height": 482
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/profile",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0
+    },
+    {
+      "scenario": "discover",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "elapsedToCaptureMs": 1019.7246400000004,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "><Discover",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/discover/participants",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 574.3999999999069,
+          "navigationId": 9655,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.7999999998137355,
+          "domainLookupStart": 0.7999999998137355,
+          "domainLookupEnd": 0.7999999998137355,
+          "connectStart": 0.7999999998137355,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.7999999998137355,
+          "requestStart": 5.399999999906868,
+          "responseStart": 121.09999999962747,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 121.09999999962747,
+          "responseEnd": 128.09999999962747,
+          "transferSize": 6525,
+          "encodedBodySize": 6225,
+          "decodedBodySize": 33330,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 527.5999999996275,
+          "domContentLoadedEventStart": 527.6999999997206,
+          "domContentLoadedEventEnd": 528,
+          "domComplete": 574.2999999998137,
+          "loadEventStart": 574.3999999999069,
+          "loadEventEnd": 574.3999999999069,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 64
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 64,
+          "width": 232,
+          "height": 836
+        },
+        {
+          "selector": "#main",
+          "x": 232,
+          "y": 64,
+          "width": 1208,
+          "height": 1173.59375
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/discover/participants",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-900-normal.01rgh-jimrwzu.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0
+    },
+    {
+      "scenario": "admin-participants",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "elapsedToCaptureMs": 980.1137209999997,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "--Participants",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/admin/participants",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 523.5999999996275,
+          "navigationId": 2020,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.5,
+          "domainLookupStart": 0.5,
+          "domainLookupEnd": 0.5,
+          "connectStart": 0.5,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.5,
+          "requestStart": 10.699999999720603,
+          "responseStart": 149.89999999990687,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 149.89999999990687,
+          "responseEnd": 158.5,
+          "transferSize": 7638,
+          "encodedBodySize": 7338,
+          "decodedBodySize": 33854,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 477.5,
+          "domContentLoadedEventStart": 477.59999999962747,
+          "domContentLoadedEventEnd": 478.09999999962747,
+          "domComplete": 523.3999999999069,
+          "loadEventStart": 523.5999999996275,
+          "loadEventEnd": 523.5999999996275,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 64
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 64,
+          "width": 232,
+          "height": 836
+        },
+        {
+          "selector": "#main",
+          "x": 232,
+          "y": 64,
+          "width": 1208,
+          "height": 836
+        },
+        {
+          "selector": "participants-table",
+          "x": 264,
+          "y": 320,
+          "width": 1144,
+          "height": 52
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/admin/participants",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0
+    },
+    {
+      "scenario": "admin-teams",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "elapsedToCaptureMs": 963.6375469999984,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "><Teams",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/admin/teams",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 542.3000000002794,
+          "navigationId": 7261,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.5,
+          "domainLookupStart": 0.5,
+          "domainLookupEnd": 0.5,
+          "connectStart": 0.5,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.5,
+          "requestStart": 7.300000000279397,
+          "responseStart": 122.5,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 122.5,
+          "responseEnd": 153.70000000018626,
+          "transferSize": 8057,
+          "encodedBodySize": 7757,
+          "decodedBodySize": 45443,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 367,
+          "domContentLoadedEventStart": 367.10000000009313,
+          "domContentLoadedEventEnd": 367.10000000009313,
+          "domComplete": 542.2000000001863,
+          "loadEventStart": 542.3000000002794,
+          "loadEventEnd": 542.3000000002794,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 64
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 64,
+          "width": 232,
+          "height": 836
+        },
+        {
+          "selector": "#main",
+          "x": 232,
+          "y": 64,
+          "width": 1208,
+          "height": 836
+        },
+        {
+          "selector": "admin-team-list",
+          "x": 264,
+          "y": 265,
+          "width": 1144,
+          "height": 207
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/admin/teams",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-900-normal.01rgh-jimrwzu.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0
+    },
+    {
+      "scenario": "admin-credits",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "elapsedToCaptureMs": 1000.9140769999995,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "^^Credits",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/admin/credits",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 538.7999999998137,
+          "navigationId": 4215,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.6999999997206032,
+          "domainLookupStart": 0.6999999997206032,
+          "domainLookupEnd": 0.6999999997206032,
+          "connectStart": 0.6999999997206032,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.6999999997206032,
+          "requestStart": 5.199999999720603,
+          "responseStart": 83.39999999990687,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 83.39999999990687,
+          "responseEnd": 89.89999999990687,
+          "transferSize": 6828,
+          "encodedBodySize": 6528,
+          "decodedBodySize": 24911,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 494.79999999981374,
+          "domContentLoadedEventStart": 494.79999999981374,
+          "domContentLoadedEventEnd": 495.1999999997206,
+          "domComplete": 538.7999999998137,
+          "loadEventStart": 538.7999999998137,
+          "loadEventEnd": 538.7999999998137,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 64
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 64,
+          "width": 232,
+          "height": 836
+        },
+        {
+          "selector": "#main",
+          "x": 232,
+          "y": 64,
+          "width": 1208,
+          "height": 950.9375
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/admin/credits",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-900-normal.01rgh-jimrwzu.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0,
+      "nativeFileChooser": {
+        "opened": true,
+        "multiple": false,
+        "hiddenInputBox": {
+          "x": 289,
+          "y": 359.171875,
+          "width": 1,
+          "height": 1
+        }
+      }
+    },
+    {
+      "scenario": "signin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "elapsedToCaptureMs": 1028.3184710000005,
+      "title": "Sign in · DevDay Exchange New Delhi",
+      "heading": "Welcome back.",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/signin",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 612.6999999997206,
+          "navigationId": 8660,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.6999999997206032,
+          "domainLookupStart": 0.6999999997206032,
+          "domainLookupEnd": 0.6999999997206032,
+          "connectStart": 0.6999999997206032,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.6999999997206032,
+          "requestStart": 12.5,
+          "responseStart": 372.59999999962747,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 372.59999999962747,
+          "responseEnd": 373.79999999981374,
+          "transferSize": 4459,
+          "encodedBodySize": 4159,
+          "decodedBodySize": 13073,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 476.6999999997206,
+          "domContentLoadedEventStart": 476.6999999997206,
+          "domContentLoadedEventEnd": 476.79999999981374,
+          "domComplete": 612.6999999997206,
+          "loadEventStart": 612.6999999997206,
+          "loadEventEnd": 612.6999999997206,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        }
+      ],
+      "anchors": [],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/signin",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_signin_signin_module_1bic-4fm0f9hd.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_20kffxv8674c8._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_0yzr9rqe54jru._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0
+    },
+    {
+      "scenario": "home",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "elapsedToCaptureMs": 1048.1559859999998,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "DevDay ExchangeCommunity Hackathon:New Delhi",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 515.2000000001863,
+          "navigationId": 2853,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.39999999990686774,
+          "domainLookupStart": 0.39999999990686774,
+          "domainLookupEnd": 0.39999999990686774,
+          "connectStart": 0.39999999990686774,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.39999999990686774,
+          "requestStart": 6.399999999906868,
+          "responseStart": 115.79999999981374,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 115.79999999981374,
+          "responseEnd": 121.60000000009313,
+          "transferSize": 9715,
+          "encodedBodySize": 9415,
+          "decodedBodySize": 50864,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 338.70000000018626,
+          "domContentLoadedEventStart": 338.79999999981374,
+          "domContentLoadedEventEnd": 338.89999999990687,
+          "domComplete": 515.2000000001863,
+          "loadEventStart": 515.2000000001863,
+          "loadEventEnd": 515.2000000001863,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "#main",
+          "x": 0,
+          "y": 64,
+          "width": 390,
+          "height": 3619.921875
+        },
+        {
+          "selector": "home-hero",
+          "x": 0,
+          "y": 98,
+          "width": 390,
+          "height": 780
+        },
+        {
+          "selector": "delhi-wordmark",
+          "x": 20,
+          "y": 211.5,
+          "width": 350,
+          "height": 80.453125
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 0,
+          "y": 98,
+          "width": 390,
+          "height": 780
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/art/delhi-v3/fallback-approved-v3.webp",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-900-normal.01rgh-jimrwzu.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        },
+        {
+          "method": "GET",
+          "path": "/api/portal",
+          "resourceType": "fetch"
+        }
+      ],
+      "portalApiRequests": 1
+    },
+    {
+      "scenario": "rules",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "elapsedToCaptureMs": 938.6706799999993,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "--Rules",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/rules",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 502.79999999981374,
+          "navigationId": 5431,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.39999999990686774,
+          "domainLookupStart": 0.39999999990686774,
+          "domainLookupEnd": 0.39999999990686774,
+          "connectStart": 0.39999999990686774,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.39999999990686774,
+          "requestStart": 7.2999999998137355,
+          "responseStart": 106.79999999981374,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 106.79999999981374,
+          "responseEnd": 111.5,
+          "transferSize": 7788,
+          "encodedBodySize": 7488,
+          "decodedBodySize": 25858,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 458.89999999990687,
+          "domContentLoadedEventStart": 459,
+          "domContentLoadedEventEnd": 459.60000000009313,
+          "domComplete": 502.70000000018626,
+          "loadEventStart": 502.79999999981374,
+          "loadEventEnd": 502.79999999981374,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 65
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "#main",
+          "x": 0,
+          "y": 65,
+          "width": 390,
+          "height": 773.515625
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/rules",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-900-normal.01rgh-jimrwzu.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0
+    },
+    {
+      "scenario": "dashboard",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "elapsedToCaptureMs": 931.3447730000007,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "><Dashboard",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/dashboard",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 523.8000000002794,
+          "navigationId": 6296,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.5,
+          "domainLookupStart": 0.5,
+          "domainLookupEnd": 0.5,
+          "connectStart": 0.5,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.5,
+          "requestStart": 5.399999999906868,
+          "responseStart": 119.60000000009313,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 119.60000000009313,
+          "responseEnd": 120.89999999990687,
+          "transferSize": 8051,
+          "encodedBodySize": 7751,
+          "decodedBodySize": 29657,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 364.10000000009313,
+          "domContentLoadedEventStart": 364.10000000009313,
+          "domContentLoadedEventEnd": 364.3000000002794,
+          "domComplete": 523.7000000001863,
+          "loadEventStart": 523.8000000002794,
+          "loadEventEnd": 523.8000000002794,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 65
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "#main",
+          "x": 0,
+          "y": 65,
+          "width": 390,
+          "height": 1292.6875
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/dashboard",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/icons/social/whatsapp.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0
+    },
+    {
+      "scenario": "profile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "elapsedToCaptureMs": 905.148717,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "Profile",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/profile",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 470.6999999997206,
+          "navigationId": 347,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.599999999627471,
+          "domainLookupStart": 0.599999999627471,
+          "domainLookupEnd": 0.599999999627471,
+          "connectStart": 0.599999999627471,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.599999999627471,
+          "requestStart": 7.199999999720603,
+          "responseStart": 98.29999999981374,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 98.29999999981374,
+          "responseEnd": 105.39999999990687,
+          "transferSize": 6978,
+          "encodedBodySize": 6678,
+          "decodedBodySize": 28725,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 424.39999999990687,
+          "domContentLoadedEventStart": 424.5,
+          "domContentLoadedEventEnd": 424.6999999997206,
+          "domComplete": 470.5,
+          "loadEventStart": 470.6999999997206,
+          "loadEventEnd": 470.6999999997206,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 64
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "#main",
+          "x": 0,
+          "y": 64,
+          "width": 390,
+          "height": 814
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/profile",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0
+    },
+    {
+      "scenario": "discover",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "elapsedToCaptureMs": 961.2619220000015,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "><Discover",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/discover/participants",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 540.3999999999069,
+          "navigationId": 3662,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.6000000000931323,
+          "domainLookupStart": 0.6000000000931323,
+          "domainLookupEnd": 0.6000000000931323,
+          "connectStart": 0.6000000000931323,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.6000000000931323,
+          "requestStart": 8.600000000093132,
+          "responseStart": 140.5,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 140.5,
+          "responseEnd": 146.20000000018626,
+          "transferSize": 6525,
+          "encodedBodySize": 6225,
+          "decodedBodySize": 33330,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 369.60000000009313,
+          "domContentLoadedEventStart": 369.70000000018626,
+          "domContentLoadedEventEnd": 369.79999999981374,
+          "domComplete": 540.2999999998137,
+          "loadEventStart": 540.3999999999069,
+          "loadEventEnd": 540.3999999999069,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 65
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "#main",
+          "x": 0,
+          "y": 65,
+          "width": 390,
+          "height": 2433.59375
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/discover/participants",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-900-normal.01rgh-jimrwzu.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0
+    },
+    {
+      "scenario": "admin-participants",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "elapsedToCaptureMs": 944.5535909999999,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "--Participants",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/admin/participants",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 565,
+          "navigationId": 1548,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.5,
+          "domainLookupStart": 0.5,
+          "domainLookupEnd": 0.5,
+          "connectStart": 0.5,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.5,
+          "requestStart": 4.5,
+          "responseStart": 118.6999999997206,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 118.6999999997206,
+          "responseEnd": 119.89999999990687,
+          "transferSize": 7634,
+          "encodedBodySize": 7334,
+          "decodedBodySize": 33854,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 175.29999999981374,
+          "domContentLoadedEventStart": 175.29999999981374,
+          "domContentLoadedEventEnd": 175.29999999981374,
+          "domComplete": 565,
+          "loadEventStart": 565,
+          "loadEventEnd": 565,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 65
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "#main",
+          "x": 0,
+          "y": 65,
+          "width": 390,
+          "height": 590.796875
+        },
+        {
+          "selector": "participants-table",
+          "x": 18,
+          "y": 307,
+          "width": 354,
+          "height": 0
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/admin/participants",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0
+    },
+    {
+      "scenario": "admin-teams",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "elapsedToCaptureMs": 930.1098469999997,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "><Teams",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/admin/teams",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 498.5,
+          "navigationId": 8064,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.5,
+          "domainLookupStart": 0.5,
+          "domainLookupEnd": 0.5,
+          "connectStart": 0.5,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.5,
+          "requestStart": 8.899999999906868,
+          "responseStart": 129.10000000009313,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 129.10000000009313,
+          "responseEnd": 137.89999999990687,
+          "transferSize": 8061,
+          "encodedBodySize": 7761,
+          "decodedBodySize": 45443,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 456.10000000009313,
+          "domContentLoadedEventStart": 456.20000000018626,
+          "domContentLoadedEventEnd": 457.89999999990687,
+          "domComplete": 498.39999999990687,
+          "loadEventStart": 498.5,
+          "loadEventEnd": 498.5,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 65
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "#main",
+          "x": 0,
+          "y": 65,
+          "width": 390,
+          "height": 590.796875
+        },
+        {
+          "selector": "admin-team-list",
+          "x": 18,
+          "y": 251,
+          "width": 354,
+          "height": 207
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/admin/teams",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-900-normal.01rgh-jimrwzu.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0
+    },
+    {
+      "scenario": "admin-credits",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "elapsedToCaptureMs": 920.9675370000004,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "^^Credits",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/admin/credits",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 505.6999999997206,
+          "navigationId": 9649,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.5,
+          "domainLookupStart": 0.5,
+          "domainLookupEnd": 0.5,
+          "connectStart": 0.5,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.5,
+          "requestStart": 7.199999999720603,
+          "responseStart": 124.39999999990687,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 124.39999999990687,
+          "responseEnd": 126.89999999990687,
+          "transferSize": 6833,
+          "encodedBodySize": 6533,
+          "decodedBodySize": 24911,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 455.89999999990687,
+          "domContentLoadedEventStart": 456,
+          "domContentLoadedEventEnd": 456.29999999981374,
+          "domComplete": 505.59999999962747,
+          "loadEventStart": 505.6999999997206,
+          "loadEventEnd": 505.6999999997206,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 65
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "#main",
+          "x": 0,
+          "y": 65,
+          "width": 390,
+          "height": 967.9375
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/admin/credits",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1v4n8j0otzajz._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_classic_0wzp5fcsrcvfc._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_core_14qn2mg1f8pkp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_zod_v4_locales_1-ided7izgr--._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_07uojrg3glc-n._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-900-normal.01rgh-jimrwzu.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0,
+      "nativeFileChooser": {
+        "opened": true,
+        "multiple": false,
+        "hiddenInputBox": {
+          "x": 37,
+          "y": 342.171875,
+          "width": 1,
+          "height": 1
+        }
+      }
+    },
+    {
+      "scenario": "signin",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "elapsedToCaptureMs": 762.9878199999985,
+      "title": "Sign in · DevDay Exchange New Delhi",
+      "heading": "Welcome back.",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3001/signin",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 357.29999999981374,
+          "navigationId": 5670,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.39999999990686774,
+          "domainLookupStart": 0.39999999990686774,
+          "domainLookupEnd": 0.39999999990686774,
+          "connectStart": 0.39999999990686774,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.39999999990686774,
+          "requestStart": 12.600000000093132,
+          "responseStart": 71.20000000018626,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 71.20000000018626,
+          "responseEnd": 75.29999999981374,
+          "transferSize": 4458,
+          "encodedBodySize": 4158,
+          "decodedBodySize": 13073,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 226.89999999990687,
+          "domContentLoadedEventStart": 226.89999999990687,
+          "domContentLoadedEventEnd": 227,
+          "domComplete": 357.20000000018626,
+          "loadEventStart": 357.29999999981374,
+          "loadEventEnd": 357.29999999981374,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "anchors": [],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/signin",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_signin_signin_module_1bic-4fm0f9hd.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_20kffxv8674c8._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_0yzr9rqe54jru._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        }
+      ],
+      "portalApiRequests": 0
+    }
+  ],
+  "accessibility": [
+    {
+      "scenario": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 27
+        }
+      ]
+    },
+    {
+      "scenario": "rules",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "scenario": "dashboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "scenario": "profile",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 2
+        }
+      ]
+    },
+    {
+      "scenario": "home",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 13
+        }
+      ]
+    },
+    {
+      "scenario": "rules",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "scenario": "dashboard",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "scenario": "profile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "nodes": 1
+        },
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 2
+        }
+      ]
+    }
+  ],
+  "findings": [],
+  "errors": [],
+  "blocked": [],
+  "limitations": [
+    "Local development runtime and disposable synthetic fixtures; no hosted timing, real sign-in, physical-device or production-data evidence.",
+    "Cold timings are one unthrottled diagnostic observation per route, not a benchmark or capacity estimate.",
+    "Screenshots use reduced motion and identical viewports. They prove the captured runtime only; mock API captures are explicitly labelled.",
+    "Chromium native sandbox is unavailable in this container (sandbox helper owner/user namespaces). Browser launched without it against allowlisted localhost only, fresh disposable contexts, and denied external DNS/requests."
+  ],
+  "browser": "154.0.8037.57",
+  "browserClosed": true,
+  "finishedAt": "2026-10-24T09:43:53.949Z"
+}
