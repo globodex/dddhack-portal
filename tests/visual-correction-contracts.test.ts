@@ -231,7 +231,7 @@ test("submission accepts no participant hash, keeps timing evidence separate and
   }
 });
 
-test("settings render has no role selector, private venue editor, general map, reason input or rejected filler", async () => {
+test("settings keep private arrival editing capability-scoped without role selectors, reason inputs or rejected filler", async () => {
   const { db, service } = await setup();
   try {
     const data: any = await service("owner").view("/admin/settings");
@@ -241,9 +241,14 @@ test("settings render has no role selector, private venue editor, general map, r
     assert.match(html, /Admin access/);
     assert.match(html, /type="email"/);
     assert.doesNotMatch(html, /name="role"/);
+    assert.equal(data.canManageVenue, true);
+    assert.match(html, /Private arrival details/);
+    const adminData: any = await service("admin").view("/admin/settings");
+    assert.equal(adminData.canManageVenue, false);
+    assert.doesNotMatch(renderToStaticMarkup(createElement(Settings, { data: adminData, run: async () => ({}) })), /Private arrival details|Exact room or entry location|Private Google Maps URL/);
     assert.doesNotMatch(
       html,
-      /name="reason"|Least-privilege roles|Private arrival details|Private venue management|General venue|General Google Maps URL|public Luma page exposes/,
+      /name="reason"|Least-privilege roles|Private venue management|General venue|General Google Maps URL|public Luma page exposes/,
     );
     const source = readFileSync("app/portal.tsx", "utf8");
     for (const text of [
