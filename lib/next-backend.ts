@@ -280,6 +280,17 @@ export function readBackendView(
   );
 }
 
+// Crawlers must always receive an anonymous projection, even in a signed-in browser.
+// This helper never reads or forwards request cookies.
+export async function readAnonymousBackendView(path: string, page = 0): Promise<BackendView> {
+  const query = new URLSearchParams({ view: path, page: String(page) });
+  const response = await proxyBackendRequest(new Request(
+    (process.env.APP_ORIGIN || defaultAppOrigin) + "/api/portal?" + query,
+  ));
+  if (!response.ok) throw new BackendError(response.status, "PUBLIC_VIEW_UNAVAILABLE");
+  return response.json();
+}
+
 export const readBackendSession = cache(
   async (): Promise<BackendUser | null> => {
     const { user } = await readJSON("/api/auth/session");

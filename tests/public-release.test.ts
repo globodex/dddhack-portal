@@ -9,8 +9,7 @@ import { syntheticImage } from "./fixture-images";
 import Portal from "../app/portal";
 import { delhiOffset } from "../lib/delhi-motion";
 import { eventTitle, pageMetadata, safeJSONLD, siteOrigin } from "../lib/seo";
-import { runWithSitesRequest } from "../lib/sites-runtime";
-import { GET as sitemap } from "../app/sitemap.xml/route";
+import { publicSitemap } from "../lib/sitemap";
 import { GET as robots } from "../app/robots.txt/route";
 import { PortalService } from "../lib/service";
 
@@ -149,18 +148,8 @@ test("sitemap and metadata reuse anonymous eligible published projections and ex
           time,
         ),
     ]);
-    const env = {
-      DB: db,
-      PORTAL_RUNTIME: "sites",
-      PORTAL_TRUST_SITES_DISPATCH: "true",
-    };
-    const request = new Request(siteOrigin + "/sitemap.xml", {
-      headers: {
-        "oai-authenticated-user-id": "owner",
-        "oai-authenticated-user-email": "connectwithparam.30@gmail.com",
-      },
-    });
-    const response = await runWithSitesRequest(request, env, sitemap);
+    const sitemap = () => publicSitemap(page => new PortalService(db, null, undefined).view("/projects", { page }));
+    const response = await sitemap();
     assert.equal(response.status, 200);
     const xml = await response.text();
     assert.ok(xml.includes(siteOrigin + "/projects/seo-public"));
@@ -186,7 +175,7 @@ test("sitemap and metadata reuse anonymous eligible published projections and ex
         "UPDATE project_eligibility SET status='ineligible' WHERE project_id='seo-public'",
       )
       .all();
-    const removed = await runWithSitesRequest(request, env, sitemap);
+    const removed = await sitemap();
     assert.ok(!(await removed.text()).includes("seo-public"));
     const crawlerRules = await (await robots()).text();
     assert.ok(crawlerRules.includes("Disallow: /admin"));

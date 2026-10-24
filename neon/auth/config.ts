@@ -5,6 +5,7 @@ export interface AuthEnv {
   APP_ORIGIN?: string;
   AUTH_BASE_URL?: string;
   AUTH_SECRET?: string;
+  BETTER_AUTH_SECRET?: string;
   PORTAL_PROXY_SECRET?: string;
   GOOGLE_CLIENT_ID?: string;
   GOOGLE_CLIENT_SECRET?: string;
@@ -28,6 +29,7 @@ export const SESSION_TTL = 7 * 24 * 60 * 60_000;
 export const tokenPattern = /^[A-Za-z0-9_-]{43}$/;
 
 export function authConfig(env: AuthEnv): AuthConfig {
+  const secret = env.BETTER_AUTH_SECRET || env.AUTH_SECRET;
   let url: URL;
   try {
     url = new URL(env.APP_ORIGIN || "");
@@ -41,9 +43,9 @@ export function authConfig(env: AuthEnv): AuthConfig {
       (url.protocol === "https:" ||
         (url.protocol === "http:" &&
           ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname))) &&
-      env.AUTH_BASE_URL === env.APP_ORIGIN &&
-      typeof env.AUTH_SECRET === "string" &&
-      env.AUTH_SECRET.length >= 32 &&
+      (!env.AUTH_BASE_URL || env.AUTH_BASE_URL === env.APP_ORIGIN) &&
+      typeof secret === "string" &&
+      secret.length >= 32 &&
       typeof env.PORTAL_PROXY_SECRET === "string" &&
       env.PORTAL_PROXY_SECRET.length >= 32,
     503,
@@ -52,7 +54,7 @@ export function authConfig(env: AuthEnv): AuthConfig {
   return {
     origin: url.origin,
     secure: url.protocol === "https:",
-    secret: env.AUTH_SECRET,
+    secret,
     proxySecret: env.PORTAL_PROXY_SECRET,
   };
 }

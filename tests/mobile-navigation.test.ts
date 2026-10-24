@@ -95,7 +95,7 @@ test("all role shells share one mobile dialog with ordinary role-authorized link
     if (!entry.me)
       assert.match(
         dialog,
-        /href="\/signin-with-chatgpt\?return_to=%2Fdashboard" target="_top"/,
+        /href="\/signin\?returnTo=%2Fdashboard" target="_top"/,
       );
   }
 });

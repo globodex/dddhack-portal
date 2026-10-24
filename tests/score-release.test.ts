@@ -492,12 +492,12 @@ test("managed identity persists across ordinary requests; local logout expires i
       401,
     );
     const source = readFileSync("app/portal.tsx", "utf8");
-    assert.ok(source.includes("/signout-with-chatgpt?return_to=%2F"));
-    assert.ok(source.includes('link.target = "_top"'));
+    assert.ok(source.includes('fetch("/api/auth/signout"'));
+    assert.ok(source.includes('credentials: "same-origin"'));
     assert.ok(source.includes("pageshow"));
     assert.ok(!source.includes("localStorage"));
     const auth = readFileSync("app/chatgpt-auth.ts", "utf8");
-    assert.ok(auth.includes('const SIGN_OUT_PATH = "/signout-with-chatgpt"'));
+    assert.ok(auth.includes("readBackendSession"));
     assert.ok(!auth.includes("localStorage"));
   } finally {
     db.close();

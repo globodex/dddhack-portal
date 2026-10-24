@@ -111,7 +111,7 @@ test("approved Home SSR has exact day/actions, real organizers and unenhanced re
   const html = renderToStaticMarkup(createElement(Home));
   assert.match(html, /Sunday, 1 November 2026 · Hosted by Codex Ambassadors/);
   assert.doesNotMatch(html, /—/);
-  assert.match(html, /Continue with ChatGPT/);
+  assert.match(html, /Continue to portal/);
   assert.match(html, /https:\/\/luma.com\/6t5uk4lo/);
   assert.match(html, /Agenda to follow/);
   assert.doesNotMatch(

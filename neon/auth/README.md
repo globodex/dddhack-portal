@@ -17,7 +17,7 @@ Both exports accept the existing `lib/db.Database` contract. `createAuthHandler`
 
 `APP_ORIGIN` and `AUTH_BASE_URL` must be the same exact origin, without a path or trailing slash. HTTPS is required except for loopback development. The intended browser origin is `https://dddhack-portal.vercel.app` (domain availability/deployment is unverified). Local development uses `http://localhost:3000`.
 
-Every request requires `x-portal-proxy-secret` matching `PORTAL_PROXY_SECRET` and `x-portal-forwarded-origin` matching `APP_ORIGIN`. Both secrets (`AUTH_SECRET`, `PORTAL_PROXY_SECRET`) must contain at least 32 characters; provision independent cryptographically random values. Caller-controlled Host, Forwarded, X-Forwarded-* and Sites headers confer no trust. All POST requests additionally require the exact browser `Origin`.
+Every request requires `x-portal-proxy-secret` matching `PORTAL_PROXY_SECRET` and `x-portal-forwarded-origin` matching `APP_ORIGIN`. Both secrets (`BETTER_AUTH_SECRET`, `PORTAL_PROXY_SECRET`) must contain at least 32 characters; provision independent cryptographically random values. Caller-controlled Host, Forwarded, X-Forwarded-* and Sites headers confer no trust. All POST requests additionally require the exact browser `Origin`.
 
 Secrets are backend-only and pending secure manual configuration. SMTP also requires a selected provider, approved sending address/domain and deliverability setup. Use `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`; only implicit TLS on 465 (`true`) or mandatory STARTTLS on 587 (`false`) is accepted. Certificates are verified; file and URL access from message content is disabled. `SMTP_FROM` is a bare email address.
 
