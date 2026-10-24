@@ -1164,3 +1164,38 @@ dialog.discovery-profile-v6 .discovery-profile-bio {
     transition: none;
   }
 }
+/* A private profile remains a compact identity card without placeholder copy. */
+.app-shell .discover-v6 .discover-people-cards > li[data-has-bio="false"] {
+  grid-template-rows: auto auto auto;
+}
+.app-shell
+  .discover-v6
+  .discover-people-cards
+  > li[data-has-bio="false"]
+  .discover-identity {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+}
+.app-shell
+  .discover-v6
+  .discover-people-cards
+  > li[data-has-bio="false"]
+  .discover-identity
+  h2 {
+  font-size: 16px;
+}
+.app-shell
+  .discover-v6
+  .discover-people-cards
+  > li[data-has-bio="false"]
+  .discover-card-membership {
+  grid-row: 2;
+}
+.app-shell
+  .discover-v6
+  .discover-people-cards
+  > li[data-has-bio="false"]
+  .discover-socials {
+  grid-row: 3;
+}
