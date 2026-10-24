@@ -1,0 +1,70 @@
+✔ sqlite: actual HTTP profile contact role matrix and other read projections exclude private fields (1091.483789ms)
+✖ sqlite: role, membership, roster and participant removals revoke contacts on the next private request (170.946726ms)
+✔ postgres: actual HTTP profile contact role matrix and other read projections exclude private fields (12987.386775ms)
+✖ postgres: role, membership, roster and participant removals revoke contacts on the next private request (3840.288308ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 2
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21312.833471
+
+✖ failing tests:
+
+test at tests/profile-contact-independent.test.ts:1:5767
+✖ sqlite: role, membership, roster and participant removals revoke contacts on the next private request (170.946726ms)
+  Error: ROSTER_ADD_ONLY
+      at Object.execute (/workspace/ddd-profile-contact-audit/lib/local-test/sqlite.ts:19:26)
+      at <anonymous> (/workspace/ddd-profile-contact-audit/lib/local-test/sqlite.ts:49:11)
+      at Array.map (<anonymous>)
+      at LocalDatabase.batch (/workspace/ddd-profile-contact-audit/lib/local-test/sqlite.ts:44:30)
+      at batch (/workspace/ddd-profile-contact-audit/lib/db.ts:44:13)
+      at TestContext.<anonymous> (/workspace/ddd-profile-contact-audit/tests/profile-contact-independent.test.ts:293:13)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'ERR_SQLITE_ERROR',
+    errcode: 1811,
+    errstr: 'constraint failed'
+  }
+
+test at tests/profile-contact-independent.test.ts:1:5767
+✖ postgres: role, membership, roster and participant removals revoke contacts on the next private request (3840.288308ms)
+  error: ROSTER_ADD_ONLY
+      at pe.Oe (/workspace/dddhack-portal/node_modules/@electric-sql/pg-protocol/src/parser.ts:442:11)
+      at pe.tt (/workspace/dddhack-portal/node_modules/@electric-sql/pg-protocol/src/parser.ts:220:16)
+      at pe.parse (/workspace/dddhack-portal/node_modules/@electric-sql/pg-protocol/src/parser.ts:104:21)
+      at D.Ne (/workspace/dddhack-portal/node_modules/@electric-sql/pglite/dist/index.js:5:1763)
+      at <anonymous> (/workspace/dddhack-portal/node_modules/@electric-sql/pglite/dist/index.js:5:1155)
+      at wasm://wasm/0269dffe:wasm-function[10979]:0x5ad04f
+      at wasm://wasm/0269dffe:wasm-function[3598]:0x281dd2
+      at wasm://wasm/0269dffe:wasm-function[3640]:0x289ccf
+      at wasm://wasm/0269dffe:wasm-function[3650]:0x289f2b
+      at wasm://wasm/0269dffe:wasm-function[9956]:0x55697c {
+    length: 151,
+    severity: 'ERROR',
+    code: '23514',
+    detail: undefined,
+    hint: undefined,
+    position: undefined,
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: 'PL/pgSQL function portal_trigger_luma_roster_no_delete() line 3 at RAISE',
+    schema: undefined,
+    table: undefined,
+    column: undefined,
+    dataType: undefined,
+    constraint: undefined,
+    file: 'pl_exec.c',
+    line: '3923',
+    routine: 'exec_stmt_raise',
+    query: "DELETE FROM luma_roster WHERE email = 'dave@portal.test'",
+    params: [],
+    queryOptions: undefined
+  }
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

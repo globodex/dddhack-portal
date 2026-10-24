@@ -1,0 +1,40 @@
+{
+  "auditedSource": "f1b8f39ed383bc20f80b1295b3aa0bf056ee1cdc",
+  "baselineSource": "86862c722233bbd6776f1e2672d78b41fa808a52",
+  "runtimePatch": {
+    "file": "lib/experience.ts",
+    "behavior": "Omit phone and openai_org_id from completed non-admin workspace.profile; retain editor, incomplete onboarding, admin and current-team contacts",
+    "queriesAdded": 0,
+    "schemaChanged": false,
+    "permissionsChanged": false,
+    "publicGenderChanged": false
+  },
+  "testCommand": "npx tsx --test --test-concurrency=1 tests/profile-contact-independent.test.ts",
+  "tests": { "passed": 6, "failed": 0, "skipped": 0 },
+  "typecheckCommand": "npx tsc --noEmit",
+  "typecheckExitCode": 0,
+  "engines": ["disposable SQLite", "disposable PGlite via production PostgreSQL adapter"],
+  "matrixCaptures": { "baselineRows": 42, "originalF1Rows": 42, "rawPrivateValuesRecorded": false },
+  "boundaries": [
+    "Organization ID selected projection owner/admin only; self editor retains own value",
+    "Phone/WhatsApp current eligible teammates or admin only; self editor retained",
+    "Own editor cannot be selected through another user's query/header identity claims",
+    "Thirty non-profile read routes omit another person's private org/contact fields",
+    "Directory cards, public team identities and fixed participant CSV exclude private fields",
+    "Role/member/participant revocation and registration-only allowlist loss take effect on next request",
+    "Append-only Luma deletion remains rejected; one remaining registration source remains valid",
+    "All checked JSON responses use private/no-store and identity Vary",
+    "Sole-member team removal removes membership; multi-member removal is rejected"
+  ],
+  "confirmedCrossUserLeaks": [],
+  "confirmedCorrection": "Pre-existing excess self data outside the editor; not a cross-user leak",
+  "softRemovedTeamConcern": "No normal-flow repro; unsupported direct-SQL state was not invented",
+  "requiresFreshArchiveAndManualBackendRedeploy": true,
+  "newMigrationRequired": false,
+  "hostedDatabaseInspected": false,
+  "realPrivateDataUsed": false,
+  "providerCalls": false,
+  "deployed": false,
+  "pushed": false,
+  "limits": ["No native multi-connection PostgreSQL concurrency proof", "No live backend version or ledger claim", "No browser cache experiment"]
+}

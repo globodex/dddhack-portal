@@ -428,6 +428,7 @@ export class PortalExperience {
     const profile = await this.profile(actor);
     if (!profile.complete)
       return { me: actor, profile, profileIncomplete: true };
+    const { phone: _phone, openai_org_id: _orgId, ...workspaceProfile } = profile;
     const team = await this.team(actor.id),
       registration = await one<{ status: string }>(
         this.s.db,
@@ -515,7 +516,7 @@ export class PortalExperience {
       : { status: "not_submitted", versionId: null };
     return {
       me: actor,
-      profile,
+      profile: actor.owner || actor.role === "admin" ? profile : workspaceProfile,
       registration: {
         ...registration,
         status: registration?.status || "pending",

@@ -1,0 +1,72 @@
+✔ sqlite: actual HTTP profile contact role matrix and other read projections exclude private fields (791.380653ms)
+✔ sqlite: role, membership, roster and participant removals revoke contacts on the next private request (169.243155ms)
+✖ sqlite: completed workspace omits self editor contacts while editor, incomplete flow and admin remain intact (82.746427ms)
+✔ postgres: actual HTTP profile contact role matrix and other read projections exclude private fields (11040.238264ms)
+✔ postgres: role, membership, roster and participant removals revoke contacts on the next private request (4443.848327ms)
+✖ postgres: completed workspace omits self editor contacts while editor, incomplete flow and admin remain intact (3316.678624ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 4
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21206.320424
+
+✖ failing tests:
+
+test at tests/profile-contact-independent.test.ts:1:8746
+✖ sqlite: completed workspace omits self editor contacts while editor, incomplete flow and admin remain intact (82.746427ms)
+  Error: NOT NULL constraint failed: participant_profiles.completed_at
+      at Object.execute (/workspace/ddd-profile-contact-audit/lib/local-test/sqlite.ts:19:26)
+      at <anonymous> (/workspace/ddd-profile-contact-audit/lib/local-test/sqlite.ts:49:11)
+      at Array.map (<anonymous>)
+      at LocalDatabase.batch (/workspace/ddd-profile-contact-audit/lib/local-test/sqlite.ts:44:30)
+      at batch (/workspace/ddd-profile-contact-audit/lib/db.ts:44:13)
+      at TestContext.<anonymous> (/workspace/ddd-profile-contact-audit/tests/profile-contact-independent.test.ts:406:13)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'ERR_SQLITE_ERROR',
+    errcode: 1299,
+    errstr: 'constraint failed'
+  }
+
+test at tests/profile-contact-independent.test.ts:1:8746
+✖ postgres: completed workspace omits self editor contacts while editor, incomplete flow and admin remain intact (3316.678624ms)
+  error: null value in column "completed_at" of relation "participant_profiles" violates not-null constraint
+      at pe.Oe (/workspace/dddhack-portal/node_modules/@electric-sql/pg-protocol/src/parser.ts:442:11)
+      at pe.tt (/workspace/dddhack-portal/node_modules/@electric-sql/pg-protocol/src/parser.ts:220:16)
+      at pe.parse (/workspace/dddhack-portal/node_modules/@electric-sql/pg-protocol/src/parser.ts:104:21)
+      at D.Ne (/workspace/dddhack-portal/node_modules/@electric-sql/pglite/dist/index.js:5:1763)
+      at <anonymous> (/workspace/dddhack-portal/node_modules/@electric-sql/pglite/dist/index.js:5:1155)
+      at wasm://wasm/0269dffe:wasm-function[10979]:0x5ad04f
+      at wasm://wasm/0269dffe:wasm-function[3598]:0x281dd2
+      at wasm://wasm/0269dffe:wasm-function[3640]:0x289ccf
+      at wasm://wasm/0269dffe:wasm-function[3650]:0x289f2b
+      at wasm://wasm/0269dffe:wasm-function[9956]:0x55697c {
+    length: 291,
+    severity: 'ERROR',
+    code: '23502',
+    detail: 'Failing row contains (fake_bob, Bob, Synthetic coding skills, null, 1).',
+    hint: undefined,
+    position: undefined,
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: undefined,
+    schema: 'public',
+    table: 'participant_profiles',
+    column: 'completed_at',
+    dataType: undefined,
+    constraint: undefined,
+    file: 'execMain.c',
+    line: '2219',
+    routine: 'ReportNotNullViolationError',
+    query: "UPDATE participant_profiles SET completed_at = NULL WHERE user_id = 'fake_bob'",
+    params: [],
+    queryOptions: undefined
+  }
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
