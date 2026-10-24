@@ -376,6 +376,72 @@ try {
   );
   await peopleContext.close();
   contexts.splice(contexts.indexOf(peopleContext), 1);
+  const detailContext = await browser.newContext({
+    viewport: { width: 320, height: 480 },
+    hasTouch: true,
+    reducedMotion: "reduce",
+  });
+  contexts.push(detailContext);
+  await detailContext.addCookies([
+    {
+      name: "portal_local_fixture",
+      value: "alice",
+      domain: new URL(origin).hostname,
+      path: "/",
+    },
+  ]);
+  const detail = await detailContext.newPage();
+  detail.on("pageerror", (e) => report.pageErrors.push(String(e)));
+  await go(detail, "/projects/scroll-project-57");
+  const detailVote = detail.locator(".upvote-button[aria-pressed=false]");
+  if (await detailVote.count()) {
+    await detailVote.focus();
+    await detail.keyboard.press("Enter");
+    await detail.waitForFunction(
+      () =>
+        document
+          .querySelector(".upvote-button")
+          ?.getAttribute("aria-pressed") === "true" &&
+        document.querySelector(".upvote-button")?.getAttribute("aria-busy") ===
+          "false",
+    );
+  }
+  assert.equal(await detail.locator("dialog[open]").count(), 0);
+  const voteBox = await detail.locator(".upvote-button").boundingBox();
+  assert.ok(voteBox && voteBox.width >= 44 && voteBox.height >= 44);
+  await shot(detail, "public-detail-upvoted-short320");
+  report.checks.push(
+    "320x480 public detail: keyboard upvote persists without confirmation, 44px target and no horizontal overflow",
+  );
+  await detailContext.close();
+  contexts.splice(contexts.indexOf(detailContext), 1);
+  const viewerContext = await browser.newContext({
+    viewport: { width: 390, height: 844 },
+    reducedMotion: "reduce",
+  });
+  contexts.push(viewerContext);
+  await viewerContext.addCookies([
+    {
+      name: "portal_local_fixture",
+      value: "stranger",
+      domain: new URL(origin).hostname,
+      path: "/",
+    },
+  ]);
+  const viewer = await viewerContext.newPage();
+  viewer.on("pageerror", (e) => report.pageErrors.push(String(e)));
+  await go(viewer, "/projects");
+  assert.equal(
+    await viewer
+      .locator(".public-project-card .upvote-button:not(:disabled)")
+      .count(),
+    0,
+  );
+  report.checks.push(
+    "Authenticated unregistered Viewer has no enabled upvote action",
+  );
+  await viewerContext.close();
+  contexts.splice(contexts.indexOf(viewerContext), 1);
   assert.equal(report.pageErrors.length, 0);
   report.passed = true;
 } catch (error) {

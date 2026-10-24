@@ -318,6 +318,18 @@
   background: linear-gradient(140deg, var(--project-team-wash, #f2edff), var(--surface, #fffefa) 65%);
   text-align: left;
 }
+.app-shell .public-project-list .project-list > li.project-search-placeholder {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) 44px;
+  grid-template-rows: minmax(108px, 1fr) 44px;
+  align-items: start;
+  gap: 18px;
+  background: var(--surface, #fffefa);
+}
+.app-shell .public-project-list .project-search-placeholder > i { grid-area: 1 / 1; }
+.app-shell .public-project-list .project-search-placeholder > div { grid-area: 1 / 2 / 2 / 4; width: 100%; min-width: 0; padding-top: 4px; }
+.app-shell .public-project-list .project-search-placeholder > b { grid-area: 2 / 1; }
+.app-shell .public-project-list .project-search-placeholder > b:last-child { grid-area: 2 / 3; width: 44px; }
 .app-shell .public-project-list .project-row-link {
   display: grid;
   grid-template-columns: 64px minmax(0, 1fr) 22px;
@@ -438,6 +450,8 @@
     width: 48px;
     height: 48px;
   }
+  .app-shell .public-project-list .project-list > li.project-search-placeholder { grid-template-columns: 48px minmax(0, 1fr) 44px; gap: 12px; }
+  .app-shell .public-project-list .project-search-placeholder > i { width: 48px; height: 48px; }
   .app-shell .public-project-list .project-row-link h2 {
     font-size: 22px;
   }
