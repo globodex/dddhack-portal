@@ -48,6 +48,10 @@
 .app-shell .projects-v6 .project-list > li > .engagement > a:not(.project-comments-button):not(.upvote-button) { padding: 12px 0 12px 12px; color: #006b43; font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
 .app-shell .projects-v6 .project-pagination { min-height: 44px; margin-top: 24px; justify-content: space-between; color: var(--muted, #656960); }
 .app-shell .projects-v6 .project-pagination .button { min-height: 44px; font-size: 13px; }
+.app-shell .projects-v6 .project-scroll-pagination { display: grid; justify-items: center; gap: 12px; padding: 24px 0; color: var(--muted, #656960); text-align: center; }
+.app-shell .projects-v6 .project-scroll-pagination p { margin: 0; }
+.app-shell .projects-v6 .project-scroll-pagination .button { min-height: 44px; font-size: 13px; }
+.app-shell .projects-v6 .project-scroll-pagination:empty { display: none; }
 .app-shell .projects-v6 .notice { width: fit-content; max-width: 100%; padding: 12px 16px; border: 1px solid var(--line, #e3e4db); border-radius: 10px; background: #eeeee6; color: #4e594a; font-size: 13px; line-height: 1.5; }
 .app-shell .project-awards { padding: 24px; margin-bottom: 24px; border: 1px solid #dedfc9; border-radius: 12px; background: #f3f1df; }
 .app-shell .project-awards h2 { margin: 0 0 16px; font-size: 20px; }

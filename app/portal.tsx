@@ -55,6 +55,7 @@ const JudgingSettings = dynamic(() => import("./judging-settings"), {
   loading: () => <div className="results-ui-judgingLoading" role="status" aria-label="Loading judging setup" />,
 });
 import { useDiscoverPeople, peopleDirectoryUrl, readPeoplePage } from "./use-discover-people";
+import { useProjectFeed, readProjectVote } from "./use-project-feed";
 import { HeadingDot } from "./expressive-heading";
 import RouteSkeleton from "./route-skeleton";
 import ViewerWelcome from "./viewer-welcome";
@@ -3088,15 +3089,32 @@ export function UpvoteButton({
     [count, setCount] = useState<number | null>(
       Number.isFinite(project.upvotes) ? project.upvotes : null,
     ),
+    [capability, setCapability] = useState(project.canUpvote === true),
     [busy, setBusy] = useState(false),
     [error, setError] = useState("");
   const controller = useRef<UpvoteController | null>(null);
+  const voteRead = useRef<AbortController | null>(null);
   if (!controller.current) controller.current = new UpvoteController();
   useEffect(() => {
     setVoted(project.upvoted === true);
     setCount(Number.isFinite(project.upvotes) ? project.upvotes : null);
-  }, [project.id, project.upvoted, project.upvotes]);
-  const allowed = canEngage && project.canUpvote === true && !voted;
+    setCapability(project.canUpvote === true);
+  }, [project.id, project.upvoted, project.upvotes, project.canUpvote]);
+  useEffect(() => () => voteRead.current?.abort(), []);
+  const reconcile = async () => {
+    if (typeof project.slug !== "string") return;
+    voteRead.current?.abort();
+    const read = new AbortController();
+    voteRead.current = read;
+    const fresh = await readProjectVote(project.id, project.slug, read.signal);
+    if (!read.signal.aborted) {
+      setVoted(fresh.upvoted);
+      setCount(fresh.upvotes);
+      setCapability(fresh.canUpvote);
+    }
+    return fresh;
+  };
+  const allowed = canEngage && capability && !voted;
   return (
     <div className="vote-control">
       <button
@@ -3114,9 +3132,11 @@ export function UpvoteButton({
               : "Upvote this project"
         }
         onClick={async () => {
+          if (controller.current!.pending || busy || !allowed) return;
           setError("");
+          const before = { voted, count };
           try {
-            await controller.current!.commit(
+            const saved = await controller.current!.commit(
               allowed,
               () => run("upvote-project", { projectId: project.id }),
               () => {
@@ -3125,14 +3145,26 @@ export function UpvoteButton({
                 if (count !== null) setCount(count + 1);
               },
               () => {
-                setVoted(project.upvoted === true);
-                setCount(
-                  Number.isFinite(project.upvotes) ? project.upvotes : null,
-                );
+                setVoted(before.voted);
+                setCount(before.count);
               },
             );
+            if (saved) {
+              try { await reconcile(); }
+              catch (error) {
+                if ((error as Error).name !== "AbortError") {
+                  setCount(null);
+                  setError("Upvote saved. Refresh to update the count.");
+                }
+              }
+            }
           } catch (e) {
-            if (!(e instanceof ActionCancelled)) setError((e as Error).message);
+            if (!(e instanceof ActionCancelled)) {
+              setError(e instanceof TypeError ? "Upvote could not be saved. Try again." : (e as Error).message);
+              // A lost response may follow a committed vote. Ask the existing
+              // public projection before presenting a retry as still available.
+              try { if ((await reconcile())?.upvoted) setError(""); } catch {}
+            }
           } finally {
             setBusy(false);
           }
@@ -3161,16 +3193,20 @@ export function Projects({
   const [q, setQ] = useState(""),
     [hydrated, setHydrated] = useState(false),
     [page, setPage] = useState(0),
-    [listing, setListing] = useState<View>(data),
-    [searchBusy, setSearchBusy] = useState(false),
+    [boardListing, setListing] = useState<View>(data),
+    [boardBusy, setSearchBusy] = useState(false),
     [searchRetry, setSearchRetry] = useState(0),
-    [searchError, setSearchError] = useState(""),
+    [boardError, setSearchError] = useState(""),
     [comment, setComment] = useState(""),
     [commentBusy, setCommentBusy] = useState(false),
     [commentError, setCommentError] = useState("");
   const board = path === "/leaderboard",
     detail = path !== "/projects" && !board,
     p = data.items?.[0];
+  const feed = useProjectFeed(data, q, !board && !detail);
+  const listing: View = board ? boardListing : detail ? data : { ...data, ...feed.page, items: feed.items };
+  const searchBusy = board ? boardBusy : feed.loading;
+  const searchError = board ? boardError : feed.error;
   const highlighted = useRef(false),
     commentPending = useRef(false);
   useEffect(() => setHydrated(true), []);
@@ -3186,7 +3222,7 @@ export function Projects({
   }, [listing]);
 
   useEffect(() => {
-    if (detail) return;
+    if (!board) return;
     const controller = new AbortController();
     if (!q && !page) {
       setListing(data);
@@ -3216,20 +3252,21 @@ export function Projects({
       clearTimeout(timer);
       controller.abort();
     };
-  }, [q, page, data, path, detail, searchRetry]);
+  }, [q, page, data, path, board, searchRetry]);
   const signIn = "/signin?returnTo=" + encodeURIComponent(path);
+  const normalizedSearch = q.trim().slice(0, 200).toLowerCase();
   const visibleProjects = (listing.items || []).filter((project) =>
     (project.projectName + " " + project.teamName + " " + project.problemSolution)
-      .toLowerCase().includes(q.toLowerCase()),
+      .toLowerCase().includes(normalizedSearch),
   );
-  const emptyCollection = !q && !page && !data.items?.length && !data.hasMore;
+  const emptyCollection = !normalizedSearch && !page && !data.items?.length && !data.hasMore;
   const engagement = (p: Row) => (
     <div className="engagement">
       {data.me ? (
         <UpvoteButton
           project={p}
           canEngage={
-            data.me.canEngage === true && !listing.engagement?.votingPaused
+            listing.me?.canEngage === true && !listing.engagement?.votingPaused
           }
           run={run}
         />
@@ -3391,7 +3428,7 @@ export function Projects({
           onChange={(v) => {
             setQ(v);
             setPage(0);
-            if (v.trim()) setSearchBusy(true);
+            if (board && v.trim()) setSearchBusy(true);
           }}
           label="Search projects"
         />
@@ -3436,7 +3473,7 @@ export function Projects({
           <p>{listing.scoringInfo.weightage}</p>
         </details>
       )}
-      {searchError && <div role="alert" className="project-search-error"><span>{searchError}</span><button type="button" className="button secondary" disabled={searchBusy} onClick={() => { setSearchBusy(true); setSearchRetry((n) => n + 1); }}>Retry search</button></div>}
+      {board && searchError && <div role="alert" className="project-search-error"><span>{searchError}</span><button type="button" className="button secondary" disabled={searchBusy} onClick={() => { setSearchBusy(true); setSearchRetry((n) => n + 1); }}>Retry search</button></div>}
       <ul className="project-list" aria-busy={searchBusy}>
         {searchBusy && !visibleProjects.length && [1, 2].map((n) => <li className="project-search-placeholder" aria-hidden="true" key={`loading-${n}`}><i /><div><span /><span /><span /></div><b /><b /></li>)}
         {visibleProjects
@@ -3474,7 +3511,13 @@ export function Projects({
               </div>
             </li>
           ))}
+        {!board && searchBusy && visibleProjects.length > 0 && [1, 2].map((n) => <li className="project-search-placeholder" aria-hidden="true" key={`appending-${n}`}><i /><div><span /><span /><span /></div><b /><b /></li>)}
       </ul>
+      {!board && <div className="discover-pagination project-scroll-pagination" ref={feed.sentinel}>
+        {feed.loading && <p role="status" aria-live="polite">Loading projects…</p>}
+        {feed.error && <p role="alert">{feed.error}</p>}
+        {(feed.hasMore || feed.error) && <button className="button secondary" type="button" disabled={!hydrated || feed.loading} onClick={() => void feed.loadMore()}>{feed.error ? "Retry" : "Load more"}</button>}
+      </div>}
       {!visibleProjects.length && !searchBusy && !searchError && (
         <section className="project-empty-state" aria-label={q ? "No matching projects" : "No projects yet"}>
           <div className="project-empty-copy">
@@ -3489,7 +3532,7 @@ export function Projects({
           <HeadingDot color="purple" expression={q ? "sleepy" : "squeezed"} size={96} paused />
         </section>
       )}
-      {(visibleProjects.length > 0 || page > 0) && <div className="form-actions project-pagination">
+      {board && (visibleProjects.length > 0 || page > 0) && <div className="form-actions project-pagination">
         <button
           className="button secondary"
           disabled={!page}
@@ -5771,13 +5814,16 @@ export default function Portal({
         action,
         token ? { ...payload, confirmation: token } : payload,
       );
+      // The vote control reconciles its own existing public projection. A full
+      // route reload here would discard the showcase's incrementally loaded pages.
+      if (action === "upvote-project") return result;
       setMessageTone("success");
       if (action !== "submit-project") setMessage(portalSuccessText(action, result.message));
       const fresh = await load();
       if (action === "submit-project") setSubmissionSuccess(submittedProjectSuccess(result, fresh));
       return result;
     } catch (e) {
-      if (!(e instanceof ActionCancelled) && options?.errorFeedback !== "local") {
+      if (!(e instanceof ActionCancelled) && action !== "upvote-project" && options?.errorFeedback !== "local") {
         setMessageTone("error");
         setMessage((e as Error).message);
       }
