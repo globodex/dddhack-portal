@@ -88,6 +88,8 @@ import {
 } from "react";
 import Home from "./home";
 import ProjectMediaField from "./project-media-field";
+import SubmissionDots from "./submission-dots";
+import CommittedSubmissions, { CommittedSubmission } from "./committed-submissions";
 import { resolveTeamColor } from "../lib/team-color";
 import { prepareProjectImage } from "./prepare-project-image";
 import ProfileFlow from "./profile-flow";
@@ -1065,7 +1067,6 @@ export function TeamWorkspace({
       <header className="studio-team-identity">
         <TeamAvatar name={t.name} palette={t.palette} size={150} />
         <div className="studio-team-name">
-          <p className="studio-eyebrow">Your team</p>
           <div>
             <h1>{t.name}</h1>
             {leader && !locked && (
@@ -1079,10 +1080,6 @@ export function TeamWorkspace({
               </button>
             )}
           </div>
-          <span className="studio-team-color">
-            <span style={{ backgroundColor: color.fill }} aria-hidden="true" />
-            {teamColorLabels[color.key] || color.label}
-          </span>
         </div>
         <div className="studio-team-status">
           <span>
@@ -1550,7 +1547,6 @@ function DashboardProject({
   onInteraction?: () => void;
 }) {
   const project = data.project,
-    draft = project?.draft || {},
     used = Number.isInteger(data.submissionAccess?.attemptsUsed)
       ? data.submissionAccess.attemptsUsed
       : data.attempts?.length || 0,
@@ -1592,31 +1588,23 @@ function DashboardProject({
         <Pill tone={used ? "positive" : "neutral"}>
           {used ? "Submitted" : "Not submitted"}
         </Pill>
-        {data.projectStats && (
-          <span
-            className="dashboard-upvotes"
-            aria-label={
-              Number.isFinite(data.projectStats.upvotes)
-                ? upvoteCountLabel(data.projectStats.upvotes)
-                : "Upvote count unavailable"
-            }
-          >
-            <ArrowUp size={22} aria-hidden="true" />
-            <span aria-hidden="true">
-              {Number.isFinite(data.projectStats.upvotes)
-                ? data.projectStats.upvotes
-                : "?"}
-            </span>
-          </span>
-        )}
       </div>
       {data.projectStats?.result && (
         <PublicResult result={data.projectStats.result} />
       )}
       {canRead ? (
         <>
-          <div className="dashboard-project-actions">
+          <div className="dashboard-project-toolbar">
+            <div className="dashboard-project-metrics">
+              {data.projectStats && <span className="dashboard-upvotes" aria-label={Number.isFinite(data.projectStats.upvotes) ? upvoteCountLabel(data.projectStats.upvotes) : "Upvote count unavailable"}>
+                <ArrowUp size={20} aria-hidden="true" /><span aria-hidden="true">{Number.isFinite(data.projectStats.upvotes) ? data.projectStats.upvotes : "?"}</span>
+              </span>}
+              <span className="dashboard-project-feedback-count" aria-label={`Feedback: ${data.feedback?.length || 0}`}>
+                <MessageSquare size={20} aria-hidden="true" /><span aria-hidden="true">{data.feedback?.length || 0}</span>
+              </span>
+            </div>
             {project?.published_version_id &&
+              typeof project.slug === "string" && project.slug.trim() &&
               data.eligibility?.status === "eligible" && (
                 <a
                   className="button secondary"
@@ -1626,10 +1614,9 @@ function DashboardProject({
                   <ExternalLink size={17} aria-hidden="true" />
                 </a>
               )}
-            <ProjectHistory canRead={canRead} label={`Versions ${used}/3`} />
             {canEdit && project?.published_version_id && (
               <button
-                className="button secondary"
+                className="button dashboard-project-update"
                 id="dashboard-project-edit"
                 type="button"
                 aria-expanded={editing}
@@ -1640,20 +1627,13 @@ function DashboardProject({
             )}
           </div>
           {project?.published_version_id && !editorOpen && (
-            <article className="dashboard-project-card" style={projectMediaStyle(data.team?.palette)}>
-              {draft.banner && (
-                <img
-                  className="dashboard-project-banner"
-                  src={draft.banner}
-                  alt=""
-                />
-              )}
-              <h3>{draft.projectName}</h3>
-              {draft.problemSolution && <p>{draft.problemSolution}</p>}
-              {draft.description && (
-                <p className="prose">{draft.description}</p>
-              )}
-            </article>
+            <CommittedSubmissions
+              key={`${project.revision || 0}-${project.published_version_id}`}
+              canRead={canRead}
+              currentVersionId={project.published_version_id}
+              attempts={data.attempts || []}
+              renderVersion={(payload) => <ProjectVersion payload={payload} />}
+            />
           )}
           {!project?.published_version_id && !editorOpen && (
             <Submission
@@ -1681,6 +1661,7 @@ function DashboardProject({
       )}
       <section
         className="dashboard-feedback"
+        id="dashboard-project-feedback"
         aria-label="Private team feedback"
       >
         <h3>Feedback ({data.feedback?.length || 0})</h3>
@@ -2379,6 +2360,7 @@ export function Submission({
   const [project, setProject] = useState(initial),
     [hydrated, setHydrated] = useState(false),
     [busy, setBusy] = useState(false),
+    [savingSubmission, setSavingSubmission] = useState(false),
     [error, setError] = useState(""),
     [fieldErrors, setFieldErrors] = useState<Record<string, string>>({}),
     [step, setStep] = useState(1);
@@ -2486,6 +2468,7 @@ export function Submission({
       return;
     }
     saving.current = true;
+    setSavingSubmission(submit);
     setBusy(true);
     setError("");
     try {
@@ -2511,6 +2494,7 @@ export function Submission({
     } finally {
       saving.current = false;
       setBusy(false);
+      setSavingSubmission(false);
     }
   };
   if (data.submissionAccess?.canRead !== true)
@@ -2742,16 +2726,17 @@ export function Submission({
             <ProjectMediaField kind="banner" value={project.banner} info={mediaInfo.banner} error={fieldErrors.banner} busy={mediaBusy.banner} onUpload={(file) => void upload(file, "banner")} onRemove={() => removeImage("banner")} />
             <div className="submission-media-side">
               <ProjectMediaField kind="logo" value={project.logo} info={mediaInfo.logo} error={fieldErrors.logo} busy={mediaBusy.logo} onUpload={(file) => void upload(file, "logo")} onRemove={() => removeImage("logo")} />
-              <div className="submission-attestation-wrap">
+            </div>
+            <div className="submission-attestation-wrap">
                 <label className="check-label submission-attestation">
                   <input id="submission-attestation-control" type="checkbox" checked={!!project.attestation}
+                    aria-required="true"
                     aria-invalid={fieldErrors.attestation ? true : undefined}
                     aria-describedby={fieldErrors.attestation ? "submission-attestation-error" : undefined}
                     onChange={(e) => set("attestation", e.target.checked)} />
                   <span>I confirm this submission is accurate.<span className="required-marker" aria-hidden="true"> *</span></span>
                 </label>
                 {fieldErrors.attestation && <small className="submission-field-error" id="submission-attestation-error" role="alert">{fieldErrors.attestation}</small>}
-              </div>
             </div>
           </div>
           {canCommit && (
@@ -2778,17 +2763,18 @@ export function Submission({
                     className="button secondary"
                     disabled={busy || processingMedia}
                   >
-                    {busy ? "Saving…" : "Save draft"}
+                    {busy && !savingSubmission ? "Saving…" : "Save draft"}
                   </button>
                   <button
                     type="button"
-                    className="button"
+                    className="button submission-submit"
                     disabled={busy || processingMedia}
+                    aria-busy={busy && savingSubmission}
                     onClick={() => {
                       void save(true);
                     }}
                   >
-                    Submit <ArrowRight size={18} aria-hidden="true" />
+                    {busy && savingSubmission ? "Submitting…" : "Submit"} <ArrowRight size={18} aria-hidden="true" />
                   </button>
 
                 </>
@@ -2810,9 +2796,10 @@ export function Submission({
           </p>
         )}
       </form>
+      {step === 3 && canCommit && <SubmissionDots />}
       {!onExit && (
         <div className="submission-history-actions">
-          <ProjectHistory canRead={data.submissionAccess?.canRead === true} />
+          <ProjectHistory canRead={data.submissionAccess?.canRead === true} currentVersionId={data.project?.published_version_id} />
           {data.leaderboardUrl && (
             <a className="button secondary" href={data.leaderboardUrl}>
               View project <ExternalLink size={18} aria-hidden="true" />
@@ -2826,9 +2813,11 @@ export function Submission({
 export function ProjectHistory({
   canRead,
   label = "View committed history",
+  currentVersionId,
 }: {
   canRead: boolean;
   label?: string;
+  currentVersionId?: string;
 }) {
   const [open, setOpen] = useState(false),
     [items, setItems] = useState<Row[]>([]),
@@ -2916,10 +2905,9 @@ export function ProjectHistory({
             <p className="history-empty">No committed versions yet.</p>
           )}
           {items.map((item) => (
-            <article className="history-version" key={item.id}>
-              <header><h3>Version {item.attempt}</h3><time dateTime={item.created_at}>{ist(item.created_at)}</time></header>
+            <CommittedSubmission item={item as { id: string; attempt: number; created_at: string }} payload={item.payload} currentVersionId={currentVersionId} key={item.id}>
               <ProjectVersion payload={item.payload} />
-            </article>
+            </CommittedSubmission>
           ))}
         </dialog>
       )}

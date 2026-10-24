@@ -1,0 +1,302 @@
+/* Final-step controls and decoration stay scoped to the submission wizard. */
+.app-shell .submission-v6 .submission-attestation-wrap {
+  grid-column: 1 / -1;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.app-shell .submission-v6 .submission-media .submission-attestation {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 64px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  font-size: 15px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.app-shell
+  .submission-v6
+  .project-editor
+  .submission-stage
+  .submission-attestation
+  > input[type="checkbox"] {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  margin: 0;
+  accent-color: #08783e;
+  cursor: pointer;
+}
+.app-shell .submission-v6 .submission-attestation:focus-within {
+  outline: 3px solid #006aff;
+  outline-offset: 3px;
+}
+.app-shell
+  .submission-v6
+  .submission-attestation:has(input[aria-invalid="true"]) {
+  border-color: #a52a2a;
+}
+.app-shell .submission-v6 .submission-attestation-wrap .submission-field-error {
+  margin-top: 10px;
+}
+.app-shell .submission-v6 .submission-actions .submission-submit {
+  background: #08783e;
+  border-color: #08783e;
+  color: #fff;
+}
+.app-shell
+  .submission-v6
+  .submission-actions
+  .submission-submit:hover:not(:disabled) {
+  background: #065f31;
+  border-color: #065f31;
+}
+.app-shell .submission-v6 .submission-actions .submission-submit:focus-visible {
+  outline: 3px solid #006aff;
+  outline-offset: 3px;
+}
+.app-shell .submission-v6 .submission-actions .submission-submit:disabled {
+  opacity: 1;
+  color: #3e5948;
+  background: #dbe8de;
+  border-color: #dbe8de;
+  cursor: wait;
+}
+.submission-dots {
+  position: relative;
+  height: 132px;
+  margin-top: 24px;
+  overflow: hidden;
+  overflow: clip;
+  pointer-events: none;
+  contain: paint;
+}
+.submission-dot {
+  position: absolute;
+  left: calc(var(--dot-x) - var(--dot-size) / 2);
+  bottom: -18px;
+  width: var(--dot-size);
+  height: var(--dot-size);
+  transform: rotate(var(--dot-angle));
+}
+.submission-dot svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.app-shell .committed-submissions {
+  margin-top: 24px;
+}
+.app-shell .committed-submissions > h3 {
+  margin: 0 0 14px;
+  font-size: 18px;
+}
+.committed-submission {
+  border-top: 1px solid var(--line);
+}
+.committed-submission:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.committed-submission > summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto 20px;
+  align-items: center;
+  gap: 12px;
+  min-height: 68px;
+  padding: 14px 4px;
+  color: var(--ink);
+  list-style: none;
+  cursor: pointer;
+}
+.committed-submission > summary::-webkit-details-marker {
+  display: none;
+}
+.committed-submission > summary:focus-visible {
+  outline: 3px solid #006aff;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.committed-submission-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.committed-submission-current {
+  padding: 4px 8px;
+  border-radius: 5px;
+  background: #e2efe5;
+  color: #17653a;
+  font-size: 11px;
+  line-height: 1.2;
+}
+.committed-submission time {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+.committed-submission > summary > svg {
+  transition: transform 160ms ease;
+}
+.committed-submission[open] > summary > svg {
+  transform: rotate(180deg);
+}
+.committed-submission-content {
+  display: grid;
+  grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
+  align-items: start;
+  gap: 22px;
+  padding: 4px 4px 24px;
+}
+.committed-submission-banner {
+  display: block;
+  width: 100%;
+  max-height: 135px;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  object-fit: contain;
+  background: #e8eee6;
+}
+.app-shell .committed-submission-details h4 {
+  margin: 0 0 10px;
+  font-size: 17px;
+}
+.app-shell .committed-submission-details p {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.committed-submission-details p:last-child {
+  margin-bottom: 0;
+}
+.committed-submission-loading {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  min-height: 135px;
+  padding: 4px 0;
+}
+.committed-submission-loading i {
+  display: block;
+  width: 80%;
+  height: 12px;
+  border-radius: 4px;
+  background: #e4e6dc;
+}
+.committed-submission-loading i:first-of-type {
+  width: 55%;
+  height: 20px;
+  margin-bottom: 4px;
+}
+.committed-submission-loading i:last-of-type {
+  width: 65%;
+}
+.committed-submissions-status,
+.committed-submissions-error {
+  padding: 16px 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.app-shell .dashboard-project-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+.dashboard-project-metrics {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-right: auto;
+}
+.app-shell .dashboard-project-metrics .dashboard-upvotes,
+.dashboard-project-feedback-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  text-decoration: none;
+}
+.dashboard-project-feedback-count {
+  min-width: 44px;
+}
+.dashboard-project-feedback-count:focus-visible {
+  outline: 3px solid #006aff;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.app-shell .dashboard-project-toolbar .button {
+  min-height: 44px;
+  margin: 0;
+}
+.app-shell .dashboard-project-toolbar .dashboard-project-update {
+  margin-left: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  .committed-submission > summary > svg {
+    transition: none;
+  }
+}
+@media (max-width: 740px) {
+  .app-shell .submission-v6 .submission-media .submission-attestation {
+    gap: 12px;
+    padding: 10px;
+    font-size: 14px;
+  }
+  .submission-dots {
+    height: 88px;
+    margin-top: 18px;
+  }
+  .submission-dot {
+    --dot-size: 72px !important;
+    --dot-x: calc(8% + var(--dot-index) * 28%) !important;
+  }
+  .submission-dot:nth-child(n + 5) {
+    display: none;
+  }
+  .committed-submission > summary {
+    grid-template-columns: minmax(0, 1fr) 20px;
+    gap: 8px 12px;
+    padding-block: 16px;
+  }
+  .committed-submission time {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 11px;
+  }
+  .committed-submission > summary > svg {
+    grid-column: 2;
+    grid-row: 1 / 3;
+  }
+  .committed-submission-content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+  .committed-submission-banner {
+    width: min(100%, 220px);
+    max-height: 124px;
+  }
+  .app-shell .dashboard-project-toolbar {
+    gap: 10px;
+  }
+  .dashboard-project-metrics {
+    flex-basis: 100%;
+  }
+  .app-shell .dashboard-project-toolbar .button {
+    flex: 1;
+    padding-inline: 12px;
+    font-size: 13px;
+  }
+}

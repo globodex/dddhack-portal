@@ -25,6 +25,7 @@ import "./team-studio-shell.css";
 import "./team-studio-experience.css";
 import "./confirmation-experience.css";
 import "./unified-navigation.css";
+import "./submission-finish.css";
 export const metadata = {
   icons: { icon: "/brand/codex-user-supplied.svg" },
   title: "DevDay Exchange Community Hackathon: New Delhi",
