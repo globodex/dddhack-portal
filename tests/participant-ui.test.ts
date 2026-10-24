@@ -405,22 +405,23 @@ test("destructive and publishing confirmations identify exact scope and preserve
     "Alex · alex@example.invalid",
   );
   assert.equal(removal.target, "Alex · alex@example.invalid");
-  assert.match(removal.description, /Imports cannot restore/);
+  assert.match(removal.description, /Revoke participation and private access/);
+  assert.match(removal.description, /history stays intact/);
   const version = portalConfirmationFor(
     "project-soft-delete",
     { scope: "submission", versionId: "fixture-version" },
     "Fixture · fixture-version",
   );
   assert.equal(version.title, "Remove selected submission");
-  assert.match(version.description, /does not automatically expose/);
+  assert.match(version.description, /older versions stay hidden/);
   assert.match(
     portalConfirmationFor("publish-submission-window", {}, "Previewed times")
       .description,
-    /real portal settings/,
+    /Attempts and the repository cutoff stay unchanged/,
   );
   assert.equal(
     portalConfirmationFor("publish-submission-window", { windowWarnings: ["The repository cutoff is unchanged.", "Closing reaches judging close."] }, "24 Oct 08:00 IST → 1 Nov 20:00 IST").description,
-    "The repository cutoff is unchanged. Closing reaches judging close.",
+    "Save these times for everyone. Attempts and the repository cutoff stay unchanged. Judging dates also need updating.",
   );
   assert.equal(
     portalConfirmationFor("commit-import", { newCount: 2 }, "Previewed roster")

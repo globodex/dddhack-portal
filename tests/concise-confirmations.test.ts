@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import ConfirmationDialog from "../app/confirmation-dialog";
-import { confirmationFor, requiresActionConfirmation, revealConfirmation } from "../lib/action-confirmation";
+import { ConfirmationGate, confirmationFor, requiresActionConfirmation, revealConfirmation } from "../lib/action-confirmation";
 import { portalSuccessText } from "../lib/ui-feedback";
 
 test("submission confirmations show the committed attempt and correct remaining count", () => {
@@ -46,4 +46,21 @@ test("concise copy retains irreversible reveal and credit deletion consequences"
   assert.equal(requiresActionConfirmation("complete-profile"), false);
   assert.equal(requiresActionConfirmation("bulk-check-in"), true);
   assert.equal(portalSuccessText("submit-project", "Old server copy"), "Project submitted successfully.");
+});
+
+test("confirmation captures the initiating control before pending rendering changes focus", async () => {
+  const prior = Object.getOwnPropertyDescriptor(globalThis, "document");
+  const opener = { id: "synthetic-delete-credit-opener" } as HTMLElement;
+  const syntheticDocument = { activeElement: opener };
+  Object.defineProperty(globalThis, "document", { configurable: true, value: syntheticDocument });
+  try {
+    const gate = new ConfirmationGate(() => { syntheticDocument.activeElement = {} as HTMLElement; });
+    const pending = gate.ask(confirmationFor("delete-credit-column", {}, "Synthetic category"));
+    assert.equal(gate.pending!.opener, opener);
+    gate.decide(false);
+    assert.equal(await pending, false);
+  } finally {
+    if (prior) Object.defineProperty(globalThis, "document", prior);
+    else Reflect.deleteProperty(globalThis, "document");
+  }
 });

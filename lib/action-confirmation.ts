@@ -7,6 +7,7 @@ export type Confirmation = {
   badge?: string;
   note?: string;
   tone?: "default" | "positive" | "danger";
+  opener?: HTMLElement | null;
 };
 export class ActionCancelled extends Error {
   constructor() {
@@ -173,8 +174,10 @@ export class ConfirmationGate {
   ask(value: Confirmation) {
     if (this.resolver)
       throw new Error("Another action is awaiting confirmation.");
-    this.pending = value;
-    this.changed(value);
+    // Capture before a pending render disables the initiating control.
+    const opener = typeof document === "undefined" ? null : document.activeElement as HTMLElement | null;
+    this.pending = opener ? { ...value, opener } : value;
+    this.changed(this.pending);
     return new Promise<boolean>((resolve) => {
       this.resolver = resolve;
     });
