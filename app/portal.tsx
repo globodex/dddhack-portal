@@ -661,8 +661,10 @@ function CreateTeam({
   return (
     <form
       className="panel team-create-form"
+      method="post"
+      inert={!hydrated}
       aria-labelledby={headingId}
-      aria-busy={busy}
+      aria-busy={!hydrated || busy}
       data-hydrated={hydrated}
       onSubmit={async (event) => {
         event.preventDefault();
