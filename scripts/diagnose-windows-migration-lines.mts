@@ -91,7 +91,7 @@ try {
       join(scratch, "neon/scripts/upgrade-populated.ts"),
       "--plan",
     ],
-    { cwd: scratch, encoding: "utf8", env: { PATH: process.env.PATH } },
+    { cwd: scratch, encoding: "utf8", env: { PATH: process.env.PATH, NODE_ENV: "test" } },
   );
   const report = {
     source: spawnSync("git", ["rev-parse", "HEAD"], {

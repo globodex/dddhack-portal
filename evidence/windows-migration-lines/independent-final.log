@@ -1,0 +1,14 @@
+✔ independent Windows source: approved LF plan is nine exact HEAD blobs and keeps the published digest (89.371151ms)
+✔ independent Windows repair: check is read-only, exact CRLF repair preserves HEAD/index/approval and recovers the strict source plan (1915.441333ms)
+✔ independent Windows repair: edits, BOM, changed HEAD/index/approval and unexpected file sets refuse before any SQL write (3264.440571ms)
+✔ independent Windows source: actual CRLF loader and offline CLI reject; strict checker never normalizes bytes (1169.950905ms)
+✔ independent Windows source: missing, extra, reordered, BOM and literal-edit plans still stop strictly (8.700571ms)
+✔ independent Windows checkout: autocrlf=true still checks out only the nine pinned migration paths as canonical LF (170.031221ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7275.620369

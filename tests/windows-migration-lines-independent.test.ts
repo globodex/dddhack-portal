@@ -86,7 +86,7 @@ function cli(cwd: string, relative: string, args: string[]) {
   return spawnSync(
     process.execPath,
     ["--import", "tsx", join(cwd, relative), ...args],
-    { cwd, encoding: "utf8", env: { PATH: process.env.PATH }, timeout: 15000 },
+    { cwd, encoding: "utf8", env: { PATH: process.env.PATH, NODE_ENV: "test" }, timeout: 15000 },
   );
 }
 async function planAt(cwd: string) {

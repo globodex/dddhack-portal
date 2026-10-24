@@ -44,6 +44,21 @@ New-Item -ItemType Directory -Force .local | Out-Null
 
 `DATABASE_URL_UNPOOLED` must already be in the private `.env.backend.local`, or in the local environment with the intended value. Node's `--env-file` does not replace an already-set environment variable. Privately resolve any disagreement before continuing. Never paste the URL, password, backup or private receipt into a ticket, screenshot or commit. The CLI verifies URL host/database/role and the connected `current_database()`/`current_user`; URL identity overrides and pooled hostnames are rejected.
 
+## Windows source-plan line endings
+
+If `--plan` stops with `UPGRADE_SOURCE_PLAN_MISMATCH`, inspect local source before any database operation. A Windows checkout can show `i/lf w/crlf` for the nine SQL files because older commits had no line-ending attributes. JSON manifest CRLF is harmless; do not edit checksums or the ledger.
+
+After pulling the current review branch, these commands repair only a CRLF/LF representation that exactly matches every approved Git HEAD blob. The helper validates all nine files and the Git index first, refuses real edits/BOM/missing or extra migrations, never reads an env file and never connects to a database:
+
+```powershell
+node scripts/verify-migration-checkout.mjs --repair-line-endings
+if ($LASTEXITCODE -ne 0) { throw 'Source repair stopped; preserve changes for review' }
+node --import tsx neon/scripts/upgrade-populated.ts --plan
+if ($LASTEXITCODE -ne 0) { throw 'Source plan is still invalid; do not inspect or apply' }
+```
+
+The approved plan digest remains `498280b69647485b4f55c35331a0f8af486983d819ee2dc25fb1840f1e657506`. The read-only `node scripts/verify-migration-checkout.mjs --check` returns2 when line-ending repair is needed. The migration checksum verifier itself is unchanged. The scoped `.gitattributes` keeps future SQL checkouts LF without changing global Git settings. Continue with the backup/restore and guarded inspection steps only after the source plan succeeds.
+
 ## Backup and restore checkpoint
 
 An already verified provider restore point or backup branch is acceptable. Record its exact identifier, target and timestamp privately, and verify a separate restored copy before acknowledging it. This tool does not create a provider backup or verify a restore. Do not repoint the live app to the copy.

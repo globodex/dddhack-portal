@@ -1,0 +1,15 @@
+
+> devday-exchange-portal@0.1.0 typecheck
+> tsc --noEmit
+
+scripts/diagnose-windows-migration-lines.mts(94,39): error TS2769: No overload matches this call.
+  Overload 3 of 8, '(command: string, args?: readonly string[] | undefined, options?: SpawnSyncOptions | undefined): SpawnSyncReturns<string | NonSharedBuffer>', gave the following error.
+    Property 'NODE_ENV' is missing in type '{ PATH: string | undefined; }' but required in type 'ProcessEnv'.
+tests/windows-migration-lines-independent.test.ts(89,30): error TS2769: No overload matches this call.
+  Overload 3 of 8, '(command: string, args?: readonly string[] | undefined, options?: SpawnSyncOptions | undefined): SpawnSyncReturns<string | NonSharedBuffer>', gave the following error.
+    Property 'NODE_ENV' is missing in type '{ PATH: string | undefined; }' but required in type 'ProcessEnv'.
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
