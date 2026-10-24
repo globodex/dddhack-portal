@@ -254,3 +254,9 @@ dialog::backdrop { background: #20232066; }
   color: #006b43;
   background: #e8f4ec;
 }
+.app-shell.workspace-shell > .sidebar .account-controls > .personal-credit-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+}

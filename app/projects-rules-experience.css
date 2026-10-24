@@ -266,3 +266,8 @@
   .app-shell .submission-v6 .submission-heading > div { gap: 6px; }
   .app-shell .submission-v6 .submission-progress-bars { width: 48px; }
 }
+.app-shell .dashboard-project-card .dashboard-project-banner {
+  object-fit: contain;
+  object-position: center;
+  background: var(--project-team-wash, #e8f7ef);
+}

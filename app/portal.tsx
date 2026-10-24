@@ -1362,7 +1362,7 @@ function DashboardProject({
             )}
           </div>
           {project?.published_version_id && !editorOpen && (
-            <article className="dashboard-project-card">
+            <article className="dashboard-project-card" style={projectMediaStyle(data.team?.palette)}>
               {draft.banner && (
                 <img
                   className="dashboard-project-banner"
@@ -3940,7 +3940,7 @@ export function Review({
           aria-labelledby="admin-project-details-tab"
         >
           {payload.logo && payload.banner ? (
-            <ProjectBody project={payload} />
+            <ProjectBody project={payload} teamColorKey={p.teamPalette} />
           ) : (
             <>
               <h1>{payload.projectName || "Untitled draft"}</h1>
@@ -5902,6 +5902,9 @@ export default function Portal({
                   {admin ? "Workspace" : "Administration"}
                 </a>
               )}
+              <Link className="personal-credit-nav-link" prefetch={false} href="/personal/credits" onNavigate={(event) => navigate(event, "/personal/credits")} aria-current={path === "/personal/credits" ? "page" : undefined}>
+                <Icon name="credits" /> My credits
+              </Link>
               <button
                 className="link-button account-logout"
                 type="button"
@@ -5934,6 +5937,7 @@ export default function Portal({
                 {admin ? "Workspace" : "Administration"}
               </Link>
             )}
+            <Link prefetch={false} href="/personal/credits" onNavigate={(event) => navigate(event, "/personal/credits")} aria-current={path === "/personal/credits" ? "page" : undefined}><Icon name="credits" />My credits</Link>
             <button className="navigation-logout" type="button" onClick={() => { setMenu(false); requestAnimationFrame(() => void logout()); }}><LogOut size={24} aria-hidden="true" />Log out</button>
           </>
         )}
