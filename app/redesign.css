@@ -12,6 +12,8 @@
 }
 html { scrollbar-gutter: stable; }
 body { background: var(--paper); }
+body:has(.onboarding-shell) { background: var(--paper); }
+.app-shell.onboarding-shell { border-color: var(--line); background: var(--surface); }
 :where(button, a, input, select, textarea, summary):focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 4px;
@@ -183,6 +185,7 @@ dialog::backdrop { background: #20232066; }
 .mobile-navigation nav > :is(a,button) { color: var(--ink); border-color: var(--line); }
 .mobile-navigation nav > a[aria-current="page"] { color: #2e6841; }
 @media (max-width: 1199px) {
+  .app-shell.onboarding-shell { min-height: 100svh; }
   .app-shell.workspace-shell > .main { width: 100%; padding: 28px 24px 48px; }
   .app-shell:not(.public-home-shell) > .mobile-header { min-height: 64px; }
 }
