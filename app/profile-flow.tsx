@@ -473,7 +473,8 @@ export default function ProfileFlow({
         }}
       />
       <form
-        aria-busy={busy}
+        method="post"
+        aria-busy={busy || !hydrated}
         noValidate
         key={step}
         className="profile-step"
@@ -547,7 +548,11 @@ export default function ProfileFlow({
           }
         }}
       >
-        <fieldset disabled={busy} className="profile-fields" tabIndex={0}>
+        <fieldset
+          disabled={busy || !hydrated}
+          className="profile-fields"
+          tabIndex={0}
+        >
           <legend className="sr-only">
             Step {step} of 3:{" "}
             {step === 1 ? "Basics" : step === 2 ? "Contact" : "About you"}
@@ -746,7 +751,7 @@ export default function ProfileFlow({
               {error}
             </p>
           )}
-          <button className="button profile-next" disabled={busy}>
+          <button className="button profile-next" disabled={busy || !hydrated}>
             <span>{busy ? "Saving…" : step === 3 ? "Save" : "Next"}</span>
             <ProfileIcon name="next" />
           </button>
