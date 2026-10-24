@@ -3160,7 +3160,8 @@ export function UpvoteButton({
             }
           } catch (e) {
             if (!(e instanceof ActionCancelled)) {
-              setError(e instanceof TypeError ? "Upvote could not be saved. Try again." : (e as Error).message);
+              const message = (e as Error).message;
+              setError(e instanceof TypeError || /^[A-Z][A-Z0-9_]+$/.test(message) ? "Could not upvote. Try again." : message);
               // A lost response may follow a committed vote. Ask the existing
               // public projection before presenting a retry as still available.
               try { if ((await reconcile())?.upvoted) setError(""); } catch {}

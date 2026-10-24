@@ -30,7 +30,12 @@ export async function readProjectPage(
   const { response, body } = await readPortalView(url, signal);
   if (!body || typeof body !== "object")
     throw new Error("Projects could not be loaded. Try again.");
-  if (!response.ok) throw new Error(portalErrorText(body));
+  if (!response.ok)
+    throw new Error(
+      response.status >= 500
+        ? "Projects could not be loaded. Try again."
+        : portalErrorText(body),
+    );
   const requested = Number(
     new URL(url, "https://portal.test").searchParams.get("page"),
   );

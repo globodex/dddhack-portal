@@ -232,6 +232,10 @@ try {
     });
     await card.locator("[role=alert]").waitFor();
     assert.equal(voteCalls, 1);
+    assert.doesNotMatch(
+      await card.locator("[role=alert]").innerText(),
+      /BACKEND_UNAVAILABLE/,
+    );
     assert.equal(await vote.getAttribute("aria-pressed"), "false");
     assert.equal(Number(await vote.innerText()), before);
     assert.equal(await cards.count(), 60);

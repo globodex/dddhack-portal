@@ -105,6 +105,12 @@ test("project reads encode search separately, stay private and reject invalid or
   };
   try {
     assert.equal((await readProjectPage(url, signal)).nextCursor, "3");
+    globalThis.fetch = async () =>
+      Response.json({ code: "BACKEND_UNAVAILABLE" }, { status: 503 });
+    await assert.rejects(
+      readProjectPage(url, signal),
+      /Projects could not be loaded. Try again/,
+    );
     for (const page of [
       { items: [], page: 1 },
       {
