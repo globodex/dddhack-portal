@@ -1884,7 +1884,7 @@ function DiscoverSocials({ socials = [] }: { socials?: string[] }) {
   );
 }
 
-function DiscoverTeamDialog({
+export function DiscoverTeamDialog({
   team,
   onClose,
 }: {
@@ -1893,36 +1893,64 @@ function DiscoverTeamDialog({
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const callback = useRef(onClose);
+  const color = resolveTeamColor(team.palette);
+  const members = Array.isArray(team.members) ? team.members : [];
   useEffect(() => {
     callback.current = onClose;
   }, [onClose]);
   useEffect(() => {
-    if (dialog.current)
-      return openDiscoveryDialog(dialog.current, () => callback.current());
+    if (!dialog.current) return;
+    const overflow = document.body.style.overflow;
+    const gutter = document.documentElement.style.scrollbarGutter;
+    document.documentElement.style.scrollbarGutter = "stable";
+    document.body.style.overflow = "hidden";
+    const release = openDiscoveryDialog(dialog.current, () => callback.current());
+    return () => {
+      release();
+      document.body.style.overflow = overflow;
+      document.documentElement.style.scrollbarGutter = gutter;
+    };
   }, []);
   return (
     <dialog
       ref={dialog}
-      className="discover-team-dialog-v6"
+      className="discover-team-dialog-v6 discover-team-sheet"
       onKeyDown={trapDialogFocus}
       aria-labelledby="discover-team-title"
+      style={{ "--discover-wash": color.wash } as CSSProperties}
     >
-      <button
-        type="button"
-        className="discover-dialog-close"
-        autoFocus
-        aria-label="Close team"
-        onClick={() => dialog.current?.close()}
-      >
-        <X size={22} aria-hidden="true" />
-      </button>
-      <TeamAvatar name={team.name} palette={team.palette} size={80} />
-      <h2 id="discover-team-title">{team.name}</h2>
-      <span className={`discover-state ${team.locked ? "locked" : "forming"}`}>
-        {team.status || (team.locked ? "Locked" : "Forming")}
-      </span>
-      <p>{team.readiness?.total ?? "?"}/5 members</p>
-      {team.bio && <p className="discover-team-bio">{team.bio}</p>}
+      <header className="discover-team-sheet-heading">
+        <TeamAvatar name={team.name} palette={team.palette} size={64} />
+        <div>
+          <h2 id="discover-team-title">{team.name}</h2>
+          <div className="discover-team-facts">
+            <span>{team.readiness?.total ?? "?"}/5 members</span>
+            <span className={`discover-state ${team.locked ? "locked" : "forming"}`}>
+              {team.status || (team.locked ? "Locked" : "Forming")}
+            </span>
+          </div>
+        </div>
+        <button type="button" className="discover-dialog-close" autoFocus aria-label="Close team" onClick={() => dialog.current?.close()}>
+          <X size={22} aria-hidden="true" />
+        </button>
+      </header>
+      <div className="discover-team-sheet-body">
+        {team.bio && <p className="discover-team-bio">{team.bio}</p>}
+        <h3>Members</h3>
+        {Array.isArray(team.members) ? (
+          <ul className="discover-team-members">
+            {members.map((member: Row, index: number) => {
+              const href = safeProfileUrl(member.profileUrl);
+              const identity = <><DotAvatar color={member.avatarColor} expression={member.avatarExpression} size={44} decorative /><strong>{member.name}</strong></>;
+              return <li key={member.id || index}>{href ? (
+                <a href={href} aria-label={`View ${member.name}'s profile`} onClick={() => consumeDialogHistoryForNavigation()}>
+                  {identity}<ChevronRight size={20} aria-hidden="true" />
+                </a>
+              ) : <div>{identity}</div>}</li>;
+            })}
+          </ul>
+        ) : <p className="discover-members-unavailable" role="status">Member details are unavailable.</p>}
+      </div>
     </dialog>
   );
 }
@@ -1960,6 +1988,7 @@ export function Discover({
   path: string;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
+  const hydrated = useHydrated();
   const [search, setSearch] = useState(""),
     [teamFilter, setTeamFilter] = useState("");
   const [selectedPerson, setSelectedPerson] = useState<DiscoveryPerson | null>(
@@ -2036,7 +2065,7 @@ export function Discover({
           .includes(search.toLowerCase()),
       );
   return (
-    <section className="discover-v6">
+    <section className="discover-v6" data-hydrated={hydrated}>
       <header className="discover-heading">
         <h1>
           <HeadingDot
@@ -2051,6 +2080,7 @@ export function Discover({
             type="button"
             className="button discover-create-trigger"
             aria-haspopup="dialog"
+            disabled={!hydrated}
             onClick={() => setCreating(true)}
           >
             <Plus size={18} aria-hidden="true" />
@@ -2083,6 +2113,7 @@ export function Discover({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder={participants ? "Search people" : "Search teams"}
+            disabled={!hydrated}
           />
         </label>
         {participants && (
@@ -2100,6 +2131,7 @@ export function Discover({
                 key={value}
                 type="button"
                 aria-pressed={teamFilter === value}
+                disabled={!hydrated}
                 onClick={() => setTeamFilter(value)}
               >
                 {label}
@@ -2113,107 +2145,71 @@ export function Discover({
         aria-label={participants ? "People" : "Teams"}
         aria-busy={participants ? people.loading : undefined}
       >
-        {items.map((row) => (
-          <li
-            key={row.id}
-            id={participants ? `person-${row.id}` : undefined}
-            data-has-bio={!!row.bio}
-          >
-            {participants ? (
-              <>
-                <DotAvatar
-                  color={row.avatarColor}
-                  expression={row.avatarExpression}
-                  size={56}
-                  decorative
-                />
-                <div className="discover-identity">
-                  <h2>{row.name}</h2>
-                  {row.bio && <p>{row.bio}</p>}
-                </div>
-                <div className="discover-card-membership">
-                  <span
-                    className={`discover-membership ${row.teamName ? "joined" : "unjoined"}`}
-                  >
-                    {row.teamName ? "In a team" : "Not in a team"}
-                  </span>
-                  {row.teamName && (
-                    <span className="discover-card-team-name">
-                      {row.teamName}
-                    </span>
-                  )}
-                </div>
-                <DiscoverSocials socials={row.socials} />
-                <button
-                  type="button"
-                  className="discover-profile-open"
-                  aria-label={`View ${row.name}'s profile`}
-                  aria-haspopup="dialog"
-                  onClick={() =>
-                    setSelectedPerson(discoveryProfileProjection(row))
-                  }
-                >
-                  <ChevronRight size={22} aria-hidden="true" />
-                </button>
-              </>
-            ) : (
-              <>
-                <TeamAvatar name={row.name} palette={row.palette} size={56} />
-                <div className="discover-identity">
-                  <h2>
-                    <button
-                      type="button"
-                      aria-haspopup="dialog"
-                      onClick={() => setSelectedTeam(row)}
-                    >
-                      {row.name}
+        {items.map((row) => {
+          const bio = typeof row.bio === "string" ? row.bio.trim() : "";
+          const color = resolveTeamColor(participants ? row.teamPalette : row.palette);
+          return (
+            <li
+              key={row.id}
+              id={participants ? `person-${row.id}` : undefined}
+              className={`discover-card ${participants ? "discover-person-card" : "discover-team-card"}`}
+              data-has-bio={!!bio}
+              style={{ "--discover-wash": color.wash, "--discover-accent": color.ink } as CSSProperties}
+            >
+              {participants ? (
+                <>
+                  <div className="discover-person-heading">
+                    <DotAvatar color={row.avatarColor} expression={row.avatarExpression} size={56} decorative />
+                    <div className="discover-identity"><h2>{row.name}</h2></div>
+                    <button type="button" className="discover-profile-open discover-card-arrow" aria-label={`View ${row.name}'s profile`} aria-haspopup="dialog" disabled={!hydrated} onClick={() => setSelectedPerson(discoveryProfileProjection(row))}>
+                      <ChevronRight size={22} aria-hidden="true" />
                     </button>
-                  </h2>
-                  <p>{row.readiness?.total ?? "?"}/5 members</p>
-                </div>
-                <span
-                  className={`discover-state ${row.locked ? "locked" : "forming"}`}
-                >
-                  {row.status || (row.locked ? "Locked" : "Forming")}
-                </span>
-                {row.bio && <p className="discover-team-summary">{row.bio}</p>}
-                <div className="discover-team-action">
-                  {data.team?.id === row.id ? (
-                    <a href="/dashboard" className="discover-view-team">
-                      Your team
-                    </a>
-                  ) : canCreate &&
-                    !row.locked &&
-                    Number(row.readiness?.total) < 5 ? (
-                    <TeamAction
-                      action="request-team"
-                      values={{ teamId: row.id }}
-                      run={run}
-                      className="discover-request"
-                      disabled={!!row.requested}
-                    >
-                      {row.requested ? "Requested" : "Request to join"}
-                    </TeamAction>
-                  ) : (
-                    <button
-                      type="button"
-                      className="discover-view-team"
-                      aria-haspopup="dialog"
-                      onClick={() => setSelectedTeam(row)}
-                    >
-                      View team
+                  </div>
+                  {bio && <p className="discover-person-bio">{bio}</p>}
+                  <div className="discover-person-footer">
+                    <div className={`discover-card-membership ${row.teamName ? "joined" : "unjoined"}`}>
+                      {row.teamName ? <TeamAvatar name={row.teamName} palette={row.teamPalette} size={28} /> : <Users size={18} aria-hidden="true" />}
+                      <span className="discover-card-team-name">
+                        {row.teamName && <span className="sr-only">In a team: </span>}
+                        {row.teamName || "Not in a team"}
+                      </span>
+                    </div>
+                    <DiscoverSocials socials={row.socials} />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="discover-team-card-heading">
+                    <TeamAvatar name={row.name} palette={row.palette} size={64} />
+                    <div className="discover-identity"><h2>{row.name}</h2></div>
+                    <button type="button" className="discover-team-open discover-card-arrow" aria-label={`View ${row.name} team`} aria-haspopup="dialog" disabled={!hydrated} onClick={() => setSelectedTeam(row)}>
+                      <ChevronRight size={22} aria-hidden="true" />
                     </button>
+                  </div>
+                  {bio && <p className="discover-team-summary">{bio}</p>}
+                  <div className="discover-team-facts">
+                    <span className="discover-team-size"><Users size={17} aria-hidden="true" />{row.readiness?.total ?? "?"}/5 members</span>
+                    <span className={`discover-state ${row.locked ? "locked" : "forming"}`}>{row.status || (row.locked ? "Locked" : "Forming")}</span>
+                  </div>
+                  {(data.team?.id === row.id || (canCreate && !row.locked && Number(row.readiness?.total) < 5)) && (
+                    <div className="discover-team-action">
+                      {data.team?.id === row.id ? <a href="/dashboard" className="discover-view-team">Your team<ArrowRight size={17} aria-hidden="true" /></a> : (
+                        <TeamAction action="request-team" values={{ teamId: row.id }} run={run} className="discover-request" disabled={!!row.requested}>
+                          {row.requested ? "Requested" : "Request to join"}
+                        </TeamAction>
+                      )}
+                    </div>
                   )}
-                </div>
-              </>
-            )}
-          </li>
-        ))}
+                </>
+              )}
+            </li>
+          );
+        })}
         {participants &&
           people.loading &&
           Array.from({ length: items.length ? 3 : 6 }, (_, index) => (
             <li
-              className="discover-person-skeleton"
+              className="discover-card discover-person-card discover-person-skeleton"
               key={`loading-${index}`}
               aria-hidden="true"
             >
@@ -2231,17 +2227,7 @@ export function Discover({
       )}
       {participants && (
         <div className="discover-pagination" ref={people.sentinel}>
-          <p role="status" aria-live="polite">
-            {people.loading
-              ? "Loading people…"
-              : people.error
-                ? ""
-                : people.hasMore
-                  ? ""
-                  : items.length
-                    ? "All people loaded"
-                    : ""}
-          </p>
+          {people.loading && <p role="status" aria-live="polite">Loading people…</p>}
           {people.error && <p role="alert">{people.error}</p>}
           {(people.hasMore || people.error) && (
             <button

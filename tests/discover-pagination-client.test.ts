@@ -19,7 +19,7 @@ test("participant cards retain safe dialog controls and accessible pagination wi
   assert.match(markup, /<button type="button">Load more<\/button>/);
   assert.doesNotMatch(markup, /PRIVATE-|All people loaded/);
   const finished = renderToStaticMarkup(createElement(Discover, { path: "/discover/participants", run, data: { items: [{ id: "fake_last", name: "Last" }], hasMore: false, nextCursor: null } }));
-  assert.match(finished, /All people loaded/);
+  assert.doesNotMatch(finished, /All people loaded/);
   assert.doesNotMatch(finished, />Load more</);
 });
 

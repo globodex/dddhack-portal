@@ -56,7 +56,7 @@ const renderTeams = (me: Partial<Me>, team?: Record<string, unknown>) =>
 test("redesigned team discovery keeps viewer browsing read-only and offers safe team details", () => {
   const html = renderTeams({ canParticipate: false, mode: "viewer" });
   assert.doesNotMatch(html, /Request to join|Create team/);
-  assert.equal((html.match(/>View team</g) || []).length, 3);
+  assert.equal((html.match(/class="discover-team-open discover-card-arrow"/g) || []).length, 3);
   assert.match(html, /3\/5 members/);
 });
 test("only eligible teamless members receive join/create controls, and full/locked teams remain read-only", () => {
