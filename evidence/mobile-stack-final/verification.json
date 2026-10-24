@@ -1,0 +1,45 @@
+{
+  "applicationSource": "7fe857b5e063f81b6883240be162c85e9851ae88",
+  "beforeSource": "212b1cc2dc1ffde574a5bc5d8ebf51929a879f5a",
+  "capturedAt": "2026-10-24T18:06:59.871Z",
+  "sourceFiles": {
+    "app/home.tsx": "a9c2c080664d9d3d8eddf60b542048c575db77a8d7821a42e19f296fe5375051",
+    "app/home-geometry.ts": "73a7c35775a9652f8a6d45f541e352904e23596779b632a57b46c22ad00b50ba",
+    "app/home-lower.css": "313d18174f3ef00999b14f501a7568bd21cc284e3ef4b238e1a3e70f2a93c73d",
+    "app/organizer-section.tsx": "871e265637d3e7ec37d8e9ba0e42019883d8961606efd621f4e659186f5da43e",
+    "public/brand/cerebras-official.webp": "bd32ba9cd8c81f097f92a05d3248339f62ba902326e45a20d9f164830892a534"
+  },
+  "applicationDiffSinceSource": "",
+  "acceptedBrowserChecks": 57,
+  "failedAcceptedBrowserChecks": 0,
+  "pageErrors": 0,
+  "nativePNGFiles": 63,
+  "unitTestObservation": {
+    "command": "node --import tsx --test --test-concurrency=1 tests/mobile-home-stack.test.ts tests/approved-home-interaction.test.ts tests/organizer-motion.test.ts",
+    "pass": 9,
+    "fail": 0,
+    "toolSession": 68097
+  },
+  "temporarySyntheticAgendaRestored": true,
+  "ownedRuntimeCleanup": {
+    "pidsAbsent": [
+      168338,
+      168369,
+      168349
+    ],
+    "frontendSessionExit": 0,
+    "backendSessionExit": 143,
+    "portsVerifiedClosed": [
+      3009,
+      8854
+    ]
+  },
+  "pushes": 0,
+  "hostedChanges": false,
+  "integratedBuildAndFullSuite": "Root owns final integration verification; not claimed by this lane",
+  "limits": [
+    "Local functional evidence, no hosted performance inference.",
+    "Initial exploratory after progress filenames are excluded from final overlap proof.",
+    "Normal-first-run URL regex rejected a successful sign-in URL query; receipt preserved, predicate corrected and navigation proved in continuation."
+  ]
+}

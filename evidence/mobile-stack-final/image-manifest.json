@@ -1,0 +1,443 @@
+[
+  {
+    "path": "evidence/mobile-stack-final/after/390x480-faq.png",
+    "sha256": "b214fb16ba9a5c0f58722ef97ca5c8f7e0a42f4e2a2798fc436a82920aa624e4",
+    "bytes": 27026,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/after/390x480-hero.png",
+    "sha256": "b456cdbb51ad23b07e46aaf820568332ff8c560bc9e1811a736e1b7f864ff15d",
+    "bytes": 81175,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/after/390x480-incoming-faq.png",
+    "sha256": "cb9e86be27f9e515bcbaa565417f0f6bab3c8ccc2a935d344d69ea244e416b8f",
+    "bytes": 27893,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/after/390x480-incoming-rules.png",
+    "sha256": "c11a030a82dd5b3234052f23966563a6ede5378740e06836196d0dac502e026c",
+    "bytes": 27764,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/after/390x480-incoming-venue.png",
+    "sha256": "252ffd82841fcc500258e760d5b2c9bd7a55aa9264423ffd91ee6d635483fb61",
+    "bytes": 28620,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/after/390x480-rules.png",
+    "sha256": "71246980dad3be87ee43837f59921026d92f4a0427c7bd495a28d53c148d23f2",
+    "bytes": 27456,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/after/390x480-schedule.png",
+    "sha256": "06bbf3d641a471bf4068435604f040a5e2af3e0ec8a89a741cc655c48fab4fb3",
+    "bytes": 23932,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/after/390x480-venue.png",
+    "sha256": "cee6e1f96cca1f6b9a4e1017f5eaecf3a996ebfdf96d558293bfbfe7456b24da",
+    "bytes": 20747,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/after/390x844-faq.png",
+    "sha256": "eca0b29403eab4df0c4db0481755a254cc291235b93041dc941718f2d4bc5c7f",
+    "bytes": 45591,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/after/390x844-hero.png",
+    "sha256": "7aed9c1d3d3a12d1d05f686e7fdffc5c53a80b6519019811499805a4bb728b12",
+    "bytes": 106089,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/after/390x844-incoming-faq.png",
+    "sha256": "9576d4554f55fc9135cd827f2da664ce7cb85ab3768d1b0217524100a19ebc69",
+    "bytes": 46395,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/after/390x844-incoming-rules.png",
+    "sha256": "0a73cfd8b99281b39012567f13f7fd6343f0adffe106f89db843f2f5033f392b",
+    "bytes": 47219,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/after/390x844-incoming-venue.png",
+    "sha256": "8fc4a31c49e8adbd6a9605543c435313681c60391058ec17538e8689127ee124",
+    "bytes": 46469,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/after/390x844-rules.png",
+    "sha256": "6f935ea20fd9bff965f6ee770de0ef4c8308d0ddaf9a21e9f8fc3d2fd4471840",
+    "bytes": 49035,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/after/390x844-schedule.png",
+    "sha256": "66137a3fdd53e1276249953a329128a779f15406da0441a1bc765dc45dd7010a",
+    "bytes": 37062,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/after/390x844-venue.png",
+    "sha256": "f696e6f04283d4301fae3c4cd8a92677657f8e70b631185a94a03c1d50ebf036",
+    "bytes": 42234,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/before/390x480-faq.png",
+    "sha256": "640ceca580d190a7f0b9155cc591f010fb3f082f0165399c57d34d4ac31fcc52",
+    "bytes": 26682,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/before/390x480-hero.png",
+    "sha256": "7f5b9cfdd8f26374b68e9a5ef91bd6d2e1b8b6cea8c26cc33d38068e70f946ac",
+    "bytes": 79028,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/before/390x480-incoming-faq.png",
+    "sha256": "f7f1abab6e13527b6435b5bf1b52df9ce13b82ca2709cb44c2ab84f38af13072",
+    "bytes": 29025,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/before/390x480-incoming-rules.png",
+    "sha256": "023d2a461b3d4fec0c2b22c0d5158d474d8f10e0c98bbd6935584cc1dd45702b",
+    "bytes": 21055,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/before/390x480-incoming-venue.png",
+    "sha256": "780868520bc1af2643becc9cc1072dc4dcd96dcfbb0361cbd3d8a010676cdf03",
+    "bytes": 21553,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/before/390x480-rules.png",
+    "sha256": "e1baeeff4bdc519e8eab6ec4d3f28ca0ffb80c19b1d1ff260c21e909477572fe",
+    "bytes": 27453,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/before/390x480-schedule.png",
+    "sha256": "2a289b08cf7298710a89a8dec5219f5fb75cfe8ea4553c63c0c50fa8337fdf6d",
+    "bytes": 23905,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/before/390x480-venue.png",
+    "sha256": "ccd04ea0843de6a3d6da26d0e4ee60e74455407c2d3c43e810c40f76529a53b2",
+    "bytes": 20269,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/before/390x844-faq.png",
+    "sha256": "c3910de885f3b13f818119ba9119678c811fbb4ec9a155bae21f1f47c27af716",
+    "bytes": 45542,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/before/390x844-hero.png",
+    "sha256": "f34c1d9134a2013bd348b9e8e5de4ed153f0c16e560a43a72c113b900d1b3980",
+    "bytes": 106096,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/before/390x844-incoming-faq.png",
+    "sha256": "fa53099d6467df67cae5a2a20d2e9d021d63f2683af31e9bcd269c20e698d888",
+    "bytes": 48886,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/before/390x844-incoming-rules.png",
+    "sha256": "1e602eae230aa32cf0cc5c865fed9e654aac8005731a60eda6c5cedf55a03e42",
+    "bytes": 38678,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/before/390x844-incoming-venue.png",
+    "sha256": "df08b279c838e6d29a2ecc6b460765924090c6e3e7b25a46f1ccc63d5bdb4bd2",
+    "bytes": 42812,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/before/390x844-rules.png",
+    "sha256": "7a1d35fe6130bda09b76bf1c1eaadebab92233a551fd7287e7b53edec25847b6",
+    "bytes": 48333,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/before/390x844-schedule.png",
+    "sha256": "7df2eac5a73099caacd1a782ce3cfec59d0cfdc5d9d813caeae06ad2d84ac7ad",
+    "bytes": 37669,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/before/390x844-venue.png",
+    "sha256": "a090c411cb77595b7eb51bd0aa2dbe0c80c6184a2bf3ddc78bd6317384cae767",
+    "bytes": 41760,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/1440x900-hero.png",
+    "sha256": "dbaa5f066023a903727c07492c6069d440f24cf750c375d2fdeef6fd171de324",
+    "bytes": 315132,
+    "width": 1440,
+    "height": 900
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/390x480-after-touch-swipe.png",
+    "sha256": "f60d6fde702286eb111301e6f0552aa675fac8363f033687fce21d2537ec2d61",
+    "bytes": 23560,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/390x480-faq-expanded-last-focused.png",
+    "sha256": "3a0c197901b9151e8c3536afbc6665b93408af25a66b94278de4973ad9bc2a8b",
+    "bytes": 31335,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/390x480-faq-start.png",
+    "sha256": "b214fb16ba9a5c0f58722ef97ca5c8f7e0a42f4e2a2798fc436a82920aa624e4",
+    "bytes": 27026,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/390x480-hero.png",
+    "sha256": "362bd55e44292f2589525e69aadd41e333cc663fcd33d341221956486edbf16c",
+    "bytes": 82098,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/390x480-reduced.png",
+    "sha256": "92dabe004a10aff63778e36768de28de96b10e55db07f5fa6b8352f4b2417793",
+    "bytes": 27460,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/390x480-rules-last-row-visible.png",
+    "sha256": "e11cd89b9b6d709c562b9c73dbad172e3afd69f34f8d117c73df8ae7339e8ccf",
+    "bytes": 27919,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/390x480-rules-start.png",
+    "sha256": "71246980dad3be87ee43837f59921026d92f4a0427c7bd495a28d53c148d23f2",
+    "bytes": 27456,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/390x480-rules-to-faq-overlap.png",
+    "sha256": "6422e32cb8a3613fb7dce8e3c93f9c0cbebf7aa1c1a1eba6d00bcf1ee961f90a",
+    "bytes": 26479,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/390x480-schedule-start.png",
+    "sha256": "06bbf3d641a471bf4068435604f040a5e2af3e0ec8a89a741cc655c48fab4fb3",
+    "bytes": 23932,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/390x480-schedule-to-venue-overlap.png",
+    "sha256": "e36af009b035ab978f484f8bf5501ced422dffec27296ec32678a056eab632c4",
+    "bytes": 24909,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/390x480-synthetic-long-agenda-row-1.png",
+    "sha256": "0d2fdffaa208a7b8b7c83b04d6ab6d61910f942ceac74be286050e074bf5c7bc",
+    "bytes": 26986,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/390x480-synthetic-long-agenda-row-6.png",
+    "sha256": "842b27d1150314d61d73f3bc88b57ae604c6dc6ca4362b04158622173322bc04",
+    "bytes": 25303,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/390x480-venue-start.png",
+    "sha256": "cee6e1f96cca1f6b9a4e1017f5eaecf3a996ebfdf96d558293bfbfe7456b24da",
+    "bytes": 20747,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/390x480-venue-to-rules-overlap.png",
+    "sha256": "f5109439a806b33abaa46dfed610cc4b9c8532327174093d6d9b2343c75d1555",
+    "bytes": 24319,
+    "width": 390,
+    "height": 480
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/390x844-paused.png",
+    "sha256": "7a1d35fe6130bda09b76bf1c1eaadebab92233a551fd7287e7b53edec25847b6",
+    "bytes": 48333,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/390x844-reduced.png",
+    "sha256": "7a1d35fe6130bda09b76bf1c1eaadebab92233a551fd7287e7b53edec25847b6",
+    "bytes": 48333,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/390x844-rules-last-row-visible.png",
+    "sha256": "121367b4b71dea8e48da40f45fa1fad45deb51e7d0c5724f0dc9bb78fe7bdd2e",
+    "bytes": 47338,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/390x844-synthetic-long-agenda-row-1.png",
+    "sha256": "38b8e270ff4a46ed238f926c902fa063acec9bad640f2a6944f3532527b163c4",
+    "bytes": 48256,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/390x844-synthetic-long-agenda-row-6.png",
+    "sha256": "0e65427d752027abd6d420f0923507b4b5465badd8b841fb18cf76f64b131042",
+    "bytes": 44439,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified/768x1024-hero.png",
+    "sha256": "9031348b1cf917af1ffe9d064e3a5a86dad3c7f47404d0bca97d9b01d5e326d2",
+    "bytes": 239866,
+    "width": 768,
+    "height": 1024
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified-normal-first-run/390x844-after-touch-swipe.png",
+    "sha256": "5635ca095c7da5b72c42d9dfa6b773c987c89cec796effa4b492275796b2b2ab",
+    "bytes": 42550,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified-normal-first-run/390x844-faq-expanded-last-focused.png",
+    "sha256": "17441e9c862ba6e5e871e0c598806dee47b420c0f51dd6521586f13f36fa6d99",
+    "bytes": 69510,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified-normal-first-run/390x844-faq-start.png",
+    "sha256": "eca0b29403eab4df0c4db0481755a254cc291235b93041dc941718f2d4bc5c7f",
+    "bytes": 45591,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified-normal-first-run/390x844-hero.png",
+    "sha256": "c1494e811601379d6b986c19f92e6d93ca4d2ce8a8f330895e64dd565dd25388",
+    "bytes": 108859,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified-normal-first-run/390x844-rules-start.png",
+    "sha256": "6f935ea20fd9bff965f6ee770de0ef4c8308d0ddaf9a21e9f8fc3d2fd4471840",
+    "bytes": 49035,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified-normal-first-run/390x844-rules-to-faq-overlap.png",
+    "sha256": "735907575898aa362db77929f6b4832a1c0034c57987c6866e07ebcc59facef0",
+    "bytes": 47955,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified-normal-first-run/390x844-schedule-start.png",
+    "sha256": "3875a2054ad693c43729f46b41ef533b897ad9a47d3cb94755c4473bd358a0c4",
+    "bytes": 37707,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified-normal-first-run/390x844-schedule-to-venue-overlap.png",
+    "sha256": "5ce15c82efb0f8ddc19b34c56e3edb4485c88b95687b93778e1f67ca148eabdd",
+    "bytes": 43734,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified-normal-first-run/390x844-venue-start.png",
+    "sha256": "f696e6f04283d4301fae3c4cd8a92677657f8e70b631185a94a03c1d50ebf036",
+    "bytes": 42234,
+    "width": 390,
+    "height": 844
+  },
+  {
+    "path": "evidence/mobile-stack-final/verified-normal-first-run/390x844-venue-to-rules-overlap.png",
+    "sha256": "b072e9a4410a6d6c855e0766d1d66bdd06ce5ae510fdf5353d2df9cfea7bcccb",
+    "bytes": 47686,
+    "width": 390,
+    "height": 844
+  }
+]

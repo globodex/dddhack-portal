@@ -1,0 +1,14 @@
+{
+  "phase": "before",
+  "source": "212b1cc2dc1ffde574a5bc5d8ebf51929a879f5a",
+  "readOnlySynthetic": true,
+  "errors": [],
+  "captures": [],
+  "states": [],
+  "checks": [],
+  "limitations": [
+    "Local development functional evidence only; no hosted performance claim."
+  ],
+  "failure": "page.evaluate: Target page, context or browser has been closed\n    at /workspace/ddd-mobile-stack/scripts/qa-mobile-home-stack.mjs:10:679",
+  "browserClosed": true
+}
