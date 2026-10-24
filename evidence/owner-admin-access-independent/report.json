@@ -1,0 +1,30 @@
+{
+  "source": "771fe2045d75dd8c130ace88d482c7206e6a519c",
+  "syntheticOnly": true,
+  "productionEdits": "",
+  "files": {
+    "lib/admin-access.ts": "688a69014a400f82a139deebb7794266e903e3c6607a28626241506f126e5cd9",
+    "lib/experience.ts": "3eecb200702f9c024e75edc50203969024a926cda6a9eea0882d1c6e399b3a59",
+    "lib/service.ts": "8ade27c8d8692c9e1824677a61f65da579dea6870b4f538ffde6e2a5ea79bfd4",
+    "lib/identity.ts": "2ad5f8400cb9b37b1b377da2303ecbbdce0ec672a3bbd578872dda170f22ef0e",
+    "lib/http.ts": "98c361b281dad3b496da0fae70071c5bacd5b32a61a9123d3b484003aaae2814",
+    "app/add-admins.tsx": "ec28038862ca80e0c5f97924207f86c8d991daed84b9258677b5b96aa035369c",
+    "vercel.json": "fceb71bd02fc3e075d6eeabc43c8abb43ad06356fa49852ff4215a1830693940"
+  },
+  "testCommand": "node --import tsx --test --test-concurrency=1 tests/owner-admin-access-independent.test.ts",
+  "tests": 16,
+  "passed": 16,
+  "failed": 0,
+  "typecheck": {
+    "command": "npx tsc --noEmit",
+    "exitCode": 0
+  },
+  "providerActions": [],
+  "productionRoleActions": [],
+  "limits": [
+    "Trusted synthetic identity fixtures through the actual HTTP handler, not live authentication/cookie or provider verification.",
+    "PGlite exercises PostgreSQL semantics through the production adapter on one connection, not native multi-connection MVCC.",
+    "Exact feature source was reviewed; root integration had a lib/experience.ts merge conflict and must be verified after parent-owned resolution.",
+    "Parent owns final confirmation UI and rendered browser evidence."
+  ]
+}
