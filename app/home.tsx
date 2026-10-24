@@ -14,7 +14,7 @@ import Dots from "./dots";
 import DelhiWordmark from "./delhi-wordmark";
 import OrganizerSection from "./organizer-section";
 import { HeadingDot } from "./expressive-heading";
-import { defaultPublicContent } from "../lib/event-content-contract";
+import { defaultPublicContent } from "../lib/public-content-defaults";
 import { confirmedAgenda, stackGeometry } from "./home-geometry";
 type Content = typeof defaultPublicContent;
 const faqs = [

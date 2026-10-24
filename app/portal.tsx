@@ -118,7 +118,7 @@ import {
   type Palette,
 } from "../lib/experience-contract";
 import { ist } from "../lib/time";
-import { defaultPublicContent } from "../lib/event-content-contract";
+import { defaultPublicContent } from "../lib/public-content-defaults";
 // Every record is a server-authorized projection; no client-side role filtering
 // substitutes for the service's per-request checks.
 type Row = Record<string, any>;
