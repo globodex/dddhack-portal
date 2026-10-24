@@ -539,6 +539,28 @@
   margin: 0;
   padding-inline: 20px;
 }
+.main:not(.home-main) .admin-workspace .admin-submission-management > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 52px;
+  margin: 0 -20px;
+  padding: 14px 20px;
+  color: var(--ink, #202320);
+  font-size: 13px;
+  line-height: 1.5;
+  list-style: none;
+}
+.admin-submission-management > summary::-webkit-details-marker {
+  display: none;
+}
+.admin-submission-management > summary > svg {
+  flex: 0 0 auto;
+}
+.admin-submission-management[open] > summary > svg {
+  transform: rotate(180deg);
+}
 .main:not(.home-main) .admin-workspace .admin-log-list {
   border: 1px solid var(--line, #e3e4db);
   border-radius: 14px;

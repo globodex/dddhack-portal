@@ -385,7 +385,9 @@ export default function AdminCreditBatches({
             >
               <div className="credit-batch-preview-heading">
                 <p>
-                  {preview.rowCount} rows · {preview.columns.length} columns
+                  {preview.rowCount} {preview.rowCount === 1 ? "row" : "rows"} ·{" "}
+                  {preview.columns.length}{" "}
+                  {preview.columns.length === 1 ? "column" : "columns"}
                 </p>
                 <button
                   type="button"
@@ -404,7 +406,10 @@ export default function AdminCreditBatches({
                   >
                     <header>
                       <h3>{preview.columns[index].heading}</h3>
-                      <span>{column.count} credits</span>
+                      <span>
+                        {column.count}{" "}
+                        {column.count === 1 ? "credit" : "credits"}
+                      </span>
                     </header>
                     <label>
                       <span>

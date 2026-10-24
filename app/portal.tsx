@@ -4628,9 +4628,12 @@ export function AdminList({
                 (data.me?.owner || data.me?.role === "admin") && (
                   <details className="panel admin-submission-management">
                     <summary>
-                      {record.deleted_at
-                        ? "Removed project · manage restoration"
-                        : "Manage project and submissions"}
+                      <span>
+                        {record.deleted_at
+                          ? "Removed project · manage restoration"
+                          : "Manage project and submissions"}
+                      </span>
+                      <ChevronDown size={18} aria-hidden="true" />
                     </summary>
                     <AdminProjectActions
                       key={`${record.id}-${record.deleted_at || "active"}-${JSON.stringify(record.versions || [])}`}
