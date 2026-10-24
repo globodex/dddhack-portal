@@ -1,5 +1,5 @@
+"use client";
 import { automaticAuditReason } from "../lib/audit-contract";
-("use client");
 import { useId, useState } from "react";
 import {
   AdminIcon,

@@ -41,7 +41,7 @@ import {
 import AddAdmins from "./add-admins";
 import AdminCreditBatches from "./admin-credit-batches";
 import AdminLeaderTransfer from "./admin-leader-transfer";
-import Link from "vinext/shims/link";
+import Link from "next/link";
 import { useDiscoverPeople, peopleDirectoryUrl, readPeoplePage } from "./use-discover-people";
 import { HeadingDot } from "./expressive-heading";
 import RouteSkeleton from "./route-skeleton";
@@ -2691,7 +2691,7 @@ export function Projects({
       controller.abort();
     };
   }, [q, page, data, path, detail]);
-  const signIn = "/signin-with-chatgpt?return_to=" + encodeURIComponent(path);
+  const signIn = "/signin?returnTo=" + encodeURIComponent(path);
   const engagement = (p: Row) => (
     <div className="engagement">
       {data.me ? (
@@ -5017,17 +5017,25 @@ export default function Portal({
     try {
       if (
         !(await gate.current!.ask(
-          confirmationFor("logout", {}, data.me?.name || "This Site session"),
+          confirmationFor("logout", {}, data.me?.name || "This portal session"),
         ))
       ) {
         return;
       }
       if (localTest) await api("local-signout", {});
+      else {
+        const response = await fetch("/api/auth/signout", {
+          method: "POST", credentials: "same-origin", cache: "no-store",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ returnTo: "/" }),
+        });
+        if (!response.ok) throw new Error("Sign out failed. Try again.");
+      }
       presentationCache.current.clear();
       setData({});
       setMessage("Signing out…");
       const link = document.createElement("a");
-      link.href = localTest ? "/" : "/signout-with-chatgpt?return_to=%2F";
+      link.href = "/";
       link.target = "_top";
       link.click();
     } catch (e) {
@@ -5104,7 +5112,7 @@ export default function Portal({
               href={
                 data.me
                   ? "/dashboard"
-                  : "/signin-with-chatgpt?return_to=%2Fdashboard"
+                  : "/signin?returnTo=%2Fdashboard"
               }
               target="_top"
             >
@@ -5224,7 +5232,7 @@ export default function Portal({
             </Link>
           ))}
           {!data.me && (
-            <a href="/signin-with-chatgpt?return_to=%2Fdashboard" target="_top">
+            <a href="/signin?returnTo=%2Fdashboard" target="_top">
               Sign in
             </a>
           )}
@@ -5281,7 +5289,7 @@ export default function Portal({
           <Link prefetch={false} key={href} href={href} aria-current={path === href ? "page" : undefined}>{label}</Link>
         ))}
         {!data.me ? (
-          <a href="/signin-with-chatgpt?return_to=%2Fdashboard" target="_top">Sign in</a>
+          <a href="/signin?returnTo=%2Fdashboard" target="_top">Sign in</a>
         ) : (
           <>
             {data.me.mode !== "viewer" && <a href="/profile">Your profile</a>}
@@ -5333,9 +5341,9 @@ export default function Portal({
                 <a
                   className="text-link"
                   target="_top"
-                  href={`/signin-with-chatgpt?return_to=${encodeURIComponent(path)}`}
+                  href={`/signin?returnTo=${encodeURIComponent(path)}`}
                 >
-                  Sign in with ChatGPT
+                  Sign in
                 </a>
               )
             )}

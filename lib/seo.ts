@@ -1,5 +1,25 @@
-import { protectedPath } from "./sites-runtime";
-export const siteOrigin = "https://dddhack-portal.param3021.chatgpt.site";
+// Pure route policy shared by metadata and the backend. No database/runtime import.
+const protectedPath = (path: string) =>
+  /^\/(dashboard|admin|judge|teams|profile|submission|review|rules|project-history|discover)(\/|$)/.test(
+    path,
+  );
+function configuredSiteOrigin() {
+  const value = process.env.APP_ORIGIN || "https://dddhack-portal.vercel.app";
+  const url = new URL(value);
+  if (
+    url.origin !== value ||
+    url.username ||
+    url.password ||
+    (url.protocol !== "https:" &&
+      !(
+        process.env.NODE_ENV === "development" &&
+        ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname)
+      ))
+  )
+    throw new Error("APP_ORIGIN_INVALID");
+  return url.origin;
+}
+export const siteOrigin = configuredSiteOrigin();
 export const eventTitle = "DevDay Exchange Community Hackathon: New Delhi";
 export const publicPath = (path: string) =>
   path === "/" ||

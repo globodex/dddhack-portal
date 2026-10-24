@@ -1,6 +1,5 @@
-export async function GET() {
-  return new Response(null, {
-    status: 404,
-    headers: { "Cache-Control": "private, no-store" },
-  });
-}
+import { proxyBackendRequest } from "../../../../lib/next-backend";
+
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+export const GET = proxyBackendRequest;

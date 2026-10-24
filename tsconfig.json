@@ -16,8 +16,7 @@
     "types": [
       "node",
       "@cloudflare/workers-types",
-      "vite/client",
-      "vinext/types"
+      "vite/client"
     ],
     "baseUrl": ".",
     "paths": {
@@ -25,11 +24,23 @@
         "./*"
       ]
     },
-    "allowJs": true
+    "allowJs": true,
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "noEmit": true,
+    "isolatedModules": true
   },
   "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
     "app",
     "lib",
+    "neon",
     "db",
     "scripts",
     "tests",
@@ -43,6 +54,7 @@
     "dist",
     ".wrangler",
     ".vinext",
-    ".sites-runtime"
+    ".sites-runtime",
+    ".next/standalone"
   ]
 }

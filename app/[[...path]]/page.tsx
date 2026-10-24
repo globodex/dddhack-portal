@@ -1,46 +1,46 @@
-import { PortalError } from "../../lib/security";
+import { redirect } from "next/navigation";
 import {
   pageMetadata,
   publicPath,
   eventStructuredData,
   safeJSONLD,
 } from "../../lib/seo";
-import { requireChatGPTUser } from "../chatgpt-auth";
-import { getSitesRuntime, protectedPath } from "../../lib/sites-runtime";
-import { PortalService } from "../../lib/service";
+import {
+  BackendError,
+  localDevelopmentRender,
+  protectedPath,
+  readBackendView,
+} from "../../lib/next-backend";
+import { chatGPTSignInPath } from "../chatgpt-auth";
 import Portal from "../portal";
-import { readSitesView } from "../../lib/sites-view";
+
 export const dynamic = "force-dynamic";
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ path?: string[] }>;
-}) {
+type PageProps = { params: Promise<{ path?: string[] }> };
+
+export default async function Page({ params }: PageProps) {
   const { path = [] } = await params;
   const routePath = "/" + path.join("/");
-  const localTest =
-    import.meta.env.DEV && process.env.PORTAL_LOCAL_TEST === "1";
+  const localTest = await localDevelopmentRender();
   let initialView: Record<string, any> | undefined;
-  if (!localTest && protectedPath(routePath)) {
-    await requireChatGPTUser(routePath);
-    // The service owns per-route roles, assignments, profile gating and projections.
-    try {
-      initialView = await readSitesView(routePath);
-    } catch (error) {
-      if (!(
-        error instanceof PortalError && error.code === "LUMA_EMAIL_MISMATCH"
-      ))
-        throw error;
-    }
-  }
   let initialPublic: Record<string, any> | undefined;
-  if (!localTest && publicPath(routePath)) {
+  if (protectedPath(routePath)) {
     try {
-      const runtime = getSitesRuntime();
-      initialPublic = await new PortalService(runtime.db, null, undefined).view(
-        routePath,
-      );
-    } catch {
+      // One authorized projection feeds the entire protected document.
+      initialView = await readBackendView(routePath);
+    } catch (error) {
+      if (error instanceof BackendError && error.status === 401 && !localTest)
+        redirect(chatGPTSignInPath(routePath));
+      // Preserve the route-specific retry and account mismatch UI. The backend
+      // continues to enforce all roles, assignments and ownership gates.
+      if (!(error instanceof BackendError)) throw error;
+    }
+  } else if (publicPath(routePath)) {
+    try {
+      initialPublic = await readBackendView(routePath);
+    } catch (error) {
+      if (!(error instanceof BackendError)) throw error;
+      // Static art still renders during downtime, with no invented records,
+      // session, deadline or successful mutation fixture.
       if (routePath === "/") initialPublic = { submissionClose: null };
     }
   }
@@ -62,23 +62,17 @@ export default async function Page({
   );
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ path?: string[] }>;
-}) {
+export async function generateMetadata({ params }: PageProps) {
   const { path = [] } = await params;
   const route = "/" + path.join("/");
-  if (/^\/projects\/[^/]+$/.test(route))
+  if (/^\/projects\/[^/]+$/.test(route)) {
     try {
-      const runtime = getSitesRuntime();
-      const view = (await new PortalService(runtime.db, null, undefined).view(
-        route,
-      )) as Record<string, any>;
+      const view = await readBackendView(route);
       return pageMetadata(route, view.project || view.items?.[0]);
     } catch {
       const { openGraph, twitter, ...metadata } = pageMetadata(route);
       return { ...metadata, robots: { index: false, follow: false } };
     }
+  }
   return pageMetadata(route);
 }

@@ -1,16 +1,13 @@
 import { siteOrigin, xmlEscape } from "../../lib/seo";
-import { getSitesRuntime, unavailableResponse } from "../../lib/sites-runtime";
-import { PortalService } from "../../lib/service";
+import { readBackendView } from "../../lib/next-backend";
 export const dynamic = "force-dynamic";
 export async function GET() {
   try {
-    const runtime = getSitesRuntime();
-    const service = new PortalService(runtime.db, null, undefined);
     const paths = ["/", "/projects", "/leaderboard"];
     // Reuse the anonymous public projection and its publication/eligibility gate.
     // No draft, participant, private feedback or result internals enter the sitemap.
     for (let page = 0; page < 42; page++) {
-      const view = await service.view("/projects", { page });
+      const view = await readBackendView("/projects", { page });
       for (const item of (view.items || []) as { slug: string }[])
         paths.push("/projects/" + encodeURIComponent(item.slug));
       if (!view.hasMore) break;
@@ -32,6 +29,9 @@ export async function GET() {
       },
     );
   } catch (error) {
-    return unavailableResponse(error);
+    return new Response("Sitemap temporarily unavailable", {
+      status: 503,
+      headers: { "Cache-Control": "no-store" },
+    });
   }
 }

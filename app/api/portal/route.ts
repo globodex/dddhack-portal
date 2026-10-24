@@ -1,23 +1,6 @@
-import {
-  getSitesRuntime,
-  unavailableResponse,
-} from "../../../lib/sites-runtime";
-import { handlePortal } from "../../../lib/http";
+import { proxyBackendRequest } from "../../../lib/next-backend";
+
 export const dynamic = "force-dynamic";
-export async function GET(request: Request) {
-  return route(request);
-}
-export async function POST(request: Request) {
-  return route(request);
-}
-async function route(request: Request) {
-  if (import.meta.env.DEV && process.env.PORTAL_LOCAL_TEST === "1") {
-    const { localRuntime } = await import("../../../lib/local-test/runtime");
-    return handlePortal(request, await localRuntime(request));
-  }
-  try {
-    return await handlePortal(request, getSitesRuntime());
-  } catch (error) {
-    return unavailableResponse(error);
-  }
-}
+export const runtime = "nodejs";
+export const GET = proxyBackendRequest;
+export const POST = proxyBackendRequest;
