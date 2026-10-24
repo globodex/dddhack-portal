@@ -1,0 +1,16 @@
+{
+  "throughSource": "2657f26254ed323ca84a167a2f220f05f4ec7cbf",
+  "commitsChecked": 201,
+  "expectedAuthor": "Parampreet Singh <rubercuber.30@gmail.com>",
+  "expectedCommitter": "Parampreet Singh <rubercuber.30@gmail.com>",
+  "failures": [],
+  "mainOnlyFilter": {
+    "$schema": "https://openapi.vercel.sh/vercel.json",
+    "git": {
+      "deploymentEnabled": {
+        "**": false,
+        "main": true
+      }
+    }
+  }
+}

@@ -1,6 +1,8 @@
 # DDD Hack portal: Next.js and Neon migration
 
-The `main` branch migrates verified v7 (`dc92672c`) to real Next.js App Router frontend/rendering on Vercel and a separate Node.js 24 Neon Functions backend. The live Sites branch and its configuration remain untouched. No deployment or production data transfer has been performed.
+The unpublished redesign is on `feat/portal-experience-rework`. See the [24 October review and screenshot index](docs/PORTAL_REDESIGN_REVIEW_2026_10_24.md), [backend artifact](artifacts/neon/README.md), and [populated-database incremental upgrade plan](docs/NEON_POPULATED_UPGRADE_PLAN.md). Publication remains the owner's manual action; never seed or use synthetic apply flags on the populated hosted database.
+
+The `main` branch migrated verified v7 (`dc92672c`) to real Next.js App Router frontend/rendering on Vercel and a separate Node.js 24 Neon Functions backend. The retained Sites source is historical. This redesign work has not deployed, transferred production data or changed provider settings.
 
 Browser requests stay on the frontend origin: `/api/*` proxies to Neon with a server-only trust secret. Neon verifies sessions and permissions, runs the existing portal services against Postgres through a Drizzle-defined schema and transactional adapter, and stores project images in the private `project-media` bucket. Custom SMTP magic links and Google OAuth run in the backend. No database, SMTP, Google secret, storage key or OpenAI key belongs in Vercel browser variables.
 

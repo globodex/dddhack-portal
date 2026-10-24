@@ -1,0 +1,44 @@
+# Portal redesign review, 24 October 2026
+
+This is the review handoff for `feat/portal-experience-rework`, based on main `696b125`. It is the production Next.js application, with no replacement scaffold. The only main change is the separately authorized deployment filter `e386cc7`; the redesign has not been merged or deployed. The owner publishes manually.
+
+## Delivered scope and original screenshots
+
+| Area | Delivered behavior and evidence |
+| --- | --- |
+| Profile | Three Next/Next/Save steps, one selected color across eight expression previews, optional platform controls, responsive avatar placement and retained requirements. [Visual/interaction QA](../evidence/redesign-profile/QA.md), [latest breakpoint checks](../evidence/profile-breakpoint-667222d/QA.md). |
+| Team Studio | Implemented exact selected Team Studio direction with current team identity, members, private saved/dirty idea, stage actions and factual progress. [Final originals](../evidence/team-studio-final/README.md), [independent comparison/13 checks](../evidence/team-studio-independent/design-qa.md), [role/write flows](../evidence/team-studio-verified/README.md). |
+| Create/invite/lock | Aligned bounded creation dialog, reachable short-screen fields and footer, eight swatches, persistence and confirmation roles. [Create repair](../evidence/create-team-repair/README.md), [actual decline/resend/accept](../evidence/private-reinvite-8834/), [lock and readonly states](../evidence/team-role-states/README.md). |
+| Discovery | Search, lazy paginated cards, keyboard/touch fallback and safe public/Viewer fields. [Responsive checks](../evidence/responsive-profile-discovery-667222d/QA.md). |
+| Submission/media | Three-step input flow, draft/save/committed history, mandatory media in contained presentation frames, arbitrary valid aspect ratios, 1 MB logo/5 MB banner source caps and bounded local optimization. [Media matrix](../evidence/submission-media-rework/README.md), [persisted third attempt/public frames](../evidence/SUBMISSION_MEDIA_COMPLETE.md), [policy/transport bounds](PROJECT_MEDIA_INPUTS.md). |
+| Credits | Same-header restock, immutable unique allocation, live check-in distribution, inventory counters, masked mapping, exhaustion/recovery, checked-in staff personal access and concise unavailable states. [Current stock originals](../evidence/credit-inventory-functional/README.md), [independent database audit](CREDIT_STOCK_INDEPENDENT_AUDIT.md). |
+| Admin | Cleared/reconciled selection, concise feedback, Going-only row check-in without a modal, confirmed bulk actions, direct time confirmation/save/reload and owner-only admin list/revoke. [Current controls](../evidence/admin-final-private8834/README.md), [owner access](../evidence/admin-owner-access-final-hydrated/README.md), [independent authorization review](OWNER_ADMIN_ACCESS_INDEPENDENT_REVIEW.md). |
+| Public projects/results | Current list/detail/vote states, community ordering, AI release, final hidden/partial/full reveal and fifth place. All scores/codes in evidence are synthetic. [Current community originals](../evidence/community-current-final/README.md), [score-state inventory](../evidence/score-reveal-current/INVENTORY.md). |
+| Landing/sign-in/email/rules | Approved Delhi/Metro identity and mobile hero, non-blocking decoration, half-size desktop organizers, timeline agenda, grouped unchanged rules, polished sign-in and responsive email with same-browser expiry/fallback. [Landing/sign-in QA](LANDING_SIGNIN_REDESIGN_QA.md), [organizer refinement](ORGANIZER_DESKTOP_REFINEMENT_QA.md), [public alignment](PUBLIC_RESPONSIVE_ALIGNMENT_QA.md), [email originals](../evidence/signin-email/). |
+| Shared shell/SEO/legal | Black mobile menus, visible icons/red logout, contextual errors, accessible dialogs and current-geometry static skeletons; configured APP_ORIGIN metadata, eligible-only sitemap and private noindex. [SEO/legal evidence](../evidence/seo-legal-0f5f823/QA.md). Policies remain factual owner-review drafts. |
+
+The screenshot audit, reference access limits and short design specification are retained in [the design spec](REDESIGN_SPEC_2026_10_24.md). Original PNGs are committed at their native dimensions. The parent can transfer them to native Library attachments; no unverified Library IDs are invented. Reports identify their runtime source and viewport, and preserve rejected before captures separately.
+
+## Release checks
+
+- Complete serial suite: **541 tests, 535 passed, 6 skipped, 0 failed/cancelled**, 463.5 seconds. Six skips need a separately configured disposable native PostgreSQL server. Command: `node --no-wasm-code-gc --import tsx --test --test-concurrency=1 tests/*.test.ts`. The flag works around a documented test-runner V8 issue; application settings are unchanged.
+- Current root `npm run build` passed with default Next16.4.3 Turbopack, including TypeScript. Explicit `npm run typecheck` passed. The isolated D1 concurrency/schema test also passed alone and in the full run.
+- Final production inventory: 14 JavaScript files, 985,688 raw bytes / 297,122 gzip estimate; CSS 339,079 raw / 55,752 gzip estimate across all routes. [Raw logs and source-bound verification](../evidence/final-release-2026-10-24/verification.json).
+- The full suite ran at `8d56bd0`. The only subsequent application changes are 23 CSS lines: readable mobile private arrival details (`5b926d2`) and one-row, bounded loading tabs (`9e0d9c8`/`2657f26`), checked separately in actual browser pixels and a fresh default production build. No JavaScript/backend change followed the complete suite. Selected Studio role/interaction evidence uses `927845c`; current static loading geometry began at `ba9574b`.
+- Current same-fixture development measurements:28 baseline/28 final samples,20 final native screenshots,zero page errors/blocked/mutating requests andzero initial browser API requests. The64-table fixture hash is unchanged. Wire medians rise2.93–3.67%; Dashboard adds one900-weight font request. Timings are mixed: Dashboard median TTFB299.6→551.4ms and FCP688→1624ms, while most other sampled medians decrease. This measured Dashboard regression is retained openly; no production speed/capacity improvement is claimed. [Current report](../evidence/final-performance-current/report.json).
+
+The current same-fixture browser measurement replaces the earlier `ae2b027` checkpoint. Results are local development observations, not a production speed/capacity promise. The production asset inventory is across all routes, not a per-visitor transfer estimate. No package, lockfile or heavy animation dependency was added.
+
+## Manual publication boundary
+
+The reviewed [ARM64 backend ZIP](../artifacts/neon/README.md) is 9,014,174 bytes, SHA256 `6d71e987f3019140b802b207eb7a9cd92fe1de57887d463b73449b87f6ce4a5f`. Fresh graph/native architecture checks and isolated host JavaScript smoke pass. Actual ARM64 execution is unverified. Backend redeployment is required for backend/email/stock changes to become live.
+
+The hosted database is populated. Follow the [incremental upgrade plan](NEON_POPULATED_UPGRADE_PLAN.md): privately verify the target, establish a backup/restore checkpoint, preserve all historical ledger checksums and apply only the pending `0102`/`0103` migrations using the reviewed transaction library. Never seed/reset it or use synthetic apply flags. [Six independent local upgrade checks](COMBINED_MIGRATION_UPGRADE_INDEPENDENT_REVIEW.md) preserve real-shaped populated fixtures, append exactly two entries, repeat with none and roll back collisions. No hosted data or ledger was inspected or modified.
+
+## Explicit limits
+
+Touch is Chromium emulation. Physical iOS/Android, real assistive technology, full Google login and the actual ARM64 cold start/storage/SMTP deployment are unverified. Six native PostgreSQL tests require a separately configured disposable native server; local PGlite checks do not prove multi-connection MVCC. The snapshot matrix is extensive but is not a claim that every possible content/role combination was visually tested.
+
+Privacy/Terms use the confirmed organizer/contact and 90-day unnecessary-private-data retention; public showcase and indefinite owner audit logs are separate. No automatic erasure job or unsupported legal-compliance guarantee is claimed. The owner must review legal drafts and perform the practical retention/deletion process. The prior Cloudflare1010 diagnostic denial was not bypassed or classified as an application error.
+
+The minimal main hydration-safety branch remains separately unmerged; this redesign includes the form safety correction. All new release commits use verified author and committer Parampreet Singh <rubercuber.30@gmail.com>. No provider settings, credentials, real role changes, emails, submissions, credit allocations or score reveals were performed.

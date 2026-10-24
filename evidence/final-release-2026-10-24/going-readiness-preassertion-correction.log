@@ -1,0 +1,67 @@
+✖ actual operational data permits check-in and submissions while incomplete scoring and provider data remain blocked (290.817432ms)
+✔ operational split preserves server windows, Going, required media, repository validation and three-attempt atomic limits (286.631735ms)
+✖ check-in derives readiness from actual Going approval and valid submissions need no separate scope flag (199.082586ms)
+✔ actual setup errors are actionable and legacy enable compatibility cannot weaken versioned operational dates (338.833329ms)
+✔ diversity validation uses an explicit supported assessment mode, accepts negated words and never approves demographic algorithms (4.046192ms)
+✔ historical scope hints do not gate actual readiness and legacy activation remains a versioned compatibility action (140.227001ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 4
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2790.599694
+
+✖ failing tests:
+
+test at tests/operational-readiness.test.ts:1:1623
+✖ actual operational data permits check-in and submissions while incomplete scoring and provider data remain blocked (290.817432ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_SQLITE_ERROR'
+  -   code: 'PORTAL_GOING_REQUIRED'
+    }
+  
+      at async TestContext.<anonymous> (/workspace/dddhack-portal/tests/operational-readiness.test.ts:117:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: PORTAL_GOING_REQUIRED
+        at execute (/workspace/dddhack-portal/lib/local-test/sqlite.ts:19:26)
+        at Object.all (/workspace/dddhack-portal/lib/local-test/sqlite.ts:35:16)
+        at TestContext.<anonymous> (/workspace/dddhack-portal/tests/operational-readiness.test.ts:122:10)
+        at async Test.run (node:internal/test_runner/test:1389:7)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3),
+    expected: { code: 'PORTAL_GOING_REQUIRED' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests/operational-readiness.test.ts:1:5279
+✖ check-in derives readiness from actual Going approval and valid submissions need no separate scope flag (199.082586ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /PORTAL_GOING_REQUIRED/. Input:
+  
+  'Error: Only individuals Going on the portal can check in.'
+  
+      at async TestContext.<anonymous> (/workspace/dddhack-portal/tests/operational-readiness.test.ts:227:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Only individuals Going on the portal can check in.
+        at demand (/workspace/dddhack-portal/lib/security.ts:18:25)
+        at checkInParticipants (/workspace/dddhack-portal/lib/participant-checkin.ts:52:5)
+        at async PortalService.command (/workspace/dddhack-portal/lib/service.ts:374:21)
+        at async waitForActual (node:assert:646:5)
+        at async strict.rejects (node:assert:769:25)
+        at async TestContext.<anonymous> (/workspace/dddhack-portal/tests/operational-readiness.test.ts:227:5)
+        at async Test.run (node:internal/test_runner/test:1389:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:960:7),
+    expected: /PORTAL_GOING_REQUIRED/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
