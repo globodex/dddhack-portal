@@ -1,0 +1,80 @@
+{
+  "syntheticOnly": true,
+  "actualPlaywright": true,
+  "backend": "disposable synthetic SQLite; no mock API",
+  "purpose": "Authorized GitHub artifact fallback after Library tool discovery network failure; no Library upload IDs exist.",
+  "files": [
+    {
+      "path": "evidence/migration/v7-home-hydrated/home-1440x900-viewport.png",
+      "route": "/",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "93b1810000710b0e16ad9b1d9f3e122a46a347fe",
+      "runtime": "vinext-source",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "1c6a33e0d3254933dcab0649ef99cbdcf84e452c1719c99e771b38f9390ab36f",
+      "inspected": true,
+      "inspection": "Reviewed against matching viewport by QA and UI; wordmark/Metro registration and composition preserved. CTA intentionally changed to new auth entry."
+    },
+    {
+      "path": "evidence/migration/v7-home-hydrated/home-390x844-viewport.png",
+      "route": "/",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "93b1810000710b0e16ad9b1d9f3e122a46a347fe",
+      "runtime": "vinext-source",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "f0ec732ebbf8b431e42eca695bb4f5d9b4387923088692eeffb5c2f274227366",
+      "inspected": true,
+      "inspection": "Reviewed against matching viewport by QA and UI; wordmark/Metro registration and composition preserved. CTA intentionally changed to new auth entry."
+    },
+    {
+      "path": "evidence/migration/next-home-hydrated/home-1440x900-viewport.png",
+      "route": "/",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "c8e0352b55033ecd846a08c6a621d53c6df041c0",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "5556ba9ba38f58cbdbea1ae10a20d02fe944cb00f935e7c9a755b31c3ddb0849",
+      "inspected": true,
+      "inspection": "Reviewed against matching viewport by QA and UI; wordmark/Metro registration and composition preserved. CTA intentionally changed to new auth entry."
+    },
+    {
+      "path": "evidence/migration/next-home-hydrated/home-390x844-viewport.png",
+      "route": "/",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "c8e0352b55033ecd846a08c6a621d53c6df041c0",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "a1a82eb155fc0563746d373e8b9e9cf79bf7ad00cac3cf7a3c076b5348dbe424",
+      "inspected": true,
+      "inspection": "Reviewed against matching viewport by QA and UI; wordmark/Metro registration and composition preserved. CTA intentionally changed to new auth entry."
+    }
+  ]
+}
