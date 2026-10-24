@@ -1,0 +1,315 @@
+✔ independent provider mapping: mocked response keeps exact bound caps/evidence and unknown stays unscored; unavailable model performs no lookup or fetch (94.723186ms)
+✔ sqlite: independent bridge rejects wrong version/revision, preserves true zero and private scores, and caps three committed attempts (396.554525ms)
+✖ sqlite: independent provider stale recovery frees the actual configuration, permits one retry and discards the late original (152.670375ms)
+✖ sqlite: independent in-flight provider completion cannot add a numeric grade after owner freezes results (145.476245ms)
+✔ postgres: independent bridge rejects wrong version/revision, preserves true zero and private scores, and caps three committed attempts (17119.484068ms)
+✖ postgres: independent provider stale recovery frees the actual configuration, permits one retry and discards the late original (6305.734618ms)
+✖ postgres: independent in-flight provider completion cannot add a numeric grade after owner freezes results (6065.070414ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 3
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 32867.265746
+
+✖ failing tests:
+
+test at tests/provider-grade-independent.test.ts:1:8542
+✖ sqlite: independent provider stale recovery frees the actual configuration, permits one retry and discards the late original (152.670375ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'running' !== 'stale'
+  
+      at TestContext.<anonymous> (/workspace/ddd-provider-grade-audit/tests/provider-grade-independent.test.ts:410:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'running',
+    expected: 'stale',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/provider-grade-independent.test.ts:1:10187
+✖ sqlite: independent in-flight provider completion cannot add a numeric grade after owner freezes results (145.476245ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   report: {
+  +     checks: [
+  +       {
+  +         evidence: [
+  +           'commit:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+  +         ],
+  +         explanation: 'Synthetic approved snapshot.',
+  +         id: 'approved-snapshot',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:functionality',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:complexity',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:openai',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:cerebras',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:ux',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:docs',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:contributors',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:deployment',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:readiness',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:seo',
+  +         status: 'PASS'
+  +       }
+  +     ],
+  +     dimensions: {
+  +       cerebras: 1,
+  +       complexity: 1,
+  +       contributors: 1,
+  +       deployment: 1,
+  +       docs: 1,
+  +       functionality: 1,
+  +       openai: 1,
+  +       readiness: 1,
+  +       seo: 1,
+  +       ux: 1
+  +     },
+  +     model: 'independent-synthetic-provider',
+  +     revision: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+  +     rubricVersion: 1,
+  +     status: 'finalized',
+  +     suspectedFalseClaims: [],
+  +     versionId: '3732c21e-2cd1-474a-b58c-0ef37ea2f38b'
+  +   },
+  +   runId: '046f9ffb-627d-494b-938b-785d223ea45a',
+  +   score: 10
+  + }
+  - null
+  
+      at TestContext.<anonymous> (/workspace/ddd-provider-grade-audit/tests/provider-grade-independent.test.ts:517:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { runId: '046f9ffb-627d-494b-938b-785d223ea45a', score: 10, report: { versionId: '3732c21e-2cd1-474a-b58c-0ef37ea2f38b', status: 'finalized', model: 'independent-synthetic-provider', rubricVersion: 1, revision: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', checks: [Array], dimensions: [Object], suspectedFalseClaims: [] } },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/provider-grade-independent.test.ts:1:8542
+✖ postgres: independent provider stale recovery frees the actual configuration, permits one retry and discards the late original (6305.734618ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'running' !== 'stale'
+  
+      at TestContext.<anonymous> (/workspace/ddd-provider-grade-audit/tests/provider-grade-independent.test.ts:410:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'running',
+    expected: 'stale',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/provider-grade-independent.test.ts:1:10187
+✖ postgres: independent in-flight provider completion cannot add a numeric grade after owner freezes results (6065.070414ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   report: {
+  +     checks: [
+  +       {
+  +         evidence: [
+  +           'commit:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+  +         ],
+  +         explanation: 'Synthetic approved snapshot.',
+  +         id: 'approved-snapshot',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:functionality',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:complexity',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:openai',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:cerebras',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:ux',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:docs',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:contributors',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:deployment',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:readiness',
+  +         status: 'PASS'
+  +       },
+  +       {
+  +         evidence: [
+  +           'description:description'
+  +         ],
+  +         explanation: 'Synthetic rubric observation.',
+  +         id: 'ai-evidence:seo',
+  +         status: 'PASS'
+  +       }
+  +     ],
+  +     dimensions: {
+  +       cerebras: 1,
+  +       complexity: 1,
+  +       contributors: 1,
+  +       deployment: 1,
+  +       docs: 1,
+  +       functionality: 1,
+  +       openai: 1,
+  +       readiness: 1,
+  +       seo: 1,
+  +       ux: 1
+  +     },
+  +     model: 'independent-synthetic-provider',
+  +     revision: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+  +     rubricVersion: 1,
+  +     status: 'finalized',
+  +     suspectedFalseClaims: [],
+  +     versionId: 'b6c91ce4-aac7-4d20-8e26-a27ab04ec8b9'
+  +   },
+  +   runId: '4202bd75-4b85-4d8f-b48f-98bf37ac07f3',
+  +   score: 10
+  + }
+  - null
+  
+      at TestContext.<anonymous> (/workspace/ddd-provider-grade-audit/tests/provider-grade-independent.test.ts:517:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { runId: '4202bd75-4b85-4d8f-b48f-98bf37ac07f3', score: 10, report: { versionId: 'b6c91ce4-aac7-4d20-8e26-a27ab04ec8b9', status: 'finalized', model: 'independent-synthetic-provider', rubricVersion: 1, revision: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', checks: [Array], dimensions: [Object], suspectedFalseClaims: [] } },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

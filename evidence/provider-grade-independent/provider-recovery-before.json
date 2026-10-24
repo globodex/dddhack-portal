@@ -1,0 +1,17 @@
+{
+  "afterRecoveryRuns": [
+    {
+      "state": "running",
+      "config_key": "independent-provider-config:6bc0b46a-c449-4e50-a3d1-e76dadc15ad7"
+    }
+  ],
+  "retryError": {
+    "name": "Error",
+    "code": "ERR_SQLITE_ERROR",
+    "message": "UNIQUE constraint failed: evaluation_runs.version_id, evaluation_runs.config_key"
+  },
+  "job": {
+    "state": "failed_retryable",
+    "attempts": 1
+  }
+}
