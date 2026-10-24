@@ -2,6 +2,7 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { EllipsisVertical, X } from "lucide-react";
 import { trapDialogFocus } from "./dialog-focus";
+import { trackDialogHistory } from "./dialog-history";
 
 export default function AdminStatusMenu({
   name,
@@ -27,6 +28,7 @@ export default function AdminStatusMenu({
       popup.style.top = `${Math.max(16, Math.min(anchor.bottom + gap + bounds.height <= innerHeight - 16 ? anchor.bottom + gap : anchor.top - bounds.height - gap, innerHeight - bounds.height - 16))}px`;
     };
     popup.showModal();
+    const stopHistory = trackDialogHistory(() => setOpen(false), button);
     position();
     popup
       .querySelector<HTMLElement>("select,button,input")
@@ -44,6 +46,7 @@ export default function AdminStatusMenu({
     });
     window.addEventListener("resize", position);
     return () => {
+      stopHistory();
       document.removeEventListener("wheel", preventBackgroundScroll);
       document.removeEventListener("touchmove", preventBackgroundScroll);
       window.removeEventListener("resize", position);

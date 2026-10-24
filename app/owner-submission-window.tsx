@@ -114,7 +114,8 @@ export default function OwnerSubmissionWindow({
   const id = useId();
   const [openInput, setOpen] = useState(() => inputOrEmpty(open)),
     [closeInput, setClose] = useState(() => inputOrEmpty(close)),
-    [review, setReview] = useState<SubmissionWindowPreview | null>(null);
+    [review, setReview] = useState<SubmissionWindowPreview | null>(null),
+    [touched, setTouched] = useState({ open: false, close: false });
   const { busy, error, execute, clearError } = useAdminOperation();
   if (!owner) return null;
   let converted: { open: string; close: string } | null = null,
@@ -124,6 +125,7 @@ export default function OwnerSubmissionWindow({
   } catch (cause) {
     validation = (cause as Error).message;
   }
+  const showValidation = !!validation && (touched.open || touched.close);
   return (
     <section
       className="admin-control admin-window admin-settings-section"
@@ -136,12 +138,22 @@ export default function OwnerSubmissionWindow({
       <fieldset disabled={busy}>
         <div className="admin-control-grid">
           <label>
-            Opens (IST)
+            <span>
+              Opens (IST){" "}
+              <span className="required-mark" aria-hidden="true">
+                *
+              </span>
+            </span>
             <input
               type="datetime-local"
               step="60"
               required
               value={openInput}
+              aria-invalid={showValidation || undefined}
+              aria-describedby={showValidation ? `${id}-validation` : undefined}
+              onBlur={() =>
+                setTouched((current) => ({ ...current, open: true }))
+              }
               onChange={(event) => {
                 setOpen(event.target.value);
                 setReview(null);
@@ -150,12 +162,22 @@ export default function OwnerSubmissionWindow({
             />
           </label>
           <label>
-            Closes (IST)
+            <span>
+              Closes (IST){" "}
+              <span className="required-mark" aria-hidden="true">
+                *
+              </span>
+            </span>
             <input
               type="datetime-local"
               step="60"
               required
               value={closeInput}
+              aria-invalid={showValidation || undefined}
+              aria-describedby={showValidation ? `${id}-validation` : undefined}
+              onBlur={() =>
+                setTouched((current) => ({ ...current, close: true }))
+              }
               onChange={(event) => {
                 setClose(event.target.value);
                 setReview(null);
@@ -164,8 +186,8 @@ export default function OwnerSubmissionWindow({
             />
           </label>
         </div>
-        {validation && (
-          <p className="error-message" role="status">
+        {showValidation && (
+          <p id={`${id}-validation`} className="error-message" role="status">
             {validation}
           </p>
         )}

@@ -201,6 +201,7 @@ export function AdminParticipantFilters({
       <label>
         Personal status
         <select
+          aria-label="Personal status"
           value={value.status}
           onChange={(event) => update({ status: event.target.value })}
         >
@@ -220,6 +221,7 @@ export function AdminParticipantFilters({
       <label>
         Team status
         <select
+          aria-label="Team status"
           value={value.team}
           onChange={(event) =>
             update({

@@ -3286,6 +3286,53 @@ export function adminProjectProjection(project: Row, suppliedVersions?: Row[]) {
       })),
   };
 }
+function AdminWorkspaceTabs({
+  items,
+  value,
+  onChange,
+  prefix,
+  label,
+}: {
+  items: { id: string; label: string }[];
+  value: string;
+  onChange: (value: string) => void;
+  prefix: string;
+  label: string;
+}) {
+  return (
+    <div className="admin-workspace-tabs" role="tablist" aria-label={label}>
+      {items.map((item, index) => (
+        <button
+          key={item.id}
+          id={`${prefix}-tab-${item.id}`}
+          type="button"
+          role="tab"
+          aria-controls={`${prefix}-panel-${item.id}`}
+          aria-selected={value === item.id}
+          tabIndex={value === item.id ? 0 : -1}
+          onClick={() => onChange(item.id)}
+          onKeyDown={(event) => {
+            if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key))
+              return;
+            event.preventDefault();
+            const next =
+              event.key === "Home"
+                ? 0
+                : event.key === "End"
+                  ? items.length - 1
+                  : (index +
+                      (event.key === "ArrowRight" ? 1 : items.length - 1)) %
+                    items.length;
+            onChange(items[next].id);
+            document.getElementById(`${prefix}-tab-${items[next].id}`)?.focus();
+          }}
+        >
+          {item.label}
+        </button>
+      ))}
+    </div>
+  );
+}
 export function AdminParticipants({
   data,
   run,
@@ -3295,6 +3342,8 @@ export function AdminParticipants({
 }) {
   const [filters, setFilters] = useState<AdminParticipantFiltersValue>({
       ...defaultAdminParticipantFilters,
+      status: "all",
+      team: "all",
     }),
     [recordState, setRecordState] = useState<ParticipantRecordState>("active"),
     [selected, setSelected] = useState<string[]>([]),
@@ -3324,7 +3373,7 @@ export function AdminParticipants({
     setError("");
   };
   return (
-    <section className="admin-exact admin-participants-page">
+    <section className="admin-exact admin-workspace admin-participants-page">
       <header className="page-heading admin-exact-heading">
         <h1>
           <HeadingDot color="orange" expression="sleepy" />
@@ -3354,84 +3403,62 @@ export function AdminParticipants({
       {canManage && adding && (
         <AdminImportDialog run={run} close={() => setAdding(false)} />
       )}
-      <div className="admin-mobile-tools">
-        <Search
-          value={filters.individual}
-          onChange={(individual) =>
-            updateFilters({ ...filters, individual, teamQuery: "" })
-          }
-          label="Name, email or team"
+      <div className="admin-roster-tools">
+        <AdminParticipantFilters
+          value={filters}
+          onChange={updateFilters}
+          expanded={filtersExpanded}
         />
         <button
-          className="admin-toolbar-icon"
+          type="button"
+          className="admin-toolbar-icon admin-roster-filter-toggle"
           aria-label="Participant filters"
           aria-expanded={filtersExpanded}
           onClick={() => setFiltersExpanded(!filtersExpanded)}
         >
           <AdminIcon name="filter" />
         </button>
-        {canManage && (
-          <a
-            className="admin-toolbar-icon"
-            aria-label={`Export filtered participants (${items.length})`}
-            href={participantExportHref(filters, recordState)}
+      </div>
+      <div className="admin-result-bar">
+        <span>
+          {items.length} {items.length === 1 ? "participant" : "participants"}
+        </span>
+        <label className="admin-record-select">
+          <span className="sr-only">Participation record</span>
+          <select
+            value={recordState}
+            onChange={(event) => {
+              setRecordState(event.target.value as ParticipantRecordState);
+              setSelected([]);
+              if (event.target.value === "removed")
+                setFilters({ ...filters, status: "all", team: "all" });
+            }}
           >
-            <AdminIcon name="download" />
-          </a>
+            <option value="active">Active</option>
+            <option value="removed">Removed</option>
+            <option value="all">All records</option>
+          </select>
+        </label>
+        {(filters.individual ||
+          filters.status !== "all" ||
+          filters.team !== "all" ||
+          recordState !== "active") && (
+          <button
+            type="button"
+            className="link-button"
+            onClick={() => {
+              updateFilters({
+                ...defaultAdminParticipantFilters,
+                status: "all",
+                team: "all",
+              });
+              setRecordState("active");
+            }}
+          >
+            Clear filters
+          </button>
         )}
       </div>
-      <AdminParticipantFilters
-        value={filters}
-        onChange={updateFilters}
-        expanded={filtersExpanded}
-      />
-      <div
-        className={`toolbar admin-participant-record-tools${filtersExpanded ? " is-expanded" : ""}`}
-      >
-        <details className="admin-record-disclosure">
-          <summary>
-            <AdminIcon name="filter" />
-            <span>Records</span>
-          </summary>
-          <label>
-            Participation record
-            <select
-              value={recordState}
-              onChange={(e) => {
-                setRecordState(e.target.value as ParticipantRecordState);
-                setSelected([]);
-                if (e.target.value === "removed")
-                  setFilters({ ...filters, status: "all", team: "all" });
-              }}
-            >
-              <option value="active">Active</option>
-              <option value="removed">Removed</option>
-              <option value="all">All records</option>
-            </select>
-          </label>
-        </details>
-        {canManage && (
-          <a
-            className="button secondary"
-            aria-label={`Export filtered participants (${items.length})`}
-            href={participantExportHref(filters, recordState)}
-          >
-            <AdminIcon name="download" />
-            <span className="admin-export-label">Export ({items.length})</span>
-          </a>
-        )}
-      </div>
-
-      {canManage && (
-        <button
-          className="button admin-mobile-add"
-          type="button"
-          onClick={() => setAdding(true)}
-        >
-          <AdminIcon name="person" />
-          Add participants
-        </button>
-      )}
       {selected.length > 0 && (
         <div className="bulk-bar">
           <strong>{selected.length} selected</strong>
@@ -3542,7 +3569,7 @@ export function AdminParticipants({
                     }
                   />
                 </td>
-                <td>
+                <td className="admin-person-cell">
                   <div className="admin-person-identity">
                     <DotAvatar
                       color={r.avatarColor || r.avatar_color || "blue"}
@@ -3559,7 +3586,7 @@ export function AdminParticipants({
                     </div>
                   </div>
                 </td>
-                <td>
+                <td className="admin-team-cell">
                   {r.teamName ? (
                     <div className="admin-team-identity">
                       <TeamAvatar
@@ -3580,7 +3607,7 @@ export function AdminParticipants({
                     "Not in a team"
                   )}
                 </td>
-                <td>
+                <td className="admin-personal-status-cell">
                   <Pill
                     tone={
                       ["Going", "Checked in"].includes(r.status)
@@ -3595,7 +3622,10 @@ export function AdminParticipants({
                     <small>Checked in</small>
                   )}
                 </td>
-                <td>
+                <td
+                  className="admin-team-status-cell"
+                  data-empty-team={!r.teamId}
+                >
                   <Pill
                     tone={r.teamStatus === "Submitted" ? "positive" : "neutral"}
                   >
@@ -3611,11 +3641,11 @@ export function AdminParticipants({
                   {r.teamLockedAt ? (
                     <time dateTime={r.teamLockedAt}>{ist(r.teamLockedAt)}</time>
                   ) : (
-                    "Not locked"
+                    <span className="admin-not-locked">Not locked</span>
                   )}
                 </td>
                 {canManage && (
-                  <td>
+                  <td className="admin-manage-cell">
                     {r.id ? (
                       <div className="admin-row-actions">
                         <StatusChange
@@ -3657,12 +3687,7 @@ export function AdminParticipants({
           {error}
         </p>
       )}
-      {!items.length && (
-        <Empty>
-          No participants match these combined filters. Change the status or
-          team filter to see other records.
-        </Empty>
-      )}
+      {!items.length && <Empty>No participants match your filters.</Empty>}
     </section>
   );
 }
@@ -3744,7 +3769,7 @@ export function Review({
   const versionRows: Row[] = data.versions || (v ? [v] : []);
   return (
     <section
-      className="admin-exact admin-review-page"
+      className="admin-exact admin-workspace admin-review-page"
       data-review-tab={reviewTab}
     >
       <header className="admin-review-header">
@@ -4149,7 +4174,7 @@ export function AdminList({
   const exportHref = `/api/export?list=${logs ? "logs" : teams ? "teams" : credits ? "credits" : "submissions"}&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}`;
   return (
     <section
-      className={`admin-exact admin-list-page${teams ? " admin-teams-page" : logs ? " admin-logs-page" : credits ? " admin-credits-page" : " admin-submissions-page"}`}
+      className={`admin-exact admin-workspace admin-list-page${teams ? " admin-teams-page" : logs ? " admin-logs-page" : credits ? " admin-credits-page" : " admin-submissions-page"}`}
     >
       <header className="page-heading admin-exact-heading">
         <h1>
@@ -4263,42 +4288,42 @@ export function AdminList({
       </div>
       {credits ? (
         <>
-        <AdminCreditBatches batches={data.creditBatches || []} run={run} />
-        <div className="table-scroll admin-credit-inventory">
-          <table className="admin-credits-table">
-            <thead>
-              <tr>
-                <th>Credit</th>
-                <th>Status</th>
-                <th>Inventory</th>
-                <th>Assigned</th>
-              </tr>
-            </thead>
-            <tbody>
-              {items.map((credit) => (
-                <tr key={credit.id}>
-                  <td className="credit-identity">
-                    <AdminIcon name="ticket" />
-                    <strong>{credit.name}</strong>
-                  </td>
-                  <td className="credit-state">
-                    <Pill tone={credit.active ? "positive" : "neutral"}>
-                      {credit.active ? "Active" : "Inactive"}
-                    </Pill>
-                  </td>
-                  <td className="credit-metric">
-                    <span className="credit-metric-label">Inventory</span>
-                    <strong>{credit.inventory}</strong>
-                  </td>
-                  <td className="credit-metric">
-                    <span className="credit-metric-label">Assigned</span>
-                    <strong>{credit.assigned}</strong>
-                  </td>
+          <AdminCreditBatches batches={data.creditBatches || []} run={run} />
+          <div className="table-scroll admin-credit-inventory">
+            <table className="admin-credits-table">
+              <thead>
+                <tr>
+                  <th>Credit</th>
+                  <th>Status</th>
+                  <th>Inventory</th>
+                  <th>Assigned</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {items.map((credit) => (
+                  <tr key={credit.id}>
+                    <td className="credit-identity">
+                      <AdminIcon name="ticket" />
+                      <strong>{credit.name}</strong>
+                    </td>
+                    <td className="credit-state">
+                      <Pill tone={credit.active ? "positive" : "neutral"}>
+                        {credit.active ? "Active" : "Inactive"}
+                      </Pill>
+                    </td>
+                    <td className="credit-metric">
+                      <span className="credit-metric-label">Inventory</span>
+                      <strong>{credit.inventory}</strong>
+                    </td>
+                    <td className="credit-metric">
+                      <span className="credit-metric-label">Assigned</span>
+                      <strong>{credit.assigned}</strong>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </>
       ) : teams ? (
         <ul className="admin-team-list">
@@ -4365,9 +4390,23 @@ export function AdminList({
                             : "Registered")}
                       </Pill>
                       <AdminLeaderTransfer
-                        team={team as { id: string; name: string; leader_id: string }}
-                        member={member as { id: string; name: string; removed?: boolean }}
-                        canTransfer={Boolean(data.me?.owner || data.me?.role === "admin")}
+                        team={
+                          team as {
+                            id: string;
+                            name: string;
+                            leader_id: string;
+                          }
+                        }
+                        member={
+                          member as {
+                            id: string;
+                            name: string;
+                            removed?: boolean;
+                          }
+                        }
+                        canTransfer={Boolean(
+                          data.me?.owner || data.me?.role === "admin",
+                        )}
                         run={run}
                       />
                       {member.id !== team.leader_id && (
@@ -4475,7 +4514,17 @@ export function AdminList({
           ))}
         </ul>
       )}
-      {!items.length && <Empty>No records match this view.</Empty>}
+      {!items.length && (
+        <p className="admin-empty-state" role="status">
+          {teams
+            ? "No teams match this view."
+            : logs
+              ? "No activity recorded yet."
+              : credits
+                ? "No credits match this view."
+                : "No submissions match this view."}
+        </p>
+      )}
     </section>
   );
 }
@@ -4499,6 +4548,8 @@ export function ContentEditor({
       index: number;
       target: string;
     } | null>(null);
+  const [contentTab, setContentTab] = useState("agenda");
+  const contentId = useId();
   const dirty = JSON.stringify(content) !== JSON.stringify(initial);
   const update = (k: string, v: unknown) => {
     setContent((p) => ({ ...p, [k]: v }));
@@ -4587,120 +4638,185 @@ export function ContentEditor({
         >
           {scope === "public" ? (
             <>
-              <h3>Agenda</h3>
-              {(content.agenda || []).map((entry: Row, index: number) => (
-                <fieldset key={index}>
-                  <legend>Agenda entry {index + 1}</legend>
-                  {["time", "title", "description"].map((key) => (
-                    <label key={key}>
-                      {key}
-                      <input
-                        value={entry[key]}
-                        onChange={(event) =>
-                          update(
-                            "agenda",
-                            content.agenda.map((row: Row, i: number) =>
-                              i === index
-                                ? { ...row, [key]: event.target.value }
-                                : row,
-                            ),
-                          )
-                        }
-                      />
-                    </label>
-                  ))}
-                  <button
-                    type="button"
-                    className="button secondary"
-                    aria-label={`Remove agenda entry ${index + 1}: ${entry.title || "Untitled"}`}
-                    onClick={() =>
-                      setRemoval({
-                        collection: "agenda",
-                        index,
-                        target: `Agenda entry ${index + 1}: ${entry.title || "Untitled"}`,
-                      })
-                    }
-                  >
-                    <Trash2 size={18} aria-hidden="true" focusable="false" />{" "}
-                    Remove
-                  </button>
-                </fieldset>
-              ))}
-              <button
-                type="button"
-                className="button secondary"
-                onClick={() => {
-                  update("agenda", [
-                    ...(content.agenda || []),
-                    { time: "", title: "", description: "" },
-                  ]);
-                  setStatus("Agenda entry added.");
-                }}
+              <AdminWorkspaceTabs
+                items={[
+                  { id: "agenda", label: "Agenda" },
+                  { id: "faqs", label: "FAQ" },
+                  { id: "rules", label: "Rules" },
+                ]}
+                value={contentTab}
+                onChange={setContentTab}
+                prefix={contentId}
+                label="Event content"
+              />
+              <section
+                id={`${contentId}-panel-agenda`}
+                role="tabpanel"
+                aria-labelledby={`${contentId}-tab-agenda`}
+                hidden={contentTab !== "agenda"}
+                className="admin-content-panel"
               >
-                <Plus size={18} aria-hidden="true" focusable="false" /> Add
-                agenda entry
-              </button>
-              <h3>Frequently asked questions</h3>
-              {(content.faqs || []).map((entry: Row, index: number) => (
-                <fieldset key={index}>
-                  <legend>Question {index + 1}</legend>
-                  {["question", "answer"].map((key) => (
-                    <label key={key}>
-                      {key}
-                      <textarea
-                        value={entry[key]}
-                        onChange={(event) =>
-                          update(
-                            "faqs",
-                            content.faqs.map((row: Row, i: number) =>
-                              i === index
-                                ? { ...row, [key]: event.target.value }
-                                : row,
-                            ),
-                          )
-                        }
-                      />
-                    </label>
-                  ))}
-                  <button
-                    type="button"
-                    className="button secondary"
-                    aria-label={`Remove question ${index + 1}: ${entry.question || "Untitled"}`}
-                    onClick={() =>
-                      setRemoval({
-                        collection: "faqs",
-                        index,
-                        target: `Question ${index + 1}: ${entry.question || "Untitled"}`,
-                      })
-                    }
+                {(content.agenda || []).map((entry: Row, index: number) => (
+                  <details
+                    key={index}
+                    className="admin-content-entry"
+                    open={index === 0}
                   >
-                    <Trash2 size={18} aria-hidden="true" focusable="false" />{" "}
-                    Remove
-                  </button>
-                </fieldset>
-              ))}
-              <button
-                type="button"
-                className="button secondary"
-                onClick={() => {
-                  update("faqs", [
-                    ...(content.faqs || []),
-                    { question: "", answer: "" },
-                  ]);
-                  setStatus("Question added.");
-                }}
+                    <summary>
+                      <span className="admin-entry-number">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <strong>{entry.title || "Untitled entry"}</strong>
+                      <ChevronDown size={18} aria-hidden="true" />
+                    </summary>
+                    <div className="admin-content-entry-fields">
+                      {["time", "title", "description"].map((key) => (
+                        <label key={key}>
+                          {key[0].toUpperCase() + key.slice(1)}
+                          <input
+                            value={entry[key]}
+                            onChange={(event) =>
+                              update(
+                                "agenda",
+                                content.agenda.map((row: Row, i: number) =>
+                                  i === index
+                                    ? { ...row, [key]: event.target.value }
+                                    : row,
+                                ),
+                              )
+                            }
+                          />
+                        </label>
+                      ))}
+                      <button
+                        type="button"
+                        className="button secondary"
+                        aria-label={`Remove agenda entry ${index + 1}: ${entry.title || "Untitled"}`}
+                        onClick={() =>
+                          setRemoval({
+                            collection: "agenda",
+                            index,
+                            target: `Agenda entry ${index + 1}: ${entry.title || "Untitled"}`,
+                          })
+                        }
+                      >
+                        <Trash2
+                          size={18}
+                          aria-hidden="true"
+                          focusable="false"
+                        />{" "}
+                        Remove
+                      </button>
+                    </div>
+                  </details>
+                ))}
+                <button
+                  type="button"
+                  className="button secondary"
+                  onClick={() => {
+                    update("agenda", [
+                      ...(content.agenda || []),
+                      { time: "", title: "", description: "" },
+                    ]);
+                    setStatus("Agenda entry added.");
+                  }}
+                >
+                  <Plus size={18} aria-hidden="true" focusable="false" /> Add
+                  agenda entry
+                </button>
+              </section>
+              <section
+                id={`${contentId}-panel-faqs`}
+                role="tabpanel"
+                aria-labelledby={`${contentId}-tab-faqs`}
+                hidden={contentTab !== "faqs"}
+                className="admin-content-panel"
               >
-                <Plus size={18} aria-hidden="true" focusable="false" /> Add
-                question
-              </button>
-              <label>
-                Rules · plain text
-                <textarea
-                  rows={7}
-                  value={content.rules || ""}
-                  onChange={(event) => update("rules", event.target.value)}
-                />
-              </label>
+                {(content.faqs || []).map((entry: Row, index: number) => (
+                  <details
+                    key={index}
+                    className="admin-content-entry"
+                    open={index === 0}
+                  >
+                    <summary>
+                      <span className="admin-entry-number">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <strong>{entry.question || "Untitled question"}</strong>
+                      <ChevronDown size={18} aria-hidden="true" />
+                    </summary>
+                    <div className="admin-content-entry-fields">
+                      {["question", "answer"].map((key) => (
+                        <label key={key}>
+                          {key[0].toUpperCase() + key.slice(1)}
+                          <textarea
+                            value={entry[key]}
+                            onChange={(event) =>
+                              update(
+                                "faqs",
+                                content.faqs.map((row: Row, i: number) =>
+                                  i === index
+                                    ? { ...row, [key]: event.target.value }
+                                    : row,
+                                ),
+                              )
+                            }
+                          />
+                        </label>
+                      ))}
+                      <button
+                        type="button"
+                        className="button secondary"
+                        aria-label={`Remove question ${index + 1}: ${entry.question || "Untitled"}`}
+                        onClick={() =>
+                          setRemoval({
+                            collection: "faqs",
+                            index,
+                            target: `Question ${index + 1}: ${entry.question || "Untitled"}`,
+                          })
+                        }
+                      >
+                        <Trash2
+                          size={18}
+                          aria-hidden="true"
+                          focusable="false"
+                        />{" "}
+                        Remove
+                      </button>
+                    </div>
+                  </details>
+                ))}
+                <button
+                  type="button"
+                  className="button secondary"
+                  onClick={() => {
+                    update("faqs", [
+                      ...(content.faqs || []),
+                      { question: "", answer: "" },
+                    ]);
+                    setStatus("Question added.");
+                  }}
+                >
+                  <Plus size={18} aria-hidden="true" focusable="false" /> Add
+                  question
+                </button>
+              </section>
+              <section
+                id={`${contentId}-panel-rules`}
+                role="tabpanel"
+                aria-labelledby={`${contentId}-tab-rules`}
+                hidden={contentTab !== "rules"}
+                className="admin-content-panel"
+              >
+                <label>
+                  <span className="sr-only">Rules</span>
+                  <textarea
+                    rows={7}
+                    value={content.rules || ""}
+                    onChange={(event) => update("rules", event.target.value)}
+                  />
+                </label>
+              </section>
             </>
           ) : (
             <>
@@ -4773,10 +4889,9 @@ function OwnerPolicyControls({
   const weights = data.policy?.weights || {};
   return (
     <section className="panel">
-      <h2>Global scoring weights</h2>
+      <h2>Scoring weights</h2>
 
       <Form
-        title="Global scoring weights"
         disabled={data.readiness?.scoring?.ready !== true}
         label="Preview global weights"
         onSave={async (f) => {
@@ -4800,7 +4915,18 @@ function OwnerPolicyControls({
             key={key}
             name={key}
             type="number"
-            label={key + " weight"}
+            label={
+              (
+                {
+                  human: "Human review",
+                  ai: "AI evaluation",
+                  votes: "Votes",
+                  diversity: "Collaboration",
+                  codex: "Codex",
+                  feedback: "Feedback",
+                } as Record<string, string>
+              )[key] || key
+            }
             value={value}
             required
           />
@@ -4862,6 +4988,9 @@ export function AdminEngagementControls({
     return (
       <section className="admin-settings-section admin-settings-engagement">
         <h2>Voting and public comments</h2>
+        <p className="control-feedback" role="status">
+          Voting settings could not load. Refresh this page.
+        </p>
       </section>
     );
   return (
@@ -4962,158 +5091,193 @@ export function Settings({
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
+  const [section, setSection] = useState("event");
+  const settingsId = useId();
+  const sections = [
+    { id: "event", label: "Event" },
+    { id: "results", label: "Results" },
+    { id: "access", label: "Access" },
+    ...(data.me?.owner ? [{ id: "content", label: "Content" }] : []),
+  ];
+  const panel = (id: string) => ({
+    id: `${settingsId}-panel-${id}`,
+    role: "tabpanel" as const,
+    "aria-labelledby": `${settingsId}-tab-${id}`,
+    hidden: section !== id,
+    className: "admin-settings-panel",
+  });
   const resultControl = (kind: "ai" | "freeze" | "final") => ({
     allowed: data.resultControls?.[kind]?.allowed === true,
     reason: data.resultControls?.[kind]?.reason || "Reload result controls.",
   });
   return (
-    <section className="admin-exact admin-settings-page">
+    <section className="admin-exact admin-workspace admin-settings-page">
       <header className="page-heading admin-exact-heading">
         <h1>
           <HeadingDot color="green" expression="squeezed" />
           Settings
         </h1>
       </header>
-      {data.me?.owner && (
-        <OwnerSubmissionWindow
-          key={`${data.policyVersion}-${data.policy?.submissionOpen}-${data.policy?.submissionClose}`}
-          owner={true}
-          open={data.policy?.submissionOpen || ""}
-          close={data.policy?.submissionClose || ""}
+      <AdminWorkspaceTabs
+        items={sections}
+        value={section}
+        onChange={setSection}
+        prefix={settingsId}
+        label="Settings sections"
+      />
+      <div {...panel("event")}>
+        {data.me?.owner && (
+          <OwnerSubmissionWindow
+            key={`${data.policyVersion}-${data.policy?.submissionOpen}-${data.policy?.submissionClose}`}
+            owner={true}
+            open={data.policy?.submissionOpen || ""}
+            close={data.policy?.submissionClose || ""}
+            run={run}
+          />
+        )}
+        <AdminEngagementControls
+          key={`engagement-${data.engagement?.version ?? "pending"}`}
+          data={data}
           run={run}
         />
-      )}
-      <AdminEngagementControls
-        key={`engagement-${data.engagement?.version ?? "pending"}`}
-        data={data}
-        run={run}
-      />
-      {(data.me?.owner || data.me?.role === "admin") && (
-        <section className="admin-settings-section admin-settings-reveals">
-          <h2>Results visibility</h2>
-          <p className="admin-results-state">
-            {data.scoreRelease?.stage === "ai"
-              ? "AI scores revealed"
-              : data.scoreRelease?.stage === "final"
-                ? "Final scores revealed"
-                : "Hidden"}
-          </p>
+      </div>
+      <div {...panel("results")}>
+        {(data.me?.owner || data.me?.role === "admin") && (
+          <section className="admin-settings-section admin-settings-reveals">
+            <h2>Results visibility</h2>
+            <p className="admin-results-state">
+              {data.scoreRelease?.stage === "ai"
+                ? "AI scores revealed"
+                : data.scoreRelease?.stage === "final"
+                  ? "Final scores revealed"
+                  : "Hidden"}
+            </p>
 
-          <Form
-            title="Reveal AI scores"
-            disabled={!resultControl("ai").allowed}
-            disabledReason={resultControl("ai").reason}
-            label="Reveal AI scores"
-            onSave={async (f) => {
-              await run("reveal-ai-scores", { reason: f.get("reason") });
-            }}
-          >
-            <Field name="reason" label="Reveal reason" required minLength={5} />
-          </Form>
-          {data.me?.owner && (
             <Form
-              title="Freeze final judging snapshot"
-              disabled={!resultControl("freeze").allowed}
-              disabledReason={resultControl("freeze").reason}
-              label="Freeze final scores"
+              title="AI evaluation"
+              disabled={!resultControl("ai").allowed}
+              disabledReason={resultControl("ai").reason}
+              label="Reveal AI scores"
               onSave={async (f) => {
-                await run("freeze-results", { reason: f.get("reason") });
+                await run("reveal-ai-scores", { reason: f.get("reason") });
               }}
             >
               <Field
                 name="reason"
-                label="Freeze reason"
+                label="Reveal reason"
                 required
                 minLength={5}
               />
             </Form>
-          )}
-          <Form
-            title="Reveal Final score"
-            disabled={!resultControl("final").allowed}
-            disabledReason={resultControl("final").reason}
-            label="Reveal Final score"
-            onSave={async (f) => {
-              await run("reveal-final-scores", {
-                snapshotId: f.get("snapshotId"),
-                reason: f.get("reason"),
-              });
-            }}
-          >
-            <Field name="snapshotId" label="Frozen final snapshot">
-              <select name="snapshotId" required>
-                <option value="">Choose a frozen snapshot</option>
-                {(data.resultSnapshots || []).map((r: Row) => (
-                  <option key={r.id} value={r.id}>
-                    {r.created_at}
-                  </option>
-                ))}
-              </select>
-            </Field>
-            <Field name="reason" label="Reveal reason" required minLength={5} />
-          </Form>
-          {data.scoreRelease?.remainingAwards?.length > 0 && (
+            {data.me?.owner && (
+              <Form
+                title="Final judging snapshot"
+                disabled={!resultControl("freeze").allowed}
+                disabledReason={resultControl("freeze").reason}
+                label="Freeze final scores"
+                onSave={async (f) => {
+                  await run("freeze-results", { reason: f.get("reason") });
+                }}
+              >
+                <Field
+                  name="reason"
+                  label="Freeze reason"
+                  required
+                  minLength={5}
+                />
+              </Form>
+            )}
             <Form
-              title="Unveil one award"
-              disabled={data.readiness?.scoring?.ready !== true}
-              label="Unveil selected award"
+              title="Final results"
+              disabled={!resultControl("final").allowed}
+              disabledReason={resultControl("final").reason}
+              label="Reveal Final score"
               onSave={async (f) => {
-                await run("unveil-winner", {
-                  releaseId: data.scoreRelease.releaseId,
-                  position: Number(f.get("position")),
+                await run("reveal-final-scores", {
+                  snapshotId: f.get("snapshotId"),
                   reason: f.get("reason"),
                 });
               }}
             >
-              <Field name="position" label="Choose an unrevealed award">
-                <select name="position" required>
-                  <option value="">Choose an award</option>
-                  {data.scoreRelease.remainingAwards.map((a: Row) => (
-                    <option key={a.position} value={a.position}>
-                      Award {a.position}
+              <Field name="snapshotId" label="Frozen final snapshot">
+                <select name="snapshotId" required>
+                  <option value="">Choose a frozen snapshot</option>
+                  {(data.resultSnapshots || []).map((r: Row) => (
+                    <option key={r.id} value={r.id}>
+                      {r.created_at}
                     </option>
                   ))}
                 </select>
               </Field>
               <Field
                 name="reason"
-                label="Unveil reason"
+                label="Reveal reason"
                 required
                 minLength={5}
               />
             </Form>
-          )}
-        </section>
-      )}
-
-      <AddAdmins owner={!!data.me?.owner} title="Admin access" run={run} />
-      <AdminCreditInstructions
-        providers={data.creditInstructions || []}
-        run={run}
-      />
-      {data.me?.owner && (
-        <details className="admin-settings-extra">
-          <summary>
-            Scoring configuration
-            <ChevronDown size={20} aria-hidden="true" />
-          </summary>
-          <OwnerPolicyControls data={data} run={run} />
-        </details>
-      )}
-      {data.me?.owner && (
-        <details className="admin-settings-extra">
-          <summary>
-            Public event content
-            <ChevronDown size={20} aria-hidden="true" />
-          </summary>
-          <ContentEditor
-            key={`public-${data.content?.revision}`}
-            data={data}
-            run={run}
-            scope="public"
-          />
-        </details>
-      )}
+            {data.scoreRelease?.remainingAwards?.length > 0 && (
+              <Form
+                title="Unveil one award"
+                disabled={data.readiness?.scoring?.ready !== true}
+                label="Unveil selected award"
+                onSave={async (f) => {
+                  await run("unveil-winner", {
+                    releaseId: data.scoreRelease.releaseId,
+                    position: Number(f.get("position")),
+                    reason: f.get("reason"),
+                  });
+                }}
+              >
+                <Field name="position" label="Choose an unrevealed award">
+                  <select name="position" required>
+                    <option value="">Choose an award</option>
+                    {data.scoreRelease.remainingAwards.map((a: Row) => (
+                      <option key={a.position} value={a.position}>
+                        Award {a.position}
+                      </option>
+                    ))}
+                  </select>
+                </Field>
+                <Field
+                  name="reason"
+                  label="Unveil reason"
+                  required
+                  minLength={5}
+                />
+              </Form>
+            )}
+          </section>
+        )}
+      </div>
+      <div {...panel("access")}>
+        <AddAdmins owner={!!data.me?.owner} title="Admin access" run={run} />
+        <AdminCreditInstructions
+          providers={data.creditInstructions || []}
+          run={run}
+        />
+      </div>
+      <div {...panel("content")}>
+        {data.me?.owner && (
+          <section className="admin-event-content-workspace">
+            <ContentEditor
+              key={`public-${data.content?.revision}`}
+              data={data}
+              run={run}
+              scope="public"
+            />
+          </section>
+        )}{" "}
+        {data.me?.owner && (
+          <details className="admin-settings-extra">
+            <summary>
+              Scoring configuration
+              <ChevronDown size={20} aria-hidden="true" />
+            </summary>
+            <OwnerPolicyControls data={data} run={run} />
+          </details>
+        )}
+      </div>
     </section>
   );
 }

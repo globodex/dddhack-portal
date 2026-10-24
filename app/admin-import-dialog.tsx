@@ -4,6 +4,7 @@ import { X } from "lucide-react";
 import AdminImportControls from "./admin-import-controls";
 import type { AdminRun } from "./admin-participant-actions";
 import { trapDialogFocus } from "./dialog-focus";
+import { trackDialogHistory } from "./dialog-history";
 
 export default function AdminImportDialog({
   run,
@@ -14,11 +15,15 @@ export default function AdminImportDialog({
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const dismiss = useRef<HTMLButtonElement>(null);
+  const onClose = useRef(close);
+  onClose.current = close;
   useEffect(() => {
     const previous = document.activeElement as HTMLElement | null;
     dialog.current?.showModal();
     dismiss.current?.focus();
+    const stopHistory = trackDialogHistory(() => onClose.current(), previous);
     return () => {
+      stopHistory();
       dialog.current?.close();
       if (previous?.isConnected) previous.focus({ preventScroll: true });
     };
