@@ -40,5 +40,9 @@ export function projectImageByteLimit(
 }
 
 export function isProjectMediaCommand(action: unknown) {
-  return action === "save-project" || action === "submit-project" || action === "submit";
+  return (
+    action === "save-project" ||
+    action === "submit-project" ||
+    action === "submit"
+  );
 }
