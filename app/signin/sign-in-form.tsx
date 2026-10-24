@@ -123,8 +123,13 @@ export default function SignInForm() {
           type="button"
           aria-label="Open navigation"
           aria-controls="mobile-navigation"
+          aria-haspopup="dialog"
           aria-expanded={menu}
-          onClick={() => setMenu(true)}
+          disabled={!hydrated}
+          onClick={(event) => {
+            event.currentTarget.focus();
+            setMenu(true);
+          }}
         >
           <Menu size={22} aria-hidden="true" />
         </button>
