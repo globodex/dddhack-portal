@@ -1,0 +1,949 @@
+{
+  "source": "667222d5cd2680ec872860b971f32ecb7be42249",
+  "fixtureBackend": 8821,
+  "syntheticOnly": true,
+  "origin": "http://localhost:3000",
+  "fingerprint": {
+    "app/portal.tsx": "2850229ffd87eb509ea3ac93da0e95385b5722775305ea67362faa77ba1e7829",
+    "app/projects-rules-experience.css": "190865a29dba0fba13232e8d2b67d5b5dd98a3a8536ae55fb7120a94759ebe8b",
+    "app/dashboard-v6.css": "60f64879fb3c805f147387fa599bfa1d23f9caecacdfe6c56a15fc74119fa11a",
+    "app/team-discovery-experience.css": "1ba981b67e46a7b799d8a462d33d76ce0a559e6675abb99692c2bc66fc1472e5",
+    "app/redesign.css": "905b26c71ade3982044cbd84bd288a1b2e84e03fa9dc6a98be697802f68b6c8f"
+  },
+  "screenshots": [
+    {
+      "path": "evidence/project-credit-responsive-final/rules-320x720.png",
+      "mode": "320x720",
+      "fullPage": true,
+      "sha256": "50dfee34b227ad9bef8350a0f31216dfb1844fb58c0a3aaa87816e052e542fe6",
+      "viewport": {
+        "viewport": 320,
+        "clientWidth": 320,
+        "page": 320,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/projects-320x720.png",
+      "mode": "320x720",
+      "fullPage": true,
+      "sha256": "4901db4ac2de53596232cbda56a53791148b7dc3d4c7398648c041a79ab3b5b8",
+      "viewport": {
+        "viewport": 320,
+        "clientWidth": 320,
+        "page": 320,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/project-detail-320x720.png",
+      "mode": "320x720",
+      "fullPage": true,
+      "sha256": "938547dd91da1fd373e67f88e3554ba32a1d34641ed94e1e3a3912a2e7933807",
+      "viewport": {
+        "viewport": 320,
+        "clientWidth": 320,
+        "page": 320,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/leaderboard-320x720.png",
+      "mode": "320x720",
+      "fullPage": true,
+      "sha256": "4c1c78e9c9c2ee21ebfdb6292ccb0c87e773435310adf19994407b762b018f59",
+      "viewport": {
+        "viewport": 320,
+        "clientWidth": 320,
+        "page": 320,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/history-320x720.png",
+      "mode": "320x720",
+      "fullPage": false,
+      "sha256": "09cc9767a0471cc44e7debbd3456b3de68a672f9849a38baf1916911f0c917cc",
+      "viewport": {
+        "viewport": 320,
+        "clientWidth": 320,
+        "page": 320,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-required-error-320x720.png",
+      "mode": "320x720",
+      "fullPage": true,
+      "sha256": "597876f0642a204b2d2f270622fd46a10f5d88c4405c7006e609522d7157a559",
+      "viewport": {
+        "viewport": 320,
+        "clientWidth": 320,
+        "page": 320,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-step1-long-name-320x720.png",
+      "mode": "320x720",
+      "fullPage": true,
+      "sha256": "0a69e31922d631711634f7016633005ecc81ad96aa2c57366d5bdad0a4ba215d",
+      "viewport": {
+        "viewport": 320,
+        "clientWidth": 320,
+        "page": 320,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-repository-error-320x720.png",
+      "mode": "320x720",
+      "fullPage": true,
+      "sha256": "40f6499210d2c143b0fb9a76f6588c291f58d68d7c92686b642af175be0619b8",
+      "viewport": {
+        "viewport": 320,
+        "clientWidth": 320,
+        "page": 320,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-step2-long-urls-320x720.png",
+      "mode": "320x720",
+      "fullPage": true,
+      "sha256": "69801a2d5b4e92f6598d6b9a134b262073802a9fb614a4acb6886c50cc68060d",
+      "viewport": {
+        "viewport": 320,
+        "clientWidth": 320,
+        "page": 320,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-step3-320x720.png",
+      "mode": "320x720",
+      "fullPage": true,
+      "sha256": "2a4378aa7677c1eaa51684fc600f8540ec592a218e15294219b973c29851dff4",
+      "viewport": {
+        "viewport": 320,
+        "clientWidth": 320,
+        "page": 320,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-attestation-error-320x720.png",
+      "mode": "320x720",
+      "fullPage": true,
+      "sha256": "1bd113afb0c4ce1adac308ac03e0b112387f7692c018b813409b18292b9f0d8b",
+      "viewport": {
+        "viewport": 320,
+        "clientWidth": 320,
+        "page": 320,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-confirmation-320x720.png",
+      "mode": "320x720",
+      "fullPage": false,
+      "sha256": "91847915ca2ff8b9a1b7ca941e6ab7b110697cb5a910997d3b9c44d008531e68",
+      "viewport": {
+        "viewport": 320,
+        "clientWidth": 320,
+        "page": 320,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/credits-masked-320x720.png",
+      "mode": "320x720",
+      "fullPage": true,
+      "sha256": "984eedb91e3b7ce978898c2c5bdbae7f3753dc51626923eb1d97929e3c5fb45a",
+      "viewport": {
+        "viewport": 320,
+        "clientWidth": 320,
+        "page": 320,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/navigation-320x720.png",
+      "mode": "320x720",
+      "fullPage": false,
+      "sha256": "3a70b875eb71ce891bdefd57b5a82d60dcada6b40b28f41f85cc11682f54d52f",
+      "viewport": {
+        "viewport": 320,
+        "clientWidth": 320,
+        "page": 320,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/rules-390x480.png",
+      "mode": "390x480",
+      "fullPage": true,
+      "sha256": "ea95c7116f981466c0453804c34da1b5b0e33f8c640a900e621f1f15f5d6bd1b",
+      "viewport": {
+        "viewport": 390,
+        "clientWidth": 390,
+        "page": 390,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/projects-390x480.png",
+      "mode": "390x480",
+      "fullPage": true,
+      "sha256": "7b43b7d16379c1ecc750787880af2a0bfa2268c88d15f20ec3b22a574657542c",
+      "viewport": {
+        "viewport": 390,
+        "clientWidth": 390,
+        "page": 390,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/project-detail-390x480.png",
+      "mode": "390x480",
+      "fullPage": true,
+      "sha256": "faad8da6873e149a348c73a194d62bf43a468ea787e4e38f42425e940523c919",
+      "viewport": {
+        "viewport": 390,
+        "clientWidth": 390,
+        "page": 390,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/leaderboard-390x480.png",
+      "mode": "390x480",
+      "fullPage": true,
+      "sha256": "a91f7c5c2831d8d2f0dbc8ded98a1a0aba13fb93399ec05af6f3c26c105aff11",
+      "viewport": {
+        "viewport": 390,
+        "clientWidth": 390,
+        "page": 390,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/history-390x480.png",
+      "mode": "390x480",
+      "fullPage": false,
+      "sha256": "cc869bcdcbfea9c596c4d8fc768560ffd6107eea83af1e88dd4b65841803c54e",
+      "viewport": {
+        "viewport": 390,
+        "clientWidth": 390,
+        "page": 390,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-required-error-390x480.png",
+      "mode": "390x480",
+      "fullPage": true,
+      "sha256": "af1cbd833461ff48a2c6d06a99d975c0d3383e8e1ecc2e571001986e2b1da8d4",
+      "viewport": {
+        "viewport": 390,
+        "clientWidth": 390,
+        "page": 390,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-step1-long-name-390x480.png",
+      "mode": "390x480",
+      "fullPage": true,
+      "sha256": "ffffba322237994f246dd2974ac7855b2f28acda2495d956117b9a5a23cf2eaa",
+      "viewport": {
+        "viewport": 390,
+        "clientWidth": 390,
+        "page": 390,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-repository-error-390x480.png",
+      "mode": "390x480",
+      "fullPage": true,
+      "sha256": "c35e7e62f25f418bda130606cbe3633914e8dee79c42f3f03d3a4f444ab75353",
+      "viewport": {
+        "viewport": 390,
+        "clientWidth": 390,
+        "page": 390,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-step2-long-urls-390x480.png",
+      "mode": "390x480",
+      "fullPage": true,
+      "sha256": "b6e9c2d6afe9400d60cac08d8aecec9f7702b350a4d84c97a67bc15321689f2d",
+      "viewport": {
+        "viewport": 390,
+        "clientWidth": 390,
+        "page": 390,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-step3-390x480.png",
+      "mode": "390x480",
+      "fullPage": true,
+      "sha256": "5dbf05c5ade6e2c69cfea471bed23fc3f090aeb58e81089063a296eb4feba0b7",
+      "viewport": {
+        "viewport": 390,
+        "clientWidth": 390,
+        "page": 390,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-attestation-error-390x480.png",
+      "mode": "390x480",
+      "fullPage": true,
+      "sha256": "724b00f60d409a1fd5bcbaaca57690efecb9350e6b03409c3db23e4eba0983bc",
+      "viewport": {
+        "viewport": 390,
+        "clientWidth": 390,
+        "page": 390,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-confirmation-390x480.png",
+      "mode": "390x480",
+      "fullPage": false,
+      "sha256": "716cb440ec55c4b8b7c3745569e404bba8806ee27574c5ba15bef288352e922e",
+      "viewport": {
+        "viewport": 390,
+        "clientWidth": 390,
+        "page": 390,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/credits-masked-390x480.png",
+      "mode": "390x480",
+      "fullPage": true,
+      "sha256": "bd842ae149f33aebae3f818010b001e2403785b721fd12cd4b9f834201737990",
+      "viewport": {
+        "viewport": 390,
+        "clientWidth": 390,
+        "page": 390,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/navigation-390x480.png",
+      "mode": "390x480",
+      "fullPage": false,
+      "sha256": "562356f23645f23caccb023dbb0adef1072ba4e4b92bfdd80a9706355e3423d1",
+      "viewport": {
+        "viewport": 390,
+        "clientWidth": 390,
+        "page": 390,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/rules-768x1024.png",
+      "mode": "768x1024",
+      "fullPage": true,
+      "sha256": "38a21d8f0c11a96801e4dfe3355849ce62e8177fbfb703e0bb84136746cc9b3f",
+      "viewport": {
+        "viewport": 768,
+        "clientWidth": 768,
+        "page": 768,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/projects-768x1024.png",
+      "mode": "768x1024",
+      "fullPage": true,
+      "sha256": "f0a1c6dd3925b815b97e82b4baad7b392c5f242ad23ff9ec5fca80b88d17372e",
+      "viewport": {
+        "viewport": 768,
+        "clientWidth": 768,
+        "page": 768,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/project-detail-768x1024.png",
+      "mode": "768x1024",
+      "fullPage": true,
+      "sha256": "12a80836116eb8ff7cc81c23a6a64bf10ab9d050ff85314caef9b79f1890a502",
+      "viewport": {
+        "viewport": 768,
+        "clientWidth": 768,
+        "page": 768,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/leaderboard-768x1024.png",
+      "mode": "768x1024",
+      "fullPage": true,
+      "sha256": "e26cd09b17f5e1356ca1fddde3f1596b2f23465b7020e7856e78555c0703edda",
+      "viewport": {
+        "viewport": 768,
+        "clientWidth": 768,
+        "page": 768,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/history-768x1024.png",
+      "mode": "768x1024",
+      "fullPage": false,
+      "sha256": "b2ac09cf0cb0d18504bcb6b0870455eb0f3de96ea4713383b70228e7be7539f8",
+      "viewport": {
+        "viewport": 768,
+        "clientWidth": 768,
+        "page": 768,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-required-error-768x1024.png",
+      "mode": "768x1024",
+      "fullPage": true,
+      "sha256": "1a9ea4dd522e2b4955b9d9b989180e465b12d1718446f58a6805ca3f04b4e9c7",
+      "viewport": {
+        "viewport": 768,
+        "clientWidth": 768,
+        "page": 768,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-step1-long-name-768x1024.png",
+      "mode": "768x1024",
+      "fullPage": true,
+      "sha256": "70b4beec948cc8d28dff39f54dcc50df066b2a0617ce373d313dd724c5f21005",
+      "viewport": {
+        "viewport": 768,
+        "clientWidth": 768,
+        "page": 768,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-repository-error-768x1024.png",
+      "mode": "768x1024",
+      "fullPage": true,
+      "sha256": "c71f5763d159805c030e01d02d3de4a565fce423fa13154c7498885e2383b00e",
+      "viewport": {
+        "viewport": 768,
+        "clientWidth": 768,
+        "page": 768,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-step2-long-urls-768x1024.png",
+      "mode": "768x1024",
+      "fullPage": true,
+      "sha256": "0ee988fa5a6bb4202f2a5ee0f6a6508a9725f6d68ddb0940425b613110492fda",
+      "viewport": {
+        "viewport": 768,
+        "clientWidth": 768,
+        "page": 768,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-step3-768x1024.png",
+      "mode": "768x1024",
+      "fullPage": true,
+      "sha256": "aa47b263e8db5d37f08abf1292ff5db77daf863dc1d983f88392036ab7e115bb",
+      "viewport": {
+        "viewport": 768,
+        "clientWidth": 768,
+        "page": 768,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-attestation-error-768x1024.png",
+      "mode": "768x1024",
+      "fullPage": true,
+      "sha256": "17c2be97ef024d72e998faa6cddea4bf23013c796fc4be0ed9df4aeef8943c0a",
+      "viewport": {
+        "viewport": 768,
+        "clientWidth": 768,
+        "page": 768,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-confirmation-768x1024.png",
+      "mode": "768x1024",
+      "fullPage": false,
+      "sha256": "b7effee8fc67f55dc622d2d6b0f6b989e448620cabda8449477a1518072beb46",
+      "viewport": {
+        "viewport": 768,
+        "clientWidth": 768,
+        "page": 768,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/credits-masked-768x1024.png",
+      "mode": "768x1024",
+      "fullPage": true,
+      "sha256": "50caf4fc28f1f784a7aac953231159cc5e7b64eeaf7888fd8f55dff8b8897098",
+      "viewport": {
+        "viewport": 768,
+        "clientWidth": 768,
+        "page": 768,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/navigation-768x1024.png",
+      "mode": "768x1024",
+      "fullPage": false,
+      "sha256": "1762e7f6ac29a74332d47835f64a4ac36b900e55dcf244558e7faab2c70d3bad",
+      "viewport": {
+        "viewport": 768,
+        "clientWidth": 768,
+        "page": 768,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/rules-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "sha256": "c7ccf3e55446bd41b262b1169fd79fb19614e2022ca2364268a7db4f3e477d85",
+      "viewport": {
+        "viewport": 1440,
+        "clientWidth": 1440,
+        "page": 1425,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/projects-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "sha256": "8c01d48c797899203d55bbc87cba55a370f00a2979e117e053b8a3588f69bd1e",
+      "viewport": {
+        "viewport": 1440,
+        "clientWidth": 1440,
+        "page": 1425,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/project-detail-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "sha256": "7f294a8ff2781c2f19f5d0fe73882974df7b509c74182ca1443acab021ee02b5",
+      "viewport": {
+        "viewport": 1440,
+        "clientWidth": 1440,
+        "page": 1425,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/leaderboard-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "sha256": "f91870f906c7cc044b30123352aa39bc54e72f1755e865c16f8a2405bce0a46a",
+      "viewport": {
+        "viewport": 1440,
+        "clientWidth": 1440,
+        "page": 1425,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/history-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": false,
+      "sha256": "6a8fd375cc75fab08bd9efbe49c6532d5a9bd0baaa549f85bfc126c1fb531933",
+      "viewport": {
+        "viewport": 1440,
+        "clientWidth": 1440,
+        "page": 1425,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-required-error-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "sha256": "bb4ddeac4cc29be47a8db2ed55827e4370470505a6975a03053c2135d50c0c9a",
+      "viewport": {
+        "viewport": 1440,
+        "clientWidth": 1440,
+        "page": 1425,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-step1-long-name-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "sha256": "c8fad1b496c906ef375346d6fdba8da4b0d043554f5ab5b4b60ce97205354c64",
+      "viewport": {
+        "viewport": 1440,
+        "clientWidth": 1440,
+        "page": 1425,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-repository-error-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "sha256": "fd7f58c2ffdaca1ece9e09306b48307b428cc6c1a1a573be28d3a25416a2a893",
+      "viewport": {
+        "viewport": 1440,
+        "clientWidth": 1440,
+        "page": 1425,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-step2-long-urls-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "sha256": "9c509d792405f302df28405540138ce644ad3bc26d10b6edd3b89d159dfe994a",
+      "viewport": {
+        "viewport": 1440,
+        "clientWidth": 1440,
+        "page": 1425,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-step3-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "sha256": "c2c6658ad7fb256e7849962b9a20dc26ede5d5004ad65f94f88926cbb593a692",
+      "viewport": {
+        "viewport": 1440,
+        "clientWidth": 1440,
+        "page": 1425,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-attestation-error-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "sha256": "45a869dc573dae057f14794125ed86f68863a291dd56decdf07e22fcedc32ee7",
+      "viewport": {
+        "viewport": 1440,
+        "clientWidth": 1440,
+        "page": 1425,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-confirmation-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": false,
+      "sha256": "ff7f8dd0c296661ddf321a17bb5083a8bea5eaf7651274033e1528fb7d97dadb",
+      "viewport": {
+        "viewport": 1440,
+        "clientWidth": 1440,
+        "page": 1425,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/credits-masked-1440x900.png",
+      "mode": "1440x900",
+      "fullPage": true,
+      "sha256": "5687a0692ea19851d61ffc3d8c2be97f6a64ea03864cdae3522e160ecc9f52c1",
+      "viewport": {
+        "viewport": 1440,
+        "clientWidth": 1440,
+        "page": 1425,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/rules-native-200-percent-outer1440x900.png",
+      "mode": "native-200-percent-outer1440x900",
+      "fullPage": false,
+      "sha256": "be5d2c7297fe9ff3cd8102a15de83781247fb8d2fdf2538c11737624274234c5",
+      "viewport": {
+        "viewport": 720,
+        "clientWidth": 720,
+        "page": 712,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/projects-native-200-percent-outer1440x900.png",
+      "mode": "native-200-percent-outer1440x900",
+      "fullPage": false,
+      "sha256": "ce28afb46642927ae873b707949237f6afa4a961b95b68df27945554dad25c10",
+      "viewport": {
+        "viewport": 720,
+        "clientWidth": 720,
+        "page": 712,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/project-detail-native-200-percent-outer1440x900.png",
+      "mode": "native-200-percent-outer1440x900",
+      "fullPage": false,
+      "sha256": "8e32ce6a065e807d066f3eea467eac8be81e513bd60640e08daabce911af0b10",
+      "viewport": {
+        "viewport": 720,
+        "clientWidth": 720,
+        "page": 712,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/leaderboard-native-200-percent-outer1440x900.png",
+      "mode": "native-200-percent-outer1440x900",
+      "fullPage": false,
+      "sha256": "42581006f337727b761aa311ea752cde8e1a6a05d3b188451456a35998bbb8e2",
+      "viewport": {
+        "viewport": 720,
+        "clientWidth": 720,
+        "page": 712,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/history-native-200-percent-outer1440x900.png",
+      "mode": "native-200-percent-outer1440x900",
+      "fullPage": false,
+      "sha256": "28c0d88e4bf3adb8127a9619e6fc5c78ba0df0f76bbd10563e4e58527999a649",
+      "viewport": {
+        "viewport": 720,
+        "clientWidth": 720,
+        "page": 712,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-required-error-native-200-percent-outer1440x900.png",
+      "mode": "native-200-percent-outer1440x900",
+      "fullPage": false,
+      "sha256": "0b5964cd575f03a662f602f1fa36544a5fe6a2fe474d5fbd9d8f2c27b97e74bd",
+      "viewport": {
+        "viewport": 720,
+        "clientWidth": 720,
+        "page": 712,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-step1-long-name-native-200-percent-outer1440x900.png",
+      "mode": "native-200-percent-outer1440x900",
+      "fullPage": false,
+      "sha256": "eec1a3765c075f8c719a2c830c62601b3d1cedebfb9799b4717a209cb52ed791",
+      "viewport": {
+        "viewport": 720,
+        "clientWidth": 720,
+        "page": 712,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-repository-error-native-200-percent-outer1440x900.png",
+      "mode": "native-200-percent-outer1440x900",
+      "fullPage": false,
+      "sha256": "db90297ecaea9740eb8607a86965a72c2a974316283f87881a84f9d7602001e2",
+      "viewport": {
+        "viewport": 720,
+        "clientWidth": 720,
+        "page": 712,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-step2-long-urls-native-200-percent-outer1440x900.png",
+      "mode": "native-200-percent-outer1440x900",
+      "fullPage": false,
+      "sha256": "311621148fe7ecba5d4d292354a24a15e61c5c1bd08f4553124e1a6d51d3fa1d",
+      "viewport": {
+        "viewport": 720,
+        "clientWidth": 720,
+        "page": 712,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-step3-native-200-percent-outer1440x900.png",
+      "mode": "native-200-percent-outer1440x900",
+      "fullPage": false,
+      "sha256": "beacedcf4596513b987c58803160015732f6fe26ff1689188969805dd1e5655a",
+      "viewport": {
+        "viewport": 720,
+        "clientWidth": 720,
+        "page": 712,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-attestation-error-native-200-percent-outer1440x900.png",
+      "mode": "native-200-percent-outer1440x900",
+      "fullPage": false,
+      "sha256": "7eee16fa5a44ca94d8283225c1047f1bdbdad3cdaec97ad0e9bd7a4e49c1a276",
+      "viewport": {
+        "viewport": 720,
+        "clientWidth": 720,
+        "page": 712,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/submission-confirmation-native-200-percent-outer1440x900.png",
+      "mode": "native-200-percent-outer1440x900",
+      "fullPage": false,
+      "sha256": "23be2cf9fc347d9355438cd0691da8b1997d43a918cb49c586e13441814cd37e",
+      "viewport": {
+        "viewport": 720,
+        "clientWidth": 720,
+        "page": 712,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/credits-masked-native-200-percent-outer1440x900.png",
+      "mode": "native-200-percent-outer1440x900",
+      "fullPage": false,
+      "sha256": "2914c47176bd83479ca104458b3db98be54819a6f57756f88a00610587ad6492",
+      "viewport": {
+        "viewport": 720,
+        "clientWidth": 720,
+        "page": 712,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/navigation-native-200-percent-outer1440x900.png",
+      "mode": "native-200-percent-outer1440x900",
+      "fullPage": false,
+      "sha256": "92e4dc4bf874be578315f6892f0f3df65a690f640d8edd663af41724fdbc045b",
+      "viewport": {
+        "viewport": 720,
+        "clientWidth": 720,
+        "page": 712,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/projects-native200-ready.png",
+      "mode": "native200-post-hydration",
+      "route": "/projects",
+      "fullPage": false,
+      "sha256": "f942662494b81fb757252ad7035adc17cf2688ca329945644807cb6f5675cb25"
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/project-detail-native200-ready.png",
+      "mode": "native200-post-hydration",
+      "route": "/projects/synthetic-eve",
+      "fullPage": false,
+      "sha256": "63d4d5a1e95989f45baa192b5395a3a2810aaefc385415cf3dfff845d0f12cd2"
+    },
+    {
+      "path": "evidence/project-credit-responsive-final/leaderboard-native200-ready.png",
+      "mode": "native200-post-hydration",
+      "route": "/leaderboard",
+      "fullPage": false,
+      "sha256": "033e48e489887067f55c5b83cd164ad6679d903b93c0ca5d196e9ccd6fbfe302"
+    }
+  ],
+  "checks": [
+    {
+      "name": "320x720: history Escape/Back/opener focus and responsive bounds",
+      "passed": true
+    },
+    {
+      "name": "320x720: three steps, long names/URLs, field focus/errors, visible44px CTAs, attestation error and commit cancellation",
+      "passed": true
+    },
+    {
+      "name": "320x720: Credits stay masked with disabled Copy; shared menu opens and escapes when present",
+      "passed": true
+    },
+    {
+      "name": "390x480: history Escape/Back/opener focus and responsive bounds",
+      "passed": true
+    },
+    {
+      "name": "390x480: three steps, long names/URLs, field focus/errors, visible44px CTAs, attestation error and commit cancellation",
+      "passed": true
+    },
+    {
+      "name": "390x480: Credits stay masked with disabled Copy; shared menu opens and escapes when present",
+      "passed": true
+    },
+    {
+      "name": "768x1024: history Escape/Back/opener focus and responsive bounds",
+      "passed": true
+    },
+    {
+      "name": "768x1024: three steps, long names/URLs, field focus/errors, visible44px CTAs, attestation error and commit cancellation",
+      "passed": true
+    },
+    {
+      "name": "768x1024: Credits stay masked with disabled Copy; shared menu opens and escapes when present",
+      "passed": true
+    },
+    {
+      "name": "1440x900: history Escape/Back/opener focus and responsive bounds",
+      "passed": true
+    },
+    {
+      "name": "1440x900: three steps, long names/URLs, field focus/errors, visible44px CTAs, attestation error and commit cancellation",
+      "passed": true
+    },
+    {
+      "name": "1440x900: Credits stay masked with disabled Copy; shared menu opens and escapes when present",
+      "passed": true
+    },
+    {
+      "name": "native-200-percent-outer1440x900: history Escape/Back/opener focus and responsive bounds",
+      "passed": true
+    },
+    {
+      "name": "native-200-percent-outer1440x900: three steps, long names/URLs, field focus/errors, visible44px CTAs, attestation error and commit cancellation",
+      "passed": true
+    },
+    {
+      "name": "native-200-percent-outer1440x900: Credits stay masked with disabled Copy; shared menu opens and escapes when present",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "writes": [],
+  "findings": [],
+  "nativeBrowserZoom": {
+    "verified": true,
+    "method": "Disposable persistent Chromium profile; chrome.settingsPrivate.setDefaultZoom(2) on chrome://settings/appearance; new application tab, viewport:null. Layout, DPR and visualViewport scale asserted.",
+    "metrics": {
+      "innerWidth": 720,
+      "innerHeight": 378,
+      "outerWidth": 1440,
+      "outerHeight": 900,
+      "devicePixelRatio": 2,
+      "visualViewportScale": 1
+    }
+  },
+  "fingerprintAtEnd": {
+    "app/portal.tsx": "2850229ffd87eb509ea3ac93da0e95385b5722775305ea67362faa77ba1e7829",
+    "app/projects-rules-experience.css": "190865a29dba0fba13232e8d2b67d5b5dd98a3a8536ae55fb7120a94759ebe8b",
+    "app/dashboard-v6.css": "60f64879fb3c805f147387fa599bfa1d23f9caecacdfe6c56a15fc74119fa11a",
+    "app/team-discovery-experience.css": "1ba981b67e46a7b799d8a462d33d76ce0a559e6675abb99692c2bc66fc1472e5",
+    "app/redesign.css": "905b26c71ade3982044cbd84bd288a1b2e84e03fa9dc6a98be697802f68b6c8f"
+  },
+  "publicNativeCaptureNote": "Three additional ready-state public snapshots wait for Projects data-hydrated=true and enabled Open menu. Earlier three native public captures include initial disabled-header loading state. The ready-state detail uses unchanged synthetic-eve fixture after Alice final commit."
+}
