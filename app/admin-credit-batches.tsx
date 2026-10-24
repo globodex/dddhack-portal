@@ -639,14 +639,17 @@ export default function AdminCreditBatches({
                       key={column.key}
                     >
                       <header>
-                        <h3>{checked.sourceHeading || checked.heading}</h3>
+                        <h3>
+                          {restock
+                            ? checked.heading
+                            : checked.sourceHeading || checked.heading}
+                        </h3>
                         <span>
                           {restock ? "Existing category" : "New category"}
                         </span>
                       </header>
                       {restock ? (
                         <div className="credit-existing-metadata">
-                          <strong>{checked.heading}</strong>
                           <CreditInstructions
                             markdown={checked.instructions || ""}
                           />

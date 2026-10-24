@@ -227,3 +227,17 @@
   outline: 2px solid #006afe;
   outline-offset: 3px;
 }
+.app-shell .personal-credits-page .credit-secret > code {
+  border: 0;
+  border-radius: 0;
+}
+.app-shell
+  .personal-credits-page
+  .personal-credit-card
+  .credit-secret
+  > button.button {
+  padding: 10px;
+}
+.app-shell .personal-credits-page .credit-secret > button > svg {
+  flex-shrink: 0;
+}

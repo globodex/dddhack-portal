@@ -222,9 +222,12 @@ export default function AdminCreditStock({
                       </td>
                     </tr>
                   ))
-                : (data?.items || []).map((entry) => {
+                : (data?.items || []).map((entry, index) => {
                     const value = revealed[entry.id],
-                      busy = rowBusy === entry.id;
+                      busy = rowBusy === entry.id,
+                      recipient = entry.person
+                        ? `for ${entry.person}${entry.email ? `, ${entry.email}` : ""}`
+                        : `in available stock ${page * 25 + index + 1}`;
                     return (
                       <tr key={entry.id} role="row">
                         <td role="cell" data-label="Person">
@@ -251,7 +254,7 @@ export default function AdminCreditStock({
                                 type="button"
                                 className="button secondary"
                                 disabled={!!rowBusy}
-                                aria-label={`${value ? "Hide" : "Reveal"} code ${entry.id}`}
+                                aria-label={`${value ? "Hide" : "Reveal"} code ${recipient}`}
                                 aria-pressed={!!value}
                                 aria-busy={busy}
                                 onClick={async () => {
@@ -340,7 +343,7 @@ export default function AdminCreditStock({
                                 type="button"
                                 className="button secondary"
                                 disabled={!value || busy}
-                                aria-label={`${copied === entry.id ? "Copied" : "Copy"} code ${entry.id}`}
+                                aria-label={`${copied === entry.id ? "Copied" : "Copy"} code ${recipient}`}
                                 data-copied={copied === entry.id}
                                 onClick={async () => {
                                   try {

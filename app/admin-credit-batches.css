@@ -558,3 +558,24 @@
   color: #a43e39;
   font-size: 13px;
 }
+/* Keep the shared Admin button padding from compressing Lucide icons. */
+.app-shell .admin-credit-batches .credit-stock-code-actions > button.button {
+  padding: 11px;
+}
+.app-shell .admin-credit-batches .credit-stock-filters form > button.button {
+  padding: 12px;
+}
+.app-shell .admin-credit-batches .credit-stock-pagination button.button {
+  padding: 11px;
+}
+.app-shell
+  .admin-credit-batches
+  :is(
+    .credit-stock-code-actions,
+    .credit-stock-filters,
+    .credit-stock-pagination
+  )
+  button
+  > svg {
+  flex-shrink: 0;
+}
