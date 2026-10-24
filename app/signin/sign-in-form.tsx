@@ -5,6 +5,8 @@ import {
   ArrowLeft,
   ArrowRight,
   CalendarDays,
+  House,
+  BriefcaseBusiness,
   CircleAlert,
   CircleCheck,
   LoaderCircle,
@@ -129,11 +131,11 @@ export default function SignInForm() {
       </header>
       <MobileNavigation open={menu} onClose={() => setMenu(false)}>
         <a href="/">
-          <ArrowLeft size={22} aria-hidden="true" />
+          <House size={22} aria-hidden="true" />
           Event home
         </a>
         <a href="/projects">
-          <ArrowRight size={22} aria-hidden="true" />
+          <BriefcaseBusiness size={22} aria-hidden="true" />
           Projects
         </a>
       </MobileNavigation>
