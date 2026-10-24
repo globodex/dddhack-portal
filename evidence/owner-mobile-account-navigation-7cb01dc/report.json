@@ -1,0 +1,521 @@
+{
+  "source": "7c1103798170138d5ae696d9ce9bb3a985d7ee69",
+  "navigationFix": "7cb01dca612a279eee233f671937f546da6a1838",
+  "origin": "http://localhost:3000",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "syntheticOnly": true,
+  "readOnly": true,
+  "startedAt": "2026-10-24T13:34:24.346Z",
+  "fingerprints": {
+    "app/dialog-history.ts": "3462b6fdc04e16202bba65945583a83f9d046d015cfdcaf13b95dbe59428b43a",
+    "app/mobile-navigation.tsx": "1dc32262763a75e2703839bf3fa80ce23b27cd0cbd240ccf93330a40b312fb2e",
+    "app/[[...path]]/portal-client.tsx": "c1fd2e77f7abccb0b2a2ba16d0d03b180fa038ae60b7fbf237eb3248c9a4724b",
+    "app/portal.tsx account-menu/navigation slice": "ea16cc75e0aa7cf3f884eb441cc001196019db09f533481729b49a9911fab48f"
+  },
+  "dirtyAtStart": "M next-env.d.ts",
+  "checks": [],
+  "screenshots": [
+    {
+      "file": "01-owner-credits-before.png",
+      "path": "/admin/credits",
+      "source": "7c1103798170138d5ae696d9ce9bb3a985d7ee69",
+      "navigationFix": "7cb01dca612a279eee233f671937f546da6a1838",
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "02-owner-menu-workspace.png",
+      "path": "/admin/credits",
+      "source": "7c1103798170138d5ae696d9ce9bb3a985d7ee69",
+      "navigationFix": "7cb01dca612a279eee233f671937f546da6a1838",
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "workspace-FIRST-TAP-FAIL.png",
+      "path": "/admin/credits",
+      "source": "7c1103798170138d5ae696d9ce9bb3a985d7ee69",
+      "navigationFix": "7cb01dca612a279eee233f671937f546da6a1838",
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "workspace-FINAL-FAIL.png",
+      "path": "/admin/credits",
+      "source": "7c1103798170138d5ae696d9ce9bb3a985d7ee69",
+      "navigationFix": "7cb01dca612a279eee233f671937f546da6a1838",
+      "inspected": true,
+      "accepted": true
+    }
+  ],
+  "traces": [
+    {
+      "label": "workspace-first-tap-failure",
+      "url": "http://localhost:3000/admin/credits",
+      "events": [
+        {
+          "type": "pageshow",
+          "t": 1610.4000000003725,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu"
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 1679.0999999996275,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 1679.5999999996275,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu"
+        },
+        {
+          "type": "click",
+          "t": 2319,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "text": "Open menu",
+          "href": null,
+          "insideMenu": false
+        },
+        {
+          "type": "history.pushState:before",
+          "t": 2360.5,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Close navigation",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.pushState:after",
+          "t": 2361.4000000003725,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792848870624-jkp0n72dx4g",
+          "focus": "Close navigation"
+        },
+        {
+          "type": "FIRST_TAP_START",
+          "t": 2501.5,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792848870624-jkp0n72dx4g",
+          "focus": "Close navigation",
+          "label": "workspace"
+        },
+        {
+          "type": "click",
+          "t": 2566.2000000011176,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792848870624-jkp0n72dx4g",
+          "focus": "Workspace",
+          "text": "Workspace",
+          "href": "/dashboard",
+          "insideMenu": true
+        },
+        {
+          "type": "history.back:before",
+          "t": 2631.300000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792848870624-jkp0n72dx4g",
+          "focus": "Open menu",
+          "destination": null
+        },
+        {
+          "type": "history.back:after",
+          "t": 2631.300000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792848870624-jkp0n72dx4g",
+          "focus": "Open menu"
+        },
+        {
+          "type": "popstate",
+          "t": 2639.4000000003725,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "nextDialog": null
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 2678,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 2678.800000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu"
+        }
+      ]
+    },
+    {
+      "label": "workspace-final-failure",
+      "url": "http://localhost:3000/admin/credits",
+      "events": [
+        {
+          "type": "pageshow",
+          "t": 1610.4000000003725,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu"
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 1679.0999999996275,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 1679.5999999996275,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu"
+        },
+        {
+          "type": "click",
+          "t": 2319,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "text": "Open menu",
+          "href": null,
+          "insideMenu": false
+        },
+        {
+          "type": "history.pushState:before",
+          "t": 2360.5,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Close navigation",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.pushState:after",
+          "t": 2361.4000000003725,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792848870624-jkp0n72dx4g",
+          "focus": "Close navigation"
+        },
+        {
+          "type": "FIRST_TAP_START",
+          "t": 2501.5,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792848870624-jkp0n72dx4g",
+          "focus": "Close navigation",
+          "label": "workspace"
+        },
+        {
+          "type": "click",
+          "t": 2566.2000000011176,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792848870624-jkp0n72dx4g",
+          "focus": "Workspace",
+          "text": "Workspace",
+          "href": "/dashboard",
+          "insideMenu": true
+        },
+        {
+          "type": "history.back:before",
+          "t": 2631.300000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792848870624-jkp0n72dx4g",
+          "focus": "Open menu",
+          "destination": null
+        },
+        {
+          "type": "history.back:after",
+          "t": 2631.300000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792848870624-jkp0n72dx4g",
+          "focus": "Open menu"
+        },
+        {
+          "type": "popstate",
+          "t": 2639.4000000003725,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "nextDialog": null
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 2678,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 2678.800000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu"
+        }
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/admin/participants",
+      "search": "",
+      "type": "document"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css",
+      "search": "?v=1792848865246",
+      "type": "stylesheet"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "image"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js",
+      "search": "?v=1792848865246",
+      "type": "script"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js",
+      "search": "?v=1792848865246",
+      "type": "script"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js",
+      "search": "",
+      "type": "script"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+      "search": "",
+      "type": "script"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "other"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/admin/credits",
+      "search": "",
+      "type": "document"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css",
+      "search": "?v=1792848868330",
+      "type": "stylesheet"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "image"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js",
+      "search": "?v=1792848868330",
+      "type": "script"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js",
+      "search": "?v=1792848868330",
+      "type": "script"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js",
+      "search": "",
+      "type": "script"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+      "search": "",
+      "type": "script"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "other"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/dashboard",
+      "search": "?_rsc=wGWry5MJdmN6-_JM",
+      "type": "fetch"
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "limitations": [
+    "Emulated390px touch in container Chromium; not real managed sign-in or a physical device.",
+    "No reveal, save, logout or other application mutation is activated.",
+    "Full source HEAD and navigation-only fingerprints are recorded because unrelated publish-warning work may share portal.tsx."
+  ],
+  "browser": "154.0.8037.57",
+  "result": "failed",
+  "failure": "Error: expect(page).toHaveURL(expected) failed\n\nExpected pattern: /\\/dashboard(?:\\?.*)?$/\nReceived string:  \"http://localhost:3000/admin/credits\"\nTimeout: 20000ms\n\nCall log:\n  - Expect \"to.have.url\" with timeout 20000ms\n    23 \u00d7 unexpected value \"http://localhost:3000/admin/credits\"\n\n    at Proxy.<anonymous> (/workspace/dddhack-portal/node_modules/playwright/lib/matchers/expect.js:221:24)\n    at ready (file:///workspace/ddd-seo/scripts/qa-owner-mobile-account-navigation.mjs:64:22)\n    at file:///workspace/ddd-seo/scripts/qa-owner-mobile-account-navigation.mjs:94:15",
+  "browserClosed": true,
+  "finishedAt": "2026-10-24T13:34:51.177Z",
+  "visualReview": {
+    "uniqueScreenshotsViewed": 4,
+    "result": "failed",
+    "notes": [
+      "Before and menu show the owner Credits route and Workspace destination.",
+      "Both failure captures visibly remain on Credits after the single Workspace tap."
+    ]
+  },
+  "unreachedChecks": [
+    "Your profile first-tap navigation",
+    "Workspace/profile normal Back restoration",
+    "Menu Escape/background scroll/focus restoration after navigation"
+  ]
+}
