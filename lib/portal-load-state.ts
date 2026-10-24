@@ -8,7 +8,7 @@ export function portalLoadFailure(status: number, body: { code?: string; message
   return {
     code,
     message: message === code || /^[A-Z][A-Z0-9_]+$/.test(message)
-      ? "This page could not load. Please try again."
+      ? "The portal is temporarily unavailable. Please try again."
       : message,
   };
 }

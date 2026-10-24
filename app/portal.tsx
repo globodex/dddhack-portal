@@ -3992,7 +3992,7 @@ export function AdminParticipants({
                   {canManage && (
                     <td className="admin-manage-cell">
                       {r.viewer === true ? (
-                        <span className="muted">Viewer access</span>
+                        <span className="sr-only">Viewer access</span>
                       ) : r.id ? (
                         <div className="admin-row-actions">
                           <StatusChange
