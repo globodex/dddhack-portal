@@ -1,0 +1,13 @@
+{
+  "syntheticOnly": true,
+  "path": "/tmp/ddd-final-combined-t3HQjG/fixture.sqlite",
+  "counts": {
+    "users": 17,
+    "teams": 3,
+    "memberships": 9,
+    "projects": 2,
+    "submission_versions": 5,
+    "credit_inventory": 21
+  },
+  "sha256": "5752c995c6beb0a7caedf443574b8622bd526cbff1be4c4fb350bf80bd160e76"
+}
