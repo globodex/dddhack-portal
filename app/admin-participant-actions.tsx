@@ -143,6 +143,7 @@ export default function AdminParticipantActions({
           participantDeleteSummary: {
             teamCount: participant.leaderTeamIds?.length ?? (participant.teamLeader ? 1 : 0),
             teamNames: participant.leaderTeamNames || (participant.teamName && participant.teamLeader ? [participant.teamName] : []),
+            memberTeamName: participant.teamName || "",
           },
         }));
       }}

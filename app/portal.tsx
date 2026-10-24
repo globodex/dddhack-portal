@@ -6101,7 +6101,7 @@ function StatusChange({
               kind,
               targetId: target,
               status: f.get("status"),
-              reason: f.get("reason"),
+              reason: "Administrator updated status",
             });
           }}
         >
@@ -6116,7 +6116,6 @@ function StatusChange({
               ))}
             </select>
           </label>
-          <Field name="reason" label="Audit reason" minLength={5} required />
         </Form>
       )}
       {children && (

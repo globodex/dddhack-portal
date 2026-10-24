@@ -93,7 +93,7 @@ export function confirmationFor(
     return { title, target,
       description: summary?.teamCount > 0
         ? `Their ${summary.teamCount > 1 ? `${summary.teamCount} teams, ideas, projects` : "team, idea, project"} and all submissions will also be deleted. Other members stay registered.`
-        : "Delete their profile and participation. Their team stays intact.",
+        : `Delete their profile and participation.${summary?.memberTeamName ? " Their team stays intact." : ""}`,
       ...(summary?.teamNames?.length ? { badge: summary.teamNames.length < 3 ? summary.teamNames.join(" · ") : `${summary.teamCount} teams` } : {}),
       note: "This cannot be undone.", confirmLabel: "Delete participant", critical: true, tone: "danger" };
   }

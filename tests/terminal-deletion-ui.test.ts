@@ -10,6 +10,7 @@ import { createPGliteFixture } from "./neon-db-fixture";
 import { seedLocal, fixtures, LOCAL_CREDIT_KEY } from "../scripts/fixtures";
 import { PortalService } from "../lib/service";
 import { batch } from "../lib/db";
+import { AdminList, AdminParticipants } from "../app/portal";
 
 const run = async () => { throw new Error("Rendering must not mutate"); };
 const target = { id: "fake_person", name: "Synthetic Person", email: "synthetic@portal.test" };
@@ -30,6 +31,18 @@ test("single-person deletion confirms every led team without sending a reset or 
   assert.match(leader.description, /2 teams, ideas, projects and all submissions/);
   assert.match(leader.description, /Other members stay registered/);
   assert.match(leader.badge!, /Current team.*Archived team/);
+  assert.doesNotMatch(confirmationFor("admin-delete-participant", {}, target.name).description, /team stays/);
+  assert.match(confirmationFor("admin-delete-participant", { participantDeleteSummary: { teamCount: 0, memberTeamName: "Surviving team" } }, target.name).description, /Their team stays intact/);
+});
+
+test("routine admin status menus ask for the status without demanding a reason", () => {
+  const me = { id: "fake_admin", name: "Synthetic admin", email: "admin@portal.test", role: "admin", owner: false };
+  const people = renderToStaticMarkup(createElement(AdminParticipants, { data: { me, items: [{ ...target, status: "Going", approval: "approved", canDeleteParticipant: true }] }, run }));
+  const teams = renderToStaticMarkup(createElement(AdminList, { path: "/admin/teams", data: { me, items: [{ id: "fake_team", name: "Synthetic team", status: "Forming", members: [] }] }, run }));
+  for (const markup of [people, teams]) {
+    assert.match(markup, /New status/);
+    assert.doesNotMatch(markup, /Audit reason|name="reason"/);
+  }
 });
 
 test("participant controls keep legacy restore separate from irreversible deletion and omit protected targets", () => {
