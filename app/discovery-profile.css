@@ -119,3 +119,36 @@ dialog.discovery-profile {
     font-size: 26px;
   }
 }
+
+/* Selected-person facts are supplied only by the authorized lookup. */
+dialog.discovery-profile-v6 .discovery-profile-details {
+  display: grid;
+  gap: 14px;
+  margin: 24px 0;
+  padding: 20px 0;
+  border-block: 1px solid var(--line, #e3e4db);
+  text-align: left;
+}
+.discovery-profile-details .discovery-profile-fact {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  color: var(--ink, #202320);
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.discovery-profile-fact > svg { margin-top: 1px; color: var(--muted, #656960); }
+.discovery-profile-fact small { display: block; margin-top: 4px; color: var(--muted, #656960); font-size: 13px; }
+.discovery-profile-details .discovery-profile-contact { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.discovery-profile-contact a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding: 8px 0; color: var(--ink, #202320); font-size: 14px; }
+.discovery-profile-contact a[aria-label] { justify-content: center; width: 44px; padding: 8px; border-radius: 50%; background: #e8f7ef; }
+.discovery-profile-org label { display: block; margin-bottom: 8px; color: var(--muted, #656960); font-size: 12px; }
+.discovery-profile-org > div { display: flex; gap: 8px; }
+.discovery-profile-org input { min-width: 0; width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid var(--line, #e3e4db); border-radius: 8px; color: var(--ink, #202320); background: #f5f5ee; font: 13px monospace; }
+.discovery-profile-org button { display: grid; place-items: center; flex: 0 0 44px; width: 44px; height: 44px; padding: 10px; border: 1px solid var(--line, #e3e4db); border-radius: 8px; color: var(--ink, #202320); background: var(--surface, #fffefa); }
+dialog.discovery-profile-v6 .discovery-profile-org > p { min-height: 18px; margin: 8px 0 0; font-size: 12px; color: var(--muted, #656960); }
+.app-shell .discover-v6 .discover-profile-loading { margin: 0; color: var(--muted, #656960); font-size: 12px; }
+.app-shell .discover-v6 .discover-profile-error { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; color: #a12a25; font-size: 13px; }
+.app-shell .discover-v6 .discover-profile-error button { min-height: 44px; padding: 8px 12px; border: 1px solid var(--line, #e3e4db); border-radius: 8px; color: var(--ink, #202320); background: var(--surface, #fffefa); }

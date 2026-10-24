@@ -66,6 +66,7 @@ import { portalErrorText, portalSuccessText } from "../lib/ui-feedback";
 import { readPortalView } from "../lib/portal-read";
 import {AdminPresentationCache, AdminPresentationCacheMiss} from "../lib/admin-presentation";
 import DiscoveryProfile, {
+  discoveryDetailsProjection,
   discoverySocialLinks,
   openDiscoveryDialog,
   type DiscoveryPerson,
@@ -1854,6 +1855,7 @@ export function discoveryProfileProjection(row: Row): DiscoveryPerson {
       : [],
     avatarColor: String(row.avatarColor || "blue"),
     avatarExpression: String(row.avatarExpression || "squeezed"),
+    ...(row.details && typeof row.details === "object" ? { details: discoveryDetailsProjection(row.details) } : {}),
     ...(teamName
       ? {
           team: {
@@ -2009,6 +2011,32 @@ export function Discover({
   const people = useDiscoverPeople(data, search, teamFilter, participants);
   const canCreate = data.me?.canParticipate === true && !data.team;
   const [focusError, setFocusError] = useState("");
+  const [personLoading, setPersonLoading] = useState("");
+  const [personError, setPersonError] = useState<{ id: string; message: string } | null>(null);
+  const profileRequest = useRef<AbortController | null>(null);
+  useEffect(() => () => profileRequest.current?.abort(), []);
+  const openPerson = async (row: Row) => {
+    if (personLoading === row.id) return;
+    profileRequest.current?.abort();
+    const request = new AbortController();
+    profileRequest.current = request;
+    setPersonLoading(row.id);
+    setPersonError(null);
+    try {
+      const page = await readPeoplePage(peopleDirectoryUrl({ person: row.id }), request.signal);
+      if (request.signal.aborted) return;
+      if (!page.focusedPerson) throw new Error("Profile unavailable.");
+      document.getElementById(`person-${row.id}`)?.querySelector<HTMLButtonElement>(".discover-profile-open")?.focus({ preventScroll: true });
+      setSelectedPerson(discoveryProfileProjection(page.focusedPerson));
+    } catch (cause) {
+      if (!request.signal.aborted) setPersonError({ id: row.id, message: (cause as Error).message || "Profile could not be loaded." });
+    } finally {
+      if (profileRequest.current === request) {
+        profileRequest.current = null;
+        setPersonLoading("");
+      }
+    }
+  };
   useEffect(() => {
     if (!participants) return;
     let controller: AbortController | null = null;
@@ -2022,7 +2050,7 @@ export function Discover({
       let row = people.items.find((person: Row) => person.id === personId);
       if (!row && data.focusedPerson?.id === personId) row = data.focusedPerson;
       setFocusError("");
-      if (!row) {
+      if (!row || !row.details) {
         controller = new AbortController();
         const request = controller;
         try {
@@ -2169,11 +2197,13 @@ export function Discover({
                   <div className="discover-person-heading">
                     <DotAvatar color={row.avatarColor} expression={row.avatarExpression} size={56} decorative />
                     <div className="discover-identity"><h2>{row.name}</h2></div>
-                    <button type="button" className="discover-profile-open discover-card-arrow" aria-label={`View ${row.name}'s profile`} aria-haspopup="dialog" disabled={!hydrated} onClick={() => setSelectedPerson(discoveryProfileProjection(row))}>
+                    <button type="button" className="discover-profile-open discover-card-arrow" aria-label={`View ${row.name}'s profile`} aria-haspopup="dialog" aria-busy={personLoading === row.id} disabled={!hydrated} onClick={() => void openPerson(row)}>
                       <ChevronRight size={22} aria-hidden="true" />
                     </button>
                   </div>
                   {bio && <p className="discover-person-bio">{bio}</p>}
+                  {personLoading === row.id && <p className="discover-profile-loading" role="status">Loading profile…</p>}
+                  {personError && personError.id === row.id && <div className="discover-profile-error" role="alert"><span>{personError.message}</span><button type="button" onClick={() => void openPerson(row)}>Retry</button></div>}
                   <div className="discover-person-footer">
                     <div className={`discover-card-membership ${row.teamName ? "joined" : "unjoined"}`}>
                       {row.teamName ? <TeamAvatar name={row.teamName} palette={row.teamPalette} size={28} /> : <Users size={18} aria-hidden="true" />}

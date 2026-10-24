@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useId, useRef } from "react";
-import { X } from "lucide-react";
+import { useEffect, useId, useRef, useState } from "react";
+import { BriefcaseBusiness, Building2, Copy, Phone, UserRound, X } from "lucide-react";
 import TeamAvatar from "./team-avatar";
 import DotAvatar from "./dot-avatar";
 import { trapDialogFocus } from "./dialog-focus";
 import { trackDialogHistory } from "./dialog-history";
+const genderNames: Record<string, string> = { man: "Man", woman: "Woman", "non-binary": "Non-binary" };
 
 export type DiscoveryPerson = {
   name: string;
@@ -14,7 +15,25 @@ export type DiscoveryPerson = {
   avatarColor: string;
   avatarExpression: string;
   team?: { name: string; palette?: string };
+  details?: {
+    profession?: string; organization?: string; gender?: string; genderDescription?: string;
+    openaiOrgId?: string; phone?: string; whatsappUrl?: string;
+  };
 };
+
+export function discoveryDetailsProjection(value: unknown): DiscoveryPerson["details"] {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return undefined;
+  const row = value as Record<string, unknown>;
+  const details: NonNullable<DiscoveryPerson["details"]> = {};
+  for (const key of ["profession", "organization", "gender", "genderDescription"] as const)
+    if (typeof row[key] === "string" && row[key].trim()) details[key] = row[key].trim();
+  if (typeof row.openaiOrgId === "string" && /^org-[A-Za-z0-9_-]+$/.test(row.openaiOrgId)) details.openaiOrgId = row.openaiOrgId;
+  if (typeof row.phone === "string" && /^\+[1-9][0-9]{7,14}$/.test(row.phone)) {
+    details.phone = row.phone;
+    if (row.whatsappUrl === `https://wa.me/${row.phone.slice(1)}`) details.whatsappUrl = row.whatsappUrl;
+  }
+  return details;
+}
 
 export function discoverySocialLinks(socials: string[]) {
   const seen = new Set<string>();
@@ -96,13 +115,25 @@ export default function DiscoveryProfile({
   const closeCallback = useRef(onClose);
   const titleId = useId();
   const bioId = useId();
+  const orgInput = useRef<HTMLInputElement>(null);
+  const [copyNotice, setCopyNotice] = useState("");
+  const details = discoveryDetailsProjection(person.details);
   const links = discoverySocialLinks(person.socials);
   useEffect(() => {
     closeCallback.current = onClose;
   }, [onClose]);
   useEffect(() => {
-    if (dialog.current)
-      return openDiscoveryDialog(dialog.current, () => closeCallback.current());
+    if (!dialog.current) return;
+    const overflow = document.body.style.overflow;
+    const gutter = document.documentElement.style.scrollbarGutter;
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.scrollbarGutter = "stable";
+    const release = openDiscoveryDialog(dialog.current, () => closeCallback.current());
+    return () => {
+      release();
+      document.body.style.overflow = overflow;
+      document.documentElement.style.scrollbarGutter = gutter;
+    };
   }, []);
 
   return (
@@ -159,6 +190,15 @@ export default function DiscoveryProfile({
           </nav>
         )}
       </div>
+      {details && Object.keys(details).length > 0 && (
+        <section className="discovery-profile-details" aria-label="Profile details">
+          {details.profession && <div className="discovery-profile-fact"><BriefcaseBusiness size={20} aria-hidden="true" /><span>{details.profession}</span></div>}
+          {details.organization && <div className="discovery-profile-fact"><Building2 size={20} aria-hidden="true" /><span>{details.organization}</span></div>}
+          {details.gender && <div className="discovery-profile-fact"><UserRound size={20} aria-hidden="true" /><span><span className="sr-only">Gender: </span>{genderNames[details.gender] || details.gender}{details.genderDescription && <small>{details.genderDescription}</small>}</span></div>}
+          {details.phone && <div className="discovery-profile-contact"><a href={`tel:${details.phone}`}><Phone size={20} aria-hidden="true" />{details.phone}</a>{details.whatsappUrl && <a href={details.whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Open WhatsApp (opens in a new tab)"><img src="/icons/social/whatsapp.svg" width={22} height={22} alt="" /><span className="sr-only">WhatsApp</span></a>}</div>}
+          {details.openaiOrgId && <div className="discovery-profile-org"><label htmlFor={`${titleId}-org`}>OpenAI organization ID</label><div><input id={`${titleId}-org`} ref={orgInput} readOnly value={details.openaiOrgId} onFocus={event => event.currentTarget.select()} /><button type="button" aria-label="Copy OpenAI organization ID" onClick={async () => { try { if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable"); await navigator.clipboard.writeText(details.openaiOrgId!); setCopyNotice("Copied."); } catch { orgInput.current?.focus(); orgInput.current?.select(); setCopyNotice("Could not copy. The ID is selected for manual copying."); } }}><Copy size={18} aria-hidden="true" /></button></div><p role="status">{copyNotice}</p></div>}
+        </section>
+      )}
       {person.team && (
         <section className="discovery-profile-team-v6" aria-label="Team">
           <h3>Team</h3>
