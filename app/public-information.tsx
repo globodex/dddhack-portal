@@ -63,10 +63,12 @@ const privacySections: InformationSection[] = [
         </p>
         <p>
           Your name, avatar and team membership can appear in signed-in
+          discovery. Your saved gender can also appear in signed-in profile
           discovery. Bio and social links follow profile visibility. Phone
           numbers and WhatsApp links are limited to current teammates and
           authorized administrators; they are excluded from public and Viewer
-          profile payloads. Staff access follows the portal's server
+          profile payloads. OpenAI organization IDs are visible only to
+          authorized administrators. Staff access follows the portal's server
           permissions.
         </p>
         <p>
