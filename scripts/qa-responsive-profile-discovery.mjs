@@ -149,7 +149,8 @@ async function capture(page, name, viewport, state = "baseline") {
   const dimensions = await geometry(page, viewport.width);
   if (
     !["baseline", "step2", "step3"].includes(state) &&
-    !["320x640", "390x480", "native-200pct"].includes(viewport.label)
+    !["320x640", "390x480", "native-200pct"].includes(viewport.label) &&
+    !process.env.QA_PROFILE_BOUNDARY
   )
     return dimensions;
   const file = `${name}-${viewport.label}-${state}.png`;
@@ -310,6 +311,64 @@ async function profile(page, viewport) {
   await layout(page, "profile", viewport, "step3-long-unsaved-save-visible");
   check(
     "Profile retains exactly three steps with Save available; Save was not submitted",
+    await saveButton.isVisible(),
+    { viewport: viewport.label },
+  );
+}
+async function profileBoundary(page, viewport) {
+  const basis = await page
+    .locator(".profile-basics-layout")
+    .evaluate((element) => {
+      const rect = (node) => {
+        const r = node.getBoundingClientRect();
+        return {
+          x: r.x,
+          y: r.y,
+          width: r.width,
+          right: r.right,
+          bottom: r.bottom,
+        };
+      };
+      const avatar = element.querySelector(".profile-avatar"),
+        fields = element.querySelector(".profile-basics-fields");
+      return {
+        layout: rect(element),
+        avatar: rect(avatar),
+        fields: rect(fields),
+        avatarBorderLeft: getComputedStyle(avatar).borderLeftWidth,
+        inputs: [...fields.querySelectorAll('input:not([type="radio"])')].map(
+          (input) => ({ name: input.name, ...rect(input) }),
+        ),
+      };
+    });
+  const stacked = viewport.width <= 740;
+  check(
+    "Profile step1 breakpoint geometry",
+    stacked
+      ? Math.abs(basis.fields.width - basis.layout.width) < 1 &&
+          basis.fields.y >= basis.avatar.bottom &&
+          basis.avatarBorderLeft === "0px"
+      : basis.fields.right <= basis.avatar.x &&
+          basis.fields.x < basis.avatar.x &&
+          basis.fields.width > 250,
+    { viewport: viewport.label, stacked, basis },
+  );
+  await page.locator('input[name="fullName"]').scrollIntoViewIfNeeded();
+  if (viewport.zoom) await layout(page, "profile", viewport, "step1-fields");
+  const next = () => page.getByRole("button", { name: "Next", exact: true });
+  await activate(page, next(), viewport);
+  await page.locator('.profile-flow[data-step="2"]').waitFor();
+  await layout(page, "profile", viewport, "step2");
+  await next().scrollIntoViewIfNeeded();
+  if (viewport.zoom) await layout(page, "profile", viewport, "step2-actions");
+  await activate(page, next(), viewport);
+  await page.locator('.profile-flow[data-step="3"]').waitFor();
+  await layout(page, "profile", viewport, "step3");
+  const saveButton = page.getByRole("button", { name: "Save", exact: true });
+  await saveButton.scrollIntoViewIfNeeded();
+  if (viewport.zoom) await layout(page, "profile", viewport, "step3-actions");
+  check(
+    "Profile has3 steps and reachable Save without submission",
     await saveButton.isVisible(),
     { viewport: viewport.label },
   );
@@ -636,6 +695,8 @@ try {
         { label: "390x480", width: 390, height: 480 },
         { label: "390x844", width: 390, height: 844 },
         { label: "768x1024", width: 768, height: 1024 },
+        { label: "740x1000", width: 740, height: 1000 },
+        { label: "741x1000", width: 741, height: 1000 },
         { label: "1440x900", width: 1440, height: 900 },
         { label: "native-200pct", width: 720, height: 450, zoom: true },
       ];
@@ -684,7 +745,11 @@ try {
       });
       save();
       if (!process.env.QA_BASELINE_ONLY) {
-        if (name === "profile") await profile(page, viewport);
+        if (name === "profile") {
+          if (process.env.QA_PROFILE_BOUNDARY)
+            await profileBoundary(page, viewport);
+          else await profile(page, viewport);
+        }
         if (name === "dashboard-team") await dashboard(page, viewport);
         if (name === "participants" || name === "teams")
           await discovery(page, viewport, name === "participants");
