@@ -1,0 +1,70 @@
+{
+  "source": "439138171e35c52b84bc566a4e5fdfee18ed0ea9",
+  "sourceBuiltProductionComponents": true,
+  "syntheticResponsesOnly": true,
+  "applicationWrites": 0,
+  "providerRequests": [],
+  "errors": [],
+  "checks": [
+    {
+      "name": "1440x900: social order, exact copy, error fallback, modal focus/Escape, nested modal and scroll lock, success1/3",
+      "passed": true
+    },
+    {
+      "name": "390x844: social order, exact copy, error fallback, modal focus/Escape, nested modal and scroll lock, success1/3",
+      "passed": true
+    },
+    {
+      "name": "320x480: social order, exact copy, error fallback, modal focus/Escape, nested modal and scroll lock, success1/3",
+      "passed": true
+    },
+    {
+      "name": "Controlled nativeShare payload/cancel, Instagram copy/manual fallback, browserBack nested dismissal and scroll restoration",
+      "passed": true
+    },
+    {
+      "name": "portal-private: persisted receipt/fresh public projection gates popup/actions; no duplicate toast or extra submit",
+      "passed": true,
+      "interceptedSyntheticSubmits": 1
+    },
+    {
+      "name": "portal-public: persisted receipt/fresh public projection gates popup/actions; no duplicate toast or extra submit",
+      "passed": true,
+      "interceptedSyntheticSubmits": 1
+    },
+    {
+      "name": "portal-version-mismatch: persisted receipt/fresh public projection gates popup/actions; no duplicate toast or extra submit",
+      "passed": true,
+      "interceptedSyntheticSubmits": 1
+    },
+    {
+      "name": "portal-refresh-failure: persisted receipt/fresh public projection gates popup/actions; no duplicate toast or extra submit",
+      "passed": true,
+      "interceptedSyntheticSubmits": 1
+    },
+    {
+      "name": "portal-submit-failure: persisted receipt/fresh public projection gates popup/actions; no duplicate toast or extra submit",
+      "passed": true,
+      "interceptedSyntheticSubmits": 1
+    }
+  ],
+  "screenshots": [
+    "evidence/project-share-success/share-1440x900.png",
+    "evidence/project-share-success/copy-error-1440x900.png",
+    "evidence/project-share-success/success-1440x900.png",
+    "evidence/project-share-success/nested-share-1440x900.png",
+    "evidence/project-share-success/share-390x844.png",
+    "evidence/project-share-success/copy-error-390x844.png",
+    "evidence/project-share-success/success-390x844.png",
+    "evidence/project-share-success/nested-share-390x844.png",
+    "evidence/project-share-success/share-320x480.png",
+    "evidence/project-share-success/copy-error-320x480.png",
+    "evidence/project-share-success/success-320x480.png",
+    "evidence/project-share-success/nested-share-320x480.png",
+    "evidence/project-share-success/instagram-manual-fallback-390x844.png",
+    "evidence/project-share-success/portal-private-390x844.png",
+    "evidence/project-share-success/portal-public-390x844.png",
+    "evidence/project-share-success/portal-version-mismatch-390x844.png",
+    "evidence/project-share-success/portal-refresh-failure-390x844.png"
+  ]
+}

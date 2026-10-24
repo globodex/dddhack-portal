@@ -1,0 +1,11 @@
+✔ share URLs use only explicit valid public paths and actual origin (2.32928ms)
+✔ exact post text and one X service use supported encoded intent fields (17.850728ms)
+✔ success requires a real committed receipt, exact count, and fresh server granted public path (6.980107ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1135.807331
