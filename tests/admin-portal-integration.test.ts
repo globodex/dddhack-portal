@@ -395,8 +395,12 @@ test("admin credit overview renders metadata counts rather than bogus submission
           id: "fake-credit",
           name: "Builder credit",
           active: 1,
+          total: 10,
           inventory: 10,
           assigned: 3,
+          available: 7,
+          waiting: 0,
+          exhausted: false,
         },
       ],
     },
@@ -405,8 +409,10 @@ test("admin credit overview renders metadata counts rather than bogus submission
   });
   assert.match(markup, /Credits/);
   assert.match(markup, /Builder credit/);
-  assert.match(markup, /Inventory/);
+  assert.match(markup, /Total/);
   assert.match(markup, /Assigned/);
+  assert.match(markup, /Available/);
+  assert.match(markup, /Waiting/);
   assert.match(markup, /list=credits/);
   assert.doesNotMatch(
     markup,
