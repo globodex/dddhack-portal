@@ -70,7 +70,8 @@ $after = Get-Content -Raw -LiteralPath $afterReceipt | ConvertFrom-Json
 if ($after.planDigest -ne $before.planDigest -or @($after.ledger).Count -ne 10 -or @($after.pending).Count -ne 0) {
     throw 'Expected ten ledger entries with no pending work'
 }
-$priorAfter = @($after.ledger | Where-Object { $_.name -ne '0104_admin_team_corrections.sql' })
+$priorNames = @($before.ledger | ForEach-Object { $_.name })
+$priorAfter = @($after.ledger | Where-Object { $_.name -in $priorNames })
 if ((ConvertTo-Json -InputObject @($before.ledger) -Depth 4 -Compress) -ne
     (ConvertTo-Json -InputObject $priorAfter -Depth 4 -Compress)) {
     throw 'Existing ledger rows changed. Stop rollout and retain both private receipts'
@@ -84,6 +85,33 @@ if ($newEntry.Count -ne 1 -or $newEntry[0].checksum -ne 'a931aeafba01be07f43e35f
 Do not edit or reuse an old receipt. Apply checks its age, source plan, target, actual ledger and pre-upgrade counts inside the same `SERIALIZABLE` transaction and advisory lock `(742019, 1)`, before DDL. Lock wait is bounded to 15 seconds and each statement to 120 seconds. It requires the exact pending set from the fresh receipt and unchanged existing table counts afterward. A fresh post-upgrade receipt permits a repeat with `applied: []`.
 
 `ownerBackupRestoreAcknowledged` records the owner's explicit attestation, not automatic backup verification. A connection/COMMIT failure can have an uncertain outcome; inspect the actual ledger before considering any retry. There is no automatic down migration or restore. Do not drop tables/functions or rewrite checksums as an improvised rollback.
+
+## Compatibility with an intentionally selected older target
+
+The current owner's target is the nine-entry case above. Do not reinterpret an unexpected seven-entry receipt as permission to apply: first independently confirm the intended branch/database, inspect its actual data and verify a current restore checkpoint. The guarded CLI supports these exact prefixes without replaying or rewriting any applied migration:
+
+| Existing ledger | Exact pending migrations | Result |
+| --- | --- | --- |
+| Seven historical entries, all canonical LF or all recognized legacy Windows CRLF | 0102, 0103, 0104 | Ten entries |
+| Same seven historical entries plus canonical LF 0102 and 0103 | 0104 only | Ten entries |
+| All ten reviewed entries | None | No changes |
+
+For an intentionally selected seven-entry target, use the same source/target checks and a **fresh** inspect receipt. Replace only the nine-entry preflight assertion above with this stricter seven-entry assertion, then run the same backup-confirmed apply and post-inspect commands. Do not use an old receipt or a previous plan digest.
+
+```powershell
+$expectedPending = @('0102_credit_stock.sql', '0103_project_media_limits.sql', '0104_admin_team_corrections.sql')
+if ($before.planDigest -ne '9bcf3f083d47a1b700e467c60f3b9eff57193491bb1e2929b1c2a4f21ba532d1' -or
+    @($before.ledger).Count -ne 7 -or
+    (ConvertTo-Json -InputObject @($before.pending) -Compress) -ne
+    (ConvertTo-Json -InputObject $expectedPending -Compress)) {
+    throw 'Expected the independently verified seven-entry target and exactly 0102/0103/0104 pending'
+}
+if ($before.historicalEncoding -notin @('canonical-lf', 'legacy-windows-crlf')) {
+    throw 'Unexpected historical ledger encoding'
+}
+```
+
+The post-inspect comparison selects all original receipt names, preserving every prior checksum and timestamp for either prefix. The CLI verifies each new LF checksum, exact source plan and unchanged existing row counts transactionally. Unknown hashes, mixed historical encodings and non-prefix ledgers remain refused. A target already at ten entries needs no migration apply; retain a fresh read-only receipt and continue with the matching backend package.
 
 ## Immutable source and local proof
 

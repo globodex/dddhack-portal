@@ -245,6 +245,7 @@ test("combined synthetic journey: profile, membership, locked idea, check-in, dr
           message: "This submission was already committed.",
           projectId,
           versionId,
+          attemptsUsed: 1,
         });
         assert.equal(
           (await rows(db, "SELECT * FROM submission_versions")).length,
