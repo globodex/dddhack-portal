@@ -356,12 +356,12 @@
   margin-top: 3px;
   color: var(--muted, #656960);
 }
-.app-shell .public-project-list .public-project-card > .engagement {
+.app-shell .public-project-list .project-list > li.public-project-card > .engagement {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: auto;
+  margin: auto 0 0;
   padding-top: 16px;
   border-top: 1px solid #20232012;
 }
