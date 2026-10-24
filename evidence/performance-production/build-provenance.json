@@ -87,19 +87,19 @@
   "envFilesCopied": false,
   "appSourcePatched": false,
   "serversStarted": true,
-  "performanceMeasurements": "pending coordinated production TLS fixture harness; cold/repeat and medians/p95 must remain separate",
+  "performanceMeasurements": "Profile owns the accepted56 matrix and separate bounded CPU attribution. This build/lifecycle evidence makes no numerical frontend or hosted-performance claim.",
   "runtimeCoordination": {
     "authorizedBy": "Root plus Profile TLS harness GO",
     "ports": {
-      "baseline": 3310,
-      "final": 3311
+      "baseline": 3443,
+      "final": 3444
     },
     "origins": {
       "baseline": "https://portal-perf.test:3443",
       "final": "https://portal-perf.test:3444"
     },
     "backendOrigin": "https://api.portal-perf.test:8842",
-    "mode": "NODE_ENV=production / Next start from matched webpack builds",
+    "mode": "NODE_ENV=production / native HTTPS supported custom Next server from unchanged matched webpack builds",
     "PORTAL_LOCAL_TEST": "absent",
     "nodeExtraCA": "/tmp/ddd-production-perf-tls-_bhf_4qo/ca.pem",
     "dnsFixtureModule": "/workspace/ddd-performance-current/evidence/performance-production/dns-fixture.mjs",
@@ -107,6 +107,53 @@
     "TLSVerificationDisabled": false,
     "appGuardChanged": false,
     "routeWarmupRequestsByBuildLane": 0,
-    "status": "Ready; held for parent measurement, not a frontend performance result."
+    "status": "Resumed matched local run completed; both owned custom HTTPS apps stopped and all3443/3444/3310/3311 listeners verified closed.",
+    "customServerScript": "/workspace/ddd-performance-current/evidence/performance-production/next-https-server.mjs",
+    "resumeLifecycle": "resumed-local-run/lifecycle.json"
+  },
+  "serversCurrentlyRunning": false,
+  "invalidPreflight": {
+    "status": "discarded before valid measurement",
+    "reportedBy": "parent/profile",
+    "reason": "Synthetic original8789 backend returned REQUEST_FAILED500 on both projected routes; session200 alone was insufficient. TLS forwarding also needed x-forwarded-proto:https.",
+    "matchedRestartRequired": true,
+    "bothOwnedPidsStopped": [
+      141188,
+      141190
+    ],
+    "signal": "SIGTERM",
+    "sessionsExitCode": 143,
+    "ports3310and3311VerifiedClosed": true,
+    "appSourcePatched": false,
+    "buildArtifactsUnchanged": true,
+    "frontendPerformanceResult": false,
+    "followup": "Parent prepares fresh disposable original-richDB copy and baseline696 backend8851. Profile corrects TLS forwarding. No original DB writes or newer migrations applied."
+  },
+  "userHold": {
+    "oldCustomServerPids": [
+      142928,
+      142919
+    ],
+    "stopCompleted": true,
+    "restartExecutedBeforeResume": false,
+    "listenersVerifiedClosed": [
+      3443,
+      3444,
+      3310,
+      3311
+    ],
+    "filesAndArtifactsPreserved": true,
+    "postHoldPushes": 0
+  },
+  "resumedLocalRun": {
+    "authorized": "Local only by root; no push, hosted migration or deploy",
+    "unchangedBuilds": true,
+    "PORTAL_LOCAL_TEST": "absent",
+    "providerCredentialsSupplied": false,
+    "TLSVerificationDisabled": false,
+    "warmupRequestsByBuildLane": 0,
+    "allAppConfigDiffsEmpty": true,
+    "lifecycle": "resumed-local-run/lifecycle.json",
+    "currentState": "both apps stopped"
   }
 }
