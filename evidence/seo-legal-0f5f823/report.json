@@ -1,0 +1,593 @@
+{
+  "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+  "revisionAtStart": "09682b5c34e029a49ebd873bb4786083819e8abe",
+  "origin": "http://127.0.0.1:3000",
+  "runtimeRoot": "/workspace/dddhack-portal",
+  "readOnly": true,
+  "syntheticLocal": true,
+  "startedAt": "2026-10-24T12:04:24.493Z",
+  "checks": [
+    {
+      "name": "HTTP legal drafts render semantic content with noindex; protected/auth routes and missing project remain non-indexable without private fields",
+      "passed": true
+    },
+    {
+      "name": "robots permits HTML noindex inspection and public project media; sitemap contains only home and public project details",
+      "passed": true
+    },
+    {
+      "name": "private API rejects anonymous read and carries noindex response header",
+      "passed": true
+    },
+    {
+      "name": "privacy-1440x900: draft content, heading, no horizontal clipping and 44px menu control",
+      "passed": true
+    },
+    {
+      "name": "privacy-1440x900: icon destinations, keyboard/Escape, browser Back, focus return and stable menu geometry",
+      "passed": true
+    },
+    {
+      "name": "terms-1440x900: draft content, heading, no horizontal clipping and 44px menu control",
+      "passed": true
+    },
+    {
+      "name": "terms-1440x900: icon destinations, keyboard/Escape, browser Back, focus return and stable menu geometry",
+      "passed": true
+    },
+    {
+      "name": "privacy-768x1024: draft content, heading, no horizontal clipping and 44px menu control",
+      "passed": true
+    },
+    {
+      "name": "privacy-768x1024: icon destinations, keyboard/Escape, browser Back, focus return and stable menu geometry",
+      "passed": true
+    },
+    {
+      "name": "terms-768x1024: draft content, heading, no horizontal clipping and 44px menu control",
+      "passed": true
+    },
+    {
+      "name": "terms-768x1024: icon destinations, keyboard/Escape, browser Back, focus return and stable menu geometry",
+      "passed": true
+    },
+    {
+      "name": "privacy-390x844: draft content, heading, no horizontal clipping and 44px menu control",
+      "passed": true
+    },
+    {
+      "name": "privacy-390x844: icon destinations, keyboard/Escape, browser Back, focus return and stable menu geometry",
+      "passed": true
+    },
+    {
+      "name": "terms-390x844: draft content, heading, no horizontal clipping and 44px menu control",
+      "passed": true
+    },
+    {
+      "name": "terms-390x844: icon destinations, keyboard/Escape, browser Back, focus return and stable menu geometry",
+      "passed": true
+    },
+    {
+      "name": "privacy-390x480: draft content, heading, no horizontal clipping and 44px menu control",
+      "passed": true
+    },
+    {
+      "name": "privacy-390x480: icon destinations, keyboard/Escape, browser Back, focus return and stable menu geometry",
+      "passed": true
+    },
+    {
+      "name": "terms-390x480: draft content, heading, no horizontal clipping and 44px menu control",
+      "passed": true
+    },
+    {
+      "name": "terms-390x480: icon destinations, keyboard/Escape, browser Back, focus return and stable menu geometry",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    {
+      "filename": "privacy-1440x900-viewport.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/privacy",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "inspected": true
+    },
+    {
+      "filename": "privacy-1440x900-full.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/privacy",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "filename": "privacy-1440x900-menu.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/privacy",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": "menu",
+      "inspected": true
+    },
+    {
+      "filename": "terms-1440x900-viewport.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/terms",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "inspected": true
+    },
+    {
+      "filename": "terms-1440x900-full.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/terms",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "filename": "privacy-768x1024-viewport.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/privacy",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": false,
+      "inspected": true
+    },
+    {
+      "filename": "privacy-768x1024-full.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/privacy",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "filename": "terms-768x1024-viewport.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/terms",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": false,
+      "inspected": true
+    },
+    {
+      "filename": "terms-768x1024-full.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/terms",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "filename": "privacy-390x844-viewport.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/privacy",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "inspected": true
+    },
+    {
+      "filename": "privacy-390x844-full.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/privacy",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "filename": "privacy-390x844-retention.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/privacy",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "retention",
+      "inspected": true
+    },
+    {
+      "filename": "privacy-390x844-menu.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/privacy",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "menu",
+      "inspected": true
+    },
+    {
+      "filename": "terms-390x844-viewport.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/terms",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "inspected": true
+    },
+    {
+      "filename": "terms-390x844-full.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/terms",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "filename": "privacy-390x480-viewport.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/privacy",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": false,
+      "inspected": true
+    },
+    {
+      "filename": "privacy-390x480-full.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/privacy",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "filename": "privacy-390x480-menu.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/privacy",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "state": "menu",
+      "inspected": true
+    },
+    {
+      "filename": "terms-390x480-viewport.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/terms",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": false,
+      "inspected": true
+    },
+    {
+      "filename": "terms-390x480-full.png",
+      "source": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+      "path": "/terms",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true
+    }
+  ],
+  "browserErrors": [],
+  "consoleErrors": [],
+  "blockedRequests": [],
+  "accessibility": [
+    {
+      "path": "/privacy",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": "page",
+      "violations": []
+    },
+    {
+      "path": "/terms",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": "page",
+      "violations": []
+    },
+    {
+      "path": "/privacy",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "page",
+      "violations": []
+    },
+    {
+      "path": "/terms",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "page",
+      "violations": []
+    }
+  ],
+  "http": [
+    {
+      "path": "/privacy",
+      "status": 200,
+      "title": "Privacy notice draft \u00b7 DevDay Exchange New Delhi",
+      "robots": "noindex, nofollow",
+      "canonical": "http://127.0.0.1:3000/privacy"
+    },
+    {
+      "path": "/terms",
+      "status": 200,
+      "title": "Terms draft \u00b7 DevDay Exchange New Delhi",
+      "robots": "noindex, nofollow",
+      "canonical": "http://127.0.0.1:3000/terms"
+    },
+    {
+      "path": "/signin",
+      "status": 200,
+      "title": "Sign in \u00b7 DevDay Exchange New Delhi",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/profile",
+      "status": 200,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "robots": "noindex, nofollow",
+      "canonical": "http://127.0.0.1:3000/profile"
+    },
+    {
+      "path": "/dashboard",
+      "status": 200,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "robots": "noindex, nofollow",
+      "canonical": "http://127.0.0.1:3000/dashboard"
+    },
+    {
+      "path": "/discover/participants",
+      "status": 200,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "robots": "noindex, nofollow",
+      "canonical": "http://127.0.0.1:3000/discover/participants"
+    },
+    {
+      "path": "/discover/teams",
+      "status": 200,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "robots": "noindex, nofollow",
+      "canonical": "http://127.0.0.1:3000/discover/teams"
+    },
+    {
+      "path": "/admin/settings",
+      "status": 200,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "robots": "noindex, nofollow",
+      "canonical": "http://127.0.0.1:3000/admin/settings"
+    },
+    {
+      "path": "/projects/seo-unpublished-missing",
+      "status": 404,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "robots": "noindex"
+    }
+  ],
+  "network": [
+    {
+      "path": "/privacy",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "dimensions": {
+        "width": 1440,
+        "scrollWidth": 1425,
+        "h1": "++Privacy notice",
+        "pageHeight": 3454
+      },
+      "requests": 11,
+      "apiRequests": []
+    },
+    {
+      "path": "/terms",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "dimensions": {
+        "width": 1440,
+        "scrollWidth": 1425,
+        "h1": "++Terms of participation",
+        "pageHeight": 2046
+      },
+      "requests": 11,
+      "apiRequests": []
+    },
+    {
+      "path": "/privacy",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "dimensions": {
+        "width": 768,
+        "scrollWidth": 753,
+        "h1": "++Privacy notice",
+        "pageHeight": 3491
+      },
+      "requests": 11,
+      "apiRequests": []
+    },
+    {
+      "path": "/terms",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "dimensions": {
+        "width": 768,
+        "scrollWidth": 753,
+        "h1": "++Terms of participation",
+        "pageHeight": 2108
+      },
+      "requests": 11,
+      "apiRequests": []
+    },
+    {
+      "path": "/privacy",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "dimensions": {
+        "width": 390,
+        "scrollWidth": 390,
+        "h1": "++Privacy notice",
+        "pageHeight": 4879
+      },
+      "requests": 12,
+      "apiRequests": []
+    },
+    {
+      "path": "/terms",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "dimensions": {
+        "width": 390,
+        "scrollWidth": 390,
+        "h1": "++Terms of participation",
+        "pageHeight": 2884
+      },
+      "requests": 11,
+      "apiRequests": []
+    },
+    {
+      "path": "/privacy",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "dimensions": {
+        "width": 390,
+        "scrollWidth": 390,
+        "h1": "++Privacy notice",
+        "pageHeight": 4879
+      },
+      "requests": 11,
+      "apiRequests": []
+    },
+    {
+      "path": "/terms",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "dimensions": {
+        "width": 390,
+        "scrollWidth": 390,
+        "h1": "++Terms of participation",
+        "pageHeight": 2884
+      },
+      "requests": 11,
+      "apiRequests": []
+    }
+  ],
+  "limitations": [
+    "Local development app with static legal content and disposable fixture backend; no production writes or real login.",
+    "Container Chromium uses its sandbox-disabled mode. Viewports emulate touch and are not physical devices.",
+    "Configured local APP_ORIGIN is expected in these captures; production fallback and configured-origin validation are covered by focused source tests."
+  ],
+  "robots": "User-agent: *\nAllow: /\nDisallow: /api/\nAllow: /api/project-image/\n\nSitemap: http://127.0.0.1:3000/sitemap.xml\n",
+  "sitemap": {
+    "status": 200,
+    "locations": [
+      "http://127.0.0.1:3000/",
+      "http://127.0.0.1:3000/projects/synthetic-alice",
+      "http://127.0.0.1:3000/projects/synthetic-eve",
+      "http://127.0.0.1:3000/projects/synthetic-control-00",
+      "http://127.0.0.1:3000/projects/synthetic-control-01",
+      "http://127.0.0.1:3000/projects/synthetic-control-02",
+      "http://127.0.0.1:3000/projects/synthetic-control-03",
+      "http://127.0.0.1:3000/projects/synthetic-control-04",
+      "http://127.0.0.1:3000/projects/synthetic-control-05",
+      "http://127.0.0.1:3000/projects/synthetic-control-06",
+      "http://127.0.0.1:3000/projects/synthetic-control-07",
+      "http://127.0.0.1:3000/projects/synthetic-control-08",
+      "http://127.0.0.1:3000/projects/synthetic-control-09",
+      "http://127.0.0.1:3000/projects/synthetic-control-10",
+      "http://127.0.0.1:3000/projects/synthetic-control-11",
+      "http://127.0.0.1:3000/projects/synthetic-control-12",
+      "http://127.0.0.1:3000/projects/synthetic-control-13",
+      "http://127.0.0.1:3000/projects/synthetic-control-14",
+      "http://127.0.0.1:3000/projects/synthetic-control-15",
+      "http://127.0.0.1:3000/projects/synthetic-control-16",
+      "http://127.0.0.1:3000/projects/synthetic-control-17",
+      "http://127.0.0.1:3000/projects/synthetic-control-18",
+      "http://127.0.0.1:3000/projects/synthetic-control-19",
+      "http://127.0.0.1:3000/projects/synthetic-control-20",
+      "http://127.0.0.1:3000/projects/synthetic-control-21",
+      "http://127.0.0.1:3000/projects/synthetic-control-22",
+      "http://127.0.0.1:3000/projects/synthetic-control-23",
+      "http://127.0.0.1:3000/projects/synthetic-control-24"
+    ]
+  },
+  "privateApi": {
+    "status": 401,
+    "robots": "noindex, nofollow",
+    "cache": "private, no-store, max-age=0"
+  },
+  "browser": "154.0.8037.57",
+  "revisionAtEnd": "09682b5c34e029a49ebd873bb4786083819e8abe",
+  "result": "passed",
+  "finishedAt": "2026-10-24T12:04:53.570Z",
+  "visualReview": {
+    "allCapturedImagesViewed": true,
+    "findings": [],
+    "result": "passed",
+    "notes": [
+      "Warm shared palette, readable hierarchy and draft status; no clipping at all four viewports.",
+      "Black 44px circular menu and Lucide icons are visible; all five destinations fit the short viewport.",
+      "Retention detail distinguishes 90-day private data, manual review without an automatic purge, public showcase retention and indefinite owner logs."
+    ]
+  }
+}
