@@ -1120,7 +1120,10 @@ export const portal_media_uploads = pgTable(
       "media_content_type",
       sql`${t.content_type} IN ('image/png','image/jpeg')`,
     ),
-    check("media_byte_length", sql`${t.byte_length} BETWEEN 32 AND 131072`),
+    check(
+      "media_byte_length",
+      sql`${t.byte_length} BETWEEN 32 AND CASE ${t.kind} WHEN 'logo' THEN 1000000 ELSE 5000000 END`,
+    ),
     check(
       "media_state",
       sql`${t.state} IN ('pending','finalizing','ready','consumed')`,
@@ -1131,10 +1134,10 @@ export const portal_media_uploads = pgTable(
     ),
     check(
       "media_image_length",
-      sql`${t.image_byte_length} BETWEEN 32 AND 131072`,
+      sql`${t.image_byte_length} BETWEEN 32 AND CASE ${t.kind} WHEN 'logo' THEN 131072 ELSE 393216 END`,
     ),
-    check("media_width", sql`${t.width} BETWEEN 64 AND 4096`),
-    check("media_height", sql`${t.height} BETWEEN 64 AND 4096`),
+    check("media_width", sql`${t.width} BETWEEN 1 AND 4096`),
+    check("media_height", sql`${t.height} BETWEEN 1 AND 4096`),
     check(
       "media_ready",
       sql`${t.state} NOT IN ('ready','consumed') OR (${t.object_key} IS NOT NULL AND ${t.image_content_type} IS NOT NULL AND ${t.image_byte_length} IS NOT NULL AND ${t.width} IS NOT NULL AND ${t.height} IS NOT NULL AND ${t.sha256} IS NOT NULL AND ${t.finalized_at} IS NOT NULL)`,

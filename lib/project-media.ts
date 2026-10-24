@@ -40,7 +40,7 @@ export function validateProjectImage(
   const match = /^data:image\/(png|jpeg);base64,([A-Za-z0-9+/]+={0,2})$/.exec(
     value,
   );
-  demand(match, 422, "PROJECT_MEDIA_REQUIRED", `Choose a PNG or JPEG ${kind}.`);
+  demand(match, 422, "PROJECT_MEDIA_REQUIRED", `Upload a PNG or JPEG ${kind}.`);
   let bytes: Uint8Array;
   try {
     bytes = Uint8Array.from(atob(match[2]), (c) => c.charCodeAt(0));

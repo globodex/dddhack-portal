@@ -22,7 +22,8 @@ import {
 } from "../neon/storage";
 import { validateUploadedImage } from "../neon/storage/image";
 import { activate, attend, setup } from "./helpers";
-import { syntheticImage } from "./fixture-images";
+import { syntheticImage, jpegAtByteLength } from "./fixture-images";
+import { projectImageByteLimit } from "../lib/project-media-policy";
 
 const scope = { teamId: "team-a", revision: 0 };
 const png = () => Buffer.from(syntheticImage(64, 64).split(",")[1], "base64");
@@ -123,7 +124,7 @@ test("signed upload accepts only bounded raster declarations and server-generate
   try {
     for (const value of [
       { contentType: "image/svg+xml" },
-      { byteLength: 131073 },
+      { byteLength: 1_000_001 },
       { byteLength: 0 },
       { key: "../other" },
     ]) {
@@ -190,7 +191,7 @@ test("finalize fully decodes and promotes exact bytes into a distinct immutable 
   }
 });
 
-test("finalize rejects content type, length, corrupt pixels, image shape and oversized bytes", async () => {
+test("finalize rejects content type, length, corrupt pixels, dimensions and oversized bytes", async () => {
   const invalidPng = png();
   invalidPng[45] ^= 255; // Break compressed data / CRC while retaining magic, IHDR and IEND.
   for (const sample of [
@@ -213,10 +214,10 @@ test("finalize rejects content type, length, corrupt pixels, image shape and ove
       code: "INVALID_RASTER_IMAGE",
     },
     {
-      bytes: Buffer.from(syntheticImage(160, 90).split(",")[1], "base64"),
+      bytes: Buffer.from(syntheticImage(63, 90).split(",")[1], "base64"),
       contentType: "image/png",
       length: 0,
-      code: "IMAGE_RATIO",
+      code: "IMAGE_DIMENSIONS",
     },
   ]) {
     const f = fixture();
@@ -235,7 +236,7 @@ test("finalize rejects content type, length, corrupt pixels, image shape and ove
     }
   }
   await assert.rejects(
-    validateUploadedImage(Buffer.alloc(131073), "image/png", "logo"),
+    validateUploadedImage(Buffer.alloc(1_000_001), "image/png", "logo"),
     errorCode("IMAGE_SIZE"),
   );
 });
@@ -598,5 +599,53 @@ test("receipt consumption atomically binds only the authorized actor/team/revisi
     await assert.rejects(batch(f.db, consume()));
   } finally {
     f.db.close();
+  }
+});
+
+test("signed media endpoint honors kind-specific decimal source caps then returns bounded any-aspect receipts", async () => {
+  const sourceJpeg = await sharp({
+    create: { width: 64, height: 192, channels: 3, background: "teal" },
+  })
+    .jpeg()
+    .toBuffer();
+  for (const kind of ["logo", "banner"] as const) {
+    const f = fixture();
+    try {
+      const maximum = projectImageByteLimit(kind, "source");
+      await assert.rejects(f.issue({ kind, byteLength: maximum + 1 }));
+      assert.equal(f.signed.length, 0);
+      assert.equal(
+        (await f.db.prepare("SELECT id FROM portal_media_uploads").all())
+          .results.length,
+        0,
+      );
+      const bytes = jpegAtByteLength(sourceJpeg, maximum);
+      const { uploadId } = await f.issue({
+        kind,
+        byteLength: bytes.length,
+        contentType: "image/jpeg",
+      });
+      await f.put(uploadId, bytes, "image/jpeg");
+      const result = await f.storage.finalizeUpload("alice", {
+        ...scope,
+        uploadId,
+      });
+      assert.equal(result.image.width, 64);
+      assert.equal(result.image.height, 192);
+      assert.equal(result.image.contentType, "image/jpeg");
+      assert.ok(result.image.byteLength <= projectImageByteLimit(kind));
+      assert.equal(f.writes.length, 1);
+      const stored = await f.storage.receiptDataUri("alice", {
+        ...scope,
+        uploadId,
+        kind,
+      });
+      assert.ok(
+        Buffer.from(stored.split(",")[1], "base64").length <=
+          projectImageByteLimit(kind),
+      );
+    } finally {
+      f.db.close();
+    }
   }
 });

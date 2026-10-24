@@ -1,3 +1,4 @@
+import { projectMediaPolicy } from "./project-media-policy";
 import { auditReason } from "./security";
 import { checkInParticipants } from "./participant-checkin";
 import { personalCreditRows } from "./credit-stock";
@@ -122,8 +123,8 @@ const draftSchema = z
     github: z.string().max(2048).default(""),
     commitSha: z.unknown().optional().transform(() => ""),
     demo: z.string().max(2048).default(""),
-    logo: z.string().max(180000).default(""),
-    banner: z.string().max(180000).default(""),
+    logo: z.string().max(projectMediaPolicy.logo.dataUriMaxChars).default(""),
+    banner: z.string().max(projectMediaPolicy.banner.dataUriMaxChars).default(""),
     tools: z.string().max(2000).default(""),
     cerebrasIntegration: z.enum(["yes", "no"]).optional(),
     ecosystemSelections: z

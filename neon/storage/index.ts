@@ -3,9 +3,12 @@ import { z } from "zod";
 import { demand, PortalError } from "../../lib/security";
 import { validateUploadedImage } from "./image";
 import {
+  projectMediaPolicy,
+  projectImageByteLimit,
+} from "../../lib/project-media-policy";
+import {
   FINALIZE_LEASE_MS,
   FINALIZE_TTL_MS,
-  MAX_IMAGE_BYTES,
   RECEIPT_TTL_MS,
   UPLOAD_URL_TTL_SECONDS,
   type MediaAuthorizer,
@@ -40,9 +43,17 @@ export const issueUploadSchema = scopeSchema
   .extend({
     kind: z.enum(["logo", "banner"]),
     contentType: z.enum(["image/png", "image/jpeg"]),
-    byteLength: z.number().int().min(32).max(MAX_IMAGE_BYTES),
+    byteLength: z
+      .number()
+      .int()
+      .min(32)
+      .max(projectMediaPolicy.banner.sourceMaxBytes),
   })
-  .strict();
+  .strict()
+  .refine(
+    (input) => input.byteLength <= projectImageByteLimit(input.kind, "source"),
+    { message: "Original image byte limit exceeded." },
+  );
 export const finalizeUploadSchema = scopeSchema
   .extend({
     uploadId: z.string().uuid(),
@@ -173,7 +184,7 @@ export function createProjectMediaStorage(options: {
         const source = await objectStore.read(
           upload.bucket,
           upload.stagingKey,
-          MAX_IMAGE_BYTES,
+          projectImageByteLimit(upload.kind, "source"),
         );
         demand(
           source.contentType === upload.contentType,
@@ -257,7 +268,7 @@ export function createProjectMediaStorage(options: {
       const stored = await objectStore.read(
         upload.bucket,
         upload.objectKey,
-        MAX_IMAGE_BYTES,
+        projectImageByteLimit(upload.kind),
       );
       const actual = createHash("sha256").update(stored.bytes).digest("hex");
       demand(

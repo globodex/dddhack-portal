@@ -8,11 +8,11 @@ import {
   projectMediaMarker as marker,
   type ProjectMediaReference as Reference,
 } from "./reference";
+import type { MediaKind, MediaObjectStore } from "./types";
 import {
-  MAX_IMAGE_BYTES,
-  type MediaKind,
-  type MediaObjectStore,
-} from "./types";
+  PROJECT_MEDIA_MAX_PROJECT_JSON_BYTES,
+  projectImageByteLimit,
+} from "../../lib/project-media-policy";
 
 type Bound = { sql: string; args: unknown[] };
 const hash = (bytes: Uint8Array | string) =>
@@ -53,7 +53,7 @@ export function createMediaDatabase(
         teamId.length > 0 &&
         teamId.length <= 200 &&
         typeof value === "string" &&
-        Buffer.byteLength(value) <= 400_000,
+        Buffer.byteLength(value) <= PROJECT_MEDIA_MAX_PROJECT_JSON_BYTES,
       422,
       "INVALID_MEDIA_PAYLOAD",
     );
@@ -192,7 +192,7 @@ export function createMediaDatabase(
         const object = await options.objectStore.read(
           bucket,
           reference.key,
-          MAX_IMAGE_BYTES,
+          projectImageByteLimit(kind),
         );
         demand(
           object.contentType === reference.contentType &&
@@ -269,7 +269,7 @@ export function createMediaDatabase(
           const value = output[field];
           if (typeof value !== "string" || !value.includes(marker)) continue;
           demand(
-            Buffer.byteLength(value) <= 400_000,
+            Buffer.byteLength(value) <= PROJECT_MEDIA_MAX_PROJECT_JSON_BYTES,
             422,
             "INVALID_STORED_MEDIA_REFERENCE",
           );
@@ -289,6 +289,12 @@ export function createMediaDatabase(
               payload[kind] = await readReference(payload[kind], kind, cache);
           }
           output[field] = JSON.stringify(payload);
+          demand(
+            Buffer.byteLength(output[field] as string) <=
+              PROJECT_MEDIA_MAX_PROJECT_JSON_BYTES,
+            422,
+            "INVALID_STORED_MEDIA_REFERENCE",
+          );
         }
         return output as T;
       }),

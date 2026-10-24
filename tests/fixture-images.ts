@@ -1,3 +1,4 @@
+import assert from "node:assert/strict";
 import { deflateSync } from "node:zlib";
 export function syntheticImage(w: number, h: number) {
   const crc = (b: Buffer) => {
@@ -39,4 +40,23 @@ export function syntheticImage(w: number, h: number) {
       chunk("IEND", Buffer.alloc(0)),
     ]).toString("base64")
   );
+}
+
+/** Legal APP15 metadata pads a real JPEG to an exact source or canonical byte boundary. */
+export function jpegAtByteLength(jpeg: Buffer, length: number) {
+  let remaining = length - jpeg.length;
+  assert.ok(remaining >= 4);
+  const segments: Buffer[] = [];
+  while (remaining) {
+    let segmentBytes = Math.min(65_537, remaining);
+    if (remaining - segmentBytes > 0 && remaining - segmentBytes < 4)
+      segmentBytes -= 4;
+    const segment = Buffer.alloc(segmentBytes);
+    segment[0] = 255;
+    segment[1] = 239;
+    segment.writeUInt16BE(segmentBytes - 2, 2);
+    segments.push(segment);
+    remaining -= segmentBytes;
+  }
+  return Buffer.concat([jpeg.subarray(0, 2), ...segments, jpeg.subarray(2)]);
 }

@@ -424,9 +424,9 @@ test("shared draft/committed project, required media, concurrent writes and publ
     await assert.rejects(
       alice.command("save-project", {
         revision: 0,
-        project: { ...p, logo: banner },
+        project: { ...p, logo: "data:image/svg+xml;base64,PHN2Zy8+" },
       }),
-      /Project logo must be square/,
+      { code: "PROJECT_MEDIA_REQUIRED" },
     );
     await alice.command("save-project", { revision: 0, project: p });
 

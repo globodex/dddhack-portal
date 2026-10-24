@@ -1,35 +1,40 @@
 import { createHash } from "node:crypto";
 import sharp from "sharp";
-import { validateProjectImage } from "../../lib/project-media";
-import { demand, PortalError } from "../../lib/security";
+import { inspectProjectImageBytes } from "../../lib/project-media";
 import {
-  MAX_IMAGE_BYTES,
-  type ImageContentType,
-  type MediaKind,
-  type ValidatedImage,
-} from "./types";
+  PROJECT_MEDIA_JPEG_QUALITIES,
+  PROJECT_MEDIA_MAX_OPTIMIZATION_STEPS,
+  PROJECT_MEDIA_MAX_PIXELS,
+  PROJECT_MEDIA_RESIZE_FACTOR,
+  projectImageByteLimit,
+  projectMediaPolicy,
+} from "../../lib/project-media-policy";
+import { demand, PortalError } from "../../lib/security";
+import type { ImageContentType, MediaKind, ValidatedImage } from "./types";
 
+/**
+ * Signed storage accepts bounded original files and normalizes them to web images.
+ * The JSON save path has already optimized the image; preserving those bytes keeps
+ * existing request hashes/idempotency stable, after the same full raster decode.
+ */
 export async function validateUploadedImage(
   bytes: Uint8Array,
   contentType: ImageContentType,
   kind: MediaKind,
   options: { preserveOriginal?: boolean } = {},
 ): Promise<ValidatedImage> {
-  demand(
-    bytes.byteLength >= 32 && bytes.byteLength <= MAX_IMAGE_BYTES,
-    422,
-    "IMAGE_SIZE",
-  );
-  // Preserve the portal's dimensions, ratios, signatures and trailing-byte restrictions.
-  const original = validateProjectImage(
-    `data:${contentType};base64,${Buffer.from(bytes).toString("base64")}`,
+  const original = inspectProjectImageBytes(
+    bytes,
+    contentType,
     kind,
+    options.preserveOriginal ? "canonical" : "source",
   );
   let canonical: Buffer;
+  let dimensions = original;
   try {
     const decoder = sharp(bytes, {
       failOn: "warning",
-      limitInputPixels: 4096 * 4096,
+      limitInputPixels: PROJECT_MEDIA_MAX_PIXELS,
     });
     const metadata = await decoder.metadata();
     demand(
@@ -40,28 +45,78 @@ export async function validateUploadedImage(
       422,
       "INVALID_RASTER_IMAGE",
     );
-    // Fully decode; metadata() alone does not detect truncated pixel data.
+    // Metadata alone misses corrupt/truncated pixels. Decode the whole bounded raster.
     if (options.preserveOriginal) {
       await decoder.raw().toBuffer();
       canonical = Buffer.from(bytes);
     } else {
-      // Signed uploads strip metadata and encode a single raster.
-      canonical = await (
-        contentType === "image/png"
-          ? decoder.png({ compressionLevel: 9, adaptiveFiltering: true })
-          : decoder.jpeg({ quality: 90 })
-      ).toBuffer();
+      // Decode once; bounded raw pixels are reused while encoding smaller candidates.
+      // Rotation applies EXIF before metadata is stripped; PNG alpha stays intact.
+      const decoded = await decoder
+        .rotate()
+        .toColourspace("srgb")
+        .raw()
+        .toBuffer({ resolveWithObject: true });
+      let edge = Math.min(
+        projectMediaPolicy[kind].optimizationMaxEdge,
+        Math.max(decoded.info.width, decoded.info.height),
+      );
+      let candidate: Buffer | undefined;
+      for (let step = 0; step < PROJECT_MEDIA_MAX_OPTIMIZATION_STEPS; step++) {
+        const qualities =
+          contentType === "image/jpeg" ? PROJECT_MEDIA_JPEG_QUALITIES : [1];
+        for (const quality of qualities) {
+          const image = sharp(decoded.data, {
+            raw: {
+              width: decoded.info.width,
+              height: decoded.info.height,
+              channels: decoded.info.channels,
+            },
+          }).resize({
+            width: edge,
+            height: edge,
+            fit: "inside",
+            withoutEnlargement: true,
+          });
+          candidate = await (
+            contentType === "image/png"
+              ? image.png({ compressionLevel: 9, adaptiveFiltering: true })
+              : image.jpeg({ quality: Math.round(quality * 100) })
+          ).toBuffer();
+          if (candidate.byteLength <= projectImageByteLimit(kind)) break;
+        }
+        if (candidate && candidate.byteLength <= projectImageByteLimit(kind))
+          break;
+        if (edge === 1) break;
+        edge = Math.max(1, Math.floor(edge * PROJECT_MEDIA_RESIZE_FACTOR));
+      }
+      demand(
+        candidate && candidate.byteLength <= projectImageByteLimit(kind),
+        422,
+        "IMAGE_SIZE",
+      );
+      canonical = candidate;
+      dimensions = inspectProjectImageBytes(
+        canonical,
+        contentType,
+        kind,
+        "canonical",
+      );
     }
   } catch (error) {
     if (error instanceof PortalError) throw error;
     throw new PortalError(422, "INVALID_RASTER_IMAGE");
   }
-  demand(canonical.byteLength <= MAX_IMAGE_BYTES, 422, "IMAGE_SIZE");
+  demand(
+    canonical.byteLength <= projectImageByteLimit(kind),
+    422,
+    "IMAGE_SIZE",
+  );
   return {
     bytes: canonical,
     contentType,
     byteLength: canonical.byteLength,
-    ...original,
+    ...dimensions,
     sha256: createHash("sha256").update(canonical).digest("hex"),
   };
 }

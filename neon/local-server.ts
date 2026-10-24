@@ -1,3 +1,4 @@
+import { PROJECT_MEDIA_MAX_PROJECT_JSON_BYTES } from "../lib/project-media-policy";
 import { createServer } from "node:http";
 import { localRuntime } from "../lib/local-test/runtime";
 import { handlePortal, handleExport } from "../lib/http";
@@ -28,7 +29,7 @@ createServer(async (input, output) => {
     let bytes = 0;
     for await (const chunk of input) {
       bytes += chunk.length;
-      if (bytes > 650_000) throw new Error("BODY_TOO_LARGE");
+      if (bytes > PROJECT_MEDIA_MAX_PROJECT_JSON_BYTES) throw new Error("BODY_TOO_LARGE");
       chunks.push(Buffer.from(chunk));
     }
     const method = input.method || "GET";

@@ -1,3 +1,4 @@
+import { projectMediaPolicy } from "./project-media-policy";
 import { auditReason } from "./security";
 import { creditBatchCommand, creditBatchesView, legacyCreditStockImport } from "./credit-batches";
 import { creditAssignmentStatements, creditStockCommand, creditStockView, creditSummaries, personalCredits } from "./credit-stock";
@@ -1157,8 +1158,8 @@ export class PortalService {
         const d = z
           .object({
             projectName: text(120),
-            logo: z.string().max(180000),
-            banner: z.string().max(180000),
+            logo: z.string().max(projectMediaPolicy.logo.dataUriMaxChars),
+            banner: z.string().max(projectMediaPolicy.banner.dataUriMaxChars),
             problemSolution: text(500),
             description: text(6000),
             github: githubUrl,

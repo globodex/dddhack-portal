@@ -3,6 +3,7 @@ import { z } from "zod";
 import { validateProjectImage } from "../../lib/project-media";
 import { demand } from "../../lib/security";
 import { MAX_IMAGE_BYTES, type MediaKind } from "./types";
+import { projectImageByteLimit } from "../../lib/project-media-policy";
 
 export const projectMediaMarker = "neon-project-media";
 export const projectMediaReferenceSchema = z
@@ -14,11 +15,16 @@ export const projectMediaReferenceSchema = z
     kind: z.enum(["logo", "banner"]),
     contentType: z.enum(["image/png", "image/jpeg"]),
     byteLength: z.number().int().min(32).max(MAX_IMAGE_BYTES),
-    width: z.number().int().min(64).max(4096),
-    height: z.number().int().min(64).max(4096),
+    width: z.number().int().min(1).max(4096),
+    height: z.number().int().min(1).max(4096),
     sha256: z.string().regex(/^[a-f0-9]{64}$/),
   })
-  .strict();
+  .strict()
+  .refine(
+    (reference) =>
+      reference.byteLength <= projectImageByteLimit(reference.kind),
+    { message: "Canonical image byte budget exceeded." },
+  );
 export type ProjectMediaReference = z.infer<typeof projectMediaReferenceSchema>;
 
 /** Validates persisted metadata without downloading private object bytes. */
@@ -49,13 +55,6 @@ export function parseProjectMediaReference(
       keyPattern.test(reference.key),
     422,
     "INVALID_STORED_MEDIA_REFERENCE",
-  );
-  demand(
-    kind === "logo"
-      ? reference.width === reference.height
-      : Math.abs(reference.width / reference.height - 16 / 9) < 0.015,
-    422,
-    "IMAGE_RATIO",
   );
   return reference;
 }
