@@ -2334,7 +2334,7 @@ export function Submission({
   };
   const save = async (submit = false) => {
     if (!canCommit || saving.current || processingMedia) return;
-    const invalidMedia = fieldErrors.banner ? "banner" : fieldErrors.logo ? "logo" : undefined;
+    const invalidMedia = submit ? (fieldErrors.banner ? "banner" : fieldErrors.logo ? "logo" : undefined) : undefined;
     if (invalidMedia) {
       document.getElementById(`submission-${invalidMedia}-control`)?.focus();
       return;
