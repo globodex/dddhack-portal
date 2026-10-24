@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+import {spawnSync,execFileSync} from 'node:child_process';
+import {mkdtempSync,copyFileSync,writeFileSync,mkdirSync,readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+
+const root='/workspace/ddd-followup-api-package';
+const expected='340bf33175ce8b5c1b1901da75a6a251ee553c69';
+const actual=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
+assert.equal(actual,expected,'BUILD_SOURCE_MISMATCH');
+execFileSync('git',['diff','--exit-code','HEAD','--','neon','lib','neon.ts','package.json','package-lock.json'],{cwd:root,stdio:'pipe'});
+const evidence=root+'/evidence/followup-api-refresh';
+mkdirSync(evidence,{recursive:true});
+const baseline=mkdtempSync('/tmp/ddd-followup-api-refresh-baseline-');
+for(const file of ['portalapi.zip','receipt.json','build-metadata.json'])copyFileSync(root+'/artifacts/neon/'+file,baseline+'/'+file);
+const buildEnvironment={PATH:process.env.PATH,LANG:'C.UTF-8',TZ:'UTC',npm_config_cache:'/tmp/ddd-npm-cache',npm_config_offline:'true',npm_config_audit:'false',npm_config_fund:'false',npm_config_userconfig:'/tmp/ddd-followup-api-refresh-empty-user.npmrc',npm_config_globalconfig:'/tmp/ddd-followup-api-refresh-empty-global.npmrc'};
+writeFileSync(buildEnvironment.npm_config_userconfig,'');
+writeFileSync(buildEnvironment.npm_config_globalconfig,'');
+const result=spawnSync(process.execPath,['scripts/build-neon-archive.mjs','/tmp/ddd-neon-build-tools/node_modules/@neon/config-runtime/dist/v1.js'],{cwd:root,encoding:'utf8',env:buildEnvironment,timeout:180000,maxBuffer:8*1024*1024});
+writeFileSync(evidence+'/build.log',(result.stdout||'')+(result.stderr||''));
+const report={runtimeSource:actual,baseline,baselineSHA256:createHash('sha256').update(readFileSync(baseline+'/portalapi.zip')).digest('hex'),functionEnv:{},processEnvironmentKeys:Object.keys(buildEnvironment).sort(),publicNpmCache:'/tmp/ddd-npm-cache',offline:true,exitCode:result.status,signal:result.signal,error:result.error?.message,planInvoked:false,applyInvoked:false,deployInvoked:false,providerCalls:false,hostedDatabaseReadOrWrite:false,credentialOrProviderSettingsChange:false,officialAPI:'@neon/config-runtime@1.10.2 buildFunctionBundle',buildOnly:true,environmentValuesLogged:false};
+writeFileSync(evidence+'/build-operations.json',JSON.stringify(report,null,2)+'\n');
+writeFileSync('/tmp/ddd-followup-api-refresh-build-state.json',JSON.stringify({root,source:actual,baseline},null,2)+'\n');
+console.log(JSON.stringify(report));
+if(result.status!==0)process.exitCode=1;

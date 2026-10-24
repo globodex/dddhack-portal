@@ -1,0 +1,30 @@
+{
+  "runtimeSource": "340bf33175ce8b5c1b1901da75a6a251ee553c69",
+  "baseline": "/tmp/ddd-followup-api-refresh-baseline-4Tzpyq",
+  "baselineSHA256": "fcd0941113bb8dcd7b35f965bf3e37fef5890090a0280b90159331f8c708d521",
+  "functionEnv": {},
+  "processEnvironmentKeys": [
+    "LANG",
+    "PATH",
+    "TZ",
+    "npm_config_audit",
+    "npm_config_cache",
+    "npm_config_fund",
+    "npm_config_globalconfig",
+    "npm_config_offline",
+    "npm_config_userconfig"
+  ],
+  "publicNpmCache": "/tmp/ddd-npm-cache",
+  "offline": true,
+  "exitCode": 0,
+  "signal": null,
+  "planInvoked": false,
+  "applyInvoked": false,
+  "deployInvoked": false,
+  "providerCalls": false,
+  "hostedDatabaseReadOrWrite": false,
+  "credentialOrProviderSettingsChange": false,
+  "officialAPI": "@neon/config-runtime@1.10.2 buildFunctionBundle",
+  "buildOnly": true,
+  "environmentValuesLogged": false
+}

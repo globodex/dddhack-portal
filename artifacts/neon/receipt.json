@@ -1,16 +1,16 @@
 {
-  "runtimeSource": "c56904fca3966c8d8c83327f574aedc3de8c0df3",
+  "runtimeSource": "340bf33175ce8b5c1b1901da75a6a251ee553c69",
   "runtime": "nodejs24",
   "source": "neon/api.ts",
-  "zipBytes": 9019301,
-  "sha256": "fcd0941113bb8dcd7b35f965bf3e37fef5890090a0280b90159331f8c708d521",
+  "zipBytes": 9021973,
+  "sha256": "ea9b0a2f9f99de33626cdffd7dafbe096eee6f3812ffe7d56cfc5793856d1dcb",
   "env": {},
   "warnings": [],
   "buildOnly": true,
   "deployment": "not performed",
   "packager": "@neon/config-runtime@1.10.2",
   "nativeExecution": "not verified on this x86_64 executor",
-  "uncompressedBytes": 21166452,
+  "uncompressedBytes": 21176645,
   "fileCount": 93,
   "nativeArchitecture": "Linux ARM64 glibc",
   "nativeFiles": [
@@ -32,16 +32,16 @@
   "archiveHasSecretsOrTests": [],
   "bannerPresent": true,
   "externalSharpImport": true,
-  "indexSha256": "d469ba71915df092585c5e6f956400daf9738f6ba5bfc48d2b895c46ec7f8b85",
+  "indexSha256": "ac6e91129b873692e0a92481f57e957a7f3705a79c0b8c1ad79a6f6d218daa22",
   "archive": "artifacts/neon/portalapi.zip",
-  "graphInputCount": 865,
-  "graphApplicationInputCount": 81,
+  "graphInputCount": 867,
+  "graphApplicationInputCount": 83,
   "forbiddenInputs": [],
   "graphFrontendInputs": [],
   "graphRecomputed": true,
-  "graphEvidence": "evidence/privacy-neon-api-refresh/graph.json",
-  "runtimeInputHashes": "evidence/privacy-neon-api-refresh/runtime-input-hashes.json",
-  "allInputHashes": "evidence/privacy-neon-api-refresh/all-input-hashes.json",
+  "graphEvidence": "evidence/followup-api-refresh/graph.json",
+  "runtimeInputHashes": "evidence/followup-api-refresh/runtime-input-hashes.json",
+  "allInputHashes": "evidence/followup-api-refresh/all-input-hashes.json",
   "limits": {
     "maxZipBytes": 10485760,
     "maxTotalBytes": 67108864,
@@ -60,9 +60,13 @@
     {
       "name": "0104_admin_team_corrections.sql",
       "sha256": "a931aeafba01be07f43e35fc7c17cae80f11bbd212fbd92f0e5fd8d475c40500"
+    },
+    {
+      "name": "0105_terminal_record_deletion.sql",
+      "sha256": "088b96a239915cd518765b5ef260c73feee913d8e0b181234110f7591676ccde"
     }
   ],
-  "canonicalPlanDigest": "9bcf3f083d47a1b700e467c60f3b9eff57193491bb1e2929b1c2a4f21ba532d1",
+  "canonicalPlanDigest": "e3b7a348e2c9e3f4f066a78fbd02274a0e111155b3af527f99bdc545bbe32691",
   "historicalMigrationsPreserved": [
     {
       "name": "0000_compatibility.sql",
@@ -94,17 +98,17 @@
     }
   ],
   "hostedMigrationLedgerInspected": false,
-  "manualMigrationMode": "Owner-operated pending-only upgrade. Existing nine-ledger target applies only0104 after verified backup/restore checkpoint and fresh inspect. Seven historical LF or precisely recognized whole-seven CRLF histories remain supported; no historical ledger rewrite. No migration performed by this archive build.",
-  "previousArchiveSha256": "ccf462c825655b78671dec4cecac78be5da5b77430f982f2275516246cab8b93",
+  "manualMigrationMode": "Owner-operated pending-only upgrade before deployment: an existing nine-entry ledger applies 0104 and 0105; an existing ten-entry ledger applies only 0105. Both finish at eleven entries after an owner-verified backup/restore checkpoint and fresh inspect. Seven historical LF or precisely recognized whole-seven CRLF histories remain supported; no historical ledger rewrite. No migration performed by this archive build.",
+  "previousArchiveSha256": "fcd0941113bb8dcd7b35f965bf3e37fef5890090a0280b90159331f8c708d521",
   "changedArchiveEntries": [
     "index.mjs"
   ],
   "unchangedArchiveEntryCount": 92,
-  "archiveComparisonEvidence": "evidence/privacy-neon-api-refresh/archive-refresh-comparison.json",
-  "sourceBuildVerifiedAgainst": "c56904fca3966c8d8c83327f574aedc3de8c0df3",
+  "archiveComparisonEvidence": "evidence/followup-api-refresh/archive-refresh-comparison.json",
+  "sourceBuildVerifiedAgainst": "340bf33175ce8b5c1b1901da75a6a251ee553c69",
   "hostSmoke": {
     "passed": true,
-    "report": "evidence/privacy-neon-api-refresh/host-smoke.json",
+    "report": "evidence/followup-api-refresh/host-smoke.json",
     "outboundAttempts": 0,
     "trustedHealth": 200,
     "untrustedHealth": 403,
@@ -113,12 +117,26 @@
   },
   "windowsHandoff": {
     "checksPassed": 6,
-    "report": "evidence/privacy-neon-api-refresh/windows-handoff-report.json",
+    "report": "evidence/followup-api-refresh/windows-handoff-report.json",
     "powerShellVersion": "7.6.8",
     "platform": "Unix",
     "nativeWindowsExecution": false,
     "liveDownload": false,
     "neonCommands": 0
   },
-  "archiveVerificationEvidence": "evidence/privacy-neon-api-refresh"
+  "archiveVerificationEvidence": "evidence/followup-api-refresh",
+  "requiredSchemaBeforeDeploy": {
+    "expectedFinalLedgerEntries": 11,
+    "nineEntryTargetPending": [
+      "0104_admin_team_corrections.sql",
+      "0105_terminal_record_deletion.sql"
+    ],
+    "tenEntryTargetPending": [
+      "0105_terminal_record_deletion.sql"
+    ],
+    "elevenEntryTargetPending": [],
+    "ownerRunUpgradeGuide": "docs/NEON_POPULATED_UPGRADE_PLAN.md",
+    "zipContainsSql": false,
+    "automaticMigration": false
+  }
 }

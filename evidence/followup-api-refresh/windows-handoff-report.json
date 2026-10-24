@@ -1,0 +1,18 @@
+{
+  "Passed": 6,
+  "Checks": [
+    "Actual reviewed ZIP copied, hash-checked, expanded, full entry/native files validated",
+    "Second run uses a new directory and preserves the first result",
+    "Wrong digest rejects before ZIP extraction",
+    "HTTPS download branch tested with explicit local transport mock, no network request",
+    "HTTP, embedded credential and query-bearing URLs rejected without transport",
+    "Synthetic environment sentinel unchanged; no env file packaged; zero Neon commands"
+  ],
+  "PowerShellVersion": "7.6.8",
+  "RuntimePlatform": "Unix",
+  "ArchiveSHA256": "ea9b0a2f9f99de33626cdffd7dafbe096eee6f3812ffe7d56cfc5793856d1dcb",
+  "ArchiveEntries": 93,
+  "NativeWindowsExecution": "not performed",
+  "LiveDownload": "not performed; transport mocked explicitly",
+  "ProviderActions": 0
+}

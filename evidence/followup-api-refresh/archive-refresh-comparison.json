@@ -1,0 +1,54 @@
+{
+  "baselineRuntimeSource": "c56904fca3966c8d8c83327f574aedc3de8c0df3",
+  "baselineSha256": "fcd0941113bb8dcd7b35f965bf3e37fef5890090a0280b90159331f8c708d521",
+  "currentSource": "340bf33175ce8b5c1b1901da75a6a251ee553c69",
+  "currentSha256": "ea9b0a2f9f99de33626cdffd7dafbe096eee6f3812ffe7d56cfc5793856d1dcb",
+  "changedEntries": [
+    {
+      "path": "index.mjs",
+      "sha256": "ac6e91129b873692e0a92481f57e957a7f3705a79c0b8c1ad79a6f6d218daa22",
+      "bytes": 1675768
+    }
+  ],
+  "unchangedEntryCount": 92,
+  "applicationInputChanges": [
+    {
+      "path": "lib/discover-participants.ts",
+      "state": "changed"
+    },
+    {
+      "path": "lib/event-content.ts",
+      "state": "changed"
+    },
+    {
+      "path": "lib/experience.ts",
+      "state": "changed"
+    },
+    {
+      "path": "lib/http.ts",
+      "state": "changed"
+    },
+    {
+      "path": "lib/record-removal.ts",
+      "state": "changed"
+    },
+    {
+      "path": "lib/roster-import-columns.ts",
+      "state": "added"
+    },
+    {
+      "path": "lib/roster-import.ts",
+      "state": "changed"
+    },
+    {
+      "path": "lib/service.ts",
+      "state": "changed"
+    },
+    {
+      "path": "lib/terminal-deletion.ts",
+      "state": "added"
+    }
+  ],
+  "removedApplicationInputs": [],
+  "noTimestampOnlyClaim": true
+}

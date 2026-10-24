@@ -1,0 +1,82 @@
+{
+  "runtimeSource": "340bf33175ce8b5c1b1901da75a6a251ee553c69",
+  "officialBuild": {
+    "passed": true,
+    "packager": "@neon/config-runtime@1.10.2",
+    "processEnvironmentAllowlist": [
+      "LANG",
+      "PATH",
+      "TZ",
+      "npm_config_audit",
+      "npm_config_cache",
+      "npm_config_fund",
+      "npm_config_globalconfig",
+      "npm_config_offline",
+      "npm_config_userconfig"
+    ],
+    "functionEnv": {},
+    "offlineNativeStaging": true,
+    "warnings": []
+  },
+  "archive": {
+    "sha256": "ea9b0a2f9f99de33626cdffd7dafbe096eee6f3812ffe7d56cfc5793856d1dcb",
+    "zipBytes": 9021973,
+    "uncompressedBytes": 21176645,
+    "files": 93,
+    "indexSha256": "ac6e91129b873692e0a92481f57e957a7f3705a79c0b8c1ad79a6f6d218daa22",
+    "limits": {
+      "maxZipBytes": 10485760,
+      "maxTotalBytes": 67108864,
+      "maxEntries": 4096
+    }
+  },
+  "freshJavaScriptByteIdentical": true,
+  "graph": {
+    "inputCount": 867,
+    "applicationInputCount": 83,
+    "forbiddenInputs": [],
+    "frontendInputs": [],
+    "seoImported": false,
+    "hashes": "evidence/followup-api-refresh/all-input-hashes.json"
+  },
+  "nativeFiles": [
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
+      "elfMachine": 183,
+      "sha256": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f"
+    },
+    {
+      "path": "node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.5.node",
+      "elfMachine": 183,
+      "sha256": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b"
+    }
+  ],
+  "hostSmoke": {
+    "passed": true,
+    "statuses": [
+      200,
+      403,
+      503
+    ],
+    "outboundAttempts": 0,
+    "x86SharpSubstitution": true,
+    "nativeArmExecution": false
+  },
+  "windowsHandoff": {
+    "passed": 6,
+    "powershell": "7.6.8",
+    "platform": "Unix",
+    "nativeWindowsExecution": false,
+    "liveDownload": false,
+    "providerActions": 0
+  },
+  "canonicalPlanDigest": "e3b7a348e2c9e3f4f066a78fbd02274a0e111155b3af527f99bdc545bbe32691",
+  "localMigrationFiles": 11,
+  "migrationApplied": false,
+  "hostedLedgerInspected": false,
+  "manualBackendRedeployRequired": true,
+  "noDeploy": true,
+  "noPush": true,
+  "noEmail": true,
+  "noProviderCalls": true
+}
