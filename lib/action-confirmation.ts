@@ -34,6 +34,8 @@ const labels: Record<string, string> = {
   "rename-team": "Rename your team",
   "admin-add-team-member": "Add team member?",
   "admin-rename-team": "Rename team?",
+  "admin-delete-participant": "Delete participant?",
+  "admin-delete-team": "Delete team?",
   "team-style": "Update team appearance",
   "remove-workspace-member": "Remove team member",
   "respond-team": "Update membership request",
@@ -86,6 +88,17 @@ export function confirmationFor(
   ].includes(action);
   const title = labels[action] || action.replaceAll("-", " ");
   let description = "";
+  if (action === "admin-delete-participant") {
+    const summary = values.participantDeleteSummary;
+    return { title, target,
+      description: summary?.teamCount > 0
+        ? `Their ${summary.teamCount > 1 ? `${summary.teamCount} teams, ideas, projects` : "team, idea, project"} and all submissions will also be deleted. Other members stay registered.`
+        : "Delete their profile and participation. Their team stays intact.",
+      ...(summary?.teamNames?.length ? { badge: summary.teamNames.length < 3 ? summary.teamNames.join(" · ") : `${summary.teamCount} teams` } : {}),
+      note: "This cannot be undone.", confirmLabel: "Delete participant", critical: true, tone: "danger" };
+  }
+  if (action === "admin-delete-team")
+    return { title, target, description: "Delete this team, idea, project and all submissions. Members stay registered.", note: "This cannot be undone.", confirmLabel: "Delete team", critical: true, tone: "danger" };
   if (action === "settings")
     return { title, target: "Judging setup", description: "Save these judging settings. Scores stay private.", confirmLabel: "Save settings", critical: false };
   if (action === "reevaluate-project")
@@ -201,6 +214,8 @@ export function revealConfirmation(
   action: string,
   values: Record<string, any>,
 ) {
+  if (action === "admin-delete-participant") return "DELETE_PARTICIPANT";
+  if (action === "admin-delete-team") return "DELETE_TEAM";
   if (action === "bulk-check-in") return "CHECK_IN_PARTICIPANTS";
   if (action === "transfer-team-leader") return "TRANSFER_TEAM_LEADER";
   if (action === "publish-credit-batch") return "PUBLISH_CREDIT_BATCH";

@@ -4088,6 +4088,12 @@ export function AdminParticipants({
                                 name: r.name,
                                 email: r.email,
                                 removed: r.removed,
+                                canDelete: r.canDeleteParticipant === true && r.id !== data.me?.id,
+                                teamId: r.teamId,
+                                teamName: r.teamName,
+                                teamLeader: r.teamLeader === true,
+                                leaderTeamIds: r.leaderTeamIds || [],
+                                leaderTeamNames: r.leaderTeamNames || [],
                               }}
                               run={runParticipantAction}
                               compact
@@ -5819,7 +5825,7 @@ export default function Portal({
       )
         throw new ActionCancelled();
       const token = revealConfirmation(action, values);
-      const { newCount: _count, singleEmail: _email, windowWarnings: _windowWarnings, creditImportSummary: _creditSummary, ...payload } = values;
+      const { newCount: _count, singleEmail: _email, windowWarnings: _windowWarnings, creditImportSummary: _creditSummary, participantDeleteSummary: _deleteSummary, ...payload } = values;
       setMessage("");
       const result = await api(
         action,

@@ -90,7 +90,21 @@ export type AdminParticipantTarget = {
   name: string;
   email?: string;
   removed?: boolean;
+  canDelete?: boolean;
+  teamId?: string | null;
+  teamName?: string | null;
+  teamLeader?: boolean;
+  leaderTeamIds?: string[];
+  leaderTeamNames?: string[];
 };
+export function participantDeleteValues(participant: AdminParticipantTarget) {
+  if (!participant.id) throw new Error("Choose a participant.");
+  return {
+    userId: participant.id,
+    expectedLeaderTeamIds: participant.leaderTeamIds || (participant.teamLeader && participant.teamId ? [participant.teamId] : []),
+    confirmation: "DELETE_PARTICIPANT",
+  };
+}
 export function participantActionValues(
   participant: AdminParticipantTarget,
   reason = "",
@@ -124,38 +138,35 @@ export default function AdminParticipantActions({
       className={`admin-control admin-participant-action${compact ? " is-compact" : ""}`}
       onSubmit={(event) => {
         event.preventDefault();
-        void execute(() =>
-          run(
-            participant.removed
-              ? "participant-restore"
-              : "participant-deactivate",
-            participantActionValues(participant),
-          ),
-        );
+        if (participant.canDelete !== false) void execute(() => run("admin-delete-participant", {
+          ...participantDeleteValues(participant),
+          participantDeleteSummary: {
+            teamCount: participant.leaderTeamIds?.length ?? (participant.teamLeader ? 1 : 0),
+            teamNames: participant.leaderTeamNames || (participant.teamName && participant.teamLeader ? [participant.teamName] : []),
+          },
+        }));
       }}
     >
       <div className="admin-action-target">
         <strong>{participant.name}</strong>
         {participant.email && <span>{participant.email}</span>}
       </div>
-      <button
-        className={`button ${participant.removed ? "secondary" : "admin-icon-action admin-icon-danger"}`}
-        aria-label={`${participant.removed ? "Restore participant" : "Remove participant"}: ${participant.name}${participant.email ? ` (${participant.email})` : ""}`}
-        title={`${participant.removed ? "Restore" : "Remove"} ${participant.name}`}
+      {participant.removed && <button
+        type="button"
+        className="button secondary"
+        disabled={busy || !hydrated}
+        onClick={() => void execute(() => run("participant-restore", participantActionValues(participant)))}
+      >Restore</button>}
+      {participant.canDelete !== false && <button
+        className="button admin-icon-action admin-icon-danger"
+        aria-label={`Delete participant: ${participant.name}${participant.email ? ` (${participant.email})` : ""}`}
+        title={`Delete ${participant.name}`}
         aria-busy={busy}
         type="submit"
         disabled={busy || !hydrated}
       >
-        {participant.removed ? (
-          busy ? (
-            "Waiting…"
-          ) : (
-            "Restore"
-          )
-        ) : (
-          <AdminIcon name="trash" />
-        )}
-      </button>
+        <AdminIcon name="trash" />
+      </button>}
       {error && (
         <p className="error-message" role="alert">
           {error}

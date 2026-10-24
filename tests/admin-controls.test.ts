@@ -317,7 +317,7 @@ test("controls render target, audit and real-attempt consequences without mutati
     }),
   );
   assert.ok(participant.includes("Person &lt;One&gt;"));
-  assert.ok(participant.includes("Remove participant"));
+  assert.ok(participant.includes("Delete participant"));
   assert.ok(!participant.includes("Audit reason"));
   assert.ok(!participant.includes("bulk"));
   const project = renderToStaticMarkup(

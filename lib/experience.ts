@@ -357,6 +357,7 @@ export class PortalExperience {
       checked_in: string | null;
       team_id: string | null;
       team_name: string | null;
+      team_leader_id: string | null;
       submitted: number;
       avatarColor: string | null;
       avatarExpression: string | null;
@@ -364,7 +365,7 @@ export class PortalExperience {
       role: string;
     }>(
       this.s.db,
-      "SELECT u.id,COALESCE(x.display_name,u.name) name,r.email,r.status approval,c.created_at checked_in,t.id team_id,t.name team_name,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id) submitted,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression,1 registered,COALESCE(pr.role,u.role,'participant') role FROM registrations r LEFT JOIN users u ON u.email=r.email LEFT JOIN portal_roles pr ON pr.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id UNION ALL SELECT u.id,COALESCE(x.display_name,u.name),u.email,'pending',c.created_at,t.id,t.name,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id),pd.avatar_color,pd.avatar_expression,CASE WHEN EXISTS(SELECT 1 FROM luma_roster l WHERE l.email=u.email) THEN 1 ELSE 0 END,COALESCE(pr.role,u.role) FROM users u LEFT JOIN portal_roles pr ON pr.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id WHERE NOT EXISTS(SELECT 1 FROM registrations r WHERE r.email=u.email)",
+      "SELECT u.id,COALESCE(x.display_name,u.name) name,r.email,r.status approval,c.created_at checked_in,t.id team_id,t.name team_name,t.leader_id team_leader_id,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id) submitted,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression,1 registered,COALESCE(pr.role,u.role,'participant') role FROM registrations r LEFT JOIN users u ON u.email=r.email LEFT JOIN portal_roles pr ON pr.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id WHERE NOT EXISTS(SELECT 1 FROM terminal_record_deletions td WHERE td.kind='participant' AND td.target_id=u.id) UNION ALL SELECT u.id,COALESCE(x.display_name,u.name),u.email,'pending',c.created_at,t.id,t.name,t.leader_id,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id),pd.avatar_color,pd.avatar_expression,CASE WHEN EXISTS(SELECT 1 FROM luma_roster l WHERE l.email=u.email) THEN 1 ELSE 0 END,COALESCE(pr.role,u.role) FROM users u LEFT JOIN portal_roles pr ON pr.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id WHERE NOT EXISTS(SELECT 1 FROM registrations r WHERE r.email=u.email) AND NOT EXISTS(SELECT 1 FROM terminal_record_deletions td WHERE td.kind='participant' AND td.target_id=u.id)",
     );
     const teams = await teamFacts(
         this.s.db,
@@ -382,6 +383,19 @@ export class PortalExperience {
           )
         ).map((row) => row.email),
       );
+    // Include archived teams in the confirmation scope. Leadership can outlive
+    // the currently visible membership, so confirming only that card is unsafe.
+    const ledTeams = await selectedRows<{ id: string; name: string; leader_id: string }>(
+      this.s.db,
+      items.flatMap((item) => item.id ? [item.id] : []),
+      (marks) => `SELECT id,name,leader_id FROM teams WHERE leader_id IN (${marks}) ORDER BY id`,
+    );
+    const leadership = new Map<string, typeof ledTeams>();
+    for (const team of ledTeams) {
+      const owned = leadership.get(team.leader_id) || [];
+      owned.push(team);
+      leadership.set(team.leader_id, owned);
+    }
     return items
       .map((item) => {
         const individual = item.id ? people.get(item.id) : undefined,
@@ -391,10 +405,14 @@ export class PortalExperience {
             item.role === "participant" &&
             item.email !== OWNER_EMAIL &&
             !individual?.deactivatedAt;
-        const { role: _role, ...participant } = item;
+        const { role: _role, team_leader_id: _leader, ...participant } = item;
         return {
           ...participant,
           registered: !!item.registered,
+          canDeleteParticipant: !!item.id && item.role === "participant" && item.email !== OWNER_EMAIL,
+          teamLeader: !!item.id && item.team_leader_id === item.id,
+          leaderTeamIds: (leadership.get(item.id || "") || []).map((team) => team.id),
+          leaderTeamNames: (leadership.get(item.id || "") || []).map((team) => team.name),
           viewer,
           approval: viewer ? null : item.approval,
           deactivated_at: individual?.deactivatedAt,

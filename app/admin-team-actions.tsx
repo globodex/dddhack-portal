@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { Pencil, Search, UserRoundPlus, X } from "lucide-react";
+import { Pencil, Search, Trash2, UserRoundPlus, X } from "lucide-react";
 import { ActionCancelled } from "../lib/action-confirmation";
 import { readPortalView } from "../lib/portal-read";
 import { portalErrorText } from "../lib/ui-feedback";
@@ -204,7 +204,7 @@ export default function AdminTeamActions({
         <button
           type="button"
           className="button secondary"
-          disabled={!hydrated}
+          disabled={!hydrated || !!busy}
           onClick={(event) => open("rename", event.currentTarget)}
         >
           <Pencil size={18} aria-hidden="true" />
@@ -213,12 +213,23 @@ export default function AdminTeamActions({
         <button
           type="button"
           className="button secondary"
-          disabled={!hydrated}
+          disabled={!hydrated || !!busy}
           onClick={(event) => open("add", event.currentTarget)}
         >
           <UserRoundPlus size={18} aria-hidden="true" />
           Add member
         </button>
+        <button
+          type="button"
+          className="button secondary admin-icon-danger"
+          disabled={!hydrated || !!busy}
+          aria-busy={busy === "delete"}
+          onClick={() => void perform("delete", "admin-delete-team", { teamId: team.id, confirmation: "DELETE_TEAM" })}
+        >
+          <Trash2 size={18} aria-hidden="true" />
+          Delete team
+        </button>
+        {!mode && error && <p className="error-message" role="alert">{error}</p>}
       </div>
       {mode && (
         <TeamActionDialog
