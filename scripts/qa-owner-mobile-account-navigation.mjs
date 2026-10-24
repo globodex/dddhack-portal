@@ -8,8 +8,11 @@ import { chromium, expect } from "@playwright/test";
 
 const root = "/workspace/dddhack-portal",
   origin = "http://localhost:3000";
-const fix = "7cb01dca612a279eee233f671937f546da6a1838";
-const output = resolve("evidence/owner-mobile-account-navigation-7cb01dc");
+const fix =
+  process.env.QA_NAV_FIX || "7cb01dca612a279eee233f671937f546da6a1838";
+const output = resolve(
+  process.env.QA_OUTPUT || "evidence/owner-mobile-account-navigation-7cb01dc",
+);
 mkdirSync(output, { recursive: true });
 const git = (...args) =>
   execFileSync("git", args, { cwd: root, encoding: "utf8" }).trim();
@@ -236,7 +239,21 @@ const opener = (page) =>
 const dialog = (page) =>
   page.getByRole("dialog", { name: "Navigation", exact: true });
 async function open(page) {
-  await opener(page).tap();
+  const trigger = opener(page);
+  await expect(trigger).toBeEnabled();
+  const bounds = await trigger.boundingBox();
+  assert.ok(
+    bounds &&
+      bounds.y >= 0 &&
+      bounds.y + bounds.height <= report.viewport.height,
+    "Visible menu trigger must fit before physical tap",
+  );
+  // Locator.tap may scroll a sticky trigger before activation. Use the actual
+  // visible hit point so scroll-lock measurements begin from physical touch.
+  await page.touchscreen.tap(
+    bounds.x + bounds.width / 2,
+    bounds.y + bounds.height / 2,
+  );
   await expect(dialog(page)).toBeVisible();
   await page.waitForFunction(() => !!history.state?.portalDialog);
 }

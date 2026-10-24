@@ -1,0 +1,19 @@
+# Owner mobile account navigation: fixed and verified
+
+Actual source: `7a0eb29663861f43981b10df5626758228c6cb44`. Shared-history fix: `715743671ebbad7cb071174e0ef1c8b54b530c9a`. The navigation files and account-menu/router slice matched that fix before and after this run; the source HEAD stayed unchanged.
+
+At 390×844, a synthetic owner started on Credits. Every destination was activated with exactly one touch in a fresh context. **All nine checks passed**, with no page errors, blocked requests or application mutation attempts.
+
+1. **Workspace first tap: pass.** The page visibly reached Dashboard. The trace shows the temporary menu entry's marker being consumed, followed by replacement with `/dashboard`, with no cleanup Back interrupting the route. [Menu](02-owner-menu-workspace.png), [Dashboard after first tap](03-workspace-first-tap-dashboard.png).
+2. **Your profile first tap: pass.** The page visibly reached the owner's populated Profile. The same consume-and-replace sequence reached `/profile`. [Profile after first tap](07-profile-first-tap-profile.png).
+3. **Normal browser Back: pass for both destinations.** One Back returned to Credits, with the menu closed.
+4. **Open-menu Back and Escape: pass.** Both retained Credits and restored focus to the menu opener. [Escape and focus](04-escape-restores-credits-focus.png), [Back and focus](05-back-dismisses-menu-focus.png).
+5. **Touch close and background scrolling: pass.** The page stayed at scrollY69 while the menu was open and wheel input targeted it. Body/html overflow changed to hidden during the modal and returned to their prior values on Escape; scrollY remained69. Touch close also retained the route and restored opener focus.
+
+All six full-size original PNGs were opened and visually inspected, including the [initial Credits view](01-owner-credits-before.png). The [machine report](report.json) preserves click counts, history events, route outcomes, scroll positions, focus observations and source fingerprints. The original [failed first-tap proof](../owner-mobile-account-navigation-7cb01dc/QA.md) remains unchanged.
+
+## Harness correction and limits
+
+The first attempt against this fixed source passed Workspace and its Back check, then used a bad scroll anchor: Playwright's `locator.tap()` automatically scrolled the sticky opener from69 to55 **before** its click event. The [retained attempt](../owner-mobile-account-navigation-7157436-auto-scroll-attempt/report.json) contains that exact trace and all four inspected PNGs. It is classified as a measurement artifact, not an app defect. The corrected run uses the live visible button centre with `touchscreen.tap()`, which preserves69 before and after activation and verifies actual scroll locking.
+
+This pass used emulated touch and local fixture identity, not a physical device or real managed login. It activated no import, Save, reveal or Logout action. Only local GET/HEAD and development source reads were permitted. All contexts and browsers closed before releasing the shared slot. No production source or shared-history code was edited by this audit lane.
