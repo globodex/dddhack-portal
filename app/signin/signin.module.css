@@ -54,7 +54,7 @@
   align-items: center;
   gap: clamp(56px, 9vw, 128px);
   width: min(1120px, 100%);
-  min-height: calc(100svh - 80px);
+  min-height: calc(100svh - 144px);
   margin-inline: auto;
   padding: 64px 40px;
 }
@@ -253,7 +253,7 @@
   .body {
     grid-template-columns: minmax(0, 1fr);
     align-items: start;
-    min-height: calc(100svh - 64px);
+    min-height: calc(100svh - 128px);
     padding: clamp(48px, 10svh, 96px) 24px 32px;
   }
   .event {
@@ -293,4 +293,19 @@
   .submit {
     transition: none;
   }
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 0 24px max(20px, env(safe-area-inset-bottom));
+  color: var(--muted, #656960);
+  font-size: 12px;
+}
+.footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }

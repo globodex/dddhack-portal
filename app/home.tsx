@@ -383,6 +383,11 @@ export default function Home({
       <Chapters items={content.agenda} paused={paused} />
       <OrganizerSection paused={paused} />
       <footer className="home-footer">
+        <nav aria-label="Legal and contact">
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <a href="mailto:hey@itsparam.in">Contact</a>
+        </nav>
         <a
           href="https://luma.com/6t5uk4lo"
           target="_blank"

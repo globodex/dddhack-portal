@@ -286,3 +286,10 @@
     padding-inline: 24px;
   }
 }
+
+.public-home-shell .home-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+}

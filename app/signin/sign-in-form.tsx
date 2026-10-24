@@ -30,6 +30,7 @@ const unavailable =
 
 export default function SignInForm() {
   const [email, setEmail] = useState("");
+  const [hydrated, setHydrated] = useState(false);
   const [menu, setMenu] = useState(false);
   const [emailInvalid, setEmailInvalid] = useState(false);
   const [returnTo, setReturnTo] = useState("/dashboard");
@@ -37,6 +38,7 @@ export default function SignInForm() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState(false);
   useEffect(() => {
+    setHydrated(true);
     const query = new URLSearchParams(window.location.search);
     setReturnTo(
       query.get("returnTo") || query.get("return_to") || "/dashboard",
@@ -96,7 +98,7 @@ export default function SignInForm() {
   }
   function requestEmail(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    void signIn("email");
+    if (hydrated) void signIn("email");
   }
   return (
     <div className={styles.page}>
@@ -152,7 +154,8 @@ export default function SignInForm() {
         <section
           className={styles.card}
           aria-labelledby="signin-heading"
-          aria-busy={busy !== null}
+          aria-busy={!hydrated || busy !== null}
+          data-hydrated={hydrated}
         >
           <div className={styles.heading}>
             <DotAvatar color="green" expression="plus" size={44} decorative />
@@ -164,7 +167,7 @@ export default function SignInForm() {
           <button
             className={styles.google}
             type="button"
-            disabled={busy !== null}
+            disabled={!hydrated || busy !== null}
             onClick={() => void signIn("google")}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
@@ -201,7 +204,7 @@ export default function SignInForm() {
           <div className={styles.divider}>
             <span>or email</span>
           </div>
-          <form onSubmit={requestEmail}>
+          <form method="post" onSubmit={requestEmail}>
             <label className={styles.label} htmlFor="signin-email">
               Email address
               <span className={styles.required} aria-hidden="true">
@@ -223,7 +226,7 @@ export default function SignInForm() {
                 setEmailInvalid(false);
               }}
               required
-              disabled={busy !== null}
+              disabled={!hydrated || busy !== null}
               aria-invalid={emailInvalid || undefined}
               aria-describedby={
                 emailInvalid ? "signin-feedback" : "signin-help"
@@ -232,7 +235,7 @@ export default function SignInForm() {
             <button
               className={styles.submit}
               type="submit"
-              disabled={busy !== null}
+              disabled={!hydrated || busy !== null}
             >
               {busy === "email" ? (
                 <>
@@ -272,6 +275,11 @@ export default function SignInForm() {
           </div>
         </section>
       </main>
+      <footer className={styles.footer}>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="mailto:hey@itsparam.in">Contact</a>
+      </footer>
     </div>
   );
 }
