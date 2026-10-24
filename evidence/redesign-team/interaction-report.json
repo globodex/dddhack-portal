@@ -1,0 +1,89 @@
+{
+  "responses": [
+    {
+      "status": 200,
+      "action": "team-invite",
+      "body": {
+        "message": "Saved in portal. No email sent."
+      }
+    },
+    {
+      "status": 200,
+      "action": "respond-team",
+      "body": {
+        "message": "Member joined. Team readiness recalculated."
+      }
+    },
+    {
+      "status": 200,
+      "action": "remove-workspace-member",
+      "body": {
+        "message": "Membership removed. Readiness and private venue access recalculated."
+      }
+    },
+    {
+      "status": 200,
+      "action": "save-workspace-idea",
+      "body": {
+        "message": "Private idea saved. You may edit it until the team locks."
+      }
+    },
+    {
+      "status": 200,
+      "action": "lock-team",
+      "body": {
+        "message": "Team locked for admin review. Approval and Going remain separate; Luma updates are manual."
+      }
+    }
+  ],
+  "syntheticOnly": true,
+  "containerBrowserSandbox": false,
+  "checks": [
+    "Leader invitation persisted and outgoing recipient visible",
+    "Touch recipient accepted invitation and sees two-member team",
+    "Leader accepts pending membership request",
+    "Leader removes member through existing confirmation",
+    "Short mobile native create dialog saves team and closes without clipping",
+    "Profile dialog opens with keyboard, Escape closes and restores focus",
+    "Browser Back dismisses profile dialog without leaving directory",
+    "Server search replaces content with geometric skeleton then exact result",
+    "Search error remains actionable with Retry; retry succeeds",
+    "Private idea save succeeds via unchanged contract",
+    "Saved idea enables lock without prior approval; locked settings and mutations disappear",
+    "Dashboard tabs work with arrow keys"
+  ],
+  "errors": [],
+  "screenshots": [
+    "/workspace/ddd-team/evidence/redesign-team/team-settings-1440.png",
+    "/workspace/ddd-team/evidence/redesign-team/participant-dialog-1440.png",
+    "/workspace/ddd-team/evidence/redesign-team/participants-loading-1440.png",
+    "/workspace/ddd-team/evidence/redesign-team/participants-error-1440.png",
+    "/workspace/ddd-team/evidence/redesign-team/participants-empty-1440.png",
+    "/workspace/ddd-team/evidence/redesign-team/lock-confirmation-1440.png",
+    "/workspace/ddd-team/evidence/redesign-team/team-locked-1440.png"
+  ],
+  "writes": [
+    {
+      "action": "team-invite",
+      "target": "fake_team1"
+    },
+    {
+      "action": "respond-team",
+      "target": "fake_request_redesign"
+    },
+    {
+      "action": "remove-workspace-member",
+      "target": "fake_pending"
+    },
+    {
+      "action": "save-workspace-idea",
+      "target": null
+    },
+    {
+      "action": "lock-team",
+      "target": null
+    }
+  ],
+  "source": "2f88c510d4388e544cf3bb94e42bfb7c9507840d",
+  "scope": "Positive interactions precede6a65f39 visual-only picker/footer/skeleton refinements; final renders bound separately."
+}

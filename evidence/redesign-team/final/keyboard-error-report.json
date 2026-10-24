@@ -1,0 +1,13 @@
+{
+  "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+  "syntheticOnly": true,
+  "checks": [
+    "With observer disabled to isolate keyboard fallback, focused Load more Enter makes exactly one real cursor request and renders37 unique results",
+    "Search loading keeps actual avatar/content/footer skeleton geometry and makes one query",
+    "Contextual server error exposes Retry and recovery succeeds"
+  ],
+  "errors": [],
+  "requests": [
+    "http://localhost:3002/api/portal?view=%2Fdiscover%2Fparticipants&q=&membership=all&limit=24&cursor=eyJ2IjoxLCJuYW1lIjoiU3ludGhldGljIENvbnRyb2wgUHJvamVjdCAxMiBCdWlsZGVyIiwiaWQiOiJmYWtlX2NvbnRyb2xfdXNlcl8xMiIsInEiOiIiLCJtZW1iZXJzaGlwIjoiYWxsIn0"
+  ]
+}

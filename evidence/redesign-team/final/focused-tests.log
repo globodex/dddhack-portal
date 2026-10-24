@@ -1,0 +1,28 @@
+✔ Dashboard tab panels keep default Team visible and published project mutations fail closed after three attempts (40.262869ms)
+✔ Team rows show one expression avatar each, keep initials only on the team badge and take arrival details only from safe server data (22.199123ms)
+✔ focused project editor has a real button exit without duplicate history actions (15.507796ms)
+✔ nonleader retains authorized read access to an unpublished saved draft (31.390269ms)
+✔ participant cards retain safe dialog controls and accessible pagination without exposing private input fields (16.793815ms)
+✔ directory fetch keeps full search, membership, cursor and focus in distinct encoded parameters (36.012041ms)
+✔ redesigned team discovery keeps viewer browsing read-only and offers safe team details (16.480676ms)
+✔ only eligible teamless members receive join/create controls, and full/locked teams remain read-only (21.560972ms)
+✔ profile Team card copies only safe team identity and never private row fields (3.660655ms)
+✔ shared Rules preserves all five authoritative policy categories and only initially opens attendance (36.998179ms)
+✔ local Team control seed is additive, guarded and exercises existing membership/lock/removal contracts (149.723673ms)
+✔ synthetic Team HTTP flow persists ten writes and revokes removed-member private access (219.54918ms)
+✔ only profile saves bypass confirmation; import asks for exact single/count without supporting prose (2.556443ms)
+✔ ordinary missing/null/blank reasons become server audit text without changing authorization or stale/confirmation guards (175.235088ms)
+✔ Add Admins is owner-only, email-only, current-account scoped and idempotent (77.350391ms)
+✔ submission accepts no participant hash, keeps timing evidence separate and three-attempt enforcement (103.092338ms)
+✔ settings render has no role selector, private venue editor, general map, reason input or rejected filler (117.056127ms)
+✔ admin addition racing participant removal rolls back and removed stored admins cannot read staff routes (65.632651ms)
+✔ ignored participant hashes never affect draft/version persistence or retry identity in either submission API (178.373622ms)
+✔ hardcoded app copy has no em dash (3.50741ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8777.143067
