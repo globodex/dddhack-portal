@@ -1,0 +1,103 @@
+{
+  "sourceBase": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+  "configuration": "vercel.json",
+  "officialDocs": "https://vercel.com/docs/project-configuration/git-configuration",
+  "semantics": "Any true matching rule enables deployment; unspecified branches otherwise default true.",
+  "minimatchVersion": "10.2.6",
+  "checks": [
+    {
+      "branch": "main",
+      "matchingRules": [
+        [
+          "**",
+          false
+        ],
+        [
+          "main",
+          true
+        ]
+      ],
+      "enabled": true,
+      "passed": true
+    },
+    {
+      "branch": "feat/foo",
+      "matchingRules": [
+        [
+          "**",
+          false
+        ]
+      ],
+      "enabled": false,
+      "passed": true
+    },
+    {
+      "branch": "fix/client-form-hydration-safety",
+      "matchingRules": [
+        [
+          "**",
+          false
+        ]
+      ],
+      "enabled": false,
+      "passed": true
+    },
+    {
+      "branch": "feat/portal-experience-rework",
+      "matchingRules": [
+        [
+          "**",
+          false
+        ]
+      ],
+      "enabled": false,
+      "passed": true
+    },
+    {
+      "branch": "chore/vercel-main-only",
+      "matchingRules": [
+        [
+          "**",
+          false
+        ]
+      ],
+      "enabled": false,
+      "passed": true
+    },
+    {
+      "branch": "feature/nested/topic",
+      "matchingRules": [
+        [
+          "**",
+          false
+        ]
+      ],
+      "enabled": false,
+      "passed": true
+    },
+    {
+      "branch": "MAIN",
+      "matchingRules": [
+        [
+          "**",
+          false
+        ]
+      ],
+      "enabled": false,
+      "passed": true
+    },
+    {
+      "branch": "main/preview",
+      "matchingRules": [
+        [
+          "**",
+          false
+        ]
+      ],
+      "enabled": false,
+      "passed": true
+    }
+  ],
+  "noConflictingConfig": true,
+  "otherSettingsChanged": false
+}

@@ -73,7 +73,7 @@
           "href": "https://www.linkedin.com/in/keatnuxsuo/"
         },
         {
-          "text": "Read OpenAI’s full recap",
+          "text": "Read OpenAI\u2019s full recap",
           "href": "https://openai.com/index/devday-2026-recap/"
         },
         {
@@ -387,7 +387,7 @@
         {
           "tag": "DIV",
           "class": "aspect-square overflow-hidden rounded-full [container-type:inline-size] bubble-float absolute",
-          "text": "⌐¬",
+          "text": "\u2310\u00ac",
           "background": "rgb(242, 109, 0)",
           "color": "rgb(13, 13, 13)",
           "font": "Inter, \"Inter Fallback\", ui-sans-serif, system-ui, sans-serif",
@@ -395,7 +395,7 @@
           "fontSize": "16px",
           "width": 108.984375,
           "height": 108.984375,
-          "html": "<div aria-hidden=\"true\" class=\"aspect-square overflow-hidden rounded-full [container-type:inline-size] bubble-float absolute\" style=\"background-color:#f26d00;--float-delay:2.5999999999999996s;--float-duration:8.6s;--blink-delay:1.8000000000000007s;left:40.625%;top:83.47826086956522%;width:17.5%\"><span class=\"absolute inset-0 transition-transform duration-200 ease-out [transform:translate(var(--look-x,0px),var(--look-y,0px))]\"><span class=\"absolute -translate-x-1/2 -translate-y-1/2 select-none font-medium leading-none\" style=\"left:5%;top:52%;font-size:24cqw;color:#000000\">⌐</span><span class=\"absolute -translate-x-1/2 -translate-y-1/2 select-none font-medium leading-none\" style=\"left:72%;top:"
+          "html": "<div aria-hidden=\"true\" class=\"aspect-square overflow-hidden rounded-full [container-type:inline-size] bubble-float absolute\" style=\"background-color:#f26d00;--float-delay:2.5999999999999996s;--float-duration:8.6s;--blink-delay:1.8000000000000007s;left:40.625%;top:83.47826086956522%;width:17.5%\"><span class=\"absolute inset-0 transition-transform duration-200 ease-out [transform:translate(var(--look-x,0px),var(--look-y,0px))]\"><span class=\"absolute -translate-x-1/2 -translate-y-1/2 select-none font-medium leading-none\" style=\"left:5%;top:52%;font-size:24cqw;color:#000000\">\u2310</span><span class=\"absolute -translate-x-1/2 -translate-y-1/2 select-none font-medium leading-none\" style=\"left:72%;top:"
         },
         {
           "tag": "DIV",
@@ -913,8 +913,7 @@
   },
   {
     "label": "devfolio-hackathons",
-    "url": "https://devfolio.co/hackathons",
-    "body": "Skip to content\n\nHome\n\nBlog\n\nJoin Devfolio\nSign in\n\nDISCOVER\n\nHACKATHONS\n\nBUILDERS\n\nType to begin search, or use the global shortcut\nCtrl\n\n+\n\nK\nYour hackathons\nOpen\nAll open hackathons\nVersion Beta 9.0\n\nHackathon\n\nTHEME\n\nNO RESTRICTIONS\n\n+500 participating\n\nOFFLINE\n\nOPEN\n\nSTARTS 30/10/26\n\nApply now\nSyntax Error 2026\n\nHackathon\n\nTHEME\n\nNO RESTRICTIONS\n\n+1000 participating\n\nONLINE\n\nOPEN\n\nLIVE\n\nApply now\nAgentVerse\n\nHackathon\n\nTHEME\n\nNO RESTRICTIONS\n\nOFFLINE\n\nOPEN\n\nSTARTS 07/11/26\n\nApply now\nTUM Blockchain & AI Hackathon\n\nHackathon\n\nTHEME\n\nBLOCKCHAIN\n\nAI\n\n+500 participating\n\nOFFLINE\n\nOPEN\n\nSTARTS 30/10/26\n\nApply now\nLean In Hacks 8.0\n\nHackathon\n\nTHEME\n\nNO RESTRICTIONS\n\nONLINE\n\nOPEN\n\nSTARTS 31/10/26\n\nApply now\nHacknauts 2.0\n\nHackathon\n\nTHEME\n\nNO RESTRICTIONS\n\n+500 participating\n\nOFFLINE\n\nOPEN\n\nSTARTS 14/11/26\n\nApply now\nhackodisha-6.0\n\nHackathon\n\nTHEME\n\nNO RESTRICTIONS\n\n+1000 participating\n\nONLINE\n\nOPEN\n\nSTARTS 31/10/26\n\nApply now\nTHE BIG HACK 2.0\n\nHackathon\n\nTHEME\n\nNO RESTRICTIONS\n\nOFFLINE\n\nOPEN\n\nSTARTS 20/11/26\n\nApply now\nhaxfinity\n\nHackathon\n\nTHEME\n\nAI\n\nHEALTHTECH\n\n+250 participating\n\nOFFLINE\n\nOPEN\n\nSTARTS 12/12/26\n\nApply now\nGeNarrative Clash\n\nHackathon\n\nTHEME\n\nDESIGN\n\nAI\n\n+500 participating\n\nOFFLINE\n\nOPEN\n\nSTARTS 21/11/26\n\nApply now\nDevNexus 2.0\n\nHackathon\n\nTHEME\n\nNO RESTRICTIONS\n\n+500 participating\n\nOFFLINE\n\nOPEN\n\nSTARTS 28/11/26\n\nApply now\nHACK WITH GDG S4\n\nHackathon\n\nTHEME\n\nNO RESTRICTIONS\n\n+500 participating\n\nOFFLINE\n\nOPEN\n\nSTARTS 22/01/27\n\nApply now\nUpcoming\nAll upcoming hackathons\nCODERAVE 2.0\n\nHackathon\n\nTHEME\n\nNO RESTRICTIONS\n\nONLINE\n\nUPCOMING\n\nOPENS 15/11/26\n\nRemind me\nETHChiangmai & Longevity Hackathon 2026\n\nHackathon\n\nTHEME\n\nBLOCKCHAIN\n\nAI\n\nHEALTHTECH\n\nOFFLINE\n\nUPCOMING\n\nOPENS 11/11/26\n\nRemind me\nHack Nexus 2027\n\nHackathon\n\nTHEME\n\nNO RESTRICTIONS\n\nOFFLINE\n\nUPCOMING\n\nOPENS 01/11/26\n\nRemind me\nPast\nAll past hackathons\nRealm Hack '26\n\nHackathon\n\nTHEME\n\nNO RESTRICTIONS\n\n+500 participated\n\nOFFLINE\n\nENDED\n\nSee projects\nCODEARAMBH 2.0\n\nHackathon\n\nTHEME\n\nNO RESTRICTIONS\n\n+250 participated\n\nOFFLINE\n\nENDED\n\nSee projects\nSrijan Setu\n\nHackathon\n\n3.7\n\nTHEME\n\nNO RESTRICTIONS\n\n+500 participated\n\nOFFLINE\n\nENDED\n\nSee projects\nNEXWIN INTERNAL HACKATHON\n\nHackathon\n\nTHEME\n\nDESIGN\n\nAI\n\nONLINE\n\nENDED\n\nSee projects\n\nWe love software and the people who build it.\n\nCOMMUNITY\n\nOrganize a hackathon\n\nExplore hackathons\n\nCode of Conduct\n\nBrand Assets\n\nDocumentation\n\nCOMPANY\n\nAbout\n\nBlog\n\nCareers\n\nChangelog\n\nPrivacy\n\nTerms\n\nSUPPORT\n\nGuide\n\nStatus\n\nContact us\n\n© 2026, NSB Classic PTE LTD"
+    "url": "https://devfolio.co/hackathons"
   },
   {
     "label": "param",

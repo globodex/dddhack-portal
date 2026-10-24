@@ -37,3 +37,11 @@ At each coherent slice compare accepted source and actual local render together,
 
 Git author and committer for every new commit: Parampreet Singh <rubercuber.30@gmail.com>. Feature branches only, no main pushes/merge/deploy.
 
+
+## Accepted scope refinements and final interpretation
+
+The later explicit instructions override earlier composites: every expression preview uses the selected single color; eight separate swatches retain hidden accessible radio semantics. All mobile menu buttons use a black circular treatment, destinations show icons and Logout is red. The approved hero target is Library `libfile_5c3333ebe2d881919233264ca1a2c7ea`; actual thumb-zone CTA, settled pile and short-screen geometry are in the final landing evidence. No speculative new artwork was generated.
+
+The landing lane's initial audit-only restriction ended when that target was approved. Additional isolated ownership covered the email template, factual SEO/legal drafts and a minimal baseline hydration fix. Scope expanded to Rules, timeline, projects/submission/history, all admin card types and sign-in. The final audited coverage and residual external/legal limits are in `REDESIGN_COVERAGE_2026_10_24.md` and root `design-qa.md`.
+
+The later explicit authorization permits only config commit e386cc7 to main, disabling Git deployments except main. This exception does not authorize redesign/safety merge or direct provider operations. See evidence/vercel-main-only for tests, remote verification and9 active-branch updates.

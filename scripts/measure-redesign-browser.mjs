@@ -3,6 +3,7 @@ import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 // Local synthetic same-fixture diagnostics only. No hosted speed claim.
 const origin=process.env.QA_ORIGIN||'http://127.0.0.1:3000',out=process.env.QA_OUTPUT||'evidence/final-performance';mkdirSync(out,{recursive:true});
+if (!['127.0.0.1', 'localhost'].includes(new URL(origin).hostname)) throw new Error('LOCAL_FIXTURE_ORIGIN_REQUIRED');
 const sourceRoot=process.env.QA_SOURCE_ROOT||process.cwd();
 const report={source:execFileSync('git',['rev-parse','HEAD'],{cwd:sourceRoot,encoding:'utf8'}).trim(),sourceRuntimeChanges:execFileSync('git',['status','--short','--','app','lib','neon','next.config.ts'],{cwd:sourceRoot,encoding:'utf8'}).trim(),origin,backend:'disposable rich synthetic fixture8789',syntheticOnly:true,writes:false,browserSandbox:false,startedAt:new Date().toISOString(),screenshots:[],metrics:[],errors:[],blocked:[],limitations:['Fresh browser contexts with HTTP cache disabled, warm local Next development server, unthrottled device. Three samples per route are diagnostics, not a hosted capacity or production-speed claim.','Chromium native sandbox unavailable in executor; isolated localhost-only contexts and non-GET denial.','CDP encodedDataLength includes observed completed requests by sampling time. Dev-server HMR may remain open and is excluded from completed-request bytes.']};
 const save=()=>writeFileSync(out+'/report.json',JSON.stringify(report,null,2));
