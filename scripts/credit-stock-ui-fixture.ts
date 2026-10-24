@@ -173,7 +173,7 @@ try {
         "lib/service.ts",
         "lib/participant-checkin.ts",
         "db/migrations/0024_credit_stock.sql",
-        "neon/migrations/0005_credit_stock.sql",
+        "neon/migrations/0102_credit_stock.sql",
       ].map((file) => [
         file,
         createHash("sha256")

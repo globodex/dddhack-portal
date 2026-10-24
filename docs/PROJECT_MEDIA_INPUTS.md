@@ -16,7 +16,7 @@ The existing signed storage API also validates actual original-file bytes at the
 
 ## Manual database requirement
 
-`neon/migrations/0006_project_media_limits.sql` is an additive source migration. It replaces only four upload-table CHECK constraints: source bytes become kind-specific 1 MB/5 MB, canonical bytes become 128/384 KiB, saved width/height become 1..4096. It preserves 0004's checksum and all foreign keys, receipt state and serializable-transaction guards. Existing pending, ready and consumed rows remain valid. The owner must review/apply the normal ordered PostgreSQL migration plan (including the separate 0005 credit migration) before relying on the widened existing signed API. No hosted migration was applied in this work. The active locally optimized JSON editor does not use signed browser PUTs and needs no CORS/provider-setting change.
+`neon/migrations/0103_project_media_limits.sql` is an additive source migration. It replaces only four upload-table CHECK constraints: source bytes become kind-specific 1 MB/5 MB, canonical bytes become 128/384 KiB, saved width/height become 1..4096. It preserves 0004's checksum and all foreign keys, receipt state and serializable-transaction guards. Existing pending, ready and consumed rows remain valid. The owner must review/apply the normal ordered PostgreSQL migration plan (including the separate 0102 credit migration) before relying on the widened existing signed API. No hosted migration was applied in this work. The active locally optimized JSON editor does not use signed browser PUTs and needs no CORS/provider-setting change.
 
 ## Verification
 

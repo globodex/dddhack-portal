@@ -632,7 +632,7 @@ for (const engine of ["sqlite", "postgres"] as const) {
 async function previous(engine: "sqlite" | "postgres") {
   if (engine === "postgres") {
     const laterMigrations = (await loadPortalMigrations())
-      .filter((migration) => migration.name >= "0005_credit_stock.sql")
+      .filter((migration) => migration.name >= "0102_credit_stock.sql")
       .map((migration) => migration.name);
     const f = await createPGliteFixture({
       excludeMigrations: laterMigrations,

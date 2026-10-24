@@ -2,8 +2,8 @@ import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { loadPortalMigrations, type PortalMigration } from "./db/migrate";
 
-// Auth has a separate ownership stream, appended after the reviewed portal and
-// media baseline. One checksum ledger orders the final deployable schema.
+// Portal and auth migrations share one checksum ledger. Sort the combined plan
+// so new portal migrations follow the already published auth/evaluation baseline.
 export async function loadMigrationPlan(): Promise<PortalMigration[]> {
   const portal = await loadPortalMigrations();
   const sql = await readFile(
@@ -26,5 +26,5 @@ export async function loadMigrationPlan(): Promise<PortalMigration[]> {
       sql: approved,
       checksum: createHash("sha256").update(approved).digest("hex"),
     },
-  ];
+  ].sort((a, b) => a.name.localeCompare(b.name));
 }

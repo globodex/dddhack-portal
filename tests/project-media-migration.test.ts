@@ -42,7 +42,7 @@ test("additive media upgrade preserves old pending/ready/consumed rows and enfor
   try {
     const migrations = await loadPortalMigrations();
     const before = migrations.filter(
-      (m) => m.name < "0006_project_media_limits",
+      (m) => m.name < "0103_project_media_limits",
     );
     await applyPortalMigrations(pool, before);
     await seedLocal(db);

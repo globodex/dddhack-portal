@@ -6,7 +6,7 @@ Current code rejects an existing heading, allocates a newly published column onl
 
 ## Schema
 
-Add SQLite `0024_credit_stock.sql` and PostgreSQL `0005_credit_stock.sql`, plus matching Drizzle declarations. Preserve existing table row shapes and historical migration checksums.
+Add SQLite `0024_credit_stock.sql` and PostgreSQL `0102_credit_stock.sql`, plus matching Drizzle declarations. Preserve existing table row shapes and historical migration checksums.
 
 - `credit_category_keys(source_key PRIMARY KEY, type_id UNIQUE REFERENCES credit_types)`: trimmed, case-normalized original CSV header maps to the stable existing category. Existing display heading and Markdown survive restock. Backfill from `credit_batch_columns.source_heading`, or the legacy category name.
 - `credit_code_history(fingerprint PRIMARY KEY, inventory_id UNIQUE, type_id, source_key, first_seen_at, assigned, exposed)`: retain hashes and consumed/exposed booleans after active inventory/category deletion. No recipient ID, email, assignment time, raw code or cascading foreign key. Stock identity fields cannot change; consumed/exposed flags may advance once. Existing inventory and assignments backfill atomically.

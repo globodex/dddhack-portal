@@ -42,7 +42,7 @@ async function previous(engine: "sqlite" | "postgres") {
     // Model the schema immediately before stock. Applying a later media
     // migration first would correctly make this upgrade out of order.
     excludeMigrations: (await loadPortalMigrations())
-      .filter((migration) => migration.name >= "0005_credit_stock.sql")
+      .filter((migration) => migration.name >= "0102_credit_stock.sql")
       .map((migration) => migration.name),
   });
   await seedLocal(context.db);
@@ -52,7 +52,7 @@ async function previous(engine: "sqlite" | "postgres") {
       applyPortalMigrations(
         context.pool,
         (await loadPortalMigrations()).filter(
-          (migration) => migration.name === "0005_credit_stock.sql",
+          (migration) => migration.name === "0102_credit_stock.sql",
         ),
       ),
   };
