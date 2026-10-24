@@ -1,4 +1,5 @@
 import { projectMediaPolicy } from "./project-media-policy";
+import { adminTeamCandidates, adminTeamCorrection } from "./admin-team-corrections";
 import { OWNER_EMAIL } from "./identity";
 import { adminAccessView, revokeAdminAccess } from "./admin-access";
 import { auditReason } from "./security";
@@ -587,6 +588,8 @@ export class PortalExperience {
     options: PortalViewOptions = {},
   ): Promise<Record<string, unknown> | null> {
     let route = path.replace(/\/+/g, "/").replace(/\/$/, "") || "/";
+    const candidates = await adminTeamCandidates(this.s, route, options);
+    if (candidates !== null) return candidates;
     if (route === "/discover/teams") route = "/teams";
     if (route === "/discover/participants") {
       const me = await this.s.actor();
@@ -1171,6 +1174,8 @@ export class PortalExperience {
     data: unknown,
     actor: Actor,
   ): Promise<Record<string, unknown> | null> {
+    const correction = await adminTeamCorrection(this.s, action, data);
+    if (correction !== null) return correction;
     if (action === "quick-check-in" || action === "bulk-check-in")
       return checkInParticipants(this.s, actor, action, data);
     if (
@@ -1882,7 +1887,7 @@ export class PortalExperience {
       return {
         message:
           action === "submit-project"
-            ? "Project version committed. Eligible entries appear automatically; eligibility verification remains separate."
+            ? "Project submitted successfully."
             : "Project draft saved.",
         projectId,
         ...(action === "submit-project"
