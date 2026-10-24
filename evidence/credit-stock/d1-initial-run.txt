@@ -1,0 +1,16 @@
+✖ actual local D1 binding: schema, trigger rollback, batch atomicity and concurrent credit/submission commands (30155.358801ms)
+✔ local and hosted derived-readiness migrations preserve real D1 submission and frozen guards (11804.444239ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 1
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 83600.043825
+
+✖ failing tests:
+
+test at tests/d1.test.ts:1:342
+✖ actual local D1 binding: schema, trigger rollback, batch atomicity and concurrent credit/submission commands (30155.358801ms)
+  'test timed out after 30000ms'
