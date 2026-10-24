@@ -191,7 +191,7 @@ dialog::backdrop { background: #20232066; }
   min-height: 44px;
   padding: 10px;
   border: 1px solid var(--ink) !important;
-  border-radius: 50%;
+  border-radius: 50% !important;
   color: #fff !important;
   background: var(--ink) !important;
 }
