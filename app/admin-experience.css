@@ -1164,3 +1164,12 @@
     flex-wrap: wrap;
   }
 }
+
+.admin-review-page .review-layout .notice {
+  padding: 0;
+  margin: 0 0 18px;
+  border: 0;
+  background: transparent;
+  color: var(--muted, #656960);
+  font-size: 13px;
+}

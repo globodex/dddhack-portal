@@ -76,9 +76,20 @@ export function adminPreviewError(action: string, body: AdminRow): string {
     CSV_ROW_LIMIT: "Use at most 1,000 CSV rows.",
     CSV_TOO_LARGE: "CSV must be at most 512 KB.",
   };
+  const creditMessages: Record<string, string> = {
+    CREDIT_HEADING_EXISTS:
+      "One of these credit headings already exists. Rename it in the CSV.",
+    CREDIT_HEADING_DUPLICATE: "Use a different heading for each column.",
+    CREDIT_HEADER_REQUIRED: "Add a heading to every CSV column.",
+    EMPTY_CREDIT_COLUMN: "Add at least one credit to every column.",
+    CSV_DUPLICATES: "Remove duplicate credits from each column.",
+    CREDIT_COLUMN_LIMIT: "Use up to 20 credit columns.",
+    INVALID_CREDIT_VALUE: "Keep each credit under 4,000 characters.",
+  };
   const code = String(body.code || body.message || "");
   return (
     (action === "preview-import" && messages[code]) ||
+    (action === "preview-credit-batch" && creditMessages[code]) ||
     body.message ||
     body.code ||
     "Preview is unavailable."

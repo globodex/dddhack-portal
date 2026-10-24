@@ -3908,12 +3908,10 @@ export function Review({
               <summary>Final judging rubric · reviewer private</summary>
               {data.scoringReady !== true && (
                 <p className="notice">
-                  Judging setup is pending. Rubric scoring is inactive until the
-                  server confirms readiness.
+                  Judging configuration is incomplete.
                 </p>
               )}
               <Form
-                title="Record verified rubric evidence"
                 disabled={data.scoringReady !== true}
                 onSave={async (f) => {
                   await run("review", {
