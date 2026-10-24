@@ -1,16 +1,16 @@
 {
-  "runtimeSource": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
+  "runtimeSource": "86862c722233bbd6776f1e2672d78b41fa808a52",
   "runtime": "nodejs24",
   "source": "neon/api.ts",
-  "zipBytes": 9014229,
-  "sha256": "1afca1c65f0c3b58bde89a5e1b80d3dec92c87b392239da0315ed762ebd0730f",
+  "zipBytes": 9014656,
+  "sha256": "bbd047173fb4e895bd8148d24674548f05dfaea58e184ca57bcc0e183ca60382",
   "env": {},
   "warnings": [],
   "buildOnly": true,
   "deployment": "not performed",
   "packager": "@neon/config-runtime@1.10.2",
   "nativeExecution": "not verified on this x86_64 executor",
-  "uncompressedBytes": 21149049,
+  "uncompressedBytes": 21150237,
   "fileCount": 93,
   "nativeArchitecture": "Linux ARM64 glibc",
   "nativeFiles": [
@@ -32,7 +32,7 @@
   "archiveHasSecretsOrTests": [],
   "bannerPresent": true,
   "externalSharpImport": true,
-  "indexSha256": "a1494ba872ce9acae696026e1db8364aede1b10b00227d54f08d6b46929dcba1",
+  "indexSha256": "77b26aed98d0c7c8486c12ee2246ce61dadc98163d2fc5d24989f6fd579669fe",
   "archive": "artifacts/neon/portalapi.zip",
   "graphInputCount": 862,
   "forbiddenInputs": [],
@@ -46,9 +46,9 @@
     "trustedHealth": 200,
     "untrustedHealth": 403,
     "unconfiguredPortal": 503,
-    "dependencySubstitution": "existing x86_64 host Sharp; original ARM64 archive/extracted tree unchanged"
+    "dependencySubstitution": "Existing x86_64 host Sharp; original ARM64 archive/extracted tree unchanged"
   },
-  "integratedSourceEquivalentTo": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
+  "integratedSourceEquivalentTo": "86862c722233bbd6776f1e2672d78b41fa808a52",
   "graphApplicationInputCount": 78,
   "graphFrontendInputs": [],
   "manualMigrations": [
@@ -104,15 +104,32 @@
     "hostedDatabaseInspected": false,
     "url": "https://github.com/Param302/dddhack-portal/blob/d195fe89b8d327709ffe11d6e87e6c747d1dd96b/docs/COMBINED_MIGRATION_UPGRADE_INDEPENDENT_REVIEW.md"
   },
-  "refreshedFrom": "bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36b38aef7ae3",
+  "refreshedFrom": "1afca1c65f0c3b58bde89a5e1b80d3dec92c87b392239da0315ed762ebd0730f",
   "entryPayloadEquivalentToPriorArchive": false,
   "zipOnlyDosTimestampsDiffer": false,
   "sourceEquivalenceEvidence": "evidence/neon-host-archive/source-equivalence.json",
-  "sourceBuildVerifiedAgainst": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
+  "sourceBuildVerifiedAgainst": "86862c722233bbd6776f1e2672d78b41fa808a52",
   "archiveComparisonEvidence": "evidence/neon-host-archive/archive-refresh-comparison.json",
   "zipChangesOnlyDosTimestamps": false,
   "changedArchiveEntries": [
     "index.mjs"
   ],
-  "unchangedArchiveEntryCount": 92
+  "unchangedArchiveEntryCount": 92,
+  "viewerChangeRequiresAdditionalMigration": false,
+  "viewerRegistrationAPI": {
+    "privateRoutes": [
+      "/dashboard",
+      "/dashboard/team",
+      "/dashboard/credits",
+      "/profile",
+      "/dashboard/profile",
+      "/submission",
+      "/dashboard/submission",
+      "/personal/credits"
+    ],
+    "response": "Authenticated Viewer receives200 with me and registrationRequired:true; removed people remain403.",
+    "staffProjection": "Owner/admin participant rows mark registered/viewer and Not registered; volunteers and public discovery exclude Viewer rows.",
+    "writePermissions": "Viewer writes remain denied; credits require personal check-in.",
+    "schemaChange": false
+  }
 }

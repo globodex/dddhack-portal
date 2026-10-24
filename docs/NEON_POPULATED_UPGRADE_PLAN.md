@@ -132,6 +132,6 @@ On any failure, leave the frontend unpublished. There is no automatic down migra
 
 ## Backend artifact and limits of verification
 
-The reviewed ZIP is `artifacts/neon/portalapi.zip`, SHA256 `1afca1c65f0c3b58bde89a5e1b80d3dec92c87b392239da0315ed762ebd0730f`, 9,014,229 bytes and 93 files. The SQL sources are separate from that ZIP. Use the [Windows extraction/deploy handoff](DESIGN_RELEASE_WINDOWS_DEPLOY.md) after successful database checks.
+The reviewed ZIP is `artifacts/neon/portalapi.zip`, SHA256 `bbd047173fb4e895bd8148d24674548f05dfaea58e184ca57bcc0e183ca60382`, 9,014,656 bytes and 93 files. The SQL sources are separate from that ZIP. Use the [Windows extraction/deploy handoff](DESIGN_RELEASE_WINDOWS_DEPLOY.md) after successful database checks.
 
 The existing six-case [populated upgrade proof](COMBINED_MIGRATION_UPGRADE_INDEPENDENT_REVIEW.md) exercises a populated local seven-entry baseline, exact two-entry append, repeat, preserved auth/profile/team/project/submission/evaluation/inventory/allocation/media records, and atomic collision rollback. The dedicated CLI's independent tests are recorded separately with final release checks. These use disposable single-connection PGlite; native multi-connection PostgreSQL behavior, an actual Windows-hosted upgrade and the hosted ledger remain unverified. No provider setting, hosted migration, role, credit allocation or production record was changed by this work.

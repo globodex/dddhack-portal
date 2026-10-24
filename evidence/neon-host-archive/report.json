@@ -1,11 +1,11 @@
 {
-  "runtimeSource": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
+  "runtimeSource": "86862c722233bbd6776f1e2672d78b41fa808a52",
   "archive": {
-    "path": "/workspace/ddd-release/artifacts/neon/portalapi.zip",
-    "bytes": 9014229,
-    "sha256": "1afca1c65f0c3b58bde89a5e1b80d3dec92c87b392239da0315ed762ebd0730f",
+    "path": "/workspace/ddd-viewer-release/artifacts/neon/portalapi.zip",
+    "bytes": 9014656,
+    "sha256": "bbd047173fb4e895bd8148d24674548f05dfaea58e184ca57bcc0e183ca60382",
     "files": 93,
-    "uncompressedBytes": 21149049,
+    "uncompressedBytes": 21150237,
     "nativeFiles": [
       {
         "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
@@ -22,10 +22,10 @@
     ],
     "forbiddenPaths": []
   },
-  "indexSha256": "a1494ba872ce9acae696026e1db8364aede1b10b00227d54f08d6b46929dcba1",
+  "indexSha256": "77b26aed98d0c7c8486c12ee2246ce61dadc98163d2fc5d24989f6fd579669fe",
   "identicalUnmodifiedJavaScript": true,
   "hostDependencySubstitution": {
-    "path": "/tmp/ddd-neon-payload-host-o7ww85o3",
+    "path": "/tmp/ddd-viewer-neon-host-18j0rhya",
     "nodeModulesTarget": "/workspace/dddhack-portal/node_modules",
     "purpose": "Resolve sharp against installed host x86_64 native dependencies; original ARM64 archive and extracted tree remain unchanged."
   },
@@ -121,7 +121,5 @@
     "This is JavaScript loading/routing with an explicitly substituted host sharp dependency, not execution of the unmodified ARM64 archive.",
     "Outbound guards are installed on Node fetch/TCP/TLS/HTTP APIs. No provider, DB, SMTP, Google or storage credential is supplied.",
     "Hosted ARM64 decoding, storage, SMTP delivery and full login remain unverified."
-  ],
-  "freshArchiveBuildEvidence": "evidence/neon-host-archive/build-operations.json",
-  "noRebuildFieldScope": "The smoke verifier itself does not rebuild. The official fresh archive build is recorded separately."
+  ]
 }

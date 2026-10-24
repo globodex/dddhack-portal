@@ -1,7 +1,8 @@
 {
-  "builtSource": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
-  "integratedSource": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
-  "baselineIntegratedSource": "59246860b49d83412c6685e4643f97a21aab55e5",
+  "builtSource": "86862c722233bbd6776f1e2672d78b41fa808a52",
+  "integratedSource": "86862c722233bbd6776f1e2672d78b41fa808a52",
+  "baselineIntegratedSource": "d97d614ac7be2a657df91de42aaf00e9f3cfc336",
+  "baselineArchiveRuntimeSource": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
   "comparedBackendPaths": [
     "neon",
     "lib",
@@ -9,23 +10,32 @@
     "package-lock.json",
     "neon.ts"
   ],
-  "backendPathDiffEmpty": false,
   "changedBackendFiles": [
-    "lib/event-content-contract.ts",
-    "lib/public-content-defaults.ts"
+    "lib/admin-presentation.ts",
+    "lib/credit-stock.ts",
+    "lib/discover-participants.ts",
+    "lib/experience.ts",
+    "lib/participant-export.ts",
+    "lib/portal-load-state.ts",
+    "lib/roster.ts",
+    "lib/service.ts"
   ],
-  "addedApiGraphInput": "lib/public-content-defaults.ts",
-  "changedApiGraphInput": "lib/event-content-contract.ts",
-  "unchangedApplicationInputCount": 76,
+  "changedApiGraphInputs": [
+    "lib/admin-presentation.ts",
+    "lib/credit-stock.ts",
+    "lib/discover-participants.ts",
+    "lib/experience.ts",
+    "lib/participant-export.ts",
+    "lib/roster.ts",
+    "lib/service.ts"
+  ],
+  "unchangedApplicationInputCount": 71,
   "applicationInputCount": 78,
-  "validatorPrefixByteIdentical": true,
-  "validatorPrefixSHA256": "6a6298d6408f43d8bd14267bc50352f984053b89d58b16d784ecfaa276cfbed5",
-  "defaultPublicContentLiteralByteIdentical": true,
-  "defaultPublicContentLiteralSHA256": "4b74f8b4422157358dec6eff35e5534700ec9f7ee3f9ec109a7621e7513e143c",
   "sourceGraphRecomputed": true,
   "graphInputCount": 862,
-  "indexSha256": "a1494ba872ce9acae696026e1db8364aede1b10b00227d54f08d6b46929dcba1",
+  "indexSha256": "77b26aed98d0c7c8486c12ee2246ce61dadc98163d2fc5d24989f6fd579669fe",
   "nativeAndOtherDependencyEntriesByteIdentical": 92,
   "apiJavaScriptChanged": true,
-  "semanticTestGate": "Parent accepted41 relevant tests/typecheck plus independent validator/literal review; this archive verification does not replace that gate."
+  "viewerChangeAddsSchemaMigration": false,
+  "semanticTestGate": "Domain/HTTP/browser tests are independently owned; this archive proof does not replace those gates."
 }

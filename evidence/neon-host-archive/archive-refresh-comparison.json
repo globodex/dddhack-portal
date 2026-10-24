@@ -1,12 +1,12 @@
 {
-  "runtimeSource": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
-  "baselineRuntimeSource": "59246860b49d83412c6685e4643f97a21aab55e5",
-  "baselineSHA256": "bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36b38aef7ae3",
-  "sha256": "1afca1c65f0c3b58bde89a5e1b80d3dec92c87b392239da0315ed762ebd0730f",
-  "bytes": 9014229,
+  "runtimeSource": "86862c722233bbd6776f1e2672d78b41fa808a52",
+  "baselineRuntimeSource": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
+  "baselineSHA256": "1afca1c65f0c3b58bde89a5e1b80d3dec92c87b392239da0315ed762ebd0730f",
+  "sha256": "bbd047173fb4e895bd8148d24674548f05dfaea58e184ca57bcc0e183ca60382",
+  "bytes": 9014656,
   "fileCount": 93,
-  "uncompressedBytes": 21149049,
-  "indexSha256": "a1494ba872ce9acae696026e1db8364aede1b10b00227d54f08d6b46929dcba1",
+  "uncompressedBytes": 21150237,
+  "indexSha256": "77b26aed98d0c7c8486c12ee2246ce61dadc98163d2fc5d24989f6fd579669fe",
   "nativeFiles": [
     {
       "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
@@ -28,10 +28,10 @@
   "changedEntries": [
     {
       "path": "index.mjs",
-      "previousSHA256": "5f33d61cf558e6dd9ea32c98f31cd4a166e74a8e7192c74505ff3eb36077b7d6",
-      "sha256": "a1494ba872ce9acae696026e1db8364aede1b10b00227d54f08d6b46929dcba1",
-      "previousBytes": 1648168,
-      "bytes": 1648172
+      "previousSHA256": "a1494ba872ce9acae696026e1db8364aede1b10b00227d54f08d6b46929dcba1",
+      "sha256": "77b26aed98d0c7c8486c12ee2246ce61dadc98163d2fc5d24989f6fd579669fe",
+      "previousBytes": 1648172,
+      "bytes": 1649360
     }
   ],
   "allNonJavaScriptEntryBytesIdentical": true,
@@ -39,7 +39,7 @@
   "graphInputCount": 862,
   "graphApplicationInputCount": 78,
   "frontendInputs": [],
-  "extracted": "/tmp/ddd-neon-payload-extracted-lz79ijvf",
-  "host": "/tmp/ddd-neon-payload-host-o7ww85o3",
+  "extracted": "/tmp/ddd-viewer-neon-extracted-l_ly13dm",
+  "host": "/tmp/ddd-viewer-neon-host-18j0rhya",
   "ARM64Execution": "not performed on x86_64 host"
 }

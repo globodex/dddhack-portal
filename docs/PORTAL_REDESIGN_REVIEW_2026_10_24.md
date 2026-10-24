@@ -37,7 +37,7 @@ The existing current-shell submission gallery and Save/toast proof remain valid:
 
 ## Manual publication boundary
 
-The reviewed [ARM64 backend ZIP](../artifacts/neon/README.md) is 9,014,229 bytes, SHA256 `1afca1c65f0c3b58bde89a5e1b80d3dec92c87b392239da0315ed762ebd0730f`. Fresh graph/native architecture checks and isolated host JavaScript smoke pass. Actual ARM64 execution is unverified. Backend redeployment is required for backend/email/stock changes to become live.
+The reviewed [ARM64 backend ZIP](../artifacts/neon/README.md) is 9,014,656 bytes, SHA256 `bbd047173fb4e895bd8148d24674548f05dfaea58e184ca57bcc0e183ca60382`. Fresh graph/native architecture checks and isolated host JavaScript smoke pass. Actual ARM64 execution is unverified. Backend redeployment is required for backend/email/stock changes to become live.
 
 The hosted database is populated. The [executable Windows upgrade guide](NEON_POPULATED_UPGRADE_PLAN.md) contains source-plan, private target, backup, read-only inspection, guarded apply and post-inspection commands. The owner must verify a real restore checkpoint; the CLI acknowledges that attestation rather than claiming to verify a backup. Only pending 0102/0103 may apply, with checks inside the same SERIALIZABLE/advisory-lock transaction. Never seed/reset or use synthetic flags. The [Windows backend handoff](DESIGN_RELEASE_WINDOWS_DEPLOY.md) stages the exact ARM64 archive and gives the separate env-preserving manual deployment command. Order is fresh approval →feature-source availability →owner backup/ledger →schema upgrade →backend confirmation →main publication. No hosted ledger/data was accessed or changed.
 

@@ -1,11 +1,12 @@
 {
-  "runtimeSource": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
+  "runtimeSource": "86862c722233bbd6776f1e2672d78b41fa808a52",
+  "archiveSha256": "bbd047173fb4e895bd8148d24674548f05dfaea58e184ca57bcc0e183ca60382",
   "files": [
     {
       "path": "index.mjs",
-      "bytes": 1648172,
-      "compressedBytes": 461601,
-      "sha256": "a1494ba872ce9acae696026e1db8364aede1b10b00227d54f08d6b46929dcba1"
+      "bytes": 1649360,
+      "compressedBytes": 462028,
+      "sha256": "77b26aed98d0c7c8486c12ee2246ce61dadc98163d2fc5d24989f6fd579669fe"
     },
     {
       "path": "node_modules/@emnapi/runtime/dist/emnapi.cjs.js",
@@ -53,8 +54,7 @@
       "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
       "bytes": 18324712,
       "compressedBytes": 8195758,
-      "sha256": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f",
-      "elfMachine": 183
+      "sha256": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f"
     },
     {
       "path": "node_modules/@img/sharp-libvips-linux-arm64/package.json",
@@ -72,8 +72,7 @@
       "path": "node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.5.node",
       "bytes": 530120,
       "compressedBytes": 167789,
-      "sha256": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b",
-      "elfMachine": 183
+      "sha256": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b"
     },
     {
       "path": "node_modules/@img/sharp-linux-arm64/package.json",
@@ -561,5 +560,27 @@
       "compressedBytes": 3063,
       "sha256": "ad4a2535d72eb638053a38867b1abf43c328cd1c1dbae5cf4172d498365a8b97"
     }
-  ]
+  ],
+  "nativeFiles": [
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
+      "bytes": 18324712,
+      "compressedBytes": 8195758,
+      "sha256": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f",
+      "elfMachine": 183
+    },
+    {
+      "path": "node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.5.node",
+      "bytes": 530120,
+      "compressedBytes": 167789,
+      "sha256": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b",
+      "elfMachine": 183
+    }
+  ],
+  "forbiddenPaths": [],
+  "limits": {
+    "maxZipBytes": 10485760,
+    "maxTotalBytes": 67108864,
+    "maxEntries": 4096
+  }
 }

@@ -1,6 +1,6 @@
 {
-  "runtimeSource": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
-  "method": "Read local SQL files only and compare stored names/checksums; no migration or provider plan CLI executed.",
+  "runtimeSource": "86862c722233bbd6776f1e2672d78b41fa808a52",
+  "method": "Read local SQL files only and compare all nine names/checksums to prior accepted receipt; no migration/provider plan CLI executed.",
   "entries": 9,
   "historicalEntriesUnchanged": 7,
   "pendingSourceFiles": [
@@ -8,6 +8,7 @@
     "0103_project_media_limits.sql"
   ],
   "allChecksumsUnchanged": true,
+  "viewerChangeAddsMigration": false,
   "hostedLedgerInspected": false,
   "migrationApplied": false,
   "migrations": [
