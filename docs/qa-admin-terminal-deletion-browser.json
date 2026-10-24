@@ -1,0 +1,388 @@
+{
+  "syntheticOnly": true,
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Active leader cancel has exact cascade scope and no POST",
+      "passed": true
+    },
+    {
+      "name": "Protected staff and self have no Delete control",
+      "passed": true
+    },
+    {
+      "name": "Bulk selection retains approval confirmation and has no Delete action",
+      "passed": true
+    },
+    {
+      "name": "Legacy removed participant retains one Delete bin alongside Restore",
+      "passed": true
+    },
+    {
+      "name": "Failed deletion retains record and enabled retry control",
+      "passed": true
+    },
+    {
+      "name": "390 mobile leader confirmation Escape restores nested menu and scrolling",
+      "passed": true
+    },
+    {
+      "name": "320 short touch confirmation fits and cancellation preserves scrolling",
+      "passed": true
+    },
+    {
+      "name": "Quick check-in stays one-click and pending double click sends one POST",
+      "passed": true
+    },
+    {
+      "name": "Confirmed nonleader deletion sends one POST and leaves team intact",
+      "passed": true
+    },
+    {
+      "name": "Confirmed locked three-attempt leader deletion cascades once and keeps members registered teamless",
+      "passed": true
+    },
+    {
+      "name": "Team kebab Cancel and Escape preserve nested menu; confirm deletes separate project history",
+      "passed": true
+    },
+    {
+      "name": "Single tap deletion failure stays local with enabled retry and unchanged records at320",
+      "passed": true,
+      "source": "f6cd4137409dae6a721c6eb660b4615b9283d429",
+      "simulatedPosts": 1,
+      "backendWrites": 0
+    },
+    {
+      "name": "Deletion failure stays local with enabled retry and unchanged records at390",
+      "passed": true,
+      "source": "0d8929f49d29ddae5562df742c81e6e9e1272f80",
+      "simulatedPosts": 1,
+      "backendWrites": 0
+    },
+    {
+      "name": "Deletion failure stays local with enabled retry and unchanged records at320",
+      "passed": true,
+      "source": "0d8929f49d29ddae5562df742c81e6e9e1272f80",
+      "simulatedPosts": 1,
+      "backendWrites": 0
+    },
+    {
+      "name": "320 short team menu touch gesture, nested Cancel focus return, actual page touch scroll restored",
+      "passed": true,
+      "source": "0d8929f49d29ddae5562df742c81e6e9e1272f80",
+      "before": {
+        "scroll": 0,
+        "height": 381,
+        "total": 381,
+        "bodyY": 0
+      },
+      "after": {
+        "scroll": 0,
+        "height": 381,
+        "total": 381,
+        "bodyY": 0
+      },
+      "pageBefore": 0,
+      "pageAfter": 279,
+      "posts": 0
+    }
+  ],
+  "pageErrors": [],
+  "resolvedIssues": [
+    {
+      "issue": "Rapid second confirmation click dismissed pending menu at320 and hid local-only error",
+      "observedSource": "f6cd4137409dae6a721c6eb660b4615b9283d429",
+      "resolutionSource": "0d8929f49d29ddae5562df742c81e6e9e1272f80",
+      "resolved": true
+    }
+  ],
+  "source": {
+    "cascade": "7e09d6c98bc5f64640a78c9950979d3ebee09b14",
+    "feedback": "f6cd4137409dae6a721c6eb660b4615b9283d429",
+    "finalGuard": "0d8929f49d29ddae5562df742c81e6e9e1272f80"
+  },
+  "artifact": {
+    "url": "https://filebin.net/ddd-admin-deletion-20261024-0d8929f-b4c91e/admin-deletion-browser-proof-0d8929f-png-only.zip",
+    "bytes": 1119478,
+    "sha256": "3db266bb373984a87e859de3049e0c4eac4f31b8576dca9514da853c492eb4c6",
+    "pngFiles": 22,
+    "uploadStatus": 201,
+    "downloadStatus": 200,
+    "downloadArchiveAndEveryPngHashVerified": true,
+    "expiresAt": "2026-10-31T22:25:36Z"
+  },
+  "files": [
+    {
+      "archivePath": "7e09d6c/desktop-leader-menu.png",
+      "source": "7e09d6c98bc5f64640a78c9950979d3ebee09b14",
+      "bytes": 104929,
+      "sha256": "b9325b301469fc476fcb68a7b1fba1acc147492635260d01aaa6e6239c542b29",
+      "width": 1440,
+      "height": 900,
+      "inspected": true
+    },
+    {
+      "archivePath": "7e09d6c/desktop-leader-confirm.png",
+      "source": "7e09d6c98bc5f64640a78c9950979d3ebee09b14",
+      "bytes": 116847,
+      "sha256": "1b308fb1865d6bd15b5f6990000fe34967a290a9c32753bdd9b0e6e25a3e2e96",
+      "width": 1440,
+      "height": 900,
+      "inspected": true
+    },
+    {
+      "archivePath": "7e09d6c/desktop-bulk-confirm.png",
+      "source": "7e09d6c98bc5f64640a78c9950979d3ebee09b14",
+      "bytes": 115974,
+      "sha256": "54bd1478ab7107bfea57076a932e69bef85cd061d6d38c418872c29a2bb5a5c8",
+      "width": 1440,
+      "height": 900,
+      "inspected": true
+    },
+    {
+      "archivePath": "7e09d6c/desktop-legacy-removed-menu.png",
+      "source": "7e09d6c98bc5f64640a78c9950979d3ebee09b14",
+      "bytes": 61742,
+      "sha256": "62e047833a279d85bd5781ea7b223a826c63bced37913bebe39cad5e2dd8559f",
+      "width": 1440,
+      "height": 900,
+      "inspected": true
+    },
+    {
+      "archivePath": "7e09d6c/mobile-leader-confirm-390.png",
+      "source": "7e09d6c98bc5f64640a78c9950979d3ebee09b14",
+      "bytes": 56464,
+      "sha256": "4078e98845c32e00eb9cdcb6ee2f632e890a0e72da00c4233623d869c555a975",
+      "width": 390,
+      "height": 844,
+      "inspected": true
+    },
+    {
+      "archivePath": "7e09d6c/short-leader-confirm-320.png",
+      "source": "7e09d6c98bc5f64640a78c9950979d3ebee09b14",
+      "bytes": 37132,
+      "sha256": "33b728e3d085048da7def106935021ebe7d9bfc0e383080ac33af5e698cce680",
+      "width": 320,
+      "height": 480,
+      "inspected": true
+    },
+    {
+      "archivePath": "7e09d6c/short-quick-pending-320.png",
+      "source": "7e09d6c98bc5f64640a78c9950979d3ebee09b14",
+      "bytes": 20795,
+      "sha256": "69986e1d02cfd6c7ae513c5d461c237fcf16001fc003f7e94b76fa135d7c1f97",
+      "width": 320,
+      "height": 480,
+      "inspected": true
+    },
+    {
+      "archivePath": "7e09d6c/short-quick-persisted-320.png",
+      "source": "7e09d6c98bc5f64640a78c9950979d3ebee09b14",
+      "bytes": 23454,
+      "sha256": "5335adb8f6f7cc8eb85fa11bc379662ebb28a6789106d525813461f561abeff3",
+      "width": 320,
+      "height": 480,
+      "inspected": true
+    },
+    {
+      "archivePath": "7e09d6c/desktop-nonleader-deleted.png",
+      "source": "7e09d6c98bc5f64640a78c9950979d3ebee09b14",
+      "bytes": 111020,
+      "sha256": "6a28e7a00bf048b9d1427aa360adfcf4286b41b9fe890024b21f315b0de39a63",
+      "width": 1440,
+      "height": 900,
+      "inspected": true
+    },
+    {
+      "archivePath": "7e09d6c/desktop-leader-delete-pending.png",
+      "source": "7e09d6c98bc5f64640a78c9950979d3ebee09b14",
+      "bytes": 105291,
+      "sha256": "1faafe3bc7bc607494fb33d6ecd7fef16d88af86be5a75a1b2d18c085e088118",
+      "width": 1440,
+      "height": 900,
+      "inspected": true
+    },
+    {
+      "archivePath": "7e09d6c/desktop-leader-deleted-members-teamless.png",
+      "source": "7e09d6c98bc5f64640a78c9950979d3ebee09b14",
+      "bytes": 103268,
+      "sha256": "dffe2679b3e797f556e6ebbd114dd5fc9b4831d7abd0e4c99f89db2aa832876c",
+      "width": 1440,
+      "height": 900,
+      "inspected": true
+    },
+    {
+      "archivePath": "7e09d6c/mobile-team-delete-confirm-390.png",
+      "source": "7e09d6c98bc5f64640a78c9950979d3ebee09b14",
+      "bytes": 46262,
+      "sha256": "f49d0bc0bc29431f665710d2f5308a712eb09125c6090126b981a669d98526c2",
+      "width": 390,
+      "height": 844,
+      "inspected": true
+    },
+    {
+      "archivePath": "7e09d6c/mobile-team-deleted-390.png",
+      "source": "7e09d6c98bc5f64640a78c9950979d3ebee09b14",
+      "bytes": 26494,
+      "sha256": "7257c10b9e597559b1a3111790809e025a934bee8d85c0ea58b7d411b5aaf35d",
+      "width": 390,
+      "height": 844,
+      "inspected": true
+    },
+    {
+      "archivePath": "0d8929f/mobile-delete-pending-390-0d8929f.png",
+      "source": "0d8929f49d29ddae5562df742c81e6e9e1272f80",
+      "bytes": 36736,
+      "sha256": "3de0d90564fe9e484c4633226cb1c69c91c7e9770cb2f9a570174c081bf9c640",
+      "width": 390,
+      "height": 844,
+      "inspected": true
+    },
+    {
+      "archivePath": "0d8929f/mobile-delete-one-local-error-390-0d8929f.png",
+      "source": "0d8929f49d29ddae5562df742c81e6e9e1272f80",
+      "bytes": 36227,
+      "sha256": "f70476491247519a045f7f6392e95a0091cea4e39780851d6814041800cf1d3d",
+      "width": 390,
+      "height": 844,
+      "inspected": true
+    },
+    {
+      "archivePath": "0d8929f/mobile-delete-retry-confirm-390-0d8929f.png",
+      "source": "0d8929f49d29ddae5562df742c81e6e9e1272f80",
+      "bytes": 41766,
+      "sha256": "2871c0606c81d725ded35032e14294c148da9cea63c6dbbb788d42d60565e4c7",
+      "width": 390,
+      "height": 844,
+      "inspected": true
+    },
+    {
+      "archivePath": "0d8929f/mobile-delete-pending-320-0d8929f.png",
+      "source": "0d8929f49d29ddae5562df742c81e6e9e1272f80",
+      "bytes": 17879,
+      "sha256": "0033552fec527e65ca1ffb5e25b7f4714ea59d62f461c912dc319dfbf68793ef",
+      "width": 320,
+      "height": 480,
+      "inspected": true
+    },
+    {
+      "archivePath": "0d8929f/mobile-delete-one-local-error-320-0d8929f.png",
+      "source": "0d8929f49d29ddae5562df742c81e6e9e1272f80",
+      "bytes": 20202,
+      "sha256": "feaa6969dbbeb507ffaaf35a480c69a27658ca521200b53c12f810d05e8950f3",
+      "width": 320,
+      "height": 480,
+      "inspected": true
+    },
+    {
+      "archivePath": "0d8929f/mobile-delete-retry-confirm-320-0d8929f.png",
+      "source": "0d8929f49d29ddae5562df742c81e6e9e1272f80",
+      "bytes": 29079,
+      "sha256": "401d67a5c0c2bb287878f5cb7ecfb3f01a2162ce8a3079f9313836b54a26c81c",
+      "width": 320,
+      "height": 480,
+      "inspected": true
+    },
+    {
+      "archivePath": "0d8929f/short-team-menu-before-scroll-320-0d8929f.png",
+      "source": "0d8929f49d29ddae5562df742c81e6e9e1272f80",
+      "bytes": 17633,
+      "sha256": "0cccaaaffff95545323e8f3de1ce81bb908affda56e4605ae61977ec1b7b5251",
+      "width": 320,
+      "height": 480,
+      "inspected": true
+    },
+    {
+      "archivePath": "0d8929f/short-team-confirm-320-0d8929f.png",
+      "source": "0d8929f49d29ddae5562df742c81e6e9e1272f80",
+      "bytes": 26437,
+      "sha256": "41b0ecbe6f6e9d2f4ff59febc7a5d41babcab551f6207d1b025b9e99139d1bea",
+      "width": 320,
+      "height": 480,
+      "inspected": true
+    },
+    {
+      "archivePath": "0d8929f/short-page-touch-scroll-restored-320-0d8929f.png",
+      "source": "0d8929f49d29ddae5562df742c81e6e9e1272f80",
+      "bytes": 22254,
+      "sha256": "64a416452180d068502e96ee62f8ef5bf7499464675f3608c273822394667734",
+      "width": 320,
+      "height": 480,
+      "inspected": true
+    }
+  ],
+  "persistence": {
+    "syntheticOnly": true,
+    "integrity": [
+      {
+        "integrity_check": "ok"
+      }
+    ],
+    "foreignKeyFailures": [],
+    "attemptLedgers": [
+      {
+        "team_id": "fake_team1",
+        "attempts": 2
+      },
+      {
+        "team_id": "fake_team5",
+        "attempts": 3
+      }
+    ],
+    "deletedTeamsRemaining": [],
+    "survivingTeamMembers": [
+      {
+        "team_id": "fake_team3",
+        "user_id": "fake_bob"
+      },
+      {
+        "team_id": "fake_team3",
+        "user_id": "fake_dave"
+      }
+    ],
+    "leaderSurvivors": [
+      {
+        "id": "fake_frank",
+        "name": "Frank",
+        "teamId": null
+      },
+      {
+        "id": "fake_gina",
+        "name": "Gina",
+        "teamId": null
+      },
+      {
+        "id": "fake_hari",
+        "name": "Hari",
+        "teamId": null
+      },
+      {
+        "id": "fake_ivy",
+        "name": "Ivy",
+        "teamId": null
+      }
+    ],
+    "deletionAudits": [
+      {
+        "action": "admin-delete-participant",
+        "entity_id": "fake_carol",
+        "count": 1
+      },
+      {
+        "action": "admin-delete-participant",
+        "entity_id": "fake_eve",
+        "count": 1
+      },
+      {
+        "action": "admin-delete-team",
+        "entity_id": "fake_team1",
+        "count": 1
+      }
+    ]
+  },
+  "ownedPortsStopped": [
+    3035,
+    8895
+  ]
+}
