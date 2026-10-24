@@ -3739,7 +3739,10 @@ export function Review({
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
-  const [reviewTab, setReviewTab] = useState("review");
+  const [reviewTab, setReviewTab] = useState("review"),
+    [eligibilityStatus, setEligibilityStatus] = useState(
+      data.eligibility?.status || "needs_review",
+    );
   const p = data.project,
     v = data.version;
   if (!p) return <Empty>Select a submitted project.</Empty>;
@@ -3948,26 +3951,31 @@ export function Review({
                   });
                 }}
               >
-                <Field
-                  name="rule"
-                  label="Confirmed rule (required for Ineligible)"
-                />
-                <Field
-                  name="evidence"
-                  label="Private evidence (required for Ineligible)"
-                  type="textarea"
-                />
-
                 <Field name="status" label="Eligibility">
                   <select
                     name="status"
-                    defaultValue={data.eligibility?.status || "needs_review"}
+                    value={eligibilityStatus}
+                    onChange={(event) =>
+                      setEligibilityStatus(event.target.value)
+                    }
                   >
                     <option value="needs_review">Checks pending</option>
                     <option value="eligible">Eligible</option>
                     <option value="ineligible">Ineligible</option>
                   </select>
                 </Field>
+                {eligibilityStatus === "ineligible" && (
+                  <div className="admin-eligibility-evidence">
+                    <Field name="rule" label="Rule" required minLength={5} />
+                    <Field
+                      name="evidence"
+                      label="Private evidence"
+                      type="textarea"
+                      required
+                      minLength={10}
+                    />
+                  </div>
+                )}
                 <Field
                   name="reason"
                   label="Verified evidence or reason"
@@ -4151,6 +4159,68 @@ export function Review({
         </aside>
       </div>
     </section>
+  );
+}
+function AdminTeamIdea({
+  team,
+  run,
+}: {
+  team: Row;
+  run: (action: string, values: Row) => Promise<Row>;
+}) {
+  const [description, setDescription] = useState(
+    String(team.idea?.description || ""),
+  );
+  if (!team.idea) return <p className="admin-team-no-idea">No saved idea.</p>;
+  return (
+    <details className="admin-team-idea">
+      <summary>
+        <span>Team idea</span>
+        {team.locked ? (
+          <LockKeyhole size={16} aria-label="Locked" />
+        ) : (
+          <ChevronDown size={16} aria-hidden="true" />
+        )}
+      </summary>
+      <Form
+        className="admin-team-idea-form"
+        label={team.locked ? "Override idea" : "Save idea"}
+        onSave={async (form) => {
+          await run("admin-idea-override", {
+            teamId: team.id,
+            title: form.get("title"),
+            description: description.trim(),
+            confirmation: "OVERRIDE_TEAM_IDEA",
+          });
+        }}
+      >
+        <Field
+          name="title"
+          label="Idea title"
+          value={team.idea.title}
+          required
+          minLength={2}
+        />
+        <label>
+          <span>
+            Description{" "}
+            <span className="required-mark" aria-hidden="true">
+              *
+            </span>
+          </span>
+          <textarea
+            name="description"
+            aria-label="Description"
+            required
+            maxLength={500}
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
+            rows={3}
+          />
+          <small>{description.length}/500</small>
+        </label>
+      </Form>
+    </details>
   );
 }
 export function AdminList({
@@ -4436,6 +4506,13 @@ export function AdminList({
                     </li>
                   ))}
                 </ul>
+                {(data.me?.owner || data.me?.role === "admin") && (
+                  <AdminTeamIdea
+                    key={`${team.id}-${team.idea?.title}-${team.idea?.description}`}
+                    team={team}
+                    run={run}
+                  />
+                )}
               </details>
             </li>
           ))}

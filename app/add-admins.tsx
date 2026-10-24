@@ -39,8 +39,14 @@ export default function AddAdmins({
       >
         <fieldset disabled={busy} className="admin-email-action">
           <label>
-            {title === "Admin access" ? "Add admins" : "Email"}
+            <span>
+              Email{" "}
+              <span className="required-mark" aria-hidden="true">
+                *
+              </span>
+            </span>
             <input
+              aria-label="Admin email"
               type="email"
               required
               autoComplete="off"

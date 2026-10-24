@@ -49,7 +49,7 @@ export type ImportPreviewRequest = {
   fieldMap?: ImportFieldMap;
 };
 const fieldLabels: Record<ImportField, string> = {
-  email: "Email (required)",
+  email: "Email",
   displayName: "Full name",
   bio: "One-line bio",
   phone: "Phone",
@@ -259,8 +259,14 @@ export default function AdminImportControls({
           <div className="admin-import-entry">
             {mode === "single" ? (
               <label>
-                Email
+                <span>
+                  Email{" "}
+                  <span className="required-mark" aria-hidden="true">
+                    *
+                  </span>
+                </span>
                 <input
+                  aria-label="Email"
                   type="email"
                   required
                   autoComplete="off"
@@ -271,8 +277,14 @@ export default function AdminImportControls({
               </label>
             ) : mode === "emails" ? (
               <label>
-                Email list
+                <span>
+                  Email list{" "}
+                  <span className="required-mark" aria-hidden="true">
+                    *
+                  </span>
+                </span>
                 <textarea
+                  aria-label="Email list"
                   required
                   rows={2}
                   value={csv}

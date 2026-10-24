@@ -955,3 +955,212 @@
     display: inline-flex;
   }
 }
+
+/* Team ideas stay within the staff-only team projection. */
+.admin-workspace .admin-team-idea {
+  margin: 0 16px 16px;
+  border-top: 1px solid var(--line, #e3e4db);
+}
+.admin-workspace .admin-team-idea > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 54px;
+  padding: 12px 0;
+  cursor: pointer;
+  list-style: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+.admin-workspace .admin-team-idea > summary::-webkit-details-marker {
+  display: none;
+}
+.main:not(.home-main) .admin-workspace .admin-team-idea-form {
+  margin: 0;
+  padding: 0 0 4px;
+  border: 0;
+  background: transparent;
+}
+.admin-workspace .admin-team-idea-form label {
+  margin: 0 0 14px;
+  font-size: 13px;
+}
+.admin-workspace .admin-team-idea-form small {
+  justify-self: end;
+  color: var(--muted, #656960);
+  font-variant-numeric: tabular-nums;
+}
+.admin-team-no-idea {
+  margin: 0 16px 20px;
+  color: var(--muted, #656960);
+  font-size: 13px;
+}
+/* Credits are organized around a new upload and its published columns. */
+.main:not(.home-main) .admin-workspace .admin-credit-batches {
+  margin: 4px 0 24px;
+  gap: 24px;
+}
+.admin-workspace .credit-batch-new-upload {
+  border: 1px solid var(--line, #e3e4db);
+  border-radius: 14px;
+  background: var(--surface, #fffefa);
+  overflow: clip;
+}
+.admin-workspace .credit-batch-new-upload > summary {
+  display: flex;
+  align-items: center;
+  min-height: 70px;
+  gap: 12px;
+  padding: 20px 24px;
+  list-style: none;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 600;
+}
+.admin-workspace .credit-batch-new-upload > summary::-webkit-details-marker {
+  display: none;
+}
+.admin-workspace .credit-batch-new-upload > summary > span {
+  flex: 1;
+}
+.admin-workspace .credit-batch-new-upload[open] > summary {
+  border-bottom: 1px solid var(--line, #e3e4db);
+}
+.admin-workspace .credit-batch-new-upload[open] > summary > svg:last-child {
+  transform: rotate(180deg);
+}
+.main:not(.home-main) .admin-workspace .credit-batch-editor {
+  padding: 24px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.admin-workspace .credit-batch-editor form {
+  gap: 18px;
+}
+.admin-workspace .credit-batch-editor label {
+  margin: 0;
+  font-size: 13px;
+}
+.admin-workspace .credit-batch-editor .credit-batch-source-actions {
+  margin-bottom: 0;
+}
+.admin-workspace .credit-batch-preview-heading {
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line, #e3e4db);
+}
+.admin-workspace .credit-batch-preview-heading p {
+  margin: 0;
+  color: var(--muted, #656960);
+  font-size: 13px;
+}
+.admin-workspace .credit-batch-column-editors {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.admin-workspace .credit-batch-column-editor {
+  padding: 18px;
+  gap: 16px;
+  border: 1px solid var(--line, #e3e4db);
+  border-radius: 10px;
+}
+.admin-workspace .credit-batch-column-editor > header h3 {
+  font-size: 16px;
+}
+.admin-workspace .credit-batch-column-editor > header span {
+  color: var(--muted, #656960);
+  font-size: 12px;
+}
+.admin-workspace .credit-batch-publish-actions {
+  padding-top: 20px;
+  border-top: 1px solid var(--line, #e3e4db);
+}
+.admin-workspace .credit-batch-published > h2 {
+  font-size: 19px;
+}
+.admin-workspace .credit-batch-existing {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  padding: 24px;
+  border-color: var(--line, #e3e4db);
+  border-radius: 14px;
+  background: var(--surface, #fffefa);
+}
+.admin-workspace .credit-batch-existing > header {
+  grid-column: 1 / -1;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line, #e3e4db);
+}
+.admin-workspace .credit-batch-existing > header h3 {
+  font-size: 17px;
+  margin-bottom: 6px;
+}
+.admin-workspace .credit-batch-existing time {
+  font-size: 12px;
+  color: var(--muted, #656960);
+}
+.admin-workspace .credit-batch-existing-column {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  align-content: start;
+}
+.admin-workspace .credit-batch-existing-column > header {
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 12px;
+}
+.admin-workspace .credit-batch-existing-column h4 {
+  font-size: 16px;
+}
+.admin-workspace .credit-batch-existing-column p {
+  margin-top: 6px;
+  margin-bottom: 0;
+  font-size: 13px;
+  color: var(--muted, #656960);
+}
+.admin-workspace .credit-batch-existing-column .credit-instructions {
+  padding: 16px;
+  border-radius: 10px;
+  background: #f2f3ed;
+}
+.admin-workspace
+  .credit-batch-existing-column
+  .credit-instructions
+  > :last-child {
+  margin-bottom: 0;
+}
+.admin-workspace .admin-eligibility-evidence {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+.admin-workspace .admin-eligibility-evidence > label {
+  margin: 0;
+}
+@media (max-width: 740px) {
+  .admin-workspace .credit-batch-new-upload > summary {
+    min-height: 64px;
+    padding: 18px;
+  }
+  .main:not(.home-main) .admin-workspace .credit-batch-editor {
+    padding: 18px;
+  }
+  .admin-workspace .credit-batch-column-editors,
+  .admin-workspace .credit-batch-existing {
+    grid-template-columns: 1fr;
+  }
+  .admin-workspace .credit-batch-column-editor,
+  .admin-workspace .credit-batch-existing {
+    padding: 18px;
+  }
+  .admin-workspace .credit-batch-existing > header,
+  .admin-workspace .credit-batch-existing-column > header {
+    flex-direction: row;
+    align-items: start;
+    flex-wrap: wrap;
+  }
+}

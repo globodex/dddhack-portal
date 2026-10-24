@@ -94,9 +94,9 @@ test("CSV upload and paste lead directly to Add credits without Preview or Revie
     html,
     /type="file" accept="\.csv,text\/csv" aria-label="Upload credits CSV"/,
   );
-  assert.match(html, /Paste CSV<textarea name="creditsCSV"/);
+  assert.match(html, /Paste CSV[\s\S]*?<textarea name="creditsCSV"/);
   assert.match(html, />Add credits<\/button>/);
-  assert.match(html, /No uploads yet\./);
+  assert.match(html, /class="credit-batch-new-upload" open=""/);
   assert.doesNotMatch(
     html,
     /Publish credits|SYNTHETIC-DO-NOT-RENDER|>Preview<|>Review<|credit-batch-samples/,

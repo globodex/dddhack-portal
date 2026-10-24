@@ -1,6 +1,12 @@
 "use client";
 import { useRef, useState } from "react";
-import { FileUp, LoaderCircle, Trash2, Upload } from "lucide-react";
+import {
+  ChevronDown,
+  FileUp,
+  LoaderCircle,
+  Trash2,
+  Upload,
+} from "lucide-react";
 import CreditInstructions from "./credit-instructions";
 import { previewAdminAction } from "./admin-import-controls";
 import { useAdminOperation, type AdminRun } from "./admin-participant-actions";
@@ -229,228 +235,254 @@ export default function AdminCreditBatches({
   };
   return (
     <div className="admin-credit-batches">
-      <section
-        className="credit-batch-editor"
-        aria-labelledby="credit-batch-heading"
-      >
-        <h2 id="credit-batch-heading">Add credits</h2>
-        {!preview ? (
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
-              void previewOp.execute(async () => {
-                if (!csv.trim()) throw new Error("Upload or paste a CSV.");
-                source.current = csv;
-                const epoch = generation.current;
-                const result = await previewAdminAction<CreditBatchPreview>(
-                  "preview-credit-batch",
-                  { csv },
-                );
-                if (epoch !== generation.current) return;
-                if (
-                  !result.digest ||
-                  !Array.isArray(result.columns) ||
-                  !result.columns.length ||
-                  !Array.isArray(result.rows)
-                )
-                  throw new Error("The CSV could not be read.");
-                setPreview(result);
-                setColumns(
-                  result.columns.map((column) => ({
-                    ...column,
-                    instructions: "",
-                  })),
-                );
-              });
-            }}
-          >
-            <div className="credit-batch-source-actions">
-              <input
-                ref={input}
-                className="sr-only"
-                type="file"
-                accept=".csv,text/csv"
-                aria-label="Upload credits CSV"
-                onChange={(event) => void readFile(event.target.files?.[0])}
-              />
-              <button
-                className="button secondary"
-                type="button"
-                onClick={() => input.current?.click()}
-                disabled={previewOp.busy}
-              >
-                <FileUp size={18} aria-hidden="true" />
-                Upload CSV
-              </button>
-              {fileName && <span>{fileName}</span>}
-            </div>
-            <label>
-              Paste CSV
-              <textarea
-                name="creditsCSV"
-                aria-label="Paste CSV"
-                value={csv}
-                required
-                rows={6}
-                maxLength={512000}
-                autoComplete="off"
-                spellCheck={false}
-                onChange={(event) => {
-                  reset();
-                  setCSV(event.target.value);
-                  source.current = event.target.value;
-                  setFileName("");
-                }}
-              />
-            </label>
-            <button
-              className="button"
-              type="submit"
-              disabled={previewOp.busy}
-              aria-busy={previewOp.busy}
-            >
-              <PendingIcon busy={previewOp.busy} action="upload" />
-              {previewOp.busy ? "Preparing…" : "Add credits"}
-            </button>
-            {previewOp.busy && (
-              <span className="sr-only" role="status">
-                Reading credit columns
-              </span>
-            )}
-          </form>
-        ) : (
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
-              void publishOp.execute(async () => {
-                const values = creditBatchPublishValues(
-                  source.current,
-                  preview,
-                  columns,
-                );
-                const checked = await previewAdminAction<CreditBatchPreview>(
-                  "preview-credit-batch",
-                  { csv: values.csv, columns: values.columns },
-                );
-                if (
-                  !checked.digest ||
-                  !Array.isArray(checked.columns) ||
-                  checked.columns.length !== columns.length
-                )
-                  throw new Error("Credits could not be validated.");
-                await run("publish-credit-batch", {
-                  ...creditBatchPublishValues(values.csv, checked, columns),
-                  newCount: columns.reduce(
-                    (sum, column) => sum + column.count,
-                    0,
-                  ),
+      <details className="credit-batch-new-upload" open={!batches.length}>
+        <summary>
+          <FileUp size={20} aria-hidden="true" />
+          <span>New upload</span>
+          <ChevronDown size={20} aria-hidden="true" />
+        </summary>
+        <section
+          className="credit-batch-editor"
+          aria-labelledby="credit-batch-heading"
+        >
+          <h2 id="credit-batch-heading" className="sr-only">
+            Add credits
+          </h2>
+          {!preview ? (
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                void previewOp.execute(async () => {
+                  if (!csv.trim()) throw new Error("Upload or paste a CSV.");
+                  source.current = csv;
+                  const epoch = generation.current;
+                  const result = await previewAdminAction<CreditBatchPreview>(
+                    "preview-credit-batch",
+                    { csv },
+                  );
+                  if (epoch !== generation.current) return;
+                  if (
+                    !result.digest ||
+                    !Array.isArray(result.columns) ||
+                    !result.columns.length ||
+                    !Array.isArray(result.rows)
+                  )
+                    throw new Error("The CSV could not be read.");
+                  setPreview(result);
+                  setColumns(
+                    result.columns.map((column) => ({
+                      ...column,
+                      instructions: "",
+                    })),
+                  );
                 });
-                setCSV("");
-                source.current = "";
-                setFileName("");
-                setPreview(null);
-                setColumns([]);
-                if (input.current) input.current.value = "";
-                setMessage("Credits published.");
-              });
-            }}
-          >
-            <div className="credit-batch-preview-heading">
-              <p>
-                {preview.rowCount} rows · {preview.columns.length} columns
-              </p>
-              <button
-                type="button"
-                className="button secondary"
-                onClick={reset}
-                disabled={publishOp.busy}
-              >
-                Change CSV
-              </button>
-            </div>
-            <div className="credit-batch-column-editors">
-              {columns.map((column, index) => (
-                <section
-                  className="credit-batch-column-editor"
-                  key={column.key}
+              }}
+            >
+              <div className="credit-batch-source-actions">
+                <input
+                  ref={input}
+                  className="sr-only"
+                  type="file"
+                  accept=".csv,text/csv"
+                  aria-label="Upload credits CSV"
+                  onChange={(event) => void readFile(event.target.files?.[0])}
+                />
+                <button
+                  className="button secondary"
+                  type="button"
+                  onClick={() => input.current?.click()}
+                  disabled={previewOp.busy}
                 >
-                  <header>
-                    <h3>{preview.columns[index].heading}</h3>
-                    <span>{column.count} credits</span>
-                  </header>
-                  <label>
-                    Heading
-                    <input
-                      aria-label={`Heading for ${preview.columns[index].heading}`}
-                      value={column.heading}
-                      required
-                      readOnly={publishOp.busy}
-                      maxLength={100}
-                      onChange={(event) =>
-                        setColumns((current) =>
-                          current.map((item, i) =>
-                            i === index
-                              ? { ...item, heading: event.target.value }
-                              : item,
-                          ),
-                        )
-                      }
-                    />
-                  </label>
-                  <label>
-                    Instructions (Markdown)
-                    <textarea
-                      aria-label={`Instructions for ${preview.columns[index].heading}`}
-                      value={column.instructions}
-                      required
-                      readOnly={publishOp.busy}
-                      maxLength={10000}
-                      rows={5}
-                      onChange={(event) =>
-                        setColumns((current) =>
-                          current.map((item, i) =>
-                            i === index
-                              ? { ...item, instructions: event.target.value }
-                              : item,
-                          ),
-                        )
-                      }
-                    />
-                  </label>
-                </section>
-              ))}
-            </div>
-            <div className="credit-batch-publish-actions">
+                  <FileUp size={18} aria-hidden="true" />
+                  Upload CSV
+                </button>
+                {fileName && <span>{fileName}</span>}
+              </div>
+              <label>
+                <span>
+                  Paste CSV{" "}
+                  <span className="required-mark" aria-hidden="true">
+                    *
+                  </span>
+                </span>
+                <textarea
+                  name="creditsCSV"
+                  aria-label="Paste CSV"
+                  value={csv}
+                  required
+                  rows={6}
+                  maxLength={512000}
+                  autoComplete="off"
+                  spellCheck={false}
+                  onChange={(event) => {
+                    reset();
+                    setCSV(event.target.value);
+                    source.current = event.target.value;
+                    setFileName("");
+                  }}
+                />
+              </label>
               <button
                 className="button"
                 type="submit"
-                disabled={publishOp.busy}
-                aria-busy={publishOp.busy}
+                disabled={previewOp.busy}
+                aria-busy={previewOp.busy}
               >
-                <PendingIcon busy={publishOp.busy} action="upload" />
-                {publishOp.busy ? "Publishing…" : "Publish credits"}
+                <PendingIcon busy={previewOp.busy} action="upload" />
+                {previewOp.busy ? "Preparing…" : "Add credits"}
               </button>
-            </div>
-            {publishOp.busy && (
-              <span className="sr-only" role="status">
-                Credit publication pending
-              </span>
-            )}
-          </form>
-        )}
-        {previewOp.error && (
-          <p className="error-message" role="alert">
-            {previewOp.error}
-          </p>
-        )}
-        {publishOp.error && (
-          <p className="error-message" role="alert">
-            {publishOp.error}
-          </p>
-        )}
-        {message && <p role="status">{message}</p>}
-      </section>
-      <PublishedCreditBatches batches={batches} run={run} />
+              {previewOp.busy && (
+                <span className="sr-only" role="status">
+                  Reading credit columns
+                </span>
+              )}
+            </form>
+          ) : (
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                void publishOp.execute(async () => {
+                  const values = creditBatchPublishValues(
+                    source.current,
+                    preview,
+                    columns,
+                  );
+                  const checked = await previewAdminAction<CreditBatchPreview>(
+                    "preview-credit-batch",
+                    { csv: values.csv, columns: values.columns },
+                  );
+                  if (
+                    !checked.digest ||
+                    !Array.isArray(checked.columns) ||
+                    checked.columns.length !== columns.length
+                  )
+                    throw new Error("Credits could not be validated.");
+                  await run("publish-credit-batch", {
+                    ...creditBatchPublishValues(values.csv, checked, columns),
+                    newCount: columns.reduce(
+                      (sum, column) => sum + column.count,
+                      0,
+                    ),
+                  });
+                  setCSV("");
+                  source.current = "";
+                  setFileName("");
+                  setPreview(null);
+                  setColumns([]);
+                  if (input.current) input.current.value = "";
+                  setMessage("Credits published.");
+                });
+              }}
+            >
+              <div className="credit-batch-preview-heading">
+                <p>
+                  {preview.rowCount} rows · {preview.columns.length} columns
+                </p>
+                <button
+                  type="button"
+                  className="button secondary"
+                  onClick={reset}
+                  disabled={publishOp.busy}
+                >
+                  Change CSV
+                </button>
+              </div>
+              <div className="credit-batch-column-editors">
+                {columns.map((column, index) => (
+                  <section
+                    className="credit-batch-column-editor"
+                    key={column.key}
+                  >
+                    <header>
+                      <h3>{preview.columns[index].heading}</h3>
+                      <span>{column.count} credits</span>
+                    </header>
+                    <label>
+                      <span>
+                        Heading{" "}
+                        <span className="required-mark" aria-hidden="true">
+                          *
+                        </span>
+                      </span>
+                      <input
+                        aria-label={`Heading for ${preview.columns[index].heading}`}
+                        value={column.heading}
+                        required
+                        readOnly={publishOp.busy}
+                        maxLength={100}
+                        onChange={(event) =>
+                          setColumns((current) =>
+                            current.map((item, i) =>
+                              i === index
+                                ? { ...item, heading: event.target.value }
+                                : item,
+                            ),
+                          )
+                        }
+                      />
+                    </label>
+                    <label>
+                      <span>
+                        Instructions (Markdown){" "}
+                        <span className="required-mark" aria-hidden="true">
+                          *
+                        </span>
+                      </span>
+                      <textarea
+                        aria-label={`Instructions for ${preview.columns[index].heading}`}
+                        value={column.instructions}
+                        required
+                        readOnly={publishOp.busy}
+                        maxLength={10000}
+                        rows={5}
+                        onChange={(event) =>
+                          setColumns((current) =>
+                            current.map((item, i) =>
+                              i === index
+                                ? { ...item, instructions: event.target.value }
+                                : item,
+                            ),
+                          )
+                        }
+                      />
+                    </label>
+                  </section>
+                ))}
+              </div>
+              <div className="credit-batch-publish-actions">
+                <button
+                  className="button"
+                  type="submit"
+                  disabled={publishOp.busy}
+                  aria-busy={publishOp.busy}
+                >
+                  <PendingIcon busy={publishOp.busy} action="upload" />
+                  {publishOp.busy ? "Publishing…" : "Publish credits"}
+                </button>
+              </div>
+              {publishOp.busy && (
+                <span className="sr-only" role="status">
+                  Credit publication pending
+                </span>
+              )}
+            </form>
+          )}
+          {previewOp.error && (
+            <p className="error-message" role="alert">
+              {previewOp.error}
+            </p>
+          )}
+          {publishOp.error && (
+            <p className="error-message" role="alert">
+              {publishOp.error}
+            </p>
+          )}
+          {message && <p role="status">{message}</p>}
+        </section>
+      </details>
+      {batches.length > 0 && (
+        <PublishedCreditBatches batches={batches} run={run} />
+      )}
     </div>
   );
 }
