@@ -1,0 +1,60 @@
+{
+  "source": "dccfdc2a692fde35e77434050b0d03c305d7fd1c",
+  "backend": 8834,
+  "origin": "http://localhost:3000",
+  "syntheticOnly": true,
+  "disposable": true,
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "startedAt": "2026-10-24T14:07:08.187Z",
+  "writes": [],
+  "checks": [
+    {
+      "name": "Private Bob fixture is the unlocked three-member team",
+      "passed": true
+    },
+    {
+      "name": "Recipient starts without a team",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "FAIL-current-ui.png",
+      "source": "dccfdc2a692fde35e77434050b0d03c305d7fd1c",
+      "inspected": false
+    }
+  ],
+  "snapshots": [
+    {
+      "label": "initial-bob",
+      "actor": "fake_bob",
+      "team": {
+        "id": "fake_team3",
+        "leader": "fake_bob",
+        "locked": false
+      },
+      "members": [
+        "fake_bob",
+        "fake_carol",
+        "fake_dave"
+      ],
+      "actions": []
+    },
+    {
+      "label": "initial-pending",
+      "actor": "fake_pending",
+      "team": null,
+      "members": [],
+      "actions": []
+    }
+  ],
+  "blocked": [],
+  "errors": [],
+  "result": "failed",
+  "failure": "locator.tap: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('dialog.confirmation-dialog').getByRole('button', { name: 'Confirm change', exact: true })\u001b[22m\n\n    at action (/workspace/ddd-seo/scripts/qa-private-reinvite-8834.mjs:49:172)\n    at async file:///workspace/ddd-seo/scripts/qa-private-reinvite-8834.mjs:69:15",
+  "browserClosed": true,
+  "finishedAt": "2026-10-24T14:07:30.907Z"
+}

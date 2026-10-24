@@ -1,0 +1,338 @@
+{
+  "source": "dccfdc2a692fde35e77434050b0d03c305d7fd1c",
+  "backend": 8834,
+  "origin": "http://localhost:3000",
+  "syntheticOnly": true,
+  "disposable": true,
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "startedAt": "2026-10-24T14:07:45.376Z",
+  "writes": [
+    {
+      "actor": "bob",
+      "action": "team-invite",
+      "data": {
+        "teamId": "fake_team3",
+        "email": "pending@portal.test"
+      },
+      "phase": "first-invitation",
+      "status": 200,
+      "result": {
+        "id": "073ad027-2754-4f68-ba58-f0450ba5132e",
+        "message": "Saved in portal. No email sent."
+      }
+    },
+    {
+      "actor": "pending",
+      "action": "team-respond",
+      "data": {
+        "id": "073ad027-2754-4f68-ba58-f0450ba5132e",
+        "decision": "declined"
+      },
+      "phase": "decline-first-invitation",
+      "status": 200,
+      "result": {
+        "message": "Team response saved."
+      }
+    },
+    {
+      "actor": "bob",
+      "action": "team-invite",
+      "data": {
+        "teamId": "fake_team3",
+        "email": "pending@portal.test"
+      },
+      "phase": "resend-after-decline",
+      "status": 200,
+      "result": {
+        "id": "ed48ba9d-aeac-407a-8325-656e47b23f2c",
+        "message": "Saved in portal. No email sent."
+      }
+    },
+    {
+      "actor": "pending",
+      "action": "team-respond",
+      "data": {
+        "id": "ed48ba9d-aeac-407a-8325-656e47b23f2c",
+        "decision": "accepted"
+      },
+      "phase": "accept-fresh-invitation",
+      "status": 200,
+      "result": {
+        "message": "Team response saved."
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "Private Bob fixture is the unlocked three-member team",
+      "passed": true
+    },
+    {
+      "name": "Recipient starts without a team",
+      "passed": true
+    },
+    {
+      "name": "First invitation returned a committed ID",
+      "passed": true,
+      "id": "073ad027-2754-4f68-ba58-f0450ba5132e"
+    },
+    {
+      "name": "Recipient sees the first ID",
+      "passed": true
+    },
+    {
+      "name": "Actual decline200 leaves recipient teamless",
+      "passed": true
+    },
+    {
+      "name": "Private Bob fixture is the unlocked three-member team",
+      "passed": true
+    },
+    {
+      "name": "Recipient starts without a team",
+      "passed": true
+    },
+    {
+      "name": "Resend200 uses a fresh invitation ID",
+      "passed": true,
+      "firstId": "073ad027-2754-4f68-ba58-f0450ba5132e",
+      "secondId": "ed48ba9d-aeac-407a-8325-656e47b23f2c"
+    },
+    {
+      "name": "Only the fresh pending invitation is current",
+      "passed": true
+    },
+    {
+      "name": "Actual accept200 joins Bob team as fourth member",
+      "passed": true
+    },
+    {
+      "name": "Leader persisted view has exactly four current members",
+      "passed": true
+    },
+    {
+      "name": "Only four invitation actions plus optional Going setup were issued",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "01-bob-first-invitation-sent.png",
+      "actor": "bob",
+      "source": "dccfdc2a692fde35e77434050b0d03c305d7fd1c",
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "02-pending-invitation-before-decline.png",
+      "actor": "pending",
+      "source": "dccfdc2a692fde35e77434050b0d03c305d7fd1c",
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "03-pending-declined-teamless.png",
+      "actor": "pending",
+      "source": "dccfdc2a692fde35e77434050b0d03c305d7fd1c",
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "FAIL-current-ui.png",
+      "source": "dccfdc2a692fde35e77434050b0d03c305d7fd1c",
+      "inspected": true,
+      "accepted": false,
+      "classification": "Historical harness disclosure toggle failure; app state correct."
+    },
+    {
+      "file": "04-bob-resend-success.png",
+      "actor": "bob",
+      "source": "dccfdc2a692fde35e77434050b0d03c305d7fd1c",
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "05-pending-fresh-invitation.png",
+      "actor": "pending",
+      "source": "dccfdc2a692fde35e77434050b0d03c305d7fd1c",
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "06-pending-accepted-team-members.png",
+      "actor": "pending",
+      "source": "dccfdc2a692fde35e77434050b0d03c305d7fd1c",
+      "inspected": true,
+      "accepted": true
+    }
+  ],
+  "snapshots": [
+    {
+      "label": "initial-bob",
+      "actor": "fake_bob",
+      "team": {
+        "id": "fake_team3",
+        "leader": "fake_bob",
+        "locked": false
+      },
+      "members": [
+        "fake_bob",
+        "fake_carol",
+        "fake_dave"
+      ],
+      "actions": []
+    },
+    {
+      "label": "initial-pending",
+      "actor": "fake_pending",
+      "team": null,
+      "members": [],
+      "actions": []
+    },
+    {
+      "label": "first-pending-invitation",
+      "actor": "fake_pending",
+      "team": null,
+      "members": [],
+      "actions": [
+        {
+          "id": "073ad027-2754-4f68-ba58-f0450ba5132e",
+          "status": "pending",
+          "teamId": "fake_team3",
+          "userId": "fake_pending"
+        }
+      ]
+    },
+    {
+      "label": "after-decline",
+      "actor": "fake_pending",
+      "team": null,
+      "members": [],
+      "actions": [
+        {
+          "id": "073ad027-2754-4f68-ba58-f0450ba5132e",
+          "status": "declined",
+          "teamId": "fake_team3",
+          "userId": "fake_pending"
+        }
+      ]
+    },
+    {
+      "label": "initial-bob",
+      "actor": "fake_bob",
+      "team": {
+        "id": "fake_team3",
+        "leader": "fake_bob",
+        "locked": false
+      },
+      "members": [
+        "fake_bob",
+        "fake_carol",
+        "fake_dave"
+      ],
+      "actions": [
+        {
+          "id": "073ad027-2754-4f68-ba58-f0450ba5132e",
+          "status": "declined",
+          "teamId": "fake_team3",
+          "userId": "fake_pending"
+        }
+      ]
+    },
+    {
+      "label": "initial-pending",
+      "actor": "fake_pending",
+      "team": null,
+      "members": [],
+      "actions": [
+        {
+          "id": "073ad027-2754-4f68-ba58-f0450ba5132e",
+          "status": "declined",
+          "teamId": "fake_team3",
+          "userId": "fake_pending"
+        }
+      ]
+    },
+    {
+      "label": "second-pending-invitation",
+      "actor": "fake_pending",
+      "team": null,
+      "members": [],
+      "actions": [
+        {
+          "id": "ed48ba9d-aeac-407a-8325-656e47b23f2c",
+          "status": "pending",
+          "teamId": "fake_team3",
+          "userId": "fake_pending"
+        }
+      ]
+    },
+    {
+      "label": "after-accept",
+      "actor": "fake_pending",
+      "team": {
+        "id": "fake_team3",
+        "leader": "fake_bob",
+        "locked": false
+      },
+      "members": [
+        "fake_bob",
+        "fake_carol",
+        "fake_dave",
+        "fake_pending"
+      ],
+      "actions": [
+        {
+          "id": "ed48ba9d-aeac-407a-8325-656e47b23f2c",
+          "status": "accepted",
+          "teamId": "fake_team3",
+          "userId": "fake_pending"
+        }
+      ]
+    },
+    {
+      "label": "leader-after-accept",
+      "actor": "fake_bob",
+      "team": {
+        "id": "fake_team3",
+        "leader": "fake_bob",
+        "locked": false
+      },
+      "members": [
+        "fake_bob",
+        "fake_carol",
+        "fake_dave",
+        "fake_pending"
+      ],
+      "actions": [
+        {
+          "id": "ed48ba9d-aeac-407a-8325-656e47b23f2c",
+          "status": "accepted",
+          "teamId": "fake_team3",
+          "userId": "fake_pending"
+        }
+      ]
+    }
+  ],
+  "blocked": [],
+  "errors": [],
+  "browserClosed": true,
+  "harnessAttempts": [
+    {
+      "failure": "locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.team-settings-invite').getByRole('textbox', { name: 'Email', exact: true })\u001b[22m\n\n    at /workspace/ddd-seo/scripts/qa-private-reinvite-8834.mjs:82:205",
+      "finishedAt": "2026-10-24T14:08:09.590Z",
+      "classified": "Disclosure was already open; unconditional tap closed it before email fill. No resend POST."
+    }
+  ],
+  "resumedAt": "2026-10-24T14:08:31.590Z",
+  "result": "passed",
+  "finishedAt": "2026-10-24T14:08:39.146Z",
+  "visualReview": {
+    "allSixOutcomeFilesViewed": true,
+    "originalsPreserved": true,
+    "limits": "390x844 outcome screenshots only, not a complete responsive audit. The top of invitations card is under sticky header due scrollIntoView; invitation team and actions are visible. Private contact pixels are synthetic and shown only after current membership."
+  }
+}
