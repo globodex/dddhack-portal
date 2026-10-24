@@ -4101,6 +4101,7 @@ export function Review({
   const [versionError, setVersionError] = useState("");
   const [accessError, setAccessError] = useState("");
   const versionRequest = useRef<AbortController | null>(null);
+  const versionHeading = useRef<HTMLHeadingElement | null>(null);
   const data = focused || initialData;
   const [eligibilityStatus, setEligibilityStatus] = useState(
     data.eligibility?.status || "needs_review",
@@ -4116,6 +4117,9 @@ export function Review({
   useEffect(() => {
     setEligibilityStatus(data.eligibility?.status || "needs_review");
   }, [data.eligibility?.status]);
+  useEffect(() => {
+    if (focused) versionHeading.current?.focus();
+  }, [focused]);
   const viewVersion = async (versionId: string) => {
     if (versionBusy || versionId === data.version?.id) return;
     const controller = new AbortController();
@@ -4203,7 +4207,7 @@ export function Review({
         </Link>
         <div className="results-ui-reviewHeading">
           <span>{p.teamName || "Project review"}</span>
-          <h1>{payload.projectName || "Untitled project"}</h1>
+          <h1 ref={versionHeading} tabIndex={-1}>{payload.projectName || "Untitled project"}</h1>
         </div>
         {v && (
           <span className="results-ui-status">

@@ -237,6 +237,43 @@ test("private AI uses exact current report, attempts and actual action blocker w
   });
   assert.doesNotMatch(old, />19</);
   assert.match(old, /previous submission/);
+  assert.match(
+    html(PrivateAIEvaluation, {
+      data: {
+        ...data,
+        evaluation: null,
+        evaluationJob: { state: "needs_review", attempts: 1, maxAttempts: 3 },
+      },
+      run,
+    }),
+    /Review needed/,
+  );
+  assert.match(
+    html(PrivateAIEvaluation, {
+      data: {
+        ...data,
+        evaluation: null,
+        evaluationJob: {
+          state: "failed_retryable",
+          attempts: 1,
+          maxAttempts: 3,
+        },
+      },
+      run,
+    }),
+    /Failed[\s\S]*Retry evaluation/,
+  );
+  assert.match(
+    html(PrivateAIEvaluation, {
+      data: {
+        ...data,
+        evaluation: null,
+        evaluationJob: { state: "running", attempts: 1, maxAttempts: 3 },
+      },
+      run,
+    }),
+    /Running/,
+  );
   assert.equal(
     html(PrivateAIEvaluation, {
       data: { ...data, me: { role: "judge" } },

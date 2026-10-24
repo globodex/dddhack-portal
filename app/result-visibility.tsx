@@ -319,9 +319,9 @@ export function PrivateAIEvaluation({
   const currentRuns = (data.runs || []).filter(
     (run: Row) => run.version_id === versionId,
   );
-  const active = currentRuns.some((run: Row) =>
-    ["queued", "running"].includes(run.state),
-  );
+  const active =
+    data.evaluationJob?.state === "running" ||
+    currentRuns.some((run: Row) => ["queued", "running"].includes(run.state));
   const grade =
     data.evaluation?.report?.versionId === versionId &&
     Number.isFinite(data.evaluation?.score)
@@ -349,11 +349,14 @@ export function PrivateAIEvaluation({
       ? "Running"
       : grade
         ? "Scored"
-        : latestReport?.status === "needs_review"
-          ? "Review needed"
-          : data.evaluationConfigured
-            ? "Ready"
-            : "Not configured";
+        : data.evaluationJob?.state === "failed_retryable"
+          ? "Failed"
+          : latestReport?.status === "needs_review" ||
+              ["needs_review", "finalized"].includes(data.evaluationJob?.state)
+            ? "Review needed"
+            : data.evaluationConfigured
+              ? "Ready"
+              : "Not configured";
   return (
     <section
       className={`${"results-ui-card"} ${"results-ui-ai"}`}
@@ -411,7 +414,7 @@ export function PrivateAIEvaluation({
             });
         }}
       >
-        {busy ? "Evaluating…" : grade ? "Re-evaluate" : "Run AI evaluation"}
+        {busy ? "Evaluating…" : grade ? "Re-evaluate" : data.evaluationJob?.state === "failed_retryable" ? "Retry evaluation" : "Run AI evaluation"}
       </button>
       {error && (
         <p className={"results-ui-error"} role="alert">
