@@ -1,0 +1,11 @@
+.admin-credit-values .admin-credit-value-unavailable {
+  color: #686d63;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.admin-credit-values code {
+  user-select: text;
+}
+.admin-credit-values button:disabled {
+  cursor: default;
+}

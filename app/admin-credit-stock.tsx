@@ -4,7 +4,6 @@ import { useEffect, useId, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, CircleCheck, Copy, Search } from "lucide-react";
 import { portalErrorText } from "../lib/ui-feedback";
 import { ist } from "../lib/time";
-import styles from "./admin-credit-stock.module.css";
 
 export type StockSummary = {
   total: number;
@@ -120,7 +119,7 @@ export default function AdminCreditStock({
 
   return (
     <section
-      className={`credit-stock-detail ${styles.visibleCodes}`}
+      className="credit-stock-detail admin-credit-values"
       aria-label={`${heading} stock`}
       aria-busy={loading}
     >
@@ -237,7 +236,7 @@ export default function AdminCreditStock({
                                 {value}
                               </code>
                             ) : (
-                              <span className={styles.unavailable}>
+                              <span className="admin-credit-value-unavailable">
                                 Code unavailable
                               </span>
                             )}
