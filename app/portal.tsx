@@ -31,6 +31,7 @@ import {
   LogOut,
   Menu,
   SlidersHorizontal,
+  UserCheck,
   Users,
   UserRound,
   UsersRound,
@@ -41,6 +42,7 @@ import {
   Flag,
 } from "lucide-react";
 import AddAdmins from "./add-admins";
+import AdminTeamCard from "./admin-team-card";
 import AdminCreditBatches from "./admin-credit-batches";
 import PersonalCredits, { PersonalCreditsContent } from "./personal-credits";
 import AdminLeaderTransfer from "./admin-leader-transfer";
@@ -3836,7 +3838,7 @@ export function AdminParticipants({
                 <th>Personal status</th>
                 <th>Team status</th>
                 <th>Locked at</th>
-                {canManage && <th>Manage participant</th>}
+                {canCheckIn && <th>Actions</th>}
               </tr>
             </thead>
             <tbody>
@@ -3911,42 +3913,7 @@ export function AdminParticipants({
                         )}
                         {personalStatus(r)}
                       </Pill>
-                      {canCheckIn &&
-                        !r.removed &&
-                        personalStatus(r) === "Going" &&
-                        !r.checked_in && (
-                          <button
-                            type="button"
-                            className="button secondary admin-quick-check-in"
-                            aria-label={`Check in ${r.name || r.email}`}
-                            aria-busy={quickCheckInEmail === r.email}
-                            title={
-                              !r.id
-                                ? "Participant must sign in before check-in."
-                                : "Check in participant"
-                            }
-                            disabled={
-                              !hydrated ||
-                              actionPending ||
-                              !data.checkInConfigured ||
-                              !r.id
-                            }
-                            onClick={() => {
-                              if (pendingAction.current) return;
-                              setQuickCheckInEmail(r.email);
-                              void runParticipantAction("quick-check-in", {
-                                emails: [r.email],
-                              })
-                                .catch(recordActionError)
-                                .finally(() => setQuickCheckInEmail(null));
-                            }}
-                          >
-                            <AdminIcon name="check" />
-                            {quickCheckInEmail === r.email
-                              ? "Checking in…"
-                              : "Check in"}
-                          </button>
-                        )}
+
                     </div>
                     {r.checked_in && r.status !== "Checked in" && (
                       <small>Checked in</small>
@@ -3978,12 +3945,51 @@ export function AdminParticipants({
                       <span className="admin-not-locked">Not locked</span>
                     )}
                   </td>
-                  {canManage && (
-                    <td className="admin-manage-cell">
-                      {r.viewer === true ? (
+                  {canCheckIn && (
+                    <td className="admin-manage-cell" data-empty-actions={r.viewer === true || (!canManage && (personalStatus(r) !== "Going" || !!r.checked_in || r.removed))}>
+                      <div className="admin-row-actions admin-participant-action-cluster">
+                      {canCheckIn &&
+                        !r.removed &&
+                        r.viewer !== true &&
+                        personalStatus(r) === "Going" &&
+                        !r.checked_in && (
+                          <button
+                            type="button"
+                            className="button admin-quick-check-in"
+                            aria-label={`Check in ${r.name || r.email}`}
+                            aria-busy={quickCheckInEmail === r.email}
+                            title={
+                              !r.id
+                                ? "Participant must sign in before check-in."
+                                : "Check in participant"
+                            }
+                            disabled={
+                              !hydrated ||
+                              actionPending ||
+                              !data.checkInConfigured ||
+                              !r.id
+                            }
+                            onClick={() => {
+                              if (pendingAction.current) return;
+                              setQuickCheckInEmail(r.email);
+                              void runParticipantAction("quick-check-in", {
+                                emails: [r.email],
+                              })
+                                .catch(recordActionError)
+                                .finally(() => setQuickCheckInEmail(null));
+                            }}
+                          >
+                            <UserCheck size={18} aria-hidden="true" />
+                            {quickCheckInEmail === r.email
+                              ? "Checking in…"
+                              : "Check in"}
+                          </button>
+                        )}
+                      {canManage && (
+                      r.viewer === true ? (
                         <span className="sr-only">Viewer access</span>
                       ) : r.id ? (
-                        <div className="admin-row-actions">
+                        <>
                           <StatusChange
                             kind="person"
                             target={r.id}
@@ -4005,12 +4011,13 @@ export function AdminParticipants({
                               compact
                             />
                           </StatusChange>
-                        </div>
+                        </>
                       ) : (
                         <span className="muted">
                           Account has not signed in yet.
                         </span>
-                      )}
+                      ))}
+                      </div>
                     </td>
                   )}
                 </tr>
@@ -4711,38 +4718,14 @@ export function AdminList({
       ) : teams ? (
         <ul className="admin-team-list">
           {items.map((team) => (
-            <li key={team.id}>
-              <details
-                className="admin-team-disclosure"
-                open={Boolean(team.locked)}
-              >
-                <summary>
-                  <TeamAvatar
-                    name={team.name}
-                    palette={team.palette}
-                    size={48}
-                  />
-                  <div>
-                    <strong>{team.name}</strong>
-                    <small>
-                      {team.status} ·{" "}
-                      {team.readiness?.total
-                        ? `${team.readiness.approved}/${team.readiness.total} approved`
-                        : `${team.members.length} members`}
-                    </small>
-                  </div>
-                  <ChevronDown size={20} aria-hidden="true" />
-                </summary>
-                <div className="admin-team-management">
-                  <StatusChange
-                    kind="team"
-                    target={team.id}
-                    name={team.name}
-                    current={team.status}
-                    run={run}
-                    compact
-                  />
-                </div>
+            <AdminTeamCard
+              key={team.id}
+              name={team.name}
+              defaultOpen={Boolean(team.locked)}
+              avatar={<TeamAvatar name={team.name} palette={team.palette} size={48} />}
+              caption={<>{team.status} · {team.readiness?.total ? `${team.readiness.approved}/${team.readiness.total} approved` : `${team.members.length} members`}</>}
+              menu={<StatusChange kind="team" target={team.id} name={team.name} current={team.status} run={run} compact />}
+            >
                 <ul className="member-list">
                   {team.members.map((member: Row) => (
                     <li key={member.id}>
@@ -4817,8 +4800,7 @@ export function AdminList({
                     run={run}
                   />
                 )}
-              </details>
-            </li>
+            </AdminTeamCard>
           ))}
         </ul>
       ) : logs ? (

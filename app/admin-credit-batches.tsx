@@ -141,7 +141,8 @@ function DeleteCreditControl({
     <div className="credit-batch-delete">
       <button
         type="button"
-        className="button secondary"
+        className={`button secondary${column ? " credit-column-delete-icon" : ""}`}
+        title={column ? `Delete column: ${column.heading}` : undefined}
         aria-label={
           column
             ? `Delete column: ${column.heading}`
@@ -159,7 +160,7 @@ function DeleteCreditControl({
         }
       >
         <PendingIcon busy={busy} action="delete" />
-        {busy ? "Deleting…" : column ? "Delete column" : "Delete batch"}
+        {!column && (busy ? "Deleting…" : "Delete batch")}
       </button>
       {busy && (
         <span className="sr-only" role="status">

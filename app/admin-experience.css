@@ -1279,6 +1279,182 @@
   font-size: 12px;
   white-space: nowrap;
 }
+.admin-participants-page .admin-participant-action-cluster {
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+.admin-participants-page .admin-person-identity strong {
+  overflow-wrap: anywhere;
+}
+.main:not(.home-main) .admin-workspace .credit-column-delete-icon {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  padding: 10px;
+  flex: 0 0 44px;
+}
+.admin-teams-page .admin-team-card-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+}
+.admin-teams-page .admin-team-card[data-expanded="true"] > header {
+  border-bottom: 1px solid var(--line, #e3e4db);
+}
+.main:not(.home-main) .admin-teams-page .admin-team-card-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--ink, #202320);
+  text-align: left;
+}
+.admin-team-card-identity {
+  display: grid;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+.admin-team-card-identity strong {
+  font-size: 17px;
+  overflow-wrap: anywhere;
+}
+.admin-team-card-identity small {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted, #656960);
+}
+.admin-team-card-chevron {
+  flex: 0 0 20px;
+}
+.admin-team-card-toggle[aria-expanded="true"] > .admin-team-card-chevron {
+  transform: rotate(180deg);
+}
+.main:not(.home-main) .admin-teams-page .admin-team-card-body .member-list > li {
+  min-height: 56px;
+  padding-block: 8px;
+  gap: 8px;
+}
+.admin-team-card-body .member-list > li > div {
+  min-width: 0;
+  flex: 1;
+}
+.admin-team-card-body .member-list strong {
+  overflow-wrap: anywhere;
+}
+@media (min-width: 741px) and (max-width: 1024px) {
+  .main:not(.home-main) .admin-participants-page .table-scroll {
+    width: 100%;
+    min-width: 0;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+  .main:not(.home-main) .admin-participants-page .participants-table,
+  .main:not(.home-main) .admin-participants-page .participants-table tbody {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+  }
+  .main:not(.home-main) .admin-participants-page .participants-table thead {
+    display: none;
+  }
+  .main:not(.home-main) .admin-participants-page .participants-table tr {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr) max-content;
+    gap: 10px;
+    padding: 18px 16px;
+    margin-bottom: 12px;
+    border: 1px solid var(--line, #e3e4db);
+    border-radius: 12px;
+    background: var(--surface, #fffefa);
+  }
+  .main:not(.home-main) .admin-participants-page .participants-table td {
+    display: block;
+    min-width: 0;
+    width: auto;
+    height: auto;
+    padding: 0;
+    border: 0;
+  }
+  .main:not(.home-main) .admin-participants-page .participants-table td::before {
+    content: none;
+  }
+  .main:not(.home-main) .admin-participants-page .participants-table td:first-child {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+  }
+  .main:not(.home-main) .admin-participants-page .participants-table td.admin-person-cell {
+    grid-column: 2 / -1;
+    grid-row: 1;
+  }
+  .main:not(.home-main) .admin-participants-page .participants-table td.admin-personal-status-cell {
+    grid-column: 2 / -1;
+    grid-row: 2;
+  }
+  .main:not(.home-main) .admin-participants-page .participants-table td.admin-team-cell {
+    grid-column: 2;
+    grid-row: 3;
+    padding-top: 10px;
+    border-top: 1px solid var(--line, #e3e4db);
+  }
+  .main:not(.home-main) .admin-participants-page .participants-table td.admin-team-status-cell {
+    grid-column: 3;
+    grid-row: 3;
+    align-self: center;
+  }
+  .main:not(.home-main) .admin-participants-page .participants-table td.admin-locked-at {
+    grid-column: 2 / -1;
+    grid-row: 4;
+  }
+  .main:not(.home-main) .admin-participants-page .participants-table td.admin-manage-cell {
+    grid-column: 2 / -1;
+    grid-row: 5;
+  }
+  .main:not(.home-main) .admin-participants-page .participants-table td.admin-manage-cell[data-empty-actions="true"],
+  .main:not(.home-main) .admin-participants-page .participants-table td.admin-locked-at:has(.admin-not-locked) {
+    display: none;
+  }
+}
+@media (max-width: 740px) {
+  .main:not(.home-main) .admin-participants-page .participants-table td.admin-person-cell {
+    padding-right: 0;
+  }
+  .main:not(.home-main) .admin-participants-page .participants-table td.admin-manage-cell {
+    grid-column: 2 / -1;
+    grid-row: 5;
+    align-self: center;
+    margin: 2px 0 0;
+  }
+  .main:not(.home-main) .admin-participants-page .participants-table td.admin-manage-cell[data-empty-actions="true"] {
+    display: none;
+  }
+  .main:not(.home-main) .admin-teams-page .admin-team-card-body .member-list > li {
+    flex-wrap: wrap;
+  }
+  .main:not(.home-main) .admin-teams-page .admin-team-card-body .member-list > li > div:not(.admin-leader-transfer) {
+    flex: 1 1 calc(100% - 44px);
+  }
+  .main:not(.home-main) .admin-teams-page .admin-team-card-body .member-list > li > .pill {
+    margin-left: 44px;
+  }
+  .main:not(.home-main) .admin-teams-page .admin-team-card-body .member-list > li > .admin-leader-transfer {
+    margin-left: auto;
+  }
+}
 .admin-access-list {
   margin: 0 0 20px;
   padding: 0;
