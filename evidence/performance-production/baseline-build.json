@@ -1,0 +1,25 @@
+{
+  "case": "baseline",
+  "source": "c353a173a85580ebb4eed47fff0a23a0830b81a6",
+  "baseSource": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+  "onlyAdditionalSourceCommit": "e386cc7 main-only Vercel Git deployment configuration",
+  "command": [
+    "node",
+    "node_modules/next/dist/bin/next",
+    "build",
+    "--webpack"
+  ],
+  "bundler": "webpack",
+  "mode": "production build",
+  "exitCode": 0,
+  "elapsedSecondsDiagnosticOnly": 68.468,
+  "environmentKeys": [
+    "LANG",
+    "NEXT_TELEMETRY_DISABLED",
+    "PATH",
+    "TZ"
+  ],
+  "backendOrProviderConfigured": false,
+  "serverStarted": false,
+  "buildTimingIsFrontendPerformanceEvidence": false
+}
