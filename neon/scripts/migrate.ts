@@ -1,10 +1,11 @@
 import { Pool } from "pg";
-import { applyPortalMigrations, loadPortalMigrations } from "../db/migrate";
+import { applyPortalMigrations } from "../db/migrate";
+import { loadMigrationPlan } from "../migration-plan";
 import type { PostgresPool } from "../db/adapter";
 
 // Inspect mode is harmless and default. Apply only to an approved empty/synthetic
 // local branch; production movement/provisioning remains a separate operation.
-const migrations = await loadPortalMigrations();
+const migrations = await loadMigrationPlan();
 if (process.argv.includes("--apply-synthetic")) {
   if (process.env.PORTAL_SYNTHETIC_DATABASE !== "1")
     throw new Error("SYNTHETIC_DATABASE_CONFIRMATION_REQUIRED");
