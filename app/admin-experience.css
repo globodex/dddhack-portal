@@ -1351,6 +1351,180 @@
 .admin-team-card-body .member-list strong {
   overflow-wrap: anywhere;
 }
+.admin-team-menu-actions {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line, #e3e4db);
+}
+.admin-team-menu-actions .button {
+  width: 100%;
+  justify-content: flex-start;
+  min-height: 44px;
+}
+.admin-team-action-dialog {
+  width: min(540px, calc(100vw - 32px));
+  max-width: calc(100vw - 32px);
+  max-height: calc(100svh - 32px);
+  padding: 24px;
+  border: 1px solid var(--line, #e3e4db);
+  border-radius: 16px;
+  background: var(--surface, #fffefa);
+  color: var(--ink, #202320);
+  overscroll-behavior: contain;
+}
+.admin-team-action-dialog[open] {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.admin-team-action-dialog[data-action="add"] {
+  height: min(620px, calc(100svh - 32px));
+}
+.admin-team-action-dialog::backdrop {
+  background: rgb(24 30 25 / 38%);
+}
+.admin-team-action-dialog > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.admin-team-action-dialog h2 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: -0.03em;
+}
+.admin-team-action-dialog .admin-toolbar-icon {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line, #e3e4db);
+  border-radius: 10px;
+  background: var(--surface, #fffefa);
+  color: var(--ink, #202320);
+}
+.admin-team-action-dialog .button:not(.secondary) {
+  background: var(--ink, #202320);
+  border-color: var(--ink, #202320);
+  color: var(--surface, #fffefa);
+}
+.admin-team-action-dialog .form-actions {
+  margin-top: 0;
+}
+.admin-team-action-target {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.admin-team-action-target span {
+  flex-shrink: 0;
+  color: var(--muted, #656960);
+}
+.admin-team-action-dialog form,
+.admin-team-action-dialog label {
+  display: grid;
+  gap: 8px;
+}
+.admin-team-action-dialog form {
+  gap: 16px;
+}
+.admin-team-action-dialog label > span {
+  font-size: 13px;
+}
+.admin-team-action-dialog input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  border: 1px solid var(--line, #e3e4db);
+  border-radius: 10px;
+  background: var(--surface, #fffefa);
+  color: var(--ink, #202320);
+}
+.admin-team-action-dialog .admin-team-candidate-search {
+  position: relative;
+  display: block;
+}
+.admin-team-candidate-search > svg {
+  position: absolute;
+  left: 12px;
+  top: 14px;
+  color: var(--muted, #656960);
+}
+.admin-team-candidate-search input {
+  padding-left: 40px;
+}
+.admin-team-candidates {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.admin-team-candidates > li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line, #e3e4db);
+}
+.admin-team-candidates > li.admin-candidate-empty {
+  border: 0;
+  color: var(--muted, #656960);
+  font-size: 14px;
+}
+.admin-team-candidates > li > div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+.admin-team-candidates strong {
+  font-size: 14px;
+}
+.admin-team-candidates :is(span, small) {
+  color: var(--muted, #656960);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.admin-team-action-dialog .admin-team-candidates button {
+  width: 88px;
+  flex: 0 0 88px;
+  min-height: 44px;
+  font-size: 13px;
+}
+.admin-team-candidate-pages {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.admin-team-candidate-pages span {
+  color: var(--muted, #656960);
+  font-size: 12px;
+}
+.admin-team-candidate-pages .button {
+  min-height: 44px;
+  padding-inline: 12px;
+}
+.admin-team-action-dialog .error-message {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+@media (max-width: 480px) {
+  .admin-team-action-dialog {
+    padding: 16px;
+  }
+}
 @media (min-width: 741px) and (max-width: 1024px) {
   .main:not(.home-main) .admin-participants-page .table-scroll {
     width: 100%;

@@ -43,6 +43,7 @@ import {
 } from "lucide-react";
 import AddAdmins from "./add-admins";
 import AdminTeamCard from "./admin-team-card";
+import AdminTeamActions from "./admin-team-actions";
 import AdminCreditBatches from "./admin-credit-batches";
 import PersonalCredits, { PersonalCreditsContent } from "./personal-credits";
 import AdminLeaderTransfer from "./admin-leader-transfer";
@@ -4724,7 +4725,7 @@ export function AdminList({
               defaultOpen={Boolean(team.locked)}
               avatar={<TeamAvatar name={team.name} palette={team.palette} size={48} />}
               caption={<>{team.status} · {team.readiness?.total ? `${team.readiness.approved}/${team.readiness.total} approved` : `${team.members.length} members`}</>}
-              menu={<StatusChange kind="team" target={team.id} name={team.name} current={team.status} run={run} compact />}
+              menu={<StatusChange kind="team" target={team.id} name={team.name} current={team.status} run={run} compact>{(data.me?.owner || data.me?.role === "admin") && <AdminTeamActions team={team as { id: string; name: string; members: unknown[] }} run={run} />}</StatusChange>}
             >
                 <ul className="member-list">
                   {team.members.map((member: Row) => (
