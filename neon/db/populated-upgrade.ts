@@ -55,7 +55,11 @@ export function verifyUpgradePlan(
     baseline.historical.length !== 7 ||
     !same(
       baseline.pendingFeatureMigrations.map((entry) => entry.name),
-      ["0102_credit_stock.sql", "0103_project_media_limits.sql"],
+      [
+        "0102_credit_stock.sql",
+        "0103_project_media_limits.sql",
+        "0104_admin_team_corrections.sql",
+      ],
     ) ||
     !same(entries(plan), approved) ||
     plan.some(

@@ -50,11 +50,12 @@ export function historicalLedgerCompatibility(
   migrations: PortalMigration[];
 } | null {
   if (
-    plan.length !== 9 ||
+    plan.length !== 10 ||
     ledger.length < 7 ||
-    ledger.length > 9 ||
+    ledger.length > 10 ||
     plan[7]?.name !== "0102_credit_stock.sql" ||
     plan[8]?.name !== "0103_project_media_limits.sql" ||
+    plan[9]?.name !== "0104_admin_team_corrections.sql" ||
     ledger.some((entry, i) => entry.name !== plan[i]?.name)
   )
     return null;

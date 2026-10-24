@@ -1,0 +1,19 @@
+✔ 0104 upgrade lf: populated existing9→10 applies only0104, preserves all prior rows/hashes and repeats with no work (13238.804344ms)
+✔ 0104 upgrade crlf: populated existing9→10 applies only0104, preserves all prior rows/hashes and repeats with no work (12825.745974ms)
+✔ 0104 upgrade: old nine-entry receipts stop before connection; unknown/mixed/tampered ledger and stale same-target state stop before DDL (28112.165876ms)
+✔ 0104 upgrade: real postcondition failure rolls function replacements, ledger append and triggered data back atomically (6138.4139ms)
+✔ 0104 source plan pins exactly ten LF files and leaves all nine previous SQL blobs and seven historical approval entries unchanged (492.287936ms)
+✔ independent Windows source: approved LF plan is ten exact HEAD blobs and keeps the published digest (565.063185ms)
+✔ independent Windows repair: check is read-only, exact CRLF repair preserves HEAD/index/approval and recovers the strict source plan (7480.608659ms)
+✔ independent Windows repair: edits, BOM, changed HEAD/index/approval and unexpected file sets refuse before any SQL write (12589.296627ms)
+✔ independent Windows source: actual CRLF loader and offline CLI reject; strict checker never normalizes bytes (2707.826277ms)
+✔ independent Windows source: missing, extra, reordered, BOM and literal-edit plans still stop strictly (131.277894ms)
+✔ independent Windows checkout: autocrlf=true still checks out only the ten pinned migration paths as canonical LF (932.363454ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 88832.15972

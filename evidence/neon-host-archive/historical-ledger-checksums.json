@@ -38,6 +38,10 @@
     {
       "name": "0103_project_media_limits.sql",
       "checksum": "3f42da160787977b7655fe74647655bd656f4c55467c2a42b3dd1627859f462c"
+    },
+    {
+      "name": "0104_admin_team_corrections.sql",
+      "checksum": "a931aeafba01be07f43e35fc7c17cae80f11bbd212fbd92f0e5fd8d475c40500"
     }
   ],
   "hostedRead": false,
