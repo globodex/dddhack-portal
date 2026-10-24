@@ -476,6 +476,21 @@
   height: 44px;
   padding: 10px;
 }
+.app-shell .public-project-list .public-project-card-actions > .engagement > strong {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.app-shell .public-project-list .public-project-card-actions > .engagement > a:not(.upvote-button):not(.project-comments-button) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 4px;
+  color: var(--ink, #202320);
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .app-shell .public-project-detail {
   max-width: none;
 }
