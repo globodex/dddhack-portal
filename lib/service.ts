@@ -523,18 +523,53 @@ export class PortalService {
         }
         demand(!(await this.team(target)), 409, "ALREADY_IN_TEAM");
         const requestId = crypto.randomUUID();
-        await this.mutate(u.id, action, d.teamId, [
+        const previous =
+          action === "team-invite"
+            ? await one<{ id: string; status: string; created_at: string }>(
+                this.db,
+                "SELECT id,status,created_at FROM team_actions WHERE team_id=? AND user_id=? AND kind='invite'",
+                d.teamId,
+                target,
+              )
+            : undefined;
+        demand(
+          !previous || previous.status === "declined",
+          409,
+          "INVITATION_ALREADY_PENDING",
+          "This participant already has an invitation for this team.",
+        );
+        await this.mutate(
+          u.id,
+          action,
+          d.teamId,
           [
-            "INSERT INTO team_actions VALUES(?,?,?,?,?,?)",
-            requestId,
-            d.teamId,
-            target,
-            action === "team-request" ? "request" : "invite",
-            "pending",
-            this.now(),
+            [
+              action === "team-invite"
+                ? "INSERT INTO team_actions VALUES(?,?,?,?,?,?) ON CONFLICT(team_id,user_id,kind) DO UPDATE SET id=excluded.id,status='pending',created_at=excluded.created_at WHERE team_actions.status='declined'"
+                : "INSERT INTO team_actions VALUES(?,?,?,?,?,?)",
+              requestId,
+              d.teamId,
+              target,
+              action === "team-request" ? "request" : "invite",
+              "pending",
+              this.now(),
+            ],
+            ...assertPreviousWrite(),
           ],
-        ]);
-        return { message: "Saved in portal. No email sent." };
+          {
+            invitationId: requestId,
+            ...(previous
+              ? {
+                  previousInvitation: {
+                    id: previous.id,
+                    status: previous.status,
+                    createdAt: previous.created_at,
+                  },
+                }
+              : {}),
+          },
+        );
+        return { id: requestId, message: "Saved in portal. No email sent." };
       }
       case "team-respond": {
         await this.approved();
@@ -573,6 +608,7 @@ export class PortalService {
             d.decision,
             d.id,
           ],
+          ...assertPreviousWrite(),
         ];
         if (d.decision === "accepted")
           statements.push([
@@ -582,6 +618,7 @@ export class PortalService {
             this.now(),
           ]);
         await this.mutate(actor.id, action, a.team_id, statements, {
+          invitationId: a.id,
           decision: d.decision,
         });
         return { message: "Team response saved." };
