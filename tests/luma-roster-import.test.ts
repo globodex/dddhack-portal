@@ -318,6 +318,36 @@ test("one normalized Email column is automatic; absent Email gives one actionabl
   }
 });
 
+test("an incomplete profile with a legacy default details row still receives registration prefills", async () => {
+  const { db, service } = await setup();
+  try {
+    await commit(
+      service,
+      csv(
+        lumaHeaders.filter((header) => header !== teamHeader),
+        [registration()],
+      ),
+    );
+    const participant = user(db);
+    await participant.actor();
+    await db
+      .prepare("INSERT INTO profile_details(user_id) VALUES(?)")
+      .bind("synthetic_luma_user")
+      .all();
+    const profile = ((await participant.view("/profile")) as any).profile;
+    assert.equal(profile.complete, false);
+    assert.equal(profile.phone, "+12025550100");
+    assert.equal(profile.organization, "Synthetic Organization");
+    assert.equal(profile.display_name, "Synthetic Luma Builder");
+    assert.equal(
+      profile.socialLinks[1].url,
+      "https://github.com/synthetic-builder",
+    );
+  } finally {
+    db.close();
+  }
+});
+
 test("reimports preserve status, all saved edits and deliberately cleared optional fields", async () => {
   const { db, service } = await setup();
   try {

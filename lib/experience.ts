@@ -189,7 +189,7 @@ export class PortalExperience {
       actor.email,
     );
     const prefill =
-      imported && !p?.completed_at && !details ? JSON.parse(imported.payload) : {};
+      imported && !p?.completed_at ? JSON.parse(imported.payload) : {};
     return {
       ...p,
       ...details,
