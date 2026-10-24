@@ -1,0 +1,49 @@
+{
+  "source": "c7f2336cb2de1d89b794c860b05117e6fe09549c",
+  "checks": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "name": "Empty search hides inactive pagination; compact history close works and restores focus",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "name": "Empty search hides inactive pagination; compact history close works and restores focus",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "Empty search hides inactive pagination; compact history close works and restores focus",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "name": "Empty search hides inactive pagination; compact history close works and restores focus",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "evidence/projects-rules-polish/projects-no-matches-1440x900.png",
+    "evidence/projects-rules-polish/committed-history-1440x900.png",
+    "evidence/projects-rules-polish/projects-no-matches-768x1024.png",
+    "evidence/projects-rules-polish/committed-history-768x1024.png",
+    "evidence/projects-rules-polish/projects-no-matches-390x844.png",
+    "evidence/projects-rules-polish/committed-history-390x844.png",
+    "evidence/projects-rules-polish/projects-no-matches-390x480.png",
+    "evidence/projects-rules-polish/committed-history-390x480.png"
+  ],
+  "errors": [],
+  "syntheticOnly": true
+}

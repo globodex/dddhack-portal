@@ -1,0 +1,385 @@
+{
+  "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9",
+  "origin": "http://localhost:3005",
+  "syntheticOnly": true,
+  "physicalDevice": false,
+  "browserSandbox": false,
+  "developmentOverlayHidden": true,
+  "screenshots": [
+    {
+      "name": "project-detail",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/project-detail-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "project-detail",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/project-detail-1440x900-full.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "projects-no-matches",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/projects-no-matches-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "committed-history",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/committed-history-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "wizard-field-error",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/wizard-field-error-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "wizard-step1",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/wizard-step1-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "wizard-step2",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/wizard-step2-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "wizard-step3",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/wizard-step3-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "submission-confirmation",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/submission-confirmation-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "projects-no-matches",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/projects-no-matches-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "committed-history",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/committed-history-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "wizard-field-error",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/wizard-field-error-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "wizard-step1",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/wizard-step1-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "wizard-step2",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/wizard-step2-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "wizard-step3",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/wizard-step3-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "submission-confirmation",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/submission-confirmation-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "projects-no-matches",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/projects-no-matches-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "committed-history",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/committed-history-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "wizard-field-error",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/wizard-field-error-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "wizard-step1",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/wizard-step1-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "wizard-step2",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/wizard-step2-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "wizard-step3",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/wizard-step3-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "submission-confirmation",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/submission-confirmation-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "projects-no-matches",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/projects-no-matches-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "committed-history",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/committed-history-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "wizard-field-error",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/wizard-field-error-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "wizard-step1",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/wizard-step1-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "wizard-step2",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/wizard-step2-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "wizard-step3",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/wizard-step3-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    },
+    {
+      "name": "submission-confirmation",
+      "path": "/workspace/ddd-projects/evidence/projects-rules-verified/submission-confirmation-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": false,
+      "source": "2f63e9c0781d48eabd7e48954d642cee4a3dc4a9"
+    }
+  ],
+  "checks": [
+    {
+      "name": "1440x900: no-match state has a working Clear search action",
+      "passed": true
+    },
+    {
+      "name": "1440x900: committed history loads exactly two authorized versions; Escape/Back preserve route and opener",
+      "passed": true
+    },
+    {
+      "name": "1440x900: all three submission steps, field errors, six ecosystem choices and commit cancellation work without a write",
+      "passed": true
+    },
+    {
+      "name": "768x1024: no-match state has a working Clear search action",
+      "passed": true
+    },
+    {
+      "name": "768x1024: committed history loads exactly two authorized versions; Escape/Back preserve route and opener",
+      "passed": true
+    },
+    {
+      "name": "768x1024: all three submission steps, field errors, six ecosystem choices and commit cancellation work without a write",
+      "passed": true
+    },
+    {
+      "name": "390x844: no-match state has a working Clear search action",
+      "passed": true
+    },
+    {
+      "name": "390x844: committed history loads exactly two authorized versions; Escape/Back preserve route and opener",
+      "passed": true
+    },
+    {
+      "name": "390x844: all three submission steps, field errors, six ecosystem choices and commit cancellation work without a write",
+      "passed": true
+    },
+    {
+      "name": "390x480: no-match state has a working Clear search action",
+      "passed": true
+    },
+    {
+      "name": "390x480: committed history loads exactly two authorized versions; Escape/Back preserve route and opener",
+      "passed": true
+    },
+    {
+      "name": "390x480: all three submission steps, field errors, six ecosystem choices and commit cancellation work without a write",
+      "passed": true
+    },
+    {
+      "name": "JavaScript-disabled browser: actual server-rendered Submission cannot issue a native GET or submit private draft fields",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "writes": [],
+  "accessibility": [
+    {
+      "name": "project-detail",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "violations": []
+    },
+    {
+      "name": "wizard-step3",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "violations": []
+    }
+  ],
+  "sourceAtEnd": "113188e66e4578aa81648d787818dc2962519e0a"
+}

@@ -1,0 +1,13 @@
+Application source d257e61b5bcffc894975d1a11dc9e706b5c186a4
+
+Typecheck: npm run typecheck, exit 0.
+Focused suite: node --import tsx --test --test-concurrency=1 tests/project-form-privacy.test.ts tests/discover-rules-v6.test.ts tests/submission-tool-controls.test.ts tests/project-timestamp.test.ts tests/admin-portal-integration.test.ts
+23 passed, 0 failed, 0 skipped.
+State browser matrix: node scripts/qa-projects-rules-states.mjs, exit 0.
+8 checks passed, 24 screenshots, 0 page errors.
+All four history loading-to-loaded frames: delta height 0px, delta y 0px.
+Final mobile placeholder logo/text/action geometry asserted.
+Before native hashes verified against reconciled index.
+99 native screenshots retained unchanged, plus 3 labeled comparison sheets.
+
+Full production build and cross-lane suite are the parent integration gate. No hosted speed claim.

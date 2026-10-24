@@ -1,0 +1,12 @@
+{
+  "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+  "isolatedBaselineWorktree": "/workspace/ddd-projects-baseline",
+  "origin": "http://127.0.0.1:3006",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "syntheticOnly": true,
+  "reason": "Native original recapture after a repeated capture overwrote one earlier file",
+  "actualAccordion": true
+}
