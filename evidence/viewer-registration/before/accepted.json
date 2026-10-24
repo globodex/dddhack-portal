@@ -1,0 +1,21 @@
+{
+  "source": "d97d614ac7be2a657df91de42aaf00e9f3cfc336",
+  "result": "CONFIRMED_BEFORE_BUG",
+  "syntheticOnly": true,
+  "acceptedSettledScreenshots": [
+    "evidence/viewer-registration/before/dashboard-1440x900-confirmed-mismatch.png",
+    "evidence/viewer-registration/before/profile-1440x900-confirmed-mismatch.png",
+    "evidence/viewer-registration/before/profile-390x480-confirmed-mismatch.png",
+    "evidence/viewer-registration/before/dashboard-390x844-settled.png",
+    "evidence/viewer-registration/before/profile-390x844-settled.png",
+    "evidence/viewer-registration/before/dashboard-390x480-settled.png"
+  ],
+  "rejectedAsSettled": [
+    "dashboard-1440x900-settled.png",
+    "profile-1440x900-settled.png",
+    "profile-390x480-settled.png"
+  ],
+  "reason": "These three remain Loading during dev compilation, so they are retained only as intermediate frames. Bounded follow-up waits for the real visible mismatch.",
+  "browserClosed": true,
+  "noWrites": true
+}

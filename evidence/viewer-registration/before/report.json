@@ -1,0 +1,1216 @@
+{
+  "source": "d97d614ac7be2a657df91de42aaf00e9f3cfc336",
+  "origin": "http://localhost:3008",
+  "syntheticDatabase": "/tmp/ddd-viewer-20261024-unique01.sqlite",
+  "syntheticOnly": true,
+  "captures": [
+    "evidence/viewer-registration/before/dashboard-1440x900-client-api-held.png",
+    "evidence/viewer-registration/before/dashboard-1440x900-settled.png",
+    "evidence/viewer-registration/before/profile-1440x900-client-api-held.png",
+    "evidence/viewer-registration/before/profile-1440x900-settled.png",
+    "evidence/viewer-registration/before/dashboard-390x844-client-api-held.png",
+    "evidence/viewer-registration/before/dashboard-390x844-settled.png",
+    "evidence/viewer-registration/before/profile-390x844-client-api-held.png",
+    "evidence/viewer-registration/before/profile-390x844-settled.png",
+    "evidence/viewer-registration/before/dashboard-390x480-client-api-held.png",
+    "evidence/viewer-registration/before/dashboard-390x480-settled.png",
+    "evidence/viewer-registration/before/profile-390x480-client-api-held.png",
+    "evidence/viewer-registration/before/profile-390x480-settled.png"
+  ],
+  "cases": [
+    {
+      "path": "/dashboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "requests": [
+        {
+          "ms": 1792864036593,
+          "method": "GET",
+          "url": "http://localhost:3008/dashboard"
+        },
+        {
+          "ms": 1792864037109,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864036695"
+        },
+        {
+          "ms": 1792864037110,
+          "method": "GET",
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        },
+        {
+          "ms": 1792864037111,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864036695"
+        },
+        {
+          "ms": 1792864037111,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864036695"
+        },
+        {
+          "ms": 1792864037112,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js"
+        },
+        {
+          "ms": 1792864037640,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+        },
+        {
+          "ms": 1792864037656,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+        },
+        {
+          "ms": 1792864039842,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+        },
+        {
+          "ms": 1792864040614,
+          "method": "GET",
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        },
+        {
+          "ms": 1792864040721,
+          "method": "GET",
+          "url": "http://localhost:3008/api/portal?view=%2Fdashboard&focus="
+        }
+      ],
+      "responses": [
+        {
+          "ms": 1792864037017,
+          "status": 200,
+          "url": "http://localhost:3008/dashboard"
+        },
+        {
+          "ms": 1792864037225,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864036695"
+        },
+        {
+          "ms": 1792864037283,
+          "status": 200,
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        },
+        {
+          "ms": 1792864037362,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864036695"
+        },
+        {
+          "ms": 1792864037381,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js"
+        },
+        {
+          "ms": 1792864037705,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+        },
+        {
+          "ms": 1792864037741,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+        },
+        {
+          "ms": 1792864039014,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864036695"
+        },
+        {
+          "ms": 1792864040295,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+        },
+        {
+          "ms": 1792864040823,
+          "status": 200,
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        }
+      ],
+      "pageErrors": [],
+      "states": [
+        {
+          "ms": 504.69999999925494,
+          "heading": [],
+          "nav": [],
+          "body": "",
+          "skeletons": 0
+        },
+        {
+          "ms": 549.5,
+          "heading": [],
+          "nav": [
+            "Codex Community New Delhi",
+            "Home",
+            "Projects",
+            "Sign in",
+            "Home",
+            "Projects",
+            "Sign in"
+          ],
+          "body": "Local rehearsal · synthetic accounts only Switch fixture\n\nLoading…",
+          "skeletons": 1
+        }
+      ],
+      "url": "http://localhost:3008/dashboard",
+      "text": "Skip to content\nCodex Community New Delhi\nOpen menu\nLocal rehearsal · synthetic accounts only Switch fixture\n\nLoading…",
+      "overflow": false,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#main"
+        },
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Sign in",
+          "href": "/signin?returnTo=%2Fdashboard"
+        },
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Sign in",
+          "href": "/signin?returnTo=%2Fdashboard"
+        },
+        {
+          "text": "Switch fixture",
+          "href": "/local-test"
+        }
+      ]
+    },
+    {
+      "path": "/profile",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "requests": [
+        {
+          "ms": 1792864043736,
+          "method": "GET",
+          "url": "http://localhost:3008/profile"
+        },
+        {
+          "ms": 1792864046554,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864045833"
+        },
+        {
+          "ms": 1792864046558,
+          "method": "GET",
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        },
+        {
+          "ms": 1792864046564,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864045833"
+        },
+        {
+          "ms": 1792864046585,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864045833"
+        },
+        {
+          "ms": 1792864046589,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js"
+        },
+        {
+          "ms": 1792864047146,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+        },
+        {
+          "ms": 1792864047148,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+        },
+        {
+          "ms": 1792864050859,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+        }
+      ],
+      "responses": [
+        {
+          "ms": 1792864046488,
+          "status": 200,
+          "url": "http://localhost:3008/profile"
+        },
+        {
+          "ms": 1792864046628,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864045833"
+        },
+        {
+          "ms": 1792864046699,
+          "status": 200,
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        },
+        {
+          "ms": 1792864047189,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js"
+        },
+        {
+          "ms": 1792864047205,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864045833"
+        },
+        {
+          "ms": 1792864047259,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+        },
+        {
+          "ms": 1792864047262,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+        },
+        {
+          "ms": 1792864049863,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864045833"
+        },
+        {
+          "ms": 1792864051203,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+        }
+      ],
+      "pageErrors": [],
+      "states": [
+        {
+          "ms": 2852.2000000029802,
+          "heading": [],
+          "nav": [],
+          "body": "",
+          "skeletons": 0
+        },
+        {
+          "ms": 2912.400000002235,
+          "heading": [],
+          "nav": [
+            "Codex Community New Delhi",
+            "Home",
+            "Projects",
+            "Sign in",
+            "Home",
+            "Projects",
+            "Sign in"
+          ],
+          "body": "Local rehearsal · synthetic accounts only Switch fixture\n\nLoading…",
+          "skeletons": 1
+        }
+      ],
+      "url": "http://localhost:3008/profile",
+      "text": "Skip to content\nCodex Community New Delhi\nLocal rehearsal · synthetic accounts only Switch fixture\n\nLoading…",
+      "overflow": false,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#main"
+        },
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Sign in",
+          "href": "/signin?returnTo=%2Fdashboard"
+        },
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Sign in",
+          "href": "/signin?returnTo=%2Fdashboard"
+        },
+        {
+          "text": "Switch fixture",
+          "href": "/local-test"
+        }
+      ]
+    },
+    {
+      "path": "/dashboard",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "requests": [
+        {
+          "ms": 1792864051909,
+          "method": "GET",
+          "url": "http://localhost:3008/dashboard"
+        },
+        {
+          "ms": 1792864052490,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864052047"
+        },
+        {
+          "ms": 1792864052493,
+          "method": "GET",
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        },
+        {
+          "ms": 1792864052510,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864052047"
+        },
+        {
+          "ms": 1792864052512,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864052047"
+        },
+        {
+          "ms": 1792864052524,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js"
+        },
+        {
+          "ms": 1792864052951,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+        },
+        {
+          "ms": 1792864052980,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+        },
+        {
+          "ms": 1792864055313,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+        },
+        {
+          "ms": 1792864055946,
+          "method": "GET",
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        },
+        {
+          "ms": 1792864056089,
+          "method": "GET",
+          "url": "http://localhost:3008/api/portal?view=%2Fdashboard&focus="
+        }
+      ],
+      "responses": [
+        {
+          "ms": 1792864052401,
+          "status": 200,
+          "url": "http://localhost:3008/dashboard"
+        },
+        {
+          "ms": 1792864052614,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864052047"
+        },
+        {
+          "ms": 1792864052614,
+          "status": 200,
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        },
+        {
+          "ms": 1792864052681,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864052047"
+        },
+        {
+          "ms": 1792864052986,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js"
+        },
+        {
+          "ms": 1792864053044,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+        },
+        {
+          "ms": 1792864053044,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+        },
+        {
+          "ms": 1792864054437,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864052047"
+        },
+        {
+          "ms": 1792864055705,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+        },
+        {
+          "ms": 1792864055987,
+          "status": 200,
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        },
+        {
+          "ms": 1792864056204,
+          "status": 403,
+          "url": "http://localhost:3008/api/portal?view=%2Fdashboard&focus="
+        }
+      ],
+      "pageErrors": [],
+      "states": [
+        {
+          "ms": 550.6000000014901,
+          "heading": [],
+          "nav": [],
+          "body": "",
+          "skeletons": 0
+        },
+        {
+          "ms": 558.1000000014901,
+          "heading": [],
+          "nav": [
+            "Codex Community New Delhi"
+          ],
+          "body": "",
+          "skeletons": 0
+        },
+        {
+          "ms": 614.3000000007451,
+          "heading": [],
+          "nav": [
+            "Codex Community New Delhi",
+            "Home",
+            "Projects",
+            "Sign in",
+            "Home",
+            "Projects",
+            "Sign in"
+          ],
+          "body": "Local rehearsal · synthetic accounts only Switch fixture\n\nLoading…",
+          "skeletons": 1
+        },
+        {
+          "ms": 4367.300000000745,
+          "heading": [
+            "Use your registered email"
+          ],
+          "nav": [
+            "Codex Community New Delhi",
+            "Home",
+            "Projects",
+            "Sign in",
+            "Home",
+            "Projects",
+            "Sign in"
+          ],
+          "body": "Local rehearsal · synthetic accounts only Switch fixture\n--\nUse your registered email\n\nPlease sign in with your Luma-registered email\n\nTry again\nSign out / switch account",
+          "skeletons": 0
+        }
+      ],
+      "url": "http://localhost:3008/dashboard",
+      "text": "Skip to content\nCodex Community New Delhi\nOpen menu\nLocal rehearsal · synthetic accounts only Switch fixture\n--\nUse your registered email\n\nPlease sign in with your Luma-registered email\n\nTry again\nSign out / switch account",
+      "overflow": false,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#main"
+        },
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Sign in",
+          "href": "/signin?returnTo=%2Fdashboard"
+        },
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Sign in",
+          "href": "/signin?returnTo=%2Fdashboard"
+        },
+        {
+          "text": "Switch fixture",
+          "href": "/local-test"
+        }
+      ]
+    },
+    {
+      "path": "/profile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "requests": [
+        {
+          "ms": 1792864057403,
+          "method": "GET",
+          "url": "http://localhost:3008/profile"
+        },
+        {
+          "ms": 1792864058026,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864057557"
+        },
+        {
+          "ms": 1792864058037,
+          "method": "GET",
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        },
+        {
+          "ms": 1792864058038,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864057557"
+        },
+        {
+          "ms": 1792864058038,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864057557"
+        },
+        {
+          "ms": 1792864058049,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js"
+        },
+        {
+          "ms": 1792864058616,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+        },
+        {
+          "ms": 1792864058617,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+        },
+        {
+          "ms": 1792864060992,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+        },
+        {
+          "ms": 1792864061736,
+          "method": "GET",
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        },
+        {
+          "ms": 1792864061879,
+          "method": "GET",
+          "url": "http://localhost:3008/api/portal?view=%2Fprofile&focus="
+        }
+      ],
+      "responses": [
+        {
+          "ms": 1792864057878,
+          "status": 200,
+          "url": "http://localhost:3008/profile"
+        },
+        {
+          "ms": 1792864058314,
+          "status": 200,
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        },
+        {
+          "ms": 1792864058319,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864057557"
+        },
+        {
+          "ms": 1792864058634,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864057557"
+        },
+        {
+          "ms": 1792864058634,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js"
+        },
+        {
+          "ms": 1792864058697,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+        },
+        {
+          "ms": 1792864058710,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+        },
+        {
+          "ms": 1792864060138,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864057557"
+        },
+        {
+          "ms": 1792864061525,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+        },
+        {
+          "ms": 1792864061773,
+          "status": 200,
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        },
+        {
+          "ms": 1792864061974,
+          "status": 403,
+          "url": "http://localhost:3008/api/portal?view=%2Fprofile&focus="
+        }
+      ],
+      "pageErrors": [],
+      "states": [
+        {
+          "ms": 587.8000000007451,
+          "heading": [],
+          "nav": [],
+          "body": "",
+          "skeletons": 0
+        },
+        {
+          "ms": 619.8000000007451,
+          "heading": [],
+          "nav": [
+            "Codex Community New Delhi",
+            "Home",
+            "Projects",
+            "Sign in"
+          ],
+          "body": "",
+          "skeletons": 0
+        },
+        {
+          "ms": 698.0999999977648,
+          "heading": [],
+          "nav": [
+            "Codex Community New Delhi",
+            "Home",
+            "Projects",
+            "Sign in",
+            "Home",
+            "Projects",
+            "Sign in"
+          ],
+          "body": "Local rehearsal · synthetic accounts only Switch fixture\n\nLoading…",
+          "skeletons": 1
+        },
+        {
+          "ms": 4646.5,
+          "heading": [
+            "Use your registered email"
+          ],
+          "nav": [
+            "Codex Community New Delhi",
+            "Home",
+            "Projects",
+            "Sign in",
+            "Home",
+            "Projects",
+            "Sign in"
+          ],
+          "body": "Local rehearsal · synthetic accounts only Switch fixture\n--\nUse your registered email\n\nPlease sign in with your Luma-registered email\n\nTry again\nSign out / switch account",
+          "skeletons": 0
+        }
+      ],
+      "url": "http://localhost:3008/profile",
+      "text": "Skip to content\nCodex Community New Delhi\nOpen menu\nLocal rehearsal · synthetic accounts only Switch fixture\n--\nUse your registered email\n\nPlease sign in with your Luma-registered email\n\nTry again\nSign out / switch account",
+      "overflow": false,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#main"
+        },
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Sign in",
+          "href": "/signin?returnTo=%2Fdashboard"
+        },
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Sign in",
+          "href": "/signin?returnTo=%2Fdashboard"
+        },
+        {
+          "text": "Switch fixture",
+          "href": "/local-test"
+        }
+      ]
+    },
+    {
+      "path": "/dashboard",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "requests": [
+        {
+          "ms": 1792864062937,
+          "method": "GET",
+          "url": "http://localhost:3008/dashboard"
+        },
+        {
+          "ms": 1792864063661,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864063093"
+        },
+        {
+          "ms": 1792864063695,
+          "method": "GET",
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        },
+        {
+          "ms": 1792864063701,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864063093"
+        },
+        {
+          "ms": 1792864063708,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864063093"
+        },
+        {
+          "ms": 1792864063709,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js"
+        },
+        {
+          "ms": 1792864064102,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+        },
+        {
+          "ms": 1792864064107,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+        },
+        {
+          "ms": 1792864066526,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+        },
+        {
+          "ms": 1792864067148,
+          "method": "GET",
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        },
+        {
+          "ms": 1792864067282,
+          "method": "GET",
+          "url": "http://localhost:3008/api/portal?view=%2Fdashboard&focus="
+        }
+      ],
+      "responses": [
+        {
+          "ms": 1792864063526,
+          "status": 200,
+          "url": "http://localhost:3008/dashboard"
+        },
+        {
+          "ms": 1792864063726,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864063093"
+        },
+        {
+          "ms": 1792864063810,
+          "status": 200,
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        },
+        {
+          "ms": 1792864063859,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864063093"
+        },
+        {
+          "ms": 1792864063892,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js"
+        },
+        {
+          "ms": 1792864064190,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+        },
+        {
+          "ms": 1792864064221,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+        },
+        {
+          "ms": 1792864065551,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864063093"
+        },
+        {
+          "ms": 1792864066947,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+        },
+        {
+          "ms": 1792864067180,
+          "status": 200,
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        },
+        {
+          "ms": 1792864067357,
+          "status": 403,
+          "url": "http://localhost:3008/api/portal?view=%2Fdashboard&focus="
+        }
+      ],
+      "pageErrors": [],
+      "states": [
+        {
+          "ms": 655.3000000007451,
+          "heading": [],
+          "nav": [],
+          "body": "",
+          "skeletons": 0
+        },
+        {
+          "ms": 704.4000000022352,
+          "heading": [],
+          "nav": [
+            "Codex Community New Delhi",
+            "Home",
+            "Projects",
+            "Sign in",
+            "Home",
+            "Projects",
+            "Sign in"
+          ],
+          "body": "Local rehearsal · synthetic accounts only Switch fixture\n\nLoading…",
+          "skeletons": 1
+        },
+        {
+          "ms": 4463.10000000149,
+          "heading": [
+            "Use your registered email"
+          ],
+          "nav": [
+            "Codex Community New Delhi",
+            "Home",
+            "Projects",
+            "Sign in",
+            "Home",
+            "Projects",
+            "Sign in"
+          ],
+          "body": "Local rehearsal · synthetic accounts only Switch fixture\n--\nUse your registered email\n\nPlease sign in with your Luma-registered email\n\nTry again\nSign out / switch account",
+          "skeletons": 0
+        }
+      ],
+      "url": "http://localhost:3008/dashboard",
+      "text": "Skip to content\nCodex Community New Delhi\nOpen menu\nLocal rehearsal · synthetic accounts only Switch fixture\n--\nUse your registered email\n\nPlease sign in with your Luma-registered email\n\nTry again\nSign out / switch account",
+      "overflow": false,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#main"
+        },
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Sign in",
+          "href": "/signin?returnTo=%2Fdashboard"
+        },
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Sign in",
+          "href": "/signin?returnTo=%2Fdashboard"
+        },
+        {
+          "text": "Switch fixture",
+          "href": "/local-test"
+        }
+      ]
+    },
+    {
+      "path": "/profile",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "requests": [
+        {
+          "ms": 1792864068528,
+          "method": "GET",
+          "url": "http://localhost:3008/profile"
+        },
+        {
+          "ms": 1792864069000,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864068599"
+        },
+        {
+          "ms": 1792864069008,
+          "method": "GET",
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        },
+        {
+          "ms": 1792864069024,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864068599"
+        },
+        {
+          "ms": 1792864069032,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864068599"
+        },
+        {
+          "ms": 1792864069038,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js"
+        },
+        {
+          "ms": 1792864069440,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+        },
+        {
+          "ms": 1792864069478,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+        },
+        {
+          "ms": 1792864072908,
+          "method": "GET",
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+        }
+      ],
+      "responses": [
+        {
+          "ms": 1792864068908,
+          "status": 200,
+          "url": "http://localhost:3008/profile"
+        },
+        {
+          "ms": 1792864069094,
+          "status": 200,
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg"
+        },
+        {
+          "ms": 1792864069177,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864068599"
+        },
+        {
+          "ms": 1792864069502,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864068599"
+        },
+        {
+          "ms": 1792864069508,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js"
+        },
+        {
+          "ms": 1792864069584,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+        },
+        {
+          "ms": 1792864069584,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+        },
+        {
+          "ms": 1792864071986,
+          "status": 200,
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864068599"
+        }
+      ],
+      "pageErrors": [],
+      "states": [
+        {
+          "ms": 482.8999999985099,
+          "heading": [],
+          "nav": [],
+          "body": "",
+          "skeletons": 0
+        },
+        {
+          "ms": 556.2999999970198,
+          "heading": [],
+          "nav": [
+            "Codex Community New Delhi",
+            "Home",
+            "Projects",
+            "Sign in",
+            "Home",
+            "Projects",
+            "Sign in"
+          ],
+          "body": "Local rehearsal · synthetic accounts only Switch fixture\n\nLoading…",
+          "skeletons": 1
+        }
+      ],
+      "url": "http://localhost:3008/profile",
+      "text": "Skip to content\nCodex Community New Delhi\nOpen menu\nLocal rehearsal · synthetic accounts only Switch fixture\n\nLoading…",
+      "overflow": false,
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#main"
+        },
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Sign in",
+          "href": "/signin?returnTo=%2Fdashboard"
+        },
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Sign in",
+          "href": "/signin?returnTo=%2Fdashboard"
+        },
+        {
+          "text": "Switch fixture",
+          "href": "/local-test"
+        }
+      ]
+    }
+  ],
+  "startedAt": "2026-10-24T17:47:15.319Z",
+  "browserClosed": true
+}
