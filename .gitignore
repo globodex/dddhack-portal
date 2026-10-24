@@ -19,3 +19,5 @@ evidence/**/*.webm
 
 .dev.vars*
 outputs/
+.neon
+.neon/
