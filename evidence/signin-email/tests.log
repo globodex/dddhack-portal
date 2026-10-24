@@ -1,0 +1,34 @@
+✔ auth requires exact configured origin and proxy proof; Sites and forwarded-host headers cannot authenticate (91.960328ms)
+✔ auth mutations require exact Origin, bounded JSON and known fields; roles cannot be supplied (102.595941ms)
+✔ relative return paths reject encoded, normalized and auth-loop redirect attacks (4.142107ms)
+✔ magic request normalizes email, creates no identity before proof and stores only hashed bearer credentials (49.198259ms)
+✔ magic link GET is a scanner-safe confirmation, browser-bound, with same-origin POST required (30.57251ms)
+✔ verified magic login preserves legacy portal ID and server role and grants no client-selected role (19.091451ms)
+✔ magic tokens are atomically single-use, reject expiration and revoke other pending links (66.5075ms)
+✔ session credentials rotate, expire, reject shadowed cookies and are revoked by protected signout (64.138671ms)
+✔ durable normalized-email limits are atomic and reset only after their window (36.990168ms)
+✔ SMTP is mandatory without injection, enforces TLS and failed delivery removes tokens (7.405588ms)
+✔ local HTTP uses host-only development cookies and still requires proxy and origin proof (14.991329ms)
+✔ Google start pins exact browser callback, scopes, state, nonce and S256 PKCE (11.125905ms)
+✔ Google callback requires browser-bound, unexpired, single-use state before exchanging a code (155.992616ms)
+✔ Google JWT verification rejects bad audience, issuer, expiry, nonce, verification, authorized party and future issue time (127.053591ms)
+✔ Google verified email links to the same proven identity; a different subject or changed email cannot take over (177.309282ms)
+✔ external Google accounts need fresh mailbox proof; authoritative Workspace and Gmail identities can sign in (226.265172ms)
+✔ owner authority requires verified normalized identity and cannot come from arbitrary localOwner on a hosted identity (0.503135ms)
+✔ a portal email change invalidates a previously issued session rather than moving its authority (59.430943ms)
+✔ a plain SMTP sender gets the requested display name without changing its address or login (64.151244ms)
+✔ explicit SMTP display names remain intact, including a middle dot (0.347665ms)
+✔ SMTP controls are rejected even when trimming could hide them (0.823223ms)
+✔ HTML and plain text keep the exact confirmation URL, expiry and browser requirement (30.329426ms)
+✔ the URL is escaped in both link attributes and fallback text (0.541366ms)
+✔ mail construction retains transport safeguards without creating a transport or sending (0.608008ms)
+✔ SMTP_PASS and a bounded named From address match the configured Gmail contract without sending mail (45.2739ms)
+✔ the configured BETTER_AUTH_SECRET alias and implicit same-origin auth base avoid duplicate setup secrets (0.629293ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7789.829419
