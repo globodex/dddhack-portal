@@ -18,7 +18,7 @@ $portalApiBuild | Format-List
 
 For a ZIP downloaded manually, pass its actual local path instead. The optional `-ArchiveUri` parameter downloads only from an operator-confirmed public HTTPS URL; no download URL is invented or embedded in the handoff. It rejects credential-bearing URLs and verifies the same pinned hash.
 
-The helper copies or downloads the ZIP into a fresh folder, runs `Get-FileHash`, uses `Expand-Archive`, and validates the entry and ARM64 native files. The reviewed ZIP SHA256 is `bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36b38aef7ae3`. It fails before extraction if bytes differ. A rebuilt release with a different approved digest needs an explicitly reviewed handoff update.
+The helper copies or downloads the ZIP into a fresh folder, runs `Get-FileHash`, uses `Expand-Archive`, and validates the entry and ARM64 native files. The reviewed ZIP SHA256 is `1afca1c65f0c3b58bde89a5e1b80d3dec92c87b392239da0315ed762ebd0730f`. It fails before extraction if bytes differ. A rebuilt release with a different approved digest needs an explicitly reviewed handoff update.
 
 Expected layout:
 

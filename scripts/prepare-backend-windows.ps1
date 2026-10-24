@@ -20,7 +20,7 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
-$expectedSHA256 = 'bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36b38aef7ae3'
+$expectedSHA256 = '1afca1c65f0c3b58bde89a5e1b80d3dec92c87b392239da0315ed762ebd0730f'
 
 if ($PSCmdlet.ParameterSetName -eq 'Download') {
     if (-not $ArchiveUri.IsAbsoluteUri -or $ArchiveUri.Scheme -ne 'https' -or
