@@ -1,4 +1,5 @@
 import { projectMediaPolicy } from "./project-media-policy";
+import { validatedProviderGrade, storedEvaluationReport, latestProviderGrade } from "./provider-grade";
 import { auditReason } from "./security";
 import { creditBatchCommand, creditBatchesView, legacyCreditStockImport } from "./credit-batches";
 import { creditAssignmentStatements, creditStockCommand, creditStockView, creditSummaries, personalCredits } from "./credit-stock";
@@ -1522,14 +1523,21 @@ export class PortalService {
             422,
             "REPORT_VERSION_MISMATCH",
           );
+          const grade = validatedProviderGrade(
+            report,
+            this.evaluator.provenance,
+            repository?.commit_sha || (typeof payload.commitSha === "string" ? payload.commitSha.toLowerCase() : ""),
+          );
+          const storedReport = storedEvaluationReport(report, grade);
           await this.mutate(
             actor.id,
             action,
             j.id,
             [
               [
-                "UPDATE astra_jobs SET state='needs_review',report=?,error=NULL,updated_at=? WHERE id=? AND state='running' AND attempts=? AND updated_at=?",
-                JSON.stringify({ ...report, status: "needs_review" }),
+                "UPDATE astra_jobs SET state=?,report=?,error=NULL,updated_at=? WHERE id=? AND state='running' AND attempts=? AND updated_at=?",
+                grade === null ? "needs_review" : "finalized",
+                JSON.stringify(storedReport),
                 this.now(),
                 j.id,
                 j.attempts + 1,
@@ -1539,23 +1547,20 @@ export class PortalService {
               ...(j.project_id
                 ? [
                     [
-                      "UPDATE evaluation_runs SET state='completed',report=?,score=NULL,updated_at=? WHERE id=? AND state='running'",
-                      JSON.stringify({
-                        ...report,
-                        status: "needs_review",
-                        dimensions: null,
-                      }),
+                      "UPDATE evaluation_runs SET state='completed',report=?,score=?,updated_at=? WHERE id=? AND state='running'",
+                      JSON.stringify(storedReport),
+                      grade,
                       this.now(),
                       runId,
                     ] as SQL,
                   ]
                 : []),
             ],
-            { state: "needs_review" },
+            { state: grade === null ? "needs_review" : "finalized", scored: grade !== null },
           );
           return {
             message:
-              "Report stored. Human review required; no automatic deductions.",
+              grade === null ? "AI report needs review." : "AI score saved.",
           };
         } catch {
           const lease = await one<{
@@ -1920,6 +1925,10 @@ export class PortalService {
           v.id,
         );
         if (eligible) review.eligibility = eligible.status;
+        if (review.astra === null) {
+          const provider = await latestProviderGrade(this.db, revisedProject.id, v.id);
+          if (provider) review.astra = provider.score;
+        }
       }
       const human = revisedProject
         ? await rows<{ rating: number }>(

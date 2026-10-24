@@ -4,6 +4,7 @@ import { publicTeamMembers } from "./public-team-members";
 import { OWNER_EMAIL } from "./identity";
 import { adminAccessView, revokeAdminAccess } from "./admin-access";
 import { auditReason } from "./security";
+import { evaluationAvailability, latestProviderGrade } from "./provider-grade";
 import { checkInParticipants } from "./participant-checkin";
 import { personalCreditRows } from "./credit-stock";
 import { resultControls } from "./result-controls";
@@ -1167,7 +1168,10 @@ export class PortalExperience {
                 "SELECT u.id,u.name,COALESCE(r.role,u.role) role FROM users u LEFT JOIN portal_roles r ON r.user_id=u.id WHERE COALESCE(r.role,u.role) IN ('judge','mentor')",
               )
             : undefined,
-        evaluationConfigured: false,
+        evaluationConfigured: evaluationAvailability(this.s.evaluator).available,
+        evaluationUnavailableReason: evaluationAvailability(this.s.evaluator).reason,
+        scoringReady: policyBlockers((await this.s.settings(true)).policy).length === 0,
+        evaluation: (me.owner || me.role === "admin") && v ? await latestProviderGrade(this.s.db, p.id, v.id) : null,
       };
     }
     return null;
@@ -2276,12 +2280,24 @@ export class PortalExperience {
     }
     if (action === "reevaluate-project") {
       const d = z.object({ projectId: id, versionId: id }).strict().parse(data);
-      const p = await this.project(d.projectId),
-        kind = await this.canReview(actor, p);
-      demand(kind !== "mentor", 403, "SCORING_REVIEWER_REQUIRED");
-      // Separate secure API setup is pending. No runner, credential or network
-      // invocation is enabled by this revision, even with an injected evaluator.
-      throw new PortalError(503, "EVALUATOR_NOT_CONFIGURED");
+      await this.s.staff();
+      await this.s.unfrozen();
+      const availability = evaluationAvailability(this.s.evaluator);
+      demand(availability.available, 503, "EVALUATOR_NOT_CONFIGURED", availability.reason);
+      const p = await this.project(d.projectId), v = await this.version(p);
+      demand(v?.id === d.versionId && p.published_version_id === v.id, 409, "STALE_SUBMISSION");
+      const close = (await this.s.settings(true)).policy.submissionClose;
+      demand(close && this.s.now() >= close, 409, "SUBMISSION_WINDOW_OPEN");
+      demand(!(await one(this.s.db, "SELECT target_id FROM record_removals WHERE active=1 AND ((kind='project' AND target_id=?) OR (kind='submission' AND target_id=?))", p.id, v.id)), 409, "RECORD_REMOVED");
+      const job = await one<{ id: string; state: string; attempts: number }>(this.s.db, "SELECT id,state,attempts FROM astra_jobs WHERE version_id=?", v.id);
+      demand(job && job.attempts < 3 && job.state !== "running", 409, "JOB_NOT_RUNNABLE");
+      if (job.state === "finalized") {
+        await this.s.mutate(actor.id, "request-evaluation", job.id, [
+          ["UPDATE astra_jobs SET state='needs_review',updated_at=? WHERE id=? AND state='finalized' AND attempts=? AND attempts<3 AND NOT EXISTS(SELECT 1 FROM result_snapshots)", this.s.now(), job.id, job.attempts],
+          ...assertPreviousWrite(),
+        ], { versionId: v.id });
+      }
+      return this.s.command("astra-run", { jobId: job.id });
     }
     return null;
   }
