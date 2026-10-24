@@ -130,3 +130,4 @@
   .route-skeleton-studio-identity > .route-skeleton-copy { flex: 1 1 calc(100% - 92px); }
   .route-skeleton-studio-roster { grid-template-columns: minmax(0, 1fr); }
 }
+.route-skeleton[data-layout="dashboard"] .route-skeleton-tabs { flex-wrap: nowrap; }
