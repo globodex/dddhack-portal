@@ -127,6 +127,7 @@ function failure(error: unknown) {
       headers: {
         "Cache-Control": "private, no-store, max-age=0",
         "X-Content-Type-Options": "nosniff",
+        "X-Robots-Tag": "noindex, nofollow",
       },
     },
   );
@@ -206,6 +207,8 @@ export async function proxyBackendRequest(request: Request): Promise<Response> {
     resultHeaders.set("Cache-Control", "private, no-store, max-age=0");
     resultHeaders.set("X-Content-Type-Options", "nosniff");
     resultHeaders.set("Referrer-Policy", "same-origin");
+    if (!incoming.pathname.startsWith("/api/project-image/") || !response.ok)
+      resultHeaders.set("X-Robots-Tag", "noindex, nofollow");
     resultHeaders.set("Vary", "Cookie");
     return new Response(request.method === "HEAD" ? null : response.body, {
       status: response.status,
