@@ -85,6 +85,40 @@ export function submissionWindowPublishValues(
     confirmation: "CHANGE_SUBMISSION_WINDOW",
   };
 }
+/** One user action: validate, obtain current guards, then ask run to confirm/persist. */
+export async function publishSubmissionWindow(
+  openInput: string,
+  closeInput: string,
+  preview: (values: {
+    open: string;
+    close: string;
+  }) => Promise<SubmissionWindowPreview>,
+  run: AdminRun,
+) {
+  const values = submissionWindowValues(openInput, closeInput);
+  const response = await preview(values);
+  if (
+    !response.token ||
+    !Number.isInteger(response.version) ||
+    !Array.isArray(response.warnings) ||
+    !response.warnings.every((warning) => typeof warning === "string")
+  )
+    throw new Error(
+      "The server did not return a complete versioned window preview.",
+    );
+  if (
+    Date.parse(response.open) !== Date.parse(values.open) ||
+    Date.parse(response.close) !== Date.parse(values.close)
+  )
+    throw new Error(
+      "The preview differs from the requested dates. Reload and try again.",
+    );
+  return run("publish-submission-window", {
+    ...submissionWindowPublishValues(response),
+    // Confirmation display metadata only. Portal.run strips this before the API.
+    windowWarnings: response.warnings,
+  });
+}
 function inputOrEmpty(value: string) {
   try {
     return utcToISTInput(value);
@@ -116,7 +150,6 @@ export default function OwnerSubmissionWindow({
   const id = useId();
   const [openInput, setOpen] = useState(() => inputOrEmpty(open)),
     [closeInput, setClose] = useState(() => inputOrEmpty(close)),
-    [review, setReview] = useState<SubmissionWindowPreview | null>(null),
     [touched, setTouched] = useState({ open: false, close: false });
   const { busy, error, execute, clearError } = useAdminOperation();
   if (!owner) return null;
@@ -161,7 +194,6 @@ export default function OwnerSubmissionWindow({
               }
               onChange={(event) => {
                 setOpen(event.target.value);
-                setReview(null);
                 clearError();
               }}
             />
@@ -186,7 +218,6 @@ export default function OwnerSubmissionWindow({
               }
               onChange={(event) => {
                 setClose(event.target.value);
-                setReview(null);
                 clearError();
               }}
             />
@@ -197,13 +228,6 @@ export default function OwnerSubmissionWindow({
             {validation}
           </p>
         )}
-        {review && review.warnings.length > 0 && (
-          <ul className="admin-window-warnings" role="status">
-            {review.warnings.map((warning, index) => (
-              <li key={index}>{warning}</li>
-            ))}
-          </ul>
-        )}
         <div className="admin-window-footer">
           <span>Three committed submissions</span>
           <button
@@ -211,41 +235,9 @@ export default function OwnerSubmissionWindow({
             className="button"
             disabled={busy || !hydrated || !converted}
             onClick={() =>
-              void execute(async () => {
-                if (review) {
-                  await run(
-                    "publish-submission-window",
-                    submissionWindowPublishValues(review),
-                  );
-                  setReview(null);
-                  return;
-                }
-                const values = submissionWindowValues(openInput, closeInput),
-                  response = await preview(values);
-                if (
-                  !response.token ||
-                  !Number.isInteger(response.version) ||
-                  !Array.isArray(response.warnings)
-                )
-                  throw new Error(
-                    "The server did not return a complete versioned window preview.",
-                  );
-                if (
-                  Date.parse(response.open) !== Date.parse(values.open) ||
-                  Date.parse(response.close) !== Date.parse(values.close)
-                )
-                  throw new Error(
-                    "The preview differs from the requested dates. Reload and try again.",
-                  );
-                if (response.warnings.length) {
-                  setReview(response);
-                  return;
-                }
-                await run(
-                  "publish-submission-window",
-                  submissionWindowPublishValues(response),
-                );
-              })
+              void execute(() =>
+                publishSubmissionWindow(openInput, closeInput, preview, run),
+              )
             }
           >
             <AdminIcon name="clock" />
