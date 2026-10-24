@@ -34,8 +34,9 @@ test("route shapes preserve distinct profile, dashboard, cards, table and form s
 test("initial loading keeps the shared shell, while supplied loaded content has no skeleton overlay", () => {
   const waiting = renderToStaticMarkup(createElement(Portal, { path: "/dashboard" }));
   assert.match(waiting, /class="route-skeleton" data-layout="dashboard"/);
-  assert.match(waiting, /class="mobile-header"/);
-  assert.match(waiting, /class="sidebar/);
+  assert.match(waiting, /class="navigation-header"/);
+  assert.match(waiting, /class="navigation-toggle"/);
+  assert.doesNotMatch(waiting, /class="sidebar/);
   const ready = renderToStaticMarkup(createElement(Portal, { path: "/profile", initialPublic: {
     me: { id: "fake_alice", name: "Synthetic Alice", email: "alice@portal.test", role: "participant", owner: false },
     profile: { display_name: "Synthetic Alice" },

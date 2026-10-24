@@ -374,12 +374,13 @@ test("public project engagement is read-only when server flags or per-row capabi
   });
   assert.match(open, /Post comment/);
 });
-test("public Home retains top navigation and private administration does not leak into it", () => {
+test("public Home retains the shared navigation and private administration does not leak into it", () => {
   const markup = html(Portal, {
     path: "/",
     initialPublic: { content: undefined },
   });
-  assert.match(markup, /Public navigation/);
+  assert.match(markup, /class="navigation-header"/);
+  assert.match(markup, /aria-label="Open navigation"/);
   assert.doesNotMatch(
     markup,
     /Remove participant|Project and submission management|Submission window|Pause community voting/,

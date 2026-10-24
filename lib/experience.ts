@@ -1103,7 +1103,10 @@ export class PortalExperience {
       const me = await this.s.actor(),
         p = await this.project(route.split("/").at(-1)!);
       const kind = await this.canReview(me, p),
-        v = await this.version(p),
+        currentVersion = await this.version(p),
+        v = options.focus ? await one<{ id: string; attempt: number; payload: string; created_at: string }>(this.s.db,
+          "SELECT id,attempt,payload,created_at FROM submission_versions WHERE id=? AND team_id=?", id.parse(options.focus), p.team_id,
+        ) : currentVersion,
         teamIdentity = await one<{
           teamName: string;
           teamPalette: string | null;
@@ -1112,6 +1115,7 @@ export class PortalExperience {
           "SELECT t.name teamName,COALESCE(s.color_key,s.palette) teamPalette FROM teams t LEFT JOIN team_styles s ON s.team_id=t.id WHERE t.id=?",
           p.team_id,
         );
+      demand(!options.focus || v, 404, "SUBMISSION_NOT_FOUND");
       const policySettings = await this.s.settings(true);
       const actionState = me.owner || me.role === "admin" ? await evaluationActionState(this.s, p.id, v?.id, p.published_version_id, policySettings.policy.submissionClose) : {};
       return {
@@ -1137,6 +1141,8 @@ export class PortalExperience {
               )
             : undefined,
         version: v ? { ...v, payload: JSON.parse(v.payload) } : undefined,
+        currentVersionId: currentVersion?.id || null,
+        selectedIsCurrent: !!v && v.id === currentVersion?.id && v.id === p.published_version_id,
         reviewKind: kind,
         canRestoreEligibility: kind === "judge",
         eligibility: await this.eligibility(p),
