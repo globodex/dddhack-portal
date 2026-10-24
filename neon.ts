@@ -5,6 +5,7 @@ const backendNames = [
   "GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET", "SMTP_HOST", "SMTP_PORT",
   "SMTP_SECURE", "SMTP_USER", "SMTP_PASS", "SMTP_PASSWORD", "SMTP_FROM",
   "CREDIT_ENCRYPTION_KEY", "NEON_MEDIA_BUCKET", "JOB_RUNNER_SECRET",
+  "OPENAI_API_KEY", "OPENAI_MODEL", "PORTAL_OPENAI_EVALUATION_APPROVED",
 ] as const;
 const configured = Object.fromEntries(backendNames.flatMap(name =>
   process.env[name] ? [[name, process.env[name]!]] : []));

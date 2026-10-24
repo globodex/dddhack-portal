@@ -16,6 +16,9 @@ export async function queueEvaluations(
     .strict()
     .parse(data);
   await service.staff();
+  // Provider requests stay within the frontend proxy's bounded request budget.
+  // Larger offline fixture batches retain the existing limit of five.
+  demand(service.evaluator.provenance !== "provider" || limit === 1, 422, "PROVIDER_BATCH_LIMIT_ONE");
   await service.unfrozen();
   const close = (await service.settings()).policy.submissionClose;
   demand(close && service.now() >= close, 409, "SUBMISSION_WINDOW_OPEN");

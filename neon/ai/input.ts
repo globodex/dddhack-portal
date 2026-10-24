@@ -9,7 +9,7 @@ export const evaluationLimits = {
   requestBytes: 196_608,
   responseBytes: 131_072,
   outputTokens: 3_000,
-  attemptMs: 5_000,
+  attemptMs: 20_000,
   attempts: 2,
   retryDelayMs: 200,
 } as const;

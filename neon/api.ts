@@ -13,8 +13,10 @@ import {
   type StorageEnvironment,
 } from "./storage/index";
 import type { Database } from "../lib/db";
+import { createOpenAIEvaluator, readApprovedSnapshot, type OpenAIEvaluationEnv } from "./ai/index";
+import { handleEvaluationSnapshots } from "./ai/http";
 
-const env = process.env as AuthEnv & NeonDatabaseEnvironment & BackendEnvironment & StorageEnvironment & {
+const env = process.env as AuthEnv & NeonDatabaseEnvironment & BackendEnvironment & StorageEnvironment & OpenAIEvaluationEnv & {
   CREDIT_ENCRYPTION_KEY?: string;
 };
 
@@ -26,14 +28,20 @@ const objects = () => (objectStore ??= createS3ObjectStore(createNeonStorageClie
 const db = () => (storedDatabase ??= createMediaDatabase(baseDb(), {
   objectStore: objects(), mediaBucket: env.NEON_MEDIA_BUCKET,
 }));
-const handler = createPortalBackend(env, {
+function requestHandler(tasks: Promise<unknown>[]) {
+return createPortalBackend(env, {
   async runtime(request) {
     return {
       db: db(),
       identity: await authenticateRequest(request, env, baseDb()),
       key: env.CREDIT_ENCRYPTION_KEY,
+      background: task => { tasks.push(task); },
+      ...(env.PORTAL_OPENAI_EVALUATION_APPROVED === "true" ? { evaluator: createOpenAIEvaluator(env, {
+        resolveApprovedSnapshot: versionId => readApprovedSnapshot(baseDb(), versionId),
+      }) } : {}),
     };
   },
+  evaluation: handleEvaluationSnapshots,
   auth(request) {
     return createAuthHandler(env, baseDb())(request);
   },
@@ -51,7 +59,18 @@ const handler = createPortalBackend(env, {
     return response ?? new Response(null, { status: 404 });
   },
 });
+}
 
 // Neon Functions accepts a standard fetch handler. No startup migration,
 // scheduler, production fixture or credential discovery runs on import.
-export default { fetch: handler };
+export default {
+  async fetch(request: Request) {
+    // Processing starts only from an authenticated explicit request. Await its
+    // bounded work within this invocation; leases/results live in Postgres.
+    // No process loop, fire-and-forget promise or automatic schedule is used.
+    const tasks: Promise<unknown>[] = [];
+    const response = await requestHandler(tasks)(request);
+    await Promise.allSettled(tasks);
+    return response;
+  },
+};

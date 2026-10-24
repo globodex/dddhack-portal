@@ -1583,7 +1583,7 @@ export class PortalService {
         );
         const claimedAt = this.now();
         const runId = crypto.randomUUID();
-        const configKey = "offline-verification-v1:" + j.id;
+        const configKey = (this.evaluator.configuration || "offline-verification-v1") + ":" + j.id;
         const claim = await batch(this.db, [
           [
             "UPDATE astra_jobs SET state='running',attempts=attempts+1,updated_at=? WHERE id=? AND state=? AND attempts=?",
@@ -1596,11 +1596,12 @@ export class PortalService {
           ...(j.project_id
             ? [
                 [
-                  "INSERT INTO evaluation_runs(id,project_id,version_id,config_key,state,score,provenance,created_at,updated_at) VALUES(?,?,?,?,'running',NULL,'offline',?,?)",
+                  "INSERT INTO evaluation_runs(id,project_id,version_id,config_key,state,score,provenance,created_at,updated_at) VALUES(?,?,?,?,'running',NULL,?,?,?)",
                   runId,
                   j.project_id,
                   j.version_id,
                   configKey,
+                  this.evaluator.provenance || "offline",
                   claimedAt,
                   claimedAt,
                 ] as SQL,

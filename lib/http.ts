@@ -19,12 +19,14 @@ import {
 import type { Database } from "./db";
 import type { Identity } from "./identity";
 import { sitesIdentity } from "./identity";
+import type { Evaluator } from "./evaluation";
 export type Runtime = {
   db: Database;
   identity: Identity | null;
   key: string | undefined;
   localTest?: boolean;
   background?: BackgroundDispatch;
+  evaluator?: Evaluator;
 };
 const safeHeaders = {
   "Cache-Control": "private, no-store, max-age=0",
@@ -105,6 +107,8 @@ export async function handlePortal(request: Request, runtime: Runtime) {
       runtime.db,
       runtime.identity,
       runtime.key,
+      undefined,
+      runtime.evaluator,
     );
     if (request.method === "GET") {
       const params = new URL(request.url).searchParams;

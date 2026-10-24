@@ -125,6 +125,8 @@ export function createOpenAIEvaluator(
   dependencies: OpenAIEvaluatorDependencies,
 ): Evaluator {
   return {
+    provenance: "provider",
+    configuration: "openai-evidence-v1:" + (env.OPENAI_MODEL && modelPattern.test(env.OPENAI_MODEL) ? env.OPENAI_MODEL : "unconfigured"),
     async evaluate(versionId, payload) {
       try {
         requireEvaluation(

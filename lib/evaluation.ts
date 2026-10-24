@@ -42,6 +42,8 @@ export const reportSchema = z
   .strict();
 export type Report = z.infer<typeof reportSchema>;
 export interface Evaluator {
+  provenance?: "offline" | "provider";
+  configuration?: string;
   evaluate(versionId: string, payload: unknown): Promise<Report>;
 }
 export const disabledEvaluator: Evaluator = {
