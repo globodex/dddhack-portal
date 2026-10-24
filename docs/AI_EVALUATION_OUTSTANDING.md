@@ -1,0 +1,10 @@
+The numeric evaluation implementation and mocked provider tests are available, but a hosted paid evaluation has not been verified. The following existing requirements remain unfinished and must not be described as complete:
+
+- Browser approval of a current-submission/current-commit evidence snapshot. The backend currently supports an admin snapshot API, but no browser approval control was found. A configured `Ready` badge does not prove that a snapshot exists or that the account can use the configured model. Missing approval fails with `OPENAI_SNAPSHOT_UNAVAILABLE` before a provider request.
+- Automatic queue dispatch/draining and recovery. The current project button awaits a direct evaluation. There is no automatic scheduled drain; an unused runner-secret configuration entry is not a worker.
+
+After the separately requested UI/import/deletion/venue releases, complete this work by adding a reviewable snapshot-approval UI using the existing version, repository binding and evidence digest; connecting idempotent dispatch and safe retry/recovery to the existing job lifecycle; and testing the complete flow with injected provider responses. A paid evaluation or provider configuration change requires its separately authorized scope. Removal and stale-version checks must prevent jobs from restoring deleted projects.
+
+Keep the selected model identifier `gpt-6-astra` and existing key. Readiness requires backend `OPENAI_API_KEY`, `OPENAI_MODEL` and `PORTAL_OPENAI_EVALUATION_APPROVED=true`. The explicit manual path is Admin → Submissions → Review project → current version → AI evaluation. Results remain private; Settings → Results → Reveal AI scores is a separate action.
+
+Do not choose defaults for the five outstanding owner decisions: judging-window policy; Codex/collaboration input versus formula changes; missing/failed AI fallback; optional AI reveal before final reveal; and post-freeze appeals/new snapshots. Migration0104 concerns team corrections, not AI activation; the existing AI schema is0101. The latest backend package still requires owner-run deployment. No hosted configuration or model access was checked for this note.

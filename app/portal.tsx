@@ -1445,7 +1445,6 @@ export function TeamWorkspace({
         <UserRound size={16} aria-hidden="true" />
         You: {data.individualStatus || "Registered"}
       </div>
-      {data.privateVenue && <DashboardVenue venue={data.privateVenue} />}
       {leader && !locked && count === 1 && (
         <div className="studio-delete-team">
           <TeamAction
@@ -1799,6 +1798,7 @@ export function Dashboard({
           run={run}
           onProject={() => select("project")}
         />
+        {data.privateVenue && <DashboardVenue venue={data.privateVenue} />}
       </section>
       <section
         id="credits"
@@ -5527,7 +5527,7 @@ export function Settings({
     { id: "event", label: "Event" },
     { id: "results", label: "Results" },
     { id: "access", label: "Access" },
-    ...(data.me?.owner ? [{ id: "content", label: "Content" }] : []),
+    ...(data.me?.owner || data.canManageVenue ? [{ id: "content", label: "Content" }] : []),
   ];
   const panel = (id: string) => ({
     id: `${settingsId}-panel-${id}`,
@@ -5599,6 +5599,16 @@ export function Settings({
             </summary>
             <OwnerPolicyControls data={data} run={run} />
           </details>
+        )}
+        {data.canManageVenue && (
+          <section className="admin-event-content-workspace">
+            <ContentEditor
+              key={`private-${data.venue?.revision}`}
+              data={data}
+              run={run}
+              scope="private"
+            />
+          </section>
         )}
       </div>
     </section>
@@ -5678,7 +5688,7 @@ export default function Portal({
       const focus=new URLSearchParams(window.location.search).get("project") || "";
       const options={search:"",page:0,focus};
       const version=await presentationCache.current.knownVersion(path,data.me,options);
-      const url=`/api/portal?view=${encodeURIComponent(path)}&focus=${encodeURIComponent(focus)}`;
+      const url=`/api/portal?view=${encodeURIComponent(path)}&focus=${encodeURIComponent(focus)}${path === "/" ? "&arrival=1" : ""}`;
       let {response: r,body}=await readPortalView(url+(version?"&presentation="+encodeURIComponent(version):""),controller.signal);
       if (generation !== loadGeneration.current) return;
       if (!r.ok) {
@@ -5973,6 +5983,7 @@ export default function Portal({
             content={data.content || defaultPublicContent}
             submissionClose={data.submissionClose}
             signedIn={!!data.me}
+            privateVenue={data.privateVenue}
           />
         ) : path === "/local-test" && localTest ? (
           <section className="panel">
