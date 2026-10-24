@@ -260,9 +260,9 @@ test("private venue uses personal Going approval and scoped admin access, never 
       ((await service("pending").view("/dashboard")) as Row).privateVenue,
       undefined,
     );
-    await assert.rejects(service("stranger").view("/dashboard"), {
-      code: "LUMA_EMAIL_MISMATCH",
-    });
+    const viewer = await service("stranger").view("/dashboard");
+    assert.equal(viewer.registrationRequired, true);
+    assert.equal(viewer.privateVenue, undefined);
     assert.equal(
       ((await service("admin").view("/admin/settings")) as Row).venue,
       undefined,

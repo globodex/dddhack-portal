@@ -109,9 +109,18 @@ async function snapshotFor(scope: string, rows: Row[]): Promise<Snapshot> {
     .filter(hasId)
     .map((row) => [row.id as string, Object.freeze(fields(row))] as const)
     .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
+  // Registration can change without a label change. Invalidate that snapshot
+  // while keeping authorization/state fields in every freshly projected row.
+  const registration = rows
+    .filter(hasId)
+    .map(
+      (row) =>
+        [row.id as string, row.registered ?? null, row.viewer ?? null] as const,
+    )
+    .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
   return {
     scope,
-    version: `apv1.${await digest([scope, entries])}`,
+    version: `apv1.${await digest([scope, entries, registration])}`,
     entries: new Map(entries),
   };
 }

@@ -78,6 +78,7 @@ export async function personalCredits(s: PortalService) {
     "PARTICIPANT_REMOVED",
     "Your participant access has been removed. Contact an organizer.",
   );
+  if (actor.mode === "viewer") return { me: actor, registrationRequired: true };
   demand(
     await one(
       s.db,

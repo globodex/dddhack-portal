@@ -1,4 +1,5 @@
 import { projectMediaPolicy } from "./project-media-policy";
+import { OWNER_EMAIL } from "./identity";
 import { adminAccessView, revokeAdminAccess } from "./admin-access";
 import { auditReason } from "./security";
 import { checkInParticipants } from "./participant-checkin";
@@ -356,9 +357,11 @@ export class PortalExperience {
       submitted: number;
       avatarColor: string | null;
       avatarExpression: string | null;
+      registered: number;
+      role: string;
     }>(
       this.s.db,
-      "SELECT u.id,COALESCE(x.display_name,u.name) name,r.email,r.status approval,c.created_at checked_in,t.id team_id,t.name team_name,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id) submitted,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression FROM registrations r LEFT JOIN users u ON u.email=r.email LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id UNION ALL SELECT u.id,COALESCE(x.display_name,u.name),u.email,'pending',c.created_at,t.id,t.name,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id),pd.avatar_color,pd.avatar_expression FROM users u LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id WHERE NOT EXISTS(SELECT 1 FROM registrations r WHERE r.email=u.email)",
+      "SELECT u.id,COALESCE(x.display_name,u.name) name,r.email,r.status approval,c.created_at checked_in,t.id team_id,t.name team_name,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id) submitted,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression,1 registered,COALESCE(pr.role,u.role,'participant') role FROM registrations r LEFT JOIN users u ON u.email=r.email LEFT JOIN portal_roles pr ON pr.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id UNION ALL SELECT u.id,COALESCE(x.display_name,u.name),u.email,'pending',c.created_at,t.id,t.name,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id),pd.avatar_color,pd.avatar_expression,CASE WHEN EXISTS(SELECT 1 FROM luma_roster l WHERE l.email=u.email) THEN 1 ELSE 0 END,COALESCE(pr.role,u.role) FROM users u LEFT JOIN portal_roles pr ON pr.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id WHERE NOT EXISTS(SELECT 1 FROM registrations r WHERE r.email=u.email)",
     );
     const teams = await teamFacts(
         this.s.db,
@@ -379,18 +382,28 @@ export class PortalExperience {
     return items
       .map((item) => {
         const individual = item.id ? people.get(item.id) : undefined,
-          progress = item.team_id ? teams.get(item.team_id) : undefined;
+          progress = item.team_id ? teams.get(item.team_id) : undefined,
+          viewer =
+            !item.registered &&
+            item.role === "participant" &&
+            item.email !== OWNER_EMAIL &&
+            !individual?.deactivatedAt;
+        const { role: _role, ...participant } = item;
         return {
-          ...item,
+          ...participant,
+          registered: !!item.registered,
+          viewer,
+          approval: viewer ? null : item.approval,
           deactivated_at: individual?.deactivatedAt,
           teamReadiness: progress?.readiness || readiness(0, 0),
-          status:
-            individual?.status ||
-            (item.approval !== "approved"
-              ? "Registered"
-              : absentEmails.has(item.email)
-                ? "Absent"
-                : "Going"),
+          status: viewer
+            ? "Not registered"
+            : individual?.status ||
+              (item.approval !== "approved"
+                ? "Registered"
+                : absentEmails.has(item.email)
+                  ? "Absent"
+                  : "Going"),
           teamStatus: progress?.status,
           teamLocked: progress?.locked || false,
           teamLockedAt: item.team_id ? progress?.lockedAt : null,
@@ -834,7 +847,9 @@ export class PortalExperience {
       );
       return {
         me,
-        items: await this.participantRows(),
+        items: (await this.participantRows()).filter(
+          (item) => !item.viewer || me.owner || me.role === "admin",
+        ),
         lookupOnly: me.role === "volunteer",
         checkInConfigured: setupReadiness(
           await this.s.settings(true),

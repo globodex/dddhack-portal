@@ -146,7 +146,8 @@ export class PortalService {
       owner = !deactivated && isOwner(i),
       rostered = !!(await one(
         this.db,
-        "SELECT email FROM luma_roster WHERE email=?",
+        "SELECT email FROM registrations WHERE email=? UNION SELECT email FROM luma_roster WHERE email=?",
+        i.email,
         i.email,
       )),
       ready =
@@ -2064,8 +2065,27 @@ export class PortalService {
     path = path.replace(/\/+/g, "/").replace(/\/$/, "") || "/";
     const stockView = await creditStockView(this, path, options);
     if (stockView !== null) return stockView;
-    if (/^\/(dashboard|profile|submission|project-history)(\/|$)/.test(path))
-      await requireRosterMember(this);
+    if (/^\/(dashboard|profile|submission|project-history)(\/|$)/.test(path)) {
+      const me = await this.actor();
+      if (me.mode === "viewer" && !me.deactivated) {
+        if (
+          [
+            "/dashboard",
+            "/dashboard/team",
+            "/dashboard/credits",
+            "/profile",
+            "/dashboard/profile",
+            "/submission",
+            "/dashboard/submission",
+          ].includes(path)
+        )
+          return { me, registrationRequired: true };
+        // Unknown private URLs must not become successful Viewer pages. History
+        // retains its existing roster gate and never exposes private versions.
+        demand(path === "/project-history", 404, "PAGE_NOT_FOUND");
+      }
+      await requireRosterMember(this, me);
+    }
     const revised = await new PortalExperience(this).view(path, options);
     if (revised !== null) return revised;
     const s = await this.settings(true);
