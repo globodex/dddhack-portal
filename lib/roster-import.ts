@@ -275,7 +275,7 @@ export async function rosterImport(
       s.now(),
     ],
     [
-      "INSERT INTO registrations(email) SELECT json_extract(value,'$.email') FROM json_each(?) WHERE true ON CONFLICT DO NOTHING",
+      "INSERT INTO registrations(email) SELECT json_extract(value,'$.email') FROM json_each(?) WHERE NOT EXISTS(SELECT 1 FROM users u WHERE u.email=json_extract(value,'$.email') AND (EXISTS(SELECT 1 FROM record_removals r WHERE r.target_id=u.id AND r.kind='participant' AND r.active=1) OR EXISTS(SELECT 1 FROM terminal_record_deletions t WHERE t.kind='participant' AND t.target_id=u.id))) ON CONFLICT DO NOTHING",
       values,
     ],
     [

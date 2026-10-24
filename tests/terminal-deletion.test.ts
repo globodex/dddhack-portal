@@ -12,6 +12,12 @@ import { OWNER_EMAIL } from "../lib/identity";
 const teamDelete = { teamId: "fake_team5", confirmation: "DELETE_TEAM" };
 const personDelete = (userId = "fake_carol") => ({
   userId,
+  expectedLeaderTeamIds:
+    userId === "fake_eve"
+      ? ["fake_team5"]
+      : userId === "fake_alice"
+        ? ["fake_team1"]
+        : [],
   confirmation: "DELETE_PARTICIPANT",
 });
 const asPlain = (value: unknown) => JSON.parse(JSON.stringify(value));
@@ -127,6 +133,143 @@ async function enrichTarget(db: Database) {
   ]);
 }
 for (const engine of ["sqlite", "postgres"] as const) {
+  test(`${engine}: a crown transfer before the request cannot broaden the confirmed participant cascade`, async () => {
+    const f = await fixture(engine, false);
+    try {
+      await f
+        .service("owner")
+        .command("transfer-team-leader", {
+          teamId: "fake_team3",
+          userId: "fake_carol",
+          expectedLeaderId: "fake_bob",
+          confirmation: "TRANSFER_TEAM_LEADER",
+        });
+      await assert.rejects(
+        f.service().command("admin-delete-participant", personDelete()),
+        { code: "DELETION_TARGET_CHANGED" },
+      );
+      assert(await one(f.db, "SELECT id FROM teams WHERE id='fake_team3'"));
+      assert(
+        await one(
+          f.db,
+          "SELECT user_id FROM memberships WHERE user_id='fake_carol'",
+        ),
+      );
+      assert.equal(
+        (await rows(f.db, "SELECT * FROM terminal_record_deletions")).length,
+        0,
+      );
+      assert.equal(
+        (
+          await rows(
+            f.db,
+            "SELECT * FROM audit_logs WHERE action='admin-delete-participant'",
+          )
+        ).length,
+        0,
+      );
+      await f
+        .service()
+        .command("admin-delete-participant", {
+          ...personDelete(),
+          expectedLeaderTeamIds: ["fake_team3"],
+        });
+      assert.equal(
+        (await rows(f.db, "SELECT id FROM teams WHERE id='fake_team3'")).length,
+        0,
+      );
+    } finally {
+      await f.db.close();
+    }
+  });
+  test(`${engine}: imports after preview or during commit cannot re-enroll terminal identities and keep unrelated existing/new participants`, async () => {
+    const f = await fixture(engine, false);
+    try {
+      const existing = asPlain(
+        await rows(
+          f.db,
+          "SELECT * FROM registrations WHERE email='bob@portal.test'",
+        ),
+      );
+      const admin = f.service();
+      const first = {
+        kind: "roster",
+        csv: "carol@portal.test\nsynthetic-terminal-import-one@portal.test\nbob@portal.test",
+      };
+      const preview = await admin.command("preview-import", first);
+      await f
+        .service("owner")
+        .command("admin-delete-participant", personDelete());
+      await admin.command("commit-import", {
+        ...first,
+        digest: preview.digest,
+      });
+      const second = {
+        kind: "roster",
+        csv: "dave@portal.test\nsynthetic-terminal-import-two@portal.test\nbob@portal.test",
+      };
+      const next = await admin.command("preview-import", second);
+      const original = admin.mutate.bind(admin);
+      let once = true;
+      admin.mutate = async (...args) => {
+        if (once && args[1] === "commit-import") {
+          once = false;
+          await f
+            .service("owner")
+            .command("admin-delete-participant", personDelete("fake_dave"));
+        }
+        return original(...args);
+      };
+      await admin.command("commit-import", { ...second, digest: next.digest });
+      for (const email of ["carol@portal.test", "dave@portal.test"]) {
+        for (const table of ["registrations", "luma_roster", "roster_prefills"])
+          assert.equal(
+            (await rows(f.db, `SELECT * FROM ${table} WHERE email=?`, email))
+              .length,
+            0,
+            table + email,
+          );
+      }
+      for (const id of ["fake_carol", "fake_dave"])
+        for (const table of [
+          "profiles",
+          "participant_profiles",
+          "profile_details",
+        ])
+          assert.equal(
+            (await rows(f.db, `SELECT * FROM ${table} WHERE user_id=?`, id))
+              .length,
+            0,
+            table + id,
+          );
+      for (const email of [
+        "synthetic-terminal-import-one@portal.test",
+        "synthetic-terminal-import-two@portal.test",
+      ])
+        assert(
+          await one(
+            f.db,
+            "SELECT email FROM registrations WHERE email=?",
+            email,
+          ),
+        );
+      assert.deepEqual(
+        asPlain(
+          await rows(
+            f.db,
+            "SELECT * FROM registrations WHERE email='bob@portal.test'",
+          ),
+        ),
+        existing,
+      );
+      await assert.rejects(f.service("carol").view("/profile"), {
+        code: "PARTICIPANT_REMOVED",
+      });
+    } finally {
+      await f.db.close();
+    }
+  });
+
   test(`${engine}: terminal cascade adds no approval/check-in gates and preserves legacy soft restore contracts`, async () => {
     const f = await fixture(engine, false);
     try {
@@ -138,26 +281,20 @@ for (const engine of ["sqlite", "postgres"] as const) {
           "UPDATE registrations SET status='pending' WHERE email IN ('bob@portal.test','carol@portal.test','dave@portal.test')",
         ],
       ]);
-      const response = await f
-        .service()
-        .command("admin-delete-team", {
-          teamId: "fake_team3",
-          confirmation: "DELETE_TEAM",
-        });
+      const response = await f.service().command("admin-delete-team", {
+        teamId: "fake_team3",
+        confirmation: "DELETE_TEAM",
+      });
       assert.equal(response.changed, true);
       assert(await one(f.db, "SELECT id FROM users WHERE id='fake_bob'"));
-      await f
-        .service()
-        .command("participant-deactivate", {
-          userId: "fake_pending",
-          confirmation: "REMOVE_PARTICIPANT",
-        });
-      await f
-        .service()
-        .command("participant-restore", {
-          userId: "fake_pending",
-          confirmation: "RESTORE_PARTICIPANT",
-        });
+      await f.service().command("participant-deactivate", {
+        userId: "fake_pending",
+        confirmation: "REMOVE_PARTICIPANT",
+      });
+      await f.service().command("participant-restore", {
+        userId: "fake_pending",
+        confirmation: "RESTORE_PARTICIPANT",
+      });
       assert.equal((await f.service("pending").actor()).deactivated, false);
     } finally {
       await f.db.close();
@@ -580,19 +717,19 @@ for (const engine of ["sqlite", "postgres"] as const) {
           }),
         );
       for (const input of [
-        { userId: "fake_carol", confirmation: "REMOVE_PARTICIPANT" },
+        { ...personDelete(), confirmation: "REMOVE_PARTICIPANT" },
+        { userId: "fake_carol", confirmation: "DELETE_PARTICIPANT" },
         {
           userId: ["fake_carol", "fake_dave"],
+          expectedLeaderTeamIds: [],
           confirmation: "DELETE_PARTICIPANT",
         },
         {
-          userId: "fake_carol",
-          confirmation: "DELETE_PARTICIPANT",
+          ...personDelete(),
           reason: "Not accepted",
         },
         {
-          userId: "fake_carol",
-          confirmation: "DELETE_PARTICIPANT",
+          ...personDelete(),
           userIds: ["fake_dave"],
         },
       ])

@@ -158,6 +158,7 @@ export async function terminalDeletionCommand(
     ? z
         .object({
           userId: z.string().min(1).max(150),
+          expectedLeaderTeamIds: z.array(z.string().min(1).max(150)).max(100),
           confirmation: z.literal("DELETE_PARTICIPANT"),
         })
         .strict()
@@ -206,6 +207,20 @@ export async function terminalDeletionCommand(
       : "SELECT id,leader_id FROM teams WHERE id=?",
     targetId,
   );
+  if (participant) {
+    const expected = [
+      ...new Set(
+        (data as { expectedLeaderTeamIds: string[] }).expectedLeaderTeamIds,
+      ),
+    ].sort();
+    demand(
+      JSON.stringify(expected) ===
+        JSON.stringify(teams.map((t) => t.id).sort()),
+      409,
+      "DELETION_TARGET_CHANGED",
+      "Team leadership changed. Reload and confirm the current deletion scope.",
+    );
+  }
   if (!participant) demand(teams.length === 1, 404, "TEAM_NOT_FOUND");
   const token = "terminal-authority:" + crypto.randomUUID();
   const sql: SQL[] = [

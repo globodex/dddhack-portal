@@ -216,7 +216,11 @@ test("PostgreSQL full populated0104 ledger upgrade preserves auth/audit/all old 
     );
     await new PortalService(pg.db, fixtures.admin, LOCAL_CREDIT_KEY).command(
       "admin-delete-participant",
-      { userId: "fake_eve", confirmation: "DELETE_PARTICIPANT" },
+      {
+        userId: "fake_eve",
+        expectedLeaderTeamIds: ["fake_team5"],
+        confirmation: "DELETE_PARTICIPANT",
+      },
     );
     assert.equal(
       (
