@@ -1,0 +1,23 @@
+{
+  "base": "bcb271a59e123ad83359bed26c2c3a218f6eb96d",
+  "source": "626e6bcc349413d5d209e6adc86a177f123debab",
+  "canonicalPlanDigest": "498280b69647485b4f55c35331a0f8af486983d819ee2dc25fb1840f1e657506",
+  "historicalModes": [
+    "canonical-lf",
+    "legacy-windows-crlf"
+  ],
+  "legacyHashesIndividuallyDerivedAndPinned": 7,
+  "ledgerRewrite": false,
+  "historicalReplay": false,
+  "newFeaturesCanonicalLFOnly": true,
+  "productionSQLBaselineAndGenericMigratorUnchanged": true,
+  "ownerFocusedCasesVerified": 15,
+  "independentCasesVerified": 6,
+  "testSequence": "Focused reruns corrected fixture-only serialization/Date/type issues; all unique cases green, original logs retained",
+  "typecheckExit": 0,
+  "existingApiInputHashesVerified": 78,
+  "backendZipRebuildRequired": false,
+  "backendZipSHA256": "bbd047173fb4e895bd8148d24674548f05dfaea58e184ca57bcc0e183ca60382",
+  "hostedReadOrApplyByAgent": false,
+  "operatorNextStep": "Pull then inspect read-only into a NEW receipt; do not reuse earlier empty failed receipt"
+}

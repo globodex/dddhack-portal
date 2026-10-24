@@ -139,6 +139,10 @@ Historical `0000`..`0004`, `0100_auth.sql` and `0101_approved_evaluation.sql` re
 | `0102_credit_stock.sql` | `74bf8549edbecb753424a86e692844e962be02c0faeddda8f0b2dd3ffaacb72e` | Add category keys, immutable stock history and import invariants |
 | `0103_project_media_limits.sql` | `3f42da160787977b7655fe74647655bd656f4c55467c2a42b3dd1627859f462c` | Widen source/canonical image byte and saved-dimension checks |
 
+The initial Windows deployment used CRLF SQL files. The runner recognizes either the complete seven-entry canonical LF historical set or the complete, independently derived Windows CRLF set, and reports `historicalEncoding`. Each legacy hash is pinned and re-derived from the exact approved canonical SQL. Mixed, missing, unknown or edited historical sets stop. Feature migrations 0102/0103 always require their canonical LF hashes.
+
+This compatibility does **not** update or replace any existing ledger row, replay a historical migration, edit source SQL or change the canonical plan digest. The strict generic migrator receives the matching historical byte representation only to skip the already-recorded seven entries, while the original canonical source plan, actual ledger, target, receipt, counts and locks are still checked. A read-only inspection must succeed first; use a fresh `.local/pre-upgrade-<timestamp>.json` filename if an earlier failed inspection reserved an empty file.
+
 The exact nine-entry plan digest is `498280b69647485b4f55c35331a0f8af486983d819ee2dc25fb1840f1e657506`. Source expectations are in `evidence/neon-host-archive/historical-ledger-checksums.json`; they are not a claimed hosted observation.
 
 0102 deliberately fails atomically on legacy normalized-category or global-fingerprint collisions. Preserve the checkpoint and review those records privately. Do not automatically merge, delete, relabel, recycle codes, edit the ledger or rewrite applied SQL. Missing historical entries, unknown ledger names or 0103 without 0102 must stop for review.
