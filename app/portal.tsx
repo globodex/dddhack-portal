@@ -1373,7 +1373,7 @@ export function TeamWorkspace({
           )}
         </aside>
       </div>
-      <ol className="studio-progress" aria-label="Team progress">
+      <ol className="studio-progress" aria-label="Team progress" data-stage={used > 0 ? 3 : teamChecked ? 2 : t.locked ? 1 : 0}>
         {[
           {
             label: "Forming team",
