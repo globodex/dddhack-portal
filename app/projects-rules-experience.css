@@ -165,9 +165,11 @@
   .app-shell .projects-v6 .project-row-link h2 { font-size: 19px; line-height: 1.25; }
   .app-shell .projects-v6 .project-row-link p { font-size: 13px; line-height: 1.5; }
   .app-shell .projects-v6 .project-list > li > .engagement { margin-left: 66px; gap: 8px; flex-wrap: wrap; }
-  .app-shell .projects-v6 .project-search-placeholder { gap: 14px; }
+  .app-shell .projects-v6 .project-search-placeholder { display: grid; grid-template-columns: 52px 64px minmax(0, 1fr); align-items: start; gap: 14px; }
   .project-search-placeholder > i { width: 52px; height: 52px; flex-basis: 52px; }
-  .project-search-placeholder > b { display: none; }
+  .project-search-placeholder > div { grid-column: 2 / -1; min-height: 74px; align-content: start; }
+  .project-search-placeholder > b { display: block; grid-row: 2; grid-column: 2; }
+  .project-search-placeholder > b:last-child { grid-column: 3; }
   .app-shell .projects-v6 :is(.upvote-button,.project-comments-button) { min-width: 64px; }
   .app-shell .public-project-detail .project-presentation { display: flex; flex-direction: column; gap: 24px; }
   .app-shell .public-project-detail .project-presentation > .project-banner { width: 100%; margin: 0; }
