@@ -2722,10 +2722,10 @@ export function ProjectHistory({
               className="button secondary"
               type="button"
               ref={close}
+              aria-label="Close committed history"
               onClick={() => setOpen(false)}
             >
               <Icon name="close" />
-              Close
             </button>
           </div>
 
@@ -3278,7 +3278,7 @@ export function Projects({
           {q ? <button className="button secondary" type="button" onClick={() => { setQ(""); setPage(0); }}>Clear search</button> : <a className="button secondary" href="/dashboard#project">Your project</a>}
         </section>
       )}
-      <div className="form-actions project-pagination">
+      {(visibleProjects.length > 0 || page > 0) && <div className="form-actions project-pagination">
         <button
           className="button secondary"
           disabled={!page}
@@ -3294,7 +3294,7 @@ export function Projects({
         >
           Next page
         </button>
-      </div>
+      </div>}
     </section>
   );
 }
