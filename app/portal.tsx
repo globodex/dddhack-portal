@@ -5760,6 +5760,7 @@ export default function Portal({
         throw new ActionCancelled();
       const token = revealConfirmation(action, values);
       const { newCount: _count, singleEmail: _email, windowWarnings: _windowWarnings, ...payload } = values;
+      setMessage("");
       const result = await api(
         action,
         token ? { ...payload, confirmation: token } : payload,
