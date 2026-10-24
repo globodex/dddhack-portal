@@ -25,7 +25,7 @@ export class BackendError extends Error {
   }
 }
 
-const defaultAppOrigin = "https://dddhack-portal.vercel.app";
+const defaultAppOrigin = "https://dddhack-portal.itsparam.in";
 const localhost = new Set(["localhost", "127.0.0.1", "[::1]"]);
 const safeMethods = new Set(["GET", "HEAD"]);
 const forwardedHeaders = [

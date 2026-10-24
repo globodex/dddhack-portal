@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import type { Confirmation } from "../lib/action-confirmation";
 import { trapDialogFocus } from "./dialog-focus";
+import { trackDialogHistory } from "./dialog-history";
 export default function ConfirmationDialog({
   value,
   decide,
@@ -21,8 +22,10 @@ export default function ConfirmationDialog({
         .filter((node) => node !== popup)
         .at(-1);
     popup.showModal();
+    const releaseHistory = trackDialogHistory(() => decide(false));
     cancel.current?.focus();
     return () => {
+      releaseHistory();
       // React clears refs before the passive unmount cleanup. Close the node
       // captured by this effect so its top-layer focus lock is released before
       // restoring focus to the still-open parent, including Strict Mode replay.

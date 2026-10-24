@@ -4,7 +4,7 @@ const protectedPath = (path: string) =>
     path,
   );
 function configuredSiteOrigin() {
-  const value = process.env.APP_ORIGIN || "https://dddhack-portal.vercel.app";
+  const value = process.env.APP_ORIGIN || "https://dddhack-portal.itsparam.in";
   const url = new URL(value);
   if (
     url.origin !== value ||

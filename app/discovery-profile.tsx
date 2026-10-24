@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 import TeamAvatar from "./team-avatar";
 import DotAvatar from "./dot-avatar";
 import { trapDialogFocus } from "./dialog-focus";
+import { trackDialogHistory } from "./dialog-history";
 
 export type DiscoveryPerson = {
   name: string;
@@ -70,7 +71,12 @@ export function openDiscoveryDialog(
   dialog.addEventListener("close", finish);
   dialog.addEventListener("cancel", cancel);
   dialog.showModal();
+  const releaseHistory = trackDialogHistory(() => {
+    dialog.close();
+    finish();
+  });
   return () => {
+    releaseHistory();
     closed = true;
     dialog.removeEventListener("close", finish);
     dialog.removeEventListener("cancel", cancel);

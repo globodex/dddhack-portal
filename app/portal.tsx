@@ -443,7 +443,7 @@ function Field({
   if (name === "reason") return null;
   return (
     <label>
-      {label}
+      <span>{label}{required && <span className="required-mark" aria-hidden="true"> *</span>}</span>
       {children ||
         (type === "textarea" ? (
           <textarea
@@ -4871,6 +4871,7 @@ export default function Portal({
     [error, setError] = useState(""),
     [errorCode, setErrorCode] = useState(""),
     [message, setMessage] = useState(""),
+    [messageTone, setMessageTone] = useState<"success" | "error">("success"),
     [menu, setMenu] = useState(false);
   const [confirmation, setConfirmation] = useState<Confirmation | null>(null);
   const gate = useRef<ConfirmationGate | null>(null),
@@ -5009,11 +5010,15 @@ export default function Portal({
         action,
         token ? { ...payload, confirmation: token } : payload,
       );
+      setMessageTone("success");
       setMessage(result.message || "Saved.");
       await load();
       return result;
     } catch (e) {
-      if (!(e instanceof ActionCancelled)) setMessage((e as Error).message);
+      if (!(e instanceof ActionCancelled)) {
+        setMessageTone("error");
+        setMessage((e as Error).message);
+      }
       throw e;
     } finally {
       mutationKeys.current.delete(mutationKey);
@@ -5042,12 +5047,14 @@ export default function Portal({
       }
       presentationCache.current.clear();
       setData({});
+      setMessageTone("success");
       setMessage("Signing out…");
       const link = document.createElement("a");
       link.href = "/";
       link.target = "_top";
       link.click();
     } catch (e) {
+      setMessageTone("error");
       setMessage((e as Error).message);
     } finally {
       actionBusy.current = false;
@@ -5325,16 +5332,18 @@ export default function Portal({
           </div>
         )}
         {message && (
-          <p className="action-message" role="status">
-            {message}
-          </p>
+          <div className="action-message" data-tone={messageTone} role={messageTone === "error" ? "alert" : "status"}>
+            {messageTone === "success" && <CircleCheck size={20} aria-hidden="true" />}
+            <span>{message}</span>
+            <button type="button" onClick={() => setMessage("")} aria-label="Dismiss notification"><X size={18} aria-hidden="true" /></button>
+          </div>
         )}
         {error && (
-          <div className="error-message" role="alert">
-            {errorCode !== "LUMA_EMAIL_MISMATCH" && (
-              <h2>This page could not load.</h2>
-            )}
+          <section className="page-error-card" role="alert">
+            <HeadingDot color="orange" expression="sleepy" size={48} paused />
+            <h1>{errorCode === "LUMA_EMAIL_MISMATCH" ? "Use your registered email" : "This page could not load"}</h1>
             <p>{error}</p>
+            <div className="form-actions">
             <button
               className="button secondary"
               onClick={() => {
@@ -5358,7 +5367,8 @@ export default function Portal({
                 </a>
               )
             )}
-          </div>
+            </div>
+          </section>
         )}
         {pendingPath ? (
           <RouteSkeleton path={pendingPath} />

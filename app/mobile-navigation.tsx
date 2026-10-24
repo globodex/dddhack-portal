@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, type ReactNode } from "react";
 import { X } from "lucide-react";
+import { trackDialogHistory } from "./dialog-history";
 
 // Native showModal supplies the focus trap and makes the page behind it inert.
 // Keep our scroll/focus cleanup paired with that same modal lifetime.
@@ -14,6 +15,7 @@ export function openMobileNavigation(
   const bodyOverflow = doc.body.style.overflow;
   const htmlOverflow = doc.documentElement.style.overflow;
   node.showModal();
+  const releaseHistory = trackDialogHistory(onDesktop);
   doc.body.style.overflow = "hidden";
   doc.documentElement.style.overflow = "hidden";
   const resize = () => {
@@ -21,6 +23,7 @@ export function openMobileNavigation(
   };
   view.addEventListener("resize", resize);
   return () => {
+    releaseHistory();
     view.removeEventListener("resize", resize);
     node.close();
     doc.body.style.overflow = bodyOverflow;
