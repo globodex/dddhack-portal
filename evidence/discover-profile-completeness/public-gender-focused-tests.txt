@@ -1,0 +1,25 @@
+✔ paginated directory and unauthenticated helper never gain selected-person private fields (202.797621ms)
+✔ explicit self/admin reads show actual private bio/socials and metadata; organization ID is admin only (136.221917ms)
+✔ selected gender is public to the existing audience while cross-team and Viewer lookup cannot gain private metadata; current teammate phone is revoked immediately after removal (131.495744ms)
+✔ fresh role/removal checks and public consent apply to every selected-person request (135.718063ms)
+✔ an API-key-shaped value saved in the org field is never projected (122.407213ms)
+✔ PostgreSQL selected-person queries preserve the same authorization and current-membership boundary (11419.325037ms)
+✔ authorized selected facts render saved profession, organization, gender, contact and admin ID without any raw row fields (45.622994ms)
+✔ absent optional facts create no empty labels and raw private card fields cannot become facts (5.987476ms)
+✔ UI allowlist rejects mismatched WhatsApp destinations and key-shaped organization values (3.202313ms)
+✔ Discovery renders only allowlisted profile fields in a labelled native dialog (25.983941ms)
+✔ socials reject unsafe schemes and credentials and deduplicate canonical URLs (2.286419ms)
+✔ platform icons require exact platform hosts, including supported www aliases (1.254211ms)
+✔ empty bio and socials omit empty sections without disclosing extra fields (3.438165ms)
+✔ native modal close restores its opener and calls onClose once (1.834988ms)
+✔ Escape cancel closes the native dialog, and unmount cleanup never calls onClose (2.182274ms)
+✔ a queued native close from cleanup cannot dismiss the reopened modal lifetime (2.218687ms)
+✔ directory dialog projection never forwards private row fields (1108.513569ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20569.296237

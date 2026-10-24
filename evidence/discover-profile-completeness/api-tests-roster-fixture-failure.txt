@@ -1,0 +1,29 @@
+✔ Discover traverses the whole synthetic directory without overlap and searches beyond page one (353.687629ms)
+✔ Discover rejects invalid paging and HTTP slash aliases retain validation (247.904734ms)
+✔ paginated directory and unauthenticated helper never gain selected-person private fields (135.443463ms)
+✔ explicit self/admin reads show actual private bio/socials and metadata; organization ID is admin only (78.658467ms)
+✔ cross-team and Viewer lookup cannot gain private metadata; current teammate phone is revoked immediately after removal (81.293314ms)
+✖ fresh role/roster/removal checks and public consent apply to every selected-person request (67.553787ms)
+✔ an API-key-shaped value saved in the org field is never projected (66.92375ms)
+✔ PostgreSQL selected-person queries preserve the same authorization and current-membership boundary (8170.313747ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11389.40258
+
+✖ failing tests:
+
+test at tests/discover-selected-profile-privacy.test.ts:1:3515
+✖ fresh role/roster/removal checks and public consent apply to every selected-person request (67.553787ms)
+  Error: ROSTER_ADD_ONLY
+      at TestContext.<anonymous> (/workspace/ddd-discover-profile-completeness/tests/discover-selected-profile-privacy.test.ts:41:75)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'ERR_SQLITE_ERROR',
+    errcode: 1811,
+    errstr: 'constraint failed'
+  }

@@ -1,0 +1,1 @@
+app/portal.tsx(2203,110): error TS18047: 'personError' is possibly 'null'.

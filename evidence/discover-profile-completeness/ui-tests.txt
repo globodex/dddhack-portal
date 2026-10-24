@@ -1,0 +1,25 @@
+✔ participant cards retain safe dialog controls and accessible pagination without exposing private input fields (22.755922ms)
+✔ directory fetch keeps full search, membership, cursor and focus in distinct encoded parameters (46.062956ms)
+✔ redesigned team discovery keeps viewer browsing read-only and offers safe team details (31.628273ms)
+✔ only eligible teamless members receive join/create controls, and full/locked teams remain read-only (18.888434ms)
+✔ profile Team card copies only safe team identity and never private row fields (4.965075ms)
+✔ shared Rules exposes every authoritative category and rule in scannable groups (40.257779ms)
+✔ authorized selected facts render saved profession, organization, gender, contact and admin ID without any raw row fields (27.192045ms)
+✔ absent optional facts create no empty labels and raw private card fields cannot become facts (1.596293ms)
+✔ UI allowlist rejects mismatched WhatsApp destinations and key-shaped organization values (1.759959ms)
+✔ Discovery renders only allowlisted profile fields in a labelled native dialog (20.233853ms)
+✔ socials reject unsafe schemes and credentials and deduplicate canonical URLs (1.284193ms)
+✔ platform icons require exact platform hosts, including supported www aliases (0.31398ms)
+✔ empty bio and socials omit empty sections without disclosing extra fields (3.74279ms)
+✔ native modal close restores its opener and calls onClose once (0.576234ms)
+✔ Escape cancel closes the native dialog, and unmount cleanup never calls onClose (0.432058ms)
+✔ a queued native close from cleanup cannot dismiss the reopened modal lifetime (1.508205ms)
+✔ directory dialog projection never forwards private row fields (494.054286ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7345.809815

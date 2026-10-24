@@ -1,0 +1,22 @@
+✔ authorized selected facts render saved profession, organization, gender, contact and admin ID without any raw row fields (32.04767ms)
+✔ absent optional facts create no empty labels and raw private card fields cannot become facts (3.782969ms)
+✔ UI allowlist rejects mismatched WhatsApp destinations and key-shaped organization values (1.748365ms)
+✔ privacy disclosure names the approved signed-in gender visibility and admin-only organization ID (54.759114ms)
+✔ configured canonical origin accepts an exact HTTPS origin and rejects credential or path variants (3.205149ms)
+✔ public titles, descriptions, canonical and social URLs are unique and use the configured origin (2.196657ms)
+✔ private, authentication, directory and draft legal routes never publish indexable social metadata (0.76112ms)
+✔ project metadata selects published fields only and rejects arbitrary social-image URLs (3.315301ms)
+✔ sitemap includes only home and bounded valid public project paths across pages (44.982873ms)
+✔ robots lets crawlers read HTML noindex, blocks API crawling and permits only public project media (0.507121ms)
+✔ event structured data uses only approved public facts and no invented commercial claims or private room (0.324128ms)
+✔ legal drafts render server-side semantic content with verified controller, contact and retention categories (56.411657ms)
+✔ legal header reuses the hydrated shared menu with named icon destinations and no visible Menu label (8.582182ms)
+✔ privacy draft acknowledges the confirmed active Cloudflare proxy and distinguishes hiding from erasure (11.854061ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3524.571369

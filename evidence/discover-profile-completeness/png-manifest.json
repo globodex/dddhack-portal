@@ -1,0 +1,299 @@
+[
+  {
+    "file": "evidence/discover-profile-completeness/before/1440x900-admin-bob.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 91216,
+    "sha256": "c6cefae619494c5803fe52f7307ad17d01d7813155fb361b5491bf48480ffce6",
+    "uiSource": "c1c4b3a789a566e529dcd2d4bdea53c8134aae6f",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/before/390x844-admin-bob.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 33959,
+    "sha256": "509dfe1682c95412a75e1f75ceb06b6f17570466097650a9c014749150091cca",
+    "uiSource": "c1c4b3a789a566e529dcd2d4bdea53c8134aae6f",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/after/390x844-selected-lookup-error.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 37206,
+    "sha256": "314f27050f5bcf9b66b3320be0a1b069bb0a9c23f71ba43ef2c9044ed5de0cc3",
+    "uiSource": "64384172ff0f4ec4ef7972eedf38d8f8935069bd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/after/admin-bob-1440x900-copy.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 123104,
+    "sha256": "0904b45b79710bc772e328fa6cb25d996652fcb8f7e3fdbf6d4542c570da514c",
+    "uiSource": "64384172ff0f4ec4ef7972eedf38d8f8935069bd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/after/admin-bob-1440x900-modal.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 122513,
+    "sha256": "74cdec7c92034bd0fc3bcab98400da968d4b3336d1868c5e727177d0e6eca88b",
+    "uiSource": "64384172ff0f4ec4ef7972eedf38d8f8935069bd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/after/admin-bob-320x480-copy.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 27481,
+    "sha256": "1ec1a32b01971272251c0216f7c37649115c1e4a7b689d39e70f0bbd303eb260",
+    "uiSource": "64384172ff0f4ec4ef7972eedf38d8f8935069bd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/after/admin-bob-320x480-last-section.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 26195,
+    "sha256": "84e657eb55cae0e4d83668c2d472810bf7ce093437ece61afc21a671c288106c",
+    "uiSource": "64384172ff0f4ec4ef7972eedf38d8f8935069bd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/after/admin-bob-320x480-modal.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 23245,
+    "sha256": "81fd5e67afabe7f47106952023487c2ddedb1b0ffdb67fdef16ce6d1c56f16bd",
+    "uiSource": "64384172ff0f4ec4ef7972eedf38d8f8935069bd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/after/admin-bob-390x844-copy.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 46244,
+    "sha256": "d92485ab242d4ef62a83497093670276a86ccf81b92dabae30779f546795af56",
+    "uiSource": "64384172ff0f4ec4ef7972eedf38d8f8935069bd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/after/admin-bob-390x844-modal.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 45500,
+    "sha256": "48a38d83ef01f6558c912f34677369942ae75c0a0061519ec0b070f7c5fa8cbf",
+    "uiSource": "64384172ff0f4ec4ef7972eedf38d8f8935069bd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/after/bob-bob-390x844-modal.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 46477,
+    "sha256": "9cb9d68d8d18682609454cc9ac22869fc43f3cdc26516f97372e5d9bf9fcdcd1",
+    "uiSource": "64384172ff0f4ec4ef7972eedf38d8f8935069bd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/after/carol-bob-390x844-modal.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 34538,
+    "sha256": "2ff3afd3f093ed3fc910ae7728cb0608223a2da2e96a579fcc1a64051dbc4648",
+    "uiSource": "64384172ff0f4ec4ef7972eedf38d8f8935069bd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/after/stranger-alice-390x844-modal.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 37456,
+    "sha256": "d755a5e2efd0168fcedeed8466bc4d7d538a8560823e7bc77a62e1926b00f9d2",
+    "uiSource": "64384172ff0f4ec4ef7972eedf38d8f8935069bd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/after/stranger-bob-390x844-modal.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 34291,
+    "sha256": "d859f3eaf8dca6ba2766b6b033e05be58e4bba34acc82c0b55713cd93172e412",
+    "uiSource": "64384172ff0f4ec4ef7972eedf38d8f8935069bd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/final/390x844-selected-lookup-error.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 37206,
+    "sha256": "314f27050f5bcf9b66b3320be0a1b069bb0a9c23f71ba43ef2c9044ed5de0cc3",
+    "uiSource": "92f167936cd0fe68344b85282881bc1ab262afcd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/final/admin-bob-1440x900-copy.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 123553,
+    "sha256": "50ecd28bc32d287c13b8eb8395ebec1f5748ac84dee26d4b99b69c0bdd900294",
+    "uiSource": "92f167936cd0fe68344b85282881bc1ab262afcd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/final/admin-bob-1440x900-modal.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 122780,
+    "sha256": "686ce7133075f4d9eeccd10d1353bdaa4e6658e7b91cbc378a9b47e62a4a8f32",
+    "uiSource": "92f167936cd0fe68344b85282881bc1ab262afcd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/final/admin-bob-320x480-copy.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 28169,
+    "sha256": "d292a6b9d34838ba045f8e5bae95dfe8fa003df1f839884d0d8842b61e08c8a5",
+    "uiSource": "92f167936cd0fe68344b85282881bc1ab262afcd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/final/admin-bob-320x480-last-section.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 26348,
+    "sha256": "f02ff82e82ced93831f683fe6323635cf59b9073dbf432a0ecf9cdcd3ddac10c",
+    "uiSource": "92f167936cd0fe68344b85282881bc1ab262afcd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/final/admin-bob-320x480-modal.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 23168,
+    "sha256": "86b0a57745392eaba55f055f21bee13ddbdaddd62c3487c8bd0e56f043185d9e",
+    "uiSource": "92f167936cd0fe68344b85282881bc1ab262afcd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/final/admin-bob-390x844-copy.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 47767,
+    "sha256": "2042f98db3377860d7153684c8f9fc6130f8b87cb9f37e2ef92e28ea92b302df",
+    "uiSource": "92f167936cd0fe68344b85282881bc1ab262afcd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/final/admin-bob-390x844-modal.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 47145,
+    "sha256": "534f0a272d51b0dab97c3a8db0a766faa0085823d6f1f0e22992a2a45697502b",
+    "uiSource": "92f167936cd0fe68344b85282881bc1ab262afcd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/final/bob-bob-390x844-modal.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 47328,
+    "sha256": "a76c3adb9e0a2eb4bdfa5387f3b70f80a3c1ccbe7e702f27e0f7453e9529211d",
+    "uiSource": "92f167936cd0fe68344b85282881bc1ab262afcd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/final/carol-bob-390x844-modal.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 34734,
+    "sha256": "c19366ca20612b065afa1b74a735c8bbd23810c7ac02a6e6a6fcf810fc3fe4d8",
+    "uiSource": "92f167936cd0fe68344b85282881bc1ab262afcd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/final/stranger-alice-390x844-modal.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 37475,
+    "sha256": "bc39148a8601de055c002f1da5dc42c0e44e5068a90f04566f40604bd2e3d073",
+    "uiSource": "92f167936cd0fe68344b85282881bc1ab262afcd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/final/stranger-bob-390x844-modal.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 34294,
+    "sha256": "334bdbbb019e01c72cd7094eab450ac38d421fbe50484b5e9028d1003eea6e57",
+    "uiSource": "92f167936cd0fe68344b85282881bc1ab262afcd",
+    "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/public-gender/admin-bob-1440x900.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 122948,
+    "sha256": "7852584189141429aab832e726eea96bbf9a5566760c96803395102c1906d028",
+    "uiSource": "420e69990eb9ed87661a15243e98cf93cc0b4e3c",
+    "backendSource": "5499601997f81993bc0a0ffac893d165908c176b"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/public-gender/admin-bob-390x844.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 46929,
+    "sha256": "2b6df43659614ef77e73900a12d37a5b6df3c52da24d74d85b665c40c0dfdc07",
+    "uiSource": "420e69990eb9ed87661a15243e98cf93cc0b4e3c",
+    "backendSource": "5499601997f81993bc0a0ffac893d165908c176b"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/public-gender/bob-bob-390x844.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 47408,
+    "sha256": "cbd0ff8a7d704e7e71aff7e3dee1326dac39b9830847c6d383977803f0756b46",
+    "uiSource": "420e69990eb9ed87661a15243e98cf93cc0b4e3c",
+    "backendSource": "5499601997f81993bc0a0ffac893d165908c176b"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/public-gender/carol-bob-390x844.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 35681,
+    "sha256": "4c8e57973b703e875dac08876869b7c53c10729ab0775a2ea6d084dcbf07773c",
+    "uiSource": "420e69990eb9ed87661a15243e98cf93cc0b4e3c",
+    "backendSource": "5499601997f81993bc0a0ffac893d165908c176b"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/public-gender/stranger-alice-390x844.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 37809,
+    "sha256": "04b79e3f1cf3450d54dba817f48a3f99aab39291c67fd3ab5516dc83541b0c50",
+    "uiSource": "420e69990eb9ed87661a15243e98cf93cc0b4e3c",
+    "backendSource": "5499601997f81993bc0a0ffac893d165908c176b"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/public-gender/stranger-bob-320x480.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 17639,
+    "sha256": "f220deb81e447f7e483335e530dd1fb02c0570147f421f8aac774c7ad6045815",
+    "uiSource": "420e69990eb9ed87661a15243e98cf93cc0b4e3c",
+    "backendSource": "5499601997f81993bc0a0ffac893d165908c176b"
+  },
+  {
+    "file": "evidence/discover-profile-completeness/public-gender/stranger-bob-390x844.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 32747,
+    "sha256": "2ace7e1f349ad72a2a003c0d19b5f173f1c981d45cd401bdd084affe537ae36d",
+    "uiSource": "420e69990eb9ed87661a15243e98cf93cc0b4e3c",
+    "backendSource": "5499601997f81993bc0a0ffac893d165908c176b"
+  }
+]

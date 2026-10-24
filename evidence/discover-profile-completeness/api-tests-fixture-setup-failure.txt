@@ -1,0 +1,28 @@
+✔ Discover traverses the whole synthetic directory without overlap and searches beyond page one (289.492222ms)
+✔ Discover rejects invalid paging and HTTP slash aliases retain validation (293.275698ms)
+✔ paginated directory and unauthenticated helper never gain selected-person private fields (248.111894ms)
+✔ explicit self/admin reads show actual private bio/socials and metadata; organization ID is admin only (122.014298ms)
+✔ cross-team and Viewer lookup cannot gain private metadata; current teammate phone is revoked immediately after removal (106.3599ms)
+✖ fresh role/roster/removal checks and public consent apply to every selected-person request (103.011592ms)
+✔ an API-key-shaped value saved in the org field is never projected (238.298366ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5002.257286
+
+✖ failing tests:
+
+test at tests/discover-selected-profile-privacy.test.ts:1:3414
+✖ fresh role/roster/removal checks and public consent apply to every selected-person request (103.011592ms)
+  Error: NOT NULL constraint failed: portal_roles.granted_by
+      at TestContext.<anonymous> (/workspace/ddd-discover-profile-completeness/tests/discover-selected-profile-privacy.test.ts:39:145)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'ERR_SQLITE_ERROR',
+    errcode: 1299,
+    errstr: 'constraint failed'
+  }

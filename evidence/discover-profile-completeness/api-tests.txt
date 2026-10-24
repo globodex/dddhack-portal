@@ -1,0 +1,16 @@
+✔ Discover traverses the whole synthetic directory without overlap and searches beyond page one (495.520754ms)
+✔ Discover rejects invalid paging and HTTP slash aliases retain validation (519.567306ms)
+✔ paginated directory and unauthenticated helper never gain selected-person private fields (159.904631ms)
+✔ explicit self/admin reads show actual private bio/socials and metadata; organization ID is admin only (114.115593ms)
+✔ cross-team and Viewer lookup cannot gain private metadata; current teammate phone is revoked immediately after removal (126.498202ms)
+✔ fresh role/removal checks and public consent apply to every selected-person request (112.073985ms)
+✔ an API-key-shaped value saved in the org field is never projected (74.461527ms)
+✔ PostgreSQL selected-person queries preserve the same authorization and current-membership boundary (6063.219737ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10802.85356

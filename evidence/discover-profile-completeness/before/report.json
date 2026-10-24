@@ -1,0 +1,11 @@
+{
+  "uiSource": "c1c4b3a789a566e529dcd2d4bdea53c8134aae6f",
+  "backendSource": "bed01517d6741cdb6942932eaa64465c5f432382",
+  "synthetic": true,
+  "GETOnly": true,
+  "captures": [
+    "evidence/discover-profile-completeness/before/1440x900-admin-bob.png",
+    "evidence/discover-profile-completeness/before/390x844-admin-bob.png"
+  ],
+  "browserClosed": true
+}

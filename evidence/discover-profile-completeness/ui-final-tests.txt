@@ -1,0 +1,19 @@
+✔ authorized selected facts render saved profession, organization, gender, contact and admin ID without any raw row fields (61.458138ms)
+✔ absent optional facts create no empty labels and raw private card fields cannot become facts (7.057884ms)
+✔ UI allowlist rejects mismatched WhatsApp destinations and key-shaped organization values (13.505288ms)
+✔ Discovery renders only allowlisted profile fields in a labelled native dialog (24.617792ms)
+✔ socials reject unsafe schemes and credentials and deduplicate canonical URLs (4.351444ms)
+✔ platform icons require exact platform hosts, including supported www aliases (5.18477ms)
+✔ empty bio and socials omit empty sections without disclosing extra fields (7.389491ms)
+✔ native modal close restores its opener and calls onClose once (0.635169ms)
+✔ Escape cancel closes the native dialog, and unmount cleanup never calls onClose (0.506635ms)
+✔ a queued native close from cleanup cannot dismiss the reopened modal lifetime (0.483422ms)
+✔ directory dialog projection never forwards private row fields (840.744579ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5189.881394
