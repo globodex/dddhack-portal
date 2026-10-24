@@ -1,4 +1,18 @@
 /** A browser Back dismisses the top dialog before it leaves its underlying route. */
+const navigationClosers = new Map<string, () => void>();
+
+/** Replace the menu's temporary entry with the destination, preserving one Back. */
+export function consumeDialogHistoryForNavigation() {
+  if (typeof window === "undefined") return false;
+  const token = window.history.state?.portalDialog;
+  const consume = navigationClosers.get(token);
+  if (!consume) return false;
+  consume();
+  const { portalDialog: _marker, ...state } = window.history.state;
+  window.history.replaceState(state, "", window.location.href);
+  return true;
+}
+
 export function trackDialogHistory(onDismiss: () => void, opener?: HTMLElement | null) {
   if (typeof window === "undefined") return () => {};
   const token = `dialog-${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -16,6 +30,7 @@ export function trackDialogHistory(onDismiss: () => void, opener?: HTMLElement |
     if (!active) return;
     window.history.pushState({ ...window.history.state, portalDialog: token }, "", window.location.href);
     pushed = true;
+    navigationClosers.set(token, () => { pushed = false; });
   }, 0);
   const back = () => {
     if (!active || !pushed || window.history.state?.portalDialog === token) return;
@@ -26,6 +41,7 @@ export function trackDialogHistory(onDismiss: () => void, opener?: HTMLElement |
   window.addEventListener("popstate", back);
   return () => {
     active = false;
+    navigationClosers.delete(token);
     window.clearTimeout(timer);
     window.removeEventListener("popstate", back);
     if (pushed && window.history.state?.portalDialog === token) {

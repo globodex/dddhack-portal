@@ -85,7 +85,7 @@ import ProfileFlow from "./profile-flow";
 import AdminImportDialog from "./admin-import-dialog";
 import AdminStatusMenu from "./admin-status-menu";
 import { trapDialogFocus } from "./dialog-focus";
-import { trackDialogHistory } from "./dialog-history";
+import { consumeDialogHistoryForNavigation, trackDialogHistory } from "./dialog-history";
 import AdminParticipantActions, {
   AdminParticipantFilters,
   AdminIcon,
@@ -5606,14 +5606,15 @@ export default function Portal({
   initialPublic?: View;
   initialView?: View;
   pendingPath?: string | null;
-  onNavigate?: (event: { preventDefault(): void }, destination: string) => void;
+  onNavigate?: (event: { preventDefault(): void }, destination: string, options?: { replace?: boolean }) => void;
 }) {
   const hydrated = useHydrated();
   const path = canonical(original);
   function navigate(event: { preventDefault(): void }, destination: string) {
     if (!onNavigate || canonical(destination) === path) return;
+    const replace = consumeDialogHistoryForNavigation();
     setMenu(false);
-    onNavigate(event, destination);
+    onNavigate(event, destination, { replace });
   }
   const [data, setData] = useState<View>(initialView || initialPublic || {}),
     [loading, setLoading] = useState(!initialView && !initialPublic && path !== "/"),

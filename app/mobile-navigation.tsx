@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, type ReactNode } from "react";
 import { X } from "lucide-react";
-import { trackDialogHistory } from "./dialog-history";
+import { consumeDialogHistoryForNavigation, trackDialogHistory } from "./dialog-history";
 
 // Native showModal supplies the focus trap and makes the page behind it inert.
 // Keep our scroll/focus cleanup paired with that same modal lifetime.
@@ -56,6 +56,18 @@ export default function MobileNavigation({
       className="mobile-navigation"
       aria-label="Navigation"
       onClose={onClose}
+      onClick={(event) => {
+        const link = (event.target as HTMLElement).closest<HTMLAnchorElement>("a[href]");
+        if (!link) return;
+        if (!event.defaultPrevented && event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey && !link.hasAttribute("download") && (!link.target || link.target === "_self")) {
+          const destination = new URL(link.href, window.location.href);
+          if (destination.origin === window.location.origin && consumeDialogHistoryForNavigation()) {
+            event.preventDefault();
+            window.location.replace(destination.href);
+          }
+        }
+        onClose();
+      }}
       onKeyDown={(event) => {
         if (event.key !== "Tab") return;
         const elements = [
@@ -98,12 +110,7 @@ export default function MobileNavigation({
           <X size={24} aria-hidden="true" />
         </button>
       </div>
-      <nav
-        aria-label="Mobile navigation"
-        onClick={(event) => {
-          if ((event.target as HTMLElement).closest("a")) onClose();
-        }}
-      >
+      <nav aria-label="Mobile navigation">
         {children}
       </nav>
     </dialog>
