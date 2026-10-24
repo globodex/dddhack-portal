@@ -1,0 +1,42 @@
+{
+  "baseCheckpoint": "f18e8ff59c522ffc7ca3d04119b11fb6025fac44",
+  "preservedWindowsCheckpoint": "bcb271a59e123ad83359bed26c2c3a218f6eb96d",
+  "workerSource": "2f124a874730ccff3aafe0fee34a9ee427b2a33c",
+  "integratedApplicationSource": "119ac3bc809c9b12bf5a678a58b15fe1459760c1",
+  "sourceHashesMatchViewedScreenshots": true,
+  "desktopBeforeAfter1847x1023": {
+    "cardWidth": [
+      1312,
+      1721
+    ],
+    "scheduleHeight": [
+      316,
+      905
+    ],
+    "headingPx": [
+      60,
+      96
+    ]
+  },
+  "logoHeightPx": [
+    26,
+    50
+  ],
+  "heroOverallMarkupUnchanged": true,
+  "mobileGeometryUnchanged": true,
+  "focusedTests": {
+    "pass": 13,
+    "fail": 0,
+    "skipped": 0
+  },
+  "workerBrowserChecks": 57,
+  "nativePngCount": 68,
+  "typecheckExit": 0,
+  "productionBuildExit": 0,
+  "buildId": "Va74HLIfhmiQF9PKCTtbo",
+  "initialWorktreeBuildFailure": "dependency symlink outside detected root; preserved raw log; production build passed using original workspace local dependencies; no config change",
+  "apiInputHashesVerified": 78,
+  "backendZipUnchanged": "bbd047173fb4e895bd8148d24674548f05dfaea58e184ca57bcc0e183ca60382",
+  "agentHostedDataChanges": false,
+  "performance": "No new dependency or asset request; no chapter height change observed between no-JS and hydrated captures, not a full CLS or speed benchmark"
+}

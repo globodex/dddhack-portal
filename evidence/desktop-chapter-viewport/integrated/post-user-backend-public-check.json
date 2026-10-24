@@ -1,0 +1,35 @@
+{
+  "ownerReportsBackendDeployed": true,
+  "ownerReportsLedgerEntries": 9,
+  "ownerReportsPending": [],
+  "agentRequests": "anonymous GET only",
+  "releaseVersionEndpointAvailable": false,
+  "health": {
+    "http": [
+      "HTTP/1.1 200 OK",
+      "HTTP/2 200 "
+    ],
+    "body": {
+      "ok": true,
+      "runtime": "neon-functions"
+    }
+  },
+  "projects": {
+    "http": [
+      "HTTP/1.1 200 OK",
+      "HTTP/2 200 "
+    ],
+    "projectionKeys": [
+      "items",
+      "hasMore",
+      "page",
+      "engagement",
+      "scoreStage",
+      "finalCountdownComplete",
+      "awards",
+      "localTest"
+    ],
+    "publicItems": 0,
+    "hasAuthenticatedActor": false
+  }
+}

@@ -1,0 +1,21 @@
+✔ all four chapters share fitting viewport geometry on laptop and tablet; tall content and motion fallback coherently (5.674289ms)
+✔ confirmed agenda uses measured distance, variable item offsets and the actual sticky start (1.425017ms)
+✔ airblower substantially moves multiple nearby dots and settles home inside its own stage (3.039206ms)
+✔ approved Home SSR has exact day/actions, real organizers and unenhanced readable chapters with no fabricated agenda (94.306285ms)
+✔ sparse desktop chapters reserve almost the full available viewport (2.767251ms)
+✔ long published agenda and expanded FAQ retain every row before bottom pin (0.300572ms)
+✔ short, reduced and tablet layouts retain the existing fallback (2.583546ms)
+✔ normal phone chapters pin below the header with visible layer offsets (1.644758ms)
+✔ short phones and an expanded FAQ can scroll every row before pinning (0.296276ms)
+✔ motion settings, tiny viewports and desktop keep the ordinary fallback (0.438242ms)
+✔ measured organizer units begin fully beyond their origin edge, including the attached portrait (4.656715ms)
+✔ organizer content remains immediately readable without motion or JS and uses only verified original photos (34.217376ms)
+✔ public defaults retain the server contract without pulling server validators into Portal's browser graph (286.047283ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3100.642332
