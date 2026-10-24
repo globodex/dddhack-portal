@@ -1,0 +1,197 @@
+{
+  "source": "b6e39374fa4e5125a462c5fdbfcdfbe0607aea55",
+  "appCodeSource": "191b76ed26f430128b14112f77b74ad3e26b1ec0",
+  "syntheticOnly": true,
+  "fixtureBackend": 8835,
+  "readOnly": true,
+  "fingerprint": {
+    "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+    "app/admin-credit-batches.css": "7ee963e2c5fd7544a7a1fc416c73ffaea1606e2b408097c80b190cf6faa47659",
+    "app/admin-experience.css": "eab8d356a4736a5fdff96f551c0b27d1739f4a82cafb95804890bc6a85e2b304",
+    "app/dashboard-v6.css": "60f64879fb3c805f147387fa599bfa1d23f9caecacdfe6c56a15fc74119fa11a",
+    "app/discover-rules-v6.css": "8c8c48083275cb4537a62b81df52d770ac3b2ec7a97ce4902c90bce4e8119e23",
+    "app/discovery-profile.css": "aa9964a9292a1a4a82585423cfd5cd658f2cb7fd5a4842045335353219a103e4",
+    "app/home-lower.css": "d113b4adda528956de0b98b2af6307613ccdf6910aa23028d98ba5b3f42f656b",
+    "app/mobile-navigation.css": "53185bf47f3000ad1a01ae85566910215944108e90e3ec124c913fa629704f9a",
+    "app/navigation-correction.css": "075a049db9df3ebed4ff3165778bae6e0768e18e81879e8bf4990fb9f3902d83",
+    "app/organizer-section.css": "b9493c8eec3fc2c07502f0e3e656bc66b540883c98d5a56b7d7f1f41c1e082a8",
+    "app/participant-ui.css": "c31581b55b0e6e6ab7897980ba7345b48b938e83002230928fe173b230751b67",
+    "app/personal-credits.css": "8b40d4e795fc69e15d2941332a6116d4f5aff6cc49fa277f5c4636c91dbdd34d",
+    "app/portal-shell.css": "2841f2d3e909382dda7fa397858b20b684aca779efc73ac45a85ddcfe5e7f5f8",
+    "app/portal.tsx": "c0a8711f84679b89a4f5d0f05c2ef579f2bc5b60b2619cf335296c6f73e5b8b6",
+    "app/portrait-backdrop.css": "9583e4a297ae8eb4e0071e10d2a6d697ec8464be9e03ae000657a98871274f38",
+    "app/profile-experience.css": "147c62a39e646f3d7902fe753a969fa5cffb8085d5d59c0cec185e208b9212ab",
+    "app/projects-rules-experience.css": "8edc84868154cca5b76fda7e022e2a702eff0f6e17807a027629015e64579b01",
+    "app/projects-submission-v6.css": "9a3663b5cb345164a0ea20b7d3e28a1f684d94bc31a3c811d7fd9fe6e3b7f750",
+    "app/public-home.css": "120735f8a72e871eb724011157f8ddb39e69757770b9792262d6412433ebef8e",
+    "app/public-information.css": "91e2ea36f073241168d3a991b0215c06ec631ae5dd023430abc4d7a164b95ad4",
+    "app/redesign.css": "2cde4f5743fb0d7dc91dddbc4934a2365a12432559eebe0685a7a3c0bd8b2842",
+    "app/route-skeleton.css": "1cb4ec6c9a76928677ed16b55f4626e7d1f4c96236e671081d020ffa1e672d11",
+    "app/signin/signin.module.css": "022f56818c98d435e2f99366824d1d9a0fa41795cc845306bc5293bf4fca94b8",
+    "app/style.css": "a295b7be4f3ca1c5e97142a03a96898f70ebda9092f1a94eaa8a0f47210e75df",
+    "app/team-discovery-experience.css": "1ba981b67e46a7b799d8a462d33d76ce0a559e6675abb99692c2bc66fc1472e5",
+    "app/team-studio-experience.css": "4d4e35e9ad4c1e39ee7e092e9418654d06a5608f9adb8ce77533a93d30cd4bef",
+    "app/team-studio-shell.css": "8486d0f7b2aeb3ddcede05b25265bcb6608dcd12c2a4e30d2145fe52648186f2",
+    "lib/experience.ts": "44cd51de83deaa41e9f9410eb3a58bc683b6894b783f126c72a3509bd3da0c30",
+    "lib/score-release.ts": "c035ee3f58a6c95773436b91ae50dba46bae7aed1f2623747f23ec04ea11f2af"
+  },
+  "screenshots": [
+    {
+      "file": "leaderboard-community-1440x900.png",
+      "actor": "anonymous",
+      "path": "/leaderboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "nativeOriginal": true,
+      "sha256": "f35c31aaaa632eb2a22ff7bc919a2f9b8940c003d27b27a1a454cda3fd282d80"
+    },
+    {
+      "file": "leaderboard-community-390x844.png",
+      "actor": "anonymous",
+      "path": "/leaderboard",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "nativeOriginal": true,
+      "sha256": "8d69a95958526f6e273900242ff13045914c1568d28ecc15510a8d10198dab08"
+    },
+    {
+      "file": "projects-selected-1440x900.png",
+      "actor": "bob",
+      "path": "/projects",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "nativeOriginal": true,
+      "sha256": "ff0da03fb673347e1bcc875ce5c4c1f9c5c79e6e111c08db49da6e7e3d273dc9"
+    },
+    {
+      "file": "projects-selected-390x844.png",
+      "actor": "bob",
+      "path": "/projects",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "nativeOriginal": true,
+      "sha256": "18e678356c028e9c59d61d0c0ca38a0d24acbbce81a579f41eb4ba569a932e0b"
+    },
+    {
+      "file": "projects-unselected-1440x900.png",
+      "actor": "alice",
+      "path": "/projects",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "nativeOriginal": true,
+      "sha256": "4f72785eaf49bf865aa2d2e6d7e4c1d54fcda12eaf1e120d78576cd304c00053"
+    },
+    {
+      "file": "projects-unselected-390x844.png",
+      "actor": "alice",
+      "path": "/projects",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "nativeOriginal": true,
+      "sha256": "7ac9782d5bd25027c41957c68606e00464a9574035ee9bb3484c019e269eae55"
+    }
+  ],
+  "checks": [
+    {
+      "name": "leaderboard-community",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "passed": true
+    },
+    {
+      "name": "leaderboard-community",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "menuState": {
+        "disabled": false,
+        "background": "rgb(32, 35, 32)"
+      },
+      "passed": true
+    },
+    {
+      "name": "projects-selected",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "passed": true
+    },
+    {
+      "name": "projects-selected",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "menuState": {
+        "disabled": false,
+        "background": "rgb(32, 35, 32)"
+      },
+      "passed": true
+    },
+    {
+      "name": "projects-unselected",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "passed": true
+    },
+    {
+      "name": "projects-unselected",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "menuState": {
+        "disabled": false,
+        "background": "rgb(32, 35, 32)"
+      },
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "clone": {
+    "syntheticOnly": true,
+    "source": "/tmp/ddd-score-phases-8833-before-reveal.sqlite",
+    "target": "/tmp/ddd-community-8835.sqlite",
+    "sourceBackupSha256": "02ed4fd1bdce4f2c453b9b5aeb03b48621608795dc4232a657983edbc1e926dc",
+    "copiedAt": "2026-10-24T14:48:53.189Z"
+  },
+  "before": {
+    "datasetSha256": "071ff25b022336801c37ae66dc6fed76118208abe4a9326fd2f0f98d8df184d2",
+    "releases": 0,
+    "snapshots": 0,
+    "reveals": 0,
+    "evaluations": 0
+  },
+  "after": {
+    "datasetSha256": "071ff25b022336801c37ae66dc6fed76118208abe4a9326fd2f0f98d8df184d2",
+    "releases": 0,
+    "snapshots": 0,
+    "reveals": 0,
+    "evaluations": 0
+  }
+}

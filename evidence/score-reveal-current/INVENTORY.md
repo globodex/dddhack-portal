@@ -1,5 +1,7 @@
 # Projects and score stages: actual rendered evidence
 
+Fresh current community closure is now available in `../community-current-final`, source191b76e with metadata-only captureHEADb6e3937. Its six original PNGs supersede the historical source344 community files for delivery. All six were viewed, including the corrected singular upvote and enabled black mobile menu.
+
 Completed source: `62c8105af837e62ab0013ac5cd879eec4ab32114`. Backend8833 loaded source `19cb5362fcd4367a02fc04b3230d82f1cb854d91`; the parent verified that intervening changes affected only TeamStudio CSS, not that module graph. Browser and runtime fingerprints stayed fixed during capture.
 
 These are **synthetic demonstrations of existing UI**, not actual judging, provider evaluations or event results. The isolated SQLite clone and pre-reveal backup are recorded in `clone-manifest.json` and `fixture-report.json`. No provider fetch ran. The original AI release was reused, not replayed. Only the approved11 fake policy fields and frozen26-entry fixture were prepared, then normal owner final-release/unveil contracts ran. No production settings or data changed.
