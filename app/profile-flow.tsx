@@ -439,7 +439,8 @@ export default function ProfileFlow({
       first.current = false;
       return;
     }
-    heading.current?.focus();
+    heading.current?.focus({ preventScroll: true });
+    window.scrollTo({ top: 0, behavior: "instant" });
   }, [step]);
   const clearFieldError = (field: string) => {
     setFieldErrors((previous) => {
@@ -499,9 +500,17 @@ export default function ProfileFlow({
           setFieldErrors(invalid);
           if (Object.keys(invalid).length) {
             const form = event.currentTarget;
-            requestAnimationFrame(() =>
-              form.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus(),
-            );
+            requestAnimationFrame(() => {
+              const field = form.querySelector<HTMLElement>(
+                '[aria-invalid="true"]',
+              );
+              field?.focus({ preventScroll: true });
+              field?.scrollIntoView({
+                behavior: "instant",
+                block: "center",
+                inline: "nearest",
+              });
+            });
             return;
           }
           if (step < 3) {
