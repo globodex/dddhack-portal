@@ -94,6 +94,112 @@ async function check(admin: PortalService, identities: { email: string }[]) {
 }
 
 for (const engine of ["sqlite", "postgres"] as const) {
+  test(`${engine}: raced new canonical header with different display headings cannot create two categories`, async () => {
+    const f = await fixture(engine),
+      admin = f.service("admin"),
+      owner = f.service("owner");
+    try {
+      await admin.command("quick-check-in", { emails: ["alice@portal.test"] });
+      const firstCSV = csv("Independent overlap", ["FAKE-CATEGORY-RACE-FIRST"]);
+      const secondCSV = csv(" INDEPENDENT OVERLAP ", [
+        "FAKE-CATEGORY-RACE-SECOND",
+      ]);
+      const firstColumns = [
+        {
+          key: "0",
+          heading: "First display",
+          instructions: "First instructions",
+        },
+      ];
+      const secondColumns = [
+        {
+          key: "0",
+          heading: "Second display",
+          instructions: "Second instructions",
+        },
+      ];
+      const prepared = await admin.command("preview-credit-batch", {
+        csv: firstCSV,
+        columns: firstColumns,
+      });
+      const mutate = admin.mutate.bind(admin);
+      let inserted = false;
+      admin.mutate = async (...args) => {
+        if (args[1] === "publish-credit-batch" && !inserted) {
+          inserted = true;
+          await publish(owner, secondCSV, secondColumns);
+        }
+        return mutate(...args);
+      };
+      await assert.rejects(
+        admin.command("publish-credit-batch", {
+          csv: firstCSV,
+          columns: firstColumns,
+          digest: prepared.digest,
+          confirmation: "PUBLISH_CREDIT_BATCH",
+        }),
+        { code: "PREVIEW_REQUIRED" },
+      );
+      const mappings = await rows<{ type_id: string }>(
+        f.db,
+        "SELECT type_id FROM credit_category_keys WHERE source_key='independent overlap'",
+      );
+      assert.equal(mappings.length, 1);
+      const typeId = mappings[0].type_id;
+      assert.equal((await summary(admin, typeId)).name, "Second display");
+      assert.equal(
+        (await summary(admin, typeId)).instructions,
+        "Second instructions",
+      );
+      assert.equal(
+        (
+          await rows(
+            f.db,
+            "SELECT * FROM credit_types WHERE name='First display'",
+          )
+        ).length,
+        0,
+      );
+      assert.equal(
+        (
+          await rows(
+            f.db,
+            "SELECT * FROM credit_inventory WHERE voucher_value='FAKE-CATEGORY-RACE-FIRST'",
+          )
+        ).length,
+        0,
+      );
+      assert.equal(
+        (
+          await rows(
+            f.db,
+            "SELECT * FROM credit_allocations WHERE type_id=? AND user_id='fake_alice'",
+            typeId,
+          )
+        ).length,
+        1,
+      );
+      const retried = await publish(admin, firstCSV, firstColumns);
+      assert.equal(retried.result.typeIds[0], typeId);
+      assert.deepEqual(
+        ((s: any) => [s.total, s.assigned, s.available])(
+          await summary(admin, typeId),
+        ),
+        [2, 1, 1],
+      );
+      assert.equal(
+        (
+          await rows(
+            f.db,
+            "SELECT * FROM credit_types WHERE name IN ('First display','Second display')",
+          )
+        ).length,
+        1,
+      );
+    } finally {
+      await f.db.close();
+    }
+  });
   test(`${engine}: overlapping restock race rolls back all new rows and asks for current counts`, async () => {
     const f = await fixture(engine),
       admin = f.service("admin");

@@ -269,7 +269,9 @@ export async function importCreditStock(
         ],
       );
     sql.push([
-      "INSERT INTO credit_category_keys VALUES(?,?) ON CONFLICT(source_key) DO NOTHING",
+      column.existing
+        ? "INSERT INTO credit_category_keys VALUES(?,?) ON CONFLICT(source_key) DO NOTHING"
+        : "INSERT INTO credit_category_keys VALUES(?,?)",
       column.sourceKey,
       typeId,
     ]);
