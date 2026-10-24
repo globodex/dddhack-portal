@@ -64,12 +64,12 @@ test("server accepts verified choices and preserves optional socials while rejec
     db.close();
   }
 });
-test("organizer photos match verified public source hashes, including confirmed HowDevelop profile", () => {
+test("organizer photos match verified public sources, including the requested Param302 GitHub avatar", () => {
   const photos = {
     "HowDevelop-x.jpg":
       "e01d0b72a4c2ae65fa48cd3e9222d4517407885d4d9626261bfbac0814af7fb4",
-    "Param3021-x.jpg":
-      "f19b21c25dbe9eb91c2ece9027adcb1ec24d28979ca633e7607703d54297fe17",
+    "Param302-github.webp":
+      "84da5a6a1eb28b5777c48d7706ab660b9b9fbb0afec39d88721a8d9cb85359d8",
     "nikhilsbuilds-x.jpg":
       "83bd86997050bb01ae2e5b0ade6c0090f7e3930d1dc2733b9b8f7ee8a5956b12",
     "callmeshuklaji-x.jpg":
@@ -83,6 +83,10 @@ test("organizer photos match verified public source hashes, including confirmed 
       hash,
     );
   const html = renderToStaticMarkup(createElement(Home, {}));
+  const provenance = JSON.parse(readFileSync("public/organizers/PARAM302-GITHUB-SOURCE.json", "utf8"));
+  assert.equal(provenance.login, "Param302");
+  assert.equal(provenance.githubUserId, 76559816);
+  assert.equal(provenance.sourceURL, "https://avatars.githubusercontent.com/u/76559816?v=4");
   for (const file of Object.keys(photos))
     assert.ok(html.includes("/organizers/" + file));
   assert.match(html, /Shivay Lamba/);
