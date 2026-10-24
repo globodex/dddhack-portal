@@ -1,0 +1,440 @@
+{
+  "source": "f766ff6b326ee9f7dc9993eb0d48a9f5088f2471",
+  "syntheticOnly": true,
+  "cases": [],
+  "startedAt": "2026-10-24T19:17:59.201Z",
+  "inFlightCase": {
+    "actor": "owner",
+    "path": "/admin/participants",
+    "color": "orange",
+    "expression": "star",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "standalone": false,
+    "requests": [
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/admin/participants"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792869482220"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/brand/codex-user-supplied.svg"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792869482220"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792869482220"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/brand/codex-user-supplied.svg"
+      }
+    ],
+    "pageErrors": [],
+    "closed": {
+      "width": 1440,
+      "documentWidth": 1425,
+      "scrollY": 0,
+      "bodyOverflow": "",
+      "htmlOverflow": "",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1425,
+        "height": 80,
+        "top": 0,
+        "right": 1425,
+        "bottom": 80,
+        "left": 0
+      },
+      "trigger": {
+        "x": 1281,
+        "y": 17.5,
+        "width": 44,
+        "height": 44,
+        "top": 17.5,
+        "right": 1325,
+        "bottom": 61.5,
+        "left": 1281
+      },
+      "account": {
+        "x": 1337,
+        "y": 17.5,
+        "width": 44,
+        "height": 44,
+        "top": 17.5,
+        "right": 1381,
+        "bottom": 61.5,
+        "left": 1337
+      },
+      "avatarState": "saved",
+      "avatarFill": "#f26d00",
+      "avatarMarks": [
+        "*",
+        "*"
+      ],
+      "toggleColor": "rgb(32, 35, 32)",
+      "accountLabel": "Your Dashboard"
+    },
+    "closedFile": "evidence/unified-navigation/after/owner-admin-participants-1440x900-closed.png",
+    "menu": {
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 1425,
+        "height": 900,
+        "top": 0,
+        "right": 1425,
+        "bottom": 900,
+        "left": 0
+      },
+      "scrollHeight": 940,
+      "bodyOverflow": "hidden",
+      "htmlOverflow": "hidden",
+      "scrollY": 0,
+      "rows": [
+        {
+          "text": "Participants",
+          "href": "/admin/participants",
+          "box": {
+            "x": 20,
+            "y": 92,
+            "width": 1385,
+            "height": 68,
+            "top": 92,
+            "right": 1405,
+            "bottom": 160,
+            "left": 20
+          },
+          "icon": {
+            "x": 24,
+            "y": 113.5,
+            "width": 24,
+            "height": 24,
+            "top": 113.5,
+            "right": 48,
+            "bottom": 137.5,
+            "left": 24
+          },
+          "color": "rgb(46, 104, 65)"
+        },
+        {
+          "text": "Discover",
+          "href": "/discover/teams",
+          "box": {
+            "x": 20,
+            "y": 160,
+            "width": 1385,
+            "height": 68,
+            "top": 160,
+            "right": 1405,
+            "bottom": 228,
+            "left": 20
+          },
+          "icon": {
+            "x": 24,
+            "y": 181.5,
+            "width": 24,
+            "height": 24,
+            "top": 181.5,
+            "right": 48,
+            "bottom": 205.5,
+            "left": 24
+          },
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "Teams",
+          "href": "/admin/teams",
+          "box": {
+            "x": 20,
+            "y": 228,
+            "width": 1385,
+            "height": 68,
+            "top": 228,
+            "right": 1405,
+            "bottom": 296,
+            "left": 20
+          },
+          "icon": {
+            "x": 24,
+            "y": 249.5,
+            "width": 24,
+            "height": 24,
+            "top": 249.5,
+            "right": 48,
+            "bottom": 273.5,
+            "left": 24
+          },
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "Submissions",
+          "href": "/admin/submissions",
+          "box": {
+            "x": 20,
+            "y": 296,
+            "width": 1385,
+            "height": 68,
+            "top": 296,
+            "right": 1405,
+            "bottom": 364,
+            "left": 20
+          },
+          "icon": {
+            "x": 24,
+            "y": 317.5,
+            "width": 24,
+            "height": 24,
+            "top": 317.5,
+            "right": 48,
+            "bottom": 341.5,
+            "left": 24
+          },
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "Credits",
+          "href": "/admin/credits",
+          "box": {
+            "x": 20,
+            "y": 364,
+            "width": 1385,
+            "height": 68,
+            "top": 364,
+            "right": 1405,
+            "bottom": 432,
+            "left": 20
+          },
+          "icon": {
+            "x": 24,
+            "y": 385.5,
+            "width": 24,
+            "height": 24,
+            "top": 385.5,
+            "right": 48,
+            "bottom": 409.5,
+            "left": 24
+          },
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "Settings",
+          "href": "/admin/settings",
+          "box": {
+            "x": 20,
+            "y": 432,
+            "width": 1385,
+            "height": 68,
+            "top": 432,
+            "right": 1405,
+            "bottom": 500,
+            "left": 20
+          },
+          "icon": {
+            "x": 24,
+            "y": 453.5,
+            "width": 24,
+            "height": 24,
+            "top": 453.5,
+            "right": 48,
+            "bottom": 477.5,
+            "left": 24
+          },
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules",
+          "box": {
+            "x": 20,
+            "y": 500,
+            "width": 1385,
+            "height": 68,
+            "top": 500,
+            "right": 1405,
+            "bottom": 568,
+            "left": 20
+          },
+          "icon": {
+            "x": 24,
+            "y": 521.5,
+            "width": 24,
+            "height": 24,
+            "top": 521.5,
+            "right": 48,
+            "bottom": 545.5,
+            "left": 24
+          },
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "Logs",
+          "href": "/admin/logs",
+          "box": {
+            "x": 20,
+            "y": 568,
+            "width": 1385,
+            "height": 68,
+            "top": 568,
+            "right": 1405,
+            "bottom": 636,
+            "left": 20
+          },
+          "icon": {
+            "x": 24,
+            "y": 589.5,
+            "width": 24,
+            "height": 24,
+            "top": 589.5,
+            "right": 48,
+            "bottom": 613.5,
+            "left": 24
+          },
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "Your profile",
+          "href": "/profile",
+          "box": {
+            "x": 20,
+            "y": 636,
+            "width": 1385,
+            "height": 68,
+            "top": 636,
+            "right": 1405,
+            "bottom": 704,
+            "left": 20
+          },
+          "icon": {
+            "x": 24,
+            "y": 657.5,
+            "width": 24,
+            "height": 24,
+            "top": 657.5,
+            "right": 48,
+            "bottom": 681.5,
+            "left": 24
+          },
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "Workspace",
+          "href": "/dashboard",
+          "box": {
+            "x": 20,
+            "y": 704,
+            "width": 1385,
+            "height": 68,
+            "top": 704,
+            "right": 1405,
+            "bottom": 772,
+            "left": 20
+          },
+          "icon": {
+            "x": 24,
+            "y": 725.5,
+            "width": 24,
+            "height": 24,
+            "top": 725.5,
+            "right": 48,
+            "bottom": 749.5,
+            "left": 24
+          },
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "My credits",
+          "href": "/personal/credits",
+          "box": {
+            "x": 20,
+            "y": 772,
+            "width": 1385,
+            "height": 68,
+            "top": 772,
+            "right": 1405,
+            "bottom": 840,
+            "left": 20
+          },
+          "icon": {
+            "x": 24,
+            "y": 793.5,
+            "width": 24,
+            "height": 24,
+            "top": 793.5,
+            "right": 48,
+            "bottom": 817.5,
+            "left": 24
+          },
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "Log out",
+          "href": null,
+          "box": {
+            "x": 20,
+            "y": 840,
+            "width": 1385,
+            "height": 68,
+            "top": 840,
+            "right": 1405,
+            "bottom": 908,
+            "left": 20
+          },
+          "icon": {
+            "x": 24,
+            "y": 861.5,
+            "width": 24,
+            "height": 24,
+            "top": 861.5,
+            "right": 48,
+            "bottom": 885.5,
+            "left": 24
+          },
+          "color": "rgb(177, 45, 38)"
+        }
+      ],
+      "headings": 0
+    },
+    "failure": {
+      "message": "false == true",
+      "stack": "AssertionError [ERR_ASSERTION]: false == true\n    at inspectCase (file:///workspace/ddd-unified-navigation/scripts/qa-unified-navigation-after.mjs:102:12)\n    at async file:///workspace/ddd-unified-navigation/scripts/qa-unified-navigation-after.mjs:160:63"
+    },
+    "failureFile": "evidence/unified-navigation/after/owner-admin-participants-1440x900-FAIL.png"
+  },
+  "result": "FAIL",
+  "failure": {
+    "message": "false == true",
+    "stack": "AssertionError [ERR_ASSERTION]: false == true\n    at inspectCase (file:///workspace/ddd-unified-navigation/scripts/qa-unified-navigation-after.mjs:102:12)\n    at async file:///workspace/ddd-unified-navigation/scripts/qa-unified-navigation-after.mjs:160:63"
+  },
+  "browserClosed": true
+}

@@ -1,0 +1,744 @@
+[
+  {
+    "file": "admin-admin-participants-1440x900-closed.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 99735,
+    "sha256": "c352d812e75b65268b44f09f61638da8488af96d1666381ed2793886d47dbd31"
+  },
+  {
+    "file": "admin-admin-participants-1440x900-menu.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 48229,
+    "sha256": "913c88ab4982edbfc3465994d6915c530393cbb90bed5955bcce8f1a8ad68b41"
+  },
+  {
+    "file": "admin-admin-participants-390x844-closed.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 56263,
+    "sha256": "7c2c4161bca5490363b233ba9cbf6bd5e477a3772852051ff6a76878755dc037"
+  },
+  {
+    "file": "admin-admin-participants-390x844-menu.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 34276,
+    "sha256": "8870ffba697ead75b7000e6295c9605d80e5e89a64ebbebcda4f2a3757cf2d06"
+  },
+  {
+    "file": "alice-dashboard-1440x900-closed.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 93227,
+    "sha256": "62409fc2712637be6b68dd366513f0e062aa55d09e411975624fee162b50abd7"
+  },
+  {
+    "file": "alice-dashboard-1440x900-menu.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 33982,
+    "sha256": "c06af9985cecde2ac813db69ee439e03ac322315cd7da2da8b48a498ed9403f9"
+  },
+  {
+    "file": "alice-dashboard-390x844-closed.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 56270,
+    "sha256": "b2d67a640e56e531acbae3a7d5eae163eb9ffa4eb4bac3e5afc871e9514d5df4"
+  },
+  {
+    "file": "alice-dashboard-390x844-menu.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 23636,
+    "sha256": "c79978b596bbcd99e4ddea7e5d74a0c43c1c2d26412664f996652bd0ce8a5d2f"
+  },
+  {
+    "file": "anonymous-home-1440x900-closed.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 289145,
+    "sha256": "f4d382801c8c50d5347a92cc75bfdd50bd2750bba09b1cbc7a4cc43bbae60a3b"
+  },
+  {
+    "file": "anonymous-home-1440x900-menu.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 19631,
+    "sha256": "2016804c0f1802bdbba17dd747f05d9b1b3a871d9d386feec097e8cc9299fdd5"
+  },
+  {
+    "file": "anonymous-home-320x480-closed.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 66246,
+    "sha256": "c2b31e3b968ed09fefa181113fde6ec86e8b127233dbfb9991f90441a32307a3"
+  },
+  {
+    "file": "anonymous-home-320x480-menu.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 12075,
+    "sha256": "2108a0f56a59dcc6b31b4b5215bf25b2fb8a85e4c005993dd16723a06c41eb24"
+  },
+  {
+    "file": "anonymous-home-390x844-closed.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 101786,
+    "sha256": "288cef2ab5df952bf5496f609efbe8c635ad9427f643851d12ca0685cfa67505"
+  },
+  {
+    "file": "anonymous-home-390x844-menu.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 13746,
+    "sha256": "ee0fd41635d0f2ff74d13ea022a8d35b6ca22d9d9e1ec68c1db7234a8e9b7ff7"
+  },
+  {
+    "file": "anonymous-home-768x1024-closed.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 241683,
+    "sha256": "86147be5bf9cb0ec95dfe4b4fd72550947f4994a9af16d4a309e1e1f10452cf6"
+  },
+  {
+    "file": "anonymous-home-768x1024-menu.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 18088,
+    "sha256": "de0d6fbc0041e5c63ca25a84a1a62ae07314ad70dc979cb063b39d69fa0d9170"
+  },
+  {
+    "file": "anonymous-privacy-1440x900-closed.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 131619,
+    "sha256": "5dc06c653a3d5f53247bb10b0952f833ccc4d9a7d1ef7d050378568106561623"
+  },
+  {
+    "file": "anonymous-privacy-1440x900-menu.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 25437,
+    "sha256": "76cd85e0462de769cf6ba11912c14ac0da82f97ebe0d08a83e82cdf02640eca6"
+  },
+  {
+    "file": "anonymous-privacy-320x480-closed.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 27082,
+    "sha256": "88dbbb512560aa784971a163f7f68974da042894f0a4d4cdafdd2033f36dd3c7"
+  },
+  {
+    "file": "anonymous-privacy-320x480-menu.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 15858,
+    "sha256": "ead3679886d1f37980adcff2f0b22e2cb1bab810e7f3a0496a7b50bfc1357d6e"
+  },
+  {
+    "file": "anonymous-privacy-390x844-closed.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 52383,
+    "sha256": "6943f04be8c7f2ee081887aa02ae2ec031b731dc7f4f016256865af258a831cc"
+  },
+  {
+    "file": "anonymous-privacy-390x844-menu.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 17686,
+    "sha256": "c60b35a8c8398f5334f38f2ac0e46183b700efcc1d36de669cb3567c24c6d5c4"
+  },
+  {
+    "file": "anonymous-privacy-768x1024-closed.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 107435,
+    "sha256": "bc01eea6d61ab7df90c2a59f2a5f264c92f0b2fa7aa5a71cf358320e7844d542"
+  },
+  {
+    "file": "anonymous-privacy-768x1024-menu.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 23665,
+    "sha256": "aa7336276037158c86f3dfbaffb8fe50319f222041c9c8c81dc026e850a1a51a"
+  },
+  {
+    "file": "anonymous-projects-1440x900-closed.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 81406,
+    "sha256": "dba8d47eb9731fc961ec7e8f3aff043f2afa6923539099bde7744513f408547b"
+  },
+  {
+    "file": "anonymous-projects-1440x900-menu.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 19603,
+    "sha256": "870e16e81367d9513ec5d2c0b0d5eb88cd9a9bad0433763b9dc615440136a594"
+  },
+  {
+    "file": "anonymous-projects-390x844-closed.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 49391,
+    "sha256": "40d35342c1437411af9cc4b71f86128cb3799381d2e9229ae258a4f6a20a7ed3"
+  },
+  {
+    "file": "anonymous-projects-390x844-menu.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 13721,
+    "sha256": "6d6c0ba7b6d329b4e87fc55203cb1837e17e99ed45d107d40d01e171d3e5d5f8"
+  },
+  {
+    "file": "anonymous-signin-1440x900-closed.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 63784,
+    "sha256": "ef03bd101ea1526fc43cc8b564ba73d911617d5929d40d71f613fbd8e125ef43"
+  },
+  {
+    "file": "anonymous-signin-1440x900-menu.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 25434,
+    "sha256": "4f2c38076c9855a4d554c3d36cf69578c96128bef7e56dab6ea10e0648c7bdb8"
+  },
+  {
+    "file": "anonymous-signin-320x480-closed.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 23040,
+    "sha256": "0c323551969b83bef1efffaa3fc753161bfa359491a31d8b45a5992f391db547"
+  },
+  {
+    "file": "anonymous-signin-320x480-menu.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 15869,
+    "sha256": "858bd41f435f8ab3e6ca7993fdbfc3cd1a61ce2c6fc3a0826b546228f343cccd"
+  },
+  {
+    "file": "anonymous-signin-390x844-closed.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 29173,
+    "sha256": "aeeef1743b85ca6eeb9a2f4d7542da8bdd5dfd78eeb0c20be9ee66b4081a3365"
+  },
+  {
+    "file": "anonymous-signin-390x844-menu.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 17695,
+    "sha256": "ce307a81a013520daff01d7bf7517814a4fa0517df723fd3cfa1062a3eab72ab"
+  },
+  {
+    "file": "anonymous-signin-768x1024-closed.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 33029,
+    "sha256": "d833472dd2450cee05449cecb7baeb55894937ae30ec9f1afdff87d19729303a"
+  },
+  {
+    "file": "anonymous-signin-768x1024-menu.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 23628,
+    "sha256": "ffe2628860b824f15f9c07b2c25f5628855f57efa94edd14f4b46f86ba00f3ad"
+  },
+  {
+    "file": "anonymous-signin-race-390.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 101786,
+    "sha256": "288cef2ab5df952bf5496f609efbe8c635ad9427f643851d12ca0685cfa67505"
+  },
+  {
+    "file": "anonymous-terms-1440x900-closed.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 117575,
+    "sha256": "acf01fd3c259c1e96c9fb9eeef177b1a3176c8c23b603f07d3c175343f9d8b4a"
+  },
+  {
+    "file": "anonymous-terms-1440x900-menu.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 25421,
+    "sha256": "051c7b7eec421c46a9d16221c7b9b4be60217bf38833c481113148d6b8524b33"
+  },
+  {
+    "file": "anonymous-terms-320x480-closed.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 27300,
+    "sha256": "0f6978967cf92f421e65685b5f26206d7f01701e9a87ba2405f9675d519e2629"
+  },
+  {
+    "file": "anonymous-terms-320x480-menu.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 15870,
+    "sha256": "ae797fe3dcc031b78e9918e2e9a57523a71b73a9840484fb7059c215bcc73db7"
+  },
+  {
+    "file": "anonymous-terms-390x844-closed.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 59063,
+    "sha256": "614eae2d3d788d3e4496f37e5b9272023c05323d0447b9a4a3175266f9120cf0"
+  },
+  {
+    "file": "anonymous-terms-390x844-menu.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 17691,
+    "sha256": "387d48f80510a35560f83d111fd70ac323770f8eedfaeb42bd59a39c7e404dcb"
+  },
+  {
+    "file": "anonymous-terms-768x1024-closed.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 98098,
+    "sha256": "50e4859a09ad85862823f9505b0a8f4ceddebfb14ec69c74e4a68dc6361f9281"
+  },
+  {
+    "file": "anonymous-terms-768x1024-menu.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 23633,
+    "sha256": "44ec5dd1d165ce55bfd21455eab773433e7e404e9da3e234ac30639155321b90"
+  },
+  {
+    "file": "bob-admin-participants-1440x900-closed.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 111977,
+    "sha256": "3413cb3bc04cbd8a9c9cc579eabc953a497510932c44657ca66bd812c06c5879"
+  },
+  {
+    "file": "bob-admin-participants-1440x900-menu.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 35289,
+    "sha256": "f44eeaba4d4007fcc005006fe6081d2a17a7729781d11f0cef3482668651c8f4"
+  },
+  {
+    "file": "bob-admin-participants-390x844-closed.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 55362,
+    "sha256": "8802d770590bc1b2e09d5d240f692a4b1c4228f634c112c9b2984eb4655fdb37"
+  },
+  {
+    "file": "bob-admin-participants-390x844-menu.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 24905,
+    "sha256": "639180f55cb3a9954289b616b9d29e56ce4e20cf3773000ec8d663434c0822a8"
+  },
+  {
+    "file": "bob-personal-credits-1440x900-closed.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 24125,
+    "sha256": "90685db2fd7fe4606c3ad5e393c05411c4d55b8d2eeffaa7d17ca31c0bfffe8f"
+  },
+  {
+    "file": "bob-personal-credits-1440x900-menu.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 25434,
+    "sha256": "4f2c38076c9855a4d554c3d36cf69578c96128bef7e56dab6ea10e0648c7bdb8"
+  },
+  {
+    "file": "bob-personal-credits-320x480-closed.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 15957,
+    "sha256": "79d2ec7ffbcbd74aafb4622d3f9e45653938b5e94f9ecc7441b5644f555b890a"
+  },
+  {
+    "file": "bob-personal-credits-320x480-menu.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 15869,
+    "sha256": "858bd41f435f8ab3e6ca7993fdbfc3cd1a61ce2c6fc3a0826b546228f343cccd"
+  },
+  {
+    "file": "bob-personal-credits-390x844-closed.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 18408,
+    "sha256": "df426e85b3f4d2404a327073cc5204c973ca05f45a770303f59d3a61ef75261c"
+  },
+  {
+    "file": "bob-personal-credits-390x844-menu.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 17695,
+    "sha256": "ce307a81a013520daff01d7bf7517814a4fa0517df723fd3cfa1062a3eab72ab"
+  },
+  {
+    "file": "bob-personal-credits-768x1024-closed.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 22249,
+    "sha256": "4f3c590c17d47b3099f2cc65a2521bac3ce930b5b794b580a5657154647a7488"
+  },
+  {
+    "file": "bob-personal-credits-768x1024-menu.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 23643,
+    "sha256": "151a191896cb6b3b1260e22e256d5416b71532e79145fc16fe2518eb8faf2605"
+  },
+  {
+    "file": "dave-profile-1440x900-closed.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 53675,
+    "sha256": "dee3bdbcfe64e1fd75860968cd0618e1709ed59135871e3101f3d3c6580b3c24"
+  },
+  {
+    "file": "dave-profile-1440x900-menu.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 33974,
+    "sha256": "269487ef591ad3b5d8d77650ef14d2762306e22eb2b5ee52a78a787e5272c3cf"
+  },
+  {
+    "file": "dave-profile-320x480-closed.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 25279,
+    "sha256": "4c1679dae511e03d452cc4df0f04feecc91b80bbb4e29ed760b2bedf8059cf72"
+  },
+  {
+    "file": "dave-profile-320x480-menu.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 20616,
+    "sha256": "de4d332bd8d5c4b59e12a682afbd8641bbacc728e14ad34295bd8968afebb1bc"
+  },
+  {
+    "file": "dave-profile-390x844-closed.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 41086,
+    "sha256": "90a68d501b989d9b7dc97ea3b2e3c3d634483aa3319888ba5a7cb60a131581b7"
+  },
+  {
+    "file": "dave-profile-390x844-menu.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 23610,
+    "sha256": "7c4aba6144561f5fa4d30c2e241dfa0d2b5f73b61482923a49fff9db0dd57c33"
+  },
+  {
+    "file": "dave-profile-768x1024-closed.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 46277,
+    "sha256": "50b02fc35b2f9f6322a0ae6a0d96a3ecbf43dd4d975c18024fd7a9fb6af9ae77"
+  },
+  {
+    "file": "dave-profile-768x1024-menu.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 31851,
+    "sha256": "45910e8d75bbde81adfd515f6a3ee501e15750956b98615036566a1316dc8306"
+  },
+  {
+    "file": "first-tap-admin-dashboard-390.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 22660,
+    "sha256": "0aee32049f8a1b3333fdcf818f9984b1a0d354d02d4c9b86bfaee56490de6f5c"
+  },
+  {
+    "file": "first-tap-alice-profile-390.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 39994,
+    "sha256": "5e132b5975d6fbb7ff14c4d3ce7090d27af9c3296caf0730f9c9d45807b505bb"
+  },
+  {
+    "file": "first-tap-anonymous-signin-390.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 29160,
+    "sha256": "3250cfea01535b6e846071eed47b5580117041e3ca8feb1dbf410568095084c6"
+  },
+  {
+    "file": "first-tap-bob-dashboard-390.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 52431,
+    "sha256": "4eaa9dd2dbcf87cc1f669a7e77b0b77853712db8ca7fdcade36b13eb67a9ce35"
+  },
+  {
+    "file": "first-tap-dave-dashboard-390.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 41086,
+    "sha256": "90a68d501b989d9b7dc97ea3b2e3c3d634483aa3319888ba5a7cb60a131581b7"
+  },
+  {
+    "file": "first-tap-judge-review-390.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 26127,
+    "sha256": "023037e45f4c4cf00c05a5bdde48207184871b01f820e5ad5947d32559bac7e4"
+  },
+  {
+    "file": "first-tap-judge2-review-390.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 22323,
+    "sha256": "2e6e904cab8c14ab034ae462d88ba6d29c4e7d59d37ba20d31d214eeaaac0590"
+  },
+  {
+    "file": "first-tap-owner-dashboard-390.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 36915,
+    "sha256": "d3e29bfd2dfd57c75ae7b02a910899daa2fe916a3a6c9269881c3ecfff377d89"
+  },
+  {
+    "file": "first-tap-stranger-projects-390.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 49968,
+    "sha256": "fbc966336d34590afd176cbb9f99e83d86dddfa5132800374dec24d1f4b8b307"
+  },
+  {
+    "file": "fitting-owner-mobile-menu.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 37634,
+    "sha256": "ff0db68c9f37cfd8a9c3bff7c325b0256dc64170be77313881696078f9e2ffab"
+  },
+  {
+    "file": "judge-dashboard-1440x900-closed.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 29715,
+    "sha256": "e1f097a05302eb063e3fd7913198fe45cb6efd067fe2074888b36fb69305699e"
+  },
+  {
+    "file": "judge-dashboard-1440x900-menu.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 39724,
+    "sha256": "2d9f1384514eb56cb0cda09d2afdd7c1bbab804f62671c4a64714c78e87c72ab"
+  },
+  {
+    "file": "judge-dashboard-390x844-closed.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 22826,
+    "sha256": "71b358d364d8b8086ba5fe638d613047fe413c06be34b3bf88db8416434affd8"
+  },
+  {
+    "file": "judge-dashboard-390x844-menu.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 27708,
+    "sha256": "be6c9e72a471823c9df4b6155b22117409fb0a99999c753981896b91abc1f203"
+  },
+  {
+    "file": "judge2-dashboard-1440x900-closed.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 29659,
+    "sha256": "2a4594dc1407510d4c195b11f3366022b09f9db398e39fcd7291a37237a3583e"
+  },
+  {
+    "file": "judge2-dashboard-1440x900-menu.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 39724,
+    "sha256": "2d9f1384514eb56cb0cda09d2afdd7c1bbab804f62671c4a64714c78e87c72ab"
+  },
+  {
+    "file": "judge2-dashboard-390x844-closed.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 22756,
+    "sha256": "b803c08422e92959ccc71023156c4eff4405e7c1d1c2a88fdd1f048ca8acf163"
+  },
+  {
+    "file": "judge2-dashboard-390x844-menu.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 27708,
+    "sha256": "be6c9e72a471823c9df4b6155b22117409fb0a99999c753981896b91abc1f203"
+  },
+  {
+    "file": "logout-existing-confirmation-390.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 52026,
+    "sha256": "b9598ca2f738c81c6ac88dcc1a102e12fc14a04c4f5d107d9169867be63a36da"
+  },
+  {
+    "file": "menu-persists-after-desktop-resize-1440.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 50219,
+    "sha256": "41dff61d7a44362caf59ff580e0583bfd221b87b951f94175398216cb168aa3d"
+  },
+  {
+    "file": "owner-admin-participants-1440x900-closed.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 99711,
+    "sha256": "ebf090cde7c49a3d442e0266f96cc421ebf53291d38948fbaa64589613d4fbd1"
+  },
+  {
+    "file": "owner-admin-participants-1440x900-menu.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 50225,
+    "sha256": "e3c67fd8666edfa2ab884443f11ed3bf620ec48e97f479e4336509d089354a84"
+  },
+  {
+    "file": "owner-admin-participants-320x480-closed.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 26135,
+    "sha256": "ca90c86450f62550f01181b068d2040011f78265262ac44003c3eafd269ce543"
+  },
+  {
+    "file": "owner-admin-participants-320x480-logout-visible.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 17108,
+    "sha256": "b008db3de898daaca92dd6eb782ae520e37c3612db969d02f5b79ff18d8174a4"
+  },
+  {
+    "file": "owner-admin-participants-320x480-menu.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 22188,
+    "sha256": "f839254ba0613d58edd2644e4117c35b52f18e3fa840c86a0a25cc60b8b29ccf"
+  },
+  {
+    "file": "owner-admin-participants-390x844-closed.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 56265,
+    "sha256": "c4968a0c6804a87c9ad5f301282dc34d6433650eb8498a49a1f55f8dce5ed1af"
+  },
+  {
+    "file": "owner-admin-participants-390x844-menu.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 35664,
+    "sha256": "4008d7320d75b276c114de5a307fd888f1273573dd8c8ebb4fcd7e628b370c77"
+  },
+  {
+    "file": "owner-admin-participants-768x1024-closed.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 104389,
+    "sha256": "c367e203813cc7ae0556e77ecab11ebda95c9264faf9c4b160f9dcdfbcaa2740"
+  },
+  {
+    "file": "owner-admin-participants-768x1024-menu.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 47066,
+    "sha256": "5c322d91755ebce1cb2634b4551230a6b97b7502574a01cfabb2693df672f819"
+  },
+  {
+    "file": "owner-admin-submissions-1440x900-closed.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 78254,
+    "sha256": "8c19dac6be200e9b6c438e2c8ba153801e626141dd34dec8e265ce1b7f356414"
+  },
+  {
+    "file": "owner-admin-submissions-1440x900-menu.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 50238,
+    "sha256": "079890133757bc04aa42f49edea1f7370d0a2aa693866efde05aacb113265ec0"
+  },
+  {
+    "file": "owner-admin-submissions-390x844-closed.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 55539,
+    "sha256": "46cd111b364b6da64c223d9666903a7c7a378b89d2c7efb379720062fdc6ed35"
+  },
+  {
+    "file": "owner-admin-submissions-390x844-logout-visible.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 37559,
+    "sha256": "e09cef5bf722ac085c63c2efe65a067741a656e4746410103942c8d8ff85ad08"
+  },
+  {
+    "file": "owner-admin-submissions-390x844-menu.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 35591,
+    "sha256": "1abd2f26b2e597bc009b264deedcf3f66d11b33a7fa1dab1c6974fc460e5e04f"
+  },
+  {
+    "file": "reserved-gutter-owner-menu.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 50225,
+    "sha256": "e3c67fd8666edfa2ab884443f11ed3bf620ec48e97f479e4336509d089354a84"
+  },
+  {
+    "file": "stranger-dashboard-1440x900-closed.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 45075,
+    "sha256": "157499603a793d5fed94421f78e403115331f41855541570d8cd3c807e6d61b5"
+  },
+  {
+    "file": "stranger-dashboard-1440x900-menu.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 23661,
+    "sha256": "4a61fada733903830fa95895190f57d06bb50fc5526a597e58382ab976421723"
+  },
+  {
+    "file": "stranger-dashboard-390x844-closed.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 36654,
+    "sha256": "8bc362eee5b1936de886efc047ecbca53022305fd1ad05e004a16f652052580b"
+  },
+  {
+    "file": "stranger-dashboard-390x844-menu.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 16213,
+    "sha256": "5159ecebecd64c679e078ad99a7de473113b494852482c100b35e8cdeb58f16f"
+  },
+  {
+    "file": "tablet-gutter-owner-menu.png",
+    "width": 768,
+    "height": 1024,
+    "bytes": 47066,
+    "sha256": "5c322d91755ebce1cb2634b4551230a6b97b7502574a01cfabb2693df672f819"
+  },
+  {
+    "file": "top-link-before-fix-home-390.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 101786,
+    "sha256": "288cef2ab5df952bf5496f609efbe8c635ad9427f643851d12ca0685cfa67505"
+  }
+]

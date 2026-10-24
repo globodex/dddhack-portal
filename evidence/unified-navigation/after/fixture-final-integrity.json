@@ -1,0 +1,280 @@
+{
+  "checkedAt": "2026-10-24T19:45:20.728150+00:00",
+  "fixture": "/tmp/ddd-unified-nav-20261024-unique01.sqlite",
+  "integrity": [
+    [
+      "ok"
+    ]
+  ],
+  "foreignKeys": [],
+  "tables": {
+    "astra_jobs": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "audit_logs": {
+      "rows": 1,
+      "sha256": "47ae38b4f5c355b544e15c6ed3b072c6492b299342cebf9f2afb7759a9d46982"
+    },
+    "automatic_absences": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "check_ins": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "credit_allocations": {
+      "rows": 1,
+      "sha256": "047d05d33f4a124a7bd6047daa63b848fac8f3d5944f6594cb9b667b5458a848"
+    },
+    "credit_batch_columns": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "credit_batches": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "credit_category_keys": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "credit_code_history": {
+      "rows": 21,
+      "sha256": "7d60f073f61ca12280eb8bc5a3e4e0c80e3a59d3df80bad027f691d0c3c1a30a"
+    },
+    "credit_inventory": {
+      "rows": 21,
+      "sha256": "dff0263f48c5535fdcdbad24fdddd4654fa2b11bf1bf387df18b16b4b042e090"
+    },
+    "credit_stock_imports": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "credit_types": {
+      "rows": 1,
+      "sha256": "314168236c2aaf13294ddd7f6a8e6bf46eadc1e8fa2707261bd85b7c8c7fc4fe"
+    },
+    "eligibility_history": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "engagement_controls": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "evaluation_runs": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "event_content": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "event_content_history": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "event_policy_history": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "event_settings": {
+      "rows": 1,
+      "sha256": "3b77966b85550084f0f1a4075b171b2d1bb8bac98787fd64727a17b5809ff2a3"
+    },
+    "feedback": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "human_scores": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "idea_revisions": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "ideas": {
+      "rows": 3,
+      "sha256": "5d06b9c5b5dce6678af8616b0dda6483b4e7b0ca918397f72cc292d36b6079b9"
+    },
+    "import_previews": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "judge_assignments": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "local_schema_migrations": {
+      "rows": 24,
+      "sha256": "48cdaee1be21fbb83ae112ea36d84ae20dfc6cdbfa93f6a48d8d38d870cc8b06"
+    },
+    "luma_roster": {
+      "rows": 41,
+      "sha256": "6ebf5b951dfe0201a7396a41e6a94257ac2e2160cc1d77451ebbd3480e0fb384"
+    },
+    "manual_checkins": {
+      "rows": 27,
+      "sha256": "69f4dc34f9b7dcd93b675678030c0ec57e7b67beba54fffebb6c72ee27503916"
+    },
+    "memberships": {
+      "rows": 36,
+      "sha256": "c2f601294112dcf8f64e772e62017bbfeeff0b51901554d7b55b86b24b99a4e9"
+    },
+    "participant_profiles": {
+      "rows": 41,
+      "sha256": "d49714422d95a2bee3708d1619a661b566154a4375ce2de95f31377c946d3d8e"
+    },
+    "participant_status_overrides": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "portal_roles": {
+      "rows": 4,
+      "sha256": "08d3fc4bb6296347e23d72cd6b02f620d03921bb13c22e5b08e9c40fc5e4df82"
+    },
+    "private_venue": {
+      "rows": 1,
+      "sha256": "b65f4b35dad4ba95fb305eb7036529dc0c919aabccdb57e3cbfd4e3a681b72b9"
+    },
+    "private_venue_managers": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "profile_details": {
+      "rows": 42,
+      "sha256": "d7a15d5025432906a76d6fce0d9c22cf01379ea3503c19933d27fe285a4704e6"
+    },
+    "profile_photos": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "profiles": {
+      "rows": 42,
+      "sha256": "fd4268894797b6bf6e3c13966cde9f69004805bf4c29ac4cd0fc4a3a24481eb2"
+    },
+    "project_assignments": {
+      "rows": 2,
+      "sha256": "78054d0dbee0050a5fd6adf5babbc3eea54665a8c93f3cf04f551e04a20ff5c4"
+    },
+    "project_comments": {
+      "rows": 2,
+      "sha256": "c8d7fe1c275b484a3b722f5cd3e75ee0c27f60f177532a8862cee2e2e1842c35"
+    },
+    "project_commit_receipts": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "project_eligibility": {
+      "rows": 27,
+      "sha256": "77b69167bfe187aaef7f84221472698b5541a7095c58f1a339a65de5f89ac9e0"
+    },
+    "project_feedback_reviews": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "project_review_history": {
+      "rows": 2,
+      "sha256": "bec363cbc82eac75a310eafeca540467e92af1c3e5fa3a6c41d3daa8cf48e499"
+    },
+    "project_upvotes": {
+      "rows": 2,
+      "sha256": "184a3b334d8760618b18247dd6f85ed9e82359e2b3118aeb9da9a8677ae43678"
+    },
+    "projects": {
+      "rows": 27,
+      "sha256": "07c51f51f030427a5c4efef1f931fef9b2581d4487d4fb62700d7bfb2489b128"
+    },
+    "record_removals": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "registration_absences": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "registrations": {
+      "rows": 41,
+      "sha256": "ed02ab26d69dcf905ec54dd874dc17894469cfa958434234c97b0c3535dd56c0"
+    },
+    "repository_evidence": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "request_buckets": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "result_publication": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "result_snapshots": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "reviews": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "roster_prefills": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "score_releases": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "scoring_revision": {
+      "rows": 1,
+      "sha256": "2551c2e7493a096e0cbd87366892bd001ebf49094b794dfefcc38c24e2b6ddfd"
+    },
+    "submission_versions": {
+      "rows": 30,
+      "sha256": "f5aae2ae79c87b6b5ec5258afb6d29c0450b19e6fec1bb25300de0f8915e6d02"
+    },
+    "team_actions": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "team_locks": {
+      "rows": 1,
+      "sha256": "02fe6267c0dbed21d4b6d58c81714eb5124af15f83eb12709f12b476cb7850bc"
+    },
+    "team_status_overrides": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "team_styles": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "teams": {
+      "rows": 28,
+      "sha256": "3b0bda03e0fef3bfe5faa6ce246da2b6ab981de901cb075943f80aaae8695779"
+    },
+    "tie_resolutions": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "users": {
+      "rows": 44,
+      "sha256": "2cc75cb917e7f4d894531fbb78605579f429c1d534451b972ea41c8453f6545f"
+    },
+    "votes": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "winner_reveals": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "write_guards": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  }
+}

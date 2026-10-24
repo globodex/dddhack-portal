@@ -1,0 +1,25 @@
+{"count":1,"actor":"owner","path":"/admin/participants","viewport":{"width":1440,"height":900},"result":"PASS"}
+{"count":2,"actor":"admin","path":"/admin/participants","viewport":{"width":1440,"height":900},"result":"PASS"}
+{"count":3,"actor":"alice","path":"/dashboard","viewport":{"width":1440,"height":900},"result":"PASS"}
+{"count":4,"actor":"anonymous","path":"/","viewport":{"width":1440,"height":900},"result":"PASS"}
+{"count":5,"actor":"stranger","path":"/dashboard","viewport":{"width":1440,"height":900},"result":"PASS"}
+{"count":6,"actor":"bob","path":"/admin/participants","viewport":{"width":1440,"height":900},"result":"PASS"}
+{"count":7,"actor":"judge","path":"/dashboard","viewport":{"width":1440,"height":900},"result":"PASS"}
+{"count":8,"actor":"judge2","path":"/dashboard","viewport":{"width":1440,"height":900},"result":"PASS"}
+{"count":9,"actor":"dave","path":"/profile","viewport":{"width":1440,"height":900},"result":"PASS"}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Full available layout width, excluding the preserved scrollbar gutter
+    at inspectCase (file:///workspace/ddd-unified-navigation/scripts/qa-unified-navigation-after.mjs:102:12)
+    at async file:///workspace/ddd-unified-navigation/scripts/qa-unified-navigation-after.mjs:162:63 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

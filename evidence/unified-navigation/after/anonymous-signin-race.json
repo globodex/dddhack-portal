@@ -1,0 +1,122 @@
+{
+  "source": "4abfa53be80ccac7393d9b0833dbf63a86dbb8ef",
+  "method": "One read-only reproduction. History methods are observed by delegating unchanged originals; no DOM or route substitution.",
+  "requests": [
+    {
+      "url": "http://localhost:3012/",
+      "method": "GET"
+    },
+    {
+      "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870626586",
+      "method": "GET"
+    },
+    {
+      "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+      "method": "GET"
+    },
+    {
+      "url": "http://localhost:3012/art/delhi-v3/fallback-approved-v3.webp",
+      "method": "GET"
+    },
+    {
+      "url": "http://localhost:3012/brand/cerebras-official.webp",
+      "method": "GET"
+    },
+    {
+      "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870626586",
+      "method": "GET"
+    },
+    {
+      "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870626586",
+      "method": "GET"
+    },
+    {
+      "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+      "method": "GET"
+    },
+    {
+      "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+      "method": "GET"
+    },
+    {
+      "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+      "method": "GET"
+    },
+    {
+      "url": "http://localhost:3012/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+      "method": "GET"
+    },
+    {
+      "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+      "method": "GET"
+    },
+    {
+      "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+      "method": "GET"
+    },
+    {
+      "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+      "method": "GET"
+    },
+    {
+      "url": "http://localhost:3012/api/portal?view=%2F&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://localhost:3012/signin?returnTo=%2Fdashboard",
+      "method": "GET"
+    }
+  ],
+  "failed": [
+    {
+      "url": "http://localhost:3012/signin?returnTo=%2Fdashboard",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "navigations": [
+    "http://localhost:3012/",
+    "http://localhost:3012/",
+    "http://localhost:3012/",
+    "http://localhost:3012/",
+    "http://localhost:3012/"
+  ],
+  "clicked": {
+    "href": "http://localhost:3012/signin?returnTo=%2Fdashboard",
+    "target": "_top"
+  },
+  "navigationError": "page.waitForURL: net::ERR_ABORTED; maybe frame was detached?\n=========================== logs ===========================\nwaiting for navigation to \"**/signin\" until \"load\"\n============================================================",
+  "finalURL": "http://localhost:3012/",
+  "headings": [
+    "DevDay ExchangeCommunity Hackathon:New Delhi"
+  ],
+  "trace": [
+    {
+      "name": "replaceState",
+      "ms": 7641.89999999851,
+      "url": "http://localhost:3012/"
+    },
+    {
+      "name": "pushState",
+      "ms": 8605.099999997765,
+      "url": "http://localhost:3012/"
+    },
+    {
+      "name": "back",
+      "ms": 9191.699999999255,
+      "url": "http://localhost:3012/",
+      "portalDialog": "dialog-1792870634142-3e53t0m4e7e"
+    },
+    {
+      "name": "popstate",
+      "ms": 9238.39999999851,
+      "url": "http://localhost:3012/"
+    },
+    {
+      "name": "replaceState",
+      "ms": 9503,
+      "url": "http://localhost:3012/"
+    }
+  ],
+  "file": "evidence/unified-navigation/after/anonymous-signin-race-390.png",
+  "browserClosed": true
+}

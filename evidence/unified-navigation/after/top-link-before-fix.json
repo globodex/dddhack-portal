@@ -1,0 +1,241 @@
+{
+  "source": "4abfa53be80ccac7393d9b0833dbf63a86dbb8ef",
+  "syntheticOnly": true,
+  "checks": [
+    {
+      "actor": "owner",
+      "name": "First touch Workspace navigates once; one Back returns original route",
+      "path": "/admin/participants",
+      "destination": "/dashboard",
+      "file": "evidence/unified-navigation/after/first-tap-owner-dashboard-390.png",
+      "requests": [
+        {
+          "url": "http://localhost:3012/admin/participants",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870412124",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870412124",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870412124",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/dashboard?_rsc=3JhJhlxaLj6u9ZZ-",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "actor": "admin",
+      "name": "First touch Workspace navigates once; one Back returns original route",
+      "path": "/admin/participants",
+      "destination": "/dashboard",
+      "file": "evidence/unified-navigation/after/first-tap-admin-dashboard-390.png",
+      "requests": [
+        {
+          "url": "http://localhost:3012/admin/participants",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870425005",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870425005",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870425005",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/dashboard?_rsc=3JhJhlxaLj6u9ZZ-",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "actor": "alice",
+      "name": "First touch Your profile navigates once; one Back returns original route",
+      "path": "/dashboard",
+      "destination": "/profile",
+      "file": "evidence/unified-navigation/after/first-tap-alice-profile-390.png",
+      "requests": [
+        {
+          "url": "http://localhost:3012/dashboard",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870435320",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/icons/social/github.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/icons/social/linkedin.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/icons/social/whatsapp.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870435320",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870435320",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/profile?_rsc=kNfxD3lGVTaTot7C",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "inFlight": {
+    "actor": "anonymous",
+    "path": "/",
+    "label": "Sign in",
+    "destination": "/signin",
+    "failure": {
+      "message": "page.waitForURL: net::ERR_ABORTED; maybe frame was detached?\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================",
+      "stack": "page.waitForURL: net::ERR_ABORTED; maybe frame was detached?\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================\n    at /workspace/ddd-unified-navigation/scripts/qa-unified-navigation-interactions.mjs:23:208"
+    },
+    "file": "evidence/unified-navigation/after/first-tap-anonymous-FAIL.png"
+  },
+  "result": "FAIL",
+  "failure": {
+    "message": "page.waitForURL: net::ERR_ABORTED; maybe frame was detached?\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================",
+    "stack": "page.waitForURL: net::ERR_ABORTED; maybe frame was detached?\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================\n    at /workspace/ddd-unified-navigation/scripts/qa-unified-navigation-interactions.mjs:23:208"
+  },
+  "browserClosed": true
+}

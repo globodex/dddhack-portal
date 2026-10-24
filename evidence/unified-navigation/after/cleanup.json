@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-10-24T19:45:26.004182+00:00",
+  "signalledOwnedPids": [
+    189958,
+    195751
+  ],
+  "previousCrashedChromiumPid": 209874,
+  "remainingPids": [],
+  "listeners": "State Recv-Q Send-Q Local Address:Port Peer Address:PortProcess\n",
+  "browserClosed": true,
+  "result": "PASS"
+}

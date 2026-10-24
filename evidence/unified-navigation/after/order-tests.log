@@ -1,0 +1,14 @@
+✔ navigation replaces the temporary menu entry without a cleanup Back racing the router (3.633293ms)
+✔ all role shells share one mobile dialog with ordinary role-authorized links and no section labels (382.660338ms)
+✔ modal lifetime locks page scroll, stays open across desktop resize and restores trigger without moving the page (2.207858ms)
+✔ saved participant and staff avatars use the same header, without a separate desktop sidebar (123.264745ms)
+✔ missing profile is an explicit neutral placeholder, while old saved projections remain compatible (1.299107ms)
+✔ standalone information/auth headers keep an anonymous sign-in affordance without inventing an actor (26.93416ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3462.285985

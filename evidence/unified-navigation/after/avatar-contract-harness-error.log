@@ -1,0 +1,24 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   '*',
++   '*'
++ ]
+- '**'
+
+    at inspectCase (file:///workspace/ddd-unified-navigation/scripts/qa-unified-navigation-after.mjs:83:14)
+    at async file:///workspace/ddd-unified-navigation/scripts/qa-unified-navigation-after.mjs:160:63 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [ '*', '*' ],
+  expected: '**',
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

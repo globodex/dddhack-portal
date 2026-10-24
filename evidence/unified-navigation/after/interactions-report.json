@@ -1,0 +1,1235 @@
+{
+  "source": "8f6db403a4f52ccb26c42def41a2ea7873eb2429",
+  "syntheticOnly": true,
+  "checks": [
+    {
+      "actor": "owner",
+      "name": "First touch Workspace navigates once; one Back returns original route",
+      "path": "/admin/participants",
+      "destination": "/dashboard",
+      "file": "evidence/unified-navigation/after/first-tap-owner-dashboard-390.png",
+      "requests": [
+        {
+          "url": "http://localhost:3012/admin/participants",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870412124",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870412124",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870412124",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/dashboard?_rsc=3JhJhlxaLj6u9ZZ-",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "actor": "admin",
+      "name": "First touch Workspace navigates once; one Back returns original route",
+      "path": "/admin/participants",
+      "destination": "/dashboard",
+      "file": "evidence/unified-navigation/after/first-tap-admin-dashboard-390.png",
+      "requests": [
+        {
+          "url": "http://localhost:3012/admin/participants",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870425005",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870425005",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870425005",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/dashboard?_rsc=3JhJhlxaLj6u9ZZ-",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "actor": "alice",
+      "name": "First touch Your profile navigates once; one Back returns original route",
+      "path": "/dashboard",
+      "destination": "/profile",
+      "file": "evidence/unified-navigation/after/first-tap-alice-profile-390.png",
+      "requests": [
+        {
+          "url": "http://localhost:3012/dashboard",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870435320",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/icons/social/github.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/icons/social/linkedin.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/icons/social/whatsapp.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870435320",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870435320",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/profile?_rsc=kNfxD3lGVTaTot7C",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "actor": "anonymous",
+      "name": "First touch Sign in navigates once; one Back returns original route",
+      "path": "/",
+      "destination": "/signin",
+      "file": "evidence/unified-navigation/after/first-tap-anonymous-signin-390.png",
+      "requests": [
+        {
+          "url": "http://localhost:3012/",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870874624",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/art/delhi-v3/fallback-approved-v3.webp",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/cerebras-official.webp",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870874624",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870874624",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/api/portal?view=%2F&focus=",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/signin?returnTo=%2Fdashboard",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870882362",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/signin/page.css?v=1792870882362",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870882362",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870882362",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/signin/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870886686",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/art/delhi-v3/fallback-approved-v3.webp",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/cerebras-official.webp",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870886686",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870886686",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "actor": "stranger",
+      "name": "First touch Projects navigates once; one Back returns original route",
+      "path": "/dashboard",
+      "destination": "/projects",
+      "file": "evidence/unified-navigation/after/first-tap-stranger-projects-390.png",
+      "requests": [
+        {
+          "url": "http://localhost:3012/dashboard",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870894733",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870894733",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870894733",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/projects?_rsc=kNfxD3lGVTaTot7C",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/api/project-image/visual_project_alice/logo?version=visual_alice_v2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/api/project-image/visual_project_eve/logo?version=visual_eve_v3",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/api/project-image/fake_control_project_00/logo?version=fake_control_version_00",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/api/project-image/fake_control_project_01/logo?version=fake_control_version_01",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/api/project-image/fake_control_project_02/logo?version=fake_control_version_02",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/api/project-image/fake_control_project_03/logo?version=fake_control_version_03",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/api/project-image/fake_control_project_04/logo?version=fake_control_version_04",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/api/project-image/fake_control_project_05/logo?version=fake_control_version_05",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/api/project-image/fake_control_project_06/logo?version=fake_control_version_06",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/api/project-image/fake_control_project_07/logo?version=fake_control_version_07",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/api/portal?view=%2Fprojects&focus=",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "actor": "bob",
+      "name": "First touch Workspace navigates once; one Back returns original route",
+      "path": "/admin/participants",
+      "destination": "/dashboard",
+      "file": "evidence/unified-navigation/after/first-tap-bob-dashboard-390.png",
+      "requests": [
+        {
+          "url": "http://localhost:3012/admin/participants",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870899781",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870899781",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870899781",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/dashboard?_rsc=3JhJhlxaLj6u9ZZ-",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/icons/social/github.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/icons/social/linkedin.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/icons/social/whatsapp.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "actor": "judge",
+      "name": "First touch Assigned projects navigates once; one Back returns original route",
+      "path": "/dashboard",
+      "destination": "/review",
+      "file": "evidence/unified-navigation/after/first-tap-judge-review-390.png",
+      "requests": [
+        {
+          "url": "http://localhost:3012/dashboard",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870905240",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870905240",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870905240",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/review?_rsc=kNfxD3lGVTaTot7C",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "actor": "judge2",
+      "name": "First touch Assigned projects navigates once; one Back returns original route",
+      "path": "/dashboard",
+      "destination": "/review",
+      "file": "evidence/unified-navigation/after/first-tap-judge2-review-390.png",
+      "requests": [
+        {
+          "url": "http://localhost:3012/dashboard",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870908438",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870908438",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870908438",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/review?_rsc=kNfxD3lGVTaTot7C",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "actor": "dave",
+      "name": "First touch Dashboard navigates once; one Back returns original route",
+      "path": "/profile",
+      "destination": "/dashboard",
+      "file": "evidence/unified-navigation/after/first-tap-dave-dashboard-390.png",
+      "requests": [
+        {
+          "url": "http://localhost:3012/profile",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870911217",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870911217",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870911217",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/dashboard?_rsc=SJ3PVNHAfSVImfIs",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "Anonymous header sign-in affordance preserves native top-frame navigation",
+      "requests": [
+        {
+          "url": "http://localhost:3012/",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870914167",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/art/delhi-v3/fallback-approved-v3.webp",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/cerebras-official.webp",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870914167",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870914167",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/api/portal?view=%2F&focus=",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/signin?returnTo=%2Fdashboard",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870916555",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/signin/page.css?v=1792870916555",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870916555",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870916555",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/signin/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "name": "Open touch menu survives resize to desktop; Escape restores focus; no extra view requests",
+      "file": "evidence/unified-navigation/after/menu-persists-after-desktop-resize-1440.png",
+      "requests": [
+        {
+          "url": "http://localhost:3012/admin/participants",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870918135",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870918135",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870918135",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "name": "Standalone shared menu plain link first touch/Back works with no identity fetch",
+      "requests": [
+        {
+          "url": "http://localhost:3012/privacy",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870922862",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/privacy/page.css?v=1792870922862",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870922862",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870922862",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/privacy/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/terms",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870925283",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/terms/page.css?v=1792870925283",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870925283",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870925283",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/terms/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/privacy",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870926738",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/privacy/page.css?v=1792870926738",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870926738",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870926738",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/privacy/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "name": "Red Log out opens existing confirmation; one confirmed synthetic signout200 returns anonymous Home",
+      "file": "evidence/unified-navigation/after/logout-existing-confirmation-390.png",
+      "status": 200,
+      "requests": [
+        {
+          "url": "http://localhost:3012/dashboard",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870930727",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/icons/social/github.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/icons/social/linkedin.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/icons/social/whatsapp.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870930727",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870930727",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/api/portal",
+          "method": "POST",
+          "action": "local-signout"
+        },
+        {
+          "url": "http://localhost:3012/",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792870936051",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/art/delhi-v3/fallback-approved-v3.webp",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/cerebras-official.webp",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792870936051",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792870936051",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3012/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ]
+    }
+  ],
+  "priorCheckSource": "4abfa53be80ccac7393d9b0833dbf63a86dbb8ef",
+  "result": "PASS",
+  "browserClosed": true
+}

@@ -1,0 +1,11 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.waitForURL: net::ERR_ABORTED; maybe frame was detached?
+=========================== logs ===========================
+waiting for navigation until "load"
+============================================================
+    at /workspace/ddd-unified-navigation/scripts/qa-unified-navigation-interactions.mjs:23:208
+
+Node.js v24.19.0

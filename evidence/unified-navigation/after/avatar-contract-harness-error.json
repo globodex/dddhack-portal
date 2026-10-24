@@ -1,0 +1,120 @@
+{
+  "source": "f766ff6b326ee9f7dc9993eb0d48a9f5088f2471",
+  "syntheticOnly": true,
+  "cases": [],
+  "startedAt": "2026-10-24T19:16:27.825Z",
+  "inFlightCase": {
+    "actor": "owner",
+    "path": "/admin/participants",
+    "color": "orange",
+    "expression": "star",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "standalone": false,
+    "requests": [
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/admin/participants"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/_next/static/css/app/layout.css?v=1792869397541"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/brand/codex-user-supplied.svg"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/_next/static/chunks/webpack.js?v=1792869397541"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/_next/static/chunks/main-app.js?v=1792869397541"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/_next/static/chunks/app-pages-internals.js"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+      },
+      {
+        "method": "GET",
+        "url": "http://localhost:3012/brand/codex-user-supplied.svg"
+      }
+    ],
+    "pageErrors": [],
+    "closed": {
+      "width": 1440,
+      "documentWidth": 1425,
+      "scrollY": 0,
+      "bodyOverflow": "",
+      "htmlOverflow": "",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1425,
+        "height": 80,
+        "top": 0,
+        "right": 1425,
+        "bottom": 80,
+        "left": 0
+      },
+      "trigger": {
+        "x": 1281,
+        "y": 17.5,
+        "width": 44,
+        "height": 44,
+        "top": 17.5,
+        "right": 1325,
+        "bottom": 61.5,
+        "left": 1281
+      },
+      "account": {
+        "x": 1337,
+        "y": 17.5,
+        "width": 44,
+        "height": 44,
+        "top": 17.5,
+        "right": 1381,
+        "bottom": 61.5,
+        "left": 1337
+      },
+      "avatarState": "saved",
+      "avatarFill": "#f26d00",
+      "avatarMarks": [
+        "*",
+        "*"
+      ],
+      "toggleColor": "rgb(32, 35, 32)",
+      "accountLabel": "Your Dashboard"
+    },
+    "failure": {
+      "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   '*',\n+   '*'\n+ ]\n- '**'\n",
+      "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   '*',\n+   '*'\n+ ]\n- '**'\n\n    at inspectCase (file:///workspace/ddd-unified-navigation/scripts/qa-unified-navigation-after.mjs:83:14)\n    at async file:///workspace/ddd-unified-navigation/scripts/qa-unified-navigation-after.mjs:160:63"
+    },
+    "failureFile": "evidence/unified-navigation/after/owner-admin-participants-1440x900-FAIL.png"
+  },
+  "result": "FAIL",
+  "failure": {
+    "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   '*',\n+   '*'\n+ ]\n- '**'\n",
+    "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   '*',\n+   '*'\n+ ]\n- '**'\n\n    at inspectCase (file:///workspace/ddd-unified-navigation/scripts/qa-unified-navigation-after.mjs:83:14)\n    at async file:///workspace/ddd-unified-navigation/scripts/qa-unified-navigation-after.mjs:160:63"
+  },
+  "browserClosed": true
+}
