@@ -1025,3 +1025,24 @@
 .app-shell .main .team-studio .studio-next .button{background:#007c50;border-color:#007c50}
 .app-shell .main .team-studio .studio-next .button:hover:not(:disabled){background:#006b43;border-color:#006b43}
 .studio-dialog.studio-identity-dialog{height:min(640px,calc(100dvh - 32px))}
+
+/* Keep private arrival copy readable beside its icon on narrow screens. */
+@media (max-width: 767px) {
+  .app-shell .main .team-studio .dashboard-venue {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    align-items: start;
+    gap: 12px;
+  }
+  .app-shell .main .team-studio .dashboard-venue > div {
+    min-width: 0;
+  }
+  .app-shell .main .team-studio .dashboard-venue > a {
+    grid-column: 2;
+    margin-left: 0;
+    flex-basis: auto;
+    white-space: normal;
+    justify-self: start;
+    min-height: 44px;
+  }
+}
