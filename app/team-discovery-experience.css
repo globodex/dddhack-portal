@@ -1199,3 +1199,69 @@ dialog.discovery-profile-v6 .discovery-profile-bio {
   .discover-socials {
   grid-row: 3;
 }
+.app-shell .team-color-fieldset .team-color-name {
+  margin-left: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted, #656960);
+}
+.app-shell .team-color-radio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  clip-path: inset(50%);
+}
+.app-shell .team-color-choice {
+  cursor: pointer;
+}
+.app-shell .discover-v6 .discover-people-cards > li.discover-person-skeleton {
+  grid-template-columns: 56px minmax(0, 1fr) 44px;
+  grid-template-rows: 56px 20px 36px 24px;
+  min-height: 280px;
+  gap: 16px 10px;
+}
+.app-shell .discover-person-skeleton .discover-skeleton-avatar {
+  grid-column: 1;
+  grid-row: 1;
+}
+.app-shell .discover-person-skeleton .discover-skeleton-name {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+.app-shell .discover-person-skeleton .discover-skeleton-bio {
+  grid-column: 1 / -1;
+  grid-row: 3;
+}
+.app-shell .discover-person-skeleton .discover-skeleton-badge {
+  grid-column: 1 / -1;
+  grid-row: 4;
+}
+dialog.team-create-dialog .team-create-form {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100dvh - 100px);
+  min-height: 0;
+}
+dialog.team-create-dialog .team-create-form > h2 {
+  flex: 0 0 auto;
+}
+dialog.team-create-dialog .team-create-layout {
+  overflow: auto;
+  overscroll-behavior: contain;
+  min-height: 0;
+  padding: 4px 4px 4px 0;
+}
+dialog.team-create-dialog .team-create-form > .form-actions {
+  flex: 0 0 auto;
+  padding-top: 16px;
+  background: #fffefa;
+}
+.app-shell .team-create-identity .palette-picker {
+  display: grid;
+  grid-template-columns: repeat(4, 36px);
+  gap: 4px 8px;
+}

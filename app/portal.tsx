@@ -604,13 +604,14 @@ function AvatarChooser({
       <div className="badge-preview">
         <TeamAvatar name={name} palette={palette} size={88} />
       </div>
-      <fieldset>
-        <legend>Team color</legend>
+      <fieldset className="team-color-fieldset">
+        <legend>Team color <output className="team-color-name" aria-live="polite">{teamColorLabels[palette] || "Green"}</output></legend>
         <div className="palette-picker">
           {teamColorKeys.map((key) => (
-            <label key={key}>
+            <label key={key} title={teamColorLabels[key]} className="team-color-choice" data-selected={palette === key}>
               <input
                 type="radio"
+                className="team-color-radio"
                 name="palette"
                 value={key}
                 checked={palette === key}
@@ -618,9 +619,10 @@ function AvatarChooser({
               />
               <span
                 className="palette-swatch"
+                aria-hidden="true"
                 style={{ background: teamDotColors[key] }}
               />
-              {teamColorLabels[key]}
+              <span className="sr-only">{teamColorLabels[key]}</span>
             </label>
           ))}
         </div>
@@ -1057,7 +1059,6 @@ export function TeamWorkspace({
             <div className="dashboard-locked-idea">
               <div>
                 <h4>{data.idea.title}</h4>
-                {locked && <LockKeyhole size={17} aria-label="Locked" />}
               </div>
               <p className="prose">{data.idea.description}</p>
               <span className="dashboard-idea-count">
@@ -1078,7 +1079,6 @@ export function TeamWorkspace({
           </summary>
           <div className="team-settings-grid">
             <section>
-              <h3>Team name</h3>
               <Form
                 className="inset-form"
                 label="Rename team"
