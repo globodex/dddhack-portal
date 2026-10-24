@@ -80,20 +80,20 @@ export const mobileDots: PublicDot[] = desktopDots;
 // The selected compact hero has a quiet centre for its actions and a separate
 // bottom pile. Coordinates share a 480-unit horizontal stage, not desktop height.
 export const compactSideDots: PublicDot[] = [
-  { ...desktopDots[0], x: 0, y: 112, diameter: 114 },
-  { ...desktopDots[3], x: 86, y: 70, diameter: 76 },
-  { ...desktopDots[1], x: 480, y: 55, diameter: 108 },
-  { ...desktopDots[2], x: 431, y: 138, diameter: 80 },
+  { ...desktopDots[0], x: 35, y: 170, diameter: 114 },
+  { ...desktopDots[3], x: 100, y: 138, diameter: 76 },
+  { ...desktopDots[1], x: 450, y: 112, diameter: 108 },
+  { ...desktopDots[2], x: 431, y: 180, diameter: 80 },
 ];
 export const compactStripDots: PublicDot[] = [
-  { ...desktopDots[0], x: -8, y: -8, diameter: 100 },
-  { ...desktopDots[2], expression: "cheerful", x: 44, y: 16, diameter: 160 },
-  { ...desktopDots[1], x: 150, y: 8, diameter: 128 },
-  { ...desktopDots[5], x: 200, y: -8, diameter: 88 },
-  { ...desktopDots[0], x: 292, y: 0, diameter: 160 },
-  { ...desktopDots[3], x: 368, y: 52, diameter: 112 },
-  { ...desktopDots[4], x: 430, y: -4, diameter: 160 },
-  { ...desktopDots[6], x: 510, y: 44, diameter: 128 },
+  { ...desktopDots[0], x: -8, y: 12, diameter: 100 },
+  { ...desktopDots[2], expression: "cheerful", x: 44, y: 36, diameter: 160 },
+  { ...desktopDots[1], x: 150, y: 28, diameter: 128 },
+  { ...desktopDots[5], x: 200, y: 12, diameter: 88 },
+  { ...desktopDots[0], x: 292, y: 20, diameter: 160 },
+  { ...desktopDots[3], x: 368, y: 72, diameter: 112 },
+  { ...desktopDots[4], x: 430, y: 16, diameter: 160 },
+  { ...desktopDots[6], x: 510, y: 64, diameter: 128 },
 ];
 export const stripDots: PublicDot[] = [
   { ...desktopDots[6], diameter: 82 },
