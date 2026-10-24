@@ -982,3 +982,9 @@
     font-size: 22px;
   }
 }
+
+.app-shell .main .dashboard-v6.team-studio { padding: 0 44px; }
+.app-shell .main .team-studio .dashboard-sections { margin-inline: -44px; padding-inline: 44px; }
+.app-shell .main .team-studio .dashboard-credits { max-width: 1120px; }
+@media(max-width:767px){.app-shell .main .dashboard-v6.team-studio{padding-inline:20px}.app-shell .main .team-studio .dashboard-sections{margin-inline:-20px;padding-inline:20px}}
+@media(max-width:359px){.app-shell .main .dashboard-v6.team-studio{padding-inline:16px}.app-shell .main .team-studio .dashboard-sections{margin-inline:-16px;padding-inline:16px}}

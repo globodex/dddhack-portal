@@ -67,6 +67,7 @@ test("locked team idea is a concise read-only view while unlocked leader retains
       run: async () => ({}),
     }),
   );
-  assert.match(unlocked, /Save team idea/);
-  assert.match(unlocked, /name="title"/);
+  assert.match(unlocked, /aria-label="Edit team idea"/);
+  assert.match(unlocked, /Review &amp; lock team/);
+  assert.doesNotMatch(unlocked, /name="title"/);
 });
