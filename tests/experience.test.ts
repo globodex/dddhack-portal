@@ -640,7 +640,7 @@ test("volunteer, mentor and judge boundaries, owner Logs, role and assignment re
         projectId: p.id,
         versionId,
       }),
-      /SCORING_REVIEWER_REQUIRED/,
+      { code: "ADMIN_REQUIRED" },
     );
     await owner.command("portal-role", {
       userId: "fake_pending",
@@ -675,7 +675,7 @@ test("reevaluation stays Not configured while API setup is pending; active-run g
       versionId = v.attempts[0].id;
     await assert.rejects(
       service("admin").command("reevaluate-project", { projectId, versionId }),
-      /EVALUATOR_NOT_CONFIGURED/,
+      { code: "EVALUATOR_NOT_CONFIGURED" },
     );
     assert.equal((await rows(db, "SELECT * FROM evaluation_runs")).length, 0);
     const time = "2026-11-01T04:00:00.000Z";

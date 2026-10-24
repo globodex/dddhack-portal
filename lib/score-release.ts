@@ -41,6 +41,7 @@ export async function scoreState(s: PortalService) {
     entries,
     unveiled,
     stage: active?.stage || "community",
+    aiRevealed: releases.some(release => release.stage === "ai"),
     complete: active?.stage === "final" && unveiled.length === hiddenCount,
   };
 }

@@ -4,7 +4,7 @@ import { publicTeamMembers } from "./public-team-members";
 import { OWNER_EMAIL } from "./identity";
 import { adminAccessView, revokeAdminAccess } from "./admin-access";
 import { auditReason } from "./security";
-import { evaluationAvailability, latestProviderGrade } from "./provider-grade";
+import { evaluationAvailability, latestProviderGrade, evaluationActionState } from "./provider-grade";
 import { checkInParticipants } from "./participant-checkin";
 import { personalCreditRows } from "./credit-stock";
 import { resultControls } from "./result-controls";
@@ -510,6 +510,9 @@ export class PortalExperience {
       await this.s.settings(true),
       this.s.now(),
     );
+    const projectEligibility = project
+      ? await this.eligibility(project)
+      : { status: "not_submitted", versionId: null };
     return {
       me: actor,
       profile,
@@ -522,6 +525,10 @@ export class PortalExperience {
         : undefined,
       submissionAccess: access,
       projectStats: { upvotes: projectUpvotes, result: projectResult },
+      projectPublicPath:
+        project && projectEligibility.status === "eligible" && projectEligibility.versionId === project.published_version_id
+          ? "/projects/" + encodeURIComponent(project.slug)
+          : null,
       submissionProgress: {
         status: access.progress,
         attemptsUsed: access.attemptsUsed,
@@ -557,11 +564,9 @@ export class PortalExperience {
           ? { ...project, draft: JSON.parse(project.draft) }
           : undefined,
       feedback,
-      eligibility: project
-        ? await this.eligibility(project)
-        : { status: "not_submitted" },
+      eligibility: projectEligibility,
       leaderboardUrl:
-        project && (await this.eligibility(project)).status === "eligible"
+        project && projectEligibility.status === "eligible"
           ? "/leaderboard?project=" +
             encodeURIComponent(project.slug) +
             "#entry-" +
@@ -1008,6 +1013,7 @@ export class PortalExperience {
         resultControls: await resultControls(this.s),
         scoreRelease: await scoreState(this.s).then((s) => ({
           stage: s.stage,
+          aiRevealed: s.aiRevealed,
           releaseId: s.active?.id,
           remainingAwards: s.entries
             .filter(
@@ -1022,10 +1028,13 @@ export class PortalExperience {
         scoringDisclosure: settings.policy.scoringDisclosure,
         resultSnapshots:
           me.owner || me.role === "admin"
-            ? await rows(
+            ? (await rows<{ id: string; created_at: string; policy_version: number; payload: string }>(
                 this.s.db,
-                "SELECT id,created_at FROM result_snapshots ORDER BY created_at DESC",
-              )
+                "SELECT id,created_at,policy_version,payload FROM result_snapshots ORDER BY created_at DESC",
+              )).map(({ payload, ...snapshot }) => {
+                const entries = JSON.parse(payload) as { eligibility?: string }[];
+                return { ...snapshot, entryCount: entries.length, eligibleCount: entries.filter(entry => entry.eligibility === "eligible").length };
+              })
             : undefined,
         resultPublication: me.owner
           ? await one(
@@ -1103,6 +1112,8 @@ export class PortalExperience {
           "SELECT t.name teamName,COALESCE(s.color_key,s.palette) teamPalette FROM teams t LEFT JOIN team_styles s ON s.team_id=t.id WHERE t.id=?",
           p.team_id,
         );
+      const policySettings = await this.s.settings(true);
+      const actionState = me.owner || me.role === "admin" ? await evaluationActionState(this.s, p.id, v?.id, p.published_version_id, policySettings.policy.submissionClose) : {};
       return {
         me,
         project: {
@@ -1170,8 +1181,9 @@ export class PortalExperience {
             : undefined,
         evaluationConfigured: evaluationAvailability(this.s.evaluator).available,
         evaluationUnavailableReason: evaluationAvailability(this.s.evaluator).reason,
-        scoringReady: policyBlockers((await this.s.settings(true)).policy).length === 0,
+        scoringReady: policyBlockers(policySettings.policy).length === 0,
         evaluation: (me.owner || me.role === "admin") && v ? await latestProviderGrade(this.s.db, p.id, v.id) : null,
+        ...actionState,
       };
     }
     return null;
@@ -1782,9 +1794,9 @@ export class PortalExperience {
         JSON.stringify({ revision: d.revision, project: d.project }),
       );
       if (action === "submit-project") {
-        const receipt = await one<{ project_id: string; version_id: string }>(
+        const receipt = await one<{ project_id: string; version_id: string; attempt: number }>(
           this.s.db,
-          "SELECT project_id,version_id FROM project_commit_receipts WHERE team_id=? AND request_key=?",
+          "SELECT r.project_id,r.version_id,v.attempt FROM project_commit_receipts r JOIN submission_versions v ON v.id=r.version_id WHERE r.team_id=? AND r.request_key=?",
           t.id,
           requestKey,
         );
@@ -1793,6 +1805,7 @@ export class PortalExperience {
             message: "This submission was already committed.",
             projectId: receipt.project_id,
             versionId: receipt.version_id,
+            attemptsUsed: receipt.attempt,
           };
       }
       demand(
@@ -1876,9 +1889,9 @@ export class PortalExperience {
         });
       } catch (error) {
         if (action === "submit-project") {
-          const receipt = await one<{ project_id: string; version_id: string }>(
+          const receipt = await one<{ project_id: string; version_id: string; attempt: number }>(
             this.s.db,
-            "SELECT project_id,version_id FROM project_commit_receipts WHERE team_id=? AND request_key=?",
+            "SELECT r.project_id,r.version_id,v.attempt FROM project_commit_receipts r JOIN submission_versions v ON v.id=r.version_id WHERE r.team_id=? AND r.request_key=?",
             t.id,
             requestKey,
           );
@@ -1887,6 +1900,7 @@ export class PortalExperience {
               message: "This submission was already committed.",
               projectId: receipt.project_id,
               versionId: receipt.version_id,
+              attemptsUsed: receipt.attempt,
             };
         }
         throw error;
@@ -1898,16 +1912,12 @@ export class PortalExperience {
             : "Project draft saved.",
         projectId,
         ...(action === "submit-project"
-          ? {
-              versionId: (
-                await one<{ version_id: string }>(
+          ? (await one<{ versionId: string; attemptsUsed: number }>(
                   this.s.db,
-                  "SELECT version_id FROM project_commit_receipts WHERE team_id=? AND request_key=?",
+                  "SELECT r.version_id versionId,v.attempt attemptsUsed FROM project_commit_receipts r JOIN submission_versions v ON v.id=r.version_id WHERE r.team_id=? AND r.request_key=?",
                   t.id,
                   requestKey,
-                )
-              )?.version_id,
-            }
+                )) || {}
           : {}),
       };
     }

@@ -960,8 +960,9 @@ export class PortalService {
       }
       case "settings": {
         await this.staff(true);
-        const d = z.object({ policy: z.unknown(), reason }).parse(data);
+        const d = z.object({ policy: z.unknown(), version: z.number().int().min(0).optional(), reason }).parse(data);
         const old = await this.settings();
+        demand(d.version === undefined || d.version === old.version, 409, "POLICY_CHANGED_RELOAD");
         await this.unfrozen();
         const p = policySchema.parse(json(d.policy));
         if (
@@ -1417,23 +1418,26 @@ export class PortalService {
         const cutoff = new Date(
           Date.parse(this.now()) - 15 * 60_000,
         ).toISOString();
+        const lease = await one<{ version_id: string; state: string; attempts: number; updated_at: string }>(this.db, "SELECT version_id,state,attempts,updated_at FROM astra_jobs WHERE id=?", d.jobId);
+        demand(lease?.state === "running" && lease.updated_at <= cutoff, 409, "JOB_NOT_RECOVERABLE");
         await this.mutate(
           actor.id,
           action,
           d.jobId,
           [
             [
-              "UPDATE astra_jobs SET state='failed_retryable',error='Processing interrupted; staff retry required',updated_at=? WHERE id=? AND state='running' AND updated_at<=?",
+              "UPDATE astra_jobs SET state='failed_retryable',error='Processing interrupted; staff retry required',updated_at=? WHERE id=? AND state='running' AND updated_at=? AND attempts=?",
               this.now(),
               d.jobId,
-              cutoff,
+              lease.updated_at,
+              lease.attempts,
             ],
             ...assertPreviousWrite(),
             [
-              "UPDATE evaluation_runs SET state='stale',error='Processing interrupted; staff retry required',updated_at=? WHERE state='running' AND version_id=(SELECT version_id FROM astra_jobs WHERE id=?) AND config_key=?",
+              "UPDATE evaluation_runs SET state='stale',error='Processing interrupted; staff retry required',updated_at=? WHERE state='running' AND version_id=? AND created_at=?",
               this.now(),
-              d.jobId,
-              "offline-verification-v1:" + d.jobId,
+              lease.version_id,
+              lease.updated_at,
             ],
           ],
           { state: "failed_retryable" },
@@ -1529,11 +1533,15 @@ export class PortalService {
             repository?.commit_sha || (typeof payload.commitSha === "string" ? payload.commitSha.toLowerCase() : ""),
           );
           const storedReport = storedEvaluationReport(report, grade);
+          if (await one(this.db, "SELECT id FROM result_snapshots LIMIT 1"))
+            return { message: "Evaluation stopped; final scores are frozen." };
+          const completionGuard = "evaluation-completion:" + runId;
           await this.mutate(
             actor.id,
             action,
             j.id,
             [
+              ["INSERT INTO write_guards VALUES(?,CASE WHEN NOT EXISTS(SELECT 1 FROM result_snapshots) THEN 1 ELSE 0 END)", completionGuard],
               [
                 "UPDATE astra_jobs SET state=?,report=?,error=NULL,updated_at=? WHERE id=? AND state='running' AND attempts=? AND updated_at=?",
                 grade === null ? "needs_review" : "finalized",
@@ -1555,6 +1563,7 @@ export class PortalService {
                     ] as SQL,
                   ]
                 : []),
+              ["DELETE FROM write_guards WHERE token=?", completionGuard],
             ],
             { state: grade === null ? "needs_review" : "finalized", scored: grade !== null },
           );
@@ -1563,6 +1572,8 @@ export class PortalService {
               grade === null ? "AI report needs review." : "AI score saved.",
           };
         } catch {
+          if (await one(this.db, "SELECT id FROM result_snapshots LIMIT 1"))
+            return { message: "Evaluation stopped; final scores are frozen." };
           const lease = await one<{
             state: string;
             attempts: number;
