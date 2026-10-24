@@ -1,0 +1,392 @@
+{
+  "database": "/tmp/ddd-redesign-rich-recovered-exact.sqlite",
+  "mode": "Recovered scratch; then all64tables compared to original manifest",
+  "syntheticOnly": true,
+  "tables": [
+    {
+      "table": "astra_jobs",
+      "rows": 0,
+      "schemaSha256": "2381f1393c3b91567b77f504ad7a9e78e1aee9b5891716ca311ff44dc35fe44c",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "audit_logs",
+      "rows": 1,
+      "schemaSha256": "b173fd1acab3dfdbc872aef5b9b264696dead193ab5e15dd751b02d233f45c66",
+      "contentSha256": "43982fe31f7102011cad9688c9a6c7f42480307251aaf14d342c06e7c73a5fd3"
+    },
+    {
+      "table": "automatic_absences",
+      "rows": 0,
+      "schemaSha256": "a8281fc0a53917a510961d0c7b26939fc12ddae0cb21893fb0d28e5c9159fb0d",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "check_ins",
+      "rows": 0,
+      "schemaSha256": "a22bccb97441e85fbca0fc60f310f78947129fd69c6b27aab8ca63906fe0c240",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "credit_allocations",
+      "rows": 1,
+      "schemaSha256": "8fe201539de62ebd34ea5b57ff5acafb4cf89e44f9c1459e4e4467b9a94432d4",
+      "contentSha256": "19cbb27932deda8b5135c425e2e52eaa2d2a6ba2eefa01ac449f58e23d88861e"
+    },
+    {
+      "table": "credit_batch_columns",
+      "rows": 0,
+      "schemaSha256": "ef2864a6eeae4837907911559ccb110b2951d0beb24f37a57bb4e3c818f0cd8c",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "credit_batches",
+      "rows": 0,
+      "schemaSha256": "282857778e0a1280d2cf7c0a61b367e3142a8aee855696c478aad6a81355e934",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "credit_inventory",
+      "rows": 21,
+      "schemaSha256": "f559ca0a3fdf4e93e2e7190bb8d3e2aa2a034304f50cc04daa0e2831b2cd603b",
+      "contentSha256": "b669ebd74b8a21523517d8fd8925266007244ad5b2adfa9a5ff8360bfd740e97"
+    },
+    {
+      "table": "credit_types",
+      "rows": 1,
+      "schemaSha256": "471b5612765515b36c410a2d3f6f76e02d016117212b93dc175a1aec9a96aee5",
+      "contentSha256": "91f6bff9310a8729ff2eb1af047a1def15f72fce1a04748abec182436beb804e"
+    },
+    {
+      "table": "eligibility_history",
+      "rows": 0,
+      "schemaSha256": "15adcd8da7104c1cc243692631960ae8c587d762b4c719fa7c47bb290f520c9c",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "engagement_controls",
+      "rows": 0,
+      "schemaSha256": "135f3c12fc553b318bd324bd05d94861887e311081e5122920c8cb952aac7d69",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "evaluation_runs",
+      "rows": 0,
+      "schemaSha256": "8c811e198cabe9d87f4e31387704a96386c4d6cf3e689b11a60f5dc90670ceb1",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "event_content",
+      "rows": 0,
+      "schemaSha256": "0410c2675b3243b68a1f22fc95b7af858afd6896988e251bc1f75b5027328ed1",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "event_content_history",
+      "rows": 0,
+      "schemaSha256": "b2fbdb8a39aff8d660a9561b84c0272fbcf6f76b7bb1a7be357e5b31fad9f88f",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "event_policy_history",
+      "rows": 0,
+      "schemaSha256": "8b4421dda3cc6aad5624bd455f63ff566acb38e5b4ac38845665109d9a1e7a87",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "event_settings",
+      "rows": 1,
+      "schemaSha256": "41998a8ffcbe32a652c57962974f0d44391cac8d57106de0052811bd1030e494",
+      "contentSha256": "2783a84acb5a7abf9133510a2e0dd0016ff2c4f9646d5517d3c56a949e7b4dfe"
+    },
+    {
+      "table": "feedback",
+      "rows": 0,
+      "schemaSha256": "a149d3014b645e4a76b691d53a495c68bf5f45c466f47a9933411893d8ddc11f",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "human_scores",
+      "rows": 0,
+      "schemaSha256": "4c01a9c248336f7c29cb8fd66b13017587dc2d7e9e7760764e2390b4ead0f37f",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "idea_revisions",
+      "rows": 0,
+      "schemaSha256": "1ae541b3b9e4bcc63f76db365c466c968c2ad779de75e7353cb66bc64dc0e56e",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "ideas",
+      "rows": 3,
+      "schemaSha256": "2ad2aeb4668aec6b618d030a03cc3e9f45e1e06c567708fa1a463081ef6aec79",
+      "contentSha256": "99248d0baa7266aa8d897ee0df4f63447fb5e5cd1b5ec8edaf23ca8c85051a8c"
+    },
+    {
+      "table": "import_previews",
+      "rows": 0,
+      "schemaSha256": "71d2e61d2651a21d52650691d91f4ff32460222cff54a8a69d7d53824a4176c3",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "judge_assignments",
+      "rows": 0,
+      "schemaSha256": "ba976473c080b313864b015570eff11eda88ee50b65abc531bd76205c7ad7370",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "local_schema_migrations",
+      "rows": 23,
+      "schemaSha256": "87afde23015590126fe70bf42e897ef2fefb6fbb5166c792604395d276ad381a",
+      "contentSha256": "c8d55c096ae7683d25683a03b45f057bdbf7c1e412dfc1df4fd9436e136d8773"
+    },
+    {
+      "table": "luma_roster",
+      "rows": 41,
+      "schemaSha256": "5877dde00f3810f35d3016c128c1730eda4bcabf6be504b589482923f068f84d",
+      "contentSha256": "e448b70a3382005f87f6558972a2a5304e1ad5e0574fdf6ee3e13994835e09ad"
+    },
+    {
+      "table": "manual_checkins",
+      "rows": 27,
+      "schemaSha256": "2fdf471a76ee809586dcfa32d9872e659becad2b133f047a4b6c6be8e99eebb6",
+      "contentSha256": "f1a471f4cb982c3d75f7d2ba61431cf8db5a554e114b63bc34ee0378cc3e9dc2"
+    },
+    {
+      "table": "memberships",
+      "rows": 36,
+      "schemaSha256": "bead45ed5c10879dea20d60da351576b5310fdcf7eb596686dbe4586e67f3b2f",
+      "contentSha256": "341f2150faecf8218ea1aa5616a0f48ef0c13a7d3f96ef5cf06446d1c96d53de"
+    },
+    {
+      "table": "participant_profiles",
+      "rows": 42,
+      "schemaSha256": "bd596644d36b512265aa538cbfcc797e17a0298e281d6a2300a15dbf94e5b146",
+      "contentSha256": "c325176eefc3c1c76869bc0337904a7e02800913f3dffb824dbe1fa89d71da6d"
+    },
+    {
+      "table": "participant_status_overrides",
+      "rows": 0,
+      "schemaSha256": "21869c5a8cabf4bf9184f0733ecd8cf9e51d11b0daf803abde2b94554aa9dd74",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "portal_roles",
+      "rows": 2,
+      "schemaSha256": "213fda93a3e2ea00908c7a719dc9fd5eddebd126be37f577fbd3e47ee509d3b7",
+      "contentSha256": "99e5b07a30a97cd005cc9a2a1029aac9287d2a85c98cadb8e22cd0fd45b67686"
+    },
+    {
+      "table": "private_venue",
+      "rows": 1,
+      "schemaSha256": "56dea80eae81b1307ffa85369b8bb8840ac2ba0c974b6faefb093de5621c4fbb",
+      "contentSha256": "9d40b2339299bb1e70876f07a2ed6c9300e7cd8dcc6c52fbc12023f3eaa920a3"
+    },
+    {
+      "table": "private_venue_managers",
+      "rows": 0,
+      "schemaSha256": "c77caff0308801318e79214ea55bd5d9306a64973c6d3f8572a02ad5ef7f5c06",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "profile_details",
+      "rows": 42,
+      "schemaSha256": "f79b42adefd2c0dd37b22c288c74d6b0efb9f12f6e1e5480ee89417c25ef620f",
+      "contentSha256": "0bed22b4bb4e6ac79e8eb67aeb6414a31cea94c24728ef95fb59408b2f61e732"
+    },
+    {
+      "table": "profile_photos",
+      "rows": 0,
+      "schemaSha256": "3b113e00b9bf730f86ced5309cc513a7aa8e5e87414b7737f7e22b5aac7745df",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "profiles",
+      "rows": 42,
+      "schemaSha256": "48e09e4b7e8b0c5418c1483ba5083a91ad56b52727f53d449ed7ee4c98851eaa",
+      "contentSha256": "022fbd1b04f37aefbae98a4e5c2e824a947f9406747114a6f234bee448660972"
+    },
+    {
+      "table": "project_assignments",
+      "rows": 2,
+      "schemaSha256": "0c2d6a0eef4e3397b8d9218f672bd750fae34885431a4d0b190c789353e341a6",
+      "contentSha256": "cc05cea1b7a6a7336e194a202de247ded2ae8e04a8350b8d96315dd3cfe19fee"
+    },
+    {
+      "table": "project_comments",
+      "rows": 2,
+      "schemaSha256": "101cfcc8311e9565efd79a32c8a297fdf71ac407581045fe6c7e5ab569931e0d",
+      "contentSha256": "f3a30fec41bd2bfdc06a4e99a7c98766cead371c73fef9639ab9edc4e1c8ecd7"
+    },
+    {
+      "table": "project_commit_receipts",
+      "rows": 0,
+      "schemaSha256": "9ca00d11856b98aef8b91ff78607ed1e2443463886d3d603326f3d4ed15fe4b3",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "project_eligibility",
+      "rows": 27,
+      "schemaSha256": "dfa163af5b536d0410f73cd1ecf6186ab535027326c63b6a8f9f4d44a7aaf0fa",
+      "contentSha256": "4e3bda459660b10f559a10d1926fb990762e65db1eb89f3b09fcdcee0d6c3bcc"
+    },
+    {
+      "table": "project_feedback_reviews",
+      "rows": 0,
+      "schemaSha256": "ccdf6ec5d6fbef7f12984476cf2c87a7427da3a2b48ab93e59d51c25ec008356",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "project_review_history",
+      "rows": 2,
+      "schemaSha256": "6b00a7784cbd88b2efc2f00c7c2344ba5ef9018bdaec7872c144dbf93a369593",
+      "contentSha256": "fa8124e7faafe7e346108766b92bf969d557406e8c2107e84976435d6d78b5b5"
+    },
+    {
+      "table": "project_upvotes",
+      "rows": 2,
+      "schemaSha256": "2541e60b398c2e67db018a00806bb492e5f99143350d8153df2137559dc5cd9b",
+      "contentSha256": "5b63e1399eec779f3154571c29e7f1e5a6ec299cd7c5139bb1c366017348b430"
+    },
+    {
+      "table": "projects",
+      "rows": 27,
+      "schemaSha256": "5c143dd6933186fa57f74443bce68a88fd7dcae8c25dd6c0daed5120fa57e736",
+      "contentSha256": "c839fdced55b629d91778f7174397a7e3b9967fdfd8b306505de5ff94097dcec"
+    },
+    {
+      "table": "record_removals",
+      "rows": 0,
+      "schemaSha256": "03efb3efdc511f021afb7294bb91bbde58bc9c16391a370d92e84eeab4d18ac1",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "registration_absences",
+      "rows": 0,
+      "schemaSha256": "66802541d39640cf7a476748e2105a2c0c61a07a71a934bfe1325fac8502ebe2",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "registrations",
+      "rows": 41,
+      "schemaSha256": "df771780e2862db63d3ebc350afbd552b08c55338debe501d24667adf34da7c8",
+      "contentSha256": "49cda6df198650d0fb287aa4a230829619e6aca52176ec51d860b4e7af6e766e"
+    },
+    {
+      "table": "repository_evidence",
+      "rows": 0,
+      "schemaSha256": "b49c6e2a31711ef50ae02ef2be5b6c876e8d1fde3c6cceabe631c284e161d797",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "request_buckets",
+      "rows": 0,
+      "schemaSha256": "501a93002f799700fc550783aa3f2c551c0bd53be28aa788297097c4d347b780",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "result_publication",
+      "rows": 0,
+      "schemaSha256": "9fd18965915f5cd52344c7cb9fc4f418426387d26899a5f9bfb7b12e1a393df5",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "result_snapshots",
+      "rows": 0,
+      "schemaSha256": "672fd1935b1d0d71d929ef508895fe64f681082921845866417f12774cc8d843",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "reviews",
+      "rows": 0,
+      "schemaSha256": "de8c15454e7b8d56e8f86d3dddfb4d877aaf30dc9a28e94cbea0172b60dbd3ed",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "roster_prefills",
+      "rows": 0,
+      "schemaSha256": "f0035299d53876a997cf8255fbad46f0accf94ed58c888ea254bdaddef951d45",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "score_releases",
+      "rows": 0,
+      "schemaSha256": "cdd8b9bdc26b2c4beff3f1758c738c4dced55ee0abe54051969c849698689341",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "scoring_revision",
+      "rows": 1,
+      "schemaSha256": "eab76f25a7fe37ddb18202f84399577842d6e0cb920b9787bee5fad24ca107ac",
+      "contentSha256": "a1f15138b27478dbc7918426a95f872583aa7c5f05371c6a338126c346eec9eb"
+    },
+    {
+      "table": "submission_versions",
+      "rows": 30,
+      "schemaSha256": "d7f0067b7bfe9c66cecba1da417d390d611a7208d2bf472bf696213ae30b94f0",
+      "contentSha256": "e2d24085545c5e0ebd38ae513c2975197d0cf3f002b3fceeac1599aff49ce359"
+    },
+    {
+      "table": "team_actions",
+      "rows": 0,
+      "schemaSha256": "f5a58fe48763541a920d2193ef21ccb5f0dbdb9f58ff4fa819299629b89f0288",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "team_locks",
+      "rows": 1,
+      "schemaSha256": "014efe54b6a4e4df743aeb1f91a123bf71a8c7de7cd0f84cde05dc5c3a6b8603",
+      "contentSha256": "16fe5775c6c22e1e8e04b8d751677d90606869f0e5e1e7d8272e19d077e7635a"
+    },
+    {
+      "table": "team_status_overrides",
+      "rows": 0,
+      "schemaSha256": "fddf0ca1223d71c1edc69b3dea2e55101ca292a5a8f90e477759bd64fa038273",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "team_styles",
+      "rows": 0,
+      "schemaSha256": "1b233c7168d3474053a9c51d98bb188c3c5f5b2858a7df9ecaf7d104e5114888",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "teams",
+      "rows": 28,
+      "schemaSha256": "54f93f95febcc9044674fd0e10fc1504137c3adae2fababca6aa68586cd4571a",
+      "contentSha256": "8d5024024bab13f34ca12f98318551ee3bb4fc2f6356d155e53efb8cb40a1f30"
+    },
+    {
+      "table": "tie_resolutions",
+      "rows": 0,
+      "schemaSha256": "dc0e332d16649a5515b6f697324181fdac59f5095d5511bc25319b60f26ce4dc",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "users",
+      "rows": 44,
+      "schemaSha256": "e4f60f57af4d68e74dde40f9b8d8ad71956f894912a0b077ba8b932dfbead61f",
+      "contentSha256": "d0de8659a45b0bd7ac99ea2be11f530cb1dfc4538ce64b314fe85b71d50cb092"
+    },
+    {
+      "table": "votes",
+      "rows": 0,
+      "schemaSha256": "e788678daf17b34a6128cadcf7dd2988acf9576129da277e5ee121441517127c",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "winner_reveals",
+      "rows": 0,
+      "schemaSha256": "9367d85dc223b644c2ce9b7bdfb478e36985368ca6983b9ce5a01ad3e44ea47c",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table": "write_guards",
+      "rows": 0,
+      "schemaSha256": "1c8d40d92ab655ef0682d8ec11f47ece388c78e310041bb1e270e6c54cbf2a6b",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "logicalSha256": "bf01ef3f41c8ffced1c2d7d9109a3c4f43de014427c8da40d672e946cbd06d45"
+}
