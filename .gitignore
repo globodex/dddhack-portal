@@ -21,3 +21,6 @@ evidence/**/*.webm
 outputs/
 .neon
 .neon/
+
+# Owner-local archive preparation output
+artifacts/neon/portalapi-prebuilt-*/

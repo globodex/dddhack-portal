@@ -4,16 +4,21 @@ The following stages the reviewed Function ZIP locally. Deployment is a separate
 
 Use the existing checkout already linked to the privately verified correct Neon project and branch, with the existing authenticated CLI. Keep its `.neon` context and `.env.backend.local` in place. `.neon` supplies target context; it is not build metadata and stays outside the Function directory. [Neon context reference](https://neon.com/docs/cli/link).
 
-In PowerShell, from that repository root:
+In PowerShell, from that repository root, first check the existing CLI version and help. The verified interface is CLI 8.11.1; do not substitute an unverified deployment flag.
 
 ```powershell
+$ErrorActionPreference = 'Stop'
+neon --version
+if ($LASTEXITCODE -ne 0) { throw 'Existing Neon CLI is unavailable' }
+neon functions deploy --help
+if ($LASTEXITCODE -ne 0) { throw 'Deployment interface is unavailable' }
 $portalApiBuild = .\scripts\prepare-backend-windows.ps1 -ArchivePath .\artifacts\neon\portalapi.zip
 $portalApiBuild | Format-List
 ```
 
 For a ZIP downloaded manually, pass its actual local path instead. The optional `-ArchiveUri` parameter downloads only from an operator-confirmed public HTTPS URL; no download URL is invented or embedded in the handoff. It rejects credential-bearing URLs and verifies the same pinned hash.
 
-The helper copies or downloads the ZIP into a fresh folder, runs `Get-FileHash`, uses `Expand-Archive`, and validates the entry and ARM64 native files. The reviewed ZIP SHA256 is `6d71e987f3019140b802b207eb7a9cd92fe1de57887d463b73449b87f6ce4a5f`. It fails before extraction if bytes differ. A rebuilt release with a different approved digest needs an explicitly reviewed handoff update.
+The helper copies or downloads the ZIP into a fresh folder, runs `Get-FileHash`, uses `Expand-Archive`, and validates the entry and ARM64 native files. The reviewed ZIP SHA256 is `bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36b38aef7ae3`. It fails before extraction if bytes differ. A rebuilt release with a different approved digest needs an explicitly reviewed handoff update.
 
 Expected layout:
 
@@ -41,3 +46,7 @@ Neon CLI8.11.1 help and the [official Functions reference](https://neon.com/docs
 The command deliberately omits `--env`: existing deployed Function variables carry over, and the local `.env.backend.local` is neither loaded nor replaced. It does not reconcile `neon.ts` or pull environment files. File-based `neon deploy --env <file>` is a different full-policy workflow; `functions deploy --env` instead takes `KEY=VALUE`. [Environment semantics](https://neon.com/docs/compute/functions/environment-variables), [full-policy deployment reference](https://neon.com/docs/cli/deploy).
 
 The [local handoff test report](../evidence/windows-backend-handoff/report.json) records six passing checks using PowerShell7.6.8 on Linux, including the real reviewed ZIP and a synthetic environment-file sentinel. The HTTPS-download test uses an explicit transport mock. Actual Windows execution, real HTTPS artifact retrieval, hosted schema state, deployed environment values, correct target context and ARM64 runtime execution remain unverified. No environment values are printed or replaced by the preparation helper.
+
+After the owner-run deployment succeeds, retain its returned deployment identifier privately. In an existing authenticated owner browser session, read `/api/health` and `/api/portal?view=%2Fadmin%2Faccess` on the configured public origin. The latter must return the owner-only access projection rather than `NOT_FOUND`; do not share its private account rows. A personally checked-in owner/admin can also read `/api/portal?view=%2Fpersonal%2Fcredits` to exercise the new stock tables without revealing/copying a code. These are read-only verification steps, not permission to change roles or credits. A health200 alone does not prove the new schema or deployment version. If Cloudflare denies a diagnostic client, report that denial separately; do not bypass it or call it an application failure.
+
+Existing published categories may have already-checked-in recipients who were missed by the previous backend. The schema upgrade deliberately does not assign production codes. After publication, an authorized admin can review Available/Waiting in Credits and choose the existing **Assign waiting** action where appropriate. This explicit repair preserves prior allocations; no re-check-in, dummy restock or republish is required. No agent has run this action against hosted data.

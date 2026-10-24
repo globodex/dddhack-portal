@@ -10,7 +10,7 @@
   ],
   "PowerShellVersion": "7.6.8",
   "RuntimePlatform": "Unix",
-  "ArchiveSHA256": "6d71e987f3019140b802b207eb7a9cd92fe1de57887d463b73449b87f6ce4a5f",
+  "ArchiveSHA256": "bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36b38aef7ae3",
   "ArchiveEntries": 93,
   "NativeWindowsExecution": "not performed",
   "LiveDownload": "not performed; transport mocked explicitly",
