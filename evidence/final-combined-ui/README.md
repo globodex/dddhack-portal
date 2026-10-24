@@ -25,3 +25,13 @@ The all-codes table screenshot is preserved as `admin-credit-stock-allcodes-desk
 Source, dependency, compiled Next runtime and stylesheet hashes are recorded in the final manifest. This verifies the actual combined development render; it does not establish production frontend timing. Root retains ownership of production build/full-suite results and any later selected-profile-only presentation change.
 
 All browser contexts and owned3018/8867 processes were closed. `cleanup.json` records the final empty-listener check and unchanged domain row counts from a read-only SQLite connection.
+
+## Stock alignment correction
+
+Root's final pixel review found a genuine14px downward offset in the stock status select that the initial review missed. The inherited `app/style.css` label margin was14px0. Root fixed this with the narrow direct-label `margin:0` override in `41de32b`, consumed locally as `787e983e3168bfcbd27021cf30c5233a1ccc9c24`. This is CSS only and changes no API or domain data.
+
+The final accepted stock views are `stock-aligned-1440x900.png` and `stock-aligned-390x844.png`; both were actually viewed after the fix. Earlier stock frames remain useful functional evidence, but are superseded for appearance. `final-manifest.json` replaces its chosen desktop stock frame and identifies the additional mobile correction separately.
+
+Computed verification: desktop input, Search button, label and select all have top633.09375,bottom681.09375,height48. Mobile input/Search have top661.390625,bottom709.390625; select/label have top721.390625,bottom769.390625, exactly the12px grid gap with no inherited margin. All controls are48px high; the label has no padding or margin. No horizontal overflow occurs.
+
+After waiting for the actual stock `aria-busy=false` state, keyboard Tab follows input→Search→status and touch Search works at both sizes. Search is intentionally disabled while the matching-geometry loading table is present, so the earlier premature focus assertion was a harness error. A further optional exact mobile-cell-name assertion included a CSS data-label prefix and was removed from the bounded alignment test. Attempts are preserved in separate reports. Final alignment report passes with zero page errors and zero POSTs. All reopened3018/8867 runtime and browser processes were stopped again after verification.

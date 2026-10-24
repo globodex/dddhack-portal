@@ -23,5 +23,7 @@
   },
   "domainCountsUnchanged": true,
   "databaseSha256After": "5752c995c6beb0a7caedf443574b8622bd526cbff1be4c4fb350bf80bd160e76",
-  "appSourceUnchangedByQALane": true
+  "appSourceUnchangedByQALane": true,
+  "finalAlignmentRuntimesStopped": true,
+  "lastSource": "787e983e3168bfcbd27021cf30c5233a1ccc9c24"
 }

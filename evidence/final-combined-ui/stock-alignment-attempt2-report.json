@@ -1,0 +1,82 @@
+{
+  "source": "787e983e3168bfcbd27021cf30c5233a1ccc9c24",
+  "rootCssSource": "41de32b",
+  "cssSha256": "6253c079cda5a830efc4c05acd887e6df8e837f33bf715ac6b5cfd62b1fa2602",
+  "syntheticOnly": true,
+  "postCount": 0,
+  "checks": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "measure": {
+        "width": 1440,
+        "scrollWidth": 1425,
+        "gap": "12px",
+        "form": {
+          "top": 633.09375,
+          "bottom": 681.09375,
+          "height": 48,
+          "width": 938,
+          "margin": "0px",
+          "padding": "0px",
+          "display": "grid"
+        },
+        "input": {
+          "top": 633.09375,
+          "bottom": 681.09375,
+          "height": 48,
+          "width": 882,
+          "margin": "0px",
+          "padding": "13px 15px",
+          "display": "block"
+        },
+        "button": {
+          "top": 633.09375,
+          "bottom": 681.09375,
+          "height": 48,
+          "width": 48,
+          "margin": "0px",
+          "padding": "12px",
+          "display": "flex"
+        },
+        "label": {
+          "top": 633.09375,
+          "bottom": 681.09375,
+          "height": 48,
+          "width": 180,
+          "margin": "0px",
+          "padding": "0px",
+          "display": "grid"
+        },
+        "select": {
+          "top": 633.09375,
+          "bottom": 681.09375,
+          "height": 48,
+          "width": 180,
+          "margin": "0px",
+          "padding": "12px 14px",
+          "display": "block"
+        }
+      }
+    },
+    {
+      "focusBefore": {
+        "tag": "INPUT",
+        "aria": null
+      },
+      "buttonDisabled": true
+    },
+    {
+      "focusAfterFirstTab": {
+        "tag": "DIV",
+        "aria": "Builder boost (FAKE) allocation table",
+        "text": "PersonCodeAssigned atStatus"
+      }
+    }
+  ],
+  "screenshots": [],
+  "pageErrors": [],
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n\n    at file:///workspace/ddd-final-combined-qa/evidence/final-combined-ui/stock-alignment.mjs:1:3487"
+}

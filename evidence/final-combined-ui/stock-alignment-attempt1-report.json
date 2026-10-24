@@ -1,0 +1,11 @@
+{
+  "source": "787e983e3168bfcbd27021cf30c5233a1ccc9c24",
+  "rootCssSource": "41de32b",
+  "cssSha256": "6253c079cda5a830efc4c05acd887e6df8e837f33bf715ac6b5cfd62b1fa2602",
+  "syntheticOnly": true,
+  "postCount": 0,
+  "checks": [],
+  "screenshots": [],
+  "pageErrors": [],
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n\n    at file:///workspace/ddd-final-combined-qa/evidence/final-combined-ui/stock-alignment.mjs:1:3010"
+}

@@ -12,7 +12,8 @@
     ".next/dev/build-manifest.json": "cbd7f37a5f5d8f3d08bf531e7f0e0432a5211b6976aa5426e4c9dfc96bfd2415",
     ".next/dev/server/app/[[...path]]/page.js": "b6c136794aa815ee5eb58815488dc7c2b11df8845ffc30518fa2b23040b57f82",
     ".next/dev/static/chunks/app/[[...path]]/page.js": "f55dadbbff9fd85fc74b2d2986080d0b01fe2fca09760781d79fea7b395e1222",
-    ".next/dev/static/css/app/layout.css": "a2d463b08c2e4cc5a2b7a6664849545e63857efd8dc895cef883a3c59aba33ab"
+    ".next/dev/static/css/app/layout.css": "d7cbe6946e8f9cd7a5cb028c5b11969e0240fcdbbab505d5eaf808c344dab396",
+    "app/admin-credit-batches.css": "6253c079cda5a830efc4c05acd887e6df8e837f33bf715ac6b5cfd62b1fa2602"
   },
   "browserVersion": "Chromium 154.0.8037.57 built on Debian GNU/Linux 13 (trixie)",
   "selectedCount": 25,
@@ -458,20 +459,64 @@
       "pixelsViewed": true
     },
     {
-      "name": "admin-credit-stock-desktop1440",
-      "path": "evidence/final-combined-ui/admin-credit-stock-desktop1440.png",
+      "name": "stock-aligned-desktop1440",
+      "path": "evidence/final-combined-ui/stock-aligned-1440x900.png",
+      "sha256": "a96c1251bd88378296ca357ecc0cea1af4a289e19672b26c42e6bf8ddf0ab2bc",
+      "captureSource": "787e983e3168bfcbd27021cf30c5233a1ccc9c24",
+      "equivalentCssSource": "41de32b",
+      "pixelsViewed": true,
       "url": "/admin/credits",
+      "state": "All codes with status/search aligned",
       "geometry": {
         "width": 1440,
-        "height": 900,
         "scrollWidth": 1425,
-        "openDialogs": []
-      },
-      "sha256": "823e60dc544236cb9f915988855444f5ff86d036c20caf48937b49cac10ef562",
-      "captureSource": "53479587bc70fe718344066d1b7678f180a36356",
-      "equivalentProductSource": "a57b229b8214d148c6fa197c0d7e2bcde639ddb9",
-      "pixelsViewed": true,
-      "state": "Assigned filter and copied fake allocation"
+        "gap": "12px",
+        "form": {
+          "top": 633.09375,
+          "bottom": 681.09375,
+          "height": 48,
+          "width": 938,
+          "margin": "0px",
+          "padding": "0px",
+          "display": "grid"
+        },
+        "input": {
+          "top": 633.09375,
+          "bottom": 681.09375,
+          "height": 48,
+          "width": 882,
+          "margin": "0px",
+          "padding": "13px 15px",
+          "display": "block"
+        },
+        "button": {
+          "top": 633.09375,
+          "bottom": 681.09375,
+          "height": 48,
+          "width": 48,
+          "margin": "0px",
+          "padding": "12px",
+          "display": "flex"
+        },
+        "label": {
+          "top": 633.09375,
+          "bottom": 681.09375,
+          "height": 48,
+          "width": 180,
+          "margin": "0px",
+          "padding": "0px",
+          "display": "grid"
+        },
+        "select": {
+          "top": 633.09375,
+          "bottom": 681.09375,
+          "height": 48,
+          "width": 180,
+          "margin": "0px",
+          "padding": "12px 14px",
+          "display": "block"
+        }
+      }
     }
   ],
   "checks": [
@@ -699,5 +744,144 @@
     "No live AI-provider evaluation or public score reveals were run.",
     "No AI/final stage visuals invented because base synthetic fixture has neither numeric provider reports nor frozen stages.",
     "No fresh per-role matrix repeated; existing backend role/privacy tests remain authoritative."
+  ],
+  "correctiveEvidence": [
+    {
+      "path": "evidence/final-combined-ui/stock-aligned-1440x900.png",
+      "sha256": "a96c1251bd88378296ca357ecc0cea1af4a289e19672b26c42e6bf8ddf0ab2bc",
+      "captureSource": "787e983e3168bfcbd27021cf30c5233a1ccc9c24",
+      "equivalentCssSource": "41de32b",
+      "pixelsViewed": true
+    },
+    {
+      "path": "evidence/final-combined-ui/stock-aligned-390x844.png",
+      "sha256": "2fa06e07dc12628a77b697fd4d11e52b879798394c449aa737124ac871557d0f",
+      "captureSource": "787e983e3168bfcbd27021cf30c5233a1ccc9c24",
+      "equivalentCssSource": "41de32b",
+      "pixelsViewed": true
+    }
+  ],
+  "priorStockFramesStatus": "The earlier stock screenshots are functionally valid but visually superseded: root found a14px inherited label-margin offset after initial review. Use stock-aligned frames for final appearance.",
+  "stockAlignmentSource": "787e983e3168bfcbd27021cf30c5233a1ccc9c24",
+  "stockAlignmentRootCssSource": "41de32b",
+  "stockAlignmentChecks": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "measure": {
+        "width": 1440,
+        "scrollWidth": 1425,
+        "gap": "12px",
+        "form": {
+          "top": 633.09375,
+          "bottom": 681.09375,
+          "height": 48,
+          "width": 938,
+          "margin": "0px",
+          "padding": "0px",
+          "display": "grid"
+        },
+        "input": {
+          "top": 633.09375,
+          "bottom": 681.09375,
+          "height": 48,
+          "width": 882,
+          "margin": "0px",
+          "padding": "13px 15px",
+          "display": "block"
+        },
+        "button": {
+          "top": 633.09375,
+          "bottom": 681.09375,
+          "height": 48,
+          "width": 48,
+          "margin": "0px",
+          "padding": "12px",
+          "display": "flex"
+        },
+        "label": {
+          "top": 633.09375,
+          "bottom": 681.09375,
+          "height": 48,
+          "width": 180,
+          "margin": "0px",
+          "padding": "0px",
+          "display": "grid"
+        },
+        "select": {
+          "top": 633.09375,
+          "bottom": 681.09375,
+          "height": 48,
+          "width": 180,
+          "margin": "0px",
+          "padding": "12px 14px",
+          "display": "block"
+        }
+      },
+      "keyboardOrder": "input→Search→status",
+      "touchSearch": true,
+      "statusKeyboardFocus": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "measure": {
+        "width": 390,
+        "scrollWidth": 375,
+        "gap": "12px",
+        "form": {
+          "top": 661.390625,
+          "bottom": 709.390625,
+          "height": 48,
+          "width": 293,
+          "margin": "0px",
+          "padding": "0px",
+          "display": "grid"
+        },
+        "input": {
+          "top": 661.390625,
+          "bottom": 709.390625,
+          "height": 48,
+          "width": 237,
+          "margin": "0px",
+          "padding": "13px 15px",
+          "display": "block"
+        },
+        "button": {
+          "top": 661.390625,
+          "bottom": 709.390625,
+          "height": 48,
+          "width": 48,
+          "margin": "0px",
+          "padding": "12px",
+          "display": "flex"
+        },
+        "label": {
+          "top": 721.390625,
+          "bottom": 769.390625,
+          "height": 48,
+          "width": 293,
+          "margin": "0px",
+          "padding": "0px",
+          "display": "grid"
+        },
+        "select": {
+          "top": 721.390625,
+          "bottom": 769.390625,
+          "height": 48,
+          "width": 293,
+          "margin": "0px",
+          "padding": "12px 14px",
+          "display": "block"
+        }
+      },
+      "keyboardOrder": "input→Search→status",
+      "touchSearch": true,
+      "statusKeyboardFocus": true
+    }
   ]
 }
