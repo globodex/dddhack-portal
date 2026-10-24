@@ -61,6 +61,7 @@ const labels: Record<string, string> = {
   "request-team": "Request team membership",
   "create-workspace-team": "Create team",
   "reevaluate-project": "Request AI re-evaluation",
+  settings: "Save judging setup?",
 };
 export function confirmationFor(
   action: string,
@@ -85,6 +86,10 @@ export function confirmationFor(
   ].includes(action);
   const title = labels[action] || action.replaceAll("-", " ");
   let description = "";
+  if (action === "settings")
+    return { title, target: "Judging setup", description: "Save these judging settings. Scores stay private.", confirmLabel: "Save settings", critical: false };
+  if (action === "reevaluate-project")
+    return { title: "Run AI evaluation?", target, description: "Evaluate this version using its approved source snapshot.", confirmLabel: "Run evaluation", critical: false };
   if (action === "admin-add-team-member")
     return { title, target: `${values.email} → ${target}`, description: "They will gain access to this team's private details.", confirmLabel: "Add member", critical: false };
   if (action === "admin-rename-team")
@@ -148,6 +153,7 @@ export function confirmationFor(
     description,
     confirmLabel:
       action === "transfer-team-leader" ? "Transfer crown" :
+      action === "review-project" ? "Save review" :
       action === "freeze-results" ? "Freeze scores" :
       action === "reveal-ai-scores" ? "Reveal AI scores" :
       action === "reveal-final-scores" ? "Reveal final scores" :
