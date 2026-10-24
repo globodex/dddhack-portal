@@ -50,5 +50,26 @@
   "serversStopped": [
     3002,
     8792
-  ]
+  ],
+  "stableFrameFixSource": "12de812a11b3109c96beebddc1dedc1fe204334f",
+  "integratedGeometrySource": "667222d5cd2680ec872860b971f32ecb7be42249",
+  "stableGeometryReport": "stable-geometry.json",
+  "outerDialogMovementBusyAndError": {
+    "top": 0,
+    "height": 0,
+    "viewports": [
+      "1440x900",
+      "390x844",
+      "320x480",
+      "390x480"
+    ]
+  },
+  "shortIntroEnd": {
+    "characters": 993,
+    "footerClearancePx": 20,
+    "ctaHitTest": true,
+    "tabShiftTab": true,
+    "axTrees": "geometry-short/accessible-tree-*.json",
+    "realAssistiveTechnology": "unverified"
+  }
 }

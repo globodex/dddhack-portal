@@ -1,0 +1,1211 @@
+{
+  "intro": {
+    "nodes": [
+      {
+        "nodeId": "27",
+        "ignored": false,
+        "role": {
+          "type": "role",
+          "value": "textbox"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 170
+        },
+        "name": {
+          "type": "computedString",
+          "value": "Team intro",
+          "sources": [
+            {
+              "type": "relatedElement",
+              "attribute": "aria-labelledby"
+            },
+            {
+              "type": "attribute",
+              "attribute": "aria-label"
+            },
+            {
+              "type": "relatedElement",
+              "value": {
+                "type": "computedString",
+                "value": "Team intro"
+              },
+              "nativeSource": "labelwrapped",
+              "nativeSourceValue": {
+                "type": "nodeList",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 78,
+                    "text": "Team intro"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "attribute",
+              "attribute": "title",
+              "superseded": true
+            },
+            {
+              "type": "placeholder",
+              "attribute": "placeholder",
+              "superseded": true
+            },
+            {
+              "type": "placeholder",
+              "attribute": "aria-placeholder",
+              "superseded": true
+            },
+            {
+              "type": "attribute",
+              "attribute": "title",
+              "superseded": true
+            }
+          ]
+        },
+        "value": {
+          "type": "string",
+          "value": "https://example.test/long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-"
+        },
+        "properties": [
+          {
+            "name": "invalid",
+            "value": {
+              "type": "token",
+              "value": "false"
+            }
+          },
+          {
+            "name": "focusable",
+            "value": {
+              "type": "booleanOrUndefined",
+              "value": true
+            }
+          },
+          {
+            "name": "focused",
+            "value": {
+              "type": "booleanOrUndefined",
+              "value": true
+            }
+          },
+          {
+            "name": "editable",
+            "value": {
+              "type": "token",
+              "value": "plaintext"
+            }
+          },
+          {
+            "name": "settable",
+            "value": {
+              "type": "booleanOrUndefined",
+              "value": true
+            }
+          },
+          {
+            "name": "multiline",
+            "value": {
+              "type": "boolean",
+              "value": true
+            }
+          },
+          {
+            "name": "readonly",
+            "value": {
+              "type": "boolean",
+              "value": false
+            }
+          },
+          {
+            "name": "required",
+            "value": {
+              "type": "boolean",
+              "value": false
+            }
+          },
+          {
+            "name": "labelledby",
+            "value": {
+              "type": "nodeList",
+              "relatedNodes": [
+                {
+                  "backendDOMNodeId": 78,
+                  "text": "Team intro"
+                }
+              ]
+            }
+          }
+        ],
+        "parentId": "78",
+        "childIds": [
+          "610"
+        ],
+        "backendDOMNodeId": 27
+      },
+      {
+        "nodeId": "610",
+        "ignored": false,
+        "role": {
+          "type": "role",
+          "value": "generic"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 88
+        },
+        "name": {
+          "type": "computedString",
+          "value": "",
+          "sources": [
+            {
+              "type": "relatedElement",
+              "attribute": "aria-labelledby"
+            },
+            {
+              "type": "attribute",
+              "attribute": "aria-label"
+            }
+          ]
+        },
+        "properties": [
+          {
+            "name": "editable",
+            "value": {
+              "type": "token",
+              "value": "plaintext"
+            }
+          }
+        ],
+        "parentId": "27",
+        "childIds": [
+          "883"
+        ],
+        "backendDOMNodeId": 610
+      },
+      {
+        "nodeId": "78",
+        "ignored": false,
+        "role": {
+          "type": "internalRole",
+          "value": "LabelText"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 104
+        },
+        "name": {
+          "type": "computedString",
+          "value": "",
+          "sources": [
+            {
+              "type": "relatedElement",
+              "attribute": "aria-labelledby"
+            },
+            {
+              "type": "attribute",
+              "attribute": "aria-label"
+            },
+            {
+              "type": "attribute",
+              "attribute": "title"
+            }
+          ]
+        },
+        "properties": [],
+        "parentId": "76",
+        "childIds": [
+          "79",
+          "27"
+        ],
+        "backendDOMNodeId": 78
+      },
+      {
+        "nodeId": "76",
+        "ignored": true,
+        "ignoredReasons": [
+          {
+            "name": "uninteresting",
+            "value": {
+              "type": "boolean",
+              "value": true
+            }
+          }
+        ],
+        "role": {
+          "type": "role",
+          "value": "none"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 0
+        },
+        "parentId": "72",
+        "childIds": [
+          "77",
+          "78"
+        ],
+        "backendDOMNodeId": 76
+      },
+      {
+        "nodeId": "72",
+        "ignored": false,
+        "role": {
+          "type": "role",
+          "value": "group"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 93
+        },
+        "name": {
+          "type": "computedString",
+          "value": "Team details",
+          "sources": [
+            {
+              "type": "relatedElement",
+              "attribute": "aria-labelledby"
+            },
+            {
+              "type": "attribute",
+              "attribute": "aria-label"
+            },
+            {
+              "type": "relatedElement",
+              "value": {
+                "type": "computedString",
+                "value": "Team details"
+              },
+              "nativeSource": "legend",
+              "nativeSourceValue": {
+                "type": "nodeList",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 73,
+                    "text": "Team details"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "attribute",
+              "attribute": "title",
+              "superseded": true
+            }
+          ]
+        },
+        "properties": [
+          {
+            "name": "invalid",
+            "value": {
+              "type": "token",
+              "value": "false"
+            }
+          },
+          {
+            "name": "labelledby",
+            "value": {
+              "type": "nodeList",
+              "relatedNodes": [
+                {
+                  "backendDOMNodeId": 73,
+                  "text": "Team details"
+                }
+              ]
+            }
+          }
+        ],
+        "parentId": "36",
+        "childIds": [
+          "73",
+          "75",
+          "76"
+        ],
+        "backendDOMNodeId": 72
+      },
+      {
+        "nodeId": "36",
+        "ignored": false,
+        "role": {
+          "type": "role",
+          "value": "generic"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 88
+        },
+        "name": {
+          "type": "computedString",
+          "value": "",
+          "sources": [
+            {
+              "type": "relatedElement",
+              "attribute": "aria-labelledby"
+            },
+            {
+              "type": "attribute",
+              "attribute": "aria-label"
+            }
+          ]
+        },
+        "properties": [],
+        "parentId": "26",
+        "childIds": [
+          "72"
+        ],
+        "backendDOMNodeId": 36
+      },
+      {
+        "nodeId": "26",
+        "ignored": false,
+        "role": {
+          "type": "role",
+          "value": "form"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 87
+        },
+        "name": {
+          "type": "computedString",
+          "value": "Create your team",
+          "sources": [
+            {
+              "type": "relatedElement",
+              "value": {
+                "type": "computedString",
+                "value": "Create your team"
+              },
+              "attribute": "aria-labelledby",
+              "attributeValue": {
+                "type": "idrefList",
+                "value": "_r_0_",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 571,
+                    "idref": "_r_0_",
+                    "text": "Create your team"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "attribute",
+              "attribute": "aria-label",
+              "superseded": true
+            },
+            {
+              "type": "attribute",
+              "attribute": "title",
+              "superseded": true
+            }
+          ]
+        },
+        "properties": [
+          {
+            "name": "labelledby",
+            "value": {
+              "type": "nodeList",
+              "relatedNodes": [
+                {
+                  "backendDOMNodeId": 571,
+                  "idref": "_r_0_",
+                  "text": "Create your team"
+                }
+              ]
+            }
+          }
+        ],
+        "parentId": "37",
+        "childIds": [
+          "70",
+          "36",
+          "71"
+        ],
+        "backendDOMNodeId": 26
+      },
+      {
+        "nodeId": "37",
+        "ignored": false,
+        "role": {
+          "type": "role",
+          "value": "dialog"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 35
+        },
+        "name": {
+          "type": "computedString",
+          "value": "Create your team",
+          "sources": [
+            {
+              "type": "relatedElement",
+              "value": {
+                "type": "computedString",
+                "value": "Create your team"
+              },
+              "attribute": "aria-labelledby",
+              "attributeValue": {
+                "type": "idrefList",
+                "value": "_r_0_",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 571,
+                    "idref": "_r_0_",
+                    "text": "Create your team"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "attribute",
+              "attribute": "aria-label",
+              "superseded": true
+            },
+            {
+              "type": "attribute",
+              "attribute": "title",
+              "superseded": true
+            }
+          ]
+        },
+        "properties": [
+          {
+            "name": "focusable",
+            "value": {
+              "type": "booleanOrUndefined",
+              "value": true
+            }
+          },
+          {
+            "name": "modal",
+            "value": {
+              "type": "boolean",
+              "value": true
+            }
+          },
+          {
+            "name": "labelledby",
+            "value": {
+              "type": "nodeList",
+              "relatedNodes": [
+                {
+                  "backendDOMNodeId": 571,
+                  "idref": "_r_0_",
+                  "text": "Create your team"
+                }
+              ]
+            }
+          }
+        ],
+        "parentId": "42",
+        "childIds": [
+          "26"
+        ],
+        "backendDOMNodeId": 37
+      },
+      {
+        "nodeId": "42",
+        "ignored": true,
+        "ignoredReasons": [
+          {
+            "name": "activeModalDialog",
+            "value": {
+              "type": "idref",
+              "relatedNodes": [
+                {
+                  "backendDOMNodeId": 37
+                }
+              ]
+            }
+          }
+        ],
+        "role": {
+          "type": "role",
+          "value": "none"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 0
+        },
+        "parentId": "2",
+        "childIds": [
+          "14",
+          "37",
+          "628",
+          "647"
+        ],
+        "backendDOMNodeId": 42
+      },
+      {
+        "nodeId": "2",
+        "ignored": false,
+        "role": {
+          "type": "internalRole",
+          "value": "RootWebArea"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 144
+        },
+        "name": {
+          "type": "computedString",
+          "value": "DevDay Exchange Community Hackathon: New Delhi",
+          "sources": [
+            {
+              "type": "relatedElement",
+              "attribute": "aria-labelledby"
+            },
+            {
+              "type": "attribute",
+              "attribute": "aria-label"
+            },
+            {
+              "type": "attribute",
+              "attribute": "aria-label",
+              "superseded": true
+            },
+            {
+              "type": "relatedElement",
+              "value": {
+                "type": "computedString",
+                "value": "DevDay Exchange Community Hackathon: New Delhi"
+              },
+              "nativeSource": "title"
+            }
+          ]
+        },
+        "properties": [
+          {
+            "name": "focusable",
+            "value": {
+              "type": "booleanOrUndefined",
+              "value": true
+            }
+          },
+          {
+            "name": "focused",
+            "value": {
+              "type": "booleanOrUndefined",
+              "value": true
+            }
+          },
+          {
+            "name": "url",
+            "value": {
+              "type": "string",
+              "value": "http://localhost:3000/discover/teams"
+            }
+          }
+        ],
+        "childIds": [
+          "42"
+        ],
+        "backendDOMNodeId": 2,
+        "frameId": "AD573AFDA42449A8A6E65F6C55EBA772"
+      }
+    ]
+  },
+  "name": {
+    "nodes": [
+      {
+        "nodeId": "25",
+        "ignored": false,
+        "role": {
+          "type": "role",
+          "value": "textbox"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 170
+        },
+        "name": {
+          "type": "computedString",
+          "value": "Team name",
+          "sources": [
+            {
+              "type": "relatedElement",
+              "attribute": "aria-labelledby"
+            },
+            {
+              "type": "attribute",
+              "attribute": "aria-label"
+            },
+            {
+              "type": "relatedElement",
+              "value": {
+                "type": "computedString",
+                "value": "Team name"
+              },
+              "nativeSource": "labelwrapped",
+              "nativeSourceValue": {
+                "type": "nodeList",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 77,
+                    "text": "Team name "
+                  }
+                ]
+              }
+            },
+            {
+              "type": "attribute",
+              "attribute": "title",
+              "superseded": true
+            },
+            {
+              "type": "placeholder",
+              "attribute": "placeholder",
+              "superseded": true
+            },
+            {
+              "type": "placeholder",
+              "attribute": "aria-placeholder",
+              "superseded": true
+            },
+            {
+              "type": "attribute",
+              "attribute": "title",
+              "superseded": true
+            }
+          ]
+        },
+        "value": {
+          "type": "string",
+          "value": "Synthetic Geometry Check"
+        },
+        "properties": [
+          {
+            "name": "invalid",
+            "value": {
+              "type": "token",
+              "value": "false"
+            }
+          },
+          {
+            "name": "focusable",
+            "value": {
+              "type": "booleanOrUndefined",
+              "value": true
+            }
+          },
+          {
+            "name": "editable",
+            "value": {
+              "type": "token",
+              "value": "plaintext"
+            }
+          },
+          {
+            "name": "settable",
+            "value": {
+              "type": "booleanOrUndefined",
+              "value": true
+            }
+          },
+          {
+            "name": "multiline",
+            "value": {
+              "type": "boolean",
+              "value": false
+            }
+          },
+          {
+            "name": "readonly",
+            "value": {
+              "type": "boolean",
+              "value": false
+            }
+          },
+          {
+            "name": "required",
+            "value": {
+              "type": "boolean",
+              "value": true
+            }
+          },
+          {
+            "name": "labelledby",
+            "value": {
+              "type": "nodeList",
+              "relatedNodes": [
+                {
+                  "backendDOMNodeId": 77,
+                  "text": "Team name "
+                }
+              ]
+            }
+          }
+        ],
+        "parentId": "77",
+        "childIds": [
+          "609"
+        ],
+        "backendDOMNodeId": 25
+      },
+      {
+        "nodeId": "609",
+        "ignored": false,
+        "role": {
+          "type": "role",
+          "value": "generic"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 88
+        },
+        "name": {
+          "type": "computedString",
+          "value": "",
+          "sources": [
+            {
+              "type": "relatedElement",
+              "attribute": "aria-labelledby"
+            },
+            {
+              "type": "attribute",
+              "attribute": "aria-label"
+            }
+          ]
+        },
+        "properties": [
+          {
+            "name": "editable",
+            "value": {
+              "type": "token",
+              "value": "plaintext"
+            }
+          }
+        ],
+        "parentId": "25",
+        "childIds": [
+          "882"
+        ],
+        "backendDOMNodeId": 609
+      },
+      {
+        "nodeId": "77",
+        "ignored": false,
+        "role": {
+          "type": "internalRole",
+          "value": "LabelText"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 104
+        },
+        "name": {
+          "type": "computedString",
+          "value": "",
+          "sources": [
+            {
+              "type": "relatedElement",
+              "attribute": "aria-labelledby"
+            },
+            {
+              "type": "attribute",
+              "attribute": "aria-label"
+            },
+            {
+              "type": "attribute",
+              "attribute": "title"
+            }
+          ]
+        },
+        "properties": [],
+        "parentId": "76",
+        "childIds": [
+          "607",
+          "25"
+        ],
+        "backendDOMNodeId": 77
+      },
+      {
+        "nodeId": "76",
+        "ignored": true,
+        "ignoredReasons": [
+          {
+            "name": "uninteresting",
+            "value": {
+              "type": "boolean",
+              "value": true
+            }
+          }
+        ],
+        "role": {
+          "type": "role",
+          "value": "none"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 0
+        },
+        "parentId": "72",
+        "childIds": [
+          "77",
+          "78"
+        ],
+        "backendDOMNodeId": 76
+      },
+      {
+        "nodeId": "72",
+        "ignored": false,
+        "role": {
+          "type": "role",
+          "value": "group"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 93
+        },
+        "name": {
+          "type": "computedString",
+          "value": "Team details",
+          "sources": [
+            {
+              "type": "relatedElement",
+              "attribute": "aria-labelledby"
+            },
+            {
+              "type": "attribute",
+              "attribute": "aria-label"
+            },
+            {
+              "type": "relatedElement",
+              "value": {
+                "type": "computedString",
+                "value": "Team details"
+              },
+              "nativeSource": "legend",
+              "nativeSourceValue": {
+                "type": "nodeList",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 73,
+                    "text": "Team details"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "attribute",
+              "attribute": "title",
+              "superseded": true
+            }
+          ]
+        },
+        "properties": [
+          {
+            "name": "invalid",
+            "value": {
+              "type": "token",
+              "value": "false"
+            }
+          },
+          {
+            "name": "labelledby",
+            "value": {
+              "type": "nodeList",
+              "relatedNodes": [
+                {
+                  "backendDOMNodeId": 73,
+                  "text": "Team details"
+                }
+              ]
+            }
+          }
+        ],
+        "parentId": "36",
+        "childIds": [
+          "73",
+          "75",
+          "76"
+        ],
+        "backendDOMNodeId": 72
+      },
+      {
+        "nodeId": "36",
+        "ignored": false,
+        "role": {
+          "type": "role",
+          "value": "generic"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 88
+        },
+        "name": {
+          "type": "computedString",
+          "value": "",
+          "sources": [
+            {
+              "type": "relatedElement",
+              "attribute": "aria-labelledby"
+            },
+            {
+              "type": "attribute",
+              "attribute": "aria-label"
+            }
+          ]
+        },
+        "properties": [],
+        "parentId": "26",
+        "childIds": [
+          "72"
+        ],
+        "backendDOMNodeId": 36
+      },
+      {
+        "nodeId": "26",
+        "ignored": false,
+        "role": {
+          "type": "role",
+          "value": "form"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 87
+        },
+        "name": {
+          "type": "computedString",
+          "value": "Create your team",
+          "sources": [
+            {
+              "type": "relatedElement",
+              "value": {
+                "type": "computedString",
+                "value": "Create your team"
+              },
+              "attribute": "aria-labelledby",
+              "attributeValue": {
+                "type": "idrefList",
+                "value": "_r_0_",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 571,
+                    "idref": "_r_0_",
+                    "text": "Create your team"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "attribute",
+              "attribute": "aria-label",
+              "superseded": true
+            },
+            {
+              "type": "attribute",
+              "attribute": "title",
+              "superseded": true
+            }
+          ]
+        },
+        "properties": [
+          {
+            "name": "labelledby",
+            "value": {
+              "type": "nodeList",
+              "relatedNodes": [
+                {
+                  "backendDOMNodeId": 571,
+                  "idref": "_r_0_",
+                  "text": "Create your team"
+                }
+              ]
+            }
+          }
+        ],
+        "parentId": "37",
+        "childIds": [
+          "70",
+          "36",
+          "71"
+        ],
+        "backendDOMNodeId": 26
+      },
+      {
+        "nodeId": "37",
+        "ignored": false,
+        "role": {
+          "type": "role",
+          "value": "dialog"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 35
+        },
+        "name": {
+          "type": "computedString",
+          "value": "Create your team",
+          "sources": [
+            {
+              "type": "relatedElement",
+              "value": {
+                "type": "computedString",
+                "value": "Create your team"
+              },
+              "attribute": "aria-labelledby",
+              "attributeValue": {
+                "type": "idrefList",
+                "value": "_r_0_",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 571,
+                    "idref": "_r_0_",
+                    "text": "Create your team"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "attribute",
+              "attribute": "aria-label",
+              "superseded": true
+            },
+            {
+              "type": "attribute",
+              "attribute": "title",
+              "superseded": true
+            }
+          ]
+        },
+        "properties": [
+          {
+            "name": "focusable",
+            "value": {
+              "type": "booleanOrUndefined",
+              "value": true
+            }
+          },
+          {
+            "name": "modal",
+            "value": {
+              "type": "boolean",
+              "value": true
+            }
+          },
+          {
+            "name": "labelledby",
+            "value": {
+              "type": "nodeList",
+              "relatedNodes": [
+                {
+                  "backendDOMNodeId": 571,
+                  "idref": "_r_0_",
+                  "text": "Create your team"
+                }
+              ]
+            }
+          }
+        ],
+        "parentId": "42",
+        "childIds": [
+          "26"
+        ],
+        "backendDOMNodeId": 37
+      },
+      {
+        "nodeId": "42",
+        "ignored": true,
+        "ignoredReasons": [
+          {
+            "name": "activeModalDialog",
+            "value": {
+              "type": "idref",
+              "relatedNodes": [
+                {
+                  "backendDOMNodeId": 37
+                }
+              ]
+            }
+          }
+        ],
+        "role": {
+          "type": "role",
+          "value": "none"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 0
+        },
+        "parentId": "2",
+        "childIds": [
+          "14",
+          "37",
+          "628",
+          "647"
+        ],
+        "backendDOMNodeId": 42
+      },
+      {
+        "nodeId": "2",
+        "ignored": false,
+        "role": {
+          "type": "internalRole",
+          "value": "RootWebArea"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 144
+        },
+        "name": {
+          "type": "computedString",
+          "value": "DevDay Exchange Community Hackathon: New Delhi",
+          "sources": [
+            {
+              "type": "relatedElement",
+              "attribute": "aria-labelledby"
+            },
+            {
+              "type": "attribute",
+              "attribute": "aria-label"
+            },
+            {
+              "type": "attribute",
+              "attribute": "aria-label",
+              "superseded": true
+            },
+            {
+              "type": "relatedElement",
+              "value": {
+                "type": "computedString",
+                "value": "DevDay Exchange Community Hackathon: New Delhi"
+              },
+              "nativeSource": "title"
+            }
+          ]
+        },
+        "properties": [
+          {
+            "name": "focusable",
+            "value": {
+              "type": "booleanOrUndefined",
+              "value": true
+            }
+          },
+          {
+            "name": "focused",
+            "value": {
+              "type": "booleanOrUndefined",
+              "value": true
+            }
+          },
+          {
+            "name": "url",
+            "value": {
+              "type": "string",
+              "value": "http://localhost:3000/discover/teams"
+            }
+          }
+        ],
+        "childIds": [
+          "42"
+        ],
+        "backendDOMNodeId": 2,
+        "frameId": "AD573AFDA42449A8A6E65F6C55EBA772"
+      }
+    ]
+  }
+}

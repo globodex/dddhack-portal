@@ -1,3 +1,5 @@
+Final layout update: source `12de812a11b3109c96beebddc1dedc1fe204334f`, verified in integrated root `667222d5cd2680ec872860b971f32ecb7be42249`. [Stable geometry report](stable-geometry.json) records exactly zero outer-dialog movement during busy and 503 error states at desktop, full mobile and both short mobile widths. [320 px final-line error state](geometry-short/create-team-320x480-error.png) and [390 px final-line error state](geometry-short/create-team-390x480-error.png) show the focused end of the 993-character intro, with 20 px clearance above the footer. CTA hit testing and Tab/Shift+Tab passed. Captured Chromium AX trees expose Team intro/value and required Team name semantics; actual screen-reader use remains unverified. All browser sessions are closed.
+
 # Team creation dialog repair
 
 Final runtime source: `c8f42a5f91aa6414cf11be4bd8c51f7329e769ad`. Normal viewport screenshots were refreshed on this source after the first checkpoint. `b472b4fb390f96763816fc98ef17270efeb54f5d` restores POST, inert and busy hydration guards; `c8f42a5` focuses the close control once those guards unlock.
