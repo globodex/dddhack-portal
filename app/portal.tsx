@@ -2333,6 +2333,7 @@ export function Submission({
     set(kind, "");
   };
   const save = async (submit = false) => {
+    onInteraction?.();
     if (!canCommit || saving.current || processingMedia) return;
     const invalidMedia = submit ? (fieldErrors.banner ? "banner" : fieldErrors.logo ? "logo" : undefined) : undefined;
     if (invalidMedia) {
@@ -2451,6 +2452,7 @@ export function Submission({
         method="post"
         inert={!hydrated}
         aria-busy={!hydrated || busy}
+        onFocusCapture={onInteraction}
         onSubmit={(e) => {
           e.preventDefault();
           if (step < 3) next();
