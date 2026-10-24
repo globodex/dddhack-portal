@@ -201,6 +201,7 @@ dialog::backdrop { background: #20232066; }
 .mobile-navigation nav > .navigation-logout { color: #b12d26 !important; }
 .app-shell .account-controls .account-logout:hover,
 .mobile-navigation nav > .navigation-logout:hover { color: #8f211c; background: #faebe6; }
+.public-project-shell .public-header nav > a[aria-current="page"] { color: #006b43; }
 @media (max-width: 1199px) {
   .app-shell.onboarding-shell { min-height: 100svh; }
   .app-shell.workspace-shell > .main { width: 100%; padding: 28px 24px 48px; }
