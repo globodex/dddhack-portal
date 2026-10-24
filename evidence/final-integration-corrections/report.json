@@ -1,0 +1,294 @@
+{
+  "source": "f62d345238d28276b9a51785d1e0d1e571c12d76",
+  "syntheticOnly": true,
+  "physicalDevice": false,
+  "writes": [],
+  "blocked": [],
+  "screenshots": [
+    {
+      "name": "submissions",
+      "path": "/admin/submissions",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "submissions-1440x900.png",
+      "source": "f62d345238d28276b9a51785d1e0d1e571c12d76"
+    },
+    {
+      "name": "submissions",
+      "path": "/admin/submissions",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "submissions-expanded-1440x900.png",
+      "source": "f62d345238d28276b9a51785d1e0d1e571c12d76"
+    },
+    {
+      "name": "rules",
+      "path": "/rules",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "rules-1440x900.png",
+      "source": "f62d345238d28276b9a51785d1e0d1e571c12d76"
+    },
+    {
+      "name": "submissions",
+      "path": "/admin/submissions",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "submissions-768x1024.png",
+      "source": "f62d345238d28276b9a51785d1e0d1e571c12d76"
+    },
+    {
+      "name": "submissions",
+      "path": "/admin/submissions",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "submissions-expanded-768x1024.png",
+      "source": "f62d345238d28276b9a51785d1e0d1e571c12d76"
+    },
+    {
+      "name": "rules",
+      "path": "/rules",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "rules-768x1024.png",
+      "source": "f62d345238d28276b9a51785d1e0d1e571c12d76"
+    },
+    {
+      "name": "submissions",
+      "path": "/admin/submissions",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "submissions-390x844.png",
+      "source": "f62d345238d28276b9a51785d1e0d1e571c12d76"
+    },
+    {
+      "name": "submissions",
+      "path": "/admin/submissions",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "submissions-expanded-390x844.png",
+      "source": "f62d345238d28276b9a51785d1e0d1e571c12d76"
+    },
+    {
+      "name": "rules",
+      "path": "/rules",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "rules-390x844.png",
+      "source": "f62d345238d28276b9a51785d1e0d1e571c12d76"
+    },
+    {
+      "name": "submissions",
+      "path": "/admin/submissions",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "submissions-390x480.png",
+      "source": "f62d345238d28276b9a51785d1e0d1e571c12d76"
+    },
+    {
+      "name": "submissions",
+      "path": "/admin/submissions",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "submissions-expanded-390x480.png",
+      "source": "f62d345238d28276b9a51785d1e0d1e571c12d76"
+    },
+    {
+      "name": "rules",
+      "path": "/rules",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "rules-390x480.png",
+      "source": "f62d345238d28276b9a51785d1e0d1e571c12d76"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Submission management aligned disclosure",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "geometry": {
+        "insetLeft": 20,
+        "insetRight": 20,
+        "height": 52,
+        "parentWidth": 538.984375
+      },
+      "passed": true
+    },
+    {
+      "name": "submissions",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "httpStatus": 200,
+      "h1": [
+        "++Submissions"
+      ],
+      "passed": true
+    },
+    {
+      "name": "rules",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "httpStatus": 200,
+      "h1": [
+        "--Rules"
+      ],
+      "passed": true
+    },
+    {
+      "name": "Submission management aligned disclosure",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "geometry": {
+        "insetLeft": 20,
+        "insetRight": 20,
+        "height": 52,
+        "parentWidth": 703
+      },
+      "passed": true
+    },
+    {
+      "name": "submissions",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "httpStatus": 200,
+      "h1": [
+        "++Submissions"
+      ],
+      "passed": true
+    },
+    {
+      "name": "rules",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "httpStatus": 200,
+      "h1": [
+        "--Rules"
+      ],
+      "passed": true
+    },
+    {
+      "name": "Submission management aligned disclosure",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "geometry": {
+        "insetLeft": 20,
+        "insetRight": 20,
+        "height": 52,
+        "parentWidth": 348
+      },
+      "passed": true
+    },
+    {
+      "name": "submissions",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "httpStatus": 200,
+      "h1": [
+        "++Submissions"
+      ],
+      "passed": true
+    },
+    {
+      "name": "rules",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "httpStatus": 200,
+      "h1": [
+        "--Rules"
+      ],
+      "passed": true
+    },
+    {
+      "name": "Submission management aligned disclosure",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "geometry": {
+        "insetLeft": 20,
+        "insetRight": 20,
+        "height": 52,
+        "parentWidth": 348
+      },
+      "passed": true
+    },
+    {
+      "name": "submissions",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "httpStatus": 200,
+      "h1": [
+        "++Submissions"
+      ],
+      "passed": true
+    },
+    {
+      "name": "rules",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "httpStatus": 200,
+      "h1": [
+        "--Rules"
+      ],
+      "passed": true
+    }
+  ],
+  "accessibility": [
+    {
+      "name": "rules",
+      "violations": []
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Local development Chromium, reduced motion and emulated touch. Timing excluded while the full test suite runs.",
+    "Next development overlay hidden in captures; application layout/content are unchanged."
+  ]
+}
