@@ -130,16 +130,6 @@ const expressionNames: Record<string, string> = {
   "mixed-plus": "Mixed plus",
   "mixed-slash": "Mixed slash",
 };
-const expressionPreviewColors: Record<string, keyof typeof dotColors> = {
-  squeezed: "blue",
-  sleepy: "green",
-  plus: "purple",
-  star: "orange",
-  round: "charcoal",
-  cheerful: "grey",
-  "mixed-plus": "coral",
-  "mixed-slash": "yellow",
-};
 const paletteOrder: (keyof typeof dotColors)[] = [
   "blue",
   "green",
@@ -180,7 +170,7 @@ export function ProfileAvatarPicker({
                 onChange={() => onExpression(value)}
               />
               <DotAvatar
-                color={expressionPreviewColors[value]}
+                color={color}
                 expression={value}
                 size={40}
                 decorative
