@@ -1,0 +1,15 @@
+{
+  "source": "29d1b3658cd0f8459c3daa9abd1300b3433cf7d6",
+  "framework": "Next.js 16.4.3",
+  "traceFiles": 12,
+  "uniqueFiles": 175,
+  "forbiddenBackendEntries": [],
+  "productionAudit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  }
+}
