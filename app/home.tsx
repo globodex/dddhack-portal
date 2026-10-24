@@ -479,7 +479,7 @@ export default function Home({
               href={
                 signedIn
                   ? "/dashboard"
-                  : "/signin-with-chatgpt?return_to=%2Fdashboard"
+                  : "/signin?returnTo=%2Fdashboard"
               }
               target="_top"
             >

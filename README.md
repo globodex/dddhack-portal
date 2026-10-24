@@ -1,3 +1,19 @@
+# DDD Hack portal: Next.js and Neon migration
+
+The `main` branch migrates verified v7 (`dc92672c`) to real Next.js App Router frontend/rendering on Vercel and a separate Node.js 24 Neon Functions backend. The live Sites branch and its configuration remain untouched. No deployment or production data transfer has been performed.
+
+Browser requests stay on the frontend origin: `/api/*` proxies to Neon with a server-only trust secret. Neon verifies sessions and permissions, runs the existing portal services against Postgres through a Drizzle-defined schema and transactional adapter, and stores project images in the private `project-media` bucket. Custom SMTP magic links and Google OAuth run in the backend. No database, SMTP, Google secret, storage key or OpenAI key belongs in Vercel browser variables.
+
+See [setup contract](docs/migration/SETUP.md), [secret destinations](docs/migration/ENVIRONMENT.md) and [parallel ownership](docs/migration/OWNERSHIP.md). Existing SQLite migrations, Sites wrappers and historical release evidence remain available for comparison; they are not the new production frontend runtime.
+
+Local synthetic UI rehearsal uses two processes: `PORTAL_LOCAL_TEST=1 APP_ORIGIN=http://localhost:3000 node --import tsx neon/local-server.ts`, then `PORTAL_LOCAL_TEST=1 APP_ORIGIN=http://localhost:3000 NEON_API_ORIGIN=http://127.0.0.1:8788 PORTAL_PROXY_SECRET=local-synthetic-proxy-secret-for-nextjs npm run dev`. The local fixture adapter binds loopback and refuses production mode. Use `/local-test` to switch disposable accounts. Run `npm run build` for the real Next.js artifact.
+
+Keep backend credentials in gitignored `.env.backend.local` and frontend values in `.env.frontend.local`; never paste secrets into chat or commands. Remote database tests must target an explicitly approved synthetic branch. Versioned Postgres migrations are reviewed separately before application. OpenAI evaluation and private data egress remain gated; fixture execution does not call a provider.
+
+---
+
+## Historical Sites documentation
+
 # DevDay Exchange Community Hackathon: New Delhi
 
 The revised core is **published as public version 4** at [dddhack-portal.param3021.chatgpt.site](https://dddhack-portal.param3021.chatgpt.site). Read [the publication record](docs/CORE_PUBLICATION.md), [session/reveal/policy behavior](docs/SESSION_AND_REVEALS.md) and [visual QA limits](design-qa.md). Typecheck, 41 regression tests, official production build/artifact gate and compiled Worker smoke pass. Interactive browser/device QA remains unverified.

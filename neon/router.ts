@@ -65,17 +65,17 @@ export function createPortalBackend(env: BackendEnvironment, dependencies: Backe
     try {
       const request = trustedProxyRequest(incoming, env);
       const path = new URL(request.url).pathname;
-      if (path.startsWith("/api/auth/")) return dependencies.auth(request);
+      if (path.startsWith("/api/auth/")) return await dependencies.auth(request);
       if (path === "/api/health" && request.method === "GET")
         return Response.json({ ok: true, runtime: "neon-functions" }, { headers: privateHeaders });
       const runtime = await dependencies.runtime(request);
-      if (path === "/api/portal") return handlePortal(request, runtime);
-      if (path === "/api/export" && request.method === "GET") return handleExport(request, runtime);
-      if (path.startsWith("/api/storage/") && dependencies.storage)
-        return dependencies.storage(request, runtime);
+      if (path === "/api/portal") return await handlePortal(request, runtime);
+      if (path === "/api/export" && request.method === "GET") return await handleExport(request, runtime);
+      if ((path.startsWith("/api/storage/") || path.startsWith("/api/media/")) && dependencies.storage)
+        return await dependencies.storage(request, runtime);
       const image = /^\/api\/project-image\/([^/]+)\/(logo|banner)$/.exec(path);
       if (image && request.method === "GET")
-        return publicProjectImage(runtime.db, decodeURIComponent(image[1]), image[2], new URL(request.url).searchParams.get("version"));
+        return await publicProjectImage(runtime.db, decodeURIComponent(image[1]), image[2], new URL(request.url).searchParams.get("version"));
       return Response.json({ code: "NOT_FOUND" }, { status: 404, headers: privateHeaders });
     } catch (error) {
       return backendError(error);
