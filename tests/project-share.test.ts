@@ -90,7 +90,10 @@ test("success requires a real committed receipt, exact count, and fresh server g
   const fresh = {
     submissionAccess: { attemptsUsed: 1 },
     projectPublicPath: "/projects/small-wonder",
-    project: { slug: "DRAFT-SECRET" },
+    project: {
+      slug: "DRAFT-SECRET",
+      published_version_id: "committed-version",
+    },
   };
   assert.deepEqual(submittedProjectSuccess(result, fresh), {
     attempt: 1,
@@ -104,10 +107,11 @@ test("success requires a real committed receipt, exact count, and fresh server g
     submittedProjectSuccess(result, {
       ...fresh,
       submissionAccess: { attemptsUsed: 3 },
+      project: { published_version_id: "newer-committed-version" },
     }),
     {
       attempt: 1,
-      publicPath: "/projects/small-wonder",
+      publicPath: null,
     },
     "An idempotent receipt keeps its own committed attempt instead of a newer workspace count",
   );

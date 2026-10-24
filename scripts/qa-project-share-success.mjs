@@ -410,6 +410,7 @@ try {
   for (const variant of [
     "portal-private",
     "portal-public",
+    "portal-version-mismatch",
     "portal-refresh-failure",
     "portal-submit-failure",
   ]) {
@@ -428,19 +429,43 @@ try {
             ...fixture,
             project: {
               ...fixture.project,
-              published_version_id: "synthetic_commit",
+              published_version_id:
+                variant === "portal-version-mismatch"
+                  ? "synthetic_newer"
+                  : "synthetic_commit",
               revision: 2,
             },
-            attempts: [
-              {
-                id: "synthetic_commit",
-                attempt: 1,
-                created_at: "2026-10-24T12:00:00Z",
-              },
-            ],
-            submissionAccess: { ...fixture.submissionAccess, attemptsUsed: 1 },
-            projectPublicPath:
-              variant === "portal-public" ? "/projects/small-wonder" : null,
+            attempts:
+              variant === "portal-version-mismatch"
+                ? [3, 2, 1].map((attempt) => ({
+                    id:
+                      attempt === 3
+                        ? "synthetic_newer"
+                        : attempt === 1
+                          ? "synthetic_commit"
+                          : "synthetic_second",
+                    attempt,
+                    created_at: "2026-10-24T12:00:00Z",
+                  }))
+                : [
+                    {
+                      id: "synthetic_commit",
+                      attempt: 1,
+                      created_at: "2026-10-24T12:00:00Z",
+                    },
+                  ],
+            submissionAccess: {
+              ...fixture.submissionAccess,
+              attemptsUsed: variant === "portal-version-mismatch" ? 3 : 1,
+              canCommit: variant !== "portal-version-mismatch",
+              locked: variant === "portal-version-mismatch",
+            },
+            projectPublicPath: [
+              "portal-public",
+              "portal-version-mismatch",
+            ].includes(variant)
+              ? "/projects/small-wonder"
+              : null,
           }
         : fixture;
       return route.fulfill({

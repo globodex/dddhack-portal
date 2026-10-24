@@ -84,8 +84,10 @@ export function submittedProjectSuccess(
   if (!Number.isInteger(attempt) || attempt < 1 || attempt > 3) return null;
   return {
     attempt,
-    publicPath: validProjectPublicPath(fresh?.projectPublicPath)
-      ? fresh!.projectPublicPath
-      : null,
+    publicPath:
+      fresh?.project?.published_version_id === result.versionId &&
+      validProjectPublicPath(fresh?.projectPublicPath)
+        ? fresh!.projectPublicPath
+        : null,
   };
 }
