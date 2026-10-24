@@ -1,0 +1,13 @@
+✔ legacy setup API remains auditable while Settings derives operations without enable controls (355.088465ms)
+✔ false, missing, forged or mismatched acknowledgements/previews cannot initialize or change policy (131.446432ms)
+✔ owner role, authenticated identity and same-origin request protection apply to preview, save and scope activation (143.643499ms)
+✔ configuration preserves custom dates, active scopes, weights and unresolved judging flags; stale saves do not duplicate history (172.384411ms)
+✔ retained legacy setup component stays unmounted from Settings and preserves its own validation contract (10.574963ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2748.304099

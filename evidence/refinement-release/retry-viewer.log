@@ -1,0 +1,20 @@
+✔ all signed-in Viewer workspace entry points render one registration invitation, without errors or participant actions (1261.55186ms)
+✔ removed access has an organizer contact instead of suggesting re-registration will bypass it (6.395696ms)
+✔ real server/session failures render immediately with accessible recovery and no misleading Viewer or simultaneous skeleton (21.247944ms)
+✔ Not registered filter is an admin option and matches separate Viewer records without classifying ordinary registrations (9.667188ms)
+✔ Viewer navigation includes discovery and public projects without workspace destinations (9.037751ms)
+✔ public landing keeps its approved static content available during a failed refresh (40.43986ms)
+✔ sqlite: authenticated Viewer has a narrow private-route registration projection, never participant writes or removed access (287.272111ms)
+✔ sqlite: admin add refreshes the unchanged authenticated Viewer and registration-state delta without approval or check-in (238.869459ms)
+✔ sqlite: registered-only eligibility stays separate from approval and public Viewer payloads omit all private fields (117.193878ms)
+✔ postgres: authenticated Viewer has a narrow private-route registration projection, never participant writes or removed access (5386.403946ms)
+✔ postgres: admin add refreshes the unchanged authenticated Viewer and registration-state delta without approval or check-in (3427.320637ms)
+✔ postgres: registered-only eligibility stays separate from approval and public Viewer payloads omit all private fields (3605.790557ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 29115.327979

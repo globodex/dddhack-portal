@@ -1,0 +1,20 @@
+▶ combined synthetic journey: profile, membership, locked idea, check-in, drafts, three versions, review and public engagement
+  ✔ profile save persists private details and explicit public consent (31.110602ms)
+  ✔ request acceptance gives one team membership and teammate-only contact (21.452663ms)
+  ✔ idea and roster lock together before synthetic operational setup (18.27086ms)
+  ✔ admin check-in allocates one personal credit and nonleader cannot commit (21.740526ms)
+  ✔ draft consumes no attempt, stale revision fails, commit retry is idempotent (29.819671ms)
+  ✔ queued offline verification preserves submission and waits for human review (13.027665ms)
+  ✔ offline repository evidence and private review publish only safe project fields (28.532386ms)
+  ✔ parallel vote retries stay unique and literal comment is preserved (19.877451ms)
+  ✔ new versions require current review and third commit locks edits without changing history (47.784326ms)
+✔ combined synthetic journey: profile, membership, locked idea, check-in, drafts, three versions, review and public engagement (414.80679ms)
+✔ HTTP flow protects synthetic profile writes, privacy headers, errors and anonymous reads (159.557177ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2198.202173

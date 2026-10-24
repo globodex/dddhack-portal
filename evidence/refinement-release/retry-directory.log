@@ -1,0 +1,15 @@
+✔ 300-person / 90-team directories use bounded queries and preserve private/public projections (564.948426ms)
+ℹ /admin/participants: 16 SQL statements on the unchanged 300/90 assignment
+ℹ /admin/teams: 17 SQL statements on the unchanged 300/90 assignment
+ℹ /discover/teams: 12 SQL statements on the unchanged 300/90 assignment
+✔ bulk team facts match authoritative status, avoid fan-out and re-read attendance, override and soft-removal changes (460.851919ms)
+✔ bulk people retain absence/override precedence, removal visibility and fresh next-request state (312.972577ms)
+✔ submission lists batch immutable metadata while retaining assignment and removal boundaries (277.634526ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4669.065556

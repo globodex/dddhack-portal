@@ -1,0 +1,18 @@
+✔ combined upgrade: old 0005 stock plan rejects an existing 0101 ledger without partial writes (9169.855619ms)
+ℹ Reproduced MIGRATION_OUT_OF_ORDER: 0005_credit_stock.sql against the real seven-entry combined ledger ending0101; ledger/data unchanged
+✔ combined upgrade: production loader preserves the nine-entry historical ordered prefix with unchanged SQL checksums (12.437477ms)
+✔ combined upgrade: append exactly0102/0103 to existing auth/evaluation ledger, preserve stock/assignment/media/auth rows, repeat[] (8664.695654ms)
+ℹ Applied[0102_credit_stock.sql,0103_project_media_limits.sql]; ledger7→9; repeat[]; existing participants/profiles/3teams/1project/1committed submission/approved evaluation/1assignment/20inventory/ready media/auth session preserved; media limits enforced
+✔ combined upgrade: fresh install uses the same real ordered loader and repeats without writes (5032.327478ms)
+✔ combined upgrade: source header collision rolls both new migrations and ledger back, preserving old data (7161.768714ms)
+ℹ Collision source header:23505; prior7 ledger entries+rows unchanged; both new tables absent; old media bounds retained
+✔ combined upgrade: global fingerprint collision rolls both new migrations and ledger back, preserving old data (6366.156582ms)
+ℹ Collision global fingerprint:23505; prior7 ledger entries+rows unchanged; both new tables absent; old media bounds retained
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 38556.625006
