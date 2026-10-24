@@ -1046,3 +1046,10 @@
     min-height: 44px;
   }
 }
+
+/* Team Studio has no size container; preserve the teamless flow's narrow layout. */
+@media (max-width: 850px) {
+  .app-shell .main .team-studio .dashboard-empty-team {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
