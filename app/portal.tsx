@@ -51,7 +51,9 @@ import AdminLeaderTransfer from "./admin-leader-transfer";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import ResultVisibility, { PrivateAIEvaluation } from "./result-visibility";
-const JudgingSettings = dynamic(() => import("./judging-settings"));
+const JudgingSettings = dynamic(() => import("./judging-settings"), {
+  loading: () => <div className="results-ui-judgingLoading" role="status" aria-label="Loading judging setup" />,
+});
 import { useDiscoverPeople, peopleDirectoryUrl, readPeoplePage } from "./use-discover-people";
 import { HeadingDot } from "./expressive-heading";
 import RouteSkeleton from "./route-skeleton";
@@ -4088,15 +4090,74 @@ export function privateReviewValues(
   };
 }
 export function Review({
-  data,
+  data: initialData,
   run,
 }: {
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
+  const [focused, setFocused] = useState<View | null>(null);
+  const [versionBusy, setVersionBusy] = useState("");
+  const [versionError, setVersionError] = useState("");
+  const [accessError, setAccessError] = useState("");
+  const versionRequest = useRef<AbortController | null>(null);
+  const data = focused || initialData;
   const [eligibilityStatus, setEligibilityStatus] = useState(
     data.eligibility?.status || "needs_review",
   );
+  useEffect(() => {
+    versionRequest.current?.abort();
+    setFocused(null);
+    setVersionBusy("");
+    setVersionError("");
+    setAccessError("");
+    return () => versionRequest.current?.abort();
+  }, [initialData]);
+  useEffect(() => {
+    setEligibilityStatus(data.eligibility?.status || "needs_review");
+  }, [data.eligibility?.status]);
+  const viewVersion = async (versionId: string) => {
+    if (versionBusy || versionId === data.version?.id) return;
+    const controller = new AbortController();
+    versionRequest.current?.abort();
+    versionRequest.current = controller;
+    setVersionBusy(versionId);
+    setVersionError("");
+    try {
+      const path = `${initialData.me?.owner || initialData.me?.role === "admin" ? "/admin/submissions/" : "/review/"}${encodeURIComponent(initialData.project.id)}`;
+      const { response, body } = await readPortalView(
+        `/api/portal?view=${encodeURIComponent(path)}&focus=${encodeURIComponent(versionId)}`,
+        controller.signal,
+      );
+      if (controller.signal.aborted) return;
+      if (!response.ok) {
+        const message = portalErrorText(body);
+        if ([401, 403].includes(response.status)) setAccessError(message);
+        throw new Error(message);
+      }
+      if (
+        body.version?.id !== versionId ||
+        body.project?.id !== initialData.project.id
+      )
+        throw new Error("This version could not be loaded. Try again.");
+      setFocused(body);
+    } catch (error) {
+      if (!controller.signal.aborted)
+        setVersionError(
+          error instanceof Error
+            ? error.message
+            : "This version could not be loaded.",
+        );
+    } finally {
+      if (!controller.signal.aborted) setVersionBusy("");
+    }
+  };
+  if (accessError)
+    return (
+      <p role="alert" className="results-ui-error">
+        {accessError}
+      </p>
+    );
   const p = data.project,
     v = data.version;
   if (!p) return <Empty>Select a submitted project.</Empty>;
@@ -4246,7 +4307,7 @@ export function Review({
               </dd>
             </div>
           </dl>
-          {staff && (
+          {staff && current && (
             <details className="results-ui-reviewDetails">
               <summary>Manage project</summary>
               <AdminProjectActions
@@ -4258,57 +4319,59 @@ export function Review({
           )}
         </article>
         <aside className="results-ui-reviewAside">
-          <Form
-            key={`${p.id}-${v?.id || "draft"}`}
-            className="results-ui-card results-ui-scoreForm"
-            title={
-              data.reviewKind === "mentor" ? "Private advice" : "Your score"
-            }
-            label="Save"
-            disabled={!v || !current}
-            onSave={async (f) => {
-              await run(
-                "review-project",
-                privateReviewValues(f, data.reviewKind, p.id, v?.id),
-              );
-            }}
-          >
-            {["admin", "judge"].includes(data.reviewKind) && (
-              <fieldset className="results-ui-rating">
-                <legend>Score (1 to 10)</legend>
-                {Array.from({ length: 10 }, (_, index) => index + 1).map(
-                  (rating) => (
-                    <label key={rating}>
-                      <input
-                        type="radio"
-                        name="rating"
-                        value={rating}
-                        defaultChecked={Number(ownReview?.rating) === rating}
-                      />
-                      <span>{rating}</span>
-                    </label>
-                  ),
-                )}
-              </fieldset>
-            )}
-            <Field
-              name="body"
-              label={
-                ["admin", "judge"].includes(data.reviewKind)
-                  ? "Private feedback"
-                  : "Feedback for the team"
+          {current && (
+            <Form
+              key={`${p.id}-${v?.id || "draft"}`}
+              className="results-ui-card results-ui-scoreForm"
+              title={
+                data.reviewKind === "mentor" ? "Private advice" : "Your score"
               }
-              type="textarea"
-              value={ownReview?.body || ""}
-              required={!["admin", "judge"].includes(data.reviewKind)}
-            />
-            {!v && (
-              <p className="results-ui-reason">
-                A committed version is required.
-              </p>
-            )}
-          </Form>
-          {(staff || data.canRestoreEligibility) && v && (
+              label="Save"
+              disabled={!v || !current}
+              onSave={async (f) => {
+                await run(
+                  "review-project",
+                  privateReviewValues(f, data.reviewKind, p.id, v?.id),
+                );
+              }}
+            >
+              {["admin", "judge"].includes(data.reviewKind) && (
+                <fieldset className="results-ui-rating">
+                  <legend>Score (1 to 10)</legend>
+                  {Array.from({ length: 10 }, (_, index) => index + 1).map(
+                    (rating) => (
+                      <label key={rating}>
+                        <input
+                          type="radio"
+                          name="rating"
+                          value={rating}
+                          defaultChecked={Number(ownReview?.rating) === rating}
+                        />
+                        <span>{rating}</span>
+                      </label>
+                    ),
+                  )}
+                </fieldset>
+              )}
+              <Field
+                name="body"
+                label={
+                  ["admin", "judge"].includes(data.reviewKind)
+                    ? "Private feedback"
+                    : "Feedback for the team"
+                }
+                type="textarea"
+                value={ownReview?.body || ""}
+                required={!["admin", "judge"].includes(data.reviewKind)}
+              />
+              {!v && (
+                <p className="results-ui-reason">
+                  A committed version is required.
+                </p>
+              )}
+            </Form>
+          )}
+          {current && (staff || data.canRestoreEligibility) && v && (
             <Form
               className="results-ui-card results-ui-eligibility"
               title="Eligibility"
@@ -4357,7 +4420,7 @@ export function Review({
               )}
             </Form>
           )}
-          <PrivateAIEvaluation data={data} run={run} />
+          {current && <PrivateAIEvaluation data={data} run={run} />}
           <details className="results-ui-card results-ui-reviewDetails">
             <summary>
               Versions <span>{versions.length} / 3</span>
@@ -4375,11 +4438,24 @@ export function Review({
                   {item.id === v?.id ? (
                     <span className="results-ui-meta">Viewing</span>
                   ) : (
-                    <span className="results-ui-meta">Historical</span>
+                    <button
+                      type="button"
+                      className="results-ui-versionButton"
+                      disabled={!!versionBusy}
+                      onClick={() => void viewVersion(item.id)}
+                    >
+                      {versionBusy === item.id ? "Loading…" : "View"}
+                      <span className="sr-only"> version {item.attempt}</span>
+                    </button>
                   )}
                 </li>
               ))}
             </ul>
+            {versionError && (
+              <p className="results-ui-error" role="alert">
+                {versionError}
+              </p>
+            )}
           </details>
           <details className="results-ui-card results-ui-reviewDetails">
             <summary>Private review history</summary>
@@ -5414,7 +5490,9 @@ export function Settings({
         />
       </div>
       <div {...panel("results")}>
-        <JudgingSettings key={`judging-${data.policyVersion}`} data={data} run={run} />
+        {section === "results" && data.me?.owner && (
+          <JudgingSettings key={`judging-${data.policyVersion}`} data={data} run={run} />
+        )}
         <ResultVisibility data={data} run={run} />
       </div>
       <div {...panel("access")}>

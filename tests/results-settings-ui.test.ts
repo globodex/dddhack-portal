@@ -294,4 +294,8 @@ test("Review renders saved version answers once, unknown Cerebras stays unavaila
   assert.equal((legacy.match(/Unavailable in this version/g) || []).length, 4);
   assert.doesNotMatch(legacy, /integrate Cerebras\?<\/dt><dd>No/);
   assert.match(legacy, /Viewing a previous submission/);
+  assert.doesNotMatch(
+    legacy,
+    /name="rating"|Update eligibility|Run AI evaluation|Manage project<|Save<\/button>/,
+  );
 });

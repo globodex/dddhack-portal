@@ -824,3 +824,5 @@
     gap: 3px;
   }
 }
+.results-ui-versionButton{border:1px solid var(--line,#e3e4db);border-radius:8px;padding:0 12px;min-width:44px;min-height:44px;background:var(--surface,#fffefa);color:var(--ink,#202320);font:inherit;font-size:13px;cursor:pointer}.results-ui-versionButton:disabled{opacity:.6;cursor:default}
+.results-ui-judgingLoading{height:66px;border:1px solid var(--line,#e3e4db);border-radius:16px;margin-bottom:22px;background:var(--surface,#fffefa)}

@@ -4,8 +4,13 @@ import { CircleCheck, ChevronDown, Sparkles } from "lucide-react";
 import { ActionCancelled } from "../lib/action-confirmation";
 import { ist } from "../lib/time";
 import { useHydrated } from "./use-hydrated";
-import type { AdminRun } from "./admin-participant-actions";
+
 type Row = Record<string, any>;
+export type ResultsRun = (
+  action: string,
+  values: Row,
+  options?: { errorFeedback?: "local" },
+) => Promise<Row>;
 const dateLabel = (value: unknown) => {
   try {
     return typeof value === "string" ? ist(value) : "";
@@ -31,7 +36,7 @@ export default function ResultVisibility({
   run,
 }: {
   data: Row;
-  run: AdminRun;
+  run: ResultsRun;
 }) {
   const hydrated = useHydrated(),
     id = useId(),
@@ -55,7 +60,7 @@ export default function ResultVisibility({
     setBusy(key);
     setErrors((current) => ({ ...current, [key]: "" }));
     try {
-      await run(command, values);
+      await run(command, values, { errorFeedback: "local" });
     } catch (error) {
       if (!(error instanceof ActionCancelled))
         setErrors((current) => ({
@@ -303,7 +308,7 @@ export function PrivateAIEvaluation({
   run,
 }: {
   data: Row;
-  run: AdminRun;
+  run: ResultsRun;
 }) {
   const hydrated = useHydrated(),
     pending = useRef(false),
@@ -386,10 +391,14 @@ export function PrivateAIEvaluation({
           pending.current = true;
           setBusy(true);
           setError("");
-          void run("reevaluate-project", {
-            projectId: data.project.id,
-            versionId,
-          })
+          void run(
+            "reevaluate-project",
+            {
+              projectId: data.project.id,
+              versionId,
+            },
+            { errorFeedback: "local" },
+          )
             .catch((cause) => {
               if (!(cause instanceof ActionCancelled))
                 setError(

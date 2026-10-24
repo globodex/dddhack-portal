@@ -3,8 +3,9 @@ import { useId, useState } from "react";
 import { ChevronDown, Save } from "lucide-react";
 import type { Policy } from "../lib/policy";
 import { istInputToUTC, utcToISTInput } from "./owner-submission-window";
-import { useAdminOperation, type AdminRun } from "./admin-participant-actions";
+import { useAdminOperation } from "./admin-participant-actions";
 import { useHydrated } from "./use-hydrated";
+import type { ResultsRun } from "./result-visibility";
 type Row = Record<string, any>;
 type Inputs = Record<string, string>;
 const string = (value: unknown) => (typeof value === "string" ? value : "");
@@ -191,7 +192,7 @@ export default function JudgingSettings({
   initiallyOpen = false,
 }: {
   data: Row;
-  run: AdminRun;
+  run: ResultsRun;
   initiallyOpen?: boolean;
 }) {
   const hydrated = useHydrated(),
@@ -344,10 +345,14 @@ export default function JudgingSettings({
               return;
             }
             void execute(() =>
-              run("settings", {
-                policy: result.policy,
-                version: data.policyVersion,
-              }),
+              run(
+                "settings",
+                {
+                  policy: result.policy,
+                  version: data.policyVersion,
+                },
+                { errorFeedback: "local" },
+              ),
             );
           }}
         >
