@@ -40,6 +40,7 @@ const participant = (id: string, extra: Record<string, unknown> = {}) => ({
   teamStatus: "Locked",
   teamLockedAt: "2026-10-25T10:00:00Z",
   approval: "pending",
+  canDeleteParticipant: true,
   teamReadiness: { total: 2, approved: 1 },
   ...extra,
 });
@@ -135,7 +136,7 @@ test("participant admin page wires reviewed imports and only individual removal,
     "Filter participants",
     "Participation record",
     '<option value="removed">Removed</option>',
-    "Remove participant",
+    "Delete participant",
     "active@example.invalid",
     "Export filtered participants (1)",
   ])

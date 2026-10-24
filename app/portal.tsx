@@ -3646,7 +3646,7 @@ export function AdminParticipants({
   run,
 }: {
   data: View;
-  run: (a: string, d: Row) => Promise<Row>;
+  run: (a: string, d: Row, options?: { errorFeedback?: "local" }) => Promise<Row>;
 }) {
   const hydrated = useHydrated();
   const [filters, setFilters] = useState<AdminParticipantFiltersValue>({
@@ -3719,13 +3719,13 @@ export function AdminParticipants({
     // Portal.run keeps the full server error in its persistent action notice.
     // Preserve selection for retry without rendering the same error twice.
   };
-  const runParticipantAction = async (action: string, values: Row) => {
+  const runParticipantAction = async (action: string, values: Row, options?: { errorFeedback?: "local" }) => {
     if (pendingAction.current) throw new ActionCancelled();
     pendingAction.current = true;
     setActionPending(true);
     setError("");
     try {
-      const result = await run(action, values);
+      const result = await run(action, values, options);
       setSelected([]);
       return result;
     } finally {
@@ -6084,7 +6084,7 @@ function StatusChange({
   target: string;
   name: string;
   current: string;
-  run: (a: string, d: Row) => Promise<Row>;
+  run: (a: string, d: Row, options?: { errorFeedback?: "local" }) => Promise<Row>;
   compact?: boolean;
   disabled?: boolean;
   children?: ReactNode;
@@ -6102,7 +6102,7 @@ function StatusChange({
               targetId: target,
               status: f.get("status"),
               reason: "Administrator updated status",
-            });
+            }, { errorFeedback: "local" });
           }}
         >
           <label>

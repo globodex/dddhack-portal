@@ -5,6 +5,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import AdminParticipantActions, {
   AdminIcon,
   participantActionValues,
+  participantDeleteValues,
 } from "../app/admin-participant-actions";
 import AdminProjectActions, {
   projectActionValues,
@@ -27,13 +28,17 @@ test("trash actions have exact accessible targets and retained confirmation payl
   );
   assert.ok(
     html.includes(
-      'aria-label="Remove participant: Person One (one@example.test)"',
+      'aria-label="Delete participant: Person One (one@example.test)"',
     ),
   );
-  assert.ok(html.includes('title="Remove Person One"'));
+  assert.ok(html.includes('title="Delete Person One"'));
   assert.ok(html.includes("is-compact"));
   assert.ok(html.includes("<svg"));
   assert.ok(!html.includes('type="textarea"'));
+  assert.deepEqual(
+    participantDeleteValues({ id: "person-1", name: "Person One" }),
+    { userId: "person-1", expectedLeaderTeamIds: [], confirmation: "DELETE_PARTICIPANT" },
+  );
   assert.deepEqual(
     participantActionValues({ id: "person-1", name: "Person One" }),
     { userId: "person-1", confirmation: "REMOVE_PARTICIPANT" },

@@ -18,7 +18,7 @@ import {
 import { ActionCancelled } from "../lib/action-confirmation";
 
 export type AdminRow = Record<string, any>;
-export type AdminRun = (action: string, values: AdminRow) => Promise<AdminRow>;
+export type AdminRun = (action: string, values: AdminRow, options?: { errorFeedback?: "local" }) => Promise<AdminRow>;
 
 /** Shared by these controls; run owns confirmation, mutation outcome and reload. */
 export function useAdminOperation() {
@@ -145,7 +145,7 @@ export default function AdminParticipantActions({
             teamNames: participant.leaderTeamNames || (participant.teamName && participant.teamLeader ? [participant.teamName] : []),
             memberTeamName: participant.teamName || "",
           },
-        }));
+        }, { errorFeedback: "local" }));
       }}
     >
       <div className="admin-action-target">
@@ -156,7 +156,7 @@ export default function AdminParticipantActions({
         type="button"
         className="button secondary"
         disabled={busy || !hydrated}
-        onClick={() => void execute(() => run("participant-restore", participantActionValues(participant)))}
+        onClick={() => void execute(() => run("participant-restore", participantActionValues(participant), { errorFeedback: "local" }))}
       >Restore</button>}
       {participant.canDelete !== false && <button
         className="button admin-icon-action admin-icon-danger"
