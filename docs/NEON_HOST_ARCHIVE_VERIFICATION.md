@@ -1,4 +1,9 @@
-# Viewer-registration backend archive verification
+# Historical Viewer-registration backend archive verification
+
+The current archive and handoff pins are documented in
+[Final backend archive verification](FINAL_NEON_API_ARCHIVE_VERIFICATION.md).
+The release-specific facts below describe the earlier archive and remain
+historical evidence.
 
 The official archive was freshly built from exact integrated source `86862c722233bbd6776f1e2672d78b41fa808a52`. The packaging branch started at accepted baseline `d97d614ac7be2a657df91de42aaf00e9f3cfc336` and aligned to the source supplied by the integration owner before building. It does not package uncommitted backend or frontend work.
 

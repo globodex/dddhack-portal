@@ -1,16 +1,16 @@
 {
-  "runtimeSource": "86862c722233bbd6776f1e2672d78b41fa808a52",
+  "runtimeSource": "354aba6bdd36cafd8a83afd46cbf17ab160b24cc",
   "runtime": "nodejs24",
   "source": "neon/api.ts",
-  "zipBytes": 9014656,
-  "sha256": "bbd047173fb4e895bd8148d24674548f05dfaea58e184ca57bcc0e183ca60382",
+  "zipBytes": 9019301,
+  "sha256": "63acbca1b5e671daffa49ab325f236536393d4ca07cd37f3fb0e35e8b11d2276",
   "env": {},
   "warnings": [],
   "buildOnly": true,
   "deployment": "not performed",
   "packager": "@neon/config-runtime@1.10.2",
   "nativeExecution": "not verified on this x86_64 executor",
-  "uncompressedBytes": 21150237,
+  "uncompressedBytes": 21166387,
   "fileCount": 93,
   "nativeArchitecture": "Linux ARM64 glibc",
   "nativeFiles": [
@@ -32,26 +32,23 @@
   "archiveHasSecretsOrTests": [],
   "bannerPresent": true,
   "externalSharpImport": true,
-  "indexSha256": "77b26aed98d0c7c8486c12ee2246ce61dadc98163d2fc5d24989f6fd579669fe",
+  "indexSha256": "b9d22c188df2b78c7595093240151409aaa416b627a4d5c1630c9563b4853741",
   "archive": "artifacts/neon/portalapi.zip",
-  "graphInputCount": 862,
+  "graphInputCount": 865,
+  "graphApplicationInputCount": 81,
   "forbiddenInputs": [],
-  "graphRecomputed": true,
-  "graphEvidence": "evidence/neon-host-archive/graph.json",
-  "manualBackendRedeployRequired": true,
-  "hostSmoke": {
-    "passed": true,
-    "report": "evidence/neon-host-archive/report.json",
-    "outboundAttempts": 0,
-    "trustedHealth": 200,
-    "untrustedHealth": 403,
-    "unconfiguredPortal": 503,
-    "dependencySubstitution": "Existing x86_64 host Sharp; original ARM64 archive/extracted tree unchanged"
-  },
-  "integratedSourceEquivalentTo": "86862c722233bbd6776f1e2672d78b41fa808a52",
-  "graphApplicationInputCount": 78,
   "graphFrontendInputs": [],
-  "manualMigrations": [
+  "graphRecomputed": true,
+  "graphEvidence": "evidence/final-neon-api-archive/graph.json",
+  "runtimeInputHashes": "evidence/final-neon-api-archive/runtime-input-hashes.json",
+  "allInputHashes": "evidence/final-neon-api-archive/all-input-hashes.json",
+  "limits": {
+    "maxZipBytes": 10485760,
+    "maxTotalBytes": 67108864,
+    "maxEntries": 4096
+  },
+  "manualBackendRedeployRequired": true,
+  "manualMigrationPlan": [
     {
       "name": "0102_credit_stock.sql",
       "sha256": "74bf8549edbecb753424a86e692844e962be02c0faeddda8f0b2dd3ffaacb72e"
@@ -59,8 +56,13 @@
     {
       "name": "0103_project_media_limits.sql",
       "sha256": "3f42da160787977b7655fe74647655bd656f4c55467c2a42b3dd1627859f462c"
+    },
+    {
+      "name": "0104_admin_team_corrections.sql",
+      "sha256": "a931aeafba01be07f43e35fc7c17cae80f11bbd212fbd92f0e5fd8d475c40500"
     }
   ],
+  "canonicalPlanDigest": "9bcf3f083d47a1b700e467c60f3b9eff57193491bb1e2929b1c2a4f21ba532d1",
   "historicalMigrationsPreserved": [
     {
       "name": "0000_compatibility.sql",
@@ -92,44 +94,31 @@
     }
   ],
   "hostedMigrationLedgerInspected": false,
-  "manualMigrationMode": "Owner-operated incremental pending-only upgrade of populated target after backup/restore checkpoint, target/ledger/hash review. Never synthetic apply or seed on hosted database.",
-  "independentPopulatedUpgradeProof": {
-    "source": "191b76ed26f430128b14112f77b74ad3e26b1ec0",
-    "proofCommit": "d195fe89b8d327709ffe11d6e87e6c747d1dd96b",
-    "integratedCommit": "4b9a6498087a4cca38d465d90e3643778140b942",
-    "casesPassed": 6,
-    "historicalLedgerEntries": 7,
-    "finalLedgerEntries": 9,
-    "syntheticOnly": true,
-    "hostedDatabaseInspected": false,
-    "url": "https://github.com/Param302/dddhack-portal/blob/d195fe89b8d327709ffe11d6e87e6c747d1dd96b/docs/COMBINED_MIGRATION_UPGRADE_INDEPENDENT_REVIEW.md"
-  },
-  "refreshedFrom": "1afca1c65f0c3b58bde89a5e1b80d3dec92c87b392239da0315ed762ebd0730f",
-  "entryPayloadEquivalentToPriorArchive": false,
-  "zipOnlyDosTimestampsDiffer": false,
-  "sourceEquivalenceEvidence": "evidence/neon-host-archive/source-equivalence.json",
-  "sourceBuildVerifiedAgainst": "86862c722233bbd6776f1e2672d78b41fa808a52",
-  "archiveComparisonEvidence": "evidence/neon-host-archive/archive-refresh-comparison.json",
-  "zipChangesOnlyDosTimestamps": false,
+  "manualMigrationMode": "Owner-operated pending-only upgrade. Existing nine-ledger target applies only0104 after verified backup/restore checkpoint and fresh inspect. Seven historical LF or precisely recognized whole-seven CRLF histories remain supported; no historical ledger rewrite. No migration performed by this archive build.",
+  "previousArchiveSha256": "bbd047173fb4e895bd8148d24674548f05dfaea58e184ca57bcc0e183ca60382",
   "changedArchiveEntries": [
     "index.mjs"
   ],
   "unchangedArchiveEntryCount": 92,
-  "viewerChangeRequiresAdditionalMigration": false,
-  "viewerRegistrationAPI": {
-    "privateRoutes": [
-      "/dashboard",
-      "/dashboard/team",
-      "/dashboard/credits",
-      "/profile",
-      "/dashboard/profile",
-      "/submission",
-      "/dashboard/submission",
-      "/personal/credits"
-    ],
-    "response": "Authenticated Viewer receives200 with me and registrationRequired:true; removed people remain403.",
-    "staffProjection": "Owner/admin participant rows mark registered/viewer and Not registered; volunteers and public discovery exclude Viewer rows.",
-    "writePermissions": "Viewer writes remain denied; credits require personal check-in.",
-    "schemaChange": false
-  }
+  "archiveComparisonEvidence": "evidence/final-neon-api-archive/archive-refresh-comparison.json",
+  "sourceBuildVerifiedAgainst": "354aba6bdd36cafd8a83afd46cbf17ab160b24cc",
+  "hostSmoke": {
+    "passed": true,
+    "report": "evidence/final-neon-api-archive/host-smoke.json",
+    "outboundAttempts": 0,
+    "trustedHealth": 200,
+    "untrustedHealth": 403,
+    "unconfiguredPortal": 503,
+    "dependencySubstitution": "Installed x86_64 host Sharp; original ARM64 archive/extracted tree unchanged"
+  },
+  "windowsHandoff": {
+    "checksPassed": 6,
+    "report": "evidence/final-neon-api-archive/windows-handoff-report.json",
+    "powerShellVersion": "7.6.8",
+    "platform": "Unix",
+    "nativeWindowsExecution": false,
+    "liveDownload": false,
+    "neonCommands": 0
+  },
+  "archiveVerificationEvidence": "evidence/final-neon-api-archive"
 }

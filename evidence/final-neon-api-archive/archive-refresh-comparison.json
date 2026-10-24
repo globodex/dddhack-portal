@@ -1,0 +1,62 @@
+{
+  "baselineRuntimeSource": "86862c722233bbd6776f1e2672d78b41fa808a52",
+  "baselineSha256": "bbd047173fb4e895bd8148d24674548f05dfaea58e184ca57bcc0e183ca60382",
+  "currentSource": "354aba6bdd36cafd8a83afd46cbf17ab160b24cc",
+  "currentSha256": "63acbca1b5e671daffa49ab325f236536393d4ca07cd37f3fb0e35e8b11d2276",
+  "changedEntries": [
+    {
+      "path": "index.mjs",
+      "sha256": "b9d22c188df2b78c7595093240151409aaa416b627a4d5c1630c9563b4853741",
+      "bytes": 1665510
+    }
+  ],
+  "unchangedEntryCount": 92,
+  "applicationInputChanges": [
+    {
+      "path": "lib/admin-team-corrections.ts",
+      "state": "added"
+    },
+    {
+      "path": "lib/credit-stock.ts",
+      "state": "changed"
+    },
+    {
+      "path": "lib/discover-participants.ts",
+      "state": "changed"
+    },
+    {
+      "path": "lib/evaluation.ts",
+      "state": "changed"
+    },
+    {
+      "path": "lib/experience.ts",
+      "state": "changed"
+    },
+    {
+      "path": "lib/provider-grade.ts",
+      "state": "added"
+    },
+    {
+      "path": "lib/public-team-members.ts",
+      "state": "added"
+    },
+    {
+      "path": "lib/score-release.ts",
+      "state": "changed"
+    },
+    {
+      "path": "lib/service.ts",
+      "state": "changed"
+    },
+    {
+      "path": "neon/ai/index.ts",
+      "state": "changed"
+    },
+    {
+      "path": "neon/ai/output.ts",
+      "state": "changed"
+    }
+  ],
+  "removedApplicationInputs": [],
+  "noTimestampOnlyClaim": true
+}
