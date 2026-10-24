@@ -1,0 +1,33 @@
+{
+  "source": "f577c70",
+  "next": "16.4.3",
+  "react": "19.3.1",
+  "node": "24.19.0",
+  "routeTraces": [
+    "[[...path]]/page.js.nft.json",
+    "_global-error/page.js.nft.json",
+    "_not-found/page.js.nft.json",
+    "api/[...path]/route.js.nft.json",
+    "api/export/route.js.nft.json",
+    "api/portal/route.js.nft.json",
+    "api/profile-photo/[id]/route.js.nft.json",
+    "api/project-image/[id]/[kind]/route.js.nft.json",
+    "robots.txt/route.js.nft.json",
+    "signin-with-chatgpt/route.js.nft.json",
+    "sitemap.xml/route.js.nft.json"
+  ],
+  "uniqueTracedFiles": 488,
+  "forbiddenTraceMatches": [],
+  "forbiddenPatterns": [
+    "/lib/service.",
+    "/lib/db.",
+    "/lib/local-test/",
+    "/neon/db/",
+    "/neon/auth/",
+    "/neon/storage/",
+    "/node_modules/@neondatabase/",
+    "/node_modules/pg/",
+    "/node_modules/nodemailer/"
+  ],
+  "notes": "Local optimized production build, not deployed. Files are interpreted relative to each nft trace; no credentials or production records used."
+}
