@@ -1,0 +1,73 @@
+{
+  "source": "62c8105af837e62ab0013ac5cd879eec4ab32114",
+  "readOnly": true,
+  "syntheticOnly": true,
+  "screenshots": [
+    {
+      "file": "leaderboard-final-full-populated-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "sha256": "371b9db37054c24e142e409d41a87179918d14311b667193ad342b36047b8f66",
+      "nativeOriginal": true
+    },
+    {
+      "file": "leaderboard-final-last-rank-populated-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "sha256": "343101aee9cd09ad628a5c84650eebeb590aaf5412b7cea37cc5dbd5ff1e68ca",
+      "nativeOriginal": true
+    },
+    {
+      "file": "leaderboard-final-full-populated-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "sha256": "6e1feade41db65928d0da439cb1871ac77ffe6018e6f4eadf9df8d4118230d5a",
+      "nativeOriginal": true
+    },
+    {
+      "file": "leaderboard-final-last-rank-populated-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "sha256": "0ee2af9dbfcfd7d8bf70ab62f5bceac1b5451ab3704c072e36537139ec33eae7",
+      "nativeOriginal": true
+    }
+  ],
+  "checks": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "allLazyImagesLoaded": true,
+      "imageCounts": {
+        "total": 28,
+        "loaded": 28
+      },
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "allLazyImagesLoaded": true,
+      "imageCounts": {
+        "total": 28,
+        "loaded": 28
+      },
+      "passed": true
+    }
+  ]
+}

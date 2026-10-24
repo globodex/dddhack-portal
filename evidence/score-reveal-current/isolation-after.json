@@ -1,0 +1,37 @@
+{
+  "syntheticOnly": true,
+  "verifiedAt": "2026-10-24T14:40:49.617Z",
+  "databases": [
+    {
+      "label": "shared8821",
+      "file": "/tmp/ddd-create-team-revised-root.sqlite",
+      "releases": [],
+      "snapshots": 0,
+      "winnerReveals": 0
+    },
+    {
+      "label": "private8834",
+      "file": "/tmp/ddd-admin-window-invite-8834.sqlite",
+      "releases": [],
+      "snapshots": 0,
+      "winnerReveals": 0
+    },
+    {
+      "label": "phase8833",
+      "file": "/tmp/ddd-score-phases-8833.sqlite",
+      "releases": [
+        {
+          "stage": "ai",
+          "n": 1
+        },
+        {
+          "stage": "final",
+          "n": 1
+        }
+      ],
+      "snapshots": 1,
+      "winnerReveals": 5
+    }
+  ],
+  "preRevealBackupSha256": "02ed4fd1bdce4f2c453b9b5aeb03b48621608795dc4232a657983edbc1e926dc"
+}
