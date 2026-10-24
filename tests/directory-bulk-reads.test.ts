@@ -75,8 +75,14 @@ test("300-person / 90-team directories use bounded queries and preserve private/
               "status",
               "readiness",
               "requested",
+              "members",
             ].sort(),
           );
+        for (const team of response.items)
+          for (const member of team.members)
+            assert.deepEqual(Object.keys(member).sort(), [
+              "id", "name", "avatarColor", "avatarExpression", "profileUrl",
+            ].sort());
         for (const secret of [
           "Synthetic private core",
           "+12025550100",
