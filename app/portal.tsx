@@ -1681,6 +1681,8 @@ export function Credit({ credit }: { credit: Row }) {
           className="button secondary"
           disabled={!value || busy}
           aria-label={copied ? "Copied allocation" : "Copy allocation"}
+          title={copied ? "Copied" : "Copy allocation"}
+          data-copied={copied}
           onClick={async () => {
             setError("");
             try {
@@ -1691,11 +1693,12 @@ export function Credit({ credit }: { credit: Row }) {
             }
           }}
         >
-          <Copy size={20} aria-hidden="true" />
+          {copied ? <CircleCheck size={20} aria-hidden="true" /> : <Copy size={20} aria-hidden="true" />}
           <span className="sr-only">{copied ? "Copied" : "Copy"}</span>
         </button>
       </div>
 
+      <span className="sr-only" role="status" aria-live="polite">{copied ? "Allocation copied." : ""}</span>
       {error && <p role="alert">{error}</p>}
     </article>
   );

@@ -249,3 +249,8 @@ dialog::backdrop { background: #20232066; }
   min-width: 0;
   overflow-wrap: anywhere;
 }
+
+.app-shell .dashboard-v6 .credit-secret > button[data-copied="true"] {
+  color: #006b43;
+  background: #e8f4ec;
+}
