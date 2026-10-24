@@ -37,6 +37,6 @@ At1440/1024, computed tube minimum height is0px and all name, role and partner t
 
 The initial1440before frame caught late chapter hydration after the geometry read. It is explicitly rejected. The replacement waits Home/chapter hydration, decoded images, completed entrance and stable scrolling. Full viewport captures include the preceding FAQ and footer; component captures show the organizer section's exact bounds. Mobile full viewport images are the primary regression evidence.
 
-The pass covers this organizer change. A separate sign-in menu hydration defect was found during the combined job and fixed in `e4a8d9d`; its integrated verification remains separate. No authentication, data, provider, deployment or asset changes were made. This local visual check does not establish full accessibility compliance, physical-device behavior or hosted performance.
+The pass covers this organizer change. A separate sign-in menu hydration defect was found during the combined job and fixed in `e4a8d9d`; its integrated public-menu verification now passes in [the alignment QA](PUBLIC_RESPONSIVE_ALIGNMENT_QA.md). No authentication, data, provider, deployment or asset changes were made. This local visual check does not establish full accessibility compliance, physical-device behavior or hosted performance.
 
 [Evidence index](../evidence/organizer-desktop-refinement/README.md), [before report](../evidence/organizer-desktop-refinement/before/report.json), [after report](../evidence/organizer-desktop-refinement/after/report.json).

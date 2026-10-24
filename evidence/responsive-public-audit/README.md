@@ -24,6 +24,19 @@ Before source `2a6d865517e5903ef974ca198f073d27aaf39265`; after source `2b35d3e7
 - [320px Privacy header](after/privacy-header-320x844.png)
 - [320px Terms header](after/terms-header-320x844.png)
 
-Expanded menu resting-state capture is pending. The matrix's menu frames were captured during their280ms entrance and are rejected as final menu evidence. Original files remain for traceability. The settled-detail report supersedes organizer-end frames that caught a newly triggered entrance. See the [full QA](../../docs/PUBLIC_RESPONSIVE_ALIGNMENT_QA.md) for the numbered steps, findings, exact native zoom metrics and limitations.
+Expanded public-menu resting-state capture passes in the final set below. The matrix's menu frames were captured during their280ms entrance and are rejected as final menu evidence. Original files remain for traceability. The settled-detail report supersedes organizer-end frames that caught a newly triggered entrance. See the [full QA](../../docs/PUBLIC_RESPONSIVE_ALIGNMENT_QA.md) for the numbered steps, findings, exact native zoom metrics and limitations.
 
-[Before17-frame report](before/report.json), [98-frame matrix](after/matrix-report.json), [7-frame settled-detail report](after/rest-report.json). Native200% uses a1440x900 outer window,720x378 CSS content viewport, DPR2, visualViewport.scale1 and1440x756 native PNGs. Ordinary images use the dimensions in their filename. Long references and input values are explicitly reported DOM-only fixtures and were never saved to data. Only the local fixture marker and Next development overlay were hidden in normalized images.
+[Before17-frame report](before/report.json), [98-frame matrix](after/matrix-report.json), [7-frame settled-detail report](after/rest-report.json). Native200% uses a1440x900 outer window,720x378.5 CSS visual viewport (innerHeight floors378), DPR2, visualViewport.scale1 and1440x757 native PNGs. Ordinary images use the dimensions in their filename. Long references and input values are explicitly reported DOM-only fixtures and were never saved to data. Only the local fixture marker and Next development overlay were hidden in normalized images.
+
+Final public-menu evidence, source73fb78d; targeted decimal Terms source7c110379:
+
+- [20-second disabled hydration state](after/menus/signin-hydration-held-20s-320x480.png)
+- [First-touch sign-in menu320](after/menus/signin-menu-rest-320x480.png)
+- [Privacy menu320](after/menus/privacy-menu-rest-320x480.png)
+- [Terms menu320](after/menus/terms-menu-rest-320x480.png)
+- [Native200% sign-in menu](after/menus/signin-menu-rest-native200.png)
+- [Native200% Terms last-link proof](after/menus/terms-native200-decimal-viewport-confirmed.png)
+- [Final menu report](after/menus/report.json)
+- [Decimal viewport and44px hit-target receipt](after/menus/terms-decimal-report.json)
+
+The legacy integer-edge failure is preserved and resolved by the decimal viewport read; the entire text and68px link target are visible. All11final native images were opened. TypeScript passed. No real auth sends or production mutations were attempted.

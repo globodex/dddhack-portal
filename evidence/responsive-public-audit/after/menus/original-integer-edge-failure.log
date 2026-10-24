@@ -1,0 +1,5 @@
+PASS signin-menu-rest-320x480
+PASS privacy-menu-rest-320x480
+PASS terms-menu-rest-320x480
+PASS signin-menu-rest-native200
+ALL BROWSERS CLOSED {"source":"73fb78dd80eac7635b247349be76610e95e44551","result":"blocked","frames":10,"checks":7,"failure":"Error: Last legal menu item unreachable\n    at capture (file:///tmp/ddd-final-menu-guard.mjs:4:2433)\n    at async file:///tmp/ddd-final-menu-guard.mjs:6:544"}

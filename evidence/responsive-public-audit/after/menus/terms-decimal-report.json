@@ -1,0 +1,88 @@
+{
+  "source": "7c1103798170138d5ae696d9ce9bb3a985d7ee69",
+  "syntheticOnly": true,
+  "errors": [],
+  "blocked": [],
+  "metrics": {
+    "innerWidth": 720,
+    "innerHeight": 378,
+    "dpr": 2,
+    "visualViewport": {
+      "width": 720,
+      "height": 378.5,
+      "scale": 1,
+      "offsetTop": 0
+    },
+    "dialog": {
+      "x": 0,
+      "y": 0,
+      "width": 712.5,
+      "height": 378.5,
+      "top": 0,
+      "right": 712.5,
+      "bottom": 378.5,
+      "left": 0
+    },
+    "scrollTop": 53.5,
+    "link": {
+      "x": 20,
+      "y": 310.5,
+      "width": 672.5,
+      "height": 68,
+      "top": 310.5,
+      "right": 692.5,
+      "bottom": 378.5,
+      "left": 20
+    },
+    "text": {
+      "x": 64,
+      "y": 324,
+      "width": 89.734375,
+      "height": 39.5,
+      "top": 324,
+      "right": 153.734375,
+      "bottom": 363.5,
+      "left": 64
+    },
+    "legacyFloorPredicate": false,
+    "decimalViewportPredicate": true,
+    "textFullyVisible": true,
+    "visibleControlHeight": 68,
+    "hitPoints": [
+      {
+        "x": 356.25,
+        "y": 344.5,
+        "hit": true
+      },
+      {
+        "x": 334.75,
+        "y": 323,
+        "hit": true
+      },
+      {
+        "x": 377.75,
+        "y": 323,
+        "hit": true
+      },
+      {
+        "x": 334.75,
+        "y": 366,
+        "hit": true
+      },
+      {
+        "x": 377.75,
+        "y": 366,
+        "hit": true
+      }
+    ]
+  },
+  "screenshot": {
+    "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/menus/terms-native200-decimal-viewport-confirmed.png",
+    "source": "7c1103798170138d5ae696d9ce9bb3a985d7ee69",
+    "sha256": "a01aa0418bf65c30f01b63299a971e6a974ac2b52b21904ed36c50dc93d9cfff",
+    "inspected": true
+  },
+  "escapeClosed": true,
+  "focusReturned": true,
+  "finalResult": "passed"
+}
