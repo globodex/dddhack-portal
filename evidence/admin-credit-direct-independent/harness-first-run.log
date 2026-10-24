@@ -1,0 +1,172 @@
+✖ sqlite: direct admin values stay private, paged and read-only with assigned/search filters (205.018418ms)
+✖ sqlite: fresh role checks precede secret reads and personal/public projections stay separate (193.21095ms)
+✖ sqlite: only the selected legacy page decodes, with safe per-row failures and keyless plaintext (173.868328ms)
+✖ postgres: direct admin values stay private, paged and read-only with assigned/search filters (5710.724664ms)
+✖ postgres: fresh role checks precede secret reads and personal/public projections stay separate (3937.882102ms)
+✖ postgres: only the selected legacy page decodes, with safe per-row failures and keyless plaintext (3794.322488ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 0
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16533.872645
+
+✖ failing tests:
+
+test at tests/admin-credit-direct-independent.test.ts:1:3277
+✖ sqlite: direct admin values stay private, paged and read-only with assigned/search filters (205.018418ms)
+  Error: no such column: id
+      at execute (/workspace/ddd-admin-credit-audit/lib/local-test/sqlite.ts:18:22)
+      at Object.all (/workspace/ddd-admin-credit-audit/lib/local-test/sqlite.ts:35:16)
+      at rows (/workspace/ddd-admin-credit-audit/lib/db.ts:23:8)
+      at creditState (/workspace/ddd-admin-credit-audit/tests/admin-credit-direct-independent.test.ts:109:27)
+      at async TestContext.<anonymous> (/workspace/ddd-admin-credit-audit/tests/admin-credit-direct-independent.test.ts:157:22)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'ERR_SQLITE_ERROR',
+    errcode: 1,
+    errstr: 'SQL logic error'
+  }
+
+test at tests/admin-credit-direct-independent.test.ts:1:6137
+✖ sqlite: fresh role checks precede secret reads and personal/public projections stay separate (193.21095ms)
+  Error: no such column: id
+      at execute (/workspace/ddd-admin-credit-audit/lib/local-test/sqlite.ts:18:22)
+      at Object.all (/workspace/ddd-admin-credit-audit/lib/local-test/sqlite.ts:35:16)
+      at rows (/workspace/ddd-admin-credit-audit/lib/db.ts:23:8)
+      at creditState (/workspace/ddd-admin-credit-audit/tests/admin-credit-direct-independent.test.ts:109:27)
+      at async TestContext.<anonymous> (/workspace/ddd-admin-credit-audit/tests/admin-credit-direct-independent.test.ts:297:22)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'ERR_SQLITE_ERROR',
+    errcode: 1,
+    errstr: 'SQL logic error'
+  }
+
+test at tests/admin-credit-direct-independent.test.ts:1:9133
+✖ sqlite: only the selected legacy page decodes, with safe per-row failures and keyless plaintext (173.868328ms)
+  Error: INVALID_VOUCHER_STORAGE
+      at Object.execute (/workspace/ddd-admin-credit-audit/lib/local-test/sqlite.ts:19:26)
+      at <anonymous> (/workspace/ddd-admin-credit-audit/lib/local-test/sqlite.ts:49:11)
+      at Array.map (<anonymous>)
+      at LocalDatabase.batch (/workspace/ddd-admin-credit-audit/lib/local-test/sqlite.ts:44:30)
+      at batch (/workspace/ddd-admin-credit-audit/lib/db.ts:44:13)
+      at TestContext.<anonymous> (/workspace/ddd-admin-credit-audit/tests/admin-credit-direct-independent.test.ts:419:13)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'ERR_SQLITE_ERROR',
+    errcode: 1811,
+    errstr: 'constraint failed'
+  }
+
+test at tests/admin-credit-direct-independent.test.ts:1:3277
+✖ postgres: direct admin values stay private, paged and read-only with assigned/search filters (5710.724664ms)
+  error: column "id" does not exist
+      at pe.Oe (/workspace/dddhack-portal/node_modules/@electric-sql/pg-protocol/src/parser.ts:442:11)
+      at pe.tt (/workspace/dddhack-portal/node_modules/@electric-sql/pg-protocol/src/parser.ts:220:16)
+      at pe.parse (/workspace/dddhack-portal/node_modules/@electric-sql/pg-protocol/src/parser.ts:104:21)
+      at D.Ne (/workspace/dddhack-portal/node_modules/@electric-sql/pglite/dist/index.js:5:1763)
+      at <anonymous> (/workspace/dddhack-portal/node_modules/@electric-sql/pglite/dist/index.js:5:1155)
+      at wasm://wasm/0269dffe:wasm-function[10979]:0x5ad04f
+      at wasm://wasm/0269dffe:wasm-function[3598]:0x281dd2
+      at wasm://wasm/0269dffe:wasm-function[3640]:0x289ccf
+      at wasm://wasm/0269dffe:wasm-function[3650]:0x289f2b
+      at wasm://wasm/0269dffe:wasm-function[9956]:0x55697c {
+    length: 102,
+    severity: 'ERROR',
+    code: '42703',
+    detail: undefined,
+    hint: undefined,
+    position: '45',
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: undefined,
+    schema: undefined,
+    table: undefined,
+    column: undefined,
+    dataType: undefined,
+    constraint: undefined,
+    file: 'parse_relation.c',
+    line: '3859',
+    routine: 'errorMissingColumn',
+    query: 'SELECT * FROM credit_batch_columns ORDER BY id',
+    params: [],
+    queryOptions: undefined
+  }
+
+test at tests/admin-credit-direct-independent.test.ts:1:6137
+✖ postgres: fresh role checks precede secret reads and personal/public projections stay separate (3937.882102ms)
+  error: column "id" does not exist
+      at pe.Oe (/workspace/dddhack-portal/node_modules/@electric-sql/pg-protocol/src/parser.ts:442:11)
+      at pe.tt (/workspace/dddhack-portal/node_modules/@electric-sql/pg-protocol/src/parser.ts:220:16)
+      at pe.parse (/workspace/dddhack-portal/node_modules/@electric-sql/pg-protocol/src/parser.ts:104:21)
+      at D.Ne (/workspace/dddhack-portal/node_modules/@electric-sql/pglite/dist/index.js:5:1763)
+      at <anonymous> (/workspace/dddhack-portal/node_modules/@electric-sql/pglite/dist/index.js:5:1155)
+      at wasm://wasm/0269dffe:wasm-function[10979]:0x5ad04f
+      at wasm://wasm/0269dffe:wasm-function[3598]:0x281dd2
+      at wasm://wasm/0269dffe:wasm-function[3640]:0x289ccf
+      at wasm://wasm/0269dffe:wasm-function[3650]:0x289f2b
+      at wasm://wasm/0269dffe:wasm-function[9956]:0x55697c {
+    length: 102,
+    severity: 'ERROR',
+    code: '42703',
+    detail: undefined,
+    hint: undefined,
+    position: '45',
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: undefined,
+    schema: undefined,
+    table: undefined,
+    column: undefined,
+    dataType: undefined,
+    constraint: undefined,
+    file: 'parse_relation.c',
+    line: '3859',
+    routine: 'errorMissingColumn',
+    query: 'SELECT * FROM credit_batch_columns ORDER BY id',
+    params: [],
+    queryOptions: undefined
+  }
+
+test at tests/admin-credit-direct-independent.test.ts:1:9133
+✖ postgres: only the selected legacy page decodes, with safe per-row failures and keyless plaintext (3794.322488ms)
+  error: INVALID_VOUCHER_STORAGE
+      at pe.Oe (/workspace/dddhack-portal/node_modules/@electric-sql/pg-protocol/src/parser.ts:442:11)
+      at pe.tt (/workspace/dddhack-portal/node_modules/@electric-sql/pg-protocol/src/parser.ts:220:16)
+      at pe.parse (/workspace/dddhack-portal/node_modules/@electric-sql/pg-protocol/src/parser.ts:104:21)
+      at D.Ne (/workspace/dddhack-portal/node_modules/@electric-sql/pglite/dist/index.js:5:1763)
+      at <anonymous> (/workspace/dddhack-portal/node_modules/@electric-sql/pglite/dist/index.js:5:1155)
+      at wasm://wasm/0269dffe:wasm-function[10979]:0x5ad04f
+      at wasm://wasm/0269dffe:wasm-function[3598]:0x281dd2
+      at wasm://wasm/0269dffe:wasm-function[3640]:0x289ccf
+      at wasm://wasm/0269dffe:wasm-function[3650]:0x289f2b
+      at wasm://wasm/0269dffe:wasm-function[9956]:0x55697c {
+    length: 167,
+    severity: 'ERROR',
+    code: '23514',
+    detail: undefined,
+    hint: undefined,
+    position: undefined,
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: 'PL/pgSQL function portal_trigger_voucher_credit_storage_insert() line 4 at RAISE',
+    schema: undefined,
+    table: undefined,
+    column: undefined,
+    dataType: undefined,
+    constraint: undefined,
+    file: 'pl_exec.c',
+    line: '3923',
+    routine: 'exec_stmt_raise',
+    query: 'INSERT INTO credit_inventory ( id , type_id , ciphertext , fingerprint , created_at , voucher_value ) VALUES ( $1 , $2 , $3 , $4 , $5 , $6 )',
+    params: [ 'legacy_empty', 'independent_legacy_direct', 'SYNTHETIC-EMPTY-CIPHER', 'bdf21f997a26c40feae809c04b032cc288c72acd0e701cb8e429638e89193a78', '2026-10-22T08:00:00.000Z', '' ],
+    queryOptions: undefined
+  }
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

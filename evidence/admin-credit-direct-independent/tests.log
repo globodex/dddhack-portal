@@ -1,0 +1,19 @@
+✔ sqlite: direct admin values stay private, paged and read-only with assigned/search filters (182.450852ms)
+✔ sqlite: fresh role checks precede secret reads and personal/public projections stay separate (135.379862ms)
+✔ sqlite: only the selected legacy page decodes, with safe per-row failures and keyless plaintext (81.331199ms)
+✔ postgres: direct admin values stay private, paged and read-only with assigned/search filters (16288.715282ms)
+✔ postgres: fresh role checks precede secret reads and personal/public projections stay separate (6971.477673ms)
+✔ postgres: only the selected legacy page decodes, with safe per-row failures and keyless plaintext (12059.052443ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 37766.809478
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

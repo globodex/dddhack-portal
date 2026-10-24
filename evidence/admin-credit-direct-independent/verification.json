@@ -1,0 +1,30 @@
+{
+  "sourceCommit": "1e89fa82df2f5a03a363a764ec058464852cf205",
+  "scope": "Independent direct admin credit-value backend boundary audit; no runtime edits",
+  "testCommand": "npx tsx --test --test-concurrency=1 tests/admin-credit-direct-independent.test.ts",
+  "tests": { "passed": 6, "failed": 0, "skipped": 0 },
+  "engines": ["disposable SQLite", "disposable PGlite via production PostgreSQL adapter"],
+  "typecheckCommand": "npx tsc --noEmit",
+  "typecheckExitCode": 0,
+  "boundaries": [
+    "Owner/admin authorization before secret stock queries",
+    "Fresh explicit role revocation overrides legacy admin role for unchanged authenticated identity",
+    "Actual private/no-store HTTP headers on success and denial",
+    "25-row pages, assigned/available filters, recipient search and bound SQL-like search",
+    "No ciphertext/fingerprint/key storage fields in projected responses",
+    "Current-page-only legacy decoding and fixed safe unavailable errors",
+    "Absent/invalid key fails closed; valid plaintext remains keyless",
+    "Exact stock/allocation/history/tombstone/import/batch/audit preservation across GET",
+    "Public/personal metadata isolation and checked-in own-allocation-only reveal"
+  ],
+  "confirmedRuntimeDefects": [],
+  "initialHarnessRun": {
+    "file": "harness-first-run.log",
+    "cause": "Test-only composite-key ordering and invalid synthetic storage shapes; corrected without bypassing storage guards"
+  },
+  "limits": [
+    "No native multi-connection PostgreSQL concurrency claim",
+    "No browser layout, clipboard or live cache experiment",
+    "No real voucher, key, hosted database, provider call, migration, deployment or push"
+  ]
+}
