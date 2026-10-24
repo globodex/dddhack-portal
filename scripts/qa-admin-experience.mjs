@@ -70,9 +70,10 @@ for (const viewport of [
   });
   async function capture(name) {
     await page.evaluate(() => document.fonts.ready);
+    const fullPage = (await page.locator("dialog[open]").count()) === 0;
     await page.screenshot({
       path: `${output}/${name}-${viewport.width}x${viewport.height}.png`,
-      fullPage: true,
+      fullPage,
       animations: "disabled",
     });
     const overflowing = await page.evaluate(
@@ -88,6 +89,7 @@ for (const viewport of [
       viewport,
       path: `${output}/${name}-${viewport.width}x${viewport.height}.png`,
       inspected: false,
+      fullPage,
     });
     save();
   }

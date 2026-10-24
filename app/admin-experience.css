@@ -934,3 +934,24 @@
     justify-self: end;
   }
 }
+
+.main:not(.home-main)
+  .admin-workspace
+  .admin-list-toolbar
+  > .admin-mobile-filter {
+  display: none;
+}
+.admin-status-popover .panel {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}
+@media (max-width: 740px) {
+  .main:not(.home-main)
+    .admin-workspace
+    .admin-list-toolbar
+    > .admin-mobile-filter {
+    display: inline-flex;
+  }
+}
