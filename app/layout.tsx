@@ -16,6 +16,7 @@ import "./mobile-navigation.css";
 import "./route-skeleton.css";
 import "./admin-credit-batches.css";
 import "./redesign.css";
+import "./profile-experience.css";
 export const metadata = {
   icons: { icon: "/brand/codex-user-supplied.svg" },
   title: "DevDay Exchange Community Hackathon: New Delhi",

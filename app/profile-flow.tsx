@@ -11,6 +11,7 @@ import {
   profilePhonePattern,
 } from "../lib/profile-contract";
 type Row = Record<string, any>;
+type ProfileFieldErrors = Record<string, string>;
 const platforms = ["LinkedIn", "GitHub", "X", "Instagram", "Website"];
 const platformIcons: Record<string, string> = {
   LinkedIn: "linkedin",
@@ -225,11 +226,13 @@ export function ProfileContactFields({
   links,
   onPhone,
   onLinks,
+  errors = {},
 }: {
   phone: string;
   links: SocialLink[];
   onPhone: (value: string) => void;
   onLinks: (value: SocialLink[]) => void;
+  errors?: ProfileFieldErrors;
 }) {
   return (
     <div className="profile-contact-fields">
@@ -249,8 +252,15 @@ export function ProfileContactFields({
           placeholder="+91 98765 43210"
           maxLength={30}
           value={phone}
+          aria-invalid={errors.phone ? true : undefined}
+          aria-describedby={errors.phone ? "profile-phone-error" : undefined}
           onChange={(event) => onPhone(event.target.value)}
         />
+        {errors.phone && (
+          <small className="profile-field-error" id="profile-phone-error">
+            {errors.phone}
+          </small>
+        )}
       </label>
       <fieldset className="profile-social-editor">
         <legend>Social profiles</legend>
@@ -295,6 +305,12 @@ export function ProfileContactFields({
                 placeholder="https://"
                 maxLength={2048}
                 value={link.url}
+                aria-invalid={errors[`social-${index}`] ? true : undefined}
+                aria-describedby={
+                  errors[`social-${index}`]
+                    ? `profile-social-${index}-error`
+                    : undefined
+                }
                 onChange={(event) =>
                   onLinks(
                     links.map((row, i) =>
@@ -303,6 +319,14 @@ export function ProfileContactFields({
                   )
                 }
               />
+              {errors[`social-${index}`] && (
+                <small
+                  className="profile-field-error"
+                  id={`profile-social-${index}-error`}
+                >
+                  {errors[`social-${index}`]}
+                </small>
+              )}
             </label>
             <button
               type="button"
@@ -322,7 +346,7 @@ export function ProfileContactFields({
           onClick={() => onLinks([...links, { type: "Website", url: "" }])}
         >
           <ProfileIcon name="plus" />
-          Add another
+          Add
         </button>
       </fieldset>
     </div>
@@ -345,10 +369,18 @@ export function ProfileStepHeader({
 }) {
   return (
     <div className="profile-toolbar">
-      <div className="profile-progress" aria-label={`Step ${step} of 3`}>
+      <div
+        className="profile-progress"
+        role="progressbar"
+        aria-label="Profile progress"
+        aria-valuemin={1}
+        aria-valuemax={3}
+        aria-valuenow={step}
+        aria-valuetext={`Step ${step} of 3`}
+      >
         <span className="progress-track" aria-hidden="true">
           {[1, 2, 3].map((n) => (
-            <i key={n} data-active={step === n} />
+            <i key={n} data-active={step === n} data-complete={step > n} />
           ))}
         </span>
         <span>{step} of 3</span>
@@ -407,7 +439,8 @@ export default function ProfileFlow({
       p.avatar_expression in dotExpressions ? p.avatar_expression : "squeezed",
     ),
     [busy, setBusy] = useState(false),
-    [error, setError] = useState("");
+    [error, setError] = useState(""),
+    [fieldErrors, setFieldErrors] = useState<ProfileFieldErrors>({});
   const heading = useRef<HTMLHeadingElement>(null),
     first = useRef(true),
     saving = useRef(false);
@@ -418,6 +451,15 @@ export default function ProfileFlow({
     }
     heading.current?.focus();
   }, [step]);
+  const clearFieldError = (field: string) => {
+    setFieldErrors((previous) => {
+      if (!previous[field]) return previous;
+      const next = { ...previous };
+      delete next[field];
+      return next;
+    });
+    setError("");
+  };
   return (
     <section
       className="profile-flow"
@@ -432,26 +474,43 @@ export default function ProfileFlow({
         headingRef={heading}
         onBack={() => {
           setError("");
+          setFieldErrors({});
           setStep(step - 1);
         }}
       />
       <form
         aria-busy={busy}
+        noValidate
         key={step}
         className="profile-step"
         onSubmit={async (event) => {
           event.preventDefault();
           setError("");
-          if (step === 1 && (name.trim().length < 2 || !bio.trim() || !sex)) {
-            setError("Complete your name, bio and sex.");
-            return;
+          const invalid: ProfileFieldErrors = {};
+          if (step === 1) {
+            if (name.trim().length < 2)
+              invalid.fullName = "Enter at least 2 characters.";
+            if (!bio.trim()) invalid.bio = "Add a one-line bio.";
+            if (!sex) invalid.sex = "Choose an option.";
           }
-          if (
-            step === 2 &&
-            !profilePhonePattern.test(phone.trim().replace(/[ ()-]/g, ""))
-          ) {
-            setError(
-              "Enter your international phone number, including + and country code.",
+          if (step === 2) {
+            if (!profilePhonePattern.test(phone.trim().replace(/[ ()-]/g, "")))
+              invalid.phone = "Include + and your country code.";
+            links.forEach((link, index) => {
+              if (!link.url.trim()) return;
+              try {
+                const url = new URL(link.url.trim());
+                if (url.protocol !== "https:") throw new Error();
+              } catch {
+                invalid[`social-${index}`] = "Enter a complete https:// link.";
+              }
+            });
+          }
+          setFieldErrors(invalid);
+          if (Object.keys(invalid).length) {
+            const form = event.currentTarget;
+            requestAnimationFrame(() =>
+              form.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus(),
             );
             return;
           }
@@ -501,16 +560,36 @@ export default function ProfileFlow({
               />
               <div className="profile-basics-fields">
                 <label>
-                  Full name
+                  <span>
+                    Full name{" "}
+                    <span className="required-mark" aria-hidden="true">
+                      *
+                    </span>
+                  </span>
                   <input
                     name="fullName"
                     autoComplete="name"
                     value={name}
-                    onChange={(event) => setName(event.target.value)}
+                    onChange={(event) => {
+                      setName(event.target.value);
+                      clearFieldError("fullName");
+                    }}
                     required
                     minLength={2}
                     maxLength={100}
+                    aria-invalid={fieldErrors.fullName ? true : undefined}
+                    aria-describedby={
+                      fieldErrors.fullName ? "profile-name-error" : undefined
+                    }
                   />
+                  {fieldErrors.fullName && (
+                    <small
+                      className="profile-field-error"
+                      id="profile-name-error"
+                    >
+                      {fieldErrors.fullName}
+                    </small>
+                  )}
                 </label>
                 <label className="profile-email-field">
                   Email
@@ -541,11 +620,36 @@ export default function ProfileFlow({
                     value={bio}
                     maxLength={240}
                     required
-                    onChange={(event) => setBio(event.target.value)}
+                    aria-invalid={fieldErrors.bio ? true : undefined}
+                    aria-describedby={
+                      fieldErrors.bio ? "profile-bio-error" : undefined
+                    }
+                    onChange={(event) => {
+                      setBio(event.target.value);
+                      clearFieldError("bio");
+                    }}
                   />
+                  {fieldErrors.bio && (
+                    <small
+                      className="profile-field-error"
+                      id="profile-bio-error"
+                    >
+                      {fieldErrors.bio}
+                    </small>
+                  )}
                 </label>
-                <fieldset className="sex-choices">
-                  <legend>Sex</legend>
+                <fieldset
+                  className="sex-choices"
+                  aria-describedby={
+                    fieldErrors.sex ? "profile-sex-error" : undefined
+                  }
+                >
+                  <legend>
+                    Sex{" "}
+                    <span className="required-mark" aria-hidden="true">
+                      *
+                    </span>
+                  </legend>
                   {[
                     ["man", "Male"],
                     ["woman", "Female"],
@@ -558,20 +662,42 @@ export default function ProfileFlow({
                         value={value}
                         required
                         checked={sex === value}
-                        onChange={() => setSex(value)}
+                        aria-invalid={fieldErrors.sex ? true : undefined}
+                        aria-describedby={
+                          fieldErrors.sex ? "profile-sex-error" : undefined
+                        }
+                        onChange={() => {
+                          setSex(value);
+                          clearFieldError("sex");
+                        }}
                       />
                       <span>{label}</span>
                     </label>
                   ))}
                 </fieldset>
+                {fieldErrors.sex && (
+                  <small className="profile-field-error" id="profile-sex-error">
+                    {fieldErrors.sex}
+                  </small>
+                )}
               </div>
             </div>
           ) : step === 2 ? (
             <ProfileContactFields
               phone={phone}
               links={links}
-              onPhone={setPhone}
-              onLinks={setLinks}
+              onPhone={(value) => {
+                setPhone(value);
+                clearFieldError("phone");
+              }}
+              onLinks={(value) => {
+                setLinks(value);
+                setFieldErrors((previous): ProfileFieldErrors =>
+                  previous.phone ? { phone: previous.phone } : {},
+                );
+                setError("");
+              }}
+              errors={fieldErrors}
             />
           ) : (
             <div className="profile-about-fields">
@@ -608,7 +734,16 @@ export default function ProfileFlow({
           )}
         </fieldset>
         <div className="profile-actions">
-          {error && <p role="alert">{error}</p>}
+          {Object.keys(fieldErrors).length > 0 && (
+            <p className="sr-only" role="alert">
+              Check the highlighted fields.
+            </p>
+          )}
+          {error && (
+            <p className="profile-save-error" role="alert">
+              {error}
+            </p>
+          )}
           <button className="button profile-next" disabled={busy}>
             <span>{busy ? "Saving…" : step === 3 ? "Save" : "Next"}</span>
             <ProfileIcon name="next" />
