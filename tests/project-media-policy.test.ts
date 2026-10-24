@@ -256,8 +256,44 @@ test("only project commands get the bounded1MB JSON envelope and persisted canon
       request("{" + "x".repeat(610_000)),
       runtime,
     );
-    assert.equal(malformed.status, 422);
+    assert.equal(malformed.status, 413);
   } finally {
     f.db.close();
   }
+});
+
+test("signed normalization applies EXIF orientation and accepts the exact pixel ceiling", async () => {
+  const rotated = await sharp({
+    create: { width: 128, height: 64, channels: 3, background: "teal" },
+  })
+    .jpeg()
+    .withMetadata({ orientation: 6 })
+    .toBuffer();
+  const canonical = await validateUploadedImage(
+    rotated,
+    "image/jpeg",
+    "banner",
+  );
+  assert.deepEqual(
+    { width: canonical.width, height: canonical.height },
+    { width: 64, height: 128 },
+  );
+  assert.equal(
+    (await sharp(canonical.bytes).metadata()).orientation,
+    undefined,
+  );
+  const maximum = await sharp({
+    create: {
+      width: 4096,
+      height: 4096,
+      channels: 4,
+      background: { r: 35, g: 120, b: 90, alpha: 0.5 },
+    },
+  })
+    .png()
+    .toBuffer();
+  const bounded = await validateUploadedImage(maximum, "image/png", "logo");
+  assert.equal(bounded.width, 512);
+  assert.equal(bounded.height, 512);
+  assert.ok(bounded.byteLength <= projectImageByteLimit("logo"));
 });

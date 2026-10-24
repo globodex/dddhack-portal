@@ -104,7 +104,13 @@ async function readBody(request: Request) {
     combined.set(c, at);
     at += c.length;
   }
-  const value: unknown = JSON.parse(new TextDecoder().decode(combined));
+  let value: unknown;
+  try {
+    value = JSON.parse(new TextDecoder().decode(combined));
+  } catch (error) {
+    demand(length <= PROJECT_MEDIA_DEFAULT_JSON_BYTES, 413, "BODY_TOO_LARGE");
+    throw error;
+  }
   // Read at most the explicit project envelope. Other commands retain their old cap.
   demand(
     length <= PROJECT_MEDIA_DEFAULT_JSON_BYTES ||
