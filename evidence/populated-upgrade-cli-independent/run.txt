@@ -1,0 +1,18 @@
+✔ independent populated upgrade: read-only inspection, pending-only7→9, all old data preserved and fresh-receipt repeat[] (4508.03863ms)
+✔ independent populated upgrade: missing ledger refuses without creating or adopting one (23746.488174ms)
+✔ independent populated upgrade: existing0102 ledger allows only remaining0103 and preserves existing stock backfill (7403.215965ms)
+✔ independent populated upgrade: unknown, missing, mismatched and0103-only ledger states fail before DDL and retain current data (5756.644614ms)
+✔ independent populated upgrade: connected role and changed table counts revalidated after inspection under migration lock (3476.278984ms)
+✔ independent populated upgrade: actual PostgreSQL postcondition failure rolls all feature DDL, ledger and triggered data back (30436.066101ms)
+✔ independent populated upgrade: legacy credit collision aborts with existing ledger and data unchanged (7175.714536ms)
+✔ independent populated upgrade: source, receipt age/digest and owner restore acknowledgment guards refuse before connection (20.630101ms)
+✔ independent populated upgrade: private target input rejects override URLs, pooler, wrong identity and control characters (2.054987ms)
+✔ independent populated upgrade CLI: offline default/strict flags, private receipt no-overwrite and generic secret-free errors (5142.061188ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 88771.69661
