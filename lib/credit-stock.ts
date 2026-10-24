@@ -73,6 +73,12 @@ export async function creditSummaries(
 export async function personalCredits(s: PortalService) {
   const actor = await s.actor();
   demand(
+    !actor.deactivated,
+    403,
+    "PARTICIPANT_REMOVED",
+    "Your participant access has been removed. Contact an organizer.",
+  );
+  demand(
     await one(
       s.db,
       `SELECT id FROM users WHERE id=? AND ${attendancePredicate("users.id")}`,
