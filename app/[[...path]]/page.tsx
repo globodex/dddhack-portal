@@ -14,6 +14,7 @@ import {
 } from "../../lib/next-backend";
 import { chatGPTSignInPath } from "../chatgpt-auth";
 import Portal from "./portal-client";
+import { portalLoadFailure, type PortalLoadFailure } from "../../lib/portal-load-state";
 
 export const dynamic = "force-dynamic";
 type PageProps = { params: Promise<{ path?: string[] }> };
@@ -22,6 +23,7 @@ export default async function Page({ params }: PageProps) {
   const { path = [] } = await params;
   const routePath = "/" + path.join("/");
   const localTest = await localDevelopmentRender();
+  let initialFailure: PortalLoadFailure | undefined;
   let initialView: Record<string, any> | undefined;
   let initialPublic: Record<string, any> | undefined;
   if (protectedPath(routePath)) {
@@ -34,6 +36,7 @@ export default async function Page({ params }: PageProps) {
       // Preserve the route-specific retry and account mismatch UI. The backend
       // continues to enforce all roles, assignments and ownership gates.
       if (!(error instanceof BackendError)) throw error;
+      initialFailure = portalLoadFailure(error.status, error);
     }
   } else if (publicPath(routePath)) {
     try {
@@ -60,6 +63,7 @@ export default async function Page({ params }: PageProps) {
         localTest={localTest}
         initialPublic={initialPublic}
         initialView={initialView}
+        initialFailure={initialFailure}
       />
     </>
   );

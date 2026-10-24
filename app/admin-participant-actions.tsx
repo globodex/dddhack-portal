@@ -182,10 +182,12 @@ export function AdminParticipantFilters({
   value = defaultAdminParticipantFilters,
   onChange,
   expanded = false,
+  showUnregistered = false,
 }: {
   value?: AdminParticipantFiltersValue;
   onChange: (value: AdminParticipantFiltersValue) => void;
   expanded?: boolean;
+  showUnregistered?: boolean;
 }) {
   const update = (patch: Partial<AdminParticipantFiltersValue>) =>
     onChange({ ...value, ...patch });
@@ -211,9 +213,9 @@ export function AdminParticipantFilters({
         <select
           aria-label="Personal status"
           value={value.status}
-          onChange={(event) => update({ status: event.target.value })}
+          onChange={(event) => update({ status: event.target.value, ...(event.target.value === "not registered" ? { team: "all" } : {}) })}
         >
-          {["registered", "going", "checked in", "absent", "all"].map(
+          {[...(showUnregistered ? ["not registered"] : []), "registered", "going", "checked in", "absent", "all"].map(
             (status) => (
               <option key={status} value={status}>
                 {status === "checked in"

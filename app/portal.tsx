@@ -48,6 +48,8 @@ import Link from "next/link";
 import { useDiscoverPeople, peopleDirectoryUrl, readPeoplePage } from "./use-discover-people";
 import { HeadingDot } from "./expressive-heading";
 import RouteSkeleton from "./route-skeleton";
+import ViewerWelcome from "./viewer-welcome";
+import { portalLoadFailure, type PortalLoadFailure } from "../lib/portal-load-state";
 import MobileNavigation from "./mobile-navigation";
 import { useHydrated } from "./use-hydrated";
 import { portalErrorText, portalSuccessText } from "../lib/ui-feedback";
@@ -133,6 +135,7 @@ type View = Row & {
     avatarExpression?: string;
     mode?: "viewer" | "participant" | "staff";
     rostered?: boolean;
+    deactivated?: boolean;
     canEngage?: boolean;
     canParticipate?: boolean;
   };
@@ -1748,21 +1751,7 @@ export function Dashboard({
     );
   };
   if (data.me?.mode === "viewer")
-    return (
-      <>
-        <header className="page-heading">
-          <h1>Welcome</h1>
-        </header>
-        <div className="form-actions">
-          <a className="button" href="/discover/teams">
-            Discover
-          </a>
-          <a className="button secondary" href="/projects">
-            Explore projects
-          </a>
-        </div>
-      </>
-    );
+    return <ViewerWelcome removed={!!data.me.deactivated} />;
   return (
     <div className="dashboard-v6 team-studio" data-editor-open={editorOpen}>
       <nav
@@ -3610,7 +3599,12 @@ export function AdminParticipants({
       recordState === "all" ||
       (recordState === "removed" ? r.removed : !r.removed),
   );
-  const selectable = items.filter((r) => !r.removed);
+  const viewerFilter = filters.status === "not registered";
+  const [viewerPage, setViewerPage] = useState(0);
+  const viewerPages = Math.max(1, Math.ceil(items.length / 25));
+  const currentViewerPage = Math.min(viewerPage, viewerPages - 1);
+  const displayedItems = viewerFilter ? items.slice(currentViewerPage * 25, (currentViewerPage + 1) * 25) : items;
+  const selectable = items.filter((r) => !r.removed && r.registered !== false);
   const visibleEmails = new Set(selectable.map((r) => r.email));
   const visibleSelected = selected.filter((email) => visibleEmails.has(email));
   const selectedPeople = selectable.filter((r) =>
@@ -3629,6 +3623,7 @@ export function AdminParticipants({
   }, [data.items, filters, recordState]);
   const updateFilters = (value: AdminParticipantFiltersValue) => {
     setFilters(value);
+    setViewerPage(0);
     setError("");
   };
   const clearFilters = () => {
@@ -3705,6 +3700,7 @@ export function AdminParticipants({
           value={filters}
           onChange={updateFilters}
           expanded={filtersExpanded}
+          showUnregistered={canManage}
         />
         <button
           type="button"
@@ -3718,7 +3714,7 @@ export function AdminParticipants({
       </div>
       <div className="admin-result-bar">
         <span>
-          {items.length} {items.length === 1 ? "participant" : "participants"}
+          {items.length} {viewerFilter ? (items.length === 1 ? "viewer" : "viewers") : (items.length === 1 ? "participant" : "participants")}
         </span>
         <label className="admin-record-select">
           <span className="sr-only">Participation record</span>
@@ -3855,13 +3851,13 @@ export function AdminParticipants({
               </tr>
             </thead>
             <tbody>
-              {items.map((r) => (
+              {displayedItems.map((r) => (
                 <tr key={r.email}>
                   <td>
                     <input
                       type="checkbox"
                       aria-label={`Select ${r.email}`}
-                      disabled={r.removed || actionPending}
+                      disabled={r.removed || r.registered === false || actionPending}
                       checked={visibleSelected.includes(r.email)}
                       onChange={(e) =>
                         setSelected(
@@ -3995,7 +3991,9 @@ export function AdminParticipants({
                   </td>
                   {canManage && (
                     <td className="admin-manage-cell">
-                      {r.id ? (
+                      {r.registered === false ? (
+                        <span className="muted">Viewer access</span>
+                      ) : r.id ? (
                         <div className="admin-row-actions">
                           <StatusChange
                             kind="person"
@@ -4031,6 +4029,13 @@ export function AdminParticipants({
             </tbody>
           </table>
         </div>
+      )}
+      {viewerFilter && viewerPages > 1 && (
+        <nav className="viewer-pagination" aria-label="Viewer pages">
+          <span>{currentViewerPage * 25 + 1}–{Math.min((currentViewerPage + 1) * 25, items.length)} of {items.length}</span>
+          <button className="button secondary" type="button" disabled={currentViewerPage === 0} onClick={() => setViewerPage(currentViewerPage - 1)}>Previous</button>
+          <button className="button secondary" type="button" disabled={currentViewerPage + 1 >= viewerPages} onClick={() => setViewerPage(currentViewerPage + 1)}>Next</button>
+        </nav>
       )}
       {error && (
         <p className="error-message" role="alert">
@@ -5703,6 +5708,7 @@ export default function Portal({
   localTest = false,
   initialPublic,
   initialView,
+  initialFailure,
   pendingPath = null,
   onNavigate,
 }: {
@@ -5710,6 +5716,7 @@ export default function Portal({
   localTest?: boolean;
   initialPublic?: View;
   initialView?: View;
+  initialFailure?: PortalLoadFailure;
   pendingPath?: string | null;
   onNavigate?: (event: { preventDefault(): void }, destination: string, options?: { replace?: boolean }) => void;
 }) {
@@ -5722,9 +5729,10 @@ export default function Portal({
     onNavigate(event, destination, { replace });
   }
   const [data, setData] = useState<View>(initialView || initialPublic || {}),
-    [loading, setLoading] = useState(!initialView && !initialPublic && path !== "/"),
-    [error, setError] = useState(""),
-    [errorCode, setErrorCode] = useState(""),
+    [loading, setLoading] = useState(!initialView && !initialPublic && !initialFailure && path !== "/"),
+    [error, setError] = useState(initialFailure?.message || ""),
+    [errorCode, setErrorCode] = useState(initialFailure?.code || ""),
+    [refreshing, setRefreshing] = useState(false),
     [message, setMessage] = useState(""),
     [messageTone, setMessageTone] = useState<"success" | "error">("success"),
     [menu, setMenu] = useState(false);
@@ -5749,8 +5757,8 @@ export default function Portal({
     const controller = new AbortController();
     loadAbort.current = controller;
     lastRefresh.current = Date.now();
+    setRefreshing(true);
     setLoading(!hasLoadedView.current);
-    setError("");
     try {
       const focus=new URLSearchParams(window.location.search).get("project") || "";
       const options={search:"",page:0,focus};
@@ -5760,12 +5768,13 @@ export default function Portal({
       if (generation !== loadGeneration.current) return;
       if (!r.ok) {
         presentationCache.current.clear();
-        setErrorCode(body.code || "");
-        hasLoadedView.current = false;
-        setData({});
-        throw new Error(
-          body.message || body.code || "This page could not be loaded.",
-        );
+        const failure = portalLoadFailure(r.status, body);
+        setErrorCode(failure.code);
+        if (r.status === 401 || r.status === 403) {
+          hasLoadedView.current = false;
+          setData({});
+        }
+        throw new Error(failure.message);
       }
       let hydrated: View;
       try {hydrated=await presentationCache.current.merge(body,path,options);}
@@ -5777,17 +5786,32 @@ export default function Portal({
       }
       if(generation!==loadGeneration.current || controller.signal.aborted)return;
       setErrorCode("");
+      setError("");
       hasLoadedView.current = true;
       setData(hydrated);
     } catch (e) {
-      if (generation === loadGeneration.current && !controller.signal.aborted) setError((e as Error).message);
+      if (generation === loadGeneration.current && !controller.signal.aborted) {
+        if (e instanceof TypeError || e instanceof SyntaxError) {
+          setErrorCode("LOAD_FAILED");
+          setError(e instanceof SyntaxError ? "The portal returned an unreadable response. Try again." : "Unable to reach the portal. Check your connection and try again.");
+        } else setError((e as Error).message);
+      }
     } finally {
-      if (generation === loadGeneration.current) setLoading(false);
+      if (generation === loadGeneration.current) { setLoading(false); setRefreshing(false); }
       if (loadAbort.current === controller) loadAbort.current = null;
     }
   }
   useEffect(() => {
-    if (initialView) {
+    setMessage("");
+    setRefreshing(false);
+    setError(initialFailure?.message || "");
+    setErrorCode(initialFailure?.code || "");
+    if (initialFailure) {
+      setData({});
+      hasLoadedView.current = false;
+      setLoading(false);
+      lastRefresh.current = Date.now();
+    } else if (initialView) {
       void presentationCache.current.merge(initialView,path,{search:"",page:0,focus:""}).catch(()=>{});
       setData(initialView);
       hasLoadedView.current = true;
@@ -5814,7 +5838,7 @@ export default function Portal({
       ++loadGeneration.current;
       loadAbort.current?.abort();
     };
-  }, [path, initialView, initialPublic]);
+  }, [path, initialView, initialPublic, initialFailure]);
   useEffect(() => {
     const hide = () => {
       ++loadGeneration.current;
@@ -6153,9 +6177,9 @@ export default function Portal({
                   {admin ? "Workspace" : "Administration"}
                 </a>
               )}
-              <Link className="personal-credit-nav-link" prefetch={false} href="/personal/credits" onNavigate={(event) => navigate(event, "/personal/credits")} aria-current={path === "/personal/credits" ? "page" : undefined}>
+              {data.me.mode !== "viewer" && <Link className="personal-credit-nav-link" prefetch={false} href="/personal/credits" onNavigate={(event) => navigate(event, "/personal/credits")} aria-current={path === "/personal/credits" ? "page" : undefined}>
                 <Icon name="credits" /> My credits
-              </Link>
+              </Link>}
               <button
                 className="link-button account-logout"
                 type="button"
@@ -6188,7 +6212,7 @@ export default function Portal({
                 {admin ? "Workspace" : "Administration"}
               </Link>
             )}
-            <Link prefetch={false} href="/personal/credits" onNavigate={(event) => navigate(event, "/personal/credits")} aria-current={path === "/personal/credits" ? "page" : undefined}><Icon name="credits" />My credits</Link>
+            {data.me.mode !== "viewer" && <Link prefetch={false} href="/personal/credits" onNavigate={(event) => navigate(event, "/personal/credits")} aria-current={path === "/personal/credits" ? "page" : undefined}><Icon name="credits" />My credits</Link>}
             <button className="navigation-logout" type="button" onClick={() => { setMenu(false); requestAnimationFrame(() => void logout()); }}><LogOut size={24} aria-hidden="true" />Log out</button>
           </>
         )}
@@ -6212,38 +6236,27 @@ export default function Portal({
           </div>
         )}
         {error && (
-          <section className="page-error-card" role="alert">
+          <section className="page-error-card" role="alert" aria-busy={refreshing}>
             <HeadingDot color="orange" expression="sleepy" size={48} paused />
-            <h1>{errorCode === "LUMA_EMAIL_MISMATCH" ? "Use your registered email" : "This page could not load"}</h1>
+            <h1>{errorCode === "SIGN_IN_REQUIRED" || errorCode === "AUTH_REQUIRED" ? "Sign in to continue" : "This page could not load"}</h1>
             <p>{error}</p>
             <div className="form-actions">
             <button
               className="button secondary"
+              disabled={refreshing}
               onClick={() => {
                 void load();
               }}
             >
-              Try again
+              {refreshing ? "Trying again…" : "Try again"}
             </button>
-            {errorCode === "LUMA_EMAIL_MISMATCH" ? (
-              <button className="button" onClick={() => void logout()}>
-                Sign out / switch account
-              </button>
-            ) : (
-              !data.me && (
-                <a
-                  className="text-link"
-                  target="_top"
-                  href={`/signin?returnTo=${encodeURIComponent(path)}`}
-                >
-                  Sign in
-                </a>
-              )
+            {!data.me && (
+              <a className="button" target="_top" href={`/signin?returnTo=${encodeURIComponent(path)}`}>Sign in</a>
             )}
             </div>
           </section>
         )}
-        {pendingPath ? (
+        {!error && (pendingPath ? (
           <RouteSkeleton path={pendingPath} />
         ) : path === "/" ? (
           <Home
@@ -6281,7 +6294,9 @@ export default function Portal({
         ) : (
           !error && (
             <>
-              {data.profileIncomplete &&
+              {data.me?.mode === "viewer" && ["/dashboard", "/profile", "/submission", "/personal/credits"].includes(path) ? (
+                <ViewerWelcome removed={!!data.me.deactivated} />
+              ) : data.profileIncomplete &&
               data.me?.mode !== "viewer" &&
               (path === "/dashboard" || path === "/profile") ? (
                 <Profile data={data} run={run} gated />
@@ -6322,7 +6337,7 @@ export default function Portal({
               )}
             </>
           )
-        )}
+        ))}
       </main>
     </div>
   );
