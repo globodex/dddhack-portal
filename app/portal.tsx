@@ -47,6 +47,7 @@ import { HeadingDot } from "./expressive-heading";
 import RouteSkeleton from "./route-skeleton";
 import MobileNavigation from "./mobile-navigation";
 import { useHydrated } from "./use-hydrated";
+import { portalErrorText, portalSuccessText } from "../lib/ui-feedback";
 import { readPortalView } from "../lib/portal-read";
 import {AdminPresentationCache, AdminPresentationCacheMiss} from "../lib/admin-presentation";
 import DiscoveryProfile, {
@@ -140,7 +141,7 @@ async function api(action: string, data: Row) {
     credentials: "same-origin",
   });
   const b = (await r.json()) as Row;
-  if (!r.ok) throw new Error(b.message || b.code || "The request failed.");
+  if (!r.ok) throw new Error(portalErrorText(b));
   return b as Row;
 }
 export function portalConfirmationFor(
@@ -210,7 +211,7 @@ export function portalConfirmationFor(
     return {
       ...base,
       title: "Confirm operational setup",
-      description: `Save the reviewed ${values.operation === "checkin" ? "check-in" : "submission"} rules and shared indefinite-retention notice. Existing enabled scopes stay unchanged; this does not enable operations or confirm any judging policy.`,
+      description: `Save the reviewed ${values.operation === "checkin" ? "check-in" : "submission"} rules and retention policy. Existing enabled scopes stay unchanged; this does not enable operations or confirm any judging policy.`,
       confirmLabel: "Save these confirmations",
       critical: true,
     };
@@ -573,11 +574,13 @@ function Search({
   onChange: (v: string) => void;
   label?: string;
 }) {
+  const hydrated = useHydrated();
   return (
     <label className="search-label">
       <span className="sr-only">{label}</span>
       <input
         type="search"
+        disabled={!hydrated}
         placeholder={label}
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -5591,7 +5594,7 @@ export default function Portal({
         token ? { ...payload, confirmation: token } : payload,
       );
       setMessageTone("success");
-      setMessage(result.message || "Saved.");
+      setMessage(portalSuccessText(action, result.message));
       await load();
       return result;
     } catch (e) {

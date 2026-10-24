@@ -169,6 +169,11 @@ dialog::backdrop { background: #20232066; }
 .confirmation-dialog .form-actions { justify-content: flex-end; flex-wrap: wrap; }
 .route-skeleton-block { background: #e4e6dc; }
 .route-skeleton-tabs,.route-skeleton-row { border-color: var(--line); }
+.route-skeleton-workspace,.route-skeleton-team-cards { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; align-items: start; }
+.route-skeleton-team-identity { display: flex; align-items: center; }
+.route-skeleton-team-identity > .route-skeleton-action { margin-left: auto; }
+.route-skeleton .route-skeleton-tabs { flex-wrap: wrap; }
+.route-skeleton-workspace .route-skeleton-row { min-height: 100px; }
 .rehearsal-banner {
   width: fit-content;
   max-width: 100%;
@@ -203,6 +208,7 @@ dialog::backdrop { background: #20232066; }
 .mobile-navigation nav > .navigation-logout:hover { color: #8f211c; background: #faebe6; }
 .public-project-shell .public-header nav > a[aria-current="page"] { color: #006b43; }
 @media (max-width: 1199px) {
+  .route-skeleton-workspace,.route-skeleton-team-cards { grid-template-columns: minmax(0,1fr); }
   .app-shell.onboarding-shell { min-height: 100svh; }
   .app-shell.workspace-shell > .main { width: 100%; padding: 28px 24px 48px; }
   .app-shell:not(.public-home-shell) > .mobile-header { min-height: 64px; }

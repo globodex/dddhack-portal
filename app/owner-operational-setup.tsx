@@ -162,7 +162,7 @@ export default function OwnerOperationalSetup({
                 invalidate();
               }}
             />
-            I confirm indefinite retention and the private-field protections
+            I confirm the retention policy and private-field protections
             above.
           </label>
           <button
