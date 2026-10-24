@@ -5533,6 +5533,7 @@ export default function Portal({
   return (
     <div
       className={`app-shell ${path === "/" ? "public-home-shell" : ""} ${profileOnboarding ? "onboarding-shell" : ""} ${workspaceShell ? "workspace-shell" : ""} ${publicBrowse ? "public-project-shell" : ""}`.trim()}
+      data-hydrated={hydrated}
       style={{ "--team-accent": c.ink, "--team-wash": c.wash } as CSSProperties}
     >
       {confirmation && (
