@@ -3238,6 +3238,7 @@ export function Projects({
       )}
       {searchError && <div role="alert" className="project-search-error"><span>{searchError}</span><button type="button" className="button secondary" disabled={searchBusy} onClick={() => { setSearchBusy(true); setSearchRetry((n) => n + 1); }}>Retry search</button></div>}
       <ul className="project-list" aria-busy={searchBusy}>
+        {searchBusy && !visibleProjects.length && [1, 2].map((n) => <li className="project-search-placeholder" aria-hidden="true" key={`loading-${n}`}><i /><div><span /><span /><span /></div><b /><b /></li>)}
         {visibleProjects
           .map((p) => (
             <li key={p.id} id={"entry-" + p.slug}>
