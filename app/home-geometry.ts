@@ -19,6 +19,26 @@ export function stackGeometry(
       stages.every((stage, i) => stage >= 520 && naturalHeights[i] <= stage),
   };
 }
+/** Native mobile stacking lets long cards pass fully before their bottom pins. */
+export function mobileStackGeometry(
+  width: number,
+  height: number,
+  naturalHeights: number[],
+  disabled = false,
+) {
+  return {
+    enabled:
+      !disabled &&
+      width > 0 &&
+      width <= 740 &&
+      height >= 240 &&
+      naturalHeights.every((value) => Number.isFinite(value) && value > 0),
+    tops: naturalHeights.map((natural, index) =>
+      Math.min(14 + index * 8, height - natural - 16),
+    ),
+    stages: naturalHeights,
+  };
+}
 export function agendaGeometry(
   startY: number,
   distance: number,

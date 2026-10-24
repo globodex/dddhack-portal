@@ -248,6 +248,13 @@
     transform: none;
     border-radius: 20px 20px 0 0;
   }
+  .public-home-shell .chapter-stack[data-mobile-stack="true"] .chapter,
+  .public-home-shell .chapter-stack[data-mobile-stack="true"] #schedule:has(.agenda-pending),
+  .public-home-shell .chapter-stack[data-mobile-stack="true"] #venue {
+    position: sticky;
+    top: var(--chapter-top);
+    min-height: 0;
+  }
   .public-home-shell .chapter-stack .chapter .chapter-content,
   .public-home-shell .chapter-stack #venue .chapter-content,
   .public-home-shell .chapter-stack #faq .chapter-content {
@@ -308,4 +315,22 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 22px;
+}
+
+.public-home-shell .hero-date .hero-partner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.public-home-shell .hero-partner img {
+  display: block;
+  width: auto;
+  height: 26px;
+  max-width: none;
+  object-fit: contain;
 }

@@ -15,7 +15,11 @@ import DelhiWordmark from "./delhi-wordmark";
 import OrganizerSection from "./organizer-section";
 import { HeadingDot } from "./expressive-heading";
 import { defaultPublicContent } from "../lib/public-content-defaults";
-import { confirmedAgenda, stackGeometry } from "./home-geometry";
+import {
+  confirmedAgenda,
+  mobileStackGeometry,
+  stackGeometry,
+} from "./home-geometry";
 type Content = typeof defaultPublicContent;
 const faqs = [
   [
@@ -75,13 +79,29 @@ function Chapters({
         (chapter) =>
           chapter.querySelector<HTMLElement>(".chapter-content")!.scrollHeight,
       );
-      const layout = stackGeometry(
+      const desktop = stackGeometry(
         innerWidth,
         innerHeight - headerHeight,
         natural,
         paused || reduced.matches,
       );
+      const mobile = mobileStackGeometry(
+        innerWidth,
+        innerHeight - headerHeight,
+        chapters.map((chapter) => {
+          const content = chapter.querySelector<HTMLElement>(".chapter-content")!;
+          const style = getComputedStyle(chapter);
+          return Math.ceil(
+            content.getBoundingClientRect().height +
+              parseFloat(style.borderTopWidth) +
+              parseFloat(style.borderBottomWidth),
+          );
+        }),
+        paused || reduced.matches,
+      );
+      const layout = mobile.enabled ? mobile : desktop;
       node.dataset.enhanced = String(layout.enabled);
+      node.dataset.mobileStack = String(mobile.enabled);
       chapters.forEach((chapter, index) => {
         chapter.style.setProperty(
           "--chapter-top",
@@ -327,6 +347,16 @@ export default function Home({
           <p className="hero-date">
             <span>Sunday, 1 November 2026</span>
             <span className="hero-host">Hosted by Codex Ambassadors</span>
+            <span className="hero-partner">
+              Co-partner
+              <img
+                src="/brand/cerebras-official.webp"
+                alt="Cerebras"
+                width={360}
+                height={159}
+                decoding="async"
+              />
+            </span>
           </p>
           <div className="hero-actions">
             <a

@@ -58,7 +58,7 @@ test("organizer content remains immediately readable without motion or JS and us
   );
   assert.equal((html.match(/Codex Ambassador/g) || []).length, 3);
   assert.equal((html.match(/Cerebras Ambassador/g) || []).length, 1);
-  assert.match(html, /Community partner: Cerebras/);
+  assert.match(html, /Co-partner: Cerebras/);
   assert.doesNotMatch(
     html,
     /aria-hidden="true"[^>]*class="organizer-unit"|opacity:0|visibility:hidden|translate|Shuklaw|—/,
