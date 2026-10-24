@@ -1,0 +1,345 @@
+{
+  "capturedAt": "2026-10-24T16:57:59.503Z",
+  "kind": "static production build graph; no browser performance inference",
+  "gzipIsEstimateNotMeasuredTransfer": true,
+  "registeredFactoriesExecuted": false,
+  "sameConfigAndPackageHashes": true,
+  "identicalCSSAssetsAndHashes": true,
+  "identicalFontAssetsAndHashes": true,
+  "sourceEquivalence": {
+    "defaultsLiteralBytesIdentical": true,
+    "oldDefaultsSha256": "4b74f8b4422157358dec6eff35e5534700ec9f7ee3f9ec109a7621e7513e143c",
+    "newDefaultsSha256": "4b74f8b4422157358dec6eff35e5534700ec9f7ee3f9ec109a7621e7513e143c",
+    "serverSchemaPrefixBytesIdentical": true,
+    "oldSchemaSha256": "6a6298d6408f43d8bd14267bc50352f984053b89d58b16d784ecfaa276cfbed5",
+    "newSchemaSha256": "6a6298d6408f43d8bd14267bc50352f984053b89d58b16d784ecfaa276cfbed5",
+    "pureDefaultsHasNoImport": true,
+    "compatibilityReexportPresent": true
+  },
+  "control": {
+    "root": "/workspace/ddd-perf-prod-final",
+    "source": "2657f26254ed323ca84a167a2f220f05f4ec7cbf; app equivalent to e135e3ec7b787f7e6167c29f4e46bc76a9fbfcec",
+    "buildId": "QdP_-Y3mVZskIG5jIP-YD",
+    "configs": {
+      "next.config.ts": "a596f3f09201f02b53868492c2e2fb38e867090568c985387fcdee2f52706a82",
+      "package.json": "b157875a99b39beefb4104332038d977794ab47f921de1ea9887e49857521e1f",
+      "package-lock.json": "012c834e5021933da47b135aae5642ef4c86592de81407d81b04c7185ba8e9fc"
+    },
+    "initialJavaScript": {
+      "basis": "rootMainFiles plus Portal client-reference chunks and shared layout chunks; legacy polyfills excluded",
+      "files": [
+        {
+          "file": "static/chunks/webpack-2c10f90d120e4d90.js",
+          "bytes": 3422,
+          "gzipBytes": 1749,
+          "sha256": "80f5a82577efe2a3a47895fad67a37b0abb0d8585786f4238a69ceeb3143b8ae"
+        },
+        {
+          "file": "static/chunks/8706df1e-a1d71d4401eeccae.js",
+          "bytes": 203721,
+          "gzipBytes": 64058,
+          "sha256": "3d5add78599d04ab0e0456c56b59a3d6d3f782c71100a0b8ca0a67bc8455bdc8"
+        },
+        {
+          "file": "static/chunks/636-ffb384086c34c920.js",
+          "bytes": 242555,
+          "gzipBytes": 67169,
+          "sha256": "242e24951c064af3a25078bd3a1c7fc095590701d1a158a99bcb83b42769ff84"
+        },
+        {
+          "file": "static/chunks/main-app-32277aadbaba61c6.js",
+          "bytes": 513,
+          "gzipBytes": 221,
+          "sha256": "85558081ff0ad70e3c003f7f433506b2193e9823d0fe5146907359a59dd5e757"
+        },
+        {
+          "file": "static/chunks/330-4c357f8dea252b4d.js",
+          "bytes": 114770,
+          "gzipBytes": 34072,
+          "sha256": "a4bef31b2343c3ce1f5de0722e32e4a6af3e153c51fbcf38fb78c44e88d30293"
+        },
+        {
+          "file": "static/chunks/46-25dc4d392de3b32b.js",
+          "bytes": 245348,
+          "gzipBytes": 67630,
+          "sha256": "0e5af9a5522b23ed208972f7d37e6e3f5103ad427ecb89ce3385b73ef6da29eb"
+        },
+        {
+          "file": "static/chunks/app/%5B%5B...path%5D%5D/page-7d330e6961fa396b.js",
+          "bytes": 179,
+          "gzipBytes": 162,
+          "sha256": "9b6e0018275788e7759bcc5737b2ca8f6c336e56017f2f2d60565873f916d0f9"
+        },
+        {
+          "file": "static/chunks/app/layout-fad7166dbe8edfd4.js",
+          "bytes": 1499,
+          "gzipBytes": 357,
+          "sha256": "785bf8ed8246b86498009461872fa4588eb69efac2b5f883bc262624df7e267b"
+        }
+      ],
+      "bytes": 812007,
+      "gzipBytes": 235418
+    },
+    "initialZodFactories": [
+      {
+        "file": "static/chunks/330-4c357f8dea252b4d.js",
+        "moduleId": "6361",
+        "factoryBytes": 84117,
+        "factorySha256": "3e764c7b80805efa45c5dedd23a081d9f76bc65d1da7ecbd1b32ab5555bebe56",
+        "markers": [
+          "ZodError",
+          "ZodType",
+          "safeParse"
+        ]
+      }
+    ],
+    "allEmittedClientJavaScriptWithZodMarkers": [
+      {
+        "file": "static/chunks/330-4c357f8dea252b4d.js",
+        "bytes": 114770,
+        "gzipBytes": 34072,
+        "sha256": "a4bef31b2343c3ce1f5de0722e32e4a6af3e153c51fbcf38fb78c44e88d30293"
+      }
+    ],
+    "initialCSS": [
+      {
+        "file": "static/css/8809e623ff52f09d.css",
+        "bytes": 69540,
+        "gzipBytes": 13644,
+        "sha256": "5982b839c1f21edde41e353e4e36e5cbd57b43f88a4bc74e49b0768208c90440"
+      },
+      {
+        "file": "static/css/6e69855840ff679f.css",
+        "bytes": 79342,
+        "gzipBytes": 12879,
+        "sha256": "68662e9ac4894473c9ba14bed5aa4ce044ebbb65495063a08bdbfa274d50f4e2"
+      },
+      {
+        "file": "static/css/eb86810ad77fc3a3.css",
+        "bytes": 68439,
+        "gzipBytes": 11741,
+        "sha256": "01e80fe541629e3235ca7312714af65e372ffc98dceae817d571dc81168e9df5"
+      },
+      {
+        "file": "static/css/3be7d25f586b063e.css",
+        "bytes": 86142,
+        "gzipBytes": 12361,
+        "sha256": "37a0dfd18ebb12cad0355e3ff3d97ec6fdc485216378257cb215d124febb4be8"
+      },
+      {
+        "file": "static/css/55bbc64ae4d39192.css",
+        "bytes": 25795,
+        "gzipBytes": 4292,
+        "sha256": "a0b7ff5ee4791d8478bb001dd140fcaa07586c5b7c5055a3cdf6c60af643d202"
+      }
+    ],
+    "fonts": [
+      {
+        "file": "static/media/dm-sans-latin-400-normal.6193dcef.woff",
+        "bytes": 18356,
+        "gzipBytes": 18189,
+        "sha256": "38702875fe179437d200e7ba6f7fab4d497ffe48117ef332029b2081751186ad"
+      },
+      {
+        "file": "static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+        "bytes": 14200,
+        "gzipBytes": 14159,
+        "sha256": "4ab51eb2cd7305d177187908d6397474d4520663f6c6e572feb0a64f4fa80006"
+      },
+      {
+        "file": "static/media/dm-sans-latin-500-normal.1dd5b1eb.woff",
+        "bytes": 18520,
+        "gzipBytes": 18377,
+        "sha256": "7deb957e430b780ee3272d801af4f9f2211b1330ec40a312a8f25309eacb4034"
+      },
+      {
+        "file": "static/media/dm-sans-latin-500-normal.210398b6.woff2",
+        "bytes": 14304,
+        "gzipBytes": 14240,
+        "sha256": "19bf1984956517c35c2bd35b6cdedac12a21d6fcd3596c614ecdfb88b648909d"
+      },
+      {
+        "file": "static/media/dm-sans-latin-700-normal.beb4580c.woff",
+        "bytes": 18504,
+        "gzipBytes": 18345,
+        "sha256": "af422a448ac00679a8dbb13532db3616829c5a35b58d3eeea5903ce17ad2e36a"
+      },
+      {
+        "file": "static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+        "bytes": 14348,
+        "gzipBytes": 14316,
+        "sha256": "35c5efa0e5daa52ee5c6500f5be354bf751fb65c4e49e1d6806c6eb5883e8fe9"
+      },
+      {
+        "file": "static/media/dm-sans-latin-900-normal.216ec680.woff",
+        "bytes": 18476,
+        "gzipBytes": 18286,
+        "sha256": "65b9a74ad0e5249cf60ab4efbf5b5f3aacf2e8c6fe3aba5dd56b11f5c89f864a"
+      },
+      {
+        "file": "static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+        "bytes": 14232,
+        "gzipBytes": 14190,
+        "sha256": "d61c2ddffc7ab3a5dc2fe3e1f5eb94d776ca4d0b00ac1eeb7f12344066e1cac9"
+      }
+    ],
+    "homeAsyncLoadableEntry": null,
+    "staticHomeImport": true
+  },
+  "candidate": {
+    "root": "/workspace/ddd-perf-content-boundary",
+    "source": "d24b47f01c40abe247944a2e81e414a7a31ac06d",
+    "buildId": "XehgeJXDCi4ZqY376uUy7",
+    "configs": {
+      "next.config.ts": "a596f3f09201f02b53868492c2e2fb38e867090568c985387fcdee2f52706a82",
+      "package.json": "b157875a99b39beefb4104332038d977794ab47f921de1ea9887e49857521e1f",
+      "package-lock.json": "012c834e5021933da47b135aae5642ef4c86592de81407d81b04c7185ba8e9fc"
+    },
+    "initialJavaScript": {
+      "basis": "rootMainFiles plus Portal client-reference chunks and shared layout chunks; legacy polyfills excluded",
+      "files": [
+        {
+          "file": "static/chunks/webpack-09d3932bfcfdf531.js",
+          "bytes": 3422,
+          "gzipBytes": 1747,
+          "sha256": "97307802396d4f6ce1a3bf8e6f6ffe27854ffa1c2e339fb2bb850b0aed6847fe"
+        },
+        {
+          "file": "static/chunks/8706df1e-a1d71d4401eeccae.js",
+          "bytes": 203721,
+          "gzipBytes": 64058,
+          "sha256": "3d5add78599d04ab0e0456c56b59a3d6d3f782c71100a0b8ca0a67bc8455bdc8"
+        },
+        {
+          "file": "static/chunks/636-ffb384086c34c920.js",
+          "bytes": 242555,
+          "gzipBytes": 67169,
+          "sha256": "242e24951c064af3a25078bd3a1c7fc095590701d1a158a99bcb83b42769ff84"
+        },
+        {
+          "file": "static/chunks/main-app-32277aadbaba61c6.js",
+          "bytes": 513,
+          "gzipBytes": 221,
+          "sha256": "85558081ff0ad70e3c003f7f433506b2193e9823d0fe5146907359a59dd5e757"
+        },
+        {
+          "file": "static/chunks/754-acc388c9c5a7b620.js",
+          "bytes": 30647,
+          "gzipBytes": 9672,
+          "sha256": "6ccef3f22f2175532599afad1410a8870e9d861c385e20c6176050fcc19400b6"
+        },
+        {
+          "file": "static/chunks/272-e69d48b1df51e920.js",
+          "bytes": 244469,
+          "gzipBytes": 67231,
+          "sha256": "39ca3718972870d128cda40588dfc2628cc641225599106756e948423c9a9449"
+        },
+        {
+          "file": "static/chunks/app/%5B%5B...path%5D%5D/page-805e85a88841b968.js",
+          "bytes": 182,
+          "gzipBytes": 162,
+          "sha256": "d0cee79e291a4fa3c6f13131a601898d49a387e6fa850a05b1f1cedd9601d53f"
+        },
+        {
+          "file": "static/chunks/app/layout-4d72ecd7bbfc9a44.js",
+          "bytes": 1499,
+          "gzipBytes": 357,
+          "sha256": "21216e1fb04bbdb19857f2478c8130c42d48e310889d4ff925a40a101ea07cbb"
+        }
+      ],
+      "bytes": 727008,
+      "gzipBytes": 210617
+    },
+    "initialZodFactories": [],
+    "allEmittedClientJavaScriptWithZodMarkers": [],
+    "initialCSS": [
+      {
+        "file": "static/css/8809e623ff52f09d.css",
+        "bytes": 69540,
+        "gzipBytes": 13644,
+        "sha256": "5982b839c1f21edde41e353e4e36e5cbd57b43f88a4bc74e49b0768208c90440"
+      },
+      {
+        "file": "static/css/6e69855840ff679f.css",
+        "bytes": 79342,
+        "gzipBytes": 12879,
+        "sha256": "68662e9ac4894473c9ba14bed5aa4ce044ebbb65495063a08bdbfa274d50f4e2"
+      },
+      {
+        "file": "static/css/eb86810ad77fc3a3.css",
+        "bytes": 68439,
+        "gzipBytes": 11741,
+        "sha256": "01e80fe541629e3235ca7312714af65e372ffc98dceae817d571dc81168e9df5"
+      },
+      {
+        "file": "static/css/3be7d25f586b063e.css",
+        "bytes": 86142,
+        "gzipBytes": 12361,
+        "sha256": "37a0dfd18ebb12cad0355e3ff3d97ec6fdc485216378257cb215d124febb4be8"
+      },
+      {
+        "file": "static/css/55bbc64ae4d39192.css",
+        "bytes": 25795,
+        "gzipBytes": 4292,
+        "sha256": "a0b7ff5ee4791d8478bb001dd140fcaa07586c5b7c5055a3cdf6c60af643d202"
+      }
+    ],
+    "fonts": [
+      {
+        "file": "static/media/dm-sans-latin-400-normal.6193dcef.woff",
+        "bytes": 18356,
+        "gzipBytes": 18189,
+        "sha256": "38702875fe179437d200e7ba6f7fab4d497ffe48117ef332029b2081751186ad"
+      },
+      {
+        "file": "static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+        "bytes": 14200,
+        "gzipBytes": 14159,
+        "sha256": "4ab51eb2cd7305d177187908d6397474d4520663f6c6e572feb0a64f4fa80006"
+      },
+      {
+        "file": "static/media/dm-sans-latin-500-normal.1dd5b1eb.woff",
+        "bytes": 18520,
+        "gzipBytes": 18377,
+        "sha256": "7deb957e430b780ee3272d801af4f9f2211b1330ec40a312a8f25309eacb4034"
+      },
+      {
+        "file": "static/media/dm-sans-latin-500-normal.210398b6.woff2",
+        "bytes": 14304,
+        "gzipBytes": 14240,
+        "sha256": "19bf1984956517c35c2bd35b6cdedac12a21d6fcd3596c614ecdfb88b648909d"
+      },
+      {
+        "file": "static/media/dm-sans-latin-700-normal.beb4580c.woff",
+        "bytes": 18504,
+        "gzipBytes": 18345,
+        "sha256": "af422a448ac00679a8dbb13532db3616829c5a35b58d3eeea5903ce17ad2e36a"
+      },
+      {
+        "file": "static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+        "bytes": 14348,
+        "gzipBytes": 14316,
+        "sha256": "35c5efa0e5daa52ee5c6500f5be354bf751fb65c4e49e1d6806c6eb5883e8fe9"
+      },
+      {
+        "file": "static/media/dm-sans-latin-900-normal.216ec680.woff",
+        "bytes": 18476,
+        "gzipBytes": 18286,
+        "sha256": "65b9a74ad0e5249cf60ab4efbf5b5f3aacf2e8c6fe3aba5dd56b11f5c89f864a"
+      },
+      {
+        "file": "static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+        "bytes": 14232,
+        "gzipBytes": 14190,
+        "sha256": "d61c2ddffc7ab3a5dc2fe3e1f5eb94d776ca4d0b00ac1eeb7f12344066e1cac9"
+      }
+    ],
+    "homeAsyncLoadableEntry": null,
+    "staticHomeImport": true
+  },
+  "difference": {
+    "initialRawJavaScriptBytes": -84999,
+    "initialGzipEstimateBytes": -24801
+  },
+  "SSRLimit": "Default-data source and schema bytes are identical. Actual rendered Home SSR, content and pixels are verified separately by Profile."
+}
