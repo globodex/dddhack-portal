@@ -13,6 +13,13 @@
 .public-home-shell .chapter-stack .chapter + .chapter {
   margin-top: -1px;
 }
+/* Sparse chapters stay compact; the content-rich panels still form the stack. */
+.public-home-shell .chapter-stack[data-enhanced="true"] #schedule:has(.agenda-pending),
+.public-home-shell .chapter-stack[data-enhanced="true"] #venue {
+  position: relative;
+  top: auto;
+  min-height: 0;
+}
 .public-home-shell .chapter-stack .chapter .chapter-content,
 .public-home-shell .chapter-stack #venue .chapter-content,
 .public-home-shell .chapter-stack #faq .chapter-content {
