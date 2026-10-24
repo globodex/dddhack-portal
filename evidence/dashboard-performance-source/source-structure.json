@@ -1,0 +1,121 @@
+{
+  "baseline": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+  "final": "2657f26254ed323ca84a167a2f220f05f4ec7cbf",
+  "sourceHashes": {
+    "app/[[...path]]/page.tsx": {
+      "696b125f9711a4fd6e02c3ece3adadb18b83cba7": "1d9967fcef4e0852551b0e7a4b63646c2c919376f0aab3e4c51f4e4728922dcc",
+      "2657f26254ed323ca84a167a2f220f05f4ec7cbf": "9201f360257f517bee2a225238355787ddddf78f58342d2d66164a39b8fc5128"
+    },
+    "app/[[...path]]/portal-client.tsx": {
+      "696b125f9711a4fd6e02c3ece3adadb18b83cba7": "c1fd2e77f7abccb0b2a2ba16d0d03b180fa038ae60b7fbf237eb3248c9a4724b",
+      "2657f26254ed323ca84a167a2f220f05f4ec7cbf": "1753fc560a00910bf13653039d979f804b6b5b0a83d29dc4ba1201f4b95ddd5c"
+    },
+    "app/layout.tsx": {
+      "696b125f9711a4fd6e02c3ece3adadb18b83cba7": "bcb594eb21bb444ef15937d1ad0b0c6e6eb23654178a7e1b7f024faf887042cd",
+      "2657f26254ed323ca84a167a2f220f05f4ec7cbf": "8a999a4c628b0b97372853f01b19338d551b316e977591af92c578933202bb12"
+    },
+    "app/portal.tsx": {
+      "696b125f9711a4fd6e02c3ece3adadb18b83cba7": "868e6309101c60b697eab44b8da47b1a19f05607b1c4088c44763a12951c4c3d",
+      "2657f26254ed323ca84a167a2f220f05f4ec7cbf": "c0a8711f84679b89a4f5d0f05c2ef579f2bc5b60b2619cf335296c6f73e5b8b6"
+    },
+    "app/style.css": {
+      "696b125f9711a4fd6e02c3ece3adadb18b83cba7": "a295b7be4f3ca1c5e97142a03a96898f70ebda9092f1a94eaa8a0f47210e75df",
+      "2657f26254ed323ca84a167a2f220f05f4ec7cbf": "a295b7be4f3ca1c5e97142a03a96898f70ebda9092f1a94eaa8a0f47210e75df"
+    },
+    "app/public-home.css": {
+      "696b125f9711a4fd6e02c3ece3adadb18b83cba7": "063b93afd5050e244c939e03856f2df7b20fd61eae288086ece0cbe6dd891756",
+      "2657f26254ed323ca84a167a2f220f05f4ec7cbf": "120735f8a72e871eb724011157f8ddb39e69757770b9792262d6412433ebef8e"
+    },
+    "lib/next-backend.ts": {
+      "696b125f9711a4fd6e02c3ece3adadb18b83cba7": "da1a2cdf4b4698153c8e4d2f28f6b9b753e3104becc63bbc168a43863cc00571",
+      "2657f26254ed323ca84a167a2f220f05f4ec7cbf": "bba556cc75d01df22ba78f4bae5f0d5bc8612af7d594e450d4e140b9830207c8"
+    },
+    "lib/service.ts": {
+      "696b125f9711a4fd6e02c3ece3adadb18b83cba7": "8ade27c8d8692c9e1824677a61f65da579dea6870b4f538ffde6e2a5ea79bfd4",
+      "2657f26254ed323ca84a167a2f220f05f4ec7cbf": "af0dd83333325b05ea1eb14822b856b3a4d588b97d134bead162a721ccf7e051"
+    },
+    "lib/experience.ts": {
+      "696b125f9711a4fd6e02c3ece3adadb18b83cba7": "af7955ed65c40876c8faf61de9499009a427e1e3d63b346d226ab1d5c021631e",
+      "2657f26254ed323ca84a167a2f220f05f4ec7cbf": "44cd51de83deaa41e9f9410eb3a58bc683b6894b783f126c72a3509bd3da0c30"
+    },
+    "lib/team-access.ts": {
+      "696b125f9711a4fd6e02c3ece3adadb18b83cba7": "3ae35ca6ace2d788ec475af615be7c31b49020c431c2fc3bf22ac9b833133c08",
+      "2657f26254ed323ca84a167a2f220f05f4ec7cbf": "3ae35ca6ace2d788ec475af615be7c31b49020c431c2fc3bf22ac9b833133c08"
+    },
+    "lib/roster.ts": {
+      "696b125f9711a4fd6e02c3ece3adadb18b83cba7": "51e1a5ec1ec22ac96066756a7065806ea745fb21e0aa6f2fc0971ab043232154",
+      "2657f26254ed323ca84a167a2f220f05f4ec7cbf": "51e1a5ec1ec22ac96066756a7065806ea745fb21e0aa6f2fc0971ab043232154"
+    },
+    "neon/api.ts": {
+      "696b125f9711a4fd6e02c3ece3adadb18b83cba7": "0a1b35660c95dcd1ffc977350ab97060365e1397f5b0636476e89948ca1ff1a2",
+      "2657f26254ed323ca84a167a2f220f05f4ec7cbf": "0a1b35660c95dcd1ffc977350ab97060365e1397f5b0636476e89948ca1ff1a2"
+    },
+    "neon/auth/index.ts": {
+      "696b125f9711a4fd6e02c3ece3adadb18b83cba7": "8809d5dafd86da44b65321360e73d1ed84d812e465c62f5f3560c6feb2d3697a",
+      "2657f26254ed323ca84a167a2f220f05f4ec7cbf": "8809d5dafd86da44b65321360e73d1ed84d812e465c62f5f3560c6feb2d3697a"
+    }
+  },
+  "rootGlobalCss": {
+    "baselineImports": 16,
+    "finalImports": 24,
+    "baselineRawSourceBytes": 226019,
+    "finalRawSourceBytes": 401566,
+    "added": [
+      {
+        "path": "app/personal-credits.css",
+        "bytes": 5113
+      },
+      {
+        "path": "app/redesign.css",
+        "bytes": 9127
+      },
+      {
+        "path": "app/profile-experience.css",
+        "bytes": 10585
+      },
+      {
+        "path": "app/team-discovery-experience.css",
+        "bytes": 37998
+      },
+      {
+        "path": "app/admin-experience.css",
+        "bytes": 31690
+      },
+      {
+        "path": "app/projects-rules-experience.css",
+        "bytes": 27907
+      },
+      {
+        "path": "app/team-studio-shell.css",
+        "bytes": 3848
+      },
+      {
+        "path": "app/team-studio-experience.css",
+        "bytes": 30306
+      }
+    ],
+    "addedRawSourceBytes": 156574,
+    "note": "Raw source bytes only; not compiled, minified or transferred bytes."
+  },
+  "fonts": {
+    "importedWeights": [
+      400,
+      500,
+      700,
+      900
+    ],
+    "fontDisplay": "swap",
+    "weight900AlreadyImportedAtBaseline": true,
+    "newDashboardWeight800Selectors": [
+      ".app-shell .main .team-studio .studio-team-name h1",
+      ".app-shell .main .team-studio .studio-next h2"
+    ],
+    "interpretation": "800 selecting the900face is a likely trigger consistent with the parent reported extra font request. Font timing/paint causality requires the matched production browser trace."
+  },
+  "scope": {
+    "productionFilesEdited": false,
+    "browserOrServersStarted": false,
+    "providerChanges": false,
+    "hostedDataAccess": false
+  }
+}
