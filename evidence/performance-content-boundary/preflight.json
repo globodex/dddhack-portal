@@ -1,0 +1,905 @@
+{
+  "method": "One actual no-JS Dashboard/Home and hydrated Dashboard/Projects\u2192Home pervariant, then one candidate390touch-menu\u2192Home. GET-only local fixtures; no timing samples.",
+  "cases": [
+    {
+      "variant": "baseline",
+      "label": "dashboard",
+      "mode": "nojs",
+      "status": 200,
+      "titleVisible": true,
+      "heading": "Small Wonder",
+      "privateVenueAbsent": null,
+      "contentVerified": true
+    },
+    {
+      "variant": "baseline",
+      "label": "home",
+      "mode": "nojs",
+      "status": 200,
+      "titleVisible": true,
+      "heading": "DevDay ExchangeCommunity Hackathon:New Delhi",
+      "privateVenueAbsent": true,
+      "contentVerified": true
+    },
+    {
+      "variant": "baseline",
+      "label": "dashboard",
+      "mode": "hydrated",
+      "url": "https://portal-perf.test:3443/dashboard",
+      "heading": "Small Wonder",
+      "requests": [
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/dashboard",
+          "type": "document"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/css/8809e623ff52f09d.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/css/6e69855840ff679f.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/css/eb86810ad77fc3a3.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/css/3be7d25f586b063e.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/css/55bbc64ae4d39192.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/brand/codex-user-supplied.svg",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/icons/social/github.svg",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/icons/social/linkedin.svg",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/icons/social/whatsapp.svg",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/webpack-2c10f90d120e4d90.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/8706df1e-a1d71d4401eeccae.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/636-ffb384086c34c920.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/main-app-32277aadbaba61c6.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "type": "font"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "type": "font"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "type": "font"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+          "type": "font"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/330-4c357f8dea252b4d.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/46-25dc4d392de3b32b.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/app/%5B%5B...path%5D%5D/page-7d330e6961fa396b.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/brand/codex-user-supplied.svg",
+          "type": "other"
+        }
+      ]
+    },
+    {
+      "variant": "baseline",
+      "label": "home",
+      "mode": "hydrated",
+      "url": "https://portal-perf.test:3443/",
+      "heading": "DevDay ExchangeCommunity Hackathon:New Delhi",
+      "requests": [
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/projects",
+          "type": "document"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/css/8809e623ff52f09d.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/css/6e69855840ff679f.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/css/eb86810ad77fc3a3.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/css/3be7d25f586b063e.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/css/55bbc64ae4d39192.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/brand/codex-user-supplied.svg",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/webpack-2c10f90d120e4d90.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/8706df1e-a1d71d4401eeccae.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/636-ffb384086c34c920.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/main-app-32277aadbaba61c6.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "type": "font"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "type": "font"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "type": "font"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/api/project-image/visual_project_alice/logo?version=visual_alice_v2",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/api/project-image/visual_project_eve/logo?version=visual_eve_v3",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/api/project-image/fake_control_project_00/logo?version=fake_control_version_00",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/api/project-image/fake_control_project_01/logo?version=fake_control_version_01",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/api/project-image/fake_control_project_02/logo?version=fake_control_version_02",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/api/project-image/fake_control_project_03/logo?version=fake_control_version_03",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/api/project-image/fake_control_project_04/logo?version=fake_control_version_04",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/api/project-image/fake_control_project_05/logo?version=fake_control_version_05",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/api/project-image/fake_control_project_06/logo?version=fake_control_version_06",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/api/project-image/fake_control_project_07/logo?version=fake_control_version_07",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/api/project-image/fake_control_project_08/logo?version=fake_control_version_08",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/api/project-image/fake_control_project_09/logo?version=fake_control_version_09",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/api/project-image/fake_control_project_10/logo?version=fake_control_version_10",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/api/project-image/fake_control_project_11/logo?version=fake_control_version_11",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/api/project-image/fake_control_project_12/logo?version=fake_control_version_12",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/330-4c357f8dea252b4d.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/46-25dc4d392de3b32b.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/app/%5B%5B...path%5D%5D/page-7d330e6961fa396b.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/brand/codex-user-supplied.svg",
+          "type": "other"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/api/portal?view=%2Fprojects&focus=",
+          "type": "fetch"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/?_rsc=VGTW3YXdsTYXpgfl",
+          "type": "fetch"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/brand/codex-user-supplied.svg",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/art/delhi-v3/fallback-approved-v3.webp",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+          "type": "font"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/brand/codex-user-supplied.svg",
+          "type": "other"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3443/api/portal?view=%2F&focus=",
+          "type": "fetch"
+        }
+      ]
+    },
+    {
+      "variant": "final",
+      "label": "dashboard",
+      "mode": "nojs",
+      "status": 200,
+      "titleVisible": true,
+      "heading": "Small Wonder",
+      "privateVenueAbsent": null,
+      "contentVerified": true
+    },
+    {
+      "variant": "final",
+      "label": "home",
+      "mode": "nojs",
+      "status": 200,
+      "titleVisible": true,
+      "heading": "DevDay ExchangeCommunity Hackathon:New Delhi",
+      "privateVenueAbsent": true,
+      "contentVerified": true
+    },
+    {
+      "variant": "final",
+      "label": "dashboard",
+      "mode": "hydrated",
+      "url": "https://portal-perf.test:3444/dashboard",
+      "heading": "Small Wonder",
+      "requests": [
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/dashboard",
+          "type": "document"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/css/8809e623ff52f09d.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/css/6e69855840ff679f.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/css/eb86810ad77fc3a3.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/css/3be7d25f586b063e.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/css/55bbc64ae4d39192.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/brand/codex-user-supplied.svg",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/icons/social/github.svg",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/icons/social/linkedin.svg",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/icons/social/whatsapp.svg",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/webpack-09d3932bfcfdf531.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/8706df1e-a1d71d4401eeccae.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/636-ffb384086c34c920.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/main-app-32277aadbaba61c6.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "type": "font"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "type": "font"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "type": "font"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+          "type": "font"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/754-acc388c9c5a7b620.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/272-e69d48b1df51e920.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/app/%5B%5B...path%5D%5D/page-805e85a88841b968.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/brand/codex-user-supplied.svg",
+          "type": "other"
+        }
+      ]
+    },
+    {
+      "variant": "final",
+      "label": "home",
+      "mode": "hydrated",
+      "url": "https://portal-perf.test:3444/",
+      "heading": "DevDay ExchangeCommunity Hackathon:New Delhi",
+      "requests": [
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/projects",
+          "type": "document"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/css/8809e623ff52f09d.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/css/6e69855840ff679f.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/css/eb86810ad77fc3a3.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/css/3be7d25f586b063e.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/css/55bbc64ae4d39192.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/brand/codex-user-supplied.svg",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/webpack-09d3932bfcfdf531.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/8706df1e-a1d71d4401eeccae.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/636-ffb384086c34c920.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/main-app-32277aadbaba61c6.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "type": "font"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "type": "font"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "type": "font"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/visual_project_alice/logo?version=visual_alice_v2",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/visual_project_eve/logo?version=visual_eve_v3",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_00/logo?version=fake_control_version_00",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_01/logo?version=fake_control_version_01",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_02/logo?version=fake_control_version_02",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_03/logo?version=fake_control_version_03",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_04/logo?version=fake_control_version_04",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_05/logo?version=fake_control_version_05",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_06/logo?version=fake_control_version_06",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_07/logo?version=fake_control_version_07",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_08/logo?version=fake_control_version_08",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_09/logo?version=fake_control_version_09",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_10/logo?version=fake_control_version_10",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_11/logo?version=fake_control_version_11",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_12/logo?version=fake_control_version_12",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/754-acc388c9c5a7b620.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/272-e69d48b1df51e920.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/app/%5B%5B...path%5D%5D/page-805e85a88841b968.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/brand/codex-user-supplied.svg",
+          "type": "other"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/portal?view=%2Fprojects&focus=",
+          "type": "fetch"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/?_rsc=VGTW3YXdsTYXpgfl",
+          "type": "fetch"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/brand/codex-user-supplied.svg",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/art/delhi-v3/fallback-approved-v3.webp",
+          "type": "image"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+          "type": "font"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/brand/codex-user-supplied.svg",
+          "type": "other"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/portal?view=%2F&focus=",
+          "type": "fetch"
+        }
+      ]
+    },
+    {
+      "variant": "final",
+      "mode": "mobile-touch-navigation",
+      "geometry": {
+        "scrollWidth": 390,
+        "innerWidth": 390,
+        "openDialogs": 0,
+        "url": "https://portal-perf.test:3444/"
+      },
+      "menuButton": {
+        "x": 328,
+        "y": 10,
+        "width": 44,
+        "height": 44
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/projects"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/css/8809e623ff52f09d.css"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/css/6e69855840ff679f.css"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/css/eb86810ad77fc3a3.css"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/css/3be7d25f586b063e.css"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/css/55bbc64ae4d39192.css"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/brand/codex-user-supplied.svg"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/webpack-09d3932bfcfdf531.js"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/8706df1e-a1d71d4401eeccae.js"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/636-ffb384086c34c920.js"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/main-app-32277aadbaba61c6.js"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/visual_project_alice/logo?version=visual_alice_v2"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/visual_project_eve/logo?version=visual_eve_v3"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_00/logo?version=fake_control_version_00"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_01/logo?version=fake_control_version_01"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_02/logo?version=fake_control_version_02"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_03/logo?version=fake_control_version_03"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_04/logo?version=fake_control_version_04"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_05/logo?version=fake_control_version_05"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_06/logo?version=fake_control_version_06"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/project-image/fake_control_project_07/logo?version=fake_control_version_07"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/754-acc388c9c5a7b620.js"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/272-e69d48b1df51e920.js"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/app/%5B%5B...path%5D%5D/page-805e85a88841b968.js"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/brand/codex-user-supplied.svg"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/portal?view=%2Fprojects&focus="
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/?_rsc=VGTW3YXdsTYXpgfl"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/brand/codex-user-supplied.svg"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/art/delhi-v3/fallback-approved-v3.webp"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/brand/codex-user-supplied.svg"
+        },
+        {
+          "method": "GET",
+          "url": "https://portal-perf.test:3444/api/portal?view=%2F&focus="
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    {
+      "file": "baseline-dashboard-nojs.png",
+      "inspected": true
+    },
+    {
+      "file": "baseline-home-nojs.png",
+      "inspected": true
+    },
+    {
+      "file": "baseline-dashboard-hydrated.png",
+      "inspected": true
+    },
+    {
+      "file": "baseline-home-hydrated.png",
+      "inspected": true
+    },
+    {
+      "file": "final-dashboard-nojs.png",
+      "inspected": true
+    },
+    {
+      "file": "final-home-nojs.png",
+      "inspected": true
+    },
+    {
+      "file": "final-dashboard-hydrated.png",
+      "inspected": true
+    },
+    {
+      "file": "final-home-hydrated.png",
+      "inspected": true
+    },
+    {
+      "file": "final-mobile-menu-390.png",
+      "inspected": true
+    },
+    {
+      "file": "final-mobile-home-390.png",
+      "inspected": true
+    }
+  ],
+  "result": "PASS",
+  "browserClosed": true,
+  "inspectionMethod": "Full-page contact sheets for eight desktop originals, native mobile menu/first-viewport detail and full mobile original; exact full-pixel comparisons in gate-pixels.json."
+}
