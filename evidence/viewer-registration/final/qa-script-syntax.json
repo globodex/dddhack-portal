@@ -1,0 +1,22 @@
+{
+  "checked": [
+    "scripts/diagnose-d1-phases.mjs",
+    "scripts/qa-mobile-home-stack.mjs",
+    "scripts/qa-viewer-registration-admin-finish.mjs",
+    "scripts/qa-viewer-registration-admin-mobile-diagnostic.mjs",
+    "scripts/qa-viewer-registration-admin-mobile-row.mjs",
+    "scripts/qa-viewer-registration-admin.mjs",
+    "scripts/qa-viewer-registration-after.mjs",
+    "scripts/qa-viewer-registration-before-settled.mjs",
+    "scripts/qa-viewer-registration-before.mjs",
+    "scripts/qa-viewer-registration-explore.mjs",
+    "scripts/qa-viewer-registration-fault-backend.mjs",
+    "scripts/qa-viewer-registration-faults.mjs",
+    "scripts/qa-viewer-registration-inventory.mjs",
+    "scripts/qa-viewer-registration-nav-diagnostic.mjs",
+    "scripts/qa-viewer-registration-profile-diagnostic.mjs",
+    "scripts/qa-viewer-registration-teamless.mjs",
+    "scripts/verify-mobile-home-stack.mjs"
+  ],
+  "passed": true
+}

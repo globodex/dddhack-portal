@@ -21,16 +21,37 @@
     "evidence": "evidence/mobile-stack-final/verification.json"
   },
   "fullRegression": {
-    "status": "running; not declared green",
-    "finalLog": "evidence/viewer-registration/final/tests.log",
+    "status": "passed",
+    "exitCode": 0,
+    "tests": 573,
+    "pass": 567,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 6,
+    "durationMs": 559353.368702,
+    "nativePostgresSkips": "Six tests require a separately configured disposable native PostgreSQL database; SQLite/PGlite and local D1 actually ran",
     "priorRun": {
       "passed": 557,
       "cancelledByD1Timeout": 1,
-      "skipped": 6
+      "skipped": 6,
+      "preservedLog": "tests-before-final.log"
     },
     "d1FinalRunPassedMs": 17678.416082,
-    "deadlineChangedOnlyAfterBaselineAndCurrentDiagnosticAssertionsPassed": true
+    "deadlineChange": "Test-only30s\u2192120s; all assertions unchanged; paired baseline/current diagnostic evidence saved"
   },
   "publicationScope": "Review branch only; no main merge, deployment, hosted migration or data actions",
-  "libraryExport": "HTTP401 before upload; no retry or file IDs; original PNGs committed"
+  "libraryExport": "HTTP401 before upload; no retry or file IDs; original PNGs committed",
+  "reviewPublished": {
+    "sha": "bd81e1a69ddd6734edd4080cd1dd27cd5a0d4ba3",
+    "remoteVerified": true,
+    "branch": "feat/portal-experience-rework",
+    "mainUnchanged": "e386cc72244c5613588ec60b02998637a9aadcb7"
+  },
+  "mainMerge": {
+    "authorization": "Explicitly approved by user, conditional on safe backend compatibility",
+    "status": "pending owner-run prerequisite",
+    "blocker": "User confirms0102/0103 and new backend have not been applied/deployed",
+    "agentHostedMutations": false
+  },
+  "publicHealthCheck": "public-health-check.json;200neon-functions, no release/schema version available"
 }

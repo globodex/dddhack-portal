@@ -1,0 +1,14 @@
+{
+  "url": "https://dddhack-portal.itsparam.in/api/health",
+  "httpStatusLines": [
+    "HTTP/1.1 200 OK",
+    "HTTP/2 200 "
+  ],
+  "curlExit": "0",
+  "privateDataRead": false,
+  "mutations": false,
+  "publicHealth": {
+    "ok": true,
+    "runtime": "neon-functions"
+  }
+}

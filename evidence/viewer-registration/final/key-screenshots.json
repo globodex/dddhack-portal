@@ -1,0 +1,22 @@
+[
+  {
+    "path": "evidence/mobile-stack-final/verified/1440x900-hero.png",
+    "sha256": "dbaa5f066023a903727c07492c6069d440f24cf750c375d2fdeef6fd171de324",
+    "bytes": 315132
+  },
+  {
+    "path": "evidence/mobile-stack-final/after/390x844-hero.png",
+    "sha256": "7aed9c1d3d3a12d1d05f686e7fdffc5c53a80b6519019811499805a4bb728b12",
+    "bytes": 106089
+  },
+  {
+    "path": "evidence/viewer-registration/after/viewer-dashboard-390x844.png",
+    "sha256": "65c29c3126a19d071c01d84a57115a192fd17007fdeb1012e664bcc3ff8fd398",
+    "bytes": 36874
+  },
+  {
+    "path": "evidence/viewer-registration/after/registered-teamless-fixed-390x480.png",
+    "sha256": "e1c20e0121d00356529d9392a87439e274e66d4e0f1195e98eb8e00c4ae3b693",
+    "bytes": 39671
+  }
+]
