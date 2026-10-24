@@ -4,9 +4,9 @@ Primary screenshot source: `ee7a1593e99a87aee5cdd8bf1c96a133cc7b9321`, real Next
 
 ## Reviewed screens
 
-- Desktop 1440×900: [step 1](profile-step-1-1440x900.png), [step 2](profile-step-2-1440x900.png), [step 3](profile-step-3-1440x900.png).
-- Mobile 390×844: [step 1](profile-step-1-390x844.png), [step 2](profile-step-2-390x844.png), [step 3](profile-step-3-390x844.png).
-- [Mobile navigation](profile-mobile-navigation-390x844.png) shows Lucide icons, black close control, red Log out and one item per row.
+- Desktop 1440×900: [step 1](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/redesign-profile/profile-step-1-1440x900.png), [step 2](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/redesign-profile/profile-step-2-1440x900.png), [step 3](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/redesign-profile/profile-step-3-1440x900.png).
+- Mobile 390×844: [step 1](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/redesign-profile/profile-step-1-390x844.png), [step 2](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/redesign-profile/profile-step-2-390x844.png), [step 3](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/redesign-profile/profile-step-3-390x844.png).
+- [Mobile navigation](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/redesign-profile/profile-mobile-navigation-390x844.png) shows Lucide icons, black close control, red Log out and one item per row.
 - Tablet 768×1024 and short mobile 390×480: all three steps captured and viewed; paths and geometry are in [report.json](report.json). The short viewport uses normal document scrolling and retains every required field.
 
 ## Source comparison

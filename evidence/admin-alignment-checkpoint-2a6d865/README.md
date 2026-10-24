@@ -8,11 +8,11 @@ No measured horizontal overflow, offscreen controls, clipped control ancestors, 
 
 Actual pixels opened and inspected include:
 
-- [Import dialog](../admin-alignment-2a6d865-320-final/participant-import.png) and [status popup](../admin-alignment-2a6d865-320-final/participant-status.png), including keyboard Escape and browser Back focus restoration.
-- [Real long synthetic team name and member layout](team-expanded-real-name.png), [source record](team-source.json).
-- [Submission management and native version selector](../admin-alignment-2a6d865-320-final/submission-management.png).
-- [Long URL stress, Review details](../admin-alignment-2a6d865-320-final/review-DOM-long-URL.png). This URL is an explicitly labeled **local DOM text fixture**, not saved project data.
-- [Settings Results](../admin-alignment-2a6d865-320-final/settings-results.png), [expanded scoring](../admin-alignment-2a6d865-320-final/settings-scoring.png), and [owner Logs viewport](../admin-alignment-2a6d865-320-final/owner-logs-expanded-viewport.png).
+- [Import dialog](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/admin-alignment-2a6d865-320-final/participant-import.png) and [status popup](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/admin-alignment-2a6d865-320-final/participant-status.png), including keyboard Escape and browser Back focus restoration.
+- [Real long synthetic team name and member layout](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/admin-alignment-checkpoint-2a6d865/team-expanded-real-name.png), [source record](team-source.json).
+- [Submission management and native version selector](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/admin-alignment-2a6d865-320-final/submission-management.png).
+- [Long URL stress, Review details](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/admin-alignment-2a6d865-320-final/review-DOM-long-URL.png). This URL is an explicitly labeled **local DOM text fixture**, not saved project data.
+- [Settings Results](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/admin-alignment-2a6d865-320-final/settings-results.png), [expanded scoring](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/admin-alignment-2a6d865-320-final/settings-scoring.png), and [owner Logs viewport](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/admin-alignment-2a6d865-320-final/owner-logs-expanded-viewport.png).
 
 Each state has an original full-page PNG and a viewport PNG where applicable. Viewport inspection does not imply that a very long full-page image was inspected in full. The long participant-name DOM fixture remains pending inspection below the fold. Current shared Credits data had no published upload batch, so this checkpoint covers the actual empty/source editor and inventory rather than claiming rich batch coverage.
 

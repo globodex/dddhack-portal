@@ -6,9 +6,9 @@ Actual UI save returned HTTP200. A new API read matched the title and all 500 ch
 
 Inspected native pixels:
 
-- [Editor, desktop](idea-editor-1440x900.png)
-- [Editor, short mobile](idea-editor-short-390x480.png)
-- [Saved leader editor and success toast](idea-saved-1440x900.png)
-- [Saved idea, nonleader member](member-saved-idea-readonly-390x844.png)
+- [Editor, desktop](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/team-role-states/idea-saved/idea-editor-1440x900.png)
+- [Editor, short mobile](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/team-role-states/idea-saved/idea-editor-short-390x480.png)
+- [Saved leader editor and success toast](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/team-role-states/idea-saved/idea-saved-1440x900.png)
+- [Saved idea, nonleader member](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/team-role-states/idea-saved/member-saved-idea-readonly-390x844.png)
 
 Carol receives the saved private idea and has no Save team idea control. Full-page captures scroll to the top before capture, so the fixed shell remains in its actual position. See [report](report.json) for the successful action, checks and source per screenshot. Lock is deliberately pending until the independent Carol invitation/acceptance sequence finishes.

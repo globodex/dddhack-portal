@@ -19,10 +19,10 @@ Times below are relative to the single Workspace click:
 
 A real GET fetch for `/dashboard?_rsc=…` was requested after the click, so the tap did initiate routing. The trace is consistent with cleanup's history Back interrupting the pending route. The exact framework-internal cancellation reason is an inference; the failed first-tap outcome and history sequence are directly recorded.
 
-- [Before: owner Credits](01-owner-credits-before.png)
-- [Menu: Workspace visible](02-owner-menu-workspace.png)
-- [After one tap: still Credits](workspace-FIRST-TAP-FAIL.png)
-- [Final failure frame](workspace-FINAL-FAIL.png)
+- [Before: owner Credits](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/owner-mobile-account-navigation-7cb01dc/01-owner-credits-before.png)
+- [Menu: Workspace visible](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/owner-mobile-account-navigation-7cb01dc/02-owner-menu-workspace.png)
+- [After one tap: still Credits](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/owner-mobile-account-navigation-7cb01dc/workspace-FIRST-TAP-FAIL.png)
+- [Final failure frame](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/owner-mobile-account-navigation-7cb01dc/workspace-FINAL-FAIL.png)
 
 All four original PNGs were opened and visually inspected. They show the expected source state, the actual link and the failure without hiding any application content. The development overlay alone is hidden in captures.
 

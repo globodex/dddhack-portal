@@ -12,8 +12,8 @@ Owned implementation and integrated rendered states pass the checks below. Norma
 - Before source: `696b125f9711a4fd6e02c3ece3adadb18b83cba7`.
 - Selected target: Library `libfile_5c3333ebe2d881919233264ca1a2c7ea`, materialized and viewed at `/workspace/reference-evidence/devday-mobile-thumb-reachable-mockup.png`.
 - Target853x1844px normalized proportionally to390x844 for comparison; implementation CSS viewport390x844, deviceScaleFactor1.
-- Full comparison: [target, before and final](../evidence/redesign-landing/mobile-target-comparison-final.png).
-- Focused comparison: [CTA and settled expressions](../evidence/redesign-landing/mobile-cta-detail-comparison-final.png).
+- Full comparison: [target, before and final](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/redesign-landing/mobile-target-comparison-final.png).
+- Focused comparison: [CTA and settled expressions](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/redesign-landing/mobile-cta-detail-comparison-final.png).
 - Full state matrix [report](../evidence/redesign-landing/report.json) and final hero [report](../evidence/redesign-landing/final-hero-report.json), including actual screenshot paths, source revisions and SHA-256 hashes.
 
 ## Concrete implementation

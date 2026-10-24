@@ -34,8 +34,8 @@ QA captured hydrated source and actual Next.js development runtimes at matching 
 
 Actual captures and provenance:
 
-- [Next desktop](../../evidence/migration/next-home-hydrated/home-1440x900-viewport.png) and [Next mobile](../../evidence/migration/next-home-hydrated/home-390x844-viewport.png), with the [Next report](../../evidence/migration/next-home-hydrated/report.json).
-- [Source desktop](../../evidence/migration/v7-home-hydrated/home-1440x900-viewport.png) and [source mobile](../../evidence/migration/v7-home-hydrated/home-390x844-viewport.png), with the [source report](../../evidence/migration/v7-home-hydrated/report.json).
+- [Next desktop](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/migration/next-home-hydrated/home-1440x900-viewport.png) and [Next mobile](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/migration/next-home-hydrated/home-390x844-viewport.png), with the [Next report](../../evidence/migration/next-home-hydrated/report.json).
+- [Source desktop](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/migration/v7-home-hydrated/home-1440x900-viewport.png) and [source mobile](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/migration/v7-home-hydrated/home-390x844-viewport.png), with the [source report](../../evidence/migration/v7-home-hydrated/report.json).
 
 These are localhost development snapshots with disposable synthetic fixtures, a local fixture banner and development tooling hidden. The report records a runtime fingerprint and uncommitted integration changes; these captures do not identify a final production build. The browser ran in a restricted localhost-only harness because the container could not start its native sandbox. The full integrated production build remains a separate gate. Historical v7 screenshots in [V7_SCREENSHOTS.md](../V7_SCREENSHOTS.md) remain separate source-bound evidence.
 

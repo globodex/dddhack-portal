@@ -17,14 +17,14 @@ The three recorded browser POST attempts are: one503-fulfilled `revoke-admin`, o
 
 All eight original, unscaled PNGs were opened and inspected:
 
-- [Desktop list](owner-list-1440.png)
-- [Mobile list](owner-list-390.png)
-- [Short narrow list](owner-list-320.png)
-- [Exact target confirmation](revoke-confirmation-320.png)
-- [Failed revoke with retained row](failed-revoke-row-retained.png)
-- [Persisted revoked list](revoked-admin-list.png)
-- [Restored admin](admin-restored-390.png)
-- [Hydrated saved dates](dates-hydrated-read-only.png)
+- [Desktop list](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/admin-owner-access-final-hydrated/owner-list-1440.png)
+- [Mobile list](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/admin-owner-access-final-hydrated/owner-list-390.png)
+- [Short narrow list](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/admin-owner-access-final-hydrated/owner-list-320.png)
+- [Exact target confirmation](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/admin-owner-access-final-hydrated/revoke-confirmation-320.png)
+- [Failed revoke with retained row](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/admin-owner-access-final-hydrated/failed-revoke-row-retained.png)
+- [Persisted revoked list](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/admin-owner-access-final-hydrated/revoked-admin-list.png)
+- [Restored admin](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/admin-owner-access-final-hydrated/admin-restored-390.png)
+- [Hydrated saved dates](https://github.com/Param302/dddhack-portal/blob/6fcb7d5be117d234ae60a4a4b04af966f9134af8/evidence/admin-owner-access-final-hydrated/dates-hydrated-read-only.png)
 
 [Machine-readable results](report.json) and [reproducible guarded browser script](../../scripts/qa-admin-owner-access.mjs) accompany the originals. The script waits for actual form hydration before clicking the Access tab, and resets scroll before full-page screenshots so fixed navigation is captured at its real page position.
 
