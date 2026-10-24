@@ -6,7 +6,7 @@ The comparison is complete and shows an unresolved **cold Dashboard cost**. Medi
 
 ## Sources and controls
 
-- Baseline frontend `c353a173a85580ebb4eed47fff0a23a0830b81a6`: runtime source696b125 with a build-only TypeScript main-config correction, unchanged application.
+- Baseline frontend `c353a173a85580ebb4eed47fff0a23a0830b81a6`: runtime source696b125 plus only the main-only Vercel Git deployment configuration (e386cc7), unchanged application.
 - Final frontend `b3b6da9b2d417c8cb997d41de8abe54c9f470f0d`: documentation-only commit after runtime2657f26254ed323ca84a167a2f220f05f4ec7cbf. Rootd3c32 app is equivalent. Neither measured frontend has uncommitted application/config changes.
 - Existing matched production `next build --webpack` artifacts, Node24.19.0/Next16.4.3. Build IDs baseline `FxM2l4SoSH0RiG3L9SgqW`, final `QdP_-Y3mVZskIG5jIP-YD`. Build/lifecycle provenance is owned by the separate build lane.
 - Supported Next custom HTTPS server, `dev:false`, real encrypted socket and exact `.test` hostname/port; no app-source, proxy-guard or framework configuration override. Production frontend `PORTAL_LOCAL_TEST` is unset. Node verifies the ephemeral CA through `NODE_EXTRA_CA_CERTS`; no TLS verification disabling. Only isolated Chromium ignores the self-signed certificate.

@@ -1,0 +1,26 @@
+{
+  "SyntaxOnly": true,
+  "ExecutedCodeBlocks": 0,
+  "PowerShellVersion": "7.6.8",
+  "Blocks": [
+    {
+      "Block": 1,
+      "StartLine": 23,
+      "TokenCount": 90,
+      "Errors": []
+    },
+    {
+      "Block": 2,
+      "StartLine": 54,
+      "TokenCount": 171,
+      "Errors": []
+    },
+    {
+      "Block": 3,
+      "StartLine": 90,
+      "TokenCount": 117,
+      "Errors": []
+    }
+  ],
+  "ParseErrorCount": 0
+}

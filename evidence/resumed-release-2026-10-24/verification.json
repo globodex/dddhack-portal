@@ -1,0 +1,73 @@
+{
+  "recordedAtUTC": "2026-10-24T16:19:11.665201+00:00",
+  "checkedSource": "4640a1d883b115027ef060f29d1081bf1fb361e8",
+  "frontendRuntimeEquivalentTo": "2657f26254ed323ca84a167a2f220f05f4ec7cbf",
+  "migrationToolingSource": "59246860b49d83412c6685e4643f97a21aab55e5",
+  "fullSuiteStartedAtSource": "6deed1244fc3af57246573adcd3d370438449ea4",
+  "appLibNeonTestsAndPackagesUnchangedSinceSuiteStarted": true,
+  "command": "node --no-wasm-code-gc --import tsx --test --test-concurrency=1 tests/*.test.ts",
+  "tests": 551,
+  "passed": 545,
+  "failed": 0,
+  "cancelled": 0,
+  "skipped": 6,
+  "durationMs": 597787.864954,
+  "skipReason": "Native PostgreSQL integrations require a separately configured disposable native server. PGlite/SQLite execute locally.",
+  "typecheck": {
+    "command": "npm run typecheck",
+    "exitCode": 0,
+    "log": "typecheck-final.log"
+  },
+  "productionBuild": {
+    "command": "npm run build",
+    "compiler": "Next16.4.3 default Turbopack",
+    "exitCode": 0,
+    "buildId": "ax20C8d6yW9PKJCRnLcYp",
+    "log": "build-final.log"
+  },
+  "separateFocusedMigrationTests": {
+    "passed": 16,
+    "failed": 0,
+    "skipped": 0
+  },
+  "independentPopulatedUpgradeCases": {
+    "passed": 10,
+    "failed": 0,
+    "includedInFullSuite": true
+  },
+  "windowsArchiveHelper": {
+    "passed": 6,
+    "failed": 0,
+    "runtime": "PowerShell7.6.8 Linux; no native Windows claim"
+  },
+  "windowsMigrationGuide": {
+    "powerShellFences": 3,
+    "parseErrors": 0,
+    "blocksExecuted": 0
+  },
+  "freshInspectedFlowPngs": 17,
+  "productionComparison": {
+    "samples": 56,
+    "matchedPairsPerRouteAndCache": 7,
+    "dashboardColdMedianFcpBeforeMs": 436,
+    "dashboardColdMedianFcpFinalMs": 596,
+    "dashboardRepeatMedianFcpBeforeMs": 132,
+    "dashboardRepeatMedianFcpFinalMs": 132,
+    "dashboardColdTransferIncreasePercent": 16.68,
+    "status": "Comparison complete with an unresolved cold Dashboard regression; no speed improvement claim. Frontend comparison uses a fixed synthetic backend, not hosted runtime latency.",
+    "same64TableFixtureLogicalHash": "bf01ef3f41c8ffced1c2d7d9109a3c4f43de014427c8da40d672e946cbd06d45"
+  },
+  "backendArchive": {
+    "source": "59246860b49d83412c6685e4643f97a21aab55e5",
+    "sha256": "bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36b38aef7ae3",
+    "bytes": 9014174,
+    "entries": 93,
+    "actualArm64Execution": "unverified"
+  },
+  "lastVerifiedRemoteReview": "28568c6175fbe660135ed1b4114458f24610eafe",
+  "lastVerifiedMain": "e386cc72244c5613588ec60b02998637a9aadcb7",
+  "resumedWorkPushed": false,
+  "hostedReadsOrWrites": false,
+  "hostedMigrationOrDeployment": false,
+  "publication": "Pending fresh parent go-ahead, then owner-verified backup/ledger,0102/0103,backend confirmation before main. No timed automatic publication."
+}
