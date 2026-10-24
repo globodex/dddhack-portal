@@ -8,6 +8,7 @@ import {
 import { pageMetadata } from "../../../lib/seo";
 import { chatGPTSignInPath } from "../../chatgpt-auth";
 import { PersonalCreditsAccess } from "../../personal-credits";
+import { portalLoadFailure } from "../../../lib/portal-load-state";
 
 export const dynamic = "force-dynamic";
 export function generateMetadata() {
@@ -29,6 +30,8 @@ export default async function PersonalCreditsPage() {
     if (!(error instanceof BackendError)) throw error;
     if (error.status === 401 && !localTest)
       redirect(chatGPTSignInPath("/personal/credits"));
+    if (error.status !== 403)
+      return <Portal path="/personal/credits" localTest={localTest} initialFailure={portalLoadFailure(error.status, error)} />;
     return (
       <PersonalCreditsAccess
         checkInRequired={

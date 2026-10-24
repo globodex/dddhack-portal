@@ -3604,7 +3604,7 @@ export function AdminParticipants({
   const viewerPages = Math.max(1, Math.ceil(items.length / 25));
   const currentViewerPage = Math.min(viewerPage, viewerPages - 1);
   const displayedItems = viewerFilter ? items.slice(currentViewerPage * 25, (currentViewerPage + 1) * 25) : items;
-  const selectable = items.filter((r) => !r.removed && r.registered !== false);
+  const selectable = items.filter((r) => !r.removed && r.viewer !== true);
   const visibleEmails = new Set(selectable.map((r) => r.email));
   const visibleSelected = selected.filter((email) => visibleEmails.has(email));
   const selectedPeople = selectable.filter((r) =>
@@ -3857,7 +3857,7 @@ export function AdminParticipants({
                     <input
                       type="checkbox"
                       aria-label={`Select ${r.email}`}
-                      disabled={r.removed || r.registered === false || actionPending}
+                      disabled={r.removed || r.viewer === true || actionPending}
                       checked={visibleSelected.includes(r.email)}
                       onChange={(e) =>
                         setSelected(
@@ -3991,7 +3991,7 @@ export function AdminParticipants({
                   </td>
                   {canManage && (
                     <td className="admin-manage-cell">
-                      {r.registered === false ? (
+                      {r.viewer === true ? (
                         <span className="muted">Viewer access</span>
                       ) : r.id ? (
                         <div className="admin-row-actions">
