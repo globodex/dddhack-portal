@@ -2824,12 +2824,14 @@ export function ProjectVersion({ payload }: { payload: Row }) {
 function ProjectBody({
   project,
   publicView = false,
+  teamColorKey,
 }: {
   project: Row;
   publicView?: boolean;
+  teamColorKey?: unknown;
 }) {
   return (
-    <div className="project-presentation" style={projectMediaStyle(project.teamColorKey)}>
+    <div className="project-presentation" style={projectMediaStyle(teamColorKey)}>
       <img
         className="project-banner"
         src={project.banner}
@@ -3113,7 +3115,7 @@ export function Projects({
           <strong>{p.teamName || p.projectName}</strong>
         </header>
         <article className="project-detail">
-          <ProjectBody project={p} publicView />
+          <ProjectBody project={p} publicView teamColorKey={p.teamColorKey} />
           {p.result && (
             <p className="notice">
               Revealed {p.result.stage === "ai" ? "AI" : "final"} score{" "}
