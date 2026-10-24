@@ -23,6 +23,7 @@ const paths = [
   "neon/migrations/0102_credit_stock.sql",
   "neon/migrations/0103_project_media_limits.sql",
   "neon/migrations/0104_admin_team_corrections.sql",
+  "neon/migrations/0105_terminal_record_deletion.sql",
 ];
 const baseline = JSON.parse(
   await readFile(
@@ -52,6 +53,7 @@ try {
     "neon/migration-plan.ts",
     "neon/db/migrate.ts",
     "neon/db/populated-upgrade.ts",
+    "neon/db/historical-ledger-compatibility.ts",
     "neon/scripts/upgrade-populated.ts",
     "evidence/neon-host-archive/historical-ledger-checksums.json",
   ]) {

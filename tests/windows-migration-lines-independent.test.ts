@@ -22,7 +22,7 @@ const approvalPath =
   "evidence/neon-host-archive/historical-ledger-checksums.json";
 const baseline = JSON.parse(readFileSync(join(root, approvalPath), "utf8"));
 const expectedDigest =
-  "9bcf3f083d47a1b700e467c60f3b9eff57193491bb1e2929b1c2a4f21ba532d1";
+  "e3b7a348e2c9e3f4f066a78fbd02274a0e111155b3af527f99bdc545bbe32691";
 const sqlPaths = [
   "neon/migrations/0000_compatibility.sql",
   "neon/migrations/0001_portal.sql",
@@ -34,6 +34,7 @@ const sqlPaths = [
   "neon/migrations/0102_credit_stock.sql",
   "neon/migrations/0103_project_media_limits.sql",
   "neon/migrations/0104_admin_team_corrections.sql",
+  "neon/migrations/0105_terminal_record_deletion.sql",
 ];
 const sha = (value: Uint8Array | string) =>
   createHash("sha256").update(value).digest("hex");
@@ -109,9 +110,9 @@ function crlf(cwd: string) {
     );
 }
 
-test("independent Windows source: approved LF plan is ten exact HEAD blobs and keeps the published digest", async () => {
+test("independent Windows source: approved LF plan is eleven exact HEAD blobs and keeps the published digest", async () => {
   const plan = await loadMigrationPlan();
-  assert.equal(plan.length, 10);
+  assert.equal(plan.length, 11);
   assert.equal(verifyUpgradePlan(plan, baseline), expectedDigest);
   assert.deepEqual(
     plan.map(({ name, checksum }) => ({ name, checksum })),
@@ -144,7 +145,7 @@ test("independent Windows repair: check is read-only, exact CRLF repair preserve
     assert.equal(check.status, 2, check.stderr);
     const checked = JSON.parse(check.stdout);
     assert.equal(checked.repairNeeded, true);
-    assert.equal(checked.sourceFiles, 10);
+    assert.equal(checked.sourceFiles, 11);
     assert.equal(checked.databaseConnected, false);
     assert.deepEqual(
       sqlPaths.map((path) => readFileSync(join(f.cwd, path))),
@@ -276,10 +277,10 @@ test("independent Windows source: actual CRLF loader and offline CLI reject; str
     assert.equal(verifyUpgradePlan(before, baseline), expectedDigest);
     crlf(f.cwd);
     const changed = await planAt(f.cwd);
-    assert.equal(changed.length, 10);
+    assert.equal(changed.length, 11);
     assert.equal(
       changed.filter((item, i) => item.checksum !== before[i].checksum).length,
-      10,
+      11,
     );
     assert.throws(() => verifyUpgradePlan(changed, baseline), {
       code: "UPGRADE_SOURCE_PLAN_MISMATCH",

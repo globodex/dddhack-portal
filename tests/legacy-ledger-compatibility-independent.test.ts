@@ -82,11 +82,11 @@ const domain = (snapshot: Record<string, unknown>) =>
     ),
   );
 
-test("independent legacy ledger: exact seven CRLF aliases derive from pinned LF source while canonical ten-entry digest stays fixed", async () => {
+test("independent legacy ledger: exact seven CRLF aliases derive from pinned LF source while canonical eleven-entry digest stays fixed", async () => {
   const plan = await loadMigrationPlan();
   assert.equal(
     verifyUpgradePlan(plan, baseline),
-    "9bcf3f083d47a1b700e467c60f3b9eff57193491bb1e2929b1c2a4f21ba532d1",
+    "e3b7a348e2c9e3f4f066a78fbd02274a0e111155b3af527f99bdc545bbe32691",
   );
   assert.equal(historical.length, 7);
   for (const [i, entry] of hashes.historical.entries()) {
@@ -130,6 +130,7 @@ test("independent legacy ledger: canonical LF history and an existing canonical 
       "0102_credit_stock.sql",
       "0103_project_media_limits.sql",
       "0104_admin_team_corrections.sql",
+      "0105_terminal_record_deletion.sql",
     ]);
     const after = await f.snapshot();
     assert.deepEqual(domain(after), domain(before));
@@ -142,7 +143,7 @@ test("independent legacy ledger: canonical LF history and an existing canonical 
   }
 });
 
-test("independent actual CRLF history: readonly inspect, populated7→10 canonical features, unchanged legacy ledger/data and repeat[]", async () => {
+test("independent actual CRLF history: readonly inspect, populated7→11 canonical features, unchanged legacy ledger/data and repeat[]", async () => {
   const f = await legacyLedgerIndependentFixture();
   try {
     const before = await f.snapshot(),
@@ -168,6 +169,7 @@ test("independent actual CRLF history: readonly inspect, populated7→10 canonic
       "0102_credit_stock.sql",
       "0103_project_media_limits.sql",
       "0104_admin_team_corrections.sql",
+      "0105_terminal_record_deletion.sql",
     ]);
     assert.deepEqual(await f.snapshot(), before);
     assert.equal(
@@ -190,7 +192,7 @@ test("independent actual CRLF history: readonly inspect, populated7→10 canonic
     const after = await f.snapshot(),
       ledger = after.portal_schema_migrations as any[];
     assert.deepEqual(domain(after), domain(before));
-    assert.equal(ledger.length, 10);
+    assert.equal(ledger.length, 11);
     assert.deepEqual(ledger.slice(0, 7), before.portal_schema_migrations);
     assert.deepEqual(
       ledger.slice(7).map(({ name, checksum }) => ({ name, checksum })),

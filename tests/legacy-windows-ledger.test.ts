@@ -136,7 +136,7 @@ test("historical Windows CRLF: actual seven-entry ledger inspects read-only and 
   try {
     assert.equal(
       verifyUpgradePlan(f.plan, baseline),
-      "9bcf3f083d47a1b700e467c60f3b9eff57193491bb1e2929b1c2a4f21ba532d1",
+      "e3b7a348e2c9e3f4f066a78fbd02274a0e111155b3af527f99bdc545bbe32691",
     );
     // Reproduces the old strict runner mismatch. Compatibility must stay outside it.
     await assert.rejects(
@@ -171,6 +171,7 @@ test("historical Windows CRLF: actual seven-entry ledger inspects read-only and 
       "0102_credit_stock.sql",
       "0103_project_media_limits.sql",
       "0104_admin_team_corrections.sql",
+      "0105_terminal_record_deletion.sql",
     ]);
     const appliedSql: string[] = [];
     const result = await applyPopulatedUpgrade(
@@ -239,7 +240,7 @@ test("historical Windows CRLF: actual seven-entry ledger inspects read-only and 
   }
 });
 
-test("historical Windows CRLF: canonical0102 already applied leaves0103/0104 pending and keeps all existing stock records", async () => {
+test("historical Windows CRLF: canonical0102 already applied leaves0103/0104/0105 pending and keeps all existing stock records", async () => {
   const f = await fixture();
   try {
     await applyPortalMigrations(
@@ -258,6 +259,7 @@ test("historical Windows CRLF: canonical0102 already applied leaves0103/0104 pen
     assert.deepEqual(receipt.pending, [
       "0103_project_media_limits.sql",
       "0104_admin_team_corrections.sql",
+      "0105_terminal_record_deletion.sql",
     ]);
     assert.deepEqual(
       (

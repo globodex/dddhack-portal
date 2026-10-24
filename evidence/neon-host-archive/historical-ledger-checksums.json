@@ -42,6 +42,10 @@
     {
       "name": "0104_admin_team_corrections.sql",
       "checksum": "a931aeafba01be07f43e35fc7c17cae80f11bbd212fbd92f0e5fd8d475c40500"
+    },
+    {
+      "name": "0105_terminal_record_deletion.sql",
+      "checksum": "088b96a239915cd518765b5ef260c73feee913d8e0b181234110f7591676ccde"
     }
   ],
   "hostedRead": false,

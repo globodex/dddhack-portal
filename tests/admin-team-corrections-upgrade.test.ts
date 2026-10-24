@@ -25,7 +25,7 @@ const approval = JSON.parse(
   ),
 ) as UpgradeBaseline;
 const expectedDigest =
-  "9bcf3f083d47a1b700e467c60f3b9eff57193491bb1e2929b1c2a4f21ba532d1";
+  "e3b7a348e2c9e3f4f066a78fbd02274a0e111155b3af527f99bdc545bbe32691";
 const feature = "0104_admin_team_corrections.sql";
 const now = new Date("2026-10-24T20:00:00.000Z");
 const confirmation = {
@@ -95,7 +95,12 @@ async function fixture(encoding: "lf" | "crlf") {
 const domain = (state: Record<string, string[]>) =>
   Object.fromEntries(
     Object.entries(state).filter(
-      ([name]) => name !== "portal_schema_migrations",
+      ([name]) =>
+        ![
+          "portal_schema_migrations",
+          "terminal_record_deletions",
+          "submission_attempt_ledger",
+        ].includes(name),
     ),
   );
 const noDdl = (queries: string[]) =>
@@ -107,7 +112,7 @@ const noDdl = (queries: string[]) =>
   );
 
 for (const encoding of ["lf", "crlf"] as const) {
-  test(`0104 upgrade ${encoding}: populated existing9→10 applies only0104, preserves all prior rows/hashes and repeats with no work`, async () => {
+  test(`0104 upgrade ${encoding}: populated existing9→11 applies only0104/0105, preserves all prior rows/hashes and repeats with no work`, async () => {
     const f = await fixture(encoding);
     try {
       const before = await f.state(),
@@ -130,7 +135,10 @@ for (const encoding of ["lf", "crlf"] as const) {
         receipt.historicalEncoding,
         encoding === "lf" ? "canonical-lf" : "legacy-windows-crlf",
       );
-      assert.deepEqual(receipt.pending, [feature]);
+      assert.deepEqual(receipt.pending, [
+        feature,
+        "0105_terminal_record_deletion.sql",
+      ]);
       assert.equal(receipt.ledger.length, 9);
       noDdl(inspectQueries);
       assert.deepEqual(await f.state(), before);
@@ -144,13 +152,19 @@ for (const encoding of ["lf", "crlf"] as const) {
         confirmation,
         now,
       );
-      assert.deepEqual(result.applied, [feature]);
+      assert.deepEqual(result.applied, [
+        feature,
+        "0105_terminal_record_deletion.sql",
+      ]);
       const after = await f.state();
       assert.deepEqual(domain(after), domain(before));
-      assert.equal(after.portal_schema_migrations.length, 10);
+      assert.equal(after.portal_schema_migrations.length, 11);
       assert.deepEqual(
         after.portal_schema_migrations.filter(
-          (row) => JSON.parse(row).name !== feature,
+          (row) =>
+            ![feature, "0105_terminal_record_deletion.sql"].includes(
+              JSON.parse(row).name,
+            ),
         ),
         before.portal_schema_migrations,
       );
@@ -372,10 +386,10 @@ test("0104 upgrade: real postcondition failure rolls function replacements, ledg
   }
 });
 
-test("0104 source plan pins exactly ten LF files and leaves all nine previous SQL blobs and seven historical approval entries unchanged", async () => {
+test("0104 source plan pins exactly eleven LF files and leaves all nine previous SQL blobs and seven historical approval entries unchanged", async () => {
   const { loadMigrationPlan } = await import("../neon/migration-plan");
   const plan = await loadMigrationPlan();
-  assert.equal(plan.length, 10);
+  assert.equal(plan.length, 11);
   assert.equal(verifyUpgradePlan(plan, approval), expectedDigest);
   assert.equal(plan[9].name, feature);
   for (const item of plan.slice(0, 9)) {
@@ -410,6 +424,11 @@ test("0104 source plan pins exactly ten LF files and leaves all nine previous SQ
   );
   assert.deepEqual(
     approval.pendingFeatureMigrations.map((row) => row.name),
-    ["0102_credit_stock.sql", "0103_project_media_limits.sql", feature],
+    [
+      "0102_credit_stock.sql",
+      "0103_project_media_limits.sql",
+      feature,
+      "0105_terminal_record_deletion.sql",
+    ],
   );
 });

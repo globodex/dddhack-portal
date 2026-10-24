@@ -1,14 +1,14 @@
-# Incremental 0104 upgrade for the populated portal
+# Incremental 0104/0105 upgrade for the populated portal
 
-The owner reports that 0102 and 0103 are already applied. This handoff requires an existing nine-entry ledger and **only `0104_admin_team_corrections.sql` pending**. The new migration replaces three scoped correction guard functions. It changes no existing rows or tables and does not allocate credits or replay historical SQL.
+The owner reports 0102 and 0103 applied; 0104 deployment is unconfirmed. A fresh inspection decides the exact pending set: **nine ledger entries require only0104+0105; ten require only0105**. An eleven-entry target needs no migration apply. Do not infer hosted state from a local checkout or health200.
 
-These are owner-run instructions. No hosted database, credential, provider setting or production record was accessed or changed while preparing them. Use the exact reviewed release checkout supplied in the handoff. The matching backend archive will be rebuilt and verified separately; this document does not assert a new archive hash or authorize a deployment.
+0104 replaces three scoped correction guard functions. 0105 adds empty terminal-deletion markers, backfills a new durable attempt ledger from existing submission versions, and installs guarded deletion/attempt functions. Applying these migrations does **not** delete participants, teams, project payloads or existing ledger rows, and does not allocate credits. Any later irreversible admin deletion is a separate explicit application action.
 
-Never use `PORTAL_SYNTHETIC_DATABASE=1`, `--apply-synthetic`, seed/reset commands, schema replacement, ledger edits or a checksum bypass on the populated target. Keep the existing direct connection, environment file and provider configuration intact. No migration runs at Function startup.
+These are owner-run instructions, not evidence of hosted execution. Keep the existing direct connection, private `.env.backend.local`, target context, deployed environment and roles unchanged. Never use `PORTAL_SYNTHETIC_DATABASE=1`, `--apply-synthetic`, seeds/resets, checksum edits, schema replacement or a bypass on this populated target. No migration runs at Function startup. Use the exact reviewed release checkout and matching separately verified backend archive.
 
-## Verify local source, target and restore checkpoint
+## Verify source, intended target and restore checkpoint
 
-Use Node 24 or later and the reviewed dependency lockfile in the repository root. Run `npm ci` there only if dependencies are absent. Do not install packages inside an extracted Linux ARM64 backend archive. Before applying, establish and verify a usable restore checkpoint for the current populated target. An owner-verified provider restore point or restored backup branch is acceptable. Record its exact identifier, target and timestamp privately and verify a separate restored copy. This tool neither creates a backup nor tests a restore. Reconcile post-checkpoint writes before considering recovery.
+Use Node24+ and the reviewed lockfile. Run `npm ci` at repository root only if dependencies are absent; never install packages inside the extracted Linux ARM64 Function. Before applying, establish a current backup/restore checkpoint for the intended populated database and independently verify a restored copy. Privately retain its identifier, target and timestamp. The tool does not create backups or verify restores; reconcile writes after the checkpoint before recovery.
 
 ```powershell
 $ErrorActionPreference = 'Stop'
@@ -18,7 +18,7 @@ git status --short
 git rev-parse HEAD
 # Compare HEAD with the exact reviewed release SHA supplied in the handoff.
 
-# Local source only: no database connection.
+# Source/Git only. No database connection.
 node scripts/verify-migration-checkout.mjs --check
 if ($LASTEXITCODE -eq 2) {
     node scripts/verify-migration-checkout.mjs --repair-line-endings
@@ -34,26 +34,33 @@ if ($env:PORTAL_SYNTHETIC_DATABASE -eq '1') { throw 'Stop: this is a populated t
 New-Item -ItemType Directory -Force .local | Out-Null
 ```
 
-The source plan must contain ten entries with digest `9bcf3f083d47a1b700e467c60f3b9eff57193491bb1e2929b1c2a4f21ba532d1`. The checkout helper validates all ten Git HEAD blobs and index entries before repairing exact CRLF/LF representations. It refuses real edits, BOMs, missing/extra SQL and changed approved hashes. It does not edit the index, read an env file or connect to a database. Scoped `.gitattributes` keeps SQL checkouts LF.
+The source plan must contain **eleven entries**, digest `e3b7a348e2c9e3f4f066a78fbd02274a0e111155b3af527f99bdc545bbe32691`. The checkout helper validates every Git HEAD blob and index entry before repairing exact CRLF/LF representations. It refuses real edits, BOMs, unexpected SQL and changed approved hashes. It does not edit the index, load env files or contact a database. SQL remains LF in the reviewed checkout.
 
-Use the existing `DATABASE_URL_UNPOOLED` in the private `.env.backend.local` or local environment. Node's `--env-file` does not replace an already-set variable; resolve any conflicting value privately. Never paste the URL, password, backup or private receipt into a ticket, screenshot or commit. The CLI checks expected direct URL identity and connected `current_database()`/`current_user`, rejects pooled hostnames and target overrides, and preserves existing TLS requirements. No new credential or provider setting is required.
+Use the existing `DATABASE_URL_UNPOOLED`. Node `--env-file` does not override already-set variables; resolve conflicts privately. Never print/share the URL, password, backup identifier or private receipts. The CLI checks the exact expected direct URL host/database/role and connected `current_database()`/`current_user`, rejects pooled hosts and target overrides, and preserves TLS requirements. No new credential, role or provider setting is needed.
 
-The seven historical LF hashes and whole-history Windows CRLF compatibility remain unchanged. Recorded historical hashes are never rewritten. Features 0102, 0103 and 0104 require canonical LF hashes, with no CRLF ledger aliases. Old nine-entry receipts with digest `498280b69647485b4f55c35331a0f8af486983d819ee2dc25fb1840f1e657506` remain historical records and cannot authorize this new plan. Save fresh receipts under new filenames.
+All seven canonical historical hashes and their exact whole-history Windows CRLF aliases remain unchanged. Features0102–0105 require canonical LF; features never receive CRLF ledger aliases. Previous nine-/ten-entry-plan receipts are historical records, including digests `498280b69647485b4f55c35331a0f8af486983d819ee2dc25fb1840f1e657506` and `9bcf3f083d47a1b700e467c60f3b9eff57193491bb1e2929b1c2a4f21ba532d1`. They cannot authorize this plan. Save fresh receipts under new filenames.
 
-## Fresh inspect, pending-only apply, inspect again
+## Inspect, apply only the exact pending set, inspect again
 
-Use an exclusive migration window without concurrent release/admin mutations. Inspection uses a read-only repeatable-read transaction and an exclusive new `.local/*.json` file. Receipts contain ledger hashes and table counts, without participant rows, credit values or connection URLs.
+Use an exclusive migration window without concurrent release/admin changes. Inspection is read-only repeatable-read and reserves a new `.local/*.json` file exclusively. Receipts contain hashes/counts, not participant rows, credit values or connection URLs. A receipt is accepted for at most24hours and is rechecked against the actual target/state inside the apply transaction.
 
 ```powershell
 $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
-$beforeReceipt = '.local/pre-0104-' + $stamp + '.json'
+$beforeReceipt = '.local/pre-0105-' + $stamp + '.json'
 node --env-file=.env.backend.local --import tsx neon/scripts/upgrade-populated.ts --inspect-populated --receipt $beforeReceipt
 if ($LASTEXITCODE -ne 0) { throw 'Inspection stopped. Do not apply' }
 $before = Get-Content -Raw -LiteralPath $beforeReceipt | ConvertFrom-Json
-if ($before.planDigest -ne '9bcf3f083d47a1b700e467c60f3b9eff57193491bb1e2929b1c2a4f21ba532d1' -or
-    @($before.ledger).Count -ne 9 -or @($before.pending).Count -ne 1 -or
-    $before.pending[0] -ne '0104_admin_team_corrections.sql') {
-    throw 'Expected the existing nine-entry ledger and only 0104 pending. Preserve this receipt for review'
+if ($before.planDigest -ne 'e3b7a348e2c9e3f4f066a78fbd02274a0e111155b3af527f99bdc545bbe32691') {
+    throw 'Expected the reviewed eleven-entry source plan'
+}
+switch (@($before.ledger).Count) {
+    9 { $expectedPending = @('0104_admin_team_corrections.sql', '0105_terminal_record_deletion.sql') }
+    10 { $expectedPending = @('0105_terminal_record_deletion.sql') }
+    default { throw 'Expected the independently verified nine- or ten-entry target. Preserve receipt for review' }
+}
+if ((ConvertTo-Json -InputObject @($before.pending) -Compress) -ne
+    (ConvertTo-Json -InputObject $expectedPending -Compress)) {
+    throw 'Unexpected pending set. Do not apply'
 }
 if ($before.historicalEncoding -notin @('canonical-lf', 'legacy-windows-crlf')) {
     throw 'Unexpected historical ledger encoding'
@@ -61,66 +68,71 @@ if ($before.historicalEncoding -notin @('canonical-lf', 'legacy-windows-crlf')) 
 
 $backupCheckpoint = Read-Host 'Identifier of the current backup/restore checkpoint you actually verified'
 node --env-file=.env.backend.local --import tsx neon/scripts/upgrade-populated.ts --apply-populated --receipt $beforeReceipt --backup-checkpoint $backupCheckpoint --confirm-restore-verified
-if ($LASTEXITCODE -ne 0) { throw 'Upgrade not confirmed. Inspect the actual ledger before deciding on a retry' }
+if ($LASTEXITCODE -ne 0) { throw 'Upgrade not confirmed. Inspect actual ledger before deciding on a retry' }
 
-$afterReceipt = '.local/post-0104-' + $stamp + '.json'
+$afterReceipt = '.local/post-0105-' + $stamp + '.json'
 node --env-file=.env.backend.local --import tsx neon/scripts/upgrade-populated.ts --inspect-populated --receipt $afterReceipt
 if ($LASTEXITCODE -ne 0) { throw 'Post-upgrade inspection failed. Stop rollout' }
 $after = Get-Content -Raw -LiteralPath $afterReceipt | ConvertFrom-Json
-if ($after.planDigest -ne $before.planDigest -or @($after.ledger).Count -ne 10 -or @($after.pending).Count -ne 0) {
-    throw 'Expected ten ledger entries with no pending work'
+if ($after.planDigest -ne $before.planDigest -or @($after.ledger).Count -ne 11 -or @($after.pending).Count -ne 0) {
+    throw 'Expected eleven ledger entries with no pending work'
 }
 $priorNames = @($before.ledger | ForEach-Object { $_.name })
 $priorAfter = @($after.ledger | Where-Object { $_.name -in $priorNames })
 if ((ConvertTo-Json -InputObject @($before.ledger) -Depth 4 -Compress) -ne
     (ConvertTo-Json -InputObject $priorAfter -Depth 4 -Compress)) {
-    throw 'Existing ledger rows changed. Stop rollout and retain both private receipts'
+    throw 'Existing ledger names/checksums changed. Stop rollout and retain both private receipts'
 }
-$newEntry = @($after.ledger | Where-Object { $_.name -eq '0104_admin_team_corrections.sql' })
-if ($newEntry.Count -ne 1 -or $newEntry[0].checksum -ne 'a931aeafba01be07f43e35fc7c17cae80f11bbd212fbd92f0e5fd8d475c40500') {
-    throw 'The new LF migration hash does not match the reviewed source'
+$requiredFeatures = @{
+    '0104_admin_team_corrections.sql' = 'a931aeafba01be07f43e35fc7c17cae80f11bbd212fbd92f0e5fd8d475c40500'
+    '0105_terminal_record_deletion.sql' = '088b96a239915cd518765b5ef260c73feee913d8e0b181234110f7591676ccde'
+}
+foreach ($name in $requiredFeatures.Keys) {
+    $entry = @($after.ledger | Where-Object { $_.name -eq $name })
+    if ($entry.Count -ne 1 -or $entry[0].checksum -ne $requiredFeatures[$name]) {
+        throw 'A required feature LF hash does not match the reviewed source'
+    }
 }
 ```
 
-Do not edit or reuse an old receipt. Apply checks its age, source plan, target, actual ledger and pre-upgrade counts inside the same `SERIALIZABLE` transaction and advisory lock `(742019, 1)`, before DDL. Lock wait is bounded to 15 seconds and each statement to 120 seconds. It requires the exact pending set from the fresh receipt and unchanged existing table counts afterward. A fresh post-upgrade receipt permits a repeat with `applied: []`.
+Apply uses the same SERIALIZABLE transaction and advisory lock `(742019,1)` for target/receipt/state validation, pending DDL, ledger append and postconditions. Lock wait is bounded to15seconds, each statement to120seconds. Existing table counts must remain unchanged. A new0105 attempt ledger must exactly match each team's prior maximum committed attempt; terminal-deletion markers must be empty. Failure rolls the transaction back. A fresh post-upgrade receipt supports a repeat returning `applied: []`.
 
-`ownerBackupRestoreAcknowledged` records the owner's explicit attestation, not automatic backup verification. A connection/COMMIT failure can have an uncertain outcome; inspect the actual ledger before considering any retry. There is no automatic down migration or restore. Do not drop tables/functions or rewrite checksums as an improvised rollback.
+`ownerBackupRestoreAcknowledged` is the owner's attestation, not automatic backup verification. A connection/COMMIT failure can leave an uncertain outcome: inspect the actual ledger before a retry. There is no automatic down migration or restore. Do not drop tables/functions or rewrite checksums as an improvised rollback. Existing ledger timestamps remain unchanged by migration SQL; local tests compare them, while the receipt comparison verifies names/checksums only.
 
-## Compatibility with an intentionally selected older target
+## Deliberately selected older target
 
-The current owner's target is the nine-entry case above. Do not reinterpret an unexpected seven-entry receipt as permission to apply: first independently confirm the intended branch/database, inspect its actual data and verify a current restore checkpoint. The guarded CLI supports these exact prefixes without replaying or rewriting any applied migration:
+An unexpected seven-entry receipt does not authorize applying to another branch/database. Independently confirm that target and a fresh verified restore checkpoint first. The CLI retains exact prefix compatibility without replaying or rewriting applied SQL:
 
-| Existing ledger | Exact pending migrations | Result |
+| Existing ledger | Exact pending set | Result |
 | --- | --- | --- |
-| Seven historical entries, all canonical LF or all recognized legacy Windows CRLF | 0102, 0103, 0104 | Ten entries |
-| Same seven historical entries plus canonical LF 0102 and 0103 | 0104 only | Ten entries |
-| All ten reviewed entries | None | No changes |
+| Seven historical entries, all LF or all exact recognized CRLF | 0102,0103,0104,0105 | Eleven entries |
+| Same history plus canonical0102 | 0103,0104,0105 | Eleven entries |
+| Same history plus canonical0102/0103 | 0104,0105 | Eleven entries |
+| Same history plus canonical0102/0103/0104 | 0105 | Eleven entries |
+| All eleven reviewed entries | None | No apply needed |
 
-For an intentionally selected seven-entry target, use the same source/target checks and a **fresh** inspect receipt. Replace only the nine-entry preflight assertion above with this stricter seven-entry assertion, then run the same backup-confirmed apply and post-inspect commands. Do not use an old receipt or a previous plan digest.
+For an intentionally selected seven-entry target, use a fresh receipt and replace only the nine/ten-entry pending assertion above with this exact assertion; retain all source/target/backup/apply/post-inspect guards:
 
 ```powershell
-$expectedPending = @('0102_credit_stock.sql', '0103_project_media_limits.sql', '0104_admin_team_corrections.sql')
-if ($before.planDigest -ne '9bcf3f083d47a1b700e467c60f3b9eff57193491bb1e2929b1c2a4f21ba532d1' -or
+$expectedPending = @('0102_credit_stock.sql', '0103_project_media_limits.sql', '0104_admin_team_corrections.sql', '0105_terminal_record_deletion.sql')
+if ($before.planDigest -ne 'e3b7a348e2c9e3f4f066a78fbd02274a0e111155b3af527f99bdc545bbe32691' -or
     @($before.ledger).Count -ne 7 -or
     (ConvertTo-Json -InputObject @($before.pending) -Compress) -ne
     (ConvertTo-Json -InputObject $expectedPending -Compress)) {
-    throw 'Expected the independently verified seven-entry target and exactly 0102/0103/0104 pending'
+    throw 'Expected the independently verified seven-entry target and exact0102/0103/0104/0105 pending'
 }
 if ($before.historicalEncoding -notin @('canonical-lf', 'legacy-windows-crlf')) {
     throw 'Unexpected historical ledger encoding'
 }
 ```
 
-The post-inspect comparison checks every original receipt name and checksum for either prefix. Existing ledger timestamps are left unchanged by the migrations and covered by local preservation tests; the receipt comparison does not independently check timestamps. The CLI verifies each new LF checksum, exact source plan and unchanged existing row counts transactionally. Unknown hashes, mixed historical encodings and non-prefix ledgers remain refused. A target already at ten entries needs no migration apply; retain a fresh read-only receipt and continue with the matching backend package.
+## Immutable source and local verification
 
-## Immutable source and local proof
-
-| Migration                       | Canonical LF SHA256                                                |
-| ------------------------------- | ------------------------------------------------------------------ |
-| 0102_credit_stock.sql           | `74bf8549edbecb753424a86e692844e962be02c0faeddda8f0b2dd3ffaacb72e` |
-| 0103_project_media_limits.sql   | `3f42da160787977b7655fe74647655bd656f4c55467c2a42b3dd1627859f462c` |
+| Migration | Canonical LF SHA256 |
+| --- | --- |
+| 0102_credit_stock.sql | `74bf8549edbecb753424a86e692844e962be02c0faeddda8f0b2dd3ffaacb72e` |
+| 0103_project_media_limits.sql | `3f42da160787977b7655fe74647655bd656f4c55467c2a42b3dd1627859f462c` |
 | 0104_admin_team_corrections.sql | `a931aeafba01be07f43e35fc7c17cae80f11bbd212fbd92f0e5fd8d475c40500` |
+| 0105_terminal_record_deletion.sql | `088b96a239915cd518765b5ef260c73feee913d8e0b181234110f7591676ccde` |
 
-Historical 0000..0103 SQL, recorded hashes, baseline-manifest history and prior proof receipts remain unchanged. Approval metadata appends only the new feature entry. The separate current proof is saved in `evidence/admin-team-upgrade/`; older nine-entry proofs remain historical evidence.
-
-The local tests use populated disposable PGlite databases with both historical encodings, existing teams/locks/submissions, stock and an assigned credit. They compare all prior rows and all nine old ledger entries, verify only 0104 executes, and exercise stale/invalid state and transactional function-definition rollback. This does not establish native multi-connection PostgreSQL behavior, verify a backup or claim hosted execution. After schema checks succeed, use the matching freshly verified backend artifact and the owner's deployment instructions. No archive hash is updated or deployment performed by this tooling change.
+Historical SQL, existing approval entries, exact seven CRLF aliases and previous proof records remain unchanged. Approval metadata only appends0105. [0105 verification](TERMINAL_DELETION_UPGRADE_VERIFICATION.md) records the current local proof. PGlite proves local PostgreSQL trigger/transaction semantics, not native multi-connection concurrency, a verified restore or hosted state. After schema verification, follow the separate owner-run Windows archive/deployment handoff with the matching release artifact. This tooling change updates no archive digest and performs no deployment.

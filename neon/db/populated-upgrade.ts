@@ -59,6 +59,7 @@ export function verifyUpgradePlan(
         "0102_credit_stock.sql",
         "0103_project_media_limits.sql",
         "0104_admin_team_corrections.sql",
+        "0105_terminal_record_deletion.sql",
       ],
     ) ||
     !same(entries(plan), approved) ||
@@ -297,6 +298,16 @@ export async function applyPopulatedUpgrade(
           after.counts.credit_stock_imports !== "0")
       )
         stop("UPGRADE_STOCK_BACKFILL_MISMATCH");
+      if (names.includes("0105_terminal_record_deletion.sql")) {
+        const mismatch = await connection.query(
+          "SELECT count(*)::text AS count FROM (SELECT team_id,MAX(attempt) AS attempts FROM submission_versions GROUP BY team_id) versions FULL JOIN submission_attempt_ledger attempts ON attempts.team_id=versions.team_id WHERE versions.team_id IS NULL OR attempts.team_id IS NULL OR attempts.attempts<>versions.attempts",
+        );
+        if (
+          after.counts.terminal_record_deletions !== "0" ||
+          String(mismatch.rows[0]?.count) !== "0"
+        )
+          stop("UPGRADE_ATTEMPT_BACKFILL_MISMATCH");
+      }
     },
   });
   return {

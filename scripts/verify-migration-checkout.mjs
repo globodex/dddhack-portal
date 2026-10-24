@@ -4,7 +4,7 @@ import { readFileSync, readdirSync, lstatSync, writeFileSync, renameSync, rmSync
 import { resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-const approvedDigest = '9bcf3f083d47a1b700e467c60f3b9eff57193491bb1e2929b1c2a4f21ba532d1';
+const approvedDigest = 'e3b7a348e2c9e3f4f066a78fbd02274a0e111155b3af527f99bdc545bbe32691';
 const sources = [
   ['0000_compatibility.sql', 'neon/migrations/0000_compatibility.sql'],
   ['0001_portal.sql', 'neon/migrations/0001_portal.sql'],
@@ -16,6 +16,7 @@ const sources = [
   ['0102_credit_stock.sql', 'neon/migrations/0102_credit_stock.sql'],
   ['0103_project_media_limits.sql', 'neon/migrations/0103_project_media_limits.sql'],
   ['0104_admin_team_corrections.sql', 'neon/migrations/0104_admin_team_corrections.sql'],
+  ['0105_terminal_record_deletion.sql', 'neon/migrations/0105_terminal_record_deletion.sql'],
 ];
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const fail = (code, file) => { throw Object.assign(new Error(code), { code, ...(file ? { file } : {}) }); };
