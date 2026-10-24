@@ -2172,11 +2172,13 @@ export function Submission({
 }) {
   const initial = { ...emptyProject, ...data.project?.draft };
   const [project, setProject] = useState(initial),
+    [hydrated, setHydrated] = useState(false),
     [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
     [fieldErrors, setFieldErrors] = useState<Record<string, string>>({}),
     [step, setStep] = useState(1);
   const wizardHeading = useRef<HTMLHeadingElement>(null);
+  useEffect(() => setHydrated(true), []);
   useEffect(() => {
     if (step !== 1) wizardHeading.current?.focus();
   }, [step]);
@@ -2357,13 +2359,16 @@ export function Submission({
       )}
       <form
         className="project-editor"
+        method="post"
+        inert={!hydrated}
+        aria-busy={!hydrated || busy}
         onSubmit={(e) => {
           e.preventDefault();
           if (step < 3) next();
           else void save(false);
         }}
       >
-        <fieldset disabled={!canCommit || busy}>
+        <fieldset disabled={!canCommit || busy || !hydrated}>
           <legend className="sr-only">
             Step {step} of 3 · {remaining} submissions remaining
           </legend>
@@ -2953,9 +2958,11 @@ export function Projects({
   run: (a: string, d: Row) => Promise<Row>;
 }) {
   const [q, setQ] = useState(""),
+    [hydrated, setHydrated] = useState(false),
     [page, setPage] = useState(0),
     [listing, setListing] = useState<View>(data),
     [searchBusy, setSearchBusy] = useState(false),
+    [searchRetry, setSearchRetry] = useState(0),
     [searchError, setSearchError] = useState(""),
     [comment, setComment] = useState(""),
     [commentBusy, setCommentBusy] = useState(false),
@@ -2965,6 +2972,7 @@ export function Projects({
     p = data.items?.[0];
   const highlighted = useRef(false),
     commentPending = useRef(false);
+  useEffect(() => setHydrated(true), []);
   useEffect(() => {
     if (highlighted.current || !window.location.hash) return;
     const target = document.getElementById(
@@ -3007,7 +3015,7 @@ export function Projects({
       clearTimeout(timer);
       controller.abort();
     };
-  }, [q, page, data, path, detail]);
+  }, [q, page, data, path, detail, searchRetry]);
   const signIn = "/signin?returnTo=" + encodeURIComponent(path);
   const visibleProjects = (listing.items || []).filter((project) =>
     (project.projectName + " " + project.teamName + " " + project.problemSolution)
@@ -3107,6 +3115,9 @@ export function Projects({
             !data.engagement?.feedbackPaused ? (
               <form
                 className="project-comment-composer"
+                method="post"
+                inert={!hydrated}
+                aria-busy={!hydrated || commentBusy}
                 onSubmit={async (e) => {
                   e.preventDefault();
                   if (commentPending.current || !comment.trim()) return;
@@ -3142,13 +3153,13 @@ export function Projects({
                   required
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
-                  disabled={commentBusy}
+                  disabled={commentBusy || !hydrated}
                 />
                 <button
                   className="project-send-comment"
                   type="submit"
                   aria-label="Post comment"
-                  disabled={commentBusy || !comment.trim()}
+                  disabled={commentBusy || !comment.trim() || !hydrated}
                 >
                   <Send size={20} aria-hidden="true" />
                 </button>
@@ -3222,7 +3233,7 @@ export function Projects({
           <p>{listing.scoringInfo.weightage}</p>
         </details>
       )}
-      {searchError && <p role="alert" className="project-search-error">{searchError}</p>}
+      {searchError && <div role="alert" className="project-search-error"><span>{searchError}</span><button type="button" className="button secondary" disabled={searchBusy} onClick={() => { setSearchBusy(true); setSearchRetry((n) => n + 1); }}>Retry search</button></div>}
       <ul className="project-list" aria-busy={searchBusy}>
         {visibleProjects
           .map((p) => (

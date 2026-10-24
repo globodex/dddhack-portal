@@ -51,6 +51,7 @@
 .app-shell .project-empty-state { display: flex; flex-direction: column; align-items: center; gap: 20px; min-height: 260px; padding: 52px 24px; border-block: 1px solid var(--line, #e3e4db); text-align: center; }
 .app-shell .project-empty-state h2 { margin: 0; font-size: 22px; line-height: 1.25; }
 .app-shell .project-search-error, .app-shell .history-error { margin: 12px 0 20px; padding: 10px 0 10px 12px; border-left: 2px solid #b13a2d; color: #9d3025; font-size: 13px; line-height: 1.5; }
+.app-shell .project-search-error { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 .app-shell .public-project-detail { max-width: 1120px; }
 .app-shell .project-detail-topline { gap: 12px; margin-bottom: 28px; color: var(--muted, #656960); font-size: 14px; }
 .app-shell .project-detail-topline .expressive-heading-dot { width: 30px; height: 30px; }
