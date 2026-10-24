@@ -1,0 +1,3 @@
+# These SQL bytes are the published checksum ledger, including on Windows.
+neon/migrations/*.sql text eol=lf
+neon/auth-migrations/*.sql text eol=lf

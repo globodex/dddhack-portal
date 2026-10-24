@@ -1,0 +1,21 @@
+{
+  "source": "0aa85b5",
+  "checkExit": 2,
+  "repairExit": 0,
+  "repaired": [
+    "neon/migrations/0000_compatibility.sql",
+    "neon/migrations/0001_portal.sql",
+    "neon/migrations/0002_invariants.sql",
+    "neon/migrations/0003_transaction_safety.sql",
+    "neon/migrations/0004_media_uploads.sql",
+    "neon/auth-migrations/0001_auth.sql",
+    "neon/auth-migrations/0002_approved_evaluation.sql",
+    "neon/migrations/0102_credit_stock.sql",
+    "neon/migrations/0103_project_media_limits.sql"
+  ],
+  "sourcePlanExit": 0,
+  "planDigest": "498280b69647485b4f55c35331a0f8af486983d819ee2dc25fb1840f1e657506",
+  "allNineBytesEqualOriginal": true,
+  "databaseConnected": false,
+  "indexUnchanged": true
+}

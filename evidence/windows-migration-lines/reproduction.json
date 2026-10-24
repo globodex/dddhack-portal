@@ -1,0 +1,17 @@
+{
+  "source": "0aa85b55840dc26b2e9306e48fd592e83eae054c",
+  "files": 9,
+  "lf": {
+    "exit": 0,
+    "planDigest": "498280b69647485b4f55c35331a0f8af486983d819ee2dc25fb1840f1e657506"
+  },
+  "crlf": {
+    "exit": 1,
+    "error": {
+      "code": "UPGRADE_SOURCE_PLAN_MISMATCH",
+      "outcome": "not-confirmed; inspect ledger before any retry"
+    }
+  },
+  "databaseConnected": false,
+  "sqlBytesInGitUnchanged": true
+}
