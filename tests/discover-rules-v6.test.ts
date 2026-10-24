@@ -90,15 +90,18 @@ test("profile Team card copies only safe team identity and never private row fie
     /private@example|private-phone|private-idea|private-team|You are viewing this profile|View only/,
   );
 });
-test("shared Rules preserves all five authoritative policy categories and only initially opens attendance", () => {
+test("shared Rules exposes every authoritative category and rule in scannable groups", () => {
   const categories = participantRules(
     "2026-11-01T02:30:00Z",
     "2026-11-01T10:30:00Z",
   );
   const html = renderToStaticMarkup(createElement(SharedRules, { categories }));
-  assert.equal((html.match(/<details(?:\s|>)/g) || []).length, 5);
-  assert.equal((html.match(/<details open="">/g) || []).length, 1);
-  for (const category of categories) assert.ok(html.includes(category.title));
+  assert.equal((html.match(/class="rule-group"/g) || []).length, 5);
+  assert.doesNotMatch(html, /<details|<summary/);
+  for (const category of categories) {
+    assert.ok(html.includes(category.title));
+    for (const item of category.items) assert.ok(html.includes(item.replaceAll("&", "&amp;")));
+  }
   assert.match(html, /Exactly three committed submissions per team/);
   assert.match(html, /both be strictly after 1 November 2026, 08:00 IST/);
   assert.doesNotMatch(html, /private@example|—/);

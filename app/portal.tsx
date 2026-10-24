@@ -84,6 +84,7 @@ import ProfileFlow from "./profile-flow";
 import AdminImportDialog from "./admin-import-dialog";
 import AdminStatusMenu from "./admin-status-menu";
 import { trapDialogFocus } from "./dialog-focus";
+import { trackDialogHistory } from "./dialog-history";
 import AdminParticipantActions, {
   AdminParticipantFilters,
   AdminIcon,
@@ -2113,7 +2114,7 @@ export function Discover({
 
 export function SharedRules({ categories = [] }: { categories?: Row[] }) {
   return (
-    <section className="rules-v6">
+    <section className="rules-v6 rules-essentials">
       <header className="rules-heading">
         <a href="/dashboard" aria-label="Back to Dashboard">
           <ArrowLeft size={22} aria-hidden="true" />
@@ -2127,19 +2128,19 @@ export function SharedRules({ categories = [] }: { categories?: Row[] }) {
           Rules
         </h1>
       </header>
-      <div className="rules-accordion">
+      <div className="rules-groups">
         {categories.map((category, index) => (
-          <details key={category.title} open={index === 0}>
-            <summary>
-              <span>{category.title}</span>
-              <ChevronDown size={22} aria-hidden="true" />
-            </summary>
+          <section className="rule-group" key={category.title} aria-labelledby={`rule-group-${index}`}>
+            <header>
+              <span className="rule-group-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+              <h2 id={`rule-group-${index}`}>{category.title}</h2>
+            </header>
             <ol>
               {category.items.map((item: string) => (
                 <li key={item}>{item}</li>
               ))}
             </ol>
-          </details>
+          </section>
         ))}
       </div>
     </section>
@@ -2173,6 +2174,7 @@ export function Submission({
   const [project, setProject] = useState(initial),
     [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
+    [fieldErrors, setFieldErrors] = useState<Record<string, string>>({}),
     [step, setStep] = useState(1);
   const wizardHeading = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
@@ -2180,17 +2182,16 @@ export function Submission({
   }, [step]);
   const next = () => {
     setError("");
-    if (
-      step === 1 &&
-      (!project.projectName?.trim() ||
-        !project.problemSolution?.trim() ||
-        !project.description?.trim())
-    ) {
-      setError("Add a project name, summary and description.");
-      return;
+    const issues: Record<string, string> = {};
+    if (step === 1) {
+      for (const [name, message] of [["projectName", "Enter a project name."], ["problemSolution", "Add a one-line summary."], ["description", "Describe your project."]])
+        if (!project[name]?.trim()) issues[name] = message;
     }
-    if (step === 2 && !/^https:\/\/github\.com\//.test(project.github || "")) {
-      setError("Add your GitHub repository.");
+    if (step === 2 && !/^https:\/\/github\.com\//.test(project.github || ""))
+      issues.github = "Enter your GitHub repository URL.";
+    setFieldErrors(issues);
+    if (Object.keys(issues).length) {
+      requestAnimationFrame(() => document.querySelector<HTMLInputElement | HTMLTextAreaElement>(`.project-editor [name="${Object.keys(issues)[0]}"]`)?.focus());
       return;
     }
     setStep(Math.min(3, step + 1));
@@ -2209,6 +2210,7 @@ export function Submission({
   const saving = useRef(false);
   const set = (name: string, value: unknown) => {
     setProject((p: Row) => ({ ...p, [name]: value }));
+    setFieldErrors((previous) => { const next = { ...previous }; delete next[name]; return next; });
     const corrected = { ...project, [name]: value };
     setError((current) =>
       (current === "Add a project name, summary and description." &&
@@ -2385,6 +2387,8 @@ export function Submission({
                     name={name}
                     rows={5}
                     aria-required="true"
+                    aria-invalid={fieldErrors[name] ? true : undefined}
+                    aria-describedby={fieldErrors[name] ? `submission-${name}-error` : undefined}
                     value={project[name]}
                     onChange={(e) => set(name, e.target.value)}
                   />
@@ -2392,10 +2396,13 @@ export function Submission({
                   <input
                     name={name}
                     aria-required="true"
+                    aria-invalid={fieldErrors[name] ? true : undefined}
+                    aria-describedby={fieldErrors[name] ? `submission-${name}-error` : undefined}
                     value={project[name]}
                     onChange={(e) => set(name, e.target.value)}
                   />
                 )}
+                {fieldErrors[name] && <small className="submission-field-error" id={`submission-${name}-error`}>{fieldErrors[name]}</small>}
               </label>
             ))}
           </div>
@@ -2420,10 +2427,13 @@ export function Submission({
                   name="github"
                   type="url"
                   aria-required="true"
+                  aria-invalid={fieldErrors.github ? true : undefined}
+                  aria-describedby={fieldErrors.github ? "submission-github-error" : undefined}
                   value={project.github}
                   onChange={(e) => set("github", e.target.value)}
                 />
               </span>
+              {fieldErrors.github && <small className="submission-field-error" id="submission-github-error">{fieldErrors.github}</small>}
             </label>
             <label>
               Deployment URL
@@ -2636,12 +2646,15 @@ export function ProjectHistory({
     [busy, setBusy] = useState(false),
     [error, setError] = useState("");
   const dialog = useRef<HTMLDialogElement>(null),
-    close = useRef<HTMLButtonElement>(null);
+    close = useRef<HTMLButtonElement>(null),
+    opener = useRef<HTMLButtonElement | null>(null);
   useEffect(() => {
     if (!open || !canRead) return;
-    const previous = document.activeElement as HTMLElement | null;
+    const previous = opener.current;
     const controller = new AbortController();
-    dialog.current?.showModal();
+    const popup = dialog.current;
+    popup?.showModal();
+    const stopHistory = trackDialogHistory(() => setOpen(false), previous);
     close.current?.focus();
     setBusy(true);
     setError("");
@@ -2667,7 +2680,8 @@ export function ProjectHistory({
     })();
     return () => {
       controller.abort();
-      dialog.current?.close();
+      stopHistory();
+      popup?.close();
       previous?.isConnected && previous.focus({ preventScroll: true });
     };
   }, [open, canRead]);
@@ -2677,7 +2691,7 @@ export function ProjectHistory({
       <button
         type="button"
         className="button secondary"
-        onClick={() => setOpen(true)}
+        onClick={(event) => { opener.current = event.currentTarget; setOpen(true); }}
       >
         <Icon name="history" />
         {label}
@@ -2707,15 +2721,14 @@ export function ProjectHistory({
             </button>
           </div>
 
-          {busy && <p role="status">Loading committed history…</p>}
-          {error && <p role="alert">{error}</p>}
+          {busy && <div className="history-loading" role="status" aria-label="Loading committed history"><span className="sr-only">Loading committed history…</span>{[1, 2, 3].map((n) => <div key={n} aria-hidden="true"><i /><span /><span /></div>)}</div>}
+          {error && <p role="alert" className="history-error">{error}</p>}
           {!busy && !error && !items.length && (
-            <p>No successful commits yet.</p>
+            <p className="history-empty">No committed versions yet.</p>
           )}
           {items.map((item) => (
             <article className="history-version" key={item.id}>
-              <h3>Version {item.attempt}</h3>
-              <p>{ist(item.created_at)}</p>
+              <header><h3>Version {item.attempt}</h3><time dateTime={item.created_at}>{ist(item.created_at)}</time></header>
               <ProjectVersion payload={item.payload} />
             </article>
           ))}
@@ -2765,12 +2778,13 @@ function ProjectBody({
   publicView?: boolean;
 }) {
   return (
-    <>
+    <div className="project-presentation">
       <img
         className="project-banner"
         src={project.banner}
         alt={`${project.projectName} project banner`}
       />
+      <div className="project-overview">
       <div className="project-identity">
         <img
           className="project-logo"
@@ -2786,7 +2800,6 @@ function ProjectBody({
         </div>
       </div>
       <p className="project-description">{project.problemSolution}</p>
-      <p className="prose">{project.description}</p>
       <div className="form-actions">
         {publicView && project.github && (
           <a
@@ -2826,7 +2839,12 @@ function ProjectBody({
           </a>
         )}
       </div>
-    </>
+      </div>
+      <div className="project-story">
+        <h2>About the project</h2>
+        <p className="prose">{project.description}</p>
+      </div>
+    </div>
   );
 }
 export class UpvoteController {
@@ -2937,6 +2955,7 @@ export function Projects({
   const [q, setQ] = useState(""),
     [page, setPage] = useState(0),
     [listing, setListing] = useState<View>(data),
+    [searchBusy, setSearchBusy] = useState(false),
     [searchError, setSearchError] = useState(""),
     [comment, setComment] = useState(""),
     [commentBusy, setCommentBusy] = useState(false),
@@ -2962,10 +2981,12 @@ export function Projects({
     const controller = new AbortController();
     if (!q && !page) {
       setListing(data);
+      setSearchBusy(false);
       if (data.page) setPage(data.page);
       return;
     }
     const timer = setTimeout(async () => {
+      setSearchBusy(true);
       try {
         const r = await fetch(
           `/api/portal?view=${encodeURIComponent(path)}&q=${encodeURIComponent(q)}&page=${page}`,
@@ -2978,6 +2999,8 @@ export function Projects({
       } catch (e) {
         if ((e as Error).name !== "AbortError")
           setSearchError((e as Error).message);
+      } finally {
+        if (!controller.signal.aborted) setSearchBusy(false);
       }
     }, 180);
     return () => {
@@ -2986,6 +3009,10 @@ export function Projects({
     };
   }, [q, page, data, path, detail]);
   const signIn = "/signin?returnTo=" + encodeURIComponent(path);
+  const visibleProjects = (listing.items || []).filter((project) =>
+    (project.projectName + " " + project.teamName + " " + project.problemSolution)
+      .toLowerCase().includes(q.toLowerCase()),
+  );
   const engagement = (p: Row) => (
     <div className="engagement">
       {data.me ? (
@@ -3055,8 +3082,9 @@ export function Projects({
               .
             </p>
           )}
-          <section id="comments">
-            <h2>Comments</h2>
+          <section id="comments" aria-labelledby="project-comments-heading">
+            <h2 id="project-comments-heading">Comments <span>{data.comments?.length || 0}</span></h2>
+            {!data.comments?.length && <p className="project-empty-comments">No comments yet.</p>}
             {(data.comments || []).map((c: Row) => (
               <article className="public-comment" key={c.id}>
                 <DotAvatar
@@ -3141,6 +3169,7 @@ export function Projects({
         <HeadingDot color="purple" expression="squeezed" size={64} />
         <h1>{board ? "Leaderboard" : "Projects"}</h1>
       </header>
+      <div className="project-directory-toolbar">
       <div className="project-search">
         <SearchIcon size={24} aria-hidden="true" />
         <Search
@@ -3148,9 +3177,12 @@ export function Projects({
           onChange={(v) => {
             setQ(v);
             setPage(0);
+            if (v.trim()) setSearchBusy(true);
           }}
           label="Search projects"
         />
+      </div>
+      {searchBusy && <span className="project-search-status" role="status">Searching…</span>}
       </div>
       {(listing.engagement?.votingPaused ||
         listing.engagement?.feedbackPaused) && (
@@ -3171,7 +3203,7 @@ export function Projects({
         </p>
       )}
       {board && listing.awards?.length > 0 && (
-        <section className="panel" aria-label="Unveiled awards">
+        <section className="project-awards" aria-label="Unveiled awards">
           <h2>Unveiled awards</h2>
           {listing.awards.map((a: Row) => (
             <p key={a.position}>
@@ -3190,14 +3222,9 @@ export function Projects({
           <p>{listing.scoringInfo.weightage}</p>
         </details>
       )}
-      {searchError && <p role="alert">{searchError}</p>}
-      <ul className="project-list">
-        {(listing.items || [])
-          .filter((p) =>
-            (p.projectName + " " + p.teamName + " " + p.problemSolution)
-              .toLowerCase()
-              .includes(q.toLowerCase()),
-          )
+      {searchError && <p role="alert" className="project-search-error">{searchError}</p>}
+      <ul className="project-list" aria-busy={searchBusy}>
+        {visibleProjects
           .map((p) => (
             <li key={p.id} id={"entry-" + p.slug}>
               <a className="project-row-link" href={`/projects/${p.slug}`}>
@@ -3229,10 +3256,12 @@ export function Projects({
             </li>
           ))}
       </ul>
-      {!listing.items?.length && (
-        <Empty>
-          Eligible submitted projects will appear here automatically.
-        </Empty>
+      {!visibleProjects.length && !searchBusy && !searchError && (
+        <section className="project-empty-state" aria-label={q ? "No matching projects" : "No projects yet"}>
+          <HeadingDot color="purple" expression="sleepy" size={48} paused />
+          <h2>{q ? "No matching projects" : "No projects yet"}</h2>
+          {q ? <button className="button secondary" type="button" onClick={() => { setQ(""); setPage(0); }}>Clear search</button> : <a className="button secondary" href="/dashboard#project">Your project</a>}
+        </section>
       )}
       <div className="form-actions project-pagination">
         <button
