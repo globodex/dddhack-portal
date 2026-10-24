@@ -12,13 +12,21 @@ export default function ConfirmationDialog({
   const dialog = useRef<HTMLDialogElement>(null),
     cancel = useRef<HTMLButtonElement>(null);
   useEffect(() => {
+    const popup = dialog.current;
+    if (!popup) return;
     const previous = document.activeElement as HTMLElement | null;
     const parentDialog =
-      document.querySelector<HTMLDialogElement>("dialog:modal");
-    dialog.current?.showModal();
+      previous?.closest<HTMLDialogElement>("dialog:modal") ||
+      [...document.querySelectorAll<HTMLDialogElement>("dialog:modal")]
+        .filter((node) => node !== popup)
+        .at(-1);
+    popup.showModal();
     cancel.current?.focus();
     return () => {
-      dialog.current?.close();
+      // React clears refs before the passive unmount cleanup. Close the node
+      // captured by this effect so its top-layer focus lock is released before
+      // restoring focus to the still-open parent, including Strict Mode replay.
+      popup.close();
       if (
         previous?.isConnected &&
         previous.tabIndex >= 0 &&

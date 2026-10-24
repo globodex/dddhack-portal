@@ -1,0 +1,229 @@
+{
+  "syntheticOnly": true,
+  "origin": "http://localhost:3000",
+  "sourceBase": "856311f",
+  "confirmationSourceSha256": "7314d1a7421bf12d7e2b9d76d9d6883903043a2cf4335701405f868f81b050f3",
+  "browserSandbox": false,
+  "limitation": "Local Next dev Strict Mode with synthetic cookie fixtures; browser sandbox unavailable in container, localhost GET/HEAD allowlist and denied writes/external requests. No real account/provider/device validation.",
+  "cases": [
+    {
+      "kind": "person",
+      "path": "/admin/participants",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "cycles": [
+        {
+          "mode": "pointer",
+          "focusAfterCancel": {
+            "tag": "BUTTON",
+            "label": "Close status menu"
+          },
+          "selection": "Going"
+        },
+        {
+          "mode": "keyboard",
+          "focusAfterCancel": {
+            "tag": "BUTTON",
+            "label": "Close status menu"
+          },
+          "selection": "Going"
+        },
+        {
+          "mode": "escape",
+          "focusAfterCancel": {
+            "tag": "BUTTON",
+            "label": "Close status menu"
+          },
+          "selection": "Going"
+        }
+      ],
+      "parentEscapeAndKeyboardReopen": true
+    },
+    {
+      "kind": "team",
+      "path": "/admin/teams",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "cycles": [
+        {
+          "mode": "pointer",
+          "focusAfterCancel": {
+            "tag": "BUTTON",
+            "label": "Close status menu"
+          },
+          "selection": "Locked"
+        },
+        {
+          "mode": "keyboard",
+          "focusAfterCancel": {
+            "tag": "BUTTON",
+            "label": "Close status menu"
+          },
+          "selection": "Locked"
+        },
+        {
+          "mode": "escape",
+          "focusAfterCancel": {
+            "tag": "BUTTON",
+            "label": "Close status menu"
+          },
+          "selection": "Locked"
+        }
+      ],
+      "parentEscapeAndKeyboardReopen": true
+    },
+    {
+      "kind": "person",
+      "path": "/admin/participants",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "cycles": [
+        {
+          "mode": "pointer",
+          "focusAfterCancel": {
+            "tag": "BUTTON",
+            "label": "Close status menu"
+          },
+          "selection": "Going"
+        },
+        {
+          "mode": "keyboard",
+          "focusAfterCancel": {
+            "tag": "BUTTON",
+            "label": "Close status menu"
+          },
+          "selection": "Going"
+        },
+        {
+          "mode": "escape",
+          "focusAfterCancel": {
+            "tag": "BUTTON",
+            "label": "Close status menu"
+          },
+          "selection": "Going"
+        }
+      ],
+      "parentEscapeAndKeyboardReopen": true
+    },
+    {
+      "kind": "team",
+      "path": "/admin/teams",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "cycles": [
+        {
+          "mode": "pointer",
+          "focusAfterCancel": {
+            "tag": "BUTTON",
+            "label": "Close status menu"
+          },
+          "selection": "Locked"
+        },
+        {
+          "mode": "keyboard",
+          "focusAfterCancel": {
+            "tag": "BUTTON",
+            "label": "Close status menu"
+          },
+          "selection": "Locked"
+        },
+        {
+          "mode": "escape",
+          "focusAfterCancel": {
+            "tag": "BUTTON",
+            "label": "Close status menu"
+          },
+          "selection": "Locked"
+        }
+      ],
+      "parentEscapeAndKeyboardReopen": true
+    },
+    {
+      "kind": "person",
+      "path": "/admin/participants",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "cycles": [
+        {
+          "mode": "pointer",
+          "focusAfterCancel": {
+            "tag": "BUTTON",
+            "label": "Close status menu"
+          },
+          "selection": "Going"
+        },
+        {
+          "mode": "keyboard",
+          "focusAfterCancel": {
+            "tag": "BUTTON",
+            "label": "Close status menu"
+          },
+          "selection": "Going"
+        },
+        {
+          "mode": "escape",
+          "focusAfterCancel": {
+            "tag": "BUTTON",
+            "label": "Close status menu"
+          },
+          "selection": "Going"
+        }
+      ],
+      "parentEscapeAndKeyboardReopen": true
+    },
+    {
+      "kind": "team",
+      "path": "/admin/teams",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "cycles": [
+        {
+          "mode": "pointer",
+          "focusAfterCancel": {
+            "tag": "BUTTON",
+            "label": "Close status menu"
+          },
+          "selection": "Locked"
+        },
+        {
+          "mode": "keyboard",
+          "focusAfterCancel": {
+            "tag": "BUTTON",
+            "label": "Close status menu"
+          },
+          "selection": "Locked"
+        },
+        {
+          "mode": "escape",
+          "focusAfterCancel": {
+            "tag": "BUTTON",
+            "label": "Close status menu"
+          },
+          "selection": "Locked"
+        }
+      ],
+      "parentEscapeAndKeyboardReopen": true
+    }
+  ],
+  "assertions": 236,
+  "errors": [],
+  "blocked": [],
+  "browserClosed": true,
+  "diagnosis": {
+    "before": "Cancel removed the confirmation but left activeElement BODY while the status dialog remained open and native :modal.",
+    "cause": "React clears the dialog ref before passive unmount cleanup; reading dialog.current skipped native close and focus restoration ran against the lingering top layer.",
+    "fix": "Capture the mounted dialog node in its effect and close that captured node before restoring focus to the previous control or still-open parent dialog."
+  }
+}
