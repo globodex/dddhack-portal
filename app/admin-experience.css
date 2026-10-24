@@ -1271,8 +1271,11 @@
   width: 14px;
   height: 14px;
 }
-.admin-workspace .admin-quick-check-in {
+.main:not(.home-main) .admin-workspace .admin-quick-check-in {
+  flex: 0 0 132px;
+  inline-size: 132px;
   min-height: 44px;
   padding: 8px 12px;
   font-size: 12px;
+  white-space: nowrap;
 }
