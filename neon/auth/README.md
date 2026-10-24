@@ -1,6 +1,6 @@
 # Portal authentication
 
-Node.js backend auth uses provider-neutral SMTP magic links and Google's authorization-code flow. Browser auth requests remain on the frontend origin; the Next proxy forwards the exact `/api/auth/*` path. No Sites identity header is read by this backend.
+This repository implements the Node.js auth routes, token/session persistence and account-linking rules directly, using `jose` for Google JWT verification and `nodemailer` for provider-neutral SMTP delivery. Google uses the authorization-code flow. No managed authentication service or BetterAuth installation is required. Browser auth requests remain on the frontend origin; the Next proxy forwards the exact `/api/auth/*` path. No Sites identity header is read by this backend.
 
 ```ts
 import { createAuthHandler, authenticateRequest } from "./auth";
