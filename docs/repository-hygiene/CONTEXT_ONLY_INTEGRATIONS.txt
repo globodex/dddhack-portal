@@ -1,0 +1,79 @@
+range-diff-51166b7.txt
+1:  51166b7 ! 1:  171af2f Add eligible public project sharing and align detail hierarchy
+    @@ app/portal.tsx: import AdminTeamCard from "./admin-team-card";
+     +import ProjectShare from "./project-share";
+      import AdminLeaderTransfer from "./admin-leader-transfer";
+      import Link from "next/link";
+    - import { useDiscoverPeople, peopleDirectoryUrl, readPeoplePage } from "./use-discover-people";
+    + import dynamic from "next/dynamic";
+     @@ app/portal.tsx: export function Projects({
+                </a>
+                <HeadingDot color="purple" expression="squeezed" size={40} />
+
+range-diff-af9473d.txt
+1:  af9473d ! 1:  71963ac Scope stock styles through the layout for Node SSR compatibility
+    @@ app/admin-credit-stock.tsx: export default function AdminCreditStock({
+                                  )}
+     
+      ## app/layout.tsx ##
+    -@@ app/layout.tsx: import "./confirmation-experience.css";
+    - import "./unified-navigation.css";
+    +@@ app/layout.tsx: import "./unified-navigation.css";
+      import "./submission-finish.css";
+      import "./project-share.css";
+    + import "./results-settings.css";
+     +import "./admin-credit-stock-values.css";
+      export const metadata = {
+        icons: { icon: "/brand/codex-user-supplied.svg" },
+
+range-diff-bdf0e42.txt
+1:  bdf0e42 ! 1:  554acc9 Refine admin participant actions and team card headers
+    @@ app/admin-team-card.tsx (new)
+     
+      ## app/portal.tsx ##
+     @@ app/portal.tsx: import {
+    +   LogOut,
+        Menu,
+        SlidersHorizontal,
+    -   UserRound,
+     +  UserCheck,
+        Users,
+    +   UserRound,
+        UsersRound,
+    -   X,
+     @@ app/portal.tsx: import {
+        Flag,
+      } from "lucide-react";
+
+range-diff-c3edc12.txt
+1:  c3edc12 ! 1:  809686b Refine private project review and expose actual judging setup and result release controls
+    @@ app/judging-settings.tsx (new)
+     +}
+     
+      ## app/layout.tsx ##
+    -@@ app/layout.tsx: import "./team-studio-experience.css";
+    - import "./confirmation-experience.css";
+    +@@ app/layout.tsx: import "./confirmation-experience.css";
+      import "./unified-navigation.css";
+      import "./submission-finish.css";
+    + import "./project-share.css";
+     +import "./results-settings.css";
+      export const metadata = {
+        icons: { icon: "/brand/codex-user-supplied.svg" },
+
+range-diff-f766ff6.txt
+1:  f766ff6 ! 1:  2628e02 Unify page headers and fullscreen role navigation across viewports
+    @@ app/information-navigation.tsx: export default function InformationNavigation({
+     +}
+     
+      ## app/layout.tsx ##
+    -@@ app/layout.tsx: import "./admin-experience.css";
+    - import "./projects-rules-experience.css";
+    +@@ app/layout.tsx: import "./projects-rules-experience.css";
+      import "./team-studio-shell.css";
+      import "./team-studio-experience.css";
+    + import "./confirmation-experience.css";
+     +import "./unified-navigation.css";
+      export const metadata = {
+        icons: { icon: "/brand/codex-user-supplied.svg" },
+

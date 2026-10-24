@@ -1,0 +1,3780 @@
+{
+  "main": "bddb869f3209adcb6cc4ea6161014d51f340cd96",
+  "commits": {
+    "c793dfae4dc427fc6ebf8fe79055ca510bb66fe4": {
+      "commit": "c793dfae4dc427fc6ebf8fe79055ca510bb66fe4",
+      "committerTimestamp": "2026-10-24T11:49:17Z",
+      "subject": "fix: meet selected public navigation contrast on warm surfaces",
+      "files": [
+        {
+          "path": "app/redesign.css",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "e293bb8c1426b99a961f7a010c981f07e7ba3764",
+            "bytes": 7755,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "6ea8904c22706a400013614d13b169ed6cc1df56",
+            "bytes": 9127,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "feat/projects-rules-experience"
+      ]
+    },
+    "113188e66e4578aa81648d787818dc2962519e0a": {
+      "commit": "113188e66e4578aa81648d787818dc2962519e0a",
+      "committerTimestamp": "2026-10-24T11:50:43Z",
+      "subject": "test: distinguish submission capability from hydration guard",
+      "files": [
+        {
+          "path": "tests/participant-ui.test.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "800b951cdd6b2e9c947fd38ce5050891efbc23cc",
+            "bytes": 13229,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "1b7535b806b4407e0bbc44fe692d9e10a88d4d21",
+            "bytes": 13564,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "feat/projects-rules-experience"
+      ]
+    },
+    "c7f2336cb2de1d89b794c860b05117e6fe09549c": {
+      "commit": "c7f2336cb2de1d89b794c860b05117e6fe09549c",
+      "committerTimestamp": "2026-10-24T11:52:13Z",
+      "subject": "fix: keep history controls compact and empty search focused",
+      "files": [
+        {
+          "path": "app/portal.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "32b841158b624cecb0221814dd096aeaca19deba",
+            "bytes": 203112,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "0b79a8ec645bb2328427c432ad574a95db4db987",
+            "bytes": 217613,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/projects-rules-experience.css",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "36dd6d7f10779fee85e41ea6016c5fd3eb1e4304",
+            "bytes": 19794,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "65266987bdfab3c86e3a46404bfa2d7933b29362",
+            "bytes": 35315,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "feat/projects-rules-experience"
+      ]
+    },
+    "d40330572ddbb15aa03a814480035f74cfe7dffe": {
+      "commit": "d40330572ddbb15aa03a814480035f74cfe7dffe",
+      "committerTimestamp": "2026-10-24T11:55:44Z",
+      "subject": "fix: reserve project history geometry while records load",
+      "files": [
+        {
+          "path": "app/portal.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "2da0dab44117fd080cbf351116da51a4ef4666e2",
+            "bytes": 203321,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "0b79a8ec645bb2328427c432ad574a95db4db987",
+            "bytes": 217613,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/projects-rules-experience.css",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "68beb6e70c1d84fe3e767cc38181c7d74eeb2e7d",
+            "bytes": 20735,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "65266987bdfab3c86e3a46404bfa2d7933b29362",
+            "bytes": 35315,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "feat/projects-rules-experience"
+      ]
+    },
+    "63d929c05210c3adddc168cdce190c4059c96180": {
+      "commit": "63d929c05210c3adddc168cdce190c4059c96180",
+      "committerTimestamp": "2026-10-24T13:14:07Z",
+      "subject": "test: prepare isolated staged score reveal evidence",
+      "files": [
+        {
+          "path": "evidence/score-reveal-current/INVENTORY.md",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "cda5ca2f9f157768de6bf3eddda7ad14e33b90e2",
+            "bytes": 2846,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "7a1373220720eee1950ae8ad38325684a33d8169",
+            "bytes": 4135,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "scripts/capture-score-evidence.mjs",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "df95b33c272b229070080918f3a1306066d43472",
+            "bytes": 12734,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "scripts/prepare-score-evidence.ts",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "2952e414b499b39ba5f101382c8510fae504833a",
+            "bytes": 10223,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        }
+      ],
+      "branches": [
+        "feat/projects-rules-experience"
+      ]
+    },
+    "433afd72c234ad835fbb29ecdf8c29aebba4bceb": {
+      "commit": "433afd72c234ad835fbb29ecdf8c29aebba4bceb",
+      "committerTimestamp": "2026-10-24T13:38:45Z",
+      "subject": "test: isolate score phases and preserve existing vote state evidence",
+      "files": [
+        {
+          "path": "evidence/score-reveal-current/INVENTORY.md",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "49c220f8890b1e9b3bd330dcbe692f569473648b",
+            "bytes": 3169,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "7a1373220720eee1950ae8ad38325684a33d8169",
+            "bytes": 4135,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/POLICY_PLAN.json",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "25c1d5019b65bcfb53fc1ec8515b0a430aa54b9e",
+            "bytes": 2460,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/score-reveal-current/clone-manifest.json",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "c1891645a8b08c0b169e1ee7cc576f317b458f96",
+            "bytes": 292,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/score-reveal-current/fixture-report.json",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "a3c802a8630694f274af21ddc654f2ed57331b36",
+            "bytes": 5583,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "5375539e981ea8424a43c66a4359e20ec0511a6b",
+            "bytes": 22771,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-vote-current/project-selected-bob-1440x900-vote.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "6a7b6a834117c545af023ef7766120910545dcdd",
+            "bytes": 56263,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/score-vote-current/project-selected-bob-1440x900.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "b57e950cd84c1851ad9369f31d928dec8828f7b7",
+            "bytes": 70975,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/score-vote-current/project-selected-bob-390x844-vote.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "2f667a54830f6013329b2d7c7ff1d34089764ebd",
+            "bytes": 36447,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/score-vote-current/project-selected-bob-390x844.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "0702c6ce8e6e0bdff0e95a604a9d988b98e88368",
+            "bytes": 52330,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/score-vote-current/project-unselected-alice-1440x900-vote.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "da62ca143e7b0cf5518ac4b3f66c56c592e2eadd",
+            "bytes": 56015,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/score-vote-current/project-unselected-alice-1440x900.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "0a0e99450afe48b7087660c97e45e89ec9e5188a",
+            "bytes": 71043,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/score-vote-current/project-unselected-alice-390x844-vote.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "6ad980d2a51a154a49ae3960f1e9670bbd36135d",
+            "bytes": 36300,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/score-vote-current/project-unselected-alice-390x844.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "61a51441f8749e36a76f2e9993fb1aa240dcd116",
+            "bytes": 52456,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/score-vote-current/projects-selected-bob-1440x900.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "085fdbb75af33594b7419c54d0dfc5ada135b887",
+            "bytes": 91360,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/score-vote-current/projects-selected-bob-390x844.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "3a4f189ed8c0144236b77f2ed426793ff8c2f2dd",
+            "bytes": 49969,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/score-vote-current/projects-unselected-alice-1440x900.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "c1502a1a034d4a1d71b0adf0bb19e889e1e7a021",
+            "bytes": 91112,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/score-vote-current/projects-unselected-alice-390x844.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "08995c615955fde5e8593aff42b324eff407ece2",
+            "bytes": 49657,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/score-vote-current/report.json",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "7a992743fc9a1e6f96c40a265c8e1900ae814251",
+            "bytes": 6893,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "scripts/capture-existing-vote-states.mjs",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "c8c12ef48146e33aeeba51aecacd9f877e10875c",
+            "bytes": 5161,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "scripts/capture-score-evidence.mjs",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "4572ecd781551193aa40e0d84db8e47fa47f84c1",
+            "bytes": 14818,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "scripts/prepare-score-evidence.ts",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "33ef34e10904eed9a876c330e8fb357ea824f566",
+            "bytes": 10657,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        }
+      ],
+      "branches": [
+        "feat/projects-rules-experience"
+      ]
+    },
+    "de3786841e0dd3f716162560749706cd2a3469aa": {
+      "commit": "de3786841e0dd3f716162560749706cd2a3469aa",
+      "committerTimestamp": "2026-10-24T14:12:13Z",
+      "subject": "test: verify submission confirmation escape back and preserved media",
+      "files": [
+        {
+          "path": "scripts/capture-submission-media-rework.mjs",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "7014fe00ef07a38c897cb51325f2f325255e3160",
+            "bytes": 12752,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "d92c265c78bf4d972be0b35d3d8dba0fd8f79aef",
+            "bytes": 11605,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "feat/projects-rules-experience"
+      ]
+    },
+    "320039081177f2dc0ab32a35e9337460931f0571": {
+      "commit": "320039081177f2dc0ab32a35e9337460931f0571",
+      "committerTimestamp": "2026-10-24T14:22:24Z",
+      "subject": "test: keep score screenshots within one hydrated browser context",
+      "files": [
+        {
+          "path": "scripts/capture-score-evidence.mjs",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "b4e2a7e8dd6ccf7e70bdcba113696ceab6583f00",
+            "bytes": 15255,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        }
+      ],
+      "branches": [
+        "feat/projects-rules-experience"
+      ]
+    },
+    "e75bf6243ca4284c4b01606b4bc4b8d244c1f59e": {
+      "commit": "e75bf6243ca4284c4b01606b4bc4b8d244c1f59e",
+      "committerTimestamp": "2026-10-24T14:29:33Z",
+      "subject": "test: refresh requested vote states alongside staged score evidence",
+      "files": [
+        {
+          "path": "scripts/capture-score-evidence.mjs",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "82bd1c298886e3bf941c6a59693a87b813bd0d51",
+            "bytes": 15987,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        }
+      ],
+      "branches": [
+        "feat/projects-rules-experience"
+      ]
+    },
+    "05bb326f54c2102702a8f8cf1dd5b94c0d9bb08d": {
+      "commit": "05bb326f54c2102702a8f8cf1dd5b94c0d9bb08d",
+      "committerTimestamp": "2026-10-24T14:41:53Z",
+      "subject": "test: preserve synthetic AI and final reveal UI evidence",
+      "files": [
+        {
+          "path": "evidence/score-reveal-current/INVENTORY.md",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "3565c874e1de42419d3e1f214c42038e8901e5f2",
+            "bytes": 3820,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "7a1373220720eee1950ae8ad38325684a33d8169",
+            "bytes": 4135,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/fixture-report.json",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "5375539e981ea8424a43c66a4359e20ec0511a6b",
+            "bytes": 22771,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "5375539e981ea8424a43c66a4359e20ec0511a6b",
+            "bytes": 22771,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/isolation-after.json",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "e980f6e73b9823558640da4d9ff214185cdc3853",
+            "bytes": 823,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "e980f6e73b9823558640da4d9ff214185cdc3853",
+            "bytes": 823,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/leaderboard-ai-revealed-1440x900.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "fe9b7d6fcde390b0be9a0c8d24820e03fbacf0cb",
+            "bytes": 96772,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "fe9b7d6fcde390b0be9a0c8d24820e03fbacf0cb",
+            "bytes": 96772,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/leaderboard-ai-revealed-390x844.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "0c01337b30eaafa50b878b374c85a172a78a191a",
+            "bytes": 62131,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "0c01337b30eaafa50b878b374c85a172a78a191a",
+            "bytes": 62131,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/leaderboard-final-full-populated-1440x900.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "9d240af8c239068fabfddc5f7717d22e81ee477c",
+            "bytes": 610353,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "9d240af8c239068fabfddc5f7717d22e81ee477c",
+            "bytes": 610353,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/leaderboard-final-full-populated-390x844.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "064ddef5466f3e14588c0d898f0a9c022f8785b6",
+            "bytes": 548252,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "064ddef5466f3e14588c0d898f0a9c022f8785b6",
+            "bytes": 548252,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/leaderboard-final-hidden-1440x900.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "58309902deabf7483a17a74cf9f5348d8c4a0da4",
+            "bytes": 83777,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "58309902deabf7483a17a74cf9f5348d8c4a0da4",
+            "bytes": 83777,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/leaderboard-final-hidden-390x844.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "b53c9b55e966e6ce7f9de26e70714c33a375107d",
+            "bytes": 51369,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "b53c9b55e966e6ce7f9de26e70714c33a375107d",
+            "bytes": 51369,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/leaderboard-final-last-rank-1440x900.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "27a8e0cea7676f6efaa31c8b41ab5c72a6f233aa",
+            "bytes": 105386,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "27a8e0cea7676f6efaa31c8b41ab5c72a6f233aa",
+            "bytes": 105386,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/leaderboard-final-last-rank-390x844.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "f92e7e8676579bcf7306f518d4cea8925db6fad0",
+            "bytes": 56843,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "f92e7e8676579bcf7306f518d4cea8925db6fad0",
+            "bytes": 56843,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/leaderboard-final-last-rank-populated-1440x900.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "27a8e0cea7676f6efaa31c8b41ab5c72a6f233aa",
+            "bytes": 105386,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "27a8e0cea7676f6efaa31c8b41ab5c72a6f233aa",
+            "bytes": 105386,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/leaderboard-final-last-rank-populated-390x844.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "684619b1b7f7890a1b68464945d1c850e56c1307",
+            "bytes": 57014,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "684619b1b7f7890a1b68464945d1c850e56c1307",
+            "bytes": 57014,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/leaderboard-final-one-award-1440x900.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "f6c789d48466a92746f67e02df750954e7ed5c58",
+            "bytes": 73694,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "f6c789d48466a92746f67e02df750954e7ed5c58",
+            "bytes": 73694,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/leaderboard-final-one-award-390x844.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "5a502043cc52708ad26865fb090046b45a883545",
+            "bytes": 46701,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "5a502043cc52708ad26865fb090046b45a883545",
+            "bytes": 46701,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/leaderboard-final-revealed-1440x900.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "29dac55c8bceb0390f724ff5dcf86b09fb861fe6",
+            "bytes": 101226,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "29dac55c8bceb0390f724ff5dcf86b09fb861fe6",
+            "bytes": 101226,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/leaderboard-final-revealed-390x844.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "c2b9a5d3804b04077e5872659263d53520597297",
+            "bytes": 59808,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "c2b9a5d3804b04077e5872659263d53520597297",
+            "bytes": 59808,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/leaderboard-final-revealed-full-1440x900.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "973cef242ee0e14d0328b51554c40098e6ed0069",
+            "bytes": 606144,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "973cef242ee0e14d0328b51554c40098e6ed0069",
+            "bytes": 606144,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/leaderboard-final-revealed-full-390x844.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "9029231945e94e748338dbf172392fb22fb6bb30",
+            "bytes": 545312,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "9029231945e94e748338dbf172392fb22fb6bb30",
+            "bytes": 545312,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/populated-images-report.json",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "ad2a6a60c004e1e1a5668c30ad82f8b6dc54bb18",
+            "bytes": 1734,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "ad2a6a60c004e1e1a5668c30ad82f8b6dc54bb18",
+            "bytes": 1734,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/project-ai-revealed-1440x900.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "5d220dc71b702babdec0d2974ad7f2a8b19a9b27",
+            "bytes": 73815,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "5d220dc71b702babdec0d2974ad7f2a8b19a9b27",
+            "bytes": 73815,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/project-ai-revealed-390x844.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "82ca3921dfc3cf4051653e125764f76c6b3cf134",
+            "bytes": 55017,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "82ca3921dfc3cf4051653e125764f76c6b3cf134",
+            "bytes": 55017,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/project-final-hidden-1440x900.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "660cd590580a64bc61ee57192d990e4dd955f7b9",
+            "bytes": 70933,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "660cd590580a64bc61ee57192d990e4dd955f7b9",
+            "bytes": 70933,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/project-final-hidden-390x844.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "1d79ba96e1eb10fccca1256a49f71437a468233c",
+            "bytes": 52450,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "1d79ba96e1eb10fccca1256a49f71437a468233c",
+            "bytes": 52450,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/project-final-revealed-1440x900.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "8e8c6641f67a0bbb562bcacd5de73a9aca2daf00",
+            "bytes": 73967,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "8e8c6641f67a0bbb562bcacd5de73a9aca2daf00",
+            "bytes": 73967,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/project-final-revealed-390x844.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "3e3da3743fdf620c8753866af792636586b1c689",
+            "bytes": 55127,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "3e3da3743fdf620c8753866af792636586b1c689",
+            "bytes": 55127,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/project-upvote-selected-current-1440x900.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "a6bd09fafb1decd103cf8d1918fec40a79231cbe",
+            "bytes": 73756,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "a6bd09fafb1decd103cf8d1918fec40a79231cbe",
+            "bytes": 73756,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/project-upvote-selected-current-390x844.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "4ff412e8f6cc9b9c583774879254ae2c0d6ed499",
+            "bytes": 54904,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "4ff412e8f6cc9b9c583774879254ae2c0d6ed499",
+            "bytes": 54904,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/project-upvote-unselected-current-1440x900.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "5d220dc71b702babdec0d2974ad7f2a8b19a9b27",
+            "bytes": 73815,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "5d220dc71b702babdec0d2974ad7f2a8b19a9b27",
+            "bytes": 73815,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/project-upvote-unselected-current-390x844.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "82ca3921dfc3cf4051653e125764f76c6b3cf134",
+            "bytes": 55017,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "82ca3921dfc3cf4051653e125764f76c6b3cf134",
+            "bytes": 55017,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/projects-ai-revealed-1440x900.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "3120aac6894789045bc60f3ccfc078ab08eac6aa",
+            "bytes": 91096,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "3120aac6894789045bc60f3ccfc078ab08eac6aa",
+            "bytes": 91096,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/projects-ai-revealed-390x844.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "090935be57e985644f33b8a60104acbd44336d8d",
+            "bytes": 49636,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "090935be57e985644f33b8a60104acbd44336d8d",
+            "bytes": 49636,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/projects-final-hidden-1440x900.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "7b99a824b37847999f9e4fec61085178fa98ba5e",
+            "bytes": 83282,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "7b99a824b37847999f9e4fec61085178fa98ba5e",
+            "bytes": 83282,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/projects-final-hidden-390x844.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "17f1cbe2a8a507e85e6b1012e1d36890743b3e04",
+            "bytes": 51324,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "17f1cbe2a8a507e85e6b1012e1d36890743b3e04",
+            "bytes": 51324,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/projects-final-revealed-1440x900.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "7b99a824b37847999f9e4fec61085178fa98ba5e",
+            "bytes": 83282,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "7b99a824b37847999f9e4fec61085178fa98ba5e",
+            "bytes": 83282,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/projects-final-revealed-390x844.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "17f1cbe2a8a507e85e6b1012e1d36890743b3e04",
+            "bytes": 51324,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "17f1cbe2a8a507e85e6b1012e1d36890743b3e04",
+            "bytes": 51324,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/projects-upvote-selected-current-1440x900.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "39bce9cdda51a35bccb59747a5efef668e6a1bba",
+            "bytes": 91335,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "39bce9cdda51a35bccb59747a5efef668e6a1bba",
+            "bytes": 91335,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/projects-upvote-selected-current-390x844.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "6ae8ac57e84a03ec5a81ae63fbda9045b93b4946",
+            "bytes": 49950,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "6ae8ac57e84a03ec5a81ae63fbda9045b93b4946",
+            "bytes": 49950,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/projects-upvote-unselected-current-1440x900.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "3120aac6894789045bc60f3ccfc078ab08eac6aa",
+            "bytes": 91096,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "3120aac6894789045bc60f3ccfc078ab08eac6aa",
+            "bytes": 91096,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/projects-upvote-unselected-current-390x844.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "090935be57e985644f33b8a60104acbd44336d8d",
+            "bytes": 49636,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "090935be57e985644f33b8a60104acbd44336d8d",
+            "bytes": 49636,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/score-reveal-current/report.json",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "89e8ff5add0d5771f23fd91ebf325c615525e685",
+            "bytes": 46228,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "89e8ff5add0d5771f23fd91ebf325c615525e685",
+            "bytes": 46228,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "scripts/capture-score-final-visible-images.mjs",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "c1399ca20736dfe69569f6df4c1f32e339acae35",
+            "bytes": 3161,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "c1399ca20736dfe69569f6df4c1f32e339acae35",
+            "bytes": 3161,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "feat/projects-rules-experience"
+      ]
+    },
+    "2ba6edf5913835c42ce882f140805e14210efe0f": {
+      "commit": "2ba6edf5913835c42ce882f140805e14210efe0f",
+      "committerTimestamp": "2026-10-24T14:23:25Z",
+      "subject": "feat: compose team workspace from selected TeamStudio layout",
+      "files": [
+        {
+          "path": "app/portal.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "9be504d0a0cc18f8b9ce2c449333433cdd81f2d2",
+            "bytes": 227938,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "0b79a8ec645bb2328427c432ad574a95db4db987",
+            "bytes": 217613,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/team-studio-experience.css",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "17e4f27da456e8ddc971f4c0c9ac7e31f92538f3",
+            "bytes": 23612,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "b8eac9901f2a2ef76c83998d2152b4db3bfc7387",
+            "bytes": 30525,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "feat/team-studio-experience"
+      ]
+    },
+    "ee5e2347b4ea86629012ede9195d95e22558ed51": {
+      "commit": "ee5e2347b4ea86629012ede9195d95e22558ed51",
+      "committerTimestamp": "2026-10-24T14:23:40Z",
+      "subject": "refactor: confine TeamStudio formatting to owned dashboard content",
+      "files": [
+        {
+          "path": "app/portal.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "8f3ef6f25e03735c4eeefbb9ee63a988ac39e6e6",
+            "bytes": 220881,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "0b79a8ec645bb2328427c432ad574a95db4db987",
+            "bytes": 217613,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "feat/team-studio-experience"
+      ]
+    },
+    "9e6091e67148b17804845c602cb29406cc39184c": {
+      "commit": "9e6091e67148b17804845c602cb29406cc39184c",
+      "committerTimestamp": "2026-10-24T14:26:21Z",
+      "subject": "style: load the scoped TeamStudio content sheet",
+      "files": [
+        {
+          "path": "app/layout.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "62a2bd1759a018af51cac06230fbef32819d1749",
+            "bytes": 1260,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "b82440d3c5fe2eebc0f8c6b811f7989aea1caa17",
+            "bytes": 1474,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "feat/team-studio-experience"
+      ]
+    },
+    "49c4283e2056193fd3d9d254fd64e3e45ea5771e": {
+      "commit": "49c4283e2056193fd3d9d254fd64e3e45ea5771e",
+      "committerTimestamp": "2026-10-24T11:25:08Z",
+      "subject": "feat: redesign admin workflows into focused settings and roster panels",
+      "files": [
+        {
+          "path": "app/admin-experience.css",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "a25d1afc2d8ace747a69a254829a18640247d154",
+            "bytes": 22680,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "fa0381dd5fb2008915bd5e7c6efd9c1d1af83698",
+            "bytes": 40737,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/admin-import-dialog.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "1eba6dd3c04f4e2e6e6a8b27f228662d1ff71b77",
+            "bytes": 1627,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "fe0b5ba4ba8247b72bd94d007692d9c508c06677",
+            "bytes": 1758,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/admin-participant-actions.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "0b22a0d627988317d5baebfe43a1a6a7652806bf",
+            "bytes": 6695,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "733b4b57ad31ba40e60a6cae69d841211051fa4a",
+            "bytes": 7080,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/admin-status-menu.tsx",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "f660d30f648c3b070ceaf75b0fdb460e9f342506",
+            "bytes": 3723,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "f660d30f648c3b070ceaf75b0fdb460e9f342506",
+            "bytes": 3723,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/layout.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "234aea4a7a3c894adf198afa510133c607920f0c",
+            "bytes": 1035,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "b82440d3c5fe2eebc0f8c6b811f7989aea1caa17",
+            "bytes": 1474,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/owner-submission-window.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "ee971d77bc9b75e77a95ff66c1db9c9ff5f1d25e",
+            "bytes": 8222,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "e3485d6a5659dacf8ead4c216758b4f2398071d0",
+            "bytes": 7947,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/portal.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "aeb701be03a8369f3ff4f6f8428a9022eb63197f",
+            "bytes": 189943,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "0b79a8ec645bb2328427c432ad574a95db4db987",
+            "bytes": 217613,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "scripts/qa-admin-experience.mjs",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "641fd494093c8220bc417d2fcef98192bc4c8c7b",
+            "bytes": 8880,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "0971e9671c9e518a0b654a21892ad5c8ea53acc7",
+            "bytes": 9083,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "feat/admin-experience",
+        "test/owner-admin-access-audit"
+      ]
+    },
+    "6546686180ee9948766745601a6d988f18fc738e": {
+      "commit": "6546686180ee9948766745601a6d988f18fc738e",
+      "committerTimestamp": "2026-10-24T11:43:22Z",
+      "subject": "fix: prevent sensitive forms submitting before client hydration",
+      "files": [
+        {
+          "path": "app/portal.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "351dc87299fea8d0981ba0d522edb32fcb7557e0",
+            "bytes": 192572,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "0b79a8ec645bb2328427c432ad574a95db4db987",
+            "bytes": 217613,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/redesign.css",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "a8e785dbdd816aff345f9fa4878b90bc015c3b39",
+            "bytes": 7680,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "6ea8904c22706a400013614d13b169ed6cc1df56",
+            "bytes": 9127,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/use-hydrated.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "3cb6d54eb7958870c69ad28d86408a6e6b02940a",
+            "bytes": 291,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "3cb6d54eb7958870c69ad28d86408a6e6b02940a",
+            "bytes": 291,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "docs/REDESIGN_COVERAGE_2026_10_24.md",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "bbf953a6b6dbcb7def23038dde5039a6d0e34399",
+            "bytes": 6355,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "2abbfe1c929309218e6f27718b499efe65c24346",
+            "bytes": 9654,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/participant-ui.test.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "edf8b4295e9d65cb49a3e114039d611c9d4955fe",
+            "bytes": 12891,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "1b7535b806b4407e0bbc44fe692d9e10a88d4d21",
+            "bytes": 13564,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "feat/admin-experience",
+        "test/owner-admin-access-audit"
+      ]
+    },
+    "090f2621ab270605aa57f259ea95d66efbd34801": {
+      "commit": "090f2621ab270605aa57f259ea95d66efbd34801",
+      "committerTimestamp": "2026-10-24T13:03:58Z",
+      "subject": "fix: wrap long admin team and submission names within cards",
+      "files": [
+        {
+          "path": "app/admin-experience.css",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "8ad3200755d2710564261b065ed127adb162b5f0",
+            "bytes": 29774,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "fa0381dd5fb2008915bd5e7c6efd9c1d1af83698",
+            "bytes": 40737,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/admin-long-name-wrap/README.md",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "666e9e55f144b90efcc0eb8d8b8f3fe889e0b47a",
+            "bytes": 830,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "666e9e55f144b90efcc0eb8d8b8f3fe889e0b47a",
+            "bytes": 830,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/admin-long-name-wrap/team-name-before-320.png",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "f9bf6ff60acbd764364427153219e067b04bc697",
+            "bytes": 29574,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "f9bf6ff60acbd764364427153219e067b04bc697",
+            "bytes": 29574,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "feat/admin-experience",
+        "test/owner-admin-access-audit"
+      ]
+    },
+    "4733a1d70b63e97f5a798e1f8789bf7697d177ea": {
+      "commit": "4733a1d70b63e97f5a798e1f8789bf7697d177ea",
+      "committerTimestamp": "2026-10-24T13:13:18Z",
+      "subject": "fix: reconcile participant selection and add direct Going check-in",
+      "files": [
+        {
+          "path": "app/admin-experience.css",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "a302c2f12c33d581e2b798c65a20111a51ff69dc",
+            "bytes": 30573,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "fa0381dd5fb2008915bd5e7c6efd9c1d1af83698",
+            "bytes": 40737,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/admin-participant-actions.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "e1d94fa4ee678b36a920df633f80c36bc0789a35",
+            "bytes": 6904,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "733b4b57ad31ba40e60a6cae69d841211051fa4a",
+            "bytes": 7080,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/portal.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "db08bd26a9b51fe1c818ed896eeec27277b64a6f",
+            "bytes": 197967,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "0b79a8ec645bb2328427c432ad574a95db4db987",
+            "bytes": 217613,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/admin-participant-selection.test.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "d30e5100eaeabc43691103f060e8dc326580cba7",
+            "bytes": 2527,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "d30e5100eaeabc43691103f060e8dc326580cba7",
+            "bytes": 2527,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "feat/admin-experience",
+        "test/owner-admin-access-audit"
+      ]
+    },
+    "771fe2045d75dd8c130ace88d482c7206e6a519c": {
+      "commit": "771fe2045d75dd8c130ace88d482c7206e6a519c",
+      "committerTimestamp": "2026-10-24T14:22:23Z",
+      "subject": "Add owner-only admin access list and safe revocation",
+      "files": [
+        {
+          "path": "app/add-admins.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "20e99b33fec1d75cb53a83c320dfa412f7cdf2ac",
+            "bytes": 4666,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "6a91503df2d5ea16bca84201a876303f9bfb011e",
+            "bytes": 5391,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/admin-experience.css",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "fac1ae4897eac797754ab5d864e1248eb236de7e",
+            "bytes": 31471,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "fa0381dd5fb2008915bd5e7c6efd9c1d1af83698",
+            "bytes": 40737,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/portal.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "0a9a3d5a103e61be76a525ff0eb1d807dd632726",
+            "bytes": 197954,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "0b79a8ec645bb2328427c432ad574a95db4db987",
+            "bytes": 217613,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "lib/admin-access.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "b3ffe48e8906674a3b69b40fdff533b8bcfa4e4f",
+            "bytes": 3950,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "b3ffe48e8906674a3b69b40fdff533b8bcfa4e4f",
+            "bytes": 3950,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "lib/experience.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "ab6942c44aab41cdbac959d36a40aa112deb600e",
+            "bytes": 80091,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "f070b0613ce624e51673ea7bfec6a1a210e1f9d2",
+            "bytes": 84091,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/admin-access.test.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "0c4619dd05222e76fb4a9c65f0494d2b52f21cc2",
+            "bytes": 8533,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "0c4619dd05222e76fb4a9c65f0494d2b52f21cc2",
+            "bytes": 8533,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "feat/admin-experience",
+        "test/owner-admin-access-audit"
+      ]
+    },
+    "695b2d5f521d82d3d25784656193332d235fa365": {
+      "commit": "695b2d5f521d82d3d25784656193332d235fa365",
+      "committerTimestamp": "2026-10-24T14:04:32Z",
+      "subject": "Accept bounded original project images and store optimized any-aspect rasters",
+      "files": [
+        {
+          "path": "docs/PROJECT_MEDIA_INPUTS.md",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "4afbb7511348e7e32b04df41c56db645b270b477",
+            "bytes": 4579,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "0991b999a54c91568f4de1adc54774f63dce7e18",
+            "bytes": 5063,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "lib/experience.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "128057b790c20f7e83f3ed10187795b68bd6aa42",
+            "bytes": 79563,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "f070b0613ce624e51673ea7bfec6a1a210e1f9d2",
+            "bytes": 84091,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "lib/http.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "057ff828f4cae04e56585d92565d31d6267475e6",
+            "bytes": 11247,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "5f12a15ca765640f04553ccb38d7eaa9d51994aa",
+            "bytes": 11384,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "lib/project-media.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "41a1cd065c648013b9be2bee9ed150e988b91726",
+            "bytes": 1585,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "41a1cd065c648013b9be2bee9ed150e988b91726",
+            "bytes": 1585,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "lib/service.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "3d8320698d2f2201cb76b9a609e86d0d16909b58",
+            "bytes": 85785,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "9142633fb0f324c42a2d62ec097777a92b5612b5",
+            "bytes": 82001,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/db/schema.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "0bb9550ed873f536fb53358eef02a60e9b11c238",
+            "bytes": 33052,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "0d3bbf173650d8ffe0f49bf464d16fd86275dcdf",
+            "bytes": 34192,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/local-server.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "31f4563843a1601ef09389ca5f7b043ef5785b5e",
+            "bytes": 3848,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "31f4563843a1601ef09389ca5f7b043ef5785b5e",
+            "bytes": 3848,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/migrations/0006_project_media_limits.sql",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "7ce153bb17d7e666ae6823b05adec49a0e4b1f32",
+            "bytes": 912,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "neon/storage/database.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "c477990d7eebf6971e26f23d5d7a8154579e3931",
+            "bytes": 12122,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "c477990d7eebf6971e26f23d5d7a8154579e3931",
+            "bytes": 12122,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/storage/image.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "2ddcca87b1e1b793a481521ab881e445b9335d0e",
+            "bytes": 4136,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "2ddcca87b1e1b793a481521ab881e445b9335d0e",
+            "bytes": 4136,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/storage/index.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "1a8ccbf4c8f10bccb2a8c3c2d647dee99b3247a0",
+            "bytes": 9121,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "1a8ccbf4c8f10bccb2a8c3c2d647dee99b3247a0",
+            "bytes": 9121,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/storage/reference.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "17a7ba4777bfa71d227d7baa44d7f9c82ecef881",
+            "bytes": 2892,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "17a7ba4777bfa71d227d7baa44d7f9c82ecef881",
+            "bytes": 2892,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/storage/repository.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "b4e189e52f70af28efb93d3fc786808491b66bd3",
+            "bytes": 7954,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "b4e189e52f70af28efb93d3fc786808491b66bd3",
+            "bytes": 7954,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/storage/types.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "cd59e0b366561deee11fdc44617a43d6c596ebb5",
+            "bytes": 2610,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "cd59e0b366561deee11fdc44617a43d6c596ebb5",
+            "bytes": 2610,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/experience.test.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "f6308723e8fce8fb5985c0849dd9e405f2f5ad39",
+            "bytes": 32918,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "cd075abd1df6945acaf82c2382191ff98bc3ac5e",
+            "bytes": 32985,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/fixture-images.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "2d96c688afcd30137452cf79db82218b592ddf64",
+            "bytes": 1958,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "2d96c688afcd30137452cf79db82218b592ddf64",
+            "bytes": 1958,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/neon-storage-database.test.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "5354c2858ea1c518a38bfb954469f84af1c9657b",
+            "bytes": 16255,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "5354c2858ea1c518a38bfb954469f84af1c9657b",
+            "bytes": 16255,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/neon-storage.test.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "c1bc85f83b89f6bde5148a32f24041b1f312b4a2",
+            "bytes": 20819,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "c1bc85f83b89f6bde5148a32f24041b1f312b4a2",
+            "bytes": 20819,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/project-media-migration.test.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "2e63047193dd99a7f6bf6a845ec7a38d03746c3f",
+            "bytes": 6116,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "ec8c0603822c6925470d936ce8072dc7ea002b74",
+            "bytes": 6265,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/project-media-policy.test.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "c319789129b94355d704a16099c6d290445c54a2",
+            "bytes": 8796,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "176d70cc6eb9bf947f546fd694e3b045848b8554",
+            "bytes": 9807,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/retired-submission-fields.test.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "9ca54c8bf611989a38c2cd13a59cfaac44989cf5",
+            "bytes": 8151,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "9ca54c8bf611989a38c2cd13a59cfaac44989cf5",
+            "bytes": 8151,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "feat/project-media-inputs"
+      ]
+    },
+    "e7031495c3565103c16d7b4f6d8e3bd8f9c75ea6": {
+      "commit": "e7031495c3565103c16d7b4f6d8e3bd8f9c75ea6",
+      "committerTimestamp": "2026-10-24T13:31:39Z",
+      "subject": "docs: audit credit stock and personal access before implementation",
+      "files": [
+        {
+          "path": "docs/CREDIT_INVENTORY_UI_PLAN.md",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "479a3c5c75033cfdacf817c4f33d504f7a3771b1",
+            "bytes": 2920,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/credit-inventory-before/01-admin-inventory-1440x900.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "7b102c55ee53b63c30989eada01c52149fb4ef01",
+            "bytes": 61512,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/credit-inventory-before/02-inline-column-setup-1440x900.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "1a3ba4e0e0eeae8004c76bbea8de2a75a36678a5",
+            "bytes": 71453,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/credit-inventory-before/03-inline-column-setup-390x844.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "584305b3784d14040a385f501f47d2b43877f2f5",
+            "bytes": 43537,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/credit-inventory-before/04-admin-navigation-1440x900.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "1d6e55d86a89f04c6f1958600290a08081672d19",
+            "bytes": 59809,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/credit-inventory-before/05-admin-personal-credits-1440x900.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "0f88d4f8b41635181dd5d87c1a5b74ea38de6e31",
+            "bytes": 41434,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/credit-inventory-before/06-admin-menu-390x844.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "788a970b2a6296b9fc48e5360d04742834fb6488",
+            "bytes": 31622,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/credit-inventory-before/README.md",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "9b05ea08aae7ecf07773e2572717aba6070c2997",
+            "bytes": 2135,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/credit-inventory-before/failure.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "753693401fe7736fe02f59d8cbab93eaac966b19",
+            "bytes": 33880,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/credit-inventory-before/report.json",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "91c8131ae67b208698cb9604eb220eb29e677073",
+            "bytes": 2569,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        }
+      ],
+      "branches": [
+        "feat/credit-inventory-ui"
+      ]
+    },
+    "f9c04f0c2541a75864426c69d322f07b62ead8f3": {
+      "commit": "f9c04f0c2541a75864426c69d322f07b62ead8f3",
+      "committerTimestamp": "2026-10-24T13:46:04Z",
+      "subject": "feat: add credit stock restock and personal allocation interface",
+      "files": [
+        {
+          "path": "app/admin-credit-batches.css",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "daa77799ae8340617ad3673b581e4189bfdabf0b",
+            "bytes": 11920,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "8bf28c41937abd13cbc52b28932abfd0bc596325",
+            "bytes": 12719,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/admin-credit-batches.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "be43ac28134d899874fa3d051d45bb3185b4f6b8",
+            "bytes": 23719,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "c8b2fd0f188db4f5880eed08cf1fa4e64be9c8ec",
+            "bytes": 24942,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/admin-credit-stock.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "97d106c337175164a198a596b52acb0917fdb548",
+            "bytes": 16424,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "12ddc277ca358df5a76ccd3dfc87d6c54f3cfc69",
+            "bytes": 12758,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/layout.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "1d86d001a78dfd8bb7f1766c12057ce199d9429a",
+            "bytes": 1187,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "b82440d3c5fe2eebc0f8c6b811f7989aea1caa17",
+            "bytes": 1474,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/personal-credits.css",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "42962b0adfc0d7151bfc8eacf29188c765c998d2",
+            "bytes": 4289,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "f74d38e7a91da1789e66b1cece20e2db9fee7334",
+            "bytes": 5113,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/personal-credits.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "52ef6c16e09e51831be5767f59d2a42c6a661361",
+            "bytes": 7591,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "53d5be80a1ad62fa97959c9cc10d039364633b9c",
+            "bytes": 7709,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/personal/credits/page.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "7de355667c543186e0f32d47b5f388ed9ae3e940",
+            "bytes": 1274,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "b51d0aedf625c0376f5662c6fa10fe3833a652e7",
+            "bytes": 1649,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/portal.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "26201aa74e29d568e4bef585753e476a1081fe1e",
+            "bytes": 205231,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "0b79a8ec645bb2328427c432ad574a95db4db987",
+            "bytes": 217613,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "lib/next-backend.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "44ebf37f644449723ea8d5e177e95aba9f34e3bc",
+            "bytes": 10084,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "44ebf37f644449723ea8d5e177e95aba9f34e3bc",
+            "bytes": 10084,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "lib/seo.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "f404f0a3677d56488de78fbaa9335d3ee3f16ff7",
+            "bytes": 6346,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "1ba15e7b0182d2d7aae51861f4722f94adef784a",
+            "bytes": 6656,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/credit-inventory-ui.test.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "291e775c58280fc1ba07727985ed92805d98daef",
+            "bytes": 3659,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "7cc465eb5f9d706705379bbc339500e41c4427d8",
+            "bytes": 5169,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "feat/credit-inventory-ui"
+      ]
+    },
+    "f4c531ee5f4d3d52156d136467a894ab80cca18b": {
+      "commit": "f4c531ee5f4d3d52156d136467a894ab80cca18b",
+      "committerTimestamp": "2026-10-24T11:50:05Z",
+      "subject": "fix: match compact expression placement to approved mobile board",
+      "files": [
+        {
+          "path": "app/home-motion.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "5c52d6bd88a7844b41bbd29c5c73246efcb47a5a",
+            "bytes": 5311,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "9775969f4c7590c6eea960901ecd3ea1acb4d7b4",
+            "bytes": 5311,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "feat/landing-refinement"
+      ]
+    },
+    "07b076d18c3f192e4805b5ce1973bd5d6823f156": {
+      "commit": "07b076d18c3f192e4805b5ce1973bd5d6823f156",
+      "committerTimestamp": "2026-10-24T11:53:06Z",
+      "subject": "fix: preserve complete expression marks at mobile edges",
+      "files": [
+        {
+          "path": "app/home-motion.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "9775969f4c7590c6eea960901ecd3ea1acb4d7b4",
+            "bytes": 5311,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "9775969f4c7590c6eea960901ecd3ea1acb4d7b4",
+            "bytes": 5311,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "feat/landing-refinement"
+      ]
+    },
+    "74961fa5519530cf8a877d876243a15d893b4209": {
+      "commit": "74961fa5519530cf8a877d876243a15d893b4209",
+      "committerTimestamp": "2026-10-24T13:20:46Z",
+      "subject": "Clarify submission window preview before publication",
+      "files": [
+        {
+          "path": "app/owner-submission-window.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "9d2d4f4f2ea62754acbe64f0572b3349edee3a29",
+            "bytes": 7428,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "e3485d6a5659dacf8ead4c216758b4f2398071d0",
+            "bytes": 7947,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "evidence/live-submission-window/verification.json",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "4b86e1375a7acb02ccd1293cfadbbe921608da94",
+            "bytes": 5956,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "scripts/qa-admin-control-audit.mjs",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "d6a2f66dfdefb3dc06316f1eba248b063ea0088d",
+            "bytes": 21598,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "3733079d824c15bc217ea2ee1b2ffcad2214400b",
+            "bytes": 21650,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "scripts/qa-admin-synthetic-writes.mjs",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "27604d8e8e707b00417d995ed2db56cf16fa216d",
+            "bytes": 26007,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "1f290d951d45876d1eba9c40adeb352f78de3be6",
+            "bytes": 26057,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/admin-portal-integration.test.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "36d78b8d35c5592d26d59f729215bc5ee5bf5163",
+            "bytes": 14851,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "44b209c23173d84175114c85f323403936ee40dd",
+            "bytes": 15266,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/neon-db-service.test.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "1049f38e220807ed54e050d5bdf306f9e8a8947a",
+            "bytes": 12250,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "84bb109a77bbeca15258ecb642080dd73ff134ba",
+            "bytes": 9947,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "fix/live-submission-inputs"
+      ]
+    },
+    "0bc1279288dab6d042f87bc72eb4043a241adcc9": {
+      "commit": "0bc1279288dab6d042f87bc72eb4043a241adcc9",
+      "committerTimestamp": "2026-10-24T11:27:47Z",
+      "subject": "Polish responsive team cards and wire page styles",
+      "files": [
+        {
+          "path": "app/layout.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "b12288aa1bef9180a17025dc0722d14d618aa467",
+            "bytes": 1044,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "b82440d3c5fe2eebc0f8c6b811f7989aea1caa17",
+            "bytes": 1474,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/team-discovery-experience.css",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "f831a1d203a8caf84d3e2e98d25bd0de9e9aed23",
+            "bytes": 29489,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "6cd788436d60c9546b3333cf919d18659627103a",
+            "bytes": 47131,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "feat/team-discovery-experience"
+      ]
+    },
+    "5b25e0f5e669218624ed1fc82c0a06d1e20fc186": {
+      "commit": "5b25e0f5e669218624ed1fc82c0a06d1e20fc186",
+      "committerTimestamp": "2026-10-24T13:08:05Z",
+      "subject": "test: prepare guarded local score reveal evidence",
+      "files": [
+        {
+          "path": "evidence/score-reveal-current/INVENTORY.md",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "6063fd5481e76223f6f2825d4253a89ef842b051",
+            "bytes": 2843,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "7a1373220720eee1950ae8ad38325684a33d8169",
+            "bytes": 4135,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "scripts/capture-score-evidence.mjs",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "46f27c12658e7b582e43f870499f83cdca89bca4",
+            "bytes": 8403,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "scripts/prepare-score-evidence.ts",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "22ca7bf6738548d7a611e17816563fbc578da01c",
+            "bytes": 8735,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        }
+      ],
+      "branches": [
+        "feat/signin-email-experience"
+      ]
+    },
+    "9914b43c3a51fe64dfa55a6fe102bfa9240eed0c": {
+      "commit": "9914b43c3a51fe64dfa55a6fe102bfa9240eed0c",
+      "committerTimestamp": "2026-10-24T11:51:08Z",
+      "subject": "fix(security): prevent client forms submitting before hydration",
+      "files": [
+        {
+          "path": "app/add-admins.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "9e57680412eeea2ab2ada2333f54c6334e8a2518",
+            "bytes": 1915,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "6a91503df2d5ea16bca84201a876303f9bfb011e",
+            "bytes": 5391,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/admin-credit-batches.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "74a860951cfb5240a71b9ab02c754cff37ccd1ed",
+            "bytes": 14432,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "c8b2fd0f188db4f5880eed08cf1fa4e64be9c8ec",
+            "bytes": 24942,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/admin-import-controls.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "2df2f203838cee477fa6ab0710c49d006798344b",
+            "bytes": 12016,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "537d478bcf95ee9f658005529de1f6c5ab36dd2b",
+            "bytes": 13254,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/admin-participant-actions.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "3442b302a8fe1da838d63f45203a681838614902",
+            "bytes": 6690,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "733b4b57ad31ba40e60a6cae69d841211051fa4a",
+            "bytes": 7080,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/admin-project-actions.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "4ad2f2ba9cf0c1aa9632fcb44bf2edd31b2fd50d",
+            "bytes": 4734,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "9631af115af2585e971bfefcbfd19496e154357e",
+            "bytes": 5105,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/client-only-form.tsx",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "0b5dd494bb71181989e70199d6b92f0a502a742f",
+            "bytes": 607,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "app/owner-operational-setup.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "39167290e256603b1b384a8d7e3d9ef0a05879c4",
+            "bytes": 6952,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "3961c915ce6863bbde5e8675d559b5272033bd65",
+            "bytes": 7092,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/portal.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "9932a55dcf5fa041c979224ce5f074a2a315b570",
+            "bytes": 182639,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "0b79a8ec645bb2328427c432ad574a95db4db987",
+            "bytes": 217613,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/profile-flow.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "f4e68879ba0455e9a1210e6302f6de0fd5484f45",
+            "bytes": 19062,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "a98051f2cc679031f8b9a9aea9288b142c1335bc",
+            "bytes": 24283,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/signin/sign-in-form.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "7744012a090a23209d7ab88bcf4ebd3f77e4f658",
+            "bytes": 6210,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "6bb0713ad694f04bd4b7af76c905d98b8d8a5b56",
+            "bytes": 8650,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "scripts/qa-client-form-hydration.mjs",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "0442f8922b207d8de3d6f268317b860bee7ebdcc",
+            "bytes": 7544,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "tests/client-form-hydration-safety.test.ts",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "9ad14b341fe14c76f44ab3878bf6729e12bab481",
+            "bytes": 3374,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        }
+      ],
+      "branches": [
+        "fix/client-form-hydration-safety"
+      ]
+    },
+    "bb5acb194f13f4879bed62eb3819a45cd48ad456": {
+      "commit": "bb5acb194f13f4879bed62eb3819a45cd48ad456",
+      "committerTimestamp": "2026-10-24T11:54:45Z",
+      "subject": "docs(security): record baseline native GET reproduction and fix evidence",
+      "files": [
+        {
+          "path": "docs/CLIENT_FORM_HYDRATION_SAFETY.md",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "55332031957b9e9a15d0b82141d8236ffd198676",
+            "bytes": 7397,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/hydration-safety/after-profile-nojs-1440x900.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "a81ddacef9932ff2fb0aa10dd481485783df6108",
+            "bytes": 55208,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/hydration-safety/after-report.json",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "f35823281ebae4d27eb9ca6af3aef1de3f98b701",
+            "bytes": 3571,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/hydration-safety/before-profile-nojs-1440x900.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "fb49eafe6ed2e4837f05cabf56fe55fe2461d09d",
+            "bytes": 55215,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/hydration-safety/before-report.json",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "b8d1338d79acb96081894d939511ec796040759b",
+            "bytes": 4151,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/hydration-safety/browser.log",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "0b18677ec92c02e1c260a6a55f66a52f1a47ba36",
+            "bytes": 1144,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/hydration-safety/build.log",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "4536700e6908b890040c65e97e3f7b744e9f2f81",
+            "bytes": 1201,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/hydration-safety/tests.log",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "39779ec3742a62bfa46fa3e9701510868e8395ce",
+            "bytes": 4567,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/hydration-safety/voucher-before-report.json",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "c5459bc84abaccc6c862ce6b81f02cec82e05489",
+            "bytes": 478,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        }
+      ],
+      "branches": [
+        "fix/client-form-hydration-safety"
+      ]
+    },
+    "aa30485921358952ef80ffee2716d125571e33b4": {
+      "commit": "aa30485921358952ef80ffee2716d125571e33b4",
+      "committerTimestamp": "2026-10-24T09:27:43Z",
+      "subject": "Add Neon PostgreSQL schema and guarded transactional adapter",
+      "files": [
+        {
+          "path": "neon/db/README.md",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "347bae307f06164f0a40f255fd7ea5bfaf9820e4",
+            "bytes": 6915,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "347bae307f06164f0a40f255fd7ea5bfaf9820e4",
+            "bytes": 6915,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/db/adapter.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "82f69c2f087136ae0f73c87aefe6ec2de83b3944",
+            "bytes": 5687,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "82f69c2f087136ae0f73c87aefe6ec2de83b3944",
+            "bytes": 5687,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/db/index.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "cf11992dbfa69212d4ee93de9a6aab1526d74091",
+            "bytes": 1235,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "cf11992dbfa69212d4ee93de9a6aab1526d74091",
+            "bytes": 1235,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/db/migrate.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "679118430090aba1ea9547ae322efa8ed3d0322f",
+            "bytes": 2776,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "16059e4a3f239396d3cdeb3c744e1a618098ceb1",
+            "bytes": 3743,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/db/schema.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "9565f9b140ae8b083f15d1811c3ddd1377574a93",
+            "bytes": 32937,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "0d3bbf173650d8ffe0f49bf464d16fd86275dcdf",
+            "bytes": 34192,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/db/sql.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "53f07762480eee55f64d1f51c1e5f8aad7c78f93",
+            "bytes": 9274,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "53f07762480eee55f64d1f51c1e5f8aad7c78f93",
+            "bytes": 9274,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/drizzle.config.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "d3fef2c45442774dab25edf6ec712365d887af8e",
+            "bytes": 402,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "2efb2026279fcb0c2151357bb30449c5a25d19bb",
+            "bytes": 469,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/migrations/0000_compatibility.sql",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "a5a336a70e9b9ac66c51946d7180d29da8328887",
+            "bytes": 2209,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "a5a336a70e9b9ac66c51946d7180d29da8328887",
+            "bytes": 2209,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/migrations/0001_portal.sql",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "fa462e40bca0a798d721f12bec7f567965d7b09a",
+            "bytes": 19668,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "fa462e40bca0a798d721f12bec7f567965d7b09a",
+            "bytes": 19668,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/migrations/0002_invariants.sql",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "a988f38e54b8c24576e155187d892c994d002dab",
+            "bytes": 83669,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "a988f38e54b8c24576e155187d892c994d002dab",
+            "bytes": 83669,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/migrations/0003_transaction_safety.sql",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "b927d8a5008a477499c2db44339101b8ce45a193",
+            "bytes": 2006,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "b927d8a5008a477499c2db44339101b8ce45a193",
+            "bytes": 2006,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/migrations/0004_media_uploads.sql",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "6538cc6ddd395ae18bded73272c03e484e0696ff",
+            "bytes": 1794,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "6538cc6ddd395ae18bded73272c03e484e0696ff",
+            "bytes": 1794,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/migrations/baseline-manifest.json",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "c34781efac25646ca78d9b8778caacc68c4896b9",
+            "bytes": 11202,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "c34781efac25646ca78d9b8778caacc68c4896b9",
+            "bytes": 11202,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/scripts/build-baseline.py",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "b4829bb46ebaa2cc32eed81204ee7fd2c151f476",
+            "bytes": 5172,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "b4829bb46ebaa2cc32eed81204ee7fd2c151f476",
+            "bytes": 5172,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/scripts/migrate.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "0d487171f8ed0da7f39c213e9550290dd671af10",
+            "bytes": 1173,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "0a81732989e0876d3f67c85c2813704b29773709",
+            "bytes": 1203,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/scripts/seed-synthetic.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "20fb66ced7eafe7071ee318d7181dfcddabff1c7",
+            "bytes": 1179,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "20fb66ced7eafe7071ee318d7181dfcddabff1c7",
+            "bytes": 1179,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/neon-db-adapter.test.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "3af91943a493ede72e553a3d6494baee6d1d6b51",
+            "bytes": 5473,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "3af91943a493ede72e553a3d6494baee6d1d6b51",
+            "bytes": 5473,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/neon-db-engine.test.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "c078ed6eb36f829929d876ff4846df756f42bb27",
+            "bytes": 8395,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "3c29996d9933057f7d0297ad5308b49ddfb391ed",
+            "bytes": 8692,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/neon-db-fixture.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "087e5f61dcc890d6c5e9d651e82431091ac8d105",
+            "bytes": 1537,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "e8452aa0feccbef10b9e68b657f46b4ddb0c59f7",
+            "bytes": 1675,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/neon-db-native.test.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "f62be854df68d72ef75e1b41c0f11c28a870c13d",
+            "bytes": 7345,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "f62be854df68d72ef75e1b41c0f11c28a870c13d",
+            "bytes": 7345,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/neon-db-service.test.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "84bb109a77bbeca15258ecb642080dd73ff134ba",
+            "bytes": 9947,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "84bb109a77bbeca15258ecb642080dd73ff134ba",
+            "bytes": 9947,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "migration/neon-db"
+      ]
+    },
+    "95bb9c07bc7deac278010a5913ca052e48dab47e": {
+      "commit": "95bb9c07bc7deac278010a5913ca052e48dab47e",
+      "committerTimestamp": "2026-10-24T09:28:43Z",
+      "subject": "Implement Neon magic link and Google authentication",
+      "files": [
+        {
+          "path": "app/signin/page.tsx",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "edf202a629cd1d25ddaf615d66dbe4389e6c56e6",
+            "bytes": 229,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "edf202a629cd1d25ddaf615d66dbe4389e6c56e6",
+            "bytes": 229,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/signin/sign-in-form.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "5d65ee7c143718c27e799e418c2ffdf3dc6279f7",
+            "bytes": 6140,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "6bb0713ad694f04bd4b7af76c905d98b8d8a5b56",
+            "bytes": 8650,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "app/signin/signin.module.css",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "ca085d359b8b59fb600b624541169437e351878b",
+            "bytes": 2319,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "048696e82880d27ff99dc565fbbd3e6e72a06445",
+            "bytes": 5411,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "lib/identity.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "045a62bef582092ecc04cc2c0fb650dda91535e5",
+            "bytes": 3056,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "045a62bef582092ecc04cc2c0fb650dda91535e5",
+            "bytes": 3056,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/auth-migrations/0001_auth.sql",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "8e3cd70d4384a9e8c64f1f53df049c0d2e12af75",
+            "bytes": 1747,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "8e3cd70d4384a9e8c64f1f53df049c0d2e12af75",
+            "bytes": 1747,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/auth/README.md",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "5095636a374bcbff132f7c77a964111047e99a67",
+            "bytes": 7108,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "fcc67cb60635b8ba00201c8bbdbf77cf7093e582",
+            "bytes": 7417,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/auth/config.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "0f44b4bb23b5d70bdd0d6f66c4ea5ad35af18200",
+            "bytes": 3625,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "d916eea39306a9f15593a6b53a08ccd5fe967736",
+            "bytes": 3727,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/auth/google.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "a5b681bfd495c29c79984ffd0b6e9a5f6b8bb0e7",
+            "bytes": 3766,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "a5b681bfd495c29c79984ffd0b6e9a5f6b8bb0e7",
+            "bytes": 3766,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/auth/index.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "339533a1ec2bca17949cffdb3e2846436730b90d",
+            "bytes": 23310,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "339533a1ec2bca17949cffdb3e2846436730b90d",
+            "bytes": 23310,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/auth/smtp.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "7612aac9e6f9f8a2eab7b2d20a9acb931d5fea0c",
+            "bytes": 1685,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "bf2f0c74233da251f0bb855b357a1c746a9a362a",
+            "bytes": 2192,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/neon-auth.test.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "990f2d170b0e23a2954e240b45b6beac1de0b25a",
+            "bytes": 28421,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "990f2d170b0e23a2954e240b45b6beac1de0b25a",
+            "bytes": 28421,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "migration/neon-db"
+      ]
+    },
+    "a19dc16804a55c9518e7f391f6acdfaed4cc2aa8": {
+      "commit": "a19dc16804a55c9518e7f391f6acdfaed4cc2aa8",
+      "committerTimestamp": "2026-10-24T09:32:34Z",
+      "subject": "Verify magic authentication on native PostgreSQL",
+      "files": [
+        {
+          "path": "neon/db/AUTH_NATIVE_VERIFICATION.md",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "d594172d3ec85c672bc5300150a8c20b348df616",
+            "bytes": 3082,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "d594172d3ec85c672bc5300150a8c20b348df616",
+            "bytes": 3082,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/neon-auth-native.test.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "7ee2fe3f354060b87a0d452489b9aa029b0cb09b",
+            "bytes": 15441,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "7ee2fe3f354060b87a0d452489b9aa029b0cb09b",
+            "bytes": 15441,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "migration/neon-db"
+      ]
+    },
+    "415c0a94ff4b4430da7b9d6a2c521a59b3846046": {
+      "commit": "415c0a94ff4b4430da7b9d6a2c521a59b3846046",
+      "committerTimestamp": "2026-10-24T09:53:40Z",
+      "subject": "Add approved OpenAI project evidence evaluator",
+      "files": [
+        {
+          "path": "docs/migration/AI.md",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "5a550f0dab30918ed8412eb16a9e4d3639c2832f",
+            "bytes": 8564,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "e5df17cc1759c381214fea1ea126827d6b8cabb5",
+            "bytes": 9746,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/ai/index.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "cca2779f1f7148b42925839699fdaf87c9fd59cb",
+            "bytes": 9474,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "c60b5b41b021e865eebe31926195de5256d3ab59",
+            "bytes": 10866,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/ai/input.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "de632e9d70a4ab02d665109dddfb271a050ce17d",
+            "bytes": 7056,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "316c1537a07bba19556f2eb26ed3dd90d5784d97",
+            "bytes": 7057,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/ai/output.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "45a76cd8f37ba3a508d3bd658622efae6b6525b5",
+            "bytes": 5157,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "77e72d8b98425ba46932f7dfeb8ee8c566195189",
+            "bytes": 7780,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/ai/repository.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "fa8dbafd7c60872a270a82e3f418c68e15a514be",
+            "bytes": 1790,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "fa8dbafd7c60872a270a82e3f418c68e15a514be",
+            "bytes": 1790,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "tests/neon-ai.test.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "1bea2561ab6fda06cd0daaec5193329371545d98",
+            "bytes": 18628,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "1bea2561ab6fda06cd0daaec5193329371545d98",
+            "bytes": 18628,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "migration/neon-db"
+      ]
+    },
+    "59466c59deb90d423056f23df7cd1b8b01b520e6": {
+      "commit": "59466c59deb90d423056f23df7cd1b8b01b520e6",
+      "committerTimestamp": "2026-10-24T09:53:50Z",
+      "subject": "Wire approved snapshots and bounded Neon evaluation requests",
+      "files": [
+        {
+          "path": ".env.example",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "d62c1d977f0fb99874476b5612a02fcb07e11e5c",
+            "bytes": 960,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "ebadf1c456c4c69103edc4a66c8e07f56e4a98e2",
+            "bytes": 940,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "lib/evaluation-background.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "1da4adf92455439049d35e75ea7c437bebbc6b98",
+            "bytes": 1756,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "1da4adf92455439049d35e75ea7c437bebbc6b98",
+            "bytes": 1756,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "lib/evaluation.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "8659dd9b84efeedd3147b811b60a2eb926cd3008",
+            "bytes": 4990,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "27ab78d5958f74cc6759dd36815440efe35d69ed",
+            "bytes": 5043,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "lib/http.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "56d78fa924c50de18fde774b6d4c7cf37aeebb1a",
+            "bytes": 10653,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "5f12a15ca765640f04553ccb38d7eaa9d51994aa",
+            "bytes": 11384,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "lib/service.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "4c446c58feb175ca59c651b93d43650d60bf1dba",
+            "bytes": 84138,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "9142633fb0f324c42a2d62ec097777a92b5612b5",
+            "bytes": 82001,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "145768cf7d19bd94b6a47a92a5ba88ed8d92fd53",
+            "bytes": 1084,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "145768cf7d19bd94b6a47a92a5ba88ed8d92fd53",
+            "bytes": 1084,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/ai/http.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "c56af236f21431f754b7dd8c8a7760c3ae9a1247",
+            "bytes": 4748,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "3e60af53fa5dd773360bc4c5f94ad7b25fc47a82",
+            "bytes": 5435,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/ai/index.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "0fe26835976d3358eb8c7351781fe70c84ba5fcb",
+            "bytes": 9640,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "c60b5b41b021e865eebe31926195de5256d3ab59",
+            "bytes": 10866,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/ai/input.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "316c1537a07bba19556f2eb26ed3dd90d5784d97",
+            "bytes": 7057,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "316c1537a07bba19556f2eb26ed3dd90d5784d97",
+            "bytes": 7057,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/api.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "a9c018f2bba31482b01ae64d88969467a85bd5cd",
+            "bytes": 3179,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "c2aeb94b795fffa70045f1df813ffbb7bbd64636",
+            "bytes": 3425,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/auth-migrations/0002_approved_evaluation.sql",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "13f7e74a3e080f70ffb33a375750a4b1dd59fcb6",
+            "bytes": 1363,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "13f7e74a3e080f70ffb33a375750a4b1dd59fcb6",
+            "bytes": 1363,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "neon/migration-plan.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "82dc986f85a6d910a86f77d4c2c734d3afbc4b18",
+            "bytes": 900,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "0b36352c544bfd0e55c4cf183bb4eb337be2b307",
+            "bytes": 1031,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "migration/neon-db"
+      ]
+    },
+    "60d6e02e08fc898ed4faf8931300eb4eefd617ff": {
+      "commit": "60d6e02e08fc898ed4faf8931300eb4eefd617ff",
+      "committerTimestamp": "2026-10-24T09:18:52Z",
+      "subject": "Align proxy configuration guards and clean migration previews",
+      "files": [
+        {
+          "path": "app/home.tsx",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "a2c15113b8666222792a840dd6e1ac96689d47d9",
+            "bytes": 17996,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "66c4a7629db1d334451892c156e0a53f7c7fcb03",
+            "bytes": 14341,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "docs/migration/NEXTJS.md",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "39d483e6273514f8a84f7a0d5091e4e48a5441ff",
+            "bytes": 6266,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "1de1264f674c2d9db99ff92d219e194cb24927d0",
+            "bytes": 7284,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "lib/next-backend.ts",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "23bed29bfb9c23c09e8b49246cfa30640f0c721b",
+            "bytes": 9300,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "44ebf37f644449723ea8d5e177e95aba9f34e3bc",
+            "bytes": 10084,
+            "mode": "100644"
+          }
+        },
+        {
+          "path": "next.config.ts",
+          "stateInPublishedMain": "identical_blob_in_published_main",
+          "commitBlob": {
+            "blob": "c6cd9be0516e6ce5602b042d6005bd8e2dd7c756",
+            "bytes": 466,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "c6cd9be0516e6ce5602b042d6005bd8e2dd7c756",
+            "bytes": 466,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "migration/nextjs"
+      ]
+    },
+    "b5649661c6d772dddc6e8c7b4caf29c693e3776b": {
+      "commit": "b5649661c6d772dddc6e8c7b4caf29c693e3776b",
+      "committerTimestamp": "2026-10-24T05:17:24Z",
+      "subject": "Preview more Delhi landmark detail at both edges of variation one",
+      "files": [
+        {
+          "path": "previews/new-delhi-variants/variation1-wide.html",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "36334590b9c8db0b08a56fb24f66da2cdab7b4d9",
+            "bytes": 4273,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "scripts/capture-delhi-wide.mjs",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "07791eacec1891cb94c7c40ece2d8444e535f36d",
+            "bytes": 4428,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "scripts/preview-delhi-variants.mjs",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "85d3eb1c4d46990622bafb48218e1e4ee613c3f1",
+            "bytes": 1502,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "c4c669c60dd3247b78c2c58fea89b93095600278",
+            "bytes": 1289,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "v7/delhi-wide-preview-20261024"
+      ]
+    },
+    "6aca00fc56dcf2c1e69aec5811ba4d729e20649e": {
+      "commit": "6aca00fc56dcf2c1e69aec5811ba4d729e20649e",
+      "committerTimestamp": "2026-10-24T05:19:05Z",
+      "subject": "Record reviewed edge-detail preview and Library delivery provenance",
+      "files": [
+        {
+          "path": "evidence/v7-delhi-wide-preview/README.md",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "cf960ea1974c962589a83a134254d04f8ea1eacf",
+            "bytes": 1884,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/v7-delhi-wide-preview/library-delivery.json",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "d8f2810fe36fc10d388c9b56aaf93e3366205322",
+            "bytes": 1027,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/v7-delhi-wide-preview/pixel-comparison.json",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "89f5ecb911be8eebb0815313743dd8ab147f6b04",
+            "bytes": 194,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/v7-delhi-wide-preview/receipt.json",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "d9bb669672d8a88fa0c8c59bee674be2bad8c059",
+            "bytes": 3443,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        }
+      ],
+      "branches": [
+        "v7/delhi-wide-preview-20261024"
+      ]
+    },
+    "a5591a43a822a0c10aff4d645389f5f43406928d": {
+      "commit": "a5591a43a822a0c10aff4d645389f5f43406928d",
+      "committerTimestamp": "2026-10-24T07:28:23Z",
+      "subject": "Replace duplicated Qutub crop with distinct Rashtrapati Bhavan preview asset",
+      "files": [
+        {
+          "path": "previews/new-delhi-variants/rashtrapati-bhavan.png",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "c7f15bc4bb0dba35a513cb19b1a9001d0aae4361",
+            "bytes": 1451356,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "previews/new-delhi-variants/variation1-wide.html",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "e46118c7cdb7a554d4926a9dc5ea0d480ab98629",
+            "bytes": 4571,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "scripts/capture-delhi-single-qutub.mjs",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "db285839bf67ae06279a95dc1922df10f81f564f",
+            "bytes": 5107,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "scripts/preview-delhi-variants.mjs",
+          "stateInPublishedMain": "present_with_different_content",
+          "commitBlob": {
+            "blob": "028e468a42397b087ee254216ab57eb0969a594b",
+            "bytes": 1721,
+            "mode": "100644"
+          },
+          "publishedBlob": {
+            "blob": "c4c669c60dd3247b78c2c58fea89b93095600278",
+            "bytes": 1289,
+            "mode": "100644"
+          }
+        }
+      ],
+      "branches": [
+        "v7/delhi-wide-preview-20261024"
+      ]
+    },
+    "9ff52a8c83c6a8b25c78f5c963df25b814cd8bd1": {
+      "commit": "9ff52a8c83c6a8b25c78f5c963df25b814cd8bd1",
+      "committerTimestamp": "2026-10-24T07:28:37Z",
+      "subject": "Use exact native aspect ratio for the replacement landmark",
+      "files": [
+        {
+          "path": "previews/new-delhi-variants/variation1-wide.html",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "b597b253d30700d92072465010b409bf0712a94f",
+            "bytes": 4572,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        }
+      ],
+      "branches": [
+        "v7/delhi-wide-preview-20261024"
+      ]
+    },
+    "51af9abfbedcfee393f9fbc76c6185d28424c017": {
+      "commit": "51af9abfbedcfee393f9fbc76c6185d28424c017",
+      "committerTimestamp": "2026-10-24T07:30:07Z",
+      "subject": "Verify one Qutub and save corrected preview as Library version one",
+      "files": [
+        {
+          "path": "evidence/v7-delhi-single-qutub/README.md",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "2a390e5e176fb0d98363e5385e3998027957b3f0",
+            "bytes": 2656,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/v7-delhi-single-qutub/library-delivery.json",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "4590483d2991aeb26ff510a83568c791997c9848",
+            "bytes": 1123,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/v7-delhi-single-qutub/pixel-comparison.json",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "f15af02dac6ab673c5915286fa7b8671d8f14363",
+            "bytes": 207,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/v7-delhi-single-qutub/receipt.json",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "32b8bbb56bea265d5eadb73703f521e2f470c4dd",
+            "bytes": 3936,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        }
+      ],
+      "branches": [
+        "v7/delhi-wide-preview-20261024"
+      ]
+    },
+    "9869099a66e3703727d0722fcf8373e58bfd367b": {
+      "commit": "9869099a66e3703727d0722fcf8373e58bfd367b",
+      "committerTimestamp": "2026-10-24T07:39:20Z",
+      "subject": "Align landmark focal points to letter strokes and a common ground line",
+      "files": [
+        {
+          "path": "previews/new-delhi-variants/variation1-wide.html",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "1c714829f3b0fd1e581e032813358fa2e4e51fdc",
+            "bytes": 5397,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "scripts/capture-delhi-aligned.mjs",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "1bfe0fdf60e0426012e03e2d37523b3451b26804",
+            "bytes": 5028,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        }
+      ],
+      "branches": [
+        "v7/delhi-wide-preview-20261024"
+      ]
+    },
+    "59d0a61b27822e1d1f1e51de4711722a696a295c": {
+      "commit": "59d0a61b27822e1d1f1e51de4711722a696a295c",
+      "committerTimestamp": "2026-10-24T07:40:24Z",
+      "subject": "Verify nested SVG sizing through browser geometry defaults",
+      "files": [
+        {
+          "path": "scripts/capture-delhi-aligned.mjs",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "889e3722fe5941d139ce9a44ecef44849e864a4c",
+            "bytes": 4948,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        }
+      ],
+      "branches": [
+        "v7/delhi-wide-preview-20261024"
+      ]
+    },
+    "e99c06eb5c74f232a6fc5d63e24b6e1bcfe11c8f": {
+      "commit": "e99c06eb5c74f232a6fc5d63e24b6e1bcfe11c8f",
+      "committerTimestamp": "2026-10-24T07:41:56Z",
+      "subject": "Record letter alignment and desktop small-size screenshot evidence",
+      "files": [
+        {
+          "path": "evidence/v7-delhi-aligned/README.md",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "f738a0c661cc384ea4372f425b97be878374f571",
+            "bytes": 2775,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/v7-delhi-aligned/library-delivery.json",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "fae31694ad4ef83bdd26dc75982710a54fa7cad1",
+            "bytes": 1204,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/v7-delhi-aligned/pixel-comparison.json",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "fa4a08d79c54d50afa3d4e5f7333462f57fa235a",
+            "bytes": 4949,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        },
+        {
+          "path": "evidence/v7-delhi-aligned/receipt.json",
+          "stateInPublishedMain": "absent_from_published_main",
+          "commitBlob": {
+            "blob": "a03ca56a7cbb1c0cdace89ebeae4f3087548f31a",
+            "bytes": 16878,
+            "mode": "100644"
+          },
+          "publishedBlob": null
+        }
+      ],
+      "branches": [
+        "v7/delhi-wide-preview-20261024"
+      ]
+    }
+  }
+}
