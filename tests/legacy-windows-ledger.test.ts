@@ -131,12 +131,12 @@ async function fixture(encoding: "lf" | "crlf" = "crlf") {
   return { ...f, plan, target, snapshot };
 }
 
-test("historical Windows CRLF: actual seven-entry ledger inspects read-only and upgrades only two canonical features without rewriting old rows", async () => {
+test("historical Windows CRLF: actual seven-entry ledger inspects read-only and upgrades the current canonical feature suffix without rewriting old rows", async () => {
   const f = await fixture();
   try {
     assert.equal(
       verifyUpgradePlan(f.plan, baseline),
-      "498280b69647485b4f55c35331a0f8af486983d819ee2dc25fb1840f1e657506",
+      "9bcf3f083d47a1b700e467c60f3b9eff57193491bb1e2929b1c2a4f21ba532d1",
     );
     // Reproduces the old strict runner mismatch. Compatibility must stay outside it.
     await assert.rejects(
@@ -170,6 +170,7 @@ test("historical Windows CRLF: actual seven-entry ledger inspects read-only and 
     assert.deepEqual(receipt.pending, [
       "0102_credit_stock.sql",
       "0103_project_media_limits.sql",
+      "0104_admin_team_corrections.sql",
     ]);
     const appliedSql: string[] = [];
     const result = await applyPopulatedUpgrade(
@@ -238,7 +239,7 @@ test("historical Windows CRLF: actual seven-entry ledger inspects read-only and 
   }
 });
 
-test("historical Windows CRLF: canonical0102 already applied leaves only0103 pending and keeps all existing stock records", async () => {
+test("historical Windows CRLF: canonical0102 already applied leaves0103/0104 pending and keeps all existing stock records", async () => {
   const f = await fixture();
   try {
     await applyPortalMigrations(
@@ -254,7 +255,10 @@ test("historical Windows CRLF: canonical0102 already applied leaves only0103 pen
       now,
     );
     assert.equal((receipt as any).historicalEncoding, "legacy-windows-crlf");
-    assert.deepEqual(receipt.pending, ["0103_project_media_limits.sql"]);
+    assert.deepEqual(receipt.pending, [
+      "0103_project_media_limits.sql",
+      "0104_admin_team_corrections.sql",
+    ]);
     assert.deepEqual(
       (
         await applyPopulatedUpgrade(

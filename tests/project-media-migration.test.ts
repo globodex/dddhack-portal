@@ -40,7 +40,10 @@ test("additive media upgrade preserves old pending/ready/consumed rows and enfor
   };
   const db = createPostgresDatabase(pool);
   try {
-    const migrations = await loadPortalMigrations();
+    // Scope this historical media-limit proof to the migration it verifies.
+    const migrations = (await loadPortalMigrations()).filter(
+      (m) => m.name <= "0103_project_media_limits.sql",
+    );
     const before = migrations.filter(
       (m) => m.name < "0103_project_media_limits",
     );

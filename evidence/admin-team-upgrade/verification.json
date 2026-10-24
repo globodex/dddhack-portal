@@ -1,0 +1,71 @@
+{
+  "featureSource": "ab423c523c1ba597ba0e6f1b5718197bccbda0c8",
+  "toolingSource": "331fe0e54e8c7d9539799772be5ac288e2163b0a",
+  "canonicalPlanDigest": "9bcf3f083d47a1b700e467c60f3b9eff57193491bb1e2929b1c2a4f21ba532d1",
+  "canonicalMigrationCount": 10,
+  "newMigration": {
+    "name": "0104_admin_team_corrections.sql",
+    "checksum": "a931aeafba01be07f43e35fc7c17cae80f11bbd212fbd92f0e5fd8d475c40500"
+  },
+  "sourceCheckout": "check",
+  "checkoutFiles": 10,
+  "repairNeeded": false,
+  "expectedHostedPrecondition": {
+    "ledgerEntries": 9,
+    "pending": [
+      "0104_admin_team_corrections.sql"
+    ]
+  },
+  "localVerified": {
+    "encodings": [
+      "canonical-lf",
+      "legacy-windows-crlf"
+    ],
+    "ledgerBefore": 9,
+    "ledgerAfter": 10,
+    "applied": [
+      "0104_admin_team_corrections.sql"
+    ],
+    "repeatApplied": [],
+    "oldLedgerRowsAndTimestampsPreserved": true,
+    "allExistingTableRowsPreserved": true,
+    "rollbackIncludesFunctionDefinitions": true,
+    "oldReceiptStopsBeforeConnection": true
+  },
+  "tests": {
+    "currentUpgradeAndCheckout": {
+      "passed": 11,
+      "failed": 0,
+      "log": "current-upgrade-tests.log"
+    },
+    "legacyRegression": {
+      "passed": 28,
+      "failed": 0,
+      "skipped": 2,
+      "log": "legacy-regression-tests.log"
+    },
+    "typecheck": {
+      "exitCode": 0,
+      "log": "typecheck.log"
+    }
+  },
+  "unchanged": [
+    "historical seven approval entries",
+    "old feature0102/0103 hashes",
+    "all nine old SQL source blobs",
+    "generic migrator",
+    "historical baseline-manifest",
+    "past proof receipts/logs",
+    "backend ZIP/receipt"
+  ],
+  "hostedRead": false,
+  "hostedApply": false,
+  "providerChanges": false,
+  "pushed": false,
+  "limitations": [
+    "PGlite is single-connection; native PostgreSQL tests skipped",
+    "PowerShell/Windows execution not performed; pwsh unavailable",
+    "Owner verified backup and fresh private target receipts still required",
+    "Parent owns matching archive rebuild and integrated release checks"
+  ]
+}

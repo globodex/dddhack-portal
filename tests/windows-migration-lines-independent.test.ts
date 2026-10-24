@@ -22,7 +22,7 @@ const approvalPath =
   "evidence/neon-host-archive/historical-ledger-checksums.json";
 const baseline = JSON.parse(readFileSync(join(root, approvalPath), "utf8"));
 const expectedDigest =
-  "498280b69647485b4f55c35331a0f8af486983d819ee2dc25fb1840f1e657506";
+  "9bcf3f083d47a1b700e467c60f3b9eff57193491bb1e2929b1c2a4f21ba532d1";
 const sqlPaths = [
   "neon/migrations/0000_compatibility.sql",
   "neon/migrations/0001_portal.sql",
@@ -33,6 +33,7 @@ const sqlPaths = [
   "neon/auth-migrations/0002_approved_evaluation.sql",
   "neon/migrations/0102_credit_stock.sql",
   "neon/migrations/0103_project_media_limits.sql",
+  "neon/migrations/0104_admin_team_corrections.sql",
 ];
 const sha = (value: Uint8Array | string) =>
   createHash("sha256").update(value).digest("hex");
@@ -86,7 +87,12 @@ function cli(cwd: string, relative: string, args: string[]) {
   return spawnSync(
     process.execPath,
     ["--import", "tsx", join(cwd, relative), ...args],
-    { cwd, encoding: "utf8", env: { PATH: process.env.PATH, NODE_ENV: "test" }, timeout: 15000 },
+    {
+      cwd,
+      encoding: "utf8",
+      env: { PATH: process.env.PATH, NODE_ENV: "test" },
+      timeout: 15000,
+    },
   );
 }
 async function planAt(cwd: string) {
@@ -103,9 +109,9 @@ function crlf(cwd: string) {
     );
 }
 
-test("independent Windows source: approved LF plan is nine exact HEAD blobs and keeps the published digest", async () => {
+test("independent Windows source: approved LF plan is ten exact HEAD blobs and keeps the published digest", async () => {
   const plan = await loadMigrationPlan();
-  assert.equal(plan.length, 9);
+  assert.equal(plan.length, 10);
   assert.equal(verifyUpgradePlan(plan, baseline), expectedDigest);
   assert.deepEqual(
     plan.map(({ name, checksum }) => ({ name, checksum })),
@@ -138,7 +144,7 @@ test("independent Windows repair: check is read-only, exact CRLF repair preserve
     assert.equal(check.status, 2, check.stderr);
     const checked = JSON.parse(check.stdout);
     assert.equal(checked.repairNeeded, true);
-    assert.equal(checked.sourceFiles, 9);
+    assert.equal(checked.sourceFiles, 10);
     assert.equal(checked.databaseConnected, false);
     assert.deepEqual(
       sqlPaths.map((path) => readFileSync(join(f.cwd, path))),
@@ -270,10 +276,10 @@ test("independent Windows source: actual CRLF loader and offline CLI reject; str
     assert.equal(verifyUpgradePlan(before, baseline), expectedDigest);
     crlf(f.cwd);
     const changed = await planAt(f.cwd);
-    assert.equal(changed.length, 9);
+    assert.equal(changed.length, 10);
     assert.equal(
       changed.filter((item, i) => item.checksum !== before[i].checksum).length,
-      9,
+      10,
     );
     assert.throws(() => verifyUpgradePlan(changed, baseline), {
       code: "UPGRADE_SOURCE_PLAN_MISMATCH",
@@ -319,12 +325,12 @@ test("independent Windows source: missing, extra, reordered, BOM and literal-edi
     });
 });
 
-test("independent Windows checkout: autocrlf=true still checks out only the nine pinned migration paths as canonical LF", () => {
+test("independent Windows checkout: autocrlf=true still checks out only the ten pinned migration paths as canonical LF", () => {
   const f = fixture();
   try {
     assert.ok(
       existsSync(join(f.cwd, ".gitattributes")),
-      "Nine source SQL paths need committed LF attributes",
+      "Ten source SQL paths need committed LF attributes",
     );
     const control = "db/migrations/unpinned_test.sql";
     mkdirSync(dirname(join(f.cwd, control)), { recursive: true });

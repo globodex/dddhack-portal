@@ -41,6 +41,9 @@ const checksums = {
 const historicalNames = Object.keys(checksums).slice(0, 7);
 const expectedNames = Object.keys(checksums);
 const time = "2026-10-22T08:00:00.000Z";
+// Preserve the original nine-entry ordering/byte proof; 0104 has its own current-plan upgrade tests.
+const legacyPlan = async () =>
+  (await loadMigrationPlan()).filter((m) => expectedNames.includes(m.name));
 
 async function fixture() {
   const engine = new PGlite({ extensions: { citext } });
@@ -156,7 +159,7 @@ async function snapshot(db: Database) {
 
 async function existing() {
   const f = await fixture();
-  const plan = await loadMigrationPlan();
+  const plan = await legacyPlan();
   const baseline = plan.filter((m) => historicalNames.includes(m.name));
   assert.deepEqual(
     baseline.map((m) => m.name),
@@ -202,8 +205,8 @@ test("combined upgrade: old 0005 stock plan rejects an existing 0101 ledger with
   }
 });
 
-test("combined upgrade: production loader returns exactly nine ordered migrations with unchanged SQL checksums", async () => {
-  const plan = await loadMigrationPlan();
+test("combined upgrade: production loader preserves the nine-entry historical ordered prefix with unchanged SQL checksums", async () => {
+  const plan = await legacyPlan();
   assert.deepEqual(
     plan.map((m) => m.name),
     expectedNames,
@@ -303,7 +306,7 @@ test("combined upgrade: append exactly0102/0103 to existing auth/evaluation ledg
 test("combined upgrade: fresh install uses the same real ordered loader and repeats without writes", async () => {
   const f = await fixture();
   try {
-    const plan = await loadMigrationPlan();
+    const plan = await legacyPlan();
     assert.deepEqual(await applyPortalMigrations(f.pool, plan), expectedNames);
     const journal = await ledger(f.db);
     assert.equal(journal.length, 9);

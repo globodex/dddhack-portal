@@ -70,7 +70,7 @@ function traced(pool: PostgresPool, sequence: string[]): PostgresPool {
   };
 }
 
-test("independent populated upgrade: read-only inspection, pending-only7→9, all old data preserved and fresh-receipt repeat[]", async () => {
+test("independent populated upgrade: read-only inspection, pending-only7→10, all old data preserved and fresh-receipt repeat[]", async () => {
   const f = await populatedUpgradeIndependentFixture();
   try {
     const target = targetFor(f.identity),
@@ -98,6 +98,7 @@ test("independent populated upgrade: read-only inspection, pending-only7→9, al
     assert.deepEqual(receipt.pending, [
       "0102_credit_stock.sql",
       "0103_project_media_limits.sql",
+      "0104_admin_team_corrections.sql",
     ]);
     const serialized = JSON.stringify(receipt);
     for (const marker of [
@@ -136,7 +137,7 @@ test("independent populated upgrade: read-only inspection, pending-only7→9, al
       ),
     );
     const journal = after.portal_schema_migrations as { name: string }[];
-    assert.equal(journal.length, 9);
+    assert.equal(journal.length, 10);
     assert.deepEqual(journal.slice(0, 7), before.portal_schema_migrations);
     assert.equal(
       (await rows(f.db, "SELECT * FROM credit_code_history")).length,
@@ -251,7 +252,7 @@ test("independent populated upgrade: missing ledger refuses without creating or 
   }
 });
 
-test("independent populated upgrade: existing0102 ledger allows only remaining0103 and preserves existing stock backfill", async () => {
+test("independent populated upgrade: existing0102 ledger allows remaining0103/0104 and preserves existing stock backfill", async () => {
   const f = await populatedUpgradeIndependentFixture();
   try {
     await applyPortalMigrations(
@@ -267,7 +268,10 @@ test("independent populated upgrade: existing0102 ledger allows only remaining01
       now,
     );
     assert.equal(receipt.ledger.length, 8);
-    assert.deepEqual(receipt.pending, ["0103_project_media_limits.sql"]);
+    assert.deepEqual(receipt.pending, [
+      "0103_project_media_limits.sql",
+      "0104_admin_team_corrections.sql",
+    ]);
     const before = await f.snapshot();
     const history = await rows(
       f.db,
@@ -282,7 +286,10 @@ test("independent populated upgrade: existing0102 ledger allows only remaining01
       confirmed,
       now,
     );
-    assert.deepEqual(result.applied, ["0103_project_media_limits.sql"]);
+    assert.deepEqual(result.applied, [
+      "0103_project_media_limits.sql",
+      "0104_admin_team_corrections.sql",
+    ]);
     const after = await f.snapshot();
     assert.deepEqual(
       Object.fromEntries(
@@ -645,7 +652,7 @@ test("independent populated upgrade CLI: offline default/strict flags, private r
     assert.equal(defaults.status, 0);
     const plan = JSON.parse(defaults.stdout);
     assert.equal(plan.mode, "source-plan-only");
-    assert.equal(plan.migrations.length, 9);
+    assert.equal(plan.migrations.length, 10);
     for (const args of [
       ["--apply-synthetic"],
       ["--plan", "--unknown"],

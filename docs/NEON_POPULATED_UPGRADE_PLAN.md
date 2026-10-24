@@ -87,10 +87,10 @@ Do not edit or reuse an old receipt. Apply checks its age, source plan, target, 
 
 ## Immutable source and local proof
 
-| Migration | Canonical LF SHA256 |
-| --- | --- |
-| 0102_credit_stock.sql | `74bf8549edbecb753424a86e692844e962be02c0faeddda8f0b2dd3ffaacb72e` |
-| 0103_project_media_limits.sql | `3f42da160787977b7655fe74647655bd656f4c55467c2a42b3dd1627859f462c` |
+| Migration                       | Canonical LF SHA256                                                |
+| ------------------------------- | ------------------------------------------------------------------ |
+| 0102_credit_stock.sql           | `74bf8549edbecb753424a86e692844e962be02c0faeddda8f0b2dd3ffaacb72e` |
+| 0103_project_media_limits.sql   | `3f42da160787977b7655fe74647655bd656f4c55467c2a42b3dd1627859f462c` |
 | 0104_admin_team_corrections.sql | `a931aeafba01be07f43e35fc7c17cae80f11bbd212fbd92f0e5fd8d475c40500` |
 
 Historical 0000..0103 SQL, recorded hashes, baseline-manifest history and prior proof receipts remain unchanged. Approval metadata appends only the new feature entry. The separate current proof is saved in `evidence/admin-team-upgrade/`; older nine-entry proofs remain historical evidence.

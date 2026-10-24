@@ -22,6 +22,7 @@ const paths = [
   "neon/auth-migrations/0002_approved_evaluation.sql",
   "neon/migrations/0102_credit_stock.sql",
   "neon/migrations/0103_project_media_limits.sql",
+  "neon/migrations/0104_admin_team_corrections.sql",
 ];
 const baseline = JSON.parse(
   await readFile(
@@ -91,7 +92,11 @@ try {
       join(scratch, "neon/scripts/upgrade-populated.ts"),
       "--plan",
     ],
-    { cwd: scratch, encoding: "utf8", env: { PATH: process.env.PATH, NODE_ENV: "test" } },
+    {
+      cwd: scratch,
+      encoding: "utf8",
+      env: { PATH: process.env.PATH, NODE_ENV: "test" },
+    },
   );
   const report = {
     source: spawnSync("git", ["rev-parse", "HEAD"], {

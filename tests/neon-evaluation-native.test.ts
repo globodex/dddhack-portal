@@ -111,16 +111,17 @@ async function withEvaluationDatabase(
     });
     db = createPostgresDatabase(pool as unknown as PostgresPool);
     const plan = await loadMigrationPlan();
-    assert.equal(plan.at(-1)?.name, "0103_project_media_limits.sql");
+    assert.equal(plan.at(-1)?.name, "0104_admin_team_corrections.sql");
     const applied = await applyPortalMigrations(
       pool as unknown as PostgresPool,
       plan,
     );
-    assert.deepEqual(applied.slice(-4), [
+    assert.deepEqual(applied.slice(-5), [
       "0100_auth.sql",
       "0101_approved_evaluation.sql",
       "0102_credit_stock.sql",
       "0103_project_media_limits.sql",
+      "0104_admin_team_corrections.sql",
     ]);
     assert.deepEqual(
       await applyPortalMigrations(pool as unknown as PostgresPool, plan),
