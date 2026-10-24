@@ -1,46 +1,32 @@
-# Final backend archive verification
+# Final-source backend archive refresh
 
-Freshly rebuilt from `d2f12933191a7633f8bffa252aa568fe65654160`, source-equivalent in backend/configuration/package paths to integrated `191b76ed26f430128b14112f77b74ad3e26b1ec0`. The new feature SQL names are `0102_credit_stock.sql` and `0103_project_media_limits.sql`; historical auth/evaluation order and checksums are preserved. No app/lib source edit was made by this packaging lane.
+The archive was rebuilt locally from actual final integrated source `59246860b49d83412c6685e4643f97a21aab55e5`. This refresh uses the existing official build helper and `@neon/config-runtime@1.10.2` buildFunctionBundle only. Function env is empty, build-process environment is whitelisted, public npm staging ran offline from the existing cache, install scripts are disabled by the official packager and there are no warnings. No plan/apply/deploy API, provider read, hosted database operation, email send, credential or provider-setting change occurred.
 
-| Check                                            | Observed result                                                        |
-| ------------------------------------------------ | ---------------------------------------------------------------------- |
-| ZIP SHA256                                       | `6d71e987f3019140b802b207eb7a9cd92fe1de57887d463b73449b87f6ce4a5f`     |
-| Archive                                          | 9,014,174 compressed bytes; 21,149,045 raw bytes; 93 files             |
-| Official limits                                  | 10,485,760 compressed bytes; 67,108,864 raw bytes; 4,096 entries       |
-| Native files                                     | Sharp 0.35.5/libvips 8.18.7, two Linux ARM64 ELF machine 183 files     |
-| Forbidden paths                                  | None                                                                   |
-| Fresh graph                                      | 861 inputs, 77 application inputs; zero frontend/forbidden inputs      |
-| Archive/analysis/host-copy JS hash               | All `5f33d61cf558e6dd9ea32c98f31cd4a166e74a8e7192c74505ff3eb36077b7d6` |
-| Trusted GET `/api/health`                        | 200, expected runtime JSON, private/no-store                           |
-| Untrusted GET `/api/health`                      | 403, redacted `UNTRUSTED_PROXY`                                        |
-| Unconfigured GET `/api/portal?view=%2Fdashboard` | 503, redacted `BACKEND_UNAVAILABLE`                                    |
-| Outbound attempts                                | Zero                                                                   |
+| Check | Observed result |
+| --- | --- |
+| Refreshed ZIP SHA256 |`bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36b38aef7ae3` |
+| Previous reviewed ZIP |`6d71e987f3019140b802b207eb7a9cd92fe1de57887d463b73449b87f6ce4a5f` |
+| Size and entries |9,014,174 compressed bytes;21,149,045 raw bytes;93 files |
+| Official limits |10,485,760 compressed bytes;67,108,864 raw bytes;4,096 entries |
+| Entry payload comparison | All93 files byte-identical to the previous archive |
+| Raw ZIP difference |372bytes, exclusively DOS timestamps; zero non-timestamp bytes differ |
+| Timestamp-normalized ZIP SHA256 |`71a4aee97a86f5f40d9dd70ac2dd56808c40128464909517ef21739fef843d2d` for both archives |
+| Fresh graph |861 inputs;77 application inputs; no frontend/forbidden inputs |
+| Actual archive/fresh-analysis/host-copy JS hash |`5f33d61cf558e6dd9ea32c98f31cd4a166e74a8e7192c74505ff3eb36077b7d6` |
+| Native files | Sharp 0.35.5/libvips 8.18.7; two ARM64 ELF machine 183 files with unchanged hashes |
+| Trusted GET `/api/health` |200, expected runtime JSON, private/no-store |
+| Untrusted GET `/api/health` |403, redacted UNTRUSTED_PROXY |
+| Unconfigured GET `/api/portal?view=%2Fdashboard` |503, redacted BACKEND_UNAVAILABLE |
+| Outbound attempts | Zero |
 
-The official `@neon/config-runtime@1.10.2` `buildFunctionBundle` API used function `env: {}`, no warnings and no plan/apply/deploy call. The final build ran after the migration ordering fix. Separate fresh analysis used its exact esbuild 0.28.2 options/banner and emitted the identical JavaScript hash. The 861-input count is recomputed, not the earlier 854. The existing archive verifier consumes this fresh receipt; its `receiptGraphOnly.recomputed: false` means that verifier does not itself repeat the separate graph build.
+Fresh esbuild 0.28.2 analysis uses the exact installed official packager options and CommonJS interoperability banner. Its output matches the actual refreshed ZIP entry. Every application input was hashed and compared against prior integrated source 191b76ed26f430128b14112f77b74ad3e26b1ec0. All 77 match. The only backend/configuration/package path changes since that baseline are neon/db/migrate.ts, neon/db/populated-upgrade.ts and neon/scripts/upgrade-populated.ts; all three are outside the API graph. New operator tooling is not silently included in the Function. The receipt names the actual built source5924686 rather than retaining the old packaging source.
 
-New extraction `/tmp/ddd-neon-final-extracted-m_erelu8` and unchanged-JavaScript host copy `/tmp/ddd-neon-final-host-m_t3efh3` were used. Host node_modules resolves to installed executor dependencies, loading x86_64 Sharp ELF machine 62. ZIP, original/host JavaScript and both ARM native hashes were checked before and after the smoke. The original ARM archive/extraction stayed unchanged.
+The new extraction is `/tmp/ddd-neon-refresh-extracted-_fd1xjke`. The separate host copy is `/tmp/ddd-neon-refresh-host-3pvl0ypv`, containing unchanged index.mjs and a node_modules link to the installed x86_64 dependencies. Host Node 24 loads Sharp ELF machine 62. ZIP, original/host JS and both ARM-native hashes were checked before and after smoke. readelf freshly confirms AArch64 headers, packaged libvips dependency and RPATH; it does not execute ARM code.
 
-The Node 24 child starts with six whitelisted system/synthetic keys. Fetch, TCP sockets, TLS and HTTP(S) requests are blocked before import; no provider/DB/SMTP/Google/storage credentials are supplied. Sharp adds only its non-secret native-library path `VIPSHOME`. **This does not execute the unmodified ARM64 ZIP.** ARM64 cold start/decoding, hosted storage, SMTP delivery and full login remain unverified. No deployment, migration apply, mail send, provider setting change or hosted data read/write occurred.
+The smoke child starts with only PATH, LANG, TZ, NODE_ENV and two synthetic frontend/proxy settings. Fetch, TCP, TLS and HTTP(S) outbound entry points are blocked before import. No DB, SMTP, Google, S3 or AI credential is supplied. Sharp adds only its non-secret native-library path VIPSHOME. **This verifies host JavaScript loading and routing with an explicit native dependency substitution, not execution of the unmodified ARM64 archive.** Hosted native decoding, storage, SMTP and full login remain unverified.
 
-An earlier pre-fix build process omitted the executor's public npm proxy transport and failed before replacing the archive. The completed final build retained only ordinary proxy/certificate transport and a writable public npm cache; function env remained empty. Build metadata and operations evidence distinguish this setup correction from any provider action.
+The verifier report's noRebuild field applies to that smoke phase only; the distinct official fresh build is recorded in build-operations.json and build.log. The archive's new SHA is explained entirely by timestamp metadata. The integration owner must update the Windows preparation helper's pinned digest and repeat its existing handoff checks before presenting that helper with the new archive. This worker did not modify the Windows helper or populated-upgrade handoff.
 
-## Manual populated-target upgrade
+Local SQL-file checksum review confirms the original seven historical entries remain unchanged and pending source files 0102_credit_stock.sql and 0103_project_media_limits.sql remain separate, nine total. No migration CLI, provider plan, hosted ledger, backup or SQL operation was run. Runtime payload equivalence does not verify the separate populated-upgrade CLI or establish any hosted migration status. Follow the owner-reviewed [populated upgrade handoff](NEON_POPULATED_UPGRADE_PLAN.md) for future authorized operations.
 
-The hosted target contains real data. Follow [the operator-owned incremental plan](NEON_POPULATED_UPGRADE_PLAN.md): backup/restore checkpoint, exact target and historical ledger/checksum review, pending-only `0102` then `0103` inside the existing `SERIALIZABLE`/advisory-lock migration procedure, private collision review and read-only validation. Never reset/reseed it, rewrite historical checksums or use the synthetic apply flags on that target. No hosted ledger was inspected or migration applied by this lane.
-
-The source-only plan has historical `0000`..`0004`, `0100_auth.sql`, `0101_approved_evaluation.sql`, then new `0102_credit_stock.sql` and `0103_project_media_limits.sql`. The source expectations and exact checksums are recorded in `historical-ledger-checksums.json` and `migration-plan.json`. Stock duplicates fail atomically rather than silently merging/deleting codes; previously valid media references/receipt states remain valid.
-
-Re-run the existing read-only verifier against a fresh extraction and separate host-copy directory:
-
-```sh
-node scripts/verify-neon-host-archive.mjs \
-  --archive artifacts/neon/portalapi.zip \
-  --receipt artifacts/neon/receipt.json \
-  --extracted /tmp/ddd-neon-final-extracted-m_erelu8 \
-  --host /tmp/ddd-neon-final-host-m_t3efh3 \
-  --report evidence/neon-host-archive/report.json
-```
-
-[Receipt](../artifacts/neon/receipt.json), [inventory](../evidence/neon-host-archive/inventory.json), [graph](../evidence/neon-host-archive/graph.json), [source equivalence](../evidence/neon-host-archive/source-equivalence.json) and [host smoke](../evidence/neon-host-archive/report.json) preserve actual outputs. Local host substitution and payload checks do not establish hosted performance or provider success.
-
-Independent [populated upgrade proof](https://github.com/Param302/dddhack-portal/blob/d195fe89b8d327709ffe11d6e87e6c747d1dd96b/docs/COMBINED_MIGRATION_UPGRADE_INDEPENDENT_REVIEW.md) passes six local cases against integrated source `191b76ed26f430128b14112f77b74ad3e26b1ec0`: the seven-entry historical ledger gains only `0102`/`0103`, populated synthetic records remain equal, repeat is empty, and both legacy collision cases roll back atomically. The proof covers actual persisted synthetic auth/profile/team/project/submission/evaluation/inventory/allocation/media rows. It uses local single-connection PGlite and does not claim a hosted ledger inspection or native multi-connection concurrency result. Root integrated the proof as `4b9a6498087a4cca38d465d90e3643778140b942`.
+[Receipt](../artifacts/neon/receipt.json), [build metadata](../artifacts/neon/build-metadata.json), [byte comparison](../evidence/neon-host-archive/archive-refresh-comparison.json), [input hashes](../evidence/neon-host-archive/runtime-input-hashes.json), [source equivalence](../evidence/neon-host-archive/source-equivalence.json), [native headers](../evidence/neon-host-archive/native-readelf.json), [local SQL hashes](../evidence/neon-host-archive/local-sql-hash-review.json) and [outbound-blocked smoke](../evidence/neon-host-archive/report.json) preserve the actual results.

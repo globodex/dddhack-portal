@@ -1,9 +1,9 @@
 {
-  "runtimeSource": "d2f12933191a7633f8bffa252aa568fe65654160",
+  "runtimeSource": "59246860b49d83412c6685e4643f97a21aab55e5",
   "runtime": "nodejs24",
   "source": "neon/api.ts",
   "zipBytes": 9014174,
-  "sha256": "6d71e987f3019140b802b207eb7a9cd92fe1de57887d463b73449b87f6ce4a5f",
+  "sha256": "bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36b38aef7ae3",
   "env": {},
   "warnings": [],
   "buildOnly": true,
@@ -17,12 +17,14 @@
     {
       "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
       "bytes": 18324712,
+      "compressedBytes": 8195758,
       "sha256": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f",
       "elfMachine": 183
     },
     {
       "path": "node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.5.node",
       "bytes": 530120,
+      "compressedBytes": 167789,
       "sha256": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b",
       "elfMachine": 183
     }
@@ -46,7 +48,7 @@
     "unconfiguredPortal": 503,
     "dependencySubstitution": "existing x86_64 host Sharp; original ARM64 archive/extracted tree unchanged"
   },
-  "integratedSourceEquivalentTo": "191b76ed26f430128b14112f77b74ad3e26b1ec0",
+  "integratedSourceEquivalentTo": "59246860b49d83412c6685e4643f97a21aab55e5",
   "graphApplicationInputCount": 77,
   "graphFrontendInputs": [],
   "manualMigrations": [
@@ -101,5 +103,12 @@
     "syntheticOnly": true,
     "hostedDatabaseInspected": false,
     "url": "https://github.com/Param302/dddhack-portal/blob/d195fe89b8d327709ffe11d6e87e6c747d1dd96b/docs/COMBINED_MIGRATION_UPGRADE_INDEPENDENT_REVIEW.md"
-  }
+  },
+  "refreshedFrom": "6d71e987f3019140b802b207eb7a9cd92fe1de57887d463b73449b87f6ce4a5f",
+  "entryPayloadEquivalentToPriorArchive": true,
+  "zipOnlyDosTimestampsDiffer": true,
+  "sourceEquivalenceEvidence": "evidence/neon-host-archive/source-equivalence.json",
+  "sourceBuildVerifiedAgainst": "59246860b49d83412c6685e4643f97a21aab55e5",
+  "archiveComparisonEvidence": "evidence/neon-host-archive/archive-refresh-comparison.json",
+  "zipChangesOnlyDosTimestamps": true
 }

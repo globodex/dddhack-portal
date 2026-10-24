@@ -1,0 +1,12 @@
+{
+  "previousSHA256": "6d71e987f3019140b802b207eb7a9cd92fe1de57887d463b73449b87f6ce4a5f",
+  "refreshedSHA256": "bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36b38aef7ae3",
+  "entriesCompared": 93,
+  "allEntryPayloadBytesIdentical": true,
+  "timestampFieldOffsetsEqual": true,
+  "zipBytesChanged": 372,
+  "zipNonTimestampBytesChanged": 0,
+  "normalizedSHA256": "71a4aee97a86f5f40d9dd70ac2dd56808c40128464909517ef21739fef843d2d",
+  "normalizedZipBytesIdentical": true,
+  "readOnly": true
+}

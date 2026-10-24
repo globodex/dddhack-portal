@@ -1,0 +1,38 @@
+{
+  "runtimeSource": "59246860b49d83412c6685e4643f97a21aab55e5",
+  "baselineSHA256": "6d71e987f3019140b802b207eb7a9cd92fe1de57887d463b73449b87f6ce4a5f",
+  "sha256": "bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36b38aef7ae3",
+  "bytes": 9014174,
+  "fileCount": 93,
+  "uncompressedBytes": 21149045,
+  "indexSha256": "5f33d61cf558e6dd9ea32c98f31cd4a166e74a8e7192c74505ff3eb36077b7d6",
+  "nativeFiles": [
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
+      "bytes": 18324712,
+      "compressedBytes": 8195758,
+      "sha256": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f",
+      "elfMachine": 183
+    },
+    {
+      "path": "node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.5.node",
+      "bytes": 530120,
+      "compressedBytes": 167789,
+      "sha256": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b",
+      "elfMachine": 183
+    }
+  ],
+  "forbiddenPaths": [],
+  "entriesByteIdenticalToBaseline": 93,
+  "allEntryBytesIdentical": true,
+  "zipChangesOnlyDosTimestamps": true,
+  "timestampNormalizedSHA256": "71a4aee97a86f5f40d9dd70ac2dd56808c40128464909517ef21739fef843d2d",
+  "zipBytesChanged": 372,
+  "zipNonTimestampBytesChanged": 0,
+  "graphInputCount": 861,
+  "graphApplicationInputCount": 77,
+  "frontendInputs": [],
+  "extracted": "/tmp/ddd-neon-refresh-extracted-_fd1xjke",
+  "host": "/tmp/ddd-neon-refresh-host-3pvl0ypv",
+  "ARM64Execution": "not performed on x86_64 host"
+}

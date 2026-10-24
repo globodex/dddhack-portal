@@ -1,5 +1,5 @@
 {
-  "runtimeSource": "d2f12933191a7633f8bffa252aa568fe65654160",
+  "runtimeSource": "59246860b49d83412c6685e4643f97a21aab55e5",
   "method": "Fresh esbuild analysis with exact official config-runtime1.10.2 options and banner; output SHA must equal rebuilt archive index.",
   "esbuild": "0.28.2",
   "graphInputCount": 861,
@@ -870,7 +870,8 @@
   "indexBytes": 1648168,
   "indexSha256": "5f33d61cf558e6dd9ea32c98f31cd4a166e74a8e7192c74505ff3eb36077b7d6",
   "officialOptionsMatch": true,
-  "archiveIndexComparison": "exact SHA-256 match with freshly built/extracted ZIP index",
-  "applicationInputCount": 77,
-  "frontendInputs": []
+  "archiveIndexComparison": "identical to actual rebuilt archive index.mjs",
+  "graphApplicationInputCount": 77,
+  "graphFrontendInputs": [],
+  "applicationInputHashes": "evidence/neon-host-archive/runtime-input-hashes.json"
 }

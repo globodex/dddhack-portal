@@ -1,33 +1,25 @@
-# Final reviewed backend archive
+# Refreshed backend archive
 
-`portalapi.zip` was freshly rebuilt from `d2f12933191a7633f8bffa252aa568fe65654160`, the packaging checkout's cherry-pick of integrated source `191b76ed26f430128b14112f77b74ad3e26b1ec0`. The backend/configuration/package paths have an empty diff between those commits. The ZIP includes final credit-stock invariants, any-aspect project media policy/normalization, existing role permissions and sign-in email changes. Later frontend CSS/Studio changes do not enter this backend graph.
+The official archive was freshly rebuilt from final integrated source `59246860b49d83412c6685e4643f97a21aab55e5` using `@neon/config-runtime@1.10.2`, function `env: {}` and the existing public npm cache in offline mode. No warnings, provider operation, hosted migration or deployment occurred.
 
-| Check                 | Result                                                                      |
-| --------------------- | --------------------------------------------------------------------------- |
-| Runtime               | Node.js 24, Linux ARM64 glibc                                               |
-| Archive               | 93 files; 9,014,174 compressed bytes; 21,149,045 uncompressed bytes         |
-| ZIP SHA256            | `6d71e987f3019140b802b207eb7a9cd92fe1de57887d463b73449b87f6ce4a5f`          |
-| JavaScript SHA256     | `5f33d61cf558e6dd9ea32c98f31cd4a166e74a8e7192c74505ff3eb36077b7d6`          |
-| Fresh graph           | 861 inputs; 77 application inputs; no frontend/forbidden inputs             |
-| Native files          | Two ARM64 ELF files, machine 183                                            |
-| Host JavaScript smoke | Trusted health 200, untrusted 403, unconfigured 503; zero outbound attempts |
+| Check | Result |
+| --- | --- |
+| Runtime target | Node.js 24, Linux ARM64 glibc |
+| Archive |93 files;9,014,174 compressed bytes;21,149,045 raw bytes |
+| New ZIP SHA256 |`bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36b38aef7ae3` |
+| JavaScript SHA256 |`5f33d61cf558e6dd9ea32c98f31cd4a166e74a8e7192c74505ff3eb36077b7d6` |
+| Fresh graph |861 inputs;77 application inputs; zero frontend/forbidden inputs |
+| Native files | Two Linux ARM64 ELF files, machine 183; unchanged hashes |
+| Isolated host smoke | Trusted health 200, untrusted 403, unconfigured 503; zero outbound attempts |
 
-The official `@neon/config-runtime@1.10.2` build API produced the ZIP with function `env: {}` and no warnings. Fresh independent graph analysis used its exact esbuild options/banner and matched the actual ZIP JavaScript hash. A new extraction/inventory verified all file hashes and both native architectures. No env files, fixture databases or test source paths are packaged.
+All93 uncompressed entry payloads are byte-identical to the previous reviewed ZIP `6d71e987f3019140b802b207eb7a9cd92fe1de57887d463b73449b87f6ce4a5f`. Exactly372 raw ZIP bytes changed, all in DOS timestamp fields. Zeroing only those fields makes both complete ZIP byte sequences identical. The refreshed archive therefore has a new download/preparation pin with the same runtime payload. The entry comparison and normalized digest are recorded in [archive-refresh-comparison.json](../../evidence/neon-host-archive/archive-refresh-comparison.json).
 
-The host smoke used unchanged JavaScript with explicitly substituted x86_64 Sharp. The original ZIP and ARM64 extraction remained unchanged. **Actual ARM64 execution remains unverified.** No deployment, mail send, real login, storage call, hosted database operation, provider setting or credential change occurred. Publication remains the owner's manual action.
+Since the prior integrated baseline191b76e, the backend-path differences are `neon/db/migrate.ts`, `neon/db/populated-upgrade.ts` and `neon/scripts/upgrade-populated.ts`. None is in the API entry graph. All77 application graph inputs are byte-identical to that baseline. This is precise runtime equivalence; it is not a claim that all backend/tooling source paths have an empty diff.
 
-## Populated database upgrade
+No env files, credentials, fixtures, databases or test source paths are packaged. JavaScript/banner and ARM-native inventories were freshly checked. The host smoke loaded unchanged JavaScript with an explicitly substituted installed x86_64 Sharp dependency, leaving the ARM64 ZIP/extraction unchanged. **Actual unmodified ARM64 execution remains unverified.** Hosted cold start, storage, SMTP and full login are not established by this local audit.
 
-The hosted database contains real records. The owner must establish a backup/restore checkpoint, verify the exact target and existing ledger/checksums, and use an approved incremental pending-only procedure. The new files are `0102_credit_stock.sql` and `0103_project_media_limits.sql`, after the preserved historical seven migrations. The combined plan is sorted; no historical SQL/checksum or auth migration was rewritten. Duplicate legacy category keys/fingerprints cause atomic failure for manual collision review.
+SQL files are separate from the Function ZIP. Local file-only checksum review confirms seven historical entries unchanged plus pending `0102_credit_stock.sql` and `0103_project_media_limits.sql`, nine total. No provider plan, hosted ledger inspection, migration application, backup or database operation was performed. The populated-target workflow remains an owner-operated task in [the upgrade handoff](../../docs/NEON_POPULATED_UPGRADE_PLAN.md).
 
-**Never use `PORTAL_SYNTHETIC_DATABASE=1`, `--apply-synthetic`, fixture seeds, schema resets or destructive replacement on the populated hosted target.** The existing CLI's default inspects local files only. The [manual incremental plan](../../docs/NEON_POPULATED_UPGRADE_PLAN.md) gives the operator route using the existing transaction/advisory-lock migration library, expected historical checksums, pending names, collision handling and validation. Nothing was applied here. SQL sources are separate from the Function ZIP.
+The Windows preparation helper must use this new exact ZIP hash if it consumes the refreshed file. Its pin and handoff documentation are coordinated separately with the integration owner; this archive worker did not edit those files. Publication remains manual.
 
-[Verification](../../docs/NEON_HOST_ARCHIVE_VERIFICATION.md), [receipt](receipt.json), [build metadata](build-metadata.json) and [evidence](../../evidence/neon-host-archive/report.json) preserve provenance and limits. The source plan has seven historical entries plus two pending feature entries, nine total.
-
-Rebuild with the existing helper and official runtime:
-
-```sh
-npm_config_cache=/tmp/ddd-npm-cache node scripts/build-neon-archive.mjs /tmp/ddd-neon-build-tools/node_modules/@neon/config-runtime/dist/v1.js
-```
-
-This calls build only, never plan/apply/deploy. Native staging uses public npm packages and the executor's ordinary transport configuration. ZIP timestamps can change future archive hashes.
+[Verification](../../docs/NEON_HOST_ARCHIVE_VERIFICATION.md), [receipt](receipt.json), [build metadata](build-metadata.json), [fresh graph](../../evidence/neon-host-archive/graph.json), [source equivalence](../../evidence/neon-host-archive/source-equivalence.json) and [host smoke](../../evidence/neon-host-archive/report.json) preserve provenance and limits.
