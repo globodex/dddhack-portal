@@ -1,5 +1,6 @@
 {
-  "source": "f8b4788ccb527c18b53fcaf4071168a874fdde11",
+  "source": "ee7a1593e99a87aee5cdd8bf1c96a133cc7b9321",
+  "supersedesVisualCheckpoint": "f8b4788ccb527c18b53fcaf4071168a874fdde11",
   "screenshots": [
     {
       "path": "evidence/redesign-profile/profile-step-1-1440x900.png",
@@ -30,16 +31,30 @@
       "path": "evidence/redesign-profile/profile-step-3-390x844.png",
       "nativeOriginal": true,
       "viewed": true
+    },
+    {
+      "path": "evidence/redesign-profile/profile-mobile-navigation-390x844.png",
+      "nativeOriginal": true,
+      "viewed": true
     }
   ],
   "library": {
     "status": "blocked",
-    "action": "Create six screenshot Library files through current prepared-upload helper",
-    "reason": "Hosted apps tools/list request failed with HTTP status 401",
+    "action": "Create screenshot Library files through current prepared-upload helper",
+    "reason": "Hosted apps tools/list request failed with HTTP status 401 before preparation",
     "writePrepared": false,
     "newLibraryIds": []
   },
   "syntheticOnly": true,
   "visualCheckpoint": true,
-  "completionClaim": false
+  "behaviorEvidence": {
+    "source": "affec90e64f9fd1bcaefeee66d17ad71a4dfef81",
+    "keyboardChecks": 12,
+    "touchChecks": 12,
+    "persistedProfileSaves": 2,
+    "axeViolations": 0,
+    "localOrigin": "http://localhost:3001",
+    "productionGuardChanges": false
+  },
+  "remaining": "Follow-up focuses invalid fields below the sticky header on short viewports; normal-state screenshots are valid. All-page combined verification is still running."
 }
