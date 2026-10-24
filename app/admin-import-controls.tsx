@@ -1,6 +1,7 @@
 "use client";
 import { useHydrated } from "./use-hydrated";
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState, type Ref } from "react";
+import { rosterEmailColumns } from "../lib/roster-import-columns";
 import {
   useAdminOperation,
   type AdminRow,
@@ -28,6 +29,7 @@ export type ImportPreview = {
   digest: string;
   headers: string[];
   fieldMap: ImportFieldMap;
+  emailColumns?: string[];
   counts: {
     new: number;
     existing: number;
@@ -48,21 +50,6 @@ export type ImportPreviewRequest = {
   kind: "roster";
   csv: string;
   fieldMap?: ImportFieldMap;
-};
-const fieldLabels: Record<ImportField, string> = {
-  email: "Email",
-  displayName: "Full name",
-  bio: "One-line bio",
-  phone: "Phone",
-  sex: "Sex",
-  bestDescription: "Best description",
-  organization: "Organization",
-  openaiOrgId: "OpenAI organization ID",
-  linkedin: "LinkedIn",
-  github: "GitHub",
-  x: "X",
-  instagram: "Instagram",
-  website: "Website",
 };
 
 export function adminPreviewError(action: string, body: AdminRow): string {
@@ -141,6 +128,46 @@ function previewError(error: NonNullable<ImportPreview["errors"]>[number]) {
 
 export type ParticipantImportMode = "single" | "emails" | "csv";
 
+export function RosterEmailColumnPicker({
+  headers,
+  value,
+  onChange,
+  inputRef,
+  errorId,
+}: {
+  headers: readonly string[];
+  value: string;
+  onChange: (value: string) => void;
+  inputRef?: Ref<HTMLSelectElement>;
+  errorId?: string;
+}) {
+  const candidates = rosterEmailColumns(headers);
+  if (candidates.length < 2) return null;
+  return (
+    <div className="admin-csv-columns">
+      <label>
+        Email column
+        <select
+          ref={inputRef}
+          aria-label="Email column"
+          aria-invalid={!value}
+          aria-describedby={errorId}
+          required
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+        >
+          <option value="">Choose email column</option>
+          {candidates.map((header) => (
+            <option value={header} key={header}>
+              {header}
+            </option>
+          ))}
+        </select>
+      </label>
+    </div>
+  );
+}
+
 export function confirmedImportValues(
   csv: string,
   fieldMap: ImportFieldMap,
@@ -204,7 +231,12 @@ export default function AdminImportControls({
   const [csv, setCSV] = useState("");
   const [fieldMap, setFieldMap] = useState<ImportFieldMap>({});
   const [headers, setHeaders] = useState<string[]>([]);
+  const emailColumn = useRef<HTMLSelectElement>(null);
   const { busy, error, execute, clearError } = useAdminOperation();
+  useEffect(() => {
+    if (!busy && headers.length > 1 && !fieldMap.email)
+      emailColumn.current?.focus();
+  }, [headers, fieldMap.email, busy]);
   const changeSource = (value: string) => {
     setCSV(value);
     setFieldMap({});
@@ -236,9 +268,14 @@ export default function AdminImportControls({
                   Array.isArray(response.headers) &&
                   !response.fieldMap?.email
                 ) {
-                  setHeaders(response.headers);
+                  const candidates = rosterEmailColumns(response.headers);
+                  setHeaders(candidates);
                   setFieldMap(response.fieldMap || {});
-                  throw new Error("Choose the email column.");
+                  throw new Error(
+                    candidates.length > 1
+                      ? "Choose the participant email column."
+                      : "No email column found. Add a header containing the word Email.",
+                  );
                 }
               },
             );
@@ -246,10 +283,7 @@ export default function AdminImportControls({
           });
         }}
       >
-        <fieldset
-          disabled={!hydrated || busy || !hydrated}
-          className="admin-import-fields"
-        >
+        <fieldset disabled={!hydrated || busy} className="admin-import-fields">
           <div
             className="admin-source-options"
             role="group"
@@ -356,51 +390,20 @@ export default function AdminImportControls({
               {busy ? "Waiting…" : "Add"}
             </button>
           </div>
-          {headers.length > 0 && (
-            <div className="admin-csv-columns">
-              {headers.map((header) => {
-                const selected =
-                  approvedImportFields.find(
-                    (field) => fieldMap[field] === header,
-                  ) || "";
-                return (
-                  <label key={header}>
-                    {header}
-                    <select
-                      aria-label={`Map ${header}`}
-                      value={selected}
-                      onChange={(event) => {
-                        const next = { ...fieldMap };
-                        for (const field of approvedImportFields)
-                          if (next[field] === header) delete next[field];
-                        if (event.target.value)
-                          next[event.target.value as ImportField] = header;
-                        setFieldMap(next);
-                        clearError();
-                      }}
-                    >
-                      <option value="">Ignore column</option>
-                      {approvedImportFields.map((field) => (
-                        <option
-                          value={field}
-                          key={field}
-                          disabled={Boolean(
-                            fieldMap[field] && fieldMap[field] !== header,
-                          )}
-                        >
-                          {fieldLabels[field]}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                );
-              })}
-            </div>
-          )}
+          <RosterEmailColumnPicker
+            headers={headers}
+            value={fieldMap.email || ""}
+            inputRef={emailColumn}
+            errorId={error ? `${id}-error` : undefined}
+            onChange={(value) => {
+              setFieldMap({ ...fieldMap, email: value });
+              clearError();
+            }}
+          />
         </fieldset>
       </form>
       {error && (
-        <p className="error-message" role="alert">
+        <p id={`${id}-error`} className="error-message" role="alert">
           {error}
         </p>
       )}

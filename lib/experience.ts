@@ -189,13 +189,13 @@ export class PortalExperience {
       actor.email,
     );
     const prefill =
-      imported && !p?.completed_at ? JSON.parse(imported.payload) : {};
+      imported && !p?.completed_at && !details ? JSON.parse(imported.payload) : {};
     return {
       ...p,
       ...details,
-      bio: p?.bio || prefill.bio || "",
-      gender: p?.gender_confirmed ? p.gender : prefill.gender || p?.gender,
-      gender_prefilled: !!prefill.gender,
+      bio: p?.bio || "",
+      gender: p?.gender,
+      gender_prefilled: false,
       phone: details?.phone || prefill.phone || "",
       best_description:
         details?.best_description || prefill.bestDescription || "",

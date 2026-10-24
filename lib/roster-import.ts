@@ -3,6 +3,12 @@ import type { PortalService } from "./service";
 import { one, rows, type SQL } from "./db";
 import { demand, emailSchema, httpsUrl, parseCSV, sha256 } from "./security";
 import { normalizePhone } from "./phone";
+import {
+  rosterEmailColumns,
+  rosterPrefillColumns,
+  rosterNameParts,
+  rosterGitHubURL,
+} from "./roster-import-columns";
 const fields = [
   "email",
   "displayName",
@@ -21,7 +27,7 @@ const fields = [
 const mapping = z
   .object(
     Object.fromEntries(
-      fields.map((f) => [f, z.string().min(1).max(200).optional()]),
+      fields.map((f) => [f, z.string().min(1).max(1000).optional()]),
     ),
   )
   .strict();
@@ -61,12 +67,9 @@ export async function rosterImport(
       422,
       "CSV_DUPLICATE_HEADERS",
     );
-    if (
-      !map.email &&
-      headers.length === 1 &&
-      headers[0].toLowerCase() === "email"
-    )
-      map.email = headers[0];
+    map = { ...rosterPrefillColumns(headers), ...map };
+    const candidates = rosterEmailColumns(headers);
+    if (!map.email && candidates.length === 1) map.email = candidates[0];
   }
   for (const h of Object.values(map))
     demand(headers.includes(h), 422, "CSV_MAPPING_HEADER_MISSING");
@@ -84,9 +87,12 @@ export async function rosterImport(
   if (!map.email)
     errors.push({
       message:
-        "Map the actual email column before importing. No header names were guessed.",
+        rosterEmailColumns(headers).length > 1
+          ? "Choose the participant email column."
+          : "No email column found. Add a header containing the word Email.",
     });
   const seen = new Set<string>();
+  const nameParts = rosterNameParts(headers);
   let duplicates = 0;
   if (map.email)
     for (const [index, row] of parsed.entries()) {
@@ -105,12 +111,20 @@ export async function rosterImport(
       const prefill: Record<string, unknown> = {};
       for (const [key, max] of [
         ["displayName", 120],
-        ["bio", 200],
         ["bestDescription", 120],
         ["organization", 200],
         ["openaiOrgId", 120],
       ] as const) {
-        const v = value(key);
+        const v =
+          value(key) ||
+          (key === "displayName"
+            ? [nameParts.firstName, nameParts.lastName]
+                .flatMap((header) =>
+                  header ? [row[headers.indexOf(header)]?.trim() || ""] : [],
+                )
+                .filter(Boolean)
+                .join(" ")
+            : "");
         if (v) {
           if (v.length > max || /[\r\n]/.test(v)) {
             errors.push({
@@ -131,22 +145,6 @@ export async function rosterImport(
           });
         }
       }
-      const sex = value("sex").toLowerCase();
-      if (sex) {
-        const gender = (
-          {
-            male: "man",
-            female: "woman",
-            "non-binary": "non-binary",
-          } as Record<string, string>
-        )[sex];
-        if (gender) prefill.gender = gender;
-        else
-          errors.push({
-            row: index + 2,
-            message: "Sex must be Male, Female or Non-binary.",
-          });
-      }
       const socialLinks: { type: string; url: string }[] = [];
       for (const [key, type] of [
         ["linkedin", "LinkedIn"],
@@ -157,7 +155,9 @@ export async function rosterImport(
       ]) {
         const v = value(key);
         if (v) {
-          const link = httpsUrl.safeParse(v);
+          const link = httpsUrl.safeParse(
+            key === "github" ? rosterGitHubURL(v) : v,
+          );
           if (link.success) socialLinks.push({ type, url: link.data });
           else
             errors.push({
@@ -223,6 +223,7 @@ export async function rosterImport(
       digest,
       headers,
       fieldMap: map,
+      emailColumns: rosterEmailColumns(headers),
       counts,
       rows: prepared.map((r) => ({
         row: r.row,
