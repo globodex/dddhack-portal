@@ -184,6 +184,23 @@ dialog::backdrop { background: #20232066; }
 .mobile-navigation,.mobile-navigation::backdrop { background: var(--paper); color: var(--ink); }
 .mobile-navigation nav > :is(a,button) { color: var(--ink); border-color: var(--line); }
 .mobile-navigation nav > a[aria-current="page"] { color: #2e6841; }
+.app-shell :is(.public-menu, .mobile-header > button[aria-controls="mobile-navigation"]) {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 10px;
+  border: 1px solid var(--ink) !important;
+  border-radius: 50%;
+  color: #fff !important;
+  background: var(--ink) !important;
+}
+.mobile-navigation nav > :is(a,button) { gap: 16px; }
+.mobile-navigation nav > :is(a,button) > svg { display: block; width: 24px; height: 24px; flex: 0 0 24px; }
+.app-shell .account-controls .account-logout,
+.mobile-navigation nav > .navigation-logout { color: #b12d26; }
+.app-shell .account-controls .account-logout:hover,
+.mobile-navigation nav > .navigation-logout:hover { color: #8f211c; background: #faebe6; }
 @media (max-width: 1199px) {
   .app-shell.onboarding-shell { min-height: 100svh; }
   .app-shell.workspace-shell > .main { width: 100%; padding: 28px 24px 48px; }

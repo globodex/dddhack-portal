@@ -15,7 +15,7 @@ Both exports accept the existing `lib/db.Database` contract. `createAuthHandler`
 
 ## Proxy and configuration
 
-`APP_ORIGIN` and `AUTH_BASE_URL` must be the same exact origin, without a path or trailing slash. HTTPS is required except for loopback development. The intended browser origin is `https://dddhack-portal.vercel.app` (domain availability/deployment is unverified). Local development uses `http://localhost:3000`.
+`APP_ORIGIN` and `AUTH_BASE_URL` must be the same exact origin, without a path or trailing slash. HTTPS is required except for loopback development. The user-selected browser origin is `https://dddhack-portal.itsparam.in`; configure it on both runtimes. This source change does not configure providers or establish that the domain is reachable. Local development uses `http://localhost:3000`.
 
 Every request requires `x-portal-proxy-secret` matching `PORTAL_PROXY_SECRET` and `x-portal-forwarded-origin` matching `APP_ORIGIN`. Both secrets (`BETTER_AUTH_SECRET`, `PORTAL_PROXY_SECRET`) must contain at least 32 characters; provision independent cryptographically random values. Caller-controlled Host, Forwarded, X-Forwarded-* and Sites headers confer no trust. All POST requests additionally require the exact browser `Origin`.
 

@@ -358,6 +358,9 @@ type IconName =
   | "users"
   | "team"
   | "credits";
+function navigationIcon(label: string): IconName {
+  return ({ Home: "home", Dashboard: "dashboard", Discover: "discover", Participants: "users", Teams: "team", Projects: "projects", Leaderboard: "leaderboard", Rules: "rules", Settings: "settings", Logs: "logs", Credits: "credits", Workspace: "dashboard", Administration: "settings", "Assigned projects": "projects" } as Record<string, IconName>)[label] || "projects";
+}
 function Icon({ name, size = 20 }: { name: IconName; size?: number }) {
   const Component = {
     credits: Ticket,
@@ -5753,19 +5756,20 @@ export default function Portal({
       </aside>
       <MobileNavigation open={menu} onClose={() => setMenu(false)}>
         {nav.map(([href, label]) => (
-          <Link prefetch={false} key={href} href={href} onNavigate={(event) => navigate(event, href)} aria-current={path === href ? "page" : undefined}>{label}</Link>
+          <Link prefetch={false} key={href} href={href} onNavigate={(event) => navigate(event, href)} aria-current={path === href ? "page" : undefined}><Icon name={navigationIcon(label)} />{label}</Link>
         ))}
         {!data.me ? (
-          <a href="/signin?returnTo=%2Fdashboard" target="_top">Sign in</a>
+          <a href="/signin?returnTo=%2Fdashboard" target="_top"><Icon name="person" />Sign in</a>
         ) : (
           <>
-            {data.me.mode !== "viewer" && <a href="/profile">Your profile</a>}
+            {data.me.mode !== "viewer" && <a href="/profile"><Icon name="person" />Your profile</a>}
             {(privileged || data.me.role === "volunteer") && (
               <a href={admin ? "/dashboard" : "/admin/participants"}>
+                <Icon name={admin ? "dashboard" : "settings"} />
                 {admin ? "Workspace" : "Administration"}
               </a>
             )}
-            <button type="button" onClick={() => { setMenu(false); requestAnimationFrame(() => void logout()); }}>Log out</button>
+            <button className="navigation-logout" type="button" onClick={() => { setMenu(false); requestAnimationFrame(() => void logout()); }}><LogOut size={24} aria-hidden="true" />Log out</button>
           </>
         )}
       </MobileNavigation>
