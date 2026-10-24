@@ -253,6 +253,11 @@
       "app/team-studio-shell.css",
       "app/team-studio-experience.css"
     ],
-    "visualLimitation": "Historical submission PNGs retain prior sidebar shell. Current-shell editor visual retake remains missing despite identical Submission component."
+    "visualLimitation": "Historical submission PNGs retain prior sidebar shell; current-shell integration must be assessed separately despite identical Submission component."
+  },
+  "followUpClosures": {
+    "currentStudioShell": "evidence/final-submission-shell/README.md; 13 original PNGs individually viewed, zero POSTs",
+    "visibleInputSaveToast": "evidence/final-save-toast/README.md; exactly one authorized synthetic Save200, revision2 to3, attempts remain2, four original PNGs individually viewed",
+    "cliVerification": "Root independent10 CLI tests,16 affected migration tests, typecheck and build; exact reference hashes in final-save-toast/verification.json"
   }
 }

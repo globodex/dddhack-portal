@@ -1,0 +1,245 @@
+{
+  "source": "57d7fc3801820b13748441a649c68ee0e0310d56",
+  "appCodeSource": "e1d50c27ef0785a93faf4c2e1f48929937d65aac",
+  "syntheticOnly": true,
+  "reusedOwnedFreshFixture": true,
+  "backendPort": 8849,
+  "oneAllowedAction": "save-project",
+  "disallowedActions": [
+    "submit-project",
+    "all other mutations"
+  ],
+  "fingerprint": {
+    "app/portal.tsx": "c0a8711f84679b89a4f5d0f05c2ef579f2bc5b60b2619cf335296c6f73e5b8b6",
+    "app/team-studio-shell.css": "8486d0f7b2aeb3ddcede05b25265bcb6608dcd12c2a4e30d2145fe52648186f2",
+    "app/team-studio-experience.css": "0265e12fc8b2ad0223de821111837d4c5439969a8adaaa8eae22199146513f0c",
+    "app/projects-rules-experience.css": "8edc84868154cca5b76fda7e022e2a702eff0f6e17807a027629015e64579b01"
+  },
+  "writes": [
+    {
+      "action": "save-project",
+      "revision": 2,
+      "status": "committed",
+      "requestBytes": 3200,
+      "payloadSha256": "af1c07bb6349f6923f7de3f52435399b3f0ac65fb6ba7dd29ee9fdeeff331662",
+      "httpStatus": 200,
+      "receipt": {
+        "message": "Project draft saved.",
+        "projectId": "visual_project_alice"
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "evidence/final-save-toast/one-save-confirmation.png",
+      "sha256": "d12e31d109063d208fb691507bf309abb1038fece689a5397fdfe6e5aa804b5a",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "path": "evidence/final-save-toast/saved-success-before-visible-input-focus.png",
+      "sha256": "b9ef3ea9173b1c258dbf2c5be5d32309ce24bf58a64e93483b825953eee88d05",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "path": "evidence/final-save-toast/save-success-cleared-visible-input-focused.png",
+      "sha256": "fbb56e5a9c12f1988c08263255511c1e636f4f179c0fde8e9b08e7c5ff9e81b8",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "path": "evidence/final-save-toast/required-field-error-retained-after-other-input-focus.png",
+      "sha256": "052247a35c6a5aa29e26f33aa74377febfe98dcbd98b7d5f826b6817cc645041",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "Actual save200 refreshesStep1; visible projectName focus clears existing success before5s timeout",
+      "passed": true
+    },
+    {
+      "name": "Unrelated visible field focus retains required-name error and ARIA association; no extra save",
+      "passed": true
+    }
+  ],
+  "blocked": [],
+  "errors": [],
+  "before": {
+    "revision": 2,
+    "attempts": 2,
+    "auditCount": 1,
+    "tableHashes": {
+      "astra_jobs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "audit_logs": "43f82e50cf72fbe7865e671ee18efd5ee0928436e2edd34e3ff8b9e8b04106b3",
+      "automatic_absences": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "check_ins": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "credit_allocations": "d5a27e6c749e4ba4fba12a8e4b216ca4ba04308eb0b9b5880b7c54dcbcd92ef6",
+      "credit_batch_columns": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "credit_batches": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "credit_category_keys": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "credit_code_history": "d4330227ce05de7b4d13ec4b822221be7d1ecb8c4bf38a5b60a74f3ada282f53",
+      "credit_inventory": "2af7143a61b051d649e3cf6521214c84a74d3c902217084baccf3c169f5138e1",
+      "credit_stock_imports": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "credit_types": "d99863bf9893c390e480ab6f9d09695cccdbf0aac9958c91f5008a36fb0a43a7",
+      "eligibility_history": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "engagement_controls": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "evaluation_runs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "event_content": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "event_content_history": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "event_policy_history": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "event_settings": "527e5a8be63236a2f413f6224be437969892019df959ef843c484f72bb58eaee",
+      "feedback": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "human_scores": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "idea_revisions": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "ideas": "a9ab268a6ace2ab79170f0c46a92d8e391490960bbda8d16e6749e1a586996f0",
+      "import_previews": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "judge_assignments": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "local_schema_migrations": "322005b1fae8dd7694e2531364e94225e3ecee0b9d428327593e0c682b8beb15",
+      "luma_roster": "a641f7036b0f9147e7e1a10ba91f123a8af10253c2fce75b90cc92db0050a3f8",
+      "manual_checkins": "388a9e01dd6c325a18bcd0957f3b8218bc2525fec3e78e5da1e964ae4400e085",
+      "memberships": "12cdabe437fdea258ae98177577974da314d00f1af95143b372c85fb7c9ace15",
+      "participant_profiles": "210bd6a9d55ce69be2033a66e5ab1f7f463a287b6477c60decbf1bf72a6c1226",
+      "participant_status_overrides": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "portal_roles": "3f41175067c06144c76421e584a731447d9bd6c86154199ce239f0f379f1231f",
+      "private_venue": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "private_venue_managers": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "profile_details": "40fd3f5b188aa9e17c4e630e559c15b793daefa9377044398210783b7b178661",
+      "profile_photos": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "profiles": "0c8e91b80f0c385ec23b6aca952b41b7ed17ca0a91851058ff568b6991fa5765",
+      "project_assignments": "cd9e6724a37ba7534669336d009ac3b379d98f1c5752f08b4fe45e5de97ffc5d",
+      "project_comments": "78c7836aa07fe40db2d4e70e39fe4c7792d114a8c669a5738caa0e3053186adb",
+      "project_commit_receipts": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "project_eligibility": "ac23b5323ef804370f4d996bdf04dc29b3dbcbc5f9b73b3170ec430f6ef60dc8",
+      "project_feedback_reviews": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "project_review_history": "73ec2834c795bfe4b8f469798d5bb5fcb58c5fc8709bd701ae7fa0c127c94833",
+      "project_upvotes": "930c096061d397f9edee332cbc11d60da2fa87442e670f010b67d1b270075e11",
+      "projects": "9c5877375d62ed1fb08637bd02b4ba46c59d2b3c23ec82135c2bdd6087063ca0",
+      "record_removals": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "registration_absences": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "registrations": "71c23d890387b5224f6ae761e3eb8acdc16c5e7bae50b7ca1d145af9e218eade",
+      "repository_evidence": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "request_buckets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "result_publication": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "result_snapshots": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "reviews": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "roster_prefills": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "score_releases": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "scoring_revision": "7d95bebcf5f82efae33c9ca4651f034ebd176d6842282d94460a8aa23f1f2787",
+      "submission_versions": "373fa88efe2be7073796c1da460f44d01ea7e6875b318c754de879c49901ff78",
+      "team_actions": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "team_locks": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "team_status_overrides": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "team_styles": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "teams": "28759ab3923ac8e858f0cccce0a9fb951b45f6be4969d41a01b8aa83cae1ba40",
+      "tie_resolutions": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "users": "67c8b35eacd6f53d34897575fb320f262aeda49246c420e7e7fcef8d1cccf88e",
+      "votes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "winner_reveals": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "write_guards": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "focusProof": {
+    "visibleInput": "projectName",
+    "refreshedStep": 1,
+    "enabled": true,
+    "focused": true,
+    "successPresentImmediatelyBeforeFocus": true,
+    "successSeenToFocusMs": 289,
+    "focusToClearedMs": 469,
+    "sourceAutoDismissMs": 5000,
+    "usedFocusOnlyNoTyping": true
+  },
+  "after": {
+    "revision": 3,
+    "attempts": 2,
+    "auditCount": 2,
+    "tableHashes": {
+      "astra_jobs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "audit_logs": "b475de13c6026da679adeeecf28cf83d7055e3a7776b0ac04cb37daee98ac49b",
+      "automatic_absences": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "check_ins": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "credit_allocations": "d5a27e6c749e4ba4fba12a8e4b216ca4ba04308eb0b9b5880b7c54dcbcd92ef6",
+      "credit_batch_columns": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "credit_batches": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "credit_category_keys": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "credit_code_history": "d4330227ce05de7b4d13ec4b822221be7d1ecb8c4bf38a5b60a74f3ada282f53",
+      "credit_inventory": "2af7143a61b051d649e3cf6521214c84a74d3c902217084baccf3c169f5138e1",
+      "credit_stock_imports": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "credit_types": "d99863bf9893c390e480ab6f9d09695cccdbf0aac9958c91f5008a36fb0a43a7",
+      "eligibility_history": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "engagement_controls": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "evaluation_runs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "event_content": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "event_content_history": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "event_policy_history": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "event_settings": "527e5a8be63236a2f413f6224be437969892019df959ef843c484f72bb58eaee",
+      "feedback": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "human_scores": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "idea_revisions": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "ideas": "a9ab268a6ace2ab79170f0c46a92d8e391490960bbda8d16e6749e1a586996f0",
+      "import_previews": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "judge_assignments": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "local_schema_migrations": "322005b1fae8dd7694e2531364e94225e3ecee0b9d428327593e0c682b8beb15",
+      "luma_roster": "a641f7036b0f9147e7e1a10ba91f123a8af10253c2fce75b90cc92db0050a3f8",
+      "manual_checkins": "388a9e01dd6c325a18bcd0957f3b8218bc2525fec3e78e5da1e964ae4400e085",
+      "memberships": "12cdabe437fdea258ae98177577974da314d00f1af95143b372c85fb7c9ace15",
+      "participant_profiles": "210bd6a9d55ce69be2033a66e5ab1f7f463a287b6477c60decbf1bf72a6c1226",
+      "participant_status_overrides": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "portal_roles": "3f41175067c06144c76421e584a731447d9bd6c86154199ce239f0f379f1231f",
+      "private_venue": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "private_venue_managers": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "profile_details": "40fd3f5b188aa9e17c4e630e559c15b793daefa9377044398210783b7b178661",
+      "profile_photos": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "profiles": "0c8e91b80f0c385ec23b6aca952b41b7ed17ca0a91851058ff568b6991fa5765",
+      "project_assignments": "cd9e6724a37ba7534669336d009ac3b379d98f1c5752f08b4fe45e5de97ffc5d",
+      "project_comments": "78c7836aa07fe40db2d4e70e39fe4c7792d114a8c669a5738caa0e3053186adb",
+      "project_commit_receipts": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "project_eligibility": "ac23b5323ef804370f4d996bdf04dc29b3dbcbc5f9b73b3170ec430f6ef60dc8",
+      "project_feedback_reviews": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "project_review_history": "73ec2834c795bfe4b8f469798d5bb5fcb58c5fc8709bd701ae7fa0c127c94833",
+      "project_upvotes": "930c096061d397f9edee332cbc11d60da2fa87442e670f010b67d1b270075e11",
+      "projects": "c090197448ee29c8d3c675ffb1721d319c33019d1a7854e22e8bc6cd673dc729",
+      "record_removals": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "registration_absences": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "registrations": "71c23d890387b5224f6ae761e3eb8acdc16c5e7bae50b7ca1d145af9e218eade",
+      "repository_evidence": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "request_buckets": "269c88eb35cd05aaeeb40a44cf806976cc28f11bfca27673db132e811b84cc94",
+      "result_publication": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "result_snapshots": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "reviews": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "roster_prefills": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "score_releases": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "scoring_revision": "7d95bebcf5f82efae33c9ca4651f034ebd176d6842282d94460a8aa23f1f2787",
+      "submission_versions": "373fa88efe2be7073796c1da460f44d01ea7e6875b318c754de879c49901ff78",
+      "team_actions": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "team_locks": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "team_status_overrides": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "team_styles": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "teams": "28759ab3923ac8e858f0cccce0a9fb951b45f6be4969d41a01b8aa83cae1ba40",
+      "tie_resolutions": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "users": "67c8b35eacd6f53d34897575fb320f262aeda49246c420e7e7fcef8d1cccf88e",
+      "votes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "winner_reveals": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "write_guards": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    'audit_logs',\n    'projects',\n+   'request_buckets'\n  ]\n\n    at file:///workspace/ddd-final-ui-coverage/scripts/qa-final-save-toast.mjs:101:10\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+  "browserClosed": true,
+  "fingerprintAtEnd": {
+    "app/portal.tsx": "c0a8711f84679b89a4f5d0f05c2ef579f2bc5b60b2619cf335296c6f73e5b8b6",
+    "app/team-studio-shell.css": "8486d0f7b2aeb3ddcede05b25265bcb6608dcd12c2a4e30d2145fe52648186f2",
+    "app/team-studio-experience.css": "0265e12fc8b2ad0223de821111837d4c5439969a8adaaa8eae22199146513f0c",
+    "app/projects-rules-experience.css": "8edc84868154cca5b76fda7e022e2a702eff0f6e17807a027629015e64579b01"
+  }
+}

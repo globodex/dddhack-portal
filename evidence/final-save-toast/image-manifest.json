@@ -1,0 +1,37 @@
+{
+  "source": "57d7fc3801820b13748441a649c68ee0e0310d56",
+  "images": [
+    {
+      "file": "one-save-confirmation.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 63249,
+      "sha256": "d12e31d109063d208fb691507bf309abb1038fece689a5397fdfe6e5aa804b5a",
+      "viewed": true
+    },
+    {
+      "file": "saved-success-before-visible-input-focus.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 57995,
+      "sha256": "b9ef3ea9173b1c258dbf2c5be5d32309ce24bf58a64e93483b825953eee88d05",
+      "viewed": true
+    },
+    {
+      "file": "save-success-cleared-visible-input-focused.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 54406,
+      "sha256": "fbb56e5a9c12f1988c08263255511c1e636f4f179c0fde8e9b08e7c5ff9e81b8",
+      "viewed": true
+    },
+    {
+      "file": "required-field-error-retained-after-other-input-focus.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 54469,
+      "sha256": "052247a35c6a5aa29e26f33aa74377febfe98dcbd98b7d5f826b6817cc645041",
+      "viewed": true
+    }
+  ]
+}
