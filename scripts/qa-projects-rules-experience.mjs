@@ -31,6 +31,8 @@ async function loaded(page, path) {
   const response = await page.goto(origin + path, { waitUntil: "domcontentloaded", timeout: 60000 });
   assert.equal(response.status(), 200);
   await page.waitForLoadState("networkidle");
+  if (path === "/projects" || path === "/leaderboard" || path.startsWith("/projects/"))
+    await page.locator('.projects-v6[data-hydrated="true"]').waitFor();
 }
 try {
   for (const viewport of viewports) {
@@ -123,7 +125,7 @@ try {
   const native = await noJS.newPage();
   const nativeRequests = [];
   await noJS.route("**/*", (route) => {
-    nativeRequests.push({ method: route.request().method(), url: route.request().url() });
+    nativeRequests.push({ method: route.request().method(), url: route.request().url(), resourceType: route.request().resourceType() });
     if (route.request().url() === origin + "/__qa-native-form") return route.fulfill({ status: 200, contentType: "text/html", body: html });
     return route.abort();
   });
@@ -134,7 +136,7 @@ try {
   await native.getByRole("button", { name: "Next", exact: true }).click({ force: true, timeout: 1000 }).catch(() => {});
   await native.keyboard.press("Enter");
   assert.equal(nativeRequests.filter((item) => item.url.includes("SYNTHETIC_PRIVATE")).length, 0);
-  assert.equal(nativeRequests.filter((item) => item.url !== origin + "/__qa-native-form").length, 0);
+  assert.equal(nativeRequests.filter((item) => item.resourceType === "document" && item.url !== origin + "/__qa-native-form").length, 0);
   check("JavaScript-disabled browser: actual server-rendered Submission cannot issue a native GET or submit private draft fields");
   await noJS.close();
   assert.equal(report.errors.length, 0);

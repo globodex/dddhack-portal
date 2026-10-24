@@ -3057,7 +3057,7 @@ export function Projects({
   );
   if (detail && p)
     return (
-      <section className="projects-v6 public-project-detail">
+      <section className="projects-v6 public-project-detail" data-hydrated={hydrated}>
         <header className="project-detail-topline">
           <a
             className="back-link"
@@ -3178,13 +3178,13 @@ export function Projects({
       </section>
     );
   return (
-    <section className="projects-v6 public-project-list">
+    <section className="projects-v6 public-project-list" data-hydrated={hydrated}>
       <header className="page-heading projects-heading">
         <HeadingDot color="purple" expression="squeezed" size={64} />
         <h1>{board ? "Leaderboard" : "Projects"}</h1>
       </header>
       <div className="project-directory-toolbar">
-      <div className="project-search">
+      <div className="project-search" inert={!hydrated}>
         <SearchIcon size={24} aria-hidden="true" />
         <Search
           value={q}
