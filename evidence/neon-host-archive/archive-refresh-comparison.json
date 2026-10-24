@@ -1,11 +1,12 @@
 {
-  "runtimeSource": "59246860b49d83412c6685e4643f97a21aab55e5",
-  "baselineSHA256": "6d71e987f3019140b802b207eb7a9cd92fe1de57887d463b73449b87f6ce4a5f",
-  "sha256": "bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36b38aef7ae3",
-  "bytes": 9014174,
+  "runtimeSource": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
+  "baselineRuntimeSource": "59246860b49d83412c6685e4643f97a21aab55e5",
+  "baselineSHA256": "bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36b38aef7ae3",
+  "sha256": "1afca1c65f0c3b58bde89a5e1b80d3dec92c87b392239da0315ed762ebd0730f",
+  "bytes": 9014229,
   "fileCount": 93,
-  "uncompressedBytes": 21149045,
-  "indexSha256": "5f33d61cf558e6dd9ea32c98f31cd4a166e74a8e7192c74505ff3eb36077b7d6",
+  "uncompressedBytes": 21149049,
+  "indexSha256": "a1494ba872ce9acae696026e1db8364aede1b10b00227d54f08d6b46929dcba1",
   "nativeFiles": [
     {
       "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
@@ -23,16 +24,22 @@
     }
   ],
   "forbiddenPaths": [],
-  "entriesByteIdenticalToBaseline": 93,
-  "allEntryBytesIdentical": true,
-  "zipChangesOnlyDosTimestamps": true,
-  "timestampNormalizedSHA256": "71a4aee97a86f5f40d9dd70ac2dd56808c40128464909517ef21739fef843d2d",
-  "zipBytesChanged": 372,
-  "zipNonTimestampBytesChanged": 0,
-  "graphInputCount": 861,
-  "graphApplicationInputCount": 77,
+  "unchangedEntryCount": 92,
+  "changedEntries": [
+    {
+      "path": "index.mjs",
+      "previousSHA256": "5f33d61cf558e6dd9ea32c98f31cd4a166e74a8e7192c74505ff3eb36077b7d6",
+      "sha256": "a1494ba872ce9acae696026e1db8364aede1b10b00227d54f08d6b46929dcba1",
+      "previousBytes": 1648168,
+      "bytes": 1648172
+    }
+  ],
+  "allNonJavaScriptEntryBytesIdentical": true,
+  "zipOnlyTimestampChanges": false,
+  "graphInputCount": 862,
+  "graphApplicationInputCount": 78,
   "frontendInputs": [],
-  "extracted": "/tmp/ddd-neon-refresh-extracted-_fd1xjke",
-  "host": "/tmp/ddd-neon-refresh-host-3pvl0ypv",
+  "extracted": "/tmp/ddd-neon-payload-extracted-lz79ijvf",
+  "host": "/tmp/ddd-neon-payload-host-o7ww85o3",
   "ARM64Execution": "not performed on x86_64 host"
 }

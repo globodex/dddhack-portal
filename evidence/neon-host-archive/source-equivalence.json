@@ -1,7 +1,7 @@
 {
-  "builtSource": "59246860b49d83412c6685e4643f97a21aab55e5",
-  "integratedSource": "59246860b49d83412c6685e4643f97a21aab55e5",
-  "baselineIntegratedSource": "191b76ed26f430128b14112f77b74ad3e26b1ec0",
+  "builtSource": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
+  "integratedSource": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
+  "baselineIntegratedSource": "59246860b49d83412c6685e4643f97a21aab55e5",
   "comparedBackendPaths": [
     "neon",
     "lib",
@@ -10,17 +10,22 @@
     "neon.ts"
   ],
   "backendPathDiffEmpty": false,
-  "changedBackendToolingFiles": [
-    "neon/db/migrate.ts",
-    "neon/db/populated-upgrade.ts",
-    "neon/scripts/upgrade-populated.ts"
+  "changedBackendFiles": [
+    "lib/event-content-contract.ts",
+    "lib/public-content-defaults.ts"
   ],
-  "changedFilesInApiGraph": [],
-  "apiGraphApplicationInputsAllByteIdentical": true,
-  "applicationInputCount": 77,
-  "indexSha256": "5f33d61cf558e6dd9ea32c98f31cd4a166e74a8e7192c74505ff3eb36077b7d6",
-  "graphInputCount": 861,
+  "addedApiGraphInput": "lib/public-content-defaults.ts",
+  "changedApiGraphInput": "lib/event-content-contract.ts",
+  "unchangedApplicationInputCount": 76,
+  "applicationInputCount": 78,
+  "validatorPrefixByteIdentical": true,
+  "validatorPrefixSHA256": "6a6298d6408f43d8bd14267bc50352f984053b89d58b16d784ecfaa276cfbed5",
+  "defaultPublicContentLiteralByteIdentical": true,
+  "defaultPublicContentLiteralSHA256": "4b74f8b4422157358dec6eff35e5534700ec9f7ee3f9ec109a7621e7513e143c",
   "sourceGraphRecomputed": true,
-  "archiveEntriesAllByteIdentical": true,
-  "zipOnlyDosTimestampsDiffer": true
+  "graphInputCount": 862,
+  "indexSha256": "a1494ba872ce9acae696026e1db8364aede1b10b00227d54f08d6b46929dcba1",
+  "nativeAndOtherDependencyEntriesByteIdentical": 92,
+  "apiJavaScriptChanged": true,
+  "semanticTestGate": "Parent accepted41 relevant tests/typecheck plus independent validator/literal review; this archive verification does not replace that gate."
 }

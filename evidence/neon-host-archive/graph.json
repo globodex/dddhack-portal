@@ -1,8 +1,8 @@
 {
-  "runtimeSource": "59246860b49d83412c6685e4643f97a21aab55e5",
+  "runtimeSource": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
   "method": "Fresh esbuild analysis with exact official config-runtime1.10.2 options and banner; output SHA must equal rebuilt archive index.",
   "esbuild": "0.28.2",
-  "graphInputCount": 861,
+  "graphInputCount": 862,
   "forbiddenInputs": [],
   "inputs": [
     "../dddhack-portal/node_modules/@aws-sdk/checksums/dist-es/submodules/crc/crc32c/Crc32cJs.js",
@@ -827,6 +827,7 @@
     "lib/project-image-preflight.ts",
     "lib/project-media-policy.ts",
     "lib/project-media.ts",
+    "lib/public-content-defaults.ts",
     "lib/public-project-facts.ts",
     "lib/public-project-image.ts",
     "lib/record-removal.ts",
@@ -867,11 +868,11 @@
     "neon/storage/s3.ts",
     "neon/storage/types.ts"
   ],
-  "indexBytes": 1648168,
-  "indexSha256": "5f33d61cf558e6dd9ea32c98f31cd4a166e74a8e7192c74505ff3eb36077b7d6",
+  "indexBytes": 1648172,
+  "indexSha256": "a1494ba872ce9acae696026e1db8364aede1b10b00227d54f08d6b46929dcba1",
   "officialOptionsMatch": true,
   "archiveIndexComparison": "identical to actual rebuilt archive index.mjs",
-  "graphApplicationInputCount": 77,
+  "graphApplicationInputCount": 78,
   "graphFrontendInputs": [],
   "applicationInputHashes": "evidence/neon-host-archive/runtime-input-hashes.json"
 }

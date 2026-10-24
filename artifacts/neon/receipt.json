@@ -1,16 +1,16 @@
 {
-  "runtimeSource": "59246860b49d83412c6685e4643f97a21aab55e5",
+  "runtimeSource": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
   "runtime": "nodejs24",
   "source": "neon/api.ts",
-  "zipBytes": 9014174,
-  "sha256": "bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36b38aef7ae3",
+  "zipBytes": 9014229,
+  "sha256": "1afca1c65f0c3b58bde89a5e1b80d3dec92c87b392239da0315ed762ebd0730f",
   "env": {},
   "warnings": [],
   "buildOnly": true,
   "deployment": "not performed",
   "packager": "@neon/config-runtime@1.10.2",
   "nativeExecution": "not verified on this x86_64 executor",
-  "uncompressedBytes": 21149045,
+  "uncompressedBytes": 21149049,
   "fileCount": 93,
   "nativeArchitecture": "Linux ARM64 glibc",
   "nativeFiles": [
@@ -32,9 +32,9 @@
   "archiveHasSecretsOrTests": [],
   "bannerPresent": true,
   "externalSharpImport": true,
-  "indexSha256": "5f33d61cf558e6dd9ea32c98f31cd4a166e74a8e7192c74505ff3eb36077b7d6",
+  "indexSha256": "a1494ba872ce9acae696026e1db8364aede1b10b00227d54f08d6b46929dcba1",
   "archive": "artifacts/neon/portalapi.zip",
-  "graphInputCount": 861,
+  "graphInputCount": 862,
   "forbiddenInputs": [],
   "graphRecomputed": true,
   "graphEvidence": "evidence/neon-host-archive/graph.json",
@@ -48,8 +48,8 @@
     "unconfiguredPortal": 503,
     "dependencySubstitution": "existing x86_64 host Sharp; original ARM64 archive/extracted tree unchanged"
   },
-  "integratedSourceEquivalentTo": "59246860b49d83412c6685e4643f97a21aab55e5",
-  "graphApplicationInputCount": 77,
+  "integratedSourceEquivalentTo": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
+  "graphApplicationInputCount": 78,
   "graphFrontendInputs": [],
   "manualMigrations": [
     {
@@ -104,11 +104,15 @@
     "hostedDatabaseInspected": false,
     "url": "https://github.com/Param302/dddhack-portal/blob/d195fe89b8d327709ffe11d6e87e6c747d1dd96b/docs/COMBINED_MIGRATION_UPGRADE_INDEPENDENT_REVIEW.md"
   },
-  "refreshedFrom": "6d71e987f3019140b802b207eb7a9cd92fe1de57887d463b73449b87f6ce4a5f",
-  "entryPayloadEquivalentToPriorArchive": true,
-  "zipOnlyDosTimestampsDiffer": true,
+  "refreshedFrom": "bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36b38aef7ae3",
+  "entryPayloadEquivalentToPriorArchive": false,
+  "zipOnlyDosTimestampsDiffer": false,
   "sourceEquivalenceEvidence": "evidence/neon-host-archive/source-equivalence.json",
-  "sourceBuildVerifiedAgainst": "59246860b49d83412c6685e4643f97a21aab55e5",
+  "sourceBuildVerifiedAgainst": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
   "archiveComparisonEvidence": "evidence/neon-host-archive/archive-refresh-comparison.json",
-  "zipChangesOnlyDosTimestamps": true
+  "zipChangesOnlyDosTimestamps": false,
+  "changedArchiveEntries": [
+    "index.mjs"
+  ],
+  "unchangedArchiveEntryCount": 92
 }

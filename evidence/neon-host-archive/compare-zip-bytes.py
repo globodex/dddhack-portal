@@ -1,4 +1,4 @@
-"""Read-only proof of payload equivalence and DOS-timestamp-only ZIP changes."""
+"""Read-only ZIP payload proof; every changed entry must be explicitly allowed."""
 import argparse
 import hashlib
 import io
@@ -10,6 +10,7 @@ from pathlib import Path
 parser = argparse.ArgumentParser()
 parser.add_argument("--previous", required=True)
 parser.add_argument("--refreshed", required=True)
+parser.add_argument("--allow-entry-change", action="append", default=[])
 args = parser.parse_args()
 previous = Path(args.previous).read_bytes()
 refreshed = Path(args.refreshed).read_bytes()
@@ -32,26 +33,35 @@ def normalized(data):
             position += 46 + name + extra + comment
     return bytes(output), offsets
 
+changed = []
 with zipfile.ZipFile(io.BytesIO(previous)) as old, zipfile.ZipFile(io.BytesIO(refreshed)) as new:
     assert old.namelist() == new.namelist()
-    assert all(old.read(name) == new.read(name) for name in old.namelist())
+    for name in old.namelist():
+        a, b = old.read(name), new.read(name)
+        if a != b:
+            changed.append({"path": name, "previousSHA256": sha(a), "sha256": sha(b), "previousBytes": len(a), "bytes": len(b)})
     entries = len(old.namelist())
+assert sorted(entry["path"] for entry in changed) == sorted(args.allow_entry_change)
 old_normal, old_offsets = normalized(previous)
 new_normal, new_offsets = normalized(refreshed)
-assert len(previous) == len(refreshed)
-assert old_offsets == new_offsets
-assert old_normal == new_normal
-changed = [index for index, (a, b) in enumerate(zip(previous, refreshed)) if a != b]
-assert all(index in old_offsets for index in changed)
+timestamp_only = not changed
+if timestamp_only:
+    assert len(previous) == len(refreshed)
+    assert old_offsets == new_offsets
+    assert old_normal == new_normal
+    differences = [index for index, (a, b) in enumerate(zip(previous, refreshed)) if a != b]
+    assert all(index in old_offsets for index in differences)
 print(json.dumps({
     "previousSHA256": sha(previous),
     "refreshedSHA256": sha(refreshed),
     "entriesCompared": entries,
-    "allEntryPayloadBytesIdentical": True,
-    "timestampFieldOffsetsEqual": True,
-    "zipBytesChanged": len(changed),
-    "zipNonTimestampBytesChanged": 0,
-    "normalizedSHA256": sha(new_normal),
-    "normalizedZipBytesIdentical": True,
+    "unchangedEntries": entries - len(changed),
+    "changedEntries": changed,
+    "allOtherEntryPayloadBytesIdentical": True,
+    "allEntryPayloadBytesIdentical": not changed,
+    "zipOnlyDosTimestampsDiffer": timestamp_only,
+    "normalizedZipBytesIdentical": old_normal == new_normal,
+    "previousNormalizedSHA256": sha(old_normal),
+    "refreshedNormalizedSHA256": sha(new_normal),
     "readOnly": True,
 }, indent=2))

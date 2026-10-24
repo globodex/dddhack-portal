@@ -1,7 +1,7 @@
 {
-  "runtimeSource": "59246860b49d83412c6685e4643f97a21aab55e5",
-  "baseline": "/tmp/ddd-neon-refresh-baseline-aa8WG7",
-  "baselineSHA256": "6d71e987f3019140b802b207eb7a9cd92fe1de57887d463b73449b87f6ce4a5f",
+  "runtimeSource": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
+  "baseline": "/tmp/ddd-neon-payload-baseline-MnmHvK",
+  "baselineSHA256": "bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36b38aef7ae3",
   "functionEnv": {},
   "processEnvironmentKeys": [
     "HTTPS_PROXY",
@@ -33,7 +33,7 @@
   "hostedDatabaseReadOrWrite": false,
   "credentialOrProviderSettingsChange": false,
   "officialAPI": "@neon/config-runtime@1.10.2 buildFunctionBundle",
-  "finalBuild": "Fresh official offline build against5924686; public npm cache only, install scripts disabled by official native staging.",
+  "finalBuild": "Fresh accepted-source511c191 build; public npm cache offline; install scripts disabled by official native staging.",
   "buildOnly": true,
   "environmentValuesLogged": false,
   "hostSmokeOutgoingBlocked": true

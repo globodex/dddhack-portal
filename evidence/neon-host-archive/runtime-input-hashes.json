@@ -2,386 +2,391 @@
   {
     "path": "lib/absence.ts",
     "sha256": "ac72b6f1654c9c0a81f3687fe6256ce9de20ee472b82c493610bc123099b9b07",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/admin-access.ts",
     "sha256": "688a69014a400f82a139deebb7794266e903e3c6607a28626241506f126e5cd9",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/admin-presentation.ts",
     "sha256": "0256289790fc097c13f2598f1c43ee4a0aaf040cf326ee02599da1cd8ba90987",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/audit-contract.ts",
     "sha256": "f0e1710acc69634fbcf2182d0b4803995d75c26e9530f91cdf5728b532dbb535",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/avatar-contract.ts",
     "sha256": "24bd0a8188213d348b67a10b967430c1bf765d50e9a6f30bd3c7b9b570536a77",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/credit-audit.ts",
     "sha256": "ad9acdd6c5eacd2bb1932b32a941aa36766d18ae3acd6f34608cbc88cb9df532",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/credit-batches.ts",
     "sha256": "d98309b845d206be804965131bce876db4f575f005c861df535cf723e56747d2",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/credit-stock-import.ts",
     "sha256": "098a419aa80c38a16c29860eae9e9410098b7a8ef706c8f31cdccb2712249e56",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/credit-stock.ts",
     "sha256": "879b23e76f821519d194a31174757de950f8e14bd7dbfcfb30f69a88dbee8fef",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/db.ts",
     "sha256": "6f1db2f94aa83211cddf05851fc32053381f9f2b3bcbf133bac793ab410c1587",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/derived-readiness.ts",
     "sha256": "7fc73c8ec9d00e4fc110c32bd1d83093254e794a70fa6520c9af78e809f4ecb3",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/directory-facts.ts",
     "sha256": "22e43358edecc8a52e597f845c6868e7698ff78b114d222e6d5775d5a68e7ea9",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/discover-participants.ts",
     "sha256": "03174366b2e912eee88074111c01fa38d59c9a6b467fe56c7a074aeec60d6ca8",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/ecosystem-verification.ts",
     "sha256": "f9a2db0458a27c872525ea75c39b8ffb126147e16f1a8c06502ffa273b09d933",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/engagement-control.ts",
     "sha256": "74543d4e5481f0d38c1cf19f6c094b3b3801a4659bb0915303c3c89e9e63fa57",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/engagement-scoring.ts",
     "sha256": "287fbd090efaf1b93e2863d25c3cc388d346b588094d411bda38d07616d41de5",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/evaluation-background.ts",
     "sha256": "4339fb1bed404b7954ad23e73aa77c09a3d4301bea18428c829cc266c730eb27",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/evaluation.ts",
     "sha256": "d901f9d21110b02aab5db1b902333fca58ec7b64193e867e0b7bcb89ea800f4f",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/event-content-contract.ts",
-    "sha256": "5788abd17d9d38fc888284fd5bc05ec884ffbfbbdf2db56f81445436fc73d8b9",
-    "identicalTo191b": true
+    "sha256": "50c7698f840af3f9a854bc662a718b04bf23baead002d1329eab0e44e62f201e",
+    "stateComparedTo5924686": "changed"
   },
   {
     "path": "lib/event-content.ts",
     "sha256": "813739bd51f8b3d7a2650d4ff7e633662be076620dc659414041268fd123ed4a",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/experience-contract.ts",
     "sha256": "b11b7e01b143768b56c6ebbe2104594eea3e52503b61dcb707617dcf880eaeae",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/experience.ts",
     "sha256": "44cd51de83deaa41e9f9410eb3a58bc683b6894b783f126c72a3509bd3da0c30",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/http.ts",
     "sha256": "c290436eef75771a605112eb5be109828bb7b0ca7632ecdeb0e15035f9618a61",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/identity.ts",
     "sha256": "2ad5f8400cb9b37b1b377da2303ecbbdce0ec672a3bbd578872dda170f22ef0e",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/operational-setup-contract.ts",
     "sha256": "77c8208939b0504e2456024276af4f240255a92229a18bf1127f65d2066649fd",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/operational-setup.ts",
     "sha256": "70252e1ec44ee7e56a3424939b17938eaf2cc574e629df7ef3f47979d285f592",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/participant-checkin.ts",
     "sha256": "ac0a8e6942bf27115a7f35e36042d20da069992b68c953c23857eda94844d018",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/participant-export.ts",
     "sha256": "52011407020a10555bbf81f688e707f0a1504cbbaf8887e981c2df629156f4dc",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/participant-filters.ts",
     "sha256": "a69133e693b52e6111b46e7bc6495d69371fcb8aa2ebbd7a3d981e45d1118914",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/participant-rules.ts",
     "sha256": "ad801b915e157403a66ffcd0cafa26c795da5a8666220c121b81b1b68d055428",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/phone.ts",
     "sha256": "93d310bd6292c4096f4de4375c2c8bd5dc9490283849fa2321fa969d4dc37031",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/policy-controls.ts",
     "sha256": "08a2470a8dd8691ed269077bd219671aaefd43fe05a2df1a36277626293feff3",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/policy.ts",
     "sha256": "7fac068ad1c750a677ddb6b9a16831873a385567f12113467fbed9c53a19622a",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/portal-status.ts",
     "sha256": "269ff47f283b7b8ed6ac212b59a66122d9c41cc1d12e1e35f91c61152a0d4fcc",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/profile-contract.ts",
     "sha256": "1c7c89063c7aa5899fa60c4643a9ab726f3cd85f65cf006158710ab60a1d23a8",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/project-image-preflight.ts",
     "sha256": "991dfb4469d9d855860dfc33297b7a1688cda2c0373b2efd0cbe1a288717c077",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/project-media-policy.ts",
     "sha256": "536169318d8fd9f7ad7f6baa8643071d8c1ed2146ca7e8fa04c290384436b4ee",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/project-media.ts",
     "sha256": "2287bfe98f5fb93548664d3c0765e9efb122172d4cbd58a9876d9a92c0f99fe2",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
+  },
+  {
+    "path": "lib/public-content-defaults.ts",
+    "sha256": "cab8182bc3d622d84dd1d64d39779ee626ac07615059214875f1bfe456890165",
+    "stateComparedTo5924686": "added"
   },
   {
     "path": "lib/public-project-facts.ts",
     "sha256": "86751cb6eebebdcf07e888d09fca4cbd8dd692dd05c0276966c2598e92aa8ca4",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/public-project-image.ts",
     "sha256": "ca939d3ffe44c8e10b76cd0459f6c2a7d679969217834ce1421d5dfc3e60cb01",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/record-removal.ts",
     "sha256": "feec0aa8882606ca85f9abf6a33747a8de15498e4a0bbee78f505c6f5fc61477",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/repository-evidence.ts",
     "sha256": "0cc2aaa69b2fe8524509927e9dd382c12ead6c6aca92a5f8e761ed952ac53621",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/result-controls.ts",
     "sha256": "239972bcabf79502ac92662ea2af046dae88f10d14b2524424d5b874d1afda44",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/roster-import.ts",
     "sha256": "340a523a23139e226ca9f8b8440c68b5539e294aa174a44c36b8dfcf51318468",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/roster.ts",
     "sha256": "51e1a5ec1ec22ac96066756a7065806ea745fb21e0aa6f2fc0971ab043232154",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/score-release.ts",
     "sha256": "c035ee3f58a6c95773436b91ae50dba46bae7aed1f2623747f23ec04ea11f2af",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/security.ts",
     "sha256": "ce31b93504b0e9570591bd453edca4a19febdc12e755b16fd888fa4c8d949d8a",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/service.ts",
     "sha256": "af0dd83333325b05ea1eb14822b856b3a4d588b97d134bead162a721ccf7e051",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/submission-tools.ts",
     "sha256": "a48abd504ff49b216261b460a335576fc957ae025e84d89ee3c3df4d1e8cd3f7",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/team-access.ts",
     "sha256": "3ae35ca6ace2d788ec475af615be7c31b49020c431c2fc3bf22ac9b833133c08",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/team-color.ts",
     "sha256": "d1e70496f4fe60aee182ae65ca83bfc29e790f929fb1fdb65c741a9744f16852",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/team-leader-transfer.ts",
     "sha256": "62a183dd212efb383d3e9f46781010dca8c33a2ee173ddee332ad85a5dd454d2",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "lib/time.ts",
     "sha256": "7430b1662198dd73a9c3fc9cf9244efa10ddfbd1c727a0ed0ccbd23c7ad84caa",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/ai/http.ts",
     "sha256": "323bdd74d8eb8feb704ac394709a79ba59cd41cba4443b86c259d47d20650503",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/ai/index.ts",
     "sha256": "bcb3d06a5d451fcd7b097238d3ecdb0f59f285c8152cdc9ce5b7076306a29a0b",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/ai/input.ts",
     "sha256": "08223c0ccddbd2e6e9852f3fbbe62ae140c1f55c1b140d5c87973222948f82e5",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/ai/output.ts",
     "sha256": "804268b6bf6a8acf55cb312bbd70dba807c6884f41b822b81550661a4a7b0e1d",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/ai/repository.ts",
     "sha256": "eae14f8f21f7de1b0357d3551d0a130c2eee53ffc410a183941b70fab780b7a6",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/api.ts",
     "sha256": "0a1b35660c95dcd1ffc977350ab97060365e1397f5b0636476e89948ca1ff1a2",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/auth/config.ts",
     "sha256": "685dd004c790d3eee5465300dfe3e4b2e4fcf89356b50448672c752db59dbb55",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/auth/email-template.ts",
     "sha256": "6b5f73406002aecf12a52380f89319025204a51dd8ec07520f10af8f8da0c820",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/auth/google.ts",
     "sha256": "68aaf21657f9d7afaf1f9c43d9c029ad9b9df8131d30cf4bf059a352d61a125e",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/auth/index.ts",
     "sha256": "8809d5dafd86da44b65321360e73d1ed84d812e465c62f5f3560c6feb2d3697a",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/auth/smtp.ts",
     "sha256": "e45f3496684eb1333743e84bae1197f30d9b8489ef06566ee1c9ffb863e736ea",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/db/adapter.ts",
     "sha256": "9fa930533fbf17065edc717e246152d5d0f6ef61a5060436ca2f9fde8da0dd41",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/db/index.ts",
     "sha256": "aca84084cd262027f534bba828c1c030fe7418c357d8f4858ea7ae26363aba41",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/db/sql.ts",
     "sha256": "1f753a167d0136ce4211d872f2c80fbbd7e7959d18a49189cf3bdfde2993fcbb",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/router.ts",
     "sha256": "579b236d4b7722aaac9a6422e07bc52d58a707f3f6a9303126fbcb3ff06187c9",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/storage/authorization.ts",
     "sha256": "488463dc6dc26d0ebd199664e0a96eea441eb48e3a9467ae049b08d7dc4c53a8",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/storage/database.ts",
     "sha256": "16036dff7b987bbedc6f0c8489f53e654a6a81a63be5d9bf09bcb2ad263f7370",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/storage/http.ts",
     "sha256": "b18f5434d033b947e8f79a999317f6b7130d5bd607b4f1f3992f93461ee22d9d",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/storage/image.ts",
     "sha256": "990054a3d4aa7fe0d6fc92f88f66ee4dbc559c24b49f34e52a2d06ff9afa21ba",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/storage/index.ts",
     "sha256": "d854b54e66355d6da065c3399187d7a0244631665f55c7a813844a7f25661c82",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/storage/reference.ts",
     "sha256": "66c9c65efb646a208a0946c5711e1f02b54ccb70621d492ecf463d1270810b83",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/storage/repository.ts",
     "sha256": "037c88bc319dd11e8cef97a72bd060f739c19fc5c49ead908f763044e8eac671",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/storage/s3.ts",
     "sha256": "6669b3de090054a01a4afc8b376a0d8756fc8f7c96fd4a508f386f4a2df4b799",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   },
   {
     "path": "neon/storage/types.ts",
     "sha256": "09257cf4c3d5735f77b6c25d177c990ed9ff44220633fb7f4151847681c6dc4f",
-    "identicalTo191b": true
+    "stateComparedTo5924686": "unchanged"
   }
 ]

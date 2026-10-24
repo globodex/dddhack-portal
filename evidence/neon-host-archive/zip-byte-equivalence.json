@@ -1,12 +1,22 @@
 {
-  "previousSHA256": "6d71e987f3019140b802b207eb7a9cd92fe1de57887d463b73449b87f6ce4a5f",
-  "refreshedSHA256": "bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36b38aef7ae3",
+  "previousSHA256": "bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36b38aef7ae3",
+  "refreshedSHA256": "1afca1c65f0c3b58bde89a5e1b80d3dec92c87b392239da0315ed762ebd0730f",
   "entriesCompared": 93,
-  "allEntryPayloadBytesIdentical": true,
-  "timestampFieldOffsetsEqual": true,
-  "zipBytesChanged": 372,
-  "zipNonTimestampBytesChanged": 0,
-  "normalizedSHA256": "71a4aee97a86f5f40d9dd70ac2dd56808c40128464909517ef21739fef843d2d",
-  "normalizedZipBytesIdentical": true,
+  "unchangedEntries": 92,
+  "changedEntries": [
+    {
+      "path": "index.mjs",
+      "previousSHA256": "5f33d61cf558e6dd9ea32c98f31cd4a166e74a8e7192c74505ff3eb36077b7d6",
+      "sha256": "a1494ba872ce9acae696026e1db8364aede1b10b00227d54f08d6b46929dcba1",
+      "previousBytes": 1648168,
+      "bytes": 1648172
+    }
+  ],
+  "allOtherEntryPayloadBytesIdentical": true,
+  "allEntryPayloadBytesIdentical": false,
+  "zipOnlyDosTimestampsDiffer": false,
+  "normalizedZipBytesIdentical": false,
+  "previousNormalizedSHA256": "71a4aee97a86f5f40d9dd70ac2dd56808c40128464909517ef21739fef843d2d",
+  "refreshedNormalizedSHA256": "1eaa1b517afa7ab8e17d9e8b93b3620f360e43bedead59d42fc1c68b4278292b",
   "readOnly": true
 }

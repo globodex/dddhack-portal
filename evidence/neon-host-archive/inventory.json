@@ -1,11 +1,11 @@
 {
-  "runtimeSource": "59246860b49d83412c6685e4643f97a21aab55e5",
+  "runtimeSource": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
   "files": [
     {
       "path": "index.mjs",
-      "bytes": 1648168,
-      "compressedBytes": 461546,
-      "sha256": "5f33d61cf558e6dd9ea32c98f31cd4a166e74a8e7192c74505ff3eb36077b7d6"
+      "bytes": 1648172,
+      "compressedBytes": 461601,
+      "sha256": "a1494ba872ce9acae696026e1db8364aede1b10b00227d54f08d6b46929dcba1"
     },
     {
       "path": "node_modules/@emnapi/runtime/dist/emnapi.cjs.js",
