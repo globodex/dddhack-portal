@@ -92,6 +92,8 @@ import {
 import Home from "./home";
 import ProjectMediaField from "./project-media-field";
 import SubmissionDots from "./submission-dots";
+import ProjectSubmissionSuccess from "./project-submission-success";
+import { submittedProjectSuccess, type SubmissionSuccessState } from "../lib/project-share";
 import CommittedSubmissions, { CommittedSubmission } from "./committed-submissions";
 import { resolveTeamColor } from "../lib/team-color";
 import { prepareProjectImage } from "./prepare-project-image";
@@ -5704,6 +5706,7 @@ export default function Portal({
     [messageTone, setMessageTone] = useState<"success" | "error">("success"),
     [menu, setMenu] = useState(false);
   const [confirmation, setConfirmation] = useState<Confirmation | null>(null);
+  const [submissionSuccess, setSubmissionSuccess] = useState<SubmissionSuccessState | null>(null);
   const gate = useRef<ConfirmationGate | null>(null),
     actionBusy = useRef(false),
     mutationKeys = useRef(new Set<string>()),
@@ -5756,6 +5759,7 @@ export default function Portal({
       setError("");
       hasLoadedView.current = true;
       setData(hydrated);
+      return hydrated;
     } catch (e) {
       if (generation === loadGeneration.current && !controller.signal.aborted) {
         if (e instanceof TypeError || e instanceof SyntaxError) {
@@ -5770,6 +5774,7 @@ export default function Portal({
   }
   useEffect(() => {
     setMessage("");
+    setSubmissionSuccess(null);
     setRefreshing(false);
     setError(initialFailure?.message || "");
     setErrorCode(initialFailure?.code || "");
@@ -5866,8 +5871,9 @@ export default function Portal({
         token ? { ...payload, confirmation: token } : payload,
       );
       setMessageTone("success");
-      setMessage(portalSuccessText(action, result.message));
-      await load();
+      if (action !== "submit-project") setMessage(portalSuccessText(action, result.message));
+      const fresh = await load();
+      if (action === "submit-project") setSubmissionSuccess(submittedProjectSuccess(result, fresh));
       return result;
     } catch (e) {
       if (!(e instanceof ActionCancelled) && options?.errorFeedback !== "local") {
@@ -5940,6 +5946,7 @@ export default function Portal({
           decide={(yes) => gate.current?.decide(yes)}
         />
       )}
+      {submissionSuccess && <ProjectSubmissionSuccess value={submissionSuccess} onClose={() => setSubmissionSuccess(null)} />}
 
       <a className="skip-link" href="#main">
         Skip to content
