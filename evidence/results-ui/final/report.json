@@ -1,0 +1,236 @@
+{
+  "source": "2824c48a353cc7eb3e91e84bd143132f53c5780d",
+  "syntheticOnly": true,
+  "readOnly": true,
+  "shots": [
+    "/workspace/ddd-results-ui/evidence/results-ui/final/review-1440x900.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/final/results-1440x900.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/final/judging-1440x900.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/final/review-768x1024.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/final/results-768x1024.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/final/judging-768x1024.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/final/review-390x844.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/final/results-390x844.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/final/judging-390x844.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/final/review-320x480.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/final/results-320x480.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/final/judging-320x480.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/final/review-score-short390x480.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/final/review-ai-short390x480.png"
+  ],
+  "geometry": [
+    {
+      "route": "review",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "ratingTargets": [
+        {
+          "width": 77.640625,
+          "height": 44
+        },
+        {
+          "width": 77.640625,
+          "height": 44
+        },
+        {
+          "width": 77.640625,
+          "height": 44
+        },
+        {
+          "width": 77.640625,
+          "height": 44
+        },
+        {
+          "width": 77.640625,
+          "height": 44
+        },
+        {
+          "width": 77.640625,
+          "height": 44
+        },
+        {
+          "width": 77.640625,
+          "height": 44
+        },
+        {
+          "width": 77.640625,
+          "height": 44
+        },
+        {
+          "width": 77.640625,
+          "height": 44
+        },
+        {
+          "width": 77.640625,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "judging",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "clipped": []
+    },
+    {
+      "route": "review",
+      "width": 768,
+      "scrollWidth": 753,
+      "ratingTargets": [
+        {
+          "width": 52.296875,
+          "height": 44
+        },
+        {
+          "width": 52.296875,
+          "height": 44
+        },
+        {
+          "width": 52.296875,
+          "height": 44
+        },
+        {
+          "width": 52.296875,
+          "height": 44
+        },
+        {
+          "width": 52.296875,
+          "height": 44
+        },
+        {
+          "width": 52.296875,
+          "height": 44
+        },
+        {
+          "width": 52.296875,
+          "height": 44
+        },
+        {
+          "width": 52.296875,
+          "height": 44
+        },
+        {
+          "width": 52.296875,
+          "height": 44
+        },
+        {
+          "width": 52.296875,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "judging",
+      "width": 768,
+      "scrollWidth": 753,
+      "clipped": []
+    },
+    {
+      "route": "review",
+      "width": 390,
+      "scrollWidth": 375,
+      "ratingTargets": [
+        {
+          "width": 53.796875,
+          "height": 44
+        },
+        {
+          "width": 53.796875,
+          "height": 44
+        },
+        {
+          "width": 53.796875,
+          "height": 44
+        },
+        {
+          "width": 53.796875,
+          "height": 44
+        },
+        {
+          "width": 53.796875,
+          "height": 44
+        },
+        {
+          "width": 53.796875,
+          "height": 44
+        },
+        {
+          "width": 53.796875,
+          "height": 44
+        },
+        {
+          "width": 53.796875,
+          "height": 44
+        },
+        {
+          "width": 53.796875,
+          "height": 44
+        },
+        {
+          "width": 53.796875,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "judging",
+      "width": 390,
+      "scrollWidth": 375,
+      "clipped": []
+    },
+    {
+      "route": "review",
+      "width": 320,
+      "scrollWidth": 305,
+      "ratingTargets": [
+        {
+          "width": 44.59375,
+          "height": 44
+        },
+        {
+          "width": 44.59375,
+          "height": 44
+        },
+        {
+          "width": 44.609375,
+          "height": 44
+        },
+        {
+          "width": 44.59375,
+          "height": 44
+        },
+        {
+          "width": 44.59375,
+          "height": 44
+        },
+        {
+          "width": 44.59375,
+          "height": 44
+        },
+        {
+          "width": 44.59375,
+          "height": 44
+        },
+        {
+          "width": 44.609375,
+          "height": 44
+        },
+        {
+          "width": 44.59375,
+          "height": 44
+        },
+        {
+          "width": 44.59375,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "judging",
+      "width": 320,
+      "scrollWidth": 305,
+      "clipped": []
+    }
+  ],
+  "errors": []
+}

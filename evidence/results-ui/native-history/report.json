@@ -1,0 +1,45 @@
+{
+  "source": "e787bbcb59717cc1999e05922c529da2612017ee",
+  "readOnly": true,
+  "syntheticOnly": true,
+  "shots": [
+    "/workspace/ddd-results-ui/evidence/results-ui/native-history/historical-version1-390x844.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/native-history/review-native200.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/native-history/review-score-native200.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/native-history/judging-native200.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/native-history/judging-fields-native200.png"
+  ],
+  "checks": [
+    "Keyboard Enter loads actual historical version1; top-of-page resting capture excludes sticky-header scroll artifact",
+    {
+      "route": "/admin/submissions/visual_project_alice",
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 378,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 2,
+        "scale": 1,
+        "scrollWidth": 712
+      }
+    },
+    {
+      "route": "/admin/settings",
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 378,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "dpr": 2,
+        "scale": 1,
+        "scrollWidth": 712
+      }
+    }
+  ],
+  "errors": [],
+  "historyActiveElement": {
+    "tag": "H1",
+    "classes": "",
+    "text": "Small Wonder"
+  }
+}

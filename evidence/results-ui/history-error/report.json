@@ -1,0 +1,21 @@
+{
+  "source": "077e6686856aa6b3ce565310fe60e307ad973053",
+  "worktreeDirty": true,
+  "syntheticOnly": true,
+  "checks": [
+    "Opening Versions sends no request; View version1 sends exactly one bounded GET and renders saved version1 answers with no mutation controls",
+    "View current version2 restores exact saved answers/actions via one GET with zero writes",
+    "Intercepted503 never forwarded: busy disables fieldset, actionable error remains visible and Save enables retry"
+  ],
+  "screenshots": [
+    "/workspace/ddd-results-ui/evidence/results-ui/history-error/historical-version1-390x844.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/history-error/settings-busy-390x844.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/history-error/settings-error-390x844.png"
+  ],
+  "focusReads": [
+    "/api/portal?view=%2Fadmin%2Fsubmissions%2Fvisual_project_alice&focus=visual_alice_v1",
+    "/api/portal?view=%2Fadmin%2Fsubmissions%2Fvisual_project_alice&focus=visual_alice_v2"
+  ],
+  "postCount": 1,
+  "errors": []
+}

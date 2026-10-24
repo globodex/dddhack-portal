@@ -1,0 +1,12 @@
+{
+  "source": "e787bbcb59717cc1999e05922c529da2612017ee",
+  "syntheticOnly": true,
+  "checks": [
+    "Actual touch interactions reach shared confirmation and503 local error; fresh server readback proves no settings/version mutation",
+    "Short390 touch selects9; native radio keyboard ArrowLeft selects8; Tab reaches private feedback without a write"
+  ],
+  "intercepted": 1,
+  "errors": [],
+  "versionBefore": 3,
+  "versionAfter": 3
+}

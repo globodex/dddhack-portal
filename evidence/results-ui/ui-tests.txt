@@ -1,0 +1,30 @@
+✔ content editor renders actual Lucide controls with exact accessible row targets and guarded publish (39.70538ms)
+✔ Results controls keep unavailable gates and explain each disabled action accessibly (15.038179ms)
+✔ Results controls use actual per-action availability rather than obsolete manual readiness (8.858605ms)
+✔ team management mounts named crown transfer with explicit old and new leaders (39.264335ms)
+✔ admin row adapter preserves server removal metadata and composes Registered/Locked defaults with earliest lock ordering (1.44993ms)
+✔ participant admin page wires reviewed imports and only individual removal, excluding removed records by default (54.193088ms)
+✔ project adapter uses supplied exact version IDs and removed metadata without synthesizing attempts (0.317767ms)
+✔ project list management is restricted to admin/owner and kept outside review links (6.884619ms)
+✔ review detail wires project management for staff while mentor duties stay feedback-only (18.145708ms)
+✔ private review accepts score-only or feedback-only for admins/judges and requires mentor text (24.877662ms)
+✔ confirmation targets distinguish duplicate names, project versions, window times and global engagement scope (1.301119ms)
+✔ owner window editor replaces extension-only settings and engagement controls are versioned staff-only (16.705481ms)
+✔ public project engagement is read-only when server flags or per-row capabilities deny it, with no private score leaks (16.205618ms)
+✔ public Home retains the shared navigation and private administration does not leak into it (22.005106ms)
+✔ admin credit overview renders metadata counts rather than bogus submission links (5.281536ms)
+✔ confirmation for a new named entity never borrows an existing unaddressed record (0.405635ms)
+✔ judging save preserves all protected values and unchanged timestamp precision (6.288308ms)
+✔ judging validates real IST dates, ordering, exact limits and explicit qualifications without defaults (0.930367ms)
+✔ owner judging form is prehydration POST guarded, existing fields populated, frozen/read-only and never shown to admins (30.287696ms)
+✔ result stages trust current backend controls and keep manual final independent of AI (36.245308ms)
+✔ private AI uses exact current report, attempts and actual action blocker without scoringReady gate (7.864382ms)
+✔ Review renders saved version answers once, unknown Cerebras stays unavailable and old rubric controls are removed (19.711525ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4437.963748

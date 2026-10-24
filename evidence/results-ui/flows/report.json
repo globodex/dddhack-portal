@@ -1,0 +1,35 @@
+{
+  "source": "077e6686856aa6b3ce565310fe60e307ad973053",
+  "syntheticOnly": true,
+  "checks": [
+    "Missing required setup remains empty and native validation sends no request",
+    "Actual settings POST200 and fresh GET confirm version increment, edited values and unchanged protected policy",
+    "Actual review POST200 persists 8/10 and private feedback for exact current version"
+  ],
+  "screenshots": [
+    "/workspace/ddd-results-ui/evidence/results-ui/flows/results-saved-1440x900.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/flows/review-saved-390x844.png"
+  ],
+  "requests": [
+    {
+      "method": "POST",
+      "path": "/api/portal",
+      "action": "settings"
+    },
+    {
+      "method": "POST",
+      "path": "/api/portal",
+      "action": "review-project"
+    },
+    {
+      "method": "POST",
+      "path": "/api/portal",
+      "action": "settings"
+    }
+  ],
+  "errors": [],
+  "initialVersion": 1,
+  "settingsStatus": 200,
+  "reviewStatus": 200,
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n\n    at file:///tmp/ddd-results-flow.mjs:7:1011"
+}

@@ -1,0 +1,64 @@
+{
+  "source": "857fba27a021438832a6a52c93be0648c5f942ed",
+  "worktreeDirty": true,
+  "syntheticOnly": true,
+  "screenshots": [
+    "/workspace/ddd-results-ui/evidence/results-ui/first/review-320x480.png",
+    "/workspace/ddd-results-ui/evidence/results-ui/first/settings-320x480.png"
+  ],
+  "errors": [],
+  "geometry": [
+    {
+      "route": "/admin/submissions/visual_project_alice",
+      "width": 320,
+      "scrollWidth": 305,
+      "ratings": [
+        {
+          "width": 44.59375,
+          "height": 44
+        },
+        {
+          "width": 44.59375,
+          "height": 44
+        },
+        {
+          "width": 44.609375,
+          "height": 44
+        },
+        {
+          "width": 44.59375,
+          "height": 44
+        },
+        {
+          "width": 44.59375,
+          "height": 44
+        },
+        {
+          "width": 44.59375,
+          "height": 44
+        },
+        {
+          "width": 44.59375,
+          "height": 44
+        },
+        {
+          "width": 44.609375,
+          "height": 44
+        },
+        {
+          "width": 44.59375,
+          "height": 44
+        },
+        {
+          "width": 44.59375,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/admin/settings",
+      "width": 320,
+      "scrollWidth": 305
+    }
+  ]
+}
