@@ -3995,6 +3995,7 @@ export function Review({
                 <Field name="status" label="Eligibility">
                   <select
                     name="status"
+                    aria-label="Eligibility"
                     value={eligibilityStatus}
                     onChange={(event) =>
                       setEligibilityStatus(event.target.value)
@@ -4180,7 +4181,7 @@ export function Review({
               }}
             >
               <Field name="userId" label="Assigned judge or mentor">
-                <select name="userId" required>
+                <select name="userId" aria-label="Assigned judge or mentor" required>
                   <option value="">Choose a person</option>
                   {(data.reviewers || []).map((r: Row) => (
                     <option key={r.id} value={r.id}>
@@ -5196,6 +5197,7 @@ function AdminCreditInstructions({
       <label>
         Provider
         <select
+          aria-label="Provider"
           value={provider.id}
           onChange={(event) => setSelected(event.target.value)}
         >
@@ -5331,7 +5333,7 @@ export function Settings({
               }}
             >
               <Field name="snapshotId" label="Frozen final snapshot">
-                <select name="snapshotId" required>
+                <select name="snapshotId" aria-label="Frozen final snapshot" required>
                   <option value="">Choose a frozen snapshot</option>
                   {(data.resultSnapshots || []).map((r: Row) => (
                     <option key={r.id} value={r.id}>
@@ -5361,7 +5363,7 @@ export function Settings({
                 }}
               >
                 <Field name="position" label="Choose an unrevealed award">
-                  <select name="position" required>
+                  <select name="position" aria-label="Unrevealed award" required>
                     <option value="">Choose an award</option>
                     {data.scoreRelease.remainingAwards.map((a: Row) => (
                       <option key={a.position} value={a.position}>

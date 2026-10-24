@@ -367,6 +367,7 @@ export default function AdminImportControls({
                   <label key={header}>
                     {header}
                     <select
+                      aria-label={`Map ${header}`}
                       value={selected}
                       onChange={(event) => {
                         const next = { ...fieldMap };

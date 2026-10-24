@@ -79,13 +79,11 @@ export default function AdminProjectActions({
       }}
     >
       <strong className="admin-action-project-name">{project.name}</strong>
-      <fieldset
-        disabled={!hydrated || busy}
-        className="admin-project-fields"
-      >
+      <fieldset disabled={!hydrated || busy} className="admin-project-fields">
         <label>
           Action
           <select
+            aria-label="Action"
             value={restore ? "restore" : "remove"}
             onChange={(event) => setRestore(event.target.value === "restore")}
           >
@@ -96,6 +94,7 @@ export default function AdminProjectActions({
         <label>
           Target
           <select
+            aria-label="Target"
             value={scope}
             onChange={(event) =>
               setScope(event.target.value as ProjectRemovalScope)
@@ -112,8 +111,14 @@ export default function AdminProjectActions({
         </label>
         {scope !== "project" && (
           <label>
-            Version
+            <span>
+              Version{" "}
+              <span className="required-mark" aria-hidden="true">
+                *
+              </span>
+            </span>
             <select
+              aria-label="Version"
               required
               value={versionId}
               onChange={(event) => setVersionId(event.target.value)}
@@ -121,7 +126,7 @@ export default function AdminProjectActions({
               <option value="">Choose version</option>
               {versions.map((version) => (
                 <option key={version.id} value={version.id}>
-                  {version.label} · {version.id}
+                  {version.label}
                   {version.removed ? " · Removed" : ""}
                 </option>
               ))}

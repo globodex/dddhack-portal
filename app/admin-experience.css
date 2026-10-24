@@ -1173,3 +1173,11 @@
   color: var(--muted, #656960);
   font-size: 13px;
 }
+
+.main:not(.home-main) .admin-workspace .admin-credits-table th {
+  background: #f0f1ea;
+  color: var(--muted, #656960);
+  border-color: var(--line, #e3e4db);
+  font-size: 12px;
+  font-weight: 500;
+}
