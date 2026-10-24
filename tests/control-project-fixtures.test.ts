@@ -19,6 +19,10 @@ test("optional control fixtures add25 public entries without altering rich sourc
         payload,
       ],
       [
+        "INSERT INTO submission_versions(id,team_id,attempt,payload,created_at) VALUES('visual_alice_v1','fake_team1',1,?,'2026-11-01T02:59:00.000Z')",
+        payload,
+      ],
+      [
         "INSERT INTO submission_versions(id,team_id,attempt,payload,created_at) VALUES('visual_alice_v2','fake_team1',2,?,'2026-11-01T03:00:00.000Z')",
         payload,
       ],

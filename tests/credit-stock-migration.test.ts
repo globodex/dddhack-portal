@@ -36,6 +36,10 @@ async function previous(engine: "sqlite" | "postgres") {
           throw error;
         }
       },
+      currentRuntimeSchema: async () => {
+        for (const name of readdirSync(directory).filter((name) => name.endsWith(".sql") && name > "0024_credit_stock.sql").sort())
+          db.raw.exec(readFileSync(new URL(name, directory), "utf8"));
+      },
     };
   }
   const context = await createPGliteFixture({
@@ -55,12 +59,16 @@ async function previous(engine: "sqlite" | "postgres") {
           (migration) => migration.name === "0102_credit_stock.sql",
         ),
       ),
+    currentRuntimeSchema: async () => applyPortalMigrations(
+      context.pool,
+      (await loadPortalMigrations()).filter((migration) => migration.name > "0102_credit_stock.sql"),
+    ),
   };
 }
 
 for (const engine of ["sqlite", "postgres"] as const) {
   test(`${engine}: stock upgrade preserves every existing code and mapping, backfills minimal non-personal tombstones`, async () => {
-    const { db, upgrade } = await previous(engine);
+    const { db, upgrade, currentRuntimeSchema } = await previous(engine);
     try {
       await batch(db, [
         [
@@ -134,6 +142,9 @@ for (const engine of ["sqlite", "postgres"] as const) {
         batch(db, [["DELETE FROM credit_code_history"]]),
         /CREDIT_HISTORY_IMMUTABLE/,
       );
+      // The assertions above isolate the old stock upgrade. Current actor
+      // authorization requires the later schema before exercising today's API.
+      await currentRuntimeSchema();
       const admin = new PortalService(
         db,
         fixtures.admin,
