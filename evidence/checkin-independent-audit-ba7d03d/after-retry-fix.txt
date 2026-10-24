@@ -1,0 +1,20 @@
+✔ sqlite: independent case1 removed and stale approval/registration absence are rejected atomically (101.771489ms)
+✔ sqlite: independent case2 resolved absence remains Checked in through legacy allocation retry (75.377746ms)
+✔ sqlite: independent case3 role boundaries and explicit manual Checked in remain separate (103.219961ms)
+✔ sqlite: independent case4 bulk deduplicates normalized250 input and rolls back earlier override updates (138.260403ms)
+✔ sqlite: independent case5 re-invite stale IDs/role checks and intervening lock preserve declined history (92.879029ms)
+✔ sqlite: independent case6 fifth-seat race rolls invitation acceptance back to pending (74.722787ms)
+✔ postgres: independent case1 removed and stale approval/registration absence are rejected atomically (7288.121877ms)
+✔ postgres: independent case2 resolved absence remains Checked in through legacy allocation retry (5785.952532ms)
+✔ postgres: independent case3 role boundaries and explicit manual Checked in remain separate (3503.028687ms)
+✔ postgres: independent case4 bulk deduplicates normalized250 input and rolls back earlier override updates (3331.999945ms)
+✔ postgres: independent case5 re-invite stale IDs/role checks and intervening lock preserve declined history (14944.919406ms)
+✔ postgres: independent case6 fifth-seat race rolls invitation acceptance back to pending (4020.932489ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 40711.595218

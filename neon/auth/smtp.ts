@@ -1,5 +1,8 @@
 import { demand, emailSchema } from "../../lib/security";
 import type { AuthEnv } from "./config";
+import { signInEmailContent } from "./email-template";
+
+export const DEFAULT_SMTP_NAME = "DevDay Exchange · Parampreet Singh";
 
 export interface MagicMessage {
   to: string;
@@ -7,12 +10,17 @@ export interface MagicMessage {
   expiresMinutes: number;
 }
 export function smtpFrom(env: AuthEnv) {
-  const value = env.SMTP_FROM?.trim() || "";
-  demand(value.length <= 360 && !/[\r\n\x00-\x1f]/.test(value), 503, "SMTP_NOT_CONFIGURED");
+  const configured = env.SMTP_FROM || "";
+  demand(!/[\x00-\x1f\x7f]/.test(configured), 503, "SMTP_NOT_CONFIGURED");
+  const value = configured.trim();
+  demand(value.length <= 360, 503, "SMTP_NOT_CONFIGURED");
   const named = /^([^<>]{1,100})\s*<([^<>]+)>$/.exec(value);
   const address = emailSchema.safeParse(named ? named[2] : value);
   demand(address.success, 503, "SMTP_NOT_CONFIGURED");
-  return named ? { name: named[1].trim(), address: address.data } : { address: address.data };
+  return {
+    name: named ? named[1].trim() : DEFAULT_SMTP_NAME,
+    address: address.data,
+  };
 }
 export function smtpConfig(env: AuthEnv) {
   const port = Number(env.SMTP_PORT);
@@ -42,19 +50,21 @@ export function smtpConfig(env: AuthEnv) {
     debug: false,
   };
 }
+export function magicMailOptions(env: AuthEnv, message: MagicMessage) {
+  return {
+    from: smtpFrom(env),
+    to: message.to,
+    ...signInEmailContent(message),
+    disableFileAccess: true,
+    disableUrlAccess: true,
+  };
+}
 export async function sendMagicEmail(env: AuthEnv, message: MagicMessage) {
   const options = smtpConfig(env);
   const { default: nodemailer } = await import("nodemailer");
   const transport = nodemailer.createTransport(options);
   try {
-    await transport.sendMail({
-      from: smtpFrom(env),
-      to: message.to,
-      subject: "Sign in to DevDay Exchange New Delhi",
-      text: `Confirm your sign-in to DevDay Exchange New Delhi:\n\n${message.url}\n\nThis link expires in ${message.expiresMinutes} minutes and works only in the browser where you requested it. If you did not request it, ignore this email.`,
-      disableFileAccess: true,
-      disableUrlAccess: true,
-    });
+    await transport.sendMail(magicMailOptions(env, message));
   } finally {
     transport.close();
   }

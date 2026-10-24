@@ -1,0 +1,120 @@
+{
+  "source": "405387286eee7a5a8b1034af6cf5df81369766ef",
+  "origin": "http://127.0.0.1:3004",
+  "syntheticOnly": true,
+  "readOnly": true,
+  "method": "Hold only existing destination RSC GET after a real prefetch=false navigation link; capture actual pending RouteSkeleton. No DOM replacement or injected app styles.",
+  "cases": [
+    {
+      "label": "studio",
+      "target": "/dashboard",
+      "layout": "dashboard",
+      "gatedRequests": [
+        {
+          "method": "GET",
+          "path": "/dashboard",
+          "rsc": true
+        }
+      ],
+      "apiRequests": [],
+      "screenshots": [
+        {
+          "file": "studio-390x844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "fullPage": true,
+          "inspected": true,
+          "acceptedFinal": true
+        },
+        {
+          "file": "studio-320x480.png",
+          "viewport": {
+            "width": 320,
+            "height": 480
+          },
+          "fullPage": true,
+          "inspected": true,
+          "acceptedFinal": true
+        }
+      ],
+      "geometry": [
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "layout": "dashboard",
+          "busy": "true",
+          "hiddenShapes": "true",
+          "scrollWidth": 375,
+          "innerWidth": 390,
+          "rect": {
+            "x": 20,
+            "y": 133,
+            "width": 335,
+            "height": 1639,
+            "top": 133,
+            "right": 355,
+            "bottom": 1772,
+            "left": 20
+          },
+          "display": "block"
+        },
+        {
+          "viewport": {
+            "width": 320,
+            "height": 480
+          },
+          "layout": "dashboard",
+          "busy": "true",
+          "hiddenShapes": "true",
+          "scrollWidth": 305,
+          "innerWidth": 320,
+          "rect": {
+            "x": 20,
+            "y": 147,
+            "width": 265,
+            "height": 1639,
+            "top": 147,
+            "right": 285,
+            "bottom": 1786,
+            "left": 20
+          },
+          "display": "block"
+        }
+      ],
+      "tabTops": [
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "tops": [
+            151,
+            151,
+            151
+          ]
+        },
+        {
+          "viewport": {
+            "width": 320,
+            "height": 480
+          },
+          "tops": [
+            165,
+            165,
+            165
+          ]
+        }
+      ],
+      "releasedStatus": 200
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "result": "passed",
+  "browserClosed": true,
+  "visualReview": "Accepted final set is seven unchanged frames from loading plus two corrected Studio mobile frames from loading-studio-final. Original wrapped Studio mobile frames are historical, not final."
+}

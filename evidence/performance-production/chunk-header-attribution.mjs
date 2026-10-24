@@ -1,0 +1,9 @@
+import{readFileSync,writeFileSync}from'node:fs';
+const d=JSON.parse(readFileSync('evidence/performance-production/report.json','utf8')),report={method:'Existing56-sample raw CDP responses/resource timing only; no server/browser rerun.',variants:{}};const median=a=>a.sort((x,y)=>x-y)[Math.floor(a.length/2)];
+for(const v of['baseline','final']){
+ const ss=d.samples.filter(s=>s.variant===v&&s.label==='dashboard'&&s.phase==='cold'),first=ss[0],styles=[...new Set(ss.flatMap(s=>s.resources.filter(r=>r.renderBlockingStatus==='blocking').map(r=>r.name)))];
+ const styleTimings=styles.map(url=>{const rs=ss.map(s=>s.resources.find(r=>r.name===url));return{file:url.split('/').at(-1),startMedianMs:median(rs.map(r=>r.startTime)),endMedianMs:median(rs.map(r=>r.responseEnd)),millisecondsBeforeFCPMedian:median(rs.map((r,i)=>ss[i].fcpMs-r.responseEnd)),lastBlockingCount:ss.filter(s=>s.resources.filter(r=>r.renderBlockingStatus==='blocking').sort((a,b)=>b.responseEnd-a.responseEnd)[0].name===url).length};});
+ const headers=first.requests.filter(r=>r.url.startsWith('http')).map(r=>{const h=Object.fromEntries(Object.entries(r.responseHeaders).map(([k,v])=>[k.toLowerCase(),v]));return{file:new URL(r.url).pathname,type:r.type,protocol:r.protocol,cacheControl:h['cache-control'],encoding:h['content-encoding']??null,contentLength:h['content-length']??null,vary:h.vary??null,etag:h.etag??null,wireBytes:r.encodedDataLength};});
+ report.variants[v]={styleTimings,headers,lastBlockingCssMedianMs:median(ss.map(s=>Math.max(...s.resources.filter(r=>r.renderBlockingStatus==='blocking').map(r=>r.responseEnd)))),lastFontMedianMs:median(ss.map(s=>Math.max(...s.resources.filter(r=>r.name.includes('.woff2')).map(r=>r.responseEnd))))};
+}
+writeFileSync('evidence/performance-production/chunk-header-attribution.json',JSON.stringify(report,null,2)+'\n');

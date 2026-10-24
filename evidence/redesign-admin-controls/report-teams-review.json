@@ -1,0 +1,101 @@
+{
+  "source": "6b660231004b4e7091033818f369663fcc7f1e4a",
+  "syntheticOnly": true,
+  "checks": [
+    {
+      "name": "crown transferred to Carol",
+      "passed": true
+    },
+    {
+      "name": "crown transferred to Bob",
+      "passed": true
+    },
+    {
+      "name": "voting toggle persisted false",
+      "passed": true
+    },
+    {
+      "name": "voting toggle persisted true",
+      "passed": true
+    },
+    {
+      "name": "unsaved content fields survive settings tab changes",
+      "passed": true
+    },
+    {
+      "name": "private admin score persisted",
+      "passed": true
+    },
+    {
+      "name": "review detail responsive tabs 768x1024",
+      "passed": true
+    },
+    {
+      "name": "review detail responsive tabs 390x844",
+      "passed": true
+    },
+    {
+      "name": "review detail responsive tabs 390x480",
+      "passed": true
+    }
+  ],
+  "writes": [
+    {
+      "action": "transfer-team-leader",
+      "data": {
+        "teamId": "fake_team3",
+        "userId": "fake_carol",
+        "expectedLeaderId": "fake_bob",
+        "confirmation": "TRANSFER_TEAM_LEADER"
+      }
+    },
+    {
+      "action": "transfer-team-leader",
+      "data": {
+        "teamId": "fake_team3",
+        "userId": "fake_bob",
+        "expectedLeaderId": "fake_carol",
+        "confirmation": "TRANSFER_TEAM_LEADER"
+      }
+    },
+    {
+      "action": "engagement-control",
+      "data": {
+        "votingPaused": true,
+        "feedbackPaused": false,
+        "version": 0,
+        "reason": null,
+        "confirmation": "CHANGE_ENGAGEMENT"
+      }
+    },
+    {
+      "action": "engagement-control",
+      "data": {
+        "votingPaused": false,
+        "feedbackPaused": false,
+        "version": 1,
+        "reason": null,
+        "confirmation": "CHANGE_ENGAGEMENT"
+      }
+    },
+    {
+      "action": "review-project",
+      "data": {
+        "projectId": "visual_project_alice",
+        "versionId": "visual_alice_v2",
+        "body": "Synthetic browser admin review saved with existing scoring rules.",
+        "rating": 7
+      }
+    }
+  ],
+  "screenshots": [
+    "/workspace/ddd-admin/evidence/redesign-admin-controls/review-desktop.png",
+    "/workspace/ddd-admin/evidence/redesign-admin-controls/review-768x1024.png",
+    "/workspace/ddd-admin/evidence/redesign-admin-controls/project-details-768x1024.png",
+    "/workspace/ddd-admin/evidence/redesign-admin-controls/review-390x844.png",
+    "/workspace/ddd-admin/evidence/redesign-admin-controls/project-details-390x844.png",
+    "/workspace/ddd-admin/evidence/redesign-admin-controls/review-390x480.png",
+    "/workspace/ddd-admin/evidence/redesign-admin-controls/project-details-390x480.png"
+  ],
+  "errors": []
+}

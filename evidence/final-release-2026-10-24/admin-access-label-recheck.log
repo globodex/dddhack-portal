@@ -1,0 +1,14 @@
+✔ single email, list and email-only CSV require no profile fields (51.879792ms)
+✔ Add waits for validated server count before requesting confirmation-aware commit (0.559217ms)
+✔ invalid, existing-only and inconsistent imports never ask for commit (1.570482ms)
+✔ full CSV imports only explicitly mapped present fields (1.114237ms)
+✔ compact target actions keep exact tokens with no mandatory reason (9.777263ms)
+✔ Add Admins is owner-only and requests an exact single email without role choice (4.556956ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2389.419133

@@ -1,0 +1,1 @@
+{"result":"failed","cases":1,"errors":0,"blocked":0,"failure":"AssertionError [ERR_ASSERTION]: Loading controls must stay insideviewport\n    at file:///workspace/ddd-performance-current/evidence/final-performance-current/capture-loading.mjs:35:12"}

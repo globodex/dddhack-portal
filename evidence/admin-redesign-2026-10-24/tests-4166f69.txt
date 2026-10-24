@@ -1,0 +1,35 @@
+✔ content editor renders actual Lucide controls with exact accessible row targets and guarded publish (26.519044ms)
+✔ Results controls keep unavailable gates and explain each disabled action accessibly (13.628346ms)
+✔ Results controls use actual per-action availability rather than obsolete manual readiness (6.743619ms)
+✔ IST values are exact UTC independently of the machine timezone (3.608989ms)
+✔ window validation rejects rolled calendars, guessed zones and non-increasing intervals (0.805448ms)
+✔ window publication preserves reviewed token/version and supplies automatic audit annotation (1.362883ms)
+✔ participant filters default to Registered in Locked teams, combine and order earliest known lock (0.84173ms)
+✔ single-person and exact-project payloads have no bulk removal or reset path (0.474667ms)
+✔ import preserves supplied CSV and explicit approved mapping without inventing headers (0.453907ms)
+✔ controls render target, audit and real-attempt consequences without mutating or exposing owner settings (21.951475ms)
+✔ publish values retain exact column mapping and final digest while omitting display-only preview samples (2.782823ms)
+✔ deletion identifies exactly a batch or its selected column with distinct confirmation tokens (0.393414ms)
+✔ CSV upload and paste lead directly to Add credits without Preview or Review controls (15.142955ms)
+✔ published columns render safe Markdown with separately named delete buttons and no raw voucher properties (20.853212ms)
+✔ trash actions have exact accessible targets and retained confirmation payloads (21.07115ms)
+✔ approved Lucide trash geometry is decorative to screen readers (1.086865ms)
+✔ privileged team and audit rows use selected display names with safe avatar fields (167.790345ms)
+✔ membership confirmations distinguish applicant and accept versus decline (1.695273ms)
+✔ malformed imports give actionable errors while preserving refusal (77.151049ms)
+✔ import copy preserves access errors and other preview actions (0.527536ms)
+✔ Settings removes readiness section and manual attestation controls (45.750099ms)
+✔ Settings has no manual operation controls for any role or readiness state (33.367937ms)
+✔ legacy setup API remains auditable while Settings derives operations without enable controls (483.729616ms)
+✔ false, missing, forged or mismatched acknowledgements/previews cannot initialize or change policy (175.1823ms)
+✔ owner role, authenticated identity and same-origin request protection apply to preview, save and scope activation (169.226826ms)
+✔ configuration preserves custom dates, active scopes, weights and unresolved judging flags; stale saves do not duplicate history (105.022204ms)
+✔ retained legacy setup component stays unmounted from Settings and preserves its own validation contract (5.194055ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13318.607267

@@ -1,0 +1,8 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+ReferenceError: search is not defined
+    at file:///workspace/ddd-viewer-browser/scripts/qa-viewer-registration-admin.mjs:13:82
+
+Node.js v24.19.0

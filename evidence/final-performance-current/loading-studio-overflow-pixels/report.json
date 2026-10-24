@@ -1,0 +1,118 @@
+{
+  "source": "12af0fa374a45f8af19ba7b5e896bf8a27655579",
+  "origin": "http://127.0.0.1:3004",
+  "syntheticOnly": true,
+  "readOnly": true,
+  "method": "Hold only existing destination RSC GET after a real prefetch=false navigation link; capture actual pending RouteSkeleton. No DOM replacement or injected app styles.",
+  "cases": [
+    {
+      "label": "studio",
+      "target": "/dashboard",
+      "layout": "dashboard",
+      "gatedRequests": [
+        {
+          "method": "GET",
+          "path": "/dashboard",
+          "rsc": true
+        }
+      ],
+      "apiRequests": [],
+      "screenshots": [
+        {
+          "file": "studio-390x844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "fullPage": true,
+          "inspected": false
+        },
+        {
+          "file": "studio-320x480.png",
+          "viewport": {
+            "width": 320,
+            "height": 480
+          },
+          "fullPage": true,
+          "inspected": false
+        }
+      ],
+      "geometry": [
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "layout": "dashboard",
+          "busy": "true",
+          "hiddenShapes": "true",
+          "scrollWidth": 375,
+          "innerWidth": 390,
+          "rect": {
+            "x": 20,
+            "y": 133,
+            "width": 335,
+            "height": 1639,
+            "top": 133,
+            "right": 355,
+            "bottom": 1772,
+            "left": 20
+          },
+          "display": "block"
+        },
+        {
+          "viewport": {
+            "width": 320,
+            "height": 480
+          },
+          "layout": "dashboard",
+          "busy": "true",
+          "hiddenShapes": "true",
+          "scrollWidth": 342,
+          "innerWidth": 320,
+          "rect": {
+            "x": 20,
+            "y": 147,
+            "width": 265,
+            "height": 1639,
+            "top": 147,
+            "right": 285,
+            "bottom": 1786,
+            "left": 20
+          },
+          "display": "block"
+        }
+      ],
+      "tabTops": [
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "tops": [
+            151,
+            151,
+            151
+          ]
+        },
+        {
+          "viewport": {
+            "width": 320,
+            "height": 480
+          },
+          "tops": [
+            165,
+            165,
+            165
+          ]
+        }
+      ],
+      "releasedStatus": 200
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "result": "failed",
+  "failure": "AssertionError [ERR_ASSERTION]: Loading controls must stay insideviewport\n    at file:///workspace/ddd-performance-current/evidence/final-performance-current/capture-loading.mjs:35:12",
+  "browserClosed": true
+}

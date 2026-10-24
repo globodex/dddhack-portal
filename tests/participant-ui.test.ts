@@ -114,13 +114,14 @@ test("team idea is capped, saved before lock and uses safe teammate profiles, sy
     },
     run,
   });
-  assert.match(html, /maxLength="500"/);
-  assert.match(html, /12\/500 characters/);
+  assert.match(html, /aria-label="Edit team idea"/);
+  assert.match(markup(TeamWorkspace, {data:{me,team,members:[member]},run}), /maxLength="500"/);
+  assert.match(html, /12\/500/);
   assert.doesNotMatch(html, /name="core"|person-monogram/);
   assert.match(html, /href="\/discover\/participants#person-fixture-leader"/);
   assert.match(html, /purple mixed-slash avatar/);
   assert.match(html, /href="https:\/\/wa.me\/12025550101"/);
-  assert.match(html, /Delete your team/);
+  assert.match(html, /Delete team/);
   assert.doesNotMatch(
     markup(TeamWorkspace, {
       data: {
@@ -130,14 +131,14 @@ test("team idea is capped, saved before lock and uses safe teammate profiles, sy
       },
       run,
     }),
-    /Delete your team/,
+    /Delete team/,
   );
   assert.doesNotMatch(
     markup(TeamWorkspace, {
       data: { me, team: { ...team, locked: true }, members: [member] },
       run,
     }),
-    /Rename team|Delete your team|Lock completed team|>Remove</,
+    /Rename team|Delete team|Lock team|>Remove</,
   );
 });
 test("viewer discovery and dashboard remain read-only without forcing profile completion", () => {
@@ -203,7 +204,9 @@ test("project mutation controls fail closed unless server grants canCommit to th
     },
     run,
   });
-  assert.doesNotMatch(allowed, /<fieldset disabled="">/);
+  assert.match(allowed, /data-readonly="false"/);
+  assert.match(allowed, /<form[^>]*method="post"/);
+  assert.match(allowed, /<form[^>]*inert=""/);
   const other = markup(Submission, {
     data: {
       ...base,
@@ -213,6 +216,7 @@ test("project mutation controls fail closed unless server grants canCommit to th
     run,
   });
   assert.match(other, /<fieldset disabled="">/);
+  assert.match(other, /data-readonly="true"/);
   assert.equal(markup(ProjectHistory, { canRead: false }), "");
   assert.match(
     markup(ProjectHistory, { canRead: true }),
@@ -413,6 +417,10 @@ test("destructive and publishing confirmations identify exact scope and preserve
     portalConfirmationFor("publish-submission-window", {}, "Previewed times")
       .description,
     /real portal settings/,
+  );
+  assert.equal(
+    portalConfirmationFor("publish-submission-window", { windowWarnings: ["The repository cutoff is unchanged.", "Closing reaches judging close."] }, "24 Oct 08:00 IST → 1 Nov 20:00 IST").description,
+    "The repository cutoff is unchanged. Closing reaches judging close.",
   );
   assert.equal(
     portalConfirmationFor("commit-import", { newCount: 2 }, "Previewed roster")

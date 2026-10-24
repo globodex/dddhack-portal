@@ -1,0 +1,586 @@
+{
+  "runtimeSource": "86862c722233bbd6776f1e2672d78b41fa808a52",
+  "archiveSha256": "bbd047173fb4e895bd8148d24674548f05dfaea58e184ca57bcc0e183ca60382",
+  "files": [
+    {
+      "path": "index.mjs",
+      "bytes": 1649360,
+      "compressedBytes": 462028,
+      "sha256": "77b26aed98d0c7c8486c12ee2246ce61dadc98163d2fc5d24989f6fd579669fe"
+    },
+    {
+      "path": "node_modules/@emnapi/runtime/dist/emnapi.cjs.js",
+      "bytes": 43600,
+      "compressedBytes": 8710,
+      "sha256": "eb583443e0dbaa6b0480cb2a2c0346d2d7fc0dd2bdb8ec72ec769389c7d2496b"
+    },
+    {
+      "path": "node_modules/@emnapi/runtime/dist/emnapi.cjs.min.js",
+      "bytes": 21494,
+      "compressedBytes": 6632,
+      "sha256": "82a6dd28d44f434ce0450def3a8645a1d2a565275e26f9260a326c163c7ab153"
+    },
+    {
+      "path": "node_modules/@emnapi/runtime/index.js",
+      "bytes": 196,
+      "compressedBytes": 127,
+      "sha256": "c406ece13dc7dcd5aec8b02c2d3d11c87acbfb01dee17f30483bec071c20a0c5"
+    },
+    {
+      "path": "node_modules/@emnapi/runtime/package.json",
+      "bytes": 1187,
+      "compressedBytes": 400,
+      "sha256": "751db16171cb4d111905122be8a4c0dc2b5c82e6ba2a590ca24fbc6cca048f93"
+    },
+    {
+      "path": "node_modules/@img/colour/color.cjs",
+      "bytes": 45136,
+      "compressedBytes": 12010,
+      "sha256": "f7c3efcf482624007f2019fffee3e1dec56b8cb893faa9a420b2832805888dce"
+    },
+    {
+      "path": "node_modules/@img/colour/index.cjs",
+      "bytes": 49,
+      "compressedBytes": 51,
+      "sha256": "e6e93e7fb209420a20fdf2ec676e9c67413be8d5ace99eec64f9468480f0368d"
+    },
+    {
+      "path": "node_modules/@img/colour/package.json",
+      "bytes": 1515,
+      "compressedBytes": 692,
+      "sha256": "bc38c5097693ed53b91c32f35fb0a52569736c7854ba2eb6d080f3252071f75c"
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
+      "bytes": 18324712,
+      "compressedBytes": 8195758,
+      "sha256": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f"
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-arm64/package.json",
+      "bytes": 948,
+      "compressedBytes": 470,
+      "sha256": "a3d16b47b7c0a55ddb43afa9678a9a83b6a27edbd3cf42d41e53c7838930982b"
+    },
+    {
+      "path": "node_modules/@img/sharp-linux-arm64/index.cjs",
+      "bytes": 139,
+      "compressedBytes": 113,
+      "sha256": "5fefc8e2a4db759ab7b80f26ffff131b9a4251ff5cfd07030f968ba5698ebdc2"
+    },
+    {
+      "path": "node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.5.node",
+      "bytes": 530120,
+      "compressedBytes": 167789,
+      "sha256": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b"
+    },
+    {
+      "path": "node_modules/@img/sharp-linux-arm64/package.json",
+      "bytes": 936,
+      "compressedBytes": 454,
+      "sha256": "46b7220846b8c6a552f002f62ab2c855f33a4013fb97d1e54c6a4895e4317c8b"
+    },
+    {
+      "path": "node_modules/detect-libc/lib/detect-libc.js",
+      "bytes": 7503,
+      "compressedBytes": 1616,
+      "sha256": "5de6a1c1abec8bba5ea1261cf819d83a73c92ebe72b879ae48c59ca12320a462"
+    },
+    {
+      "path": "node_modules/detect-libc/lib/elf.js",
+      "bytes": 982,
+      "compressedBytes": 450,
+      "sha256": "0e8820f00ee11d179d94894d4f97a6e87c34ab59e5dd4d3a571dfabcecf043af"
+    },
+    {
+      "path": "node_modules/detect-libc/lib/filesystem.js",
+      "bytes": 1097,
+      "compressedBytes": 494,
+      "sha256": "5c98fb66b559d0b4fa82c7a3e39d9ab6840f022c4c73e6b1a73ac6d16ec13fd7"
+    },
+    {
+      "path": "node_modules/detect-libc/lib/process.js",
+      "bytes": 569,
+      "compressedBytes": 293,
+      "sha256": "f37dd0ead9f70b50c6f5529c600e1cdf076e3c3bc8e6b4a0a9820a8d65244628"
+    },
+    {
+      "path": "node_modules/detect-libc/package.json",
+      "bytes": 1278,
+      "compressedBytes": 627,
+      "sha256": "ee88e5b954fdf3a8480b1d01ef767d68d8ca2c6da269f58c5cf1c5550e9aa2a7"
+    },
+    {
+      "path": "node_modules/semver/classes/comparator.js",
+      "bytes": 3631,
+      "compressedBytes": 1117,
+      "sha256": "054202956430d63d5ff4599fae09760ce465b489e4f0b5ef5ce7cc7ac21157ac"
+    },
+    {
+      "path": "node_modules/semver/classes/range.js",
+      "bytes": 15647,
+      "compressedBytes": 4594,
+      "sha256": "a6544485aa8575aa9854c67e2caa67726815de18a482d0ceb8a1003244de3bc1"
+    },
+    {
+      "path": "node_modules/semver/classes/semver.js",
+      "bytes": 9891,
+      "compressedBytes": 2438,
+      "sha256": "813b2c185512d30c9b931c2fed8140889d9d7490ceeeedc370da30337dc8ca57"
+    },
+    {
+      "path": "node_modules/semver/functions/clean.js",
+      "bytes": 205,
+      "compressedBytes": 145,
+      "sha256": "4eadb0892844cf3ae295121a86163a66c73f89acd1b7f0b114ec115b4539512f"
+    },
+    {
+      "path": "node_modules/semver/functions/cmp.js",
+      "bytes": 961,
+      "compressedBytes": 301,
+      "sha256": "a63d74e87b73788e78e9ce0a4892b5333d6b809c0de88b31e4ed76cbf17f94b3"
+    },
+    {
+      "path": "node_modules/semver/functions/coerce.js",
+      "bytes": 2004,
+      "compressedBytes": 817,
+      "sha256": "28a251c5ab210ddf9e97551b9f37a53329fcce91f0c3943dcbc02de1a1de915a"
+    },
+    {
+      "path": "node_modules/semver/functions/compare-build.js",
+      "bytes": 281,
+      "compressedBytes": 156,
+      "sha256": "5ab651d5b40af289bd85c645a92b6d8cfe1a986dc413c797cfcc8d623d7c844c"
+    },
+    {
+      "path": "node_modules/semver/functions/compare-loose.js",
+      "bytes": 132,
+      "compressedBytes": 93,
+      "sha256": "07b6a3a1db0a5210ceb784c1708bd4679f3a94fc73a9c9eb349349e7070a6f78"
+    },
+    {
+      "path": "node_modules/semver/functions/compare.js",
+      "bytes": 170,
+      "compressedBytes": 114,
+      "sha256": "d404b5aa48aaddc8a654c5da8fb7d4443404b7948589b21ac4b045d1cee4e34c"
+    },
+    {
+      "path": "node_modules/semver/functions/diff.js",
+      "bytes": 1423,
+      "compressedBytes": 555,
+      "sha256": "7a11fd39b987cdf06c65e928cb1aca49bec583feb86fb5c8fe47a6fd61d7de31"
+    },
+    {
+      "path": "node_modules/semver/functions/eq.js",
+      "bytes": 126,
+      "compressedBytes": 90,
+      "sha256": "b6e30a7168e52723216fc163d300e2bbabf92ec0251f9ac5438bb6ccf57c8936"
+    },
+    {
+      "path": "node_modules/semver/functions/gt.js",
+      "bytes": 124,
+      "compressedBytes": 90,
+      "sha256": "135523704aa48cd98834dd170ee9f74f0e68043b379f32d021db11e6304c5c93"
+    },
+    {
+      "path": "node_modules/semver/functions/gte.js",
+      "bytes": 127,
+      "compressedBytes": 92,
+      "sha256": "991c5bbe48ecb210a562646872f05862ad9fc0d42186d85aa60bdc6fa323eb9d"
+    },
+    {
+      "path": "node_modules/semver/functions/inc.js",
+      "bytes": 478,
+      "compressedBytes": 239,
+      "sha256": "952069fc8690b7d3af0fe9d55f7c54fe2ac067b48c5e74f6a54f9ce19a334493"
+    },
+    {
+      "path": "node_modules/semver/functions/lt.js",
+      "bytes": 124,
+      "compressedBytes": 90,
+      "sha256": "1c897a9bc849320e2e9dc0f6c09555c01ee3ddf30734515d717b88ad7740ea25"
+    },
+    {
+      "path": "node_modules/semver/functions/lte.js",
+      "bytes": 127,
+      "compressedBytes": 92,
+      "sha256": "3a8d0b1d00423f60cc7cb810b36ab77b61330831ad237dbe73eb5cecfa412800"
+    },
+    {
+      "path": "node_modules/semver/functions/major.js",
+      "bytes": 136,
+      "compressedBytes": 104,
+      "sha256": "5c678480d882f511200fed2c16ec3847dfedb08a1d70328dc2f031d35d825276"
+    },
+    {
+      "path": "node_modules/semver/functions/minor.js",
+      "bytes": 136,
+      "compressedBytes": 104,
+      "sha256": "1b051794f1713adec2a236517196691687c35f82e0b596ff3316a78b3cc10ae6"
+    },
+    {
+      "path": "node_modules/semver/functions/neq.js",
+      "bytes": 128,
+      "compressedBytes": 93,
+      "sha256": "a662883751918822c162183b46b9e20d09489132f82686c92ab78bee67f3a127"
+    },
+    {
+      "path": "node_modules/semver/functions/parse.js",
+      "bytes": 331,
+      "compressedBytes": 191,
+      "sha256": "29a69e15b6d02fe381d573f861881a89590e9d0f0f0ca740c5f85eaf0234c4ad"
+    },
+    {
+      "path": "node_modules/semver/functions/patch.js",
+      "bytes": 136,
+      "compressedBytes": 105,
+      "sha256": "f02d3c1b059fe3d96ce124886f7eef321d381a95638fd3c4a8d5ccd8e76ffadd"
+    },
+    {
+      "path": "node_modules/semver/functions/prerelease.js",
+      "bytes": 234,
+      "compressedBytes": 135,
+      "sha256": "baedbf503d5610ad041bfb56071efa48feb331ca278295c399537d35d3ffb593"
+    },
+    {
+      "path": "node_modules/semver/functions/rcompare.js",
+      "bytes": 132,
+      "compressedBytes": 91,
+      "sha256": "84fa5e88adf08d15c993cac8cdec6d1a65045b7e95a9c55184230a7f807f4dc0"
+    },
+    {
+      "path": "node_modules/semver/functions/rsort.js",
+      "bytes": 163,
+      "compressedBytes": 115,
+      "sha256": "6ec659ce3b6c2b173c719286caab04409adba046c0917874ec3b5e36ddfbc7e3"
+    },
+    {
+      "path": "node_modules/semver/functions/satisfies.js",
+      "bytes": 247,
+      "compressedBytes": 156,
+      "sha256": "8cf5e122b757251671ed6c9d9680904b71cd375845853f05312e608cf2cc2946"
+    },
+    {
+      "path": "node_modules/semver/functions/sort.js",
+      "bytes": 161,
+      "compressedBytes": 111,
+      "sha256": "c2fe2d3ed0be8a4e9de8f02abdfd5d9c0d3bcc510d88e87af84185592882c4b8"
+    },
+    {
+      "path": "node_modules/semver/functions/truncate.js",
+      "bytes": 1021,
+      "compressedBytes": 405,
+      "sha256": "e145833a250311927c92f424f56498c52f1b7bb1271ce6afbf006db87773ff43"
+    },
+    {
+      "path": "node_modules/semver/functions/valid.js",
+      "bytes": 176,
+      "compressedBytes": 119,
+      "sha256": "0de7ea736cb7807179d46dfac09c830a9338e02b6a07db12d7040cde2def6025"
+    },
+    {
+      "path": "node_modules/semver/index.js",
+      "bytes": 2691,
+      "compressedBytes": 728,
+      "sha256": "4b3e57d3d40e29e0706002eba113d09f35aea593578376bbeec83b777b9912ab"
+    },
+    {
+      "path": "node_modules/semver/internal/constants.js",
+      "bytes": 873,
+      "compressedBytes": 456,
+      "sha256": "38a112baf27ceca0260082ff26ac2fd7a9861cab1af12dd65e720277f68e6ce9"
+    },
+    {
+      "path": "node_modules/semver/internal/debug.js",
+      "bytes": 240,
+      "compressedBytes": 166,
+      "sha256": "8a9f420572260f3cf944463b5090d62a60f0730589dc23a7ec4ca25e2ee41bb3"
+    },
+    {
+      "path": "node_modules/semver/internal/identifiers.js",
+      "bytes": 525,
+      "compressedBytes": 244,
+      "sha256": "b4916b09dc7869ae0eb05e71c855c942a3a7365f7e6e89185d59a9e45a2451d7"
+    },
+    {
+      "path": "node_modules/semver/internal/lrucache.js",
+      "bytes": 802,
+      "compressedBytes": 343,
+      "sha256": "14d087c87da87b6f5c36fc4cdd7d2d14077874b14a68e20fce5b6138fa2ca34f"
+    },
+    {
+      "path": "node_modules/semver/internal/parse-options.js",
+      "bytes": 338,
+      "compressedBytes": 176,
+      "sha256": "fdf51d0de8d5442c35a997ef58cd530d239ce206f961d14c5121354451b01d01"
+    },
+    {
+      "path": "node_modules/semver/internal/re.js",
+      "bytes": 8139,
+      "compressedBytes": 2572,
+      "sha256": "5833262888e2b5d843a69193f83c05e374818dbe55379b497819b5bf58e48cd8"
+    },
+    {
+      "path": "node_modules/semver/package.json",
+      "bytes": 1661,
+      "compressedBytes": 660,
+      "sha256": "7c94cb7f2a53c27b20d76386ec144c062894dbcc909cfabd0f728c37874b1776"
+    },
+    {
+      "path": "node_modules/semver/preload.js",
+      "bytes": 83,
+      "compressedBytes": 78,
+      "sha256": "edb6808911bebcb324b2df57e5c9935149e56984ff083b74c6cfe215f5b710ba"
+    },
+    {
+      "path": "node_modules/semver/ranges/gtr.js",
+      "bytes": 231,
+      "compressedBytes": 143,
+      "sha256": "8fadad28e36d28e93d498ac7ac20badba2a407312845eabc18e82e90a0732b19"
+    },
+    {
+      "path": "node_modules/semver/ranges/intersects.js",
+      "bytes": 224,
+      "compressedBytes": 134,
+      "sha256": "fe87ac5d3020010ad3ec00636dadbf0c669ff07d0f57e0a8165a8264f79a676f"
+    },
+    {
+      "path": "node_modules/semver/ranges/ltr.js",
+      "bytes": 227,
+      "compressedBytes": 142,
+      "sha256": "e5186fcc03018acf9be6d968755d4c49727aeb0d981d179eb568ae5fbe983038"
+    },
+    {
+      "path": "node_modules/semver/ranges/max-satisfying.js",
+      "bytes": 593,
+      "compressedBytes": 285,
+      "sha256": "e1a2c0d6144cc772cd20bbc8ecb9e8a3a4074e9172a3d8e794838b591cdeb416"
+    },
+    {
+      "path": "node_modules/semver/ranges/min-satisfying.js",
+      "bytes": 591,
+      "compressedBytes": 282,
+      "sha256": "2681abf54098aa670f12826b76a6ec77a2441186ae4243afde3be8ae4908f7ca"
+    },
+    {
+      "path": "node_modules/semver/ranges/min-version.js",
+      "bytes": 1514,
+      "compressedBytes": 586,
+      "sha256": "fefba0a88c2bf74d5cede504b5ae50a8dc3edfd69cf0174a491e2cf3e442614b"
+    },
+    {
+      "path": "node_modules/semver/ranges/outside.js",
+      "bytes": 2204,
+      "compressedBytes": 795,
+      "sha256": "3a2b0b23593d2f49419c06af2af75450cab103b0c25d665d48fe5bca495a21ca"
+    },
+    {
+      "path": "node_modules/semver/ranges/simplify.js",
+      "bytes": 1355,
+      "compressedBytes": 534,
+      "sha256": "7b78581c13322bc68ece2088685386b2a9b51c15b94d0a2063bdf2546bd41934"
+    },
+    {
+      "path": "node_modules/semver/ranges/subset.js",
+      "bytes": 7478,
+      "compressedBytes": 2041,
+      "sha256": "ceb9eb6ed5bfc6c7ac7af7f47e5c3535444a4e66a0e2b58cdad4bd02a35d454d"
+    },
+    {
+      "path": "node_modules/semver/ranges/to-comparators.js",
+      "bytes": 282,
+      "compressedBytes": 190,
+      "sha256": "6c5e966210cff270fa2850668aaf8460fac7759f8d99f282521ef7a78f4564e9"
+    },
+    {
+      "path": "node_modules/semver/ranges/valid.js",
+      "bytes": 326,
+      "compressedBytes": 203,
+      "sha256": "5ef6f995af801868925940cf8df5735d565ebabb090b068695cae65218bcd3ac"
+    },
+    {
+      "path": "node_modules/sharp/dist/channel.cjs",
+      "bytes": 5383,
+      "compressedBytes": 2089,
+      "sha256": "7445567e8001f4be3126374e4c17e282777ed14c718acca875c91bec69a2d7a1"
+    },
+    {
+      "path": "node_modules/sharp/dist/channel.mjs",
+      "bytes": 5376,
+      "compressedBytes": 2083,
+      "sha256": "6067b0ba5ebcc9682a01d0b450a12b54849a95c8ed017f8485bddb5fd0b9db91"
+    },
+    {
+      "path": "node_modules/sharp/dist/colour.cjs",
+      "bytes": 5622,
+      "compressedBytes": 1800,
+      "sha256": "da760186e75d4fd8b6da0a617ecf122deec2fa6d95fdcc194bbee0cb1c5e4605"
+    },
+    {
+      "path": "node_modules/sharp/dist/colour.mjs",
+      "bytes": 5610,
+      "compressedBytes": 1793,
+      "sha256": "760e7fa8161432a9cc97f0a3d9f3e0b757e66089c967e6b36f3131c9fdafa1b5"
+    },
+    {
+      "path": "node_modules/sharp/dist/composite.cjs",
+      "bytes": 9332,
+      "compressedBytes": 3094,
+      "sha256": "6e0837309d25c2b642d42b557f3e1292c2b057af09746647a3a6d54de772a157"
+    },
+    {
+      "path": "node_modules/sharp/dist/composite.mjs",
+      "bytes": 9325,
+      "compressedBytes": 3094,
+      "sha256": "16eadc26ba57417e90e4bb73aff1116b56ad26766088793ab0b7c4bbdd2bc9fc"
+    },
+    {
+      "path": "node_modules/sharp/dist/constructor.cjs",
+      "bytes": 20364,
+      "compressedBytes": 6928,
+      "sha256": "6b8978e0f1614d83a219cbbd455e3eed7922bc4212a5b3b99c5d37c3af3b3226"
+    },
+    {
+      "path": "node_modules/sharp/dist/constructor.mjs",
+      "bytes": 20340,
+      "compressedBytes": 6932,
+      "sha256": "8be8da679d2a028d0f53b02ce52f07f295134a297caf3068944cd8d0b57ab3d1"
+    },
+    {
+      "path": "node_modules/sharp/dist/index.cjs",
+      "bytes": 620,
+      "compressedBytes": 251,
+      "sha256": "d69f275bc49fcd2a6188b26b35c986d4db32a1b008653fef88adb4598688232a"
+    },
+    {
+      "path": "node_modules/sharp/dist/index.mjs",
+      "bytes": 573,
+      "compressedBytes": 246,
+      "sha256": "0e8f955c68a1b0bccf0ba5343c924dbfa6a46a76a0d491ec27fe6b328311363e"
+    },
+    {
+      "path": "node_modules/sharp/dist/input.cjs",
+      "bytes": 33741,
+      "compressedBytes": 7010,
+      "sha256": "e5eb5c891c0893098dbe8bc0358a2f2c7e800581018923a7956732fe1a5ddf8f"
+    },
+    {
+      "path": "node_modules/sharp/dist/input.mjs",
+      "bytes": 33729,
+      "compressedBytes": 7013,
+      "sha256": "4b0a51e678f9022cec06a1ffb34e17ea3498cfb707492b54de87541ccac54125"
+    },
+    {
+      "path": "node_modules/sharp/dist/is.cjs",
+      "bytes": 3042,
+      "compressedBytes": 1021,
+      "sha256": "46fa32e93964d8a31d6e851dc3bb7f3ec36935f9e8323b59603ff6cd84a7faa7"
+    },
+    {
+      "path": "node_modules/sharp/dist/is.mjs",
+      "bytes": 3040,
+      "compressedBytes": 1019,
+      "sha256": "96a3b1b82d389b7b57569332fed93e46cf9b5aa79f2babb82cbb15fe1581a409"
+    },
+    {
+      "path": "node_modules/sharp/dist/libvips.cjs",
+      "bytes": 5833,
+      "compressedBytes": 1891,
+      "sha256": "3419f6cb4303feaf4a76abe122ce1caf5dc755f9f17fa013afd5561827b61062"
+    },
+    {
+      "path": "node_modules/sharp/dist/libvips.mjs",
+      "bytes": 5828,
+      "compressedBytes": 1906,
+      "sha256": "d9984601b0aafe44c393b29ce4b0712b1c40890c3d740d4fda49842a4ea5873d"
+    },
+    {
+      "path": "node_modules/sharp/dist/operation.cjs",
+      "bytes": 32930,
+      "compressedBytes": 8068,
+      "sha256": "11eb4921f37e4e06c0b349f55e186852cdd094203cc3c5651681801eea5d80f8"
+    },
+    {
+      "path": "node_modules/sharp/dist/operation.mjs",
+      "bytes": 32923,
+      "compressedBytes": 8064,
+      "sha256": "a3b14c3a13305dbe8fde48a263d13b0a104dcb97afc65fe5f55b8e556d054be1"
+    },
+    {
+      "path": "node_modules/sharp/dist/output.cjs",
+      "bytes": 65469,
+      "compressedBytes": 13758,
+      "sha256": "4c2878241a264095b661fb321accf86fa9be033bfe541d5a70ac2f8d80150893"
+    },
+    {
+      "path": "node_modules/sharp/dist/output.mjs",
+      "bytes": 65452,
+      "compressedBytes": 13765,
+      "sha256": "d1be82aace2d7f96bfc29e6e76538521fc8dfe6d4e90f7eda71a8f4c2a1597ba"
+    },
+    {
+      "path": "node_modules/sharp/dist/resize.cjs",
+      "bytes": 22840,
+      "compressedBytes": 6258,
+      "sha256": "e03dce87aaee233fecf191ec3c713a9f856e13d0d9ccd7b0a7dbf35b65e36538"
+    },
+    {
+      "path": "node_modules/sharp/dist/resize.mjs",
+      "bytes": 22833,
+      "compressedBytes": 6257,
+      "sha256": "e3d26f31cf391e28f3f96e708ccb96745cf016e18f8ef4486c837e5efcb3c922"
+    },
+    {
+      "path": "node_modules/sharp/dist/sharp.cjs",
+      "bytes": 6262,
+      "compressedBytes": 1988,
+      "sha256": "76120d3971051fcc469c0bfa36e7b23d3c388b6a2f5785bf1491bbdb90ff0176"
+    },
+    {
+      "path": "node_modules/sharp/dist/sharp.mjs",
+      "bytes": 6357,
+      "compressedBytes": 2050,
+      "sha256": "d0c3ce3837636a140e8363850823e3b8dc2b000928303664cc9fc1aa2ba326ee"
+    },
+    {
+      "path": "node_modules/sharp/dist/utility.cjs",
+      "bytes": 9786,
+      "compressedBytes": 3396,
+      "sha256": "0f7a14858dfa8ebd01b2c6c2272297f7a34c4af3d84f0c0b926146c49a2655b1"
+    },
+    {
+      "path": "node_modules/sharp/dist/utility.mjs",
+      "bytes": 9862,
+      "compressedBytes": 3437,
+      "sha256": "761566e165bc1fc90bc6dd67a3b560c1a63e6cfe98009b726d35288606d629b9"
+    },
+    {
+      "path": "node_modules/sharp/package.json",
+      "bytes": 8115,
+      "compressedBytes": 3063,
+      "sha256": "ad4a2535d72eb638053a38867b1abf43c328cd1c1dbae5cf4172d498365a8b97"
+    }
+  ],
+  "nativeFiles": [
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
+      "bytes": 18324712,
+      "compressedBytes": 8195758,
+      "sha256": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f",
+      "elfMachine": 183
+    },
+    {
+      "path": "node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.5.node",
+      "bytes": 530120,
+      "compressedBytes": 167789,
+      "sha256": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b",
+      "elfMachine": 183
+    }
+  ],
+  "forbiddenPaths": [],
+  "limits": {
+    "maxZipBytes": 10485760,
+    "maxTotalBytes": 67108864,
+    "maxEntries": 4096
+  }
+}

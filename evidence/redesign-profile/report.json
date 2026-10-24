@@ -1,0 +1,955 @@
+{
+  "origin": "http://127.0.0.1:3000",
+  "syntheticOnly": true,
+  "source": "ee7a1593e99a87aee5cdd8bf1c96a133cc7b9321",
+  "captures": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "step": 1,
+      "path": "/workspace/dddhack-portal/evidence/redesign-profile/profile-step-1-1440x900.png",
+      "overflow": false,
+      "heading": "Profile",
+      "fieldRegion": {
+        "x": 172.5,
+        "y": 288,
+        "width": 1080,
+        "height": 356,
+        "top": 288,
+        "right": 1252.5,
+        "bottom": 644,
+        "left": 172.5
+      },
+      "fields": [
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "squeezed",
+          "checked": true
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "sleepy",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "plus",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "star",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "round",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "cheerful",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "mixed-plus",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "mixed-slash",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "blue",
+          "checked": true
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "green",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "purple",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "orange",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "charcoal",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "grey",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "coral",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "yellow",
+          "checked": false
+        },
+        {
+          "name": "fullName",
+          "type": "text",
+          "value": "Alice",
+          "checked": false
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "value": "alice@portal.test",
+          "checked": false
+        },
+        {
+          "name": "bio",
+          "type": "text",
+          "value": "Synthetic local builder profile",
+          "checked": false
+        },
+        {
+          "name": "sex",
+          "type": "radio",
+          "value": "man",
+          "checked": false
+        },
+        {
+          "name": "sex",
+          "type": "radio",
+          "value": "woman",
+          "checked": false
+        },
+        {
+          "name": "sex",
+          "type": "radio",
+          "value": "non-binary",
+          "checked": true
+        }
+      ],
+      "scrollHeight": 900
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "step": 2,
+      "path": "/workspace/dddhack-portal/evidence/redesign-profile/profile-step-2-1440x900.png",
+      "overflow": false,
+      "heading": "Profile",
+      "fieldRegion": {
+        "x": 402.5,
+        "y": 288,
+        "width": 620,
+        "height": 240,
+        "top": 288,
+        "right": 1022.5,
+        "bottom": 528,
+        "left": 402.5
+      },
+      "fields": [
+        {
+          "name": "phone",
+          "type": "tel",
+          "value": "+12025550100",
+          "checked": false
+        },
+        {
+          "name": "",
+          "type": "select-one",
+          "value": "LinkedIn"
+        },
+        {
+          "name": "",
+          "type": "url",
+          "value": "",
+          "checked": false
+        }
+      ],
+      "scrollHeight": 900
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "step": 3,
+      "path": "/workspace/dddhack-portal/evidence/redesign-profile/profile-step-3-1440x900.png",
+      "overflow": false,
+      "heading": "Profile",
+      "fieldRegion": {
+        "x": 402.5,
+        "y": 288,
+        "width": 620,
+        "height": 330,
+        "top": 288,
+        "right": 1022.5,
+        "bottom": 618,
+        "left": 402.5
+      },
+      "fields": [
+        {
+          "name": "bestDescription",
+          "type": "select-one",
+          "value": ""
+        },
+        {
+          "name": "",
+          "type": "text",
+          "value": "",
+          "checked": false
+        },
+        {
+          "name": "",
+          "type": "text",
+          "value": "",
+          "checked": false
+        }
+      ],
+      "scrollHeight": 900
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "step": 1,
+      "path": "/workspace/dddhack-portal/evidence/redesign-profile/profile-step-1-768x1024.png",
+      "overflow": false,
+      "heading": "Profile",
+      "fieldRegion": {
+        "x": 53,
+        "y": 300,
+        "width": 647,
+        "height": 356,
+        "top": 300,
+        "right": 700,
+        "bottom": 656,
+        "left": 53
+      },
+      "fields": [
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "squeezed",
+          "checked": true
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "sleepy",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "plus",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "star",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "round",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "cheerful",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "mixed-plus",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "mixed-slash",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "blue",
+          "checked": true
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "green",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "purple",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "orange",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "charcoal",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "grey",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "coral",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "yellow",
+          "checked": false
+        },
+        {
+          "name": "fullName",
+          "type": "text",
+          "value": "Alice",
+          "checked": false
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "value": "alice@portal.test",
+          "checked": false
+        },
+        {
+          "name": "bio",
+          "type": "text",
+          "value": "Synthetic local builder profile",
+          "checked": false
+        },
+        {
+          "name": "sex",
+          "type": "radio",
+          "value": "man",
+          "checked": false
+        },
+        {
+          "name": "sex",
+          "type": "radio",
+          "value": "woman",
+          "checked": false
+        },
+        {
+          "name": "sex",
+          "type": "radio",
+          "value": "non-binary",
+          "checked": true
+        }
+      ],
+      "scrollHeight": 1072
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "step": 2,
+      "path": "/workspace/dddhack-portal/evidence/redesign-profile/profile-step-2-768x1024.png",
+      "overflow": false,
+      "heading": "Profile",
+      "fieldRegion": {
+        "x": 66.5,
+        "y": 300,
+        "width": 620,
+        "height": 240,
+        "top": 300,
+        "right": 686.5,
+        "bottom": 540,
+        "left": 66.5
+      },
+      "fields": [
+        {
+          "name": "phone",
+          "type": "tel",
+          "value": "+12025550100",
+          "checked": false
+        },
+        {
+          "name": "",
+          "type": "select-one",
+          "value": "LinkedIn"
+        },
+        {
+          "name": "",
+          "type": "url",
+          "value": "",
+          "checked": false
+        }
+      ],
+      "scrollHeight": 1072
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "step": 3,
+      "path": "/workspace/dddhack-portal/evidence/redesign-profile/profile-step-3-768x1024.png",
+      "overflow": false,
+      "heading": "Profile",
+      "fieldRegion": {
+        "x": 66.5,
+        "y": 300,
+        "width": 620,
+        "height": 330,
+        "top": 300,
+        "right": 686.5,
+        "bottom": 630,
+        "left": 66.5
+      },
+      "fields": [
+        {
+          "name": "bestDescription",
+          "type": "select-one",
+          "value": ""
+        },
+        {
+          "name": "",
+          "type": "text",
+          "value": "",
+          "checked": false
+        },
+        {
+          "name": "",
+          "type": "text",
+          "value": "",
+          "checked": false
+        }
+      ],
+      "scrollHeight": 1072
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "step": 1,
+      "path": "/workspace/dddhack-portal/evidence/redesign-profile/profile-step-1-390x844.png",
+      "overflow": false,
+      "heading": "Profile",
+      "fieldRegion": {
+        "x": 18,
+        "y": 225,
+        "width": 354,
+        "height": 533,
+        "top": 225,
+        "right": 372,
+        "bottom": 758,
+        "left": 18
+      },
+      "fields": [
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "squeezed",
+          "checked": true
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "sleepy",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "plus",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "star",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "round",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "cheerful",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "mixed-plus",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "mixed-slash",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "blue",
+          "checked": true
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "green",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "purple",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "orange",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "charcoal",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "grey",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "coral",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "yellow",
+          "checked": false
+        },
+        {
+          "name": "fullName",
+          "type": "text",
+          "value": "Alice",
+          "checked": false
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "value": "alice@portal.test",
+          "checked": false
+        },
+        {
+          "name": "bio",
+          "type": "text",
+          "value": "Synthetic local builder profile",
+          "checked": false
+        },
+        {
+          "name": "sex",
+          "type": "radio",
+          "value": "man",
+          "checked": false
+        },
+        {
+          "name": "sex",
+          "type": "radio",
+          "value": "woman",
+          "checked": false
+        },
+        {
+          "name": "sex",
+          "type": "radio",
+          "value": "non-binary",
+          "checked": true
+        }
+      ],
+      "scrollHeight": 867
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "step": 2,
+      "path": "/workspace/dddhack-portal/evidence/redesign-profile/profile-step-2-390x844.png",
+      "overflow": false,
+      "heading": "Profile",
+      "fieldRegion": {
+        "x": 18,
+        "y": 225,
+        "width": 354,
+        "height": 240,
+        "top": 225,
+        "right": 372,
+        "bottom": 465,
+        "left": 18
+      },
+      "fields": [
+        {
+          "name": "phone",
+          "type": "tel",
+          "value": "+12025550100",
+          "checked": false
+        },
+        {
+          "name": "",
+          "type": "select-one",
+          "value": "LinkedIn"
+        },
+        {
+          "name": "",
+          "type": "url",
+          "value": "",
+          "checked": false
+        }
+      ],
+      "scrollHeight": 844
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "step": 3,
+      "path": "/workspace/dddhack-portal/evidence/redesign-profile/profile-step-3-390x844.png",
+      "overflow": false,
+      "heading": "Profile",
+      "fieldRegion": {
+        "x": 18,
+        "y": 225,
+        "width": 354,
+        "height": 330,
+        "top": 225,
+        "right": 372,
+        "bottom": 555,
+        "left": 18
+      },
+      "fields": [
+        {
+          "name": "bestDescription",
+          "type": "select-one",
+          "value": ""
+        },
+        {
+          "name": "",
+          "type": "text",
+          "value": "",
+          "checked": false
+        },
+        {
+          "name": "",
+          "type": "text",
+          "value": "",
+          "checked": false
+        }
+      ],
+      "scrollHeight": 844
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "step": 1,
+      "path": "/workspace/dddhack-portal/evidence/redesign-profile/profile-step-1-390x480.png",
+      "overflow": false,
+      "heading": "Profile",
+      "fieldRegion": {
+        "x": 18,
+        "y": 225,
+        "width": 354,
+        "height": 533,
+        "top": 225,
+        "right": 372,
+        "bottom": 758,
+        "left": 18
+      },
+      "fields": [
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "squeezed",
+          "checked": true
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "sleepy",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "plus",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "star",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "round",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "cheerful",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "mixed-plus",
+          "checked": false
+        },
+        {
+          "name": "avatarExpression",
+          "type": "radio",
+          "value": "mixed-slash",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "blue",
+          "checked": true
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "green",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "purple",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "orange",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "charcoal",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "grey",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "coral",
+          "checked": false
+        },
+        {
+          "name": "avatarColor",
+          "type": "radio",
+          "value": "yellow",
+          "checked": false
+        },
+        {
+          "name": "fullName",
+          "type": "text",
+          "value": "Alice",
+          "checked": false
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "value": "alice@portal.test",
+          "checked": false
+        },
+        {
+          "name": "bio",
+          "type": "text",
+          "value": "Synthetic local builder profile",
+          "checked": false
+        },
+        {
+          "name": "sex",
+          "type": "radio",
+          "value": "man",
+          "checked": false
+        },
+        {
+          "name": "sex",
+          "type": "radio",
+          "value": "woman",
+          "checked": false
+        },
+        {
+          "name": "sex",
+          "type": "radio",
+          "value": "non-binary",
+          "checked": true
+        }
+      ],
+      "scrollHeight": 867
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "step": 2,
+      "path": "/workspace/dddhack-portal/evidence/redesign-profile/profile-step-2-390x480.png",
+      "overflow": false,
+      "heading": "Profile",
+      "fieldRegion": {
+        "x": 18,
+        "y": 131,
+        "width": 354,
+        "height": 240,
+        "top": 131,
+        "right": 372,
+        "bottom": 371,
+        "left": 18
+      },
+      "fields": [
+        {
+          "name": "phone",
+          "type": "tel",
+          "value": "+12025550100",
+          "checked": false
+        },
+        {
+          "name": "",
+          "type": "select-one",
+          "value": "LinkedIn"
+        },
+        {
+          "name": "",
+          "type": "url",
+          "value": "",
+          "checked": false
+        }
+      ],
+      "scrollHeight": 574
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "step": 3,
+      "path": "/workspace/dddhack-portal/evidence/redesign-profile/profile-step-3-390x480.png",
+      "overflow": false,
+      "heading": "Profile",
+      "fieldRegion": {
+        "x": 18,
+        "y": 131,
+        "width": 354,
+        "height": 330,
+        "top": 131,
+        "right": 372,
+        "bottom": 461,
+        "left": 18
+      },
+      "fields": [
+        {
+          "name": "bestDescription",
+          "type": "select-one",
+          "value": ""
+        },
+        {
+          "name": "",
+          "type": "text",
+          "value": "",
+          "checked": false
+        },
+        {
+          "name": "",
+          "type": "text",
+          "value": "",
+          "checked": false
+        }
+      ],
+      "scrollHeight": 664
+    }
+  ],
+  "errors": [],
+  "navigation": {
+    "path": "/workspace/dddhack-portal/evidence/redesign-profile/profile-mobile-navigation-390x844.png",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  }
+}

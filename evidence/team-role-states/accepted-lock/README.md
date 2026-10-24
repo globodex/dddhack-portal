@@ -1,0 +1,25 @@
+# Actual removal, invitation, acceptance and lock states
+
+Runtime source `182c2bd2077d139a7b5f50b89e9730e5961e397c`. All 22 native screenshot files were opened and inspected. The real UI used the isolated root API8821 synthetic copy. Alice/project data and the original API8789 copy were untouched.
+
+Bob removed Carol, invited her as a new independent recipient and Carol accepted. This restores Bob/Carol/Dave to three members. Bob then saved the 500-character private idea and locked Common Ground. All five mutations returned HTTP200 through the existing confirmation and permission path. Readback verified the locked team and member count. Pending's declined invitation and re-invite409 were not changed or retried.
+
+| Actual visual state | Desktop | Mobile / short |
+| --- | --- | --- |
+| Removal confirmation | [1440](remove-carol-confirmation-1440x900.png) | [390 x 480](remove-carol-confirmation-short-390x480.png) |
+| Removal outcome | [Leader, two members](leader-removal-outcome-1440x900.png) | [Removed Carol, teamless](removed-carol-teamless-390x844.png) |
+| New invitation | [Outgoing](carol-outgoing-invitation-1440x900.png) | [Incoming](carol-incoming-invitation-390x844.png) |
+| Correct team target in dialogs |  | [Decline opened then cancelled](decline-dialog-correct-team-target-short-390x480.png), [Accept confirmed](accept-confirmation-correct-target-short-390x480.png) |
+| Accepted, unlocked member | [Read-only member](accepted-carol-member-desktop-1440x900.png) | [Read-only member](accepted-carol-member-unlocked-390x844.png) |
+| Saved idea and save confirmation | [Editor](idea-saved-leader-current-1440x900.png), [Confirmation](idea-save-confirmation-1440x900.png), [Saved feedback](idea-save-success-current-1440x900.png) | Editor short-screen evidence is in `../idea-saved/` |
+| Lock confirmation | [1440](lock-confirmation-1440x900.png) | [390 x 480](lock-confirmation-short-390x480.png) |
+| Locked leader | [1440](leader-locked-1440x900.png) | [390 full](leader-locked-mobile-390x844.png), [390 short](leader-locked-short-390x480.png) |
+| Locked member | [1440](member-locked-desktop-1440x900.png) | [390 full](member-locked-390x844.png) |
+| Five-member team limit | [Five members, invitation disabled](full-five-member-team-1440x900.png) | |
+| Unregistered account gate | | [Registered-email gate](viewer-dashboard-390x844.png) |
+
+Accepted Carol has the saved private idea without leader mutation controls. After lock, both leader and member views retain the idea and member contacts, with edit/remove/lock/settings controls absent. The five-member fixture omits Find teammates and disables Send invitation. The stranger Dashboard is an actual403 LUMA_EMAIL_MISMATCH gate, rather than a Viewer payload containing private fields.
+
+`report.json` preserves raw execution, including its final optional Viewer assertion that expected a `me` object. [Verification](verification.json) separately records the confirmed403 gate and successful Team flow without hiding that harness assumption. No post-lock Bob actions or browser sessions remain. The parent may now begin its score phase.
+
+Leave team remains unavailable in the existing UI and server contract. No self-leave action, history deletion, backend permission change or production write was invented to produce a screenshot.

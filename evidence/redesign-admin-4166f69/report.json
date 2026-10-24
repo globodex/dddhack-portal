@@ -1,0 +1,246 @@
+{
+  "source": "4166f6997e9e9a43dd5a9fe7fdac2e405fb3b951",
+  "syntheticOnly": true,
+  "touchEmulation": true,
+  "physicalDevice": false,
+  "browserSandbox": false,
+  "checks": [
+    {
+      "name": "touch email-list preview and nested cancellation",
+      "passed": true
+    },
+    {
+      "name": "native CSV chooser, file read, preview and cancellation",
+      "passed": true
+    },
+    {
+      "name": "invalid CSV is actionable and cancelled imports add no participants",
+      "passed": true
+    },
+    {
+      "name": "filtered participant export opens native CSV download",
+      "passed": true
+    },
+    {
+      "name": "duplicate credit heading keeps refusal with actionable recovery",
+      "passed": true
+    },
+    {
+      "name": "touch credit file upload, keyboard fields, publish cancellation and source recovery",
+      "passed": true
+    },
+    {
+      "name": "credit column delete browser Back cancels without navigation",
+      "passed": true
+    },
+    {
+      "name": "credit batch delete Escape preserves published batch",
+      "passed": true
+    },
+    {
+      "name": "project/submission target controls, version picker and cancellations",
+      "passed": true
+    },
+    {
+      "name": "final staff layout fit 1440x900",
+      "passed": true
+    },
+    {
+      "name": "final staff layout fit 768x1024",
+      "passed": true
+    },
+    {
+      "name": "final staff layout fit 390x844",
+      "passed": true
+    },
+    {
+      "name": "final staff layout fit 390x480",
+      "passed": true
+    },
+    {
+      "name": "logs remain owner-only without returned records",
+      "passed": true
+    }
+  ],
+  "previews": [
+    {
+      "action": "preview-import"
+    },
+    {
+      "action": "preview-import"
+    },
+    {
+      "action": "preview-import"
+    },
+    {
+      "action": "preview-credit-batch"
+    },
+    {
+      "action": "preview-credit-batch"
+    },
+    {
+      "action": "preview-credit-batch"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "evidence/redesign-admin-4166f69/import-email-list-confirmation.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "inspected": false
+    },
+    {
+      "path": "evidence/redesign-admin-4166f69/import-csv-confirmation.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "inspected": true
+    },
+    {
+      "path": "evidence/redesign-admin-4166f69/import-csv-error.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "inspected": false
+    },
+    {
+      "path": "evidence/redesign-admin-4166f69/credit-existing-heading-error.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/redesign-admin-4166f69/credit-file-column-editor.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": false
+    },
+    {
+      "path": "evidence/redesign-admin-4166f69/credit-publish-confirmation.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "inspected": false
+    },
+    {
+      "path": "evidence/redesign-admin-4166f69/credit-column-delete-confirmation.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "inspected": false
+    },
+    {
+      "path": "evidence/redesign-admin-4166f69/submission-removal-confirmation.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "inspected": false
+    },
+    {
+      "path": "evidence/redesign-admin-4166f69/submission-version-controls.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": false
+    },
+    {
+      "path": "evidence/redesign-admin-4166f69/credits-published-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": false
+    },
+    {
+      "path": "evidence/redesign-admin-4166f69/project-management-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": false
+    },
+    {
+      "path": "evidence/redesign-admin-4166f69/credits-published-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": false
+    },
+    {
+      "path": "evidence/redesign-admin-4166f69/project-management-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": false
+    },
+    {
+      "path": "evidence/redesign-admin-4166f69/credits-published-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": false
+    },
+    {
+      "path": "evidence/redesign-admin-4166f69/project-management-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/redesign-admin-4166f69/credits-published-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": false
+    },
+    {
+      "path": "evidence/redesign-admin-4166f69/project-management-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": false
+    }
+  ],
+  "errors": [],
+  "reviewNotes": [
+    "Actual project-management screenshot exposed legacy panel padding dependency. Corrected in later CSS-only source5f67776, pending root integrated capture.",
+    "Shared nested import confirmation says1 participants for a one-row CSV. Exact count and payload are correct; singular wording sent to central owner.",
+    "No uncaught application errors. Touch is emulated, not a physical device."
+  ]
+}

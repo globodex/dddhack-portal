@@ -1,0 +1,358 @@
+{
+  "source": "f7c862070cd984e1446204c247a66332199d2c9e",
+  "origin": "http://127.0.0.1:3004",
+  "syntheticOnly": true,
+  "readOnly": true,
+  "method": "Hold only existing destination RSC GET after a real prefetch=false navigation link; capture actual pending RouteSkeleton. No DOM replacement or injected app styles.",
+  "cases": [
+    {
+      "label": "studio",
+      "target": "/dashboard",
+      "layout": "dashboard",
+      "gatedRequests": [
+        {
+          "method": "GET",
+          "path": "/dashboard",
+          "rsc": true
+        }
+      ],
+      "apiRequests": [],
+      "screenshots": [
+        {
+          "file": "studio-1440x900.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "fullPage": true,
+          "inspected": true,
+          "acceptedFinal": true
+        },
+        {
+          "file": "studio-390x844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "fullPage": true,
+          "inspected": true,
+          "acceptedFinal": false,
+          "supersededBy": "../loading-studio-final/studio-390x844.png"
+        },
+        {
+          "file": "studio-320x480.png",
+          "viewport": {
+            "width": 320,
+            "height": 480
+          },
+          "fullPage": true,
+          "inspected": false,
+          "acceptedFinal": false,
+          "supersededBy": "../loading-studio-final/studio-320x480.png"
+        }
+      ],
+      "geometry": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "layout": "dashboard",
+          "busy": "true",
+          "hiddenShapes": "true",
+          "scrollWidth": 1425,
+          "innerWidth": 1440,
+          "rect": {
+            "x": 279.515625,
+            "y": 146,
+            "width": 1097.96875,
+            "height": 994,
+            "top": 146,
+            "right": 1377.484375,
+            "bottom": 1140,
+            "left": 279.515625
+          },
+          "display": "block"
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "layout": "dashboard",
+          "busy": "true",
+          "hiddenShapes": "true",
+          "scrollWidth": 375,
+          "innerWidth": 390,
+          "rect": {
+            "x": 20,
+            "y": 133,
+            "width": 335,
+            "height": 1669,
+            "top": 133,
+            "right": 355,
+            "bottom": 1802,
+            "left": 20
+          },
+          "display": "block"
+        },
+        {
+          "viewport": {
+            "width": 320,
+            "height": 480
+          },
+          "layout": "dashboard",
+          "busy": "true",
+          "hiddenShapes": "true",
+          "scrollWidth": 305,
+          "innerWidth": 320,
+          "rect": {
+            "x": 20,
+            "y": 147,
+            "width": 265,
+            "height": 1669,
+            "top": 147,
+            "right": 285,
+            "bottom": 1816,
+            "left": 20
+          },
+          "display": "block"
+        }
+      ],
+      "releasedStatus": 200
+    },
+    {
+      "label": "inventory",
+      "target": "/admin/credits",
+      "layout": "credits",
+      "gatedRequests": [
+        {
+          "method": "GET",
+          "path": "/admin/credits",
+          "rsc": true
+        }
+      ],
+      "apiRequests": [],
+      "screenshots": [
+        {
+          "file": "inventory-1440x900.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "fullPage": true,
+          "inspected": true,
+          "acceptedFinal": true
+        },
+        {
+          "file": "inventory-390x844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "fullPage": true,
+          "inspected": true,
+          "acceptedFinal": true
+        },
+        {
+          "file": "inventory-320x480.png",
+          "viewport": {
+            "width": 320,
+            "height": 480
+          },
+          "fullPage": true,
+          "inspected": true,
+          "acceptedFinal": true
+        }
+      ],
+      "geometry": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "layout": "credits",
+          "busy": "true",
+          "hiddenShapes": "true",
+          "scrollWidth": 1425,
+          "innerWidth": 1440,
+          "rect": {
+            "x": 279.515625,
+            "y": 146,
+            "width": 1097.96875,
+            "height": 870,
+            "top": 146,
+            "right": 1377.484375,
+            "bottom": 1016,
+            "left": 279.515625
+          },
+          "display": "block"
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "layout": "credits",
+          "busy": "true",
+          "hiddenShapes": "true",
+          "scrollWidth": 375,
+          "innerWidth": 390,
+          "rect": {
+            "x": 20,
+            "y": 133,
+            "width": 335,
+            "height": 978,
+            "top": 133,
+            "right": 355,
+            "bottom": 1111,
+            "left": 20
+          },
+          "display": "block"
+        },
+        {
+          "viewport": {
+            "width": 320,
+            "height": 480
+          },
+          "layout": "credits",
+          "busy": "true",
+          "hiddenShapes": "true",
+          "scrollWidth": 305,
+          "innerWidth": 320,
+          "rect": {
+            "x": 20,
+            "y": 147,
+            "width": 265,
+            "height": 978,
+            "top": 147,
+            "right": 285,
+            "bottom": 1125,
+            "left": 20
+          },
+          "display": "block"
+        }
+      ],
+      "releasedStatus": 200
+    },
+    {
+      "label": "personal",
+      "target": "/personal/credits",
+      "layout": "personal-credits",
+      "gatedRequests": [
+        {
+          "method": "GET",
+          "path": "/personal/credits",
+          "rsc": true
+        }
+      ],
+      "apiRequests": [],
+      "screenshots": [
+        {
+          "file": "personal-1440x900.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "fullPage": true,
+          "inspected": true,
+          "acceptedFinal": true
+        },
+        {
+          "file": "personal-390x844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "fullPage": true,
+          "inspected": true,
+          "acceptedFinal": true
+        },
+        {
+          "file": "personal-320x480.png",
+          "viewport": {
+            "width": 320,
+            "height": 480
+          },
+          "fullPage": true,
+          "inspected": true,
+          "acceptedFinal": true
+        }
+      ],
+      "geometry": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "layout": "personal-credits",
+          "busy": "true",
+          "hiddenShapes": "true",
+          "scrollWidth": 1425,
+          "innerWidth": 1440,
+          "rect": {
+            "x": 279.515625,
+            "y": 146,
+            "width": 1097.96875,
+            "height": 294,
+            "top": 146,
+            "right": 1377.484375,
+            "bottom": 440,
+            "left": 279.515625
+          },
+          "display": "block"
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "layout": "personal-credits",
+          "busy": "true",
+          "hiddenShapes": "true",
+          "scrollWidth": 375,
+          "innerWidth": 390,
+          "rect": {
+            "x": 20,
+            "y": 133,
+            "width": 335,
+            "height": 282,
+            "top": 133,
+            "right": 355,
+            "bottom": 415,
+            "left": 20
+          },
+          "display": "block"
+        },
+        {
+          "viewport": {
+            "width": 320,
+            "height": 480
+          },
+          "layout": "personal-credits",
+          "busy": "true",
+          "hiddenShapes": "true",
+          "scrollWidth": 305,
+          "innerWidth": 320,
+          "rect": {
+            "x": 20,
+            "y": 147,
+            "width": 265,
+            "height": 282,
+            "top": 147,
+            "right": 285,
+            "bottom": 429,
+            "left": 20
+          },
+          "display": "block"
+        }
+      ],
+      "releasedStatus": 200
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "result": "passed",
+  "browserClosed": true,
+  "visualReview": "Accepted final set is seven unchanged frames from loading plus two corrected Studio mobile frames from loading-studio-final. Original wrapped Studio mobile frames are historical, not final."
+}

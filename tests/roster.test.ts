@@ -23,14 +23,12 @@ async function imported(service: any, csv: string) {
     }),
   };
 }
-test("verified email must match imported roster before profile/member access; owner/admin bootstrap and public browsing remain safe", async () => {
+test("verified email needs an existing registration or imported roster for profile/member access; Viewer browsing and staff bootstrap stay safe", async () => {
   const { db, service } = await setup();
   try {
     const outsider = service("stranger");
     for (const path of ["/dashboard", "/profile", "/submission"])
-      await assert.rejects(outsider.view(path), {
-        code: "LUMA_EMAIL_MISMATCH",
-      });
+      assert.equal((await outsider.view(path)).registrationRequired, true);
     await assert.rejects(outsider.command("complete-profile", profile), {
       code: "VIEWER_READ_ONLY",
     });
@@ -39,9 +37,8 @@ test("verified email must match imported roster before profile/member access; ow
       status: "approved",
       reason: "Synthetic manual approval only",
     });
-    await assert.rejects(outsider.view("/profile"), {
-      code: "LUMA_EMAIL_MISMATCH",
-    });
+    assert.ok((await outsider.view("/profile")).profile);
+    assert.equal((await outsider.actor()).mode, "participant");
     assert.ok((await new PortalService(db, null, undefined).view("/")).content);
     assert.ok((await service("owner").view("/admin/settings")).policy);
     assert.ok((await service("admin").view("/admin/participants")).items);

@@ -1,0 +1,111 @@
+{
+  "syntheticOnly": true,
+  "noEmailSent": true,
+  "externalAssets": false,
+  "browserSandbox": false,
+  "previewMode": "read-only loopback HTTP",
+  "htmlSha256": "b7ea9b750a539faf57033147c49fe5e27ca31229ef505e9136790f5b621e1230",
+  "screenshots": [
+    {
+      "file": "evidence/signin-email/signin-email-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "links": [
+        {
+          "label": "Sign in",
+          "href": "https://dddhack-portal.itsparam.in/api/auth/magic/verify?token=SYNTHETIC_PREVIEW_ONLY",
+          "box": {
+            "x": 473,
+            "y": 222,
+            "width": 111.328125,
+            "height": 52,
+            "top": 222,
+            "right": 584.328125,
+            "bottom": 274,
+            "left": 473
+          }
+        },
+        {
+          "label": "https://dddhack-portal.itsparam.in/api/auth/magic/verify?token=SYNTHETIC_PREVIEW_ONLY",
+          "href": "https://dddhack-portal.itsparam.in/api/auth/magic/verify?token=SYNTHETIC_PREVIEW_ONLY",
+          "box": {
+            "x": 473,
+            "y": 391,
+            "width": 490.25,
+            "height": 35,
+            "top": 391,
+            "right": 963.25,
+            "bottom": 426,
+            "left": 473
+          }
+        }
+      ],
+      "overflow": false,
+      "inspected": true,
+      "sha256": "44f094b2d957f0c07e1307e23da3849a2bf03a182898ea875b3c19b99769131c"
+    },
+    {
+      "file": "evidence/signin-email/signin-email-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "links": [
+        {
+          "label": "Sign in",
+          "href": "https://dddhack-portal.itsparam.in/api/auth/magic/verify?token=SYNTHETIC_PREVIEW_ONLY",
+          "box": {
+            "x": 49,
+            "y": 247,
+            "width": 111.328125,
+            "height": 52,
+            "top": 247,
+            "right": 160.328125,
+            "bottom": 299,
+            "left": 49
+          }
+        },
+        {
+          "label": "https://dddhack-portal.itsparam.in/api/auth/magic/verify?token=SYNTHETIC_PREVIEW_ONLY",
+          "href": "https://dddhack-portal.itsparam.in/api/auth/magic/verify?token=SYNTHETIC_PREVIEW_ONLY",
+          "box": {
+            "x": 49,
+            "y": 416,
+            "width": 290.484375,
+            "height": 35,
+            "top": 416,
+            "right": 339.484375,
+            "bottom": 451,
+            "left": 49
+          }
+        }
+      ],
+      "overflow": false,
+      "inspected": true,
+      "sha256": "c90fc20e43757cc902da50d2188a22cad21254650336d6e3d1c7bf803d790ca9"
+    }
+  ],
+  "blocked": [],
+  "errors": [],
+  "limitations": [
+    "Browser rendering only. Hosted Gmail, Outlook, Apple Mail and real delivery were not tested.",
+    "The executor blocks file URL navigation; this preview uses the normal loopback HTTP workflow without changing file-access policy."
+  ],
+  "codeCommit": "2bb0ea1f9552b8d9165b977b2f1a9f6ae5073c29",
+  "typecheck": "passed",
+  "focusedAndAuthTests": {
+    "passed": 26,
+    "failed": 0,
+    "skipped": 0,
+    "log": "evidence/signin-email/tests.log"
+  },
+  "visualReview": "Both native screenshots were opened. Warm background and centered white card retain clear Sign in hierarchy; the52px CTA and complete fallback URL are visible at390px with no horizontal overflow. Browser-only evidence, not a mail-client fidelity or delivery guarantee.",
+  "previewFileNavigation": {
+    "action": "Navigate Chromium to file:///workspace/ddd-email/previews/signin-email/signin.html",
+    "outcome": "denied before page rendering",
+    "reason": "net::ERR_BLOCKED_BY_ADMINISTRATOR",
+    "resolution": "Normal read-only loopback HTTP rendering; file-access settings were not changed."
+  }
+}

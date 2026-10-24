@@ -96,8 +96,16 @@ test("actual operational data permits check-in and submissions while incomplete 
       }),
       { code: "NO_ELIGIBLE_EVALUATIONS" },
     );
+    await assert.rejects(
+      service("admin").command("participant-bulk", {
+        emails: ["alice@portal.test"],
+        checkIn: true,
+        reason: "Synthetic repeated check-in must not consume attendance or stock",
+      }),
+      { code: "CHECKIN_STATE_CHANGED" },
+    );
     await service("admin").command("participant-bulk", {
-      emails: ["alice@portal.test"],
+      emails: ["carol@portal.test"],
       checkIn: true,
       reason: "Synthetic actual Going check-in with no scope flag",
     });
@@ -222,7 +230,7 @@ test("check-in derives readiness from actual Going approval and valid submission
         checkIn: true,
         reason: "Synthetic unapproved check-in",
       }),
-      /PORTAL_GOING_REQUIRED/,
+      { code: "PORTAL_GOING_REQUIRED" },
     );
     await batch(db, [
       [

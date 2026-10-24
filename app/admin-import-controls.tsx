@@ -1,4 +1,5 @@
 "use client";
+import { useHydrated } from "./use-hydrated";
 import { useId, useState } from "react";
 import {
   useAdminOperation,
@@ -49,7 +50,7 @@ export type ImportPreviewRequest = {
   fieldMap?: ImportFieldMap;
 };
 const fieldLabels: Record<ImportField, string> = {
-  email: "Email (required)",
+  email: "Email",
   displayName: "Full name",
   bio: "One-line bio",
   phone: "Phone",
@@ -75,9 +76,20 @@ export function adminPreviewError(action: string, body: AdminRow): string {
     CSV_ROW_LIMIT: "Use at most 1,000 CSV rows.",
     CSV_TOO_LARGE: "CSV must be at most 512 KB.",
   };
+  const creditMessages: Record<string, string> = {
+    CREDIT_HEADING_EXISTS:
+      "One of these credit headings already exists. Rename it in the CSV.",
+    CREDIT_HEADING_DUPLICATE: "Use a different heading for each column.",
+    CREDIT_HEADER_REQUIRED: "Add a heading to every CSV column.",
+    EMPTY_CREDIT_COLUMN: "Add at least one credit to every column.",
+    CSV_DUPLICATES: "Remove duplicate credits from each column.",
+    CREDIT_COLUMN_LIMIT: "Use up to 20 credit columns.",
+    INVALID_CREDIT_VALUE: "Keep each credit under 4,000 characters.",
+  };
   const code = String(body.code || body.message || "");
   return (
     (action === "preview-import" && messages[code]) ||
+    (action === "preview-credit-batch" && creditMessages[code]) ||
     body.message ||
     body.code ||
     "Preview is unavailable."
@@ -186,6 +198,7 @@ export default function AdminImportControls({
   preview?: (request: ImportPreviewRequest) => Promise<ImportPreview>;
   initialMode?: ParticipantImportMode;
 }) {
+  const hydrated = useHydrated();
   const id = useId();
   const [mode, setMode] = useState<ParticipantImportMode>(initialMode);
   const [csv, setCSV] = useState("");
@@ -205,6 +218,9 @@ export default function AdminImportControls({
     >
       <h2 id={`${id}-title`}>Add participants</h2>
       <form
+        method="post"
+        inert={!hydrated}
+        data-hydrated={hydrated}
         onSubmit={(event) => {
           event.preventDefault();
           void execute(async () => {
@@ -230,7 +246,10 @@ export default function AdminImportControls({
           });
         }}
       >
-        <fieldset disabled={busy} className="admin-import-fields">
+        <fieldset
+          disabled={!hydrated || busy || !hydrated}
+          className="admin-import-fields"
+        >
           <div
             className="admin-source-options"
             role="group"
@@ -259,8 +278,14 @@ export default function AdminImportControls({
           <div className="admin-import-entry">
             {mode === "single" ? (
               <label>
-                Email
+                <span>
+                  Email{" "}
+                  <span className="required-mark" aria-hidden="true">
+                    *
+                  </span>
+                </span>
                 <input
+                  aria-label="Email"
                   type="email"
                   required
                   autoComplete="off"
@@ -271,8 +296,14 @@ export default function AdminImportControls({
               </label>
             ) : mode === "emails" ? (
               <label>
-                Email list
+                <span>
+                  Email list{" "}
+                  <span className="required-mark" aria-hidden="true">
+                    *
+                  </span>
+                </span>
                 <textarea
+                  aria-label="Email list"
                   required
                   rows={2}
                   value={csv}
@@ -336,6 +367,7 @@ export default function AdminImportControls({
                   <label key={header}>
                     {header}
                     <select
+                      aria-label={`Map ${header}`}
                       value={selected}
                       onChange={(event) => {
                         const next = { ...fieldMap };

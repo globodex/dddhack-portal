@@ -1,0 +1,72 @@
+{
+  "source": "6b660231004b4e7091033818f369663fcc7f1e4a",
+  "syntheticOnly": true,
+  "checks": [
+    {
+      "name": "participant status persisted Registered",
+      "passed": true
+    },
+    {
+      "name": "participant status persisted Going",
+      "passed": true
+    },
+    {
+      "name": "nested import confirmation cancel returns to import",
+      "passed": true
+    },
+    {
+      "name": "single email import persisted exact new participant",
+      "passed": true
+    }
+  ],
+  "writes": [
+    {
+      "action": "admin-status",
+      "data": {
+        "kind": "person",
+        "targetId": "fake_alice",
+        "status": "Registered",
+        "reason": null,
+        "confirmation": "CHANGE_STATUS"
+      }
+    },
+    {
+      "action": "admin-status",
+      "data": {
+        "kind": "person",
+        "targetId": "fake_alice",
+        "status": "Going",
+        "reason": null,
+        "confirmation": "CHANGE_STATUS"
+      }
+    },
+    {
+      "action": "preview-import",
+      "data": {
+        "kind": "roster",
+        "csv": "synthetic-browser-admin@portal.test"
+      }
+    },
+    {
+      "action": "preview-import",
+      "data": {
+        "kind": "roster",
+        "csv": "synthetic-browser-admin@portal.test"
+      }
+    },
+    {
+      "action": "commit-import",
+      "data": {
+        "kind": "roster",
+        "csv": "synthetic-browser-admin@portal.test",
+        "fieldMap": {
+          "email": "email"
+        },
+        "digest": "178996833b282d9d8e9e3483341da32d61e802c1fe8ba850ec1f97e323da0844"
+      }
+    }
+  ],
+  "screenshots": [],
+  "errors": [],
+  "remaining": "Runner stopped after participant assertions because it rejected an internal Next development diagnostic POST before the team step. No unexpected application mutation ran."
+}

@@ -1,0 +1,330 @@
+{
+  "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+  "syntheticOnly": true,
+  "fixtureDatabase": "Root isolated synthetic API8821 copy; original API8789 untouched",
+  "responses": [
+    {
+      "actor": "bob",
+      "action": "remove-workspace-member",
+      "status": 200,
+      "result": {
+        "message": "Membership removed. Readiness and private venue access recalculated."
+      }
+    },
+    {
+      "actor": "bob",
+      "action": "team-invite",
+      "status": 200,
+      "result": {
+        "message": "Saved in portal. No email sent."
+      }
+    },
+    {
+      "actor": "carol",
+      "action": "team-respond",
+      "status": 200,
+      "result": {
+        "message": "Team response saved."
+      }
+    },
+    {
+      "actor": "bob",
+      "action": "save-workspace-idea",
+      "status": 200,
+      "result": {
+        "message": "Private idea saved. You may edit it until the team locks."
+      }
+    },
+    {
+      "actor": "bob",
+      "action": "lock-team",
+      "status": 200,
+      "result": {
+        "message": "Team locked for admin review. Approval and Going remain separate; Luma updates are manual."
+      }
+    }
+  ],
+  "captures": [
+    {
+      "name": "remove-carol-confirmation",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/remove-carol-confirmation-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false
+    },
+    {
+      "name": "remove-carol-confirmation-short",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/remove-carol-confirmation-short-390x480.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false
+    },
+    {
+      "name": "leader-removal-outcome",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/leader-removal-outcome-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true
+    },
+    {
+      "name": "removed-carol-teamless",
+      "actor": "carol",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/removed-carol-teamless-390x844.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true
+    },
+    {
+      "name": "carol-outgoing-invitation",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/carol-outgoing-invitation-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false
+    },
+    {
+      "name": "carol-incoming-invitation",
+      "actor": "carol",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/carol-incoming-invitation-390x844.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true
+    },
+    {
+      "name": "decline-dialog-correct-team-target-short",
+      "actor": "carol",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/decline-dialog-correct-team-target-short-390x480.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false
+    },
+    {
+      "name": "accept-confirmation-correct-target-short",
+      "actor": "carol",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/accept-confirmation-correct-target-short-390x480.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false
+    },
+    {
+      "name": "accepted-carol-member-unlocked",
+      "actor": "carol",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/accepted-carol-member-unlocked-390x844.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true
+    },
+    {
+      "name": "accepted-carol-member-desktop",
+      "actor": "carol",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/accepted-carol-member-desktop-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true
+    },
+    {
+      "name": "idea-saved-leader-current",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/idea-saved-leader-current-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true
+    },
+    {
+      "name": "idea-save-confirmation",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/idea-save-confirmation-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false
+    },
+    {
+      "name": "idea-save-success-current",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/idea-save-success-current-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false
+    },
+    {
+      "name": "lock-confirmation",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/lock-confirmation-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false
+    },
+    {
+      "name": "lock-confirmation-short",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/lock-confirmation-short-390x480.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false
+    },
+    {
+      "name": "leader-locked",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/leader-locked-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true
+    },
+    {
+      "name": "leader-locked-mobile",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/leader-locked-mobile-390x844.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true
+    },
+    {
+      "name": "leader-locked-short",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/leader-locked-short-390x480.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": false
+    },
+    {
+      "name": "member-locked",
+      "actor": "carol",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/member-locked-390x844.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true
+    },
+    {
+      "name": "member-locked-desktop",
+      "actor": "carol",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/member-locked-desktop-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true
+    },
+    {
+      "name": "full-five-member-team",
+      "actor": "eve",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/full-five-member-team-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true
+    },
+    {
+      "name": "viewer-dashboard",
+      "actor": "stranger",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/accepted-lock/viewer-dashboard-390x844.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "fullPage": true
+    }
+  ],
+  "checks": [
+    "Real leader removal confirmation and outcome revoke Carol team and private idea access",
+    "Independent Carol invitation and acceptance200 restore membership; corrected decline/accept dialog names team, cancelled decline sends no write",
+    "Current source idea save confirmation persists all500 characters before lock",
+    "Real lock confirmation and200 commit produce locked leader and member views without mutation controls",
+    "Full five-member team disables invitations and omits Find teammates"
+  ],
+  "unavailable": [
+    {
+      "action": "Member Leave team confirmation/outcome",
+      "target": "fake_pending",
+      "reason": "No Leave team UI or server action exists. remove-workspace-member authorizes only leader/admin/owner. No self-removal request made and no permission changed."
+    }
+  ],
+  "pageErrors": [],
+  "externalRequests": [],
+  "confirmations": [
+    {
+      "actor": "bob",
+      "action": "team-invite",
+      "title": "Send team invitation?",
+      "target": "carol@portal.test"
+    },
+    {
+      "actor": "carol",
+      "action": "team-respond",
+      "title": "Join this team?",
+      "target": "Common Ground"
+    },
+    {
+      "actor": "bob",
+      "action": "save-workspace-idea",
+      "title": "Update team idea",
+      "target": "Common Ground"
+    }
+  ],
+  "failure": "TypeError: Cannot read properties of undefined (reading 'canParticipate')\n    at file:///tmp/ddd-team-accepted-lock.mjs:16:136",
+  "browserClosed": true,
+  "sourceAtEnd": "182c2bd2077d139a7b5f50b89e9730e5961e397c"
+}

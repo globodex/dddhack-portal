@@ -1,0 +1,87 @@
+{
+  "recordedAt": "2026-10-24T17:06:03.416Z",
+  "localOnly": true,
+  "pushed": false,
+  "applicationCodeEditedByBuildLane": false,
+  "candidateSource": "d24b47f01c40abe247944a2e81e414a7a31ac06d",
+  "controlCompiledSource": "2657f26254ed323ca84a167a2f220f05f4ec7cbf",
+  "controlAppEquivalentCheckpoint": "e135e3ec7b787f7e6167c29f4e46bc76a9fbfcec",
+  "controlBuildId": "QdP_-Y3mVZskIG5jIP-YD",
+  "candidateBuildId": "XehgeJXDCi4ZqY376uUy7",
+  "controlArtifactHashesStillMatchAcceptedRun": true,
+  "gate": {
+    "reportedBy": "Profile",
+    "result": "PASS actual Home/Dashboard visible no-JS and hydrated;4 screenshot pairs pixel-identical; native mobile390 menu→Home touch passes with44px menu and no overflow/errors",
+    "firstPairPids": [
+      158818,
+      158814
+    ],
+    "firstPairExitCodes": [
+      0,
+      0
+    ],
+    "gateTracesPreserved": true
+  },
+  "matchedRestart": {
+    "controlPid": 159430,
+    "candidatePid": 159426,
+    "controlSession": 89306,
+    "candidateSession": 29260,
+    "traceLinesAtReady": [
+      0,
+      0
+    ],
+    "routeWarmupRequestsByBuildLane": 0,
+    "loadAverage1mAtReady": 0.55
+  },
+  "closure": {
+    "reportedBy": "Profile",
+    "fixed70Matrix": "complete with valid samples; payload reduction and mixed timings reported separately by Profile",
+    "allBrowsersClosed": true,
+    "noAdditionalMeasurementsRequested": true,
+    "signal": "SIGTERM",
+    "sessionExitCodes": [
+      0,
+      0
+    ],
+    "bothPidsVerifiedAbsent": true,
+    "portsVerifiedClosed": [
+      3443,
+      3444,
+      3310,
+      3311
+    ]
+  },
+  "runtimeEnvironment": {
+    "NODE_ENV": "production",
+    "PORTAL_LOCAL_TEST": "absent",
+    "TLSVerificationDisabled": false,
+    "providerCredentialsSupplied": false,
+    "originGuardsWeakened": false
+  },
+  "traces": {
+    "control": {
+      "file": "evidence/performance-content-boundary/candidate-build-control-front.jsonl",
+      "sha256": "87cad3567ab5818b92a3c3f6f2f9ee728af400321eecad3c24d30e5e442c4371",
+      "requests": 680,
+      "requestsStatusAtLeast400": 0,
+      "methods": [
+        "GET"
+      ]
+    },
+    "candidate": {
+      "file": "evidence/performance-content-boundary/candidate-build-candidate-front.jsonl",
+      "sha256": "fcbe937c13b0e3730ba1a4fc40182fba3920df239d5c73169fa46e795bc171f9",
+      "requests": 680,
+      "requestsStatusAtLeast400": 0,
+      "methods": [
+        "GET"
+      ]
+    }
+  },
+  "limits": [
+    "Build graph and gzip estimates do not establish browser speed.",
+    "Profile owns measured cold/cache-on medians,p95 and exact actual transfer deltas; timing results are mixed.",
+    "No push, hosted migration, provider setting, production data or deploy operation occurred."
+  ]
+}

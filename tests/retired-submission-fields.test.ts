@@ -145,8 +145,8 @@ for (const api of ["revised", "legacy"] as const) {
         { code: "PROJECT_MEDIA_REQUIRED" },
       );
       await assert.rejects(
-        commit(api, service("bob"), { ...project, banner: project.logo }),
-        { code: "IMAGE_RATIO" },
+        commit(api, service("bob"), { ...project, banner: "data:image/svg+xml;base64,PHN2Zy8+" }),
+        { code: "PROJECT_MEDIA_REQUIRED" },
       );
       assert.equal((await versions(fixture, "fake_team3")).length, 0);
       assert.equal((await rows(db, "SELECT * FROM projects")).length, 0);

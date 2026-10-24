@@ -1,0 +1,1685 @@
+{
+  "source": "62c8105af837e62ab0013ac5cd879eec4ab32114",
+  "syntheticOnly": true,
+  "physicalDevice": false,
+  "origin": "http://localhost:3000",
+  "fixtureBackend": 8833,
+  "sourceFiles": {
+    "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+    "app/admin-credit-batches.css": "7ee963e2c5fd7544a7a1fc416c73ffaea1606e2b408097c80b190cf6faa47659",
+    "app/admin-experience.css": "eab8d356a4736a5fdff96f551c0b27d1739f4a82cafb95804890bc6a85e2b304",
+    "app/dashboard-v6.css": "60f64879fb3c805f147387fa599bfa1d23f9caecacdfe6c56a15fc74119fa11a",
+    "app/discover-rules-v6.css": "8c8c48083275cb4537a62b81df52d770ac3b2ec7a97ce4902c90bce4e8119e23",
+    "app/discovery-profile.css": "aa9964a9292a1a4a82585423cfd5cd658f2cb7fd5a4842045335353219a103e4",
+    "app/home-lower.css": "d113b4adda528956de0b98b2af6307613ccdf6910aa23028d98ba5b3f42f656b",
+    "app/mobile-navigation.css": "53185bf47f3000ad1a01ae85566910215944108e90e3ec124c913fa629704f9a",
+    "app/navigation-correction.css": "075a049db9df3ebed4ff3165778bae6e0768e18e81879e8bf4990fb9f3902d83",
+    "app/organizer-section.css": "b9493c8eec3fc2c07502f0e3e656bc66b540883c98d5a56b7d7f1f41c1e082a8",
+    "app/participant-ui.css": "c31581b55b0e6e6ab7897980ba7345b48b938e83002230928fe173b230751b67",
+    "app/personal-credits.css": "8b40d4e795fc69e15d2941332a6116d4f5aff6cc49fa277f5c4636c91dbdd34d",
+    "app/portal-shell.css": "2841f2d3e909382dda7fa397858b20b684aca779efc73ac45a85ddcfe5e7f5f8",
+    "app/portal.tsx": "21818031e05c34ed0345e4a4eb8fa1c40e4d49d5174bf3946f46aff543621f1f",
+    "app/portrait-backdrop.css": "9583e4a297ae8eb4e0071e10d2a6d697ec8464be9e03ae000657a98871274f38",
+    "app/profile-experience.css": "147c62a39e646f3d7902fe753a969fa5cffb8085d5d59c0cec185e208b9212ab",
+    "app/projects-rules-experience.css": "8edc84868154cca5b76fda7e022e2a702eff0f6e17807a027629015e64579b01",
+    "app/projects-submission-v6.css": "9a3663b5cb345164a0ea20b7d3e28a1f684d94bc31a3c811d7fd9fe6e3b7f750",
+    "app/public-home.css": "120735f8a72e871eb724011157f8ddb39e69757770b9792262d6412433ebef8e",
+    "app/public-information.css": "91e2ea36f073241168d3a991b0215c06ec631ae5dd023430abc4d7a164b95ad4",
+    "app/redesign.css": "2cde4f5743fb0d7dc91dddbc4934a2365a12432559eebe0685a7a3c0bd8b2842",
+    "app/route-skeleton.css": "1cb4ec6c9a76928677ed16b55f4626e7d1f4c96236e671081d020ffa1e672d11",
+    "app/signin/signin.module.css": "022f56818c98d435e2f99366824d1d9a0fa41795cc845306bc5293bf4fca94b8",
+    "app/style.css": "a295b7be4f3ca1c5e97142a03a96898f70ebda9092f1a94eaa8a0f47210e75df",
+    "app/team-discovery-experience.css": "1ba981b67e46a7b799d8a462d33d76ce0a559e6675abb99692c2bc66fc1472e5",
+    "app/team-studio-experience.css": "374105f12b2bc0a78c8ecbc686c6d1daf9a8fa4d27fd2cff4edb7cbdfabb3cfb",
+    "app/team-studio-shell.css": "8486d0f7b2aeb3ddcede05b25265bcb6608dcd12c2a4e30d2145fe52648186f2",
+    "lib/experience.ts": "44cd51de83deaa41e9f9410eb3a58bc683b6894b783f126c72a3509bd3da0c30",
+    "lib/score-release.ts": "c035ee3f58a6c95773436b91ae50dba46bae7aed1f2623747f23ec04ea11f2af"
+  },
+  "screenshots": [
+    {
+      "file": "projects-upvote-unselected-current-1440x900.png",
+      "route": "/projects",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "4f72785eaf49bf865aa2d2e6d7e4c1d54fcda12eaf1e120d78576cd304c00053"
+    },
+    {
+      "file": "projects-upvote-unselected-current-390x844.png",
+      "route": "/projects",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "7ac9782d5bd25027c41957c68606e00464a9574035ee9bb3484c019e269eae55"
+    },
+    {
+      "file": "project-upvote-unselected-current-1440x900.png",
+      "route": "/projects/synthetic-eve",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "nativeOriginal": true,
+      "sha256": "17bf81d29f6181a7243e4680c497a6dccd737b771be2096d8459732060b802f7"
+    },
+    {
+      "file": "project-upvote-unselected-current-390x844.png",
+      "route": "/projects/synthetic-eve",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "nativeOriginal": true,
+      "sha256": "dbb044639fd034b7a3efb5903f71e91eda6158f92d15913226bc703612f91abb"
+    },
+    {
+      "file": "projects-upvote-selected-current-1440x900.png",
+      "route": "/projects",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "ff0da03fb673347e1bcc875ce5c4c1f9c5c79e6e111c08db49da6e7e3d273dc9"
+    },
+    {
+      "file": "projects-upvote-selected-current-390x844.png",
+      "route": "/projects",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "18e678356c028e9c59d61d0c0ca38a0d24acbbce81a579f41eb4ba569a932e0b"
+    },
+    {
+      "file": "project-upvote-selected-current-1440x900.png",
+      "route": "/projects/synthetic-eve",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "nativeOriginal": true,
+      "sha256": "441dbfb5163678ff18bdeb5e1028d90e0a2135cee086d7bdd3f77325a43326f1"
+    },
+    {
+      "file": "project-upvote-selected-current-390x844.png",
+      "route": "/projects/synthetic-eve",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "nativeOriginal": true,
+      "sha256": "254e2aeae5fbcbba04cb407ff74732b9fe343972e7fc63abfebe36144ffa6f7a"
+    },
+    {
+      "file": "leaderboard-ai-revealed-1440x900.png",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "21c05c70008ea8203797a86b54d092cbfea19c35c300edc6b554f88cd5f0d7dd"
+    },
+    {
+      "file": "leaderboard-ai-revealed-390x844.png",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "541214aafbe60c1fb03be497a2f4dac65021633225e4975b9eea1db56cc5715c"
+    },
+    {
+      "file": "projects-ai-revealed-1440x900.png",
+      "route": "/projects",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "4f72785eaf49bf865aa2d2e6d7e4c1d54fcda12eaf1e120d78576cd304c00053"
+    },
+    {
+      "file": "projects-ai-revealed-390x844.png",
+      "route": "/projects",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "7ac9782d5bd25027c41957c68606e00464a9574035ee9bb3484c019e269eae55"
+    },
+    {
+      "file": "project-ai-revealed-1440x900.png",
+      "route": "/projects/synthetic-eve",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "nativeOriginal": true,
+      "sha256": "17bf81d29f6181a7243e4680c497a6dccd737b771be2096d8459732060b802f7"
+    },
+    {
+      "file": "project-ai-revealed-390x844.png",
+      "route": "/projects/synthetic-eve",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "nativeOriginal": true,
+      "sha256": "dbb044639fd034b7a3efb5903f71e91eda6158f92d15913226bc703612f91abb"
+    },
+    {
+      "file": "leaderboard-final-hidden-1440x900.png",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "144a111e152096da8634e527dd8a2c97f7c8ffa6be7a67fd4be40948f8643a39"
+    },
+    {
+      "file": "leaderboard-final-hidden-390x844.png",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "278b95ba5cfc4e69d74e4147a298871631d31c1a701589624991995882426b34"
+    },
+    {
+      "file": "projects-final-hidden-1440x900.png",
+      "route": "/projects",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "44677d055ed1e022f02d293e9678bd8913601c7b24c1e0d6335a67b5beaeb005"
+    },
+    {
+      "file": "projects-final-hidden-390x844.png",
+      "route": "/projects",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "0fe3f0f7da4d39b4b8bdb140018292a2111e8c5df34dc3c95be88f50f4e427b6"
+    },
+    {
+      "file": "project-final-hidden-1440x900.png",
+      "route": "/projects/synthetic-eve",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "nativeOriginal": true,
+      "sha256": "010aa742ff1cba13f1693ced45d3e8b520f81607a06dcd96621dc477c98a1735"
+    },
+    {
+      "file": "project-final-hidden-390x844.png",
+      "route": "/projects/synthetic-eve",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "nativeOriginal": true,
+      "sha256": "93fe291e2cebe41acd6afa0adc93d6116b0e80e0aa3b94539020a45fc6afb7e4"
+    },
+    {
+      "file": "leaderboard-final-one-award-1440x900.png",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "5a12f08dda94bd6708fb299589f1981b503c51f6f6a7272821c77119b8af9b0d"
+    },
+    {
+      "file": "leaderboard-final-one-award-390x844.png",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "136fdca3dec9813cd058ef7ea1133193343d4af3c33426a2094136b0a875d0d2"
+    },
+    {
+      "file": "leaderboard-final-revealed-1440x900.png",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "7c31d983fb94d50852d7b38fcec864bd35ecd3a2878b0ffae604025908a30ce4"
+    },
+    {
+      "file": "leaderboard-final-revealed-390x844.png",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "f5642db757cf5ccc9a451c7946a9e7d938361cb06f8246020ccd2f40b38e7b47"
+    },
+    {
+      "file": "leaderboard-final-last-rank-1440x900.png",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "343101aee9cd09ad628a5c84650eebeb590aaf5412b7cea37cc5dbd5ff1e68ca"
+    },
+    {
+      "file": "leaderboard-final-last-rank-390x844.png",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "7c7ecccb75061a91b651c92bb27a032b5334ba073cd019318090ef38325fd573"
+    },
+    {
+      "file": "projects-final-revealed-1440x900.png",
+      "route": "/projects",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "44677d055ed1e022f02d293e9678bd8913601c7b24c1e0d6335a67b5beaeb005"
+    },
+    {
+      "file": "projects-final-revealed-390x844.png",
+      "route": "/projects",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "nativeOriginal": true,
+      "sha256": "0fe3f0f7da4d39b4b8bdb140018292a2111e8c5df34dc3c95be88f50f4e427b6"
+    },
+    {
+      "file": "leaderboard-final-revealed-full-1440x900.png",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "nativeOriginal": true,
+      "sha256": "5da893a078156957b0fb798ae322bb7d453333ecd14fe728536bf1a7cceb79e3"
+    },
+    {
+      "file": "leaderboard-final-revealed-full-390x844.png",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "nativeOriginal": true,
+      "sha256": "61fd320d5321268c0e91cb1c5a56f4129e9102ec9717d00040bbf9577fd27a77"
+    },
+    {
+      "file": "project-final-revealed-1440x900.png",
+      "route": "/projects/synthetic-eve",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "nativeOriginal": true,
+      "sha256": "9be2295cffbc8cc706d4a1ceac2ff141c6356f422258db33b070ce63f98b3d02"
+    },
+    {
+      "file": "project-final-revealed-390x844.png",
+      "route": "/projects/synthetic-eve",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "nativeOriginal": true,
+      "sha256": "afb50ca5ca81b782c4feb144c3c609a2353e2d83f7e129def33ca47d41e4fd6f"
+    }
+  ],
+  "checks": [
+    {
+      "name": "projects-upvote-unselected-current",
+      "route": "/projects",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "projects-upvote-unselected-current",
+      "route": "/projects",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "project-upvote-unselected-current",
+      "route": "/projects/synthetic-eve",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "project-upvote-unselected-current",
+      "route": "/projects/synthetic-eve",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "projects-upvote-selected-current",
+      "route": "/projects",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "projects-upvote-selected-current",
+      "route": "/projects",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "project-upvote-selected-current",
+      "route": "/projects/synthetic-eve",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "project-upvote-selected-current",
+      "route": "/projects/synthetic-eve",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "leaderboard-ai-revealed",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "leaderboard-ai-revealed",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "projects-ai-revealed",
+      "route": "/projects",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "projects-ai-revealed",
+      "route": "/projects",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "project-ai-revealed",
+      "route": "/projects/synthetic-eve",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "project-ai-revealed",
+      "route": "/projects/synthetic-eve",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "leaderboard-final-hidden",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "leaderboard-final-hidden",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "projects-final-hidden",
+      "route": "/projects",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "projects-final-hidden",
+      "route": "/projects",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "project-final-hidden",
+      "route": "/projects/synthetic-eve",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "project-final-hidden",
+      "route": "/projects/synthetic-eve",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "leaderboard-final-one-award",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "leaderboard-final-one-award",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "Actual final awards projection",
+      "passed": true,
+      "complete": true,
+      "awardsCount": 26,
+      "topFivePositions": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note": "Current UI receives all ranked awards after completion."
+    },
+    {
+      "name": "leaderboard-final-revealed",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "leaderboard-final-revealed",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "leaderboard-final-last-rank",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "leaderboard-final-last-rank",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "projects-final-revealed",
+      "route": "/projects",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "projects-final-revealed",
+      "route": "/projects",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "leaderboard-final-revealed-full",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "leaderboard-final-revealed-full",
+      "route": "/leaderboard",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "project-final-revealed",
+      "route": "/projects/synthetic-eve",
+      "actor": "alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "name": "project-final-revealed",
+      "route": "/projects/synthetic-eve",
+      "actor": "alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "hydrated": true,
+      "horizontalOverflow": false,
+      "passed": true
+    }
+  ],
+  "payloadChecks": [
+    {
+      "stage": "community-order-reference",
+      "sourceRoute": "/projects",
+      "passed": true
+    },
+    {
+      "stage": "ai",
+      "passed": true,
+      "scoreOrder": true,
+      "noStandaloneRanks": true
+    },
+    {
+      "stage": "final-hidden",
+      "passed": true,
+      "awardsCount": 0,
+      "communityOrderPreserved": true
+    },
+    {
+      "stage": "partial",
+      "passed": true,
+      "onlyPosition5Exposed": true,
+      "communityOrderPreserved": true
+    }
+  ],
+  "blocked": [],
+  "errors": [],
+  "phases": [
+    {
+      "mode": "ai",
+      "startedAt": "2026-10-24T13:33:49.584Z",
+      "status": "complete",
+      "commands": [
+        {
+          "action": "reveal-ai-scores",
+          "status": "persisted",
+          "result": {
+            "message": "AI scores are now public.",
+            "releaseId": "b2b0b9da-655d-40e2-aa6d-e14694885738"
+          }
+        }
+      ],
+      "backupCreated": true,
+      "syntheticProviderShapedRows": 26,
+      "projection": {
+        "scoreStage": "ai",
+        "finalCountdownComplete": false,
+        "awards": [],
+        "visibleResults": [
+          {
+            "id": "fake_control_project_00",
+            "result": {
+              "score": 30,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_01",
+            "result": {
+              "score": 29.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_02",
+            "result": {
+              "score": 29,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_03",
+            "result": {
+              "score": 28.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_04",
+            "result": {
+              "score": 28,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_05",
+            "result": {
+              "score": 27.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_06",
+            "result": {
+              "score": 27,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_07",
+            "result": {
+              "score": 26.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_08",
+            "result": {
+              "score": 26,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_09",
+            "result": {
+              "score": 25.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_10",
+            "result": {
+              "score": 25,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_11",
+            "result": {
+              "score": 24.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_12",
+            "result": {
+              "score": 24,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_13",
+            "result": {
+              "score": 23.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_14",
+            "result": {
+              "score": 23,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_15",
+            "result": {
+              "score": 22.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_16",
+            "result": {
+              "score": 22,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_17",
+            "result": {
+              "score": 21.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_18",
+            "result": {
+              "score": 21,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_19",
+            "result": {
+              "score": 20.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_20",
+            "result": {
+              "score": 20,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_21",
+            "result": {
+              "score": 19.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_22",
+            "result": {
+              "score": 19,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_23",
+            "result": {
+              "score": 18.5,
+              "stage": "ai"
+            }
+          }
+        ]
+      },
+      "blockedFetches": 0,
+      "completedAt": "2026-10-24T13:33:49.645Z",
+      "reusedPreparedPhase": true
+    },
+    {
+      "mode": "final-hidden",
+      "startedAt": "2026-10-24T14:38:05.025Z",
+      "status": "complete",
+      "commands": [
+        {
+          "action": "reveal-final-scores",
+          "status": "persisted",
+          "result": {
+            "message": "Final reveal started. Awards remain hidden until unveiled individually.",
+            "releaseId": "40ed977f-b654-4933-acf8-6ea4e22aff4e"
+          }
+        }
+      ],
+      "syntheticSnapshotRows": 26,
+      "projection": {
+        "scoreStage": "final",
+        "finalCountdownComplete": false,
+        "awards": [],
+        "visibleResults": [
+          {
+            "id": "visual_project_eve"
+          },
+          {
+            "id": "fake_control_project_00"
+          },
+          {
+            "id": "fake_control_project_01"
+          },
+          {
+            "id": "fake_control_project_02"
+          },
+          {
+            "id": "fake_control_project_03"
+          },
+          {
+            "id": "fake_control_project_04"
+          },
+          {
+            "id": "fake_control_project_05"
+          },
+          {
+            "id": "fake_control_project_06"
+          },
+          {
+            "id": "fake_control_project_07"
+          },
+          {
+            "id": "fake_control_project_08"
+          },
+          {
+            "id": "fake_control_project_09"
+          },
+          {
+            "id": "fake_control_project_10"
+          },
+          {
+            "id": "fake_control_project_11"
+          },
+          {
+            "id": "fake_control_project_12"
+          },
+          {
+            "id": "fake_control_project_13"
+          },
+          {
+            "id": "fake_control_project_14"
+          },
+          {
+            "id": "fake_control_project_15"
+          },
+          {
+            "id": "fake_control_project_16"
+          },
+          {
+            "id": "fake_control_project_17"
+          },
+          {
+            "id": "fake_control_project_18"
+          },
+          {
+            "id": "fake_control_project_19"
+          },
+          {
+            "id": "fake_control_project_20"
+          },
+          {
+            "id": "fake_control_project_21"
+          },
+          {
+            "id": "fake_control_project_22"
+          }
+        ]
+      },
+      "blockedFetches": 0,
+      "completedAt": "2026-10-24T14:38:05.095Z"
+    },
+    {
+      "mode": "unveil-one",
+      "startedAt": "2026-10-24T14:38:40.640Z",
+      "status": "complete",
+      "commands": [
+        {
+          "action": "unveil-winner",
+          "status": "persisted",
+          "result": {
+            "message": "Award 5 is now public."
+          }
+        }
+      ],
+      "projection": {
+        "scoreStage": "final",
+        "finalCountdownComplete": false,
+        "awards": [
+          {
+            "projectName": "Synthetic Control Project 04",
+            "teamName": "Synthetic Control Project 04 Team",
+            "slug": "synthetic-control-04",
+            "score": 91,
+            "position": 5
+          }
+        ],
+        "visibleResults": [
+          {
+            "id": "visual_project_eve"
+          },
+          {
+            "id": "fake_control_project_00"
+          },
+          {
+            "id": "fake_control_project_01"
+          },
+          {
+            "id": "fake_control_project_02"
+          },
+          {
+            "id": "fake_control_project_03"
+          },
+          {
+            "id": "fake_control_project_04",
+            "result": {
+              "score": 91,
+              "stage": "final",
+              "position": 5
+            }
+          },
+          {
+            "id": "fake_control_project_05"
+          },
+          {
+            "id": "fake_control_project_06"
+          },
+          {
+            "id": "fake_control_project_07"
+          },
+          {
+            "id": "fake_control_project_08"
+          },
+          {
+            "id": "fake_control_project_09"
+          },
+          {
+            "id": "fake_control_project_10"
+          },
+          {
+            "id": "fake_control_project_11"
+          },
+          {
+            "id": "fake_control_project_12"
+          },
+          {
+            "id": "fake_control_project_13"
+          },
+          {
+            "id": "fake_control_project_14"
+          },
+          {
+            "id": "fake_control_project_15"
+          },
+          {
+            "id": "fake_control_project_16"
+          },
+          {
+            "id": "fake_control_project_17"
+          },
+          {
+            "id": "fake_control_project_18"
+          },
+          {
+            "id": "fake_control_project_19"
+          },
+          {
+            "id": "fake_control_project_20"
+          },
+          {
+            "id": "fake_control_project_21"
+          },
+          {
+            "id": "fake_control_project_22"
+          }
+        ]
+      },
+      "blockedFetches": 0,
+      "completedAt": "2026-10-24T14:38:40.668Z"
+    },
+    {
+      "mode": "unveil-all",
+      "startedAt": "2026-10-24T14:38:49.789Z",
+      "status": "complete",
+      "commands": [
+        {
+          "action": "unveil-winner",
+          "status": "persisted",
+          "result": {
+            "message": "Award 4 is now public."
+          }
+        },
+        {
+          "action": "unveil-winner",
+          "status": "persisted",
+          "result": {
+            "message": "Award 3 is now public."
+          }
+        },
+        {
+          "action": "unveil-winner",
+          "status": "persisted",
+          "result": {
+            "message": "Award 2 is now public."
+          }
+        },
+        {
+          "action": "unveil-winner",
+          "status": "persisted",
+          "result": {
+            "message": "Award 1 is now public."
+          }
+        }
+      ],
+      "projection": {
+        "scoreStage": "final",
+        "finalCountdownComplete": true,
+        "awards": [
+          {
+            "projectName": "Synthetic Control Project 00",
+            "teamName": "Synthetic Control Project 00 Team",
+            "slug": "synthetic-control-00",
+            "score": 99,
+            "position": 1
+          },
+          {
+            "projectName": "Synthetic Control Project 01",
+            "teamName": "Synthetic Control Project 01 Team",
+            "slug": "synthetic-control-01",
+            "score": 97,
+            "position": 2
+          },
+          {
+            "projectName": "Synthetic Control Project 02",
+            "teamName": "Synthetic Control Project 02 Team",
+            "slug": "synthetic-control-02",
+            "score": 95,
+            "position": 3
+          },
+          {
+            "projectName": "Synthetic Control Project 03",
+            "teamName": "Synthetic Control Project 03 Team",
+            "slug": "synthetic-control-03",
+            "score": 93,
+            "position": 4
+          },
+          {
+            "projectName": "Synthetic Control Project 04",
+            "teamName": "Synthetic Control Project 04 Team",
+            "slug": "synthetic-control-04",
+            "score": 91,
+            "position": 5
+          },
+          {
+            "projectName": "Synthetic Control Project 05",
+            "teamName": "Synthetic Control Project 05 Team",
+            "slug": "synthetic-control-05",
+            "score": 89,
+            "position": 6
+          },
+          {
+            "projectName": "Synthetic Control Project 06",
+            "teamName": "Synthetic Control Project 06 Team",
+            "slug": "synthetic-control-06",
+            "score": 87,
+            "position": 7
+          },
+          {
+            "projectName": "Synthetic Control Project 07",
+            "teamName": "Synthetic Control Project 07 Team",
+            "slug": "synthetic-control-07",
+            "score": 85,
+            "position": 8
+          },
+          {
+            "projectName": "Synthetic Control Project 08",
+            "teamName": "Synthetic Control Project 08 Team",
+            "slug": "synthetic-control-08",
+            "score": 83,
+            "position": 9
+          },
+          {
+            "projectName": "Synthetic Control Project 09",
+            "teamName": "Synthetic Control Project 09 Team",
+            "slug": "synthetic-control-09",
+            "score": 81,
+            "position": 10
+          },
+          {
+            "projectName": "Synthetic Control Project 10",
+            "teamName": "Synthetic Control Project 10 Team",
+            "slug": "synthetic-control-10",
+            "score": 79,
+            "position": 11
+          },
+          {
+            "projectName": "Synthetic Control Project 11",
+            "teamName": "Synthetic Control Project 11 Team",
+            "slug": "synthetic-control-11",
+            "score": 77,
+            "position": 12
+          },
+          {
+            "projectName": "Synthetic Control Project 12",
+            "teamName": "Synthetic Control Project 12 Team",
+            "slug": "synthetic-control-12",
+            "score": 75,
+            "position": 13
+          },
+          {
+            "projectName": "Synthetic Control Project 13",
+            "teamName": "Synthetic Control Project 13 Team",
+            "slug": "synthetic-control-13",
+            "score": 73,
+            "position": 14
+          },
+          {
+            "projectName": "Synthetic Control Project 14",
+            "teamName": "Synthetic Control Project 14 Team",
+            "slug": "synthetic-control-14",
+            "score": 71,
+            "position": 15
+          },
+          {
+            "projectName": "Synthetic Control Project 15",
+            "teamName": "Synthetic Control Project 15 Team",
+            "slug": "synthetic-control-15",
+            "score": 69,
+            "position": 16
+          },
+          {
+            "projectName": "Synthetic Control Project 16",
+            "teamName": "Synthetic Control Project 16 Team",
+            "slug": "synthetic-control-16",
+            "score": 67,
+            "position": 17
+          },
+          {
+            "projectName": "Synthetic Control Project 17",
+            "teamName": "Synthetic Control Project 17 Team",
+            "slug": "synthetic-control-17",
+            "score": 65,
+            "position": 18
+          },
+          {
+            "projectName": "Synthetic Control Project 18",
+            "teamName": "Synthetic Control Project 18 Team",
+            "slug": "synthetic-control-18",
+            "score": 63,
+            "position": 19
+          },
+          {
+            "projectName": "Synthetic Control Project 19",
+            "teamName": "Synthetic Control Project 19 Team",
+            "slug": "synthetic-control-19",
+            "score": 61,
+            "position": 20
+          },
+          {
+            "projectName": "Synthetic Control Project 20",
+            "teamName": "Synthetic Control Project 20 Team",
+            "slug": "synthetic-control-20",
+            "score": 59,
+            "position": 21
+          },
+          {
+            "projectName": "Synthetic Control Project 21",
+            "teamName": "Synthetic Control Project 21 Team",
+            "slug": "synthetic-control-21",
+            "score": 57,
+            "position": 22
+          },
+          {
+            "projectName": "Synthetic Control Project 22",
+            "teamName": "Synthetic Control Project 22 Team",
+            "slug": "synthetic-control-22",
+            "score": 55,
+            "position": 23
+          },
+          {
+            "projectName": "Synthetic Control Project 23",
+            "teamName": "Synthetic Control Project 23 Team",
+            "slug": "synthetic-control-23",
+            "score": 53,
+            "position": 24
+          },
+          {
+            "projectName": "Synthetic Control Project 24",
+            "teamName": "Synthetic Control Project 24 Team",
+            "slug": "synthetic-control-24",
+            "score": 51,
+            "position": 25
+          },
+          {
+            "projectName": "The Fifth Element",
+            "teamName": "The Fifth Element",
+            "slug": "synthetic-eve",
+            "score": 49,
+            "position": 26
+          }
+        ],
+        "visibleResults": [
+          {
+            "id": "fake_control_project_00",
+            "result": {
+              "score": 99,
+              "stage": "final",
+              "position": 1
+            }
+          },
+          {
+            "id": "fake_control_project_01",
+            "result": {
+              "score": 97,
+              "stage": "final",
+              "position": 2
+            }
+          },
+          {
+            "id": "fake_control_project_02",
+            "result": {
+              "score": 95,
+              "stage": "final",
+              "position": 3
+            }
+          },
+          {
+            "id": "fake_control_project_03",
+            "result": {
+              "score": 93,
+              "stage": "final",
+              "position": 4
+            }
+          },
+          {
+            "id": "fake_control_project_04",
+            "result": {
+              "score": 91,
+              "stage": "final",
+              "position": 5
+            }
+          },
+          {
+            "id": "fake_control_project_05",
+            "result": {
+              "score": 89,
+              "stage": "final",
+              "position": 6
+            }
+          },
+          {
+            "id": "fake_control_project_06",
+            "result": {
+              "score": 87,
+              "stage": "final",
+              "position": 7
+            }
+          },
+          {
+            "id": "fake_control_project_07",
+            "result": {
+              "score": 85,
+              "stage": "final",
+              "position": 8
+            }
+          },
+          {
+            "id": "fake_control_project_08",
+            "result": {
+              "score": 83,
+              "stage": "final",
+              "position": 9
+            }
+          },
+          {
+            "id": "fake_control_project_09",
+            "result": {
+              "score": 81,
+              "stage": "final",
+              "position": 10
+            }
+          },
+          {
+            "id": "fake_control_project_10",
+            "result": {
+              "score": 79,
+              "stage": "final",
+              "position": 11
+            }
+          },
+          {
+            "id": "fake_control_project_11",
+            "result": {
+              "score": 77,
+              "stage": "final",
+              "position": 12
+            }
+          },
+          {
+            "id": "fake_control_project_12",
+            "result": {
+              "score": 75,
+              "stage": "final",
+              "position": 13
+            }
+          },
+          {
+            "id": "fake_control_project_13",
+            "result": {
+              "score": 73,
+              "stage": "final",
+              "position": 14
+            }
+          },
+          {
+            "id": "fake_control_project_14",
+            "result": {
+              "score": 71,
+              "stage": "final",
+              "position": 15
+            }
+          },
+          {
+            "id": "fake_control_project_15",
+            "result": {
+              "score": 69,
+              "stage": "final",
+              "position": 16
+            }
+          },
+          {
+            "id": "fake_control_project_16",
+            "result": {
+              "score": 67,
+              "stage": "final",
+              "position": 17
+            }
+          },
+          {
+            "id": "fake_control_project_17",
+            "result": {
+              "score": 65,
+              "stage": "final",
+              "position": 18
+            }
+          },
+          {
+            "id": "fake_control_project_18",
+            "result": {
+              "score": 63,
+              "stage": "final",
+              "position": 19
+            }
+          },
+          {
+            "id": "fake_control_project_19",
+            "result": {
+              "score": 61,
+              "stage": "final",
+              "position": 20
+            }
+          },
+          {
+            "id": "fake_control_project_20",
+            "result": {
+              "score": 59,
+              "stage": "final",
+              "position": 21
+            }
+          },
+          {
+            "id": "fake_control_project_21",
+            "result": {
+              "score": 57,
+              "stage": "final",
+              "position": 22
+            }
+          },
+          {
+            "id": "fake_control_project_22",
+            "result": {
+              "score": 55,
+              "stage": "final",
+              "position": 23
+            }
+          },
+          {
+            "id": "fake_control_project_23",
+            "result": {
+              "score": 53,
+              "stage": "final",
+              "position": 24
+            }
+          }
+        ]
+      },
+      "blockedFetches": 0,
+      "completedAt": "2026-10-24T14:38:49.835Z"
+    }
+  ],
+  "limitations": [
+    "Synthetic provider-shaped evaluation rows and frozen snapshot are seeded only to expose existing UI. No provider evaluation, real event result, production disclosure, or email send.",
+    "Browser native sandbox is unavailable in this executor. Chromium uses isolated localhost-only contexts; non-GET requests and external URLs are blocked.",
+    "Leaderboard renders read-only score/upvote text. No concealed-winner cards, separate AI rank badges, or invented DOM labels are added.",
+    "Final hidden means score identities are withheld from payload, with ordinary community-order projects still visible. On completion the current UI displays all ranked entries under Unveiled awards."
+  ],
+  "reusedCommunityEvidence": {
+    "anonymousSource": "344334b220472641a07f1832485a6a387f9b8915",
+    "anonymousDirectory": "/workspace/dddhack-portal/evidence/final-integration",
+    "authenticatedVoteReport": "/workspace/ddd-projects/evidence/score-vote-current/report.json",
+    "note": "Community/vote captures preceded any reveal. For exact order comparison, /projects remains community-ordered at every stage."
+  },
+  "completedAt": "2026-10-24T14:39:31.195Z"
+}

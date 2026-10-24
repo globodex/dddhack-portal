@@ -1,0 +1,144 @@
+{
+  "method": "Read only existing compiled production artifacts and source graph, no build/browser/timing rerun.",
+  "variants": {
+    "current": {
+      "root": "/workspace/ddd-perf-prod-final",
+      "source": "3c3d3b2f1934da09a1094ec66b5925715463898b",
+      "buildId": "QdP_-Y3mVZskIG5jIP-YD",
+      "runtimeChanges": "",
+      "initialEntryChunks": [
+        {
+          "file": "static/chunks/330-4c357f8dea252b4d.js",
+          "raw": 114770,
+          "gzip": 34072,
+          "sha256": "a4bef31b2343c3ce1f5de0722e32e4a6af3e153c51fbcf38fb78c44e88d30293",
+          "containsZodError": true
+        },
+        {
+          "file": "static/chunks/46-25dc4d392de3b32b.js",
+          "raw": 245348,
+          "gzip": 67630,
+          "sha256": "0e5af9a5522b23ed208972f7d37e6e3f5103ad427ecb89ce3385b73ef6da29eb",
+          "containsZodError": false
+        },
+        {
+          "file": "static/chunks/app/%5B%5B...path%5D%5D/page-7d330e6961fa396b.js",
+          "raw": 179,
+          "gzip": 162,
+          "sha256": "9b6e0018275788e7759bcc5737b2ca8f6c336e56017f2f2d60565873f916d0f9",
+          "containsZodError": false
+        }
+      ],
+      "rootCSS": [
+        {
+          "file": "static/css/8809e623ff52f09d.css",
+          "raw": 69540,
+          "gzip": 13644,
+          "sha256": "5982b839c1f21edde41e353e4e36e5cbd57b43f88a4bc74e49b0768208c90440",
+          "containsZodError": false
+        },
+        {
+          "file": "static/css/6e69855840ff679f.css",
+          "raw": 79342,
+          "gzip": 12879,
+          "sha256": "68662e9ac4894473c9ba14bed5aa4ce044ebbb65495063a08bdbfa274d50f4e2",
+          "containsZodError": false
+        },
+        {
+          "file": "static/css/eb86810ad77fc3a3.css",
+          "raw": 68439,
+          "gzip": 11741,
+          "sha256": "01e80fe541629e3235ca7312714af65e372ffc98dceae817d571dc81168e9df5",
+          "containsZodError": false
+        },
+        {
+          "file": "static/css/3be7d25f586b063e.css",
+          "raw": 86142,
+          "gzip": 12361,
+          "sha256": "37a0dfd18ebb12cad0355e3ff3d97ec6fdc485216378257cb215d124febb4be8",
+          "containsZodError": false
+        },
+        {
+          "file": "static/css/55bbc64ae4d39192.css",
+          "raw": 25795,
+          "gzip": 4292,
+          "sha256": "a0b7ff5ee4791d8478bb001dd140fcaa07586c5b7c5055a3cdf6c60af643d202",
+          "containsZodError": false
+        }
+      ],
+      "allClientZodChunks": [
+        "static/chunks/330-4c357f8dea252b4d.js"
+      ],
+      "homeAsync": []
+    },
+    "candidate": {
+      "root": "/workspace/ddd-perf-content-boundary",
+      "source": "d24b47f01c40abe247944a2e81e414a7a31ac06d",
+      "buildId": "XehgeJXDCi4ZqY376uUy7",
+      "runtimeChanges": "",
+      "initialEntryChunks": [
+        {
+          "file": "static/chunks/754-acc388c9c5a7b620.js",
+          "raw": 30647,
+          "gzip": 9672,
+          "sha256": "6ccef3f22f2175532599afad1410a8870e9d861c385e20c6176050fcc19400b6",
+          "containsZodError": false
+        },
+        {
+          "file": "static/chunks/272-e69d48b1df51e920.js",
+          "raw": 244469,
+          "gzip": 67231,
+          "sha256": "39ca3718972870d128cda40588dfc2628cc641225599106756e948423c9a9449",
+          "containsZodError": false
+        },
+        {
+          "file": "static/chunks/app/%5B%5B...path%5D%5D/page-805e85a88841b968.js",
+          "raw": 182,
+          "gzip": 162,
+          "sha256": "d0cee79e291a4fa3c6f13131a601898d49a387e6fa850a05b1f1cedd9601d53f",
+          "containsZodError": false
+        }
+      ],
+      "rootCSS": [
+        {
+          "file": "static/css/8809e623ff52f09d.css",
+          "raw": 69540,
+          "gzip": 13644,
+          "sha256": "5982b839c1f21edde41e353e4e36e5cbd57b43f88a4bc74e49b0768208c90440",
+          "containsZodError": false
+        },
+        {
+          "file": "static/css/6e69855840ff679f.css",
+          "raw": 79342,
+          "gzip": 12879,
+          "sha256": "68662e9ac4894473c9ba14bed5aa4ce044ebbb65495063a08bdbfa274d50f4e2",
+          "containsZodError": false
+        },
+        {
+          "file": "static/css/eb86810ad77fc3a3.css",
+          "raw": 68439,
+          "gzip": 11741,
+          "sha256": "01e80fe541629e3235ca7312714af65e372ffc98dceae817d571dc81168e9df5",
+          "containsZodError": false
+        },
+        {
+          "file": "static/css/3be7d25f586b063e.css",
+          "raw": 86142,
+          "gzip": 12361,
+          "sha256": "37a0dfd18ebb12cad0355e3ff3d97ec6fdc485216378257cb215d124febb4be8",
+          "containsZodError": false
+        },
+        {
+          "file": "static/css/55bbc64ae4d39192.css",
+          "raw": 25795,
+          "gzip": 4292,
+          "sha256": "a0b7ff5ee4791d8478bb001dd140fcaa07586c5b7c5055a3cdf6c60af643d202",
+          "containsZodError": false
+        }
+      ],
+      "allClientZodChunks": [],
+      "homeAsync": []
+    }
+  },
+  "result": "PASS"
+}

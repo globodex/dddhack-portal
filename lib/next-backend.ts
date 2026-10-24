@@ -25,7 +25,7 @@ export class BackendError extends Error {
   }
 }
 
-const defaultAppOrigin = "https://dddhack-portal.vercel.app";
+const defaultAppOrigin = "https://dddhack-portal.itsparam.in";
 const localhost = new Set(["localhost", "127.0.0.1", "[::1]"]);
 const safeMethods = new Set(["GET", "HEAD"]);
 const forwardedHeaders = [
@@ -68,7 +68,7 @@ function exactOrigin(value: string, code: string) {
 }
 
 export function protectedPath(path: string) {
-  return /^\/(dashboard|admin|judge|teams|profile|submission|review|rules|project-history|discover)(\/|$)/.test(
+  return path === "/personal/credits" || /^\/(dashboard|admin|judge|teams|profile|submission|review|rules|project-history|discover)(\/|$)/.test(
     path,
   );
 }
@@ -127,6 +127,7 @@ function failure(error: unknown) {
       headers: {
         "Cache-Control": "private, no-store, max-age=0",
         "X-Content-Type-Options": "nosniff",
+        "X-Robots-Tag": "noindex, nofollow",
       },
     },
   );
@@ -206,6 +207,8 @@ export async function proxyBackendRequest(request: Request): Promise<Response> {
     resultHeaders.set("Cache-Control", "private, no-store, max-age=0");
     resultHeaders.set("X-Content-Type-Options", "nosniff");
     resultHeaders.set("Referrer-Policy", "same-origin");
+    if (!incoming.pathname.startsWith("/api/project-image/") || !response.ok)
+      resultHeaders.set("X-Robots-Tag", "noindex, nofollow");
     resultHeaders.set("Vary", "Cookie");
     return new Response(request.method === "HEAD" ? null : response.body, {
       status: response.status,

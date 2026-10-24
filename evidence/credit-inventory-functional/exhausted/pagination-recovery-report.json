@@ -1,0 +1,15 @@
+{
+  "supplement": true,
+  "source": "8875a3c4f3867910abf6a6f750e782c35de75040",
+  "backend": "0a0b30b62725fe781dbad95945710a80169b1a20",
+  "syntheticOnly": true,
+  "checks": [
+    "Actual restock100 recovers5 waiting without check-in toggles;105/10/95/0; Available pagination returns25 masked rows per page"
+  ],
+  "captures": [
+    "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/exhausted/available-page2-masked-1440x900.png",
+    "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/exhausted/personal-out-of-stock-recovered-390x844.png"
+  ],
+  "completed": true,
+  "browserClosed": true
+}

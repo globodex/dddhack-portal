@@ -1,5 +1,7 @@
+import { projectMediaPolicy } from "./project-media-policy";
 import { auditReason } from "./security";
-import { creditBatchCommand, creditBatchesView } from "./credit-batches";
+import { creditBatchCommand, creditBatchesView, legacyCreditStockImport } from "./credit-batches";
+import { creditAssignmentStatements, creditStockCommand, creditStockView, creditSummaries, personalCredits } from "./credit-stock";
 import { transferTeamLeader } from "./team-leader-transfer";
 import type { PortalViewOptions } from "./discover-participants";
 import { submissionToolChoices } from "./submission-tools";
@@ -144,7 +146,8 @@ export class PortalService {
       owner = !deactivated && isOwner(i),
       rostered = !!(await one(
         this.db,
-        "SELECT email FROM luma_roster WHERE email=?",
+        "SELECT email FROM registrations WHERE email=? UNION SELECT email FROM luma_roster WHERE email=?",
+        i.email,
         i.email,
       )),
       ready =
@@ -326,7 +329,7 @@ export class PortalService {
     const actor = await this.actor();
     await this.throttle(actor.id);
     demand(
-      actor.mode !== "viewer",
+      actor.mode !== "viewer" || action === "reveal-credit",
       403,
       "VIEWER_READ_ONLY",
       "Viewer mode is read-only. Use your Luma-registered email or ask an admin to add it.",
@@ -361,12 +364,13 @@ export class PortalService {
         "save-project",
         "submit-project",
         "submit",
-        "reveal-credit",
       ].includes(action)
     )
       await requireRosterMember(this, actor);
     const creditBatch = await creditBatchCommand(this, action, data);
     if (creditBatch !== null) return creditBatch;
+    const stock = await creditStockCommand(this, action, data);
+    if (stock !== null) return stock;
     if (action === "transfer-team-leader") return transferTeamLeader(this, data);
     const revised = await new PortalExperience(this).command(
       action === "idea" ? "save-workspace-idea" : action,
@@ -523,18 +527,53 @@ export class PortalService {
         }
         demand(!(await this.team(target)), 409, "ALREADY_IN_TEAM");
         const requestId = crypto.randomUUID();
-        await this.mutate(u.id, action, d.teamId, [
+        const previous =
+          action === "team-invite"
+            ? await one<{ id: string; status: string; created_at: string }>(
+                this.db,
+                "SELECT id,status,created_at FROM team_actions WHERE team_id=? AND user_id=? AND kind='invite'",
+                d.teamId,
+                target,
+              )
+            : undefined;
+        demand(
+          !previous || previous.status === "declined",
+          409,
+          "INVITATION_ALREADY_PENDING",
+          "This participant already has an invitation for this team.",
+        );
+        await this.mutate(
+          u.id,
+          action,
+          d.teamId,
           [
-            "INSERT INTO team_actions VALUES(?,?,?,?,?,?)",
-            requestId,
-            d.teamId,
-            target,
-            action === "team-request" ? "request" : "invite",
-            "pending",
-            this.now(),
+            [
+              action === "team-invite"
+                ? "INSERT INTO team_actions VALUES(?,?,?,?,?,?) ON CONFLICT(team_id,user_id,kind) DO UPDATE SET id=excluded.id,status='pending',created_at=excluded.created_at WHERE team_actions.status='declined'"
+                : "INSERT INTO team_actions VALUES(?,?,?,?,?,?)",
+              requestId,
+              d.teamId,
+              target,
+              action === "team-request" ? "request" : "invite",
+              "pending",
+              this.now(),
+            ],
+            ...assertPreviousWrite(),
           ],
-        ]);
-        return { message: "Saved in portal. No email sent." };
+          {
+            invitationId: requestId,
+            ...(previous
+              ? {
+                  previousInvitation: {
+                    id: previous.id,
+                    status: previous.status,
+                    createdAt: previous.created_at,
+                  },
+                }
+              : {}),
+          },
+        );
+        return { id: requestId, message: "Saved in portal. No email sent." };
       }
       case "team-respond": {
         await this.approved();
@@ -573,6 +612,7 @@ export class PortalService {
             d.decision,
             d.id,
           ],
+          ...assertPreviousWrite(),
         ];
         if (d.decision === "accepted")
           statements.push([
@@ -582,6 +622,7 @@ export class PortalService {
             this.now(),
           ]);
         await this.mutate(actor.id, action, a.team_id, statements, {
+          invitationId: a.id,
           decision: d.decision,
         });
         return { message: "Team response saved." };
@@ -783,9 +824,13 @@ export class PortalService {
               this.now(),
             ],
             [
-              "DELETE FROM participant_status_overrides WHERE user_id=?",
+              "UPDATE participant_status_overrides SET status='Checked in',reason=?,actor_id=?,updated_at=? WHERE user_id=?",
+              d.reason,
+              actor.id,
+              this.now(),
               d.userId,
             ],
+            ...await creditAssignmentStatements(this),
           ],
           {},
           d.reason,
@@ -858,8 +903,6 @@ export class PortalService {
         };
       }
       case "reveal-credit": {
-        await this.approved();
-        demand(actor.role !== "judge", 403, "JUDGES_CANNOT_ACCESS_CREDITS");
         demand(
           await one(
             this.db,
@@ -902,6 +945,7 @@ export class PortalService {
             c.inventory_id,
           ],
           ["DELETE FROM write_guards WHERE token=?", guard],
+          ["UPDATE credit_code_history SET exposed=1 WHERE inventory_id=? AND exposed=0", c.inventory_id],
         ]);
         return { value };
       }
@@ -909,165 +953,7 @@ export class PortalService {
       case "commit-import": {
         if ((data as { kind?: string })?.kind === "roster")
           return rosterImport(this, action, data);
-        await this.staff();
-        const d = z
-          .object({
-            kind: z.enum(["roster", "credits"]),
-            csv: text(512000),
-            typeId: z.string().default(""),
-            digest: z.string().optional(),
-          })
-          .parse(data);
-        const parsed = parseCSV(d.csv);
-        demand(
-          parsed[0].length === 1 &&
-            parsed[0][0] === (d.kind === "roster" ? "email" : "value"),
-          422,
-          "CSV_HEADER_EXPECTED",
-          d.kind === "roster"
-            ? "Use a single email column."
-            : "Use a single value column.",
-        );
-        const values = parsed.slice(1).map((r) => r[0]);
-        if (d.kind === "roster") values.forEach((v) => emailSchema.parse(v));
-        else {
-          demand(
-            await one(
-              this.db,
-              "SELECT id FROM credit_types WHERE id=?",
-              d.typeId,
-            ),
-            422,
-            "CREDIT_TYPE_REQUIRED",
-          );
-          demand(
-            values.every((v) => v.length > 0 && v.length <= 4000),
-            422,
-            "INVALID_CREDIT_VALUE",
-          );
-        }
-        const normalized =
-          d.kind === "roster" ? values.map(normalizeRosterEmail) : values;
-        demand(
-          new Set(normalized).size === normalized.length,
-          422,
-          "CSV_DUPLICATES",
-        );
-        const digest = await sha256(
-          JSON.stringify({ kind: d.kind, type: d.typeId, values: normalized }),
-        );
-        const existing =
-          d.kind === "roster"
-            ? new Set(
-                (
-                  await rows<{ email: string }>(
-                    this.db,
-                    "SELECT email FROM registrations UNION SELECT email FROM luma_roster",
-                  )
-                ).map((r) => normalizeRosterEmail(r.email)),
-              )
-            : new Set<string>();
-        const rosterMatched =
-          d.kind === "roster"
-            ? new Set(
-                (
-                  await rows<{ email: string }>(
-                    this.db,
-                    "SELECT email FROM luma_roster",
-                  )
-                ).map((r) => r.email),
-              )
-            : new Set<string>();
-        if (action === "preview-import") {
-          await this.mutate(
-            actor.id,
-            action,
-            digest,
-            [
-              [
-                "INSERT INTO import_previews VALUES(?,?,?) ON CONFLICT(actor_id,digest) DO UPDATE SET created_at=excluded.created_at",
-                actor.id,
-                digest,
-                this.now(),
-              ],
-            ],
-            { kind: d.kind, count: values.length },
-          );
-          return {
-            digest,
-            rows: normalized.map((v, i) =>
-              d.kind === "roster"
-                ? {
-                    row: i + 1,
-                    email: v,
-                    existing: existing.has(v),
-                    action: existing.has(v)
-                      ? "Skip participant fields/status; add only missing roster membership"
-                      : "Add Registered participant",
-                    rosterMatched: rosterMatched.has(v),
-                  }
-                : {
-                    row: i + 1,
-                    value: "[masked]",
-                    fingerprint: "…" + digest.slice(-8),
-                  },
-            ),
-          };
-        }
-        demand(
-          d.digest === digest &&
-            (await one(
-              this.db,
-              "SELECT digest FROM import_previews WHERE actor_id=? AND digest=? AND created_at>?",
-              actor.id,
-              digest,
-              new Date(Date.parse(this.now()) - 15 * 60000).toISOString(),
-            )),
-          409,
-          "PREVIEW_REQUIRED",
-        );
-        const sql: SQL[] = [];
-        if (d.kind === "roster") {
-          sql.push([
-            "INSERT INTO luma_roster SELECT value,?,? FROM json_each(?) WHERE true ON CONFLICT(email) DO NOTHING",
-            actor.id,
-            this.now(),
-            JSON.stringify(normalized),
-          ]);
-          sql.push([
-            "INSERT INTO registrations(email) SELECT value FROM json_each(?) WHERE true ON CONFLICT(email) DO NOTHING",
-            JSON.stringify(normalized),
-          ]);
-        } else {
-          const inventory = await Promise.all(
-            normalized.map(async (value) => ({
-              id: crypto.randomUUID(),
-              voucher_value: value,
-              fingerprint: await sha256(value),
-            })),
-          );
-          sql.push([
-            "INSERT INTO credit_inventory(id,type_id,ciphertext,fingerprint,created_at,voucher_value) SELECT json_extract(value,'$.id'),?,'',json_extract(value,'$.fingerprint'),?,json_extract(value,'$.voucher_value') FROM json_each(?)",
-            d.typeId,
-            this.now(),
-            JSON.stringify(inventory),
-          ]);
-        }
-        sql.push([
-          "DELETE FROM import_previews WHERE actor_id=? AND digest=?",
-          actor.id,
-          digest,
-        ]);
-        await this.mutate(actor.id, action, digest, sql, {
-          kind: d.kind,
-          count: values.length,
-        });
-        return {
-          message:
-            d.kind === "roster"
-              ? "Add-only roster import committed. Existing participant fields and statuses were preserved."
-              : "Import committed.",
-        };
+        return legacyCreditStockImport(this, action, data);
       }
       case "settings": {
         await this.staff(true);
@@ -1273,8 +1159,8 @@ export class PortalService {
         const d = z
           .object({
             projectName: text(120),
-            logo: z.string().max(180000),
-            banner: z.string().max(180000),
+            logo: z.string().max(projectMediaPolicy.logo.dataUriMaxChars),
+            banner: z.string().max(projectMediaPolicy.banner.dataUriMaxChars),
             problemSolution: text(500),
             description: text(6000),
             github: githubUrl,
@@ -1968,24 +1854,7 @@ export class PortalService {
       this.db,
       "SELECT id FROM credit_types WHERE active=1",
     );
-    let legacyAvailable = false;
-    try {
-      requireCreditKey(this.creditKey);
-      legacyAvailable = true;
-    } catch {
-      // A missing/invalid legacy key never blocks voucher-only allocation.
-      // Leave unassigned ciphertext available for its existing key later.
-    }
-    const sql: SQL[] = types.map((t) => [
-      "INSERT INTO credit_allocations(inventory_id,type_id,user_id,assigned_at,recipient_email) SELECT i.id,i.type_id,?,?,(SELECT lower(email) FROM users WHERE id=?) FROM credit_inventory i WHERE i.type_id=? AND (i.voucher_value IS NOT NULL OR ?=1) AND NOT EXISTS(SELECT 1 FROM credit_allocations a WHERE a.inventory_id=i.id) AND NOT EXISTS(SELECT 1 FROM credit_allocations a WHERE a.user_id=? AND a.type_id=?) ORDER BY (i.voucher_value IS NULL),i.id LIMIT 1",
-      userId,
-      this.now(),
-      userId,
-      t.id,
-      legacyAvailable ? 1 : 0,
-      userId,
-      t.id,
-    ]);
+    const sql = await creditAssignmentStatements(this);
     await this.mutate(actorId, "allocate", userId, sql, {
       typeCount: types.length,
     });
@@ -2194,8 +2063,29 @@ export class PortalService {
     // Use one permission target for ordinary URL slash aliases as well as API views.
     // In particular, /admin/permissions/ must retain the owner-only requirement.
     path = path.replace(/\/+/g, "/").replace(/\/$/, "") || "/";
-    if (/^\/(dashboard|profile|submission|project-history)(\/|$)/.test(path))
-      await requireRosterMember(this);
+    const stockView = await creditStockView(this, path, options);
+    if (stockView !== null) return stockView;
+    if (/^\/(dashboard|profile|submission|project-history)(\/|$)/.test(path)) {
+      const me = await this.actor();
+      if (me.mode === "viewer" && !me.deactivated) {
+        if (
+          [
+            "/dashboard",
+            "/dashboard/team",
+            "/dashboard/credits",
+            "/profile",
+            "/dashboard/profile",
+            "/submission",
+            "/dashboard/submission",
+          ].includes(path)
+        )
+          return { me, registrationRequired: true };
+        // Unknown private URLs must not become successful Viewer pages. History
+        // retains its existing roster gate and never exposes private versions.
+        demand(path === "/project-history", 404, "PAGE_NOT_FOUND");
+      }
+      await requireRosterMember(this, me);
+    }
     const revised = await new PortalExperience(this).view(path, options);
     if (revised !== null) return revised;
     const s = await this.settings(true);
@@ -2384,22 +2274,8 @@ export class PortalService {
       };
     }
     if (path === "/dashboard/credits") {
-      await this.approved();
-      demand(u.role !== "judge", 403, "JUDGES_CANNOT_ACCESS_CREDITS");
-      demand(
-        (await personStatus(this, u.id)).checkedIn,
-        403,
-        "CHECKIN_REQUIRED",
-      );
-      return {
-        ...base,
-        items: await rows(
-          this.db,
-          "SELECT t.id type_id,t.name,t.instructions,CASE WHEN a.inventory_id IS NOT NULL THEN 1 ELSE 0 END allocated FROM credit_types t LEFT JOIN credit_allocations a ON a.type_id=t.id AND a.user_id=? AND lower(a.recipient_email)=? WHERE t.active=1",
-          u.id,
-          u.email.toLowerCase(),
-        ),
-      };
+      const own = await personalCredits(this);
+      return { ...base, ...own, items: own.credits };
     }
     if (path === "/dashboard/submission")
       return {
@@ -2463,6 +2339,7 @@ export class PortalService {
     );
   }
   async adminList(list: string) {
+    if (list === "credits") { await this.staff(); return creditSummaries(this); }
     if (list === "team-emails") {
       await this.staff();
       const view = await new PortalExperience(this).view("/admin/teams");

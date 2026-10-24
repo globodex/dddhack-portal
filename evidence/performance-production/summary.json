@@ -1,0 +1,861 @@
+{
+  "sources": {
+    "baseline": {
+      "origin": "https://portal-perf.test:3443",
+      "root": "/workspace/ddd-perf-prod-baseline",
+      "source": "c353a173a85580ebb4eed47fff0a23a0830b81a6",
+      "buildId": "FxM2l4SoSH0RiG3L9SgqW",
+      "runtimeSourceChanges": ""
+    },
+    "final": {
+      "origin": "https://portal-perf.test:3444",
+      "root": "/workspace/ddd-perf-prod-final",
+      "source": "b3b6da9b2d417c8cb997d41de8abe54c9f470f0d",
+      "buildId": "QdP_-Y3mVZskIG5jIP-YD",
+      "runtimeSourceChanges": ""
+    }
+  },
+  "result": "PASS56",
+  "sampleCount": 56,
+  "statistics": "Median and nearest-rank p95 of seven observations; p95=max at n7, descriptive only",
+  "rows": [
+    {
+      "label": "dashboard",
+      "phase": "cold",
+      "variants": {
+        "baseline": {
+          "ttfbMs": {
+            "n": 7,
+            "median": 68.79999999701977,
+            "p95": 113.29999999701977,
+            "min": 53.399999998509884,
+            "max": 113.29999999701977
+          },
+          "fcpMs": {
+            "n": 7,
+            "median": 436,
+            "p95": 852,
+            "min": 360,
+            "max": 852
+          },
+          "completedHttpRequestCount": {
+            "n": 7,
+            "median": 18,
+            "p95": 18,
+            "min": 18,
+            "max": 18
+          },
+          "completedRequestCount": {
+            "n": 7,
+            "median": 19,
+            "p95": 19,
+            "min": 19,
+            "max": 19
+          },
+          "completedWireBytes": {
+            "n": 7,
+            "median": 319930,
+            "p95": 319930,
+            "min": 319930,
+            "max": 319930
+          },
+          "actualNetworkRequests": {
+            "n": 7,
+            "median": 18,
+            "p95": 18,
+            "min": 18,
+            "max": 18
+          },
+          "cachedRequests": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "fontsRequested": {
+            "n": 7,
+            "median": 3,
+            "p95": 3,
+            "min": 3,
+            "max": 3
+          },
+          "fontWireBytes": {
+            "n": 7,
+            "median": 43941,
+            "p95": 43941,
+            "min": 43941,
+            "max": 43941
+          },
+          "domNodes": {
+            "n": 7,
+            "median": 283,
+            "p95": 283,
+            "min": 283,
+            "max": 283
+          },
+          "longTaskCount": {
+            "n": 7,
+            "median": 2,
+            "p95": 4,
+            "min": 1,
+            "max": 4
+          },
+          "longTaskTotalMs": {
+            "n": 7,
+            "median": 117,
+            "p95": 639,
+            "min": 80,
+            "max": 639
+          },
+          "longestTaskMs": {
+            "n": 7,
+            "median": 117,
+            "p95": 339,
+            "min": 61,
+            "max": 339
+          },
+          "lcpMs": {
+            "n": 7,
+            "median": 436,
+            "p95": 852,
+            "min": 360,
+            "max": 852
+          }
+        },
+        "final": {
+          "ttfbMs": {
+            "n": 7,
+            "median": 93.10000000149012,
+            "p95": 218.80000000074506,
+            "min": 33.399999998509884,
+            "max": 218.80000000074506
+          },
+          "fcpMs": {
+            "n": 7,
+            "median": 596,
+            "p95": 1440,
+            "min": 372,
+            "max": 1440
+          },
+          "completedHttpRequestCount": {
+            "n": 7,
+            "median": 22,
+            "p95": 22,
+            "min": 22,
+            "max": 22
+          },
+          "completedRequestCount": {
+            "n": 7,
+            "median": 23,
+            "p95": 23,
+            "min": 23,
+            "max": 23
+          },
+          "completedWireBytes": {
+            "n": 7,
+            "median": 373304,
+            "p95": 373304,
+            "min": 373304,
+            "max": 373304
+          },
+          "actualNetworkRequests": {
+            "n": 7,
+            "median": 22,
+            "p95": 22,
+            "min": 22,
+            "max": 22
+          },
+          "cachedRequests": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "fontsRequested": {
+            "n": 7,
+            "median": 4,
+            "p95": 4,
+            "min": 4,
+            "max": 4
+          },
+          "fontWireBytes": {
+            "n": 7,
+            "median": 58536,
+            "p95": 58536,
+            "min": 58536,
+            "max": 58536
+          },
+          "domNodes": {
+            "n": 7,
+            "median": 387,
+            "p95": 387,
+            "min": 387,
+            "max": 387
+          },
+          "longTaskCount": {
+            "n": 7,
+            "median": 2,
+            "p95": 3,
+            "min": 1,
+            "max": 3
+          },
+          "longTaskTotalMs": {
+            "n": 7,
+            "median": 203,
+            "p95": 741,
+            "min": 107,
+            "max": 741
+          },
+          "longestTaskMs": {
+            "n": 7,
+            "median": 149,
+            "p95": 365,
+            "min": 98,
+            "max": 365
+          },
+          "lcpMs": {
+            "n": 7,
+            "median": 596,
+            "p95": 1440,
+            "min": 372,
+            "max": 1440
+          }
+        }
+      }
+    },
+    {
+      "label": "dashboard",
+      "phase": "repeat",
+      "variants": {
+        "baseline": {
+          "ttfbMs": {
+            "n": 7,
+            "median": 34.19999999925494,
+            "p95": 87.59999999776483,
+            "min": 26.399999998509884,
+            "max": 87.59999999776483
+          },
+          "fcpMs": {
+            "n": 7,
+            "median": 132,
+            "p95": 316,
+            "min": 96,
+            "max": 316
+          },
+          "completedHttpRequestCount": {
+            "n": 7,
+            "median": 18,
+            "p95": 18,
+            "min": 18,
+            "max": 18
+          },
+          "completedRequestCount": {
+            "n": 7,
+            "median": 19,
+            "p95": 19,
+            "min": 19,
+            "max": 19
+          },
+          "completedWireBytes": {
+            "n": 7,
+            "median": 15736,
+            "p95": 15736,
+            "min": 15736,
+            "max": 15736
+          },
+          "actualNetworkRequests": {
+            "n": 7,
+            "median": 6,
+            "p95": 6,
+            "min": 6,
+            "max": 6
+          },
+          "cachedRequests": {
+            "n": 7,
+            "median": 12,
+            "p95": 12,
+            "min": 12,
+            "max": 12
+          },
+          "fontsRequested": {
+            "n": 7,
+            "median": 3,
+            "p95": 3,
+            "min": 3,
+            "max": 3
+          },
+          "fontWireBytes": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "domNodes": {
+            "n": 7,
+            "median": 283,
+            "p95": 283,
+            "min": 283,
+            "max": 283
+          },
+          "longTaskCount": {
+            "n": 7,
+            "median": 0,
+            "p95": 1,
+            "min": 0,
+            "max": 1
+          },
+          "longTaskTotalMs": {
+            "n": 7,
+            "median": 0,
+            "p95": 107,
+            "min": 0,
+            "max": 107
+          },
+          "longestTaskMs": {
+            "n": 7,
+            "median": 0,
+            "p95": 107,
+            "min": 0,
+            "max": 107
+          },
+          "lcpMs": {
+            "n": 7,
+            "median": 132,
+            "p95": 316,
+            "min": 96,
+            "max": 316
+          }
+        },
+        "final": {
+          "ttfbMs": {
+            "n": 7,
+            "median": 41,
+            "p95": 64.89999999850988,
+            "min": 30.300000000745058,
+            "max": 64.89999999850988
+          },
+          "fcpMs": {
+            "n": 7,
+            "median": 132,
+            "p95": 196,
+            "min": 108,
+            "max": 196
+          },
+          "completedHttpRequestCount": {
+            "n": 7,
+            "median": 22,
+            "p95": 22,
+            "min": 22,
+            "max": 22
+          },
+          "completedRequestCount": {
+            "n": 7,
+            "median": 23,
+            "p95": 23,
+            "min": 23,
+            "max": 23
+          },
+          "completedWireBytes": {
+            "n": 7,
+            "median": 16820,
+            "p95": 16820,
+            "min": 16820,
+            "max": 16820
+          },
+          "actualNetworkRequests": {
+            "n": 7,
+            "median": 6,
+            "p95": 6,
+            "min": 6,
+            "max": 6
+          },
+          "cachedRequests": {
+            "n": 7,
+            "median": 16,
+            "p95": 16,
+            "min": 16,
+            "max": 16
+          },
+          "fontsRequested": {
+            "n": 7,
+            "median": 4,
+            "p95": 4,
+            "min": 4,
+            "max": 4
+          },
+          "fontWireBytes": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "domNodes": {
+            "n": 7,
+            "median": 387,
+            "p95": 387,
+            "min": 387,
+            "max": 387
+          },
+          "longTaskCount": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "longTaskTotalMs": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "longestTaskMs": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "lcpMs": {
+            "n": 7,
+            "median": 132,
+            "p95": 196,
+            "min": 108,
+            "max": 196
+          }
+        }
+      }
+    },
+    {
+      "label": "people",
+      "phase": "cold",
+      "variants": {
+        "baseline": {
+          "ttfbMs": {
+            "n": 7,
+            "median": 63.30000000074506,
+            "p95": 183.5,
+            "min": 42.900000002235174,
+            "max": 183.5
+          },
+          "fcpMs": {
+            "n": 7,
+            "median": 432,
+            "p95": 1000,
+            "min": 348,
+            "max": 1000
+          },
+          "completedHttpRequestCount": {
+            "n": 7,
+            "median": 18,
+            "p95": 18,
+            "min": 18,
+            "max": 18
+          },
+          "completedRequestCount": {
+            "n": 7,
+            "median": 18,
+            "p95": 18,
+            "min": 18,
+            "max": 18
+          },
+          "completedWireBytes": {
+            "n": 7,
+            "median": 330962,
+            "p95": 330962,
+            "min": 330962,
+            "max": 330962
+          },
+          "actualNetworkRequests": {
+            "n": 7,
+            "median": 18,
+            "p95": 18,
+            "min": 18,
+            "max": 18
+          },
+          "cachedRequests": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "fontsRequested": {
+            "n": 7,
+            "median": 4,
+            "p95": 4,
+            "min": 4,
+            "max": 4
+          },
+          "fontWireBytes": {
+            "n": 7,
+            "median": 58536,
+            "p95": 58536,
+            "min": 58536,
+            "max": 58536
+          },
+          "domNodes": {
+            "n": 7,
+            "median": 368,
+            "p95": 368,
+            "min": 368,
+            "max": 368
+          },
+          "longTaskCount": {
+            "n": 7,
+            "median": 2,
+            "p95": 3,
+            "min": 1,
+            "max": 3
+          },
+          "longTaskTotalMs": {
+            "n": 7,
+            "median": 186,
+            "p95": 773,
+            "min": 80,
+            "max": 773
+          },
+          "longestTaskMs": {
+            "n": 7,
+            "median": 132,
+            "p95": 408,
+            "min": 80,
+            "max": 408
+          },
+          "lcpMs": {
+            "n": 7,
+            "median": 432,
+            "p95": 1000,
+            "min": 348,
+            "max": 1000
+          }
+        },
+        "final": {
+          "ttfbMs": {
+            "n": 7,
+            "median": 62.80000000074506,
+            "p95": 126,
+            "min": 36.80000000074506,
+            "max": 126
+          },
+          "fcpMs": {
+            "n": 7,
+            "median": 460,
+            "p95": 584,
+            "min": 436,
+            "max": 584
+          },
+          "completedHttpRequestCount": {
+            "n": 7,
+            "median": 20,
+            "p95": 20,
+            "min": 20,
+            "max": 20
+          },
+          "completedRequestCount": {
+            "n": 7,
+            "median": 20,
+            "p95": 20,
+            "min": 20,
+            "max": 20
+          },
+          "completedWireBytes": {
+            "n": 7,
+            "median": 354553,
+            "p95": 354553,
+            "min": 354553,
+            "max": 354553
+          },
+          "actualNetworkRequests": {
+            "n": 7,
+            "median": 20,
+            "p95": 20,
+            "min": 20,
+            "max": 20
+          },
+          "cachedRequests": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "fontsRequested": {
+            "n": 7,
+            "median": 3,
+            "p95": 3,
+            "min": 3,
+            "max": 3
+          },
+          "fontWireBytes": {
+            "n": 7,
+            "median": 43941,
+            "p95": 43941,
+            "min": 43941,
+            "max": 43941
+          },
+          "domNodes": {
+            "n": 7,
+            "median": 419,
+            "p95": 419,
+            "min": 419,
+            "max": 419
+          },
+          "longTaskCount": {
+            "n": 7,
+            "median": 2,
+            "p95": 2,
+            "min": 1,
+            "max": 2
+          },
+          "longTaskTotalMs": {
+            "n": 7,
+            "median": 191,
+            "p95": 278,
+            "min": 82,
+            "max": 278
+          },
+          "longestTaskMs": {
+            "n": 7,
+            "median": 125,
+            "p95": 171,
+            "min": 82,
+            "max": 171
+          },
+          "lcpMs": {
+            "n": 7,
+            "median": 460,
+            "p95": 584,
+            "min": 436,
+            "max": 584
+          }
+        }
+      }
+    },
+    {
+      "label": "people",
+      "phase": "repeat",
+      "variants": {
+        "baseline": {
+          "ttfbMs": {
+            "n": 7,
+            "median": 31.399999998509884,
+            "p95": 89.10000000149012,
+            "min": 28,
+            "max": 89.10000000149012
+          },
+          "fcpMs": {
+            "n": 7,
+            "median": 136,
+            "p95": 448,
+            "min": 92,
+            "max": 448
+          },
+          "completedHttpRequestCount": {
+            "n": 7,
+            "median": 18,
+            "p95": 18,
+            "min": 18,
+            "max": 18
+          },
+          "completedRequestCount": {
+            "n": 7,
+            "median": 18,
+            "p95": 18,
+            "min": 18,
+            "max": 18
+          },
+          "completedWireBytes": {
+            "n": 7,
+            "median": 12949,
+            "p95": 12949,
+            "min": 12949,
+            "max": 12949
+          },
+          "actualNetworkRequests": {
+            "n": 7,
+            "median": 5,
+            "p95": 5,
+            "min": 5,
+            "max": 5
+          },
+          "cachedRequests": {
+            "n": 7,
+            "median": 13,
+            "p95": 13,
+            "min": 13,
+            "max": 13
+          },
+          "fontsRequested": {
+            "n": 7,
+            "median": 4,
+            "p95": 4,
+            "min": 4,
+            "max": 4
+          },
+          "fontWireBytes": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "domNodes": {
+            "n": 7,
+            "median": 368,
+            "p95": 368,
+            "min": 368,
+            "max": 368
+          },
+          "longTaskCount": {
+            "n": 7,
+            "median": 0,
+            "p95": 1,
+            "min": 0,
+            "max": 1
+          },
+          "longTaskTotalMs": {
+            "n": 7,
+            "median": 0,
+            "p95": 193,
+            "min": 0,
+            "max": 193
+          },
+          "longestTaskMs": {
+            "n": 7,
+            "median": 0,
+            "p95": 193,
+            "min": 0,
+            "max": 193
+          },
+          "lcpMs": {
+            "n": 7,
+            "median": 136,
+            "p95": 448,
+            "min": 92,
+            "max": 448
+          }
+        },
+        "final": {
+          "ttfbMs": {
+            "n": 7,
+            "median": 36.900000002235174,
+            "p95": 79.5,
+            "min": 27,
+            "max": 79.5
+          },
+          "fcpMs": {
+            "n": 7,
+            "median": 120,
+            "p95": 336,
+            "min": 100,
+            "max": 336
+          },
+          "completedHttpRequestCount": {
+            "n": 7,
+            "median": 20,
+            "p95": 20,
+            "min": 20,
+            "max": 20
+          },
+          "completedRequestCount": {
+            "n": 7,
+            "median": 20,
+            "p95": 20,
+            "min": 20,
+            "max": 20
+          },
+          "completedWireBytes": {
+            "n": 7,
+            "median": 13440,
+            "p95": 13440,
+            "min": 13440,
+            "max": 13440
+          },
+          "actualNetworkRequests": {
+            "n": 7,
+            "median": 5,
+            "p95": 5,
+            "min": 5,
+            "max": 5
+          },
+          "cachedRequests": {
+            "n": 7,
+            "median": 15,
+            "p95": 15,
+            "min": 15,
+            "max": 15
+          },
+          "fontsRequested": {
+            "n": 7,
+            "median": 3,
+            "p95": 3,
+            "min": 3,
+            "max": 3
+          },
+          "fontWireBytes": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "domNodes": {
+            "n": 7,
+            "median": 419,
+            "p95": 419,
+            "min": 419,
+            "max": 419
+          },
+          "longTaskCount": {
+            "n": 7,
+            "median": 0,
+            "p95": 2,
+            "min": 0,
+            "max": 2
+          },
+          "longTaskTotalMs": {
+            "n": 7,
+            "median": 0,
+            "p95": 128,
+            "min": 0,
+            "max": 128
+          },
+          "longestTaskMs": {
+            "n": 7,
+            "median": 0,
+            "p95": 65,
+            "min": 0,
+            "max": 65
+          },
+          "lcpMs": {
+            "n": 7,
+            "median": 120,
+            "p95": 340,
+            "min": 100,
+            "max": 340
+          }
+        }
+      }
+    }
+  ],
+  "backendTrace": {
+    "totalCalls": 90,
+    "callsByOrigin": {
+      "https://portal-perf.test:3443": 45,
+      "https://portal-perf.test:3444": 45
+    },
+    "sessionCalls": 0,
+    "viewCalls": 90,
+    "statuses": [
+      200
+    ]
+  },
+  "errors": [],
+  "externalPageAttempts": []
+}

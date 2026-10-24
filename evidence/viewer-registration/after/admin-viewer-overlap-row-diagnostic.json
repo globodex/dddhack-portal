@@ -1,0 +1,150 @@
+{
+  "source": "c205b40",
+  "geometry": {
+    "row": {
+      "x": 20,
+      "y": 182,
+      "width": 280,
+      "height": 140.5,
+      "top": 182,
+      "right": 300,
+      "bottom": 322.5,
+      "left": 20
+    },
+    "cells": [
+      {
+        "text": "",
+        "box": {
+          "x": 37,
+          "y": 204.75,
+          "width": 24,
+          "height": 27,
+          "top": 204.75,
+          "right": 61,
+          "bottom": 231.75,
+          "left": 37
+        }
+      },
+      {
+        "text": "><\nQA Viewer 001\nviewer001@portal.test",
+        "box": {
+          "x": 71,
+          "y": 199,
+          "width": 212,
+          "height": 38.5,
+          "top": 199,
+          "right": 283,
+          "bottom": 237.5,
+          "left": 71
+        }
+      },
+      {
+        "text": "Not in a team",
+        "box": {
+          "x": 71,
+          "y": 276.5,
+          "width": 212,
+          "height": 29,
+          "top": 276.5,
+          "right": 283,
+          "bottom": 305.5,
+          "left": 71
+        }
+      },
+      {
+        "text": "Not registered",
+        "box": {
+          "x": 71,
+          "y": 242.5,
+          "width": 212,
+          "height": 26,
+          "top": 242.5,
+          "right": 283,
+          "bottom": 268.5,
+          "left": 71
+        }
+      },
+      {
+        "text": "Not in a team",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      {
+        "text": "Not locked",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      {
+        "text": "Viewer access",
+        "box": {
+          "x": 197.6875,
+          "y": 195,
+          "width": 93.3125,
+          "height": 18,
+          "top": 195,
+          "right": 291,
+          "bottom": 213,
+          "left": 197.6875
+        }
+      }
+    ],
+    "texts": [
+      {
+        "text": "QA Viewer 001",
+        "box": {
+          "x": 117,
+          "y": 199,
+          "width": 114.90625,
+          "height": 20,
+          "top": 199,
+          "right": 231.90625,
+          "bottom": 219,
+          "left": 117
+        }
+      },
+      {
+        "text": "viewer001@portal.test",
+        "box": {
+          "x": 117,
+          "y": 221,
+          "width": 114.90625,
+          "height": 16.5,
+          "top": 221,
+          "right": 231.90625,
+          "bottom": 237.5,
+          "left": 117
+        }
+      },
+      {
+        "text": "Viewer access",
+        "box": {
+          "x": 197.6875,
+          "y": 195,
+          "width": 93.3125,
+          "height": 18,
+          "top": 195,
+          "right": 291,
+          "bottom": 213,
+          "left": 197.6875
+        }
+      }
+    ]
+  },
+  "browserClosed": true
+}

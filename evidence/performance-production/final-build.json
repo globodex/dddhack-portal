@@ -1,0 +1,24 @@
+{
+  "case": "final",
+  "source": "2657f26254ed323ca84a167a2f220f05f4ec7cbf",
+  "baseSource": "2657f26254ed323ca84a167a2f220f05f4ec7cbf",
+  "command": [
+    "node",
+    "node_modules/next/dist/bin/next",
+    "build",
+    "--webpack"
+  ],
+  "bundler": "webpack",
+  "mode": "production build",
+  "exitCode": 0,
+  "elapsedSecondsDiagnosticOnly": 75.533,
+  "environmentKeys": [
+    "LANG",
+    "NEXT_TELEMETRY_DISABLED",
+    "PATH",
+    "TZ"
+  ],
+  "backendOrProviderConfigured": false,
+  "serverStarted": false,
+  "buildTimingIsFrontendPerformanceEvidence": false
+}

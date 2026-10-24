@@ -1,5 +1,6 @@
 import { rows, type Database } from "./db";
 import { demand, PortalError } from "./security";
+import { registeredEmailPredicate } from "./roster";
 
 export type DiscoverParticipantOptions = {
   cursor?: string;
@@ -115,7 +116,7 @@ const selection = `SELECT u.id,COALESCE(pp.display_name,u.name) name,
  CASE WHEN m.team_id IS NULL THEN 'Not in a team' ELSE 'In a team' END teamStatus,
  CASE WHEN p.public=1 THEN p.bio ELSE '' END bio,
  CASE WHEN p.public=1 THEN p.socials ELSE '[]' END socials
- FROM users u JOIN luma_roster l ON l.email=u.email
+ FROM users u
  JOIN participant_profiles pp ON pp.user_id=u.id
  LEFT JOIN portal_roles r ON r.user_id=u.id
  JOIN profiles p ON p.user_id=u.id
@@ -124,6 +125,7 @@ const selection = `SELECT u.id,COALESCE(pp.display_name,u.name) name,
  LEFT JOIN teams t ON t.id=m.team_id
  LEFT JOIN team_styles ts ON ts.team_id=t.id
  WHERE COALESCE(r.role,u.role)='participant'
+ AND ${registeredEmailPredicate("u.email")}
  AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=u.id AND rr.active=1)
  AND pp.completed_at IS NOT NULL AND pd.phone<>''`;
 const name = "COALESCE(pp.display_name,u.name) COLLATE NOCASE";

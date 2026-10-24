@@ -10,7 +10,6 @@ import {
   ArrowUp,
   CircleCheck,
   ExternalLink,
-  EyeOff,
   LockKeyhole,
   MapPin,
   MessageSquare,
@@ -37,15 +36,23 @@ import {
   UsersRound,
   X,
   Ticket,
+  Pencil,
+  LockKeyholeOpen,
+  Flag,
 } from "lucide-react";
 import AddAdmins from "./add-admins";
 import AdminCreditBatches from "./admin-credit-batches";
+import PersonalCredits, { PersonalCreditsContent } from "./personal-credits";
 import AdminLeaderTransfer from "./admin-leader-transfer";
 import Link from "next/link";
 import { useDiscoverPeople, peopleDirectoryUrl, readPeoplePage } from "./use-discover-people";
 import { HeadingDot } from "./expressive-heading";
 import RouteSkeleton from "./route-skeleton";
+import ViewerWelcome from "./viewer-welcome";
+import { portalLoadFailure, type PortalLoadFailure } from "../lib/portal-load-state";
 import MobileNavigation from "./mobile-navigation";
+import { useHydrated } from "./use-hydrated";
+import { portalErrorText, portalSuccessText } from "../lib/ui-feedback";
 import { readPortalView } from "../lib/portal-read";
 import {AdminPresentationCache, AdminPresentationCacheMiss} from "../lib/admin-presentation";
 import DiscoveryProfile, {
@@ -79,10 +86,14 @@ import {
   type CSSProperties,
 } from "react";
 import Home from "./home";
+import ProjectMediaField from "./project-media-field";
+import { resolveTeamColor } from "../lib/team-color";
+import { prepareProjectImage } from "./prepare-project-image";
 import ProfileFlow from "./profile-flow";
 import AdminImportDialog from "./admin-import-dialog";
 import AdminStatusMenu from "./admin-status-menu";
 import { trapDialogFocus } from "./dialog-focus";
+import { consumeDialogHistoryForNavigation, trackDialogHistory } from "./dialog-history";
 import AdminParticipantActions, {
   AdminParticipantFilters,
   AdminIcon,
@@ -109,7 +120,7 @@ import {
   type Palette,
 } from "../lib/experience-contract";
 import { ist } from "../lib/time";
-import { defaultPublicContent } from "../lib/event-content-contract";
+import { defaultPublicContent } from "../lib/public-content-defaults";
 // Every record is a server-authorized projection; no client-side role filtering
 // substitutes for the service's per-request checks.
 type Row = Record<string, any>;
@@ -124,6 +135,7 @@ type View = Row & {
     avatarExpression?: string;
     mode?: "viewer" | "participant" | "staff";
     rostered?: boolean;
+    deactivated?: boolean;
     canEngage?: boolean;
     canParticipate?: boolean;
   };
@@ -138,7 +150,7 @@ async function api(action: string, data: Row) {
     credentials: "same-origin",
   });
   const b = (await r.json()) as Row;
-  if (!r.ok) throw new Error(b.message || b.code || "The request failed.");
+  if (!r.ok) throw new Error(portalErrorText(b));
   return b as Row;
 }
 export function portalConfirmationFor(
@@ -147,6 +159,20 @@ export function portalConfirmationFor(
   target: string,
 ): Confirmation {
   const base = confirmationFor(action, values, target);
+  if (action === "publish-credit-batch" && values.creditImportSummary) {
+    const counts = values.creditImportSummary;
+    return {
+      ...base,
+      title: "Add credits?",
+      target: Array.isArray(values.columns) ? values.columns.length > 3 ? `${values.columns.length} categories` : values.columns.map((column: Row) => column.heading).join(", ") : target,
+      description: `${counts.added} to add · ${counts.duplicates} duplicates skipped${counts.retired ? ` · ${counts.retired} previously removed` : ""}`,
+      confirmLabel: "Add credits",
+    };
+  }
+  if (action === "team-invite")
+    return { ...base, title: "Send team invitation?", target: values.email || target, description: "", confirmLabel: "Send invitation" };
+  if (action === "team-respond")
+    return { ...base, title: values.decision === "accepted" ? "Join this team?" : "Decline invitation?", description: "", confirmLabel: values.decision === "accepted" ? "Join team" : "Decline" };
   if (action === "respond-team")
     return {
       ...base,
@@ -204,7 +230,7 @@ export function portalConfirmationFor(
     return {
       ...base,
       title: "Confirm operational setup",
-      description: `Save the reviewed ${values.operation === "checkin" ? "check-in" : "submission"} rules and shared indefinite-retention notice. Existing enabled scopes stay unchanged; this does not enable operations or confirm any judging policy.`,
+      description: `Save the reviewed ${values.operation === "checkin" ? "check-in" : "submission"} rules and retention policy. Existing enabled scopes stay unchanged; this does not enable operations or confirm any judging policy.`,
       confirmLabel: "Save these confirmations",
       critical: true,
     };
@@ -212,8 +238,9 @@ export function portalConfirmationFor(
     return {
       ...base,
       title: "Publish submission window",
-      description:
-        "Publish the previewed opening and closing times as real portal settings for all teams. Existing commits and attempts remain intact. The fixed repository creation and first-commit cutoff stays 1 November, 08:00 IST.",
+      description: Array.isArray(values.windowWarnings) && values.windowWarnings.length
+        ? values.windowWarnings.filter((warning: unknown) => typeof warning === "string").slice(0, 3).join(" ")
+        : "Save both times as real portal settings. Existing attempts and the fixed repository cutoff of 1 November, 08:00 IST stay unchanged.",
       confirmLabel: "Publish these times",
       critical: true,
     };
@@ -234,11 +261,19 @@ export function portalConfirmationFor(
       confirmLabel: "Confirm",
       critical: true,
     };
+  if (action === "revoke-admin")
+    return {
+      ...base,
+      title: "Revoke admin access?",
+      description: "They keep their participant account, profile and team.",
+      confirmLabel: "Revoke access",
+      critical: true,
+    };
   if (action === "commit-import")
     return {
       ...base,
       title: "Add participants?",
-      target: values.singleEmail || `${values.newCount || 0} participants`,
+      target: values.singleEmail || `${values.newCount || 0} ${Number(values.newCount) === 1 ? "participant" : "participants"}`,
       description: "",
       confirmLabel: "Confirm",
       critical: false,
@@ -246,6 +281,10 @@ export function portalConfirmationFor(
   return base;
 }
 export function portalTargetName(data: View, values: Row): string {
+  if (typeof values.id === "string" && ["accepted", "declined"].includes(values.decision)) {
+    const invitation = (data.actions || []).find((item: Row) => item.id === values.id && item.kind === "invite");
+    if (typeof invitation?.team_name === "string" && invitation.team_name.trim()) return invitation.team_name;
+  }
   if (values.expectedLeaderId && values.teamId && values.userId) {
     const team = (data.items || []).find((item: Row) => item.id === values.teamId);
     const oldLeader = team?.members?.find((member: Row) => member.id === values.expectedLeaderId);
@@ -265,6 +304,7 @@ export function portalTargetName(data: View, values: Row): string {
     ...(data.project ? [data.project] : []),
     ...(data.items || []),
     ...(data.roles || []),
+    ...(data.adminAccess?.items || []),
     ...(data.members || []),
     ...(data.items || []).flatMap((item: Row) => item.members || []),
     ...(data.reviewers || []),
@@ -354,6 +394,9 @@ type IconName =
   | "users"
   | "team"
   | "credits";
+function navigationIcon(label: string): IconName {
+  return ({ Home: "home", Dashboard: "dashboard", Discover: "discover", Participants: "users", Teams: "team", Projects: "projects", Leaderboard: "leaderboard", Rules: "rules", Settings: "settings", Logs: "logs", Credits: "credits", Workspace: "dashboard", Administration: "settings", "Assigned projects": "projects" } as Record<string, IconName>)[label] || "projects";
+}
 function Icon({ name, size = 20 }: { name: IconName; size?: number }) {
   const Component = {
     credits: Ticket,
@@ -443,12 +486,12 @@ function Field({
   if (name === "reason") return null;
   return (
     <label>
-      {label}
+      <span>{label}{required && <span className="required-mark" aria-hidden="true"> *</span>}</span>
       {children ||
         (type === "textarea" ? (
           <textarea
             name={name}
-            defaultValue={String(value || "")}
+            defaultValue={String(value ?? "")}
             required={required}
             minLength={minLength}
             rows={4}
@@ -459,7 +502,7 @@ function Field({
           <input
             name={name}
             type={type}
-            defaultValue={String(value || "")}
+            defaultValue={String(value ?? "")}
             required={required}
             minLength={minLength}
           />
@@ -484,12 +527,17 @@ function Form({
   disabled?: boolean;
   disabledReason?: string;
 }) {
+  const hydrated = useHydrated();
   const disabledReasonId = useId();
   const [busy, setBusy] = useState(false),
     [error, setError] = useState("");
   return (
     <form
       className={className}
+      method="post"
+      inert={!hydrated}
+      data-hydrated={hydrated}
+      aria-busy={!hydrated || busy}
       onSubmit={async (e) => {
         e.preventDefault();
         if (disabled || busy) return;
@@ -511,7 +559,7 @@ function Form({
       <div className="form-actions">
         <button
           className="button"
-          disabled={busy || disabled}
+          disabled={!hydrated || busy || disabled}
           title={disabled ? disabledReason : undefined}
           aria-describedby={
             disabled && disabledReason ? disabledReasonId : undefined
@@ -559,11 +607,13 @@ function Search({
   onChange: (v: string) => void;
   label?: string;
 }) {
+  const hydrated = useHydrated();
   return (
     <label className="search-label">
       <span className="sr-only">{label}</span>
       <input
         type="search"
+        disabled={!hydrated}
         placeholder={label}
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -597,13 +647,14 @@ function AvatarChooser({
       <div className="badge-preview">
         <TeamAvatar name={name} palette={palette} size={88} />
       </div>
-      <fieldset>
-        <legend>Team color</legend>
+      <fieldset className="team-color-fieldset">
+        <legend>Team color <output className="team-color-name" aria-live="polite">{teamColorLabels[palette] || "Green"}</output></legend>
         <div className="palette-picker">
           {teamColorKeys.map((key) => (
-            <label key={key}>
+            <label key={key} title={teamColorLabels[key]} className="team-color-choice" data-selected={palette === key}>
               <input
                 type="radio"
+                className="team-color-radio"
                 name="palette"
                 value={key}
                 checked={palette === key}
@@ -611,9 +662,10 @@ function AvatarChooser({
               />
               <span
                 className="palette-swatch"
+                aria-hidden="true"
                 style={{ background: teamDotColors[key] }}
               />
-              {teamColorLabels[key]}
+              <span className="sr-only">{teamColorLabels[key]}</span>
             </label>
           ))}
         </div>
@@ -622,38 +674,199 @@ function AvatarChooser({
   );
 }
 
-function CreateTeam({ run }: { run: (a: string, d: Row) => Promise<Row> }) {
+function CreateTeam({
+  run,
+  onClose,
+  titleId,
+}: {
+  run: (a: string, d: Row) => Promise<Row>;
+  onClose?: () => void;
+  titleId?: string;
+}) {
   const [name, setName] = useState(""),
-    [palette, setPalette] = useState("forest");
+    [palette, setPalette] = useState("forest"),
+    [busy, setBusy] = useState(false),
+    [error, setError] = useState(""),
+    [hydrated, setHydrated] = useState(false);
+  const fallbackTitle = useId(), errorId = useId(), submitting = useRef(false),
+    closeButton = useRef<HTMLButtonElement>(null);
+  const headingId = titleId || fallbackTitle;
+  useEffect(() => setHydrated(true), []);
+  useEffect(() => {
+    if (hydrated) closeButton.current?.focus({ preventScroll: true });
+  }, [hydrated]);
   return (
-    <Form
-      title="Start your team"
-      label="Create team"
-      onSave={async (f) => {
-        await run("create-workspace-team", {
-          name: f.get("name"),
-          bio: f.get("bio"),
-          avatar: "initials",
-          palette,
-        });
+    <form
+      className="panel team-create-form"
+      method="post"
+      inert={!hydrated}
+      aria-labelledby={headingId}
+      aria-busy={!hydrated || busy}
+      data-hydrated={hydrated}
+      onSubmit={async (event) => {
+        event.preventDefault();
+        if (!hydrated || submitting.current) return;
+        const values = new FormData(event.currentTarget);
+        submitting.current = true;
+        setBusy(true);
+        setError("");
+        try {
+          await run("create-workspace-team", {
+            name: values.get("name"),
+            bio: values.get("bio"),
+            avatar: "initials",
+            palette,
+          });
+        } catch (cause) {
+          if (!(cause instanceof ActionCancelled)) setError((cause as Error).message);
+        } finally {
+          submitting.current = false;
+          setBusy(false);
+        }
       }}
     >
-      <label>
-        Team name
-        <input
-          name="name"
-          required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </label>
-      <Field
-        name="bio"
-        label="What would you like to build? · optional"
-        type="textarea"
-      />
-      <AvatarChooser name={name} {...{ palette, setPalette }} />
-    </Form>
+      <header className="team-creation-header">
+        <h2 id={headingId}>Create your team</h2>
+        {onClose && (
+          <button ref={closeButton} type="button" className="team-creation-close" autoFocus aria-label="Close team creation" onClick={onClose}>
+            <X size={22} aria-hidden="true" />
+          </button>
+        )}
+      </header>
+      <div className="team-creation-body">
+        <fieldset className="team-creation-controls" disabled={busy || !hydrated}>
+          <legend className="sr-only">Team details</legend>
+          <section className="team-creation-identity" aria-label="Team identity">
+            <div className="team-creation-preview">
+              <TeamAvatar name={name || "Team"} palette={palette} size={64} />
+            </div>
+            <fieldset className="team-creation-color">
+              <legend>Team color <output aria-live="polite">{teamColorLabels[palette]}</output></legend>
+              <div className="team-creation-palette">
+                {teamColorKeys.map((key) => (
+                  <label key={key} title={teamColorLabels[key]} data-selected={palette === key}>
+                    <input type="radio" name="palette" value={key} checked={palette === key} onChange={() => setPalette(key)} />
+                    <span className="team-creation-swatch" style={{ backgroundColor: teamDotColors[key] }} aria-hidden="true" />
+                    <span className="sr-only">{teamColorLabels[key]}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+          </section>
+          <div className="team-creation-fields">
+            <label>
+              <span>Team name <span className="required-mark" aria-hidden="true">*</span></span>
+              <input name="name" required maxLength={80} autoComplete="off" value={name} onChange={(event) => setName(event.target.value)} />
+            </label>
+            <label>
+              <span>Team intro</span>
+              <textarea name="bio" rows={3} maxLength={1000} />
+            </label>
+          </div>
+        </fieldset>
+      </div>
+      <footer className="team-creation-footer">
+        {error && <p className="team-creation-error" id={errorId} role="alert">{error}</p>}
+        <button className="button" type="submit" disabled={busy || !hydrated} aria-describedby={error ? errorId : undefined}>
+          {busy ? "Creating…" : "Create team"}
+        </button>
+      </footer>
+    </form>
+  );
+}
+function TeamAction({
+  action,
+  values,
+  run,
+  children,
+  className = "button secondary",
+  disabled = false,
+}: {
+  action: string;
+  values: Row;
+  run: (a: string, d: Row) => Promise<Row>;
+  children: ReactNode;
+  className?: string;
+  disabled?: boolean;
+}) {
+  const [busy, setBusy] = useState(false),
+    [error, setError] = useState("");
+  const pending = useRef(false);
+  return (
+    <div className="team-inline-action">
+      <button
+        type="button"
+        className={className}
+        disabled={disabled || busy}
+        aria-busy={busy}
+        onClick={async () => {
+          if (pending.current) return;
+          pending.current = true;
+          setBusy(true);
+          setError("");
+          try {
+            await run(action, values);
+          } catch (error) {
+            if (!(error instanceof ActionCancelled))
+              setError((error as Error).message);
+          } finally {
+            pending.current = false;
+            setBusy(false);
+          }
+        }}
+      >
+        {children}
+      </button>
+      {error && (
+        <p className="team-action-error" role="alert">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
+function TeamInvitations({
+  data,
+  run,
+}: {
+  data: View;
+  run: (a: string, d: Row) => Promise<Row>;
+}) {
+  const invitations = (data.actions || []).filter(
+    (action: Row) =>
+      action.kind === "invite" &&
+      action.status === "pending" &&
+      action.user_id === data.me?.id,
+  );
+  if (!invitations.length) return null;
+  return (
+    <section className="team-invitations" aria-label="Team invitations">
+      <h3>
+        Invitations <span>{invitations.length}</span>
+      </h3>
+      {invitations.map((invitation: Row) => (
+        <div className="team-request-item" key={invitation.id}>
+          <strong>{invitation.team_name}</strong>
+          <div className="team-request-actions">
+            <TeamAction
+              action="team-respond"
+              values={{ id: invitation.id, decision: "accepted" }}
+              run={run}
+            >
+              Accept invitation
+            </TeamAction>
+            <TeamAction
+              action="team-respond"
+              values={{ id: invitation.id, decision: "declined" }}
+              run={run}
+              className="link-button"
+            >
+              Decline
+            </TeamAction>
+          </div>
+        </div>
+      ))}
+    </section>
   );
 }
 function TeamStyle({
@@ -665,88 +878,244 @@ function TeamStyle({
 }) {
   const [palette, setPalette] = useState(team.palette || "forest");
   return (
-    <details className="panel">
-      <summary>Customize your team badge and accent</summary>
+    <section className="team-settings-appearance">
       <Form
         className="inset-form"
         onSave={async () => {
           await run("team-style", { avatar: "initials", palette });
         }}
-        label="Update team identity"
+        label="Save appearance"
       >
         <AvatarChooser name={team.name} {...{ palette, setPalette }} />
       </Form>
-    </details>
+    </section>
+  );
+}
+function StudioDialog({
+  title,
+  children,
+  onClose,
+}: {
+  title: string;
+  children: ReactNode;
+  onClose: () => void;
+}) {
+  const dialog = useRef<HTMLDialogElement>(null),
+    callback = useRef(onClose),
+    heading = useId();
+  callback.current = onClose;
+  useEffect(() => {
+    const node = dialog.current;
+    if (!node) return;
+    const { body, documentElement } = node.ownerDocument;
+    const bodyOverflow = body.style.overflow;
+    const htmlOverflow = documentElement.style.overflow;
+    const close = openDiscoveryDialog(node, () => callback.current());
+    body.style.overflow = "hidden";
+    documentElement.style.overflow = "hidden";
+    return () => {
+      close();
+      body.style.overflow = bodyOverflow;
+      documentElement.style.overflow = htmlOverflow;
+    };
+  }, []);
+  return (
+    <dialog
+      ref={dialog}
+      className={`studio-dialog${title === "Team identity" ? " studio-identity-dialog" : ""}`}
+      aria-labelledby={heading}
+      onKeyDown={trapDialogFocus}
+    >
+      <header>
+        <h2 id={heading}>{title}</h2>
+        <button
+          type="button"
+          autoFocus
+          className="studio-icon-button"
+          aria-label={`Close ${title.toLowerCase()}`}
+          onClick={() => dialog.current?.close()}
+        >
+          <X size={22} aria-hidden="true" />
+        </button>
+      </header>
+      <div className="studio-dialog-body">{children}</div>
+    </dialog>
   );
 }
 export function TeamWorkspace({
   data,
   run,
+  onProject,
 }: {
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
+  onProject?: () => void;
 }) {
-  const [description, setDescription] = useState(data.idea?.description || "");
-  const t = data.team;
-  const leader = !!t && data.me?.id === t.leader_id;
-  const locked = !!(t?.locked || data.ideaLocked);
+  const t = data.team,
+    leader = !!t && data.me?.id === t.leader_id,
+    locked = !!(t?.locked || data.ideaLocked);
+  const [description, setDescription] = useState(
+      String(data.idea?.description || ""),
+    ),
+    [title, setTitle] = useState(String(data.idea?.title || "")),
+    [editing, setEditing] = useState(!data.idea?.title),
+    [dialog, setDialog] = useState<"identity" | "invite" | null>(null);
+  useEffect(() => {
+    setTitle(String(data.idea?.title || ""));
+    setDescription(String(data.idea?.description || ""));
+  }, [data.idea?.title, data.idea?.description]);
+  const requests = (data.actions || []).filter(
+      (a: Row) =>
+        a.kind === "request" && a.status === "pending" && a.team_id === t?.id,
+    ),
+    invitations = (data.actions || []).filter(
+      (a: Row) =>
+        a.kind === "invite" && a.status === "pending" && a.team_id === t?.id,
+    );
   if (!t)
     return (
-      <section className="panel dashboard-empty-team">
-        <h3>Find your team</h3>
-        <a className="button secondary" href="/discover/teams">
-          Discover teams
-        </a>
+      <div className="dashboard-empty-team">
+        <TeamInvitations data={data} run={run} />
+        <section className="team-find-panel">
+          <div className="team-empty-mark">
+            <UsersRound size={28} aria-hidden="true" />
+          </div>
+          <h3>Find your people.</h3>
+          <a className="button secondary" href="/discover/teams">
+            Discover teams <ArrowRight size={18} aria-hidden="true" />
+          </a>
+        </section>
         {data.me?.canParticipate === true && <CreateTeam run={run} />}
-      </section>
-    );
-  return (
-    <section className="team-workspace dashboard-team">
-      <div className="dashboard-team-heading">
-        <TeamAvatar name={t.name} palette={t.palette} size={64} />
-        <h3>{t.name}</h3>
-        <Pill tone={locked ? "locked" : "neutral"}>
-          {locked && <LockKeyhole size={18} aria-hidden="true" />}
-          {locked ? "Locked" : data.teamStatus || "Forming"}
-        </Pill>
       </div>
-      {data.privateVenue && <DashboardVenue venue={data.privateVenue} />}
-      <section
-        className="dashboard-members"
-        aria-labelledby="dashboard-members-heading"
-      >
-        <h3 id="dashboard-members-heading">
-          Team members ({data.members?.length || 0})
-        </h3>
-        <ul className="member-list dashboard-member-list">
+    );
+  const color = resolveTeamColor(t.palette),
+    count = data.members?.length || 0,
+    persisted = !!data.idea?.title?.trim() && !!data.idea?.description?.trim(),
+    unchanged =
+      title === String(data.idea?.title || "") &&
+      description === String(data.idea?.description || ""),
+    saved = persisted && unchanged;
+  const used = Number.isInteger(data.submissionAccess?.attemptsUsed)
+      ? data.submissionAccess.attemptsUsed
+      : data.attempts?.length || 0,
+    checkedCount = Math.max(
+      0,
+      Math.min(count, Number(data.teamFacts?.checkedInMembers) || 0),
+    ),
+    teamChecked = count > 0 && checkedCount === count;
+  const canEditProject =
+    leader &&
+    data.me?.canParticipate === true &&
+    data.submissionAccess?.canCommit === true &&
+    !data.submissionAccess?.locked &&
+    used < 3;
+  const next = !locked
+    ? {
+        title: persisted ? "Make it official." : "Start with your idea.",
+        detail: saved
+          ? "Team not locked"
+          : persisted
+            ? "Save your changes before locking."
+            : "Add a title and a short description.",
+        action: "Review & lock team",
+        kind: "lock",
+      }
+    : used >= 3
+      ? {
+          title: "Your project is in.",
+          detail: "All three submissions are committed.",
+          action: "View your project",
+          kind: "project",
+        }
+      : canEditProject
+        ? {
+            title: used ? "Keep building." : "Bring it to life.",
+            detail: used
+              ? `${used}/3 submissions committed`
+              : "Team locked. Your project is next.",
+            action: used ? "Open project" : "Create your project",
+            kind: "project",
+          }
+        : {
+            title: used
+              ? "Your project is in."
+              : data.checkedIn
+                ? "Ready for what's next."
+                : "See you at check-in.",
+            detail:
+              data.submissionAccess?.message ||
+              (!leader
+                ? "Your leader submits the project."
+                : "Project submission is not available yet."),
+            action: data.submissionAccess?.canRead ? "View your project" : "",
+            kind: "project",
+          };
+  return (
+    <section
+      className="team-workspace studio-team"
+      style={
+        {
+          "--studio-team-fill": color.fill,
+          "--studio-team-wash": color.wash,
+          "--studio-team-ink": color.ink,
+        } as CSSProperties
+      }
+    >
+      <header className="studio-team-identity">
+        <TeamAvatar name={t.name} palette={t.palette} size={150} />
+        <div className="studio-team-name">
+          <p className="studio-eyebrow">Your team</p>
+          <div>
+            <h1>{t.name}</h1>
+            {leader && !locked && (
+              <button
+                type="button"
+                className="studio-icon-button"
+                aria-label="Edit team name and color"
+                onClick={() => setDialog("identity")}
+              >
+                <Pencil size={23} aria-hidden="true" />
+              </button>
+            )}
+          </div>
+          <span className="studio-team-color">
+            <span style={{ backgroundColor: color.fill }} aria-hidden="true" />
+            {teamColorLabels[color.key] || color.label}
+          </span>
+        </div>
+        <div className="studio-team-status">
+          <span>
+            <UsersRound size={22} aria-hidden="true" />
+            {locked ? "Team locked" : "Forming team"}
+          </span>
+          <span>{count}/5</span>
+        </div>
+      </header>
+      <section className="studio-people" aria-label="Team members">
+        <ul className="studio-member-list">
           {(data.members || []).map((m: Row) => (
             <li key={m.id}>
               <DotAvatar
                 color={m.avatarColor}
                 expression={m.avatarExpression}
-                size={40}
+                size={84}
               />
-              <div className="dashboard-member-name">
-                <strong>
-                  {safeProfileUrl(m.profileUrl) ? (
-                    <a
-                      className="text-link"
-                      href={safeProfileUrl(m.profileUrl)}
-                    >
-                      {m.name}
-                    </a>
-                  ) : (
-                    m.name
-                  )}
-                </strong>
+              <div className="studio-member-info">
+                <div className="studio-member-name">
+                  <strong>
+                    {safeProfileUrl(m.profileUrl) ? (
+                      <a href={safeProfileUrl(m.profileUrl)}>{m.name}</a>
+                    ) : (
+                      m.name
+                    )}
+                  </strong>
+                  {m.role === "leader" && <Pill tone="positive">Leader</Pill>}
+                </div>
                 <span className="sr-only">
                   {m.status ||
                     (m.approval === "approved" ? "Going" : "Registered")}
                 </span>
-              </div>
-              {m.role === "leader" && <Pill tone="positive">Leader</Pill>}
-              <div className="dashboard-member-contact">
-                <div className="dashboard-member-links">
+                <div className="studio-member-links">
                   {discoverySocialLinks(
                     Array.isArray(m.socials) ? m.socials : [],
                   ).map((link) => (
@@ -760,15 +1129,14 @@ export function TeamWorkspace({
                     >
                       <img
                         src={`/icons/social/${link.icon}.svg`}
-                        width={22}
-                        height={22}
+                        width={23}
+                        height={23}
                         alt=""
                       />
                     </a>
                   ))}
                   {safeExternalUrl(m.whatsappUrl) && (
                     <a
-                      className="dashboard-whatsapp"
                       href={safeExternalUrl(m.whatsappUrl)}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -783,192 +1151,357 @@ export function TeamWorkspace({
                       />
                     </a>
                   )}
-                </div>
-                {m.phone && (
-                  <span className="dashboard-member-phone">
-                    <Phone size={17} aria-hidden="true" />
-                    {m.phone}
-                  </span>
-                )}
-                {leader && !locked && m.role !== "leader" && (
-                  <button
-                    type="button"
-                    className="dashboard-icon-button dashboard-remove"
-                    aria-label={`Remove ${m.name} from team`}
-                    title={`Remove ${m.name}`}
-                    onClick={() => {
-                      void run("remove-workspace-member", {
+                  {m.phone && (
+                    <a
+                      href={`tel:${String(m.phone).replace(/[^+0-9]/g, "")}`}
+                      aria-label={`Call ${m.name} at ${m.phone}`}
+                      title={m.phone}
+                    >
+                      <Phone size={20} aria-hidden="true" />
+                    </a>
+                  )}
+                  {leader && !locked && m.role !== "leader" && (
+                    <TeamAction
+                      action="remove-workspace-member"
+                      values={{
                         userId: m.id,
                         reason: "Team leader removed membership",
-                      }).catch(() => {});
-                    }}
-                  >
-                    <Trash2 size={19} aria-hidden="true" />
-                  </button>
-                )}
+                      }}
+                      run={run}
+                      className="studio-icon-button studio-remove"
+                    >
+                      <Trash2 size={17} aria-hidden="true" />
+                      <span className="sr-only">Remove {m.name} from team</span>
+                    </TeamAction>
+                  )}
+                </div>
               </div>
             </li>
           ))}
         </ul>
+        {leader && !locked && (
+          <button
+            type="button"
+            className="studio-invite"
+            disabled={count >= 5}
+            onClick={() => setDialog("invite")}
+          >
+            <span>
+              <Plus size={29} aria-hidden="true" />
+            </span>
+            <span>{count >= 5 ? "Team is full" : "Invite member"}</span>
+          </button>
+        )}
       </section>
-      <section
-        className="dashboard-idea"
-        aria-labelledby="dashboard-idea-heading"
-      >
-        <h3 id="dashboard-idea-heading">
-          Team idea{locked ? " (locked)" : ""}
-        </h3>
-        {leader && !locked ? (
+      {requests.length > 0 && leader && !locked && (
+        <section className="studio-requests" aria-label="Membership requests">
+          <h3>
+            Requests <span>{requests.length}</span>
+          </h3>
+          {requests.map((r: Row) => (
+            <div className="team-request-item" key={r.id}>
+              <strong>{r.person_name}</strong>
+              <div className="team-request-actions">
+                <TeamAction
+                  action="respond-team"
+                  values={{ requestId: r.id, accept: true }}
+                  run={run}
+                >
+                  Accept
+                </TeamAction>
+                <TeamAction
+                  action="respond-team"
+                  values={{ requestId: r.id, accept: false }}
+                  run={run}
+                  className="link-button"
+                >
+                  Decline
+                </TeamAction>
+              </div>
+            </div>
+          ))}
+        </section>
+      )}
+      <div className="studio-work-grid">
+        <section className="studio-idea" aria-label="Private team idea">
+          <header className="studio-idea-heading">
+            <span>
+              <LockKeyhole size={21} aria-hidden="true" />
+              Private idea
+            </span>
+            {saved && (
+              <span className="studio-saved">
+                <CircleCheck size={19} aria-hidden="true" />
+                Saved
+              </span>
+            )}
+          </header>
+          {leader && !locked && editing ? (
+            <Form
+              className="studio-idea-form"
+              label="Save idea"
+              onSave={async () => {
+                await run("save-workspace-idea", {
+                  title: title.trim(),
+                  description: description.trim(),
+                });
+                setEditing(false);
+              }}
+            >
+              <fieldset>
+                <label>
+                  <span>
+                    Idea title{" "}
+                    <span className="required-mark" aria-hidden="true">
+                      *
+                    </span>
+                  </span>
+                  <input
+                    autoFocus
+                    name="title"
+                    required
+                    value={title}
+                    minLength={2}
+                    maxLength={120}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                </label>
+                <label>
+                  <span>
+                    Description{" "}
+                    <span className="required-mark" aria-hidden="true">
+                      *
+                    </span>
+                  </span>
+                  <textarea
+                    name="description"
+                    required
+                    value={description}
+                    maxLength={500}
+                    rows={5}
+                    aria-describedby="studio-idea-count"
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                </label>
+              </fieldset>
+              {persisted && (
+                <button
+                  type="button"
+                  className="link-button studio-cancel-idea"
+                  onClick={() => {
+                    setTitle(String(data.idea.title));
+                    setDescription(String(data.idea.description));
+                    setEditing(false);
+                  }}
+                >
+                  Cancel
+                </button>
+              )}
+            </Form>
+          ) : (
+            <div className="studio-idea-content">
+              <div className="studio-idea-title">
+                <h2>{data.idea?.title || "Your next big idea."}</h2>
+                {leader && !locked && (
+                  <button
+                    type="button"
+                    className="studio-icon-button"
+                    aria-label="Edit team idea"
+                    onClick={() => setEditing(true)}
+                  >
+                    <Pencil size={22} aria-hidden="true" />
+                  </button>
+                )}
+              </div>
+              {data.idea?.description ? (
+                <p>{data.idea.description}</p>
+              ) : (
+                <p className="studio-idea-empty">
+                  Your leader hasn't saved an idea yet.
+                </p>
+              )}
+            </div>
+          )}
+          <div className="studio-idea-footer">
+            <span>
+              {locked ? (
+                <>
+                  <LockKeyhole size={15} aria-hidden="true" />
+                  Locked with your team
+                </>
+              ) : null}
+            </span>
+            <output
+              id="studio-idea-count"
+              aria-label="Description character count"
+            >
+              {editing
+                ? description.length
+                : String(data.idea?.description || "").length}
+              /500
+            </output>
+          </div>
+        </section>
+        <aside className="studio-next" aria-labelledby="studio-next-title">
+          <div className="studio-next-expression" aria-hidden="true">
+            <DotAvatar
+              color="grey"
+              expression="squeezed"
+              size={132}
+              decorative
+            />
+          </div>
+          <p className="studio-eyebrow">Next up</p>
+          <h2 id="studio-next-title">{next.title}</h2>
+          <p className="studio-next-detail">
+            {locked ? (
+              <LockKeyhole size={20} aria-hidden="true" />
+            ) : (
+              <LockKeyholeOpen size={20} aria-hidden="true" />
+            )}
+            {next.detail}
+          </p>
+          {next.kind === "lock" ? (
+            leader ? (
+              <TeamAction
+                action="lock-team"
+                values={{ confirmation: "LOCK_TEAM" }}
+                run={run}
+                disabled={!saved}
+              >
+                <span>{next.action}</span>
+                <ArrowRight size={24} aria-hidden="true" />
+              </TeamAction>
+            ) : (
+              <p className="studio-waiting-leader">
+                Your leader locks the team.
+              </p>
+            )
+          ) : (
+            next.action && (
+              <button type="button" className="button" onClick={onProject}>
+                <span>{next.action}</span>
+                <ArrowRight size={24} aria-hidden="true" />
+              </button>
+            )
+          )}
+        </aside>
+      </div>
+      <ol className="studio-progress" aria-label="Team progress" data-stage={used > 0 ? 3 : teamChecked ? 2 : t.locked ? 1 : 0}>
+        {[
+          {
+            label: "Forming team",
+            icon: <UsersRound size={22} />,
+            done: true,
+            current: !locked,
+          },
+          {
+            label: "Locked",
+            icon: <LockKeyhole size={22} />,
+            done: !!t.locked,
+            current: !!t.locked && !teamChecked && !used,
+          },
+          {
+            label: "Team checked in",
+            icon: <CircleCheck size={22} />,
+            done: teamChecked,
+            current: teamChecked && !used,
+            detail: `${checkedCount}/${count} members`,
+          },
+          {
+            label: "Submitted",
+            icon: <Flag size={22} />,
+            done: used > 0,
+            current: used > 0,
+          },
+        ].map((stage) => (
+          <li
+            key={stage.label}
+            data-complete={stage.done}
+            aria-current={stage.current ? "step" : undefined}
+          >
+            <span className="studio-progress-icon" aria-hidden="true">
+              {stage.icon}
+            </span>
+            <span>
+              <strong>{stage.label}</strong>
+              {stage.detail && <small>{stage.detail}</small>}
+            </span>
+          </li>
+        ))}
+      </ol>
+      <div className="studio-personal-status">
+        <UserRound size={16} aria-hidden="true" />
+        You: {data.individualStatus || "Registered"}
+      </div>
+      {data.privateVenue && <DashboardVenue venue={data.privateVenue} />}
+      {leader && !locked && count === 1 && (
+        <div className="studio-delete-team">
+          <TeamAction
+            action="delete-own-team"
+            values={{ confirmation: "DELETE_OWN_TEAM" }}
+            run={run}
+            className="link-button"
+          >
+            <Trash2 size={17} aria-hidden="true" />
+            Delete team
+          </TeamAction>
+        </div>
+      )}
+      {dialog === "identity" && leader && !locked && (
+        <StudioDialog title="Team identity" onClose={() => setDialog(null)}>
           <Form
-            className="dashboard-idea-form"
-            disabled={locked}
-            label="Save team idea"
+            className="studio-identity-form"
+            label="Save name"
             onSave={async (f) => {
-              await run("save-workspace-idea", {
-                title: f.get("title"),
-                description: description.trim(),
+              await run("rename-team", {
+                name: f.get("name"),
+                reason: "Leader renamed unlocked team",
               });
             }}
           >
-            <fieldset disabled={locked}>
-              <Field
-                name="title"
-                label="Idea title"
-                value={data.idea?.title}
-                required
-              />
-              <label>
-                Short description
-                <textarea
-                  name="description"
-                  required
-                  maxLength={500}
-                  rows={4}
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  aria-describedby="idea-count"
-                />
-                <small id="idea-count">
-                  {description.length}/500 characters
-                </small>
-              </label>
-            </fieldset>
+            <Field
+              name="name"
+              label="Team name"
+              value={t.name}
+              required
+              minLength={2}
+            />
           </Form>
-        ) : data.idea ? (
-          <div className="dashboard-locked-idea">
-            <div>
-              <h4>{data.idea.title}</h4>
-              {locked && <LockKeyhole size={18} aria-label="Locked" />}
-            </div>
-            <p className="prose">{data.idea.description}</p>
-            <span className="dashboard-idea-count">
-              {String(data.idea.description || "").length}/500
-            </span>
-          </div>
-        ) : (
-          <p>No team idea yet.</p>
-        )}
-        {leader && !locked && (
-          <div className="form-actions dashboard-lock-actions">
-            <button
-              className="button secondary"
-              disabled={
-                !data.idea?.title?.trim() || !data.idea?.description?.trim()
-              }
-              onClick={() => {
-                void run("lock-team", { confirmation: "LOCK_TEAM" }).catch(
-                  () => {},
-                );
-              }}
-            >
-              <LockKeyhole size={18} aria-hidden="true" />
-              Lock completed team
-            </button>
-          </div>
-        )}
-      </section>
-      {leader && !locked && (
-        <div className="dashboard-team-controls">
-          <details className="panel">
-            <summary>Rename team</summary>
-            <Form
-              label="Rename team"
-              onSave={async (f) => {
-                await run("rename-team", {
-                  name: f.get("name"),
-                  reason: "Leader renamed unlocked team",
-                });
-              }}
-            >
-              <Field
-                name="name"
-                label="Team name"
-                value={t.name}
-                required
-                minLength={2}
-              />
-            </Form>
-          </details>
-          <details className="panel">
-            <summary>Membership requests</summary>
-            {(data.actions || [])
-              .filter(
-                (r: Row) =>
-                  r.kind === "request" &&
-                  r.status === "pending" &&
-                  r.team_id === t.id,
-              )
-              .map((r: Row) => (
-                <div className="request-row" key={r.id}>
-                  <strong>{r.person_name}</strong>
-                  <button
-                    className="button secondary"
-                    onClick={() => {
-                      void run("respond-team", {
-                        requestId: r.id,
-                        accept: true,
-                      }).catch(() => {});
-                    }}
-                  >
-                    Accept
-                  </button>
-                  <button
-                    className="link-button"
-                    onClick={() => {
-                      void run("respond-team", {
-                        requestId: r.id,
-                        accept: false,
-                      }).catch(() => {});
-                    }}
-                  >
-                    Decline
-                  </button>
-                </div>
+          <TeamStyle key={t.palette} team={t} run={run} />
+        </StudioDialog>
+      )}
+      {dialog === "invite" && leader && !locked && (
+        <StudioDialog title="Invite a teammate" onClose={() => setDialog(null)}>
+          <Form
+            className="studio-invite-form"
+            label="Send invitation"
+            disabled={count >= 5}
+            disabledReason={
+              count >= 5 ? "Your team has five members." : undefined
+            }
+            onSave={async (f) => {
+              await run("team-invite", { teamId: t.id, email: f.get("email") });
+              setDialog(null);
+            }}
+          >
+            <Field name="email" label="Email" type="email" required />
+          </Form>
+          <a className="text-link" href="/discover/participants">
+            Find teammates
+            <ArrowRight size={17} aria-hidden="true" />
+          </a>
+          {invitations.length > 0 && (
+            <ul className="team-pending-invites">
+              {invitations.map((r: Row) => (
+                <li key={r.id}>
+                  <span>{r.person_name}</span>
+                  <span>Invited</span>
+                </li>
               ))}
-          </details>
-          <TeamStyle team={t} run={run} />
-          {data.members?.length === 1 && (
-            <details className="panel">
-              <summary>Delete your team</summary>
-              <Form
-                label="Review team deletion"
-                onSave={async (f) => {
-                  await run("delete-own-team", {
-                    reason: f.get("reason"),
-                    confirmation: "DELETE_OWN_TEAM",
-                  });
-                }}
-              >
-                <Field
-                  name="reason"
-                  label="Reason for deleting your team"
-                  required
-                  minLength={5}
-                />
-              </Form>
-            </details>
+            </ul>
           )}
-        </div>
+        </StudioDialog>
       )}
     </section>
   );
@@ -1005,13 +1538,15 @@ function DashboardProject({
   editorOpen,
   setEditing,
   onExit,
+  onInteraction,
 }: {
   data: View;
-  run: (a: string, d: Row) => Promise<Row>;
+  run: (a: string, d: Row, options?: { errorFeedback?: "local" }) => Promise<Row>;
   editing: boolean;
   editorOpen: boolean;
   setEditing: (value: boolean) => void;
   onExit: () => void;
+  onInteraction?: () => void;
 }) {
   const project = data.project,
     draft = project?.draft || {},
@@ -1032,6 +1567,7 @@ function DashboardProject({
         data={data}
         run={run}
         onExit={onExit}
+        onInteraction={onInteraction}
         exitLabel={
           project?.published_version_id
             ? "Back to your project"
@@ -1060,7 +1596,7 @@ function DashboardProject({
             className="dashboard-upvotes"
             aria-label={
               Number.isFinite(data.projectStats.upvotes)
-                ? `${data.projectStats.upvotes} upvotes`
+                ? upvoteCountLabel(data.projectStats.upvotes)
                 : "Upvote count unavailable"
             }
           >
@@ -1103,7 +1639,7 @@ function DashboardProject({
             )}
           </div>
           {project?.published_version_id && !editorOpen && (
-            <article className="dashboard-project-card">
+            <article className="dashboard-project-card" style={projectMediaStyle(data.team?.palette)}>
               {draft.banner && (
                 <img
                   className="dashboard-project-banner"
@@ -1123,14 +1659,18 @@ function DashboardProject({
               key={`${project?.revision || 0}-${data.team?.id || "none"}`}
               data={data}
               run={run}
+              onInteraction={onInteraction}
             />
           )}
         </>
       ) : (
-        <p className="notice">
-          {data.submissionAccess?.message ||
-            "Your project workspace is not available yet."}
-        </p>
+        <div className="dashboard-empty-state">
+          <FileText size={28} aria-hidden="true" />
+          <p>
+            {data.submissionAccess?.message ||
+              "Your project workspace is not available yet."}
+          </p>
+        </div>
       )}
       {data.eligibility?.status === "ineligible" && (
         <p className="notice">
@@ -1167,9 +1707,11 @@ function DashboardProject({
 export function Dashboard({
   data,
   run,
+  onInteraction,
 }: {
   data: View;
-  run: (a: string, d: Row) => Promise<Row>;
+  run: (a: string, d: Row, options?: { errorFeedback?: "local" }) => Promise<Row>;
+  onInteraction?: () => void;
 }) {
   const [tab, setTab] = useState("team"),
     [projectEditing, setProjectEditing] = useState(false);
@@ -1209,48 +1751,9 @@ export function Dashboard({
     );
   };
   if (data.me?.mode === "viewer")
-    return (
-      <>
-        <header className="page-heading">
-          <h1>Welcome</h1>
-        </header>
-        <div className="form-actions">
-          <a className="button" href="/discover/teams">
-            Discover
-          </a>
-          <a className="button secondary" href="/projects">
-            Explore projects
-          </a>
-        </div>
-      </>
-    );
+    return <ViewerWelcome removed={!!data.me.deactivated} />;
   return (
-    <div className="dashboard-v6" data-editor-open={editorOpen}>
-      <header className="page-heading dashboard-heading" hidden={editorOpen}>
-        <h1>
-          <HeadingDot
-            color={(data.me?.avatarColor || "green") as keyof typeof dotColors}
-            expression={
-              (data.me?.avatarExpression ||
-                "squeezed") as keyof typeof dotExpressions
-            }
-          />
-          Dashboard
-        </h1>
-        <Pill
-          tone={
-            data.individualStatus === "Checked in" ||
-            data.individualStatus === "Going"
-              ? "positive"
-              : "neutral"
-          }
-        >
-          {data.individualStatus === "Checked in" && (
-            <CircleCheck size={18} aria-hidden="true" />
-          )}
-          {data.individualStatus || "Registered"}
-        </Pill>
-      </header>
+    <div className="dashboard-v6 team-studio" data-editor-open={editorOpen}>
       <nav
         hidden={editorOpen}
         className="dashboard-sections"
@@ -1299,6 +1802,7 @@ export function Dashboard({
           key={`${data.team?.id || "none"}-${data.idea?.description || ""}`}
           data={data}
           run={run}
+          onProject={() => select("project")}
         />
       </section>
       <section
@@ -1308,10 +1812,7 @@ export function Dashboard({
         className="dashboard-section dashboard-credits"
         aria-labelledby="dashboard-tab-credits"
       >
-        {(data.credits || []).map((c: Row) => (
-          <Credit key={`${tab}-${c.type_id}`} credit={c} />
-        ))}
-        {!data.credits?.length && <p>No credits assigned.</p>}
+        <PersonalCreditsContent checkedIn={data.checkedIn === true} credits={data.credits || []} />
       </section>
       <section
         id="project"
@@ -1328,6 +1829,7 @@ export function Dashboard({
           editorOpen={editorOpen}
           setEditing={setProjectEditing}
           onExit={exitProjectEditor}
+          onInteraction={onInteraction}
         />
       </section>
     </div>
@@ -1348,112 +1850,7 @@ function PublicResult({ result }: { result: Row }) {
     </span>
   );
 }
-export function Credit({ credit }: { credit: Row }) {
-  const [value, setValue] = useState(""),
-    [error, setError] = useState(""),
-    [busy, setBusy] = useState(false),
-    [copied, setCopied] = useState(false);
-  const pending = useRef(false),
-    active = useRef(true),
-    revealGeneration = useRef(0);
-  useEffect(() => {
-    active.current = true;
-    const hide = () => {
-      ++revealGeneration.current;
-      setValue("");
-      setCopied(false);
-    };
-    const visibility = () => {
-      if (document.hidden) hide();
-    };
-    window.addEventListener("blur", hide);
-    document.addEventListener("visibilitychange", visibility);
-    return () => {
-      active.current = false;
-      window.removeEventListener("blur", hide);
-      document.removeEventListener("visibilitychange", visibility);
-    };
-  }, []);
-  return (
-    <article className="credit-row dashboard-credit">
-      <h3>{credit.name}</h3>
-      <CreditInstructions markdown={credit.instructions || ""} />
-      <div className="credit-secret">
-        <code
-          aria-label={value ? "Your private allocation" : "Allocation hidden"}
-        >
-          {value || "••••••••••••••••"}
-        </code>
-        <button
-          type="button"
-          className="button secondary"
-          disabled={!credit.allocated || busy}
-          aria-label={value ? "Hide allocation" : "Reveal my allocation"}
-          aria-pressed={!!value}
-          onClick={async () => {
-            if (value) {
-              setValue("");
-              setCopied(false);
-              return;
-            }
-            if (pending.current) return;
-            pending.current = true;
-            const generation = ++revealGeneration.current;
-            setBusy(true);
-            setError("");
-            try {
-              const result = await api("reveal-credit", {
-                typeId: credit.type_id,
-              });
-              if (typeof result.value !== "string" || !result.value)
-                throw new Error("Your allocation could not be revealed.");
-              if (
-                active.current &&
-                generation === revealGeneration.current &&
-                !document.hidden
-              )
-                setValue(result.value);
-            } catch (e) {
-              if (active.current) setError((e as Error).message);
-            } finally {
-              pending.current = false;
-              if (active.current) setBusy(false);
-            }
-          }}
-        >
-          {value ? (
-            <EyeOff size={20} aria-hidden="true" />
-          ) : (
-            <Eye size={20} aria-hidden="true" />
-          )}
-          <span className="sr-only">
-            {busy ? "Revealing…" : value ? "Hide" : "Reveal"}
-          </span>
-        </button>
-        <button
-          type="button"
-          className="button secondary"
-          disabled={!value || busy}
-          aria-label={copied ? "Copied allocation" : "Copy allocation"}
-          onClick={async () => {
-            setError("");
-            try {
-              await navigator.clipboard.writeText(value);
-              setCopied(true);
-            } catch {
-              setError("Copy failed. Select and copy the revealed value.");
-            }
-          }}
-        >
-          <Copy size={20} aria-hidden="true" />
-          <span className="sr-only">{copied ? "Copied" : "Copy"}</span>
-        </button>
-      </div>
-
-      {error && <p role="alert">{error}</p>}
-    </article>
-  );
-}
+export { Credit } from "./personal-credits";
 export function discoveryProfileProjection(row: Row): DiscoveryPerson {
   const teamName = typeof row.teamName === "string" ? row.teamName.trim() : "";
   return {
@@ -1545,6 +1942,30 @@ function DiscoverTeamDialog({
   );
 }
 
+function CreateTeamDialog({
+  run,
+  onClose,
+}: {
+  run: (a: string, d: Row) => Promise<Row>;
+  onClose: () => void;
+}) {
+  const dialog = useRef<HTMLDialogElement>(null),
+    callback = useRef(onClose),
+    titleId = useId();
+  useEffect(() => {
+    callback.current = onClose;
+  }, [onClose]);
+  useEffect(() => {
+    if (dialog.current)
+      return openDiscoveryDialog(dialog.current, () => callback.current());
+  }, []);
+  return (
+    <dialog ref={dialog} className="team-create-dialog" onKeyDown={trapDialogFocus} aria-labelledby={titleId}>
+      <CreateTeam run={run} titleId={titleId} onClose={() => dialog.current?.close()} />
+    </dialog>
+  );
+}
+
 export function Discover({
   data,
   path,
@@ -1560,6 +1981,7 @@ export function Discover({
     null,
   );
   const [selectedTeam, setSelectedTeam] = useState<Row | null>(null);
+  const [creating, setCreating] = useState(false);
   const hashOpened = useRef("");
   const participants = path === "/discover/participants";
   const people = useDiscoverPeople(data, search, teamFilter, participants);
@@ -1572,7 +1994,8 @@ export function Discover({
     const openHash = async () => {
       controller?.abort();
       const hash = window.location.hash;
-      if (!/^#person-[A-Za-z0-9_-]+$/.test(hash) || hashOpened.current === hash) return;
+      if (!/^#person-[A-Za-z0-9_-]+$/.test(hash) || hashOpened.current === hash)
+        return;
       const personId = hash.slice("#person-".length);
       let row = people.items.find((person: Row) => person.id === personId);
       if (!row && data.focusedPerson?.id === personId) row = data.focusedPerson;
@@ -1581,11 +2004,20 @@ export function Discover({
         controller = new AbortController();
         const request = controller;
         try {
-          const page = await readPeoplePage(peopleDirectoryUrl({ person: personId }), request.signal);
-          if (disposed || request.signal.aborted || window.location.hash !== hash) return;
+          const page = await readPeoplePage(
+            peopleDirectoryUrl({ person: personId }),
+            request.signal,
+          );
+          if (
+            disposed ||
+            request.signal.aborted ||
+            window.location.hash !== hash
+          )
+            return;
           row = page.focusedPerson || undefined;
         } catch {
-          if (!disposed && !request.signal.aborted) setFocusError("Profile could not be loaded.");
+          if (!disposed && !request.signal.aborted)
+            setFocusError("Profile could not be loaded.");
           return;
         }
       }
@@ -1594,7 +2026,9 @@ export function Discover({
         return;
       }
       hashOpened.current = hash;
-      document.getElementById(`person-${row.id}`)?.scrollIntoView({ block: "center", behavior: "auto" });
+      document
+        .getElementById(`person-${row.id}`)
+        ?.scrollIntoView({ block: "center", behavior: "auto" });
       setSelectedPerson(discoveryProfileProjection(row));
     };
     const navigateHash = () => {
@@ -1609,9 +2043,13 @@ export function Discover({
       window.removeEventListener("hashchange", navigateHash);
     };
   }, [participants, people.items, data.focusedPerson]);
-  const items = participants ? people.items : (data.items || []).filter(
-    (row) => `${row.name || ""} ${row.bio || ""}`.toLowerCase().includes(search.toLowerCase()),
-  );
+  const items = participants
+    ? people.items
+    : (data.items || []).filter((row) =>
+        `${row.name || ""} ${row.bio || ""}`
+          .toLowerCase()
+          .includes(search.toLowerCase()),
+      );
   return (
     <section className="discover-v6">
       <header className="discover-heading">
@@ -1623,6 +2061,17 @@ export function Discover({
           />
           Discover
         </h1>
+        {!participants && canCreate && (
+          <button
+            type="button"
+            className="button discover-create-trigger"
+            aria-haspopup="dialog"
+            onClick={() => setCreating(true)}
+          >
+            <Plus size={18} aria-hidden="true" />
+            Create team
+          </button>
+        )}
       </header>
       <nav className="discover-tabs" aria-label="Discover">
         <a
@@ -1680,7 +2129,11 @@ export function Discover({
         aria-busy={participants ? people.loading : undefined}
       >
         {items.map((row) => (
-          <li key={row.id} id={participants ? `person-${row.id}` : undefined}>
+          <li
+            key={row.id}
+            id={participants ? `person-${row.id}` : undefined}
+            data-has-bio={!!row.bio}
+          >
             {participants ? (
               <>
                 <DotAvatar
@@ -1690,24 +2143,21 @@ export function Discover({
                   decorative
                 />
                 <div className="discover-identity">
-                  <h2>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setSelectedPerson(discoveryProfileProjection(row))
-                      }
-                      aria-haspopup="dialog"
-                    >
-                      {row.name}
-                    </button>
-                  </h2>
+                  <h2>{row.name}</h2>
                   {row.bio && <p>{row.bio}</p>}
                 </div>
-                <span
-                  className={`discover-membership ${row.teamName ? "joined" : "unjoined"}`}
-                >
-                  {row.teamName ? "In a team" : "Not in a team"}
-                </span>
+                <div className="discover-card-membership">
+                  <span
+                    className={`discover-membership ${row.teamName ? "joined" : "unjoined"}`}
+                  >
+                    {row.teamName ? "In a team" : "Not in a team"}
+                  </span>
+                  {row.teamName && (
+                    <span className="discover-card-team-name">
+                      {row.teamName}
+                    </span>
+                  )}
+                </div>
                 <DiscoverSocials socials={row.socials} />
                 <button
                   type="button"
@@ -1725,7 +2175,15 @@ export function Discover({
               <>
                 <TeamAvatar name={row.name} palette={row.palette} size={56} />
                 <div className="discover-identity">
-                  <h2>{row.name}</h2>
+                  <h2>
+                    <button
+                      type="button"
+                      aria-haspopup="dialog"
+                      onClick={() => setSelectedTeam(row)}
+                    >
+                      {row.name}
+                    </button>
+                  </h2>
                   <p>{row.readiness?.total ?? "?"}/5 members</p>
                 </div>
                 <span
@@ -1733,6 +2191,7 @@ export function Discover({
                 >
                   {row.status || (row.locked ? "Locked" : "Forming")}
                 </span>
+                {row.bio && <p className="discover-team-summary">{row.bio}</p>}
                 <div className="discover-team-action">
                   {data.team?.id === row.id ? (
                     <a href="/dashboard" className="discover-view-team">
@@ -1741,18 +2200,15 @@ export function Discover({
                   ) : canCreate &&
                     !row.locked &&
                     Number(row.readiness?.total) < 5 ? (
-                    <button
-                      type="button"
+                    <TeamAction
+                      action="request-team"
+                      values={{ teamId: row.id }}
+                      run={run}
                       className="discover-request"
                       disabled={!!row.requested}
-                      onClick={() => {
-                        void run("request-team", { teamId: row.id }).catch(
-                          () => {},
-                        );
-                      }}
                     >
                       {row.requested ? "Requested" : "Request to join"}
-                    </button>
+                    </TeamAction>
                   ) : (
                     <button
                       type="button"
@@ -1768,38 +2224,70 @@ export function Discover({
             )}
           </li>
         ))}
+        {participants &&
+          people.loading &&
+          Array.from({ length: items.length ? 3 : 6 }, (_, index) => (
+            <li
+              className="discover-person-skeleton"
+              key={`loading-${index}`}
+              aria-hidden="true"
+            >
+              <span className="discover-skeleton-avatar" />
+              <span className="discover-skeleton-name" />
+              <span className="discover-skeleton-bio" />
+              <span className="discover-skeleton-badge" />
+            </li>
+          ))}
       </ul>
-      {participants && focusError && <p role="status">{focusError}</p>}
+      {participants && focusError && (
+        <p className="team-action-error" role="alert">
+          {focusError}
+        </p>
+      )}
       {participants && (
         <div className="discover-pagination" ref={people.sentinel}>
           <p role="status" aria-live="polite">
-            {people.loading ? "Loading people…" : people.error ? "" : people.hasMore ? "" : items.length ? "All people loaded" : ""}
+            {people.loading
+              ? "Loading people…"
+              : people.error
+                ? ""
+                : people.hasMore
+                  ? ""
+                  : items.length
+                    ? "All people loaded"
+                    : ""}
           </p>
           {people.error && <p role="alert">{people.error}</p>}
           {(people.hasMore || people.error) && (
-            <button type="button" disabled={people.loading} onClick={() => void people.loadMore()}>
+            <button
+              type="button"
+              disabled={people.loading}
+              onClick={() => void people.loadMore()}
+            >
               {people.error ? "Retry" : "Load more"}
             </button>
           )}
         </div>
       )}
-      {!items.length && (!participants || (!people.loading && !people.error)) && (
-        <p className="discover-empty">
-          {search || teamFilter
-            ? "No matches"
-            : participants
-              ? "No people yet"
-              : "No teams yet"}
-        </p>
-      )}
-      {!participants && canCreate && (
-        <details className="discover-create">
-          <summary>
-            <Plus size={20} aria-hidden="true" />
-            Create team
-          </summary>
-          <CreateTeam run={run} />
-        </details>
+      {!items.length &&
+        (!participants || (!people.loading && !people.error)) && (
+          <p className="discover-empty">
+            {search || teamFilter
+              ? "No matches"
+              : participants
+                ? "No people yet"
+                : "No teams yet"}
+          </p>
+        )}
+      {creating && canCreate && (
+        <CreateTeamDialog
+          onClose={() => setCreating(false)}
+          run={async (action, values) => {
+            const result = await run(action, values);
+            if (action === "create-workspace-team") setCreating(false);
+            return result;
+          }}
+        />
       )}
       {selectedPerson && (
         <DiscoveryProfile
@@ -1819,7 +2307,7 @@ export function Discover({
 
 export function SharedRules({ categories = [] }: { categories?: Row[] }) {
   return (
-    <section className="rules-v6">
+    <section className="rules-v6 rules-essentials">
       <header className="rules-heading">
         <a href="/dashboard" aria-label="Back to Dashboard">
           <ArrowLeft size={22} aria-hidden="true" />
@@ -1833,23 +2321,32 @@ export function SharedRules({ categories = [] }: { categories?: Row[] }) {
           Rules
         </h1>
       </header>
-      <div className="rules-accordion">
+      <div className="rules-groups">
         {categories.map((category, index) => (
-          <details key={category.title} open={index === 0}>
-            <summary>
-              <span>{category.title}</span>
-              <ChevronDown size={22} aria-hidden="true" />
-            </summary>
+          <section className="rule-group" key={category.title} aria-labelledby={`rule-group-${index}`}>
+            <header>
+              <span className="rule-group-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+              <h2 id={`rule-group-${index}`}>{category.title}</h2>
+            </header>
             <ol>
               {category.items.map((item: string) => (
                 <li key={item}>{item}</li>
               ))}
             </ol>
-          </details>
+          </section>
         ))}
       </div>
     </section>
   );
+}
+
+function upvoteCountLabel(count: number | null) {
+  return count === null ? "Unknown upvotes" : `${count} ${count === 1 ? "upvote" : "upvotes"}`;
+}
+
+function projectMediaStyle(colorKey: unknown): CSSProperties {
+  const color = resolveTeamColor(colorKey);
+  return { "--project-team-color": color.fill, "--project-team-wash": color.wash } as CSSProperties;
 }
 
 const emptyProject = {
@@ -1869,34 +2366,43 @@ export function Submission({
   run,
   onExit,
   exitLabel = "Back to your project",
+  onInteraction,
 }: {
   data: View;
-  run: (a: string, d: Row) => Promise<Row>;
+  run: (a: string, d: Row, options?: { errorFeedback?: "local" }) => Promise<Row>;
   onExit?: () => void;
   exitLabel?: string;
+  onInteraction?: () => void;
 }) {
   const initial = { ...emptyProject, ...data.project?.draft };
   const [project, setProject] = useState(initial),
+    [hydrated, setHydrated] = useState(false),
     [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
+    [fieldErrors, setFieldErrors] = useState<Record<string, string>>({}),
     [step, setStep] = useState(1);
   const wizardHeading = useRef<HTMLHeadingElement>(null);
+  const uploadSequence = useRef({ logo: 0, banner: 0 });
+  const [mediaBusy, setMediaBusy] = useState({ logo: false, banner: false });
+  const [mediaInfo, setMediaInfo] = useState<Record<string, string>>({});
+  const processingMedia = mediaBusy.logo || mediaBusy.banner;
+  useEffect(() => setHydrated(true), []);
   useEffect(() => {
     if (step !== 1) wizardHeading.current?.focus();
   }, [step]);
   const next = () => {
+    onInteraction?.();
     setError("");
-    if (
-      step === 1 &&
-      (!project.projectName?.trim() ||
-        !project.problemSolution?.trim() ||
-        !project.description?.trim())
-    ) {
-      setError("Add a project name, summary and description.");
-      return;
+    const issues: Record<string, string> = {};
+    if (step === 1) {
+      for (const [name, message] of [["projectName", "Enter a project name."], ["problemSolution", "Add a one-line summary."], ["description", "Describe your project."]])
+        if (!project[name]?.trim()) issues[name] = message;
     }
-    if (step === 2 && !/^https:\/\/github\.com\//.test(project.github || "")) {
-      setError("Add your GitHub repository.");
+    if (step === 2 && !/^https:\/\/github\.com\//.test(project.github || ""))
+      issues.github = "Enter your GitHub repository URL.";
+    setFieldErrors(issues);
+    if (Object.keys(issues).length) {
+      requestAnimationFrame(() => document.querySelector<HTMLInputElement | HTMLTextAreaElement>(`.project-editor [name="${Object.keys(issues)[0]}"]`)?.focus());
       return;
     }
     setStep(Math.min(3, step + 1));
@@ -1914,7 +2420,9 @@ export function Submission({
     attemptsUsed < 3;
   const saving = useRef(false);
   const set = (name: string, value: unknown) => {
+    onInteraction?.();
     setProject((p: Row) => ({ ...p, [name]: value }));
+    setFieldErrors((previous) => { const next = { ...previous }; delete next[name]; return next; });
     const corrected = { ...project, [name]: value };
     setError((current) =>
       (current === "Add a project name, summary and description." &&
@@ -1932,31 +2440,48 @@ export function Submission({
         : current,
     );
   };
-  const upload = async (file: File | undefined, kind: string) => {
+  const upload = async (file: File | undefined, kind: "logo" | "banner") => {
     if (!file) return;
-    if (
-      !["image/png", "image/jpeg"].includes(file.type) ||
-      file.size > 131072
-    ) {
-      setError("Use a PNG or JPEG at most 128 KB. Logo: 1:1. Banner: 16:9.");
-      return;
+    onInteraction?.();
+    const sequence = ++uploadSequence.current[kind];
+    setFieldErrors((previous) => { const next = { ...previous }; delete next[kind]; return next; });
+    setMediaBusy((previous) => ({ ...previous, [kind]: true }));
+    try {
+      const image = await prepareProjectImage(file, kind);
+      if (uploadSequence.current[kind] !== sequence) return;
+      set(kind, image.dataUrl);
+      setMediaInfo((previous) => ({ ...previous, [kind]: `${file.name} · ${image.sourceWidth} × ${image.sourceHeight}` }));
+    } catch (cause) {
+      if (uploadSequence.current[kind] !== sequence) return;
+      setFieldErrors((previous) => ({ ...previous, [kind]: (cause as Error).message }));
+    } finally {
+      if (uploadSequence.current[kind] === sequence)
+        setMediaBusy((previous) => ({ ...previous, [kind]: false }));
     }
-    const reader = new FileReader();
-    reader.onload = () => {
-      set(kind, String(reader.result));
-      setError("");
-    };
-    reader.onerror = () => setError("That image could not be read.");
-    reader.readAsDataURL(file);
+  };
+  const removeImage = (kind: "logo" | "banner") => {
+    uploadSequence.current[kind]++;
+    setMediaBusy((previous) => ({ ...previous, [kind]: false }));
+    setMediaInfo((previous) => { const next = { ...previous }; delete next[kind]; return next; });
+    set(kind, "");
   };
   const save = async (submit = false) => {
-    if (!canCommit || saving.current) return;
-    if (submit && (!project.logo || !project.banner || !project.attestation)) {
-      setError(
-        !project.logo || !project.banner
-          ? "Add your square logo and 16:9 banner."
-          : "Confirm this submission is accurate.",
-      );
+    onInteraction?.();
+    if (!canCommit || saving.current || processingMedia) return;
+    const invalidMedia = submit ? (fieldErrors.banner ? "banner" : fieldErrors.logo ? "logo" : undefined) : undefined;
+    if (invalidMedia) {
+      document.getElementById(`submission-${invalidMedia}-control`)?.focus();
+      return;
+    }
+    const issues: Record<string, string> = {};
+    if (submit) {
+      if (!project.logo) issues.logo = "Add a project logo.";
+      if (!project.banner) issues.banner = "Add a project banner.";
+      if (!project.attestation) issues.attestation = "Confirm this submission is accurate.";
+    }
+    if (Object.keys(issues).length) {
+      setFieldErrors((previous) => ({ ...previous, ...issues }));
+      requestAnimationFrame(() => document.getElementById(`submission-${Object.keys(issues)[0]}-control`)?.focus());
       return;
     }
     saving.current = true;
@@ -1972,9 +2497,16 @@ export function Submission({
           ),
           contributions: undefined,
         },
-      });
+      }, { errorFeedback: "local" });
     } catch (e) {
-      if (!(e instanceof ActionCancelled)) setError((e as Error).message);
+      if (!(e instanceof ActionCancelled)) {
+        const message = (e as Error).message;
+        const field = /banner/i.test(message) ? "banner" : /logo/i.test(message) ? "logo" : undefined;
+        if (field) {
+          setFieldErrors((previous) => ({ ...previous, [field]: message }));
+          requestAnimationFrame(() => document.getElementById(`submission-${field}-control`)?.focus());
+        } else setError(message);
+      }
     } finally {
       saving.current = false;
       setBusy(false);
@@ -1991,28 +2523,8 @@ export function Submission({
       </Empty>
     );
   return (
-    <section className="submission-v6" data-readonly={!canCommit}>
+    <section className="submission-v6" data-readonly={!canCommit} data-hydrated={hydrated} style={projectMediaStyle(data.team?.palette)}>
       <header className="submission-wizard-header">
-        <div className="submission-progress" aria-label={`Step ${step} of 3`}>
-          <span className="submission-progress-bars" aria-hidden="true">
-            {[1, 2, 3].map((n) => (
-              <i key={n} data-active={n === step} />
-            ))}
-          </span>
-          <span>{step} of 3</span>
-        </div>
-        <div className="submission-window-status">
-          {(data.submissionStatus?.allowed === true || canCommit) && (
-            <span>
-              <i aria-hidden="true" />
-              Submission window open
-            </span>
-          )}
-          <small>
-            {remaining} {remaining === 1 ? "submission" : "submissions"}{" "}
-            remaining
-          </small>
-        </div>
         <div className="submission-heading">
           {step > 1 && canCommit ? (
             <button
@@ -2020,6 +2532,7 @@ export function Submission({
               className="submission-back"
               aria-label="Previous submission step"
               onClick={() => {
+                onInteraction?.();
                 setError("");
                 setStep(step - 1);
               }}
@@ -2050,7 +2563,17 @@ export function Submission({
               Submit project
             </h1>
           </div>
-          <span aria-hidden="true" />
+        </div>
+        <div className="submission-progress" aria-label={`Step ${step} of 3`}>
+          <span className="submission-progress-bars" aria-hidden="true">
+            {[1, 2, 3].map((n) => (
+              <i key={n} data-active={n === step} />
+            ))}
+          </span>
+          <span>{step} of 3</span>
+        </div>
+        <div className="submission-window-status">
+          {(data.submissionStatus?.allowed === true || canCommit) && <span><i aria-hidden="true" />Submission window open</span>}
         </div>
       </header>
       {data.eligibility?.status === "ineligible" && (
@@ -2061,13 +2584,17 @@ export function Submission({
       )}
       <form
         className="project-editor"
+        method="post"
+        inert={!hydrated}
+        aria-busy={!hydrated || busy}
+        onFocusCapture={onInteraction}
         onSubmit={(e) => {
           e.preventDefault();
           if (step < 3) next();
           else void save(false);
         }}
       >
-        <fieldset disabled={!canCommit || busy}>
+        <fieldset disabled={!canCommit || busy || !hydrated}>
           <legend className="sr-only">
             Step {step} of 3 · {remaining} submissions remaining
           </legend>
@@ -2091,6 +2618,8 @@ export function Submission({
                     name={name}
                     rows={5}
                     aria-required="true"
+                    aria-invalid={fieldErrors[name] ? true : undefined}
+                    aria-describedby={fieldErrors[name] ? `submission-${name}-error` : undefined}
                     value={project[name]}
                     onChange={(e) => set(name, e.target.value)}
                   />
@@ -2098,10 +2627,13 @@ export function Submission({
                   <input
                     name={name}
                     aria-required="true"
+                    aria-invalid={fieldErrors[name] ? true : undefined}
+                    aria-describedby={fieldErrors[name] ? `submission-${name}-error` : undefined}
                     value={project[name]}
                     onChange={(e) => set(name, e.target.value)}
                   />
                 )}
+                {fieldErrors[name] && <small className="submission-field-error" id={`submission-${name}-error`}>{fieldErrors[name]}</small>}
               </label>
             ))}
           </div>
@@ -2126,10 +2658,13 @@ export function Submission({
                   name="github"
                   type="url"
                   aria-required="true"
+                  aria-invalid={fieldErrors.github ? true : undefined}
+                  aria-describedby={fieldErrors.github ? "submission-github-error" : undefined}
                   value={project.github}
                   onChange={(e) => set("github", e.target.value)}
                 />
               </span>
+              {fieldErrors.github && <small className="submission-field-error" id="submission-github-error">{fieldErrors.github}</small>}
             </label>
             <label>
               Deployment URL
@@ -2160,6 +2695,7 @@ export function Submission({
                         const choices = e.target.checked
                           ? [...selected, tool]
                           : selected.filter((item) => item !== tool);
+                        onInteraction?.();
                         setProject((p: Row) => ({
                           ...p,
                           tools: choices.join("\n"),
@@ -2202,65 +2738,24 @@ export function Submission({
             data-step="3"
             hidden={step !== 3 && canCommit}
           >
-            {(["logo", "banner"] as const).map((kind) => (
-              <div
-                className={`submission-upload submission-upload-${kind}`}
-                key={kind}
-              >
-                <span className="submission-upload-label">
-                  {kind === "logo" ? "Logo (1:1)" : "Banner (16:9)"}{" "}
-                  <span className="required-marker" aria-hidden="true">
-                    *
-                  </span>
-                </span>
-                <div className="submission-upload-content">
-                  {project[kind] && (
-                    <img
-                      className={`upload-preview ${kind}`}
-                      src={project[kind]}
-                      alt={`${kind} preview`}
-                    />
-                  )}
-                  <div className="submission-upload-actions">
-                    <label className="button secondary submission-file-button">
-                      <Upload size={20} aria-hidden="true" />
-                      <span>{project[kind] ? "Change" : `Upload ${kind}`}</span>
-                      <input
-                        className="sr-only"
-                        type="file"
-                        accept="image/png,image/jpeg"
-                        aria-label={`Upload ${kind}`}
-                        onChange={(e) => {
-                          void upload(e.target.files?.[0], kind);
-                          e.currentTarget.value = "";
-                        }}
-                      />
-                    </label>
-                    {project[kind] && (
-                      <button
-                        type="button"
-                        className="button secondary submission-remove-image"
-                        aria-label={`Remove ${kind} image`}
-                        onClick={() => set(kind, "")}
-                      >
-                        <Trash2 size={20} aria-hidden="true" />
-                      </button>
-                    )}
-                  </div>
-                </div>
+            <ProjectMediaField kind="banner" value={project.banner} info={mediaInfo.banner} error={fieldErrors.banner} busy={mediaBusy.banner} onUpload={(file) => void upload(file, "banner")} onRemove={() => removeImage("banner")} />
+            <div className="submission-media-side">
+              <ProjectMediaField kind="logo" value={project.logo} info={mediaInfo.logo} error={fieldErrors.logo} busy={mediaBusy.logo} onUpload={(file) => void upload(file, "logo")} onRemove={() => removeImage("logo")} />
+              <div className="submission-attestation-wrap">
+                <label className="check-label submission-attestation">
+                  <input id="submission-attestation-control" type="checkbox" checked={!!project.attestation}
+                    aria-invalid={fieldErrors.attestation ? true : undefined}
+                    aria-describedby={fieldErrors.attestation ? "submission-attestation-error" : undefined}
+                    onChange={(e) => set("attestation", e.target.checked)} />
+                  <span>I confirm this submission is accurate.<span className="required-marker" aria-hidden="true"> *</span></span>
+                </label>
+                {fieldErrors.attestation && <small className="submission-field-error" id="submission-attestation-error" role="alert">{fieldErrors.attestation}</small>}
               </div>
-            ))}
-            <label className="check-label submission-attestation">
-              <input
-                type="checkbox"
-                checked={!!project.attestation}
-                onChange={(e) => set("attestation", e.target.checked)}
-              />
-              I confirm this submission is accurate.
-            </label>
+            </div>
           </div>
           {canCommit && (
             <footer className="submission-actions">
+              <small className="submission-remaining">{remaining} {remaining === 1 ? "submission" : "submissions"} remaining</small>
               {step < 3 ? (
                 <button
                   key="submission-next"
@@ -2280,24 +2775,21 @@ export function Submission({
                   <button
                     type="submit"
                     className="button secondary"
-                    disabled={busy}
+                    disabled={busy || processingMedia}
                   >
-                    Save draft
+                    {busy ? "Saving…" : "Save draft"}
                   </button>
                   <button
                     type="button"
                     className="button"
-                    disabled={busy}
+                    disabled={busy || processingMedia}
                     onClick={() => {
                       void save(true);
                     }}
                   >
-                    Submit
+                    Submit <ArrowRight size={18} aria-hidden="true" />
                   </button>
-                  <small className="submission-remaining">
-                    {remaining} {remaining === 1 ? "submission" : "submissions"}{" "}
-                    remaining
-                  </small>
+
                 </>
               )}
             </footer>
@@ -2312,7 +2804,7 @@ export function Submission({
           </p>
         )}
         {error && (
-          <p role="alert" className="error-message">
+          <p role="alert" className="submission-action-error">
             {error}
           </p>
         )}
@@ -2342,12 +2834,15 @@ export function ProjectHistory({
     [busy, setBusy] = useState(false),
     [error, setError] = useState("");
   const dialog = useRef<HTMLDialogElement>(null),
-    close = useRef<HTMLButtonElement>(null);
+    close = useRef<HTMLButtonElement>(null),
+    opener = useRef<HTMLButtonElement | null>(null);
   useEffect(() => {
     if (!open || !canRead) return;
-    const previous = document.activeElement as HTMLElement | null;
+    const previous = opener.current;
     const controller = new AbortController();
-    dialog.current?.showModal();
+    const popup = dialog.current;
+    popup?.showModal();
+    const stopHistory = trackDialogHistory(() => setOpen(false), previous);
     close.current?.focus();
     setBusy(true);
     setError("");
@@ -2373,7 +2868,8 @@ export function ProjectHistory({
     })();
     return () => {
       controller.abort();
-      dialog.current?.close();
+      stopHistory();
+      popup?.close();
       previous?.isConnected && previous.focus({ preventScroll: true });
     };
   }, [open, canRead]);
@@ -2383,7 +2879,7 @@ export function ProjectHistory({
       <button
         type="button"
         className="button secondary"
-        onClick={() => setOpen(true)}
+        onClick={(event) => { opener.current = event.currentTarget; setOpen(true); }}
       >
         <Icon name="history" />
         {label}
@@ -2406,22 +2902,21 @@ export function ProjectHistory({
               className="button secondary"
               type="button"
               ref={close}
+              aria-label="Close committed history"
               onClick={() => setOpen(false)}
             >
               <Icon name="close" />
-              Close
             </button>
           </div>
 
-          {busy && <p role="status">Loading committed history…</p>}
-          {error && <p role="alert">{error}</p>}
+          {busy && <div className="history-loading" role="status" aria-label="Loading committed history"><span className="sr-only">Loading committed history…</span>{[1, 2, 3].map((n) => <div key={n} aria-hidden="true"><i /><span /><span /></div>)}</div>}
+          {error && <p role="alert" className="history-error">{error}</p>}
           {!busy && !error && !items.length && (
-            <p>No successful commits yet.</p>
+            <p className="history-empty">No committed versions yet.</p>
           )}
           {items.map((item) => (
             <article className="history-version" key={item.id}>
-              <h3>Version {item.attempt}</h3>
-              <p>{ist(item.created_at)}</p>
+              <header><h3>Version {item.attempt}</h3><time dateTime={item.created_at}>{ist(item.created_at)}</time></header>
               <ProjectVersion payload={item.payload} />
             </article>
           ))}
@@ -2466,17 +2961,20 @@ export function ProjectVersion({ payload }: { payload: Row }) {
 function ProjectBody({
   project,
   publicView = false,
+  teamColorKey,
 }: {
   project: Row;
   publicView?: boolean;
+  teamColorKey?: unknown;
 }) {
   return (
-    <>
+    <div className="project-presentation" style={projectMediaStyle(teamColorKey)}>
       <img
         className="project-banner"
         src={project.banner}
         alt={`${project.projectName} project banner`}
       />
+      <div className="project-overview">
       <div className="project-identity">
         <img
           className="project-logo"
@@ -2485,14 +2983,13 @@ function ProjectBody({
         />
         <div>
           <h1>{project.projectName}</h1>
-          <p>
+          {project.teamName && <p>
             {publicView ? "by " : "Team "}
-            {project.teamName || "project team"}
-          </p>
+            {project.teamName}
+          </p>}
         </div>
       </div>
       <p className="project-description">{project.problemSolution}</p>
-      <p className="prose">{project.description}</p>
       <div className="form-actions">
         {publicView && project.github && (
           <a
@@ -2532,7 +3029,12 @@ function ProjectBody({
           </a>
         )}
       </div>
-    </>
+      </div>
+      <div className="project-story">
+        <h2>About the project</h2>
+        <p className="prose">{project.description}</p>
+      </div>
+    </div>
   );
 }
 export class UpvoteController {
@@ -2584,7 +3086,7 @@ export function UpvoteButton({
       <button
         type="button"
         className="upvote-button"
-        aria-label={`${voted ? "Upvoted" : "Upvote"} ${project.projectName}; ${count ?? "unknown"} upvotes`}
+        aria-label={`${voted ? "Upvoted" : "Upvote"} ${project.projectName}; ${upvoteCountLabel(count)}`}
         aria-pressed={voted}
         aria-busy={busy}
         disabled={!allowed || busy}
@@ -2641,8 +3143,11 @@ export function Projects({
   run: (a: string, d: Row) => Promise<Row>;
 }) {
   const [q, setQ] = useState(""),
+    [hydrated, setHydrated] = useState(false),
     [page, setPage] = useState(0),
     [listing, setListing] = useState<View>(data),
+    [searchBusy, setSearchBusy] = useState(false),
+    [searchRetry, setSearchRetry] = useState(0),
     [searchError, setSearchError] = useState(""),
     [comment, setComment] = useState(""),
     [commentBusy, setCommentBusy] = useState(false),
@@ -2652,6 +3157,7 @@ export function Projects({
     p = data.items?.[0];
   const highlighted = useRef(false),
     commentPending = useRef(false);
+  useEffect(() => setHydrated(true), []);
   useEffect(() => {
     if (highlighted.current || !window.location.hash) return;
     const target = document.getElementById(
@@ -2668,10 +3174,12 @@ export function Projects({
     const controller = new AbortController();
     if (!q && !page) {
       setListing(data);
+      setSearchBusy(false);
       if (data.page) setPage(data.page);
       return;
     }
     const timer = setTimeout(async () => {
+      setSearchBusy(true);
       try {
         const r = await fetch(
           `/api/portal?view=${encodeURIComponent(path)}&q=${encodeURIComponent(q)}&page=${page}`,
@@ -2684,14 +3192,20 @@ export function Projects({
       } catch (e) {
         if ((e as Error).name !== "AbortError")
           setSearchError((e as Error).message);
+      } finally {
+        if (!controller.signal.aborted) setSearchBusy(false);
       }
     }, 180);
     return () => {
       clearTimeout(timer);
       controller.abort();
     };
-  }, [q, page, data, path, detail]);
+  }, [q, page, data, path, detail, searchRetry]);
   const signIn = "/signin?returnTo=" + encodeURIComponent(path);
+  const visibleProjects = (listing.items || []).filter((project) =>
+    (project.projectName + " " + project.teamName + " " + project.problemSolution)
+      .toLowerCase().includes(q.toLowerCase()),
+  );
   const engagement = (p: Row) => (
     <div className="engagement">
       {data.me ? (
@@ -2725,7 +3239,7 @@ export function Projects({
   );
   if (detail && p)
     return (
-      <section className="projects-v6 public-project-detail">
+      <section className="projects-v6 public-project-detail" data-hydrated={hydrated}>
         <header className="project-detail-topline">
           <a
             className="back-link"
@@ -2738,7 +3252,7 @@ export function Projects({
           <strong>{p.teamName || p.projectName}</strong>
         </header>
         <article className="project-detail">
-          <ProjectBody project={p} publicView />
+          <ProjectBody project={p} publicView teamColorKey={p.teamColorKey} />
           {p.result && (
             <p className="notice">
               Revealed {p.result.stage === "ai" ? "AI" : "final"} score{" "}
@@ -2761,8 +3275,9 @@ export function Projects({
               .
             </p>
           )}
-          <section id="comments">
-            <h2>Comments</h2>
+          <section id="comments" aria-labelledby="project-comments-heading">
+            <h2 id="project-comments-heading">Comments <span>{data.comments?.length || 0}</span></h2>
+            {!data.comments?.length && <p className="project-empty-comments">No comments yet.</p>}
             {(data.comments || []).map((c: Row) => (
               <article className="public-comment" key={c.id}>
                 <DotAvatar
@@ -2785,6 +3300,9 @@ export function Projects({
             !data.engagement?.feedbackPaused ? (
               <form
                 className="project-comment-composer"
+                method="post"
+                inert={!hydrated}
+                aria-busy={!hydrated || commentBusy}
                 onSubmit={async (e) => {
                   e.preventDefault();
                   if (commentPending.current || !comment.trim()) return;
@@ -2820,13 +3338,13 @@ export function Projects({
                   required
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
-                  disabled={commentBusy}
+                  disabled={commentBusy || !hydrated}
                 />
                 <button
                   className="project-send-comment"
                   type="submit"
                   aria-label="Post comment"
-                  disabled={commentBusy || !comment.trim()}
+                  disabled={commentBusy || !comment.trim() || !hydrated}
                 >
                   <Send size={20} aria-hidden="true" />
                 </button>
@@ -2842,21 +3360,25 @@ export function Projects({
       </section>
     );
   return (
-    <section className="projects-v6 public-project-list">
+    <section className="projects-v6 public-project-list" data-hydrated={hydrated}>
       <header className="page-heading projects-heading">
         <HeadingDot color="purple" expression="squeezed" size={64} />
         <h1>{board ? "Leaderboard" : "Projects"}</h1>
       </header>
-      <div className="project-search">
+      <div className="project-directory-toolbar">
+      <div className="project-search" inert={!hydrated}>
         <SearchIcon size={24} aria-hidden="true" />
         <Search
           value={q}
           onChange={(v) => {
             setQ(v);
             setPage(0);
+            if (v.trim()) setSearchBusy(true);
           }}
           label="Search projects"
         />
+      </div>
+      {searchBusy && <span className="project-search-status" role="status">Searching…</span>}
       </div>
       {(listing.engagement?.votingPaused ||
         listing.engagement?.feedbackPaused) && (
@@ -2877,7 +3399,7 @@ export function Projects({
         </p>
       )}
       {board && listing.awards?.length > 0 && (
-        <section className="panel" aria-label="Unveiled awards">
+        <section className="project-awards" aria-label="Unveiled awards">
           <h2>Unveiled awards</h2>
           {listing.awards.map((a: Row) => (
             <p key={a.position}>
@@ -2896,21 +3418,17 @@ export function Projects({
           <p>{listing.scoringInfo.weightage}</p>
         </details>
       )}
-      {searchError && <p role="alert">{searchError}</p>}
-      <ul className="project-list">
-        {(listing.items || [])
-          .filter((p) =>
-            (p.projectName + " " + p.teamName + " " + p.problemSolution)
-              .toLowerCase()
-              .includes(q.toLowerCase()),
-          )
+      {searchError && <div role="alert" className="project-search-error"><span>{searchError}</span><button type="button" className="button secondary" disabled={searchBusy} onClick={() => { setSearchBusy(true); setSearchRetry((n) => n + 1); }}>Retry search</button></div>}
+      <ul className="project-list" aria-busy={searchBusy}>
+        {searchBusy && !visibleProjects.length && [1, 2].map((n) => <li className="project-search-placeholder" aria-hidden="true" key={`loading-${n}`}><i /><div><span /><span /><span /></div><b /><b /></li>)}
+        {visibleProjects
           .map((p) => (
             <li key={p.id} id={"entry-" + p.slug}>
               <a className="project-row-link" href={`/projects/${p.slug}`}>
                 <img
                   loading="lazy"
                   decoding="async"
-                  className="row-logo"
+                  className="row-logo" style={projectMediaStyle(p.teamColorKey)}
                   src={p.logo}
                   alt=""
                 />
@@ -2925,7 +3443,7 @@ export function Projects({
                   <strong>
                     {p.result
                       ? `${p.result.score} ${p.result.stage === "ai" ? "AI" : "final"} score`
-                      : `${p.upvotes} upvotes`}
+                      : upvoteCountLabel(p.upvotes)}
                   </strong>
                   <a href={`/projects/${p.slug}`}>View project</a>
                 </div>
@@ -2935,12 +3453,14 @@ export function Projects({
             </li>
           ))}
       </ul>
-      {!listing.items?.length && (
-        <Empty>
-          Eligible submitted projects will appear here automatically.
-        </Empty>
+      {!visibleProjects.length && !searchBusy && !searchError && (
+        <section className="project-empty-state" aria-label={q ? "No matching projects" : "No projects yet"}>
+          <HeadingDot color="purple" expression="sleepy" size={48} paused />
+          <h2>{q ? "No matching projects" : "No projects yet"}</h2>
+          {q ? <button className="button secondary" type="button" onClick={() => { setQ(""); setPage(0); }}>Clear search</button> : <a className="button secondary" href="/dashboard#project">Your project</a>}
+        </section>
       )}
-      <div className="form-actions project-pagination">
+      {(visibleProjects.length > 0 || page > 0) && <div className="form-actions project-pagination">
         <button
           className="button secondary"
           disabled={!page}
@@ -2956,7 +3476,7 @@ export function Projects({
         >
           Next page
         </button>
-      </div>
+      </div>}
     </section>
   );
 }
@@ -3001,6 +3521,53 @@ export function adminProjectProjection(project: Row, suppliedVersions?: Row[]) {
       })),
   };
 }
+function AdminWorkspaceTabs({
+  items,
+  value,
+  onChange,
+  prefix,
+  label,
+}: {
+  items: { id: string; label: string }[];
+  value: string;
+  onChange: (value: string) => void;
+  prefix: string;
+  label: string;
+}) {
+  return (
+    <div className="admin-workspace-tabs" role="tablist" aria-label={label}>
+      {items.map((item, index) => (
+        <button
+          key={item.id}
+          id={`${prefix}-tab-${item.id}`}
+          type="button"
+          role="tab"
+          aria-controls={`${prefix}-panel-${item.id}`}
+          aria-selected={value === item.id}
+          tabIndex={value === item.id ? 0 : -1}
+          onClick={() => onChange(item.id)}
+          onKeyDown={(event) => {
+            if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key))
+              return;
+            event.preventDefault();
+            const next =
+              event.key === "Home"
+                ? 0
+                : event.key === "End"
+                  ? items.length - 1
+                  : (index +
+                      (event.key === "ArrowRight" ? 1 : items.length - 1)) %
+                    items.length;
+            onChange(items[next].id);
+            document.getElementById(`${prefix}-tab-${items[next].id}`)?.focus();
+          }}
+        >
+          {item.label}
+        </button>
+      ))}
+    </div>
+  );
+}
 export function AdminParticipants({
   data,
   run,
@@ -3008,8 +3575,11 @@ export function AdminParticipants({
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
+  const hydrated = useHydrated();
   const [filters, setFilters] = useState<AdminParticipantFiltersValue>({
       ...defaultAdminParticipantFilters,
+      status: "all",
+      team: "all",
     }),
     [recordState, setRecordState] = useState<ParticipantRecordState>("active"),
     [selected, setSelected] = useState<string[]>([]),
@@ -3017,29 +3587,81 @@ export function AdminParticipants({
     [reason] = useState("Confirmed portal action"),
     [error, setError] = useState(""),
     [filtersExpanded, setFiltersExpanded] = useState(false),
-    [adding, setAdding] = useState(false);
+    [adding, setAdding] = useState(false),
+    [actionPending, setActionPending] = useState(false),
+    [quickCheckInEmail, setQuickCheckInEmail] = useState<string | null>(null);
+  const pendingAction = useRef(false);
   const canManage = data.me?.owner === true || data.me?.role === "admin";
+  const canCheckIn = canManage || data.me?.role === "volunteer";
   const rows = (data.items || []).map(adminParticipantProjection);
   const items = filterAdminParticipants(rows, filters).filter(
     (r) =>
       recordState === "all" ||
       (recordState === "removed" ? r.removed : !r.removed),
   );
-  const selectable = items.filter((r) => !r.removed);
+  const viewerFilter = filters.status === "not registered";
+  const [viewerPage, setViewerPage] = useState(0);
+  const viewerPages = Math.max(1, Math.ceil(items.length / 25));
+  const currentViewerPage = Math.min(viewerPage, viewerPages - 1);
+  const displayedItems = viewerFilter ? items.slice(currentViewerPage * 25, (currentViewerPage + 1) * 25) : items;
+  const selectable = items.filter((r) => !r.removed && r.viewer !== true);
+  const visibleEmails = new Set(selectable.map((r) => r.email));
+  const visibleSelected = selected.filter((email) => visibleEmails.has(email));
+  const selectedPeople = selectable.filter((r) =>
+    visibleSelected.includes(r.email),
+  );
+  const personalStatus = (r: Row) =>
+    r.status || (r.approval === "approved" ? "Going" : "Registered");
+  const checkInEligible = selectedPeople.every(
+    (r) => personalStatus(r) === "Going" && !!r.id && !r.checked_in,
+  );
   useEffect(() => {
-    setSelected((previous) =>
-      previous.filter((email) =>
-        rows.some((r) => r.email === email && !r.removed),
-      ),
-    );
-  }, [data.items]);
+    setSelected((previous) => {
+      const next = previous.filter((email) => visibleEmails.has(email));
+      return next.length === previous.length ? previous : next;
+    });
+  }, [data.items, filters, recordState]);
   const updateFilters = (value: AdminParticipantFiltersValue) => {
     setFilters(value);
-    setSelected([]);
+    setViewerPage(0);
     setError("");
   };
+  const clearFilters = () => {
+    updateFilters({
+      ...defaultAdminParticipantFilters,
+      status: "all",
+      team: "all",
+    });
+    setRecordState("active");
+    setSelected([]);
+  };
+  const hasFilters = !!(
+    filters.individual ||
+    filters.teamQuery ||
+    filters.status !== "all" ||
+    filters.team !== "all" ||
+    recordState !== "active"
+  );
+  const recordActionError = () => {
+    // Portal.run keeps the full server error in its persistent action notice.
+    // Preserve selection for retry without rendering the same error twice.
+  };
+  const runParticipantAction = async (action: string, values: Row) => {
+    if (pendingAction.current) throw new ActionCancelled();
+    pendingAction.current = true;
+    setActionPending(true);
+    setError("");
+    try {
+      const result = await run(action, values);
+      setSelected([]);
+      return result;
+    } finally {
+      pendingAction.current = false;
+      setActionPending(false);
+    }
+  };
   return (
-    <section className="admin-exact admin-participants-page">
+    <section className="admin-exact admin-workspace admin-participants-page">
       <header className="page-heading admin-exact-heading">
         <h1>
           <HeadingDot color="orange" expression="sleepy" />
@@ -3058,6 +3680,7 @@ export function AdminParticipants({
             <button
               type="button"
               className="button"
+              disabled={!hydrated || actionPending}
               onClick={() => setAdding(true)}
             >
               <AdminIcon name="person" />
@@ -3067,94 +3690,68 @@ export function AdminParticipants({
         )}
       </header>
       {canManage && adding && (
-        <AdminImportDialog run={run} close={() => setAdding(false)} />
+        <AdminImportDialog
+          run={runParticipantAction}
+          close={() => setAdding(false)}
+        />
       )}
-      <div className="admin-mobile-tools">
-        <Search
-          value={filters.individual}
-          onChange={(individual) =>
-            updateFilters({ ...filters, individual, teamQuery: "" })
-          }
-          label="Name, email or team"
+      <div className="admin-roster-tools">
+        <AdminParticipantFilters
+          value={filters}
+          onChange={updateFilters}
+          expanded={filtersExpanded}
+          showUnregistered={canManage}
         />
         <button
-          className="admin-toolbar-icon"
+          type="button"
+          className="admin-toolbar-icon admin-roster-filter-toggle"
           aria-label="Participant filters"
           aria-expanded={filtersExpanded}
           onClick={() => setFiltersExpanded(!filtersExpanded)}
         >
           <AdminIcon name="filter" />
         </button>
-        {canManage && (
-          <a
-            className="admin-toolbar-icon"
-            aria-label={`Export filtered participants (${items.length})`}
-            href={participantExportHref(filters, recordState)}
+      </div>
+      <div className="admin-result-bar">
+        <span>
+          {items.length} {viewerFilter ? (items.length === 1 ? "viewer" : "viewers") : (items.length === 1 ? "participant" : "participants")}
+        </span>
+        <label className="admin-record-select">
+          <span className="sr-only">Participation record</span>
+          <select
+            value={recordState}
+            onChange={(event) => {
+              setRecordState(event.target.value as ParticipantRecordState);
+              setSelected([]);
+              if (event.target.value === "removed")
+                setFilters({ ...filters, status: "all", team: "all" });
+            }}
           >
-            <AdminIcon name="download" />
-          </a>
+            <option value="active">Active</option>
+            <option value="removed">Removed</option>
+            <option value="all">All records</option>
+          </select>
+        </label>
+        {hasFilters && items.length > 0 && (
+          <button type="button" className="link-button" onClick={clearFilters}>
+            Clear filters
+          </button>
         )}
       </div>
-      <AdminParticipantFilters
-        value={filters}
-        onChange={updateFilters}
-        expanded={filtersExpanded}
-      />
-      <div
-        className={`toolbar admin-participant-record-tools${filtersExpanded ? " is-expanded" : ""}`}
-      >
-        <details className="admin-record-disclosure">
-          <summary>
-            <AdminIcon name="filter" />
-            <span>Records</span>
-          </summary>
-          <label>
-            Participation record
-            <select
-              value={recordState}
-              onChange={(e) => {
-                setRecordState(e.target.value as ParticipantRecordState);
-                setSelected([]);
-                if (e.target.value === "removed")
-                  setFilters({ ...filters, status: "all", team: "all" });
-              }}
-            >
-              <option value="active">Active</option>
-              <option value="removed">Removed</option>
-              <option value="all">All records</option>
-            </select>
-          </label>
-        </details>
-        {canManage && (
-          <a
-            className="button secondary"
-            aria-label={`Export filtered participants (${items.length})`}
-            href={participantExportHref(filters, recordState)}
-          >
-            <AdminIcon name="download" />
-            <span className="admin-export-label">Export ({items.length})</span>
-          </a>
-        )}
-      </div>
-
-      {canManage && (
-        <button
-          className="button admin-mobile-add"
-          type="button"
-          onClick={() => setAdding(true)}
+      {visibleSelected.length > 0 && (
+        <div
+          className="bulk-bar"
+          role="group"
+          aria-label="Selected participants"
+          aria-busy={actionPending}
         >
-          <AdminIcon name="person" />
-          Add participants
-        </button>
-      )}
-      {selected.length > 0 && (
-        <div className="bulk-bar">
-          <strong>{selected.length} selected</strong>
+          <strong>{visibleSelected.length} selected</strong>
           {canManage && (
             <label>
               <span className="sr-only">Individual approval status</span>
               <select
                 value={status}
+                disabled={actionPending}
                 onChange={(e) => setStatus(e.target.value)}
               >
                 <option value="pending">Registered</option>
@@ -3167,11 +3764,11 @@ export function AdminParticipants({
           {canManage && (
             <button
               className="button secondary"
-              disabled={!selected.length}
+              disabled={!visibleSelected.length || actionPending}
               onClick={() => {
                 if (["checked", "absent"].includes(status)) {
                   const people = (data.items || []).filter((r) =>
-                    selected.includes(r.email),
+                    visibleSelected.includes(r.email),
                   );
                   if (people.some((r) => !r.id)) {
                     setError(
@@ -3179,204 +3776,279 @@ export function AdminParticipants({
                     );
                     return;
                   }
-                  void run("admin-status-bulk", {
+                  void runParticipantAction("admin-status-bulk", {
                     userIds: people.map((r) => r.id),
                     status: status === "checked" ? "Checked in" : "Absent",
                     reason,
-                  }).catch(() => {});
+                  }).catch(recordActionError);
                 } else
-                  void run("participant-bulk", {
-                    emails: selected,
+                  void runParticipantAction("participant-bulk", {
+                    emails: visibleSelected,
                     status,
                     reason,
-                  }).catch(() => {});
+                  }).catch(recordActionError);
               }}
             >
               Update approval
             </button>
           )}
-          <button
-            className="button"
-            disabled={!selected.length || !data.checkInConfigured}
-            onClick={() => {
-              void run("participant-bulk", {
-                emails: selected,
-                checkIn: true,
-                reason,
-              }).catch(() => {});
-            }}
-          >
-            Check in
-          </button>
+          {canCheckIn && (
+            <button
+              type="button"
+              className="button"
+              aria-label="Check in selected participants"
+              aria-busy={actionPending}
+              title={
+                checkInEligible
+                  ? "Check in selected participants"
+                  : "Select Going participants with signed-in accounts to check in."
+              }
+              disabled={
+                !visibleSelected.length ||
+                !data.checkInConfigured ||
+                !checkInEligible ||
+                actionPending
+              }
+              onClick={() => {
+                void runParticipantAction("bulk-check-in", {
+                  emails: visibleSelected,
+                }).catch(recordActionError);
+              }}
+            >
+              <AdminIcon name="check" /> Check in
+            </button>
+          )}
         </div>
       )}
 
-      <div className="table-scroll">
-        <table className="participants-table">
-          <thead>
-            <tr>
-              <th>
-                <input
-                  type="checkbox"
-                  aria-label="Select visible active participants"
-                  disabled={!selectable.length}
-                  checked={
-                    !!selectable.length &&
-                    selectable.every((r) => selected.includes(r.email))
-                  }
-                  onChange={(e) =>
-                    setSelected(
-                      e.target.checked ? selectable.map((r) => r.email) : [],
-                    )
-                  }
-                />
-              </th>
-              <th>Person</th>
-              <th>Team</th>
-              <th>Personal status</th>
-              <th>Team status</th>
-              <th>Locked at</th>
-              {canManage && <th>Manage participant</th>}
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((r) => (
-              <tr key={r.email}>
-                <td>
+      {items.length > 0 && (
+        <div className="table-scroll">
+          <table className="participants-table">
+            <thead>
+              <tr>
+                <th>
                   <input
                     type="checkbox"
-                    aria-label={`Select ${r.email}`}
-                    disabled={r.removed}
-                    checked={selected.includes(r.email)}
+                    aria-label="Select visible active participants"
+                    disabled={!selectable.length || actionPending}
+                    checked={
+                      !!selectable.length &&
+                      selectable.every((r) => visibleSelected.includes(r.email))
+                    }
                     onChange={(e) =>
                       setSelected(
-                        e.target.checked
-                          ? [...selected, r.email]
-                          : selected.filter((x) => x !== r.email),
+                        e.target.checked ? selectable.map((r) => r.email) : [],
                       )
                     }
                   />
-                </td>
-                <td>
-                  <div className="admin-person-identity">
-                    <DotAvatar
-                      color={r.avatarColor || r.avatar_color || "blue"}
-                      expression={
-                        r.avatarExpression || r.avatar_expression || "squeezed"
+                </th>
+                <th>Person</th>
+                <th>Team</th>
+                <th>Personal status</th>
+                <th>Team status</th>
+                <th>Locked at</th>
+                {canManage && <th>Manage participant</th>}
+              </tr>
+            </thead>
+            <tbody>
+              {displayedItems.map((r) => (
+                <tr key={r.email}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      aria-label={`Select ${r.email}`}
+                      disabled={r.removed || r.viewer === true || actionPending}
+                      checked={visibleSelected.includes(r.email)}
+                      onChange={(e) =>
+                        setSelected(
+                          e.target.checked
+                            ? [...visibleSelected, r.email]
+                            : visibleSelected.filter((x) => x !== r.email),
+                        )
                       }
-                      size={32}
-                      decorative
                     />
-                    <div>
-                      <strong>{r.name || "Not signed in yet"}</strong>
-                      <small>{r.email}</small>
-                      {r.removed && <Pill>Removed</Pill>}
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  {r.teamName ? (
-                    <div className="admin-team-identity">
-                      <TeamAvatar
-                        name={r.teamName}
-                        palette={r.teamPalette}
+                  </td>
+                  <td className="admin-person-cell">
+                    <div className="admin-person-identity">
+                      <DotAvatar
+                        color={r.avatarColor || r.avatar_color || "blue"}
+                        expression={
+                          r.avatarExpression ||
+                          r.avatar_expression ||
+                          "squeezed"
+                        }
                         size={32}
+                        decorative
                       />
                       <div>
-                        {r.teamName}
-                        <small>
-                          {r.teamReadiness?.total
-                            ? `${r.teamReadiness.approved}/${r.teamReadiness.total} approved`
-                            : ""}
-                        </small>
+                        <strong>{r.name || "Not signed in yet"}</strong>
+                        <small>{r.email}</small>
+                        {r.removed && <Pill>Removed</Pill>}
                       </div>
                     </div>
-                  ) : (
-                    "Not in a team"
-                  )}
-                </td>
-                <td>
-                  <Pill
-                    tone={
-                      ["Going", "Checked in"].includes(r.status)
-                        ? "positive"
-                        : "neutral"
-                    }
-                  >
-                    {r.status ||
-                      (r.approval === "approved" ? "Going" : "Registered")}
-                  </Pill>
-                  {r.checked_in && r.status !== "Checked in" && (
-                    <small>Checked in</small>
-                  )}
-                </td>
-                <td>
-                  <Pill
-                    tone={r.teamStatus === "Submitted" ? "positive" : "neutral"}
-                  >
-                    {r.teamStatus ||
-                      (r.teamId
-                        ? r.teamLocked
-                          ? "Locked"
-                          : "Forming"
-                        : "Not in a team")}
-                  </Pill>
-                </td>
-                <td className="admin-locked-at">
-                  {r.teamLockedAt ? (
-                    <time dateTime={r.teamLockedAt}>{ist(r.teamLockedAt)}</time>
-                  ) : (
-                    "Not locked"
-                  )}
-                </td>
-                {canManage && (
-                  <td>
-                    {r.id ? (
-                      <div className="admin-row-actions">
-                        <StatusChange
-                          kind="person"
-                          target={r.id}
-                          name={r.name || r.email}
-                          current={r.status}
-                          run={run}
-                          compact
-                          disabled={r.removed}
-                        >
-                          <AdminParticipantActions
-                            key={`${r.id}-${r.removed}`}
-                            participant={{
-                              id: r.id,
-                              name: r.name,
-                              email: r.email,
-                              removed: r.removed,
-                            }}
-                            run={run}
-                            compact
-                          />
-                        </StatusChange>
+                  </td>
+                  <td className="admin-team-cell">
+                    {r.teamName ? (
+                      <div className="admin-team-identity">
+                        <TeamAvatar
+                          name={r.teamName}
+                          palette={r.teamPalette}
+                          size={32}
+                        />
+                        <div>
+                          {r.teamName}
+                          <small>
+                            {r.teamReadiness?.total
+                              ? `${r.teamReadiness.approved}/${r.teamReadiness.total} approved`
+                              : ""}
+                          </small>
+                        </div>
                       </div>
                     ) : (
-                      <span className="muted">
-                        Account has not signed in yet.
-                      </span>
+                      "Not in a team"
                     )}
                   </td>
-                )}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                  <td className="admin-personal-status-cell">
+                    <div className="admin-person-status">
+                      <Pill
+                        tone={
+                          ["Going", "Checked in"].includes(r.status)
+                            ? "positive"
+                            : "neutral"
+                        }
+                      >
+                        {personalStatus(r) === "Checked in" && (
+                          <AdminIcon name="check" />
+                        )}
+                        {personalStatus(r)}
+                      </Pill>
+                      {canCheckIn &&
+                        !r.removed &&
+                        personalStatus(r) === "Going" &&
+                        !r.checked_in && (
+                          <button
+                            type="button"
+                            className="button secondary admin-quick-check-in"
+                            aria-label={`Check in ${r.name || r.email}`}
+                            aria-busy={quickCheckInEmail === r.email}
+                            title={
+                              !r.id
+                                ? "Participant must sign in before check-in."
+                                : "Check in participant"
+                            }
+                            disabled={
+                              !hydrated ||
+                              actionPending ||
+                              !data.checkInConfigured ||
+                              !r.id
+                            }
+                            onClick={() => {
+                              if (pendingAction.current) return;
+                              setQuickCheckInEmail(r.email);
+                              void runParticipantAction("quick-check-in", {
+                                emails: [r.email],
+                              })
+                                .catch(recordActionError)
+                                .finally(() => setQuickCheckInEmail(null));
+                            }}
+                          >
+                            <AdminIcon name="check" />
+                            {quickCheckInEmail === r.email
+                              ? "Checking in…"
+                              : "Check in"}
+                          </button>
+                        )}
+                    </div>
+                    {r.checked_in && r.status !== "Checked in" && (
+                      <small>Checked in</small>
+                    )}
+                  </td>
+                  <td
+                    className="admin-team-status-cell"
+                    data-empty-team={!r.teamId}
+                  >
+                    <Pill
+                      tone={
+                        r.teamStatus === "Submitted" ? "positive" : "neutral"
+                      }
+                    >
+                      {r.teamStatus ||
+                        (r.teamId
+                          ? r.teamLocked
+                            ? "Locked"
+                            : "Forming"
+                          : "Not in a team")}
+                    </Pill>
+                  </td>
+                  <td className="admin-locked-at">
+                    {r.teamLockedAt ? (
+                      <time dateTime={r.teamLockedAt}>
+                        {ist(r.teamLockedAt)}
+                      </time>
+                    ) : (
+                      <span className="admin-not-locked">Not locked</span>
+                    )}
+                  </td>
+                  {canManage && (
+                    <td className="admin-manage-cell">
+                      {r.viewer === true ? (
+                        <span className="sr-only">Viewer access</span>
+                      ) : r.id ? (
+                        <div className="admin-row-actions">
+                          <StatusChange
+                            kind="person"
+                            target={r.id}
+                            name={r.name || r.email}
+                            current={r.status}
+                            run={runParticipantAction}
+                            compact
+                            disabled={r.removed}
+                          >
+                            <AdminParticipantActions
+                              key={`${r.id}-${r.removed}`}
+                              participant={{
+                                id: r.id,
+                                name: r.name,
+                                email: r.email,
+                                removed: r.removed,
+                              }}
+                              run={runParticipantAction}
+                              compact
+                            />
+                          </StatusChange>
+                        </div>
+                      ) : (
+                        <span className="muted">
+                          Account has not signed in yet.
+                        </span>
+                      )}
+                    </td>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      {viewerFilter && viewerPages > 1 && (
+        <nav className="viewer-pagination" aria-label="Viewer pages">
+          <span>{currentViewerPage * 25 + 1}–{Math.min((currentViewerPage + 1) * 25, items.length)} of {items.length}</span>
+          <button className="button secondary" type="button" disabled={currentViewerPage === 0} onClick={() => setViewerPage(currentViewerPage - 1)}>Previous</button>
+          <button className="button secondary" type="button" disabled={currentViewerPage + 1 >= viewerPages} onClick={() => setViewerPage(currentViewerPage + 1)}>Next</button>
+        </nav>
+      )}
       {error && (
         <p className="error-message" role="alert">
           {error}
         </p>
       )}
       {!items.length && (
-        <Empty>
-          No participants match these combined filters. Change the status or
-          team filter to see other records.
-        </Empty>
+        <div className="admin-roster-empty" role="status">
+          <p>No matches</p>
+          <button type="button" className="link-button" onClick={clearFilters}>
+            Clear filters
+          </button>
+        </div>
       )}
     </section>
   );
@@ -3420,7 +4092,10 @@ export function Review({
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
-  const [reviewTab, setReviewTab] = useState("review");
+  const [reviewTab, setReviewTab] = useState("review"),
+    [eligibilityStatus, setEligibilityStatus] = useState(
+      data.eligibility?.status || "needs_review",
+    );
   const p = data.project,
     v = data.version;
   if (!p) return <Empty>Select a submitted project.</Empty>;
@@ -3459,7 +4134,7 @@ export function Review({
   const versionRows: Row[] = data.versions || (v ? [v] : []);
   return (
     <section
-      className="admin-exact admin-review-page"
+      className="admin-exact admin-workspace admin-review-page"
       data-review-tab={reviewTab}
     >
       <header className="admin-review-header">
@@ -3520,7 +4195,7 @@ export function Review({
           aria-labelledby="admin-project-details-tab"
         >
           {payload.logo && payload.banner ? (
-            <ProjectBody project={payload} />
+            <ProjectBody project={payload} teamColorKey={p.teamPalette} />
           ) : (
             <>
               <h1>{payload.projectName || "Untitled draft"}</h1>
@@ -3543,12 +4218,10 @@ export function Review({
               <summary>Final judging rubric · reviewer private</summary>
               {data.scoringReady !== true && (
                 <p className="notice">
-                  Judging setup is pending. Rubric scoring is inactive until the
-                  server confirms readiness.
+                  Judging configuration is incomplete.
                 </p>
               )}
               <Form
-                title="Record verified rubric evidence"
                 disabled={data.scoringReady !== true}
                 onSave={async (f) => {
                   await run("review", {
@@ -3629,26 +4302,32 @@ export function Review({
                   });
                 }}
               >
-                <Field
-                  name="rule"
-                  label="Confirmed rule (required for Ineligible)"
-                />
-                <Field
-                  name="evidence"
-                  label="Private evidence (required for Ineligible)"
-                  type="textarea"
-                />
-
                 <Field name="status" label="Eligibility">
                   <select
                     name="status"
-                    defaultValue={data.eligibility?.status || "needs_review"}
+                    aria-label="Eligibility"
+                    value={eligibilityStatus}
+                    onChange={(event) =>
+                      setEligibilityStatus(event.target.value)
+                    }
                   >
                     <option value="needs_review">Checks pending</option>
                     <option value="eligible">Eligible</option>
                     <option value="ineligible">Ineligible</option>
                   </select>
                 </Field>
+                {eligibilityStatus === "ineligible" && (
+                  <div className="admin-eligibility-evidence">
+                    <Field name="rule" label="Rule" required minLength={5} />
+                    <Field
+                      name="evidence"
+                      label="Private evidence"
+                      type="textarea"
+                      required
+                      minLength={10}
+                    />
+                  </div>
+                )}
                 <Field
                   name="reason"
                   label="Verified evidence or reason"
@@ -3812,7 +4491,7 @@ export function Review({
               }}
             >
               <Field name="userId" label="Assigned judge or mentor">
-                <select name="userId" required>
+                <select name="userId" aria-label="Assigned judge or mentor" required>
                   <option value="">Choose a person</option>
                   {(data.reviewers || []).map((r: Row) => (
                     <option key={r.id} value={r.id}>
@@ -3832,6 +4511,68 @@ export function Review({
         </aside>
       </div>
     </section>
+  );
+}
+function AdminTeamIdea({
+  team,
+  run,
+}: {
+  team: Row;
+  run: (action: string, values: Row) => Promise<Row>;
+}) {
+  const [description, setDescription] = useState(
+    String(team.idea?.description || ""),
+  );
+  if (!team.idea) return <p className="admin-team-no-idea">No saved idea.</p>;
+  return (
+    <details className="admin-team-idea">
+      <summary>
+        <span>Team idea</span>
+        {team.locked ? (
+          <LockKeyhole size={16} aria-label="Locked" />
+        ) : (
+          <ChevronDown size={16} aria-hidden="true" />
+        )}
+      </summary>
+      <Form
+        className="admin-team-idea-form"
+        label={team.locked ? "Override idea" : "Save idea"}
+        onSave={async (form) => {
+          await run("admin-idea-override", {
+            teamId: team.id,
+            title: form.get("title"),
+            description: description.trim(),
+            confirmation: "OVERRIDE_TEAM_IDEA",
+          });
+        }}
+      >
+        <Field
+          name="title"
+          label="Idea title"
+          value={team.idea.title}
+          required
+          minLength={2}
+        />
+        <label>
+          <span>
+            Description{" "}
+            <span className="required-mark" aria-hidden="true">
+              *
+            </span>
+          </span>
+          <textarea
+            name="description"
+            aria-label="Description"
+            required
+            maxLength={500}
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
+            rows={3}
+          />
+          <small>{description.length}/500</small>
+        </label>
+      </Form>
+    </details>
   );
 }
 export function AdminList({
@@ -3864,7 +4605,7 @@ export function AdminList({
   const exportHref = `/api/export?list=${logs ? "logs" : teams ? "teams" : credits ? "credits" : "submissions"}&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}`;
   return (
     <section
-      className={`admin-exact admin-list-page${teams ? " admin-teams-page" : logs ? " admin-logs-page" : credits ? " admin-credits-page" : " admin-submissions-page"}`}
+      className={`admin-exact admin-workspace admin-list-page${teams ? " admin-teams-page" : logs ? " admin-logs-page" : credits ? " admin-credits-page" : " admin-submissions-page"}`}
     >
       <header className="page-heading admin-exact-heading">
         <h1>
@@ -3977,44 +4718,7 @@ export function AdminList({
         )}
       </div>
       {credits ? (
-        <>
-        <AdminCreditBatches batches={data.creditBatches || []} run={run} />
-        <div className="table-scroll admin-credit-inventory">
-          <table className="admin-credits-table">
-            <thead>
-              <tr>
-                <th>Credit</th>
-                <th>Status</th>
-                <th>Inventory</th>
-                <th>Assigned</th>
-              </tr>
-            </thead>
-            <tbody>
-              {items.map((credit) => (
-                <tr key={credit.id}>
-                  <td className="credit-identity">
-                    <AdminIcon name="ticket" />
-                    <strong>{credit.name}</strong>
-                  </td>
-                  <td className="credit-state">
-                    <Pill tone={credit.active ? "positive" : "neutral"}>
-                      {credit.active ? "Active" : "Inactive"}
-                    </Pill>
-                  </td>
-                  <td className="credit-metric">
-                    <span className="credit-metric-label">Inventory</span>
-                    <strong>{credit.inventory}</strong>
-                  </td>
-                  <td className="credit-metric">
-                    <span className="credit-metric-label">Assigned</span>
-                    <strong>{credit.assigned}</strong>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        </>
+        <AdminCreditBatches batches={data.creditBatches || []} categories={items as any} run={run} />
       ) : teams ? (
         <ul className="admin-team-list">
           {items.map((team) => (
@@ -4080,9 +4784,23 @@ export function AdminList({
                             : "Registered")}
                       </Pill>
                       <AdminLeaderTransfer
-                        team={team as { id: string; name: string; leader_id: string }}
-                        member={member as { id: string; name: string; removed?: boolean }}
-                        canTransfer={Boolean(data.me?.owner || data.me?.role === "admin")}
+                        team={
+                          team as {
+                            id: string;
+                            name: string;
+                            leader_id: string;
+                          }
+                        }
+                        member={
+                          member as {
+                            id: string;
+                            name: string;
+                            removed?: boolean;
+                          }
+                        }
+                        canTransfer={Boolean(
+                          data.me?.owner || data.me?.role === "admin",
+                        )}
                         run={run}
                       />
                       {member.id !== team.leader_id && (
@@ -4103,6 +4821,13 @@ export function AdminList({
                     </li>
                   ))}
                 </ul>
+                {(data.me?.owner || data.me?.role === "admin") && (
+                  <AdminTeamIdea
+                    key={`${team.id}-${team.idea?.title}-${team.idea?.description}`}
+                    team={team}
+                    run={run}
+                  />
+                )}
               </details>
             </li>
           ))}
@@ -4175,9 +4900,12 @@ export function AdminList({
                 (data.me?.owner || data.me?.role === "admin") && (
                   <details className="panel admin-submission-management">
                     <summary>
-                      {record.deleted_at
-                        ? "Removed project · manage restoration"
-                        : "Manage project and submissions"}
+                      <span>
+                        {record.deleted_at
+                          ? "Removed project · manage restoration"
+                          : "Manage project and submissions"}
+                      </span>
+                      <ChevronDown size={18} aria-hidden="true" />
                     </summary>
                     <AdminProjectActions
                       key={`${record.id}-${record.deleted_at || "active"}-${JSON.stringify(record.versions || [])}`}
@@ -4190,7 +4918,17 @@ export function AdminList({
           ))}
         </ul>
       )}
-      {!items.length && <Empty>No records match this view.</Empty>}
+      {!items.length && (
+        <p className="admin-empty-state" role="status">
+          {teams
+            ? "No teams match this view."
+            : logs
+              ? "No activity recorded yet."
+              : credits
+                ? "No credits match this view."
+                : "No submissions match this view."}
+        </p>
+      )}
     </section>
   );
 }
@@ -4203,6 +4941,7 @@ export function ContentEditor({
   run: (a: string, d: Row) => Promise<Row>;
   scope: "public" | "private";
 }) {
+  const hydrated = useHydrated();
   const record = scope === "public" ? data.content : data.venue;
   const initial = JSON.parse(record?.draft || "{}");
   const [content, setContent] = useState<Row>(initial),
@@ -4214,6 +4953,8 @@ export function ContentEditor({
       index: number;
       target: string;
     } | null>(null);
+  const [contentTab, setContentTab] = useState("agenda");
+  const contentId = useId();
   const dirty = JSON.stringify(content) !== JSON.stringify(initial);
   const update = (k: string, v: unknown) => {
     setContent((p) => ({ ...p, [k]: v }));
@@ -4285,7 +5026,10 @@ export function ContentEditor({
       )}
       <form
         className="panel admin-content-editor"
-        aria-busy={!!busy}
+        method="post"
+        inert={!hydrated}
+        data-hydrated={hydrated}
+        aria-busy={!hydrated || !!busy}
         onSubmit={(event) => {
           event.preventDefault();
           void persist("content-save");
@@ -4297,125 +5041,190 @@ export function ContentEditor({
             : "Private arrival details"}
         </h2>
         <fieldset
-          disabled={!!busy}
+          disabled={!hydrated || !!busy}
           style={{ border: 0, padding: 0, margin: 0, minWidth: 0 }}
         >
           {scope === "public" ? (
             <>
-              <h3>Agenda</h3>
-              {(content.agenda || []).map((entry: Row, index: number) => (
-                <fieldset key={index}>
-                  <legend>Agenda entry {index + 1}</legend>
-                  {["time", "title", "description"].map((key) => (
-                    <label key={key}>
-                      {key}
-                      <input
-                        value={entry[key]}
-                        onChange={(event) =>
-                          update(
-                            "agenda",
-                            content.agenda.map((row: Row, i: number) =>
-                              i === index
-                                ? { ...row, [key]: event.target.value }
-                                : row,
-                            ),
-                          )
-                        }
-                      />
-                    </label>
-                  ))}
-                  <button
-                    type="button"
-                    className="button secondary"
-                    aria-label={`Remove agenda entry ${index + 1}: ${entry.title || "Untitled"}`}
-                    onClick={() =>
-                      setRemoval({
-                        collection: "agenda",
-                        index,
-                        target: `Agenda entry ${index + 1}: ${entry.title || "Untitled"}`,
-                      })
-                    }
-                  >
-                    <Trash2 size={18} aria-hidden="true" focusable="false" />{" "}
-                    Remove
-                  </button>
-                </fieldset>
-              ))}
-              <button
-                type="button"
-                className="button secondary"
-                onClick={() => {
-                  update("agenda", [
-                    ...(content.agenda || []),
-                    { time: "", title: "", description: "" },
-                  ]);
-                  setStatus("Agenda entry added.");
-                }}
+              <AdminWorkspaceTabs
+                items={[
+                  { id: "agenda", label: "Agenda" },
+                  { id: "faqs", label: "FAQ" },
+                  { id: "rules", label: "Rules" },
+                ]}
+                value={contentTab}
+                onChange={setContentTab}
+                prefix={contentId}
+                label="Event content"
+              />
+              <section
+                id={`${contentId}-panel-agenda`}
+                role="tabpanel"
+                aria-labelledby={`${contentId}-tab-agenda`}
+                hidden={contentTab !== "agenda"}
+                className="admin-content-panel"
               >
-                <Plus size={18} aria-hidden="true" focusable="false" /> Add
-                agenda entry
-              </button>
-              <h3>Frequently asked questions</h3>
-              {(content.faqs || []).map((entry: Row, index: number) => (
-                <fieldset key={index}>
-                  <legend>Question {index + 1}</legend>
-                  {["question", "answer"].map((key) => (
-                    <label key={key}>
-                      {key}
-                      <textarea
-                        value={entry[key]}
-                        onChange={(event) =>
-                          update(
-                            "faqs",
-                            content.faqs.map((row: Row, i: number) =>
-                              i === index
-                                ? { ...row, [key]: event.target.value }
-                                : row,
-                            ),
-                          )
-                        }
-                      />
-                    </label>
-                  ))}
-                  <button
-                    type="button"
-                    className="button secondary"
-                    aria-label={`Remove question ${index + 1}: ${entry.question || "Untitled"}`}
-                    onClick={() =>
-                      setRemoval({
-                        collection: "faqs",
-                        index,
-                        target: `Question ${index + 1}: ${entry.question || "Untitled"}`,
-                      })
-                    }
+                {(content.agenda || []).map((entry: Row, index: number) => (
+                  <details
+                    key={index}
+                    className="admin-content-entry"
+                    open={index === 0}
                   >
-                    <Trash2 size={18} aria-hidden="true" focusable="false" />{" "}
-                    Remove
-                  </button>
-                </fieldset>
-              ))}
-              <button
-                type="button"
-                className="button secondary"
-                onClick={() => {
-                  update("faqs", [
-                    ...(content.faqs || []),
-                    { question: "", answer: "" },
-                  ]);
-                  setStatus("Question added.");
-                }}
+                    <summary>
+                      <span className="admin-entry-number">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <strong>{entry.title || "Untitled entry"}</strong>
+                      <ChevronDown size={18} aria-hidden="true" />
+                    </summary>
+                    <div className="admin-content-entry-fields">
+                      {["time", "title", "description"].map((key) => (
+                        <label key={key}>
+                          {key[0].toUpperCase() + key.slice(1)}
+                          <input
+                            value={entry[key]}
+                            onChange={(event) =>
+                              update(
+                                "agenda",
+                                content.agenda.map((row: Row, i: number) =>
+                                  i === index
+                                    ? { ...row, [key]: event.target.value }
+                                    : row,
+                                ),
+                              )
+                            }
+                          />
+                        </label>
+                      ))}
+                      <button
+                        type="button"
+                        className="button secondary"
+                        aria-label={`Remove agenda entry ${index + 1}: ${entry.title || "Untitled"}`}
+                        onClick={() =>
+                          setRemoval({
+                            collection: "agenda",
+                            index,
+                            target: `Agenda entry ${index + 1}: ${entry.title || "Untitled"}`,
+                          })
+                        }
+                      >
+                        <Trash2
+                          size={18}
+                          aria-hidden="true"
+                          focusable="false"
+                        />{" "}
+                        Remove
+                      </button>
+                    </div>
+                  </details>
+                ))}
+                <button
+                  type="button"
+                  className="button secondary"
+                  onClick={() => {
+                    update("agenda", [
+                      ...(content.agenda || []),
+                      { time: "", title: "", description: "" },
+                    ]);
+                    setStatus("Agenda entry added.");
+                  }}
+                >
+                  <Plus size={18} aria-hidden="true" focusable="false" /> Add
+                  agenda entry
+                </button>
+              </section>
+              <section
+                id={`${contentId}-panel-faqs`}
+                role="tabpanel"
+                aria-labelledby={`${contentId}-tab-faqs`}
+                hidden={contentTab !== "faqs"}
+                className="admin-content-panel"
               >
-                <Plus size={18} aria-hidden="true" focusable="false" /> Add
-                question
-              </button>
-              <label>
-                Rules · plain text
-                <textarea
-                  rows={7}
-                  value={content.rules || ""}
-                  onChange={(event) => update("rules", event.target.value)}
-                />
-              </label>
+                {(content.faqs || []).map((entry: Row, index: number) => (
+                  <details
+                    key={index}
+                    className="admin-content-entry"
+                    open={index === 0}
+                  >
+                    <summary>
+                      <span className="admin-entry-number">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <strong>{entry.question || "Untitled question"}</strong>
+                      <ChevronDown size={18} aria-hidden="true" />
+                    </summary>
+                    <div className="admin-content-entry-fields">
+                      {["question", "answer"].map((key) => (
+                        <label key={key}>
+                          {key[0].toUpperCase() + key.slice(1)}
+                          <textarea
+                            value={entry[key]}
+                            onChange={(event) =>
+                              update(
+                                "faqs",
+                                content.faqs.map((row: Row, i: number) =>
+                                  i === index
+                                    ? { ...row, [key]: event.target.value }
+                                    : row,
+                                ),
+                              )
+                            }
+                          />
+                        </label>
+                      ))}
+                      <button
+                        type="button"
+                        className="button secondary"
+                        aria-label={`Remove question ${index + 1}: ${entry.question || "Untitled"}`}
+                        onClick={() =>
+                          setRemoval({
+                            collection: "faqs",
+                            index,
+                            target: `Question ${index + 1}: ${entry.question || "Untitled"}`,
+                          })
+                        }
+                      >
+                        <Trash2
+                          size={18}
+                          aria-hidden="true"
+                          focusable="false"
+                        />{" "}
+                        Remove
+                      </button>
+                    </div>
+                  </details>
+                ))}
+                <button
+                  type="button"
+                  className="button secondary"
+                  onClick={() => {
+                    update("faqs", [
+                      ...(content.faqs || []),
+                      { question: "", answer: "" },
+                    ]);
+                    setStatus("Question added.");
+                  }}
+                >
+                  <Plus size={18} aria-hidden="true" focusable="false" /> Add
+                  question
+                </button>
+              </section>
+              <section
+                id={`${contentId}-panel-rules`}
+                role="tabpanel"
+                aria-labelledby={`${contentId}-tab-rules`}
+                hidden={contentTab !== "rules"}
+                className="admin-content-panel"
+              >
+                <label>
+                  <span className="sr-only">Rules</span>
+                  <textarea
+                    rows={7}
+                    value={content.rules || ""}
+                    onChange={(event) => update("rules", event.target.value)}
+                  />
+                </label>
+              </section>
             </>
           ) : (
             <>
@@ -4446,7 +5255,7 @@ export function ContentEditor({
             <button
               type="submit"
               className="button"
-              disabled={!!busy || (!dirty && !!record?.revision)}
+              disabled={!hydrated || !!busy || (!dirty && !!record?.revision)}
             >
               <SaveIcon size={18} aria-hidden="true" focusable="false" />
               {busy === "save" ? "Saving…" : "Save draft"}
@@ -4454,7 +5263,7 @@ export function ContentEditor({
             <button
               type="button"
               className="button secondary"
-              disabled={!!busy || dirty || !record?.revision}
+              disabled={!hydrated || !!busy || dirty || !record?.revision}
               onClick={() => {
                 void persist("content-publish");
               }}
@@ -4488,10 +5297,9 @@ function OwnerPolicyControls({
   const weights = data.policy?.weights || {};
   return (
     <section className="panel">
-      <h2>Global scoring weights</h2>
+      <h2>Scoring weights</h2>
 
       <Form
-        title="Global scoring weights"
         disabled={data.readiness?.scoring?.ready !== true}
         label="Preview global weights"
         onSave={async (f) => {
@@ -4515,7 +5323,18 @@ function OwnerPolicyControls({
             key={key}
             name={key}
             type="number"
-            label={key + " weight"}
+            label={
+              (
+                {
+                  human: "Human review",
+                  ai: "AI evaluation",
+                  votes: "Votes",
+                  diversity: "Collaboration",
+                  codex: "Codex",
+                  feedback: "Feedback",
+                } as Record<string, string>
+              )[key] || key
+            }
             value={value}
             required
           />
@@ -4577,6 +5396,9 @@ export function AdminEngagementControls({
     return (
       <section className="admin-settings-section admin-settings-engagement">
         <h2>Voting and public comments</h2>
+        <p className="control-feedback" role="status">
+          Voting settings could not load. Refresh this page.
+        </p>
       </section>
     );
   return (
@@ -4651,6 +5473,7 @@ function AdminCreditInstructions({
       <label>
         Provider
         <select
+          aria-label="Provider"
           value={provider.id}
           onChange={(event) => setSelected(event.target.value)}
         >
@@ -4677,158 +5500,193 @@ export function Settings({
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
+  const [section, setSection] = useState("event");
+  const settingsId = useId();
+  const sections = [
+    { id: "event", label: "Event" },
+    { id: "results", label: "Results" },
+    { id: "access", label: "Access" },
+    ...(data.me?.owner ? [{ id: "content", label: "Content" }] : []),
+  ];
+  const panel = (id: string) => ({
+    id: `${settingsId}-panel-${id}`,
+    role: "tabpanel" as const,
+    "aria-labelledby": `${settingsId}-tab-${id}`,
+    hidden: section !== id,
+    className: "admin-settings-panel",
+  });
   const resultControl = (kind: "ai" | "freeze" | "final") => ({
     allowed: data.resultControls?.[kind]?.allowed === true,
     reason: data.resultControls?.[kind]?.reason || "Reload result controls.",
   });
   return (
-    <section className="admin-exact admin-settings-page">
+    <section className="admin-exact admin-workspace admin-settings-page">
       <header className="page-heading admin-exact-heading">
         <h1>
           <HeadingDot color="green" expression="squeezed" />
           Settings
         </h1>
       </header>
-      {data.me?.owner && (
-        <OwnerSubmissionWindow
-          key={`${data.policyVersion}-${data.policy?.submissionOpen}-${data.policy?.submissionClose}`}
-          owner={true}
-          open={data.policy?.submissionOpen || ""}
-          close={data.policy?.submissionClose || ""}
+      <AdminWorkspaceTabs
+        items={sections}
+        value={section}
+        onChange={setSection}
+        prefix={settingsId}
+        label="Settings sections"
+      />
+      <div {...panel("event")}>
+        {data.me?.owner && (
+          <OwnerSubmissionWindow
+            key={`${data.policyVersion}-${data.policy?.submissionOpen}-${data.policy?.submissionClose}`}
+            owner={true}
+            open={data.policy?.submissionOpen || ""}
+            close={data.policy?.submissionClose || ""}
+            run={run}
+          />
+        )}
+        <AdminEngagementControls
+          key={`engagement-${data.engagement?.version ?? "pending"}`}
+          data={data}
           run={run}
         />
-      )}
-      <AdminEngagementControls
-        key={`engagement-${data.engagement?.version ?? "pending"}`}
-        data={data}
-        run={run}
-      />
-      {(data.me?.owner || data.me?.role === "admin") && (
-        <section className="admin-settings-section admin-settings-reveals">
-          <h2>Results visibility</h2>
-          <p className="admin-results-state">
-            {data.scoreRelease?.stage === "ai"
-              ? "AI scores revealed"
-              : data.scoreRelease?.stage === "final"
-                ? "Final scores revealed"
-                : "Hidden"}
-          </p>
+      </div>
+      <div {...panel("results")}>
+        {(data.me?.owner || data.me?.role === "admin") && (
+          <section className="admin-settings-section admin-settings-reveals">
+            <h2>Results visibility</h2>
+            <p className="admin-results-state">
+              {data.scoreRelease?.stage === "ai"
+                ? "AI scores revealed"
+                : data.scoreRelease?.stage === "final"
+                  ? "Final scores revealed"
+                  : "Hidden"}
+            </p>
 
-          <Form
-            title="Reveal AI scores"
-            disabled={!resultControl("ai").allowed}
-            disabledReason={resultControl("ai").reason}
-            label="Reveal AI scores"
-            onSave={async (f) => {
-              await run("reveal-ai-scores", { reason: f.get("reason") });
-            }}
-          >
-            <Field name="reason" label="Reveal reason" required minLength={5} />
-          </Form>
-          {data.me?.owner && (
             <Form
-              title="Freeze final judging snapshot"
-              disabled={!resultControl("freeze").allowed}
-              disabledReason={resultControl("freeze").reason}
-              label="Freeze final scores"
+              title="AI evaluation"
+              disabled={!resultControl("ai").allowed}
+              disabledReason={resultControl("ai").reason}
+              label="Reveal AI scores"
               onSave={async (f) => {
-                await run("freeze-results", { reason: f.get("reason") });
+                await run("reveal-ai-scores", { reason: f.get("reason") });
               }}
             >
               <Field
                 name="reason"
-                label="Freeze reason"
+                label="Reveal reason"
                 required
                 minLength={5}
               />
             </Form>
-          )}
-          <Form
-            title="Reveal Final score"
-            disabled={!resultControl("final").allowed}
-            disabledReason={resultControl("final").reason}
-            label="Reveal Final score"
-            onSave={async (f) => {
-              await run("reveal-final-scores", {
-                snapshotId: f.get("snapshotId"),
-                reason: f.get("reason"),
-              });
-            }}
-          >
-            <Field name="snapshotId" label="Frozen final snapshot">
-              <select name="snapshotId" required>
-                <option value="">Choose a frozen snapshot</option>
-                {(data.resultSnapshots || []).map((r: Row) => (
-                  <option key={r.id} value={r.id}>
-                    {r.created_at}
-                  </option>
-                ))}
-              </select>
-            </Field>
-            <Field name="reason" label="Reveal reason" required minLength={5} />
-          </Form>
-          {data.scoreRelease?.remainingAwards?.length > 0 && (
+            {data.me?.owner && (
+              <Form
+                title="Final judging snapshot"
+                disabled={!resultControl("freeze").allowed}
+                disabledReason={resultControl("freeze").reason}
+                label="Freeze final scores"
+                onSave={async (f) => {
+                  await run("freeze-results", { reason: f.get("reason") });
+                }}
+              >
+                <Field
+                  name="reason"
+                  label="Freeze reason"
+                  required
+                  minLength={5}
+                />
+              </Form>
+            )}
             <Form
-              title="Unveil one award"
-              disabled={data.readiness?.scoring?.ready !== true}
-              label="Unveil selected award"
+              title="Final results"
+              disabled={!resultControl("final").allowed}
+              disabledReason={resultControl("final").reason}
+              label="Reveal Final score"
               onSave={async (f) => {
-                await run("unveil-winner", {
-                  releaseId: data.scoreRelease.releaseId,
-                  position: Number(f.get("position")),
+                await run("reveal-final-scores", {
+                  snapshotId: f.get("snapshotId"),
                   reason: f.get("reason"),
                 });
               }}
             >
-              <Field name="position" label="Choose an unrevealed award">
-                <select name="position" required>
-                  <option value="">Choose an award</option>
-                  {data.scoreRelease.remainingAwards.map((a: Row) => (
-                    <option key={a.position} value={a.position}>
-                      Award {a.position}
+              <Field name="snapshotId" label="Frozen final snapshot">
+                <select name="snapshotId" aria-label="Frozen final snapshot" required>
+                  <option value="">Choose a frozen snapshot</option>
+                  {(data.resultSnapshots || []).map((r: Row) => (
+                    <option key={r.id} value={r.id}>
+                      {r.created_at}
                     </option>
                   ))}
                 </select>
               </Field>
               <Field
                 name="reason"
-                label="Unveil reason"
+                label="Reveal reason"
                 required
                 minLength={5}
               />
             </Form>
-          )}
-        </section>
-      )}
-
-      <AddAdmins owner={!!data.me?.owner} title="Admin access" run={run} />
-      <AdminCreditInstructions
-        providers={data.creditInstructions || []}
-        run={run}
-      />
-      {data.me?.owner && (
-        <details className="admin-settings-extra">
-          <summary>
-            Scoring configuration
-            <ChevronDown size={20} aria-hidden="true" />
-          </summary>
-          <OwnerPolicyControls data={data} run={run} />
-        </details>
-      )}
-      {data.me?.owner && (
-        <details className="admin-settings-extra">
-          <summary>
-            Public event content
-            <ChevronDown size={20} aria-hidden="true" />
-          </summary>
-          <ContentEditor
-            key={`public-${data.content?.revision}`}
-            data={data}
-            run={run}
-            scope="public"
-          />
-        </details>
-      )}
+            {data.scoreRelease?.remainingAwards?.length > 0 && (
+              <Form
+                title="Unveil one award"
+                disabled={data.readiness?.scoring?.ready !== true}
+                label="Unveil selected award"
+                onSave={async (f) => {
+                  await run("unveil-winner", {
+                    releaseId: data.scoreRelease.releaseId,
+                    position: Number(f.get("position")),
+                    reason: f.get("reason"),
+                  });
+                }}
+              >
+                <Field name="position" label="Choose an unrevealed award">
+                  <select name="position" aria-label="Unrevealed award" required>
+                    <option value="">Choose an award</option>
+                    {data.scoreRelease.remainingAwards.map((a: Row) => (
+                      <option key={a.position} value={a.position}>
+                        Award {a.position}
+                      </option>
+                    ))}
+                  </select>
+                </Field>
+                <Field
+                  name="reason"
+                  label="Unveil reason"
+                  required
+                  minLength={5}
+                />
+              </Form>
+            )}
+          </section>
+        )}
+      </div>
+      <div {...panel("access")}>
+        <AddAdmins owner={!!data.me?.owner} title="Admin access" access={data.adminAccess} run={run} />
+        <AdminCreditInstructions
+          providers={data.creditInstructions || []}
+          run={run}
+        />
+      </div>
+      <div {...panel("content")}>
+        {data.me?.owner && (
+          <section className="admin-event-content-workspace">
+            <ContentEditor
+              key={`public-${data.content?.revision}`}
+              data={data}
+              run={run}
+              scope="public"
+            />
+          </section>
+        )}{" "}
+        {data.me?.owner && (
+          <details className="admin-settings-extra">
+            <summary>
+              Scoring configuration
+              <ChevronDown size={20} aria-hidden="true" />
+            </summary>
+            <OwnerPolicyControls data={data} run={run} />
+          </details>
+        )}
+      </div>
     </section>
   );
 }
@@ -4850,6 +5708,7 @@ export default function Portal({
   localTest = false,
   initialPublic,
   initialView,
+  initialFailure,
   pendingPath = null,
   onNavigate,
 }: {
@@ -4857,20 +5716,25 @@ export default function Portal({
   localTest?: boolean;
   initialPublic?: View;
   initialView?: View;
+  initialFailure?: PortalLoadFailure;
   pendingPath?: string | null;
-  onNavigate?: (event: { preventDefault(): void }, destination: string) => void;
+  onNavigate?: (event: { preventDefault(): void }, destination: string, options?: { replace?: boolean }) => void;
 }) {
+  const hydrated = useHydrated();
   const path = canonical(original);
   function navigate(event: { preventDefault(): void }, destination: string) {
     if (!onNavigate || canonical(destination) === path) return;
+    const replace = consumeDialogHistoryForNavigation();
     setMenu(false);
-    onNavigate(event, destination);
+    onNavigate(event, destination, { replace });
   }
   const [data, setData] = useState<View>(initialView || initialPublic || {}),
-    [loading, setLoading] = useState(!initialView && !initialPublic && path !== "/"),
-    [error, setError] = useState(""),
-    [errorCode, setErrorCode] = useState(""),
+    [loading, setLoading] = useState(!initialView && !initialPublic && !initialFailure && path !== "/"),
+    [error, setError] = useState(initialFailure?.message || ""),
+    [errorCode, setErrorCode] = useState(initialFailure?.code || ""),
+    [refreshing, setRefreshing] = useState(false),
     [message, setMessage] = useState(""),
+    [messageTone, setMessageTone] = useState<"success" | "error">("success"),
     [menu, setMenu] = useState(false);
   const [confirmation, setConfirmation] = useState<Confirmation | null>(null);
   const gate = useRef<ConfirmationGate | null>(null),
@@ -4882,14 +5746,19 @@ export default function Portal({
     hasLoadedView = useRef(!!initialView || !!initialPublic),
     presentationCache = useRef(new AdminPresentationCache());
   if (!gate.current) gate.current = new ConfirmationGate(setConfirmation);
+  useEffect(() => {
+    if (!message || messageTone !== "success") return;
+    const timer = window.setTimeout(() => setMessage(""), 5000);
+    return () => window.clearTimeout(timer);
+  }, [message, messageTone]);
   async function load() {
     const generation = ++loadGeneration.current;
     loadAbort.current?.abort();
     const controller = new AbortController();
     loadAbort.current = controller;
     lastRefresh.current = Date.now();
+    setRefreshing(true);
     setLoading(!hasLoadedView.current);
-    setError("");
     try {
       const focus=new URLSearchParams(window.location.search).get("project") || "";
       const options={search:"",page:0,focus};
@@ -4899,12 +5768,13 @@ export default function Portal({
       if (generation !== loadGeneration.current) return;
       if (!r.ok) {
         presentationCache.current.clear();
-        setErrorCode(body.code || "");
-        hasLoadedView.current = false;
-        setData({});
-        throw new Error(
-          body.message || body.code || "This page could not be loaded.",
-        );
+        const failure = portalLoadFailure(r.status, body);
+        setErrorCode(failure.code);
+        if (r.status === 401 || r.status === 403) {
+          hasLoadedView.current = false;
+          setData({});
+        }
+        throw new Error(failure.message);
       }
       let hydrated: View;
       try {hydrated=await presentationCache.current.merge(body,path,options);}
@@ -4916,17 +5786,32 @@ export default function Portal({
       }
       if(generation!==loadGeneration.current || controller.signal.aborted)return;
       setErrorCode("");
+      setError("");
       hasLoadedView.current = true;
       setData(hydrated);
     } catch (e) {
-      if (generation === loadGeneration.current && !controller.signal.aborted) setError((e as Error).message);
+      if (generation === loadGeneration.current && !controller.signal.aborted) {
+        if (e instanceof TypeError || e instanceof SyntaxError) {
+          setErrorCode("LOAD_FAILED");
+          setError(e instanceof SyntaxError ? "The portal returned an unreadable response. Try again." : "Unable to reach the portal. Check your connection and try again.");
+        } else setError((e as Error).message);
+      }
     } finally {
-      if (generation === loadGeneration.current) setLoading(false);
+      if (generation === loadGeneration.current) { setLoading(false); setRefreshing(false); }
       if (loadAbort.current === controller) loadAbort.current = null;
     }
   }
   useEffect(() => {
-    if (initialView) {
+    setMessage("");
+    setRefreshing(false);
+    setError(initialFailure?.message || "");
+    setErrorCode(initialFailure?.code || "");
+    if (initialFailure) {
+      setData({});
+      hasLoadedView.current = false;
+      setLoading(false);
+      lastRefresh.current = Date.now();
+    } else if (initialView) {
       void presentationCache.current.merge(initialView,path,{search:"",page:0,focus:""}).catch(()=>{});
       setData(initialView);
       hasLoadedView.current = true;
@@ -4953,7 +5838,7 @@ export default function Portal({
       ++loadGeneration.current;
       loadAbort.current?.abort();
     };
-  }, [path, initialView, initialPublic]);
+  }, [path, initialView, initialPublic, initialFailure]);
   useEffect(() => {
     const hide = () => {
       ++loadGeneration.current;
@@ -4975,7 +5860,10 @@ export default function Portal({
       gate.current?.decide(false);
     };
   }, [path]);
-  const run = async (action: string, values: Row) => {
+  const clearSuccessNotice = () => {
+    if (messageTone === "success") setMessage("");
+  };
+  const run = async (action: string, values: Row, options?: { errorFeedback?: "local" }) => {
     const mutationKey=action+":"+(values.columnId||values.batchId||values.projectId||values.teamId||values.userId||values.typeId||values.digest||"page");
     if (mutationKeys.current.has(mutationKey) || gate.current?.pending) throw new ActionCancelled();
     mutationKeys.current.add(mutationKey);
@@ -5004,16 +5892,21 @@ export default function Portal({
       )
         throw new ActionCancelled();
       const token = revealConfirmation(action, values);
-      const { newCount: _count, singleEmail: _email, ...payload } = values;
+      const { newCount: _count, singleEmail: _email, windowWarnings: _windowWarnings, creditImportSummary: _creditSummary, ...payload } = values;
+      setMessage("");
       const result = await api(
         action,
         token ? { ...payload, confirmation: token } : payload,
       );
-      setMessage(result.message || "Saved.");
+      setMessageTone("success");
+      setMessage(portalSuccessText(action, result.message));
       await load();
       return result;
     } catch (e) {
-      if (!(e instanceof ActionCancelled)) setMessage((e as Error).message);
+      if (!(e instanceof ActionCancelled) && options?.errorFeedback !== "local") {
+        setMessageTone("error");
+        setMessage((e as Error).message);
+      }
       throw e;
     } finally {
       mutationKeys.current.delete(mutationKey);
@@ -5042,12 +5935,14 @@ export default function Portal({
       }
       presentationCache.current.clear();
       setData({});
+      setMessageTone("success");
       setMessage("Signing out…");
       const link = document.createElement("a");
       link.href = "/";
       link.target = "_top";
       link.click();
     } catch (e) {
+      setMessageTone("error");
       setMessage((e as Error).message);
     } finally {
       actionBusy.current = false;
@@ -5059,14 +5954,17 @@ export default function Portal({
     (path === "/dashboard" &&
       !!data.profileIncomplete &&
       data.me?.mode !== "viewer");
+  const loadErrorTitle = errorCode === "SIGN_IN_REQUIRED" || errorCode === "AUTH_REQUIRED" ? "Sign in to continue" : "This page could not load";
   const publicBrowse = path.startsWith("/projects") || path === "/leaderboard";
   const workspaceShell = path !== "/" && !publicBrowse && !profileOnboarding;
+  const studioDashboard = path === "/dashboard" && !profileOnboarding;
   const c =
     teamPalettes[(data.team?.palette || "forest") as Palette] ||
     teamPalettes.forest;
   return (
     <div
-      className={`app-shell ${path === "/" ? "public-home-shell" : ""} ${profileOnboarding ? "onboarding-shell" : ""} ${workspaceShell ? "workspace-shell" : ""} ${publicBrowse ? "public-project-shell" : ""}`.trim()}
+      className={`app-shell ${path === "/" ? "public-home-shell" : ""} ${profileOnboarding ? "onboarding-shell" : ""} ${workspaceShell ? "workspace-shell" : ""} ${publicBrowse ? "public-project-shell" : ""} ${studioDashboard ? "studio-dashboard-shell" : ""}`.trim()}
+      data-hydrated={hydrated}
       style={{ "--team-accent": c.ink, "--team-wash": c.wash } as CSSProperties}
     >
       {confirmation && (
@@ -5092,6 +5990,7 @@ export default function Portal({
           </a>
           <button
             className="public-menu button secondary"
+            disabled={!hydrated}
             aria-controls="mobile-navigation"
             aria-haspopup="dialog"
             aria-expanded={menu}
@@ -5128,7 +6027,7 @@ export default function Portal({
             >
               {publicBrowse && <Icon name="person" />}
               {data.me
-                ? publicBrowse
+                ? data.me.mode === "viewer" ? "Explore the portal" : publicBrowse
                   ? "Open your Dashboard"
                   : "Dashboard"
                 : "Sign in"}
@@ -5148,6 +6047,7 @@ export default function Portal({
         </a>
         <button
           className="button secondary"
+          disabled={!hydrated}
           aria-expanded={menu}
           aria-controls="mobile-navigation"
           aria-haspopup="dialog"
@@ -5170,7 +6070,7 @@ export default function Portal({
               privileged ||
               data.me.role === "volunteer" ||
               data.me.mode === "viewer"
-                ? "Your Dashboard"
+                ? data.me.mode === "viewer" ? "Viewer mode" : "Your Dashboard"
                 : "Your profile"
             }
           >
@@ -5278,6 +6178,9 @@ export default function Portal({
                   {admin ? "Workspace" : "Administration"}
                 </a>
               )}
+              {data.me.mode !== "viewer" && <Link className="personal-credit-nav-link" prefetch={false} href="/personal/credits" onNavigate={(event) => navigate(event, "/personal/credits")} aria-current={path === "/personal/credits" ? "page" : undefined}>
+                <Icon name="credits" /> My credits
+              </Link>}
               <button
                 className="link-button account-logout"
                 type="button"
@@ -5297,19 +6200,21 @@ export default function Portal({
       </aside>
       <MobileNavigation open={menu} onClose={() => setMenu(false)}>
         {nav.map(([href, label]) => (
-          <Link prefetch={false} key={href} href={href} onNavigate={(event) => navigate(event, href)} aria-current={path === href ? "page" : undefined}>{label}</Link>
+          <Link prefetch={false} key={href} href={href} onNavigate={(event) => navigate(event, href)} aria-current={path === href ? "page" : undefined}><Icon name={navigationIcon(label)} />{label}</Link>
         ))}
         {!data.me ? (
-          <a href="/signin?returnTo=%2Fdashboard" target="_top">Sign in</a>
+          <a href="/signin?returnTo=%2Fdashboard" target="_top"><Icon name="person" />Sign in</a>
         ) : (
           <>
-            {data.me.mode !== "viewer" && <a href="/profile">Your profile</a>}
+            {data.me.mode !== "viewer" && <Link prefetch={false} href="/profile" onNavigate={(event) => navigate(event, "/profile")}><Icon name="person" />Your profile</Link>}
             {(privileged || data.me.role === "volunteer") && (
-              <a href={admin ? "/dashboard" : "/admin/participants"}>
+              <Link prefetch={false} href={admin ? "/dashboard" : "/admin/participants"} onNavigate={(event) => navigate(event, admin ? "/dashboard" : "/admin/participants")}>
+                <Icon name={admin ? "dashboard" : "settings"} />
                 {admin ? "Workspace" : "Administration"}
-              </a>
+              </Link>
             )}
-            <button type="button" onClick={() => { setMenu(false); requestAnimationFrame(() => void logout()); }}>Log out</button>
+            {data.me.mode !== "viewer" && <Link prefetch={false} href="/personal/credits" onNavigate={(event) => navigate(event, "/personal/credits")} aria-current={path === "/personal/credits" ? "page" : undefined}><Icon name="credits" />My credits</Link>}
+            <button className="navigation-logout" type="button" onClick={() => { setMenu(false); requestAnimationFrame(() => void logout()); }}><LogOut size={24} aria-hidden="true" />Log out</button>
           </>
         )}
       </MobileNavigation>
@@ -5325,42 +6230,34 @@ export default function Portal({
           </div>
         )}
         {message && (
-          <p className="action-message" role="status">
-            {message}
-          </p>
+          <div className="action-message" data-tone={messageTone} role={messageTone === "error" ? "alert" : "status"}>
+            {messageTone === "success" && <CircleCheck size={20} aria-hidden="true" />}
+            <span>{message}</span>
+            <button type="button" onClick={() => setMessage("")} aria-label="Dismiss notification"><X size={18} aria-hidden="true" /></button>
+          </div>
         )}
         {error && (
-          <div className="error-message" role="alert">
-            {errorCode !== "LUMA_EMAIL_MISMATCH" && (
-              <h2>This page could not load.</h2>
-            )}
-            <p>{error}</p>
+          <section className="page-error-card" role="alert" aria-busy={refreshing}>
+            <HeadingDot color="orange" expression="sleepy" size={48} paused />
+            <h1>{loadErrorTitle}</h1>
+            {error.trim().replace(/[.!]$/, "") !== loadErrorTitle && <p>{error}</p>}
+            <div className="form-actions">
             <button
               className="button secondary"
+              disabled={refreshing}
               onClick={() => {
                 void load();
               }}
             >
-              Try again
+              {refreshing ? "Trying again…" : "Try again"}
             </button>
-            {errorCode === "LUMA_EMAIL_MISMATCH" ? (
-              <button className="button" onClick={() => void logout()}>
-                Sign out / switch account
-              </button>
-            ) : (
-              !data.me && (
-                <a
-                  className="text-link"
-                  target="_top"
-                  href={`/signin?returnTo=${encodeURIComponent(path)}`}
-                >
-                  Sign in
-                </a>
-              )
+            {!data.me && (
+              <a className="button" target="_top" href={`/signin?returnTo=${encodeURIComponent(path)}`}>Sign in</a>
             )}
-          </div>
+            </div>
+          </section>
         )}
-        {pendingPath ? (
+        {(!error || path === "/") && (pendingPath ? (
           <RouteSkeleton path={pendingPath} />
         ) : path === "/" ? (
           <Home
@@ -5398,20 +6295,24 @@ export default function Portal({
         ) : (
           !error && (
             <>
-              {data.profileIncomplete &&
+              {data.me?.mode === "viewer" && ["/dashboard", "/profile", "/submission", "/personal/credits"].includes(path) ? (
+                <ViewerWelcome removed={!!data.me.deactivated} />
+              ) : data.profileIncomplete &&
               data.me?.mode !== "viewer" &&
               (path === "/dashboard" || path === "/profile") ? (
                 <Profile data={data} run={run} gated />
               ) : path === "/profile" ? (
                 data.me?.mode === "viewer" ? (
-                  <Dashboard data={data} run={run} />
+                  <Dashboard data={data} run={run} onInteraction={clearSuccessNotice} />
                 ) : (
                   <Profile data={data} run={run} />
                 )
               ) : path === "/rules" ? (
                 <SharedRules categories={data.categories || []} />
+              ) : path === "/personal/credits" ? (
+                <PersonalCredits data={data} />
               ) : path === "/dashboard" ? (
-                <Dashboard data={data} run={run} />
+                <Dashboard data={data} run={run} onInteraction={clearSuccessNotice} />
               ) : path === "/discover/teams" ||
                 path === "/discover/participants" ? (
                 <Discover data={data} path={path} run={run} />
@@ -5420,6 +6321,7 @@ export default function Portal({
                   key={`${data.project?.revision || 0}-${data.team?.id || "none"}`}
                   data={data}
                   run={run}
+                  onInteraction={clearSuccessNotice}
                 />
               ) : path.startsWith("/projects") || path === "/leaderboard" ? (
                 <Projects data={data} path={path} run={run} />
@@ -5436,7 +6338,7 @@ export default function Portal({
               )}
             </>
           )
-        )}
+        ))}
       </main>
     </div>
   );
@@ -5465,6 +6367,7 @@ function StatusChange({
     <>
       {!disabled && (
         <Form
+          key={`${kind}:${target}:${current}`}
           title={name}
           label="Review status change"
           onSave={async (f) => {

@@ -1,0 +1,863 @@
+{
+  "source": "7c1103798170138d5ae696d9ce9bb3a985d7ee69",
+  "syntheticOnly": true,
+  "database": "/tmp/ddd-score-phases-8833.sqlite",
+  "backupPath": "/tmp/ddd-score-phases-8833-before-reveal.sqlite",
+  "writes": [
+    {
+      "mode": "ai",
+      "startedAt": "2026-10-24T13:33:49.584Z",
+      "status": "complete",
+      "commands": [
+        {
+          "action": "reveal-ai-scores",
+          "status": "persisted",
+          "result": {
+            "message": "AI scores are now public.",
+            "releaseId": "b2b0b9da-655d-40e2-aa6d-e14694885738"
+          }
+        }
+      ],
+      "backupCreated": true,
+      "syntheticProviderShapedRows": 26,
+      "projection": {
+        "scoreStage": "ai",
+        "finalCountdownComplete": false,
+        "awards": [],
+        "visibleResults": [
+          {
+            "id": "fake_control_project_00",
+            "result": {
+              "score": 30,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_01",
+            "result": {
+              "score": 29.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_02",
+            "result": {
+              "score": 29,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_03",
+            "result": {
+              "score": 28.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_04",
+            "result": {
+              "score": 28,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_05",
+            "result": {
+              "score": 27.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_06",
+            "result": {
+              "score": 27,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_07",
+            "result": {
+              "score": 26.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_08",
+            "result": {
+              "score": 26,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_09",
+            "result": {
+              "score": 25.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_10",
+            "result": {
+              "score": 25,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_11",
+            "result": {
+              "score": 24.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_12",
+            "result": {
+              "score": 24,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_13",
+            "result": {
+              "score": 23.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_14",
+            "result": {
+              "score": 23,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_15",
+            "result": {
+              "score": 22.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_16",
+            "result": {
+              "score": 22,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_17",
+            "result": {
+              "score": 21.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_18",
+            "result": {
+              "score": 21,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_19",
+            "result": {
+              "score": 20.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_20",
+            "result": {
+              "score": 20,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_21",
+            "result": {
+              "score": 19.5,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_22",
+            "result": {
+              "score": 19,
+              "stage": "ai"
+            }
+          },
+          {
+            "id": "fake_control_project_23",
+            "result": {
+              "score": 18.5,
+              "stage": "ai"
+            }
+          }
+        ]
+      },
+      "blockedFetches": 0,
+      "completedAt": "2026-10-24T13:33:49.645Z"
+    },
+    {
+      "mode": "final-hidden",
+      "startedAt": "2026-10-24T14:38:05.025Z",
+      "status": "complete",
+      "commands": [
+        {
+          "action": "reveal-final-scores",
+          "status": "persisted",
+          "result": {
+            "message": "Final reveal started. Awards remain hidden until unveiled individually.",
+            "releaseId": "40ed977f-b654-4933-acf8-6ea4e22aff4e"
+          }
+        }
+      ],
+      "syntheticSnapshotRows": 26,
+      "projection": {
+        "scoreStage": "final",
+        "finalCountdownComplete": false,
+        "awards": [],
+        "visibleResults": [
+          {
+            "id": "visual_project_eve"
+          },
+          {
+            "id": "fake_control_project_00"
+          },
+          {
+            "id": "fake_control_project_01"
+          },
+          {
+            "id": "fake_control_project_02"
+          },
+          {
+            "id": "fake_control_project_03"
+          },
+          {
+            "id": "fake_control_project_04"
+          },
+          {
+            "id": "fake_control_project_05"
+          },
+          {
+            "id": "fake_control_project_06"
+          },
+          {
+            "id": "fake_control_project_07"
+          },
+          {
+            "id": "fake_control_project_08"
+          },
+          {
+            "id": "fake_control_project_09"
+          },
+          {
+            "id": "fake_control_project_10"
+          },
+          {
+            "id": "fake_control_project_11"
+          },
+          {
+            "id": "fake_control_project_12"
+          },
+          {
+            "id": "fake_control_project_13"
+          },
+          {
+            "id": "fake_control_project_14"
+          },
+          {
+            "id": "fake_control_project_15"
+          },
+          {
+            "id": "fake_control_project_16"
+          },
+          {
+            "id": "fake_control_project_17"
+          },
+          {
+            "id": "fake_control_project_18"
+          },
+          {
+            "id": "fake_control_project_19"
+          },
+          {
+            "id": "fake_control_project_20"
+          },
+          {
+            "id": "fake_control_project_21"
+          },
+          {
+            "id": "fake_control_project_22"
+          }
+        ]
+      },
+      "blockedFetches": 0,
+      "completedAt": "2026-10-24T14:38:05.095Z"
+    },
+    {
+      "mode": "unveil-one",
+      "startedAt": "2026-10-24T14:38:40.640Z",
+      "status": "complete",
+      "commands": [
+        {
+          "action": "unveil-winner",
+          "status": "persisted",
+          "result": {
+            "message": "Award 5 is now public."
+          }
+        }
+      ],
+      "projection": {
+        "scoreStage": "final",
+        "finalCountdownComplete": false,
+        "awards": [
+          {
+            "projectName": "Synthetic Control Project 04",
+            "teamName": "Synthetic Control Project 04 Team",
+            "slug": "synthetic-control-04",
+            "score": 91,
+            "position": 5
+          }
+        ],
+        "visibleResults": [
+          {
+            "id": "visual_project_eve"
+          },
+          {
+            "id": "fake_control_project_00"
+          },
+          {
+            "id": "fake_control_project_01"
+          },
+          {
+            "id": "fake_control_project_02"
+          },
+          {
+            "id": "fake_control_project_03"
+          },
+          {
+            "id": "fake_control_project_04",
+            "result": {
+              "score": 91,
+              "stage": "final",
+              "position": 5
+            }
+          },
+          {
+            "id": "fake_control_project_05"
+          },
+          {
+            "id": "fake_control_project_06"
+          },
+          {
+            "id": "fake_control_project_07"
+          },
+          {
+            "id": "fake_control_project_08"
+          },
+          {
+            "id": "fake_control_project_09"
+          },
+          {
+            "id": "fake_control_project_10"
+          },
+          {
+            "id": "fake_control_project_11"
+          },
+          {
+            "id": "fake_control_project_12"
+          },
+          {
+            "id": "fake_control_project_13"
+          },
+          {
+            "id": "fake_control_project_14"
+          },
+          {
+            "id": "fake_control_project_15"
+          },
+          {
+            "id": "fake_control_project_16"
+          },
+          {
+            "id": "fake_control_project_17"
+          },
+          {
+            "id": "fake_control_project_18"
+          },
+          {
+            "id": "fake_control_project_19"
+          },
+          {
+            "id": "fake_control_project_20"
+          },
+          {
+            "id": "fake_control_project_21"
+          },
+          {
+            "id": "fake_control_project_22"
+          }
+        ]
+      },
+      "blockedFetches": 0,
+      "completedAt": "2026-10-24T14:38:40.668Z"
+    },
+    {
+      "mode": "unveil-all",
+      "startedAt": "2026-10-24T14:38:49.789Z",
+      "status": "complete",
+      "commands": [
+        {
+          "action": "unveil-winner",
+          "status": "persisted",
+          "result": {
+            "message": "Award 4 is now public."
+          }
+        },
+        {
+          "action": "unveil-winner",
+          "status": "persisted",
+          "result": {
+            "message": "Award 3 is now public."
+          }
+        },
+        {
+          "action": "unveil-winner",
+          "status": "persisted",
+          "result": {
+            "message": "Award 2 is now public."
+          }
+        },
+        {
+          "action": "unveil-winner",
+          "status": "persisted",
+          "result": {
+            "message": "Award 1 is now public."
+          }
+        }
+      ],
+      "projection": {
+        "scoreStage": "final",
+        "finalCountdownComplete": true,
+        "awards": [
+          {
+            "projectName": "Synthetic Control Project 00",
+            "teamName": "Synthetic Control Project 00 Team",
+            "slug": "synthetic-control-00",
+            "score": 99,
+            "position": 1
+          },
+          {
+            "projectName": "Synthetic Control Project 01",
+            "teamName": "Synthetic Control Project 01 Team",
+            "slug": "synthetic-control-01",
+            "score": 97,
+            "position": 2
+          },
+          {
+            "projectName": "Synthetic Control Project 02",
+            "teamName": "Synthetic Control Project 02 Team",
+            "slug": "synthetic-control-02",
+            "score": 95,
+            "position": 3
+          },
+          {
+            "projectName": "Synthetic Control Project 03",
+            "teamName": "Synthetic Control Project 03 Team",
+            "slug": "synthetic-control-03",
+            "score": 93,
+            "position": 4
+          },
+          {
+            "projectName": "Synthetic Control Project 04",
+            "teamName": "Synthetic Control Project 04 Team",
+            "slug": "synthetic-control-04",
+            "score": 91,
+            "position": 5
+          },
+          {
+            "projectName": "Synthetic Control Project 05",
+            "teamName": "Synthetic Control Project 05 Team",
+            "slug": "synthetic-control-05",
+            "score": 89,
+            "position": 6
+          },
+          {
+            "projectName": "Synthetic Control Project 06",
+            "teamName": "Synthetic Control Project 06 Team",
+            "slug": "synthetic-control-06",
+            "score": 87,
+            "position": 7
+          },
+          {
+            "projectName": "Synthetic Control Project 07",
+            "teamName": "Synthetic Control Project 07 Team",
+            "slug": "synthetic-control-07",
+            "score": 85,
+            "position": 8
+          },
+          {
+            "projectName": "Synthetic Control Project 08",
+            "teamName": "Synthetic Control Project 08 Team",
+            "slug": "synthetic-control-08",
+            "score": 83,
+            "position": 9
+          },
+          {
+            "projectName": "Synthetic Control Project 09",
+            "teamName": "Synthetic Control Project 09 Team",
+            "slug": "synthetic-control-09",
+            "score": 81,
+            "position": 10
+          },
+          {
+            "projectName": "Synthetic Control Project 10",
+            "teamName": "Synthetic Control Project 10 Team",
+            "slug": "synthetic-control-10",
+            "score": 79,
+            "position": 11
+          },
+          {
+            "projectName": "Synthetic Control Project 11",
+            "teamName": "Synthetic Control Project 11 Team",
+            "slug": "synthetic-control-11",
+            "score": 77,
+            "position": 12
+          },
+          {
+            "projectName": "Synthetic Control Project 12",
+            "teamName": "Synthetic Control Project 12 Team",
+            "slug": "synthetic-control-12",
+            "score": 75,
+            "position": 13
+          },
+          {
+            "projectName": "Synthetic Control Project 13",
+            "teamName": "Synthetic Control Project 13 Team",
+            "slug": "synthetic-control-13",
+            "score": 73,
+            "position": 14
+          },
+          {
+            "projectName": "Synthetic Control Project 14",
+            "teamName": "Synthetic Control Project 14 Team",
+            "slug": "synthetic-control-14",
+            "score": 71,
+            "position": 15
+          },
+          {
+            "projectName": "Synthetic Control Project 15",
+            "teamName": "Synthetic Control Project 15 Team",
+            "slug": "synthetic-control-15",
+            "score": 69,
+            "position": 16
+          },
+          {
+            "projectName": "Synthetic Control Project 16",
+            "teamName": "Synthetic Control Project 16 Team",
+            "slug": "synthetic-control-16",
+            "score": 67,
+            "position": 17
+          },
+          {
+            "projectName": "Synthetic Control Project 17",
+            "teamName": "Synthetic Control Project 17 Team",
+            "slug": "synthetic-control-17",
+            "score": 65,
+            "position": 18
+          },
+          {
+            "projectName": "Synthetic Control Project 18",
+            "teamName": "Synthetic Control Project 18 Team",
+            "slug": "synthetic-control-18",
+            "score": 63,
+            "position": 19
+          },
+          {
+            "projectName": "Synthetic Control Project 19",
+            "teamName": "Synthetic Control Project 19 Team",
+            "slug": "synthetic-control-19",
+            "score": 61,
+            "position": 20
+          },
+          {
+            "projectName": "Synthetic Control Project 20",
+            "teamName": "Synthetic Control Project 20 Team",
+            "slug": "synthetic-control-20",
+            "score": 59,
+            "position": 21
+          },
+          {
+            "projectName": "Synthetic Control Project 21",
+            "teamName": "Synthetic Control Project 21 Team",
+            "slug": "synthetic-control-21",
+            "score": 57,
+            "position": 22
+          },
+          {
+            "projectName": "Synthetic Control Project 22",
+            "teamName": "Synthetic Control Project 22 Team",
+            "slug": "synthetic-control-22",
+            "score": 55,
+            "position": 23
+          },
+          {
+            "projectName": "Synthetic Control Project 23",
+            "teamName": "Synthetic Control Project 23 Team",
+            "slug": "synthetic-control-23",
+            "score": 53,
+            "position": 24
+          },
+          {
+            "projectName": "Synthetic Control Project 24",
+            "teamName": "Synthetic Control Project 24 Team",
+            "slug": "synthetic-control-24",
+            "score": 51,
+            "position": 25
+          },
+          {
+            "projectName": "The Fifth Element",
+            "teamName": "The Fifth Element",
+            "slug": "synthetic-eve",
+            "score": 49,
+            "position": 26
+          }
+        ],
+        "visibleResults": [
+          {
+            "id": "fake_control_project_00",
+            "result": {
+              "score": 99,
+              "stage": "final",
+              "position": 1
+            }
+          },
+          {
+            "id": "fake_control_project_01",
+            "result": {
+              "score": 97,
+              "stage": "final",
+              "position": 2
+            }
+          },
+          {
+            "id": "fake_control_project_02",
+            "result": {
+              "score": 95,
+              "stage": "final",
+              "position": 3
+            }
+          },
+          {
+            "id": "fake_control_project_03",
+            "result": {
+              "score": 93,
+              "stage": "final",
+              "position": 4
+            }
+          },
+          {
+            "id": "fake_control_project_04",
+            "result": {
+              "score": 91,
+              "stage": "final",
+              "position": 5
+            }
+          },
+          {
+            "id": "fake_control_project_05",
+            "result": {
+              "score": 89,
+              "stage": "final",
+              "position": 6
+            }
+          },
+          {
+            "id": "fake_control_project_06",
+            "result": {
+              "score": 87,
+              "stage": "final",
+              "position": 7
+            }
+          },
+          {
+            "id": "fake_control_project_07",
+            "result": {
+              "score": 85,
+              "stage": "final",
+              "position": 8
+            }
+          },
+          {
+            "id": "fake_control_project_08",
+            "result": {
+              "score": 83,
+              "stage": "final",
+              "position": 9
+            }
+          },
+          {
+            "id": "fake_control_project_09",
+            "result": {
+              "score": 81,
+              "stage": "final",
+              "position": 10
+            }
+          },
+          {
+            "id": "fake_control_project_10",
+            "result": {
+              "score": 79,
+              "stage": "final",
+              "position": 11
+            }
+          },
+          {
+            "id": "fake_control_project_11",
+            "result": {
+              "score": 77,
+              "stage": "final",
+              "position": 12
+            }
+          },
+          {
+            "id": "fake_control_project_12",
+            "result": {
+              "score": 75,
+              "stage": "final",
+              "position": 13
+            }
+          },
+          {
+            "id": "fake_control_project_13",
+            "result": {
+              "score": 73,
+              "stage": "final",
+              "position": 14
+            }
+          },
+          {
+            "id": "fake_control_project_14",
+            "result": {
+              "score": 71,
+              "stage": "final",
+              "position": 15
+            }
+          },
+          {
+            "id": "fake_control_project_15",
+            "result": {
+              "score": 69,
+              "stage": "final",
+              "position": 16
+            }
+          },
+          {
+            "id": "fake_control_project_16",
+            "result": {
+              "score": 67,
+              "stage": "final",
+              "position": 17
+            }
+          },
+          {
+            "id": "fake_control_project_17",
+            "result": {
+              "score": 65,
+              "stage": "final",
+              "position": 18
+            }
+          },
+          {
+            "id": "fake_control_project_18",
+            "result": {
+              "score": 63,
+              "stage": "final",
+              "position": 19
+            }
+          },
+          {
+            "id": "fake_control_project_19",
+            "result": {
+              "score": 61,
+              "stage": "final",
+              "position": 20
+            }
+          },
+          {
+            "id": "fake_control_project_20",
+            "result": {
+              "score": 59,
+              "stage": "final",
+              "position": 21
+            }
+          },
+          {
+            "id": "fake_control_project_21",
+            "result": {
+              "score": 57,
+              "stage": "final",
+              "position": 22
+            }
+          },
+          {
+            "id": "fake_control_project_22",
+            "result": {
+              "score": 55,
+              "stage": "final",
+              "position": 23
+            }
+          },
+          {
+            "id": "fake_control_project_23",
+            "result": {
+              "score": 53,
+              "stage": "final",
+              "position": 24
+            }
+          }
+        ]
+      },
+      "blockedFetches": 0,
+      "completedAt": "2026-10-24T14:38:49.835Z"
+    }
+  ],
+  "note": "Synthetic provider-shaped evaluation rows and frozen results only. No real evaluation, provider request, event result, or production disclosure.",
+  "backupVerification": {
+    "exists": true,
+    "sha256": "02ed4fd1bdce4f2c453b9b5aeb03b48621608795dc4232a657983edbc1e926dc",
+    "bytes": 937984
+  },
+  "isolationAfterAI": [
+    {
+      "port": 8821,
+      "path": "/tmp/ddd-create-team-revised-root.sqlite",
+      "releases": [],
+      "evaluations": 0,
+      "snapshots": 0,
+      "aliceVersions": 3
+    },
+    {
+      "port": 8833,
+      "path": "/tmp/ddd-score-phases-8833.sqlite",
+      "releases": [
+        [
+          "ai"
+        ]
+      ],
+      "evaluations": 26,
+      "snapshots": 0,
+      "aliceVersions": 3
+    }
+  ],
+  "backendRuntime": {
+    "source": "19cb5362fcd4367a02fc04b3230d82f1cb854d91",
+    "pid": 121226,
+    "verifiedAt": "2026-10-24T14:30:17.744Z",
+    "healthStatus": 200,
+    "runtime": "synthetic-local",
+    "scoreStage": "ai",
+    "items": 24
+  }
+}

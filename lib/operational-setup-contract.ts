@@ -1,6 +1,8 @@
 import { automaticAuditReason } from "./audit-contract";
-export const indefiniteRetentionNotice =
-  "Records are retained indefinitely until authorized manual removal. Private participant data remains access-controlled; credit secrets are excluded from logs and ordinary exports.";
+export const eventRetentionNotice =
+  "Unnecessary private participant data has a 90-day retention period after the event. Removal is handled manually; contact hey@itsparam.in. Public project showcase content remains unless removal is requested. Owner-only audit logs are retained indefinitely. Credit secrets are excluded from logs and ordinary exports.";
+// Preserve the existing export for callers and stored-policy compatibility.
+export const indefiniteRetentionNotice = eventRetentionNotice;
 export const optionalDeploymentRule =
   "Deployment link is optional for every project. Missing deployment does not make a submission ineligible.";
 export type SetupOperation = "submissions" | "checkin";

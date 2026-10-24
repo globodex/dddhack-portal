@@ -1,0 +1,27 @@
+{
+  "syntheticOnly": true,
+  "zoomMethod": "Native chrome.settingsPrivate.setDefaultZoom(2) in disposable browser profile",
+  "metrics": {
+    "innerWidth": 720,
+    "innerHeight": 378,
+    "outerWidth": 1440,
+    "outerHeight": 900,
+    "devicePixelRatio": 2,
+    "scale": 1
+  },
+  "button": {
+    "x": 494.25,
+    "y": 288.5,
+    "width": 156,
+    "height": 48
+  },
+  "horizontalOverflow": false,
+  "captureHead": "59a47c4ee68c90814edc5f11421b892711075d8a",
+  "runtimeSourceEquivalentTo": "c8f42a5f91aa6414cf11be4bd8c51f7329e769ad",
+  "runtimeNote": "Captured after the focus-ref patch was written and before that same patch was committed as c8f42a5. POST/inert hydration guards were already committed.",
+  "nativeScreenshotMethod": "CDP Page.captureScreenshot without clip, fromSurface=true, captureBeyondViewport=false",
+  "nativePngDimensions": {
+    "width": 1440,
+    "height": 757
+  }
+}

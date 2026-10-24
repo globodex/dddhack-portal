@@ -260,9 +260,9 @@ test("private venue uses personal Going approval and scoped admin access, never 
       ((await service("pending").view("/dashboard")) as Row).privateVenue,
       undefined,
     );
-    await assert.rejects(service("stranger").view("/dashboard"), {
-      code: "LUMA_EMAIL_MISMATCH",
-    });
+    const viewer = await service("stranger").view("/dashboard");
+    assert.equal(viewer.registrationRequired, true);
+    assert.equal(viewer.privateVenue, undefined);
     assert.equal(
       ((await service("admin").view("/admin/settings")) as Row).venue,
       undefined,
@@ -424,9 +424,9 @@ test("shared draft/committed project, required media, concurrent writes and publ
     await assert.rejects(
       alice.command("save-project", {
         revision: 0,
-        project: { ...p, logo: banner },
+        project: { ...p, logo: "data:image/svg+xml;base64,PHN2Zy8+" },
       }),
-      /Project logo must be square/,
+      { code: "PROJECT_MEDIA_REQUIRED" },
     );
     await alice.command("save-project", { revision: 0, project: p });
 

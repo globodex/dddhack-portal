@@ -1,0 +1,47 @@
+{
+  "startedAt": "2026-10-24T15:28:44.893Z",
+  "variants": {
+    "baseline": {
+      "origin": "https://portal-perf.test:3443",
+      "root": "/workspace/ddd-perf-prod-baseline",
+      "source": "c353a173a85580ebb4eed47fff0a23a0830b81a6"
+    },
+    "final": {
+      "origin": "https://portal-perf.test:3444",
+      "root": "/workspace/ddd-perf-prod-final",
+      "source": "2657f26254ed323ca84a167a2f220f05f4ec7cbf"
+    }
+  },
+  "mode": "next build --webpack / next start; unmodified production application",
+  "backend": "Identical original synthetic8789 projection behind read-only verified TLS proxy",
+  "identity": "Synthetic Alice fixture cookie projected by original local backend, not Google sign-in verification",
+  "browser": "Chromium isolated context; native sandbox unavailable; exact fixture-only CONNECT proxy",
+  "samples": [],
+  "serverCold": [],
+  "warmup": [],
+  "screenshots": [],
+  "errors": [
+    {
+      "error": "Error: page.goto: net::ERR_PROXY_CONNECTION_FAILED at https://portal-perf.test:3443/dashboard\nCall log:\n\u001b[2m  - navigating to \"https://portal-perf.test:3443/dashboard\", waiting until \"networkidle\"\u001b[22m\n",
+      "stack": "page.goto: net::ERR_PROXY_CONNECTION_FAILED at https://portal-perf.test:3443/dashboard\nCall log:\n\u001b[2m  - navigating to \"https://portal-perf.test:3443/dashboard\", waiting until \"networkidle\"\u001b[22m\n\n    at measure (/workspace/ddd-performance-current/evidence/performance-production/measure-production.mjs:31:117)\n    at /workspace/ddd-performance-current/evidence/performance-production/measure-production.mjs:42:151"
+    }
+  ],
+  "externalAttempts": [],
+  "method": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "rounds": 7,
+    "order": "Alternate variant order each round; both routes each round",
+    "cold": "Fresh browser context, HTTP cache disabled. Warm application server.",
+    "repeat": "Same context: enable HTTP cache, prime one identical reload (excluded), then measured repeat reload. No Playwright routing/interception disables cache.",
+    "serverCold": "One first navigation per variant recorded separately before any warm-up; n1 each, not mixed into medians.",
+    "warmup": "One identical cache-disabled GET per route per variant after server-cold samples, before matrix.",
+    "lcp": "Last observed LCP candidate at sample time; not field Core Web Vitals.",
+    "statistics": "Median and nearest-rank p95, n7 per route/variant/cache state; descriptive tail max, not population estimate."
+  },
+  "result": "FAIL",
+  "browserClosed": true,
+  "finishedAt": "2026-10-24T15:28:58.563Z"
+}

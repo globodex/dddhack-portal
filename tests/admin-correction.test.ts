@@ -223,7 +223,7 @@ test("Add Admins is owner-only and requests an exact single email without role c
   const html = renderToStaticMarkup(
     createElement(AddAdmins, { owner: true, run: noRun }),
   );
-  assert.ok(html.includes("Add Admins"));
+  assert.ok(html.includes("Admin access"));
   assert.ok(html.includes('type="email"'));
   assert.ok(!html.includes("<select"));
   assert.ok(!html.includes("reason"));

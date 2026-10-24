@@ -1,0 +1,71 @@
+{
+  "source": "c7f2336cb2de1d89b794c860b05117e6fe09549c",
+  "syntheticOnly": true,
+  "screenshots": [
+    {
+      "path": "evidence/projects-rules-selected/rules-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/rules"
+    },
+    {
+      "path": "evidence/projects-rules-selected/projects-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/projects"
+    },
+    {
+      "path": "evidence/projects-rules-selected/project-detail-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/projects/synthetic-alice"
+    },
+    {
+      "path": "evidence/projects-rules-selected/leaderboard-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/leaderboard"
+    },
+    {
+      "path": "evidence/projects-rules-selected/rules-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/rules"
+    },
+    {
+      "path": "evidence/projects-rules-selected/projects-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/projects"
+    },
+    {
+      "path": "evidence/projects-rules-selected/project-detail-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/projects/synthetic-alice"
+    },
+    {
+      "path": "evidence/projects-rules-selected/leaderboard-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/leaderboard"
+    }
+  ],
+  "errors": []
+}

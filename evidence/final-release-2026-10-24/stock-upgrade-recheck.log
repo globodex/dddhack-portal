@@ -1,0 +1,14 @@
+✔ sqlite: stock upgrade preserves every existing code and mapping, backfills minimal non-personal tombstones (194.912288ms)
+✔ sqlite: existing header collision aborts additive migration without merging or deleting data (92.747965ms)
+✔ sqlite: existing fingerprint collision aborts additive migration without merging or deleting data (69.460074ms)
+✔ postgres: stock upgrade preserves every existing code and mapping, backfills minimal non-personal tombstones (7829.776708ms)
+✔ postgres: existing header collision aborts additive migration without merging or deleting data (3518.242522ms)
+✔ postgres: existing fingerprint collision aborts additive migration without merging or deleting data (5452.215972ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19512.012442

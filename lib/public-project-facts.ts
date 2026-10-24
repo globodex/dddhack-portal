@@ -1,4 +1,5 @@
 import { rows, type Database } from "./db";
+import { resolveTeamColor } from "./team-color";
 
 export type PublicProjectFact = {
   id: string;
@@ -6,6 +7,7 @@ export type PublicProjectFact = {
   published_version_id: string | null;
   payload: string | null;
   teamName: string;
+  teamColorKey: string;
   firstSubmittedAt: string | null;
   eligibility: string;
   removed: number;
@@ -38,12 +40,13 @@ export async function publicProjectFacts(
         SELECT c.project_id,count(*) total FROM project_comments c
         JOIN selected s ON s.id=c.project_id GROUP BY c.project_id
       )
-      SELECT s.id,s.team_id,s.published_version_id,published.payload AS public_media_payload,t.name teamName,
+      SELECT s.id,s.team_id,s.published_version_id,published.payload AS public_media_payload,t.name teamName,COALESCE(styles.color_key,styles.palette) teamColorKey,
         first.created_at firstSubmittedAt,COALESCE(e.status,r.eligibility,'needs_review') eligibility,
         EXISTS(SELECT 1 FROM record_removals rr WHERE rr.active=1 AND
           ((rr.kind='project' AND rr.target_id=s.id) OR (rr.kind='submission' AND rr.target_id=s.published_version_id))) removed,
         COALESCE(votes.total,0) upvotes,COALESCE(comments.total,0) comments,COALESCE(votes.voted,0) upvoted
       FROM selected s JOIN teams t ON t.id=s.team_id
+      LEFT JOIN team_styles styles ON styles.team_id=t.id
       LEFT JOIN attempts a ON a.team_id=s.team_id
       LEFT JOIN submission_versions first ON first.team_id=s.team_id AND first.attempt=a.first_attempt
       LEFT JOIN submission_versions latest ON latest.team_id=s.team_id AND latest.attempt=a.latest_attempt
@@ -56,7 +59,7 @@ export async function publicProjectFacts(
     );
     for (const fact of result) {
       const { public_media_payload, ...selectedFact } = fact;
-      facts.set(fact.id, { ...selectedFact, payload: public_media_payload });
+      facts.set(fact.id, { ...selectedFact, teamColorKey: resolveTeamColor(selectedFact.teamColorKey).key, payload: public_media_payload });
     }
   }
   return facts;

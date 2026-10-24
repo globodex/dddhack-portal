@@ -1,0 +1,372 @@
+{
+  "source": "7d226314e4bc3140623d0d77074a66973ceb8329",
+  "fixture": {
+    "syntheticOnly": true,
+    "source": "/tmp/ddd-credit-ui-legacy.sqlite",
+    "database": "/tmp/ddd-team-studio-final.sqlite",
+    "team": "fake_team3",
+    "members": 3,
+    "locked": false,
+    "palette": "ember",
+    "ideaTitle": "A calmer way to meet your city",
+    "descriptionLength": 112,
+    "behaviorDatabasePreserved": "/tmp/ddd-team-studio.sqlite"
+  },
+  "syntheticOnly": true,
+  "captures": [
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/team-1487x1058.png",
+      "viewport": {
+        "width": 1487,
+        "height": 1058
+      },
+      "metrics": {
+        "innerWidth": 1487,
+        "innerHeight": 1058,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 1472
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/team-1487x1058-full.png",
+      "viewport": {
+        "width": 1487,
+        "height": 1058
+      },
+      "metrics": {
+        "innerWidth": 1487,
+        "innerHeight": 1058,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 1472
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/team-1440x1024.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1024
+      },
+      "metrics": {
+        "innerWidth": 1440,
+        "innerHeight": 1024,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 1425
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/team-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "metrics": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 1425
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/team-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "metrics": {
+        "innerWidth": 768,
+        "innerHeight": 1024,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 753
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/team-768x1024-full.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "metrics": {
+        "innerWidth": 768,
+        "innerHeight": 1024,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 753
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/team-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 375
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/team-390x844-full.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 375
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/team-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "metrics": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 305
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/team-320x480-full.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "metrics": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 305
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/idea-short-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "innerHeight": 480,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 375
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/next-short-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "innerHeight": 480,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 375
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/identity-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 375
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/identity-palette-short-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "innerHeight": 480,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 375
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/identity-palette-short-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "metrics": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 305
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/idea-500-editor-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 375
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/team-native200-1440.png",
+      "viewport": null,
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 378,
+        "dpr": 2,
+        "scale": 1,
+        "scrollWidth": 712
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/team-native200-full.png",
+      "viewport": null,
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 378,
+        "dpr": 2,
+        "scale": 1,
+        "scrollWidth": 712
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/identity-native200.png",
+      "viewport": null,
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 378,
+        "dpr": 2,
+        "scale": 1,
+        "scrollWidth": 712
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/credit-inventory-native200.png",
+      "viewport": null,
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 378,
+        "dpr": 2,
+        "scale": 1,
+        "scrollWidth": 712
+      }
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-final/personal-credits-native200.png",
+      "viewport": null,
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 378,
+        "dpr": 2,
+        "scale": 1,
+        "scrollWidth": 712
+      }
+    }
+  ],
+  "checks": [
+    "Final appearance actual4x2 compact palette at320,8 accessible radios, all≥44square, selected preview, Save reachable after body scroll, Escape returns focus",
+    "500character cap/counter verified in real editor; Cancel restores persisted112 without a POST",
+    "NativeChrome200% actualCSS720/DPR2/visualScale1 layout and appearance remain reachable; native CDP PNGs preserve physicalpixels",
+    "Credit inventory and personal assigned cards checked at same genuine native200% without horizontal overflow"
+  ],
+  "errors": [],
+  "appearance": {
+    "radios": 8,
+    "columnsAt320": 4,
+    "boxes": [
+      {
+        "width": 53.5,
+        "height": 44,
+        "x": 27.5,
+        "y": 261.1875
+      },
+      {
+        "width": 53.5,
+        "height": 44,
+        "x": 93,
+        "y": 261.1875
+      },
+      {
+        "width": 53.5,
+        "height": 44,
+        "x": 158.5,
+        "y": 261.1875
+      },
+      {
+        "width": 53.5,
+        "height": 44,
+        "x": 224,
+        "y": 261.1875
+      },
+      {
+        "width": 53.5,
+        "height": 44,
+        "x": 27.5,
+        "y": 307.1875
+      },
+      {
+        "width": 53.5,
+        "height": 44,
+        "x": 93,
+        "y": 307.1875
+      },
+      {
+        "width": 53.5,
+        "height": 44,
+        "x": 158.5,
+        "y": 307.1875
+      },
+      {
+        "width": 53.5,
+        "height": 44,
+        "x": 224,
+        "y": 307.1875
+      }
+    ],
+    "saveReachable": true
+  },
+  "axe": {
+    "violations": []
+  },
+  "nativeMetrics": {
+    "innerWidth": 720,
+    "innerHeight": 378,
+    "dpr": 2,
+    "outerWidth": 1440,
+    "outerHeight": 900,
+    "scale": 1
+  },
+  "completed": true,
+  "browserClosed": true
+}

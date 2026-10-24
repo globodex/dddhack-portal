@@ -1,0 +1,17 @@
+
+Passed                 : 6
+Checks                 : {Actual reviewed ZIP copied, hash-checked, expanded, f
+                         ull entry/native files validated, Second run uses a ne
+                         w directory and preserves the first result, Wrong dige
+                         st rejects before ZIP extraction, HTTPS download branc
+                         h tested with explicit local transport mock, no networ
+                         k request…}
+PowerShellVersion      : 7.6.8
+RuntimePlatform        : Unix
+ArchiveSHA256          : bc017c088b6791d091db6571104d84a2dcfb6ca8ea1d7a0f80fa36
+                         b38aef7ae3
+ArchiveEntries         : 93
+NativeWindowsExecution : not performed
+LiveDownload           : not performed; transport mocked explicitly
+ProviderActions        : 0
+

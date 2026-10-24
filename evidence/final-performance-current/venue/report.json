@@ -1,0 +1,281 @@
+{
+  "source": "f7c862070cd984e1446204c247a66332199d2c9e",
+  "syntheticOnly": true,
+  "readOnly": true,
+  "viewports": [
+    {
+      "file": "venue-320x480.png",
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 320,
+        "card": {
+          "x": 16,
+          "y": 256.421875,
+          "width": 288,
+          "height": 151.59375,
+          "top": 256.421875,
+          "right": 304,
+          "bottom": 408.015625,
+          "left": 16
+        },
+        "copy": {
+          "x": 71,
+          "y": 271.421875,
+          "width": 218,
+          "height": 65.59375,
+          "top": 271.421875,
+          "right": 289,
+          "bottom": 337.015625,
+          "left": 71
+        },
+        "paragraph": {
+          "x": 71,
+          "y": 295.015625,
+          "width": 218,
+          "height": 42,
+          "top": 295.015625,
+          "right": 289,
+          "bottom": 337.015625,
+          "left": 71
+        },
+        "paragraphLineHeight": 21,
+        "link": {
+          "x": 71,
+          "y": 349.015625,
+          "width": 115.9375,
+          "height": 44,
+          "top": 349.015625,
+          "right": 186.9375,
+          "bottom": 393.015625,
+          "left": 71
+        },
+        "display": "grid"
+      },
+      "native": false,
+      "inspected": true
+    },
+    {
+      "file": "venue-390x844.png",
+      "geometry": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "card": {
+          "x": 20,
+          "y": 641.34375,
+          "width": 350,
+          "height": 130.59375,
+          "top": 641.34375,
+          "right": 370,
+          "bottom": 771.9375,
+          "left": 20
+        },
+        "copy": {
+          "x": 75,
+          "y": 656.34375,
+          "width": 280,
+          "height": 44.59375,
+          "top": 656.34375,
+          "right": 355,
+          "bottom": 700.9375,
+          "left": 75
+        },
+        "paragraph": {
+          "x": 75,
+          "y": 679.9375,
+          "width": 280,
+          "height": 21,
+          "top": 679.9375,
+          "right": 355,
+          "bottom": 700.9375,
+          "left": 75
+        },
+        "paragraphLineHeight": 21,
+        "link": {
+          "x": 75,
+          "y": 712.9375,
+          "width": 115.9375,
+          "height": 44,
+          "top": 712.9375,
+          "right": 190.9375,
+          "bottom": 756.9375,
+          "left": 75
+        },
+        "display": "grid"
+      },
+      "native": false,
+      "inspected": true
+    },
+    {
+      "file": "venue-390x480.png",
+      "geometry": {
+        "innerWidth": 390,
+        "innerHeight": 480,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 390,
+        "card": {
+          "x": 20,
+          "y": 277.34375,
+          "width": 350,
+          "height": 130.59375,
+          "top": 277.34375,
+          "right": 370,
+          "bottom": 407.9375,
+          "left": 20
+        },
+        "copy": {
+          "x": 75,
+          "y": 292.34375,
+          "width": 280,
+          "height": 44.59375,
+          "top": 292.34375,
+          "right": 355,
+          "bottom": 336.9375,
+          "left": 75
+        },
+        "paragraph": {
+          "x": 75,
+          "y": 315.9375,
+          "width": 280,
+          "height": 21,
+          "top": 315.9375,
+          "right": 355,
+          "bottom": 336.9375,
+          "left": 75
+        },
+        "paragraphLineHeight": 21,
+        "link": {
+          "x": 75,
+          "y": 348.9375,
+          "width": 115.9375,
+          "height": 44,
+          "top": 348.9375,
+          "right": 190.9375,
+          "bottom": 392.9375,
+          "left": 75
+        },
+        "display": "grid"
+      },
+      "native": false,
+      "inspected": true
+    },
+    {
+      "file": "venue-768x1024.png",
+      "geometry": {
+        "innerWidth": 768,
+        "innerHeight": 1024,
+        "dpr": 1,
+        "scale": 1,
+        "scrollWidth": 753,
+        "card": {
+          "x": 44,
+          "y": 869.09375,
+          "width": 665,
+          "height": 83.390625,
+          "top": 869.09375,
+          "right": 709,
+          "bottom": 952.484375,
+          "left": 44
+        },
+        "copy": {
+          "x": 108,
+          "y": 887.09375,
+          "width": 449.0625,
+          "height": 47.390625,
+          "top": 887.09375,
+          "right": 557.0625,
+          "bottom": 934.484375,
+          "left": 108
+        },
+        "paragraph": {
+          "x": 108,
+          "y": 913.484375,
+          "width": 449.0625,
+          "height": 21,
+          "top": 913.484375,
+          "right": 557.0625,
+          "bottom": 934.484375,
+          "left": 108
+        },
+        "paragraphLineHeight": 21,
+        "link": {
+          "x": 575.0625,
+          "y": 888.78125,
+          "width": 115.9375,
+          "height": 44,
+          "top": 888.78125,
+          "right": 691,
+          "bottom": 932.78125,
+          "left": 575.0625
+        },
+        "display": "flex"
+      },
+      "native": false,
+      "inspected": true
+    },
+    {
+      "file": "venue-native200-1440.png",
+      "geometry": {
+        "innerWidth": 720,
+        "innerHeight": 378,
+        "dpr": 2,
+        "scale": 1,
+        "scrollWidth": 712,
+        "card": {
+          "x": 20,
+          "y": 167.109375,
+          "width": 672.5,
+          "height": 139.3984375,
+          "top": 167.109375,
+          "right": 692.5,
+          "bottom": 306.5078125,
+          "left": 20
+        },
+        "copy": {
+          "x": 78,
+          "y": 185.109375,
+          "width": 596.5,
+          "height": 47.3984375,
+          "top": 185.109375,
+          "right": 674.5,
+          "bottom": 232.5078125,
+          "left": 78
+        },
+        "paragraph": {
+          "x": 78,
+          "y": 211.5078125,
+          "width": 596.5,
+          "height": 21,
+          "top": 211.5078125,
+          "right": 674.5,
+          "bottom": 232.5078125,
+          "left": 78
+        },
+        "paragraphLineHeight": 21,
+        "link": {
+          "x": 78,
+          "y": 244.5078125,
+          "width": 115.9375,
+          "height": 44,
+          "top": 244.5078125,
+          "right": 193.9375,
+          "bottom": 288.5078125,
+          "left": 78
+        },
+        "display": "grid"
+      },
+      "native": true,
+      "inspected": true
+    }
+  ],
+  "blocked": [],
+  "errors": [],
+  "result": "passed",
+  "browserClosed": true
+}

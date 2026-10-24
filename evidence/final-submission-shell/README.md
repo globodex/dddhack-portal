@@ -1,0 +1,26 @@
+# Current-shell submission visual closure
+
+Source `e1d50c27ef0785a93faf4c2e1f48929937d65aac`, branch `test/final-ui-coverage`, isolated worktree `/workspace/ddd-final-ui-coverage`. Its UI is equivalent to held root2657; the intervening source difference is the separately reviewed populated-upgrade CLI. No application source or design was changed in this job. This is local synthetic evidence, not hosted login, production timing, real event uploads or judging validation.
+
+The parent authorized this narrow retake after review correctly found that earlier source28 submission PNGs retained the previous sidebar shell. The profiling agent explicitly released CPU and closed its browsers before Next/Chromium started. A separate Next16.4.3 webpack development server ran on3007 with backend8849. The database `/tmp/ddd-final-ui-8849.sqlite` was newly created using `seedLocal` and `seedRichVisual`, not copied from an original, recovered or performance fixture. All17 identities are fake. Flat green initial images are synthetic fixture media.
+
+[Machine-readable report](report.json): **13 original PNGs, four passing groups,34 visible/enabled/focusable controls, zero page errors, zero blocked requests**. Browser and backend both restricted methods to GET/HEAD. Neither Save draft nor Submit was activated. File selection/replacement was client-local only. All67 fixture tables retain the identical canonical dataset SHA256 before/after, `b6595347c5f2552ae4d0219c4451ea98695b42186b3936318198dea6c84586df`. Alice remains revision2 with two committed submissions. No hosted service or provider call ran.
+
+Every PNG below was individually opened and visually inspected at native pixels:
+
+- [Step1 desktop](step1-1440x900.png), [Step2 desktop](step2-1440x900.png), [Step3 desktop](step3-1440x900.png).
+- [Step1 mobile](step1-390x844.png), [Step2 mobile](step2-390x844.png), [Step3 mobile](step3-390x844.png).
+- [Current Studio mobile menu](studio-menu-390x844.png).
+- [Short320 Step3 full page](step3-320x480.png), [reachable footer viewport](step3-footer-320x480.png).
+- [Single linked media error](step3-inline-media-error-320x480.png), [valid portrait with visible focus](step3-valid-media-focus-320x480.png), [valid media full page](step3-valid-media-full-320x480.png).
+- [Enabled persisted window inputs after reload](saved-window-enabled-after-reload-390x844.png).
+
+The current Studio header uses the black menu and real avatar; desktop omits the earlier sidebar. The wizard remains centered, aligns Back/title/progress, and retains a wide banner plus compact logo/attestation desktop grid. Mobile stacks content with normal scrolling. All inspected widths have no horizontal overflow. Both final actions measure at least44px in each axis and remain within the short viewport after ordinary scrolling. The actual menu has visible destination icons and red Logout; Escape closes it without a mutation.
+
+The short320 error uses a generated GIF falsely declared PNG. It produces one linked inline banner error, preserves the prior valid preview, exposes `aria-invalid` and the error relationship, and creates no global toast. Keyboard Enter opens the real native file chooser; choosing the generated128×300 portrait clears the error and preserves `object-fit:contain` in the current team wash. The replacement control has a visible keyboard focus ring. No crop, stretch, ratio waiver or network upload was introduced.
+
+The owner window screenshot is a GET-only render of the freshly seeded window, not a replayed publication. Both real datetime inputs are enabled and focusable and retain their values after reload. Earlier actual preview/confirmation/publish200/persist proof remains in `../admin-final-private8834` and the historical ready retake in `../admin-owner-access-final-hydrated`. This new screenshot contains no stale success toast.
+
+Normal PNGs preserve their actual full-page pixel height while the report records the requested CSS viewport. Short footer/error/focus images are unscaled320×480 viewport captures. [Image manifest](image-manifest.json) records dimensions, byte counts and hashes. This retake does not repeat tablet/native200% or physical-device testing; the older six-mode component matrix remains separately labeled by its exact source.
+
+All browsers closed. Exact owned processes were verified by command and parent PID before stopping: Next147603/child147629 and fixture147386. All three are stopped and ports3007/8849 are closed. The generated Next-only `next-env.d.ts` development-path change was restored to committed source. No tests/builds or pushes were performed. The subsequent authorized [one-save visible-input proof](../final-save-toast/README.md) closes the earlier narrow interaction gap; completed independent CLI checks are referenced in [the coverage review](../../docs/FINAL_FLOW_COVERAGE_REVIEW.md).

@@ -1,0 +1,1242 @@
+{
+  "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+  "revisionAtStart": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+  "origin": "http://localhost:3000",
+  "syntheticOnly": true,
+  "readOnly": true,
+  "startedAt": "2026-10-24T13:13:54.589Z",
+  "screenshots": [
+    {
+      "file": "profile-native-200pct-baseline.png",
+      "name": "profile",
+      "viewport": {
+        "label": "native-200pct",
+        "width": 720,
+        "height": 378,
+        "zoom": true
+      },
+      "state": "baseline",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "revisionAtCapture": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "dimensions": {
+        "width": 720,
+        "innerWidth": 720,
+        "clientWidth": 720,
+        "visualWidth": 720,
+        "scale": 1,
+        "height": 378,
+        "scrollWidth": 712,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      },
+      "pixelDimensions": {
+        "width": 1440,
+        "height": 757
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-native-200pct-step1-fields.png",
+      "name": "profile",
+      "viewport": {
+        "label": "native-200pct",
+        "width": 720,
+        "height": 378,
+        "zoom": true
+      },
+      "state": "step1-fields",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "revisionAtCapture": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "dimensions": {
+        "width": 720,
+        "innerWidth": 720,
+        "clientWidth": 720,
+        "visualWidth": 720,
+        "scale": 1,
+        "height": 378,
+        "scrollWidth": 712,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      },
+      "pixelDimensions": {
+        "width": 1440,
+        "height": 757
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-native-200pct-step2.png",
+      "name": "profile",
+      "viewport": {
+        "label": "native-200pct",
+        "width": 720,
+        "height": 378,
+        "zoom": true
+      },
+      "state": "step2",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "revisionAtCapture": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "dimensions": {
+        "width": 720,
+        "innerWidth": 720,
+        "clientWidth": 720,
+        "visualWidth": 720,
+        "scale": 1,
+        "height": 378,
+        "scrollWidth": 712,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      },
+      "pixelDimensions": {
+        "width": 1440,
+        "height": 757
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-native-200pct-step2-actions.png",
+      "name": "profile",
+      "viewport": {
+        "label": "native-200pct",
+        "width": 720,
+        "height": 378,
+        "zoom": true
+      },
+      "state": "step2-actions",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "revisionAtCapture": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "dimensions": {
+        "width": 720,
+        "innerWidth": 720,
+        "clientWidth": 720,
+        "visualWidth": 720,
+        "scale": 1,
+        "height": 378,
+        "scrollWidth": 712,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      },
+      "pixelDimensions": {
+        "width": 1440,
+        "height": 757
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-native-200pct-step3.png",
+      "name": "profile",
+      "viewport": {
+        "label": "native-200pct",
+        "width": 720,
+        "height": 378,
+        "zoom": true
+      },
+      "state": "step3",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "revisionAtCapture": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "dimensions": {
+        "width": 720,
+        "innerWidth": 720,
+        "clientWidth": 720,
+        "visualWidth": 720,
+        "scale": 1,
+        "height": 378,
+        "scrollWidth": 712,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      },
+      "pixelDimensions": {
+        "width": 1440,
+        "height": 757
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-native-200pct-step3-actions.png",
+      "name": "profile",
+      "viewport": {
+        "label": "native-200pct",
+        "width": 720,
+        "height": 378,
+        "zoom": true
+      },
+      "state": "step3-actions",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "revisionAtCapture": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "dimensions": {
+        "width": 720,
+        "innerWidth": 720,
+        "clientWidth": 720,
+        "visualWidth": 720,
+        "scale": 1,
+        "height": 378,
+        "scrollWidth": 712,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      },
+      "pixelDimensions": {
+        "width": 1440,
+        "height": 757
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-740x1000-baseline.png",
+      "name": "profile",
+      "viewport": {
+        "label": "740x1000",
+        "width": 740,
+        "height": 1000
+      },
+      "state": "baseline",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "revisionAtCapture": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "dimensions": {
+        "width": 740,
+        "innerWidth": 740,
+        "clientWidth": 740,
+        "visualWidth": 740,
+        "scale": 1,
+        "height": 1000,
+        "scrollWidth": 725,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-740x1000-step2.png",
+      "name": "profile",
+      "viewport": {
+        "label": "740x1000",
+        "width": 740,
+        "height": 1000
+      },
+      "state": "step2",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "revisionAtCapture": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "dimensions": {
+        "width": 740,
+        "innerWidth": 740,
+        "clientWidth": 740,
+        "visualWidth": 740,
+        "scale": 1,
+        "height": 1000,
+        "scrollWidth": 725,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-740x1000-step3.png",
+      "name": "profile",
+      "viewport": {
+        "label": "740x1000",
+        "width": 740,
+        "height": 1000
+      },
+      "state": "step3",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "revisionAtCapture": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "dimensions": {
+        "width": 740,
+        "innerWidth": 740,
+        "clientWidth": 740,
+        "visualWidth": 740,
+        "scale": 1,
+        "height": 1000,
+        "scrollWidth": 725,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-741x1000-baseline.png",
+      "name": "profile",
+      "viewport": {
+        "label": "741x1000",
+        "width": 741,
+        "height": 1000
+      },
+      "state": "baseline",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "revisionAtCapture": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "dimensions": {
+        "width": 741,
+        "innerWidth": 741,
+        "clientWidth": 741,
+        "visualWidth": 741,
+        "scale": 1,
+        "height": 1000,
+        "scrollWidth": 726,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-741x1000-step2.png",
+      "name": "profile",
+      "viewport": {
+        "label": "741x1000",
+        "width": 741,
+        "height": 1000
+      },
+      "state": "step2",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "revisionAtCapture": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "dimensions": {
+        "width": 741,
+        "innerWidth": 741,
+        "clientWidth": 741,
+        "visualWidth": 741,
+        "scale": 1,
+        "height": 1000,
+        "scrollWidth": 726,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-741x1000-step3.png",
+      "name": "profile",
+      "viewport": {
+        "label": "741x1000",
+        "width": 741,
+        "height": 1000
+      },
+      "state": "step3",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "revisionAtCapture": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "dimensions": {
+        "width": 741,
+        "innerWidth": 741,
+        "clientWidth": 741,
+        "visualWidth": 741,
+        "scale": 1,
+        "height": 1000,
+        "scrollWidth": 726,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-768x1024-baseline.png",
+      "name": "profile",
+      "viewport": {
+        "label": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "state": "baseline",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "revisionAtCapture": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "dimensions": {
+        "width": 768,
+        "innerWidth": 768,
+        "clientWidth": 768,
+        "visualWidth": 768,
+        "scale": 1,
+        "height": 1024,
+        "scrollWidth": 753,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-768x1024-step2.png",
+      "name": "profile",
+      "viewport": {
+        "label": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "state": "step2",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "revisionAtCapture": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "dimensions": {
+        "width": 768,
+        "innerWidth": 768,
+        "clientWidth": 768,
+        "visualWidth": 768,
+        "scale": 1,
+        "height": 1024,
+        "scrollWidth": 753,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-768x1024-step3.png",
+      "name": "profile",
+      "viewport": {
+        "label": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "state": "step3",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "revisionAtCapture": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "dimensions": {
+        "width": 768,
+        "innerWidth": 768,
+        "clientWidth": 768,
+        "visualWidth": 768,
+        "scale": 1,
+        "height": 1024,
+        "scrollWidth": 753,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "Native browser zoom is 200% with reflow, not pinch zoom",
+      "passed": true,
+      "metrics": {
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "innerWidth": 720,
+        "innerHeight": 378,
+        "devicePixelRatio": 2,
+        "visualViewportScale": 1
+      }
+    },
+    {
+      "name": "profile",
+      "viewport": "native-200pct",
+      "state": "baseline",
+      "passed": true,
+      "dimensions": {
+        "width": 720,
+        "innerWidth": 720,
+        "clientWidth": 720,
+        "visualWidth": 720,
+        "scale": 1,
+        "height": 378,
+        "scrollWidth": 712,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      }
+    },
+    {
+      "name": "Profile step1 breakpoint geometry",
+      "passed": true,
+      "viewport": "native-200pct",
+      "stacked": true,
+      "basis": {
+        "layout": {
+          "x": 18,
+          "y": 229,
+          "width": 676.5,
+          "right": 694.5,
+          "bottom": 762
+        },
+        "avatar": {
+          "x": 18,
+          "y": 229,
+          "width": 676.5,
+          "right": 694.5,
+          "bottom": 402
+        },
+        "fields": {
+          "x": 18,
+          "y": 418,
+          "width": 676.5,
+          "right": 694.5,
+          "bottom": 762
+        },
+        "avatarBorderLeft": "0px",
+        "inputs": [
+          {
+            "name": "fullName",
+            "x": 18,
+            "y": 444,
+            "width": 676.5,
+            "right": 694.5,
+            "bottom": 492
+          },
+          {
+            "name": "email",
+            "x": 18,
+            "y": 534,
+            "width": 676.5,
+            "right": 694.5,
+            "bottom": 582
+          },
+          {
+            "name": "bio",
+            "x": 18,
+            "y": 624,
+            "width": 676.5,
+            "right": 694.5,
+            "bottom": 672
+          }
+        ]
+      }
+    },
+    {
+      "name": "profile: step1-fields reflow",
+      "passed": true,
+      "viewport": "native-200pct",
+      "dimensions": {
+        "width": 720,
+        "innerWidth": 720,
+        "clientWidth": 720,
+        "visualWidth": 720,
+        "scale": 1,
+        "height": 378,
+        "scrollWidth": 712,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      }
+    },
+    {
+      "name": "profile: step2 reflow",
+      "passed": true,
+      "viewport": "native-200pct",
+      "dimensions": {
+        "width": 720,
+        "innerWidth": 720,
+        "clientWidth": 720,
+        "visualWidth": 720,
+        "scale": 1,
+        "height": 378,
+        "scrollWidth": 712,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      }
+    },
+    {
+      "name": "profile: step2-actions reflow",
+      "passed": true,
+      "viewport": "native-200pct",
+      "dimensions": {
+        "width": 720,
+        "innerWidth": 720,
+        "clientWidth": 720,
+        "visualWidth": 720,
+        "scale": 1,
+        "height": 378,
+        "scrollWidth": 712,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      }
+    },
+    {
+      "name": "profile: step3 reflow",
+      "passed": true,
+      "viewport": "native-200pct",
+      "dimensions": {
+        "width": 720,
+        "innerWidth": 720,
+        "clientWidth": 720,
+        "visualWidth": 720,
+        "scale": 1,
+        "height": 378,
+        "scrollWidth": 712,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      }
+    },
+    {
+      "name": "profile: step3-actions reflow",
+      "passed": true,
+      "viewport": "native-200pct",
+      "dimensions": {
+        "width": 720,
+        "innerWidth": 720,
+        "clientWidth": 720,
+        "visualWidth": 720,
+        "scale": 1,
+        "height": 378,
+        "scrollWidth": 712,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      }
+    },
+    {
+      "name": "Profile has3 steps and reachable Save without submission",
+      "passed": true,
+      "viewport": "native-200pct"
+    },
+    {
+      "name": "profile",
+      "viewport": "740x1000",
+      "state": "baseline",
+      "passed": true,
+      "dimensions": {
+        "width": 740,
+        "innerWidth": 740,
+        "clientWidth": 740,
+        "visualWidth": 740,
+        "scale": 1,
+        "height": 1000,
+        "scrollWidth": 725,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      }
+    },
+    {
+      "name": "Profile step1 breakpoint geometry",
+      "passed": true,
+      "viewport": "740x1000",
+      "stacked": true,
+      "basis": {
+        "layout": {
+          "x": 18,
+          "y": 229,
+          "width": 689,
+          "right": 707,
+          "bottom": 762
+        },
+        "avatar": {
+          "x": 18,
+          "y": 229,
+          "width": 689,
+          "right": 707,
+          "bottom": 402
+        },
+        "fields": {
+          "x": 18,
+          "y": 418,
+          "width": 689,
+          "right": 707,
+          "bottom": 762
+        },
+        "avatarBorderLeft": "0px",
+        "inputs": [
+          {
+            "name": "fullName",
+            "x": 18,
+            "y": 444,
+            "width": 689,
+            "right": 707,
+            "bottom": 492
+          },
+          {
+            "name": "email",
+            "x": 18,
+            "y": 534,
+            "width": 689,
+            "right": 707,
+            "bottom": 582
+          },
+          {
+            "name": "bio",
+            "x": 18,
+            "y": 624,
+            "width": 689,
+            "right": 707,
+            "bottom": 672
+          }
+        ]
+      }
+    },
+    {
+      "name": "profile: step2 reflow",
+      "passed": true,
+      "viewport": "740x1000",
+      "dimensions": {
+        "width": 740,
+        "innerWidth": 740,
+        "clientWidth": 740,
+        "visualWidth": 740,
+        "scale": 1,
+        "height": 1000,
+        "scrollWidth": 725,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      }
+    },
+    {
+      "name": "profile: step3 reflow",
+      "passed": true,
+      "viewport": "740x1000",
+      "dimensions": {
+        "width": 740,
+        "innerWidth": 740,
+        "clientWidth": 740,
+        "visualWidth": 740,
+        "scale": 1,
+        "height": 1000,
+        "scrollWidth": 725,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      }
+    },
+    {
+      "name": "Profile has3 steps and reachable Save without submission",
+      "passed": true,
+      "viewport": "740x1000"
+    },
+    {
+      "name": "profile",
+      "viewport": "741x1000",
+      "state": "baseline",
+      "passed": true,
+      "dimensions": {
+        "width": 741,
+        "innerWidth": 741,
+        "clientWidth": 741,
+        "visualWidth": 741,
+        "scale": 1,
+        "height": 1000,
+        "scrollWidth": 726,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      }
+    },
+    {
+      "name": "Profile step1 breakpoint geometry",
+      "passed": true,
+      "viewport": "741x1000",
+      "stacked": false,
+      "basis": {
+        "layout": {
+          "x": 53,
+          "y": 300,
+          "width": 620,
+          "right": 673,
+          "bottom": 656
+        },
+        "avatar": {
+          "x": 393,
+          "y": 300,
+          "width": 280,
+          "right": 673,
+          "bottom": 507
+        },
+        "fields": {
+          "x": 53,
+          "y": 300,
+          "width": 308,
+          "right": 361,
+          "bottom": 656
+        },
+        "avatarBorderLeft": "1px",
+        "inputs": [
+          {
+            "name": "fullName",
+            "x": 53,
+            "y": 326,
+            "width": 308,
+            "right": 361,
+            "bottom": 374
+          },
+          {
+            "name": "email",
+            "x": 53,
+            "y": 420,
+            "width": 308,
+            "right": 361,
+            "bottom": 468
+          },
+          {
+            "name": "bio",
+            "x": 53,
+            "y": 514,
+            "width": 308,
+            "right": 361,
+            "bottom": 562
+          }
+        ]
+      }
+    },
+    {
+      "name": "profile: step2 reflow",
+      "passed": true,
+      "viewport": "741x1000",
+      "dimensions": {
+        "width": 741,
+        "innerWidth": 741,
+        "clientWidth": 741,
+        "visualWidth": 741,
+        "scale": 1,
+        "height": 1000,
+        "scrollWidth": 726,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      }
+    },
+    {
+      "name": "profile: step3 reflow",
+      "passed": true,
+      "viewport": "741x1000",
+      "dimensions": {
+        "width": 741,
+        "innerWidth": 741,
+        "clientWidth": 741,
+        "visualWidth": 741,
+        "scale": 1,
+        "height": 1000,
+        "scrollWidth": 726,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      }
+    },
+    {
+      "name": "Profile has3 steps and reachable Save without submission",
+      "passed": true,
+      "viewport": "741x1000"
+    },
+    {
+      "name": "profile",
+      "viewport": "768x1024",
+      "state": "baseline",
+      "passed": true,
+      "dimensions": {
+        "width": 768,
+        "innerWidth": 768,
+        "clientWidth": 768,
+        "visualWidth": 768,
+        "scale": 1,
+        "height": 1024,
+        "scrollWidth": 753,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      }
+    },
+    {
+      "name": "Profile step1 breakpoint geometry",
+      "passed": true,
+      "viewport": "768x1024",
+      "stacked": false,
+      "basis": {
+        "layout": {
+          "x": 53,
+          "y": 300,
+          "width": 647,
+          "right": 700,
+          "bottom": 656
+        },
+        "avatar": {
+          "x": 407.140625,
+          "y": 300,
+          "width": 292.859375,
+          "right": 700,
+          "bottom": 507
+        },
+        "fields": {
+          "x": 53,
+          "y": 300,
+          "width": 322.140625,
+          "right": 375.140625,
+          "bottom": 656
+        },
+        "avatarBorderLeft": "1px",
+        "inputs": [
+          {
+            "name": "fullName",
+            "x": 53,
+            "y": 326,
+            "width": 322.140625,
+            "right": 375.140625,
+            "bottom": 374
+          },
+          {
+            "name": "email",
+            "x": 53,
+            "y": 420,
+            "width": 322.140625,
+            "right": 375.140625,
+            "bottom": 468
+          },
+          {
+            "name": "bio",
+            "x": 53,
+            "y": 514,
+            "width": 322.140625,
+            "right": 375.140625,
+            "bottom": 562
+          }
+        ]
+      }
+    },
+    {
+      "name": "profile: step2 reflow",
+      "passed": true,
+      "viewport": "768x1024",
+      "dimensions": {
+        "width": 768,
+        "innerWidth": 768,
+        "clientWidth": 768,
+        "visualWidth": 768,
+        "scale": 1,
+        "height": 1024,
+        "scrollWidth": 753,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      }
+    },
+    {
+      "name": "profile: step3 reflow",
+      "passed": true,
+      "viewport": "768x1024",
+      "dimensions": {
+        "width": 768,
+        "innerWidth": 768,
+        "clientWidth": 768,
+        "visualWidth": 768,
+        "scale": 1,
+        "height": 1024,
+        "scrollWidth": 753,
+        "heading": ["Profile"],
+        "clippedHeadings": [],
+        "overflow": []
+      }
+    },
+    {
+      "name": "Profile has3 steps and reachable Save without submission",
+      "passed": true,
+      "viewport": "768x1024"
+    }
+  ],
+  "errors": [],
+  "mutationsBlocked": [],
+  "network": [
+    {
+      "method": "GET",
+      "path": "/profile"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/profile"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/github.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/linkedin.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/profile"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/github.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/linkedin.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/profile"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/github.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/linkedin.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/profile"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/github.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/linkedin.svg"
+    }
+  ],
+  "limitations": [
+    "Local synthetic fixture, not production or real sign-in.",
+    "Long text stress changes only browser DOM or unsaved form state, never persisted data.",
+    "Chromium touch emulation is not a physical-device test."
+  ],
+  "browser": "154.0.8037.57",
+  "browserClosed": true,
+  "nativeZoom": {
+    "outerWidth": 1440,
+    "outerHeight": 900,
+    "innerWidth": 720,
+    "innerHeight": 378,
+    "devicePixelRatio": 2,
+    "visualViewportScale": 1
+  },
+  "completedSurfaces": [
+    "native-200pct:profile",
+    "740x1000:profile",
+    "741x1000:profile",
+    "768x1024:profile"
+  ],
+  "revisionAtEnd": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+  "result": "passed",
+  "finishedAt": "2026-10-24T13:14:14.422Z",
+  "visualReview": {
+    "uniqueScreenshotsViewed": 15,
+    "acceptedUniqueScreenshots": 15,
+    "result": "passed",
+    "findings": [],
+    "notes": [
+      "Native720 and740 use the full single-column field width with no vertical avatar divider.",
+      "741 and768 retain the avatar on the right and balanced field/avatar columns.",
+      "All3 steps retain coherent gutters and reachable Next/Next/Save controls; all15 saved originals were opened."
+    ]
+  },
+  "closedFindings": [
+    {
+      "id": "P2-03",
+      "sourceFix": "cf7c222428e5c8dcd13f1f38e547f1edd1131782",
+      "integratedSource": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "status": "Closed after actual native720/740/741/768 screenshots and geometry inspection."
+    }
+  ]
+}

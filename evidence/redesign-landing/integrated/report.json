@@ -1,0 +1,623 @@
+{
+  "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+  "expectedIntegrationSource": "0f5f8236bcc30c3d6a6a5960eb2f24154ed89d19",
+  "runtimeFingerprint": "43983cc10fdc9bec4c3be6ad1288bcc3971311deac5bf70c544f300cf3846db6",
+  "syntheticOnly": true,
+  "bannerHidden": true,
+  "screenshots": [
+    {
+      "label": "normal-hero",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/normal-hero-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "36a5fe940863304c44efff3e071d5cbeb1faf8e0e14fb51e4828cdf8897e0c16"
+    },
+    {
+      "label": "normal-schedule",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/normal-schedule-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "3628a1d4cde72f5c44cb16f0642046aff25c8426f6452d058962247f4cd4f9df"
+    },
+    {
+      "label": "normal-stack-transition",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/normal-stack-transition-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "41d70fc3dd3573cf7dd33c7ec7c445920296ad51d459273af49f78f61932e879"
+    },
+    {
+      "label": "normal-faq",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/normal-faq-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "da719aae856dcc27b086906c3e4f72c13e71216deac9e2179932d4be8cde1967"
+    },
+    {
+      "label": "reduced-hero",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/reduced-hero-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "2df97ae8be58d1c3302bc01a9e60868590a6fbc7e13bb486e1065e1f3c0418bd"
+    },
+    {
+      "label": "normal-hero",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/normal-hero-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "9485173409dfe4c3c3adf4bc49a77f287a849d2920831ad3723f57e12f0755e1"
+    },
+    {
+      "label": "normal-schedule",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/normal-schedule-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "ece9cb78970d426eae919b089060a85d2d491566bc6e4f5ef044e25075d49ace"
+    },
+    {
+      "label": "normal-stack-transition",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/normal-stack-transition-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "2429d8722a82e2665f1200ff87e1e1f6ac367a6e76209b64c677134e88604438"
+    },
+    {
+      "label": "normal-faq",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/normal-faq-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "1de40b7e29f2476396fcba79f1028e8be669b8b2a6c1ca349ab6a9a143c3c4f6"
+    },
+    {
+      "label": "reduced-hero",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/reduced-hero-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "ddfbd2925245c78829cb05675dfca080f6b66ec6ada5758b4c8f0e3fa3434768"
+    },
+    {
+      "label": "shared-signin-navigation",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/shared-signin-navigation-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "42b6964acdc89ce7a95f92ee45bed6c4dfe54bdf63f1f6d3ab834006e934d606"
+    },
+    {
+      "label": "normal-hero",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/normal-hero-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "63f07a67b8e511036702359f36cdf69c5d60fa3e9084fd37e389a926bcf4d919"
+    },
+    {
+      "label": "normal-schedule",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/normal-schedule-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "d02887a8a1250a876440a6ac4df863b65dd16ef5991a203ed98b1d247f1ece83"
+    },
+    {
+      "label": "normal-stack-transition",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/normal-stack-transition-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "26fef9b3a47fc199fa1c1dfc148486c087e7b53853b539143ee03bbcea21d791"
+    },
+    {
+      "label": "normal-faq",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/normal-faq-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "a81bafe407d47a27979022cb7fe202e0c0784594b922bf3e6773eba6f55cb89c"
+    },
+    {
+      "label": "reduced-hero",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/reduced-hero-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "10dba4ccfbfa95ccea32cbfae0c244123486a00cf8e5ac30ca6a5801fecf7031"
+    },
+    {
+      "label": "shared-signin-navigation",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/shared-signin-navigation-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "1d1a9e4cf0bd4ac397245d6049e9bf35066d44e6f29648727e313fb1035338ef"
+    },
+    {
+      "label": "normal-hero",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/normal-hero-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "04061d93ad1a068c2be1bf46bf03b7c5bac5771ef12ffaafc96f64b92ac57946"
+    },
+    {
+      "label": "normal-short-cta",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/normal-short-cta-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "e86fbdc35993c8626bec3235b62cd1b08f90a15f22511d7d979afef045a90337"
+    },
+    {
+      "label": "normal-schedule",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/normal-schedule-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "bb626391ea9084871b7794326da5d1b0dbf89369f02be0e3f42a1150adaa1982"
+    },
+    {
+      "label": "normal-stack-transition",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/normal-stack-transition-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "079112d98ad14439a3dcfd703638a918a75a0f5cbbb2534fc2da758368c926c2"
+    },
+    {
+      "label": "normal-faq",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/normal-faq-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "7ec9fab82713a38ddc107c2ab93fc1a0d735661595a02affb01b5d74fc0a668c"
+    },
+    {
+      "label": "reduced-hero",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/reduced-hero-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "a44cb9295dfb3a616d9364be06eafbdc6816a02daaf03019965e51025880ef29"
+    },
+    {
+      "label": "shared-signin-navigation",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated/shared-signin-navigation-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "09682b5c34e029a49ebd873bb4786083819e8abe",
+      "inspected": true,
+      "sha256": "9f0d526ae96d0cebc4a02be1e46f14fef30ca84d7382d5303a5e0cb9802f259d"
+    }
+  ],
+  "checks": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "geometry": {
+        "cta": {
+          "x": 63.359375,
+          "y": 596.171875,
+          "width": 280.796875,
+          "height": 58.796875,
+          "top": 596.171875,
+          "right": 344.15625,
+          "bottom": 654.96875,
+          "left": 63.359375
+        },
+        "strip": {
+          "x": 0,
+          "y": 710,
+          "width": 1425,
+          "height": 190,
+          "top": 710,
+          "right": 1425,
+          "bottom": 900,
+          "left": 0
+        },
+        "side": {
+          "x": 871.53125,
+          "y": 154.84375,
+          "width": 490.109375,
+          "height": 449.265625,
+          "top": 154.84375,
+          "right": 1361.640625,
+          "bottom": 604.109375,
+          "left": 871.53125
+        },
+        "horizontalOverflow": false
+      },
+      "chapterState": {
+        "enhanced": "true",
+        "heights": [
+          314,
+          272,
+          566,
+          555
+        ]
+      },
+      "stacked": [
+        {
+          "id": "schedule",
+          "y": 94,
+          "bottom": 876,
+          "position": "sticky",
+          "top": "94px"
+        },
+        {
+          "id": "venue",
+          "y": 521,
+          "bottom": 1289,
+          "position": "sticky",
+          "top": "108px"
+        },
+        {
+          "id": "rules",
+          "y": 1288,
+          "bottom": 2042,
+          "position": "sticky",
+          "top": "122px"
+        },
+        {
+          "id": "faq",
+          "y": 2041,
+          "bottom": 2781,
+          "position": "sticky",
+          "top": "136px"
+        }
+      ],
+      "ctaThumbTargetsClear": true,
+      "trustedCTAActivations": true,
+      "normalRest": true,
+      "offscreenStopped": true,
+      "reducedStable": true,
+      "menuEscapeBackFocus": false
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "geometry": {
+        "cta": {
+          "x": 20,
+          "y": 798,
+          "width": 713,
+          "height": 58,
+          "top": 798,
+          "right": 733,
+          "bottom": 856,
+          "left": 20
+        },
+        "strip": {
+          "x": 0,
+          "y": 856,
+          "width": 753,
+          "height": 168,
+          "top": 856,
+          "right": 753,
+          "bottom": 1024,
+          "left": 0
+        },
+        "side": {
+          "x": 0,
+          "y": 562.6875,
+          "width": 753,
+          "height": 179.3125,
+          "top": 562.6875,
+          "right": 753,
+          "bottom": 742,
+          "left": 0
+        },
+        "horizontalOverflow": false
+      },
+      "chapterState": {
+        "enhanced": "true",
+        "heights": [
+          319,
+          265,
+          587,
+          600
+        ]
+      },
+      "stacked": [
+        {
+          "id": "schedule",
+          "y": 78,
+          "bottom": 1000,
+          "position": "sticky",
+          "top": "78px"
+        },
+        {
+          "id": "venue",
+          "y": 661,
+          "bottom": 1573,
+          "position": "sticky",
+          "top": "88px"
+        },
+        {
+          "id": "rules",
+          "y": 1572,
+          "bottom": 2474,
+          "position": "sticky",
+          "top": "98px"
+        },
+        {
+          "id": "faq",
+          "y": 2473,
+          "bottom": 3365,
+          "position": "sticky",
+          "top": "108px"
+        }
+      ],
+      "ctaThumbTargetsClear": true,
+      "trustedCTAActivations": true,
+      "normalRest": true,
+      "offscreenStopped": true,
+      "reducedStable": true,
+      "menuEscapeBackFocus": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "geometry": {
+        "cta": {
+          "x": 20,
+          "y": 618,
+          "width": 350,
+          "height": 58,
+          "top": 618,
+          "right": 370,
+          "bottom": 676,
+          "left": 20
+        },
+        "strip": {
+          "x": 0,
+          "y": 676,
+          "width": 390,
+          "height": 168,
+          "top": 676,
+          "right": 390,
+          "bottom": 844,
+          "left": 0
+        },
+        "side": {
+          "x": 0,
+          "y": 381.34375,
+          "width": 390,
+          "height": 180.65625,
+          "top": 381.34375,
+          "right": 390,
+          "bottom": 562,
+          "left": 0
+        },
+        "horizontalOverflow": false
+      },
+      "chapterState": {
+        "enhanced": "false",
+        "heights": [
+          317,
+          263,
+          709,
+          618
+        ]
+      },
+      "stacked": [
+        {
+          "id": "schedule",
+          "y": -260,
+          "bottom": 59.390625,
+          "position": "relative",
+          "top": "0px"
+        },
+        {
+          "id": "venue",
+          "y": 58.390625,
+          "bottom": 323.765625,
+          "position": "relative",
+          "top": "0px"
+        },
+        {
+          "id": "rules",
+          "y": 322.765625,
+          "bottom": 1033.765625,
+          "position": "relative",
+          "top": "0px"
+        },
+        {
+          "id": "faq",
+          "y": 1032.765625,
+          "bottom": 1652.9375,
+          "position": "relative",
+          "top": "0px"
+        }
+      ],
+      "ctaThumbTargetsClear": true,
+      "trustedCTAActivations": true,
+      "normalRest": true,
+      "offscreenStopped": true,
+      "reducedStable": true,
+      "menuEscapeBackFocus": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "geometry": {
+        "cta": {
+          "x": 20,
+          "y": 581.34375,
+          "width": 350,
+          "height": 58,
+          "top": 581.34375,
+          "right": 370,
+          "bottom": 639.34375,
+          "left": 20
+        },
+        "strip": {
+          "x": 0,
+          "y": 639.34375,
+          "width": 390,
+          "height": 168,
+          "top": 639.34375,
+          "right": 390,
+          "bottom": 807.34375,
+          "left": 0
+        },
+        "side": {
+          "x": 0,
+          "y": 381.34375,
+          "width": 390,
+          "height": 144,
+          "top": 381.34375,
+          "right": 390,
+          "bottom": 525.34375,
+          "left": 0
+        },
+        "horizontalOverflow": false
+      },
+      "chapterState": {
+        "enhanced": "false",
+        "heights": [
+          317,
+          263,
+          709,
+          618
+        ]
+      },
+      "stacked": [
+        {
+          "id": "schedule",
+          "y": -259.65625,
+          "bottom": 59.734375,
+          "position": "relative",
+          "top": "0px"
+        },
+        {
+          "id": "venue",
+          "y": 58.734375,
+          "bottom": 324.109375,
+          "position": "relative",
+          "top": "0px"
+        },
+        {
+          "id": "rules",
+          "y": 323.109375,
+          "bottom": 1034.109375,
+          "position": "relative",
+          "top": "0px"
+        },
+        {
+          "id": "faq",
+          "y": 1033.109375,
+          "bottom": 1653.28125,
+          "position": "relative",
+          "top": "0px"
+        }
+      ],
+      "ctaThumbTargetsClear": true,
+      "trustedCTAActivations": true,
+      "normalRest": true,
+      "offscreenStopped": true,
+      "reducedStable": true,
+      "menuEscapeBackFocus": true
+    }
+  ],
+  "errors": [],
+  "writes": [],
+  "finalResult": "passed",
+  "inspectionNotes": "Opened all screenshot pixels through native views or viewport inspection sheets. Shared navigation spacing, mobile CTA, reduced motion and normal stacking reviewed. The sparse desktop/tablet Schedule and Venue blank-stage finding is resolved by532ae8 and superseded by integrated-final/report.json. The immediate short CTA frame precedes resumed pile settling; integrated-final/short-rest-report.json captures the settled result.",
+  "visualFindings": [
+    {
+      "severity": "P2",
+      "finding": "Sparse Schedule and Venue inherited full-height sticky chapters, creating empty stages.",
+      "resolvedBy": "532ae8a183f563bccf2f9bbd2da729fc9fab169e",
+      "verifiedBy": "../integrated-final/report.json"
+    }
+  ]
+}

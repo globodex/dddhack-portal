@@ -1,0 +1,4360 @@
+{
+  "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+  "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+  "nativeBrowserZoom": "Disposable Chromium profile; chrome.settingsPrivate.setDefaultZoom(2) in chrome://settings/appearance; metrics recorded. No CSS zoom or CDP pinch.",
+  "syntheticOnly": true,
+  "domStressOnly": true,
+  "screenshots": [
+    {
+      "label": "home-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-rest-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "4daf5e81165c3ecd49e80a7625566950bcbb70ba3f8cddb886245370686e6bc5",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "label": "home-cta-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-cta-rest-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "d5ad2978149f9d12903a5c38c1493d848641b9b37f2a27838df3ad748f40d5a4",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "label": "home-schedule",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-schedule-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "d2122346d65a0c194ac1e8d6b52b6c27c7f62cd7b2a3526ac4e8ec9abe475f94",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "label": "home-venue",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-venue-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "9941fa4dfbe52aae3607d67bb1023b3e92613f6df3e30b85e4be6745c170b0a9",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "label": "home-rules",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-rules-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "863685b8868732734d8995c6b08c7a81676b7b273e2befbc1eb60e683223a51a",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "label": "home-faq",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-faq-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "dc293db98f2b95856d3558a04df00125f381cd44fdc100b4b88b5c7d223da5c5",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "label": "home-organizers",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-organizers-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "ae1f1d1feeac4a74d1a57022ec296b54fefb2ab69c5ca6c460b3a4606da88bc9",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "label": "home-menu",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-menu-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "1e9c81048cad74a4e3d399d5c36adb54f796cd44c40d3f3594be237e96a07141",
+      "inspected": true,
+      "acceptedForRestReview": false,
+      "inspectionNote": "Captured during the280ms top-down entrance. Rejected as resting menu evidence; final settled-menu supplement pending.",
+      "nativeImagePixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "label": "dom-stress-agenda",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/dom-stress-agenda-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "f38c60e9ac005a0aa352e9ce46cac9d9fbff671bf8b20377f44c65b270996169",
+      "inspected": true,
+      "domFixture": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "label": "dom-stress-faq",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/dom-stress-faq-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "9d8dd6a6925fa293a094bb76f19f9f197bd6bf2c4232241f9f6760fac8a47977",
+      "inspected": true,
+      "domFixture": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "label": "signin",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/signin-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "c86b2f40b1c2ab8cbcc8c31a04e4ee2c05baaff275479bba18716fa69eaa6808",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "label": "signin-long-email",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/signin-long-email-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "4f597269f9f482e1fe1190a056c3192fc435184f7c4ee0deffb97ac95491db2c",
+      "inspected": true,
+      "domFixture": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "label": "signin-menu",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/signin-menu-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "1e9c81048cad74a4e3d399d5c36adb54f796cd44c40d3f3594be237e96a07141",
+      "inspected": true,
+      "acceptedForRestReview": false,
+      "inspectionNote": "Captured during the280ms top-down entrance. Rejected as resting menu evidence; final settled-menu supplement pending.",
+      "nativeImagePixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "label": "privacy-header",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/privacy-header-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "f74650d918b00a8e4d27552aa12aaa30b9bb82f0a9c8e9923c3c502e7ab81dce",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "label": "privacy-menu",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/privacy-menu-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "8bf4703774a26b425244e56dd703a0368b81d138f07ffe885b5644053b5a1142",
+      "inspected": true,
+      "acceptedForRestReview": false,
+      "inspectionNote": "Captured during the280ms top-down entrance. Rejected as resting menu evidence; final settled-menu supplement pending.",
+      "nativeImagePixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "label": "terms-header",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/terms-header-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "52d9a407f1dc4e45086526c08efac152b210d0a864a038316d8c82f532d9ed46",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "label": "terms-menu",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/terms-menu-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "9dab5bdbe32086ae5b9d49d3883380d80c73ef4c4a228eb0766f94e50607ed44",
+      "inspected": true,
+      "acceptedForRestReview": false,
+      "inspectionNote": "Captured during the280ms top-down entrance. Rejected as resting menu evidence; final settled-menu supplement pending.",
+      "nativeImagePixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "label": "home-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-rest-native-zoom-200pct-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "a876fd1a57f322460407111f44d8d3d9815cd18e6322d1ec7926ede62135debb",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        757
+      ]
+    },
+    {
+      "label": "home-cta-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-cta-rest-native-zoom-200pct-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "163e091568a65a6de9ab42f71b05d2413442be44677ed5a099f59eb8db6ce9f5",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        757
+      ]
+    },
+    {
+      "label": "home-schedule",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-schedule-native-zoom-200pct-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "cc71e63c006b4570f37182fb7eec3f4a1e16007dd6e0e95a9c68e9f908839132",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        757
+      ]
+    },
+    {
+      "label": "home-venue",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-venue-native-zoom-200pct-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "135b878024d2805d696d9ed720f2a42e71e5d68b14536e3619e9b88062404f32",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        757
+      ]
+    },
+    {
+      "label": "home-rules",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-rules-native-zoom-200pct-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "7ccc7700d80c38b58c2cf7ff452724e9e0b212d55cb0afadbfb26bcf545598c6",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        757
+      ]
+    },
+    {
+      "label": "home-faq",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-faq-native-zoom-200pct-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "f9d59e9fb9f369afc6da6c3a47fa46f01ef47aebfac340aa63946ad4bbad37a8",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        757
+      ]
+    },
+    {
+      "label": "home-organizers",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-organizers-native-zoom-200pct-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "29e40612da294b4eed3642c7b4ff6925bb52f2d84f65c6b81a950692e57178cd",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        757
+      ]
+    },
+    {
+      "label": "home-organizers-end",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-organizers-end-native-zoom-200pct-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "6b16c5c9abfcbc4e220c9c3d3acf682a75032365aaeafd07dd22433921c66f5f",
+      "inspected": true,
+      "acceptedForRestReview": false,
+      "inspectionNote": "Newly visible organizer units were entering. Settled end frames are supplied by rest-report.json.",
+      "nativeImagePixels": [
+        1440,
+        757
+      ]
+    },
+    {
+      "label": "home-menu",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-menu-native-zoom-200pct-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "a033c26b247db35cee74471bec92573383e39527726586ed57ea7bc3fc6fcdc8",
+      "inspected": true,
+      "acceptedForRestReview": false,
+      "inspectionNote": "Captured during the280ms top-down entrance. Rejected as resting menu evidence; final settled-menu supplement pending.",
+      "nativeImagePixels": [
+        1440,
+        757
+      ]
+    },
+    {
+      "label": "dom-stress-agenda",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/dom-stress-agenda-native-zoom-200pct-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "36ab6e4130a0d225dbc44f7e4b88b6cabe766912ad26e8928c2d4c5fb315355d",
+      "inspected": true,
+      "domFixture": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        757
+      ]
+    },
+    {
+      "label": "dom-stress-faq",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/dom-stress-faq-native-zoom-200pct-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "554d8c83301ddec99f4032f9cbbef9cef4a64abc08a6afc98dd375f128cf6391",
+      "inspected": true,
+      "domFixture": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        757
+      ]
+    },
+    {
+      "label": "signin",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/signin-native-zoom-200pct-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "f61d023368b3f2750bccf8912ed95a99f67bdf39c77345d1361a107100adcaf5",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        757
+      ]
+    },
+    {
+      "label": "signin-submit-reachable",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/signin-submit-reachable-native-zoom-200pct-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "b4cc3d9726fa828f8127bc8da12ea2a52041e9ac4924eaab1900f9229b879bb5",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        757
+      ]
+    },
+    {
+      "label": "signin-long-email",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/signin-long-email-native-zoom-200pct-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "e474a275ec187ae469c36afc9b4f9a206029ff3801e715994d41a9a4090c320f",
+      "inspected": true,
+      "domFixture": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        757
+      ]
+    },
+    {
+      "label": "signin-menu",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/signin-menu-native-zoom-200pct-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "fa8ce9f90608a81b925ca3691e53cef8aeebe03695057874d3cbaa22aa1e98a9",
+      "inspected": true,
+      "acceptedForRestReview": false,
+      "inspectionNote": "Captured during the280ms top-down entrance. Rejected as resting menu evidence; final settled-menu supplement pending.",
+      "nativeImagePixels": [
+        1440,
+        757
+      ]
+    },
+    {
+      "label": "privacy-header",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/privacy-header-native-zoom-200pct-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "09e3cc418a2a57f7474694f85f2b478f248649a8ab97129c4e0d66ef9505eaa8",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        757
+      ]
+    },
+    {
+      "label": "privacy-menu",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/privacy-menu-native-zoom-200pct-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "625aa52f35089fbc00aa32cdf3a018b26dda47f763fe25b25d16e09ec06a3f94",
+      "inspected": true,
+      "acceptedForRestReview": false,
+      "inspectionNote": "Captured during the280ms top-down entrance. Rejected as resting menu evidence; final settled-menu supplement pending.",
+      "nativeImagePixels": [
+        1440,
+        757
+      ]
+    },
+    {
+      "label": "terms-header",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/terms-header-native-zoom-200pct-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "df60c84eb30f11d62f04209644ea0fffaca6037193f3b30bb70179475f92fb76",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        757
+      ]
+    },
+    {
+      "label": "terms-menu",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/terms-menu-native-zoom-200pct-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "c71ee6b8c77dfe7ff1fbbfa12c7bfe6cda652031597c4b9872e658a3fcf99627",
+      "inspected": true,
+      "acceptedForRestReview": false,
+      "inspectionNote": "Captured during the280ms top-down entrance. Rejected as resting menu evidence; final settled-menu supplement pending.",
+      "nativeImagePixels": [
+        1440,
+        757
+      ]
+    },
+    {
+      "label": "home-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-rest-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "018e52748f2d9702b924c56f1dcc1465a796304612a1b774c23f84bc8878efc3",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        480
+      ]
+    },
+    {
+      "label": "home-cta-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-cta-rest-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "711532437beb71a368f848266d67cdf0e289ddf4a725133ba4800560aeb8456c",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        480
+      ]
+    },
+    {
+      "label": "home-schedule",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-schedule-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "cd1b2894fd946c8ac8c2bcaffd415510a7773cf1fb34c215626224a123280ea2",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        480
+      ]
+    },
+    {
+      "label": "home-venue",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-venue-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "f5be95bbdf46f9b57333e94e3bc0da8d3dd1281265ad563aa039771d89a2a4fc",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        480
+      ]
+    },
+    {
+      "label": "home-rules",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-rules-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "b7451dbeffa7059e662263907f63bc88e2b1aad7ce8d038f896bb4afc8bda873",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        480
+      ]
+    },
+    {
+      "label": "home-faq",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-faq-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "b81c15c06a7454b2e76734af03462ed5cdeda641861f5636f27a1e92b5bbaad6",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        480
+      ]
+    },
+    {
+      "label": "home-organizers",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-organizers-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "606a699043bd9fa24a4ce553d0caa269eaf74a4e57731aafb30723b50bda9452",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        480
+      ]
+    },
+    {
+      "label": "home-organizers-end",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-organizers-end-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "b4fb9f79292d853b19a88af8e30baa3e074b89eb2be219e789a2b88f03e621dd",
+      "inspected": true,
+      "acceptedForRestReview": false,
+      "inspectionNote": "Newly visible organizer units were entering. Settled end frames are supplied by rest-report.json.",
+      "nativeImagePixels": [
+        320,
+        480
+      ]
+    },
+    {
+      "label": "home-menu",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-menu-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "1888589d9c9dd34a6513597e4e8bc0e0a26b11959f614f01f0bd602f7ea8aae2",
+      "inspected": true,
+      "acceptedForRestReview": false,
+      "inspectionNote": "Captured during the280ms top-down entrance. Rejected as resting menu evidence; final settled-menu supplement pending.",
+      "nativeImagePixels": [
+        320,
+        480
+      ]
+    },
+    {
+      "label": "dom-stress-agenda",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/dom-stress-agenda-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "7e3bdfa4533e215a2ef1c01ee44288f71b09ea04d416dacf44514f040ee70c2d",
+      "inspected": true,
+      "domFixture": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        480
+      ]
+    },
+    {
+      "label": "dom-stress-faq",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/dom-stress-faq-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "096da0094cd0609a78902d3da9e353f03764ea52db314e74e21df651425f8f4c",
+      "inspected": true,
+      "domFixture": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        480
+      ]
+    },
+    {
+      "label": "signin",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/signin-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "d54b87b9010834049ec12f1381c5839695a3e414339d90d72997697a7bdf8411",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        480
+      ]
+    },
+    {
+      "label": "signin-submit-reachable",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/signin-submit-reachable-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "d54b87b9010834049ec12f1381c5839695a3e414339d90d72997697a7bdf8411",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        480
+      ]
+    },
+    {
+      "label": "signin-long-email",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/signin-long-email-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "461a6962a250216a21e4e7f36eced67f65bdd78cc40179f6c227e43e04bbe6ad",
+      "inspected": true,
+      "domFixture": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        480
+      ]
+    },
+    {
+      "label": "signin-menu",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/signin-menu-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "b0366c33c300a7b1380358af47e6c241458aa05996d3f08c6e20629bc9a7f658",
+      "inspected": true,
+      "acceptedForRestReview": false,
+      "inspectionNote": "Captured during the280ms top-down entrance. Rejected as resting menu evidence; final settled-menu supplement pending.",
+      "nativeImagePixels": [
+        320,
+        480
+      ]
+    },
+    {
+      "label": "privacy-header",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/privacy-header-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "b75c289c63cf4ef47caeb4d12a99c8ac8f8b0c19529cc5d3089aac7336dad743",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        480
+      ]
+    },
+    {
+      "label": "terms-header",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/terms-header-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "5ee37f42ec0da684b5ef3a051a86fefb2d99d0e29ffe5373af7f71b6e50f9cd6",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        320,
+        480
+      ]
+    },
+    {
+      "label": "home-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-rest-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "ba05b7618f44e5582eb4dfad733bcffe9a83c8355076e326bf0eacde12d5664f",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "label": "home-cta-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-cta-rest-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "94b96bbaf246fa5a3704266204a2cc577578ec2d8d0fb9bc6b0353af44e7d5fb",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "label": "home-schedule",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-schedule-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "62dbe444cb9abb98eeee4510530250bb1de7482f47cb1e8a93ce0988ffb2ebab",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "label": "home-venue",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-venue-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "648ba17dcde83a753315a6f73da062933c5ddf8f5b14accefaed42f82b5a4776",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "label": "home-rules",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-rules-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "282956af672d0954a17a2696dabdc92fa6b1bc69dc1469e57d5b04b8dd8a611f",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "label": "home-faq",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-faq-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "539ffdeaf224c034a3c286d55d1dab561279e6a491473539995e1d980c47520a",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "label": "home-organizers",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-organizers-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "36d800d3af5ef952db6f284d1110339f9d02a6eaad2227b322a24214752dd7fd",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "label": "home-menu",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-menu-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "595a2815b5271cbebe538324a8e76ddd8c9a515d2be0b0bdb18eb4eed7174ac0",
+      "inspected": true,
+      "acceptedForRestReview": false,
+      "inspectionNote": "Captured during the280ms top-down entrance. Rejected as resting menu evidence; final settled-menu supplement pending.",
+      "nativeImagePixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "label": "dom-stress-agenda",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/dom-stress-agenda-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "b621e9c7bc6addf9dc57103b101adbbc137f7da5e7145502cf7f0ee7003f40a3",
+      "inspected": true,
+      "domFixture": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "label": "dom-stress-faq",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/dom-stress-faq-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "64fa2f5ad399c6a793846c08d293b5f8eabd7c3ee30eafb678578dbe7385948d",
+      "inspected": true,
+      "domFixture": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "label": "signin",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/signin-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "0aca522836901f5ebdf0a34b0d9fc4beb615e799047da5af388c4c5094596940",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "label": "home-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-rest-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "aba54bc9ada8a97b112b9a63c24fae2ff5fa7f4ecdb91d6a905e6d798a81ccb4",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        480
+      ]
+    },
+    {
+      "label": "home-cta-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-cta-rest-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "6ac962f6f29d47e0911257dec507bae0f15fe7f69b774af77dcd7b1cd2f9f7ef",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        480
+      ]
+    },
+    {
+      "label": "home-schedule",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-schedule-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "4de9a914af813b5d009198ef5c8e199d8704f0f09ba1d76b5db08843e7db116b",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        480
+      ]
+    },
+    {
+      "label": "home-venue",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-venue-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "055d5ea6f84aeee8319a803ed5444a07b4c952f3f604162b20911f19bd416472",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        480
+      ]
+    },
+    {
+      "label": "home-rules",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-rules-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "9aace3351519ddfc45e22ae8bebdd4f75dba711448ffb661397f0d25a6681e22",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        480
+      ]
+    },
+    {
+      "label": "home-faq",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-faq-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "ec24bab4b204d987a4c97814a30506b2f69bf75ce6520c0fb9c89001e30ed0d6",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        480
+      ]
+    },
+    {
+      "label": "home-organizers",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-organizers-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "5a6946d835ee8009aa7adb498089836797dc23299f46a92fd199f9d644544ee0",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        480
+      ]
+    },
+    {
+      "label": "home-organizers-end",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-organizers-end-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "06514f46627e7cd40834f8885881cfcc504b049bb2b568013a70aeacaad45a46",
+      "inspected": true,
+      "acceptedForRestReview": false,
+      "inspectionNote": "Newly visible organizer units were entering. Settled end frames are supplied by rest-report.json.",
+      "nativeImagePixels": [
+        390,
+        480
+      ]
+    },
+    {
+      "label": "home-menu",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-menu-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "90b6e8ccbae0f8b92e45e6851496ce1c7d0a8b0c12dae044661b7be971d45005",
+      "inspected": true,
+      "acceptedForRestReview": false,
+      "inspectionNote": "Captured during the280ms top-down entrance. Rejected as resting menu evidence; final settled-menu supplement pending.",
+      "nativeImagePixels": [
+        390,
+        480
+      ]
+    },
+    {
+      "label": "dom-stress-agenda",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/dom-stress-agenda-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "b2694d48fbc71d9e3be14cc293f17515914c78582621aef734ca71793b43c223",
+      "inspected": true,
+      "domFixture": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        480
+      ]
+    },
+    {
+      "label": "dom-stress-faq",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/dom-stress-faq-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "0f49b67d8bcb872861defe3abb3ee1329a7db923565f3acc2762b2d8df4598cc",
+      "inspected": true,
+      "domFixture": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        480
+      ]
+    },
+    {
+      "label": "signin",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/signin-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "82df040b64692d15a71504699bea22d09a88b3f4c9ae6adc9f3b897d4337dee6",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        480
+      ]
+    },
+    {
+      "label": "signin-submit-reachable",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/signin-submit-reachable-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "82df040b64692d15a71504699bea22d09a88b3f4c9ae6adc9f3b897d4337dee6",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        390,
+        480
+      ]
+    },
+    {
+      "label": "home-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-rest-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "7bacd9d8cb65c1d8a4d2f3aa9ff8b68b3b1c5805730a6f8cb9bf1701d8d29e7c",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        768,
+        1024
+      ]
+    },
+    {
+      "label": "home-cta-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-cta-rest-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "16766d915ca408802458b1a276ab1d11a13a5790ba8c86bf66436dd38a99b4ba",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        768,
+        1024
+      ]
+    },
+    {
+      "label": "home-schedule",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-schedule-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "20694f5c774d6d12aa83535ee272122eb8734b2a697d1765912ff75e9c193b98",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        768,
+        1024
+      ]
+    },
+    {
+      "label": "home-venue",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-venue-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "fbf43821a3a5e83667b7f10c68ffb9a559d3aef438c3ee991cf234ebcfc1fdc3",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        768,
+        1024
+      ]
+    },
+    {
+      "label": "home-rules",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-rules-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "8b77200a23562af834b9bbcb4e6e9f11f2844ed7b862bacc28987276fd0d56da",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        768,
+        1024
+      ]
+    },
+    {
+      "label": "home-faq",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-faq-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "b1e594c7f56513756bceb1a8139a9c44a8ba88f04da6ec62e78ebc34ad4d366d",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        768,
+        1024
+      ]
+    },
+    {
+      "label": "home-organizers",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-organizers-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "5176a4e13d1e855af1b5cb3431739cd7eae32a9a1b191921b41b81be042eb608",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        768,
+        1024
+      ]
+    },
+    {
+      "label": "home-menu",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-menu-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "5a342b7f3075b9b5e64717c4616b30d5aa25696b9a47ac6d8e4d0c5d44c4f03c",
+      "inspected": true,
+      "acceptedForRestReview": false,
+      "inspectionNote": "Captured during the280ms top-down entrance. Rejected as resting menu evidence; final settled-menu supplement pending.",
+      "nativeImagePixels": [
+        768,
+        1024
+      ]
+    },
+    {
+      "label": "dom-stress-agenda",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/dom-stress-agenda-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "1924fd94a216d0f95ae843fc14aa732da20730f2b2fcf0910a49617db0f35e23",
+      "inspected": true,
+      "domFixture": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        768,
+        1024
+      ]
+    },
+    {
+      "label": "dom-stress-faq",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/dom-stress-faq-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "1aa20ac6938a239361e579eb9b8096fc44374d34a7c325b63d16462eb6f33988",
+      "inspected": true,
+      "domFixture": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        768,
+        1024
+      ]
+    },
+    {
+      "label": "signin",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/signin-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "40d339eacd08ac89118ccdb1e231de2c7946b02fd87bfc5ff60162e6bf545364",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        768,
+        1024
+      ]
+    },
+    {
+      "label": "home-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-rest-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "b9db2f5d8d28021684f71769e0dda32d54333ca43b2c210c162ee9af9e70156b",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        900
+      ]
+    },
+    {
+      "label": "home-cta-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-cta-rest-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "adade59701ae9fc521a605462d49def8c6bc273213930a86ebc2b0cfd7af43d8",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        900
+      ]
+    },
+    {
+      "label": "home-schedule",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-schedule-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "d46eb9ca92173af7da4e7892285578ec82be5fae3ce89089218b56f1d2bbf0f4",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        900
+      ]
+    },
+    {
+      "label": "home-venue",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-venue-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "253951e2cb00d588a3a5e8c9737e6d6453e2c3ba1d15307442ea9c722a4c361f",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        900
+      ]
+    },
+    {
+      "label": "home-rules",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-rules-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "6f1a28fd9dc44fe72c12bf02fd31dab7decf86e958b8585a9a8fa7b932c108e3",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        900
+      ]
+    },
+    {
+      "label": "home-faq",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-faq-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "7d2da6c49bf938625b28238df0c94f63559f69fa2c7e670049d8280b0d0d3863",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        900
+      ]
+    },
+    {
+      "label": "home-organizers",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-organizers-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "140a429531f29877af623da0e07f5d9c81290b93e7bdc996972d89aa61ecb8be",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        900
+      ]
+    },
+    {
+      "label": "dom-stress-agenda",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/dom-stress-agenda-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "64ef415c834571b621a392531fe360a6d27b56dc614de0a941dffcf9805d11e9",
+      "inspected": true,
+      "domFixture": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        900
+      ]
+    },
+    {
+      "label": "dom-stress-faq",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/dom-stress-faq-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "9a802bfd226797df31f181f03ba89b8c1d45fc322aea4b334f3acbfba86a593b",
+      "inspected": true,
+      "domFixture": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        900
+      ]
+    },
+    {
+      "label": "signin",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/signin-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "surfaceFingerprint": "9a7c1d1a859a2c3a71ab59e6942fe591752db282b65af9bddc6e7bc368709cfb",
+      "sha256": "8c4e24787506fbd6d1928a9bd492b6480109c6cd244b443d3e51bdafb31b8350",
+      "inspected": true,
+      "acceptedForRestReview": true,
+      "nativeImagePixels": [
+        1440,
+        900
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "config": {
+        "width": 320,
+        "height": 844,
+        "label": "320x844"
+      },
+      "checks": [
+        {
+          "surface": "home",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "schedule",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "venue",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "rules",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "faq",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "organizers",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "DOM-only agenda longURL fixture",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "DOM-only FAQ longURL fixture",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "signin",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "privacy",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "terms",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        }
+      ],
+      "images": [
+        "home-rest",
+        "home-cta-rest",
+        "home-schedule",
+        "home-venue",
+        "home-rules",
+        "home-faq",
+        "home-organizers",
+        "home-menu",
+        "dom-stress-agenda",
+        "dom-stress-faq",
+        "signin",
+        "signin-long-email",
+        "signin-menu",
+        "privacy-header",
+        "privacy-menu",
+        "terms-header",
+        "terms-menu"
+      ],
+      "browserMetrics": {
+        "innerWidth": 320,
+        "innerHeight": 844,
+        "outerWidth": 320,
+        "outerHeight": 844,
+        "devicePixelRatio": 1,
+        "visualViewportScale": 1
+      },
+      "cta": {
+        "box": {
+          "x": 20,
+          "y": 618,
+          "width": 280,
+          "height": 58,
+          "top": 618,
+          "right": 300,
+          "bottom": 676,
+          "left": 20
+        },
+        "hitClear": true,
+        "href": "/signin?returnTo=%2Fdashboard"
+      },
+      "ctaActivations": [
+        {
+          "trusted": true,
+          "href": "/signin?returnTo=%2Fdashboard"
+        },
+        {
+          "trusted": true,
+          "href": "/signin?returnTo=%2Fdashboard"
+        }
+      ],
+      "organizers": [
+        {
+          "src": "/organizers/Param3021-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 191.03125,
+            "y": 196.6875,
+            "width": 101.9375,
+            "height": 101.9375,
+            "top": 196.6875,
+            "right": 292.96875,
+            "bottom": 298.625,
+            "left": 191.03125
+          },
+          "ring": {
+            "x": 186,
+            "y": 191.65625,
+            "width": 112,
+            "height": 112,
+            "top": 191.65625,
+            "right": 298,
+            "bottom": 303.65625,
+            "left": 186
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/HowDevelop-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 27.03125,
+            "y": 336.6875,
+            "width": 101.9375,
+            "height": 101.9375,
+            "top": 336.6875,
+            "right": 128.96875,
+            "bottom": 438.625,
+            "left": 27.03125
+          },
+          "ring": {
+            "x": 22,
+            "y": 331.65625,
+            "width": 112,
+            "height": 112,
+            "top": 331.65625,
+            "right": 134,
+            "bottom": 443.65625,
+            "left": 22
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/nikhilsbuilds-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 191.03125,
+            "y": 476.6875,
+            "width": 101.9375,
+            "height": 101.9375,
+            "top": 476.6875,
+            "right": 292.96875,
+            "bottom": 578.625,
+            "left": 191.03125
+          },
+          "ring": {
+            "x": 186,
+            "y": 471.65625,
+            "width": 112,
+            "height": 112,
+            "top": 471.65625,
+            "right": 298,
+            "bottom": 583.65625,
+            "left": 186
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/callmeshuklaji-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 27.03125,
+            "y": 616.6875,
+            "width": 101.9375,
+            "height": 101.9375,
+            "top": 616.6875,
+            "right": 128.96875,
+            "bottom": 718.625,
+            "left": 27.03125
+          },
+          "ring": {
+            "x": 22,
+            "y": 611.65625,
+            "width": 112,
+            "height": 112,
+            "top": 611.65625,
+            "right": 134,
+            "bottom": 723.65625,
+            "left": 22
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        }
+      ],
+      "menu": {
+        "box": {
+          "x": 0,
+          "y": -453.1563720703125,
+          "width": 320,
+          "height": 844,
+          "top": -453.1563720703125,
+          "right": 320,
+          "bottom": 390.8436279296875,
+          "left": 0
+        },
+        "rows": [
+          {
+            "text": "Home",
+            "box": {
+              "x": 20,
+              "y": -361.1563720703125,
+              "width": 280,
+              "height": 60,
+              "top": -361.1563720703125,
+              "right": 300,
+              "bottom": -301.1563720703125,
+              "left": 20
+            }
+          },
+          {
+            "text": "Projects",
+            "box": {
+              "x": 20,
+              "y": -301.1563720703125,
+              "width": 280,
+              "height": 60,
+              "top": -301.1563720703125,
+              "right": 300,
+              "bottom": -241.1563720703125,
+              "left": 20
+            }
+          },
+          {
+            "text": "Sign in",
+            "box": {
+              "x": 20,
+              "y": -241.1563720703125,
+              "width": 280,
+              "height": 60,
+              "top": -241.1563720703125,
+              "right": 300,
+              "bottom": -181.1563720703125,
+              "left": 20
+            }
+          }
+        ],
+        "overflow": false
+      },
+      "menuEscapeClosed": true
+    },
+    {
+      "config": {
+        "width": 1440,
+        "height": 900,
+        "label": "native-zoom-200pct-1440x900",
+        "nativeZoom": 2
+      },
+      "checks": [
+        {
+          "surface": "home",
+          "viewport": {
+            "width": 720,
+            "height": 378,
+            "dpr": 2
+          },
+          "documentOverflow": false,
+          "documentWidth": 712,
+          "clippedText": []
+        },
+        {
+          "surface": "schedule",
+          "viewport": {
+            "width": 720,
+            "height": 378,
+            "dpr": 2
+          },
+          "documentOverflow": false,
+          "documentWidth": 712,
+          "clippedText": []
+        },
+        {
+          "surface": "venue",
+          "viewport": {
+            "width": 720,
+            "height": 378,
+            "dpr": 2
+          },
+          "documentOverflow": false,
+          "documentWidth": 712,
+          "clippedText": []
+        },
+        {
+          "surface": "rules",
+          "viewport": {
+            "width": 720,
+            "height": 378,
+            "dpr": 2
+          },
+          "documentOverflow": false,
+          "documentWidth": 712,
+          "clippedText": []
+        },
+        {
+          "surface": "faq",
+          "viewport": {
+            "width": 720,
+            "height": 378,
+            "dpr": 2
+          },
+          "documentOverflow": false,
+          "documentWidth": 712,
+          "clippedText": []
+        },
+        {
+          "surface": "organizers",
+          "viewport": {
+            "width": 720,
+            "height": 378,
+            "dpr": 2
+          },
+          "documentOverflow": false,
+          "documentWidth": 712,
+          "clippedText": [
+            {
+              "tag": "LI",
+              "className": "organizer-slot",
+              "text": "Shivay LambaCodex Ambassador",
+              "clientWidth": 691,
+              "scrollWidth": 1301,
+              "box": {
+                "x": 22,
+                "y": -112.0703125,
+                "width": 690.5,
+                "height": 164,
+                "top": -112.0703125,
+                "right": 712.5,
+                "bottom": 51.9296875,
+                "left": 22
+              }
+            },
+            {
+              "tag": "A",
+              "className": "organizer-unit",
+              "text": "Shivay LambaCodex Ambassador",
+              "clientWidth": 691,
+              "scrollWidth": 691,
+              "box": {
+                "x": 632.1676635742188,
+                "y": -112.0703125,
+                "width": 690.5000610351562,
+                "height": 164,
+                "top": -112.0703125,
+                "right": 1322.667724609375,
+                "bottom": 51.9296875,
+                "left": 632.1676635742188
+              }
+            },
+            {
+              "tag": "A",
+              "className": "organizer-unit",
+              "text": "Nikhil ShuklaCodex Ambassador",
+              "clientWidth": 691,
+              "scrollWidth": 691,
+              "box": {
+                "x": -714.5,
+                "y": 79.9296875,
+                "width": 690.5,
+                "height": 164,
+                "top": 79.9296875,
+                "right": -24,
+                "bottom": 243.9296875,
+                "left": -714.5
+              }
+            },
+            {
+              "tag": "LI",
+              "className": "organizer-slot",
+              "text": "Shresth ShuklaCerebras AmbassadorCommunity partner: Cerebras",
+              "clientWidth": 691,
+              "scrollWidth": 1405,
+              "box": {
+                "x": 22,
+                "y": 271.9296875,
+                "width": 690.5,
+                "height": 164,
+                "top": 271.9296875,
+                "right": 712.5,
+                "bottom": 435.9296875,
+                "left": 22
+              }
+            },
+            {
+              "tag": "A",
+              "className": "organizer-unit",
+              "text": "Shresth ShuklaCerebras AmbassadorCommunity partner: Cerebras",
+              "clientWidth": 691,
+              "scrollWidth": 691,
+              "box": {
+                "x": 736.5,
+                "y": 271.9296875,
+                "width": 690.5,
+                "height": 164,
+                "top": 271.9296875,
+                "right": 1427,
+                "bottom": 435.9296875,
+                "left": 736.5
+              }
+            }
+          ],
+          "scanInterpretation": "Raw bounds scan includes organizer entrance transforms before settling, or the5px desktop title intrinsic overhang inside the page. See manual inspection notes; no document horizontal overflow was observed."
+        },
+        {
+          "surface": "DOM-only agenda longURL fixture",
+          "viewport": {
+            "width": 720,
+            "height": 378,
+            "dpr": 2
+          },
+          "documentOverflow": false,
+          "documentWidth": 712,
+          "clippedText": []
+        },
+        {
+          "surface": "DOM-only FAQ longURL fixture",
+          "viewport": {
+            "width": 720,
+            "height": 378,
+            "dpr": 2
+          },
+          "documentOverflow": false,
+          "documentWidth": 712,
+          "clippedText": []
+        },
+        {
+          "surface": "signin",
+          "viewport": {
+            "width": 720,
+            "height": 378,
+            "dpr": 2
+          },
+          "documentOverflow": false,
+          "documentWidth": 712,
+          "clippedText": []
+        },
+        {
+          "surface": "privacy",
+          "viewport": {
+            "width": 720,
+            "height": 378,
+            "dpr": 2
+          },
+          "documentOverflow": false,
+          "documentWidth": 712,
+          "clippedText": []
+        },
+        {
+          "surface": "terms",
+          "viewport": {
+            "width": 720,
+            "height": 378,
+            "dpr": 2
+          },
+          "documentOverflow": false,
+          "documentWidth": 712,
+          "clippedText": []
+        }
+      ],
+      "images": [
+        "home-rest",
+        "home-cta-rest",
+        "home-schedule",
+        "home-venue",
+        "home-rules",
+        "home-faq",
+        "home-organizers",
+        "home-organizers-end",
+        "home-menu",
+        "dom-stress-agenda",
+        "dom-stress-faq",
+        "signin",
+        "signin-submit-reachable",
+        "signin-long-email",
+        "signin-menu",
+        "privacy-header",
+        "privacy-menu",
+        "terms-header",
+        "terms-menu"
+      ],
+      "browserMetrics": {
+        "innerWidth": 720,
+        "innerHeight": 378,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "devicePixelRatio": 2,
+        "visualViewportScale": 1
+      },
+      "cta": {
+        "box": {
+          "x": 20,
+          "y": 151.8984375,
+          "width": 672.5,
+          "height": 58,
+          "top": 151.8984375,
+          "right": 692.5,
+          "bottom": 209.8984375,
+          "left": 20
+        },
+        "hitClear": true,
+        "href": "/signin?returnTo=%2Fdashboard"
+      },
+      "ctaActivations": [
+        {
+          "trusted": true,
+          "href": "/signin?returnTo=%2Fdashboard"
+        },
+        {
+          "trusted": true,
+          "href": "/signin?returnTo=%2Fdashboard"
+        }
+      ],
+      "organizers": [
+        {
+          "src": "/organizers/Param3021-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 533.875,
+            "y": 181.8046875,
+            "width": 149.25,
+            "height": 149.25,
+            "top": 181.8046875,
+            "right": 683.125,
+            "bottom": 331.0546875,
+            "left": 533.875
+          },
+          "ring": {
+            "x": 526.5,
+            "y": 174.4296875,
+            "width": 164,
+            "height": 164,
+            "top": 174.4296875,
+            "right": 690.5,
+            "bottom": 338.4296875,
+            "left": 526.5
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/HowDevelop-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 29.375,
+            "y": 373.8046875,
+            "width": 149.25,
+            "height": 149.25,
+            "top": 373.8046875,
+            "right": 178.625,
+            "bottom": 523.0546875,
+            "left": 29.375
+          },
+          "ring": {
+            "x": 22,
+            "y": 366.4296875,
+            "width": 164,
+            "height": 164,
+            "top": 366.4296875,
+            "right": 186,
+            "bottom": 530.4296875,
+            "left": 22
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/nikhilsbuilds-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 533.875,
+            "y": 565.8046875,
+            "width": 149.25,
+            "height": 149.25,
+            "top": 565.8046875,
+            "right": 683.125,
+            "bottom": 715.0546875,
+            "left": 533.875
+          },
+          "ring": {
+            "x": 526.5,
+            "y": 558.4296875,
+            "width": 164,
+            "height": 164,
+            "top": 558.4296875,
+            "right": 690.5,
+            "bottom": 722.4296875,
+            "left": 526.5
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/callmeshuklaji-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 29.375,
+            "y": 757.8046875,
+            "width": 149.25,
+            "height": 149.25,
+            "top": 757.8046875,
+            "right": 178.625,
+            "bottom": 907.0546875,
+            "left": 29.375
+          },
+          "ring": {
+            "x": 22,
+            "y": 750.4296875,
+            "width": 164,
+            "height": 164,
+            "top": 750.4296875,
+            "right": 186,
+            "bottom": 914.4296875,
+            "left": 22
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        }
+      ],
+      "menu": {
+        "box": {
+          "x": 0,
+          "y": -282.5410461425781,
+          "width": 712.5,
+          "height": 378.5,
+          "top": -282.5410461425781,
+          "right": 712.5,
+          "bottom": 95.95895385742188,
+          "left": 0
+        },
+        "rows": [
+          {
+            "text": "Home",
+            "box": {
+              "x": 20,
+              "y": -190.54104614257812,
+              "width": 672.5,
+              "height": 68,
+              "top": -190.54104614257812,
+              "right": 692.5,
+              "bottom": -122.54104614257812,
+              "left": 20
+            }
+          },
+          {
+            "text": "Projects",
+            "box": {
+              "x": 20,
+              "y": -122.54104614257812,
+              "width": 672.5,
+              "height": 68,
+              "top": -122.54104614257812,
+              "right": 692.5,
+              "bottom": -54.541046142578125,
+              "left": 20
+            }
+          },
+          {
+            "text": "Sign in",
+            "box": {
+              "x": 20,
+              "y": -54.541046142578125,
+              "width": 672.5,
+              "height": 68,
+              "top": -54.541046142578125,
+              "right": 692.5,
+              "bottom": 13.458953857421875,
+              "left": 20
+            }
+          }
+        ],
+        "overflow": false
+      },
+      "menuEscapeClosed": true,
+      "signinSubmit": {
+        "box": {
+          "x": 146.25,
+          "y": 175,
+          "width": 420,
+          "height": 52,
+          "top": 175,
+          "right": 566.25,
+          "bottom": 227,
+          "left": 146.25
+        },
+        "clear": true
+      }
+    },
+    {
+      "config": {
+        "width": 320,
+        "height": 480,
+        "label": "320x480"
+      },
+      "checks": [
+        {
+          "surface": "home",
+          "viewport": {
+            "width": 320,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "schedule",
+          "viewport": {
+            "width": 320,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "venue",
+          "viewport": {
+            "width": 320,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "rules",
+          "viewport": {
+            "width": 320,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "faq",
+          "viewport": {
+            "width": 320,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "organizers",
+          "viewport": {
+            "width": 320,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": [
+            {
+              "tag": "A",
+              "className": "organizer-unit",
+              "text": "Nikhil ShuklaCodex Ambassador",
+              "clientWidth": 298,
+              "scrollWidth": 298,
+              "box": {
+                "x": -322,
+                "y": 80.484375,
+                "width": 298,
+                "height": 112,
+                "top": 80.484375,
+                "right": -24,
+                "bottom": 192.484375,
+                "left": -322
+              }
+            },
+            {
+              "tag": "LI",
+              "className": "organizer-slot",
+              "text": "Shresth ShuklaCerebras AmbassadorCommunity partner: Cerebras",
+              "clientWidth": 298,
+              "scrollWidth": 620,
+              "box": {
+                "x": 22,
+                "y": 220.484375,
+                "width": 298,
+                "height": 112,
+                "top": 220.484375,
+                "right": 320,
+                "bottom": 332.484375,
+                "left": 22
+              }
+            },
+            {
+              "tag": "A",
+              "className": "organizer-unit",
+              "text": "Shresth ShuklaCerebras AmbassadorCommunity partner: Cerebras",
+              "clientWidth": 298,
+              "scrollWidth": 298,
+              "box": {
+                "x": 344,
+                "y": 220.484375,
+                "width": 298,
+                "height": 112,
+                "top": 220.484375,
+                "right": 642,
+                "bottom": 332.484375,
+                "left": 344
+              }
+            }
+          ],
+          "scanInterpretation": "Raw bounds scan includes organizer entrance transforms before settling, or the5px desktop title intrinsic overhang inside the page. See manual inspection notes; no document horizontal overflow was observed."
+        },
+        {
+          "surface": "DOM-only agenda longURL fixture",
+          "viewport": {
+            "width": 320,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "DOM-only FAQ longURL fixture",
+          "viewport": {
+            "width": 320,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "signin",
+          "viewport": {
+            "width": 320,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "privacy",
+          "viewport": {
+            "width": 320,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "terms",
+          "viewport": {
+            "width": 320,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        }
+      ],
+      "images": [
+        "home-rest",
+        "home-cta-rest",
+        "home-schedule",
+        "home-venue",
+        "home-rules",
+        "home-faq",
+        "home-organizers",
+        "home-organizers-end",
+        "home-menu",
+        "dom-stress-agenda",
+        "dom-stress-faq",
+        "signin",
+        "signin-submit-reachable",
+        "signin-long-email",
+        "signin-menu",
+        "privacy-header",
+        "terms-header"
+      ],
+      "browserMetrics": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "devicePixelRatio": 1,
+        "visualViewportScale": 1
+      },
+      "cta": {
+        "box": {
+          "x": 20,
+          "y": 253.828125,
+          "width": 280,
+          "height": 58,
+          "top": 253.828125,
+          "right": 300,
+          "bottom": 311.828125,
+          "left": 20
+        },
+        "hitClear": true,
+        "href": "/signin?returnTo=%2Fdashboard"
+      },
+      "ctaActivations": [
+        {
+          "trusted": true,
+          "href": "/signin?returnTo=%2Fdashboard"
+        },
+        {
+          "trusted": true,
+          "href": "/signin?returnTo=%2Fdashboard"
+        }
+      ],
+      "organizers": [
+        {
+          "src": "/organizers/Param3021-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 191.03125,
+            "y": 196.515625,
+            "width": 101.9375,
+            "height": 101.9375,
+            "top": 196.515625,
+            "right": 292.96875,
+            "bottom": 298.453125,
+            "left": 191.03125
+          },
+          "ring": {
+            "x": 186,
+            "y": 191.484375,
+            "width": 112,
+            "height": 112,
+            "top": 191.484375,
+            "right": 298,
+            "bottom": 303.484375,
+            "left": 186
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/HowDevelop-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 27.03125,
+            "y": 336.515625,
+            "width": 101.9375,
+            "height": 101.9375,
+            "top": 336.515625,
+            "right": 128.96875,
+            "bottom": 438.453125,
+            "left": 27.03125
+          },
+          "ring": {
+            "x": 22,
+            "y": 331.484375,
+            "width": 112,
+            "height": 112,
+            "top": 331.484375,
+            "right": 134,
+            "bottom": 443.484375,
+            "left": 22
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/nikhilsbuilds-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 191.03125,
+            "y": 476.515625,
+            "width": 101.9375,
+            "height": 101.9375,
+            "top": 476.515625,
+            "right": 292.96875,
+            "bottom": 578.453125,
+            "left": 191.03125
+          },
+          "ring": {
+            "x": 186,
+            "y": 471.484375,
+            "width": 112,
+            "height": 112,
+            "top": 471.484375,
+            "right": 298,
+            "bottom": 583.484375,
+            "left": 186
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/callmeshuklaji-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 27.03125,
+            "y": 616.515625,
+            "width": 101.9375,
+            "height": 101.9375,
+            "top": 616.515625,
+            "right": 128.96875,
+            "bottom": 718.453125,
+            "left": 27.03125
+          },
+          "ring": {
+            "x": 22,
+            "y": 611.484375,
+            "width": 112,
+            "height": 112,
+            "top": 611.484375,
+            "right": 134,
+            "bottom": 723.484375,
+            "left": 22
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        }
+      ],
+      "menu": {
+        "box": {
+          "x": 0,
+          "y": -358.5701599121094,
+          "width": 320,
+          "height": 480,
+          "top": -358.5701599121094,
+          "right": 320,
+          "bottom": 121.42984008789062,
+          "left": 0
+        },
+        "rows": [
+          {
+            "text": "Home",
+            "box": {
+              "x": 20,
+              "y": -266.5701599121094,
+              "width": 280,
+              "height": 60,
+              "top": -266.5701599121094,
+              "right": 300,
+              "bottom": -206.57015991210938,
+              "left": 20
+            }
+          },
+          {
+            "text": "Projects",
+            "box": {
+              "x": 20,
+              "y": -206.57015991210938,
+              "width": 280,
+              "height": 60,
+              "top": -206.57015991210938,
+              "right": 300,
+              "bottom": -146.57015991210938,
+              "left": 20
+            }
+          },
+          {
+            "text": "Sign in",
+            "box": {
+              "x": 20,
+              "y": -146.57015991210938,
+              "width": 280,
+              "height": 60,
+              "top": -146.57015991210938,
+              "right": 300,
+              "bottom": -86.57015991210938,
+              "left": 20
+            }
+          }
+        ],
+        "overflow": false
+      },
+      "menuEscapeClosed": true,
+      "signinSubmit": {
+        "box": {
+          "x": 24,
+          "y": 417.5,
+          "width": 272,
+          "height": 52,
+          "top": 417.5,
+          "right": 296,
+          "bottom": 469.5,
+          "left": 24
+        },
+        "clear": true
+      }
+    },
+    {
+      "config": {
+        "width": 390,
+        "height": 844,
+        "label": "390x844"
+      },
+      "checks": [
+        {
+          "surface": "home",
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 390,
+          "clippedText": []
+        },
+        {
+          "surface": "schedule",
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 390,
+          "clippedText": []
+        },
+        {
+          "surface": "venue",
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 390,
+          "clippedText": []
+        },
+        {
+          "surface": "rules",
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 390,
+          "clippedText": []
+        },
+        {
+          "surface": "faq",
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 390,
+          "clippedText": [
+            {
+              "tag": "A",
+              "className": "organizer-unit",
+              "text": "Parampreet SinghCodex Ambassador",
+              "clientWidth": 368,
+              "scrollWidth": 368,
+              "box": {
+                "x": -132.43026733398438,
+                "y": 816.734375,
+                "width": 368,
+                "height": 117,
+                "top": 816.734375,
+                "right": 235.56973266601562,
+                "bottom": 933.734375,
+                "left": -132.43026733398438
+              }
+            }
+          ],
+          "scanInterpretation": "Raw bounds scan includes organizer entrance transforms before settling, or the5px desktop title intrinsic overhang inside the page. See manual inspection notes; no document horizontal overflow was observed."
+        },
+        {
+          "surface": "organizers",
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 390,
+          "clippedText": []
+        },
+        {
+          "surface": "DOM-only agenda longURL fixture",
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 390,
+          "clippedText": []
+        },
+        {
+          "surface": "DOM-only FAQ longURL fixture",
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 390,
+          "clippedText": []
+        },
+        {
+          "surface": "signin",
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 390,
+          "clippedText": []
+        }
+      ],
+      "images": [
+        "home-rest",
+        "home-cta-rest",
+        "home-schedule",
+        "home-venue",
+        "home-rules",
+        "home-faq",
+        "home-organizers",
+        "home-menu",
+        "dom-stress-agenda",
+        "dom-stress-faq",
+        "signin"
+      ],
+      "browserMetrics": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 390,
+        "outerHeight": 844,
+        "devicePixelRatio": 1,
+        "visualViewportScale": 1
+      },
+      "cta": {
+        "box": {
+          "x": 20,
+          "y": 618,
+          "width": 350,
+          "height": 58,
+          "top": 618,
+          "right": 370,
+          "bottom": 676,
+          "left": 20
+        },
+        "hitClear": true,
+        "href": "/signin?returnTo=%2Fdashboard"
+      },
+      "ctaActivations": [
+        {
+          "trusted": true,
+          "href": "/signin?returnTo=%2Fdashboard"
+        },
+        {
+          "trusted": true,
+          "href": "/signin?returnTo=%2Fdashboard"
+        }
+      ],
+      "organizers": [
+        {
+          "src": "/organizers/Param3021-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 256.25,
+            "y": 165.984375,
+            "width": 106.5,
+            "height": 106.5,
+            "top": 165.984375,
+            "right": 362.75,
+            "bottom": 272.484375,
+            "left": 256.25
+          },
+          "ring": {
+            "x": 251,
+            "y": 160.734375,
+            "width": 117,
+            "height": 117,
+            "top": 160.734375,
+            "right": 368,
+            "bottom": 277.734375,
+            "left": 251
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/HowDevelop-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 27.25,
+            "y": 310.984375,
+            "width": 106.5,
+            "height": 106.5,
+            "top": 310.984375,
+            "right": 133.75,
+            "bottom": 417.484375,
+            "left": 27.25
+          },
+          "ring": {
+            "x": 22,
+            "y": 305.734375,
+            "width": 117,
+            "height": 117,
+            "top": 305.734375,
+            "right": 139,
+            "bottom": 422.734375,
+            "left": 22
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/nikhilsbuilds-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 256.25,
+            "y": 455.984375,
+            "width": 106.5,
+            "height": 106.5,
+            "top": 455.984375,
+            "right": 362.75,
+            "bottom": 562.484375,
+            "left": 256.25
+          },
+          "ring": {
+            "x": 251,
+            "y": 450.734375,
+            "width": 117,
+            "height": 117,
+            "top": 450.734375,
+            "right": 368,
+            "bottom": 567.734375,
+            "left": 251
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/callmeshuklaji-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 27.25,
+            "y": 600.984375,
+            "width": 106.5,
+            "height": 106.5,
+            "top": 600.984375,
+            "right": 133.75,
+            "bottom": 707.484375,
+            "left": 27.25
+          },
+          "ring": {
+            "x": 22,
+            "y": 595.734375,
+            "width": 117,
+            "height": 117,
+            "top": 595.734375,
+            "right": 139,
+            "bottom": 712.734375,
+            "left": 22
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        }
+      ],
+      "menu": {
+        "box": {
+          "x": 0,
+          "y": -630.7811889648438,
+          "width": 390,
+          "height": 844,
+          "top": -630.7811889648438,
+          "right": 390,
+          "bottom": 213.21881103515625,
+          "left": 0
+        },
+        "rows": [
+          {
+            "text": "Home",
+            "box": {
+              "x": 20,
+              "y": -538.7811889648438,
+              "width": 350,
+              "height": 60,
+              "top": -538.7811889648438,
+              "right": 370,
+              "bottom": -478.78118896484375,
+              "left": 20
+            }
+          },
+          {
+            "text": "Projects",
+            "box": {
+              "x": 20,
+              "y": -478.78118896484375,
+              "width": 350,
+              "height": 60,
+              "top": -478.78118896484375,
+              "right": 370,
+              "bottom": -418.78118896484375,
+              "left": 20
+            }
+          },
+          {
+            "text": "Sign in",
+            "box": {
+              "x": 20,
+              "y": -418.78118896484375,
+              "width": 350,
+              "height": 60,
+              "top": -418.78118896484375,
+              "right": 370,
+              "bottom": -358.78118896484375,
+              "left": 20
+            }
+          }
+        ],
+        "overflow": false
+      },
+      "menuEscapeClosed": true
+    },
+    {
+      "config": {
+        "width": 390,
+        "height": 480,
+        "label": "390x480"
+      },
+      "checks": [
+        {
+          "surface": "home",
+          "viewport": {
+            "width": 390,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 390,
+          "clippedText": []
+        },
+        {
+          "surface": "schedule",
+          "viewport": {
+            "width": 390,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 390,
+          "clippedText": []
+        },
+        {
+          "surface": "venue",
+          "viewport": {
+            "width": 390,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 390,
+          "clippedText": []
+        },
+        {
+          "surface": "rules",
+          "viewport": {
+            "width": 390,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 390,
+          "clippedText": []
+        },
+        {
+          "surface": "faq",
+          "viewport": {
+            "width": 390,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 390,
+          "clippedText": []
+        },
+        {
+          "surface": "organizers",
+          "viewport": {
+            "width": 390,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 390,
+          "clippedText": [
+            {
+              "tag": "LI",
+              "className": "organizer-slot",
+              "text": "Shresth ShuklaCerebras AmbassadorCommunity partner: Cerebras",
+              "clientWidth": 368,
+              "scrollWidth": 760,
+              "box": {
+                "x": 22,
+                "y": 225.078125,
+                "width": 368,
+                "height": 117,
+                "top": 225.078125,
+                "right": 390,
+                "bottom": 342.078125,
+                "left": 22
+              }
+            },
+            {
+              "tag": "A",
+              "className": "organizer-unit",
+              "text": "Shresth ShuklaCerebras AmbassadorCommunity partner: Cerebras",
+              "clientWidth": 368,
+              "scrollWidth": 368,
+              "box": {
+                "x": 414,
+                "y": 225.078125,
+                "width": 368,
+                "height": 117,
+                "top": 225.078125,
+                "right": 782,
+                "bottom": 342.078125,
+                "left": 414
+              }
+            }
+          ],
+          "scanInterpretation": "Raw bounds scan includes organizer entrance transforms before settling, or the5px desktop title intrinsic overhang inside the page. See manual inspection notes; no document horizontal overflow was observed."
+        },
+        {
+          "surface": "DOM-only agenda longURL fixture",
+          "viewport": {
+            "width": 390,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 390,
+          "clippedText": []
+        },
+        {
+          "surface": "DOM-only FAQ longURL fixture",
+          "viewport": {
+            "width": 390,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 390,
+          "clippedText": []
+        },
+        {
+          "surface": "signin",
+          "viewport": {
+            "width": 390,
+            "height": 480,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 390,
+          "clippedText": []
+        }
+      ],
+      "images": [
+        "home-rest",
+        "home-cta-rest",
+        "home-schedule",
+        "home-venue",
+        "home-rules",
+        "home-faq",
+        "home-organizers",
+        "home-organizers-end",
+        "home-menu",
+        "dom-stress-agenda",
+        "dom-stress-faq",
+        "signin",
+        "signin-submit-reachable"
+      ],
+      "browserMetrics": {
+        "innerWidth": 390,
+        "innerHeight": 480,
+        "outerWidth": 390,
+        "outerHeight": 480,
+        "devicePixelRatio": 1,
+        "visualViewportScale": 1
+      },
+      "cta": {
+        "box": {
+          "x": 20,
+          "y": 254.34375,
+          "width": 350,
+          "height": 58,
+          "top": 254.34375,
+          "right": 370,
+          "bottom": 312.34375,
+          "left": 20
+        },
+        "hitClear": true,
+        "href": "/signin?returnTo=%2Fdashboard"
+      },
+      "ctaActivations": [
+        {
+          "trusted": true,
+          "href": "/signin?returnTo=%2Fdashboard"
+        },
+        {
+          "trusted": true,
+          "href": "/signin?returnTo=%2Fdashboard"
+        }
+      ],
+      "organizers": [
+        {
+          "src": "/organizers/Param3021-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 256.25,
+            "y": 166.328125,
+            "width": 106.5,
+            "height": 106.5,
+            "top": 166.328125,
+            "right": 362.75,
+            "bottom": 272.828125,
+            "left": 256.25
+          },
+          "ring": {
+            "x": 251,
+            "y": 161.078125,
+            "width": 117,
+            "height": 117,
+            "top": 161.078125,
+            "right": 368,
+            "bottom": 278.078125,
+            "left": 251
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/HowDevelop-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 27.25,
+            "y": 311.328125,
+            "width": 106.5,
+            "height": 106.5,
+            "top": 311.328125,
+            "right": 133.75,
+            "bottom": 417.828125,
+            "left": 27.25
+          },
+          "ring": {
+            "x": 22,
+            "y": 306.078125,
+            "width": 117,
+            "height": 117,
+            "top": 306.078125,
+            "right": 139,
+            "bottom": 423.078125,
+            "left": 22
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/nikhilsbuilds-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 256.25,
+            "y": 456.328125,
+            "width": 106.5,
+            "height": 106.5,
+            "top": 456.328125,
+            "right": 362.75,
+            "bottom": 562.828125,
+            "left": 256.25
+          },
+          "ring": {
+            "x": 251,
+            "y": 451.078125,
+            "width": 117,
+            "height": 117,
+            "top": 451.078125,
+            "right": 368,
+            "bottom": 568.078125,
+            "left": 251
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/callmeshuklaji-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 27.25,
+            "y": 601.328125,
+            "width": 106.5,
+            "height": 106.5,
+            "top": 601.328125,
+            "right": 133.75,
+            "bottom": 707.828125,
+            "left": 27.25
+          },
+          "ring": {
+            "x": 22,
+            "y": 596.078125,
+            "width": 117,
+            "height": 117,
+            "top": 596.078125,
+            "right": 139,
+            "bottom": 713.078125,
+            "left": 22
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        }
+      ],
+      "menu": {
+        "box": {
+          "x": 0,
+          "y": -257.5632019042969,
+          "width": 390,
+          "height": 480,
+          "top": -257.5632019042969,
+          "right": 390,
+          "bottom": 222.43679809570312,
+          "left": 0
+        },
+        "rows": [
+          {
+            "text": "Home",
+            "box": {
+              "x": 20,
+              "y": -165.56320190429688,
+              "width": 350,
+              "height": 60,
+              "top": -165.56320190429688,
+              "right": 370,
+              "bottom": -105.56320190429688,
+              "left": 20
+            }
+          },
+          {
+            "text": "Projects",
+            "box": {
+              "x": 20,
+              "y": -105.56320190429688,
+              "width": 350,
+              "height": 60,
+              "top": -105.56320190429688,
+              "right": 370,
+              "bottom": -45.563201904296875,
+              "left": 20
+            }
+          },
+          {
+            "text": "Sign in",
+            "box": {
+              "x": 20,
+              "y": -45.563201904296875,
+              "width": 350,
+              "height": 60,
+              "top": -45.563201904296875,
+              "right": 370,
+              "bottom": 14.436798095703125,
+              "left": 20
+            }
+          }
+        ],
+        "overflow": false
+      },
+      "menuEscapeClosed": true,
+      "signinSubmit": {
+        "box": {
+          "x": 24,
+          "y": 417.5,
+          "width": 342,
+          "height": 52,
+          "top": 417.5,
+          "right": 366,
+          "bottom": 469.5,
+          "left": 24
+        },
+        "clear": true
+      }
+    },
+    {
+      "config": {
+        "width": 768,
+        "height": 1024,
+        "label": "768x1024"
+      },
+      "checks": [
+        {
+          "surface": "home",
+          "viewport": {
+            "width": 768,
+            "height": 1024,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 753,
+          "clippedText": []
+        },
+        {
+          "surface": "schedule",
+          "viewport": {
+            "width": 768,
+            "height": 1024,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 753,
+          "clippedText": []
+        },
+        {
+          "surface": "venue",
+          "viewport": {
+            "width": 768,
+            "height": 1024,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 753,
+          "clippedText": []
+        },
+        {
+          "surface": "rules",
+          "viewport": {
+            "width": 768,
+            "height": 1024,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 753,
+          "clippedText": []
+        },
+        {
+          "surface": "faq",
+          "viewport": {
+            "width": 768,
+            "height": 1024,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 753,
+          "clippedText": []
+        },
+        {
+          "surface": "organizers",
+          "viewport": {
+            "width": 768,
+            "height": 1024,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 753,
+          "clippedText": []
+        },
+        {
+          "surface": "DOM-only agenda longURL fixture",
+          "viewport": {
+            "width": 768,
+            "height": 1024,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 753,
+          "clippedText": []
+        },
+        {
+          "surface": "DOM-only FAQ longURL fixture",
+          "viewport": {
+            "width": 768,
+            "height": 1024,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 753,
+          "clippedText": []
+        },
+        {
+          "surface": "signin",
+          "viewport": {
+            "width": 768,
+            "height": 1024,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 753,
+          "clippedText": []
+        }
+      ],
+      "images": [
+        "home-rest",
+        "home-cta-rest",
+        "home-schedule",
+        "home-venue",
+        "home-rules",
+        "home-faq",
+        "home-organizers",
+        "home-menu",
+        "dom-stress-agenda",
+        "dom-stress-faq",
+        "signin"
+      ],
+      "browserMetrics": {
+        "innerWidth": 768,
+        "innerHeight": 1024,
+        "outerWidth": 768,
+        "outerHeight": 1024,
+        "devicePixelRatio": 1,
+        "visualViewportScale": 1
+      },
+      "cta": {
+        "box": {
+          "x": 20,
+          "y": 798,
+          "width": 713,
+          "height": 58,
+          "top": 798,
+          "right": 733,
+          "bottom": 856,
+          "left": 20
+        },
+        "hitClear": true,
+        "href": "/signin?returnTo=%2Fdashboard"
+      },
+      "ctaActivations": [
+        {
+          "trusted": true,
+          "href": "/signin?returnTo=%2Fdashboard"
+        },
+        {
+          "trusted": true,
+          "href": "/signin?returnTo=%2Fdashboard"
+        }
+      ],
+      "organizers": [
+        {
+          "src": "/organizers/Param3021-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 574.375,
+            "y": 184.328125,
+            "width": 149.25,
+            "height": 149.25,
+            "top": 184.328125,
+            "right": 723.625,
+            "bottom": 333.578125,
+            "left": 574.375
+          },
+          "ring": {
+            "x": 567,
+            "y": 176.953125,
+            "width": 164,
+            "height": 164,
+            "top": 176.953125,
+            "right": 731,
+            "bottom": 340.953125,
+            "left": 567
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/HowDevelop-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 29.375,
+            "y": 376.328125,
+            "width": 149.25,
+            "height": 149.25,
+            "top": 376.328125,
+            "right": 178.625,
+            "bottom": 525.578125,
+            "left": 29.375
+          },
+          "ring": {
+            "x": 22,
+            "y": 368.953125,
+            "width": 164,
+            "height": 164,
+            "top": 368.953125,
+            "right": 186,
+            "bottom": 532.953125,
+            "left": 22
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/nikhilsbuilds-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 574.375,
+            "y": 568.328125,
+            "width": 149.25,
+            "height": 149.25,
+            "top": 568.328125,
+            "right": 723.625,
+            "bottom": 717.578125,
+            "left": 574.375
+          },
+          "ring": {
+            "x": 567,
+            "y": 560.953125,
+            "width": 164,
+            "height": 164,
+            "top": 560.953125,
+            "right": 731,
+            "bottom": 724.953125,
+            "left": 567
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/callmeshuklaji-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 29.375,
+            "y": 760.328125,
+            "width": 149.25,
+            "height": 149.25,
+            "top": 760.328125,
+            "right": 178.625,
+            "bottom": 909.578125,
+            "left": 29.375
+          },
+          "ring": {
+            "x": 22,
+            "y": 752.953125,
+            "width": 164,
+            "height": 164,
+            "top": 752.953125,
+            "right": 186,
+            "bottom": 916.953125,
+            "left": 22
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        }
+      ],
+      "menu": {
+        "box": {
+          "x": 0,
+          "y": -548.77978515625,
+          "width": 753,
+          "height": 1024,
+          "top": -548.77978515625,
+          "right": 753,
+          "bottom": 475.22021484375,
+          "left": 0
+        },
+        "rows": [
+          {
+            "text": "Home",
+            "box": {
+              "x": 20,
+              "y": -456.77978515625,
+              "width": 713,
+              "height": 68,
+              "top": -456.77978515625,
+              "right": 733,
+              "bottom": -388.77978515625,
+              "left": 20
+            }
+          },
+          {
+            "text": "Projects",
+            "box": {
+              "x": 20,
+              "y": -388.77978515625,
+              "width": 713,
+              "height": 68,
+              "top": -388.77978515625,
+              "right": 733,
+              "bottom": -320.77978515625,
+              "left": 20
+            }
+          },
+          {
+            "text": "Sign in",
+            "box": {
+              "x": 20,
+              "y": -320.77978515625,
+              "width": 713,
+              "height": 68,
+              "top": -320.77978515625,
+              "right": 733,
+              "bottom": -252.77978515625,
+              "left": 20
+            }
+          }
+        ],
+        "overflow": false
+      },
+      "menuEscapeClosed": true
+    },
+    {
+      "config": {
+        "width": 1440,
+        "height": 900,
+        "label": "1440x900"
+      },
+      "checks": [
+        {
+          "surface": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 1425,
+          "clippedText": [
+            {
+              "tag": "H1",
+              "className": "",
+              "text": "DevDay ExchangeCommunity Hackathon:New Delhi",
+              "clientWidth": 784,
+              "scrollWidth": 789,
+              "box": {
+                "x": 63.359375,
+                "y": 104,
+                "width": 784.171875,
+                "height": 366.9375,
+                "top": 104,
+                "right": 847.53125,
+                "bottom": 470.9375,
+                "left": 63.359375
+              }
+            }
+          ],
+          "scanInterpretation": "Raw bounds scan includes organizer entrance transforms before settling, or the5px desktop title intrinsic overhang inside the page. See manual inspection notes; no document horizontal overflow was observed."
+        },
+        {
+          "surface": "schedule",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 1425,
+          "clippedText": [
+            {
+              "tag": "H1",
+              "className": "",
+              "text": "DevDay ExchangeCommunity Hackathon:New Delhi",
+              "clientWidth": 784,
+              "scrollWidth": 789,
+              "box": {
+                "x": 63.359375,
+                "y": -700,
+                "width": 784.171875,
+                "height": 366.9375,
+                "top": -700,
+                "right": 847.53125,
+                "bottom": -333.0625,
+                "left": 63.359375
+              }
+            }
+          ],
+          "scanInterpretation": "Raw bounds scan includes organizer entrance transforms before settling, or the5px desktop title intrinsic overhang inside the page. See manual inspection notes; no document horizontal overflow was observed."
+        },
+        {
+          "surface": "venue",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 1425,
+          "clippedText": [
+            {
+              "tag": "H1",
+              "className": "",
+              "text": "DevDay ExchangeCommunity Hackathon:New Delhi",
+              "clientWidth": 784,
+              "scrollWidth": 789,
+              "box": {
+                "x": 63.359375,
+                "y": -1015,
+                "width": 784.171875,
+                "height": 366.9375,
+                "top": -1015,
+                "right": 847.53125,
+                "bottom": -648.0625,
+                "left": 63.359375
+              }
+            }
+          ],
+          "scanInterpretation": "Raw bounds scan includes organizer entrance transforms before settling, or the5px desktop title intrinsic overhang inside the page. See manual inspection notes; no document horizontal overflow was observed."
+        },
+        {
+          "surface": "rules",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 1425,
+          "clippedText": [
+            {
+              "tag": "H1",
+              "className": "",
+              "text": "DevDay ExchangeCommunity Hackathon:New Delhi",
+              "clientWidth": 784,
+              "scrollWidth": 789,
+              "box": {
+                "x": 63.359375,
+                "y": -1288,
+                "width": 784.171875,
+                "height": 366.9375,
+                "top": -1288,
+                "right": 847.53125,
+                "bottom": -921.0625,
+                "left": 63.359375
+              }
+            }
+          ],
+          "scanInterpretation": "Raw bounds scan includes organizer entrance transforms before settling, or the5px desktop title intrinsic overhang inside the page. See manual inspection notes; no document horizontal overflow was observed."
+        },
+        {
+          "surface": "faq",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 1425,
+          "clippedText": [
+            {
+              "tag": "H1",
+              "className": "",
+              "text": "DevDay ExchangeCommunity Hackathon:New Delhi",
+              "clientWidth": 784,
+              "scrollWidth": 789,
+              "box": {
+                "x": 63.359375,
+                "y": -2041,
+                "width": 784.171875,
+                "height": 366.9375,
+                "top": -2041,
+                "right": 847.53125,
+                "bottom": -1674.0625,
+                "left": 63.359375
+              }
+            }
+          ],
+          "scanInterpretation": "Raw bounds scan includes organizer entrance transforms before settling, or the5px desktop title intrinsic overhang inside the page. See manual inspection notes; no document horizontal overflow was observed."
+        },
+        {
+          "surface": "organizers",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 1425,
+          "clippedText": [
+            {
+              "tag": "H1",
+              "className": "",
+              "text": "DevDay ExchangeCommunity Hackathon:New Delhi",
+              "clientWidth": 784,
+              "scrollWidth": 789,
+              "box": {
+                "x": 63.359375,
+                "y": -2837,
+                "width": 784.171875,
+                "height": 366.9375,
+                "top": -2837,
+                "right": 847.53125,
+                "bottom": -2470.0625,
+                "left": 63.359375
+              }
+            }
+          ],
+          "scanInterpretation": "Raw bounds scan includes organizer entrance transforms before settling, or the5px desktop title intrinsic overhang inside the page. See manual inspection notes; no document horizontal overflow was observed."
+        },
+        {
+          "surface": "DOM-only agenda longURL fixture",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 1425,
+          "clippedText": [
+            {
+              "tag": "H1",
+              "className": "",
+              "text": "DevDay ExchangeCommunity Hackathon:New Delhi",
+              "clientWidth": 784,
+              "scrollWidth": 789,
+              "box": {
+                "x": 63.359375,
+                "y": -700,
+                "width": 784.171875,
+                "height": 366.9375,
+                "top": -700,
+                "right": 847.53125,
+                "bottom": -333.0625,
+                "left": 63.359375
+              }
+            }
+          ],
+          "scanInterpretation": "Raw bounds scan includes organizer entrance transforms before settling, or the5px desktop title intrinsic overhang inside the page. See manual inspection notes; no document horizontal overflow was observed."
+        },
+        {
+          "surface": "DOM-only FAQ longURL fixture",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 1425,
+          "clippedText": [
+            {
+              "tag": "H1",
+              "className": "",
+              "text": "DevDay ExchangeCommunity Hackathon:New Delhi",
+              "clientWidth": 784,
+              "scrollWidth": 789,
+              "box": {
+                "x": 63.359375,
+                "y": -2507,
+                "width": 784.171875,
+                "height": 366.9375,
+                "top": -2507,
+                "right": 847.53125,
+                "bottom": -2140.0625,
+                "left": 63.359375
+              }
+            }
+          ],
+          "scanInterpretation": "Raw bounds scan includes organizer entrance transforms before settling, or the5px desktop title intrinsic overhang inside the page. See manual inspection notes; no document horizontal overflow was observed."
+        },
+        {
+          "surface": "signin",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 1425,
+          "clippedText": []
+        }
+      ],
+      "images": [
+        "home-rest",
+        "home-cta-rest",
+        "home-schedule",
+        "home-venue",
+        "home-rules",
+        "home-faq",
+        "home-organizers",
+        "dom-stress-agenda",
+        "dom-stress-faq",
+        "signin"
+      ],
+      "browserMetrics": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "devicePixelRatio": 1,
+        "visualViewportScale": 1
+      },
+      "cta": {
+        "box": {
+          "x": 63.359375,
+          "y": 596.171875,
+          "width": 253.484375,
+          "height": 58.796875,
+          "top": 596.171875,
+          "right": 316.84375,
+          "bottom": 654.96875,
+          "left": 63.359375
+        },
+        "hitClear": true,
+        "href": "/signin?returnTo=%2Fdashboard"
+      },
+      "ctaActivations": [
+        {
+          "trusted": true,
+          "href": "/signin?returnTo=%2Fdashboard"
+        },
+        {
+          "trusted": true,
+          "href": "/signin?returnTo=%2Fdashboard"
+        }
+      ],
+      "organizers": [
+        {
+          "src": "/organizers/Param3021-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 77.125,
+            "y": 308.46875,
+            "width": 278.6875,
+            "height": 278.6875,
+            "top": 308.46875,
+            "right": 355.8125,
+            "bottom": 587.15625,
+            "left": 77.125
+          },
+          "ring": {
+            "x": 63.359375,
+            "y": 294.703125,
+            "width": 306.21875,
+            "height": 306.21875,
+            "top": 294.703125,
+            "right": 369.578125,
+            "bottom": 600.921875,
+            "left": 63.359375
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/HowDevelop-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 407.8125,
+            "y": 308.46875,
+            "width": 278.6875,
+            "height": 278.6875,
+            "top": 308.46875,
+            "right": 686.5,
+            "bottom": 587.15625,
+            "left": 407.8125
+          },
+          "ring": {
+            "x": 394.046875,
+            "y": 294.703125,
+            "width": 306.21875,
+            "height": 306.21875,
+            "top": 294.703125,
+            "right": 700.265625,
+            "bottom": 600.921875,
+            "left": 394.046875
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/nikhilsbuilds-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 738.5,
+            "y": 308.46875,
+            "width": 278.6875,
+            "height": 278.6875,
+            "top": 308.46875,
+            "right": 1017.1875,
+            "bottom": 587.15625,
+            "left": 738.5
+          },
+          "ring": {
+            "x": 724.734375,
+            "y": 294.703125,
+            "width": 306.21875,
+            "height": 306.21875,
+            "top": 294.703125,
+            "right": 1030.953125,
+            "bottom": 600.921875,
+            "left": 724.734375
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/callmeshuklaji-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 1069.1875,
+            "y": 308.46875,
+            "width": 278.6875,
+            "height": 278.6875,
+            "top": 308.46875,
+            "right": 1347.875,
+            "bottom": 587.15625,
+            "left": 1069.1875
+          },
+          "ring": {
+            "x": 1055.421875,
+            "y": 294.703125,
+            "width": 306.21875,
+            "height": 306.21875,
+            "top": 294.703125,
+            "right": 1361.640625,
+            "bottom": 600.921875,
+            "left": 1055.421875
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "blockedRequests": [],
+  "surfaceUnchanged": true,
+  "finalResult": "static public surfaces passed; settled menu evidence pending",
+  "inspectionNotes": "All98native frames reviewed through native-size mobile inspection sheets, scaled desktop/tablet sheets and key raw images. All seven viewport/zoom groups have zero document overflow, trusted CTA pointer/touch/click and Enter activations, clear CTA hitboxes and four decoded portraits. Agenda and FAQ long DOM-only references wrap correctly. Finite menu entrance frames are rejected for resting-state evidence. Newly visible organizer-end motion is superseded by individually inspected rest-report.json frames. Desktop H1 intrinsic scrollWidth exceeds clientWidth by5px, but its full title remains visible inside the page, with a clear gap before the adjacent expressions."
+}

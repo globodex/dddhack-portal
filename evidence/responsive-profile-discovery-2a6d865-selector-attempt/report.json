@@ -1,0 +1,157 @@
+{
+  "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+  "origin": "http://localhost:3000",
+  "syntheticOnly": true,
+  "readOnly": true,
+  "startedAt": "2026-10-24T12:38:06.776Z",
+  "screenshots": [
+    {
+      "file": "profile-320x640-baseline.png",
+      "name": "profile",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "baseline",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      },
+      "inspected": true
+    },
+    {
+      "file": "profile-320x640-step1-validation.png",
+      "name": "profile",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "step1-validation",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      },
+      "inspected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "profile",
+      "viewport": "320x640",
+      "state": "baseline",
+      "passed": true,
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "Profile step1-validation: first invalid field visible and focused",
+      "passed": true,
+      "viewport": "320x640",
+      "focused": {
+        "name": "fullName",
+        "invalid": "true",
+        "top": 308,
+        "bottom": 356,
+        "width": 284,
+        "headerBottom": 64,
+        "viewport": 640
+      }
+    },
+    {
+      "name": "profile: step1-validation reflow",
+      "passed": true,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      }
+    }
+  ],
+  "errors": [
+    {
+      "error": "locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('textbox', { name: 'Full name', exact: true })\u001b[22m\n\n    at profile (/workspace/ddd-seo/scripts/qa-responsive-profile-discovery.mjs:87:14)\n    at async file:///workspace/ddd-seo/scripts/qa-responsive-profile-discovery.mjs:242:33"
+    }
+  ],
+  "mutationsBlocked": [],
+  "network": [
+    {
+      "method": "GET",
+      "path": "/profile"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/profile"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    }
+  ],
+  "limitations": [
+    "Local synthetic fixture, not production or real sign-in.",
+    "Long text stress changes only browser DOM or unsaved form state, never persisted data.",
+    "Chromium touch emulation is not a physical-device test."
+  ],
+  "browser": "154.0.8037.57",
+  "finishedAt": "2026-10-24T12:38:33.738Z",
+  "classification": "Harness selector timeout after inline validation changed the textbox accessible name. No application defect or mutation.",
+  "browserClosed": true
+}

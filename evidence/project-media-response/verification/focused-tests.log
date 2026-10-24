@@ -1,0 +1,39 @@
+✔ existing submit-project persists private references and reads return identical original image data URIs (138.438627ms)
+✔ authorized public image query rehydrates eligible images, and ineligible images cause no object fetch (93.450251ms)
+✔ existing draft updates externalize new images and preserve nonmedia fields (81.006972ms)
+✔ object write failure prevents project transaction and audit from committing (69.818574ms)
+✔ raw reference injection and unknown write forms fail before storage operations (56.994222ms)
+✔ a tampered object, bucket, key or reference metadata fails closed during hydration (68.607404ms)
+✔ legacy inline payloads and unrelated payload queries remain readable without object fetch (50.986534ms)
+✔ public list metadata validates 1000 projected rows without fetching any objects (108.632726ms)
+✔ selective published image projection fetches exactly one raster after eligibility and version checks (68.128262ms)
+✔ public media metadata rejects foreign namespaces, malformed shapes, wrong kinds and inline invalid images (59.903112ms)
+✔ signed upload accepts only bounded raster declarations and server-generated scoped keys (20.235949ms)
+✔ finalize fully decodes and promotes exact bytes into a distinct immutable key; repeats are idempotent (24.756981ms)
+✔ finalize rejects content type, length, corrupt pixels, dimensions and oversized bytes (13.607267ms)
+✔ JPEGs decode as real raster images, and claimed PNGs cannot contain JPEG bytes (16.923535ms)
+✔ receipt lookup checks actor, team, current revision, image kind and current authorization (9.442255ms)
+✔ expired intent and lost finalization lease cannot promote a receipt (7.04154ms)
+✔ a durable compare-and-swap claim allows one finalizer and can recover an expired lease (1.859841ms)
+✔ a stored receipt rejects later object tampering (7.297399ms)
+✔ storage HTTP endpoints enforce same-origin, verified identity, method and a streamed JSON bound (29.770148ms)
+✔ Neon SDK configuration uses path-style SigV4 and signs both content type and length (32.690924ms)
+✔ S3 reads bound bytes even if headers lie, and distinguish ranged length from full object size (4.210347ms)
+✔ real portal authorization requires checked-in leader, current revision and open submissions (77.123771ms)
+✔ receipt consumption atomically binds only the authorized actor/team/revision/version and blocks replay (57.995606ms)
+✔ signed media endpoint honors kind-specific decimal source caps then returns bounded any-aspect receipts (32.726046ms)
+✔ additive media upgrade preserves old pending/ready/consumed rows and enforces kind-specific bounds atomically (5365.017949ms)
+✔ pure preflight and full raster validation accept any aspect and preserve transparent thin images (287.534924ms)
+✔ original decimal1MB/5MB boundaries fully decode and become bounded web images (65.198257ms)
+✔ high entropy alpha inputs stay within canonical budget without changing MIME or cropping (1134.969329ms)
+✔ spoofed MIME, malformed chunks, corrupt raster, oversized dimensions and original thin edges are rejected (13.310667ms)
+✔ only project commands get the bounded1MB JSON envelope and persisted canonical bytes remain identical (267.01309ms)
+✔ signed normalization applies EXIF orientation and accepts the exact pixel ceiling (549.678945ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14099.909708

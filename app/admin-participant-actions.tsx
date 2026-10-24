@@ -1,7 +1,9 @@
 "use client";
+import { useHydrated } from "./use-hydrated";
 import { useRef, useState } from "react";
 import {
   BriefcaseBusiness,
+  Check,
   Clock3,
   Download,
   EllipsisVertical,
@@ -52,6 +54,7 @@ export function AdminIcon({
     | "upload"
     | "project"
     | "clock"
+    | "check"
     | "filter"
     | "download"
     | "users"
@@ -64,6 +67,7 @@ export function AdminIcon({
     upload: Upload,
     project: BriefcaseBusiness,
     clock: Clock3,
+    check: Check,
     filter: ListFilter,
     download: Download,
     users: Users,
@@ -110,9 +114,13 @@ export default function AdminParticipantActions({
   run: AdminRun;
   compact?: boolean;
 }) {
+  const hydrated = useHydrated();
   const { busy, error, execute } = useAdminOperation();
   return (
     <form
+      method="post"
+      inert={!hydrated}
+      data-hydrated={hydrated}
       className={`admin-control admin-participant-action${compact ? " is-compact" : ""}`}
       onSubmit={(event) => {
         event.preventDefault();
@@ -136,7 +144,7 @@ export default function AdminParticipantActions({
         title={`${participant.removed ? "Restore" : "Remove"} ${participant.name}`}
         aria-busy={busy}
         type="submit"
-        disabled={busy}
+        disabled={busy || !hydrated}
       >
         {participant.removed ? (
           busy ? (
@@ -174,10 +182,12 @@ export function AdminParticipantFilters({
   value = defaultAdminParticipantFilters,
   onChange,
   expanded = false,
+  showUnregistered = false,
 }: {
   value?: AdminParticipantFiltersValue;
   onChange: (value: AdminParticipantFiltersValue) => void;
   expanded?: boolean;
+  showUnregistered?: boolean;
 }) {
   const update = (patch: Partial<AdminParticipantFiltersValue>) =>
     onChange({ ...value, ...patch });
@@ -201,10 +211,11 @@ export function AdminParticipantFilters({
       <label>
         Personal status
         <select
+          aria-label="Personal status"
           value={value.status}
-          onChange={(event) => update({ status: event.target.value })}
+          onChange={(event) => update({ status: event.target.value, ...(event.target.value === "not registered" ? { team: "all" } : {}) })}
         >
-          {["registered", "going", "checked in", "absent", "all"].map(
+          {[...(showUnregistered ? ["not registered"] : []), "registered", "going", "checked in", "absent", "all"].map(
             (status) => (
               <option key={status} value={status}>
                 {status === "checked in"
@@ -220,6 +231,7 @@ export function AdminParticipantFilters({
       <label>
         Team status
         <select
+          aria-label="Team status"
           value={value.team}
           onChange={(event) =>
             update({

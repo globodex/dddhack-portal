@@ -1,0 +1,290 @@
+{
+  "source": "667222d5cd2680ec872860b971f32ecb7be42249",
+  "rootRuntime": true,
+  "syntheticOnly": true,
+  "serverMutations": 0,
+  "results": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "before": {
+        "dialog": {
+          "x": 392.5,
+          "y": 138,
+          "width": 640,
+          "height": 624,
+          "top": 138,
+          "right": 1032.5,
+          "bottom": 762,
+          "left": 392.5
+        },
+        "form": {
+          "x": 393.5,
+          "y": 139,
+          "width": 638,
+          "height": 622,
+          "top": 139,
+          "right": 1031.5,
+          "bottom": 761,
+          "left": 393.5
+        },
+        "footer": {
+          "x": 394.5,
+          "y": 679,
+          "width": 636,
+          "height": 81,
+          "top": 679,
+          "right": 1030.5,
+          "bottom": 760,
+          "left": 394.5
+        },
+        "body": {
+          "x": 394.5,
+          "y": 225,
+          "width": 636,
+          "height": 454,
+          "top": 225,
+          "right": 1030.5,
+          "bottom": 679,
+          "left": 394.5
+        }
+      },
+      "busy": {
+        "dialog": {
+          "x": 392.5,
+          "y": 138,
+          "width": 640,
+          "height": 624,
+          "top": 138,
+          "right": 1032.5,
+          "bottom": 762,
+          "left": 392.5
+        },
+        "form": {
+          "x": 393.5,
+          "y": 139,
+          "width": 638,
+          "height": 622,
+          "top": 139,
+          "right": 1031.5,
+          "bottom": 761,
+          "left": 393.5
+        },
+        "footer": {
+          "x": 394.5,
+          "y": 679,
+          "width": 636,
+          "height": 81,
+          "top": 679,
+          "right": 1030.5,
+          "bottom": 760,
+          "left": 394.5
+        },
+        "body": {
+          "x": 394.5,
+          "y": 225,
+          "width": 636,
+          "height": 454,
+          "top": 225,
+          "right": 1030.5,
+          "bottom": 679,
+          "left": 394.5
+        }
+      },
+      "error": {
+        "dialog": {
+          "x": 392.5,
+          "y": 138,
+          "width": 640,
+          "height": 624,
+          "top": 138,
+          "right": 1032.5,
+          "bottom": 762,
+          "left": 392.5
+        },
+        "form": {
+          "x": 393.5,
+          "y": 139,
+          "width": 638,
+          "height": 622,
+          "top": 139,
+          "right": 1031.5,
+          "bottom": 761,
+          "left": 393.5
+        },
+        "footer": {
+          "x": 394.5,
+          "y": 647.5,
+          "width": 636,
+          "height": 112.5,
+          "top": 647.5,
+          "right": 1030.5,
+          "bottom": 760,
+          "left": 394.5
+        },
+        "body": {
+          "x": 394.5,
+          "y": 225,
+          "width": 636,
+          "height": 422.5,
+          "top": 225,
+          "right": 1030.5,
+          "bottom": 647.5,
+          "left": 394.5
+        }
+      },
+      "deltaBusy": {
+        "top": 0,
+        "height": 0
+      },
+      "deltaError": {
+        "top": 0,
+        "height": 0
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "before": {
+        "dialog": {
+          "x": 16,
+          "y": 110,
+          "width": 358,
+          "height": 624,
+          "top": 110,
+          "right": 374,
+          "bottom": 734,
+          "left": 16
+        },
+        "form": {
+          "x": 17,
+          "y": 111,
+          "width": 356,
+          "height": 622,
+          "top": 111,
+          "right": 373,
+          "bottom": 733,
+          "left": 17
+        },
+        "footer": {
+          "x": 18,
+          "y": 651,
+          "width": 354,
+          "height": 81,
+          "top": 651,
+          "right": 372,
+          "bottom": 732,
+          "left": 18
+        },
+        "body": {
+          "x": 18,
+          "y": 189,
+          "width": 354,
+          "height": 462,
+          "top": 189,
+          "right": 372,
+          "bottom": 651,
+          "left": 18
+        }
+      },
+      "busy": {
+        "dialog": {
+          "x": 16,
+          "y": 110,
+          "width": 358,
+          "height": 624,
+          "top": 110,
+          "right": 374,
+          "bottom": 734,
+          "left": 16
+        },
+        "form": {
+          "x": 17,
+          "y": 111,
+          "width": 356,
+          "height": 622,
+          "top": 111,
+          "right": 373,
+          "bottom": 733,
+          "left": 17
+        },
+        "footer": {
+          "x": 18,
+          "y": 651,
+          "width": 354,
+          "height": 81,
+          "top": 651,
+          "right": 372,
+          "bottom": 732,
+          "left": 18
+        },
+        "body": {
+          "x": 18,
+          "y": 189,
+          "width": 354,
+          "height": 462,
+          "top": 189,
+          "right": 372,
+          "bottom": 651,
+          "left": 18
+        }
+      },
+      "error": {
+        "dialog": {
+          "x": 16,
+          "y": 110,
+          "width": 358,
+          "height": 624,
+          "top": 110,
+          "right": 374,
+          "bottom": 734,
+          "left": 16
+        },
+        "form": {
+          "x": 17,
+          "y": 111,
+          "width": 356,
+          "height": 622,
+          "top": 111,
+          "right": 373,
+          "bottom": 733,
+          "left": 17
+        },
+        "footer": {
+          "x": 18,
+          "y": 619.5,
+          "width": 354,
+          "height": 112.5,
+          "top": 619.5,
+          "right": 372,
+          "bottom": 732,
+          "left": 18
+        },
+        "body": {
+          "x": 18,
+          "y": 189,
+          "width": 354,
+          "height": 430.5,
+          "top": 189,
+          "right": 372,
+          "bottom": 619.5,
+          "left": 18
+        }
+      },
+      "deltaBusy": {
+        "top": 0,
+        "height": 0
+      },
+      "deltaError": {
+        "top": 0,
+        "height": 0
+      }
+    }
+  ],
+  "pageErrors": [],
+  "failure": "Error: Short focus geometry failed {\"valueLength\":993,\"selectionStart\":993,\"selectionEnd\":993,\"textAreaScrollTop\":741,\"textAreaScrollHeight\":857,\"textAreaClientHeight\":102,\"textAreaBottom\":361,\"footerTop\":381,\"bodyScrollTop\":172,\"bodyMaxScroll\":172,\"bodyBottomPadding\":20,\"buttonHit\":true,\"nameRequired\":true,\"introRequired\":false}\n    at file:///tmp/ddd-root-create-geometry.mjs:4:1421"
+}

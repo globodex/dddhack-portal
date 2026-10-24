@@ -1,0 +1,31 @@
+{
+  "source": "8ce0c11a3cb6c69785aa9830461c5ae52074d52c",
+  "syntheticOnly": true,
+  "actor": "bob@portal.test",
+  "captures": [
+    {
+      "file": "evidence/dashboard-mockup-baseline/dashboard-team-current-1440x900.png",
+      "source": "8ce0c11a3cb6c69785aa9830461c5ae52074d52c",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/dashboard#team",
+      "overflow": false
+    },
+    {
+      "file": "evidence/dashboard-mockup-baseline/dashboard-team-current-390x844.png",
+      "source": "8ce0c11a3cb6c69785aa9830461c5ae52074d52c",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/dashboard#team",
+      "overflow": false
+    }
+  ],
+  "blocked": [],
+  "browserClosed": true,
+  "mutations": 0,
+  "themeNote": "Current root theme; no dashboard layout changes for this capture."
+}

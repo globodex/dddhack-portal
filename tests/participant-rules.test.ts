@@ -23,3 +23,11 @@ test("unset submission windows remain honest rather than inventing a date", () =
   assert.ok(text.includes("close at the published deadline"));
   assert.doesNotMatch(text, /Invalid Date|undefined|null/);
 });
+
+
+test("media rules describe presentation frames while accepting any aspect ratio", () => {
+  const text = participantRules(null, null).flatMap((category) => category.items).join("\n");
+  assert.match(text, /Any image aspect ratio is accepted/);
+  assert.match(text, /square logo and 16:9 banner frames without cropping/);
+  assert.doesNotMatch(text, /Project logo \(1:1\) and banner \(16:9\) are required/);
+});

@@ -32,7 +32,9 @@ test("content editor renders actual Lucide controls with exact accessible row ta
     html,
     /<button[^>]*disabled=""[^>]*>[\s\S]*?Publish saved draft/,
   );
-  assert.match(html, /aria-busy="false"/);
+  assert.match(html, /aria-busy="true"/);
+  assert.match(html, /inert="" data-hydrated="false"/);
+  assert.match(html, /method="post"/);
 });
 
 test("Results controls keep unavailable gates and explain each disabled action accessibly", () => {
@@ -92,7 +94,11 @@ test("Results controls use actual per-action availability rather than obsolete m
       run,
     }),
   );
-  assert.match(html, /<button class="button">Reveal AI scores<\/button>/);
+  assert.match(
+    html,
+    /<button class="button" disabled="">Reveal AI scores<\/button>/,
+  );
+  assert.match(html, /data-hydrated="false"/);
   assert.match(html, /title="Reviews required\."/);
   assert.match(html, /title="Frozen snapshot required\."/);
   assert.doesNotMatch(html, /Complete scoring configuration/);

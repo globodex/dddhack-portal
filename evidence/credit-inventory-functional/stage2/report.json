@@ -1,0 +1,232 @@
+{
+  "frontend": "8875a3c4f3867910abf6a6f750e782c35de75040",
+  "backend": "a8f608fe252008699f6f9ab58ac7f771ce37d306",
+  "syntheticOnly": true,
+  "database": "/tmp/ddd-credit-ui-legacy.sqlite",
+  "captures": [
+    {
+      "name": "stock-50-assigned10",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/stage2/stock-50-assigned10-1440x900.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "name": "stock-late10-assigned20",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/stage2/stock-late10-assigned20-1440x900.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "name": "admin-person-masked-mapping",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/stage2/admin-person-masked-mapping-1440x900.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "name": "admin-code-reveal-busy",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/stage2/admin-code-reveal-busy-1440x900.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "name": "admin-code-revealed-copied",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/stage2/admin-code-revealed-copied-1440x900.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "name": "admin-code-reveal-error",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/stage2/admin-code-reveal-error-390x480.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      }
+    },
+    {
+      "name": "restock-inline-preserved-metadata",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/stage2/restock-inline-preserved-metadata-1440x900.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "name": "restock-count-confirmation",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/stage2/restock-count-confirmation-1440x900.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "name": "restock-count-confirmation-short",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/stage2/restock-count-confirmation-short-390x480.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      }
+    },
+    {
+      "name": "restocked-stock-active",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/stage2/restocked-stock-active-1440x900.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "name": "restocked-stock-mobile",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/stage2/restocked-stock-mobile-390x844.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "name": "personal-assigned-masked",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/stage2/personal-assigned-masked-390x844.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "name": "personal-revealed-copied",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/stage2/personal-revealed-copied-390x844.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    }
+  ],
+  "checks": [
+    "Late10 check-in allocates immediately50/20/30/0 without GET mutation or repair",
+    "Admin mapping is masked; busy/reveal/copy/hide and503 retry states work with real synthetic value only on explicit reveal",
+    "Same-header restock adds100, skips2 duplicates, preserves20 mappings, heading and Markdown, pool remains active150/20/130/0",
+    "Personal checked-in Admin reveals only own allocation, copies it and remasks on blur"
+  ],
+  "responses": [
+    {
+      "action": "bulk-check-in",
+      "status": 200,
+      "count": 10
+    },
+    {
+      "action": "publish-credit-batch",
+      "status": 200,
+      "added": 100,
+      "duplicates": 2,
+      "retired": 0
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "view": "/admin/credit-stock/976720ca-d41b-4f8a-9369-3ac004d0a2ef"
+    },
+    {
+      "method": "GET",
+      "view": "/admin/credit-stock/976720ca-d41b-4f8a-9369-3ac004d0a2ef/assigned"
+    },
+    {
+      "method": "GET",
+      "view": "/admin/credit-stock/976720ca-d41b-4f8a-9369-3ac004d0a2ef/assigned"
+    },
+    {
+      "method": "POST",
+      "view": null,
+      "action": "admin-reveal-credit",
+      "keys": [
+        "inventoryId"
+      ]
+    },
+    {
+      "method": "POST",
+      "view": null,
+      "action": "admin-reveal-credit",
+      "keys": [
+        "inventoryId"
+      ]
+    },
+    {
+      "method": "POST",
+      "view": null,
+      "action": "preview-credit-batch",
+      "keys": [
+        "csv"
+      ]
+    },
+    {
+      "method": "POST",
+      "view": null,
+      "action": "preview-credit-batch",
+      "keys": [
+        "csv",
+        "columns"
+      ]
+    },
+    {
+      "method": "POST",
+      "view": null,
+      "action": "publish-credit-batch",
+      "keys": [
+        "csv",
+        "digest",
+        "columns",
+        "confirmation"
+      ]
+    },
+    {
+      "method": "GET",
+      "view": "/admin/credits"
+    },
+    {
+      "method": "POST",
+      "view": null,
+      "action": "reveal-credit",
+      "keys": [
+        "typeId"
+      ]
+    }
+  ],
+  "errors": [],
+  "iconSize": {
+    "x": 879.921875,
+    "y": 375.09375,
+    "width": 18,
+    "height": 18
+  },
+  "stockAfter": {
+    "total": 150,
+    "assigned": 20,
+    "available": 130,
+    "waiting": 0,
+    "active": 1,
+    "metadataHash": "16dc244a702839ced562cc27b784eedb0c8c98328fb6e3af965262b279a7b79a"
+  },
+  "completed": true,
+  "browserClosed": true
+}

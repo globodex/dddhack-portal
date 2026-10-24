@@ -1,0 +1,266 @@
+{
+  "source": "c1ad8d3f945c431677101e7a8cf35323a6508b6a",
+  "backend": "0a0b30b62725fe781dbad95945710a80169b1a20",
+  "syntheticOnly": true,
+  "database": "/tmp/ddd-team-studio.sqlite",
+  "captures": [
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/invite-short-390x480.png",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "full": false
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/invite-outgoing-short-390x480.png",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "full": false
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/team-orange-1487x1058.png",
+      "actor": "bob",
+      "viewport": {
+        "width": 1487,
+        "height": 1058
+      },
+      "full": false
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/team-orange-1440x1024.png",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 1024
+      },
+      "full": false
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/team-orange-1440x900.png",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "full": false
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/team-orange-768x1024-full.png",
+      "actor": "bob",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "full": true
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/team-orange-390x844-full.png",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "full": true
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/idea-mobile-390x844.png",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "full": false
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/next-mobile-390x844.png",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "full": false
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/team-orange-320x480-full.png",
+      "actor": "bob",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "full": true
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/idea-short-390x480.png",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "full": false
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/next-short-390x480.png",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "full": false
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/idea-dirty-mobile-390x844.png",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "full": false
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/lock-confirmation-short-390x480.png",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "full": false
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/leader-locked-1440x900-full.png",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "full": true
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/credits-gate-1440x900.png",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "full": false
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/project-gate-1440x900.png",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "full": false
+    },
+    {
+      "path": "/workspace/ddd-team-studio/evidence/team-studio-verified/member-locked-mobile-390x844-full.png",
+      "actor": "carol",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "full": true
+    }
+  ],
+  "checks": [
+    "Touch invitation form creates real synthetic Owner outgoing invitation200 and shows pending identity",
+    "Dirty idea hides Saved and disables lock; actual idea save200 restores truthful saved state and computed128character counter",
+    "Lock confirmation Escape cancels; actual lock200 makes leader workspace immutable; keyboard arrow tabs select Credits/Project without a mutation",
+    "Current nonleader member sees saved private idea and authorized contacts, without identity/invite/idea/remove controls"
+  ],
+  "responses": [
+    {
+      "action": "team-invite",
+      "status": 200,
+      "message": "Saved in portal. No email sent."
+    },
+    {
+      "action": "save-workspace-idea",
+      "status": 200,
+      "message": "Private idea saved. You may edit it until the team locks."
+    },
+    {
+      "action": "lock-team",
+      "status": 200,
+      "message": "Team locked for admin review. Approval and Going remain separate; Luma updates are manual."
+    }
+  ],
+  "errors": [],
+  "touchBoxes": [
+    {
+      "name": "Edit team name and color",
+      "width": 44,
+      "height": 44
+    },
+    {
+      "name": "Open WhatsApp chat with Bob",
+      "width": 44,
+      "height": 44
+    },
+    {
+      "name": "Call Bob at +12025550100",
+      "width": 44,
+      "height": 44
+    },
+    {
+      "name": "Open WhatsApp chat with Carol",
+      "width": 44,
+      "height": 44
+    },
+    {
+      "name": "Call Carol at +12025550100",
+      "width": 44,
+      "height": 44
+    },
+    {
+      "name": "Remove Carol from team",
+      "width": 44,
+      "height": 44
+    },
+    {
+      "name": "Open WhatsApp chat with Dave",
+      "width": 44,
+      "height": 44
+    },
+    {
+      "name": "Call Dave at +12025550100",
+      "width": 44,
+      "height": 44
+    },
+    {
+      "name": "Remove Dave from team",
+      "width": 44,
+      "height": 44
+    },
+    {
+      "name": "Invite member",
+      "width": 172.375,
+      "height": 60
+    },
+    {
+      "name": "Edit team idea",
+      "width": 44,
+      "height": 44
+    },
+    {
+      "name": "Review & lock team",
+      "width": 310,
+      "height": 58
+    }
+  ],
+  "readback": {
+    "teamLocked": true,
+    "members": 3,
+    "palette": "ember",
+    "descriptionLength": 128,
+    "checkedIn": false,
+    "checkedInMembers": 0
+  },
+  "completed": true,
+  "browserClosed": true
+}

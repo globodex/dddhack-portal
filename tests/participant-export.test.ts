@@ -127,8 +127,9 @@ test("filter export links encode both search fields and removal state; default U
       },
     }),
   );
-  assert.match(html, /Export filtered participants \(2\)/);
-  assert.match(html, /status=registered&amp;team=locked/);
+  const expected = selected("status=all&team=all&recordState=active");
+  assert.ok(html.includes(`Export filtered participants (${expected.rows.length})`));
+  assert.match(html, /status=all&amp;team=all/);
   assert.doesNotMatch(
     html,
     /Export full participant list|independently of these table filters/,

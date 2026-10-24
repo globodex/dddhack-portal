@@ -1,0 +1,72 @@
+{
+  "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+  "origin": "http://localhost:3000",
+  "fixtureBackend": 8821,
+  "syntheticOnly": true,
+  "fingerprint": {
+    "app/portal.tsx": "2d5c83fc98772300b5ff5646f846c2998c11c0128811997d60e5ca8d2eea2dcd",
+    "app/projects-rules-experience.css": "decf0175b3959094dd694780c9af6669861bcd45f92738ce91b0b90c3474ffcf",
+    "app/dashboard-v6.css": "60f64879fb3c805f147387fa599bfa1d23f9caecacdfe6c56a15fc74119fa11a",
+    "app/team-discovery-experience.css": "81dd145433a0ce29b3441ab3badf353de1647432b4eb0c783de780cf18dc63f5"
+  },
+  "screenshots": [
+    {
+      "path": "evidence/project-credit-positive-retry/draft-save-confirmation-1440x900.png",
+      "sha256": "8cfde220a16b300d56650376409c98ba5444351de3e4ce2be606ccb26d7cdca0"
+    },
+    {
+      "path": "evidence/project-credit-positive-retry/draft-saved-feedback-1440x900.png",
+      "sha256": "cc18557d52ee50ba10e8a3aa168caf997d7bb48803d7449af5996bef87690786"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Draft saved through real existing POST, success feedback visible, revision2\u21923, committed attempts remain2",
+      "passed": true
+    }
+  ],
+  "writes": [
+    {
+      "action": "save-project",
+      "status": "persisted",
+      "actor": "fake_alice",
+      "data": {
+        "revision": 2,
+        "projectName": "Small Wonder",
+        "descriptionSha256": "234ff958498d6a0f1306d7c4cd777ac8d79d8da3344d7d114ce91c4df01f0595",
+        "logoSha256": "54a6d2b5e77129f4e532201434fcdf526d414f34ffff3f1db02267031c6156f3",
+        "bannerSha256": "80a64de9198b75b2af1bf93a57bec98e63b916d9baa6a2ef375f0f1c99dc0ec3",
+        "ecosystemSelections": [
+          "Codex",
+          "ChatGPT"
+        ],
+        "cerebrasIntegration": "no",
+        "attestation": true
+      },
+      "httpStatus": 200,
+      "result": {
+        "message": "Project draft saved.",
+        "projectId": "visual_project_alice"
+      }
+    }
+  ],
+  "errors": [],
+  "findings": [],
+  "network": [
+    {
+      "event": "response",
+      "action": "save-project",
+      "status": 200,
+      "url": "http://localhost:3000/api/portal"
+    }
+  ],
+  "retry": true,
+  "failure": "locator.click: Timeout 45000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('tab', { name: 'Project', exact: true })\u001b[22m\n\n    at /workspace/ddd-projects/scripts/qa-project-credit-positive-current.mjs:222:62",
+  "fingerprintAtEnd": {
+    "app/portal.tsx": "2d5c83fc98772300b5ff5646f846c2998c11c0128811997d60e5ca8d2eea2dcd",
+    "app/projects-rules-experience.css": "decf0175b3959094dd694780c9af6669861bcd45f92738ce91b0b90c3474ffcf",
+    "app/dashboard-v6.css": "60f64879fb3c805f147387fa599bfa1d23f9caecacdfe6c56a15fc74119fa11a",
+    "app/team-discovery-experience.css": "81dd145433a0ce29b3441ab3badf353de1647432b4eb0c783de780cf18dc63f5"
+  },
+  "automationLimit": "After successful Save draft, navigating to the identical /dashboard#project URL was a same-document navigation and retained the editor. Project tab is intentionally absent while editing. Followup uses a fresh browser context and does not repeat Save draft."
+}

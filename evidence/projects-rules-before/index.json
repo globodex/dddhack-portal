@@ -1,0 +1,303 @@
+{
+  "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+  "syntheticOnly": true,
+  "screenshots": [
+    {
+      "file": "evidence/projects-rules-before/leaderboard-1440x900.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "5454473b3f1cfce79ce7c0bbd93f932417450cb9de25e3251f012ba4d6fc4c0c",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/leaderboard-390x480.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "sha256": "0a7097978e45984c27ea6dd8c2465fe636cb9aa1ee7ddebde7a65e06150a1901",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/leaderboard-390x844.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "1ac766276fae3b9382f3668c7daf6704ad564058ec909ba12dc572c91d9d3e81",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/leaderboard-768x1024.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "sha256": "cea7a8affd544b9e1339a8d38f77b4d253c314cdd8084868ff01d2441afee4b1",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/project-detail-1440x900.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "c14101f30aea1f2f0c654b1a22d716125080a61c8c7c5f5f432e253b38ee437f",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/project-detail-390x480.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "sha256": "444c8f04ac4682b9ce06485ec2781cfe45b33626b9eb4edb97d83ff410caabfa",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/project-detail-390x844.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "444c8f04ac4682b9ce06485ec2781cfe45b33626b9eb4edb97d83ff410caabfa",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/project-detail-768x1024.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "sha256": "cd598f5732e573a0fac526f75b7ed85bff63dd71bc28ec967b2beadbb7969be6",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/project-editor-1440x900.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "4a8f3f8a905bb57eee648ac4ddf63bf1b927f201f1b5b7e680132d0c87ff259b",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/project-editor-390x480.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "sha256": "21a77696e01e7056a8f3d81615e874e6a8f89772a83d10698551060a8fa52dba",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/project-editor-390x844.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "21a77696e01e7056a8f3d81615e874e6a8f89772a83d10698551060a8fa52dba",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/project-editor-768x1024.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "sha256": "b8acd2385e5b608f1e46a1656416c5980a7317313c53fc1dc0e0a26e14ef0803",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/projects-1440x900.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "70af86e2611ce3ca006db2846f0f9ac2d3281bc9fe64e36faabf2ca9d411fc74",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/projects-390x480.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "sha256": "fc1532d758defa610aba36a18364007ffc5fba38e82c4493a8417f3b1f31b914",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/projects-390x844.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "3546363e58923de2dfab371e88edaa00f37b765dc5bf612fdbd6daa4f3ad5e10",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/projects-768x1024.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "sha256": "cb4a7662143f29b80b38be797dfec2ef3b8964fb5214d98e58812de6ef90bbd4",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/rules-1440x900.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "f4388d3869e45a728f1f054736812613a56f01e05bc2b4467b80327c07fde6fb",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/rules-390x480.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "sha256": "f28b2bc21757323ebe27427bfc3dd7730b4b2a7616ef7fc57cf38874e4e1d60f",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/rules-390x844.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "85e6977178ba2a31062fa5b7a101050a04df7b35c350faef155f9cabb71f80f7",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/rules-768x1024.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "sha256": "cb8c1149937b884705ac472c3b33422dde0e2732cc2bce913dd6feb3897a3892",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/wizard-step1-1440x900.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "1651027d487b14c57fb5820df719bede5f825494999b841c34645e4ca61a8095",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/wizard-step1-390x480.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "sha256": "a96872b1949b4d5affe4b523a544d33c9a25fa90ff5d277c452df6fb66c7ade4",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/wizard-step1-390x844.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "10a135371b61f5564da721bbdd80b467cf716d1e919f15d9763ec4f1709c0cb0",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/wizard-step2-1440x900.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "11467bfa2d0e0299511c06f7c9ff7a6a4fd51ef02e95d63d33b7fc05dd83dab9",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/wizard-step2-390x480.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "sha256": "428572535a50ebd1ca9dfd9f42e1b85cefe5903f0fe40265fc442c936104b314",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/wizard-step2-390x844.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "f796894c9de97098719c55b8f320e515c2087c45c53601e00148da1d3dd993ac",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/wizard-step3-1440x900.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "e4b9584613b210d6ae15ba40af9065563729bc388ec7c12488c8b45044f6a91d",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/wizard-step3-390x480.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "sha256": "1f77b5d2b166c2b498bacebafdfd138b04b03f9fe5fd292dcc3424f327269f8a",
+      "nativeOriginal": true
+    },
+    {
+      "file": "evidence/projects-rules-before/wizard-step3-390x844.png",
+      "source": "e2d6149b7513e0a12644d59f69e2bc4c042ee532",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "f6d0ca2582cfc6c8e854895d40df727623253b83c96ac3e56d1417bbb329d34b",
+      "nativeOriginal": true
+    }
+  ],
+  "reconciledIndex": true,
+  "limitations": [
+    "First uncached Rules navigation timed out and was retried.",
+    "An accidental repeat capture overwrote one desktop Rules image; it was recaptured from the same immutable source in an isolated baseline worktree, then opened and verified. See rules-desktop-recapture.json.",
+    "Initial wizard automation searched an outdated button label and produced no mutation; corrected automation captured all three steps at1440x900,390x844,390x480.",
+    "Full-page captures include below-viewport lazy images; use actual viewport captures for above-the-fold layout comparison."
+  ]
+}

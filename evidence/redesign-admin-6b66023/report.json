@@ -1,0 +1,702 @@
+{
+  "source": "6b660231004b4e7091033818f369663fcc7f1e4a",
+  "dirty": false,
+  "syntheticOnly": true,
+  "runtime": "Next.js development with independent synthetic fixture backend",
+  "browserSandbox": false,
+  "physicalDevice": false,
+  "screenshots": [
+    {
+      "name": "settings-event",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-event-1440x900.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-results",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-results-1440x900.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-access",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-access-1440x900.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-content-agenda",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-content-agenda-1440x900.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-content-faq",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-content-faq-1440x900.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-content-rules",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-content-rules-1440x900.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-date-error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-date-error-1440x900.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "participants-populated",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "evidence/redesign-admin-6b66023/participants-populated-1440x900.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "participants-empty",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "evidence/redesign-admin-6b66023/participants-empty-1440x900.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "participants-add-dialog",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "evidence/redesign-admin-6b66023/participants-add-dialog-1440x900.png",
+      "inspected": false,
+      "fullPage": false
+    },
+    {
+      "name": "participants-status-dialog",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "evidence/redesign-admin-6b66023/participants-status-dialog-1440x900.png",
+      "inspected": false,
+      "fullPage": false
+    },
+    {
+      "name": "teams-expanded",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "evidence/redesign-admin-6b66023/teams-expanded-1440x900.png",
+      "inspected": true,
+      "fullPage": true
+    },
+    {
+      "name": "submissions-empty",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "evidence/redesign-admin-6b66023/submissions-empty-1440x900.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "credits",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "evidence/redesign-admin-6b66023/credits-1440x900.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "logs-empty",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "evidence/redesign-admin-6b66023/logs-empty-1440x900.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-event",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-event-768x1024.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-results",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-results-768x1024.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-access",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-access-768x1024.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-content-agenda",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-content-agenda-768x1024.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-content-faq",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-content-faq-768x1024.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-content-rules",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-content-rules-768x1024.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-date-error",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-date-error-768x1024.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "participants-populated",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "path": "evidence/redesign-admin-6b66023/participants-populated-768x1024.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "participants-empty",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "path": "evidence/redesign-admin-6b66023/participants-empty-768x1024.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "participants-add-dialog",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "path": "evidence/redesign-admin-6b66023/participants-add-dialog-768x1024.png",
+      "inspected": false,
+      "fullPage": false
+    },
+    {
+      "name": "participants-status-dialog",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "path": "evidence/redesign-admin-6b66023/participants-status-dialog-768x1024.png",
+      "inspected": false,
+      "fullPage": false
+    },
+    {
+      "name": "teams-expanded",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "path": "evidence/redesign-admin-6b66023/teams-expanded-768x1024.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "submissions-empty",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "path": "evidence/redesign-admin-6b66023/submissions-empty-768x1024.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "credits",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "path": "evidence/redesign-admin-6b66023/credits-768x1024.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "logs-empty",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "path": "evidence/redesign-admin-6b66023/logs-empty-768x1024.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-event",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-event-390x844.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-results",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-results-390x844.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-access",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-access-390x844.png",
+      "inspected": true,
+      "fullPage": true
+    },
+    {
+      "name": "settings-content-agenda",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-content-agenda-390x844.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-content-faq",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-content-faq-390x844.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-content-rules",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-content-rules-390x844.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-date-error",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-date-error-390x844.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "participants-populated",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/redesign-admin-6b66023/participants-populated-390x844.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "participants-empty",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/redesign-admin-6b66023/participants-empty-390x844.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "participants-filters",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/redesign-admin-6b66023/participants-filters-390x844.png",
+      "inspected": true,
+      "fullPage": true
+    },
+    {
+      "name": "participants-add-dialog",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/redesign-admin-6b66023/participants-add-dialog-390x844.png",
+      "inspected": true,
+      "fullPage": false
+    },
+    {
+      "name": "participants-status-dialog",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/redesign-admin-6b66023/participants-status-dialog-390x844.png",
+      "inspected": false,
+      "fullPage": false
+    },
+    {
+      "name": "teams-expanded",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/redesign-admin-6b66023/teams-expanded-390x844.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "submissions-empty",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/redesign-admin-6b66023/submissions-empty-390x844.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "credits",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/redesign-admin-6b66023/credits-390x844.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "logs-empty",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "evidence/redesign-admin-6b66023/logs-empty-390x844.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-event",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-event-390x480.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-results",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-results-390x480.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-access",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-access-390x480.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-content-agenda",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-content-agenda-390x480.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-content-faq",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-content-faq-390x480.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-content-rules",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-content-rules-390x480.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "settings-date-error",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "evidence/redesign-admin-6b66023/settings-date-error-390x480.png",
+      "inspected": true,
+      "fullPage": true
+    },
+    {
+      "name": "participants-populated",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "evidence/redesign-admin-6b66023/participants-populated-390x480.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "participants-empty",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "evidence/redesign-admin-6b66023/participants-empty-390x480.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "participants-filters",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "evidence/redesign-admin-6b66023/participants-filters-390x480.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "participants-add-dialog",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "evidence/redesign-admin-6b66023/participants-add-dialog-390x480.png",
+      "inspected": false,
+      "fullPage": false
+    },
+    {
+      "name": "participants-status-dialog",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "evidence/redesign-admin-6b66023/participants-status-dialog-390x480.png",
+      "inspected": true,
+      "fullPage": false
+    },
+    {
+      "name": "teams-expanded",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "evidence/redesign-admin-6b66023/teams-expanded-390x480.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "submissions-empty",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "evidence/redesign-admin-6b66023/submissions-empty-390x480.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "credits",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "evidence/redesign-admin-6b66023/credits-390x480.png",
+      "inspected": false,
+      "fullPage": true
+    },
+    {
+      "name": "logs-empty",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "evidence/redesign-admin-6b66023/logs-empty-390x480.png",
+      "inspected": false,
+      "fullPage": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "settings keyboard tabs 1440x900",
+      "passed": true
+    },
+    {
+      "name": "participant search reset 1440x900",
+      "passed": true
+    },
+    {
+      "name": "import Escape Back focus 1440x900",
+      "passed": true
+    },
+    {
+      "name": "status Escape focus 1440x900",
+      "passed": true
+    },
+    {
+      "name": "settings keyboard tabs 768x1024",
+      "passed": true
+    },
+    {
+      "name": "participant search reset 768x1024",
+      "passed": true
+    },
+    {
+      "name": "import Escape Back focus 768x1024",
+      "passed": true
+    },
+    {
+      "name": "status Escape focus 768x1024",
+      "passed": true
+    },
+    {
+      "name": "settings keyboard tabs 390x844",
+      "passed": true
+    },
+    {
+      "name": "participant search reset 390x844",
+      "passed": true
+    },
+    {
+      "name": "import Escape Back focus 390x844",
+      "passed": true
+    },
+    {
+      "name": "status Escape focus 390x844",
+      "passed": true
+    },
+    {
+      "name": "settings keyboard tabs 390x480",
+      "passed": true
+    },
+    {
+      "name": "participant search reset 390x480",
+      "passed": true
+    },
+    {
+      "name": "import Escape Back focus 390x480",
+      "passed": true
+    },
+    {
+      "name": "status Escape focus 390x480",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "requests": [],
+  "visualNotes": [
+    "Native modal captures use viewport bounds because the native backdrop covers the viewport, not the full document.",
+    "The short-mobile status image shows a Next development issue indicator after prior interactions; a fresh isolated console capture reported no console warnings/errors. This development UI must be hidden in delivery captures, without hiding app alerts."
+  ]
+}

@@ -1,0 +1,636 @@
+{
+  "method": "Match existing compiled CSS rule selector/context/declaration signatures to individually minified source sheets, using the installed Next cssnano settings. Raw matched rule bytes identify source ownership; gzip is only exact at whole-chunk level and is not additive per source. Unmatched/ambiguous bytes are explicit.",
+  "variants": {
+    "baseline": {
+      "chunks": [
+        {
+          "file": "static/css/614a4aca95eb4c7a.css",
+          "wireBytes": 13447,
+          "rawBytes": 65285,
+          "gzipBytes": 13001,
+          "sourceMatchedRuleBytes": {
+            "style.css": 28007,
+            "public-home.css": 22226,
+            "home-lower.css": 4650,
+            "organizer-section.css": 4005,
+            "portrait-backdrop.css": 1000
+          },
+          "ambiguousRuleBytes": {
+            "public-home.css | style.css": 1825
+          },
+          "unmatchedRuleBytes": 1274,
+          "wrapperFontfaceOrOtherBytes": 2298,
+          "unmatchedLargest": [
+            {
+              "selector": ".public-home-shell .motion-toggle",
+              "context": "",
+              "bytes": 205
+            },
+            {
+              "selector": ".public-home-shell .home-hero",
+              "context": "",
+              "bytes": 151
+            },
+            {
+              "selector": ".delhi-mask",
+              "context": "",
+              "bytes": 120
+            },
+            {
+              "selector": ".project-row-link",
+              "context": "",
+              "bytes": 80
+            },
+            {
+              "selector": ".progress-track i",
+              "context": "",
+              "bytes": 75
+            },
+            {
+              "selector": ".public-home-shell .agenda-track>li",
+              "context": "",
+              "bytes": 74
+            },
+            {
+              "selector": ".sex-choices label",
+              "context": "",
+              "bytes": 69
+            },
+            {
+              "selector": ".delhi-wordmark",
+              "context": "",
+              "bytes": 66
+            }
+          ]
+        },
+        {
+          "file": "static/css/6e69855840ff679f.css",
+          "wireBytes": 13326,
+          "rawBytes": 79342,
+          "gzipBytes": 12879,
+          "sourceMatchedRuleBytes": {
+            "participant-ui.css": 18340,
+            "admin-controls.css": 37255,
+            "navigation-correction.css": 3327,
+            "discovery-profile.css": 2213,
+            "dashboard-v6.css": 15757
+          },
+          "ambiguousRuleBytes": {},
+          "unmatchedRuleBytes": 1610,
+          "wrapperFontfaceOrOtherBytes": 840,
+          "unmatchedLargest": [
+            {
+              "selector": ".app-shell .upvote-button",
+              "context": "",
+              "bytes": 285
+            },
+            {
+              "selector": ".main:not(.home-main) .admin-import-dialog .admin-source-options button",
+              "context": "",
+              "bytes": 220
+            },
+            {
+              "selector": ".app-shell .dashboard-v6 .dashboard-sections [role=tab]",
+              "context": "@media (max-width:640px)",
+              "bytes": 125
+            },
+            {
+              "selector": ".main:not(.home-main) .admin-settings-reveals>.panel h2",
+              "context": "",
+              "bytes": 121
+            },
+            {
+              "selector": ".app-shell .dashboard-v6 .dashboard-venue a",
+              "context": "@container (max-width: 560px)",
+              "bytes": 116
+            },
+            {
+              "selector": ".main:not(.home-main) .admin-team-list .member-list>li>div",
+              "context": "@media (max-width:740px)",
+              "bytes": 91
+            },
+            {
+              "selector": ".app-shell .dashboard-sections a,.app-shell .discovery-tabs a",
+              "context": "@media (max-width:640px)",
+              "bytes": 89
+            },
+            {
+              "selector": ".admin-action-target",
+              "context": "",
+              "bytes": 86
+            }
+          ]
+        },
+        {
+          "file": "static/css/1df01e941ed5ccbd.css",
+          "wireBytes": 7068,
+          "rawBytes": 35934,
+          "gzipBytes": 6622,
+          "sourceMatchedRuleBytes": {
+            "discover-rules-v6.css": 12545,
+            "projects-submission-v6.css": 13733,
+            "portal-shell.css": 1900,
+            "mobile-navigation.css": 1950,
+            "route-skeleton.css": 2886,
+            "admin-credit-batches.css": 2211
+          },
+          "ambiguousRuleBytes": {},
+          "unmatchedRuleBytes": 225,
+          "wrapperFontfaceOrOtherBytes": 484,
+          "unmatchedLargest": [
+            {
+              "selector": ".main .submission-v6 .submission-actions .button",
+              "context": "@media (max-width:740px)",
+              "bytes": 90
+            },
+            {
+              "selector": ".main .public-project-detail .project-detail>.engagement>*",
+              "context": "@media (max-width:740px)",
+              "bytes": 68
+            },
+            {
+              "selector": ".discover-v6 .discover-tabs a",
+              "context": "@media (max-width:740px)",
+              "bytes": 67
+            }
+          ]
+        }
+      ],
+      "sourceSizes": {
+        "admin-controls.css": {
+          "rawBytes": 46777,
+          "minifiedBytes": 38342,
+          "standaloneGzip": 6231
+        },
+        "admin-credit-batches.css": {
+          "rawBytes": 2838,
+          "minifiedBytes": 2307,
+          "standaloneGzip": 728
+        },
+        "dashboard-v6.css": {
+          "rawBytes": 19875,
+          "minifiedBytes": 16143,
+          "standaloneGzip": 2973
+        },
+        "discover-rules-v6.css": {
+          "rawBytes": 15547,
+          "minifiedBytes": 12716,
+          "standaloneGzip": 2576
+        },
+        "discovery-profile.css": {
+          "rawBytes": 2659,
+          "minifiedBytes": 2239,
+          "standaloneGzip": 725
+        },
+        "home-lower.css": {
+          "rawBytes": 6023,
+          "minifiedBytes": 4702,
+          "standaloneGzip": 1180
+        },
+        "mobile-navigation.css": {
+          "rawBytes": 2542,
+          "minifiedBytes": 2053,
+          "standaloneGzip": 813
+        },
+        "navigation-correction.css": {
+          "rawBytes": 4496,
+          "minifiedBytes": 3497,
+          "standaloneGzip": 1133
+        },
+        "organizer-section.css": {
+          "rawBytes": 5018,
+          "minifiedBytes": 4077,
+          "standaloneGzip": 1202
+        },
+        "participant-ui.css": {
+          "rawBytes": 23341,
+          "minifiedBytes": 19018,
+          "standaloneGzip": 3894
+        },
+        "portal-shell.css": {
+          "rawBytes": 2522,
+          "minifiedBytes": 1954,
+          "standaloneGzip": 687
+        },
+        "portrait-backdrop.css": {
+          "rawBytes": 1373,
+          "minifiedBytes": 1029,
+          "standaloneGzip": 363
+        },
+        "projects-submission-v6.css": {
+          "rawBytes": 16991,
+          "minifiedBytes": 13913,
+          "standaloneGzip": 2938
+        },
+        "public-home.css": {
+          "rawBytes": 31403,
+          "minifiedBytes": 24601,
+          "standaloneGzip": 5147
+        },
+        "route-skeleton.css": {
+          "rawBytes": 3452,
+          "minifiedBytes": 2985,
+          "standaloneGzip": 852
+        },
+        "style.css": {
+          "rawBytes": 41162,
+          "minifiedBytes": 32039,
+          "standaloneGzip": 7736
+        }
+      }
+    },
+    "final": {
+      "chunks": [
+        {
+          "file": "static/css/8809e623ff52f09d.css",
+          "wireBytes": 14091,
+          "rawBytes": 69540,
+          "gzipBytes": 13644,
+          "sourceMatchedRuleBytes": {
+            "style.css": 27932,
+            "public-home.css": 23095,
+            "home-lower.css": 6849,
+            "organizer-section.css": 4834,
+            "portrait-backdrop.css": 1000
+          },
+          "ambiguousRuleBytes": {
+            "redesign.css | style.css": 75,
+            "public-home.css | style.css": 1825
+          },
+          "unmatchedRuleBytes": 1484,
+          "wrapperFontfaceOrOtherBytes": 2446,
+          "unmatchedLargest": [
+            {
+              "selector": ".public-home-shell .motion-toggle",
+              "context": "",
+              "bytes": 205
+            },
+            {
+              "selector": ".public-home-shell .home-hero",
+              "context": "",
+              "bytes": 151
+            },
+            {
+              "selector": ".public-home-shell .organizer-unit",
+              "context": "@media (min-width:1000px) and (orientation:landscape),(min-width:1100px)",
+              "bytes": 145
+            },
+            {
+              "selector": ".delhi-mask",
+              "context": "",
+              "bytes": 120
+            },
+            {
+              "selector": ".project-row-link",
+              "context": "",
+              "bytes": 80
+            },
+            {
+              "selector": ".progress-track i",
+              "context": "",
+              "bytes": 75
+            },
+            {
+              "selector": ".public-home-shell .agenda-track>li",
+              "context": "",
+              "bytes": 74
+            },
+            {
+              "selector": ".sex-choices label",
+              "context": "",
+              "bytes": 69
+            }
+          ]
+        },
+        {
+          "file": "static/css/6e69855840ff679f.css",
+          "wireBytes": 13326,
+          "rawBytes": 79342,
+          "gzipBytes": 12879,
+          "sourceMatchedRuleBytes": {
+            "participant-ui.css": 18038,
+            "admin-controls.css": 37255,
+            "navigation-correction.css": 3327,
+            "discovery-profile.css": 2213,
+            "dashboard-v6.css": 15757
+          },
+          "ambiguousRuleBytes": {
+            "participant-ui.css | profile-experience.css": 302
+          },
+          "unmatchedRuleBytes": 1610,
+          "wrapperFontfaceOrOtherBytes": 840,
+          "unmatchedLargest": [
+            {
+              "selector": ".app-shell .upvote-button",
+              "context": "",
+              "bytes": 285
+            },
+            {
+              "selector": ".main:not(.home-main) .admin-import-dialog .admin-source-options button",
+              "context": "",
+              "bytes": 220
+            },
+            {
+              "selector": ".app-shell .dashboard-v6 .dashboard-sections [role=tab]",
+              "context": "@media (max-width:640px)",
+              "bytes": 125
+            },
+            {
+              "selector": ".main:not(.home-main) .admin-settings-reveals>.panel h2",
+              "context": "",
+              "bytes": 121
+            },
+            {
+              "selector": ".app-shell .dashboard-v6 .dashboard-venue a",
+              "context": "@container (max-width: 560px)",
+              "bytes": 116
+            },
+            {
+              "selector": ".main:not(.home-main) .admin-team-list .member-list>li>div",
+              "context": "@media (max-width:740px)",
+              "bytes": 91
+            },
+            {
+              "selector": ".app-shell .dashboard-sections a,.app-shell .discovery-tabs a",
+              "context": "@media (max-width:640px)",
+              "bytes": 89
+            },
+            {
+              "selector": ".admin-action-target",
+              "context": "",
+              "bytes": 86
+            }
+          ]
+        },
+        {
+          "file": "static/css/55bbc64ae4d39192.css",
+          "wireBytes": 4738,
+          "rawBytes": 25795,
+          "gzipBytes": 4292,
+          "sourceMatchedRuleBytes": {
+            "team-studio-experience.css": 25085
+          },
+          "ambiguousRuleBytes": {},
+          "unmatchedRuleBytes": 453,
+          "wrapperFontfaceOrOtherBytes": 257,
+          "unmatchedLargest": [
+            {
+              "selector": ".app-shell .main .team-studio .studio-idea-title h2",
+              "context": "",
+              "bytes": 182
+            },
+            {
+              "selector": ".app-shell .main .team-studio .dashboard-sections [role=tab]",
+              "context": "@media (max-width:600px)",
+              "bytes": 131
+            },
+            {
+              "selector": ".app-shell .main .team-studio .studio-member-info",
+              "context": "",
+              "bytes": 71
+            },
+            {
+              "selector": ".app-shell .main .team-studio .studio-team-name",
+              "context": "",
+              "bytes": 69
+            }
+          ]
+        },
+        {
+          "file": "static/css/eb86810ad77fc3a3.css",
+          "wireBytes": 12188,
+          "rawBytes": 68439,
+          "gzipBytes": 11741,
+          "sourceMatchedRuleBytes": {
+            "discover-rules-v6.css": 12545,
+            "projects-submission-v6.css": 13733,
+            "portal-shell.css": 1900,
+            "mobile-navigation.css": 1950,
+            "route-skeleton.css": 6186,
+            "admin-credit-batches.css": 10184,
+            "personal-credits.css": 4188,
+            "redesign.css": 7623,
+            "profile-experience.css": 8419
+          },
+          "ambiguousRuleBytes": {
+            "redesign.css | style.css": 75,
+            "participant-ui.css | profile-experience.css": 302
+          },
+          "unmatchedRuleBytes": 459,
+          "wrapperFontfaceOrOtherBytes": 875,
+          "unmatchedLargest": [
+            {
+              "selector": ".route-skeleton[data-layout=dashboard] .route-skeleton-tabs>.route-skeleton-block",
+              "context": "",
+              "bytes": 126
+            },
+            {
+              "selector": ".route-skeleton-studio-identity>.route-skeleton-copy",
+              "context": "@media (max-width:640px)",
+              "bytes": 108
+            },
+            {
+              "selector": ".main .submission-v6 .submission-actions .button",
+              "context": "@media (max-width:740px)",
+              "bytes": 90
+            },
+            {
+              "selector": ".main .public-project-detail .project-detail>.engagement>*",
+              "context": "@media (max-width:740px)",
+              "bytes": 68
+            },
+            {
+              "selector": ".discover-v6 .discover-tabs a",
+              "context": "@media (max-width:740px)",
+              "bytes": 67
+            }
+          ]
+        },
+        {
+          "file": "static/css/3be7d25f586b063e.css",
+          "wireBytes": 12808,
+          "rawBytes": 86142,
+          "gzipBytes": 12361,
+          "sourceMatchedRuleBytes": {
+            "team-discovery-experience.css": 31243,
+            "admin-experience.css": 25617,
+            "projects-rules-experience.css": 24320,
+            "team-studio-shell.css": 3092
+          },
+          "ambiguousRuleBytes": {},
+          "unmatchedRuleBytes": 1355,
+          "wrapperFontfaceOrOtherBytes": 515,
+          "unmatchedLargest": [
+            {
+              "selector": ".admin-workspace .admin-team-idea-form small",
+              "context": "",
+              "bytes": 152
+            },
+            {
+              "selector": ".app-shell .dashboard-v6 .dashboard-sections [role=tab],.app-shell .discover-v6 .discover-tabs a",
+              "context": "@media (max-width:740px)",
+              "bytes": 151
+            },
+            {
+              "selector": ".admin-entry-number",
+              "context": "",
+              "bytes": 125
+            },
+            {
+              "selector": ".app-shell .submission-v6 .submission-actions .button",
+              "context": "@media (max-width:740px)",
+              "bytes": 108
+            },
+            {
+              "selector": ".admin-result-bar>span",
+              "context": "",
+              "bytes": 104
+            },
+            {
+              "selector": ".app-shell .discover-v6 .discover-membership-filters button",
+              "context": "@media (max-width:740px)",
+              "bytes": 100
+            },
+            {
+              "selector": ".main:not(.home-main) .admin-workspace .admin-heading-actions>.button:last-child",
+              "context": "@media (max-width:740px)",
+              "bytes": 90
+            },
+            {
+              "selector": ".app-shell .submission-v6 .submission-actions .button",
+              "context": "@media (max-width:740px)",
+              "bytes": 88
+            }
+          ]
+        }
+      ],
+      "sourceSizes": {
+        "admin-controls.css": {
+          "rawBytes": 46777,
+          "minifiedBytes": 38342,
+          "standaloneGzip": 6231
+        },
+        "admin-credit-batches.css": {
+          "rawBytes": 12661,
+          "minifiedBytes": 10332,
+          "standaloneGzip": 2275
+        },
+        "admin-experience.css": {
+          "rawBytes": 31690,
+          "minifiedBytes": 26383,
+          "standaloneGzip": 4030
+        },
+        "dashboard-v6.css": {
+          "rawBytes": 19875,
+          "minifiedBytes": 16143,
+          "standaloneGzip": 2973
+        },
+        "discover-rules-v6.css": {
+          "rawBytes": 15547,
+          "minifiedBytes": 12716,
+          "standaloneGzip": 2576
+        },
+        "discovery-profile.css": {
+          "rawBytes": 2659,
+          "minifiedBytes": 2239,
+          "standaloneGzip": 725
+        },
+        "home-lower.css": {
+          "rawBytes": 8259,
+          "minifiedBytes": 6923,
+          "standaloneGzip": 1494
+        },
+        "mobile-navigation.css": {
+          "rawBytes": 2542,
+          "minifiedBytes": 2053,
+          "standaloneGzip": 813
+        },
+        "navigation-correction.css": {
+          "rawBytes": 4496,
+          "minifiedBytes": 3497,
+          "standaloneGzip": 1133
+        },
+        "organizer-section.css": {
+          "rawBytes": 6485,
+          "minifiedBytes": 5123,
+          "standaloneGzip": 1399
+        },
+        "participant-ui.css": {
+          "rawBytes": 23341,
+          "minifiedBytes": 19018,
+          "standaloneGzip": 3894
+        },
+        "personal-credits.css": {
+          "rawBytes": 5113,
+          "minifiedBytes": 4214,
+          "standaloneGzip": 1019
+        },
+        "portal-shell.css": {
+          "rawBytes": 2522,
+          "minifiedBytes": 1954,
+          "standaloneGzip": 687
+        },
+        "portrait-backdrop.css": {
+          "rawBytes": 1373,
+          "minifiedBytes": 1029,
+          "standaloneGzip": 363
+        },
+        "profile-experience.css": {
+          "rawBytes": 10585,
+          "minifiedBytes": 8836,
+          "standaloneGzip": 1981
+        },
+        "projects-rules-experience.css": {
+          "rawBytes": 27907,
+          "minifiedBytes": 24774,
+          "standaloneGzip": 4190
+        },
+        "projects-submission-v6.css": {
+          "rawBytes": 16991,
+          "minifiedBytes": 13913,
+          "standaloneGzip": 2938
+        },
+        "public-home.css": {
+          "rawBytes": 32691,
+          "minifiedBytes": 25615,
+          "standaloneGzip": 5338
+        },
+        "public-information.css": {
+          "rawBytes": 5708,
+          "minifiedBytes": 4621,
+          "standaloneGzip": 1353
+        },
+        "redesign.css": {
+          "rawBytes": 9127,
+          "minifiedBytes": 7817,
+          "standaloneGzip": 2202
+        },
+        "route-skeleton.css": {
+          "rawBytes": 7611,
+          "minifiedBytes": 6572,
+          "standaloneGzip": 1401
+        },
+        "style.css": {
+          "rawBytes": 41162,
+          "minifiedBytes": 32039,
+          "standaloneGzip": 7736
+        },
+        "team-discovery-experience.css": {
+          "rawBytes": 37998,
+          "minifiedBytes": 31698,
+          "standaloneGzip": 5114
+        },
+        "team-studio-experience.css": {
+          "rawBytes": 30306,
+          "minifiedBytes": 25787,
+          "standaloneGzip": 4289
+        },
+        "team-studio-shell.css": {
+          "rawBytes": 3848,
+          "minifiedBytes": 3144,
+          "standaloneGzip": 781
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "actor": "alice",
+    "path": "/dashboard",
+    "modal": false,
+    "violations": []
+  },
+  {
+    "actor": "alice",
+    "path": "/discover/participants",
+    "modal": false,
+    "violations": []
+  },
+  {
+    "actor": "pending",
+    "path": "/discover/teams",
+    "modal": true,
+    "violations": []
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "observedAt": "2026-10-24T18:03:38.534Z",
+  "timing": "After both diagnostic runs, not a baseline-start snapshot",
+  "values": {
+    "/sys/fs/cgroup/cpu.max": "400000 100000",
+    "/sys/fs/cgroup/cpu.stat": "usage_usec 29859314637\nuser_usec 24036546082\nsystem_usec 5822768554\nnice_usec 0\nnr_periods 201209\nnr_throttled 33988\nthrottled_usec 2522370098\nnr_bursts 0\nburst_usec 0",
+    "/sys/fs/cgroup/memory.current": "15462649856",
+    "/sys/fs/cgroup/memory.max": "17179869184",
+    "/sys/fs/cgroup/memory.stat": "anon 3271356416\nfile 11371220992\nkernel 819310592\nkernel_stack 7847936\npagetables 69513216\nsec_pagetables 0\npercpu 25704\nsock 16384\nvmalloc 73728\nshmem 2031910912\nfile_mapped 66560000\nfile_dirty 44871680\nfile_writeback 0\nswapcached 0\nanon_thp 0\nfile_thp 1189085184\nshmem_thp 0\ninactive_anon 4430045184\nactive_anon 872857600\ninactive_file 7155363840\nactive_file 2184044544\nunevictable 0\nslab_reclaimable 690564640\nslab_unreclaimable 51097000\nslab 741661640\nworkingset_refault_anon 0\nworkingset_refault_file 6\nworkingset_activate_anon 0\nworkingset_activate_file 6\nworkingset_restore_anon 0\nworkingset_restore_file 0\nworkingset_nodereclaim 0\npgdemote_kswapd 0\npgdemote_direct 0\npgdemote_khugepaged 0\npgdemote_proactive 0\npgscan 51597\npgsteal 51595\npswpin 0\npswpout 0\npgscan_kswapd 0\npgscan_direct 51597\npgscan_khugepaged 0\npgscan_proactive 0\npgsteal_kswapd 0\npgsteal_direct 51595\npgsteal_khugepaged 0\npgsteal_proactive 0\npgfault 700382632\npgmajfault 6\npgrefill 32\npgactivate 10363057\npgdeactivate 32\npglazyfree 2\npglazyfreed 0\nswpin_zero 0\nswpout_zero 0\nthp_fault_alloc 0\nthp_collapse_alloc 0\nthp_swpout 0\nthp_swpout_fallback 0",
+    "/sys/fs/cgroup/memory.events": "low 0\nhigh 0\nmax 1606\noom 0\noom_kill 0\noom_group_kill 0",
+    "/sys/fs/cgroup/pids.current": "2498",
+    "/proc/loadavg": "3.76 5.16 3.97 3/2601 174796"
+  }
+}

@@ -9,7 +9,10 @@ import { batch, rows, type Database } from "../lib/db";
 import { rehearsalPolicy, submission } from "./helpers";
 test(
   "actual local D1 binding: schema, trigger rollback, batch atomicity and concurrent credit/submission commands",
-  { timeout: 30000 },
+  // This integration case performs 1,023+ local D1 RPCs, including migrations
+  // and concurrent rollback/limit assertions. Budget the complete local harness.
+  // Paired phase evidence: evidence/viewer-d1-timeout/summary.json.
+  { timeout: 120000 },
   async () => {
     const mf = new Miniflare({
       modules: true,

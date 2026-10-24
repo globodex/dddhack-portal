@@ -1,0 +1,85 @@
+{
+  "syntheticOnly": true,
+  "source": "19cb5362fcd4367a02fc04b3230d82f1cb854d91",
+  "sourceHashes": {
+    "app/add-admins.tsx": "ec28038862ca80e0c5f97924207f86c8d991daed84b9258677b5b96aa035369c",
+    "app/admin-experience.css": "eab8d356a4736a5fdff96f551c0b27d1739f4a82cafb95804890bc6a85e2b304",
+    "app/portal.tsx": "f8e6c402b449e4cc33de3d43a8cefd6d80565eb396329b5ee02e4523443bbae7",
+    "lib/admin-access.ts": "688a69014a400f82a139deebb7794266e903e3c6607a28626241506f126e5cd9",
+    "lib/action-confirmation.ts": "66d6c9f436ba8a770720ede71fa36bc06483bea6a3f60c6f1a3796eb7cfba51d"
+  },
+  "checks": [
+    {
+      "name": "owner-only list, protected owner and responsive real list",
+      "passed": true
+    },
+    {
+      "name": "unexpected failure",
+      "passed": false,
+      "error": "Error: expect(locator).toBeFocused() failed\n\nLocator:  locator('.admin-add-admins').getByRole('button', { name: 'Revoke admin access for Admin', exact: true })\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.be.focused\" with timeout 5000ms\n  - waiting for locator('.admin-add-admins').getByRole('button', { name: 'Revoke admin access for Admin', exact: true })\n    9 \u00d7 locator resolved to <button type=\"button\" aria-busy=\"false\" aria-label=\"Revoke admin access for Admin\" class=\"button secondary admin-access-revoke\">\u2026</button>\n      - unexpected value \"inactive\"\n\n    at Proxy.<anonymous> (/workspace/dddhack-portal/node_modules/playwright/lib/matchers/expect.js:221:24)\n    at file:///workspace/ddd-admin/scripts/qa-admin-owner-access.mjs:209:30\n    at async check (file:///workspace/ddd-admin/scripts/qa-admin-owner-access.mjs:105:3)\n    at async file:///workspace/ddd-admin/scripts/qa-admin-owner-access.mjs:198:3"
+    }
+  ],
+  "requests": [],
+  "screenshots": [
+    {
+      "path": "evidence/admin-owner-access/owner-list-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-owner-access/owner-list-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-owner-access/owner-list-320.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-owner-access/revoke-confirmation-320.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "fullPage": false,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-owner-access/FAILED.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true
+    }
+  ],
+  "errors": [],
+  "closed": true,
+  "sourceAfter": "19cb5362fcd4367a02fc04b3230d82f1cb854d91",
+  "sourceHashesAfter": {
+    "app/add-admins.tsx": "ec28038862ca80e0c5f97924207f86c8d991daed84b9258677b5b96aa035369c",
+    "app/admin-experience.css": "eab8d356a4736a5fdff96f551c0b27d1739f4a82cafb95804890bc6a85e2b304",
+    "app/portal.tsx": "f8e6c402b449e4cc33de3d43a8cefd6d80565eb396329b5ee02e4523443bbae7",
+    "lib/admin-access.ts": "688a69014a400f82a139deebb7794266e903e3c6607a28626241506f126e5cd9",
+    "lib/action-confirmation.ts": "66d6c9f436ba8a770720ede71fa36bc06483bea6a3f60c6f1a3796eb7cfba51d"
+  },
+  "runtimeSourcesUnchanged": true,
+  "pixelReview": {
+    "reviewedAllOriginalPNGs": true,
+    "method": "Opened native files using view_image; no resized replacement artifacts."
+  }
+}

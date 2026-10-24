@@ -1,0 +1,102 @@
+{
+  "count": 77,
+  "uniquePixels": 65,
+  "normalGroups": [
+    {
+      "representative": "evidence/viewer-registration/after/admin-not-registered-320x480.png",
+      "duplicates": 1
+    },
+    {
+      "representative": "evidence/viewer-registration/after/initial-nav-failure-page-1440.png",
+      "duplicates": 3
+    },
+    {
+      "representative": "evidence/viewer-registration/after/initial-nav-failure-page-390.png",
+      "duplicates": 2
+    },
+    {
+      "representative": "evidence/viewer-registration/after/profile-desktop-sidebar-diagnostic.png",
+      "duplicates": 3
+    },
+    {
+      "representative": "evidence/viewer-registration/after/registered-teamless-fixed-1440x900.png",
+      "duplicates": 1
+    },
+    {
+      "representative": "evidence/viewer-registration/after/registered-teamless-fixed-320x480.png",
+      "duplicates": 1
+    },
+    {
+      "representative": "evidence/viewer-registration/after/registered-teamless-fixed-390x480.png",
+      "duplicates": 1
+    },
+    {
+      "representative": "evidence/viewer-registration/after/registered-teamless-fixed-768x1024.png",
+      "duplicates": 1
+    },
+    {
+      "representative": "evidence/viewer-registration/after/registered-teamless-fixed-cta-320x480.png",
+      "duplicates": 1
+    },
+    {
+      "representative": "evidence/viewer-registration/after/registered-teamless-fixed-cta-390x480.png",
+      "duplicates": 1
+    },
+    {
+      "representative": "evidence/viewer-registration/after/viewer-dashboard-320x480.png",
+      "duplicates": 2
+    },
+    {
+      "representative": "evidence/viewer-registration/after/viewer-dashboard-390x480.png",
+      "duplicates": 1
+    },
+    {
+      "representative": "evidence/viewer-registration/after/viewer-dashboard-768x1024.png",
+      "duplicates": 2
+    },
+    {
+      "representative": "evidence/viewer-registration/after/viewer-dashboard-nojs-1440x900.png",
+      "duplicates": 1
+    },
+    {
+      "representative": "evidence/viewer-registration/after/viewer-dashboard-nojs-390x844.png",
+      "duplicates": 1
+    },
+    {
+      "representative": "evidence/viewer-registration/after/viewer-menu-320x480.png",
+      "duplicates": 1
+    },
+    {
+      "representative": "evidence/viewer-registration/after/viewer-menu-390x480.png",
+      "duplicates": 1
+    },
+    {
+      "representative": "evidence/viewer-registration/after/viewer-menu-390x844.png",
+      "duplicates": 1
+    },
+    {
+      "representative": "evidence/viewer-registration/after/viewer-personal-credits-320x480.png",
+      "duplicates": 2
+    },
+    {
+      "representative": "evidence/viewer-registration/after/viewer-personal-credits-390x480.png",
+      "duplicates": 2
+    },
+    {
+      "representative": "evidence/viewer-registration/after/viewer-personal-credits-390x844.png",
+      "duplicates": 2
+    },
+    {
+      "representative": "evidence/viewer-registration/after/viewer-personal-credits-768x1024.png",
+      "duplicates": 2
+    },
+    {
+      "representative": "evidence/viewer-registration/after/viewer-submission-390x480.png",
+      "duplicates": 1
+    },
+    {
+      "representative": "evidence/viewer-registration/after/viewer-submission-390x844.png",
+      "duplicates": 1
+    }
+  ]
+}

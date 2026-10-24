@@ -1,0 +1,1429 @@
+{
+  "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+  "origin": "http://localhost:3000",
+  "syntheticOnly": true,
+  "readOnly": true,
+  "startedAt": "2026-10-24T12:38:46.540Z",
+  "screenshots": [
+    {
+      "file": "profile-320x640-baseline.png",
+      "name": "profile",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "baseline",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-320x640-step1-validation.png",
+      "name": "profile",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "step1-validation",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-320x640-step1-long-unsaved.png",
+      "name": "profile",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "step1-long-unsaved",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-320x640-step2.png",
+      "name": "profile",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "step2",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": false,
+      "reviewNote": "Rejected partial asset state: social platform SVGs had not finished decoding after step transition. Await visible image decoding before replacement."
+    },
+    {
+      "file": "profile-320x640-step2-validation.png",
+      "name": "profile",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "step2-validation",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-320x640-step2-eight-long-unsaved-socials.png",
+      "name": "profile",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "step2-eight-long-unsaved-socials",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-320x640-step3.png",
+      "name": "profile",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "step3",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "profile-320x640-step3-long-unsaved-save-visible.png",
+      "name": "profile",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "step3-long-unsaved-save-visible",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "dashboard-team-320x640-baseline.png",
+      "name": "dashboard-team",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "baseline",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Dashboard"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "dashboard-team-320x640-members.png",
+      "name": "dashboard-team",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "members",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Dashboard"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "dashboard-team-320x640-members-long-DOM-fixture.png",
+      "name": "dashboard-team",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "members-long-DOM-fixture",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Dashboard"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "dashboard-team-320x640-idea-long-DOM-fixture.png",
+      "name": "dashboard-team",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "idea-long-DOM-fixture",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 1127,
+        "height": 2254,
+        "scrollWidth": 1127,
+        "heading": ["><Dashboard"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "participants-320x640-baseline.png",
+      "name": "participants",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "baseline",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "participants-320x640-long-DOM-fixture.png",
+      "name": "participants",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "long-DOM-fixture",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "participants-320x640-dialog.png",
+      "name": "participants",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "dialog",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "participants-320x640-dialog-long-DOM-fixture.png",
+      "name": "participants",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "dialog-long-DOM-fixture",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "navigation-320x640-open.png",
+      "name": "navigation",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "open",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "teams-320x640-baseline.png",
+      "name": "teams",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "baseline",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "teams-320x640-long-DOM-fixture.png",
+      "name": "teams",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "long-DOM-fixture",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "participants-320x640-baseline.png",
+      "name": "participants",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "baseline",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "participants-320x640-long-DOM-fixture.png",
+      "name": "participants",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "long-DOM-fixture",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "participants-320x640-dialog.png",
+      "name": "participants",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "dialog",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "participants-320x640-dialog-long-DOM-fixture.png",
+      "name": "participants",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "dialog-long-DOM-fixture",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "navigation-320x640-open.png",
+      "name": "navigation",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "open",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      },
+      "inspected": true,
+      "accepted": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "profile",
+      "viewport": "320x640",
+      "state": "baseline",
+      "passed": true,
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "Profile step1-validation: first invalid field visible and focused",
+      "passed": true,
+      "viewport": "320x640",
+      "focused": {
+        "name": "fullName",
+        "invalid": "true",
+        "top": 308,
+        "bottom": 356,
+        "width": 284,
+        "headerBottom": 64,
+        "viewport": 640
+      }
+    },
+    {
+      "name": "profile: step1-validation reflow",
+      "passed": true,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "profile: step1-long-unsaved reflow",
+      "passed": true,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "profile: step2 reflow",
+      "passed": true,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "Profile step2-validation: first invalid field visible and focused",
+      "passed": true,
+      "viewport": "320x640",
+      "focused": {
+        "name": "phone",
+        "invalid": "true",
+        "top": 265,
+        "bottom": 313,
+        "width": 284,
+        "headerBottom": 64,
+        "viewport": 640
+      }
+    },
+    {
+      "name": "profile: step2-validation reflow",
+      "passed": true,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "profile: step2-eight-long-unsaved-socials reflow",
+      "passed": true,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "profile: step3 reflow",
+      "passed": true,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "profile: step3-long-unsaved-save-visible reflow",
+      "passed": true,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "Profile retains exactly three steps with Save available; Save was not submitted",
+      "passed": true,
+      "viewport": "320x640"
+    },
+    {
+      "name": "dashboard-team",
+      "viewport": "320x640",
+      "state": "baseline",
+      "passed": true,
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Dashboard"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "Dashboard title stays on one line",
+      "passed": true,
+      "viewport": "320x640",
+      "titleRects": [
+        {
+          "width": 138.46875,
+          "y": 145.90625
+        }
+      ]
+    },
+    {
+      "name": "dashboard-team: members reflow",
+      "passed": true,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Dashboard"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "dashboard-team: members-long-DOM-fixture reflow",
+      "passed": true,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Dashboard"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "dashboard-team: idea-long-DOM-fixture reflow",
+      "passed": false,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 1127,
+        "height": 2254,
+        "scrollWidth": 1127,
+        "heading": ["><Dashboard"],
+        "overflow": []
+      },
+      "finding": "P2-02",
+      "expectedViewportWidth": 320,
+      "reviewNote": "Mobile innerWidth expanded to1127 because unbroken title overflows; comparing scrollWidth only to innerWidth was insufficient."
+    },
+    {
+      "name": "participants",
+      "viewport": "320x640",
+      "state": "baseline",
+      "passed": true,
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "participants: long-DOM-fixture reflow",
+      "passed": true,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "participants: dialog fits viewport and scrolls internally",
+      "passed": true,
+      "viewport": "320x640",
+      "bounds": {
+        "left": 16,
+        "right": 304,
+        "top": 81.140625,
+        "bottom": 558.84375,
+        "width": 320,
+        "height": 640,
+        "scroll": 286,
+        "client": 286
+      }
+    },
+    {
+      "name": "participants: dialog reflow",
+      "passed": true,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "participants: dialog-long-DOM-fixture reflow",
+      "passed": true,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "participants: close control reachable after long text",
+      "passed": true,
+      "viewport": "320x640",
+      "closeBox": {
+        "x": 251,
+        "y": 25,
+        "width": 44,
+        "height": 44
+      }
+    },
+    {
+      "name": "participants: Escape restores opening-control focus",
+      "passed": true,
+      "viewport": "320x640"
+    },
+    {
+      "name": "navigation: open reflow",
+      "passed": true,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "Navigation Escape restores focus",
+      "passed": true,
+      "viewport": "320x640"
+    },
+    {
+      "name": "Navigation browser Back restores focus",
+      "passed": true,
+      "viewport": "320x640"
+    },
+    {
+      "name": "teams",
+      "viewport": "320x640",
+      "state": "baseline",
+      "passed": true,
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "teams: long-DOM-fixture reflow",
+      "passed": true,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "participants",
+      "viewport": "320x640",
+      "state": "baseline",
+      "passed": true,
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "participants: long-DOM-fixture reflow",
+      "passed": true,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "participants: dialog fits viewport and scrolls internally",
+      "passed": true,
+      "viewport": "320x640",
+      "bounds": {
+        "left": 16,
+        "right": 304,
+        "top": 81.140625,
+        "bottom": 558.84375,
+        "width": 320,
+        "height": 640,
+        "scroll": 286,
+        "client": 286
+      }
+    },
+    {
+      "name": "participants: dialog reflow",
+      "passed": true,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "participants: dialog-long-DOM-fixture reflow",
+      "passed": true,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "participants: close control reachable after long text",
+      "passed": true,
+      "viewport": "320x640",
+      "closeBox": {
+        "x": 251,
+        "y": 25,
+        "width": 44,
+        "height": 44
+      }
+    },
+    {
+      "name": "participants: Escape restores opening-control focus",
+      "passed": true,
+      "viewport": "320x640"
+    },
+    {
+      "name": "participants: keyboard focus remains inside dialog",
+      "passed": true,
+      "viewport": "320x640"
+    },
+    {
+      "name": "participants: touch/keyboard close restores focus",
+      "passed": true,
+      "viewport": "320x640"
+    },
+    {
+      "name": "navigation: open reflow",
+      "passed": true,
+      "viewport": "320x640",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "Navigation Escape restores focus",
+      "passed": true,
+      "viewport": "320x640"
+    },
+    {
+      "name": "Navigation browser Back restores focus",
+      "passed": true,
+      "viewport": "320x640"
+    },
+    {
+      "name": "Navigation last action remains reachable",
+      "passed": true,
+      "viewport": "320x640",
+      "bounds": {
+        "x": 20,
+        "y": 392,
+        "width": 280,
+        "height": 60
+      }
+    },
+    {
+      "name": "Navigation touch/keyboard close restores focus",
+      "passed": true,
+      "viewport": "320x640"
+    }
+  ],
+  "errors": [
+    {
+      "error": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.app-shell[data-hydrated=\"true\"]') to be visible\u001b[22m\n\n    at /workspace/ddd-seo/scripts/qa-responsive-profile-discovery.mjs:268:123"
+    }
+  ],
+  "mutationsBlocked": [],
+  "network": [
+    {
+      "method": "GET",
+      "path": "/profile"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/github.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/linkedin.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/website.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/dashboard"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/github.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/linkedin.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/whatsapp.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/discover/participants"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/github.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/linkedin.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/discover/participants"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/github.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/linkedin.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/discover/teams"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/discover/teams"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/discover/participants"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/github.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/linkedin.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/discover/participants"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/github.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/linkedin.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/discover/teams"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+    }
+  ],
+  "limitations": [
+    "Local synthetic fixture, not production or real sign-in.",
+    "Long text stress changes only browser DOM or unsaved form state, never persisted data.",
+    "Chromium touch emulation is not a physical-device test."
+  ],
+  "browser": "154.0.8037.57",
+  "completedSurfaces": [
+    "320x640:profile",
+    "320x640:dashboard-team",
+    "320x640:participants"
+  ],
+  "priorAttemptErrors": [
+    {
+      "error": "page.reload: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for navigation until \"networkidle\"\u001b[22m\n\u001b[2m    - navigated to \"http://localhost:3000/discover/teams\"\u001b[22m\n\n    at discovery (/workspace/ddd-seo/scripts/qa-responsive-profile-discovery.mjs:140:14)\n    at async file:///workspace/ddd-seo/scripts/qa-responsive-profile-discovery.mjs:244:58"
+    }
+  ],
+  "finishedAt": "2026-10-24T12:41:40.100Z",
+  "findings": [
+    {
+      "id": "P2-02",
+      "severity": "P2",
+      "screen": "Dashboard Team idea",
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "viewport": "320x640",
+      "evidence": "dashboard-team-320x640-idea-long-DOM-fixture.png",
+      "observed": "A105-character unbroken idea title clips beyond the viewport; mobile layout width expands to1127. Description wraps.",
+      "fixture": "DOM-only title/description replacement, not a saved record; source contract permits120-character titles. Counter remains original because only layout text was replaced.",
+      "status": "Reported to coordinator for scoped source fix."
+    }
+  ],
+  "status": "paused-by-coordinator",
+  "browserClosed": true,
+  "visualReview": {
+    "uniqueScreenshotsViewed": 19,
+    "acceptedUniqueScreenshots": 18,
+    "rejectedPartialAssetStates": 1,
+    "notes": [
+      "All19 unique originals were opened. Title overflow was found in actual pixels after geometry checks had missed mobile layout expansion.",
+      "Expanded read-only checks remain partial; Teams dialog, remaining viewports and native zoom await resumed coordinator source/browser slot."
+    ]
+  }
+}

@@ -1,0 +1,1303 @@
+{
+  "source": "344334b220472641a07f1832485a6a387f9b8915",
+  "syntheticOnly": true,
+  "physicalDevice": false,
+  "writes": [],
+  "blocked": [],
+  "screenshots": [
+    {
+      "name": "participants",
+      "path": "/admin/participants",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "participants-1440x900.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "teams",
+      "path": "/admin/teams",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "teams-1440x900.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "submissions",
+      "path": "/admin/submissions",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "submissions-1440x900.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "review-1440x900.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "credits",
+      "path": "/admin/credits",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "credits-1440x900.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "settings",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "settings-1440x900.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "settings",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "settings-results-1440x900.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "settings",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "settings-access-1440x900.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "settings",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "settings-content-1440x900.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "logs",
+      "path": "/admin/logs",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "logs-1440x900.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "rules",
+      "path": "/rules",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "rules-1440x900.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "projects",
+      "path": "/projects",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "projects-1440x900.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "project",
+      "path": "/projects/synthetic-alice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "project-1440x900.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "leaderboard",
+      "path": "/leaderboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "leaderboard-1440x900.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "participants",
+      "path": "/admin/participants",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "participants-768x1024.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "teams",
+      "path": "/admin/teams",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "teams-768x1024.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "submissions",
+      "path": "/admin/submissions",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "submissions-768x1024.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "review-768x1024.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "credits",
+      "path": "/admin/credits",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "credits-768x1024.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "settings",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "settings-768x1024.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "settings",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "settings-results-768x1024.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "settings",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "settings-access-768x1024.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "settings",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "settings-content-768x1024.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "logs",
+      "path": "/admin/logs",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "logs-768x1024.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "rules",
+      "path": "/rules",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "rules-768x1024.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "projects",
+      "path": "/projects",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "projects-768x1024.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "project",
+      "path": "/projects/synthetic-alice",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "project-768x1024.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "leaderboard",
+      "path": "/leaderboard",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "leaderboard-768x1024.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "participants",
+      "path": "/admin/participants",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "participants-390x844.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "teams",
+      "path": "/admin/teams",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "teams-390x844.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "submissions",
+      "path": "/admin/submissions",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "submissions-390x844.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "review-390x844.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "credits",
+      "path": "/admin/credits",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "credits-390x844.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "settings",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "settings-390x844.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "settings",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "settings-results-390x844.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "settings",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "settings-access-390x844.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "settings",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "settings-content-390x844.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "logs",
+      "path": "/admin/logs",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "logs-390x844.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "rules",
+      "path": "/rules",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "rules-390x844.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "projects",
+      "path": "/projects",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "projects-390x844.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "project",
+      "path": "/projects/synthetic-alice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "project-390x844.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "leaderboard",
+      "path": "/leaderboard",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "leaderboard-390x844.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "participants",
+      "path": "/admin/participants",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "participants-390x480.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "teams",
+      "path": "/admin/teams",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "teams-390x480.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "submissions",
+      "path": "/admin/submissions",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "submissions-390x480.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "review",
+      "path": "/admin/submissions/synthetic-alice",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "review-390x480.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "credits",
+      "path": "/admin/credits",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "credits-390x480.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "settings",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "settings-390x480.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "settings",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "settings-results-390x480.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "settings",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "settings-access-390x480.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "settings",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "settings-content-390x480.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "logs",
+      "path": "/admin/logs",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "logs-390x480.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "rules",
+      "path": "/rules",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "rules-390x480.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "projects",
+      "path": "/projects",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "projects-390x480.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "project",
+      "path": "/projects/synthetic-alice",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "project-390x480.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    },
+    {
+      "name": "leaderboard",
+      "path": "/leaderboard",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "leaderboard-390x480.png",
+      "source": "344334b220472641a07f1832485a6a387f9b8915"
+    }
+  ],
+  "checks": [
+    {
+      "name": "participants",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "httpStatus": 200,
+      "h1": [
+        "--Participants"
+      ],
+      "passed": true
+    },
+    {
+      "name": "teams",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "httpStatus": 200,
+      "h1": [
+        "><Teams"
+      ],
+      "passed": true
+    },
+    {
+      "name": "review",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "httpStatus": 200,
+      "h1": [
+        "Small Wonder"
+      ],
+      "passed": true
+    },
+    {
+      "name": "credits",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "httpStatus": 200,
+      "h1": [
+        "^^Credits"
+      ],
+      "passed": true
+    },
+    {
+      "name": "settings",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "httpStatus": 200,
+      "h1": [
+        "><Settings"
+      ],
+      "passed": true
+    },
+    {
+      "name": "logs",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "httpStatus": 200,
+      "h1": [
+        "^^Logs"
+      ],
+      "passed": true
+    },
+    {
+      "name": "rules",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "httpStatus": 200,
+      "h1": [
+        "--Rules"
+      ],
+      "passed": true
+    },
+    {
+      "name": "projects",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "httpStatus": 200,
+      "h1": [
+        "Projects"
+      ],
+      "passed": true
+    },
+    {
+      "name": "project",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "httpStatus": 200,
+      "h1": [
+        "Small Wonder"
+      ],
+      "passed": true
+    },
+    {
+      "name": "leaderboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "httpStatus": 200,
+      "h1": [
+        "Leaderboard"
+      ],
+      "passed": true
+    },
+    {
+      "name": "participants",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "httpStatus": 200,
+      "h1": [
+        "--Participants"
+      ],
+      "passed": true
+    },
+    {
+      "name": "teams",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "httpStatus": 200,
+      "h1": [
+        "><Teams"
+      ],
+      "passed": true
+    },
+    {
+      "name": "review",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "httpStatus": 200,
+      "h1": [
+        "Small Wonder"
+      ],
+      "passed": true
+    },
+    {
+      "name": "credits",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "httpStatus": 200,
+      "h1": [
+        "^^Credits"
+      ],
+      "passed": true
+    },
+    {
+      "name": "settings",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "httpStatus": 200,
+      "h1": [
+        "><Settings"
+      ],
+      "passed": true
+    },
+    {
+      "name": "logs",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "httpStatus": 200,
+      "h1": [
+        "^^Logs"
+      ],
+      "passed": true
+    },
+    {
+      "name": "rules",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "httpStatus": 200,
+      "h1": [
+        "--Rules"
+      ],
+      "passed": true
+    },
+    {
+      "name": "projects",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "httpStatus": 200,
+      "h1": [
+        "Projects"
+      ],
+      "passed": true
+    },
+    {
+      "name": "project",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "httpStatus": 200,
+      "h1": [
+        "Small Wonder"
+      ],
+      "passed": true
+    },
+    {
+      "name": "leaderboard",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "httpStatus": 200,
+      "h1": [
+        "Leaderboard"
+      ],
+      "passed": true
+    },
+    {
+      "name": "participants",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "httpStatus": 200,
+      "h1": [
+        "--Participants"
+      ],
+      "passed": true
+    },
+    {
+      "name": "teams",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "httpStatus": 200,
+      "h1": [
+        "><Teams"
+      ],
+      "passed": true
+    },
+    {
+      "name": "review",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "httpStatus": 200,
+      "h1": [
+        "Small Wonder"
+      ],
+      "passed": true
+    },
+    {
+      "name": "credits",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "httpStatus": 200,
+      "h1": [
+        "^^Credits"
+      ],
+      "passed": true
+    },
+    {
+      "name": "settings",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "httpStatus": 200,
+      "h1": [
+        "><Settings"
+      ],
+      "passed": true
+    },
+    {
+      "name": "logs",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "httpStatus": 200,
+      "h1": [
+        "^^Logs"
+      ],
+      "passed": true
+    },
+    {
+      "name": "rules",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "httpStatus": 200,
+      "h1": [
+        "--Rules"
+      ],
+      "passed": true
+    },
+    {
+      "name": "projects",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "httpStatus": 200,
+      "h1": [
+        "Projects"
+      ],
+      "passed": true
+    },
+    {
+      "name": "project",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "httpStatus": 200,
+      "h1": [
+        "Small Wonder"
+      ],
+      "passed": true
+    },
+    {
+      "name": "leaderboard",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "httpStatus": 200,
+      "h1": [
+        "Leaderboard"
+      ],
+      "passed": true
+    },
+    {
+      "name": "participants",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "httpStatus": 200,
+      "h1": [
+        "--Participants"
+      ],
+      "passed": true
+    },
+    {
+      "name": "teams",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "httpStatus": 200,
+      "h1": [
+        "><Teams"
+      ],
+      "passed": true
+    },
+    {
+      "name": "review",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "httpStatus": 200,
+      "h1": [
+        "Small Wonder"
+      ],
+      "passed": true
+    },
+    {
+      "name": "credits",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "httpStatus": 200,
+      "h1": [
+        "^^Credits"
+      ],
+      "passed": true
+    },
+    {
+      "name": "settings",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "httpStatus": 200,
+      "h1": [
+        "><Settings"
+      ],
+      "passed": true
+    },
+    {
+      "name": "logs",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "httpStatus": 200,
+      "h1": [
+        "^^Logs"
+      ],
+      "passed": true
+    },
+    {
+      "name": "rules",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "httpStatus": 200,
+      "h1": [
+        "--Rules"
+      ],
+      "passed": true
+    },
+    {
+      "name": "projects",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "httpStatus": 200,
+      "h1": [
+        "Projects"
+      ],
+      "passed": true
+    },
+    {
+      "name": "project",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "httpStatus": 200,
+      "h1": [
+        "Small Wonder"
+      ],
+      "passed": true
+    },
+    {
+      "name": "leaderboard",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "httpStatus": 200,
+      "h1": [
+        "Leaderboard"
+      ],
+      "passed": true
+    }
+  ],
+  "accessibility": [
+    {
+      "name": "review",
+      "violations": []
+    },
+    {
+      "name": "credits",
+      "violations": []
+    },
+    {
+      "name": "settings",
+      "violations": []
+    },
+    {
+      "name": "logs",
+      "violations": []
+    },
+    {
+      "name": "rules",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#747d6c",
+                    "bgColor": "#f8f7f3",
+                    "contrastRatio": 4,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"app-shell   workspace-shell\" data-hydrated=\"true\" style=\"--team-accent:#006b43;--team-wash:#e8f7ef\">",
+                      "target": [
+                        ".app-shell"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4 (foreground color: #747d6c, background color: #f8f7f3, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"rule-group-number\" aria-hidden=\"true\">01</span>",
+              "target": [
+                "section[aria-labelledby=\"rule-group-0\"] > header > .rule-group-number"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #747d6c, background color: #f8f7f3, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#747d6c",
+                    "bgColor": "#f8f7f3",
+                    "contrastRatio": 4,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"app-shell   workspace-shell\" data-hydrated=\"true\" style=\"--team-accent:#006b43;--team-wash:#e8f7ef\">",
+                      "target": [
+                        ".app-shell"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4 (foreground color: #747d6c, background color: #f8f7f3, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"rule-group-number\" aria-hidden=\"true\">02</span>",
+              "target": [
+                "section[aria-labelledby=\"rule-group-1\"] > header > .rule-group-number"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #747d6c, background color: #f8f7f3, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#747d6c",
+                    "bgColor": "#f8f7f3",
+                    "contrastRatio": 4,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"app-shell   workspace-shell\" data-hydrated=\"true\" style=\"--team-accent:#006b43;--team-wash:#e8f7ef\">",
+                      "target": [
+                        ".app-shell"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4 (foreground color: #747d6c, background color: #f8f7f3, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"rule-group-number\" aria-hidden=\"true\">03</span>",
+              "target": [
+                "section[aria-labelledby=\"rule-group-2\"] > header > .rule-group-number"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #747d6c, background color: #f8f7f3, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#747d6c",
+                    "bgColor": "#f8f7f3",
+                    "contrastRatio": 4,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"app-shell   workspace-shell\" data-hydrated=\"true\" style=\"--team-accent:#006b43;--team-wash:#e8f7ef\">",
+                      "target": [
+                        ".app-shell"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4 (foreground color: #747d6c, background color: #f8f7f3, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"rule-group-number\" aria-hidden=\"true\">04</span>",
+              "target": [
+                "section[aria-labelledby=\"rule-group-3\"] > header > .rule-group-number"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #747d6c, background color: #f8f7f3, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#747d6c",
+                    "bgColor": "#f8f7f3",
+                    "contrastRatio": 4,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"app-shell   workspace-shell\" data-hydrated=\"true\" style=\"--team-accent:#006b43;--team-wash:#e8f7ef\">",
+                      "target": [
+                        ".app-shell"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4 (foreground color: #747d6c, background color: #f8f7f3, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"rule-group-number\" aria-hidden=\"true\">05</span>",
+              "target": [
+                "section[aria-labelledby=\"rule-group-4\"] > header > .rule-group-number"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #747d6c, background color: #f8f7f3, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "name": "submissions",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(geometry.insetLeft>=19&&geometry.insetRight>=19&&geometry.height>=52)\n"
+    },
+    {
+      "name": "submissions",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(geometry.insetLeft>=19&&geometry.insetRight>=19&&geometry.height>=52)\n"
+    },
+    {
+      "name": "submissions",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(geometry.insetLeft>=19&&geometry.insetRight>=19&&geometry.height>=52)\n"
+    },
+    {
+      "name": "submissions",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(geometry.insetLeft>=19&&geometry.insetRight>=19&&geometry.height>=52)\n"
+    }
+  ],
+  "limitations": [
+    "Local development Chromium, reduced motion and emulated touch. Timing excluded while the full test suite runs.",
+    "Next development overlay hidden in captures; application layout/content are unchanged."
+  ]
+}

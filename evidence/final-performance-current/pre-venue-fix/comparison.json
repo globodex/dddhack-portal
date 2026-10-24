@@ -1,0 +1,158 @@
+{
+  "beforeSource": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+  "afterSource": "ba9574bcc4e26cf69f5ba7d07a4a612fe7879405",
+  "beforeReport": "evidence/redesign-rich-before/report.json",
+  "afterReport": "evidence/final-performance-current/report.json",
+  "sameFixtureBackend": 8789,
+  "sameBundler": "Next16.4.3 development webpack",
+  "freshBrowserContexts": true,
+  "httpCacheDisabled": true,
+  "baselineSamples": 28,
+  "finalSamples": 28,
+  "finalErrors": [],
+  "finalBlockedRequests": [],
+  "initialBrowserApiRequestsBefore": 0,
+  "initialBrowserApiRequestsAfter": 0,
+  "desktopMedians": [
+    {
+      "route": "/dashboard",
+      "desktopSamplesPerVersion": 3,
+      "before": {
+        "completedWireBytes": 4108767,
+        "completedRequestCount": 15,
+        "ttfbMs": 299.6,
+        "fcpMs": 688,
+        "domNodes": 286
+      },
+      "after": {
+        "completedWireBytes": 4259239,
+        "completedRequestCount": 16,
+        "ttfbMs": 516.2,
+        "fcpMs": 1168,
+        "domNodes": 388
+      },
+      "wireBytesChangePercent": 3.66
+    },
+    {
+      "route": "/discover/participants",
+      "desktopSamplesPerVersion": 3,
+      "before": {
+        "completedWireBytes": 4119819,
+        "completedRequestCount": 14,
+        "ttfbMs": 460.1,
+        "fcpMs": 1188,
+        "domNodes": 371
+      },
+      "after": {
+        "completedWireBytes": 4240504,
+        "completedRequestCount": 13,
+        "ttfbMs": 269.7,
+        "fcpMs": 664,
+        "domNodes": 420
+      },
+      "wireBytesChangePercent": 2.93
+    },
+    {
+      "route": "/discover/teams",
+      "desktopSamplesPerVersion": 3,
+      "before": {
+        "completedWireBytes": 4117204,
+        "completedRequestCount": 12,
+        "ttfbMs": 368.5,
+        "fcpMs": 824,
+        "domNodes": 406
+      },
+      "after": {
+        "completedWireBytes": 4237929,
+        "completedRequestCount": 11,
+        "ttfbMs": 318.9,
+        "fcpMs": 972,
+        "domNodes": 500
+      },
+      "wireBytesChangePercent": 2.93
+    },
+    {
+      "route": "/admin/participants",
+      "desktopSamplesPerVersion": 3,
+      "before": {
+        "completedWireBytes": 4104302,
+        "completedRequestCount": 11,
+        "ttfbMs": 404.9,
+        "fcpMs": 1188,
+        "domNodes": 240
+      },
+      "after": {
+        "completedWireBytes": 4244465,
+        "completedRequestCount": 11,
+        "ttfbMs": 486.2,
+        "fcpMs": 972,
+        "domNodes": 3054
+      },
+      "wireBytesChangePercent": 3.42
+    },
+    {
+      "route": "/admin/teams",
+      "desktopSamplesPerVersion": 3,
+      "before": {
+        "completedWireBytes": 4121121,
+        "completedRequestCount": 12,
+        "ttfbMs": 1162.4,
+        "fcpMs": 2080,
+        "domNodes": 1554
+      },
+      "after": {
+        "completedWireBytes": 4256878,
+        "completedRequestCount": 12,
+        "ttfbMs": 565.8,
+        "fcpMs": 1276,
+        "domNodes": 1701
+      },
+      "wireBytesChangePercent": 3.29
+    },
+    {
+      "route": "/admin/submissions",
+      "desktopSamplesPerVersion": 3,
+      "before": {
+        "completedWireBytes": 4104275,
+        "completedRequestCount": 11,
+        "ttfbMs": 815.6,
+        "fcpMs": 1644,
+        "domNodes": 1060
+      },
+      "after": {
+        "completedWireBytes": 4239589,
+        "completedRequestCount": 11,
+        "ttfbMs": 328.9,
+        "fcpMs": 844,
+        "domNodes": 1210
+      },
+      "wireBytesChangePercent": 3.3
+    },
+    {
+      "route": "/admin/settings",
+      "desktopSamplesPerVersion": 3,
+      "before": {
+        "completedWireBytes": 4107017,
+        "completedRequestCount": 12,
+        "ttfbMs": 535.8,
+        "fcpMs": 1540,
+        "domNodes": 372
+      },
+      "after": {
+        "completedWireBytes": 4242767,
+        "completedRequestCount": 12,
+        "ttfbMs": 318.5,
+        "fcpMs": 744,
+        "domNodes": 512
+      },
+      "wireBytesChangePercent": 3.31
+    }
+  ],
+  "limitations": [
+    "Development, unthrottled local process,3desktop samples and1mobile sample per route; raw compilation outliers retained.",
+    "Original baseline and current server caches/background conditions differed; no hosted latency or speed improvement inferred. Current run waits for tests/build to finish.",
+    "Admin default filters changed from empty Registered+Locked to populated All; initial DOM counts are not equivalent content.",
+    "CDP completed requests include inline data-image records; bytes are observed encodedDataLength at sample time, not production compression. Later screenshot/tab actions may append request records after the numeric sample.",
+    "Mobile results are one observation per route, not percentiles."
+  ]
+}

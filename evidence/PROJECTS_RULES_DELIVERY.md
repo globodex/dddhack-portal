@@ -1,0 +1,23 @@
+# Projects, Rules and submission evidence
+
+The original PNG files below are real Chromium captures from the existing Next.js app with disposable synthetic fixtures. The application source for the final loading-state matrix is `d257e61b5bcffc894975d1a11dc9e706b5c186a4`. Each receipt identifies its own source commit. No production data or hosted login is represented.
+
+| Screen            | Desktop 1440×900                                                      | Mobile 390×844                                                       |
+| ----------------- | --------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| Rules             | [Open PNG](projects-rules-selected/rules-1440x900.png)                | [Open PNG](projects-rules-selected/rules-390x844.png)                |
+| Projects          | [Open PNG](projects-rules-selected/projects-1440x900.png)             | [Open PNG](projects-rules-selected/projects-390x844.png)             |
+| Project detail    | [Open PNG](projects-rules-selected/project-detail-1440x900.png)       | [Open PNG](projects-rules-selected/project-detail-390x844.png)       |
+| Leaderboard       | [Open PNG](projects-rules-selected/leaderboard-1440x900.png)          | [Open PNG](projects-rules-selected/leaderboard-390x844.png)          |
+| Submission step 1 | [Open PNG](projects-rules-verified/wizard-step1-1440x900.png)         | [Open PNG](projects-rules-verified/wizard-step1-390x844.png)         |
+| Submission step 2 | [Open PNG](projects-rules-verified/wizard-step2-1440x900.png)         | [Open PNG](projects-rules-verified/wizard-step2-390x844.png)         |
+| Submission step 3 | [Open PNG](projects-rules-verified/wizard-step3-1440x900.png)         | [Open PNG](projects-rules-verified/wizard-step3-390x844.png)         |
+| Field error       | [Open PNG](projects-rules-verified/wizard-field-error-1440x900.png)   | [Open PNG](projects-rules-verified/wizard-field-error-390x844.png)   |
+| Search loading    | [Open PNG](projects-rules-states/project-search-loading-1440x900.png) | [Open PNG](projects-rules-states/project-search-loading-390x844.png) |
+| Search error      | [Open PNG](projects-rules-states/project-search-error-1440x900.png)   | [Open PNG](projects-rules-states/project-search-error-390x844.png)   |
+| History           | [Open PNG](projects-rules-states/history-loaded-1440x900.png)         | [Open PNG](projects-rules-states/history-loaded-390x844.png)         |
+
+Short mobile 390×480 captures include [wizard step 3](projects-rules-verified/wizard-step3-390x480.png), [submit confirmation](projects-rules-verified/submission-confirmation-390x480.png), [history loading](projects-rules-states/history-loading-390x480.png), [history error](projects-rules-states/history-error-390x480.png) and [history empty](projects-rules-states/history-empty-390x480.png). Tablet captures are included in the same directories with `768x1024` filenames.
+
+The [before index](projects-rules-before/index.json) lists immutable-source captures and their hashes, including the transparent recapture correction. The [delivery index](projects-rules-delivery-index.json) lists native final and before images with their individual source commits and hashes. [Source comparison sheets](projects-rules-comparisons) are normalized review aids, not native captures; their illustrative source viewports are unknown.
+
+Read the [QA report](../docs/PROJECTS_RULES_QA.md) for exact checked behavior, scope and remaining integration checks. Browser receipts: [controls](projects-rules-verified/report.json), [loading/error/empty states](projects-rules-states/report.json), [small-screen polish](projects-rules-polish/report.json), [permitted local writes](projects-rules-positive/report.json).

@@ -1,4 +1,9 @@
 import {
+  isProjectMediaCommand,
+  PROJECT_MEDIA_DEFAULT_JSON_BYTES,
+  PROJECT_MEDIA_MAX_PROJECT_JSON_BYTES,
+} from "./project-media-policy";
+import {
   participantExportSelection,
   participantCSV,
 } from "./participant-export";
@@ -87,7 +92,7 @@ async function readBody(request: Request) {
     const { done, value } = await reader.read();
     if (done) break;
     length += value.length;
-    if (length > 600_000) {
+    if (length > PROJECT_MEDIA_MAX_PROJECT_JSON_BYTES) {
       await reader.cancel();
       throw new PortalError(413, "BODY_TOO_LARGE");
     }
@@ -99,7 +104,25 @@ async function readBody(request: Request) {
     combined.set(c, at);
     at += c.length;
   }
-  return JSON.parse(new TextDecoder().decode(combined));
+  let value: unknown;
+  try {
+    value = JSON.parse(new TextDecoder().decode(combined));
+  } catch (error) {
+    demand(length <= PROJECT_MEDIA_DEFAULT_JSON_BYTES, 413, "BODY_TOO_LARGE");
+    throw error;
+  }
+  // Read at most the explicit project envelope. Other commands retain their old cap.
+  demand(
+    length <= PROJECT_MEDIA_DEFAULT_JSON_BYTES ||
+      (value !== null &&
+        typeof value === "object" &&
+        !Array.isArray(value) &&
+        Object.hasOwn(value, "action") &&
+        isProjectMediaCommand((value as { action: unknown }).action)),
+    413,
+    "BODY_TOO_LARGE",
+  );
+  return value;
 }
 export async function handlePortal(request: Request, runtime: Runtime) {
   try {

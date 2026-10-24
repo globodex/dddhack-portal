@@ -1,0 +1,63 @@
+{
+  "source": "8a88fec5e354ad12fbf4b53b0f5e0aa0d5a8af16",
+  "result": "CONFIRMED_UNWANTED_DASHBOARD_NAV",
+  "cases": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "links": [
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Dashboard",
+          "href": "/dashboard"
+        },
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "links": [
+        {
+          "text": "Codex Community New Delhi",
+          "href": "/"
+        },
+        {
+          "text": "Dashboard",
+          "href": "/dashboard"
+        },
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ]
+    }
+  ],
+  "browserClosed": true
+}

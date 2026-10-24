@@ -1,0 +1,23 @@
+{
+  "source": "ba9574bcc4e26cf69f5ba7d07a4a612fe7879405",
+  "origin": "http://127.0.0.1:3004",
+  "syntheticOnly": true,
+  "readOnly": true,
+  "method": "Hold only existing destination RSC GET after a real prefetch=false navigation link; capture actual pending RouteSkeleton. No DOM replacement or injected app styles.",
+  "cases": [
+    {
+      "label": "studio",
+      "target": "/dashboard",
+      "layout": "dashboard",
+      "gatedRequests": [],
+      "apiRequests": [],
+      "screenshots": [],
+      "geometry": []
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "result": "failed",
+  "failure": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.route-skeleton[data-layout=\"dashboard\"]') to be visible\u001b[22m\n\n    at /workspace/ddd-performance-current/evidence/final-performance-current/capture-loading.mjs:27:91",
+  "browserClosed": true
+}

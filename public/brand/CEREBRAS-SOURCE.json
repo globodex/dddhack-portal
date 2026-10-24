@@ -1,0 +1,20 @@
+{
+  "sourcePage": "https://www.cerebras.ai/company/press-kit",
+  "officialDownloadURL": "https://cdn.sanity.io/files/e4qjo92p/production/047798c0db861ade2a18320e534c00f05883a180.zip",
+  "archiveSha256": "caf4ce29dc66931605eaa9600459435efc3e587b6af2dfc7f3b54b1f6670ce5e",
+  "archiveMember": "Cerebras Logo Black.png",
+  "originalSha256": "7c74d4d522af0513ac5c7eaf3bbb1c9f4ec2953d948b66bab72957266c7b1f25",
+  "originalDimensions": {
+    "width": 2403,
+    "height": 1058
+  },
+  "localFile": "public/brand/cerebras-official.webp",
+  "localSha256": "bd32ba9cd8c81f097f92a05d3248339f62ba902326e45a20d9f164830892a534",
+  "localBytes": 15820,
+  "localDimensions": {
+    "width": 360,
+    "height": 159
+  },
+  "optimization": "Sharp resize to360px width with original aspect and alpha, losslessWebP, no crop/recolor/redraw; metadata stripped",
+  "viewedOriginalPixels": true
+}

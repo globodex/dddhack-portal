@@ -1,0 +1,117 @@
+{
+  "method": "Exact smallest compiled function spans containing stable source-specific JSX markers. These are source-local subsets, not transitive bundles or additive compressed contributions. Concatenation and cross-function compression prevent unique per-source wire attribution without original source maps/stats.",
+  "variants": {
+    "baseline": [
+      {
+        "label": "TeamWorkspace",
+        "source": "app/portal.tsx",
+        "found": true,
+        "rawBytes": 5727,
+        "standaloneGzip": 1865,
+        "start": 97018,
+        "end": 102745
+      },
+      {
+        "label": "ProfileFlow",
+        "source": "app/profile-flow.tsx",
+        "found": true,
+        "rawBytes": 4736,
+        "standaloneGzip": 1927,
+        "start": 78136,
+        "end": 82870
+      },
+      {
+        "label": "AdminCreditBatches",
+        "source": "app/admin-credit-batches.tsx",
+        "found": true,
+        "rawBytes": 4284,
+        "standaloneGzip": 1460,
+        "start": 20551,
+        "end": 24831
+      },
+      {
+        "label": "Home",
+        "source": "app/home.tsx",
+        "found": true,
+        "rawBytes": 3438,
+        "standaloneGzip": 1301,
+        "start": 69511,
+        "end": 72947
+      },
+      {
+        "label": "Submission",
+        "source": "app/portal.tsx",
+        "found": true,
+        "rawBytes": 9244,
+        "standaloneGzip": 2973,
+        "start": 121828,
+        "end": 131070
+      },
+      {
+        "label": "AdminImportDialog",
+        "source": "app/admin-import-dialog.tsx",
+        "found": true,
+        "rawBytes": 717,
+        "standaloneGzip": 405,
+        "start": 82870,
+        "end": 83587
+      }
+    ],
+    "final": [
+      {
+        "label": "TeamWorkspace",
+        "source": "app/portal.tsx",
+        "found": true,
+        "rawBytes": 11721,
+        "standaloneGzip": 3461,
+        "start": 114866,
+        "end": 126587
+      },
+      {
+        "label": "ProfileFlow",
+        "source": "app/profile-flow.tsx",
+        "found": true,
+        "rawBytes": 6499,
+        "standaloneGzip": 2502,
+        "start": 88592,
+        "end": 95089
+      },
+      {
+        "label": "AdminCreditBatches",
+        "source": "app/admin-credit-batches.tsx",
+        "found": true,
+        "rawBytes": 6499,
+        "standaloneGzip": 2193,
+        "start": 28652,
+        "end": 35145
+      },
+      {
+        "label": "Home",
+        "source": "app/home.tsx",
+        "found": true,
+        "rawBytes": 3723,
+        "standaloneGzip": 1370,
+        "start": 73229,
+        "end": 76950
+      },
+      {
+        "label": "Submission",
+        "source": "app/portal.tsx",
+        "found": true,
+        "rawBytes": 10691,
+        "standaloneGzip": 3428,
+        "start": 144904,
+        "end": 155591
+      },
+      {
+        "label": "AdminImportDialog",
+        "source": "app/admin-import-dialog.tsx",
+        "found": true,
+        "rawBytes": 839,
+        "standaloneGzip": 449,
+        "start": 95089,
+        "end": 95928
+      }
+    ]
+  }
+}

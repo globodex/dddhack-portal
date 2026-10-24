@@ -1,0 +1,188 @@
+{
+  "source": "927845c5a3cf6755f94a219d8c9cf0060774fd58",
+  "origin": "http://localhost:3003",
+  "readOnly": true,
+  "device": "Chromium mobile emulation, not a physical device",
+  "viewport": {
+    "width": 320,
+    "height": 480
+  },
+  "startedAt": "2026-10-24T14:43:09.116Z",
+  "checks": [
+    {
+      "name": "Isolated fixture is a real local unlocked leader workspace",
+      "passed": true
+    },
+    {
+      "name": "320 short viewport has no horizontal overflow",
+      "passed": true,
+      "innerWidth": 320,
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "scrollY": 0
+    },
+    {
+      "name": "Opening identity preserves background horizontal geometry",
+      "passed": true,
+      "before": {
+        "x": 16,
+        "y": 212,
+        "width": 288,
+        "height": 166.3125
+      },
+      "after": {
+        "x": 16,
+        "y": 212,
+        "width": 288,
+        "height": 166.3125
+      }
+    },
+    {
+      "name": "Touch drag on identity backdrop keeps background scroll fixed",
+      "passed": true,
+      "before": 0,
+      "after": 0
+    },
+    {
+      "name": "Touch-open identity Escape restores opener focus",
+      "passed": true
+    },
+    {
+      "name": "Browser Back closes identity and preserves dashboard/focus",
+      "passed": true
+    },
+    {
+      "name": "Touch-open invite Escape restores opener focus",
+      "passed": true
+    },
+    {
+      "name": "Client-only dirty idea hides Saved and disables lock",
+      "passed": true
+    },
+    {
+      "name": "Cancel restores persisted idea/count without a save",
+      "passed": true
+    },
+    {
+      "name": "Lower Next/timeline controls stay inside320",
+      "passed": true,
+      "innerWidth": 320,
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "scrollY": 1013
+    },
+    {
+      "name": "Keyboard tabs move Team to Credits and back without mutation",
+      "passed": true
+    },
+    {
+      "name": "Actual current controls have44px minimum targets",
+      "passed": true,
+      "hitboxes": [
+        {
+          "name": "Edit team name and color",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Open WhatsApp chat with Bob",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Call Bob at +12025550100",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Open WhatsApp chat with Carol",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Call Carol at +12025550100",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Remove Carol from team",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Open WhatsApp chat with Dave",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Call Dave at +12025550100",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Remove Dave from team",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Invite member",
+          "width": 172.375,
+          "height": 60
+        },
+        {
+          "name": "Edit team idea",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "Review & lock team",
+          "width": 248,
+          "height": 58
+        }
+      ]
+    },
+    {
+      "name": "No domain mutation/external request or page error occurred",
+      "passed": true
+    }
+  ],
+  "captures": [
+    {
+      "file": "01-team-320-short.png",
+      "fullPage": false,
+      "source": "927845c5a3cf6755f94a219d8c9cf0060774fd58",
+      "inspected": true
+    },
+    {
+      "file": "02-identity-320-short.png",
+      "fullPage": false,
+      "source": "927845c5a3cf6755f94a219d8c9cf0060774fd58",
+      "inspected": true
+    },
+    {
+      "file": "03-invite-320-short.png",
+      "fullPage": false,
+      "source": "927845c5a3cf6755f94a219d8c9cf0060774fd58",
+      "inspected": true
+    },
+    {
+      "file": "04-next-320-short.png",
+      "fullPage": false,
+      "source": "927845c5a3cf6755f94a219d8c9cf0060774fd58",
+      "inspected": true
+    }
+  ],
+  "blocked": [],
+  "pageErrors": [],
+  "fixture": {
+    "status": 200,
+    "localTest": true,
+    "actor": "fake_bob",
+    "locked": false,
+    "members": 3,
+    "ideaLength": 112
+  },
+  "result": "passed",
+  "browserClosed": true,
+  "finishedAt": "2026-10-24T14:43:16.663Z"
+}

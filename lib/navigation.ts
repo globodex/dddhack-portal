@@ -1,4 +1,4 @@
-type NavigationActor = { owner?: boolean; role?: string };
+type NavigationActor = { owner?: boolean; role?: string; mode?: string };
 // Presentation only. Every destination continues to enforce its server policy.
 export function portalNavigation(path: string, me?: NavigationActor) {
   const privileged = !!(me?.owner || me?.role === "admin");
@@ -22,7 +22,7 @@ export function portalNavigation(path: string, me?: NavigationActor) {
       ]
     : me
       ? [
-          ["/dashboard", "Dashboard"],
+          ...(me.mode === "viewer" ? [] : [["/dashboard", "Dashboard"]]),
           ["/discover/teams", "Discover"],
           ["/projects", "Projects"],
           ["/rules", "Rules"],

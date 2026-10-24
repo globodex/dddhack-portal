@@ -1,0 +1,510 @@
+{
+  "commit": "d97d614ac7be2a657df91de42aaf00e9f3cfc336",
+  "started": "2026-10-24T18:00:21.679Z",
+  "completed": "2026-10-24T18:01:31.996Z",
+  "originalSha256": "8beb75c84fd4926fab99626ff25b6dd2a237c6fcffcde587ec74aa2586add483",
+  "originalTimeoutMs": 30000,
+  "diagnosticTimeoutMs": 120000,
+  "assertionCount": 10,
+  "generatedSha256": "79d5f6c5255e778330b0fc5daea157ea315ac16b30d13d5404c08cd8dc155f48",
+  "exitStatus": 0,
+  "signal": null,
+  "measurements": {
+    "phases": [
+      {
+        "phase": "miniflare-binding",
+        "wallMs": 968.433841,
+        "elapsedMs": 968.433841,
+        "rpc": 0,
+        "statements": 0,
+        "nodeCpuMs": 776.985
+      },
+      {
+        "phase": "migration:0001_portal.sql",
+        "wallMs": 4410.043332000001,
+        "elapsedMs": 5378.477173000001,
+        "rpc": 96,
+        "statements": 96,
+        "nodeCpuMs": 1894.46
+      },
+      {
+        "phase": "migration:0002_tie_resolutions.sql",
+        "wallMs": 115.88031999999839,
+        "elapsedMs": 5494.3574929999995,
+        "rpc": 7,
+        "statements": 7,
+        "nodeCpuMs": 71.719
+      },
+      {
+        "phase": "migration:0003_experience.sql",
+        "wallMs": 921.7327280000009,
+        "elapsedMs": 6416.090221,
+        "rpc": 46,
+        "statements": 46,
+        "nodeCpuMs": 605.408
+      },
+      {
+        "phase": "migration:0004_required_gender.sql",
+        "wallMs": 15.607819000000745,
+        "elapsedMs": 6431.698040000001,
+        "rpc": 1,
+        "statements": 1,
+        "nodeCpuMs": 9.372
+      },
+      {
+        "phase": "migration:0005_score_reveals.sql",
+        "wallMs": 851.2203109999991,
+        "elapsedMs": 7282.918351,
+        "rpc": 13,
+        "statements": 13,
+        "nodeCpuMs": 476.918
+      },
+      {
+        "phase": "migration:0006_policy_controls.sql",
+        "wallMs": 75.59346600000026,
+        "elapsedMs": 7358.5118170000005,
+        "rpc": 4,
+        "statements": 4,
+        "nodeCpuMs": 69.838
+      },
+      {
+        "phase": "migration:0007_operational_qualification.sql",
+        "wallMs": 240.20246000000043,
+        "elapsedMs": 7598.714277000001,
+        "rpc": 11,
+        "statements": 11,
+        "nodeCpuMs": 226.008
+      },
+      {
+        "phase": "migration:0008_team_submission_credits.sql",
+        "wallMs": 775.2636029999994,
+        "elapsedMs": 8373.97788,
+        "rpc": 32,
+        "statements": 32,
+        "nodeCpuMs": 463.044
+      },
+      {
+        "phase": "migration:0009_status_repository_evidence.sql",
+        "wallMs": 1047.2735809999995,
+        "elapsedMs": 9421.251461,
+        "rpc": 39,
+        "statements": 39,
+        "nodeCpuMs": 466.896
+      },
+      {
+        "phase": "migration:0010_profile_photos.sql",
+        "wallMs": 15.229186000000482,
+        "elapsedMs": 9436.480647,
+        "rpc": 1,
+        "statements": 1,
+        "nodeCpuMs": 5.057
+      },
+      {
+        "phase": "migration:0011_luma_roster.sql",
+        "wallMs": 35.548462999999174,
+        "elapsedMs": 9472.02911,
+        "rpc": 3,
+        "statements": 3,
+        "nodeCpuMs": 24.911
+      },
+      {
+        "phase": "migration:0012_profile_details.sql",
+        "wallMs": 66.08948200000123,
+        "elapsedMs": 9538.118592,
+        "rpc": 1,
+        "statements": 1,
+        "nodeCpuMs": 61.124
+      },
+      {
+        "phase": "migration:0013_dot_avatars.sql",
+        "wallMs": 174.93642999999975,
+        "elapsedMs": 9713.055022,
+        "rpc": 2,
+        "statements": 2,
+        "nodeCpuMs": 153.403
+      },
+      {
+        "phase": "migration:0014_idea_override_permissions.sql",
+        "wallMs": 137.74960699999974,
+        "elapsedMs": 9850.804629,
+        "rpc": 8,
+        "statements": 8,
+        "nodeCpuMs": 79.593
+      },
+      {
+        "phase": "migration:0015_team_colors.sql",
+        "wallMs": 36.169096999999965,
+        "elapsedMs": 9886.973726,
+        "rpc": 3,
+        "statements": 3,
+        "nodeCpuMs": 17.895
+      },
+      {
+        "phase": "migration:0016_personal_checkin.sql",
+        "wallMs": 97.21775200000047,
+        "elapsedMs": 9984.191478,
+        "rpc": 4,
+        "statements": 4,
+        "nodeCpuMs": 42.068
+      },
+      {
+        "phase": "migration:0017_removals_absence_prefills.sql",
+        "wallMs": 212.67474399999992,
+        "elapsedMs": 10196.866222,
+        "rpc": 12,
+        "statements": 12,
+        "nodeCpuMs": 104.037
+      },
+      {
+        "phase": "migration:0018_engagement_controls.sql",
+        "wallMs": 145.06894499999908,
+        "elapsedMs": 10341.935167,
+        "rpc": 6,
+        "statements": 6,
+        "nodeCpuMs": 76.61
+      },
+      {
+        "phase": "migration:0019_registration_absences.sql",
+        "wallMs": 61.8900420000009,
+        "elapsedMs": 10403.825209,
+        "rpc": 3,
+        "statements": 3,
+        "nodeCpuMs": 23.303
+      },
+      {
+        "phase": "migration:0020_voucher_credit_values.sql",
+        "wallMs": 89.68302699999913,
+        "elapsedMs": 10493.508236,
+        "rpc": 3,
+        "statements": 3,
+        "nodeCpuMs": 40.155
+      },
+      {
+        "phase": "migration:0021_credit_batches.sql",
+        "wallMs": 21.033860999999888,
+        "elapsedMs": 10514.542097,
+        "rpc": 2,
+        "statements": 2,
+        "nodeCpuMs": 12.1
+      },
+      {
+        "phase": "migration:0022_derived_operational_gates.sql",
+        "wallMs": 48.036895000001095,
+        "elapsedMs": 10562.578992,
+        "rpc": 4,
+        "statements": 4,
+        "nodeCpuMs": 25.872
+      },
+      {
+        "phase": "migration:0023_admin_leader_transfer.sql",
+        "wallMs": 132.64347400000042,
+        "elapsedMs": 10695.222466000001,
+        "rpc": 2,
+        "statements": 2,
+        "nodeCpuMs": 159.289
+      },
+      {
+        "phase": "migration:0024_credit_stock.sql",
+        "wallMs": 424.27679199999875,
+        "elapsedMs": 11119.499258,
+        "rpc": 16,
+        "statements": 16,
+        "nodeCpuMs": 207.229
+      },
+      {
+        "phase": "seed",
+        "wallMs": 2590.79205,
+        "elapsedMs": 13710.291308,
+        "rpc": 27,
+        "statements": 140,
+        "nodeCpuMs": 1001.256
+      },
+      {
+        "phase": "settings-and-owner-view",
+        "wallMs": 1070.7744490000005,
+        "elapsedMs": 14781.065757,
+        "rpc": 31,
+        "statements": 34,
+        "nodeCpuMs": 577.251
+      },
+      {
+        "phase": "roster-preview-200",
+        "wallMs": 629.0711669999982,
+        "elapsedMs": 15410.136923999999,
+        "rpc": 14,
+        "statements": 20,
+        "nodeCpuMs": 228.792
+      },
+      {
+        "phase": "roster-commit-200",
+        "wallMs": 444.3560080000025,
+        "elapsedMs": 15854.492932000001,
+        "rpc": 15,
+        "statements": 24,
+        "nodeCpuMs": 200.32
+      },
+      {
+        "phase": "roster-count-assertion",
+        "wallMs": 53.7731509999976,
+        "elapsedMs": 15908.266082999999,
+        "rpc": 1,
+        "statements": 1,
+        "nodeCpuMs": 18.413
+      },
+      {
+        "phase": "check-in-12-concurrent",
+        "wallMs": 13166.364043999998,
+        "elapsedMs": 29074.630126999997,
+        "rpc": 228,
+        "statements": 360,
+        "nodeCpuMs": 5414.568
+      },
+      {
+        "phase": "allocation-count-assertion",
+        "wallMs": 20.63013900000078,
+        "elapsedMs": 29095.260265999998,
+        "rpc": 1,
+        "statements": 1,
+        "nodeCpuMs": 11.966
+      },
+      {
+        "phase": "batch-rollback-and-assertion",
+        "wallMs": 63.49117700000352,
+        "elapsedMs": 29158.751443,
+        "rpc": 2,
+        "statements": 3,
+        "nodeCpuMs": 28.607
+      },
+      {
+        "phase": "submission-setup",
+        "wallMs": 19.000488999998197,
+        "elapsedMs": 29177.751932,
+        "rpc": 1,
+        "statements": 1,
+        "nodeCpuMs": 9.931
+      },
+      {
+        "phase": "submit-10-concurrent",
+        "wallMs": 34281.276903,
+        "elapsedMs": 63459.028835,
+        "rpc": 382,
+        "statements": 458,
+        "nodeCpuMs": 12866.241
+      },
+      {
+        "phase": "final-count-assertions",
+        "wallMs": 154.7736969999969,
+        "elapsedMs": 63613.802531999994,
+        "rpc": 2,
+        "statements": 2,
+        "nodeCpuMs": 56.633
+      },
+      {
+        "phase": "dispose",
+        "wallMs": 687.7036270000099,
+        "elapsedMs": 64301.506159000004,
+        "rpc": 0,
+        "statements": 0,
+        "nodeCpuMs": 38.616
+      }
+    ],
+    "rpc": 1023,
+    "statements": 1363,
+    "wallMs": 64302.177315,
+    "groups": {
+      "PRAGMA foreign_keys": {
+        "rpc": 1,
+        "statements": 1,
+        "elapsedMs": 187.60022299999946
+      },
+      "CREATE TABLE": {
+        "rpc": 65,
+        "statements": 65,
+        "elapsedMs": 1723.8128030000062
+      },
+      "CREATE INDEX": {
+        "rpc": 4,
+        "statements": 4,
+        "elapsedMs": 156.42094999999972
+      },
+      "CREATE TRIGGER": {
+        "rpc": 216,
+        "statements": 216,
+        "elapsedMs": 4585.375997999995
+      },
+      "INSERT INTO": {
+        "rpc": 3,
+        "statements": 3,
+        "elapsedMs": 87.94997100000182
+      },
+      "CREATE UNIQUE": {
+        "rpc": 6,
+        "statements": 6,
+        "elapsedMs": 65.14356699999917
+      },
+      "DROP TRIGGER": {
+        "rpc": 15,
+        "statements": 15,
+        "elapsedMs": 211.81042200000047
+      },
+      "ALTER TABLE": {
+        "rpc": 8,
+        "statements": 8,
+        "elapsedMs": 194.532604
+      },
+      "-- Additive": {
+        "rpc": 1,
+        "statements": 1,
+        "elapsedMs": 11.31163799999922
+      },
+      "BATCH": {
+        "rpc": 150,
+        "statements": 490,
+        "elapsedMs": 76327.91572800002
+      },
+      "SELECT *": {
+        "rpc": 50,
+        "statements": 50,
+        "elapsedMs": 39534.94178699996
+      },
+      "SELECT id,email,name,role": {
+        "rpc": 61,
+        "statements": 61,
+        "elapsedMs": 16660.774886000007
+      },
+      "SELECT COALESCE(r.role,u.role)": {
+        "rpc": 61,
+        "statements": 61,
+        "elapsedMs": 28364.33576399998
+      },
+      "SELECT target_id": {
+        "rpc": 71,
+        "statements": 71,
+        "elapsedMs": 23687.014566000013
+      },
+      "luma-only": {
+        "rpc": 71,
+        "statements": 71,
+        "elapsedMs": 24998.202377999987
+      },
+      "SELECT draft,published,revision,updated_at": {
+        "rpc": 2,
+        "statements": 2,
+        "elapsedMs": 37.13950599999953
+      },
+      "SELECT voting_paused,feedback_paused,version": {
+        "rpc": 1,
+        "statements": 1,
+        "elapsedMs": 15.386905999999726
+      },
+      "SELECT u.id,COALESCE(p.display_name,u.name)": {
+        "rpc": 1,
+        "statements": 1,
+        "elapsedMs": 6.261248999999225
+      },
+      "SELECT id,name,instructions": {
+        "rpc": 1,
+        "statements": 1,
+        "elapsedMs": 9.024080999999569
+      },
+      "SELECT p.id,p.published_version_id": {
+        "rpc": 1,
+        "statements": 1,
+        "elapsedMs": 9.518851000000723
+      },
+      "SELECT id,policy_version": {
+        "rpc": 1,
+        "statements": 1,
+        "elapsedMs": 11.958816999998817
+      },
+      "SELECT id,created_at": {
+        "rpc": 1,
+        "statements": 1,
+        "elapsedMs": 10.39784100000179
+      },
+      "SELECT published_at": {
+        "rpc": 1,
+        "statements": 1,
+        "elapsedMs": 19.85667000000103
+      },
+      "SELECT u.id,u.email,u.name,COALESCE(r.role,u.role)": {
+        "rpc": 1,
+        "statements": 1,
+        "elapsedMs": 15.330367999998998
+      },
+      "SELECT email": {
+        "rpc": 13,
+        "statements": 13,
+        "elapsedMs": 2565.139095999977
+      },
+      "SELECT u.email": {
+        "rpc": 2,
+        "statements": 2,
+        "elapsedMs": 27.721929999999702
+      },
+      "SELECT digest": {
+        "rpc": 1,
+        "statements": 1,
+        "elapsedMs": 25.525527000001603
+      },
+      "SELECT COALESCE(r.status,'pending')": {
+        "rpc": 22,
+        "statements": 22,
+        "elapsedMs": 16826.554344
+      },
+      "SELECT id": {
+        "rpc": 81,
+        "statements": 81,
+        "elapsedMs": 105935.23697899996
+      },
+      "SELECT type_id": {
+        "rpc": 12,
+        "statements": 12,
+        "elapsedMs": 9595.044341000019
+      },
+      "SELECT p.*,x.display_name,x.skills,x.completed_at,x.gender_confirmed": {
+        "rpc": 10,
+        "statements": 10,
+        "elapsedMs": 5325.109199000006
+      },
+      "SELECT payload": {
+        "rpc": 10,
+        "statements": 10,
+        "elapsedMs": 2888.761321999991
+      },
+      "SELECT t.*": {
+        "rpc": 20,
+        "statements": 20,
+        "elapsedMs": 8185.579342000012
+      },
+      "SELECT count(*)": {
+        "rpc": 30,
+        "statements": 30,
+        "elapsedMs": 10176.17526399999
+      },
+      "SELECT leader_id": {
+        "rpc": 10,
+        "statements": 10,
+        "elapsedMs": 5650.071672999999
+      },
+      "SELECT r.target_id": {
+        "rpc": 10,
+        "statements": 10,
+        "elapsedMs": 48974.175204
+      },
+      "SELECT team_id": {
+        "rpc": 9,
+        "statements": 9,
+        "elapsedMs": 16872.849424000022
+      }
+    }
+  },
+  "originalUnchanged": true,
+  "limitations": [
+    "One diagnostic run; not a stable latency estimate",
+    "Longer deadline exists only in generated ignored diagnostic copy",
+    "No source test timeout or application changes",
+    "Synthetic disposable Miniflare D1 only; no hosted database",
+    "Statement wrapper and phase logging add small identical diagnostic overhead"
+  ]
+}

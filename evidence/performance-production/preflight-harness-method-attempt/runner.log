@@ -1,0 +1,10 @@
+file:///workspace/ddd-performance-current/evidence/performance-production/preflight.mjs:14
+  assert.equal(response.status(),200);assert.ok(heading);assert.ok(content.includes('Small Wonder'));assert.equal(initialApi.length,0);assert.ok(!requests.some(q=>!['GET','HEAD'].includes(q.method())));
+                                                                                                                                                                                              ^
+
+TypeError: q.method is not a function
+    at file:///workspace/ddd-performance-current/evidence/performance-production/preflight.mjs:14:191
+    at Array.some (<anonymous>)
+    at file:///workspace/ddd-performance-current/evidence/performance-production/preflight.mjs:14:156
+
+Node.js v24.19.0

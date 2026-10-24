@@ -1,0 +1,57 @@
+{
+  "sourceRuntime": "9ebee61d29b44fbb0dbf7e5382ed2fd3ba7b96c9",
+  "apiArchiveSource": "86862c722233bbd6776f1e2672d78b41fa808a52",
+  "sourceUnchangedSinceFinalChecksStarted": true,
+  "backendGraphInputHashesChecked": 78,
+  "backendGraphMismatches": [],
+  "backendArchiveSHA256": "bbd047173fb4e895bd8148d24674548f05dfaea58e184ca57bcc0e183ca60382",
+  "typecheckExit": 0,
+  "buildExit": 0,
+  "buildId": "mrvbBRq1OFHLEGdMC8Uo7",
+  "browserViewerGroups": {
+    "normalSSRResponsive": 22,
+    "discoverAndProfile": 7,
+    "faultAndRecovery": 5,
+    "adminTransition": 10,
+    "teamlessRegression": 4
+  },
+  "browserLanding": {
+    "acceptedChecks": 57,
+    "focusedTests": 9,
+    "evidence": "evidence/mobile-stack-final/verification.json"
+  },
+  "fullRegression": {
+    "status": "passed",
+    "exitCode": 0,
+    "tests": 573,
+    "pass": 567,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 6,
+    "durationMs": 559353.368702,
+    "nativePostgresSkips": "Six tests require a separately configured disposable native PostgreSQL database; SQLite/PGlite and local D1 actually ran",
+    "priorRun": {
+      "passed": 557,
+      "cancelledByD1Timeout": 1,
+      "skipped": 6,
+      "preservedLog": "tests-before-final.log"
+    },
+    "d1FinalRunPassedMs": 17678.416082,
+    "deadlineChange": "Test-only30s\u2192120s; all assertions unchanged; paired baseline/current diagnostic evidence saved"
+  },
+  "publicationScope": "Review branch only; no main merge, deployment, hosted migration or data actions",
+  "libraryExport": "HTTP401 before upload; no retry or file IDs; original PNGs committed",
+  "reviewPublished": {
+    "sha": "bd81e1a69ddd6734edd4080cd1dd27cd5a0d4ba3",
+    "remoteVerified": true,
+    "branch": "feat/portal-experience-rework",
+    "mainUnchanged": "e386cc72244c5613588ec60b02998637a9aadcb7"
+  },
+  "mainMerge": {
+    "authorization": "Explicitly approved by user, conditional on safe backend compatibility",
+    "status": "pending owner-run prerequisite",
+    "blocker": "User confirms0102/0103 and new backend have not been applied/deployed",
+    "agentHostedMutations": false
+  },
+  "publicHealthCheck": "public-health-check.json;200neon-functions, no release/schema version available"
+}

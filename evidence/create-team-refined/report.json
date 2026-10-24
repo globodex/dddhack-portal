@@ -1,0 +1,57 @@
+{
+  "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+  "syntheticOnly": true,
+  "writes": [],
+  "errors": [],
+  "blocked": [],
+  "screenshots": [
+    {
+      "file": "create-team-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265"
+    },
+    {
+      "file": "create-team-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265"
+    },
+    {
+      "file": "create-team-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265"
+    },
+    {
+      "file": "create-team-390x480-intro-focused.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265"
+    },
+    {
+      "file": "create-team-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265"
+    },
+    {
+      "file": "create-team-320x480-intro-focused.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265"
+    }
+  ]
+}

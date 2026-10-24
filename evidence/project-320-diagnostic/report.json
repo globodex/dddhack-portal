@@ -1,0 +1,227 @@
+{
+  "syntheticOnly": true,
+  "readOnly": true,
+  "events": [],
+  "errors": [],
+  "before-next": {
+    "width": 320,
+    "height": 720,
+    "scrollX": 0,
+    "scrollY": 154,
+    "documentWidth": 320,
+    "steps": [
+      {
+        "step": "1",
+        "hidden": false,
+        "rect": {
+          "x": 39,
+          "y": 207,
+          "width": 242,
+          "height": 364.9375,
+          "top": 207,
+          "right": 281,
+          "bottom": 571.9375,
+          "left": 39
+        }
+      },
+      {
+        "step": "2",
+        "hidden": true,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      {
+        "step": "3",
+        "hidden": true,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    ],
+    "next": [
+      {
+        "rect": {
+          "x": 39,
+          "y": 612.9375,
+          "width": 242,
+          "height": 46,
+          "top": 612.9375,
+          "right": 281,
+          "bottom": 658.9375,
+          "left": 39
+        },
+        "hitTag": "BUTTON",
+        "hitClass": "button",
+        "hitText": "Next "
+      }
+    ]
+  },
+  "after-next": {
+    "width": 578,
+    "height": 1301,
+    "scrollX": 0,
+    "scrollY": 0,
+    "documentWidth": 578,
+    "steps": [
+      {
+        "step": "1",
+        "hidden": true,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      {
+        "step": "2",
+        "hidden": false,
+        "rect": {
+          "x": 39,
+          "y": 361,
+          "width": 242,
+          "height": 614.59375,
+          "top": 361,
+          "right": 281,
+          "bottom": 975.59375,
+          "left": 39
+        }
+      },
+      {
+        "step": "3",
+        "hidden": true,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    ],
+    "next": [
+      {
+        "rect": {
+          "x": 39,
+          "y": 1016.59375,
+          "width": 242,
+          "height": 46,
+          "top": 1016.59375,
+          "right": 281,
+          "bottom": 1062.59375,
+          "left": 39
+        },
+        "hitTag": "BUTTON",
+        "hitClass": "button",
+        "hitText": "Next "
+      }
+    ]
+  },
+  "failure": {
+    "width": 578,
+    "height": 1301,
+    "scrollX": 0,
+    "scrollY": 0,
+    "documentWidth": 578,
+    "steps": [
+      {
+        "step": "1",
+        "hidden": true,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      {
+        "step": "2",
+        "hidden": false,
+        "rect": {
+          "x": 39,
+          "y": 361,
+          "width": 242,
+          "height": 614.59375,
+          "top": 361,
+          "right": 281,
+          "bottom": 975.59375,
+          "left": 39
+        }
+      },
+      {
+        "step": "3",
+        "hidden": true,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    ],
+    "next": [
+      {
+        "rect": {
+          "x": 39,
+          "y": 1016.59375,
+          "width": 242,
+          "height": 46,
+          "top": 1016.59375,
+          "right": 281,
+          "bottom": 1062.59375,
+          "left": 39
+        },
+        "hitTag": "BUTTON",
+        "hitClass": "button",
+        "hitText": "Next "
+      }
+    ]
+  },
+  "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+  "sourceHeldByParent": true,
+  "confirmedDefect": "84-character unbroken project name expands mobile layout viewport320\u2192578 in step2 tool legend and blocks subsequent touch Next.",
+  "screenshots": [
+    {
+      "path": "evidence/project-320-diagnostic/before-next.png",
+      "sha256": "58f2e51428cd7d22263c27592712b8167a7fd3b41361667502023b52d01c2e2f"
+    },
+    {
+      "path": "evidence/project-320-diagnostic/after-next.png",
+      "sha256": "c1034481dc3d0c6cc3321e206b6f8638a679c8969c9bcbafd06bd3bdb56a03a5"
+    },
+    {
+      "path": "evidence/project-320-diagnostic/failure.png",
+      "sha256": "f4b443221d99b3765d9ac040b97e8e94dfed1b3784310a6c5f6c729cb7c2836f"
+    }
+  ]
+}

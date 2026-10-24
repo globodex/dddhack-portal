@@ -1,0 +1,24 @@
+✔ sqlite: owner-only actual HTTP projection and settings omit all roster data for nonowners (164.371259ms)
+✔ sqlite: legacy users.role admin loses private API access with the exact same authenticated identity (84.633415ms)
+✔ sqlite: self/configured-owner protection and strict confirmation never change protected or nongranular roles (98.041996ms)
+✔ sqlite: normalized add/revoke/regrant retain account, private profile, team, idea and personal allocation (74.233452ms)
+✔ sqlite: repeated and concurrent revoke commit exactly one override and audit (54.703927ms)
+✔ sqlite: interleaved authorized grant/revoke serialize without fallback resurrection or lost user data (69.616798ms)
+✔ sqlite: target becoming configured owner before the transaction is protected atomically (48.281846ms)
+✔ sqlite: owner removal during an in-flight revoke is revalidated and leaves target unchanged (55.051349ms)
+✔ postgres: owner-only actual HTTP projection and settings omit all roster data for nonowners (6882.659225ms)
+✔ postgres: legacy users.role admin loses private API access with the exact same authenticated identity (3050.618775ms)
+✔ postgres: self/configured-owner protection and strict confirmation never change protected or nongranular roles (3039.898677ms)
+✔ postgres: normalized add/revoke/regrant retain account, private profile, team, idea and personal allocation (3315.632139ms)
+✔ postgres: repeated and concurrent revoke commit exactly one override and audit (3060.76302ms)
+✔ postgres: interleaved authorized grant/revoke serialize without fallback resurrection or lost user data (2865.25486ms)
+✔ postgres: target becoming configured owner before the transaction is protected atomically (3060.296412ms)
+✔ postgres: owner removal during an in-flight revoke is revalidated and leaves target unchanged (4000.969822ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 32512.037538

@@ -1,0 +1,37 @@
+{
+  "baselineSource": "244d68febfea4a7ba7ff5966001310db107c7828",
+  "finalRuntimeSource": "e9f9ae7b4c12d40428206bcd8a9e63d0be77061d",
+  "syntheticOnly": true,
+  "productionActions": [],
+  "uiChanges": [],
+  "schemaMigrations": [],
+  "baselineReproductions": [
+    {
+      "issue": "Approved Absent accepted by approval-only participant-bulk attendance",
+      "actor": "fake_admin",
+      "before": "Absent",
+      "action": "participant-bulk",
+      "result": "success",
+      "after": "Checked in",
+      "checkInRows": 1
+    },
+    {
+      "issue": "Declined invitation cannot be reissued",
+      "actions": ["team-invite", "team-respond declined", "team-invite"],
+      "result": "UNIQUE constraint failed: team_actions.team_id, team_actions.user_id, team_actions.kind"
+    }
+  ],
+  "verification": [
+    { "command": "node --import tsx --test --test-concurrency=1 tests/going-only-checkin.test.ts", "passed": 9, "failed": 0, "engines": ["SQLite", "PostgreSQL via PGlite production adapter"] },
+    { "command": "node --import tsx --test --test-concurrency=1 tests/team-reinvite.test.ts", "passed": 6, "failed": 0, "engines": ["SQLite", "PostgreSQL via PGlite production adapter"] },
+    { "command": "node --import tsx --test --test-concurrency=1 tests/experience.test.ts tests/portal.test.ts tests/roster.test.ts tests/admin-positive-writes.test.ts", "passed": 27, "failed": 0 },
+    { "command": "npx tsc --noEmit", "exitCode": 0 },
+    { "command": "git diff --check", "exitCode": 0 }
+  ],
+  "limitations": [
+    "No native multi-connection PostgreSQL MVCC run; PGlite has one connection.",
+    "No browser or visual readiness claim from this backend lane; Admin owns rendered UI verification.",
+    "No Next build or backend archive rebuild in this isolated lane; root integrates and rebuilds.",
+    "Manual publication and backend redeployment are still required."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "source": "19776e0cc4b6a0d8ca305508fe18751ea26472fe",
+  "migrationToolingSource": "59246860b49d83412c6685e4643f97a21aab55e5",
+  "command": "node --no-wasm-code-gc --import tsx --test --test-concurrency=1 tests/combined-migration-upgrade-independent.test.ts tests/project-media-migration.test.ts tests/credit-stock-migration.test.ts tests/neon-db-engine.test.ts",
+  "tests": 16,
+  "passed": 16,
+  "failed": 0,
+  "skipped": 0,
+  "exitCode": 0,
+  "durationMs": 89896.858953,
+  "database": "Disposable local SQLite and single-connection PGlite only",
+  "hostedActions": 0,
+  "note": "Source still has unchanged application/SQL policy from2657; new upgrade hooks are optional by default. Dedicated CLI review is recorded separately."
+}

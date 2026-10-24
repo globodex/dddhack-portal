@@ -1,0 +1,234 @@
+{
+  "baselineSource": "d97d614ac7be2a657df91de42aaf00e9f3cfc336",
+  "currentSource": "853c5b1db45761ad4b1bde5b00940ccdcb3388f7",
+  "originalGate": {
+    "timeoutMs": 30000,
+    "isolatedRawFailure": "original-30s-isolated.log",
+    "sha256": "5b021140c934782e12c1bfe9a4ef0fc9c69d87b2db249f31ec51cf89529cb82a",
+    "rootFullSuiteRawFailure": "evidence/viewer-registration/final/tests.log",
+    "outcome": "Two root30-second timeout failures were preserved; this audit did not rerun that unchanged gate"
+  },
+  "diagnostic": {
+    "runsPerSource": 1,
+    "execution": "Baseline then current, serial",
+    "deadlineMs": 120000,
+    "allAssertionsPassed": true,
+    "originalD1TestSha256": "8beb75c84fd4926fab99626ff25b6dd2a237c6fcffcde587ec74aa2586add483",
+    "sourceD1TestByteIdentical": true,
+    "normalizedInstrumentationByteIdentical": true,
+    "normalizedInstrumentationSha256": "9b527b2ea58deb17d57320aad724f1c7b4659f0b077ad18ed812f4a5ca1d5325",
+    "baselineWallMs": 64302.177315,
+    "currentWallMs": 31575.445960999998,
+    "baselineMigrationMs": 10151.065417,
+    "currentMigrationMs": 10152.196234000001,
+    "phases": [
+      {
+        "phase": "miniflare-binding",
+        "baseline": {
+          "phase": "miniflare-binding",
+          "wallMs": 968.433841,
+          "elapsedMs": 968.433841,
+          "rpc": 0,
+          "statements": 0,
+          "nodeCpuMs": 776.985
+        },
+        "current": {
+          "phase": "miniflare-binding",
+          "wallMs": 625.6625489999997,
+          "elapsedMs": 625.6625489999997,
+          "rpc": 0,
+          "statements": 0,
+          "nodeCpuMs": 784.026
+        }
+      },
+      {
+        "phase": "seed",
+        "baseline": {
+          "phase": "seed",
+          "wallMs": 2590.79205,
+          "elapsedMs": 13710.291308,
+          "rpc": 27,
+          "statements": 140,
+          "nodeCpuMs": 1001.256
+        },
+        "current": {
+          "phase": "seed",
+          "wallMs": 5563.583508999998,
+          "elapsedMs": 16341.442292,
+          "rpc": 27,
+          "statements": 140,
+          "nodeCpuMs": 2516.949
+        }
+      },
+      {
+        "phase": "settings-and-owner-view",
+        "baseline": {
+          "phase": "settings-and-owner-view",
+          "wallMs": 1070.7744490000005,
+          "elapsedMs": 14781.065757,
+          "rpc": 31,
+          "statements": 34,
+          "nodeCpuMs": 577.251
+        },
+        "current": {
+          "phase": "settings-and-owner-view",
+          "wallMs": 713.3967950000006,
+          "elapsedMs": 17054.839087,
+          "rpc": 31,
+          "statements": 34,
+          "nodeCpuMs": 502.709
+        }
+      },
+      {
+        "phase": "roster-preview-200",
+        "baseline": {
+          "phase": "roster-preview-200",
+          "wallMs": 629.0711669999982,
+          "elapsedMs": 15410.136923999999,
+          "rpc": 14,
+          "statements": 20,
+          "nodeCpuMs": 228.792
+        },
+        "current": {
+          "phase": "roster-preview-200",
+          "wallMs": 292.17043000000194,
+          "elapsedMs": 17347.009517000002,
+          "rpc": 14,
+          "statements": 20,
+          "nodeCpuMs": 179.145
+        }
+      },
+      {
+        "phase": "roster-commit-200",
+        "baseline": {
+          "phase": "roster-commit-200",
+          "wallMs": 444.3560080000025,
+          "elapsedMs": 15854.492932000001,
+          "rpc": 15,
+          "statements": 24,
+          "nodeCpuMs": 200.32
+        },
+        "current": {
+          "phase": "roster-commit-200",
+          "wallMs": 297.3902909999997,
+          "elapsedMs": 17644.399808000002,
+          "rpc": 15,
+          "statements": 24,
+          "nodeCpuMs": 149.481
+        }
+      },
+      {
+        "phase": "check-in-12-concurrent",
+        "baseline": {
+          "phase": "check-in-12-concurrent",
+          "wallMs": 13166.364043999998,
+          "elapsedMs": 29074.630126999997,
+          "rpc": 228,
+          "statements": 360,
+          "nodeCpuMs": 5414.568
+        },
+        "current": {
+          "phase": "check-in-12-concurrent",
+          "wallMs": 4332.227803999998,
+          "elapsedMs": 21997.947344,
+          "rpc": 228,
+          "statements": 360,
+          "nodeCpuMs": 2544.704
+        }
+      },
+      {
+        "phase": "batch-rollback-and-assertion",
+        "baseline": {
+          "phase": "batch-rollback-and-assertion",
+          "wallMs": 63.49117700000352,
+          "elapsedMs": 29158.751443,
+          "rpc": 2,
+          "statements": 3,
+          "nodeCpuMs": 28.607
+        },
+        "current": {
+          "phase": "batch-rollback-and-assertion",
+          "wallMs": 310.06188199999815,
+          "elapsedMs": 22334.508631,
+          "rpc": 2,
+          "statements": 3,
+          "nodeCpuMs": 298.672
+        }
+      },
+      {
+        "phase": "submit-10-concurrent",
+        "baseline": {
+          "phase": "submit-10-concurrent",
+          "wallMs": 34281.276903,
+          "elapsedMs": 63459.028835,
+          "rpc": 382,
+          "statements": 458,
+          "nodeCpuMs": 12866.241
+        },
+        "current": {
+          "phase": "submit-10-concurrent",
+          "wallMs": 9148.229234000002,
+          "elapsedMs": 31505.186304000003,
+          "rpc": 387,
+          "statements": 467,
+          "nodeCpuMs": 4006.855
+        }
+      },
+      {
+        "phase": "dispose",
+        "baseline": {
+          "phase": "dispose",
+          "wallMs": 687.7036270000099,
+          "elapsedMs": 64301.506159000004,
+          "rpc": 0,
+          "statements": 0,
+          "nodeCpuMs": 38.616
+        },
+        "current": {
+          "phase": "dispose",
+          "wallMs": 40.293901999997615,
+          "elapsedMs": 31575.328339,
+          "rpc": 0,
+          "statements": 0,
+          "nodeCpuMs": 21.604
+        }
+      }
+    ]
+  },
+  "counts": {
+    "baseline": {
+      "rpc": 1023,
+      "statements": 1363,
+      "actorRosterLookup": 71
+    },
+    "current": {
+      "rpc": 1028,
+      "statements": 1372,
+      "actorRosterLookup": 71
+    },
+    "difference": "Only the concurrent10-submit phase differs: +5RPC/+9statements, including one additional5-statement batch and4reads. All other phase counts and71actor/roster lookups match.",
+    "interpretation": "The concurrent limit path has preflight rejection and transactional rejection/re-read branches. Which rejected contender reaches which branch can vary. The aggregate trace does not identify each individual rejected branch; no actor lookup count increase was observed."
+  },
+  "conclusions": [
+    "No new D1 schema/dependency/test/fixture/startup work was introduced between these sources.",
+    "Both source versions exceed30seconds under the observed shared cloud conditions while all data-integrity/concurrency assertions pass at the diagnostic deadline.",
+    "Startup is below1second in both; existing migrations and concurrent command/RPC phases consume the budget.",
+    "The single pair is not a production endpoint latency test or a stable comparative performance estimate.",
+    "Cgroup quota is4CPU. Current-run counters record59throttled periods/+5658748throttled microseconds. OOM counters remain0; memory.current includes substantial file cache, so proximity to memory.max does not establish OOM as the cause."
+  ],
+  "approvedFix": {
+    "file": "tests/d1.test.ts",
+    "timeoutMs": 120000,
+    "scope": "Deadline and3-line explanation only",
+    "originalBodyAndAllAssertionsPreserved": true,
+    "assertionCallCount": 10,
+    "applicationSourceChanged": false,
+    "followUp": "Root will run the fresh full suite after integration under quieter conditions; that result is not claimed here."
+  },
+  "limits": [
+    "One diagnostic run each; shared conditions were observed, not isolated or held constant",
+    "D1RPC wall timings include local binding/IPC/scheduling and concurrent queueing; group totals can overlap",
+    "No actual hosted D1/Neon/provider/database operation",
+    "No additional experiment after parent approved the bounded test-only deadline"
+  ]
+}

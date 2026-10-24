@@ -1,0 +1,620 @@
+{
+  "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+  "runtimeEquivalentTo": "344334b220472641a07f1832485a6a387f9b8915",
+  "runtimeFingerprint": "6d5376c6963655f2a3327a6ce2b159028273930445c83cd705491da890348493",
+  "syntheticOnly": true,
+  "readOnly": true,
+  "browserSandbox": false,
+  "screenshots": [
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/profile-step1-purple-1440x900.png",
+      "label": "profile-step1-purple",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": "step1, Purple selected; existing populated values",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/profile-step2-1440x900.png",
+      "label": "profile-step2",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": "step2, populated phone/social links",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/profile-step3-1440x900.png",
+      "label": "profile-step3",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": "step3, populated registration values; Save intentionally not invoked",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/profile-step1-purple-768x1024.png",
+      "label": "profile-step1-purple",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": "step1, Purple selected; existing populated values",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/profile-step2-768x1024.png",
+      "label": "profile-step2",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": "step2, populated phone/social links",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/profile-step3-768x1024.png",
+      "label": "profile-step3",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": "step3, populated registration values; Save intentionally not invoked",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/profile-invalid-390x844.png",
+      "label": "profile-invalid",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "invalid full name focuses field; compact inline error",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/profile-step1-purple-390x844.png",
+      "label": "profile-step1-purple",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "step1, Purple selected; existing populated values",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/REJECTED-profile-step2-transition-390x844.png",
+      "label": "profile-step2",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "step2, populated phone/social links",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": false,
+      "reason": "Immediate transition frame has unpainted social SVGs; superseded by explicitly decoded capture.",
+      "supersededBy": "/workspace/ddd-team/evidence/combined-readonly-344334b/profile-step2-assets-settled-390x844.png"
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/profile-step3-390x844.png",
+      "label": "profile-step3",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "step3, populated registration values; Save intentionally not invoked",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/mobile-menu-390x844.png",
+      "label": "mobile-menu",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "fullscreen top-down menu with icons and red Logout",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/profile-step1-purple-390x480.png",
+      "label": "profile-step1-purple",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "state": "step1, Purple selected; existing populated values",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/profile-step2-390x480.png",
+      "label": "profile-step2",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "state": "step2, populated phone/social links",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/profile-step3-390x480.png",
+      "label": "profile-step3",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "state": "step3, populated registration values; Save intentionally not invoked",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/mobile-menu-390x480.png",
+      "label": "mobile-menu",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "state": "fullscreen top-down menu with icons and red Logout",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/dashboard-team-1440x900.png",
+      "label": "dashboard-team",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": "Dashboard Team tab, read-only inspection",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/dashboard-credits-1440x900.png",
+      "label": "dashboard-credits",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": "Dashboard Credits tab, read-only inspection",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/dashboard-project-1440x900.png",
+      "label": "dashboard-project",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": "Dashboard Project tab, read-only inspection",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/participants-1440x900.png",
+      "label": "participants",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": "real participant cards, initial safe page",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/participant-detail-1440x900.png",
+      "label": "participant-detail",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": "detail for existing card Alice",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/participants-search-1440x900.png",
+      "label": "participants-search",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": "real server search for Alice",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/dashboard-team-390x844.png",
+      "label": "dashboard-team",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "Dashboard Team tab, read-only inspection",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/dashboard-credits-390x844.png",
+      "label": "dashboard-credits",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "Dashboard Credits tab, read-only inspection",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/dashboard-project-390x844.png",
+      "label": "dashboard-project",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "Dashboard Project tab, read-only inspection",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/participants-390x844.png",
+      "label": "participants",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "real participant cards, initial safe page",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/participant-detail-390x844.png",
+      "label": "participant-detail",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "detail for existing card Alice",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/combined-readonly-344334b/participants-search-390x844.png",
+      "label": "participants-search",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "real server search for Alice",
+      "source": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+      "overflow": false,
+      "accepted": true
+    }
+  ],
+  "checks": [
+    "Profile1440x900: one selected Purple drives all8 expression previews",
+    "Profile1440x900: exactly Next/Next/Save; no uploads, overflow or step clipping",
+    "Profile768x1024: one selected Purple drives all8 expression previews",
+    "Profile768x1024: exactly Next/Next/Save; no uploads, overflow or step clipping",
+    "Profile390x844: one selected Purple drives all8 expression previews",
+    "Profile invalid Next focuses first invalid field without a network mutation",
+    "Profile390x844: exactly Next/Next/Save; no uploads, overflow or step clipping",
+    "Menu390x844: fullscreen single-column icons, red Logout, Escape restores opener",
+    "Profile390x480: one selected Purple drives all8 expression previews",
+    "Profile390x480: exactly Next/Next/Save; no uploads, overflow or step clipping",
+    "Menu390x480: fullscreen single-column icons, red Logout, Escape restores opener",
+    "Dashboard1440: Team/Credits/Project panels switch without mutation",
+    "Discovery1440: cards, real search, keyboard detail, Back and focus return pass",
+    "Dashboard390: Team/Credits/Project panels switch without mutation",
+    "Mobile hamburger is a black circular control with contrasting icon",
+    "Discovery390: cards, real search, keyboard detail, Back and focus return pass"
+  ],
+  "observations": [
+    {
+      "label": "profile-layout",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "avatar": {
+        "x": 799.859375,
+        "y": 288,
+        "width": 452.640625,
+        "height": 243,
+        "top": 288,
+        "right": 1252.5,
+        "bottom": 531,
+        "left": 799.859375
+      },
+      "fields": {
+        "x": 172.5,
+        "y": 288,
+        "width": 579.359375,
+        "height": 356,
+        "top": 288,
+        "right": 751.859375,
+        "bottom": 644,
+        "left": 172.5
+      }
+    },
+    {
+      "label": "profile-layout",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "avatar": {
+        "x": 407.140625,
+        "y": 300,
+        "width": 292.859375,
+        "height": 207,
+        "top": 300,
+        "right": 700,
+        "bottom": 507,
+        "left": 407.140625
+      },
+      "fields": {
+        "x": 53,
+        "y": 300,
+        "width": 322.140625,
+        "height": 356,
+        "top": 300,
+        "right": 375.140625,
+        "bottom": 656,
+        "left": 53
+      }
+    },
+    {
+      "label": "profile-layout",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "avatar": {
+        "x": 18,
+        "y": 225,
+        "width": 354,
+        "height": 173,
+        "top": 225,
+        "right": 372,
+        "bottom": 398,
+        "left": 18
+      },
+      "fields": {
+        "x": 18,
+        "y": 414,
+        "width": 354,
+        "height": 344,
+        "top": 414,
+        "right": 372,
+        "bottom": 758,
+        "left": 18
+      }
+    },
+    {
+      "label": "mobile-menu",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "buttons": [
+        {
+          "text": "Dashboard",
+          "y": 92,
+          "height": 60,
+          "icons": 1,
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "Discover",
+          "y": 152,
+          "height": 60,
+          "icons": 1,
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "Projects",
+          "y": 212,
+          "height": 60,
+          "icons": 1,
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "Rules",
+          "y": 272,
+          "height": 60,
+          "icons": 1,
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "Your profile",
+          "y": 332,
+          "height": 60,
+          "icons": 1,
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "Log out",
+          "y": 392,
+          "height": 60,
+          "icons": 1,
+          "color": "rgb(177, 45, 38)"
+        }
+      ],
+      "logoutColor": "rgb(177, 45, 38)"
+    },
+    {
+      "label": "profile-layout",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "avatar": {
+        "x": 18,
+        "y": 225,
+        "width": 354,
+        "height": 173,
+        "top": 225,
+        "right": 372,
+        "bottom": 398,
+        "left": 18
+      },
+      "fields": {
+        "x": 18,
+        "y": 414,
+        "width": 354,
+        "height": 344,
+        "top": 414,
+        "right": 372,
+        "bottom": 758,
+        "left": 18
+      }
+    },
+    {
+      "label": "mobile-menu",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 480,
+        "top": 0,
+        "right": 390,
+        "bottom": 480,
+        "left": 0
+      },
+      "buttons": [
+        {
+          "text": "Dashboard",
+          "y": 92,
+          "height": 60,
+          "icons": 1,
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "Discover",
+          "y": 152,
+          "height": 60,
+          "icons": 1,
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "Projects",
+          "y": 212,
+          "height": 60,
+          "icons": 1,
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "Rules",
+          "y": 272,
+          "height": 60,
+          "icons": 1,
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "Your profile",
+          "y": 332,
+          "height": 60,
+          "icons": 1,
+          "color": "rgb(32, 35, 32)"
+        },
+        {
+          "text": "Log out",
+          "y": 392,
+          "height": 60,
+          "icons": 1,
+          "color": "rgb(177, 45, 38)"
+        }
+      ],
+      "logoutColor": "rgb(177, 45, 38)"
+    },
+    {
+      "label": "black-circular-menu",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "bg": "rgb(32, 35, 32)",
+      "color": "rgb(255, 255, 255)",
+      "radius": "50%",
+      "width": 44,
+      "height": 44
+    }
+  ],
+  "blocked": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "finalResult": "passed",
+  "finishedSource": "fa75493fd88faefa2b1af4d77509bf8963c79bb9",
+  "finishedRuntimeFingerprint": "6d5376c6963655f2a3327a6ce2b159028273930445c83cd705491da890348493",
+  "assetDiagnostic": {
+    "source": "95104a80eaa7bf95fa67b973ee68b75c2adb1da2",
+    "report": "asset-timing-report.json",
+    "replacementScreenshot": "profile-step2-assets-settled-390x844.png",
+    "focusedEvidence": "profile-platform-picker-focused.png",
+    "result": "passed",
+    "profileSourceChanged": false
+  },
+  "visualInspection": {
+    "reviewedAllCapturedFiles": true,
+    "finalResult": "passed",
+    "remainingComponentBlockers": [],
+    "excludedTransitionFrames": 1
+  }
+}

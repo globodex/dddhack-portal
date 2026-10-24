@@ -1,0 +1,180 @@
+{
+  "source": "d97d614ac7be2a657df91de42aaf00e9f3cfc336",
+  "syntheticOnly": true,
+  "reason": "Prior3 settled captures were still loading during development module compilation and are rejected as settled evidence.",
+  "cases": [
+    {
+      "path": "/dashboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/dashboard",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864087107",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864087107",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864087107",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/api/portal?view=%2Fdashboard&focus=",
+          "status": 403
+        }
+      ],
+      "errors": [],
+      "file": "evidence/viewer-registration/before/dashboard-1440x900-confirmed-mismatch.png",
+      "text": "Skip to content\nCodex Community New Delhi\nOpen menu\nLocal rehearsal · synthetic accounts only Switch fixture\n--\nUse your registered email\n\nPlease sign in with your Luma-registered email\n\nTry again\nSign out / switch account",
+      "overflow": false
+    },
+    {
+      "path": "/profile",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/profile",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864095054",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864095054",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864095054",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/api/portal?view=%2Fprofile&focus=",
+          "status": 403
+        }
+      ],
+      "errors": [],
+      "file": "evidence/viewer-registration/before/profile-1440x900-confirmed-mismatch.png",
+      "text": "Skip to content\nCodex Community New Delhi\nLocal rehearsal · synthetic accounts only Switch fixture\n--\nUse your registered email\n\nPlease sign in with your Luma-registered email\n\nTry again\nSign out / switch account",
+      "overflow": false
+    },
+    {
+      "path": "/profile",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/profile",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864100532",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864100532",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864100532",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/api/portal?view=%2Fprofile&focus=",
+          "status": 403
+        }
+      ],
+      "errors": [],
+      "file": "evidence/viewer-registration/before/profile-390x480-confirmed-mismatch.png",
+      "text": "Skip to content\nCodex Community New Delhi\nOpen menu\nLocal rehearsal · synthetic accounts only Switch fixture\n--\nUse your registered email\n\nPlease sign in with your Luma-registered email\n\nTry again\nSign out / switch account",
+      "overflow": false
+    }
+  ],
+  "result": "PASS_EXPECTED_BEFORE_BUG",
+  "browserClosed": true
+}

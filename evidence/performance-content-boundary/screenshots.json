@@ -1,0 +1,98 @@
+[
+  {
+    "file": "baseline-dashboard-1440x900.png",
+    "width": 1440,
+    "height": 1268,
+    "inspected": true
+  },
+  {
+    "file": "baseline-dashboard-hydrated.png",
+    "width": 1440,
+    "height": 1268,
+    "inspected": true
+  },
+  {
+    "file": "baseline-dashboard-nojs.png",
+    "width": 1440,
+    "height": 1268,
+    "inspected": true
+  },
+  {
+    "file": "baseline-home-1440x900.png",
+    "width": 1440,
+    "height": 3113,
+    "inspected": true
+  },
+  {
+    "file": "baseline-home-hydrated.png",
+    "width": 1440,
+    "height": 3113,
+    "inspected": true
+  },
+  {
+    "file": "baseline-home-nojs.png",
+    "width": 1440,
+    "height": 3113,
+    "inspected": true
+  },
+  {
+    "file": "baseline-people-1440x900.png",
+    "width": 1440,
+    "height": 1962,
+    "inspected": true
+  },
+  {
+    "file": "final-dashboard-1440x900.png",
+    "width": 1440,
+    "height": 1268,
+    "inspected": true
+  },
+  {
+    "file": "final-dashboard-hydrated.png",
+    "width": 1440,
+    "height": 1268,
+    "inspected": true
+  },
+  {
+    "file": "final-dashboard-nojs.png",
+    "width": 1440,
+    "height": 1268,
+    "inspected": true
+  },
+  {
+    "file": "final-home-1440x900.png",
+    "width": 1440,
+    "height": 3113,
+    "inspected": true
+  },
+  {
+    "file": "final-home-hydrated.png",
+    "width": 1440,
+    "height": 3113,
+    "inspected": true
+  },
+  {
+    "file": "final-home-nojs.png",
+    "width": 1440,
+    "height": 3113,
+    "inspected": true
+  },
+  {
+    "file": "final-mobile-home-390.png",
+    "width": 390,
+    "height": 3611,
+    "inspected": true
+  },
+  {
+    "file": "final-mobile-menu-390.png",
+    "width": 390,
+    "height": 844,
+    "inspected": true
+  },
+  {
+    "file": "final-people-1440x900.png",
+    "width": 1440,
+    "height": 1962,
+    "inspected": true
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "source": "927845c5a3cf6755f94a219d8c9cf0060774fd58",
+  "typecheck": {
+    "command": "npm run typecheck",
+    "exitCode": 0
+  },
+  "focusedTests": {
+    "command": "node --import tsx --test --test-concurrency=1 tests/dashboard-v6.test.ts tests/participant-ui.test.ts tests/navigation.test.ts",
+    "passed": 17,
+    "failed": 0
+  },
+  "productionBuild": {
+    "command": "node_modules/.bin/next build --webpack",
+    "exitCode": 0,
+    "buildId": "y-YyrQ8WaSaPZjr-y0trP",
+    "compiledSeconds": 13.8,
+    "productionTypeScriptSeconds": 25.3
+  },
+  "independentReadOnly": {
+    "agent": "/root/profile",
+    "passed": 13,
+    "postRequests": 0,
+    "pageErrors": 0
+  },
+  "runtimeReleased": {
+    "frontend3003": true,
+    "browserContexts": true
+  },
+  "wholePortalReleaseClaim": false
+}

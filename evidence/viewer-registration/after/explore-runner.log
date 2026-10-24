@@ -1,0 +1,8 @@
+file:///workspace/ddd-viewer-browser/scripts/qa-viewer-registration-explore.mjs:6
+const volunteer=await ctx('volunteer');const v=await volunteer.newPage();await v.goto(origin+'/admin/participants',{waitUntil:'domcontentloaded',timeout:120000});await v.waitForFunction(()=>document.querySelector('.app-shell')?.getAttribute('data-hydrated')==='true');assert.equal(await v.getByRole('combobox',{name:'Personal status',exact:true}).locator('option[value="not registered"]').count(),0);const vr=await volunteer.request.get(`${origin}/api/portal?view=%2Fadmin%2Fparticipants`);const vd=await vr.json();assert.equal(vd.items.some(r=>r.viewer),false);report.checks.push({name:'Volunteer staff participant view unaffected; no Viewer filter or Viewer account payload',file:await shot(v,'volunteer-no-viewer-filter-390')});await volunteer.close();report.result='PASS';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^
+
+TypeError: Cannot read properties of undefined (reading 'some')
+    at file:///workspace/ddd-viewer-browser/scripts/qa-viewer-registration-explore.mjs:6:538
+
+Node.js v24.19.0

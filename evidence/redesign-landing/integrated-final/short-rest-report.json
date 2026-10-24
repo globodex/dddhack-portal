@@ -1,0 +1,44 @@
+{
+  "source": "2de77edbe560be4197475f02da85412e616f9b92",
+  "heroFingerprint": "b574bc8ba84d4d463b4b21b8cf1d75ef312de8aa3667a3f3a77435fed0d68f25",
+  "viewport": {
+    "width": 390,
+    "height": 480
+  },
+  "normalMotion": true,
+  "syntheticOnly": true,
+  "errors": [],
+  "blockedRequests": [],
+  "geometry": {
+    "cta": {
+      "x": 20,
+      "y": 254.34375,
+      "width": 350,
+      "height": 58,
+      "top": 254.34375,
+      "right": 370,
+      "bottom": 312.34375,
+      "left": 20
+    },
+    "pile": {
+      "x": 0,
+      "y": 312.34375,
+      "width": 390,
+      "height": 168,
+      "top": 312.34375,
+      "right": 390,
+      "bottom": 480.34375,
+      "left": 0
+    },
+    "dotCount": 8,
+    "ctaClear": true,
+    "pileVisible": true
+  },
+  "screenshot": {
+    "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated-final/normal-short-cta-settled-390x480.png",
+    "sha256": "dbc1aaad52ea83f39ae82092266541841918cfe31b51786de349aa098b64a0a2",
+    "inspected": true
+  },
+  "finalResult": "passed",
+  "inspectionNotes": "Native screenshot opened. Trusted lower CTA and eight settled circles visible after natural short-screen scroll. The field resumes on entering the viewport and stops at rest. No new source change was needed."
+}

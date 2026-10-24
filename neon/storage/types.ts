@@ -1,4 +1,6 @@
-export const MAX_IMAGE_BYTES = 128 * 1024;
+import { projectMediaPolicy } from "../../lib/project-media-policy";
+/** Largest canonical image, never an original-file upload limit. */
+export const MAX_IMAGE_BYTES = projectMediaPolicy.banner.canonicalMaxBytes;
 export const UPLOAD_URL_TTL_SECONDS = 90;
 export const FINALIZE_TTL_MS = 5 * 60 * 1000;
 export const RECEIPT_TTL_MS = 30 * 60 * 1000;

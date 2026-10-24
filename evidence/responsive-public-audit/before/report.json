@@ -1,0 +1,675 @@
+{
+  "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+  "surfaceFingerprint": "ccf9ae34f67e8b1cd27a0acf45315198851d54d25d794e164f690edf56fe3d2f",
+  "nativeBrowserZoom": "Disposable Chromium profile; chrome.settingsPrivate.setDefaultZoom(2) in chrome://settings/appearance; metrics recorded. No CSS zoom or CDP pinch.",
+  "syntheticOnly": true,
+  "domStressOnly": true,
+  "screenshots": [
+    {
+      "label": "home-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/before/home-rest-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "surfaceFingerprint": "ccf9ae34f67e8b1cd27a0acf45315198851d54d25d794e164f690edf56fe3d2f",
+      "sha256": "303d1435cbdfcf564cac9e9fe49dc34603df2ad17f7391923346b82e0f4c477b",
+      "inspected": true
+    },
+    {
+      "label": "home-cta-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/before/home-cta-rest-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "surfaceFingerprint": "ccf9ae34f67e8b1cd27a0acf45315198851d54d25d794e164f690edf56fe3d2f",
+      "sha256": "303d1435cbdfcf564cac9e9fe49dc34603df2ad17f7391923346b82e0f4c477b",
+      "inspected": true
+    },
+    {
+      "label": "home-schedule",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/before/home-schedule-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "surfaceFingerprint": "ccf9ae34f67e8b1cd27a0acf45315198851d54d25d794e164f690edf56fe3d2f",
+      "sha256": "3c3484bea8a88109960351eedc4adb3e528ae5a8535b4a59c132c43967172b30",
+      "inspected": true
+    },
+    {
+      "label": "home-venue",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/before/home-venue-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "surfaceFingerprint": "ccf9ae34f67e8b1cd27a0acf45315198851d54d25d794e164f690edf56fe3d2f",
+      "sha256": "6f5dddfdc55e736894c827f9cbe9fe304b5b220bb950d75dfbd06c744c363fd0",
+      "inspected": true
+    },
+    {
+      "label": "home-rules",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/before/home-rules-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "surfaceFingerprint": "ccf9ae34f67e8b1cd27a0acf45315198851d54d25d794e164f690edf56fe3d2f",
+      "sha256": "ed82ea403d4e401dd3bd9049a2e6e8b1215a2e492763712a8813db14f3162a6c",
+      "inspected": true
+    },
+    {
+      "label": "home-faq",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/before/home-faq-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "surfaceFingerprint": "ccf9ae34f67e8b1cd27a0acf45315198851d54d25d794e164f690edf56fe3d2f",
+      "sha256": "6ad54c63d5a766973a2e0e2b764949fbb11bb6f9c6fc21dbb15a90d0ea903bdd",
+      "inspected": true
+    },
+    {
+      "label": "home-organizers",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/before/home-organizers-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "surfaceFingerprint": "ccf9ae34f67e8b1cd27a0acf45315198851d54d25d794e164f690edf56fe3d2f",
+      "sha256": "ed9c64758f5914e4f4fc2c40eb4ce3cb9c083f2c3aef37086d5d1de0e0aab5f8",
+      "inspected": true
+    },
+    {
+      "label": "home-menu",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/before/home-menu-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "surfaceFingerprint": "ccf9ae34f67e8b1cd27a0acf45315198851d54d25d794e164f690edf56fe3d2f",
+      "sha256": "c12d757b34432ab434f4d2b7e4bdc756932d61834191ed1a5c9479749a6488ec",
+      "inspected": true
+    },
+    {
+      "label": "dom-stress-agenda",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/before/dom-stress-agenda-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "surfaceFingerprint": "ccf9ae34f67e8b1cd27a0acf45315198851d54d25d794e164f690edf56fe3d2f",
+      "sha256": "13cc3e1aaa03f46c79ebfe5e68d11f27a4065de391720e83bb15f0e4f5f8a04c",
+      "inspected": true,
+      "domFixture": true
+    },
+    {
+      "label": "dom-stress-faq",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/before/dom-stress-faq-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "surfaceFingerprint": "ccf9ae34f67e8b1cd27a0acf45315198851d54d25d794e164f690edf56fe3d2f",
+      "sha256": "13cc3e1aaa03f46c79ebfe5e68d11f27a4065de391720e83bb15f0e4f5f8a04c",
+      "inspected": true,
+      "domFixture": true,
+      "intendedTargetCaptured": false,
+      "inspectionNote": "Smooth-scroll timing retained the preceding Schedule image. This frame does not establish FAQ alignment."
+    },
+    {
+      "label": "signin",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/before/signin-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "surfaceFingerprint": "ccf9ae34f67e8b1cd27a0acf45315198851d54d25d794e164f690edf56fe3d2f",
+      "sha256": "e938b67416998aafc0c1492be2fd8ea7196c31868ebf1d9af9076e27d609d793",
+      "inspected": true
+    },
+    {
+      "label": "signin-long-email",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/before/signin-long-email-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "surfaceFingerprint": "ccf9ae34f67e8b1cd27a0acf45315198851d54d25d794e164f690edf56fe3d2f",
+      "sha256": "368575d2a0052111b13a584618bf0d43f2d843074df0e05a17ab4b27577aa73e",
+      "inspected": true,
+      "domFixture": true
+    },
+    {
+      "label": "signin-menu",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/before/signin-menu-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "surfaceFingerprint": "ccf9ae34f67e8b1cd27a0acf45315198851d54d25d794e164f690edf56fe3d2f",
+      "sha256": "3ae7efc1e85f331ceedd869fe9b820cbbed17d858430ef4fad76ad1f88d8a19d",
+      "inspected": true
+    },
+    {
+      "label": "privacy-header",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/before/privacy-header-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "surfaceFingerprint": "ccf9ae34f67e8b1cd27a0acf45315198851d54d25d794e164f690edf56fe3d2f",
+      "sha256": "f74650d918b00a8e4d27552aa12aaa30b9bb82f0a9c8e9923c3c502e7ab81dce",
+      "inspected": true
+    },
+    {
+      "label": "privacy-menu",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/before/privacy-menu-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "surfaceFingerprint": "ccf9ae34f67e8b1cd27a0acf45315198851d54d25d794e164f690edf56fe3d2f",
+      "sha256": "04c51e45cc6b8596172665bd8400d70a48ca1d1416dfbc0c1a99750adbb30316",
+      "inspected": true
+    },
+    {
+      "label": "terms-header",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/before/terms-header-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "surfaceFingerprint": "ccf9ae34f67e8b1cd27a0acf45315198851d54d25d794e164f690edf56fe3d2f",
+      "sha256": "52d9a407f1dc4e45086526c08efac152b210d0a864a038316d8c82f532d9ed46",
+      "inspected": true
+    },
+    {
+      "label": "terms-menu",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/before/terms-menu-320x844.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "source": "2a6d865517e5903ef974ca198f073d27aaf39265",
+      "surfaceFingerprint": "ccf9ae34f67e8b1cd27a0acf45315198851d54d25d794e164f690edf56fe3d2f",
+      "sha256": "5b723a03ce3ca9f9cd8c909992a4ce197d8b0a72bf6a0fca7e9b701fb5dae2a1",
+      "inspected": true
+    }
+  ],
+  "checks": [
+    {
+      "config": {
+        "width": 320,
+        "height": 844,
+        "label": "320x844"
+      },
+      "checks": [
+        {
+          "surface": "home",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "schedule",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "venue",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "rules",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "faq",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "organizers",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "DOM-only agenda longURL fixture",
+          "viewport": {
+            "width": 1280,
+            "height": 3376,
+            "dpr": 1
+          },
+          "documentOverflow": true,
+          "documentWidth": 1395,
+          "clippedText": [
+            {
+              "tag": "LI",
+              "className": "",
+              "text": "08:00DOM-only stress fixture: Building useful tools with an interdisciplinary communityDOM-only stress fixture URL: https://example.invalid/submissions/aaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "clientWidth": 242,
+              "scrollWidth": 1237,
+              "box": {
+                "x": 39,
+                "y": 318.59375,
+                "width": 242,
+                "height": 255.515625,
+                "top": 318.59375,
+                "right": 281,
+                "bottom": 574.109375,
+                "left": 39
+              }
+            },
+            {
+              "tag": "P",
+              "className": "",
+              "text": "DOM-only stress fixture URL: https://example.invalid/submissions/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "clientWidth": 161,
+              "scrollWidth": 1156,
+              "box": {
+                "x": 120,
+                "y": 464.546875,
+                "width": 161,
+                "height": 89.5625,
+                "top": 464.546875,
+                "right": 281,
+                "bottom": 554.109375,
+                "left": 120
+              }
+            },
+            {
+              "tag": "P",
+              "className": "",
+              "text": "DOM-only stress fixture answer: https://example.invalid/community/questions/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+              "clientWidth": 242,
+              "scrollWidth": 1356,
+              "box": {
+                "x": 39,
+                "y": 1915.4375,
+                "width": 242,
+                "height": 87.171875,
+                "top": 1915.4375,
+                "right": 281,
+                "bottom": 2002.609375,
+                "left": 39
+              }
+            }
+          ]
+        },
+        {
+          "surface": "DOM-only FAQ longURL fixture",
+          "viewport": {
+            "width": 1280,
+            "height": 3376,
+            "dpr": 1
+          },
+          "documentOverflow": true,
+          "documentWidth": 1395,
+          "clippedText": [
+            {
+              "tag": "LI",
+              "className": "",
+              "text": "08:00DOM-only stress fixture: Building useful tools with an interdisciplinary communityDOM-only stress fixture URL: https://example.invalid/submissions/aaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "clientWidth": 242,
+              "scrollWidth": 1237,
+              "box": {
+                "x": 39,
+                "y": 318.59375,
+                "width": 242,
+                "height": 255.515625,
+                "top": 318.59375,
+                "right": 281,
+                "bottom": 574.109375,
+                "left": 39
+              }
+            },
+            {
+              "tag": "P",
+              "className": "",
+              "text": "DOM-only stress fixture URL: https://example.invalid/submissions/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "clientWidth": 161,
+              "scrollWidth": 1156,
+              "box": {
+                "x": 120,
+                "y": 464.546875,
+                "width": 161,
+                "height": 89.5625,
+                "top": 464.546875,
+                "right": 281,
+                "bottom": 554.109375,
+                "left": 120
+              }
+            },
+            {
+              "tag": "P",
+              "className": "",
+              "text": "DOM-only stress fixture answer: https://example.invalid/community/questions/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+              "clientWidth": 242,
+              "scrollWidth": 1356,
+              "box": {
+                "x": 39,
+                "y": 1915.4375,
+                "width": 242,
+                "height": 87.171875,
+                "top": 1915.4375,
+                "right": 281,
+                "bottom": 2002.609375,
+                "left": 39
+              }
+            }
+          ]
+        },
+        {
+          "surface": "signin",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "privacy",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        },
+        {
+          "surface": "terms",
+          "viewport": {
+            "width": 320,
+            "height": 844,
+            "dpr": 1
+          },
+          "documentOverflow": false,
+          "documentWidth": 320,
+          "clippedText": []
+        }
+      ],
+      "images": [
+        "home-rest",
+        "home-cta-rest",
+        "home-schedule",
+        "home-venue",
+        "home-rules",
+        "home-faq",
+        "home-organizers",
+        "home-menu",
+        "dom-stress-agenda",
+        "dom-stress-faq",
+        "signin",
+        "signin-long-email",
+        "signin-menu",
+        "privacy-header",
+        "privacy-menu",
+        "terms-header",
+        "terms-menu"
+      ],
+      "browserMetrics": {
+        "innerWidth": 320,
+        "innerHeight": 844,
+        "outerWidth": 320,
+        "outerHeight": 844,
+        "devicePixelRatio": 1,
+        "visualViewportScale": 1
+      },
+      "cta": {
+        "box": {
+          "x": 20,
+          "y": 618,
+          "width": 280,
+          "height": 58,
+          "top": 618,
+          "right": 300,
+          "bottom": 676,
+          "left": 20
+        },
+        "hitClear": true,
+        "href": "/signin?returnTo=%2Fdashboard"
+      },
+      "organizers": [
+        {
+          "src": "/organizers/Param3021-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 191.03125,
+            "y": 196.6875,
+            "width": 101.9375,
+            "height": 101.9375,
+            "top": 196.6875,
+            "right": 292.96875,
+            "bottom": 298.625,
+            "left": 191.03125
+          },
+          "ring": {
+            "x": 186,
+            "y": 191.65625,
+            "width": 112,
+            "height": 112,
+            "top": 191.65625,
+            "right": 298,
+            "bottom": 303.65625,
+            "left": 186
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/HowDevelop-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 27.03125,
+            "y": 336.6875,
+            "width": 101.9375,
+            "height": 101.9375,
+            "top": 336.6875,
+            "right": 128.96875,
+            "bottom": 438.625,
+            "left": 27.03125
+          },
+          "ring": {
+            "x": 22,
+            "y": 331.65625,
+            "width": 112,
+            "height": 112,
+            "top": 331.65625,
+            "right": 134,
+            "bottom": 443.65625,
+            "left": 22
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/nikhilsbuilds-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 191.03125,
+            "y": 476.6875,
+            "width": 101.9375,
+            "height": 101.9375,
+            "top": 476.6875,
+            "right": 292.96875,
+            "bottom": 578.625,
+            "left": 191.03125
+          },
+          "ring": {
+            "x": 186,
+            "y": 471.65625,
+            "width": 112,
+            "height": 112,
+            "top": 471.65625,
+            "right": 298,
+            "bottom": 583.65625,
+            "left": 186
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        },
+        {
+          "src": "/organizers/callmeshuklaji-x.jpg",
+          "loaded": true,
+          "naturalWidth": 200,
+          "box": {
+            "x": 27.03125,
+            "y": 616.6875,
+            "width": 101.9375,
+            "height": 101.9375,
+            "top": 616.6875,
+            "right": 128.96875,
+            "bottom": 718.625,
+            "left": 27.03125
+          },
+          "ring": {
+            "x": 22,
+            "y": 611.65625,
+            "width": 112,
+            "height": 112,
+            "top": 611.65625,
+            "right": 134,
+            "bottom": 723.65625,
+            "left": 22
+          },
+          "opacity": "1",
+          "visibility": "visible"
+        }
+      ],
+      "menu": {
+        "box": {
+          "x": 0,
+          "y": -315.060302734375,
+          "width": 320,
+          "height": 844,
+          "top": -315.060302734375,
+          "right": 320,
+          "bottom": 528.939697265625,
+          "left": 0
+        },
+        "rows": [
+          {
+            "text": "Home",
+            "box": {
+              "x": 20,
+              "y": -223.060302734375,
+              "width": 280,
+              "height": 60,
+              "top": -223.060302734375,
+              "right": 300,
+              "bottom": -163.060302734375,
+              "left": 20
+            }
+          },
+          {
+            "text": "Projects",
+            "box": {
+              "x": 20,
+              "y": -163.060302734375,
+              "width": 280,
+              "height": 60,
+              "top": -163.060302734375,
+              "right": 300,
+              "bottom": -103.060302734375,
+              "left": 20
+            }
+          },
+          {
+            "text": "Sign in",
+            "box": {
+              "x": 20,
+              "y": -103.060302734375,
+              "width": 280,
+              "height": 60,
+              "top": -103.060302734375,
+              "right": 300,
+              "bottom": -43.060302734375,
+              "left": 20
+            }
+          }
+        ],
+        "overflow": false
+      },
+      "menuEscapeClosed": true
+    }
+  ],
+  "errors": [],
+  "blockedRequests": [],
+  "finalResult": "P2 long URL overflow observed; partial pre-fix capture, not a passing matrix",
+  "failure": "page.waitForFunction: Timeout 30000ms exceeded.\n    at /tmp/ddd-public-responsive-matrix.mjs:11:425",
+  "captureLimitation": "Global smooth scrolling made some chapter captures precede their intended scroll target. Those frames do not establish section alignment. The long agenda URL image visibly demonstrates clipping. Native zoom setup callback remained pending; this report contains no native zoom images.",
+  "findings": [
+    {
+      "severity": "P2",
+      "surface": "Home agenda long URL DOM-only fixture",
+      "evidence": "dom-stress-agenda-320x844.png",
+      "resolutionCommit": "d6f5138340a990532ea609b1f8b236152c900d95",
+      "afterVerification": "pending"
+    }
+  ],
+  "inspectionNotes": "All17native image pixels reviewed in original-size inspection sheets; key organizer and long agenda URL frames also viewed natively. Unbroken agenda URL overflow is confirmed. All four organizer portraits decoded with correct circular crops. Sign-in and legal headers, forms and menus fit at320. Final after matrix must verify the URL fix at each requested size."
+}

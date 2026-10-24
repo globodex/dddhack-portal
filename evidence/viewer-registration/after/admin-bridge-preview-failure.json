@@ -1,0 +1,155 @@
+{
+  "source": "c205b404b32ecf444c6897777421f297574a31c6",
+  "syntheticOnly": true,
+  "checks": [
+    {
+      "name": "Not registered resets team filter; count28; page1has25; no selectable/actionable Viewer rows",
+      "file": "evidence/viewer-registration/after/admin-not-registered-page1-1440.png"
+    },
+    {
+      "name": "Next page has3records; count retained28",
+      "file": "evidence/viewer-registration/after/admin-not-registered-page2-1440.png"
+    },
+    {
+      "name": "Search email returns1correct Viewer and resets pagination",
+      "file": "evidence/viewer-registration/after/admin-not-registered-search-1440.png"
+    },
+    {
+      "name": "Empty search shows0viewers and No matches",
+      "file": "evidence/viewer-registration/after/admin-not-registered-empty-1440.png"
+    },
+    {
+      "name": "320short admin filters/pagination has no document overflow",
+      "file": "evidence/viewer-registration/after/admin-not-registered-320x480.png"
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/admin/participants",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864839660",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864839660",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864839660",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+      "body": null
+    },
+    {
+      "method": "POST",
+      "url": "http://localhost:3008/api/portal",
+      "body": {
+        "action": "preview-import",
+        "data": {
+          "kind": "roster",
+          "csv": "stranger@portal.test"
+        }
+      }
+    }
+  ],
+  "responses": [
+    {
+      "url": "http://localhost:3008/admin/participants",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864839660",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864839660",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864839660",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/api/portal",
+      "status": 502,
+      "body": {
+        "code": "QA_UPSTREAM_UNAVAILABLE",
+        "message": "fetch failed"
+      }
+    }
+  ],
+  "pageErrors": [],
+  "result": "FAIL",
+  "failure": {
+    "message": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Import participants', exact: true }) to be visible\u001b[22m\n",
+    "stack": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Import participants', exact: true }) to be visible\u001b[22m\n\n    at /workspace/ddd-viewer-browser/scripts/qa-viewer-registration-admin.mjs:11:418"
+  },
+  "browserClosed": true
+}

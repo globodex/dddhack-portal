@@ -1,0 +1,10 @@
+{"started":1792864809914,"method":"GET","path":"/api/portal?view=%2Fdashboard&q=&page=0&focus=","status":503,"fixture":"controlled-server-503"}
+{"started":1792864814463,"method":"GET","path":"/api/portal?view=%2Fdashboard&focus=","status":200,"fixture":"passthrough-current-synthetic-backend"}
+{"started":1792864816011,"method":"GET","path":"/api/portal?view=%2Fdashboard&q=&page=0&focus=","status":200,"fixture":"passthrough-current-synthetic-backend"}
+{"started":1792864822202,"method":"GET","path":"/api/portal?view=%2Fprojects&q=&page=0&focus=","status":200,"fixture":"passthrough-current-synthetic-backend"}
+{"started":1792864826219,"method":"GET","path":"/api/portal?view=%2Fdashboard&q=&page=0&focus=","status":401,"fixture":"passthrough-current-synthetic-backend"}
+{"started":1792864839787,"method":"GET","path":"/api/portal?view=%2Fadmin%2Fparticipants&q=&page=0&focus=","status":200,"fixture":"passthrough-current-synthetic-backend"}
+{"started":1792864851864,"method":"GET","path":"/api/portal?view=%2Fdashboard&q=&page=0&focus=","status":200,"fixture":"passthrough-current-synthetic-backend"}
+{"started":1792864860508,"method":"POST","path":"/api/portal","status":502,"error":"fetch failed"}
+{"started":1792864909143,"method":"GET","path":"/api/portal?view=%2Fadmin%2Fparticipants&q=&page=0&focus=","status":200,"fixture":"passthrough-current-synthetic-backend"}
+{"started":1792864957481,"method":"GET","path":"/api/portal?view=%2Fadmin%2Fparticipants&q=&page=0&focus=","status":200,"fixture":"passthrough-current-synthetic-backend"}

@@ -1,0 +1,14 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.goto: net::ERR_PROXY_CONNECTION_FAILED at https://portal-perf.test:3443/dashboard
+Call log:
+[2m  - navigating to "https://portal-perf.test:3443/dashboard", waiting until "networkidle"[22m
+
+    at measure (/workspace/ddd-performance-current/evidence/performance-production/measure-production.mjs:31:117)
+    at /workspace/ddd-performance-current/evidence/performance-production/measure-production.mjs:42:151 {
+  name: 'Error'
+}
+
+Node.js v24.19.0

@@ -1,0 +1,54 @@
+{
+  "source": "95104a80eaa7bf95fa67b973ee68b75c2adb1da2",
+  "readOnly": true,
+  "before": [
+    {
+      "src": "/icons/social/github.svg",
+      "complete": true,
+      "naturalWidth": 24
+    },
+    {
+      "src": "/icons/social/linkedin.svg",
+      "complete": true,
+      "naturalWidth": 24
+    }
+  ],
+  "after": [
+    {
+      "src": "/icons/social/github.svg",
+      "complete": true,
+      "naturalWidth": 24,
+      "rect": {
+        "x": 32,
+        "y": 371,
+        "width": 20,
+        "height": 20,
+        "top": 371,
+        "right": 52,
+        "bottom": 391,
+        "left": 32
+      },
+      "display": "block",
+      "visibility": "visible"
+    },
+    {
+      "src": "/icons/social/linkedin.svg",
+      "complete": true,
+      "naturalWidth": 24,
+      "rect": {
+        "x": 32,
+        "y": 431,
+        "width": 20,
+        "height": 20,
+        "top": 431,
+        "right": 52,
+        "bottom": 451,
+        "left": 32
+      },
+      "display": "block",
+      "visibility": "visible"
+    }
+  ],
+  "blocked": [],
+  "result": "passed"
+}

@@ -1,0 +1,153 @@
+{
+  "syntheticOnly": true,
+  "source": "ad96baf40f411af984e5987fd58352a82c0f66f6",
+  "sourceHashes": {
+    "app/add-admins.tsx": "79c17ca925b97371d6cf1f1c49be82a7d62a3ed7a6ef11f453cd9c785fbcd740",
+    "app/admin-experience.css": "eab8d356a4736a5fdff96f551c0b27d1739f4a82cafb95804890bc6a85e2b304",
+    "app/portal.tsx": "21818031e05c34ed0345e4a4eb8fa1c40e4d49d5174bf3946f46aff543621f1f",
+    "lib/admin-access.ts": "688a69014a400f82a139deebb7794266e903e3c6607a28626241506f126e5cd9",
+    "lib/action-confirmation.ts": "66d6c9f436ba8a770720ede71fa36bc06483bea6a3f60c6f1a3796eb7cfba51d"
+  },
+  "checks": [
+    {
+      "name": "owner-only list, protected owner and responsive real list",
+      "passed": true
+    },
+    {
+      "name": "Escape cancels revoke with focus restoration and zero mutation",
+      "passed": true
+    },
+    {
+      "name": "failed revoke preserves row and one persistent actionable error",
+      "passed": true
+    },
+    {
+      "name": "confirmed revoke persists, same authenticated admin loses staff access",
+      "passed": true
+    },
+    {
+      "name": "existing Add restores only synthetic admin through real confirmation",
+      "passed": true
+    },
+    {
+      "name": "saved submission dates retaken only after client hydration",
+      "passed": true
+    }
+  ],
+  "requests": [
+    {
+      "action": "revoke-admin",
+      "data": {
+        "userId": "fake_admin",
+        "confirmation": "REVOKE_ADMIN"
+      }
+    },
+    {
+      "action": "revoke-admin",
+      "data": {
+        "userId": "fake_admin",
+        "confirmation": "REVOKE_ADMIN"
+      }
+    },
+    {
+      "action": "add-admin",
+      "data": {
+        "email": "admin@portal.test",
+        "confirmation": "ADD_ADMIN"
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "evidence/admin-owner-access-final-hydrated/owner-list-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-owner-access-final-hydrated/owner-list-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-owner-access-final-hydrated/owner-list-320.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-owner-access-final-hydrated/revoke-confirmation-320.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "fullPage": false,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-owner-access-final-hydrated/failed-revoke-row-retained.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "fullPage": false,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-owner-access-final-hydrated/revoked-admin-list.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-owner-access-final-hydrated/admin-restored-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-owner-access-final-hydrated/dates-hydrated-read-only.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": true
+    }
+  ],
+  "errors": [],
+  "savedWindowInputs": [
+    "2026-10-24T08:00",
+    "2026-11-01T20:00"
+  ],
+  "closed": true,
+  "sourceAfter": "ad96baf40f411af984e5987fd58352a82c0f66f6",
+  "sourceHashesAfter": {
+    "app/add-admins.tsx": "79c17ca925b97371d6cf1f1c49be82a7d62a3ed7a6ef11f453cd9c785fbcd740",
+    "app/admin-experience.css": "eab8d356a4736a5fdff96f551c0b27d1739f4a82cafb95804890bc6a85e2b304",
+    "app/portal.tsx": "21818031e05c34ed0345e4a4eb8fa1c40e4d49d5174bf3946f46aff543621f1f",
+    "lib/admin-access.ts": "688a69014a400f82a139deebb7794266e903e3c6607a28626241506f126e5cd9",
+    "lib/action-confirmation.ts": "66d6c9f436ba8a770720ede71fa36bc06483bea6a3f60c6f1a3796eb7cfba51d"
+  },
+  "runtimeSourcesUnchanged": true,
+  "pixelReview": {
+    "reviewedAllOriginalPNGs": true,
+    "method": "Opened native files using view_image; no resized replacement artifacts."
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "purpose": "Matched production webpack build preparation only; no frontend performance result.",
+  "baselineOriginalSource": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+  "baselineOnlyExtraCommit": "e386cc7 main-only Vercel Git deployment configuration",
+  "finalRequestedSource": "2657f26254ed323ca84a167a2f220f05f4ec7cbf",
+  "cases": [
+    {
+      "case": "baseline",
+      "root": "/workspace/ddd-perf-prod-baseline",
+      "source": "c353a173a85580ebb4eed47fff0a23a0830b81a6",
+      "buildId": "FxM2l4SoSH0RiG3L9SgqW",
+      "nextConfigSha256": "a596f3f09201f02b53868492c2e2fb38e867090568c985387fcdee2f52706a82",
+      "packageJsonSha256": "b157875a99b39beefb4104332038d977794ab47f921de1ea9887e49857521e1f",
+      "packageLockSha256": "012c834e5021933da47b135aae5642ef4c86592de81407d81b04c7185ba8e9fc",
+      "nodeModules": "/workspace/dddhack-portal/node_modules",
+      "node": "v24.19.0",
+      "next": "16.4.3",
+      "webpack": null,
+      "bundler": "webpack",
+      "buildCommand": [
+        "node",
+        "node_modules/next/dist/bin/next",
+        "build",
+        "--webpack"
+      ],
+      "buildExitCode": 0,
+      "loadableEnvFiles": [],
+      "productionStaticInventory": {
+        ".js": {
+          "files": 28,
+          "bytes": 1239778
+        },
+        ".css": {
+          "files": 4,
+          "bytes": 182779
+        },
+        ".woff2": {
+          "files": 4,
+          "bytes": 57084
+        }
+      },
+      "staticInventoryIsPerPageTransferMeasurement": false,
+      "productionServerStarted": true
+    },
+    {
+      "case": "final",
+      "root": "/workspace/ddd-perf-prod-final",
+      "source": "2657f26254ed323ca84a167a2f220f05f4ec7cbf",
+      "buildId": "QdP_-Y3mVZskIG5jIP-YD",
+      "nextConfigSha256": "a596f3f09201f02b53868492c2e2fb38e867090568c985387fcdee2f52706a82",
+      "packageJsonSha256": "b157875a99b39beefb4104332038d977794ab47f921de1ea9887e49857521e1f",
+      "packageLockSha256": "012c834e5021933da47b135aae5642ef4c86592de81407d81b04c7185ba8e9fc",
+      "nodeModules": "/workspace/dddhack-portal/node_modules",
+      "node": "v24.19.0",
+      "next": "16.4.3",
+      "webpack": null,
+      "bundler": "webpack",
+      "buildCommand": [
+        "node",
+        "node_modules/next/dist/bin/next",
+        "build",
+        "--webpack"
+      ],
+      "buildExitCode": 0,
+      "loadableEnvFiles": [],
+      "productionStaticInventory": {
+        ".js": {
+          "files": 35,
+          "bytes": 1325377
+        },
+        ".css": {
+          "files": 7,
+          "bytes": 339003
+        },
+        ".woff2": {
+          "files": 4,
+          "bytes": 57084
+        }
+      },
+      "staticInventoryIsPerPageTransferMeasurement": false,
+      "productionServerStarted": true
+    }
+  ],
+  "sameNextConfig": true,
+  "sameInstalledDependencies": true,
+  "providerCredentialsSupplied": false,
+  "envFilesCopied": false,
+  "appSourcePatched": false,
+  "serversStarted": true,
+  "performanceMeasurements": "Profile owns the accepted56 matrix and separate bounded CPU attribution. This build/lifecycle evidence makes no numerical frontend or hosted-performance claim.",
+  "runtimeCoordination": {
+    "authorizedBy": "Root plus Profile TLS harness GO",
+    "ports": {
+      "baseline": 3443,
+      "final": 3444
+    },
+    "origins": {
+      "baseline": "https://portal-perf.test:3443",
+      "final": "https://portal-perf.test:3444"
+    },
+    "backendOrigin": "https://api.portal-perf.test:8842",
+    "mode": "NODE_ENV=production / native HTTPS supported custom Next server from unchanged matched webpack builds",
+    "PORTAL_LOCAL_TEST": "absent",
+    "nodeExtraCA": "/tmp/ddd-production-perf-tls-_bhf_4qo/ca.pem",
+    "dnsFixtureModule": "/workspace/ddd-performance-current/evidence/performance-production/dns-fixture.mjs",
+    "realProviderCredentialsSupplied": false,
+    "TLSVerificationDisabled": false,
+    "appGuardChanged": false,
+    "routeWarmupRequestsByBuildLane": 0,
+    "status": "Resumed matched local run completed; both owned custom HTTPS apps stopped and all3443/3444/3310/3311 listeners verified closed.",
+    "customServerScript": "/workspace/ddd-performance-current/evidence/performance-production/next-https-server.mjs",
+    "resumeLifecycle": "resumed-local-run/lifecycle.json"
+  },
+  "serversCurrentlyRunning": false,
+  "invalidPreflight": {
+    "status": "discarded before valid measurement",
+    "reportedBy": "parent/profile",
+    "reason": "Synthetic original8789 backend returned REQUEST_FAILED500 on both projected routes; session200 alone was insufficient. TLS forwarding also needed x-forwarded-proto:https.",
+    "matchedRestartRequired": true,
+    "bothOwnedPidsStopped": [
+      141188,
+      141190
+    ],
+    "signal": "SIGTERM",
+    "sessionsExitCode": 143,
+    "ports3310and3311VerifiedClosed": true,
+    "appSourcePatched": false,
+    "buildArtifactsUnchanged": true,
+    "frontendPerformanceResult": false,
+    "followup": "Parent prepares fresh disposable original-richDB copy and baseline696 backend8851. Profile corrects TLS forwarding. No original DB writes or newer migrations applied."
+  },
+  "userHold": {
+    "oldCustomServerPids": [
+      142928,
+      142919
+    ],
+    "stopCompleted": true,
+    "restartExecutedBeforeResume": false,
+    "listenersVerifiedClosed": [
+      3443,
+      3444,
+      3310,
+      3311
+    ],
+    "filesAndArtifactsPreserved": true,
+    "postHoldPushes": 0
+  },
+  "resumedLocalRun": {
+    "authorized": "Local only by root; no push, hosted migration or deploy",
+    "unchangedBuilds": true,
+    "PORTAL_LOCAL_TEST": "absent",
+    "providerCredentialsSupplied": false,
+    "TLSVerificationDisabled": false,
+    "warmupRequestsByBuildLane": 0,
+    "allAppConfigDiffsEmpty": true,
+    "lifecycle": "resumed-local-run/lifecycle.json",
+    "currentState": "both apps stopped"
+  }
+}

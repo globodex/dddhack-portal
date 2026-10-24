@@ -1,0 +1,65 @@
+{
+  "reviewedAt": "2026-10-24",
+  "sourceCommits": [
+    "e1d50c27ef0785a93faf4c2e1f48929937d65aac",
+    "59246860b49d83412c6685e4643f97a21aab55e5"
+  ],
+  "equivalentLocalCherryHead": "6213006",
+  "productionSourceHashes": {
+    "neon/db/populated-upgrade.ts": "6a398cf0d178ed80970097c1371a0646befad2a96916b32b52c4e133de6f0e55",
+    "neon/db/migrate.ts": "0d8b9acb2947f240878d421310f8f6954d091912f1c3794f7946136e85575912",
+    "neon/scripts/upgrade-populated.ts": "e38e177fb90c91702e90edabbc140f542f7a94a5e071500cc2698e32153107b9",
+    "neon/migration-plan.ts": "9532daa8d3b71dbecf71de3ecb047fbd1f577ada8eef5638b661012dcb29326e",
+    "evidence/neon-host-archive/historical-ledger-checksums.json": "bc0419ef3945b9dd95bec1b61dc9e08cbda024768aff56b5bd9dc3c638e52105",
+    "neon/migrations/0102_credit_stock.sql": "74bf8549edbecb753424a86e692844e962be02c0faeddda8f0b2dd3ffaacb72e",
+    "neon/migrations/0103_project_media_limits.sql": "3f42da160787977b7655fe74647655bd656f4c55467c2a42b3dd1627859f462c",
+    "vercel.json": "fceb71bd02fc3e075d6eeabc43c8abb43ad06356fa49852ff4215a1830693940"
+  },
+  "parentWindowsDocumentReview": {
+    "path": "docs/NEON_POPULATED_UPGRADE_PLAN.md",
+    "sha256": "f8c7f62eff382cdd56cf3c71065f2d80256061fea1047e1b80dea8c4e73d1447",
+    "parentWorkingCopyReviewed": true,
+    "blockerFound": false
+  },
+  "verification": {
+    "command": "node --import tsx --test --test-concurrency=1 tests/populated-upgrade-independent.test.ts",
+    "passed": 10,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "typecheck": "npx tsc --noEmit passed",
+    "sourceReadOnlyDiff": "git diff --exit-code -- app lib neon passed",
+    "freshProcessAfterFinalSourceFix": true
+  },
+  "guardResults": [
+    "inspection read-only",
+    "populated7→9 exact2pending and oldrowpreservation",
+    "8→9 only0103pending",
+    "freshreceipt9→9 applied[]",
+    "missing/unknown/mismatched/0103-onlyledger refused beforeDDL",
+    "actualrolechange and stale counts rechecked underlock",
+    "postconditiontrigger failure fullDDL/ledger/data rollback",
+    "legacycredit collision rollback",
+    "source/receiptage/digest/restore acknowledgment guards",
+    "CLIofflineplan/strictflags/privatefile nooverwrite/secretfreerefusals"
+  ],
+  "scope": {
+    "syntheticInMemoryPGliteOnly": true,
+    "productionSourceEditedByAudit": false,
+    "recoveredBenchmarkDatabaseAccessed": false,
+    "hostedDatabaseAccessed": false,
+    "backupCreatedOrVerifiedByAgent": false,
+    "hostedMigration": false,
+    "productionAllocation": false,
+    "providerChanges": false,
+    "push": false,
+    "merge": false,
+    "deploy": false
+  },
+  "limitations": [
+    "No hosted target/ledger or backup/restore verification.",
+    "No native multi-connection PostgreSQL or actual Windows execution.",
+    "CLI TCP/TLS transport not exercised; production core uses real PGlite adapter and transaction SQL.",
+    "Owner backup/restore attestation is acknowledged, not independently verified by this tool."
+  ]
+}

@@ -1,0 +1,14 @@
+✔ actual operational data permits check-in and submissions while incomplete scoring and provider data remain blocked (144.218543ms)
+✔ operational split preserves server windows, Going, required media, repository validation and three-attempt atomic limits (153.141175ms)
+✔ check-in derives readiness from actual Going approval and valid submissions need no separate scope flag (86.369084ms)
+✔ actual setup errors are actionable and legacy enable compatibility cannot weaken versioned operational dates (134.568965ms)
+✔ diversity validation uses an explicit supported assessment mode, accepts negated words and never approves demographic algorithms (1.374507ms)
+✔ historical scope hints do not gate actual readiness and legacy activation remains a versioned compatibility action (74.205628ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1503.552463

@@ -1,0 +1,38 @@
+neon deploy [options]
+
+Options:
+--project-id
+└────────────────>  Project ID [string]
+--branch
+└────────────────>  Branch ID or name [string]
+--config
+└────────────────>  Path to a neon.ts policy (defaults to the neon.ts next
+                    to .neon, or in cwd without one) [string]
+--env
+└────────────────>  Path to a .env file to load into the environment
+                    before evaluating neon.ts so Function env values
+                    resolve from it. Existing env vars are not overridden.
+                    Function env values that read process.env must be set
+                    in this file or the environment. [string]
+--update-existing
+└────────────────>  Override branch settings that differ from neon.ts
+                    without asking [boolean] [default: false]
+--allow-protected
+└────────────────>  Apply to a branch marked protected on Neon without
+                    asking [boolean] [default: false]
+-y, --yes
+└────────────────>  Answer yes to every confirmation: --update-existing
+                    and --allow-protected [boolean] [default: false]
+--env-pull
+└────────────────>  Pull the branch's Neon env vars (DATABASE_URL, …) into
+                    a local .env after a successful apply. On by default;
+                    use --no-env-pull to skip (e.g. when injecting env at
+                    runtime with `neon-env run` / `neon dev`). [boolean]
+                    [default: true]
+
+Global options: see neon --help
+
+ Use neon deploy with a neon.ts file for a full deployment (declared services and functions).
+ Use neon functions deploy to deploy one function manually, including a targeted env update.
+ neon deploy --env <file> loads that .env file so neon.ts can read Function env from it.
+ neon functions deploy --env is KEY=VALUE (repeatable), not a file path.

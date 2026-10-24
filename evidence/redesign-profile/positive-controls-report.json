@@ -1,0 +1,101 @@
+{
+  "source": "affec90e64f9fd1bcaefeee66d17ad71a4dfef81",
+  "origin": "http://localhost:3001",
+  "syntheticOnly": true,
+  "cssInjected": false,
+  "checks": [
+    {
+      "name": "keyboard: authenticated email and stored profile values prefill",
+      "passed": true
+    },
+    {
+      "name": "keyboard: exact 8 expression and8 color choices",
+      "passed": true
+    },
+    {
+      "name": "keyboard: single selected color updates all8 previews, expression staysselected, native radios invisible",
+      "passed": true
+    },
+    {
+      "name": "keyboard: normal document scroll, no horizontal/internal field clipping",
+      "passed": true
+    },
+    {
+      "name": "keyboard: invalid basics shown at fields and first invalid field focused without request",
+      "passed": true
+    },
+    {
+      "name": "keyboard: all expression/color radios and sex respond to input",
+      "passed": true
+    },
+    {
+      "name": "keyboard: international phone andhttps URL errors linked to fields",
+      "passed": true
+    },
+    {
+      "name": "keyboard: icon picker, Add and remove preserve remaining social link",
+      "passed": true
+    },
+    {
+      "name": "keyboard: back and next preserve data across all3 steps",
+      "passed": true
+    },
+    {
+      "name": "keyboard: step3 automated WCAG scan has zero violations",
+      "passed": true
+    },
+    {
+      "name": "keyboard: saving state disables fields andcommits no duplicate request",
+      "passed": true
+    },
+    {
+      "name": "keyboard: Save posts once, persists every field and redirects straight to teams without confirmation",
+      "passed": true
+    },
+    {
+      "name": "touch: authenticated email and stored profile values prefill",
+      "passed": true
+    },
+    {
+      "name": "touch: exact 8 expression and8 color choices",
+      "passed": true
+    },
+    {
+      "name": "touch: single selected color updates all8 previews, expression staysselected, native radios invisible",
+      "passed": true
+    },
+    {
+      "name": "touch: normal document scroll, no horizontal/internal field clipping",
+      "passed": true
+    },
+    {
+      "name": "touch: invalid basics shown at fields and first invalid field focused without request",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "writes": [
+    {
+      "mode": "keyboard",
+      "actor": "fake_alice",
+      "action": "complete-profile",
+      "count": 1,
+      "status": "persisted"
+    }
+  ],
+  "accessibility": [
+    {
+      "mode": "keyboard",
+      "step": 3,
+      "violations": []
+    }
+  ],
+  "screenshots": [
+    "profile-error-basics-keyboard.png",
+    "profile-error-contact-keyboard.png",
+    "profile-save-loading-keyboard.png",
+    "profile-error-basics-touch.png"
+  ],
+  "failure": "locator.tap: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[name=\"sex\"][value=\"non-binary\"]')\u001b[22m\n\u001b[2m    - locator resolved to <input checked name=\"sex\" required=\"\" type=\"radio\" value=\"non-binary\"/>\u001b[22m\n\u001b[2m  - attempting tap action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span>Non-binary</span> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying tap action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span>Non-binary</span> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying tap action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    56 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span>Non-binary</span> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying tap action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /tmp/ddd-profile-controls.mjs:82:33",
+  "sourceAtEnd": "affec90e64f9fd1bcaefeee66d17ad71a4dfef81"
+}

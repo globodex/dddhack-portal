@@ -1,0 +1,359 @@
+{
+  "source": "d09214752fe267675eeb48ee61d14717586bd906",
+  "origin": "http://localhost:3000",
+  "syntheticOnly": true,
+  "readOnly": true,
+  "startedAt": "2026-10-24T12:34:37.847Z",
+  "screenshots": [
+    {
+      "file": "profile-320x640-baseline.png",
+      "name": "profile",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "baseline",
+      "source": "d09214752fe267675eeb48ee61d14717586bd906",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      },
+      "inspected": true
+    },
+    {
+      "file": "dashboard-team-320x640-baseline.png",
+      "name": "dashboard-team",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "baseline",
+      "source": "d09214752fe267675eeb48ee61d14717586bd906",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Dashboard"],
+        "overflow": []
+      },
+      "inspected": true
+    },
+    {
+      "file": "participants-320x640-baseline.png",
+      "name": "participants",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "baseline",
+      "source": "d09214752fe267675eeb48ee61d14717586bd906",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      },
+      "inspected": true
+    },
+    {
+      "file": "teams-320x640-baseline.png",
+      "name": "teams",
+      "viewport": {
+        "label": "320x640",
+        "width": 320,
+        "height": 640
+      },
+      "state": "baseline",
+      "source": "d09214752fe267675eeb48ee61d14717586bd906",
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      },
+      "inspected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "profile",
+      "viewport": "320x640",
+      "state": "baseline",
+      "passed": true,
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["Profile"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "dashboard-team",
+      "viewport": "320x640",
+      "state": "baseline",
+      "passed": true,
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Dashboard"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "participants",
+      "viewport": "320x640",
+      "state": "baseline",
+      "passed": true,
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      }
+    },
+    {
+      "name": "teams",
+      "viewport": "320x640",
+      "state": "baseline",
+      "passed": true,
+      "dimensions": {
+        "width": 320,
+        "height": 640,
+        "scrollWidth": 320,
+        "heading": ["><Discover"],
+        "overflow": []
+      }
+    }
+  ],
+  "errors": [],
+  "mutationsBlocked": [],
+  "network": [
+    {
+      "method": "GET",
+      "path": "/profile"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/dashboard"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/github.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/linkedin.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/whatsapp.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/discover/participants"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/github.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/icons/social/linkedin.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/discover/teams"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js"
+    },
+    {
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg"
+    }
+  ],
+  "limitations": [
+    "Local synthetic fixture, not production or real sign-in.",
+    "Long text stress changes only browser DOM or unsaved form state, never persisted data.",
+    "Chromium touch emulation is not a physical-device test."
+  ],
+  "browser": "154.0.8037.57",
+  "finishedAt": "2026-10-24T12:34:54.489Z",
+  "findings": [
+    {
+      "id": "P2-01",
+      "severity": "P2",
+      "screen": "Dashboard / Team",
+      "viewport": "320x640",
+      "source": "d09214752fe267675eeb48ee61d14717586bd906",
+      "evidence": "dashboard-team-320x640-baseline.png",
+      "observed": "Dashboard heading breaks mid-word beside the checked-in badge.",
+      "recommendation": "Move badge to its own row at the narrow breakpoint and keep the Dashboard label on one line.",
+      "status": "Reported to coordinator; coordinator owns source fix."
+    }
+  ]
+}

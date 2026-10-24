@@ -1,0 +1,478 @@
+[
+  {
+    "label": "signin",
+    "url": "https://devfolio.co/signin",
+    "status": 200,
+    "finalUrl": "https://devfolio.co/discover?auth=signin",
+    "links": [
+      {
+        "text": "Skip to content",
+        "href": "https://devfolio.co/discover?auth=signin#main-content"
+      },
+      {
+        "text": "",
+        "href": "https://devfolio.co/discover"
+      },
+      {
+        "text": "Home",
+        "href": "https://devfolio.co/home"
+      },
+      {
+        "text": "Blog",
+        "href": "https://devfolio.co/blog"
+      },
+      {
+        "text": "ETHINDIA 2026",
+        "href": "https://nsb.dev/ethindia26-discover"
+      },
+      {
+        "text": "Get Devcon tickets",
+        "href": "https://nsb.dev/devcon26-discover"
+      },
+      {
+        "text": "DeFi Security Summit 2026\n\nMUMBAI, INDIA\n\nDeFi Security Summit brings together security researchers, developers, and protocol builders to share knowledge and make decentralized finance safer. DeFi Security Summit\n\nNOV 1 - 2, 2026",
+        "href": "https://defisecuritysummit.org/?utm_source=devfolio&utm_medium=discover&utm_campaign=hottest_events&utm_content=ad525954e3fb425bad1abf9d6df64d7e"
+      },
+      {
+        "text": "Devcon 8\n\nJIO WORLD CENTRE, MUMBAI, INDIA\n\nDevcon is an annual global event organized by the Ethereum Foundation; a space to dive into open-source technology, meet the communities behind it, and explore the ideas defining the future of open technology.\n\nNOV 3 - 6, 2026",
+        "href": "https://devcon.org/en/tickets/?utm_source=devfolio&utm_medium=discover&utm_campaign=hottest_events&utm_content=b4979982630a4969922b9d05641c07d0"
+      },
+      {
+        "text": "Stake Clash\n\nStake. Compete. Win.",
+        "href": "https://devfolio.co/projects/stake-clash-84f4"
+      },
+      {
+        "text": "Claude City\n\nClaude code as a game",
+        "href": "https://devfolio.co/projects/claude-clan-0e9e"
+      },
+      {
+        "text": "Tokito\n\nDescribe the board. Claude drafts the schematic.",
+        "href": "https://devfolio.co/projects/tokito-2f44"
+      },
+      {
+        "text": "OnlyGains.ai\n\nDump OnlyFans. Gain ETH + Health with Blockade API",
+        "href": "https://devfolio.co/projects/onlygains-81d7"
+      },
+      {
+        "text": "Post",
+        "href": "https://twitter.com/intent/tweet?&text=The%20best%20way%20to%20predict%20the%20future%20is%20to%20invent%20it.%20-%20Alan%20Kay"
+      },
+      {
+        "text": "Understanding Your Personal Growth\nlws.io\nA practical guide to understanding, tracking, and appreciating your personal growth without comparing your journey to others.",
+        "href": "https://lws.io/you-got-this/understanding-personal-growth/"
+      },
+      {
+        "text": "What We Learned from Letting AI PostTrain AI\nwww.thoughtfullab.com\nAn experiment in letting frontier AI agents post-train other models end to end and what their failures reveal about research intuition, evaluation, and experimentation.",
+        "href": "https://www.thoughtfullab.com/letting-ai-posttrain-ai.html"
+      },
+      {
+        "text": "Beyond WASI: Running any Rust application in the browser with BrowserPod 3.0\nlabs.leaningtech.com\nBrowserPod can now run real Rust programs in the browser, compiled from unmodified source with stock rustc and cargo.",
+        "href": "https://labs.leaningtech.com/blog/browserpod-rust.html"
+      },
+      {
+        "text": "",
+        "href": "https://t.me/devfolio"
+      },
+      {
+        "text": "",
+        "href": "https://twitter.com/devfolio"
+      },
+      {
+        "text": "",
+        "href": "https://nsb.dev/discord"
+      },
+      {
+        "text": "",
+        "href": "https://github.com/devfolioco"
+      },
+      {
+        "text": "",
+        "href": "https://www.linkedin.com/company/devfolio/"
+      },
+      {
+        "text": "",
+        "href": "https://warpcast.com/devfolio"
+      },
+      {
+        "text": "Organize a hackathon",
+        "href": "https://devfolio.co/organize"
+      },
+      {
+        "text": "Explore hackathons",
+        "href": "https://devfolio.co/hackathons"
+      },
+      {
+        "text": "Code of Conduct",
+        "href": "https://devfolio.co/code-of-conduct"
+      },
+      {
+        "text": "Brand Assets",
+        "href": "https://devfolio.co/brand"
+      },
+      {
+        "text": "Documentation",
+        "href": "https://guide.devfolio.co/"
+      },
+      {
+        "text": "About",
+        "href": "https://devfolio.co/about"
+      },
+      {
+        "text": "Blog",
+        "href": "https://devfolio.co/blog"
+      },
+      {
+        "text": "Careers",
+        "href": "https://devfolio.co/careers"
+      },
+      {
+        "text": "Changelog",
+        "href": "https://devfolio.co/changelog"
+      },
+      {
+        "text": "Privacy",
+        "href": "https://devfolio.co/privacy-policy"
+      },
+      {
+        "text": "Terms",
+        "href": "https://devfolio.co/terms-of-use"
+      },
+      {
+        "text": "Guide",
+        "href": "https://guide.devfolio.co/"
+      },
+      {
+        "text": "Status",
+        "href": "https://status.devfolio.co/"
+      },
+      {
+        "text": "Contact us",
+        "href": "mailto:hello@devfolio.co"
+      },
+      {
+        "text": " Privacy Policy ",
+        "href": "https://policies.google.com/privacy"
+      },
+      {
+        "text": " Terms of Service ",
+        "href": "https://policies.google.com/terms"
+      }
+    ]
+  },
+  {
+    "label": "hackathons",
+    "url": "https://devfolio.co/hackathons",
+    "status": 200,
+    "finalUrl": "https://devfolio.co/hackathons",
+    "links": [
+      {
+        "text": "Skip to content",
+        "href": "https://devfolio.co/hackathons#main-content"
+      },
+      {
+        "text": "",
+        "href": "https://devfolio.co/discover"
+      },
+      {
+        "text": "Home",
+        "href": "https://devfolio.co/home"
+      },
+      {
+        "text": "Blog",
+        "href": "https://devfolio.co/blog"
+      },
+      {
+        "text": "Your hackathons",
+        "href": "https://devfolio.co/hackathons/applied"
+      },
+      {
+        "text": "All open hackathons",
+        "href": "https://devfolio.co/hackathons/open"
+      },
+      {
+        "text": "Version Beta 9.0",
+        "href": "https://version-beta-9.devfolio.co/"
+      },
+      {
+        "text": "",
+        "href": "https://versionbeta.istemanit.in/"
+      },
+      {
+        "text": "",
+        "href": "https://www.facebook.com/ISTESCMANIT"
+      },
+      {
+        "text": "Syntax Error 2026",
+        "href": "https://syntax-error-6.devfolio.co/"
+      },
+      {
+        "text": "",
+        "href": "https://hackathon.sdslabs.co/"
+      },
+      {
+        "text": "",
+        "href": "https://x.com/sdslabs"
+      },
+      {
+        "text": "AgentVerse",
+        "href": "https://agentverse.devfolio.co/"
+      },
+      {
+        "text": "",
+        "href": "https://agentverse.uclai.co.uk/"
+      },
+      {
+        "text": "TUM Blockchain & AI Hackathon",
+        "href": "https://tum.devfolio.co/"
+      },
+      {
+        "text": "",
+        "href": "https://hackathon.tum-blockchain.com/"
+      },
+      {
+        "text": "",
+        "href": "https://x.com/tbc_munich"
+      },
+      {
+        "text": "Lean In Hacks 8.0",
+        "href": "https://lean-in-hacks-8.devfolio.co/"
+      },
+      {
+        "text": "",
+        "href": "https://twitter.com/Lean_In_IGDTUW"
+      },
+      {
+        "text": "Hacknauts 2.0",
+        "href": "https://hacknauts26.devfolio.co/"
+      },
+      {
+        "text": "",
+        "href": "https://www.hacknauts26.space/"
+      },
+      {
+        "text": "",
+        "href": "https://discord.gg/StKy5qeUsZ"
+      },
+      {
+        "text": "hackodisha-6.0",
+        "href": "https://hackodisha-6a.devfolio.co/"
+      },
+      {
+        "text": "",
+        "href": "https://www.hackodisha.dev/"
+      },
+      {
+        "text": "",
+        "href": "https://x.com/webwiznitr"
+      },
+      {
+        "text": "THE BIG HACK 2.0",
+        "href": "https://the-big-hack-2.devfolio.co/"
+      },
+      {
+        "text": "",
+        "href": "https://www.instagram.com/thebigo_ait/"
+      },
+      {
+        "text": "haxfinity",
+        "href": "https://haxfinity.devfolio.co/"
+      },
+      {
+        "text": "GeNarrative Clash",
+        "href": "https://genarrative-clash.devfolio.co/"
+      },
+      {
+        "text": "",
+        "href": "https://genarrative-clash-2026.web.app/"
+      },
+      {
+        "text": "",
+        "href": "https://www.instagram.com/gfg_campusbodytiu/"
+      },
+      {
+        "text": "DevNexus 2.0",
+        "href": "https://devnexus2.devfolio.co/"
+      },
+      {
+        "text": "",
+        "href": "https://devnexushackathon.in/"
+      },
+      {
+        "text": "",
+        "href": "https://discord.gg/m9xPvYyRq"
+      },
+      {
+        "text": "HACK WITH GDG S4",
+        "href": "https://hack-with-gdg-s4.devfolio.co/"
+      },
+      {
+        "text": "",
+        "href": "https://hack-with-gdg-s4.vercel.app/"
+      },
+      {
+        "text": "",
+        "href": "https://x.com/gdgksrce"
+      },
+      {
+        "text": "All upcoming hackathons",
+        "href": "https://devfolio.co/hackathons/upcoming"
+      },
+      {
+        "text": "CODERAVE 2.0",
+        "href": "https://coderave-2.devfolio.co/"
+      },
+      {
+        "text": "",
+        "href": "https://coderave.in/"
+      },
+      {
+        "text": "",
+        "href": "https://www.instagram.com/coder.ave?utm_source=ig_web_button_share_sheet&exln=ZDNlZDc0MzIxNw%3D%3D"
+      },
+      {
+        "text": "ETHChiangmai & Longevity Hackathon 2026",
+        "href": "https://chiangmai.devfolio.co/"
+      },
+      {
+        "text": "",
+        "href": "https://ethchiangmai.com/"
+      },
+      {
+        "text": "",
+        "href": "https://x.com/ETHChiangmai"
+      },
+      {
+        "text": "Hack Nexus 2027",
+        "href": "https://hack-nexus.devfolio.co/"
+      },
+      {
+        "text": "All past hackathons",
+        "href": "https://devfolio.co/hackathons/past"
+      },
+      {
+        "text": "Realm Hack '26",
+        "href": "https://realm-hack-1.devfolio.co/"
+      },
+      {
+        "text": "",
+        "href": "https://realmhack.in/"
+      },
+      {
+        "text": "",
+        "href": "https://x.com/realmhack_cek"
+      },
+      {
+        "text": "CODEARAMBH 2.0",
+        "href": "https://codearambh.devfolio.co/"
+      },
+      {
+        "text": "",
+        "href": "https://code-arambh.netlify.app/"
+      },
+      {
+        "text": "",
+        "href": "https://instagram.com/hiet.techfusion"
+      },
+      {
+        "text": "Srijan Setu",
+        "href": "https://srijan-setu.devfolio.co/"
+      },
+      {
+        "text": "",
+        "href": "https://srijan-setu.vercel.app/"
+      },
+      {
+        "text": "",
+        "href": "https://x.com/SrijanSetu"
+      },
+      {
+        "text": "NEXWIN INTERNAL HACKATHON",
+        "href": "https://nexwin-internal-hackathon.devfolio.co/"
+      },
+      {
+        "text": "",
+        "href": "https://www.instagram.com/scet_nexuscodingclub"
+      },
+      {
+        "text": "",
+        "href": "https://t.me/devfolio"
+      },
+      {
+        "text": "",
+        "href": "https://twitter.com/devfolio"
+      },
+      {
+        "text": "",
+        "href": "https://nsb.dev/discord"
+      },
+      {
+        "text": "",
+        "href": "https://github.com/devfolioco"
+      },
+      {
+        "text": "",
+        "href": "https://www.linkedin.com/company/devfolio/"
+      },
+      {
+        "text": "",
+        "href": "https://warpcast.com/devfolio"
+      },
+      {
+        "text": "Organize a hackathon",
+        "href": "https://devfolio.co/organize"
+      },
+      {
+        "text": "Explore hackathons",
+        "href": "https://devfolio.co/hackathons"
+      },
+      {
+        "text": "Code of Conduct",
+        "href": "https://devfolio.co/code-of-conduct"
+      },
+      {
+        "text": "Brand Assets",
+        "href": "https://devfolio.co/brand"
+      },
+      {
+        "text": "Documentation",
+        "href": "https://guide.devfolio.co/"
+      },
+      {
+        "text": "About",
+        "href": "https://devfolio.co/about"
+      },
+      {
+        "text": "Blog",
+        "href": "https://devfolio.co/blog"
+      },
+      {
+        "text": "Careers",
+        "href": "https://devfolio.co/careers"
+      },
+      {
+        "text": "Changelog",
+        "href": "https://devfolio.co/changelog"
+      },
+      {
+        "text": "Privacy",
+        "href": "https://devfolio.co/privacy-policy"
+      },
+      {
+        "text": "Terms",
+        "href": "https://devfolio.co/terms-of-use"
+      },
+      {
+        "text": "Guide",
+        "href": "https://guide.devfolio.co/"
+      },
+      {
+        "text": "Status",
+        "href": "https://status.devfolio.co/"
+      },
+      {
+        "text": "Contact us",
+        "href": "mailto:hello@devfolio.co"
+      }
+    ]
+  }
+]

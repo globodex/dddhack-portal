@@ -49,7 +49,7 @@ async function fixture() {
     },
     async read(bucket, key, limit) {
       assert.equal(bucket, "project-media");
-      assert.equal(limit, 131072);
+      assert.equal(limit, key.startsWith("logos/") ? 131072 : 393216);
       reads++;
       const object = objects.get(key);
       assert.ok(object);
@@ -311,7 +311,7 @@ test("a tampered object, bucket, key or reference metadata fails closed during h
     for (const change of [
       { bucket: "other-bucket" },
       { key: "../../secret" },
-      { width: 65 },
+      { width: 0 },
       { sha256: "f".repeat(64) },
     ]) {
       await f.db
@@ -479,7 +479,7 @@ test("public media metadata rejects foreign namespaces, malformed shapes, wrong 
       { bucket: "other-bucket" },
       { key: "../../secret" },
       { sha256: "f".repeat(64) },
-      { width: 65 },
+      { width: 0 },
       { byteLength: 131073 },
       { contentType: "image/svg+xml" },
       { extra: true },

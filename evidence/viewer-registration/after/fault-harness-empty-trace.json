@@ -1,0 +1,13 @@
+{
+  "source": "c205b404b32ecf444c6897777421f297574a31c6",
+  "syntheticOnly": true,
+  "method": "Controlled localhost backend8855 HTTP503 passthrough wrapper; real app SSR. Network one browser GET aborted, session401 actual no fixture cookie. No source/guard changes.",
+  "checks": [],
+  "pageErrors": [],
+  "result": "FAIL",
+  "failure": {
+    "message": "ENOENT: no such file or directory, open 'evidence/viewer-registration/after/backend-fault-trace.jsonl'",
+    "stack": "Error: ENOENT: no such file or directory, open 'evidence/viewer-registration/after/backend-fault-trace.jsonl'\n    at readFileSync (node:fs:484:20)\n    at trace (file:///workspace/ddd-viewer-browser/scripts/qa-viewer-registration-faults.mjs:1:260)\n    at file:///workspace/ddd-viewer-browser/scripts/qa-viewer-registration-faults.mjs:4:304"
+  },
+  "browserClosed": true
+}

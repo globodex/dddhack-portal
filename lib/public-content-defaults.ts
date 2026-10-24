@@ -1,0 +1,46 @@
+// Shared fallback text only. Keep server validation in event-content-contract.
+export const defaultPublicContent = {
+  venue: "IIIT Delhi",
+  mapUrl: "",
+  agenda: [
+    {
+      time: "Schedule to follow",
+      title: "A day to build",
+      description: "The final agenda will be confirmed by the hosts.",
+    },
+  ],
+  faqs: [
+    { question: "When is it?", answer: "1 November 2026, 8 AM–8 PM IST." },
+    {
+      question: "Where is it?",
+      answer:
+        "IIIT Delhi, New Delhi. Exact arrival details are shared privately with authorized participants.",
+    },
+    {
+      question: "Can I participate solo?",
+      answer:
+        "Yes. Teams can have up to five members; every member must register individually.",
+    },
+    {
+      question: "Does Luma registration confirm my place?",
+      answer:
+        "No. Luma is for registration. Only individuals marked Going on this portal can be accommodated.",
+    },
+    {
+      question: "What does locking a team do?",
+      answer:
+        "The leader freezes its membership and details for organizer review. Locking does not approve its members.",
+    },
+    {
+      question: "How do I find a team?",
+      answer:
+        "Sign in, complete your profile, then search Teams by name and request to join.",
+    },
+    {
+      question: "Can I upvote projects?",
+      answer: "Yes. Sign in and upvote directly on Projects.",
+    },
+  ],
+  rules:
+    "Only individuals Going on the portal can be accommodated. Every member must register. Teams have at most five members. No parking is available. Pre-made rosters and ideas lock together on 29 October at 23:59 IST. Submissions open 1 November at 08:00 IST and close at 16:00 IST, unless the owner publishes an extension. Only the team leader can submit, and the leader must personally be checked in. Exactly three committed submissions; after the third, no project edits. Repository creation AND first commit must both be strictly after 1 November 2026 at 08:00 IST. Only individually checked-in members qualify for prizes or rewards; an absent member does not disqualify the team. Deployment link is optional.",
+};

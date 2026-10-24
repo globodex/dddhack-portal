@@ -1,0 +1,64 @@
+{
+  "checkedSource": "575e8030ce895936bbb96957a578150a8d2db00f",
+  "codeEquivalentToMeasuredCandidate": "d24b47f01c40abe247944a2e81e414a7a31ac06d",
+  "rootTests": {
+    "tests": 42,
+    "passed": 42,
+    "failed": 0,
+    "skipped": 0,
+    "log": "focused-tests.log"
+  },
+  "typecheck": "passed",
+  "defaultBuild": {
+    "passed": true,
+    "compiler": "Next16.4.3 Turbopack",
+    "id": "xHwyyy5Tb5jRMNmI5i2a0",
+    "allStaticClientChunksZodErrorMatches": 0,
+    "all6CssFilesByteIdenticalToE135": true
+  },
+  "measuredNetwork": {
+    "samples": 70,
+    "coldScriptsRemovedBytes": 24822,
+    "dashboardTotalRemovedBytes": 24820,
+    "peopleTotalRemovedBytes": 24822,
+    "homeTotalRemovedBytes": 24820,
+    "requestsAdded": 0,
+    "uniformTimingImprovement": false,
+    "adversePeopleColdMedianMs": [
+      380,
+      440
+    ],
+    "adversePeopleColdP95Ms": [
+      632,
+      2280
+    ],
+    "p95Scope": "n7 nearest-rank maximum,not reliable population tail"
+  },
+  "preservedCheckpoint": {
+    "sha": "e135e3ec7b787f7e6167c29f4e46bc76a9fbfcec",
+    "fullTests": 551,
+    "passed": 545,
+    "skipped": 6,
+    "fullSuiteRerunOnFollowup": false
+  },
+  "backend": {
+    "source": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
+    "graphAppInputs": 78,
+    "allCurrentSourceHashesMatch": true,
+    "zipSHA256": "1afca1c65f0c3b58bde89a5e1b80d3dec92c87b392239da0315ed762ebd0730f",
+    "bytes": 9014229,
+    "hostSmoke": "200/403/503,0outbound; x64Sharp substituted,actualARM64unverified"
+  },
+  "windowsHelper": {
+    "passed": 6,
+    "runtime": "PowerShell7.6.8 Linux",
+    "nativeWindows": "unverified"
+  },
+  "publication": {
+    "pushed": false,
+    "mergedMain": false,
+    "hostedMigrationOrDeployment": false,
+    "freshGoAheadRequired": true
+  },
+  "noFurtherExperiments": "Home dynamic candidate remains isolated,not integrated; metadata-only fix adopted."
+}

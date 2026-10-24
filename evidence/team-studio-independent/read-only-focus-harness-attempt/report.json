@@ -1,0 +1,100 @@
+{
+  "source": "927845c5a3cf6755f94a219d8c9cf0060774fd58",
+  "origin": "http://localhost:3003",
+  "readOnly": true,
+  "device": "Chromium mobile emulation, not a physical device",
+  "viewport": {
+    "width": 320,
+    "height": 480
+  },
+  "startedAt": "2026-10-24T14:42:38.286Z",
+  "checks": [
+    {
+      "name": "Isolated fixture is a real local unlocked leader workspace",
+      "passed": true
+    },
+    {
+      "name": "320 short viewport has no horizontal overflow",
+      "passed": true,
+      "innerWidth": 320,
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "scrollY": 0
+    },
+    {
+      "name": "Opening identity preserves background horizontal geometry",
+      "passed": true,
+      "before": {
+        "x": 16,
+        "y": 212,
+        "width": 288,
+        "height": 166.3125
+      },
+      "after": {
+        "x": 16,
+        "y": 212,
+        "width": 288,
+        "height": 166.3125
+      }
+    },
+    {
+      "name": "Touch drag on identity backdrop keeps background scroll fixed",
+      "passed": true,
+      "before": 0,
+      "after": 0
+    },
+    {
+      "name": "Touch-open identity Escape restores opener focus",
+      "passed": true
+    },
+    {
+      "name": "Browser Back closes identity and preserves dashboard/focus",
+      "passed": true
+    },
+    {
+      "name": "Touch-open invite Escape restores opener focus",
+      "passed": false
+    }
+  ],
+  "captures": [
+    {
+      "file": "01-team-320-short.png",
+      "fullPage": false,
+      "source": "927845c5a3cf6755f94a219d8c9cf0060774fd58",
+      "inspected": true
+    },
+    {
+      "file": "02-identity-320-short.png",
+      "fullPage": false,
+      "source": "927845c5a3cf6755f94a219d8c9cf0060774fd58",
+      "inspected": true
+    },
+    {
+      "file": "03-invite-320-short.png",
+      "fullPage": false,
+      "source": "927845c5a3cf6755f94a219d8c9cf0060774fd58",
+      "inspected": true
+    },
+    {
+      "file": "FAIL-current-ui.png",
+      "fullPage": false,
+      "source": "927845c5a3cf6755f94a219d8c9cf0060774fd58",
+      "inspected": true
+    }
+  ],
+  "blocked": [],
+  "pageErrors": [],
+  "fixture": {
+    "status": 200,
+    "localTest": true,
+    "actor": "fake_bob",
+    "locked": false,
+    "members": 3,
+    "ideaLength": 112
+  },
+  "result": "failed",
+  "failure": "AssertionError [ERR_ASSERTION]: Touch-open invite Escape restores opener focus\n    at check (file:///workspace/ddd-seo/scripts/qa-team-studio-independent.mjs:44:10)\n    at file:///workspace/ddd-seo/scripts/qa-team-studio-independent.mjs:218:3",
+  "browserClosed": true,
+  "finishedAt": "2026-10-24T14:42:45.732Z",
+  "classification": "Harness-only false failure after Playwright toBeFocused passed; text-named Invite button has no aria-label. Corrected check to node identity. Not an application defect."
+}

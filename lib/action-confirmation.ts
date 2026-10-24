@@ -31,6 +31,7 @@ const labels: Record<string, string> = {
   "team-style": "Update team appearance",
   "remove-workspace-member": "Remove team member",
   "respond-team": "Update membership request",
+  "bulk-check-in": "Check in selected participants",
   "participant-bulk": "Update participants",
   "content-save": "Update event content draft",
   "content-publish": "Publish event content",
@@ -168,6 +169,7 @@ export function revealConfirmation(
   action: string,
   values: Record<string, any>,
 ) {
+  if (action === "bulk-check-in") return "CHECK_IN_PARTICIPANTS";
   if (action === "transfer-team-leader") return "TRANSFER_TEAM_LEADER";
   if (action === "publish-credit-batch") return "PUBLISH_CREDIT_BATCH";
   if (action === "delete-credit-batch") return "DELETE_CREDIT_BATCH";
@@ -197,5 +199,5 @@ export function revealConfirmation(
 }
 
 export function requiresActionConfirmation(action: string) {
-  return action !== "complete-profile" && action !== "profile";
+  return !["complete-profile", "profile", "quick-check-in", "admin-reveal-credit", "repair-credit-allocations"].includes(action);
 }

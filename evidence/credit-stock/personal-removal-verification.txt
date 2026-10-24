@@ -1,0 +1,10 @@
+✔ sqlite: actual personal-credit GET gives removed self actionable403 without exposing credits (118.814251ms)
+✔ postgres: actual personal-credit GET gives removed self actionable403 without exposing credits (3800.911952ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5118.624244

@@ -1,4 +1,5 @@
 "use client";
+import { useHydrated } from "./use-hydrated";
 import { useState } from "react";
 import { ActionCancelled } from "../lib/action-confirmation";
 import {
@@ -53,6 +54,7 @@ export default function OwnerOperationalSetup({
   ) => Promise<Record<string, unknown>>;
   preview?: (values: OperationalSetupRequest) => Promise<Preview>;
 }) {
+  const hydrated = useHydrated();
   const [operation, setOperation] = useState<SetupOperation>("submissions"),
     [privacy, setPrivacy] = useState(false),
     [rules, setRules] = useState(false),
@@ -72,6 +74,9 @@ export default function OwnerOperationalSetup({
       <h2 id="operational-setup-title">Configuration</h2>
 
       <form
+        method="post"
+        inert={!hydrated}
+        data-hydrated={hydrated}
         onSubmit={async (event) => {
           event.preventDefault();
           if (busy) return;
@@ -101,7 +106,7 @@ export default function OwnerOperationalSetup({
           }
         }}
       >
-        <fieldset disabled={busy}>
+        <fieldset disabled={busy || !hydrated}>
           <label>
             Operation
             <select
@@ -157,12 +162,12 @@ export default function OwnerOperationalSetup({
                 invalidate();
               }}
             />
-            I confirm indefinite retention and the private-field protections
+            I confirm the retention policy and private-field protections
             above.
           </label>
           <button
             className="button secondary"
-            disabled={busy || !privacy || !rules}
+            disabled={!hydrated || busy || !privacy || !rules}
           >
             {busy ? "Preparing…" : "Preview operational setup"}
           </button>
@@ -184,7 +189,7 @@ export default function OwnerOperationalSetup({
             <button
               type="button"
               className="button secondary"
-              disabled={busy}
+              disabled={busy || !hydrated}
               onClick={() => setReview(null)}
             >
               Discard preview
@@ -192,7 +197,7 @@ export default function OwnerOperationalSetup({
             <button
               type="button"
               className="button"
-              disabled={busy}
+              disabled={busy || !hydrated}
               onClick={async () => {
                 if (busy) return;
                 setBusy(true);

@@ -1,4 +1,5 @@
 "use client";
+import { useHydrated } from "./use-hydrated";
 import { automaticAuditReason } from "../lib/audit-contract";
 import { useId, useState } from "react";
 import {
@@ -84,6 +85,40 @@ export function submissionWindowPublishValues(
     confirmation: "CHANGE_SUBMISSION_WINDOW",
   };
 }
+/** One user action: validate, obtain current guards, then ask run to confirm/persist. */
+export async function publishSubmissionWindow(
+  openInput: string,
+  closeInput: string,
+  preview: (values: {
+    open: string;
+    close: string;
+  }) => Promise<SubmissionWindowPreview>,
+  run: AdminRun,
+) {
+  const values = submissionWindowValues(openInput, closeInput);
+  const response = await preview(values);
+  if (
+    !response.token ||
+    !Number.isInteger(response.version) ||
+    !Array.isArray(response.warnings) ||
+    !response.warnings.every((warning) => typeof warning === "string")
+  )
+    throw new Error(
+      "The server did not return a complete versioned window preview.",
+    );
+  if (
+    Date.parse(response.open) !== Date.parse(values.open) ||
+    Date.parse(response.close) !== Date.parse(values.close)
+  )
+    throw new Error(
+      "The preview differs from the requested dates. Reload and try again.",
+    );
+  return run("publish-submission-window", {
+    ...submissionWindowPublishValues(response),
+    // Confirmation display metadata only. Portal.run strips this before the API.
+    windowWarnings: response.warnings,
+  });
+}
 function inputOrEmpty(value: string) {
   try {
     return utcToISTInput(value);
@@ -111,10 +146,11 @@ export default function OwnerSubmissionWindow({
     close: string;
   }) => Promise<SubmissionWindowPreview>;
 }) {
+  const hydrated = useHydrated();
   const id = useId();
   const [openInput, setOpen] = useState(() => inputOrEmpty(open)),
     [closeInput, setClose] = useState(() => inputOrEmpty(close)),
-    [review, setReview] = useState<SubmissionWindowPreview | null>(null);
+    [touched, setTouched] = useState({ open: false, close: false });
   const { busy, error, execute, clearError } = useAdminOperation();
   if (!owner) return null;
   let converted: { open: string; close: string } | null = null,
@@ -124,100 +160,84 @@ export default function OwnerSubmissionWindow({
   } catch (cause) {
     validation = (cause as Error).message;
   }
+  const showValidation = !!validation && (touched.open || touched.close);
   return (
     <section
       className="admin-control admin-window admin-settings-section"
+      inert={!hydrated}
+      data-hydrated={hydrated}
       aria-labelledby={`${id}-title`}
     >
       <header>
         <h2 id={`${id}-title`}>Submission window</h2>
         <span className="admin-timezone">IST</span>
       </header>
-      <fieldset disabled={busy}>
+      <fieldset disabled={busy || !hydrated}>
         <div className="admin-control-grid">
           <label>
-            Opens (IST)
+            <span>
+              Opens (IST){" "}
+              <span className="required-mark" aria-hidden="true">
+                *
+              </span>
+            </span>
             <input
               type="datetime-local"
               step="60"
               required
               value={openInput}
+              aria-label="Opens (IST)"
+              aria-invalid={showValidation || undefined}
+              aria-describedby={showValidation ? `${id}-validation` : undefined}
+              onBlur={() =>
+                setTouched((current) => ({ ...current, open: true }))
+              }
               onChange={(event) => {
                 setOpen(event.target.value);
-                setReview(null);
                 clearError();
               }}
             />
           </label>
           <label>
-            Closes (IST)
+            <span>
+              Closes (IST){" "}
+              <span className="required-mark" aria-hidden="true">
+                *
+              </span>
+            </span>
             <input
               type="datetime-local"
               step="60"
               required
               value={closeInput}
+              aria-label="Closes (IST)"
+              aria-invalid={showValidation || undefined}
+              aria-describedby={showValidation ? `${id}-validation` : undefined}
+              onBlur={() =>
+                setTouched((current) => ({ ...current, close: true }))
+              }
               onChange={(event) => {
                 setClose(event.target.value);
-                setReview(null);
                 clearError();
               }}
             />
           </label>
         </div>
-        {validation && (
-          <p className="error-message" role="status">
+        {showValidation && (
+          <p id={`${id}-validation`} className="error-message" role="status">
             {validation}
           </p>
-        )}
-        {review && review.warnings.length > 0 && (
-          <ul className="admin-window-warnings" role="status">
-            {review.warnings.map((warning, index) => (
-              <li key={index}>{warning}</li>
-            ))}
-          </ul>
         )}
         <div className="admin-window-footer">
           <span>Three committed submissions</span>
           <button
             type="button"
             className="button"
-            disabled={busy || !converted}
+            disabled={busy || !hydrated || !converted}
             onClick={() =>
-              void execute(async () => {
-                if (review) {
-                  await run(
-                    "publish-submission-window",
-                    submissionWindowPublishValues(review),
-                  );
-                  setReview(null);
-                  return;
-                }
-                const values = submissionWindowValues(openInput, closeInput),
-                  response = await preview(values);
-                if (
-                  !response.token ||
-                  !Number.isInteger(response.version) ||
-                  !Array.isArray(response.warnings)
-                )
-                  throw new Error(
-                    "The server did not return a complete versioned window preview.",
-                  );
-                if (
-                  Date.parse(response.open) !== Date.parse(values.open) ||
-                  Date.parse(response.close) !== Date.parse(values.close)
-                )
-                  throw new Error(
-                    "The preview differs from the requested dates. Reload and try again.",
-                  );
-                if (response.warnings.length) {
-                  setReview(response);
-                  return;
-                }
-                await run(
-                  "publish-submission-window",
-                  submissionWindowPublishValues(response),
-                );
-              })
+              void execute(() =>
+                publishSubmissionWindow(openInput, closeInput, preview, run),
+              )
             }
           >
             <AdminIcon name="clock" />

@@ -1,0 +1,30 @@
+{
+  "dashboard-nojs": {
+    "dimensions": [
+      1440,
+      1268
+    ],
+    "differenceBounds": null
+  },
+  "dashboard-hydrated": {
+    "dimensions": [
+      1440,
+      1268
+    ],
+    "differenceBounds": null
+  },
+  "home-nojs": {
+    "dimensions": [
+      1440,
+      3113
+    ],
+    "differenceBounds": null
+  },
+  "home-hydrated": {
+    "dimensions": [
+      1440,
+      3113
+    ],
+    "differenceBounds": null
+  }
+}

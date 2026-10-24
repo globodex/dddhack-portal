@@ -1,0 +1,1116 @@
+{
+  "source": "28ff5ecb8be2c884975e27229dac4dfabc57cfc9",
+  "applicationEquivalentTo": "9ebee61d29b44fbb0dbf7e5382ed2fd3ba7b96c9",
+  "syntheticOnly": true,
+  "method": "Already registered Stranger from real admin import. Read-only requests, local unsaved field/radio edits; no team or registration mutation.",
+  "cases": [
+    {
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "requests": [
+        {
+          "url": "http://localhost:3008/dashboard",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792865309667",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792865309667",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792865309667",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "errors": [],
+      "overflow": false,
+      "grid": "288px",
+      "boxes": [
+        {
+          "selector": ".dashboard-empty-team",
+          "box": {
+            "x": 16,
+            "y": 212,
+            "width": 288,
+            "height": 779.1875,
+            "top": 212,
+            "right": 304,
+            "bottom": 991.1875,
+            "left": 16
+          }
+        },
+        {
+          "selector": ".team-find-panel",
+          "box": {
+            "x": 16,
+            "y": 212,
+            "width": 288,
+            "height": 142.1875,
+            "top": 212,
+            "right": 304,
+            "bottom": 354.1875,
+            "left": 16
+          }
+        },
+        {
+          "selector": ".team-find-panel h3",
+          "box": {
+            "x": 93,
+            "y": 243.125,
+            "width": 190,
+            "height": 23.75,
+            "top": 243.125,
+            "right": 283,
+            "bottom": 266.875,
+            "left": 93
+          }
+        },
+        {
+          "selector": ".team-create-form",
+          "box": {
+            "x": 16,
+            "y": 374.1875,
+            "width": 288,
+            "height": 617,
+            "top": 374.1875,
+            "right": 304,
+            "bottom": 991.1875,
+            "left": 16
+          }
+        },
+        {
+          "selector": ".team-creation-identity",
+          "box": {
+            "x": 37,
+            "y": 471.1875,
+            "width": 246,
+            "height": 174,
+            "top": 471.1875,
+            "right": 283,
+            "bottom": 645.1875,
+            "left": 37
+          }
+        },
+        {
+          "selector": ".team-creation-palette",
+          "box": {
+            "x": 50,
+            "y": 540.1875,
+            "width": 220,
+            "height": 92,
+            "top": 540.1875,
+            "right": 270,
+            "bottom": 632.1875,
+            "left": 50
+          }
+        },
+        {
+          "selector": ".team-creation-fields input",
+          "box": {
+            "x": 37,
+            "y": 694.1875,
+            "width": 246,
+            "height": 48,
+            "top": 694.1875,
+            "right": 283,
+            "bottom": 742.1875,
+            "left": 37
+          }
+        },
+        {
+          "selector": ".team-creation-fields textarea",
+          "box": {
+            "x": 37,
+            "y": 785.1875,
+            "width": 246,
+            "height": 104,
+            "top": 785.1875,
+            "right": 283,
+            "bottom": 889.1875,
+            "left": 37
+          }
+        },
+        {
+          "selector": ".team-creation-footer button",
+          "box": {
+            "x": 37,
+            "y": 926.1875,
+            "width": 246,
+            "height": 48,
+            "top": 926.1875,
+            "right": 283,
+            "bottom": 974.1875,
+            "left": 37
+          }
+        }
+      ],
+      "colors": [
+        {
+          "x": 50,
+          "y": 540.1875,
+          "width": 52,
+          "height": 44,
+          "top": 540.1875,
+          "right": 102,
+          "bottom": 584.1875,
+          "left": 50
+        },
+        {
+          "x": 106,
+          "y": 540.1875,
+          "width": 52,
+          "height": 44,
+          "top": 540.1875,
+          "right": 158,
+          "bottom": 584.1875,
+          "left": 106
+        },
+        {
+          "x": 162,
+          "y": 540.1875,
+          "width": 52,
+          "height": 44,
+          "top": 540.1875,
+          "right": 214,
+          "bottom": 584.1875,
+          "left": 162
+        },
+        {
+          "x": 218,
+          "y": 540.1875,
+          "width": 52,
+          "height": 44,
+          "top": 540.1875,
+          "right": 270,
+          "bottom": 584.1875,
+          "left": 218
+        },
+        {
+          "x": 50,
+          "y": 588.1875,
+          "width": 52,
+          "height": 44,
+          "top": 588.1875,
+          "right": 102,
+          "bottom": 632.1875,
+          "left": 50
+        },
+        {
+          "x": 106,
+          "y": 588.1875,
+          "width": 52,
+          "height": 44,
+          "top": 588.1875,
+          "right": 158,
+          "bottom": 632.1875,
+          "left": 106
+        },
+        {
+          "x": 162,
+          "y": 588.1875,
+          "width": 52,
+          "height": 44,
+          "top": 588.1875,
+          "right": 214,
+          "bottom": 632.1875,
+          "left": 162
+        },
+        {
+          "x": 218,
+          "y": 588.1875,
+          "width": 52,
+          "height": 44,
+          "top": 588.1875,
+          "right": 270,
+          "bottom": 632.1875,
+          "left": 218
+        }
+      ],
+      "file": "evidence/viewer-registration/after/registered-teamless-fixed-320x480.png",
+      "interaction": {
+        "orangeSelected": true,
+        "nameValue": "Synthetic Registration Team",
+        "keyboardNameIntroCreate": true,
+        "cta": {
+          "box": {
+            "x": 37,
+            "y": 432.1875,
+            "width": 246,
+            "height": 48,
+            "top": 432.1875,
+            "right": 283,
+            "bottom": 480.1875,
+            "left": 37
+          },
+          "hit": true,
+          "focus": true
+        }
+      },
+      "focusFile": "evidence/viewer-registration/after/registered-teamless-fixed-cta-320x480.png"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "requests": [
+        {
+          "url": "http://localhost:3008/dashboard",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792865319112",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792865319112",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792865319112",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "errors": [],
+      "overflow": false,
+      "grid": "350px",
+      "boxes": [
+        {
+          "selector": ".dashboard-empty-team",
+          "box": {
+            "x": 20,
+            "y": 198,
+            "width": 350,
+            "height": 749.1875,
+            "top": 198,
+            "right": 370,
+            "bottom": 947.1875,
+            "left": 20
+          }
+        },
+        {
+          "selector": ".team-find-panel",
+          "box": {
+            "x": 20,
+            "y": 198,
+            "width": 350,
+            "height": 142.1875,
+            "top": 198,
+            "right": 370,
+            "bottom": 340.1875,
+            "left": 20
+          }
+        },
+        {
+          "selector": ".team-find-panel h3",
+          "box": {
+            "x": 97,
+            "y": 229.125,
+            "width": 252,
+            "height": 23.75,
+            "top": 229.125,
+            "right": 349,
+            "bottom": 252.875,
+            "left": 97
+          }
+        },
+        {
+          "selector": ".team-create-form",
+          "box": {
+            "x": 20,
+            "y": 360.1875,
+            "width": 350,
+            "height": 587,
+            "top": 360.1875,
+            "right": 370,
+            "bottom": 947.1875,
+            "left": 20
+          }
+        },
+        {
+          "selector": ".team-creation-identity",
+          "box": {
+            "x": 41,
+            "y": 457.1875,
+            "width": 308,
+            "height": 144,
+            "top": 457.1875,
+            "right": 349,
+            "bottom": 601.1875,
+            "left": 41
+          }
+        },
+        {
+          "selector": ".team-creation-palette",
+          "box": {
+            "x": 130,
+            "y": 496.1875,
+            "width": 206,
+            "height": 92,
+            "top": 496.1875,
+            "right": 336,
+            "bottom": 588.1875,
+            "left": 130
+          }
+        },
+        {
+          "selector": ".team-creation-fields input",
+          "box": {
+            "x": 41,
+            "y": 650.1875,
+            "width": 308,
+            "height": 48,
+            "top": 650.1875,
+            "right": 349,
+            "bottom": 698.1875,
+            "left": 41
+          }
+        },
+        {
+          "selector": ".team-creation-fields textarea",
+          "box": {
+            "x": 41,
+            "y": 741.1875,
+            "width": 308,
+            "height": 104,
+            "top": 741.1875,
+            "right": 349,
+            "bottom": 845.1875,
+            "left": 41
+          }
+        },
+        {
+          "selector": ".team-creation-footer button",
+          "box": {
+            "x": 41,
+            "y": 882.1875,
+            "width": 308,
+            "height": 48,
+            "top": 882.1875,
+            "right": 349,
+            "bottom": 930.1875,
+            "left": 41
+          }
+        }
+      ],
+      "colors": [
+        {
+          "x": 130,
+          "y": 496.1875,
+          "width": 48.5,
+          "height": 44,
+          "top": 496.1875,
+          "right": 178.5,
+          "bottom": 540.1875,
+          "left": 130
+        },
+        {
+          "x": 182.5,
+          "y": 496.1875,
+          "width": 48.5,
+          "height": 44,
+          "top": 496.1875,
+          "right": 231,
+          "bottom": 540.1875,
+          "left": 182.5
+        },
+        {
+          "x": 235,
+          "y": 496.1875,
+          "width": 48.5,
+          "height": 44,
+          "top": 496.1875,
+          "right": 283.5,
+          "bottom": 540.1875,
+          "left": 235
+        },
+        {
+          "x": 287.5,
+          "y": 496.1875,
+          "width": 48.5,
+          "height": 44,
+          "top": 496.1875,
+          "right": 336,
+          "bottom": 540.1875,
+          "left": 287.5
+        },
+        {
+          "x": 130,
+          "y": 544.1875,
+          "width": 48.5,
+          "height": 44,
+          "top": 544.1875,
+          "right": 178.5,
+          "bottom": 588.1875,
+          "left": 130
+        },
+        {
+          "x": 182.5,
+          "y": 544.1875,
+          "width": 48.5,
+          "height": 44,
+          "top": 544.1875,
+          "right": 231,
+          "bottom": 588.1875,
+          "left": 182.5
+        },
+        {
+          "x": 235,
+          "y": 544.1875,
+          "width": 48.5,
+          "height": 44,
+          "top": 544.1875,
+          "right": 283.5,
+          "bottom": 588.1875,
+          "left": 235
+        },
+        {
+          "x": 287.5,
+          "y": 544.1875,
+          "width": 48.5,
+          "height": 44,
+          "top": 544.1875,
+          "right": 336,
+          "bottom": 588.1875,
+          "left": 287.5
+        }
+      ],
+      "file": "evidence/viewer-registration/after/registered-teamless-fixed-390x480.png",
+      "interaction": {
+        "orangeSelected": true,
+        "nameValue": "Synthetic Registration Team",
+        "keyboardNameIntroCreate": true,
+        "cta": {
+          "box": {
+            "x": 41,
+            "y": 432.1875,
+            "width": 308,
+            "height": 48,
+            "top": 432.1875,
+            "right": 349,
+            "bottom": 480.1875,
+            "left": 41
+          },
+          "hit": true,
+          "focus": true
+        }
+      },
+      "focusFile": "evidence/viewer-registration/after/registered-teamless-fixed-cta-390x480.png"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "requests": [
+        {
+          "url": "http://localhost:3008/dashboard",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792865327501",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792865327501",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792865327501",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "errors": [],
+      "overflow": false,
+      "grid": "665px",
+      "boxes": [
+        {
+          "selector": ".dashboard-empty-team",
+          "box": {
+            "x": 44,
+            "y": 229,
+            "width": 665,
+            "height": 845.34375,
+            "top": 229,
+            "right": 709,
+            "bottom": 1074.34375,
+            "left": 44
+          }
+        },
+        {
+          "selector": ".team-find-panel",
+          "box": {
+            "x": 44,
+            "y": 229,
+            "width": 665,
+            "height": 258.34375,
+            "top": 229,
+            "right": 709,
+            "bottom": 487.34375,
+            "left": 44
+          }
+        },
+        {
+          "selector": ".team-find-panel h3",
+          "box": {
+            "x": 73,
+            "y": 330,
+            "width": 128.125,
+            "height": 56.15625,
+            "top": 330,
+            "right": 201.125,
+            "bottom": 386.15625,
+            "left": 73
+          }
+        },
+        {
+          "selector": ".team-create-form",
+          "box": {
+            "x": 44,
+            "y": 507.34375,
+            "width": 665,
+            "height": 567,
+            "top": 507.34375,
+            "right": 709,
+            "bottom": 1074.34375,
+            "left": 44
+          }
+        },
+        {
+          "selector": ".team-creation-identity",
+          "box": {
+            "x": 69,
+            "y": 616.34375,
+            "width": 615,
+            "height": 106,
+            "top": 616.34375,
+            "right": 684,
+            "bottom": 722.34375,
+            "left": 69
+          }
+        },
+        {
+          "selector": ".team-creation-palette",
+          "box": {
+            "x": 178,
+            "y": 660.34375,
+            "width": 489,
+            "height": 44,
+            "top": 660.34375,
+            "right": 667,
+            "bottom": 704.34375,
+            "left": 178
+          }
+        },
+        {
+          "selector": ".team-creation-fields input",
+          "box": {
+            "x": 69,
+            "y": 771.34375,
+            "width": 615,
+            "height": 48,
+            "top": 771.34375,
+            "right": 684,
+            "bottom": 819.34375,
+            "left": 69
+          }
+        },
+        {
+          "selector": ".team-creation-fields textarea",
+          "box": {
+            "x": 69,
+            "y": 864.34375,
+            "width": 615,
+            "height": 104,
+            "top": 864.34375,
+            "right": 684,
+            "bottom": 968.34375,
+            "left": 69
+          }
+        },
+        {
+          "selector": ".team-creation-footer button",
+          "box": {
+            "x": 528,
+            "y": 1009.34375,
+            "width": 156,
+            "height": 48,
+            "top": 1009.34375,
+            "right": 684,
+            "bottom": 1057.34375,
+            "left": 528
+          }
+        }
+      ],
+      "colors": [
+        {
+          "x": 178,
+          "y": 660.34375,
+          "width": 57.625,
+          "height": 44,
+          "top": 660.34375,
+          "right": 235.625,
+          "bottom": 704.34375,
+          "left": 178
+        },
+        {
+          "x": 239.625,
+          "y": 660.34375,
+          "width": 57.625,
+          "height": 44,
+          "top": 660.34375,
+          "right": 297.25,
+          "bottom": 704.34375,
+          "left": 239.625
+        },
+        {
+          "x": 301.25,
+          "y": 660.34375,
+          "width": 57.625,
+          "height": 44,
+          "top": 660.34375,
+          "right": 358.875,
+          "bottom": 704.34375,
+          "left": 301.25
+        },
+        {
+          "x": 362.875,
+          "y": 660.34375,
+          "width": 57.625,
+          "height": 44,
+          "top": 660.34375,
+          "right": 420.5,
+          "bottom": 704.34375,
+          "left": 362.875
+        },
+        {
+          "x": 424.5,
+          "y": 660.34375,
+          "width": 57.625,
+          "height": 44,
+          "top": 660.34375,
+          "right": 482.125,
+          "bottom": 704.34375,
+          "left": 424.5
+        },
+        {
+          "x": 486.125,
+          "y": 660.34375,
+          "width": 57.625,
+          "height": 44,
+          "top": 660.34375,
+          "right": 543.75,
+          "bottom": 704.34375,
+          "left": 486.125
+        },
+        {
+          "x": 547.75,
+          "y": 660.34375,
+          "width": 57.625,
+          "height": 44,
+          "top": 660.34375,
+          "right": 605.375,
+          "bottom": 704.34375,
+          "left": 547.75
+        },
+        {
+          "x": 609.375,
+          "y": 660.34375,
+          "width": 57.625,
+          "height": 44,
+          "top": 660.34375,
+          "right": 667,
+          "bottom": 704.34375,
+          "left": 609.375
+        }
+      ],
+      "file": "evidence/viewer-registration/after/registered-teamless-fixed-768x1024.png",
+      "interaction": {
+        "orangeSelected": true,
+        "nameValue": "Synthetic Registration Team",
+        "keyboardNameIntroCreate": true,
+        "cta": {
+          "box": {
+            "x": 528,
+            "y": 976.34375,
+            "width": 156,
+            "height": 48,
+            "top": 976.34375,
+            "right": 684,
+            "bottom": 1024.34375,
+            "left": 528
+          },
+          "hit": true,
+          "focus": true
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "requests": [
+        {
+          "url": "http://localhost:3008/dashboard",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792865334726",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792865334726",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792865334726",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "errors": [],
+      "overflow": false,
+      "grid": "460.938px 856.062px",
+      "boxes": [
+        {
+          "selector": ".dashboard-empty-team",
+          "box": {
+            "x": 44,
+            "y": 229,
+            "width": 1337,
+            "height": 567,
+            "top": 229,
+            "right": 1381,
+            "bottom": 796,
+            "left": 44
+          }
+        },
+        {
+          "selector": ".team-find-panel",
+          "box": {
+            "x": 44,
+            "y": 229,
+            "width": 460.9375,
+            "height": 567,
+            "top": 229,
+            "right": 504.9375,
+            "bottom": 796,
+            "left": 44
+          }
+        },
+        {
+          "selector": ".team-find-panel h3",
+          "box": {
+            "x": 73,
+            "y": 330,
+            "width": 128.125,
+            "height": 56.15625,
+            "top": 330,
+            "right": 201.125,
+            "bottom": 386.15625,
+            "left": 73
+          }
+        },
+        {
+          "selector": ".team-create-form",
+          "box": {
+            "x": 524.9375,
+            "y": 229,
+            "width": 856.0625,
+            "height": 567,
+            "top": 229,
+            "right": 1381,
+            "bottom": 796,
+            "left": 524.9375
+          }
+        },
+        {
+          "selector": ".team-creation-identity",
+          "box": {
+            "x": 549.9375,
+            "y": 338,
+            "width": 806.0625,
+            "height": 106,
+            "top": 338,
+            "right": 1356,
+            "bottom": 444,
+            "left": 549.9375
+          }
+        },
+        {
+          "selector": ".team-creation-palette",
+          "box": {
+            "x": 658.9375,
+            "y": 382,
+            "width": 680.0625,
+            "height": 44,
+            "top": 382,
+            "right": 1339,
+            "bottom": 426,
+            "left": 658.9375
+          }
+        },
+        {
+          "selector": ".team-creation-fields input",
+          "box": {
+            "x": 549.9375,
+            "y": 493,
+            "width": 806.0625,
+            "height": 48,
+            "top": 493,
+            "right": 1356,
+            "bottom": 541,
+            "left": 549.9375
+          }
+        },
+        {
+          "selector": ".team-creation-fields textarea",
+          "box": {
+            "x": 549.9375,
+            "y": 586,
+            "width": 806.0625,
+            "height": 104,
+            "top": 586,
+            "right": 1356,
+            "bottom": 690,
+            "left": 549.9375
+          }
+        },
+        {
+          "selector": ".team-creation-footer button",
+          "box": {
+            "x": 1200,
+            "y": 731,
+            "width": 156,
+            "height": 48,
+            "top": 731,
+            "right": 1356,
+            "bottom": 779,
+            "left": 1200
+          }
+        }
+      ],
+      "colors": [
+        {
+          "x": 658.9375,
+          "y": 382,
+          "width": 81.5,
+          "height": 44,
+          "top": 382,
+          "right": 740.4375,
+          "bottom": 426,
+          "left": 658.9375
+        },
+        {
+          "x": 744.4375,
+          "y": 382,
+          "width": 81.515625,
+          "height": 44,
+          "top": 382,
+          "right": 825.953125,
+          "bottom": 426,
+          "left": 744.4375
+        },
+        {
+          "x": 829.953125,
+          "y": 382,
+          "width": 81.5,
+          "height": 44,
+          "top": 382,
+          "right": 911.453125,
+          "bottom": 426,
+          "left": 829.953125
+        },
+        {
+          "x": 915.453125,
+          "y": 382,
+          "width": 81.515625,
+          "height": 44,
+          "top": 382,
+          "right": 996.96875,
+          "bottom": 426,
+          "left": 915.453125
+        },
+        {
+          "x": 1000.96875,
+          "y": 382,
+          "width": 81.5,
+          "height": 44,
+          "top": 382,
+          "right": 1082.46875,
+          "bottom": 426,
+          "left": 1000.96875
+        },
+        {
+          "x": 1086.46875,
+          "y": 382,
+          "width": 81.515625,
+          "height": 44,
+          "top": 382,
+          "right": 1167.984375,
+          "bottom": 426,
+          "left": 1086.46875
+        },
+        {
+          "x": 1171.984375,
+          "y": 382,
+          "width": 81.5,
+          "height": 44,
+          "top": 382,
+          "right": 1253.484375,
+          "bottom": 426,
+          "left": 1171.984375
+        },
+        {
+          "x": 1257.484375,
+          "y": 382,
+          "width": 81.515625,
+          "height": 44,
+          "top": 382,
+          "right": 1339,
+          "bottom": 426,
+          "left": 1257.484375
+        }
+      ],
+      "file": "evidence/viewer-registration/after/registered-teamless-fixed-1440x900.png",
+      "interaction": {
+        "orangeSelected": true,
+        "nameValue": "Synthetic Registration Team",
+        "keyboardNameIntroCreate": true,
+        "cta": {
+          "box": {
+            "x": 1200,
+            "y": 731,
+            "width": 156,
+            "height": 48,
+            "top": 731,
+            "right": 1356,
+            "bottom": 779,
+            "left": 1200
+          },
+          "hit": true,
+          "focus": true
+        }
+      }
+    }
+  ],
+  "result": "PASS",
+  "browserClosed": true
+}

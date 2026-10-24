@@ -1,0 +1,1117 @@
+{
+  "comparison": "Current e135-equivalent QdP accepted UI versus d24b47f pure public-content-defaults boundary. Original696 and Home-dynamic comparisons remain separate and NOT pooled.",
+  "sources": {
+    "baseline": {
+      "origin": "https://portal-perf.test:3443",
+      "root": "/workspace/ddd-perf-prod-final",
+      "source": "3c3d3b2f1934da09a1094ec66b5925715463898b",
+      "buildId": "QdP_-Y3mVZskIG5jIP-YD",
+      "runtimeSourceChanges": ""
+    },
+    "final": {
+      "origin": "https://portal-perf.test:3444",
+      "root": "/workspace/ddd-perf-content-boundary",
+      "source": "d24b47f01c40abe247944a2e81e414a7a31ac06d",
+      "buildId": "XehgeJXDCi4ZqY376uUy7",
+      "runtimeSourceChanges": ""
+    }
+  },
+  "samples": 70,
+  "result": "PASS70",
+  "statistics": "Median and nearest-rankp95 of7; p95=max,n7descriptive only. No samples removed or matrix repeated.",
+  "rows": [
+    {
+      "label": "dashboard",
+      "phase": "cold",
+      "variants": {
+        "baseline": {
+          "ttfbMs": {
+            "n": 7,
+            "median": 80.69999999925494,
+            "p95": 213.09999999776483,
+            "min": 50.599999997764826,
+            "max": 213.09999999776483
+          },
+          "fcpMs": {
+            "n": 7,
+            "median": 496,
+            "p95": 760,
+            "min": 396,
+            "max": 760
+          },
+          "lcpMs": {
+            "n": 7,
+            "median": 496,
+            "p95": 760,
+            "min": 396,
+            "max": 760
+          },
+          "completedHttpRequestCount": {
+            "n": 7,
+            "median": 22,
+            "p95": 22,
+            "min": 22,
+            "max": 22
+          },
+          "actualNetworkRequests": {
+            "n": 7,
+            "median": 22,
+            "p95": 22,
+            "min": 22,
+            "max": 22
+          },
+          "cachedRequests": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "completedWireBytes": {
+            "n": 7,
+            "median": 373304,
+            "p95": 373304,
+            "min": 373304,
+            "max": 373304
+          },
+          "fontWireBytes": {
+            "n": 7,
+            "median": 58536,
+            "p95": 58536,
+            "min": 58536,
+            "max": 58536
+          },
+          "cssWireBytes": {
+            "n": 7,
+            "median": 57151,
+            "p95": 57151,
+            "min": 57151,
+            "max": 57151
+          },
+          "scriptWireBytes": {
+            "n": 7,
+            "median": 238645,
+            "p95": 238645,
+            "min": 238645,
+            "max": 238645
+          },
+          "longTaskTotalMs": {
+            "n": 7,
+            "median": 144,
+            "p95": 485,
+            "min": 74,
+            "max": 485
+          }
+        },
+        "final": {
+          "ttfbMs": {
+            "n": 7,
+            "median": 86.89999999850988,
+            "p95": 107.69999999925494,
+            "min": 54.100000001490116,
+            "max": 107.69999999925494
+          },
+          "fcpMs": {
+            "n": 7,
+            "median": 464,
+            "p95": 552,
+            "min": 436,
+            "max": 552
+          },
+          "lcpMs": {
+            "n": 7,
+            "median": 464,
+            "p95": 552,
+            "min": 436,
+            "max": 552
+          },
+          "completedHttpRequestCount": {
+            "n": 7,
+            "median": 22,
+            "p95": 22,
+            "min": 22,
+            "max": 22
+          },
+          "actualNetworkRequests": {
+            "n": 7,
+            "median": 22,
+            "p95": 22,
+            "min": 22,
+            "max": 22
+          },
+          "cachedRequests": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "completedWireBytes": {
+            "n": 7,
+            "median": 348484,
+            "p95": 348484,
+            "min": 348484,
+            "max": 348484
+          },
+          "fontWireBytes": {
+            "n": 7,
+            "median": 58536,
+            "p95": 58536,
+            "min": 58536,
+            "max": 58536
+          },
+          "cssWireBytes": {
+            "n": 7,
+            "median": 57151,
+            "p95": 57151,
+            "min": 57151,
+            "max": 57151
+          },
+          "scriptWireBytes": {
+            "n": 7,
+            "median": 213823,
+            "p95": 213823,
+            "min": 213823,
+            "max": 213823
+          },
+          "longTaskTotalMs": {
+            "n": 7,
+            "median": 140,
+            "p95": 185,
+            "min": 81,
+            "max": 185
+          }
+        }
+      },
+      "pairedFCP": {
+        "deltasMs": [
+          -308,
+          -40,
+          64,
+          -104,
+          -48,
+          84,
+          40
+        ],
+        "medianDeltaMs": -40,
+        "candidateSlower": 3,
+        "candidateFaster": 4,
+        "ties": 0
+      },
+      "pairedTTFBMedianDeltaMs": 2.7999999970197678
+    },
+    {
+      "label": "dashboard",
+      "phase": "repeat",
+      "variants": {
+        "baseline": {
+          "ttfbMs": {
+            "n": 7,
+            "median": 34.19999999925494,
+            "p95": 50.80000000074506,
+            "min": 26,
+            "max": 50.80000000074506
+          },
+          "fcpMs": {
+            "n": 7,
+            "median": 124,
+            "p95": 188,
+            "min": 100,
+            "max": 188
+          },
+          "lcpMs": {
+            "n": 7,
+            "median": 124,
+            "p95": 200,
+            "min": 100,
+            "max": 200
+          },
+          "completedHttpRequestCount": {
+            "n": 7,
+            "median": 22,
+            "p95": 22,
+            "min": 22,
+            "max": 22
+          },
+          "actualNetworkRequests": {
+            "n": 7,
+            "median": 6,
+            "p95": 6,
+            "min": 6,
+            "max": 6
+          },
+          "cachedRequests": {
+            "n": 7,
+            "median": 16,
+            "p95": 16,
+            "min": 16,
+            "max": 16
+          },
+          "completedWireBytes": {
+            "n": 7,
+            "median": 16820,
+            "p95": 16820,
+            "min": 16820,
+            "max": 16820
+          },
+          "fontWireBytes": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "cssWireBytes": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "scriptWireBytes": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "longTaskTotalMs": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          }
+        },
+        "final": {
+          "ttfbMs": {
+            "n": 7,
+            "median": 33.900000002235174,
+            "p95": 51.29999999701977,
+            "min": 26.899999998509884,
+            "max": 51.29999999701977
+          },
+          "fcpMs": {
+            "n": 7,
+            "median": 132,
+            "p95": 156,
+            "min": 92,
+            "max": 156
+          },
+          "lcpMs": {
+            "n": 7,
+            "median": 132,
+            "p95": 156,
+            "min": 92,
+            "max": 156
+          },
+          "completedHttpRequestCount": {
+            "n": 7,
+            "median": 22,
+            "p95": 22,
+            "min": 22,
+            "max": 22
+          },
+          "actualNetworkRequests": {
+            "n": 7,
+            "median": 6,
+            "p95": 6,
+            "min": 6,
+            "max": 6
+          },
+          "cachedRequests": {
+            "n": 7,
+            "median": 16,
+            "p95": 16,
+            "min": 16,
+            "max": 16
+          },
+          "completedWireBytes": {
+            "n": 7,
+            "median": 16822,
+            "p95": 16822,
+            "min": 16822,
+            "max": 16822
+          },
+          "fontWireBytes": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "cssWireBytes": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "scriptWireBytes": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "longTaskTotalMs": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          }
+        }
+      },
+      "pairedFCP": {
+        "deltasMs": [
+          -52,
+          8,
+          -32,
+          36,
+          -36,
+          44,
+          -28
+        ],
+        "medianDeltaMs": -28,
+        "candidateSlower": 3,
+        "candidateFaster": 4,
+        "ties": 0
+      },
+      "pairedTTFBMedianDeltaMs": 0.30000000074505806
+    },
+    {
+      "label": "people",
+      "phase": "cold",
+      "variants": {
+        "baseline": {
+          "ttfbMs": {
+            "n": 7,
+            "median": 65.30000000074506,
+            "p95": 96.19999999925494,
+            "min": 46.19999999925494,
+            "max": 96.19999999925494
+          },
+          "fcpMs": {
+            "n": 7,
+            "median": 380,
+            "p95": 632,
+            "min": 332,
+            "max": 632
+          },
+          "lcpMs": {
+            "n": 7,
+            "median": 380,
+            "p95": 632,
+            "min": 332,
+            "max": 632
+          },
+          "completedHttpRequestCount": {
+            "n": 7,
+            "median": 20,
+            "p95": 20,
+            "min": 20,
+            "max": 20
+          },
+          "actualNetworkRequests": {
+            "n": 7,
+            "median": 20,
+            "p95": 20,
+            "min": 20,
+            "max": 20
+          },
+          "cachedRequests": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "completedWireBytes": {
+            "n": 7,
+            "median": 354554,
+            "p95": 354554,
+            "min": 354554,
+            "max": 354554
+          },
+          "fontWireBytes": {
+            "n": 7,
+            "median": 43941,
+            "p95": 43941,
+            "min": 43941,
+            "max": 43941
+          },
+          "cssWireBytes": {
+            "n": 7,
+            "median": 57151,
+            "p95": 57151,
+            "min": 57151,
+            "max": 57151
+          },
+          "scriptWireBytes": {
+            "n": 7,
+            "median": 238645,
+            "p95": 238645,
+            "min": 238645,
+            "max": 238645
+          },
+          "longTaskTotalMs": {
+            "n": 7,
+            "median": 158,
+            "p95": 418,
+            "min": 116,
+            "max": 418
+          }
+        },
+        "final": {
+          "ttfbMs": {
+            "n": 7,
+            "median": 49.599999997764826,
+            "p95": 90.19999999925494,
+            "min": 38.899999998509884,
+            "max": 90.19999999925494
+          },
+          "fcpMs": {
+            "n": 7,
+            "median": 440,
+            "p95": 2280,
+            "min": 376,
+            "max": 2280
+          },
+          "lcpMs": {
+            "n": 7,
+            "median": 440,
+            "p95": 2280,
+            "min": 376,
+            "max": 2280
+          },
+          "completedHttpRequestCount": {
+            "n": 7,
+            "median": 20,
+            "p95": 20,
+            "min": 20,
+            "max": 20
+          },
+          "actualNetworkRequests": {
+            "n": 7,
+            "median": 20,
+            "p95": 20,
+            "min": 20,
+            "max": 20
+          },
+          "cachedRequests": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "completedWireBytes": {
+            "n": 7,
+            "median": 329732,
+            "p95": 329732,
+            "min": 329732,
+            "max": 329732
+          },
+          "fontWireBytes": {
+            "n": 7,
+            "median": 43941,
+            "p95": 43941,
+            "min": 43941,
+            "max": 43941
+          },
+          "cssWireBytes": {
+            "n": 7,
+            "median": 57151,
+            "p95": 57151,
+            "min": 57151,
+            "max": 57151
+          },
+          "scriptWireBytes": {
+            "n": 7,
+            "median": 213823,
+            "p95": 213823,
+            "min": 213823,
+            "max": 213823
+          },
+          "longTaskTotalMs": {
+            "n": 7,
+            "median": 219,
+            "p95": 641,
+            "min": 88,
+            "max": 641
+          }
+        }
+      },
+      "pairedFCP": {
+        "deltasMs": [
+          40,
+          88,
+          1840,
+          -88,
+          108,
+          -4,
+          24
+        ],
+        "medianDeltaMs": 40,
+        "candidateSlower": 5,
+        "candidateFaster": 2,
+        "ties": 0
+      },
+      "pairedTTFBMedianDeltaMs": -0.6000000014901161
+    },
+    {
+      "label": "people",
+      "phase": "repeat",
+      "variants": {
+        "baseline": {
+          "ttfbMs": {
+            "n": 7,
+            "median": 31.300000000745058,
+            "p95": 39.19999999925494,
+            "min": 22.599999997764826,
+            "max": 39.19999999925494
+          },
+          "fcpMs": {
+            "n": 7,
+            "median": 116,
+            "p95": 184,
+            "min": 104,
+            "max": 184
+          },
+          "lcpMs": {
+            "n": 7,
+            "median": 116,
+            "p95": 184,
+            "min": 104,
+            "max": 184
+          },
+          "completedHttpRequestCount": {
+            "n": 7,
+            "median": 20,
+            "p95": 20,
+            "min": 20,
+            "max": 20
+          },
+          "actualNetworkRequests": {
+            "n": 7,
+            "median": 5,
+            "p95": 5,
+            "min": 5,
+            "max": 5
+          },
+          "cachedRequests": {
+            "n": 7,
+            "median": 15,
+            "p95": 15,
+            "min": 15,
+            "max": 15
+          },
+          "completedWireBytes": {
+            "n": 7,
+            "median": 13441,
+            "p95": 13441,
+            "min": 13441,
+            "max": 13441
+          },
+          "fontWireBytes": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "cssWireBytes": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "scriptWireBytes": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "longTaskTotalMs": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          }
+        },
+        "final": {
+          "ttfbMs": {
+            "n": 7,
+            "median": 26.300000000745058,
+            "p95": 52.19999999925494,
+            "min": 20.099999997764826,
+            "max": 52.19999999925494
+          },
+          "fcpMs": {
+            "n": 7,
+            "median": 116,
+            "p95": 204,
+            "min": 92,
+            "max": 204
+          },
+          "lcpMs": {
+            "n": 7,
+            "median": 116,
+            "p95": 204,
+            "min": 92,
+            "max": 204
+          },
+          "completedHttpRequestCount": {
+            "n": 7,
+            "median": 20,
+            "p95": 20,
+            "min": 20,
+            "max": 20
+          },
+          "actualNetworkRequests": {
+            "n": 7,
+            "median": 5,
+            "p95": 5,
+            "min": 5,
+            "max": 5
+          },
+          "cachedRequests": {
+            "n": 7,
+            "median": 15,
+            "p95": 15,
+            "min": 15,
+            "max": 15
+          },
+          "completedWireBytes": {
+            "n": 7,
+            "median": 13441,
+            "p95": 13441,
+            "min": 13441,
+            "max": 13441
+          },
+          "fontWireBytes": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "cssWireBytes": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "scriptWireBytes": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "longTaskTotalMs": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          }
+        }
+      },
+      "pairedFCP": {
+        "deltasMs": [
+          28,
+          -8,
+          4,
+          20,
+          44,
+          -32,
+          -20
+        ],
+        "medianDeltaMs": 4,
+        "candidateSlower": 4,
+        "candidateFaster": 3,
+        "ties": 0
+      },
+      "pairedTTFBMedianDeltaMs": -0.30000000074505806
+    },
+    {
+      "label": "home",
+      "phase": "cold",
+      "variants": {
+        "baseline": {
+          "ttfbMs": {
+            "n": 7,
+            "median": 58.100000001490116,
+            "p95": 160.60000000149012,
+            "min": 32.69999999925494,
+            "max": 160.60000000149012
+          },
+          "fcpMs": {
+            "n": 7,
+            "median": 564,
+            "p95": 792,
+            "min": 432,
+            "max": 792
+          },
+          "lcpMs": {
+            "n": 7,
+            "median": 564,
+            "p95": 792,
+            "min": 480,
+            "max": 792
+          },
+          "completedHttpRequestCount": {
+            "n": 7,
+            "median": 21,
+            "p95": 21,
+            "min": 21,
+            "max": 21
+          },
+          "actualNetworkRequests": {
+            "n": 7,
+            "median": 21,
+            "p95": 21,
+            "min": 21,
+            "max": 21
+          },
+          "cachedRequests": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "completedWireBytes": {
+            "n": 7,
+            "median": 1520183,
+            "p95": 1520183,
+            "min": 1520183,
+            "max": 1520183
+          },
+          "fontWireBytes": {
+            "n": 7,
+            "median": 58536,
+            "p95": 58536,
+            "min": 58536,
+            "max": 58536
+          },
+          "cssWireBytes": {
+            "n": 7,
+            "median": 57151,
+            "p95": 57151,
+            "min": 57151,
+            "max": 57151
+          },
+          "scriptWireBytes": {
+            "n": 7,
+            "median": 238645,
+            "p95": 238645,
+            "min": 238645,
+            "max": 238645
+          },
+          "longTaskTotalMs": {
+            "n": 7,
+            "median": 109,
+            "p95": 243,
+            "min": 78,
+            "max": 243
+          }
+        },
+        "final": {
+          "ttfbMs": {
+            "n": 7,
+            "median": 53.900000002235174,
+            "p95": 70.39999999850988,
+            "min": 27.700000002980232,
+            "max": 70.39999999850988
+          },
+          "fcpMs": {
+            "n": 7,
+            "median": 492,
+            "p95": 976,
+            "min": 444,
+            "max": 976
+          },
+          "lcpMs": {
+            "n": 7,
+            "median": 492,
+            "p95": 976,
+            "min": 444,
+            "max": 976
+          },
+          "completedHttpRequestCount": {
+            "n": 7,
+            "median": 21,
+            "p95": 21,
+            "min": 21,
+            "max": 21
+          },
+          "actualNetworkRequests": {
+            "n": 7,
+            "median": 21,
+            "p95": 21,
+            "min": 21,
+            "max": 21
+          },
+          "cachedRequests": {
+            "n": 7,
+            "median": 0,
+            "p95": 0,
+            "min": 0,
+            "max": 0
+          },
+          "completedWireBytes": {
+            "n": 7,
+            "median": 1495363,
+            "p95": 1495363,
+            "min": 1495363,
+            "max": 1495363
+          },
+          "fontWireBytes": {
+            "n": 7,
+            "median": 58536,
+            "p95": 58536,
+            "min": 58536,
+            "max": 58536
+          },
+          "cssWireBytes": {
+            "n": 7,
+            "median": 57151,
+            "p95": 57151,
+            "min": 57151,
+            "max": 57151
+          },
+          "scriptWireBytes": {
+            "n": 7,
+            "median": 213823,
+            "p95": 213823,
+            "min": 213823,
+            "max": 213823
+          },
+          "longTaskTotalMs": {
+            "n": 7,
+            "median": 127,
+            "p95": 599,
+            "min": 96,
+            "max": 599
+          }
+        }
+      },
+      "pairedFCP": {
+        "deltasMs": [
+          76,
+          60,
+          -120,
+          528,
+          -116,
+          8,
+          -152
+        ],
+        "medianDeltaMs": 8,
+        "candidateSlower": 4,
+        "candidateFaster": 3,
+        "ties": 0
+      },
+      "pairedTTFBMedianDeltaMs": -15.799999997019768
+    }
+  ],
+  "pixels": {
+    "dashboard": {
+      "dimensions": [
+        1440,
+        1268
+      ],
+      "candidateDimensions": [
+        1440,
+        1268
+      ],
+      "differenceBounds": null
+    },
+    "people": {
+      "dimensions": [
+        1440,
+        1962
+      ],
+      "candidateDimensions": [
+        1440,
+        1962
+      ],
+      "differenceBounds": null
+    },
+    "home": {
+      "dimensions": [
+        1440,
+        3113
+      ],
+      "candidateDimensions": [
+        1440,
+        3113
+      ],
+      "differenceBounds": null
+    }
+  },
+  "backend": {
+    "calls": 122,
+    "byOrigin": {
+      "https://portal-perf.test:3443": 61,
+      "https://portal-perf.test:3444": 61
+    },
+    "views": 122,
+    "sessions": 0,
+    "statuses": [
+      200
+    ]
+  },
+  "compiledGate": {
+    "method": "Read only existing compiled production artifacts and source graph, no build/browser/timing rerun.",
+    "variants": {
+      "current": {
+        "root": "/workspace/ddd-perf-prod-final",
+        "source": "3c3d3b2f1934da09a1094ec66b5925715463898b",
+        "buildId": "QdP_-Y3mVZskIG5jIP-YD",
+        "runtimeChanges": "",
+        "initialEntryChunks": [
+          {
+            "file": "static/chunks/330-4c357f8dea252b4d.js",
+            "raw": 114770,
+            "gzip": 34072,
+            "sha256": "a4bef31b2343c3ce1f5de0722e32e4a6af3e153c51fbcf38fb78c44e88d30293",
+            "containsZodError": true
+          },
+          {
+            "file": "static/chunks/46-25dc4d392de3b32b.js",
+            "raw": 245348,
+            "gzip": 67630,
+            "sha256": "0e5af9a5522b23ed208972f7d37e6e3f5103ad427ecb89ce3385b73ef6da29eb",
+            "containsZodError": false
+          },
+          {
+            "file": "static/chunks/app/%5B%5B...path%5D%5D/page-7d330e6961fa396b.js",
+            "raw": 179,
+            "gzip": 162,
+            "sha256": "9b6e0018275788e7759bcc5737b2ca8f6c336e56017f2f2d60565873f916d0f9",
+            "containsZodError": false
+          }
+        ],
+        "rootCSS": [
+          {
+            "file": "static/css/8809e623ff52f09d.css",
+            "raw": 69540,
+            "gzip": 13644,
+            "sha256": "5982b839c1f21edde41e353e4e36e5cbd57b43f88a4bc74e49b0768208c90440",
+            "containsZodError": false
+          },
+          {
+            "file": "static/css/6e69855840ff679f.css",
+            "raw": 79342,
+            "gzip": 12879,
+            "sha256": "68662e9ac4894473c9ba14bed5aa4ce044ebbb65495063a08bdbfa274d50f4e2",
+            "containsZodError": false
+          },
+          {
+            "file": "static/css/eb86810ad77fc3a3.css",
+            "raw": 68439,
+            "gzip": 11741,
+            "sha256": "01e80fe541629e3235ca7312714af65e372ffc98dceae817d571dc81168e9df5",
+            "containsZodError": false
+          },
+          {
+            "file": "static/css/3be7d25f586b063e.css",
+            "raw": 86142,
+            "gzip": 12361,
+            "sha256": "37a0dfd18ebb12cad0355e3ff3d97ec6fdc485216378257cb215d124febb4be8",
+            "containsZodError": false
+          },
+          {
+            "file": "static/css/55bbc64ae4d39192.css",
+            "raw": 25795,
+            "gzip": 4292,
+            "sha256": "a0b7ff5ee4791d8478bb001dd140fcaa07586c5b7c5055a3cdf6c60af643d202",
+            "containsZodError": false
+          }
+        ],
+        "allClientZodChunks": [
+          "static/chunks/330-4c357f8dea252b4d.js"
+        ],
+        "homeAsync": []
+      },
+      "candidate": {
+        "root": "/workspace/ddd-perf-content-boundary",
+        "source": "d24b47f01c40abe247944a2e81e414a7a31ac06d",
+        "buildId": "XehgeJXDCi4ZqY376uUy7",
+        "runtimeChanges": "",
+        "initialEntryChunks": [
+          {
+            "file": "static/chunks/754-acc388c9c5a7b620.js",
+            "raw": 30647,
+            "gzip": 9672,
+            "sha256": "6ccef3f22f2175532599afad1410a8870e9d861c385e20c6176050fcc19400b6",
+            "containsZodError": false
+          },
+          {
+            "file": "static/chunks/272-e69d48b1df51e920.js",
+            "raw": 244469,
+            "gzip": 67231,
+            "sha256": "39ca3718972870d128cda40588dfc2628cc641225599106756e948423c9a9449",
+            "containsZodError": false
+          },
+          {
+            "file": "static/chunks/app/%5B%5B...path%5D%5D/page-805e85a88841b968.js",
+            "raw": 182,
+            "gzip": 162,
+            "sha256": "d0cee79e291a4fa3c6f13131a601898d49a387e6fa850a05b1f1cedd9601d53f",
+            "containsZodError": false
+          }
+        ],
+        "rootCSS": [
+          {
+            "file": "static/css/8809e623ff52f09d.css",
+            "raw": 69540,
+            "gzip": 13644,
+            "sha256": "5982b839c1f21edde41e353e4e36e5cbd57b43f88a4bc74e49b0768208c90440",
+            "containsZodError": false
+          },
+          {
+            "file": "static/css/6e69855840ff679f.css",
+            "raw": 79342,
+            "gzip": 12879,
+            "sha256": "68662e9ac4894473c9ba14bed5aa4ce044ebbb65495063a08bdbfa274d50f4e2",
+            "containsZodError": false
+          },
+          {
+            "file": "static/css/eb86810ad77fc3a3.css",
+            "raw": 68439,
+            "gzip": 11741,
+            "sha256": "01e80fe541629e3235ca7312714af65e372ffc98dceae817d571dc81168e9df5",
+            "containsZodError": false
+          },
+          {
+            "file": "static/css/3be7d25f586b063e.css",
+            "raw": 86142,
+            "gzip": 12361,
+            "sha256": "37a0dfd18ebb12cad0355e3ff3d97ec6fdc485216378257cb215d124febb4be8",
+            "containsZodError": false
+          },
+          {
+            "file": "static/css/55bbc64ae4d39192.css",
+            "raw": 25795,
+            "gzip": 4292,
+            "sha256": "a0b7ff5ee4791d8478bb001dd140fcaa07586c5b7c5055a3cdf6c60af643d202",
+            "containsZodError": false
+          }
+        ],
+        "allClientZodChunks": [],
+        "homeAsync": []
+      }
+    },
+    "result": "PASS"
+  },
+  "errors": [],
+  "externalPageAttempts": []
+}

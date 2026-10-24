@@ -1,0 +1,65 @@
+{
+  "result": "bounded one-save outcome independently verified",
+  "source": "57d7fc3801820b13748441a649c68ee0e0310d56",
+  "appCodeSource": "e1d50c27ef0785a93faf4c2e1f48929937d65aac",
+  "originalReportSha256": "2ff0fef79978624b4631939417fb4e1c1abdf50b1884800e90cb56d87d1ff01f",
+  "originalRunnerExitCode": 1,
+  "originalRunnerFailurePreserved": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    'audit_logs',\n    'projects',\n+   'request_buckets'\n  ]\n\n    at file:///workspace/ddd-final-ui-coverage/scripts/qa-final-save-toast.mjs:101:10\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+  "classification": "Harness table allowlist omitted the expected request_buckets side effect from PortalService.command -> throttle. No repeated save and no app failure.",
+  "actualDraftPosts": 1,
+  "draftHttpStatus": 200,
+  "revisionBeforeAfter": [
+    2,
+    3
+  ],
+  "attemptsBeforeAfter": [
+    2,
+    2
+  ],
+  "saveAuditRows": 1,
+  "submitAuditRows": 0,
+  "expectedChangedTables": [
+    "audit_logs",
+    "projects",
+    "request_buckets"
+  ],
+  "otherUnchangedTables": 64,
+  "authorizedAliceRateBucketRows": 1,
+  "authorizedAliceRateBucketCount": 1,
+  "focusProof": {
+    "visibleInput": "projectName",
+    "refreshedStep": 1,
+    "enabled": true,
+    "focused": true,
+    "successPresentImmediatelyBeforeFocus": true,
+    "successSeenToFocusMs": 289,
+    "focusToClearedMs": 469,
+    "sourceAutoDismissMs": 5000,
+    "usedFocusOnlyNoTyping": true
+  },
+  "actionableFieldErrorRetained": true,
+  "allFourOriginalPNGsViewed": true,
+  "pageErrors": 0,
+  "blockedRequests": 0,
+  "appFingerprintsUnchanged": true,
+  "noReplay": true,
+  "cleanup": {
+    "browserClosed": true,
+    "verifiedOwnedPIDsStopped": [
+      149717,
+      149731,
+      149677
+    ],
+    "portsClosed": [
+      3007,
+      8849
+    ],
+    "generatedNextEnvRestored": true
+  },
+  "supersedingRootCliVerificationReferences": {
+    "evidence/populated-upgrade-cli-independent/report.json": "cdcbb722ecf96f42ca699a8b3ab5aa1788d49c705c28395b006a24dfebb01ea7",
+    "evidence/resumed-release-2026-10-24/affected-migrations.json": "35197c4ee5d6ac4cf193c36a56751464f6e2f4dc0a827f1ff76394e48e8595dd"
+  },
+  "applicationChanges": 0,
+  "push": false
+}

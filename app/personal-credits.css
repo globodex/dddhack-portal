@@ -1,0 +1,243 @@
+.personal-credit-list {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+.app-shell .personal-credit-card {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--line, #e3e4db);
+  border-radius: 14px;
+  background: var(--surface, #fffefa);
+}
+.app-shell .personal-credit-card .credit-secret {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px 44px;
+  align-items: start;
+  gap: 0;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line, #e3e4db);
+  border-radius: 10px;
+}
+.app-shell .personal-credit-card .credit-secret > code {
+  margin: 0;
+  padding: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  background: #fff;
+}
+.app-shell .personal-credit-card .credit-secret > .button {
+  border: 0;
+  border-left: 1px solid var(--line, #e3e4db);
+  border-radius: 0;
+}
+.app-shell .dashboard-v6 .personal-credit-list > article.personal-credit-card {
+  margin: 0;
+  padding: 24px;
+  border: 1px solid var(--line, #e3e4db);
+}
+.app-shell
+  .dashboard-v6
+  .personal-credit-card
+  .personal-credit-card-heading
+  h3 {
+  margin: 0;
+}
+.app-shell .dashboard-v6 .personal-credit-card .credit-secret {
+  grid-template-columns: minmax(0, 1fr) 44px 44px;
+  gap: 0;
+}
+.app-shell .dashboard-v6 .personal-credit-card .credit-secret > .button {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 10px;
+}
+.personal-credit-card-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-width: 0;
+}
+.personal-credit-card-heading h3 {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.personal-credit-status {
+  flex: 0 0 auto;
+  padding: 5px 9px;
+  border-radius: 20px;
+  background: #f0f0e9;
+  color: #656960;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.personal-credit-status.is-assigned {
+  background: #e4f7ed;
+  color: #126b43;
+}
+.personal-credit-card .credit-secret {
+  min-width: 0;
+}
+.personal-credit-card .credit-secret code {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+.personal-credit-card .credit-secret .button {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  padding: 10px;
+}
+.personal-credit-error {
+  margin: 8px 0 0;
+  color: #a43e39;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.personal-credit-empty {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 14px;
+  min-height: 220px;
+  padding: 28px;
+  border: 1px solid var(--line, #e3e4db);
+  border-radius: 14px;
+  background: var(--surface, #fffefa);
+  color: var(--muted, #656960);
+  text-align: center;
+}
+.personal-credit-empty h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+.personal-credits-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.personal-credit-dashboard-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--ink, #202320);
+  font-size: 14px;
+  text-decoration: none;
+}
+.personal-credit-access {
+  display: grid;
+  gap: 48px;
+  max-width: 640px;
+  padding: 28px 24px;
+  margin: 0 auto;
+  color: var(--ink, #202320);
+}
+.personal-credit-access-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.personal-credit-access > section {
+  display: grid;
+  justify-items: start;
+  gap: 24px;
+  padding: 32px;
+  border: 1px solid var(--line, #e3e4db);
+  border-radius: 16px;
+  background: var(--surface, #fffefa);
+}
+.personal-credit-access h1 {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}
+.personal-credit-access .button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+}
+@media (max-width: 640px) {
+  .app-shell .personal-credit-card {
+    padding: 20px;
+  }
+  .app-shell
+    .dashboard-v6
+    .personal-credit-list
+    > article.personal-credit-card {
+    padding: 20px;
+  }
+  .personal-credit-card-heading {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .personal-credits-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .personal-credit-access {
+    padding: 24px 20px;
+  }
+  .personal-credit-access > section {
+    padding: 24px;
+  }
+  .personal-credit-access h1 {
+    font-size: 26px;
+  }
+}
+.personal-credit-access > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-width: 0;
+}
+.personal-credit-access .information-menu-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border: 0;
+  border-radius: 50%;
+  background: #202320;
+  color: #fffefa;
+}
+.personal-credit-access .information-menu-button:focus-visible {
+  outline: 2px solid #006afe;
+  outline-offset: 3px;
+}
+.app-shell .personal-credits-page .credit-secret > code {
+  border: 0;
+  border-radius: 0;
+}
+.app-shell
+  .personal-credits-page
+  .personal-credit-card
+  .credit-secret
+  > button.button {
+  padding: 10px;
+}
+.app-shell .personal-credits-page .credit-secret > button > svg {
+  flex-shrink: 0;
+}

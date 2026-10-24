@@ -1,8 +1,9 @@
 import { z } from "zod";
 import { one, rows, assertPreviousWrite, type SQL } from "./db";
 import type { PortalService } from "./service";
-import { demand, parseCSV, sha256 } from "./security";
-import { attendancePredicate } from "./portal-status";
+import { demand, parseCSV } from "./security";
+import { importCreditStock } from "./credit-stock-import";
+import { creditSummaries } from "./credit-stock";
 import { creditAuditMetadata } from "./credit-audit";
 const columnSchema = z
   .object({
@@ -27,6 +28,7 @@ function parseBatch(csv: string, provided?: z.infer<typeof columnSchema>[]) {
     422,
     "CREDIT_HEADER_REQUIRED",
   );
+  demand(new Set(parsed[0].map(header => header.trim().toLowerCase())).size === parsed[0].length, 422, "CREDIT_HEADER_DUPLICATE");
   const columns = parsed[0].map((sourceHeading, index) => {
     const key = String(index),
       edit = provided?.find((c) => c.key === key);
@@ -39,14 +41,14 @@ function parseBatch(csv: string, provided?: z.infer<typeof columnSchema>[]) {
       422,
       "INVALID_CREDIT_VALUE",
     );
-    demand(new Set(values).size === values.length, 422, "CSV_DUPLICATES");
     demand(values.length > 0, 422, "EMPTY_CREDIT_COLUMN");
     return {
       key,
       sourceHeading,
       heading: edit?.heading || sourceHeading,
       instructions: edit?.instructions || "",
-      values,
+      values: [...new Set(values)],
+      incomingCount: values.length,
     };
   });
   demand(
@@ -73,13 +75,14 @@ export async function creditBatchesView(s: PortalService) {
   );
   const columns = await rows<Record<string, any>>(
     s.db,
-    "SELECT c.batch_id batchId,t.id,t.id typeId,t.name heading,t.instructions,(SELECT count(*) FROM credit_inventory i WHERE i.type_id=t.id) inventory,(SELECT count(*) FROM credit_allocations a WHERE a.type_id=t.id) assigned FROM credit_batch_columns c JOIN credit_types t ON t.id=c.type_id ORDER BY CAST(c.column_key AS INTEGER)",
+    "SELECT c.batch_id batchId,c.source_heading sourceHeading,t.id,t.id typeId,t.name heading,t.instructions,(SELECT count(*) FROM credit_inventory i WHERE i.type_id=t.id) inventory,(SELECT count(*) FROM credit_allocations a WHERE a.type_id=t.id) assigned FROM credit_batch_columns c JOIN credit_types t ON t.id=c.type_id ORDER BY CAST(c.column_key AS INTEGER)",
   );
+  const summaries = new Map((await creditSummaries(s)).map(row => [row.id, row]));
   return batches.map((b) => ({
     ...b,
     columns: columns
       .filter((c) => c.batchId === b.id)
-      .map(({ batchId, ...c }) => c),
+      .map(({ batchId, ...c }) => ({ ...c, ...summaries.get(c.id), heading: c.heading })),
   }));
 }
 export async function creditBatchCommand(
@@ -172,6 +175,7 @@ export async function creditBatchCommand(
           d.batchId,
           column.id,
         ],
+        ["DELETE FROM credit_category_keys WHERE type_id=?", column.id],
         ["DELETE FROM credit_types WHERE id=?", column.id],
       );
     }
@@ -193,158 +197,20 @@ export async function creditBatchCommand(
       deleted: true,
     };
   }
-  const d = inputSchema.parse(input),
-    { parsed, columns } = parseBatch(d.csv, d.columns);
-  const digest = await sha256(
-    JSON.stringify({ kind: "credit-batch-v1", columns }),
-  );
-  const existing = await one<{ id: string; deleted_at: string | null }>(
-    s.db,
-    "SELECT id,deleted_at FROM credit_batches WHERE created_by=? AND digest=?",
-    actor.id,
-    digest,
-  );
-  if (action === "publish-credit-batch" && existing) {
-    demand(!existing.deleted_at, 409, "CREDIT_BATCH_DELETED");
-    return {
-      message: "Credit batch was already published.",
-      batchId: existing.id,
-    };
-  }
-  for (const c of columns)
-    demand(
-      !(await one(
-        s.db,
-        "SELECT id FROM credit_types WHERE lower(name)=lower(?)",
-        c.heading,
-      )),
-      409,
-      "CREDIT_HEADING_EXISTS",
-    );
-  if (action === "preview-credit-batch") {
-    await s.mutate(
-      actor.id,
-      action,
-      digest,
-      [
-        [
-          "INSERT INTO import_previews VALUES(?,?,?) ON CONFLICT(actor_id,digest) DO UPDATE SET created_at=excluded.created_at",
-          actor.id,
-          digest,
-          s.now(),
-        ],
-      ],
-      { columns: columns.length, rows: parsed.length - 1 },
-    );
-    return {
-      digest,
-      columns: columns.map(({ values, ...c }) => ({
-        ...c,
-        count: values.length,
-      })),
-      rows: parsed.slice(1, 6).map((r, i) => ({
-        row: i + 1,
-        cells: r.map((v) => (v ? "[masked]" : "")),
-      })),
-      rowCount: parsed.length - 1,
-    };
-  }
-  demand(
-    d.confirmation === "PUBLISH_CREDIT_BATCH",
-    422,
-    "CREDIT_PUBLISH_CONFIRMATION_REQUIRED",
-  );
-  demand(
-    d.digest === digest &&
-      (await one(
-        s.db,
-        "SELECT digest FROM import_previews WHERE actor_id=? AND digest=? AND created_at>?",
-        actor.id,
-        digest,
-        new Date(Date.parse(s.now()) - 15 * 60_000).toISOString(),
-      )),
-    409,
-    "PREVIEW_REQUIRED",
-  );
-  const batchId = crypto.randomUUID();
-  const sql: SQL[] = [
-    [
-      "INSERT INTO credit_batches(id,digest,created_by,created_at) VALUES(?,?,?,?)",
-      batchId,
-      digest,
-      actor.id,
-      s.now(),
-    ],
-  ];
-  for (const column of columns) {
-    const typeId = crypto.randomUUID();
-    sql.push(
-      [
-        "INSERT INTO credit_types(id,name,instructions,active) VALUES(?,?,?,1)",
-        typeId,
-        column.heading,
-        column.instructions,
-      ],
-      [
-        "INSERT INTO credit_batch_columns VALUES(?,?,?,?)",
-        batchId,
-        typeId,
-        column.key,
-        column.sourceHeading,
-      ],
-    );
-    const inventory = await Promise.all(
-      column.values.map(async (value) => ({
-        id: crypto.randomUUID(),
-        value,
-        fingerprint: await sha256(value),
-      })),
-    );
-    sql.push([
-      "INSERT INTO credit_inventory(id,type_id,ciphertext,fingerprint,created_at,voucher_value) SELECT json_extract(value,'$.id'),?,'',json_extract(value,'$.fingerprint'),?,json_extract(value,'$.value') FROM json_each(?)",
-      typeId,
-      s.now(),
-      JSON.stringify(inventory),
-    ]);
-    // Rank checked-in recipients and this new column's stock once; every mapping
-    // is individually checked again by existing allocation triggers.
-    sql.push([
-      `WITH eligible AS (SELECT u.id,lower(u.email) email,row_number() OVER(ORDER BY u.created_at,u.id) rn FROM users u JOIN registrations r ON r.email=u.email AND r.status='approved' LEFT JOIN portal_roles pr ON pr.user_id=u.id WHERE ${attendancePredicate("u.id")} AND COALESCE(pr.role,u.role)<>'judge' AND EXISTS(SELECT 1 FROM luma_roster l WHERE l.email=u.email) AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=u.id AND rr.active=1)), stock AS (SELECT id,row_number() OVER(ORDER BY rowid) rn FROM credit_inventory WHERE type_id=?) INSERT INTO credit_allocations(inventory_id,type_id,user_id,assigned_at,recipient_email) SELECT stock.id,?,eligible.id,?,eligible.email FROM eligible JOIN stock ON stock.rn=eligible.rn`,
-      typeId,
-      typeId,
-      s.now(),
-    ]);
-  }
-  sql.push(
-    [
-      "DELETE FROM import_previews WHERE actor_id=? AND digest=?",
-      actor.id,
-      digest,
-    ],
-    ...assertPreviousWrite(),
-  );
-  try {
-    await s.mutate(actor.id, action, batchId, sql, {
-      columns: creditAuditMetadata(columns),
-      rowCount: parsed.length - 1,
-    });
-  } catch (error) {
-    const prior = await one<{ id: string }>(
-      s.db,
-      "SELECT id FROM credit_batches WHERE created_by=? AND digest=?",
-      actor.id,
-      digest,
-    );
-    if (prior)
-      return {
-        message: "Credit batch was already published.",
-        batchId: prior.id,
-      };
-    throw error;
-  }
-  return {
-    message:
-      "Credit batch published. Available codes assigned to eligible checked-in recipients.",
-    batchId,
-  };
+  const d = inputSchema.parse(input), { parsed, columns } = parseBatch(d.csv, d.columns);
+  return importCreditStock(s, actor, action, d, columns, parsed.length - 1);
+}
+
+/** Compatibility for the existing one-category value-column import API. */
+export async function legacyCreditStockImport(s: PortalService, action: string, input: unknown) {
+  const actor = await s.staff();
+  const d = z.object({ kind: z.literal("credits"), csv: z.string().max(512_000), typeId: z.string().min(1), digest: z.string().optional() }).strict().parse(input);
+  const parsed = parseCSV(d.csv);
+  demand(parsed[0].length === 1 && parsed[0][0] === "value", 422, "CSV_HEADER_EXPECTED", "Use a single value column.");
+  const category = await one<{ name: string; instructions: string; sourceKey: string | null }>(s.db, "SELECT t.name,t.instructions,k.source_key sourceKey FROM credit_types t LEFT JOIN credit_category_keys k ON k.type_id=t.id WHERE t.id=?", d.typeId);
+  demand(category, 422, "CREDIT_TYPE_REQUIRED");
+  const quote = (value: string) => '"' + value.replaceAll('"', '""') + '"';
+  const csv = [quote(category.sourceKey || category.name), ...parsed.slice(1).map(row => quote(row[0]))].join("\n");
+  const converted = parseBatch(csv, [{ key: "0", heading: category.name, instructions: category.instructions }]);
+  return importCreditStock(s, actor, action === "preview-import" ? "preview-credit-batch" : "publish-credit-batch", { digest: d.digest, confirmation: "PUBLISH_CREDIT_BATCH", auditAction: action }, converted.columns, parsed.length - 1);
 }

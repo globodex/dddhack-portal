@@ -1,0 +1,23 @@
+{
+  "source": "4c5fbf298d89a398ceab90dbdd5e0f5433235fe4",
+  "syntheticOnly": true,
+  "scenario": "JavaScript disabled models profile before client handlers attach",
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/profile",
+      "query": ""
+    }
+  ],
+  "checks": [
+    {
+      "name": "SSR form usesPOST andallfields/Next disabledbeforehydration",
+      "passed": true
+    },
+    {
+      "name": "physicaltap andEnter producezero nativeGETsubmissions orprivatequeryvalues",
+      "passed": true
+    }
+  ],
+  "result": "passed"
+}

@@ -1,0 +1,24 @@
+# Profile breakpoint fix verified
+
+Displayed source: `182c2bd2077d139a7b5f50b89e9730e5961e397c`, unchanged through the final runtime fingerprint. Fix: `cf7c222428e5c8dcd13f1f38e547f1edd1131782` on `feat/profile-experience`. Both author and committer were verified as Parampreet Singh `<rubercuber.30@gmail.com>`.
+
+**P2-03 is closed.** All 15 actual PNG originals were opened and visually inspected. Native 200% and 740px now have full-width stacked fields and no stray vertical avatar divider. At 741px and 768px, the avatar remains in the right column. The two-line CSS change aligns the existing mobile and tablet breakpoints; no form behavior or server data changed.
+
+| Viewport                | Step 1                                                                                                    | Step 2                                                                                     | Step 3                                                                                     |
+| ----------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| Native 200%, CSS720×378 | [Avatar](profile-native-200pct-baseline.png), [full-width fields](profile-native-200pct-step1-fields.png) | [Fields](profile-native-200pct-step2.png), [Next](profile-native-200pct-step2-actions.png) | [Fields](profile-native-200pct-step3.png), [Save](profile-native-200pct-step3-actions.png) |
+| 740×1000                | [Single column](profile-740x1000-baseline.png)                                                            | [Contact](profile-740x1000-step2.png)                                                      | [About](profile-740x1000-step3.png)                                                        |
+| 741×1000                | [Avatar on right](profile-741x1000-baseline.png)                                                          | [Contact](profile-741x1000-step2.png)                                                      | [About](profile-741x1000-step3.png)                                                        |
+| 768×1024                | [Tablet columns](profile-768x1024-baseline.png)                                                           | [Contact](profile-768x1024-step2.png)                                                      | [About](profile-768x1024-step3.png)                                                        |
+
+Before evidence at the same native browser zoom: [avatar area with stray divider](../responsive-profile-discovery-667222d/profile-native-200pct-baseline.png), [half-width fields shown during validation](../responsive-profile-discovery-667222d/profile-native-200pct-step1-validation.png). The before field screenshot shows an inline validation state, while the after field screenshot shows the existing populated fixture; the width correction is measured independently in the report.
+
+## Checks and limits
+
+The [machine report](report.json) records 24 passing checks, zero page errors and no blocked mutation attempts. Field and grid widths match exactly through 740px: 676.5px at native 720px and 689px at 740px, with a 0px left avatar border. At 741/768px the fields occupy the left column and the avatar occupies the right. No horizontal overflow or clipped heading was found in any of the three steps. Next, Next and Save remain reachable; Save was not activated.
+
+Native zoom was measured as outer width 1440, inner width 720, inner height 378, DPR 2 and visual viewport scale 1. The original CDP PNGs cover the full physical 1440×757 viewport. These are native browser zoom captures from a fresh disposable profile, not a CSS scale or a cropped Playwright zoom image.
+
+This is the requested focused regression pass, not a repeated broad matrix. It uses the existing populated synthetic record and does not repeat the earlier 56 control/stress checks or positive persistence tests. All application writes were blocked, no Save was attempted, and no production login or physical device was tested. Every browser/context closed and the disposable native profile was removed before releasing the shared slot. No deployment, provider change or performance claim is involved.
+
+Prior responsive findings are documented in the [667222d follow-up](../responsive-profile-discovery-667222d/QA.md): the Dashboard 320px heading and long private idea title were already visually closed. The two offscreen native long-card captures remain explicitly excluded as proof of that state. The 320px card/dialog originals and native dialog evidence remain available there.

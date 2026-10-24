@@ -1,0 +1,8 @@
+{
+  "mode": "node --check only; outline never executed",
+  "node": "v24.19.0",
+  "outlineSha256": "1340478164b5416d3c3fe2a4cf7d42d63d29c07ef8cb6d3401988846a6114ba8",
+  "syntaxCheckPassed": true,
+  "databaseConnection": false,
+  "hostedWrite": false
+}

@@ -1,0 +1,470 @@
+{
+  "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+  "screenshots": [
+    {
+      "label": "home-menu-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/menus/home-menu-rest-768x1024.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "sha256": "de0d6fbc0041e5c63ca25a84a1a62ae07314ad70dc979cb063b39d69fa0d9170",
+      "inspected": true
+    },
+    {
+      "label": "home-menu-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/menus/home-menu-rest-390x844.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "sha256": "ee0fd41635d0f2ff74d13ea022a8d35b6ca22d9d9e1ec68c1db7234a8e9b7ff7",
+      "inspected": true
+    },
+    {
+      "label": "home-menu-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/menus/home-menu-rest-320x480.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "sha256": "2108a0f56a59dcc6b31b4b5215bf25b2fb8a85e4c005993dd16723a06c41eb24",
+      "inspected": true
+    },
+    {
+      "label": "20second disabled hydration state",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/menus/signin-hydration-held-20s-320x480.png",
+      "source": "73fb78dd80eac7635b247349be76610e95e44551",
+      "sha256": "ccc8a291f06fca25275be2c776ffca4497b37aff7be2051c99fdd719cefb59e8",
+      "inspected": true
+    },
+    {
+      "label": "signin-menu-rest-320x480",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/menus/signin-menu-rest-320x480.png",
+      "source": "73fb78dd80eac7635b247349be76610e95e44551",
+      "sha256": "b30a852a05324015836b20d484d9aa370be700ca342db403a9e9ee7614e75f37",
+      "inspected": true
+    },
+    {
+      "label": "privacy-menu-rest-320x480",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/menus/privacy-menu-rest-320x480.png",
+      "source": "73fb78dd80eac7635b247349be76610e95e44551",
+      "sha256": "ead3679886d1f37980adcff2f0b22e2cb1bab810e7f3a0496a7b50bfc1357d6e",
+      "inspected": true
+    },
+    {
+      "label": "terms-menu-rest-320x480",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/menus/terms-menu-rest-320x480.png",
+      "source": "73fb78dd80eac7635b247349be76610e95e44551",
+      "sha256": "ae797fe3dcc031b78e9918e2e9a57523a71b73a9840484fb7059c215bcc73db7",
+      "inspected": true
+    },
+    {
+      "label": "signin-menu-rest-native200",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/menus/signin-menu-rest-native200.png",
+      "source": "73fb78dd80eac7635b247349be76610e95e44551",
+      "sha256": "97fcfeb4414ab5922c5a403e885e9a55717c9f1256056410f2eec4ed6073ead3",
+      "inspected": true
+    },
+    {
+      "label": "terms-menu-rest-native200",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/menus/terms-menu-rest-native200.png",
+      "source": "73fb78dd80eac7635b247349be76610e95e44551",
+      "sha256": "c5218af290e799682ce0b7eae8382e493e2ec37d328260f7b94f4b5f2d8334cd",
+      "inspected": true
+    },
+    {
+      "label": "terms-menu-rest-native200-end",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/menus/terms-menu-rest-native200-end.png",
+      "source": "73fb78dd80eac7635b247349be76610e95e44551",
+      "sha256": "a01aa0418bf65c30f01b63299a971e6a974ac2b52b21904ed36c50dc93d9cfff",
+      "inspected": true
+    },
+    {
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/menus/terms-native200-decimal-viewport-confirmed.png",
+      "source": "7c1103798170138d5ae696d9ce9bb3a985d7ee69",
+      "sha256": "a01aa0418bf65c30f01b63299a971e6a974ac2b52b21904ed36c50dc93d9cfff",
+      "inspected": true
+    }
+  ],
+  "checks": [
+    {
+      "path": "/",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 753,
+        "height": 1024,
+        "top": 0,
+        "right": 753,
+        "bottom": 1024,
+        "left": 0
+      },
+      "innerHeight": 1024,
+      "rows": [
+        {
+          "text": "Home",
+          "box": {
+            "x": 20,
+            "y": 92,
+            "width": 713,
+            "height": 68,
+            "top": 92,
+            "right": 733,
+            "bottom": 160,
+            "left": 20
+          }
+        },
+        {
+          "text": "Projects",
+          "box": {
+            "x": 20,
+            "y": 160,
+            "width": 713,
+            "height": 68,
+            "top": 160,
+            "right": 733,
+            "bottom": 228,
+            "left": 20
+          }
+        },
+        {
+          "text": "Sign in",
+          "box": {
+            "x": 20,
+            "y": 228,
+            "width": 713,
+            "height": 68,
+            "top": 228,
+            "right": 733,
+            "bottom": 296,
+            "left": 20
+          }
+        }
+      ],
+      "overflowX": false,
+      "escapeClosed": true,
+      "focusReturned": true
+    },
+    {
+      "path": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "innerHeight": 844,
+      "rows": [
+        {
+          "text": "Home",
+          "box": {
+            "x": 20,
+            "y": 92,
+            "width": 350,
+            "height": 60,
+            "top": 92,
+            "right": 370,
+            "bottom": 152,
+            "left": 20
+          }
+        },
+        {
+          "text": "Projects",
+          "box": {
+            "x": 20,
+            "y": 152,
+            "width": 350,
+            "height": 60,
+            "top": 152,
+            "right": 370,
+            "bottom": 212,
+            "left": 20
+          }
+        },
+        {
+          "text": "Sign in",
+          "box": {
+            "x": 20,
+            "y": 212,
+            "width": 350,
+            "height": 60,
+            "top": 212,
+            "right": 370,
+            "bottom": 272,
+            "left": 20
+          }
+        }
+      ],
+      "overflowX": false,
+      "escapeClosed": true,
+      "focusReturned": true
+    },
+    {
+      "path": "/",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 480,
+        "top": 0,
+        "right": 320,
+        "bottom": 480,
+        "left": 0
+      },
+      "innerHeight": 480,
+      "rows": [
+        {
+          "text": "Home",
+          "box": {
+            "x": 20,
+            "y": 92,
+            "width": 280,
+            "height": 60,
+            "top": 92,
+            "right": 300,
+            "bottom": 152,
+            "left": 20
+          }
+        },
+        {
+          "text": "Projects",
+          "box": {
+            "x": 20,
+            "y": 152,
+            "width": 280,
+            "height": 60,
+            "top": 152,
+            "right": 300,
+            "bottom": 212,
+            "left": 20
+          }
+        },
+        {
+          "text": "Sign in",
+          "box": {
+            "x": 20,
+            "y": 212,
+            "width": 280,
+            "height": 60,
+            "top": 212,
+            "right": 300,
+            "bottom": 272,
+            "left": 20
+          }
+        }
+      ],
+      "overflowX": false,
+      "escapeClosed": true,
+      "focusReturned": true
+    },
+    {
+      "route": "/signin",
+      "source": "73fb78dd80eac7635b247349be76610e95e44551",
+      "nativeZoom": false,
+      "pendingDisabled": true,
+      "firstActivationOpened": true,
+      "escapeClosed": true,
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 480,
+        "top": 0,
+        "right": 320,
+        "bottom": 480,
+        "left": 0
+      },
+      "innerWidth": 320,
+      "innerHeight": 480,
+      "devicePixelRatio": 1,
+      "scale": 1,
+      "overflowX": false,
+      "focusReturned": true,
+      "keyboardBackClosed": true,
+      "keyboardBackFocusReturned": true
+    },
+    {
+      "route": "/privacy",
+      "source": "73fb78dd80eac7635b247349be76610e95e44551",
+      "nativeZoom": false,
+      "pendingDisabled": true,
+      "firstActivationOpened": true,
+      "escapeClosed": true,
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 480,
+        "top": 0,
+        "right": 320,
+        "bottom": 480,
+        "left": 0
+      },
+      "innerWidth": 320,
+      "innerHeight": 480,
+      "devicePixelRatio": 1,
+      "scale": 1,
+      "overflowX": false,
+      "focusReturned": true
+    },
+    {
+      "route": "/terms",
+      "source": "73fb78dd80eac7635b247349be76610e95e44551",
+      "nativeZoom": false,
+      "pendingDisabled": true,
+      "firstActivationOpened": true,
+      "escapeClosed": true,
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 480,
+        "top": 0,
+        "right": 320,
+        "bottom": 480,
+        "left": 0
+      },
+      "innerWidth": 320,
+      "innerHeight": 480,
+      "devicePixelRatio": 1,
+      "scale": 1,
+      "overflowX": false,
+      "focusReturned": true
+    },
+    {
+      "route": "/signin",
+      "source": "73fb78dd80eac7635b247349be76610e95e44551",
+      "nativeZoom": true,
+      "pendingDisabled": true,
+      "firstActivationOpened": true,
+      "escapeClosed": true,
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 712.5,
+        "height": 378.5,
+        "top": 0,
+        "right": 712.5,
+        "bottom": 378.5,
+        "left": 0
+      },
+      "innerWidth": 720,
+      "innerHeight": 378,
+      "devicePixelRatio": 2,
+      "scale": 1,
+      "overflowX": false,
+      "focusReturned": true
+    },
+    {
+      "route": "/terms",
+      "source": "7c1103798170138d5ae696d9ce9bb3a985d7ee69",
+      "nativeZoom": true,
+      "escapeClosed": true,
+      "focusReturned": true,
+      "lastLinkReachable": true,
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 378,
+        "dpr": 2,
+        "visualViewport": {
+          "width": 720,
+          "height": 378.5,
+          "scale": 1,
+          "offsetTop": 0
+        },
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 712.5,
+          "height": 378.5,
+          "top": 0,
+          "right": 712.5,
+          "bottom": 378.5,
+          "left": 0
+        },
+        "scrollTop": 53.5,
+        "link": {
+          "x": 20,
+          "y": 310.5,
+          "width": 672.5,
+          "height": 68,
+          "top": 310.5,
+          "right": 692.5,
+          "bottom": 378.5,
+          "left": 20
+        },
+        "text": {
+          "x": 64,
+          "y": 324,
+          "width": 89.734375,
+          "height": 39.5,
+          "top": 324,
+          "right": 153.734375,
+          "bottom": 363.5,
+          "left": 64
+        },
+        "legacyFloorPredicate": false,
+        "decimalViewportPredicate": true,
+        "textFullyVisible": true,
+        "visibleControlHeight": 68,
+        "hitPoints": [
+          {
+            "x": 356.25,
+            "y": 344.5,
+            "hit": true
+          },
+          {
+            "x": 334.75,
+            "y": 323,
+            "hit": true
+          },
+          {
+            "x": 377.75,
+            "y": 323,
+            "hit": true
+          },
+          {
+            "x": 334.75,
+            "y": 366,
+            "hit": true
+          },
+          {
+            "x": 377.75,
+            "y": 366,
+            "hit": true
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "finalResult": "passed",
+  "finalMenuSource": "73fb78dd80eac7635b247349be76610e95e44551",
+  "signinFixCommit": "e4a8d9d258c4421c321f7896bf115bc608d34805",
+  "signinSourceSha": "238b130ee16a593b99cffb33faaa60e01071b919fdef27667c657980c194cef0",
+  "ssrGuard": {
+    "menuDisabled": true,
+    "method": "post"
+  },
+  "delayProof": {
+    "heldForMs": 20720,
+    "heldScriptCount": 4,
+    "menuDisabledAfter20s": true,
+    "hydrationMarker": "false"
+  },
+  "resolvedHarnessFailure": {
+    "message": "Error: Last legal menu item unreachable\n    at capture (file:///tmp/ddd-final-menu-guard.mjs:4:2433)\n    at async file:///tmp/ddd-final-menu-guard.mjs:6:544",
+    "cause": "The legacy predicate compared a378.5px link bottom against floored window.innerHeight378. visualViewport.height is378.5; the68px control and full text are visible and all five44px-square hit points pass.",
+    "verification": "terms-decimal-report.json"
+  },
+  "inspectionNotes": "All11native screenshots opened. Home menus at320/390/768, sign-in and legal menus at320, native200% SignIn and Terms,20.720s disabled-hydration state, Escape/focus return and SignIn Enter/Back pass. Terms decimal viewport follow-up confirms the prior failed integer-edge assertion was a harness limitation. Public-menu scope only; account-route navigation is verified separately by the parent."
+}

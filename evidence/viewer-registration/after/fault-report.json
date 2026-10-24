@@ -1,0 +1,66 @@
+{
+  "source": "c205b404b32ecf444c6897777421f297574a31c6",
+  "syntheticOnly": true,
+  "method": "Controlled localhost backend8855 HTTP503 passthrough wrapper; real app SSR. Network one browser GET aborted, session401 actual no fixture cookie. No source/guard changes.",
+  "checks": [
+    {
+      "name": "Actual SSR503 renders one error, no simultaneous skeleton/Viewer, no automatic browser retry",
+      "trace": [
+        {
+          "started": 1792864809914,
+          "method": "GET",
+          "path": "/api/portal?view=%2Fdashboard&q=&page=0&focus=",
+          "status": 503,
+          "fixture": "controlled-server-503"
+        }
+      ],
+      "file": "evidence/viewer-registration/after/server-503-error-390.png"
+    },
+    {
+      "name": "One deliberate retry stays busy/disabled then actual200Viewer recovery",
+      "requests": [
+        {
+          "url": "http://localhost:3008/api/portal?view=%2Fdashboard&focus=",
+          "method": "GET"
+        }
+      ],
+      "status": 200,
+      "busyFile": "evidence/viewer-registration/after/server-503-retry-busy-390.png",
+      "file": "evidence/viewer-registration/after/server-503-recovered-viewer-390.png"
+    },
+    {
+      "name": "Real failed browser fetch shows connection error, retains known Viewer nav, hides normal data, no registration classification",
+      "failed": [
+        {
+          "url": "http://localhost:3008/api/portal?view=%2Fdashboard&focus=",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "http://localhost:3008/projects?_rsc=kNfxD3lGVTaTot7C",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "file": "evidence/viewer-registration/after/network-error-known-viewer-390.png"
+    },
+    {
+      "name": "Actual existing menu navigation after a fault clears stale error on Projects",
+      "file": "evidence/viewer-registration/after/network-error-route-cleared-projects-390.png"
+    },
+    {
+      "name": "Actual backend401 no session is sign-in state, no repeated copy, no Viewer/no retry loop",
+      "trace": [
+        {
+          "started": 1792864826219,
+          "method": "GET",
+          "path": "/api/portal?view=%2Fdashboard&q=&page=0&focus=",
+          "status": 401,
+          "fixture": "passthrough-current-synthetic-backend"
+        }
+      ],
+      "file": "evidence/viewer-registration/after/session-401-sign-in-390.png"
+    }
+  ],
+  "pageErrors": [],
+  "result": "PASS",
+  "browserClosed": true
+}

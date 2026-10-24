@@ -98,21 +98,8 @@ test("all eight colors and expressions are individually labelled native radios w
   }
 });
 
-test("multicolor expression previews remain independent from the selected personal color", () => {
-  const colors = [
-    "blue",
-    "green",
-    "purple",
-    "orange",
-    "charcoal",
-    "grey",
-    "coral",
-    "yellow",
-  ];
-  const expected = colors.map(
-    (color) => dotColors[color as keyof typeof dotColors],
-  );
-  for (const color of ["purple", "orange"]) {
+test("all expression previews follow the selected personal color while retaining the chosen expression", () => {
+  for (const color of Object.keys(dotColors) as (keyof typeof dotColors)[]) {
     const html = render(ProfileAvatarPicker, {
       color,
       expression: "round",
@@ -123,7 +110,7 @@ test("multicolor expression previews remain independent from the selected person
       [...html.matchAll(/<circle[^>]*fill="([^"]+)"/g)].map(
         (match) => match[1],
       ),
-      expected,
+      Array.from({ length: 8 }, () => dotColors[color]),
     );
     assert.ok(html.includes(`name="avatarColor" checked="" value="${color}"`));
     assert.ok(

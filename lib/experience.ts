@@ -1,4 +1,9 @@
+import { projectMediaPolicy } from "./project-media-policy";
+import { OWNER_EMAIL } from "./identity";
+import { adminAccessView, revokeAdminAccess } from "./admin-access";
 import { auditReason } from "./security";
+import { checkInParticipants } from "./participant-checkin";
+import { personalCreditRows } from "./credit-stock";
 import { resultControls } from "./result-controls";
 import { discoverParticipants, type PortalViewOptions } from "./discover-participants";
 import { teamFacts, personFacts, selectedRows } from "./directory-facts";
@@ -37,7 +42,6 @@ import {
   submissionAccess,
   requireSubmissionAccess,
   assertUnlockedTeam,
-  requireGoingForCheckin,
 } from "./team-access";
 import { qualificationCommand } from "./engagement-scoring";
 import { z } from "zod";
@@ -121,8 +125,8 @@ const draftSchema = z
     github: z.string().max(2048).default(""),
     commitSha: z.unknown().optional().transform(() => ""),
     demo: z.string().max(2048).default(""),
-    logo: z.string().max(180000).default(""),
-    banner: z.string().max(180000).default(""),
+    logo: z.string().max(projectMediaPolicy.logo.dataUriMaxChars).default(""),
+    banner: z.string().max(projectMediaPolicy.banner.dataUriMaxChars).default(""),
     tools: z.string().max(2000).default(""),
     cerebrasIntegration: z.enum(["yes", "no"]).optional(),
     ecosystemSelections: z
@@ -320,6 +324,7 @@ export class PortalExperience {
       firstSubmittedAt: fact.firstSubmittedAt ?? undefined,
       slug: p.slug,
       teamName: fact.teamName,
+      teamColorKey: fact.teamColorKey,
       projectName: d.projectName,
       problemSolution: d.problemSolution,
       description: d.description,
@@ -352,9 +357,11 @@ export class PortalExperience {
       submitted: number;
       avatarColor: string | null;
       avatarExpression: string | null;
+      registered: number;
+      role: string;
     }>(
       this.s.db,
-      "SELECT u.id,COALESCE(x.display_name,u.name) name,r.email,r.status approval,c.created_at checked_in,t.id team_id,t.name team_name,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id) submitted,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression FROM registrations r LEFT JOIN users u ON u.email=r.email LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id UNION ALL SELECT u.id,COALESCE(x.display_name,u.name),u.email,'pending',c.created_at,t.id,t.name,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id),pd.avatar_color,pd.avatar_expression FROM users u LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id WHERE NOT EXISTS(SELECT 1 FROM registrations r WHERE r.email=u.email)",
+      "SELECT u.id,COALESCE(x.display_name,u.name) name,r.email,r.status approval,c.created_at checked_in,t.id team_id,t.name team_name,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id) submitted,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression,1 registered,COALESCE(pr.role,u.role,'participant') role FROM registrations r LEFT JOIN users u ON u.email=r.email LEFT JOIN portal_roles pr ON pr.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id UNION ALL SELECT u.id,COALESCE(x.display_name,u.name),u.email,'pending',c.created_at,t.id,t.name,(SELECT count(*) FROM submission_versions v WHERE v.team_id=t.id),pd.avatar_color,pd.avatar_expression,CASE WHEN EXISTS(SELECT 1 FROM luma_roster l WHERE l.email=u.email) THEN 1 ELSE 0 END,COALESCE(pr.role,u.role) FROM users u LEFT JOIN portal_roles pr ON pr.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN check_ins c ON c.user_id=u.id LEFT JOIN memberships m ON m.user_id=u.id LEFT JOIN teams t ON t.id=m.team_id WHERE NOT EXISTS(SELECT 1 FROM registrations r WHERE r.email=u.email)",
     );
     const teams = await teamFacts(
         this.s.db,
@@ -375,18 +382,28 @@ export class PortalExperience {
     return items
       .map((item) => {
         const individual = item.id ? people.get(item.id) : undefined,
-          progress = item.team_id ? teams.get(item.team_id) : undefined;
+          progress = item.team_id ? teams.get(item.team_id) : undefined,
+          viewer =
+            !item.registered &&
+            item.role === "participant" &&
+            item.email !== OWNER_EMAIL &&
+            !individual?.deactivatedAt;
+        const { role: _role, ...participant } = item;
         return {
-          ...item,
+          ...participant,
+          registered: !!item.registered,
+          viewer,
+          approval: viewer ? null : item.approval,
           deactivated_at: individual?.deactivatedAt,
           teamReadiness: progress?.readiness || readiness(0, 0),
-          status:
-            individual?.status ||
-            (item.approval !== "approved"
-              ? "Registered"
-              : absentEmails.has(item.email)
-                ? "Absent"
-                : "Going"),
+          status: viewer
+            ? "Not registered"
+            : individual?.status ||
+              (item.approval !== "approved"
+                ? "Registered"
+                : absentEmails.has(item.email)
+                  ? "Absent"
+                  : "Going"),
           teamStatus: progress?.status,
           teamLocked: progress?.locked || false,
           teamLockedAt: item.team_id ? progress?.lockedAt : null,
@@ -467,13 +484,8 @@ export class PortalExperience {
         : undefined;
     const checked = individual.checkedIn;
     const credits =
-      checked && actor.role !== "judge" && registration?.status === "approved"
-        ? await rows(
-            this.s.db,
-            "SELECT t.id type_id,t.name,t.instructions,CASE WHEN a.inventory_id IS NOT NULL THEN 1 ELSE 0 END allocated FROM credit_types t LEFT JOIN credit_allocations a ON a.type_id=t.id AND a.user_id=? AND lower(a.recipient_email)=? WHERE t.active=1",
-            actor.id,
-            actor.email.toLowerCase(),
-          )
+      checked
+        ? await personalCreditRows(this.s, actor)
         : [];
     const projectResult = project
       ? (await publicScores(this.s)).scores.find(
@@ -835,7 +847,9 @@ export class PortalExperience {
       );
       return {
         me,
-        items: await this.participantRows(),
+        items: (await this.participantRows()).filter(
+          (item) => !item.viewer || me.owner || me.role === "admin",
+        ),
         lookupOnly: me.role === "volunteer",
         checkInConfigured: setupReadiness(
           await this.s.settings(true),
@@ -936,6 +950,7 @@ export class PortalExperience {
           }),
       };
     }
+    if (route === "/admin/access") return adminAccessView(this.s);
     if (route === "/admin/settings") {
       const me = await this.s.staff();
       const settings = await this.s.settings(true);
@@ -955,6 +970,7 @@ export class PortalExperience {
       return {
         me,
         engagement: await engagementState(this.s),
+        ...(me.owner ? { adminAccess: await adminAccessView(this.s) } : {}),
         creditInstructions: await rows(
           this.s.db,
           "SELECT id,name,instructions FROM credit_types WHERE active=1",
@@ -1155,6 +1171,8 @@ export class PortalExperience {
     data: unknown,
     actor: Actor,
   ): Promise<Record<string, unknown> | null> {
+    if (action === "quick-check-in" || action === "bulk-check-in")
+      return checkInParticipants(this.s, actor, action, data);
     if (
       [
         "create-workspace-team",
@@ -2021,29 +2039,14 @@ export class PortalExperience {
         );
       else await this.s.staff();
       demand(!(d.checkIn && d.status), 422, "SEPARATE_STATUS_AND_ATTENDANCE");
+      if (d.checkIn)
+        return checkInParticipants(this.s, actor, action, {
+          emails: d.emails,
+          reason: d.reason,
+        });
       const emails = [...new Set(d.emails)],
         sql: SQL[] = [];
-      if (d.checkIn) {
-        await this.s.operational("checkin");
-        for (const email of emails) {
-          const u = await one<{ id: string }>(
-            this.s.db,
-            "SELECT id FROM users WHERE email=?",
-            email,
-          );
-          demand(u, 422, "PARTICIPANT_NOT_SIGNED_IN");
-          await requireGoingForCheckin(this.s, u.id);
-          sql.push(
-            [
-              "INSERT INTO check_ins VALUES(?,?,?) ON CONFLICT(user_id) DO NOTHING",
-              u.id,
-              actor.id,
-              this.s.now(),
-            ],
-            ["DELETE FROM participant_status_overrides WHERE user_id=?", u.id],
-          );
-        }
-      } else {
+      {
         demand(d.status, 422, "STATUS_REQUIRED");
         for (const email of emails) {
           sql.push([
@@ -2072,6 +2075,7 @@ export class PortalExperience {
             : "Participant status updated.",
       };
     }
+    if (action === "revoke-admin") return revokeAdminAccess(this.s, data);
     if (action === "add-admin") {
       await this.s.staff(true);
       const d = z

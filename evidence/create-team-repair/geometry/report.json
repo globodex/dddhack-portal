@@ -1,0 +1,289 @@
+{
+  "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+  "rootRuntime": true,
+  "syntheticOnly": true,
+  "serverMutations": 0,
+  "results": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "before": {
+        "dialog": {
+          "x": 392.5,
+          "y": 165,
+          "width": 640,
+          "height": 570,
+          "top": 165,
+          "right": 1032.5,
+          "bottom": 735,
+          "left": 392.5
+        },
+        "form": {
+          "x": 393.5,
+          "y": 166,
+          "width": 638,
+          "height": 568,
+          "top": 166,
+          "right": 1031.5,
+          "bottom": 734,
+          "left": 393.5
+        },
+        "footer": {
+          "x": 394.5,
+          "y": 652,
+          "width": 636,
+          "height": 81,
+          "top": 652,
+          "right": 1030.5,
+          "bottom": 733,
+          "left": 394.5
+        },
+        "body": {
+          "x": 394.5,
+          "y": 252,
+          "width": 636,
+          "height": 400,
+          "top": 252,
+          "right": 1030.5,
+          "bottom": 652,
+          "left": 394.5
+        }
+      },
+      "busy": {
+        "dialog": {
+          "x": 392.5,
+          "y": 165,
+          "width": 640,
+          "height": 570,
+          "top": 165,
+          "right": 1032.5,
+          "bottom": 735,
+          "left": 392.5
+        },
+        "form": {
+          "x": 393.5,
+          "y": 166,
+          "width": 638,
+          "height": 568,
+          "top": 166,
+          "right": 1031.5,
+          "bottom": 734,
+          "left": 393.5
+        },
+        "footer": {
+          "x": 394.5,
+          "y": 652,
+          "width": 636,
+          "height": 81,
+          "top": 652,
+          "right": 1030.5,
+          "bottom": 733,
+          "left": 394.5
+        },
+        "body": {
+          "x": 394.5,
+          "y": 252,
+          "width": 636,
+          "height": 400,
+          "top": 252,
+          "right": 1030.5,
+          "bottom": 652,
+          "left": 394.5
+        }
+      },
+      "error": {
+        "dialog": {
+          "x": 392.5,
+          "y": 149.25,
+          "width": 640,
+          "height": 601.5,
+          "top": 149.25,
+          "right": 1032.5,
+          "bottom": 750.75,
+          "left": 392.5
+        },
+        "form": {
+          "x": 393.5,
+          "y": 150.25,
+          "width": 638,
+          "height": 599.5,
+          "top": 150.25,
+          "right": 1031.5,
+          "bottom": 749.75,
+          "left": 393.5
+        },
+        "footer": {
+          "x": 394.5,
+          "y": 636.25,
+          "width": 636,
+          "height": 112.5,
+          "top": 636.25,
+          "right": 1030.5,
+          "bottom": 748.75,
+          "left": 394.5
+        },
+        "body": {
+          "x": 394.5,
+          "y": 236.25,
+          "width": 636,
+          "height": 400,
+          "top": 236.25,
+          "right": 1030.5,
+          "bottom": 636.25,
+          "left": 394.5
+        }
+      },
+      "deltaBusy": {
+        "top": 0,
+        "height": 0
+      },
+      "deltaError": {
+        "top": -15.75,
+        "height": 31.5
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "before": {
+        "dialog": {
+          "x": 16,
+          "y": 127,
+          "width": 358,
+          "height": 590,
+          "top": 127,
+          "right": 374,
+          "bottom": 717,
+          "left": 16
+        },
+        "form": {
+          "x": 17,
+          "y": 128,
+          "width": 356,
+          "height": 588,
+          "top": 128,
+          "right": 373,
+          "bottom": 716,
+          "left": 17
+        },
+        "footer": {
+          "x": 18,
+          "y": 634,
+          "width": 354,
+          "height": 81,
+          "top": 634,
+          "right": 372,
+          "bottom": 715,
+          "left": 18
+        },
+        "body": {
+          "x": 18,
+          "y": 206,
+          "width": 354,
+          "height": 428,
+          "top": 206,
+          "right": 372,
+          "bottom": 634,
+          "left": 18
+        }
+      },
+      "busy": {
+        "dialog": {
+          "x": 16,
+          "y": 127,
+          "width": 358,
+          "height": 590,
+          "top": 127,
+          "right": 374,
+          "bottom": 717,
+          "left": 16
+        },
+        "form": {
+          "x": 17,
+          "y": 128,
+          "width": 356,
+          "height": 588,
+          "top": 128,
+          "right": 373,
+          "bottom": 716,
+          "left": 17
+        },
+        "footer": {
+          "x": 18,
+          "y": 634,
+          "width": 354,
+          "height": 81,
+          "top": 634,
+          "right": 372,
+          "bottom": 715,
+          "left": 18
+        },
+        "body": {
+          "x": 18,
+          "y": 206,
+          "width": 354,
+          "height": 428,
+          "top": 206,
+          "right": 372,
+          "bottom": 634,
+          "left": 18
+        }
+      },
+      "error": {
+        "dialog": {
+          "x": 16,
+          "y": 111.25,
+          "width": 358,
+          "height": 621.5,
+          "top": 111.25,
+          "right": 374,
+          "bottom": 732.75,
+          "left": 16
+        },
+        "form": {
+          "x": 17,
+          "y": 112.25,
+          "width": 356,
+          "height": 619.5,
+          "top": 112.25,
+          "right": 373,
+          "bottom": 731.75,
+          "left": 17
+        },
+        "footer": {
+          "x": 18,
+          "y": 618.25,
+          "width": 354,
+          "height": 112.5,
+          "top": 618.25,
+          "right": 372,
+          "bottom": 730.75,
+          "left": 18
+        },
+        "body": {
+          "x": 18,
+          "y": 190.25,
+          "width": 354,
+          "height": 428,
+          "top": 190.25,
+          "right": 372,
+          "bottom": 618.25,
+          "left": 18
+        }
+      },
+      "deltaBusy": {
+        "top": 0,
+        "height": 0
+      },
+      "deltaError": {
+        "top": -15.75,
+        "height": 31.5
+      }
+    }
+  ],
+  "pageErrors": []
+}

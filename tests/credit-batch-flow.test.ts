@@ -183,12 +183,15 @@ test("credit batch publish rejects stale/tampered preview and unauthorized actor
       { code: "PREVIEW_REQUIRED" },
     );
     assert.equal((await rows(db, "SELECT * FROM credit_batches")).length, 0);
-    await assert.rejects(
-      service("admin").command("preview-credit-batch", {
-        csv: "Code\nDUP\nDUP",
-      }),
-      { code: "CSV_DUPLICATES" },
+    const deduplicated = await service("admin").command(
+      "preview-credit-batch",
+      { csv: "Code\nDUP\nDUP" },
     );
+    assert.deepEqual(deduplicated.totals, {
+      added: 1,
+      duplicates: 1,
+      retired: 0,
+    });
   } finally {
     db.close();
   }

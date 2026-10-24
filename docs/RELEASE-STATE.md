@@ -1,3 +1,9 @@
+# Current review branch, 24 October 2026
+
+The production Next.js redesign is unpublished on `feat/portal-experience-rework`. Its [review, checks and original screenshots](PORTAL_REDESIGN_REVIEW_2026_10_24.md) supersede the historical ledgers below for this branch. Main contains only the separately authorized deployment filter `e386cc7`; no redesign merge, hosted migration or deployment was performed. The hosted database is populated: follow the [incremental upgrade plan](NEON_POPULATED_UPGRADE_PLAN.md), never synthetic apply/reset instructions.
+
+---
+
 # Cloud continuation
 
 The historical v6 ledger below is preserved. See [V7_CLOUD_STATUS.md](V7_CLOUD_STATUS.md) for the isolated, unpublished v7 implementation, exact build/test evidence, screenshots and remaining boundaries.

@@ -1,0 +1,75 @@
+{
+  "source": "c8f42a5f91aa6414cf11be4bd8c51f7329e769ad",
+  "runtimeFiles": {
+    "app/portal.tsx": "50a5391c7925e7f9030308e939d525748b8cedb21aae81ca0cbdadc52b0f5d7f",
+    "app/team-discovery-experience.css": "81dd145433a0ce29b3441ab3badf353de1647432b4eb0c783de780cf18dc63f5"
+  },
+  "typecheck": "passed",
+  "focusedNodeTests": {
+    "passed": 9,
+    "failed": 0,
+    "files": [
+      "dashboard-v6.test.ts",
+      "discover-pagination-client.test.ts",
+      "team-write-reset-guard.test.ts",
+      "team-http-flow.test.ts"
+    ]
+  },
+  "browserControls": {
+    "passed": 11,
+    "failed": 0,
+    "report": "controls-report.json"
+  },
+  "automatedAccessibilityViolations": 0,
+  "nativeBrowserZoom": {
+    "factor": 2,
+    "innerWidth": 720,
+    "innerHeight": 378,
+    "outerWidth": 1440,
+    "outerHeight": 900,
+    "devicePixelRatio": 2,
+    "visualViewportScale": 1,
+    "report": "zoom-report.json"
+  },
+  "visuallyInspected": [
+    "create-team-after-1440x900.png",
+    "create-team-after-390x844.png",
+    "create-team-after-390x480.png",
+    "create-team-after-390x480-scrolled.png",
+    "create-team-after-320x480.png",
+    "create-team-after-320x480-scrolled.png",
+    "create-team-320x480-long-name-and-url.png",
+    "create-team-320x480-retry-error.png",
+    "create-team-after-desktop-browser-zoom200.png",
+    "create-team-after-desktop-browser-zoom200-scrolled.png"
+  ],
+  "syntheticOnly": true,
+  "localFrontend": "http://localhost:3002",
+  "disposableWriteDatabase": "/tmp/ddd-create-repair.sqlite",
+  "readOnlyRecaptureDatabase": "/tmp/ddd-create-final-capture.sqlite",
+  "serversStopped": [
+    3002,
+    8792
+  ],
+  "stableFrameFixSource": "12de812a11b3109c96beebddc1dedc1fe204334f",
+  "integratedGeometrySource": "667222d5cd2680ec872860b971f32ecb7be42249",
+  "stableGeometryReport": "stable-geometry.json",
+  "outerDialogMovementBusyAndError": {
+    "top": 0,
+    "height": 0,
+    "viewports": [
+      "1440x900",
+      "390x844",
+      "320x480",
+      "390x480"
+    ]
+  },
+  "shortIntroEnd": {
+    "characters": 993,
+    "footerClearancePx": 20,
+    "ctaHitTest": true,
+    "tabShiftTab": true,
+    "axTrees": "geometry-short/accessible-tree-*.json",
+    "realAssistiveTechnology": "unverified"
+  }
+}

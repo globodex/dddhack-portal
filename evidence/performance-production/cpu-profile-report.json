@@ -1,0 +1,17 @@
+{
+  "method": "One cache-disabled Dashboard Chrome timeline trace per variant, warm server. Tracing overhead means these are attribution diagnostics, not extra comparable performance samples.",
+  "cases": [
+    {
+      "variant": "baseline",
+      "file": "baseline-dashboard-timeline.json.gz",
+      "events": 16883
+    },
+    {
+      "variant": "final",
+      "file": "final-dashboard-timeline.json.gz",
+      "events": 17225
+    }
+  ],
+  "errors": [],
+  "browserClosed": true
+}

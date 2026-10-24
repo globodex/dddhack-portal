@@ -1,0 +1,12 @@
+{
+  "syntheticOnly": true,
+  "source": "/tmp/ddd-credit-ui-legacy.sqlite",
+  "database": "/tmp/ddd-team-studio-final.sqlite",
+  "team": "fake_team3",
+  "members": 3,
+  "locked": false,
+  "palette": "ember",
+  "ideaTitle": "A calmer way to meet your city",
+  "descriptionLength": 112,
+  "behaviorDatabasePreserved": "/tmp/ddd-team-studio.sqlite"
+}

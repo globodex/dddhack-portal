@@ -1,0 +1,27 @@
+✔ sqlite: independent stock1 exact50/10, later10 and canonical100 restock preserve assignments/metadata (211.718159ms)
+✔ sqlite: independent stock2 failed assignment rolls entire import/history/receipt back and same prepared retry works (137.032168ms)
+✔ sqlite: independent stock3 allocation failure rolls back bulk attendance and overrides without consuming stock (109.007832ms)
+✔ sqlite: independent stock4 self checked-in admin needs no profile/team/roster and revocation cannot leak a value (126.306888ms)
+ℹ Removed personal-credit GET: status 403 code CHECKIN_REQUIRED; no credit payload returned
+✔ sqlite: independent stock5 global duplicates/retired codes cannot recycle or move an existing allocation owner (117.551688ms)
+✔ postgres: independent stock1 exact50/10, later10 and canonical100 restock preserve assignments/metadata (7476.435904ms)
+✔ postgres: independent stock2 failed assignment rolls entire import/history/receipt back and same prepared retry works (3776.983618ms)
+✔ postgres: independent stock3 allocation failure rolls back bulk attendance and overrides without consuming stock (4349.577775ms)
+✔ postgres: independent stock4 self checked-in admin needs no profile/team/roster and revocation cannot leak a value (4031.658485ms)
+ℹ Removed personal-credit GET: status 403 code CHECKIN_REQUIRED; no credit payload returned
+✔ postgres: independent stock5 global duplicates/retired codes cannot recycle or move an existing allocation owner (5309.398286ms)
+✔ sqlite: independent stock6 real migrator atomically rejects source-header and assigned-fingerprint legacy collisions (195.947468ms)
+✔ postgres: independent stock6 real migrator atomically rejects source-header and assigned-fingerprint legacy collisions (6072.694699ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33125.145177
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

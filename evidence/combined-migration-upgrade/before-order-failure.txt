@@ -1,0 +1,41 @@
+✖ combined upgrade: production loader returns exactly nine ordered migrations with unchanged SQL checksums (16.405983ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 996.917559
+
+✖ failing tests:
+
+test at tests/combined-migration-upgrade-independent.test.ts:6:1821
+✖ combined upgrade: production loader returns exactly nine ordered migrations with unchanged SQL checksums (16.405983ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      '0000_compatibility.sql',
+      '0001_portal.sql',
+      '0002_invariants.sql',
+      '0003_transaction_safety.sql',
+      '0004_media_uploads.sql',
+  +   '0005_credit_stock.sql',
+  +   '0006_project_media_limits.sql',
+      '0100_auth.sql',
+      '0101_approved_evaluation.sql',
+  -   '0102_credit_stock.sql',
+  -   '0103_project_media_limits.sql'
+    ]
+  
+      at TestContext.<anonymous> (/workspace/ddd-migration-upgrade-audit/tests/combined-migration-upgrade-independent.test.ts:178:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ '0000_compatibility.sql', '0001_portal.sql', '0002_invariants.sql', '0003_transaction_safety.sql', '0004_media_uploads.sql', '0005_credit_stock.sql', '0006_project_media_limits.sql', '0100_auth.sql', '0101_approved_evaluation.sql' ],
+    expected: [ '0000_compatibility.sql', '0001_portal.sql', '0002_invariants.sql', '0003_transaction_safety.sql', '0004_media_uploads.sql', '0100_auth.sql', '0101_approved_evaluation.sql', '0102_credit_stock.sql', '0103_project_media_limits.sql' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

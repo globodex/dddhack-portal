@@ -3,6 +3,7 @@ import type { PortalService } from "./service";
 import { one, rows } from "./db";
 import { z } from "zod";
 import { demand } from "./security";
+import { creditAssignmentStatements } from "./credit-stock";
 export const personStatuses = [
   "Registered",
   "Going",
@@ -140,6 +141,7 @@ export async function statusCommand(
         s.now(),
       ]);
     }
+    if (d.status === "Checked in") sql.push(...await creditAssignmentStatements(s));
     await s.mutate(
       actor.id,
       action,
@@ -209,6 +211,7 @@ export async function statusCommand(
           actor.id,
           s.now(),
         ],
+        ...(status === "Checked in" ? await creditAssignmentStatements(s) : []),
       ],
       {
         kind: d.kind,

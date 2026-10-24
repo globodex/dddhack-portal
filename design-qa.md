@@ -1,7 +1,49 @@
-# Corrected portal design QA
+# Portal redesign verification
 
-final result: blocked
+This is the current review for the real Next.js portal on `feat/portal-experience-rework`, based on `696b125`. The redesign is unpublished. Main contains only the separately authorized deployment filter `e386cc7`; no redesign/security merge or hosted migration/deployment was performed. [Release review and original screenshot index](docs/PORTAL_REDESIGN_REVIEW_2026_10_24.md).
 
-All four supplied v5 captures and the selected visual references were inspected. Corrected implementation source is local in the visual-integration worktree. Actual desktop/mobile prototype capture, matching-state visual comparison, interaction checks, console review and full route/card acceptance remain blocked: supported CUA inventory is empty and IAB returns `Browser is not available: iab`. Permission for direct local Playwright is pending. No alternate browser was used, and source/unit/compiled-Worker checks are not visual QA.
+## Screenshot-first audit and design targets
 
-See docs/VISUAL_CORRECTION_CHECKLIST.md for every route/card/state, concrete source corrections and the remaining scope. No visual-completion or publication handoff is authorized by this report.
+Before implementation, local synthetic collections retained 64 original route/viewport captures, 35 explicit empty/error/loading/dialog captures and 34 populated captures. Public reference screenshots were actually captured and viewed for Devfolio hierarchy, the Perth/Delhi DevDay expression assets and colors, and itsparam stacked scrolling. Access limits remain in the reference audit; inaccessible pages were not presented as inspected. See [the concrete design specification](docs/REDESIGN_SPEC_2026_10_24.md) and `evidence/redesign-references`.
+
+Rejected Library images and selected targets were materialized through supported Library transfer and opened as pixels. The approved mobile hero target is `libfile_5c3333ebe2d881919233264ca1a2c7ea`. The selected Team Studio target is exactly `libfile_f7d0d261d73c8191bb726a86f2f1a0df`, compared at its native 1487×1058 and adapted to smaller widths. The latest single-color expression requirements supersede earlier multicolor grids. Existing Delhi/Metro artwork, portraits, dot assets and actual brand logos remain.
+
+## Delivered and visually checked
+
+The [release index](docs/PORTAL_REDESIGN_REVIEW_2026_10_24.md) maps every requested lane to its source-bound report and native originals: three profile steps; create/team/discovery; selected Studio; idea/invitation/lock states; submission/media/history; personal/admin Credits stock; admin selection/check-in/time settings/owner access; projects and score phases; landing/organizers/agenda/rules/sign-in/email; and SEO/legal pages. Raw screenshots were opened, not accepted solely from tests/builds. Rejected/harness-attempt images are retained and labeled separately.
+
+The shared menu is black, with visible Lucide destinations and red logout. Errors are contextual and actionable, success feedback is concise, and dialogs retain bounded geometry, focus and internal scrolling. Profile uses eight expressions in one selected color, eight compact swatches and three Next/Next/Save steps. Team initials remain distinct from project logos. Private idea, attendance, submission and scoring states remain separate server-enforced facts.
+
+Representative desktop1440, tablet768, mobile390 and short/320 widths, native200% zoom, long names/URLs, errors, loading, dirty/pending states and touch/keyboard interactions are covered by the linked matrices. This is a bounded tested inventory, not a claim that every possible content/role combination was visually examined. The scoped Team Studio review passed after correcting typography, expression/card proportions, contrast and backdrop scroll. Its shared brand mark remains slightly smaller than the generated reference; no new brand artwork was substituted.
+
+The final same-fixture screenshot review caught a real unreadable mobile private-arrival layout. Source `5b926d2` replaces its narrow flex layout with a scoped grid; actual320/390/short/tablet/native200 captures verify readable copy and a44px Maps target. Sources `9e0d9c8`/`2657f26` keep all three dashboard loading placeholders on one row within320px. The static skeletons now follow Studio, stock counters and personal-credit geometry without extra requests or data-dependent placeholder fetching.
+
+## Current follow-up checks
+
+The accepted performance follow-up moves the unchanged public defaults into `lib/public-content-defaults.ts`. Portal and Home import that pure module; the server contract retains its byte-identical validator definitions and compatibility export. The legacy and new imports reference the same object. No styling, content, permission, data-projection or loading behavior changes.
+
+- **42 affected tests pass**, with zero failures/skips, plus fresh typecheck and default Next.js16.4.3 Turbopack build. The new transitive browser-graph regression test prevents metadata imports from bringing server validators/Zod back into the client. [Current logs and source scope](evidence/performance-content-final/verification.json).
+- The preserved `e135e3ec` checkpoint has the earlier full serial result:551 total,545 passed,6 native PostgreSQL skips,zero failures/cancellations. That complete suite was not rerun for this mechanical extraction; the42 affected checks cover the changed boundary. Historical migration SQL/checksums remain unchanged.
+- Six refreshed Windows-helper checks pass against the final-source ZIP on PowerShell7.6.8 Linux. Native Windows remains unverified. The three upgrade-guide fences still contain the same guarded commands; their previous syntax-only check executed no blocks.
+- Actual production-built Home/Dashboard no-JS SSR, hydrated navigation and mobile menu-to-Home checks pass. Seven current/candidate pixel pairs are identical. Sixteen original PNGs remain local in [the measured gallery](evidence/performance-content-boundary/RESULTS.md). Existing profile/team/admin/submission write-flow evidence remains applicable to unchanged behavior.
+- Default-build inventory:14 JS files,879,576 raw/266,649 gzip-estimate bytes;6 CSS files,339,079 raw/55,752 gzip-estimate bytes. All six CSS hashes match the preserved checkpoint. Zod is absent from every emitted client chunk; server validators remain in the API graph. Inventory totals are not per-visitor transfers.
+
+The single accepted fixed70-sample comparison shows **24,822 fewer script wire bytes per cold route**, with no additional request. Net Dashboard373,304→348,484 bytes (6.65% lower), People354,554→329,732 (7.00%), Home1,520,183→1,495,363 (1.63%). CSS/font bytes and request counts are unchanged. Private bootstrap API calls remain0; Home retains its pre-existing one browser refresh in both versions. The64-table synthetic fixture hash remains exact before/after. [Raw samples, paired deltas, tails, screenshots and method](evidence/performance-content-boundary/RESULTS.md).
+
+Timing is mixed: Dashboard cold FCP median496→464ms, People380→440ms, Home564→492ms. People’s candidate2,280ms tail sample is retained; at n7,p95 is only the maximum observed sample. Paired results also vary. This proves a payload reduction, **not a uniform paint-speed improvement or resolution of the original160ms Dashboard regression**. The remaining original global-CSS increase23,310bytes and heavy-font request14,595bytes are documented in [compiled attribution](evidence/performance-production/CHUNK_ATTRIBUTION.md). Mixed Dashboard/create-team/project selectors and global ordering prevent blind filename-based deletion; approved typography was preserved.
+
+The earlier Home-dynamic experiment remains isolated and unintegrated: it saved7.7KB privately but added a Home script/request and also had mixed paint results. No further candidates or timing reruns are planned. Original696 comparisons and development diagnostics remain separate, with no pooled timings or dropped samples.
+
+## Publication and remaining limits
+
+The [reviewed backend ZIP](artifacts/neon/README.md) has93files,9,014,229 compressed bytes and SHA256 `1afca1c65f0c3b58bde89a5e1b80d3dec92c87b392239da0315ed762ebd0730f`. Fresh862-input graph analysis, ARM64 ELF headers and isolated host JavaScript smoke200/403/503 pass with zero outbound attempts. Host smoke deliberately uses x86_64 Sharp; actual ARM64 execution/cold start/storage/SMTP remains unverified. The owner must manually redeploy to publish backend/email changes.
+
+The hosted database is populated. The [executable Windows upgrade guide](docs/NEON_POPULATED_UPGRADE_PLAN.md) requires a privately verified target, owner-verified backup/restore checkpoint and read-only existing-ledger receipt. The dedicated CLI rechecks the target/ledger/counts under the same transaction/advisory lock and applies only pending 0102/0103. The [backend handoff](docs/DESIGN_RELEASE_WINDOWS_DEPLOY.md) stages the pinned archive without loading or changing env files; deployment remains a separate owner action. Never seed/reset the hosted target or use synthetic apply flags. No hosted ledger or records were read or modified.
+
+Real Google login, physical iOS/Android, real assistive technology and native multi-connection PostgreSQL behavior are unverified. Six native tests need a separately configured disposable native server; PGlite does not replace that evidence. Chromium touch is emulation. The prior Cloudflare1010 diagnostic denial was not bypassed or classified as an app failure.
+
+Privacy/Terms remain factual owner-review drafts: confirmed Parampreet Singh/hey@itsparam.in,90-day unnecessary-private-data retention, separate public showcase and indefinite owner audit logs. No automatic deletion job or unsupported compliance guarantee was added. Stored policy records were not rewritten.
+
+The separately prepared minimal main hydration-safety branch remains unmerged; main publication awaits fresh go-ahead. This feature includes the form safety correction. All new release author and committer identities are verified as Parampreet Singh <rubercuber.30@gmail.com>. No provider/credential changes, real emails, role changes, submissions, voucher allocations or score reveals occurred.
+
+Local correctness checks and bounded visual review are complete. The measured network benefit and unresolved timing uncertainty remain explicit. All resumed commits/artifacts stay local and unpushed; fresh approval, owner backup/schema upgrade and backend confirmation are required before main publication. Nothing publishes automatically at 10 PM.

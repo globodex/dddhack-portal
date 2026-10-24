@@ -1,0 +1,2014 @@
+{
+  "source": "7a0eb29663861f43981b10df5626758228c6cb44",
+  "navigationFix": "715743671ebbad7cb071174e0ef1c8b54b530c9a",
+  "origin": "http://localhost:3000",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "syntheticOnly": true,
+  "readOnly": true,
+  "startedAt": "2026-10-24T13:40:53.724Z",
+  "fingerprints": {
+    "app/dialog-history.ts": "3aace552dff73737a92a804924a7000b3349f3a10821d5c61fbdb5abac94e918",
+    "app/mobile-navigation.tsx": "d4312857d2b41d52b6c5d674ed7f4429e3589b7ccc9bdcbb1df56b9cf076282a",
+    "app/[[...path]]/portal-client.tsx": "1753fc560a00910bf13653039d979f804b6b5b0a83d29dc4ba1201f4b95ddd5c",
+    "app/portal.tsx account-menu/navigation slice": "60edffa711953599c328429e629ec8eb450eedbf0baa5914693f0909301a75aa"
+  },
+  "dirtyAtStart": "M next-env.d.ts",
+  "checks": [
+    {
+      "name": "Workspace: first tap reaches/dashboard once",
+      "passed": true,
+      "destination": "/dashboard",
+      "clicks": 1,
+      "url": "http://localhost:3000/dashboard"
+    },
+    {
+      "name": "Workspace: one browser Back returns to Credits with closed menu",
+      "passed": true
+    },
+    {
+      "name": "Menu prevents background scrolling",
+      "passed": true,
+      "initial": {
+        "scrollY": 69,
+        "body": "visible",
+        "html": "visible"
+      },
+      "whileOpen": {
+        "scrollY": 69,
+        "body": "hidden",
+        "html": "hidden"
+      }
+    },
+    {
+      "name": "Escape retains Credits route/scroll and restores opener focus/overflow",
+      "passed": true,
+      "escaped": {
+        "scrollY": 69,
+        "body": "visible",
+        "html": "visible"
+      }
+    },
+    {
+      "name": "Back dismisses open menu without leaving Credits",
+      "passed": true
+    },
+    {
+      "name": "Touch close retains route and restores opener focus",
+      "passed": true
+    },
+    {
+      "name": "Your profile: first tap reaches/profile once",
+      "passed": true,
+      "destination": "/profile",
+      "clicks": 1,
+      "url": "http://localhost:3000/profile"
+    },
+    {
+      "name": "Your profile: one browser Back returns to Credits with closed menu",
+      "passed": true
+    },
+    {
+      "name": "No page error or blocked application mutation occurred",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "01-owner-credits-before.png",
+      "path": "/admin/credits",
+      "source": "7a0eb29663861f43981b10df5626758228c6cb44",
+      "navigationFix": "715743671ebbad7cb071174e0ef1c8b54b530c9a",
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "02-owner-menu-workspace.png",
+      "path": "/admin/credits",
+      "source": "7a0eb29663861f43981b10df5626758228c6cb44",
+      "navigationFix": "715743671ebbad7cb071174e0ef1c8b54b530c9a",
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "03-workspace-first-tap-dashboard.png",
+      "path": "/dashboard",
+      "source": "7a0eb29663861f43981b10df5626758228c6cb44",
+      "navigationFix": "715743671ebbad7cb071174e0ef1c8b54b530c9a",
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "04-escape-restores-credits-focus.png",
+      "path": "/admin/credits",
+      "source": "7a0eb29663861f43981b10df5626758228c6cb44",
+      "navigationFix": "715743671ebbad7cb071174e0ef1c8b54b530c9a",
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "05-back-dismisses-menu-focus.png",
+      "path": "/admin/credits",
+      "source": "7a0eb29663861f43981b10df5626758228c6cb44",
+      "navigationFix": "715743671ebbad7cb071174e0ef1c8b54b530c9a",
+      "inspected": true,
+      "accepted": true
+    },
+    {
+      "file": "07-profile-first-tap-profile.png",
+      "path": "/profile",
+      "source": "7a0eb29663861f43981b10df5626758228c6cb44",
+      "navigationFix": "715743671ebbad7cb071174e0ef1c8b54b530c9a",
+      "inspected": true,
+      "accepted": true
+    }
+  ],
+  "traces": [
+    {
+      "label": "workspace-first-tap-success",
+      "url": "http://localhost:3000/dashboard",
+      "events": [
+        {
+          "type": "pageshow",
+          "t": 6526.0999999996275,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu"
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 7366.5999999996275,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 7367.4000000003725,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu"
+        },
+        {
+          "type": "click",
+          "t": 8365.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "text": "Open menu",
+          "href": null,
+          "insideMenu": false
+        },
+        {
+          "type": "history.pushState:before",
+          "t": 8527.300000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Close navigation",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.pushState:after",
+          "t": 8545.900000000373,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Close navigation"
+        },
+        {
+          "type": "FIRST_TAP_START",
+          "t": 8755.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Close navigation",
+          "label": "workspace"
+        },
+        {
+          "type": "click",
+          "t": 8890.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Workspace",
+          "text": "Workspace",
+          "href": "/dashboard",
+          "insideMenu": true
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 8891.5,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Workspace",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 8893.099999999627,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Workspace"
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 10787,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "destination": "/dashboard"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 10791.300000000745,
+          "path": "/dashboard",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu"
+        }
+      ]
+    },
+    {
+      "label": "workspace-back-to-credits",
+      "url": "http://localhost:3000/admin/credits",
+      "events": [
+        {
+          "type": "pageshow",
+          "t": 6526.0999999996275,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu"
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 7366.5999999996275,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 7367.4000000003725,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu"
+        },
+        {
+          "type": "click",
+          "t": 8365.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "text": "Open menu",
+          "href": null,
+          "insideMenu": false
+        },
+        {
+          "type": "history.pushState:before",
+          "t": 8527.300000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Close navigation",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.pushState:after",
+          "t": 8545.900000000373,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Close navigation"
+        },
+        {
+          "type": "FIRST_TAP_START",
+          "t": 8755.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Close navigation",
+          "label": "workspace"
+        },
+        {
+          "type": "click",
+          "t": 8890.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Workspace",
+          "text": "Workspace",
+          "href": "/dashboard",
+          "insideMenu": true
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 8891.5,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Workspace",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 8893.099999999627,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Workspace"
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 10787,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "destination": "/dashboard"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 10791.300000000745,
+          "path": "/dashboard",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu"
+        },
+        {
+          "type": "popstate",
+          "t": 11556.800000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "self.__next_r=\"Hmx3qLdhKQ5CC4mwhtRK1\"(self.__next_f=self.__n",
+          "nextDialog": null
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 11644.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "self.__next_r=\"Hmx3qLdhKQ5CC4mwhtRK1\"(self.__next_f=self.__n",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 11644.700000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "self.__next_r=\"Hmx3qLdhKQ5CC4mwhtRK1\"(self.__next_f=self.__n"
+        }
+      ]
+    },
+    {
+      "label": "escape-restoration",
+      "url": "http://localhost:3000/admin/credits",
+      "events": [
+        {
+          "type": "pageshow",
+          "t": 6526.0999999996275,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu"
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 7366.5999999996275,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 7367.4000000003725,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu"
+        },
+        {
+          "type": "click",
+          "t": 8365.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "text": "Open menu",
+          "href": null,
+          "insideMenu": false
+        },
+        {
+          "type": "history.pushState:before",
+          "t": 8527.300000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Close navigation",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.pushState:after",
+          "t": 8545.900000000373,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Close navigation"
+        },
+        {
+          "type": "FIRST_TAP_START",
+          "t": 8755.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Close navigation",
+          "label": "workspace"
+        },
+        {
+          "type": "click",
+          "t": 8890.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Workspace",
+          "text": "Workspace",
+          "href": "/dashboard",
+          "insideMenu": true
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 8891.5,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Workspace",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 8893.099999999627,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Workspace"
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 10787,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "destination": "/dashboard"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 10791.300000000745,
+          "path": "/dashboard",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu"
+        },
+        {
+          "type": "popstate",
+          "t": 11556.800000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "self.__next_r=\"Hmx3qLdhKQ5CC4mwhtRK1\"(self.__next_f=self.__n",
+          "nextDialog": null
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 11644.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "self.__next_r=\"Hmx3qLdhKQ5CC4mwhtRK1\"(self.__next_f=self.__n",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 11644.700000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "self.__next_r=\"Hmx3qLdhKQ5CC4mwhtRK1\"(self.__next_f=self.__n"
+        },
+        {
+          "type": "click",
+          "t": 12225.099999999627,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Open menu",
+          "text": "Open menu",
+          "href": null,
+          "insideMenu": false
+        },
+        {
+          "type": "history.pushState:before",
+          "t": 12303.400000000373,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Codex Community New Delhi",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.pushState:after",
+          "t": 12303.800000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": "dialog-1792849275455-rwx5p7fw44",
+          "focus": "Codex Community New Delhi"
+        },
+        {
+          "type": "history.back:before",
+          "t": 12490.599999999627,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": "dialog-1792849275455-rwx5p7fw44",
+          "focus": "Open menu",
+          "destination": null
+        },
+        {
+          "type": "history.back:after",
+          "t": 12490.800000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": "dialog-1792849275455-rwx5p7fw44",
+          "focus": "Open menu"
+        },
+        {
+          "type": "popstate",
+          "t": 12497,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Open menu",
+          "nextDialog": null
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 12559.300000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Open menu",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 12561.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Open menu"
+        }
+      ]
+    },
+    {
+      "label": "menu-back-restoration",
+      "url": "http://localhost:3000/admin/credits",
+      "events": [
+        {
+          "type": "pageshow",
+          "t": 6526.0999999996275,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu"
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 7366.5999999996275,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 7367.4000000003725,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu"
+        },
+        {
+          "type": "click",
+          "t": 8365.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "text": "Open menu",
+          "href": null,
+          "insideMenu": false
+        },
+        {
+          "type": "history.pushState:before",
+          "t": 8527.300000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Close navigation",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.pushState:after",
+          "t": 8545.900000000373,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Close navigation"
+        },
+        {
+          "type": "FIRST_TAP_START",
+          "t": 8755.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Close navigation",
+          "label": "workspace"
+        },
+        {
+          "type": "click",
+          "t": 8890.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Workspace",
+          "text": "Workspace",
+          "href": "/dashboard",
+          "insideMenu": true
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 8891.5,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Workspace",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 8893.099999999627,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Workspace"
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 10787,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "destination": "/dashboard"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 10791.300000000745,
+          "path": "/dashboard",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu"
+        },
+        {
+          "type": "popstate",
+          "t": 11556.800000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "self.__next_r=\"Hmx3qLdhKQ5CC4mwhtRK1\"(self.__next_f=self.__n",
+          "nextDialog": null
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 11644.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "self.__next_r=\"Hmx3qLdhKQ5CC4mwhtRK1\"(self.__next_f=self.__n",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 11644.700000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "self.__next_r=\"Hmx3qLdhKQ5CC4mwhtRK1\"(self.__next_f=self.__n"
+        },
+        {
+          "type": "click",
+          "t": 12225.099999999627,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Open menu",
+          "text": "Open menu",
+          "href": null,
+          "insideMenu": false
+        },
+        {
+          "type": "history.pushState:before",
+          "t": 12303.400000000373,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Codex Community New Delhi",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.pushState:after",
+          "t": 12303.800000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": "dialog-1792849275455-rwx5p7fw44",
+          "focus": "Codex Community New Delhi"
+        },
+        {
+          "type": "history.back:before",
+          "t": 12490.599999999627,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": "dialog-1792849275455-rwx5p7fw44",
+          "focus": "Open menu",
+          "destination": null
+        },
+        {
+          "type": "history.back:after",
+          "t": 12490.800000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": "dialog-1792849275455-rwx5p7fw44",
+          "focus": "Open menu"
+        },
+        {
+          "type": "popstate",
+          "t": 12497,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Open menu",
+          "nextDialog": null
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 12559.300000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Open menu",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 12561.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Open menu"
+        },
+        {
+          "type": "click",
+          "t": 12857.700000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Open menu",
+          "text": "Open menu",
+          "href": null,
+          "insideMenu": false
+        },
+        {
+          "type": "history.pushState:before",
+          "t": 12942.700000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Codex Community New Delhi",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.pushState:after",
+          "t": 12943.5,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": "dialog-1792849276086-chd5cgjrpp",
+          "focus": "Codex Community New Delhi"
+        },
+        {
+          "type": "popstate",
+          "t": 12988.700000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Codex Community New Delhi",
+          "nextDialog": null
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 13055.700000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Codex Community New Delhi",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 13056.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Codex Community New Delhi"
+        }
+      ]
+    },
+    {
+      "label": "touch-close-restoration",
+      "url": "http://localhost:3000/admin/credits",
+      "events": [
+        {
+          "type": "pageshow",
+          "t": 6526.0999999996275,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu"
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 7366.5999999996275,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 7367.4000000003725,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu"
+        },
+        {
+          "type": "click",
+          "t": 8365.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "text": "Open menu",
+          "href": null,
+          "insideMenu": false
+        },
+        {
+          "type": "history.pushState:before",
+          "t": 8527.300000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Close navigation",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.pushState:after",
+          "t": 8545.900000000373,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Close navigation"
+        },
+        {
+          "type": "FIRST_TAP_START",
+          "t": 8755.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Close navigation",
+          "label": "workspace"
+        },
+        {
+          "type": "click",
+          "t": 8890.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Workspace",
+          "text": "Workspace",
+          "href": "/dashboard",
+          "insideMenu": true
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 8891.5,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849271633-x5h38fos6p",
+          "focus": "Workspace",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 8893.099999999627,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Workspace"
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 10787,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "destination": "/dashboard"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 10791.300000000745,
+          "path": "/dashboard",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu"
+        },
+        {
+          "type": "popstate",
+          "t": 11556.800000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "self.__next_r=\"Hmx3qLdhKQ5CC4mwhtRK1\"(self.__next_f=self.__n",
+          "nextDialog": null
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 11644.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "self.__next_r=\"Hmx3qLdhKQ5CC4mwhtRK1\"(self.__next_f=self.__n",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 11644.700000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "self.__next_r=\"Hmx3qLdhKQ5CC4mwhtRK1\"(self.__next_f=self.__n"
+        },
+        {
+          "type": "click",
+          "t": 12225.099999999627,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Open menu",
+          "text": "Open menu",
+          "href": null,
+          "insideMenu": false
+        },
+        {
+          "type": "history.pushState:before",
+          "t": 12303.400000000373,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Codex Community New Delhi",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.pushState:after",
+          "t": 12303.800000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": "dialog-1792849275455-rwx5p7fw44",
+          "focus": "Codex Community New Delhi"
+        },
+        {
+          "type": "history.back:before",
+          "t": 12490.599999999627,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": "dialog-1792849275455-rwx5p7fw44",
+          "focus": "Open menu",
+          "destination": null
+        },
+        {
+          "type": "history.back:after",
+          "t": 12490.800000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": "dialog-1792849275455-rwx5p7fw44",
+          "focus": "Open menu"
+        },
+        {
+          "type": "popstate",
+          "t": 12497,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Open menu",
+          "nextDialog": null
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 12559.300000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Open menu",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 12561.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Open menu"
+        },
+        {
+          "type": "click",
+          "t": 12857.700000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Open menu",
+          "text": "Open menu",
+          "href": null,
+          "insideMenu": false
+        },
+        {
+          "type": "history.pushState:before",
+          "t": 12942.700000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Codex Community New Delhi",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.pushState:after",
+          "t": 12943.5,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": "dialog-1792849276086-chd5cgjrpp",
+          "focus": "Codex Community New Delhi"
+        },
+        {
+          "type": "popstate",
+          "t": 12988.700000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Codex Community New Delhi",
+          "nextDialog": null
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 13055.700000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Codex Community New Delhi",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 13056.200000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Codex Community New Delhi"
+        },
+        {
+          "type": "click",
+          "t": 13251.700000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Open menu",
+          "text": "Open menu",
+          "href": null,
+          "insideMenu": false
+        },
+        {
+          "type": "history.pushState:before",
+          "t": 13334.099999999627,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Codex Community New Delhi",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.pushState:after",
+          "t": 13334.599999999627,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": "dialog-1792849276478-yucdpjm35nh",
+          "focus": "Codex Community New Delhi"
+        },
+        {
+          "type": "click",
+          "t": 13414.599999999627,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": "dialog-1792849276478-yucdpjm35nh",
+          "focus": "Close navigation",
+          "text": "",
+          "href": null,
+          "insideMenu": true
+        },
+        {
+          "type": "history.back:before",
+          "t": 13488.700000001118,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": "dialog-1792849276478-yucdpjm35nh",
+          "focus": "Open menu",
+          "destination": null
+        },
+        {
+          "type": "history.back:after",
+          "t": 13488.800000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": "dialog-1792849276478-yucdpjm35nh",
+          "focus": "Open menu"
+        },
+        {
+          "type": "popstate",
+          "t": 13499.900000000373,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Open menu",
+          "nextDialog": null
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 13559.800000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Open menu",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 13560.300000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 69,
+          "dialog": null,
+          "focus": "Open menu"
+        }
+      ]
+    },
+    {
+      "label": "profile-first-tap-success",
+      "url": "http://localhost:3000/profile",
+      "events": [
+        {
+          "type": "pageshow",
+          "t": 3739.0999999996275,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu"
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 4095.300000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 4097.0999999996275,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu"
+        },
+        {
+          "type": "click",
+          "t": 4546.300000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "text": "Open menu",
+          "href": null,
+          "insideMenu": false
+        },
+        {
+          "type": "history.pushState:before",
+          "t": 4616.9000000003725,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Close navigation",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.pushState:after",
+          "t": 4617.4000000003725,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849286911-gbrjqk1qbou",
+          "focus": "Close navigation"
+        },
+        {
+          "type": "FIRST_TAP_START",
+          "t": 4703.699999999255,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849286911-gbrjqk1qbou",
+          "focus": "Close navigation",
+          "label": "profile"
+        },
+        {
+          "type": "click",
+          "t": 4766.4000000003725,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849286911-gbrjqk1qbou",
+          "focus": "Your profile",
+          "text": "Your profile",
+          "href": "/profile",
+          "insideMenu": true
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 4767.699999999255,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849286911-gbrjqk1qbou",
+          "focus": "Your profile",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 4768.199999999255,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Your profile"
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 5137.300000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "destination": "/profile"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 5137.699999999255,
+          "path": "/profile",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu"
+        }
+      ]
+    },
+    {
+      "label": "profile-back-to-credits",
+      "url": "http://localhost:3000/admin/credits",
+      "events": [
+        {
+          "type": "pageshow",
+          "t": 3739.0999999996275,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu"
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 4095.300000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 4097.0999999996275,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Skip to contentCodex Community New DelhiOpen menuCodex Commu"
+        },
+        {
+          "type": "click",
+          "t": 4546.300000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "text": "Open menu",
+          "href": null,
+          "insideMenu": false
+        },
+        {
+          "type": "history.pushState:before",
+          "t": 4616.9000000003725,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Close navigation",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.pushState:after",
+          "t": 4617.4000000003725,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849286911-gbrjqk1qbou",
+          "focus": "Close navigation"
+        },
+        {
+          "type": "FIRST_TAP_START",
+          "t": 4703.699999999255,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849286911-gbrjqk1qbou",
+          "focus": "Close navigation",
+          "label": "profile"
+        },
+        {
+          "type": "click",
+          "t": 4766.4000000003725,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849286911-gbrjqk1qbou",
+          "focus": "Your profile",
+          "text": "Your profile",
+          "href": "/profile",
+          "insideMenu": true
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 4767.699999999255,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": "dialog-1792849286911-gbrjqk1qbou",
+          "focus": "Your profile",
+          "destination": "http://localhost:3000/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 4768.199999999255,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Your profile"
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 5137.300000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu",
+          "destination": "/profile"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 5137.699999999255,
+          "path": "/profile",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Open menu"
+        },
+        {
+          "type": "popstate",
+          "t": 5463.4000000003725,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Profile",
+          "nextDialog": null
+        },
+        {
+          "type": "history.replaceState:before",
+          "t": 5526.4000000003725,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Profile",
+          "destination": "/admin/credits"
+        },
+        {
+          "type": "history.replaceState:after",
+          "t": 5526.800000000745,
+          "path": "/admin/credits",
+          "search": "",
+          "scrollY": 0,
+          "dialog": null,
+          "focus": "Profile"
+        }
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/admin/participants",
+      "search": "",
+      "type": "document"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css",
+      "search": "?v=1792849256797",
+      "type": "stylesheet"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "image"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js",
+      "search": "?v=1792849256797",
+      "type": "script"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js",
+      "search": "?v=1792849256797",
+      "type": "script"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js",
+      "search": "",
+      "type": "script"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+      "search": "",
+      "type": "script"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "other"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/admin/credits",
+      "search": "",
+      "type": "document"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css",
+      "search": "?v=1792849264044",
+      "type": "stylesheet"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "image"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js",
+      "search": "?v=1792849264044",
+      "type": "script"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js",
+      "search": "?v=1792849264044",
+      "type": "script"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js",
+      "search": "",
+      "type": "script"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+      "search": "",
+      "type": "script"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "other"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/dashboard",
+      "search": "?_rsc=wGWry5MJdmN6-_JM",
+      "type": "fetch"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "image"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "other"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "image"
+    },
+    {
+      "label": "workspace",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "other"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/admin/participants",
+      "search": "",
+      "type": "document"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css",
+      "search": "?v=1792849277495",
+      "type": "stylesheet"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "image"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js",
+      "search": "?v=1792849277495",
+      "type": "script"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js",
+      "search": "?v=1792849277495",
+      "type": "script"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js",
+      "search": "",
+      "type": "script"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+      "search": "",
+      "type": "script"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "other"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/admin/credits",
+      "search": "",
+      "type": "document"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/_next/static/css/app/layout.css",
+      "search": "?v=1792849282375",
+      "type": "stylesheet"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "image"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/_next/static/chunks/webpack.js",
+      "search": "?v=1792849282375",
+      "type": "script"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/_next/static/chunks/main-app.js",
+      "search": "?v=1792849282375",
+      "type": "script"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/_next/static/chunks/app-pages-internals.js",
+      "search": "",
+      "type": "script"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+      "search": "",
+      "type": "font"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+      "search": "",
+      "type": "script"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "other"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/profile",
+      "search": "?_rsc=wGWry5MJdmN6-_JM",
+      "type": "fetch"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "image"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "other"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "image"
+    },
+    {
+      "label": "profile",
+      "method": "GET",
+      "path": "/brand/codex-user-supplied.svg",
+      "search": "",
+      "type": "other"
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "limitations": [
+    "Emulated390px touch in container Chromium; not real managed sign-in or a physical device.",
+    "No reveal, save, logout or other application mutation is activated.",
+    "Full source HEAD and navigation-only fingerprints are recorded because unrelated publish-warning work may share portal.tsx."
+  ],
+  "browser": "154.0.8037.57",
+  "revisionAtEnd": "7a0eb29663861f43981b10df5626758228c6cb44",
+  "dirtyAtEnd": "M next-env.d.ts",
+  "result": "passed",
+  "browserClosed": true,
+  "finishedAt": "2026-10-24T13:41:28.202Z",
+  "visualReview": {
+    "result": "passed",
+    "uniqueScreenshotsViewed": 6,
+    "notes": [
+      "First Workspace tap visibly reaches Dashboard; first Your profile tap visibly reaches the owner Profile.",
+      "Escape and browser Back dismissal screenshots show Credits with the menu opener focused.",
+      "All6 full-size390x844 originals were opened."
+    ]
+  }
+}

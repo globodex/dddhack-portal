@@ -1,0 +1,90 @@
+{
+  "mainConfigCommit": "e386cc72244c5613588ec60b02998637a9aadcb7",
+  "branches": [
+    {
+      "branch": "feat/admin-experience",
+      "before": "b1a05afcf8c06a6717a791f372348d5ce6f95d69",
+      "configCherry": "8c66764d261153dc7ac77ccf52529e37a5cffe56",
+      "remote": "8c66764d261153dc7ac77ccf52529e37a5cffe56",
+      "identityVerified": true,
+      "configBlob": "dfdd788b04c0eaccec76a97c7298dad801732856",
+      "status": "pushed-verified"
+    },
+    {
+      "branch": "feat/profile-experience",
+      "before": "658296ea641cf099b74528592a3c377b433b3d9e",
+      "configCherry": "2418c0e57a54a2a93fd1d5eb85527d2801778cdc",
+      "remote": "2418c0e57a54a2a93fd1d5eb85527d2801778cdc",
+      "identityVerified": true,
+      "configBlob": "dfdd788b04c0eaccec76a97c7298dad801732856",
+      "status": "pushed-verified"
+    },
+    {
+      "branch": "feat/projects-rules-experience",
+      "before": "e855c7cadd1457d4045e349ff4e2058448e8ec5e",
+      "configCherry": "e71a75854af0fad2fac08c9806f7dc4042662df5",
+      "remote": "e71a75854af0fad2fac08c9806f7dc4042662df5",
+      "identityVerified": true,
+      "configBlob": "dfdd788b04c0eaccec76a97c7298dad801732856",
+      "status": "pushed-verified"
+    },
+    {
+      "branch": "feat/landing-refinement",
+      "before": "47d79ead41c12560f766661554a7166c78dfbd35",
+      "configCherry": "e42cdffd834912917b3a697ca8fd9a9a1b3573ea",
+      "remote": "e42cdffd834912917b3a697ca8fd9a9a1b3573ea",
+      "identityVerified": true,
+      "configBlob": "dfdd788b04c0eaccec76a97c7298dad801732856",
+      "status": "pushed-verified"
+    },
+    {
+      "branch": "feat/team-discovery-experience",
+      "before": "a8c85595d8e50a15ff5816d713e1b9c5d6bef55b",
+      "configCherry": "af2146e22092dfe01c85ce9d9574f2116af3947c",
+      "remote": "af2146e22092dfe01c85ce9d9574f2116af3947c",
+      "identityVerified": true,
+      "configBlob": "dfdd788b04c0eaccec76a97c7298dad801732856",
+      "status": "pushed-verified"
+    },
+    {
+      "branch": "feat/public-seo-legal-drafts",
+      "before": "c82acbc85d5f0356e0960d5aafee6d8e5eb08a9c",
+      "configCherry": "c076c3734b7455e4522e15fc458d3303b6934cbc",
+      "remote": "c076c3734b7455e4522e15fc458d3303b6934cbc",
+      "identityVerified": true,
+      "configBlob": "dfdd788b04c0eaccec76a97c7298dad801732856",
+      "status": "pushed-verified"
+    },
+    {
+      "branch": "fix/client-form-hydration-safety",
+      "before": "bb5acb194f13f4879bed62eb3819a45cd48ad456",
+      "configCherry": "2a5773a85ea71026209d357100e9917814380b90",
+      "remote": "2a5773a85ea71026209d357100e9917814380b90",
+      "identityVerified": true,
+      "configBlob": "dfdd788b04c0eaccec76a97c7298dad801732856",
+      "status": "pushed-verified"
+    },
+    {
+      "branch": "feat/signin-email-experience",
+      "configCherry": "1b4da7a8f548b6fc73b6c78b162822c3186c0a0b",
+      "remote": "1b4da7a8f548b6fc73b6c78b162822c3186c0a0b",
+      "identityVerified": true,
+      "status": "pushed-verified-by-owner"
+    },
+    {
+      "branch": "feat/portal-experience-rework",
+      "configCherry": "e1209bc6608f9b46ce242d5d4285a2f6549cc17f",
+      "remoteAtScreenshotDelivery": "a431f4c192ee6e92f2024cee11880ab948576358",
+      "identityVerified": true,
+      "status": "pushed-verified"
+    }
+  ],
+  "mainParent": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+  "mainChangedFiles": [
+    "vercel.json"
+  ],
+  "inactiveBranches": "All branch refs outside main and the nine listed active branches were left untouched. Detached baseline/QA worktrees were not changed.",
+  "accountOperations": false,
+  "existingDeploymentsRemoved": false,
+  "mainBuild": "This authorized main push may trigger one production build; no Vercel account/status operation was performed."
+}

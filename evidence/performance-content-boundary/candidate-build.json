@@ -1,0 +1,35 @@
+{
+  "root": "/workspace/ddd-perf-content-boundary",
+  "source": "d24b47f01c40abe247944a2e81e414a7a31ac06d",
+  "startedAt": "2026-10-24T16:56:28.917Z",
+  "completedAt": "2026-10-24T16:57:14.179Z",
+  "elapsedMs": 45259.262,
+  "node": "v24.19.0",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "node_modules/next/dist/bin/next",
+    "build",
+    "--webpack"
+  ],
+  "envWhitelist": [
+    "PATH",
+    "LANG",
+    "TZ",
+    "NEXT_TELEMETRY_DISABLED"
+  ],
+  "providerCredentialsSupplied": false,
+  "exitCode": 0,
+  "signal": null,
+  "localCompilationTimeIsFrontendPerformanceEvidence": false,
+  "buildId": "XehgeJXDCi4ZqY376uUy7",
+  "controlBuildId": "QdP_-Y3mVZskIG5jIP-YD",
+  "configAndPackageHashes": {
+    "next.config.ts": "a596f3f09201f02b53868492c2e2fb38e867090568c985387fcdee2f52706a82",
+    "package.json": "b157875a99b39beefb4104332038d977794ab47f921de1ea9887e49857521e1f",
+    "package-lock.json": "012c834e5021933da47b135aae5642ef4c86592de81407d81b04c7185ba8e9fc"
+  },
+  "graphFile": "candidate-build-graph.json",
+  "appSourcePatchedByBuildLane": false,
+  "controlArtifactsChanged": false,
+  "allEmittedClientJavaScriptWithZodMarkers": []
+}

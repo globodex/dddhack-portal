@@ -1,0 +1,182 @@
+{
+  "frontend": "6f891f080ee4dd78c1753bbbf3155eeb7e54de04",
+  "backend": "7e1503020856b748e33945562c098ed2e3823ed0",
+  "database": "/tmp/ddd-credit-ui-legacy.sqlite",
+  "fixtureProof": {
+    "personallyCheckedIn": true,
+    "ownsCredit": false,
+    "teamId": "fake_credit_admin_team",
+    "teamAllApproved": false
+  },
+  "syntheticOnly": true,
+  "captures": [
+    {
+      "name": "legacy-stock-waiting",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/legacy-stock-waiting-1440x900.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true
+    },
+    {
+      "name": "legacy-stock-waiting",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/legacy-stock-waiting-768x1024.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true
+    },
+    {
+      "name": "legacy-stock-waiting",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/legacy-stock-waiting-390x844.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true
+    },
+    {
+      "name": "legacy-stock-waiting",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/legacy-stock-waiting-390x480.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true
+    },
+    {
+      "name": "legacy-stock-waiting",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/legacy-stock-waiting-320x480.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "fullPage": true
+    },
+    {
+      "name": "checked-in-admin-waiting",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/checked-in-admin-waiting-1440x900.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false
+    },
+    {
+      "name": "checked-in-admin-waiting-mobile",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/checked-in-admin-waiting-mobile-390x844.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false
+    },
+    {
+      "name": "checked-in-admin-waiting-short",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/checked-in-admin-waiting-short-320x480.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "fullPage": false
+    },
+    {
+      "name": "not-checked-in-private-gate",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/not-checked-in-private-gate-390x480.png",
+      "actor": "owner",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": false
+    },
+    {
+      "name": "private-gate-navigation",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/private-gate-navigation-390x480.png",
+      "actor": "owner",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": false
+    },
+    {
+      "name": "masked-stock-before-assignment",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/masked-stock-before-assignment-1440x900.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false
+    },
+    {
+      "name": "assigned-waiting-refreshed",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/assigned-waiting-refreshed-1440x900.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false
+    },
+    {
+      "name": "admin-assigned-after-repair",
+      "path": "/workspace/ddd-credit-inventory/evidence/credit-inventory-functional/admin-assigned-after-repair-1440x900.png",
+      "actor": "admin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false
+    }
+  ],
+  "checks": [
+    "Initial closed stock overview requests no allocation page and fits all five viewport shapes",
+    "Checked-in admin with pending teammate sees genuine Waiting and no mask/reveal/copy; SSR personal view makes no duplicate browser data request",
+    "Nonchecked-in403 gets private check-in notice and real generic navigation without guessed actor",
+    "Explicit assignment repairs existing50/9/41/1 to50/10/40/0 and keeps open mapping refreshed"
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "view": "/admin/credit-stock/976720ca-d41b-4f8a-9369-3ac004d0a2ef"
+    },
+    {
+      "method": "POST",
+      "view": null,
+      "action": "repair-credit-allocations",
+      "dataKeys": []
+    },
+    {
+      "method": "GET",
+      "view": "/admin/credits"
+    },
+    {
+      "method": "GET",
+      "view": "/admin/credit-stock/976720ca-d41b-4f8a-9369-3ac004d0a2ef"
+    }
+  ],
+  "errors": [],
+  "repairCategories": [
+    {
+      "id": "976720ca-d41b-4f8a-9369-3ac004d0a2ef",
+      "total": 50,
+      "assigned": 10,
+      "available": 40,
+      "waiting": 0
+    }
+  ],
+  "initialStateComplete": true,
+  "browserClosed": true
+}

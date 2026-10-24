@@ -1,0 +1,13 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.goto: Timeout 30000ms exceeded.
+Call log:
+[2m  - navigating to "http://localhost:3008/dashboard", waiting until "domcontentloaded"[22m
+
+    at /workspace/ddd-viewer-browser/scripts/qa-viewer-registration-before.mjs:31:13 {
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

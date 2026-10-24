@@ -1,0 +1,55 @@
+{
+  "source": "c8f42a5f91aa6414cf11be4bd8c51f7329e769ad",
+  "syntheticOnly": true,
+  "checks": [
+    "Desktop open focuses close and Tab/Shift+Tab stay inside dialog",
+    "Required team name blocks empty submission with native field focus",
+    "Escape closes and restores trigger focus",
+    "Browser Back dismisses creation without leaving Discover and restores focus",
+    "In-flow close button dismisses dialog",
+    "Optional empty team intro remains valid",
+    "Touch palette changes one initials preview and all eight targets are at least 44px at 320px",
+    "Creation dialog passes focused automated WCAG A/AA checks",
+    "Confirmation Escape cancels without a request or lost form values",
+    "Action error stays contextual, visible and retryable with form values retained",
+    "Touch confirm sends unchanged payload and real HTTP200 creation persists name, public intro, initials palette and leader membership"
+  ],
+  "posts": [
+    {
+      "action": "create-workspace-team",
+      "data": {
+        "name": "Synthetic Owner Silver Line Synthetic Owner Silver Line Synthetic Owner Silver L",
+        "bio": "https://example.test/long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-",
+        "avatar": "initials",
+        "palette": "violet"
+      }
+    },
+    {
+      "action": "create-workspace-team",
+      "data": {
+        "name": "Synthetic Owner Silver Line Synthetic Owner Silver Line Synthetic Owner Silver L",
+        "bio": "https://example.test/long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-long-url-",
+        "avatar": "initials",
+        "palette": "violet"
+      }
+    }
+  ],
+  "pageErrors": [],
+  "externalRequests": [],
+  "axe": [],
+  "successfulCreationResponse": {
+    "status": 200,
+    "result": {
+      "message": "Team created. Approval readiness is tracked separately.",
+      "teamId": "bf6b03bb-58b2-430f-afba-754745de45eb"
+    }
+  },
+  "persisted": {
+    "teamId": "bf6b03bb-58b2-430f-afba-754745de45eb",
+    "name": "Synthetic Owner Silver Line Synthetic Owner Silver Line Synthetic Owner Silver L",
+    "palette": "violet",
+    "avatar": "initials",
+    "bioLength": 993,
+    "members": 1
+  }
+}

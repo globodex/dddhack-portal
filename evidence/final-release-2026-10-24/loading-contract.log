@@ -1,0 +1,11 @@
+✔ route skeletons describe one busy region and keep decorative placeholders outside the accessibility tree (51.386457ms)
+✔ route shapes preserve distinct profile, dashboard, cards, table and form structures (0.231415ms)
+✔ initial loading keeps the shared shell, while supplied loaded content has no skeleton overlay (130.338972ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2894.594649

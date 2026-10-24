@@ -1,0 +1,102 @@
+{
+  "syntheticOnly": true,
+  "visuals": "Equal 512×320 contain previews on a neutral background. No crop or stretch.",
+  "records": [
+    {
+      "name": "logo-typography",
+      "kind": "logo",
+      "contentType": "image/png",
+      "source": {
+        "width": 1024,
+        "height": 1024,
+        "bytes": 54914,
+        "hasAlpha": true
+      },
+      "canonical": {
+        "width": 512,
+        "height": 512,
+        "bytes": 37931,
+        "hasAlpha": true,
+        "sha256": "214739d9ee3df6ee194c323a674b251345d0feab423debe2c6ef2394ddb2a93f"
+      },
+      "policy": {
+        "sourceMaxBytes": 1000000,
+        "canonicalMaxBytes": 131072,
+        "optimizationMaxEdge": 512,
+        "dataUriMaxChars": 180000
+      }
+    },
+    {
+      "name": "banner-synthetic-landscape",
+      "kind": "banner",
+      "contentType": "image/jpeg",
+      "source": {
+        "width": 2048,
+        "height": 1280,
+        "bytes": 679744,
+        "hasAlpha": false
+      },
+      "canonical": {
+        "width": 1600,
+        "height": 1000,
+        "bytes": 93376,
+        "hasAlpha": false,
+        "sha256": "ab541289ea1868dc35017c899a4577cfde2ec2f7d0183cfa0a45a2d7e5705008"
+      },
+      "policy": {
+        "sourceMaxBytes": 5000000,
+        "canonicalMaxBytes": 393216,
+        "optimizationMaxEdge": 1600,
+        "dataUriMaxChars": 525000
+      }
+    },
+    {
+      "name": "banner-transparent-ultrawide",
+      "kind": "banner",
+      "contentType": "image/png",
+      "source": {
+        "width": 2048,
+        "height": 128,
+        "bytes": 5580,
+        "hasAlpha": true
+      },
+      "canonical": {
+        "width": 1600,
+        "height": 100,
+        "bytes": 906,
+        "hasAlpha": true,
+        "sha256": "662fb0f9411d24555533ecddafb86b9b965543ad2cfc443d64e87e28d8dc5151"
+      },
+      "policy": {
+        "sourceMaxBytes": 5000000,
+        "canonicalMaxBytes": 393216,
+        "optimizationMaxEdge": 1600,
+        "dataUriMaxChars": 525000
+      }
+    },
+    {
+      "name": "banner-alpha-noise",
+      "kind": "banner",
+      "contentType": "image/png",
+      "source": {
+        "width": 1024,
+        "height": 1024,
+        "bytes": 4202841,
+        "hasAlpha": true
+      },
+      "canonical": {
+        "width": 335,
+        "height": 335,
+        "bytes": 388287,
+        "hasAlpha": true,
+        "sha256": "0c39ec6e3e01dc4d20900a41283abb328c4991f7b4efe6099f33cefe2c19b074"
+      },
+      "policy": {
+        "sourceMaxBytes": 5000000,
+        "canonicalMaxBytes": 393216,
+        "optimizationMaxEdge": 1600,
+        "dataUriMaxChars": 525000
+      }
+    }
+  ]
+}

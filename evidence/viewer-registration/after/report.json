@@ -1,0 +1,5921 @@
+{
+  "source": "c205b404b32ecf444c6897777421f297574a31c6",
+  "applicationEquivalentTo": "063cdefb0fb9ae6054425f3e9784a6b09ae44539",
+  "syntheticOnly": true,
+  "cases": [
+    {
+      "path": "/dashboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/dashboard",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864360418",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864360418",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864360418",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/dashboard",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864360418",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864360418",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864360418",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 1440,
+      "documentWidth": 1425,
+      "timeline": [
+        {
+          "ms": 3353.800000000745,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 3363.900000002235,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": ""
+        },
+        {
+          "ms": 3658.300000000745,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode"
+        },
+        {
+          "ms": 4108.60000000149,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "StrangerViewerLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-dashboard-1440x900.png"
+    },
+    {
+      "path": "/profile",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/profile",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864481313",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864481313",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864481313",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/profile",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864481313",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864481313",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864481313",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 1440,
+      "documentWidth": 1425,
+      "timeline": [
+        {
+          "ms": 1583.6000000014901,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 1700.300000000745,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 2041.4000000022352,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "Stranger\nLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "Stranger\nLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-profile-1440x900.png"
+    },
+    {
+      "path": "/submission",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/submission",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864485072",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864485072",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864485072",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/submission",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864485072",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864485072",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864485072",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 1440,
+      "documentWidth": 1425,
+      "timeline": [
+        {
+          "ms": 207,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 207,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 224.10000000149012,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 224.30000000074506,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 493.1000000014901,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 493.19999999925494,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "StrangerViewerLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-submission-1440x900.png"
+    },
+    {
+      "path": "/personal/credits",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/_next/static/webpack/8ec23b7dc8ba0b32.webpack.hot-update.json",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/personal/credits",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864491021",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864491021",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864491021",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/personal/credits/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/personal/credits",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/webpack/8ec23b7dc8ba0b32.webpack.hot-update.json",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/webpack/webpack.8ec23b7dc8ba0b32.hot-update.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864491021",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864491021",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864491021",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/personal/credits/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 1440,
+      "documentWidth": 1425,
+      "timeline": [
+        {
+          "ms": 3327.900000002235,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 3327.900000002235,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 3327.900000002235,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 3355.199999999255,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 3355.400000002235,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 3355.400000002235,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 3476.800000000745,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "Stranger\nLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 3477.5,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "Stranger\nLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 3477.5,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "Stranger\nLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "Stranger\nLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-personal-credits-1440x900.png"
+    },
+    {
+      "path": "/dashboard",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/dashboard",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864495102",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864495102",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864495102",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/dashboard",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864495102",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864495102",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864495102",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 768,
+      "documentWidth": 753,
+      "timeline": [
+        {
+          "ms": 497.19999999925494,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 572.1999999992549,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": ""
+        },
+        {
+          "ms": 593.5,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 1037.300000000745,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "StrangerViewerLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-dashboard-768x1024.png"
+    },
+    {
+      "path": "/profile",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/profile",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864498867",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864498867",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864498867",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/profile",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864498867",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864498867",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864498867",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 768,
+      "documentWidth": 753,
+      "timeline": [
+        {
+          "ms": 329.29999999701977,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 329.3999999985099,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 339.19999999925494,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 339.29999999701977,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 637.5,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 637.7999999970198,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "StrangerViewerLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-profile-768x1024.png"
+    },
+    {
+      "path": "/submission",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/submission",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864502246",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864502246",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864502246",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/submission",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864502246",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864502246",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864502246",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 768,
+      "documentWidth": 753,
+      "timeline": [
+        {
+          "ms": 271.19999999925494,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 271.19999999925494,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 271.19999999925494,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 279.19999999925494,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 279.30000000074506,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 279.3999999985099,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 437.80000000074506,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 437.80000000074506,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 437.80000000074506,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "StrangerViewerLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-submission-768x1024.png"
+    },
+    {
+      "path": "/personal/credits",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/personal/credits",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864505686",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864505686",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864505686",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/personal/credits/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/personal/credits",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864505686",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864505686",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864505686",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/personal/credits/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 768,
+      "documentWidth": 753,
+      "timeline": [
+        {
+          "ms": 161.79999999701977,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 161.89999999850988,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 161.89999999850988,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 162,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 173.09999999776483,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 173.79999999701977,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 173.79999999701977,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 173.89999999850988,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 271.3999999985099,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 271.5,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 271.5,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 271.5999999977648,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "StrangerViewerLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-personal-credits-768x1024.png"
+    },
+    {
+      "path": "/dashboard",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/dashboard",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864509385",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864509385",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864509385",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/dashboard",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864509385",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864509385",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864509385",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 390,
+      "documentWidth": 390,
+      "timeline": [
+        {
+          "ms": 830.3000000007451,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 838.4000000022352,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": ""
+        },
+        {
+          "ms": 908.2000000029802,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 1506.4000000022352,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "StrangerViewerLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-dashboard-390x844.png",
+      "menu": {
+        "links": [
+          {
+            "text": "Discover",
+            "href": "/discover/teams"
+          },
+          {
+            "text": "Projects",
+            "href": "/projects"
+          },
+          {
+            "text": "Rules",
+            "href": "/rules"
+          }
+        ],
+        "file": "evidence/viewer-registration/after/viewer-menu-390x844.png",
+        "escapeClosed": true
+      }
+    },
+    {
+      "path": "/profile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/profile",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864514158",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864514158",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864514158",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/profile",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864514158",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864514158",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864514158",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 390,
+      "documentWidth": 390,
+      "timeline": [
+        {
+          "ms": 289,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 289,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 305.0999999977648,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 305.3999999985099,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 503.3999999985099,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 503.5999999977648,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "StrangerViewerLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-profile-390x844.png"
+    },
+    {
+      "path": "/submission",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/submission",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864517849",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864517849",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864517849",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/submission",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864517849",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864517849",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864517849",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 390,
+      "documentWidth": 390,
+      "timeline": [
+        {
+          "ms": 307,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 307,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 307.1000000014901,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 329.5,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": ""
+        },
+        {
+          "ms": 329.5,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": ""
+        },
+        {
+          "ms": 329.5,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": ""
+        },
+        {
+          "ms": 357.1000000014901,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 357.20000000298023,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 357.30000000074506,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 466.20000000298023,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 466.4000000022352,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 466.5,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "StrangerViewerLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-submission-390x844.png"
+    },
+    {
+      "path": "/personal/credits",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/personal/credits",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864525893",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864525893",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864525893",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/personal/credits/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/personal/credits",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864525893",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864525893",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864525893",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/personal/credits/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 390,
+      "documentWidth": 390,
+      "timeline": [
+        {
+          "ms": 257.30000000074506,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 257.4000000022352,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 257.4000000022352,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 257.4000000022352,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 268.19999999925494,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 268.30000000074506,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 268.30000000074506,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 268.4000000022352,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 493.5,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 493.5,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 493.5,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 493.5,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "StrangerViewerLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-personal-credits-390x844.png"
+    },
+    {
+      "path": "/dashboard",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/dashboard",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864531803",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864531803",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864531803",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/dashboard",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864531803",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864531803",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864531803",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 390,
+      "documentWidth": 390,
+      "timeline": [
+        {
+          "ms": 671.3999999985099,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 729.8999999985099,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": ""
+        },
+        {
+          "ms": 735.1999999992549,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 1041.5999999977648,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "StrangerViewerLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-dashboard-390x480.png",
+      "menu": {
+        "links": [
+          {
+            "text": "Discover",
+            "href": "/discover/teams"
+          },
+          {
+            "text": "Projects",
+            "href": "/projects"
+          },
+          {
+            "text": "Rules",
+            "href": "/rules"
+          }
+        ],
+        "file": "evidence/viewer-registration/after/viewer-menu-390x480.png",
+        "escapeClosed": true
+      }
+    },
+    {
+      "path": "/profile",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/profile",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864538539",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864538539",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864538539",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/profile",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864538539",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864538539",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864538539",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 390,
+      "documentWidth": 390,
+      "timeline": [
+        {
+          "ms": 2628.10000000149,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 2628.10000000149,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 2647.5,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": ""
+        },
+        {
+          "ms": 2647.60000000149,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": ""
+        },
+        {
+          "ms": 2650.300000000745,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 2683.89999999851,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 2939.699999999255,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 2939.800000000745,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "StrangerViewerLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-profile-390x480.png"
+    },
+    {
+      "path": "/submission",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/submission",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864546598",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864546598",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864546598",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/submission",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864546598",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864546598",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864546598",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 390,
+      "documentWidth": 390,
+      "timeline": [
+        {
+          "ms": 691.6999999992549,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 691.6999999992549,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 691.6999999992549,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 740.6999999992549,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople"
+        },
+        {
+          "ms": 740.8000000007451,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople"
+        },
+        {
+          "ms": 740.8000000007451,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople"
+        },
+        {
+          "ms": 761.3999999985099,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 761.3999999985099,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 761.3999999985099,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 1273.1000000014901,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 1279.8999999985099,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 1280,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "StrangerViewerLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-submission-390x480.png"
+    },
+    {
+      "path": "/personal/credits",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/personal/credits",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864555506",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864555506",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864555506",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/personal/credits/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/personal/credits",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864555506",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864555506",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864555506",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/personal/credits/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 390,
+      "documentWidth": 390,
+      "timeline": [
+        {
+          "ms": 227.19999999925494,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 227.29999999701977,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 227.29999999701977,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 227.39999999850988,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 246.09999999776483,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewer",
+          "shell": "app-shell   workspace-shell",
+          "main": ""
+        },
+        {
+          "ms": 246.09999999776483,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewer",
+          "shell": "app-shell   workspace-shell",
+          "main": ""
+        },
+        {
+          "ms": 246.09999999776483,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewer",
+          "shell": "app-shell   workspace-shell",
+          "main": ""
+        },
+        {
+          "ms": 246.09999999776483,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewer",
+          "shell": "app-shell   workspace-shell",
+          "main": ""
+        },
+        {
+          "ms": 253.39999999850988,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 253.39999999850988,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 253.5,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 253.5,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 356.5999999977648,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 356.79999999701977,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 356.79999999701977,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 356.79999999701977,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "StrangerViewerLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-personal-credits-390x480.png"
+    },
+    {
+      "path": "/dashboard",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/dashboard",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864558915",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864558915",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864558915",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/dashboard",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864558915",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864558915",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864558915",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 320,
+      "documentWidth": 320,
+      "timeline": [
+        {
+          "ms": 384.5999999977648,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 417.5,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 806.8999999985099,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "StrangerViewerLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-dashboard-320x480.png",
+      "menu": {
+        "links": [
+          {
+            "text": "Discover",
+            "href": "/discover/teams"
+          },
+          {
+            "text": "Projects",
+            "href": "/projects"
+          },
+          {
+            "text": "Rules",
+            "href": "/rules"
+          }
+        ],
+        "file": "evidence/viewer-registration/after/viewer-menu-320x480.png",
+        "escapeClosed": true
+      }
+    },
+    {
+      "path": "/profile",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/profile",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864563996",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864563996",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864563996",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/profile",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864563996",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864563996",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864563996",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 320,
+      "documentWidth": 320,
+      "timeline": [
+        {
+          "ms": 478.0999999977648,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 478.0999999977648,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 483.5,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 483.80000000074506,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 844,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 844.0999999977648,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "StrangerViewerLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-profile-320x480.png"
+    },
+    {
+      "path": "/submission",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/submission",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864568549",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864568549",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864568549",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/submission",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864568549",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864568549",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864568549",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 320,
+      "documentWidth": 320,
+      "timeline": [
+        {
+          "ms": 306.70000000298023,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 306.80000000074506,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 306.80000000074506,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 342.5,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 342.6000000014901,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 342.6000000014901,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 505.9000000022352,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 505.9000000022352,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 506,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "StrangerViewerLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-submission-320x480.png"
+    },
+    {
+      "path": "/personal/credits",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/personal/credits",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864571746",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864571746",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864571746",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/personal/credits/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/personal/credits",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864571746",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864571746",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864571746",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/personal/credits/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 320,
+      "documentWidth": 320,
+      "timeline": [
+        {
+          "ms": 237.19999999925494,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 237.29999999701977,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 237.29999999701977,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 237.29999999701977,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 244.79999999701977,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 244.89999999850988,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 245.59999999776483,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 245.69999999925494,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeopleTeamsProjects"
+        },
+        {
+          "ms": 383.29999999701977,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 383.29999999701977,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 383.5,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        },
+        {
+          "ms": 383.5,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "StrangerViewerLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-personal-credits-320x480.png"
+    },
+    {
+      "path": "/dashboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "noJS": true,
+      "file": "evidence/viewer-registration/after/viewer-dashboard-nojs-1440x900.png",
+      "result": "PASS_VISIBLE_SSR"
+    },
+    {
+      "path": "/dashboard",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "noJS": true,
+      "file": "evidence/viewer-registration/after/viewer-dashboard-nojs-390x844.png",
+      "result": "PASS_VISIBLE_SSR"
+    }
+  ],
+  "startedAt": "2026-10-24T17:54:38.981Z",
+  "previousCaseSource": "86e89812937a68e609fd9af521c85b5eb1a19dae",
+  "harnessCorrection": "Require hydrated shell rather than visible mobile menu on desktop sidebar routes. Retain already-passed Dashboard case; no app behavior changed for that case by401-copy-only followup.",
+  "result": "PASS",
+  "browserClosed": true
+}

@@ -1,0 +1,117 @@
+{
+  "checkedAt": "2026-10-24",
+  "baselineSource": "cf8de0b5c5adb008fb0ea911d94a8af4a6e8f029",
+  "reviewedSource": "191b76ed26f430128b14112f77b74ad3e26b1ec0",
+  "equivalentLocalCherry": "3e48ced8549295c17163a089b8036a8ab1eb8691",
+  "syntheticOnly": true,
+  "hostedDatabaseInspected": false,
+  "hostedDatabaseModified": false,
+  "productionSourceEditedByAudit": false,
+  "sourceHashes": {
+    "neon/migration-plan.ts": "9532daa8d3b71dbecf71de3ecb047fbd1f577ada8eef5638b661012dcb29326e",
+    "neon/db/migrate.ts": "53c0a06bddbd702d403bc05ba20e7e6289556c22c673732baa98706273df7830",
+    "neon/db/adapter.ts": "9fa930533fbf17065edc717e246152d5d0f6ef61a5060436ca2f9fde8da0dd41",
+    "neon/migrations/0000_compatibility.sql": "5e5f7c29d376532f6a32771f556f965aaed666c3bd8bf6fc32d2f00bd9f0ac66",
+    "neon/migrations/0001_portal.sql": "f9e5a1379f598c6c7bc86c771148f16c4c7d5767c773dffbcb14e50e7285b031",
+    "neon/migrations/0002_invariants.sql": "abdea4e04ea373c8a86ba2848d10a0122ab09308f52c1e51d439d138a8670928",
+    "neon/migrations/0003_transaction_safety.sql": "9e3e440b4d0a14d1fee077a3a4c9ab92fd972d61e377931f602f46d0f5bbed24",
+    "neon/migrations/0004_media_uploads.sql": "32cf9496df32661e65299f846359da306b8efca2a15f4c6070b8f0f8a1cab8e7",
+    "neon/auth-migrations/0001_auth.sql": "d7a7d26116c1cf892f129edfbbf70ee4a7b3014165667e5b4b7cda8a916d6bbf",
+    "neon/auth-migrations/0002_approved_evaluation.sql": "21929ac1cf790d34644b385fa4506c69db6df9be3d5ddaae00db9ee2bccb5797",
+    "neon/migrations/0102_credit_stock.sql": "74bf8549edbecb753424a86e692844e962be02c0faeddda8f0b2dd3ffaacb72e",
+    "neon/migrations/0103_project_media_limits.sql": "3f42da160787977b7655fe74647655bd656f4c55467c2a42b3dd1627859f462c",
+    "vercel.json": "fceb71bd02fc3e075d6eeabc43c8abb43ad06356fa49852ff4215a1830693940"
+  },
+  "migrationPlan": [
+    {
+      "name": "0000_compatibility.sql",
+      "checksum": "5e5f7c29d376532f6a32771f556f965aaed666c3bd8bf6fc32d2f00bd9f0ac66"
+    },
+    {
+      "name": "0001_portal.sql",
+      "checksum": "f9e5a1379f598c6c7bc86c771148f16c4c7d5767c773dffbcb14e50e7285b031"
+    },
+    {
+      "name": "0002_invariants.sql",
+      "checksum": "abdea4e04ea373c8a86ba2848d10a0122ab09308f52c1e51d439d138a8670928"
+    },
+    {
+      "name": "0003_transaction_safety.sql",
+      "checksum": "9e3e440b4d0a14d1fee077a3a4c9ab92fd972d61e377931f602f46d0f5bbed24"
+    },
+    {
+      "name": "0004_media_uploads.sql",
+      "checksum": "32cf9496df32661e65299f846359da306b8efca2a15f4c6070b8f0f8a1cab8e7"
+    },
+    {
+      "name": "0100_auth.sql",
+      "checksum": "d7a7d26116c1cf892f129edfbbf70ee4a7b3014165667e5b4b7cda8a916d6bbf"
+    },
+    {
+      "name": "0101_approved_evaluation.sql",
+      "checksum": "21929ac1cf790d34644b385fa4506c69db6df9be3d5ddaae00db9ee2bccb5797"
+    },
+    {
+      "name": "0102_credit_stock.sql",
+      "checksum": "74bf8549edbecb753424a86e692844e962be02c0faeddda8f0b2dd3ffaacb72e"
+    },
+    {
+      "name": "0103_project_media_limits.sql",
+      "checksum": "3f42da160787977b7655fe74647655bd656f4c55467c2a42b3dd1627859f462c"
+    }
+  ],
+  "before": {
+    "oldPlanReproduced": "MIGRATION_OUT_OF_ORDER: 0005_credit_stock.sql",
+    "rejectionTestPassed": 1,
+    "expectedOrderAssertionFailed": 1,
+    "ledgerPreserved": true
+  },
+  "after": {
+    "command": "node --import tsx --test --test-concurrency=1 tests/combined-migration-upgrade-independent.test.ts",
+    "passed": 6,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "typecheck": "npx tsc --noEmit: passed",
+    "priorLedgerEntries": 7,
+    "appended": [
+      "0102_credit_stock.sql",
+      "0103_project_media_limits.sql"
+    ],
+    "finalLedgerEntries": 9,
+    "repeatApplied": [],
+    "historicalAndRenamedSqlChecksumsUnchanged": true,
+    "existingRowsPreserved": [
+      "users",
+      "registrations",
+      "profiles",
+      "participant_profiles",
+      "profile_details",
+      "teams",
+      "memberships",
+      "ideas",
+      "projects",
+      "submission_versions",
+      "approved_evaluation_snapshots",
+      "credit_types",
+      "credit_inventory",
+      "credit_allocations",
+      "credit_batches",
+      "credit_batch_columns",
+      "portal_media_uploads",
+      "auth_users",
+      "auth_sessions"
+    ],
+    "collisionRollback": [
+      "normalized source header",
+      "global code fingerprint"
+    ],
+    "mediaConstraints": "new bounds enforced on success; old bounds retained on collision rollback"
+  },
+  "limits": [
+    "Local in-memory PGlite, not hosted PostgreSQL or native concurrent MVCC.",
+    "Synthetic persisted rows use the production adapter, real SQL migrations and strict migrator; no migration implementation was mocked.",
+    "No inference that a populated hosted database is collision-free; its data and ledger were not inspected.",
+    "No hosted migration, deploy, production allocation, data reset or seed operation was performed."
+  ]
+}

@@ -1,0 +1,35 @@
+✔ fresh synthetic admin API imports, statuses and shared instructions persist without altering private allocations or scoring (275.978007ms)
+✔ fresh assigned judge and mentor reviews persist through HTTP with score and author privacy boundaries (133.715056ms)
+✔ additive local upgrade preserves existing users and is idempotent (67.330391ms)
+✔ inline profile gate, registered team creation, presets, partial readiness and revocation (184.50693ms)
+✔ private venue uses personal Going approval and scoped admin access, never other-team approval or public projections (206.750349ms)
+✔ owner event drafts, safe Maps URLs, plain text and optimistic edits preserve published content (123.084596ms)
+✔ shared draft/committed project, required media, concurrent writes and public version isolation (148.598449ms)
+✔ signed-in engagement permits admins and pending people, is idempotent, and stays separate from private reviews (125.893221ms)
+✔ volunteer, mentor and judge boundaries, owner Logs, role and assignment revocation (117.182736ms)
+✔ reevaluation stays Not configured while API setup is pending; active-run guard and history remain structural (97.13889ms)
+✔ leaderboard orders by upvotes then immutable first submission time, excludes ineligible, and exposes no evaluation or rank (224.646007ms)
+✔ revised judge reviews feed only an owner-revealed frozen score; public engagement remains independent (202.333086ms)
+✔ exact timestamp ties use a stable key and a focused leaderboard link selects its containing page (114.073137ms)
+✔ owner derives only from trusted Sites identity; local header spoofing and unsafe return paths fail (46.501237ms)
+✔ unresolved scoring content blocks activation while genuine attendance guards submission (161.278279ms)
+✔ registered approval, single membership and five-person constraints; request/invite acceptance (88.970437ms)
+✔ whole idea locks exactly with the roster at the IST boundary and no public idea/profile/gender leak (108.859701ms)
+✔ check-in allocations are idempotent, encrypted, private and retryable after inventory exhaustion (108.499196ms)
+✔ CSV previews, duplicate handling, formula protection and AES-GCM integrity (56.600183ms)
+✔ only leader can commit; exactly three successful versions, invalid fields/cutoff do not consume attempts (120.294866ms)
+✔ external evaluation failure and invalid model output preserve submission; uncertainty is reviewable (55.902643ms)
+✔ three distinct votes, no own-team or duplicate votes, meaningful feedback and bounded scoring (78.514624ms)
+✔ full mock rehearsal: two equal-weight judges, human review, owner freeze, immutable private snapshot and publication (84.46965ms)
+✔ HTTP security: CSRF, IDOR, role bypass, export permissions, cache controls and bounded body (66.303204ms)
+✔ verified email must match imported roster before profile/member access; owner/admin bootstrap and public browsing remain safe (158.013819ms)
+✔ repeat roster imports are strictly add-only across existing statuses, profile edits and attendance; aliases are never merged (77.178968ms)
+✔ new profile requires phone, protects private organization fields and uses exactly three profile steps without a personal picker (444.057625ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7819.703114

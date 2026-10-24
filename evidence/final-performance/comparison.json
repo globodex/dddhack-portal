@@ -1,0 +1,157 @@
+{
+  "beforeSource": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+  "afterSource": "ae2b0272d60e2b3d474eafcec9b652d77047a96e",
+  "beforeReport": "evidence/redesign-rich-before/report.json",
+  "afterReport": "evidence/final-performance/report.json",
+  "sameFixtureBackend": 8789,
+  "sameBundler": "Next16.4.3 development webpack",
+  "freshBrowserContexts": true,
+  "httpCacheDisabled": true,
+  "baselineSamples": 28,
+  "finalSamples": 28,
+  "finalErrors": [],
+  "finalBlockedRequests": [],
+  "initialBrowserApiRequestsBefore": 0,
+  "initialBrowserApiRequestsAfter": 0,
+  "desktopMedians": [
+    {
+      "route": "/dashboard",
+      "desktopSamplesPerVersion": 3,
+      "before": {
+        "completedWireBytes": 4108767,
+        "completedRequestCount": 15,
+        "ttfbMs": 299.6,
+        "fcpMs": 688,
+        "domNodes": 286
+      },
+      "after": {
+        "completedWireBytes": 4145978,
+        "completedRequestCount": 15,
+        "ttfbMs": 560.8,
+        "fcpMs": 864,
+        "domNodes": 318
+      },
+      "wireBytesChangePercent": 0.91
+    },
+    {
+      "route": "/discover/participants",
+      "desktopSamplesPerVersion": 3,
+      "before": {
+        "completedWireBytes": 4119819,
+        "completedRequestCount": 14,
+        "ttfbMs": 460.1,
+        "fcpMs": 1188,
+        "domNodes": 371
+      },
+      "after": {
+        "completedWireBytes": 4142465,
+        "completedRequestCount": 13,
+        "ttfbMs": 290.1,
+        "fcpMs": 640,
+        "domNodes": 408
+      },
+      "wireBytesChangePercent": 0.55
+    },
+    {
+      "route": "/discover/teams",
+      "desktopSamplesPerVersion": 3,
+      "before": {
+        "completedWireBytes": 4117204,
+        "completedRequestCount": 12,
+        "ttfbMs": 368.5,
+        "fcpMs": 824,
+        "domNodes": 406
+      },
+      "after": {
+        "completedWireBytes": 4139845,
+        "completedRequestCount": 11,
+        "ttfbMs": 192.1,
+        "fcpMs": 592,
+        "domNodes": 488
+      },
+      "wireBytesChangePercent": 0.55
+    },
+    {
+      "route": "/admin/participants",
+      "desktopSamplesPerVersion": 3,
+      "before": {
+        "completedWireBytes": 4104302,
+        "completedRequestCount": 11,
+        "ttfbMs": 404.9,
+        "fcpMs": 1188,
+        "domNodes": 240
+      },
+      "after": {
+        "completedWireBytes": 4146038,
+        "completedRequestCount": 11,
+        "ttfbMs": 439.2,
+        "fcpMs": 764,
+        "domNodes": 2905
+      },
+      "wireBytesChangePercent": 1.02
+    },
+    {
+      "route": "/admin/teams",
+      "desktopSamplesPerVersion": 3,
+      "before": {
+        "completedWireBytes": 4121121,
+        "completedRequestCount": 12,
+        "ttfbMs": 1162.4,
+        "fcpMs": 2080,
+        "domNodes": 1554
+      },
+      "after": {
+        "completedWireBytes": 4158911,
+        "completedRequestCount": 12,
+        "ttfbMs": 337.4,
+        "fcpMs": 728,
+        "domNodes": 1689
+      },
+      "wireBytesChangePercent": 0.92
+    },
+    {
+      "route": "/admin/submissions",
+      "desktopSamplesPerVersion": 3,
+      "before": {
+        "completedWireBytes": 4104275,
+        "completedRequestCount": 11,
+        "ttfbMs": 815.6,
+        "fcpMs": 1644,
+        "domNodes": 1060
+      },
+      "after": {
+        "completedWireBytes": 4141619,
+        "completedRequestCount": 11,
+        "ttfbMs": 272,
+        "fcpMs": 608,
+        "domNodes": 1198
+      },
+      "wireBytesChangePercent": 0.91
+    },
+    {
+      "route": "/admin/settings",
+      "desktopSamplesPerVersion": 3,
+      "before": {
+        "completedWireBytes": 4107017,
+        "completedRequestCount": 12,
+        "ttfbMs": 535.8,
+        "fcpMs": 1540,
+        "domNodes": 372
+      },
+      "after": {
+        "completedWireBytes": 4144788,
+        "completedRequestCount": 12,
+        "ttfbMs": 239,
+        "fcpMs": 656,
+        "domNodes": 500
+      },
+      "wireBytesChangePercent": 0.92
+    }
+  ],
+  "limitations": [
+    "Development, unthrottled local process,3desktop samples and1mobile sample per route; compilation outliers retained.",
+    "Server caches and background work differed; medians do not establish a hosted latency or speed improvement.",
+    "Admin initial filters intentionally changed from an empty Registered+Locked state to populated All; DOM/UI composition differs.",
+    "CDP counts completed requests including inline data-image entries; bytes reflect completed encodedDataLength, not a production compression policy."
+  ]
+}

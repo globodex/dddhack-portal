@@ -1,0 +1,72 @@
+{
+  "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+  "syntheticOnly": true,
+  "containerBrowserSandbox": false,
+  "checks": [],
+  "screenshots": [
+    {
+      "path": "/workspace/ddd-team/evidence/redesign-team/final/team-locked-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+      "route": "/dashboard",
+      "actor": "alice"
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/redesign-team/final/participants-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+      "route": "/discover/participants",
+      "actor": "alice"
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/redesign-team/final/teams-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+      "route": "/discover/teams",
+      "actor": "alice"
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/redesign-team/final/team-locked-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+      "route": "/dashboard",
+      "actor": "alice"
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/redesign-team/final/participants-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+      "route": "/discover/participants",
+      "actor": "alice"
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/redesign-team/final/teams-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+      "route": "/discover/teams",
+      "actor": "alice"
+    }
+  ],
+  "errors": [],
+  "cursorRequests": [],
+  "searchRequests": [],
+  "failure": "page.goto: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/dashboard\", waiting until \"load\"\u001b[22m\n\n    at /tmp/ddd-team-finalqa.mjs:10:12"
+}

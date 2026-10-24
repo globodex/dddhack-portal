@@ -193,7 +193,7 @@ export default function OrganizerSection({ paused }: { paused: boolean }) {
                   <span className="organizer-role">{host.role}</span>
                   {index === 3 && (
                     <span className="organizer-partner">
-                      Community partner: Cerebras
+                      Co-partner: Cerebras
                     </span>
                   )}
                 </span>

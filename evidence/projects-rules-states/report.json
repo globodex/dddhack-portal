@@ -1,0 +1,214 @@
+{
+  "source": "d257e61b5bcffc894975d1a11dc9e706b5c186a4",
+  "syntheticOnly": true,
+  "forcedResponses": true,
+  "checks": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "name": "Search shows two matching row skeletons; failure stays visible and explicit Retry succeeds without background extra requests",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "name": "Committed-history loading/loaded geometry stays fixed, failed and empty states remain readable, and Close works in each state",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "name": "Search shows two matching row skeletons; failure stays visible and explicit Retry succeeds without background extra requests",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "name": "Committed-history loading/loaded geometry stays fixed, failed and empty states remain readable, and Close works in each state",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "Search shows two matching row skeletons; failure stays visible and explicit Retry succeeds without background extra requests",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "Committed-history loading/loaded geometry stays fixed, failed and empty states remain readable, and Close works in each state",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "name": "Search shows two matching row skeletons; failure stays visible and explicit Retry succeeds without background extra requests",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "name": "Committed-history loading/loaded geometry stays fixed, failed and empty states remain readable, and Close works in each state",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "evidence/projects-rules-states/project-search-loading-1440x900.png",
+    "evidence/projects-rules-states/project-search-error-1440x900.png",
+    "evidence/projects-rules-states/history-loading-1440x900.png",
+    "evidence/projects-rules-states/history-loaded-1440x900.png",
+    "evidence/projects-rules-states/history-error-1440x900.png",
+    "evidence/projects-rules-states/history-empty-1440x900.png",
+    "evidence/projects-rules-states/project-search-loading-768x1024.png",
+    "evidence/projects-rules-states/project-search-error-768x1024.png",
+    "evidence/projects-rules-states/history-loading-768x1024.png",
+    "evidence/projects-rules-states/history-loaded-768x1024.png",
+    "evidence/projects-rules-states/history-error-768x1024.png",
+    "evidence/projects-rules-states/history-empty-768x1024.png",
+    "evidence/projects-rules-states/project-search-loading-390x844.png",
+    "evidence/projects-rules-states/project-search-error-390x844.png",
+    "evidence/projects-rules-states/history-loading-390x844.png",
+    "evidence/projects-rules-states/history-loaded-390x844.png",
+    "evidence/projects-rules-states/history-error-390x844.png",
+    "evidence/projects-rules-states/history-empty-390x844.png",
+    "evidence/projects-rules-states/project-search-loading-390x480.png",
+    "evidence/projects-rules-states/project-search-error-390x480.png",
+    "evidence/projects-rules-states/history-loading-390x480.png",
+    "evidence/projects-rules-states/history-loaded-390x480.png",
+    "evidence/projects-rules-states/history-error-390x480.png",
+    "evidence/projects-rules-states/history-empty-390x480.png"
+  ],
+  "geometry": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "loading": {
+        "x": 352.5,
+        "y": 130,
+        "width": 720,
+        "height": 640
+      },
+      "loaded": {
+        "x": 352.5,
+        "y": 130,
+        "width": 720,
+        "height": 640
+      },
+      "deltaHeight": 0,
+      "deltaY": 0
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "loading": {
+        "x": 18,
+        "y": 192,
+        "width": 717,
+        "height": 640
+      },
+      "loaded": {
+        "x": 18,
+        "y": 192,
+        "width": 717,
+        "height": 640
+      },
+      "deltaHeight": 0,
+      "deltaY": 0
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "loading": {
+        "x": 20,
+        "y": 102,
+        "width": 350,
+        "height": 640
+      },
+      "loaded": {
+        "x": 20,
+        "y": 102,
+        "width": 350,
+        "height": 640
+      },
+      "deltaHeight": 0,
+      "deltaY": 0
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "loading": {
+        "x": 20,
+        "y": 24,
+        "width": 350,
+        "height": 432
+      },
+      "loaded": {
+        "x": 20,
+        "y": 24,
+        "width": 350,
+        "height": 432
+      },
+      "deltaHeight": 0,
+      "deltaY": 0
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "searchRequests": 2,
+      "historyRequests": 3
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "searchRequests": 2,
+      "historyRequests": 3
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "searchRequests": 2,
+      "historyRequests": 3
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "searchRequests": 2,
+      "historyRequests": 3
+    }
+  ]
+}

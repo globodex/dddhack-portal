@@ -6,7 +6,14 @@ import {
 } from "./participant-filters";
 const parameters = z.object({
   status: z
-    .enum(["all", "registered", "going", "checked in", "absent"])
+    .enum([
+      "all",
+      "not registered",
+      "registered",
+      "going",
+      "checked in",
+      "absent",
+    ])
     .default("all"),
   team: z
     .enum([

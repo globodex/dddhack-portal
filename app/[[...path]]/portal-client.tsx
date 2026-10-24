@@ -19,10 +19,10 @@ export default function PortalClient(props: PortalProps) {
     <Portal
       {...props}
       pendingPath={pending ? destination : null}
-      onNavigate={(event, path) => {
+      onNavigate={(event, path, options) => {
         event.preventDefault();
         setDestination(path);
-        startNavigation(() => router.push(path));
+        startNavigation(() => options?.replace ? router.replace(path) : router.push(path));
       }}
     />
   );

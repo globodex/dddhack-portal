@@ -1,0 +1,60 @@
+▲ Next.js 16.4.3 (webpack)
+- Local:         http://127.0.0.1:3015
+- Network:       http://127.0.0.1:3015
+✓ Ready in 569ms
+✓ Running next.config.ts took 54ms
+
+○ Compiling /api/portal/route ...
+ GET /api/portal?view=%2Fdashboard 200 in 560ms (next.js: 107ms, application-code: 452ms)
+○ Compiling /[[...path]]/page ...
+ GET /dashboard 200 in 1854ms (next.js: 1035ms, application-code: 818ms)
+ GET /dashboard 307 in 4ms
+ GET /api/portal?view=%2Fsubmission 200 in 242ms (next.js: 4ms, application-code: 238ms)
+ GET /submission 200 in 444ms (next.js: 23ms, application-code: 421ms)
+ GET /submission 307 in 4ms
+ GET /api/portal?view=%2Fproject-history 200 in 262ms (next.js: 1.6ms, application-code: 260ms)
+ GET /project-history 200 in 407ms (next.js: 1.4ms, application-code: 405ms)
+ GET /project-history 307 in 2ms
+ GET /api/portal?view=%2Fadmin%2Fsubmissions%2F699c70fa-b3a1-4450-9b54-9041241ef4ed 200 in 249ms (next.js: 1.8ms, application-code: 248ms)
+ GET /admin/submissions/699c70fa-b3a1-4450-9b54-9041241ef4ed 200 in 529ms (next.js: 28ms, application-code: 501ms)
+ GET /admin/submissions/699c70fa-b3a1-4450-9b54-9041241ef4ed 307 in 1.4ms
+ GET /api/portal?view=%2Fadmin%2Fsubmissions 200 in 16ms (next.js: 3ms, application-code: 13ms)
+ GET /admin/submissions 200 in 89ms (next.js: 3ms, application-code: 85ms)
+ GET /admin/submissions 307 in 1.0ms
+ GET /api/portal?view=%2Fprojects 200 in 13ms (next.js: 1.0ms, application-code: 12ms)
+ GET /projects 200 in 65ms (next.js: 0.9ms, application-code: 64ms)
+ GET /projects 307 in 1.0ms
+ GET /api/portal?view=%2Fsubmission 401 in 10ms (next.js: 1.0ms, application-code: 9ms)
+ GET /api/portal?view=%2Fadmin%2Fsubmissions 403 in 9ms (next.js: 1.2ms, application-code: 7ms)
+ GET /api/project-image/699c70fa-b3a1-4450-9b54-9041241ef4ed/logo?version=8bc87598-ff32-43ee-8016-ba6877210937 200 in 727ms (next.js: 654ms, application-code: 73ms)
+ GET /api/project-image/699c70fa-b3a1-4450-9b54-9041241ef4ed/banner?version=8bc87598-ff32-43ee-8016-ba6877210937 200 in 274ms (next.js: 31ms, application-code: 243ms)
+ GET /dashboard 307 in 105ms
+ GET /dashboard 200 in 472ms (next.js: 42ms, application-code: 430ms)
+ GET /api/portal?view=%2Fdashboard 200 in 238ms (next.js: 4ms, application-code: 235ms)
+ GET /dashboard 200 in 849ms (next.js: 37ms, application-code: 812ms)
+ GET /dashboard 200 in 362ms (next.js: 2ms, application-code: 360ms)
+ GET /api/portal?view=%2Fsubmission 200 in 444ms (next.js: 1.7ms, application-code: 443ms)
+ GET /submission 200 in 477ms (next.js: 34ms, application-code: 443ms)
+ GET /submission 200 in 582ms (next.js: 1.9ms, application-code: 580ms)
+ GET /api/portal?view=%2Fproject-history 200 in 300ms (next.js: 5ms, application-code: 295ms)
+ GET /project-history 200 in 1062ms (next.js: 66ms, application-code: 996ms)
+ GET /project-history 200 in 368ms (next.js: 1.0ms, application-code: 367ms)
+ GET /api/portal?view=%2Fadmin%2Fsubmissions%2F699c70fa-b3a1-4450-9b54-9041241ef4ed 200 in 220ms (next.js: 1.0ms, application-code: 219ms)
+ GET /admin/submissions/699c70fa-b3a1-4450-9b54-9041241ef4ed 200 in 441ms (next.js: 30ms, application-code: 411ms)
+ GET /admin/submissions/699c70fa-b3a1-4450-9b54-9041241ef4ed 200 in 382ms (next.js: 3ms, application-code: 379ms)
+ GET /api/portal?view=%2Fadmin%2Fsubmissions 200 in 14ms (next.js: 0.9ms, application-code: 13ms)
+ GET /admin/submissions 200 in 142ms (next.js: 28ms, application-code: 115ms)
+ GET /admin/submissions 200 in 47ms (next.js: 1.5ms, application-code: 46ms)
+ GET /api/portal?view=%2Fprojects 200 in 13ms (next.js: 1.0ms, application-code: 12ms)
+ GET /projects 200 in 89ms (next.js: 1.1ms, application-code: 88ms)
+ GET /projects 200 in 56ms (next.js: 1.4ms, application-code: 54ms)
+ GET /api/portal?view=%2Fsubmission 401 in 15ms (next.js: 1.1ms, application-code: 14ms)
+ GET /api/portal?view=%2Fadmin%2Fsubmissions 403 in 15ms (next.js: 0.8ms, application-code: 14ms)
+ GET /api/project-image/699c70fa-b3a1-4450-9b54-9041241ef4ed/logo?version=8bc87598-ff32-43ee-8016-ba6877210937 200 in 134ms (next.js: 41ms, application-code: 93ms)
+ GET /api/project-image/699c70fa-b3a1-4450-9b54-9041241ef4ed/banner?version=8bc87598-ff32-43ee-8016-ba6877210937 200 in 323ms (next.js: 1.5ms, application-code: 322ms)
+[?25h
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

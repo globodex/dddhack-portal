@@ -1,0 +1,213 @@
+{
+  "privateBackend": 8834,
+  "syntheticOnly": true,
+  "source": "dccfdc2a692fde35e77434050b0d03c305d7fd1c",
+  "portalSHA256": "6d28c3bd2fc1ad8ed84eb863413d8d9fe03d26e0bf8b23b545b9434f8990d334",
+  "checks": [
+    {
+      "name": "quick check-in stable pending, no confirmation, one request, fresh dropdown",
+      "passed": true
+    },
+    {
+      "name": "one persistent 503 error with selection retained",
+      "passed": true
+    },
+    {
+      "name": "first Publish confirms both IST dates and warnings, then persists and reloads",
+      "passed": true
+    },
+    {
+      "name": "Alice leader inputs are editable with exactly two attempts and no save/submit",
+      "passed": true
+    }
+  ],
+  "requests": [
+    {
+      "phase": "quick",
+      "action": "quick-check-in",
+      "data": {
+        "emails": [
+          "dave@portal.test"
+        ]
+      }
+    },
+    {
+      "phase": "failure",
+      "action": "participant-bulk",
+      "data": {
+        "emails": [
+          "dave@portal.test"
+        ],
+        "status": "approved",
+        "reason": "Confirmed portal action"
+      }
+    },
+    {
+      "phase": "dates",
+      "action": "preview-submission-window",
+      "data": {
+        "open": "2026-10-24T02:30:00.000Z",
+        "close": "2026-11-01T14:30:00.000Z"
+      }
+    },
+    {
+      "phase": "dates",
+      "action": "publish-submission-window",
+      "data": {
+        "open": "2026-10-24T02:30:00.000Z",
+        "close": "2026-11-01T14:30:00.000Z",
+        "token": "49431c88108c91cd8fa92b1baa856e78877198cda2f5426ff91d3bd65185bc61",
+        "version": 1,
+        "reason": "Confirmed portal action",
+        "confirmation": "CHANGE_SUBMISSION_WINDOW"
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "evidence/admin-final-private8834/quick-idle-320.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "fullPage": false,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-final-private8834/quick-pending-stable-320.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "fullPage": false,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-final-private8834/quick-persisted-checked-in.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-final-private8834/quick-fresh-status-dropdown.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "fullPage": false,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-final-private8834/one-error-selection-retained.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-final-private8834/date-first-click-confirmation.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": false,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-final-private8834/date-confirmation-dates-top.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": false,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-final-private8834/dates-persist-after-reload.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-final-private8834/alice-project-input-editable-no-save.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true
+    }
+  ],
+  "errors": [],
+  "idleBounds": {
+    "x": 130.25,
+    "y": 294,
+    "width": 132,
+    "height": 44
+  },
+  "pendingBounds": {
+    "x": 130.25,
+    "y": 294,
+    "width": 132,
+    "height": 44
+  },
+  "dropdown": "Checked in",
+  "restored": [
+    {
+      "id": "fake_carol",
+      "status": "Going",
+      "checked_in": null
+    },
+    {
+      "id": "fake_dave",
+      "status": "Going",
+      "checked_in": null
+    }
+  ],
+  "originalWindow": {
+    "open": "2026-10-23T11:21:51.398Z",
+    "close": "2026-10-25T11:21:51.398Z"
+  },
+  "requestedWindow": {
+    "open": "2026-10-24T02:30:00.000Z",
+    "close": "2026-11-01T14:30:00.000Z"
+  },
+  "confirmationText": "Publish submission window\n\n24 Oct 2026, 8:00 am IST \u2192 1 Nov 2026, 8:00 pm IST\n\nThese are real portal dates. Testing consumes real submission attempts; removing records does not reset the three-attempt limit. Repository creation and first commit must still be strictly after 1 November 2026, 08:00 IST; changing this window does not change that rule.\n\nCancel\nPublish these times",
+  "persistedWindow": {
+    "open": "2026-10-24T02:30:00.000Z",
+    "close": "2026-11-01T14:30:00.000Z"
+  },
+  "aliceAccess": {
+    "canAccess": true,
+    "canCommit": true,
+    "projectRemoved": false,
+    "isLeader": true,
+    "personallyCheckedIn": true,
+    "canRead": true,
+    "checkedInMembers": 1,
+    "going": true,
+    "attemptsUsed": 2,
+    "maxAttempts": 3,
+    "locked": false,
+    "progress": "Submitted",
+    "message": "Submission is available."
+  },
+  "endSource": "dccfdc2a692fde35e77434050b0d03c305d7fd1c",
+  "endPortalSHA256": "6d28c3bd2fc1ad8ed84eb863413d8d9fe03d26e0bf8b23b545b9434f8990d334",
+  "notes": [
+    "All nine native PNGs were opened and inspected.",
+    "Participant statuses restored Going/null checked_in; attendance/audit history intentionally preserved by existing server semantics.",
+    "Only the private8834 fixture window was published, as requested:24Oct08:00IST to1Nov20:00IST. Shared8821 and production settings were not changed by this job.",
+    "The reload screenshot captured the guarded SSR pre-hydration frame; both date values are correct, but a client-ready Event screenshot is still planned in the admin-access pass.",
+    "Alice was tested in a fresh isolated cookie context; all non-GET requests were blocked and none occurred. No Save/Submit, two attempts before and after.",
+    "1200ms transport delay is a pending-state fixture, not hosted latency evidence."
+  ]
+}

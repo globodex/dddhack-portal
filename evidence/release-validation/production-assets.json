@@ -1,0 +1,124 @@
+{
+  "kind": "Static production asset inventory, not browser transfer measurement",
+  "build": "Next16.4.3 default Turbopack, compiled production build",
+  "allRoutes": true,
+  "jsFiles": 13,
+  "jsBytes": 943030,
+  "jsGzipBytes": 284077,
+  "cssBytes": 279287,
+  "cssGzipBytes": 46811,
+  "files": [
+    {
+      "path": ".next/static/chunks/29ykw7pxru5fb.js",
+      "bytes": 11223,
+      "gzipBytes": 4558,
+      "sha256": "ab3f4776e5f6d29f194cc150275e7da496a2bf78419da232991ae7ed704e3c58"
+    },
+    {
+      "path": ".next/static/chunks/1m14rxzul2fu0.css",
+      "bytes": 4694,
+      "gzipBytes": 1489,
+      "sha256": "ece8ede311d469650aac1ae0155ca44b11ed5400a1ce91f18af46ab2dd263eb0"
+    },
+    {
+      "path": ".next/static/chunks/1m1qos-yu_rbv.css",
+      "bytes": 111778,
+      "gzipBytes": 17674,
+      "sha256": "4fea4e10e15e09d1bcd2d75d78ca0858fe1c4bc44420c539fd5d82b0bd28435b"
+    },
+    {
+      "path": ".next/static/chunks/turbopack-3-ry682tkyiqk.js",
+      "bytes": 10030,
+      "gzipBytes": 3946,
+      "sha256": "8bbb58cbfd4633c1d828c6bc37bc32abc768a149c01b1dfc4f5131fd81274551"
+    },
+    {
+      "path": ".next/static/chunks/3wbm-994r45kr.js",
+      "bytes": 229820,
+      "gzipBytes": 71778,
+      "sha256": "0112d166f239984294780810c159749ca06e78e3f1ce5db35ab98f31b95c9d5c"
+    },
+    {
+      "path": ".next/static/chunks/34wqlvo_p6hoe.js",
+      "bytes": 11812,
+      "gzipBytes": 4827,
+      "sha256": "aedcc11eca9fa0ec8ff5f465ce016f45384a5bbf08722aa0076b741d52c33a34"
+    },
+    {
+      "path": ".next/static/chunks/0cz1d0mv5g_q7.js",
+      "bytes": 112594,
+      "gzipBytes": 39373,
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683"
+    },
+    {
+      "path": ".next/static/chunks/3ghgca7eizyip.css",
+      "bytes": 4601,
+      "gzipBytes": 1364,
+      "sha256": "7b51a45f0d33e223e66a1df932b3eb3370ec93c0ffebde25d291b795f0072de0"
+    },
+    {
+      "path": ".next/static/chunks/3l2os4syc_45m.css",
+      "bytes": 89005,
+      "gzipBytes": 16366,
+      "sha256": "93054659737bdb5991d3e0f06dbadec6f12622d5ec9d7792dde1e9b407605279"
+    },
+    {
+      "path": ".next/static/chunks/3im_v8700b1ud.js",
+      "bytes": 334260,
+      "gzipBytes": 93798,
+      "sha256": "56dc71314b8537284129d5c09f9606817690ac9bf2287fdd554b80ada6c3d514"
+    },
+    {
+      "path": ".next/static/chunks/3ot3i8uzn8_-0.js",
+      "bytes": 178256,
+      "gzipBytes": 48119,
+      "sha256": "c9150b469de6340df2e4ed5a37555f379889508430e944a86910709dfad7f244"
+    },
+    {
+      "path": ".next/static/chunks/2evgu094glu3w.js",
+      "bytes": 24062,
+      "gzipBytes": 7372,
+      "sha256": "294c07cbe46530b79158e51b10b39f2e2e19611257a6cfa86024ac7667c2a6a0"
+    },
+    {
+      "path": ".next/static/chunks/3ax-4owqzwf0t.css",
+      "bytes": 69209,
+      "gzipBytes": 9918,
+      "sha256": "6ed1fb1b910d4e84a688014770919802dc546c0e4e457211f13d2e4048abb939"
+    },
+    {
+      "path": ".next/static/chunks/2fa9iqjp3targ.js",
+      "bytes": 16756,
+      "gzipBytes": 6495,
+      "sha256": "f9dab92de93dc605fa5c576177bcba4d01cc66950d8317415700c6428f830d58"
+    },
+    {
+      "path": ".next/static/chunks/0umf92h1sb77c.js",
+      "bytes": 13822,
+      "gzipBytes": 3530,
+      "sha256": "c410d0f2543e080768fc14f73b2bd1fdf103e26956e9730390b5e41c4fb5ff8b"
+    },
+    {
+      "path": ".next/static/qvhTtir9aR0dVh-pc3SRy/_ssgManifest.js",
+      "bytes": 80,
+      "gzipBytes": 64,
+      "sha256": "678f6ce2cb80b1fe72fc67e7412be6e2ab6ada083111b64f7c40d35e3cba5e00"
+    },
+    {
+      "path": ".next/static/qvhTtir9aR0dVh-pc3SRy/_buildManifest.js",
+      "bytes": 219,
+      "gzipBytes": 151,
+      "sha256": "9476e0afd3f9da68a64e6ec58631191fd3eaca62c9f5a377e7517fe9a89e59ea"
+    },
+    {
+      "path": ".next/static/qvhTtir9aR0dVh-pc3SRy/_clientMiddlewareManifest.js",
+      "bytes": 96,
+      "gzipBytes": 66,
+      "sha256": "5483e3295dc35dfe29ea932efc85341c916f10ff78ff5b0e965e003710893a4a"
+    }
+  ],
+  "limitations": [
+    "All emitted static chunks across routes are included; a visitor does not necessarily download every chunk.",
+    "Gzip estimates are offline inventory, not a production response or hosted latency claim."
+  ]
+}

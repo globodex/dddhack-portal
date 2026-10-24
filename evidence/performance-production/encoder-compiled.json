@@ -1,0 +1,70 @@
+{
+  "file": "/workspace/ddd-perf-prod-final/.next/static/chunks/46-25dc4d392de3b32b.js",
+  "selections": [
+    {
+      "label": "prepareProjectImage",
+      "type": "FunctionDeclaration",
+      "start": 79468,
+      "end": 82977,
+      "rawBytes": 3509,
+      "standaloneGzip": 1579,
+      "snippet": "async function aP(e,a){let t=aL[a];if(![\"image/png\",\"image/jpeg\"].includes(e.type))throw Error(\"Choo"
+    },
+    {
+      "label": "inspectProjectImageBytes",
+      "type": "FunctionExpression",
+      "start": 79814,
+      "end": 81530,
+      "rawBytes": 1716,
+      "standaloneGzip": 908,
+      "snippet": "function(e,a,t,s=\"source\"){az(\"image/png\"===a||\"image/jpeg\"===a,422,\"PROJECT_MEDIA_REQUIRED\",`Choose"
+    },
+    {
+      "label": "ProjectImageValidationError",
+      "type": "ClassDeclaration",
+      "start": 79302,
+      "end": 79423,
+      "rawBytes": 121,
+      "standaloneGzip": 128,
+      "snippet": "class aD extends Error{code;status=422;constructor(e,a){super(a??e),this.code=e,this.name=\"ProjectIm"
+    },
+    {
+      "label": "projectMediaPolicy",
+      "type": "VariableDeclarator",
+      "start": 79085,
+      "end": 79285,
+      "rawBytes": 200,
+      "standaloneGzip": 138,
+      "snippet": "aL={logo:{sourceMaxBytes:1e6,canonicalMaxBytes:131072,optimizationMaxEdge:512,dataUriMaxChars:18e4},"
+    },
+    {
+      "label": "headerDemand",
+      "type": "FunctionDeclaration",
+      "start": 79423,
+      "end": 79468,
+      "rawBytes": 45,
+      "standaloneGzip": 63,
+      "snippet": "function az(e,a,t,s){if(!e)throw new aD(t,s)}"
+    },
+    {
+      "label": "JPEGqualities",
+      "type": "VariableDeclarator",
+      "start": 79286,
+      "end": 79301,
+      "rawBytes": 15,
+      "standaloneGzip": 35,
+      "snippet": "aT=[.86,.8,.76]"
+    }
+  ],
+  "nonOverlappingRanges": [
+    "prepareProjectImage",
+    "ProjectImageValidationError",
+    "projectMediaPolicy",
+    "headerDemand",
+    "JPEGqualities"
+  ],
+  "combinedRawBytes": 3890,
+  "fullChunkGzip": 67630,
+  "estimatedMarginalGzip": 1582,
+  "limitation": "Selected exact minified function/class/policy ranges from compiled chunk. Removal/recompression is only a marginal compression estimate, not a valid rebuilt chunk or timing claim. Blob/canvas helper closures and shared policy dependencies require ownership check."
+}

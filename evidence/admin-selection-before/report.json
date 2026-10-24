@@ -1,0 +1,93 @@
+{
+  "mode": "before",
+  "syntheticOnly": true,
+  "allowedIds": [
+    "fake_carol",
+    "fake_dave"
+  ],
+  "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+  "portalSHA256": "e1c5fa50e6bf90b110bbf4317ac8878eb159c03bc4a6b474a12a4d9a96032f84",
+  "viewport": {
+    "width": 390,
+    "height": 480
+  },
+  "writes": [
+    {
+      "source": "fixture setup/restore",
+      "action": "admin-status",
+      "targetId": "fake_dave",
+      "status": "Registered"
+    },
+    {
+      "source": "actual browser action",
+      "action": "participant-bulk",
+      "data": {
+        "emails": [
+          "dave@portal.test"
+        ],
+        "status": "approved",
+        "reason": "Confirmed portal action"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "Original stale selection reproduced with actual Registered + Locked data",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "evidence/admin-selection-before/before-stale-selection-full.png",
+      "fullPage": true,
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-selection-before/before-stale-selection-short.png",
+      "fullPage": false,
+      "inspected": true
+    }
+  ],
+  "errors": [],
+  "initial": [
+    {
+      "id": "fake_carol",
+      "email": "carol@portal.test",
+      "status": "Going",
+      "checked_in": null,
+      "teamStatus": "Locked"
+    },
+    {
+      "id": "fake_dave",
+      "email": "dave@portal.test",
+      "status": "Going",
+      "checked_in": null,
+      "teamStatus": "Locked"
+    }
+  ],
+  "observed": {
+    "rows": 0,
+    "bulk": "1 selected\nIndividual approval status\nRegistered\nGoing\nChecked in\nAbsent\nUpdate approval\nCheck in",
+    "toast": "You\u2019re Going. Individual approvals updated.",
+    "personalFilter": "registered",
+    "teamFilter": "locked"
+  },
+  "restored": [
+    {
+      "id": "fake_carol",
+      "status": "Going",
+      "checked_in": null
+    },
+    {
+      "id": "fake_dave",
+      "status": "Going",
+      "checked_in": null
+    }
+  ],
+  "notes": [
+    "Actual Common Ground Carol/Dave records, no DOM or response fixture overrides.",
+    "Only Dave status temporarily set Registered, then actual approval UI returned it to original Going; Carol unchanged.",
+    "Original Going statuses and null checked_in verified for both after capture; context closed.",
+    "The stale toolbar and legacy self-worded toast are expected baseline failures, not passing final behavior."
+  ]
+}

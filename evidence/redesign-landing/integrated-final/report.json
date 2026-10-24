@@ -1,0 +1,233 @@
+{
+  "source": "344334b220472641a07f1832485a6a387f9b8915",
+  "ownerCommit": "532ae8a183f563bccf2f9bbd2da729fc9fab169e",
+  "runtimeFingerprint": "6d5376c6963655f2a3327a6ce2b159028273930445c83cd705491da890348493",
+  "syntheticOnly": true,
+  "screenshots": [
+    {
+      "label": "compact-schedule-venue",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated-final/compact-schedule-venue-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "344334b220472641a07f1832485a6a387f9b8915",
+      "sha256": "d8892b3a46d386893a91dae47cd06f61e2dcc509faf2445f8c67590f03edfdf9",
+      "inspected": true
+    },
+    {
+      "label": "natural-to-stacked-transition",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated-final/natural-to-stacked-transition-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "344334b220472641a07f1832485a6a387f9b8915",
+      "sha256": "a79963c8e3cc206d79fcc6fcbb8777b50779fb7dde68872b27b34f7b1ebf012f",
+      "inspected": true
+    },
+    {
+      "label": "preserved-rules",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated-final/preserved-rules-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "344334b220472641a07f1832485a6a387f9b8915",
+      "sha256": "500d9ab66d2fdf4e2d872ec6452c9039309a3341cf67b6da3041c5c707fef1f5",
+      "inspected": true
+    },
+    {
+      "label": "compact-schedule-venue",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated-final/compact-schedule-venue-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "344334b220472641a07f1832485a6a387f9b8915",
+      "sha256": "89458f645152efb55c9281553567ad1d4eec5e1f0500a00396bc195eec0b023a",
+      "inspected": true
+    },
+    {
+      "label": "natural-to-stacked-transition",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated-final/natural-to-stacked-transition-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "344334b220472641a07f1832485a6a387f9b8915",
+      "sha256": "d62886511069be0a4cc8734481a80505d3e218700fe7246ea7876b2df93e98e5",
+      "inspected": true
+    },
+    {
+      "label": "preserved-rules",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated-final/preserved-rules-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "source": "344334b220472641a07f1832485a6a387f9b8915",
+      "sha256": "8b7dbd5fa2a8a0da02435c9a2caa308725640076b4022195f38e29e7fc192ca2",
+      "inspected": true
+    },
+    {
+      "label": "compact-schedule-venue",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated-final/compact-schedule-venue-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "344334b220472641a07f1832485a6a387f9b8915",
+      "sha256": "25e0568d856fdcdb16ae4f9c142d9c4574b8d7344a509c6ae605c0d35c3c6213",
+      "inspected": true
+    },
+    {
+      "label": "natural-to-stacked-transition",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated-final/natural-to-stacked-transition-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "344334b220472641a07f1832485a6a387f9b8915",
+      "sha256": "dc4f4067514ca4ff4caf3c139f4376bab777ff8702b8ac045ec83497e2e243bb",
+      "inspected": true
+    },
+    {
+      "label": "preserved-rules",
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/integrated-final/preserved-rules-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "344334b220472641a07f1832485a6a387f9b8915",
+      "sha256": "4468ab059c7fef30aefc67bd7eb41b41f6b2d8f289d4f5b434fee104da4ac0a5",
+      "inspected": true
+    }
+  ],
+  "checks": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": {
+        "enhanced": "true",
+        "pending": true,
+        "chapters": [
+          {
+            "id": "schedule",
+            "height": 316.1875,
+            "position": "relative",
+            "top": "0px"
+          },
+          {
+            "id": "venue",
+            "height": 273.984375,
+            "position": "relative",
+            "top": "0px"
+          },
+          {
+            "id": "rules",
+            "height": 754,
+            "position": "sticky",
+            "top": "122px"
+          },
+          {
+            "id": "faq",
+            "height": 740,
+            "position": "sticky",
+            "top": "136px"
+          }
+        ],
+        "overflow": false
+      },
+      "compactEmptySchedule": true,
+      "compactVenue": true,
+      "populatedRulesPreserved": true
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "state": {
+        "enhanced": "true",
+        "pending": true,
+        "chapters": [
+          {
+            "id": "schedule",
+            "height": 320.828125,
+            "position": "relative",
+            "top": "0px"
+          },
+          {
+            "id": "venue",
+            "height": 266.8125,
+            "position": "relative",
+            "top": "0px"
+          },
+          {
+            "id": "rules",
+            "height": 902,
+            "position": "sticky",
+            "top": "98px"
+          },
+          {
+            "id": "faq",
+            "height": 892,
+            "position": "sticky",
+            "top": "108px"
+          }
+        ],
+        "overflow": false
+      },
+      "compactEmptySchedule": true,
+      "compactVenue": true,
+      "populatedRulesPreserved": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": {
+        "enhanced": "false",
+        "pending": true,
+        "chapters": [
+          {
+            "id": "schedule",
+            "height": 319.390625,
+            "position": "relative",
+            "top": "0px"
+          },
+          {
+            "id": "venue",
+            "height": 265.375,
+            "position": "relative",
+            "top": "0px"
+          },
+          {
+            "id": "rules",
+            "height": 711,
+            "position": "relative",
+            "top": "0px"
+          },
+          {
+            "id": "faq",
+            "height": 620.171875,
+            "position": "relative",
+            "top": "0px"
+          }
+        ],
+        "overflow": false
+      },
+      "compactEmptySchedule": true,
+      "compactVenue": true,
+      "populatedRulesPreserved": true
+    }
+  ],
+  "errors": [],
+  "blockedRequests": [],
+  "finalResult": "passed",
+  "inspectionNotes": "All nine native screenshots opened individually. Empty Schedule and sparse Venue remain compact on desktop, tablet and mobile. Eight Rules remain readable, with sticky Rules/FAQ at1440/768 and natural flow at390. No owned unresolved P0/P1/P2 visual finding."
+}

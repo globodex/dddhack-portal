@@ -194,8 +194,12 @@ test("fresh backend actor resolution revokes team privacy and enforces viewer re
     assert.ok((await own.text()).includes("A fake private core idea."));
     actor = fixtures.stranger;
     const revoked = await handler(incoming("/api/portal?view=%2Fdashboard"));
-    assert.equal(revoked.status, 403);
-    assert.ok(!(await revoked.text()).includes("A fake private core idea."));
+    assert.equal(revoked.status, 200);
+    const registration = (await revoked.json()) as Record<string, any>;
+    assert.equal(registration.registrationRequired, true);
+    assert.ok(
+      !JSON.stringify(registration).includes("A fake private core idea."),
+    );
     const viewer = await handler(
       incoming("/api/portal?view=%2Fdiscover%2Fparticipants"),
     );

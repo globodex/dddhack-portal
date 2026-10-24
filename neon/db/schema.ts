@@ -112,7 +112,7 @@ export const credit_inventory = pgTable(
     fingerprint: text("fingerprint").notNull(),
     created_at: text("created_at").notNull(),
   },
-  (table) => [unique().on(table.type_id, table.fingerprint)],
+  (table) => [unique().on(table.type_id, table.fingerprint), uniqueIndex("credit_inventory_global_fingerprint").on(table.fingerprint)],
 );
 
 export const credit_types = pgTable(
@@ -1061,6 +1061,25 @@ export const credit_batch_columns = pgTable(
   ],
 );
 
+export const credit_category_keys = pgTable("credit_category_keys", {
+  source_key: text("source_key").primaryKey(),
+  type_id: text("type_id").notNull().unique().references(() => credit_types.id),
+});
+export const credit_code_history = pgTable("credit_code_history", {
+  fingerprint: text("fingerprint").primaryKey(),
+  inventory_id: text("inventory_id").notNull().unique(),
+  type_id: text("type_id").notNull(),
+  source_key: text("source_key").notNull(),
+  first_seen_at: text("first_seen_at").notNull(),
+  assigned: integer("assigned").notNull().default(0),
+  exposed: integer("exposed").notNull().default(0),
+}, table => [check("credit_code_history_assigned_check", sql`${table.assigned} IN (0,1)`), check("credit_code_history_exposed_check", sql`${table.exposed} IN (0,1)`)]);
+export const credit_stock_imports = pgTable("credit_stock_imports", {
+  digest: text("digest").primaryKey(),
+  created_at: text("created_at").notNull(),
+  result: text("result").notNull(),
+}, table => [check("credit_stock_imports_check", sql`portal_json_valid(${table.result})`)]);
+
 // Upload receipts bind a private object to one actor/team/draft revision. Version
 // binding and consumption happen atomically with immutable submission insertion.
 export const portal_media_uploads = pgTable(
@@ -1101,7 +1120,10 @@ export const portal_media_uploads = pgTable(
       "media_content_type",
       sql`${t.content_type} IN ('image/png','image/jpeg')`,
     ),
-    check("media_byte_length", sql`${t.byte_length} BETWEEN 32 AND 131072`),
+    check(
+      "media_byte_length",
+      sql`${t.byte_length} BETWEEN 32 AND CASE ${t.kind} WHEN 'logo' THEN 1000000 ELSE 5000000 END`,
+    ),
     check(
       "media_state",
       sql`${t.state} IN ('pending','finalizing','ready','consumed')`,
@@ -1112,10 +1134,10 @@ export const portal_media_uploads = pgTable(
     ),
     check(
       "media_image_length",
-      sql`${t.image_byte_length} BETWEEN 32 AND 131072`,
+      sql`${t.image_byte_length} BETWEEN 32 AND CASE ${t.kind} WHEN 'logo' THEN 131072 ELSE 393216 END`,
     ),
-    check("media_width", sql`${t.width} BETWEEN 64 AND 4096`),
-    check("media_height", sql`${t.height} BETWEEN 64 AND 4096`),
+    check("media_width", sql`${t.width} BETWEEN 1 AND 4096`),
+    check("media_height", sql`${t.height} BETWEEN 1 AND 4096`),
     check(
       "media_ready",
       sql`${t.state} NOT IN ('ready','consumed') OR (${t.object_key} IS NOT NULL AND ${t.image_content_type} IS NOT NULL AND ${t.image_byte_length} IS NOT NULL AND ${t.width} IS NOT NULL AND ${t.height} IS NOT NULL AND ${t.sha256} IS NOT NULL AND ${t.finalized_at} IS NOT NULL)`,

@@ -1,0 +1,13 @@
+{
+  "source": "8a88fec5e354ad12fbf4b53b0f5e0aa0d5a8af16",
+  "applicationEquivalentTo": "86862c722233bbd6776f1e2672d78b41fa808a52",
+  "syntheticOnly": true,
+  "cases": [],
+  "startedAt": "2026-10-24T17:51:10.014Z",
+  "result": "FAIL",
+  "failure": {
+    "message": "No unauthorized nav flash\n\ntrue !== false\n",
+    "stack": "AssertionError [ERR_ASSERTION]: No unauthorized nav flash\n\ntrue !== false\n\n    at file:///workspace/ddd-viewer-browser/scripts/qa-viewer-registration-after.mjs:14:333"
+  },
+  "browserClosed": true
+}

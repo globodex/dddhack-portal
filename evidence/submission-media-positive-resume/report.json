@@ -1,0 +1,172 @@
+{
+  "source": "a99970d4ffc33e61ab581708f0c9795654246a0c",
+  "backend": 8834,
+  "syntheticOnly": true,
+  "fingerprint": {
+    "app/portal.tsx": "2b7f71c485f9666c533df59aa8f547b77280cb1c8a2b1ef13e041745e6aea374",
+    "app/project-media-field.tsx": "cea6b1720017337a8a44229d581d4748383eaa7ad8ce12052230c864fe8e423c",
+    "app/prepare-project-image.ts": "0469a25fc13da6b39ea09837d340cad5c2993af254ff70fc41cae01d60365276",
+    "app/projects-rules-experience.css": "8edc84868154cca5b76fda7e022e2a702eff0f6e17807a027629015e64579b01",
+    "lib/project-media-policy.ts": "536169318d8fd9f7ad7f6baa8643071d8c1ed2146ca7e8fa04c290384436b4ee"
+  },
+  "writes": [
+    {
+      "action": "submit-project",
+      "status": "committed",
+      "revision": 3,
+      "projectName": "Small Wonder",
+      "attestation": true,
+      "requestBytes": 5338,
+      "logoSha256": "73d5317bed6cc33ea0bebbd4fa22158044828d26cedce97ca0976fa13bf347d1",
+      "bannerSha256": "7f0f22cc7c864d666f7af5205e6ec260550afd541dfa96dffdf21a1d4dd14f17",
+      "httpStatus": 200,
+      "receipt": {
+        "message": "Project version committed. Eligible entries appear automatically; eligibility verification remains separate.",
+        "projectId": "visual_project_alice",
+        "versionId": "77bb4d63-eee2-4ee3-9423-a08e8e3b5501"
+      }
+    },
+    {
+      "actor": "fake_owner",
+      "action": "set-project-eligibility",
+      "projectId": "visual_project_alice",
+      "versionId": "77bb4d63-eee2-4ee3-9423-a08e8e3b5501",
+      "httpStatus": 200,
+      "status": "committed",
+      "receipt": {
+        "message": "Eligibility recorded for the committed version. Team progress remains Submitted; private evidence stays private."
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "evidence/submission-media-positive-resume/persisted-portrait-and-alpha-reopened.png",
+      "sha256": "d4ab3b60512e3b49b0ebbfa6b566abd709b0da57ddcc43a345c9159737ef6414"
+    },
+    {
+      "path": "evidence/submission-media-positive-resume/third-submission-confirmation.png",
+      "sha256": "65c62856dd1f72db0fd2a01784d8255ef32d187a737afb02ab88d44455afae90"
+    },
+    {
+      "path": "evidence/submission-media-positive-resume/third-submission-success.png",
+      "sha256": "64cecb7045d45a85d19c75cc7a019cba02aa76ccc4131978667c462ee313cc51"
+    },
+    {
+      "path": "evidence/submission-media-positive-resume/third-commit-readonly-dashboard.png",
+      "sha256": "67e616eb1763906625588fb47c9ec8fff98e21522e52bf99aadd6065740bb1a3"
+    },
+    {
+      "path": "evidence/submission-media-positive-resume/three-immutable-versions.png",
+      "sha256": "effd5560793473447f999c1672b2f9d4ab17993bbde9565fb3c8c5cf60041b61"
+    },
+    {
+      "path": "evidence/submission-media-positive-resume/portrait-in-dashboard-mobile.png",
+      "sha256": "f6bbe0673c75ae551b4be929b6ae3bb166a9510fe28ca4fbcbae15f5537f1ee2"
+    },
+    {
+      "path": "evidence/submission-media-positive-resume/public-full-aspect-1440.png",
+      "sha256": "29f544db24bcff77b9e1f54ed0de6ea132477fc8d8f0dc19415a2ab3952bf5e3"
+    },
+    {
+      "path": "evidence/submission-media-positive-resume/public-full-aspect-390.png",
+      "sha256": "7602b747045557769be5400d87af7ed94bb413a93cfe62f58445625314f75fb5"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Published portrait remains full-aspect with currentteamwash",
+      "viewport": 1440,
+      "metrics": {
+        "width": 128,
+        "height": 300,
+        "fit": "contain",
+        "wash": "rgb(232, 247, 239)"
+      },
+      "passed": true
+    },
+    {
+      "name": "Published portrait remains full-aspect with currentteamwash",
+      "viewport": 390,
+      "metrics": {
+        "width": 128,
+        "height": 300,
+        "fit": "contain",
+        "wash": "rgb(232, 247, 239)"
+      },
+      "passed": true
+    },
+    {
+      "name": "One draft+one final commit+one owner approval; priorversions unchanged; fourthcommit absent",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "before": {
+    "attempts": 2,
+    "revision": 2,
+    "projectId": "visual_project_alice"
+  },
+  "draftReceipt": {
+    "action": "save-project",
+    "status": "committed",
+    "revision": 2,
+    "projectName": "Small Wonder",
+    "attestation": true,
+    "requestBytes": 5336,
+    "logoSha256": "73d5317bed6cc33ea0bebbd4fa22158044828d26cedce97ca0976fa13bf347d1",
+    "bannerSha256": "7f0f22cc7c864d666f7af5205e6ec260550afd541dfa96dffdf21a1d4dd14f17",
+    "httpStatus": 200,
+    "receipt": {
+      "message": "Project draft saved.",
+      "projectId": "visual_project_alice"
+    }
+  },
+  "oldVersions": [
+    {
+      "id": "visual_alice_v2",
+      "attempt": 2,
+      "sha256": "a79dbe3b8559dcb286802bfe5594976d921818c3fe99b18f5fdf44a81b5de875"
+    },
+    {
+      "id": "visual_alice_v1",
+      "attempt": 1,
+      "sha256": "51cc7a91c1a8e9118f79ee8bfb887b4ff15b406354bb4cf10e1589652537f1c2"
+    }
+  ],
+  "resumeFrom": {
+    "path": "evidence/submission-media-positive-confirmed/report.json",
+    "sha256": "5a3189e94ca00047c8499d0aaa1f096a22984d563d0b03e77181d75a7364102d",
+    "revision": 3,
+    "attempts": 2
+  },
+  "after": {
+    "attempts": 3,
+    "revision": 4,
+    "canCommit": false,
+    "versionId": "77bb4d63-eee2-4ee3-9423-a08e8e3b5501"
+  },
+  "versionsAfter": [
+    {
+      "id": "77bb4d63-eee2-4ee3-9423-a08e8e3b5501",
+      "attempt": 3,
+      "sha256": "c50764ded1f64dfd8d0b4d9a01fc2a96f21ed760043cb74e4ed4382faa32f513"
+    },
+    {
+      "id": "visual_alice_v2",
+      "attempt": 2,
+      "sha256": "a79dbe3b8559dcb286802bfe5594976d921818c3fe99b18f5fdf44a81b5de875"
+    },
+    {
+      "id": "visual_alice_v1",
+      "attempt": 1,
+      "sha256": "51cc7a91c1a8e9118f79ee8bfb887b4ff15b406354bb4cf10e1589652537f1c2"
+    }
+  ],
+  "fingerprintAtEnd": {
+    "app/portal.tsx": "2b7f71c485f9666c533df59aa8f547b77280cb1c8a2b1ef13e041745e6aea374",
+    "app/project-media-field.tsx": "cea6b1720017337a8a44229d581d4748383eaa7ad8ce12052230c864fe8e423c",
+    "app/prepare-project-image.ts": "0469a25fc13da6b39ea09837d340cad5c2993af254ff70fc41cae01d60365276",
+    "app/projects-rules-experience.css": "8edc84868154cca5b76fda7e022e2a702eff0f6e17807a027629015e64579b01",
+    "lib/project-media-policy.ts": "536169318d8fd9f7ad7f6baa8643071d8c1ed2146ca7e8fa04c290384436b4ee"
+  }
+}

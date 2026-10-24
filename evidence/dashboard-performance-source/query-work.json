@@ -1,0 +1,471 @@
+{
+  "checkedAt": "2026-10-24T15:26:03.903Z",
+  "syntheticOnly": true,
+  "outboundRequests": 0,
+  "observations": [
+    {
+      "label": "baseline",
+      "source": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+      "fixture": {
+        "teamMembers": 3,
+        "committedAttempts": 2,
+        "personallyCheckedIn": true,
+        "creditCategories": 1,
+        "projectPresent": true
+      },
+      "calls": {
+        "actor": 3,
+        "settings": 2
+      },
+      "statements": 59,
+      "directStatementExecutions": 53,
+      "explicitBatches": 3,
+      "statementFrequencies": [
+        {
+          "sql": "SELECT email FROM luma_roster WHERE email=?",
+          "count": 4
+        },
+        {
+          "sql": "SELECT target_id FROM record_removals WHERE kind='participant' AND target_id=? AND active=1",
+          "count": 4
+        },
+        {
+          "sql": "INSERT INTO profiles(user_id) VALUES(?) ON CONFLICT(user_id) DO NOTHING",
+          "count": 3
+        },
+        {
+          "sql": "INSERT INTO users(id,email,name,created_at) VALUES(?,?,?,?) ON CONFLICT(id) DO UPDATE SET email=excluded.email,name=excluded.name WHERE users.email<>excluded.email OR users.name<>excluded.name",
+          "count": 3
+        },
+        {
+          "sql": "SELECT COALESCE(r.role,u.role) role,p.display_name,pd.avatar_color,pd.avatar_expression,p.completed_at,p.gender_confirmed,pr.bio,pr.gender,pd.phone FROM users u LEFT JOIN portal_roles r ON r.user_id=u.id LEFT JOIN participant_profiles p ON p.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN profiles pr ON pr.user_id=u.id WHERE u.id=?",
+          "count": 3
+        },
+        {
+          "sql": "SELECT id,email,name,role FROM users WHERE id=?",
+          "count": 3
+        },
+        {
+          "sql": "SELECT * FROM event_settings WHERE id=1",
+          "count": 2
+        },
+        {
+          "sql": "SELECT * FROM submission_versions WHERE team_id=? ORDER BY attempt DESC LIMIT 1",
+          "count": 2
+        },
+        {
+          "sql": "SELECT COALESCE(r.status,'pending') approval,CASE WHEN COALESCE(a.reconciled_at,ra.reconciled_at) IS NOT NULL AND (o.updated_at IS NULL OR o.updated_at<COALESCE(a.reconciled_at,ra.reconciled_at)) THEN 'Absent' ELSE o.status END status,u.email FROM users u LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_status_overrides o ON o.user_id=u.id LEFT JOIN automatic_absences a ON a.user_id=u.id LEFT JOIN registration_absences ra ON ra.email=u.email WHERE u.id=?",
+          "count": 2
+        },
+        {
+          "sql": "SELECT count(*) n FROM memberships m WHERE m.team_id=? AND EXISTS(SELECT 1 FROM users attendance_user WHERE attendance_user.id=m.user_id AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=attendance_user.id AND rr.active=1) AND EXISTS(SELECT 1 FROM registrations ar WHERE ar.email=attendance_user.email AND ar.status='approved') AND COALESCE((SELECT ps.status FROM participant_status_overrides ps WHERE ps.user_id=m.user_id),'Checked in')='Checked in' AND (EXISTS(SELECT 1 FROM check_ins ci WHERE ci.user_id=m.user_id) OR EXISTS(SELECT 1 FROM manual_checkins mc WHERE mc.user_id=m.user_id AND mc.verified_email=lower(attendance_user.email))))",
+          "count": 2
+        },
+        {
+          "sql": "SELECT count(*) n FROM submission_versions WHERE team_id=?",
+          "count": 2
+        },
+        {
+          "sql": "SELECT id FROM users WHERE id=? AND EXISTS(SELECT 1 FROM users attendance_user WHERE attendance_user.id=users.id AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=attendance_user.id AND rr.active=1) AND EXISTS(SELECT 1 FROM registrations ar WHERE ar.email=attendance_user.email AND ar.status='approved') AND COALESCE((SELECT ps.status FROM participant_status_overrides ps WHERE ps.user_id=users.id),'Checked in')='Checked in' AND (EXISTS(SELECT 1 FROM check_ins ci WHERE ci.user_id=users.id) OR EXISTS(SELECT 1 FROM manual_checkins mc WHERE mc.user_id=users.id AND mc.verified_email=lower(attendance_user.email))))",
+          "count": 2
+        },
+        {
+          "sql": "SELECT status,reason FROM project_eligibility WHERE project_id=? AND version_id=?",
+          "count": 2
+        },
+        {
+          "sql": "SELECT target_id FROM record_removals WHERE active=1 AND ((kind='project' AND target_id=?) OR (kind='submission' AND target_id=?))",
+          "count": 2
+        },
+        {
+          "sql": "SELECT * FROM profile_details WHERE user_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT * FROM projects WHERE team_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT * FROM score_releases ORDER BY CASE stage WHEN 'final' THEN 0 ELSE 1 END",
+          "count": 1
+        },
+        {
+          "sql": "SELECT a.*,t.name team_name,COALESCE(NULLIF(pp.display_name,''),u.name) person_name FROM team_actions a JOIN teams t ON t.id=a.team_id JOIN users u ON u.id=a.user_id LEFT JOIN participant_profiles pp ON pp.user_id=u.id WHERE a.user_id=? OR t.leader_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT count(*) n FROM project_upvotes WHERE project_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT count(*) total,COALESCE(sum(CASE WHEN r.status='approved' THEN 1 ELSE 0 END),0) approved FROM memberships m JOIN users u ON u.id=m.user_id LEFT JOIN registrations r ON r.email=u.email WHERE m.team_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT count(*) total,COALESCE(sum(r.status='approved'),0) approved FROM memberships m JOIN users u ON u.id=m.user_id LEFT JOIN registrations r ON r.email=u.email WHERE m.team_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT e.reason FROM project_eligibility e JOIN projects p ON p.id=e.project_id WHERE p.team_id=? AND e.version_id=p.published_version_id AND e.status='ineligible'",
+          "count": 1
+        },
+        {
+          "sql": "SELECT h.id,h.body,h.kind,h.created_at,h.version_id,u.name author FROM project_review_history h JOIN users u ON u.id=h.author_id WHERE h.project_id=? ORDER BY h.created_at DESC",
+          "count": 1
+        },
+        {
+          "sql": "SELECT id,attempt,created_at FROM submission_versions WHERE team_id=? ORDER BY attempt DESC",
+          "count": 1
+        },
+        {
+          "sql": "SELECT leader_id FROM teams WHERE id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT locked_at,locked_by FROM team_locks WHERE team_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT p.*,x.display_name,x.skills,x.completed_at,x.gender_confirmed FROM profiles p LEFT JOIN participant_profiles x ON x.user_id=p.user_id WHERE p.user_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT payload FROM roster_prefills WHERE email=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT published FROM private_venue WHERE id=1",
+          "count": 1
+        },
+        {
+          "sql": "SELECT r.target_id FROM record_removals r JOIN projects p ON r.target_id=p.id AND r.kind='project' WHERE p.team_id=? AND r.active=1",
+          "count": 1
+        },
+        {
+          "sql": "SELECT status,luma_confirmed FROM registrations WHERE email=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT status,reason,rule_reference,evidence FROM team_status_overrides WHERE team_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT t.*,'initials' avatar,COALESCE(s.color_key,s.palette) palette FROM memberships m JOIN teams t ON t.id=m.team_id LEFT JOIN team_styles s ON s.team_id=t.id WHERE m.user_id=? AND NOT EXISTS(SELECT 1 FROM record_removals removed WHERE removed.kind='team' AND removed.target_id=t.id AND removed.active=1) AND NOT EXISTS(SELECT 1 FROM record_removals removed WHERE removed.kind='participant' AND removed.target_id=m.user_id AND removed.active=1)",
+          "count": 1
+        },
+        {
+          "sql": "SELECT t.id type_id,t.name,t.instructions,CASE WHEN a.inventory_id IS NOT NULL THEN 1 ELSE 0 END allocated FROM credit_types t LEFT JOIN credit_allocations a ON a.type_id=t.id AND a.user_id=? AND lower(a.recipient_email)=? WHERE t.active=1",
+          "count": 1
+        },
+        {
+          "sql": "SELECT team_id FROM team_locks WHERE team_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT title,core,description FROM ideas WHERE team_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT u.id,COALESCE(x.display_name,u.name) name,CASE WHEN u.id=t.leader_id THEN 'leader' ELSE 'member' END role,COALESCE(r.status,'pending') approval,pd.phone,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression,p.bio,p.socials,p.public FROM memberships m JOIN users u ON u.id=m.user_id JOIN teams t ON t.id=m.team_id LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN profiles p ON p.user_id=u.id WHERE t.id=? AND EXISTS(SELECT 1 FROM memberships viewer WHERE viewer.user_id=? AND viewer.team_id=t.id) AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=u.id AND rr.active=1)",
+          "count": 1
+        }
+      ],
+      "statementSequence": [
+        "INSERT INTO users(id,email,name,created_at) VALUES(?,?,?,?) ON CONFLICT(id) DO UPDATE SET email=excluded.email,name=excluded.name WHERE users.email<>excluded.email OR users.name<>excluded.name",
+        "INSERT INTO profiles(user_id) VALUES(?) ON CONFLICT(user_id) DO NOTHING",
+        "SELECT id,email,name,role FROM users WHERE id=?",
+        "SELECT COALESCE(r.role,u.role) role,p.display_name,pd.avatar_color,pd.avatar_expression,p.completed_at,p.gender_confirmed,pr.bio,pr.gender,pd.phone FROM users u LEFT JOIN portal_roles r ON r.user_id=u.id LEFT JOIN participant_profiles p ON p.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN profiles pr ON pr.user_id=u.id WHERE u.id=?",
+        "SELECT target_id FROM record_removals WHERE kind='participant' AND target_id=? AND active=1",
+        "SELECT email FROM luma_roster WHERE email=?",
+        "SELECT target_id FROM record_removals WHERE kind='participant' AND target_id=? AND active=1",
+        "SELECT email FROM luma_roster WHERE email=?",
+        "INSERT INTO users(id,email,name,created_at) VALUES(?,?,?,?) ON CONFLICT(id) DO UPDATE SET email=excluded.email,name=excluded.name WHERE users.email<>excluded.email OR users.name<>excluded.name",
+        "INSERT INTO profiles(user_id) VALUES(?) ON CONFLICT(user_id) DO NOTHING",
+        "SELECT id,email,name,role FROM users WHERE id=?",
+        "SELECT COALESCE(r.role,u.role) role,p.display_name,pd.avatar_color,pd.avatar_expression,p.completed_at,p.gender_confirmed,pr.bio,pr.gender,pd.phone FROM users u LEFT JOIN portal_roles r ON r.user_id=u.id LEFT JOIN participant_profiles p ON p.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN profiles pr ON pr.user_id=u.id WHERE u.id=?",
+        "SELECT target_id FROM record_removals WHERE kind='participant' AND target_id=? AND active=1",
+        "SELECT email FROM luma_roster WHERE email=?",
+        "SELECT p.*,x.display_name,x.skills,x.completed_at,x.gender_confirmed FROM profiles p LEFT JOIN participant_profiles x ON x.user_id=p.user_id WHERE p.user_id=?",
+        "SELECT * FROM profile_details WHERE user_id=?",
+        "SELECT payload FROM roster_prefills WHERE email=?",
+        "SELECT t.*,'initials' avatar,COALESCE(s.color_key,s.palette) palette FROM memberships m JOIN teams t ON t.id=m.team_id LEFT JOIN team_styles s ON s.team_id=t.id WHERE m.user_id=? AND NOT EXISTS(SELECT 1 FROM record_removals removed WHERE removed.kind='team' AND removed.target_id=t.id AND removed.active=1) AND NOT EXISTS(SELECT 1 FROM record_removals removed WHERE removed.kind='participant' AND removed.target_id=m.user_id AND removed.active=1)",
+        "SELECT status,luma_confirmed FROM registrations WHERE email=?",
+        "SELECT status,reason,rule_reference,evidence FROM team_status_overrides WHERE team_id=?",
+        "SELECT team_id FROM team_locks WHERE team_id=?",
+        "SELECT count(*) n FROM submission_versions WHERE team_id=?",
+        "SELECT count(*) n FROM memberships m WHERE m.team_id=? AND EXISTS(SELECT 1 FROM users attendance_user WHERE attendance_user.id=m.user_id AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=attendance_user.id AND rr.active=1) AND EXISTS(SELECT 1 FROM registrations ar WHERE ar.email=attendance_user.email AND ar.status='approved') AND COALESCE((SELECT ps.status FROM participant_status_overrides ps WHERE ps.user_id=m.user_id),'Checked in')='Checked in' AND (EXISTS(SELECT 1 FROM check_ins ci WHERE ci.user_id=m.user_id) OR EXISTS(SELECT 1 FROM manual_checkins mc WHERE mc.user_id=m.user_id AND mc.verified_email=lower(attendance_user.email))))",
+        "SELECT e.reason FROM project_eligibility e JOIN projects p ON p.id=e.project_id WHERE p.team_id=? AND e.version_id=p.published_version_id AND e.status='ineligible'",
+        "SELECT COALESCE(r.status,'pending') approval,CASE WHEN COALESCE(a.reconciled_at,ra.reconciled_at) IS NOT NULL AND (o.updated_at IS NULL OR o.updated_at<COALESCE(a.reconciled_at,ra.reconciled_at)) THEN 'Absent' ELSE o.status END status,u.email FROM users u LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_status_overrides o ON o.user_id=u.id LEFT JOIN automatic_absences a ON a.user_id=u.id LEFT JOIN registration_absences ra ON ra.email=u.email WHERE u.id=?",
+        "SELECT id FROM users WHERE id=? AND EXISTS(SELECT 1 FROM users attendance_user WHERE attendance_user.id=users.id AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=attendance_user.id AND rr.active=1) AND EXISTS(SELECT 1 FROM registrations ar WHERE ar.email=attendance_user.email AND ar.status='approved') AND COALESCE((SELECT ps.status FROM participant_status_overrides ps WHERE ps.user_id=users.id),'Checked in')='Checked in' AND (EXISTS(SELECT 1 FROM check_ins ci WHERE ci.user_id=users.id) OR EXISTS(SELECT 1 FROM manual_checkins mc WHERE mc.user_id=users.id AND mc.verified_email=lower(attendance_user.email))))",
+        "SELECT count(*) total,COALESCE(sum(CASE WHEN r.status='approved' THEN 1 ELSE 0 END),0) approved FROM memberships m JOIN users u ON u.id=m.user_id LEFT JOIN registrations r ON r.email=u.email WHERE m.team_id=?",
+        "SELECT * FROM event_settings WHERE id=1",
+        "SELECT count(*) n FROM memberships m WHERE m.team_id=? AND EXISTS(SELECT 1 FROM users attendance_user WHERE attendance_user.id=m.user_id AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=attendance_user.id AND rr.active=1) AND EXISTS(SELECT 1 FROM registrations ar WHERE ar.email=attendance_user.email AND ar.status='approved') AND COALESCE((SELECT ps.status FROM participant_status_overrides ps WHERE ps.user_id=m.user_id),'Checked in')='Checked in' AND (EXISTS(SELECT 1 FROM check_ins ci WHERE ci.user_id=m.user_id) OR EXISTS(SELECT 1 FROM manual_checkins mc WHERE mc.user_id=m.user_id AND mc.verified_email=lower(attendance_user.email))))",
+        "SELECT count(*) n FROM submission_versions WHERE team_id=?",
+        "SELECT count(*) total,COALESCE(sum(r.status='approved'),0) approved FROM memberships m JOIN users u ON u.id=m.user_id LEFT JOIN registrations r ON r.email=u.email WHERE m.team_id=?",
+        "INSERT INTO users(id,email,name,created_at) VALUES(?,?,?,?) ON CONFLICT(id) DO UPDATE SET email=excluded.email,name=excluded.name WHERE users.email<>excluded.email OR users.name<>excluded.name",
+        "INSERT INTO profiles(user_id) VALUES(?) ON CONFLICT(user_id) DO NOTHING",
+        "SELECT id,email,name,role FROM users WHERE id=?",
+        "SELECT COALESCE(r.role,u.role) role,p.display_name,pd.avatar_color,pd.avatar_expression,p.completed_at,p.gender_confirmed,pr.bio,pr.gender,pd.phone FROM users u LEFT JOIN portal_roles r ON r.user_id=u.id LEFT JOIN participant_profiles p ON p.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN profiles pr ON pr.user_id=u.id WHERE u.id=?",
+        "SELECT target_id FROM record_removals WHERE kind='participant' AND target_id=? AND active=1",
+        "SELECT email FROM luma_roster WHERE email=?",
+        "SELECT leader_id FROM teams WHERE id=?",
+        "SELECT COALESCE(r.status,'pending') approval,CASE WHEN COALESCE(a.reconciled_at,ra.reconciled_at) IS NOT NULL AND (o.updated_at IS NULL OR o.updated_at<COALESCE(a.reconciled_at,ra.reconciled_at)) THEN 'Absent' ELSE o.status END status,u.email FROM users u LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_status_overrides o ON o.user_id=u.id LEFT JOIN automatic_absences a ON a.user_id=u.id LEFT JOIN registration_absences ra ON ra.email=u.email WHERE u.id=?",
+        "SELECT id FROM users WHERE id=? AND EXISTS(SELECT 1 FROM users attendance_user WHERE attendance_user.id=users.id AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=attendance_user.id AND rr.active=1) AND EXISTS(SELECT 1 FROM registrations ar WHERE ar.email=attendance_user.email AND ar.status='approved') AND COALESCE((SELECT ps.status FROM participant_status_overrides ps WHERE ps.user_id=users.id),'Checked in')='Checked in' AND (EXISTS(SELECT 1 FROM check_ins ci WHERE ci.user_id=users.id) OR EXISTS(SELECT 1 FROM manual_checkins mc WHERE mc.user_id=users.id AND mc.verified_email=lower(attendance_user.email))))",
+        "SELECT r.target_id FROM record_removals r JOIN projects p ON r.target_id=p.id AND r.kind='project' WHERE p.team_id=? AND r.active=1",
+        "SELECT locked_at,locked_by FROM team_locks WHERE team_id=?",
+        "SELECT id,attempt,created_at FROM submission_versions WHERE team_id=? ORDER BY attempt DESC",
+        "SELECT u.id,COALESCE(x.display_name,u.name) name,CASE WHEN u.id=t.leader_id THEN 'leader' ELSE 'member' END role,COALESCE(r.status,'pending') approval,pd.phone,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression,p.bio,p.socials,p.public FROM memberships m JOIN users u ON u.id=m.user_id JOIN teams t ON t.id=m.team_id LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN profiles p ON p.user_id=u.id WHERE t.id=? AND EXISTS(SELECT 1 FROM memberships viewer WHERE viewer.user_id=? AND viewer.team_id=t.id) AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=u.id AND rr.active=1)",
+        "SELECT * FROM projects WHERE team_id=?",
+        "SELECT h.id,h.body,h.kind,h.created_at,h.version_id,u.name author FROM project_review_history h JOIN users u ON u.id=h.author_id WHERE h.project_id=? ORDER BY h.created_at DESC",
+        "SELECT published FROM private_venue WHERE id=1",
+        "SELECT t.id type_id,t.name,t.instructions,CASE WHEN a.inventory_id IS NOT NULL THEN 1 ELSE 0 END allocated FROM credit_types t LEFT JOIN credit_allocations a ON a.type_id=t.id AND a.user_id=? AND lower(a.recipient_email)=? WHERE t.active=1",
+        "SELECT * FROM score_releases ORDER BY CASE stage WHEN 'final' THEN 0 ELSE 1 END",
+        "SELECT count(*) n FROM project_upvotes WHERE project_id=?",
+        "SELECT * FROM event_settings WHERE id=1",
+        "SELECT title,core,description FROM ideas WHERE team_id=?",
+        "SELECT target_id FROM record_removals WHERE active=1 AND ((kind='project' AND target_id=?) OR (kind='submission' AND target_id=?))",
+        "SELECT * FROM submission_versions WHERE team_id=? ORDER BY attempt DESC LIMIT 1",
+        "SELECT status,reason FROM project_eligibility WHERE project_id=? AND version_id=?",
+        "SELECT target_id FROM record_removals WHERE active=1 AND ((kind='project' AND target_id=?) OR (kind='submission' AND target_id=?))",
+        "SELECT * FROM submission_versions WHERE team_id=? ORDER BY attempt DESC LIMIT 1",
+        "SELECT status,reason FROM project_eligibility WHERE project_id=? AND version_id=?",
+        "SELECT a.*,t.name team_name,COALESCE(NULLIF(pp.display_name,''),u.name) person_name FROM team_actions a JOIN teams t ON t.id=a.team_id JOIN users u ON u.id=a.user_id LEFT JOIN participant_profiles pp ON pp.user_id=u.id WHERE a.user_id=? OR t.leader_id=?"
+      ]
+    },
+    {
+      "label": "final",
+      "source": "2657f26254ed323ca84a167a2f220f05f4ec7cbf",
+      "fixture": {
+        "teamMembers": 3,
+        "committedAttempts": 2,
+        "personallyCheckedIn": true,
+        "creditCategories": 1,
+        "projectPresent": true
+      },
+      "calls": {
+        "actor": 3,
+        "settings": 2
+      },
+      "statements": 59,
+      "directStatementExecutions": 53,
+      "explicitBatches": 3,
+      "statementFrequencies": [
+        {
+          "sql": "SELECT email FROM luma_roster WHERE email=?",
+          "count": 4
+        },
+        {
+          "sql": "SELECT target_id FROM record_removals WHERE kind='participant' AND target_id=? AND active=1",
+          "count": 4
+        },
+        {
+          "sql": "INSERT INTO profiles(user_id) VALUES(?) ON CONFLICT(user_id) DO NOTHING",
+          "count": 3
+        },
+        {
+          "sql": "INSERT INTO users(id,email,name,created_at) VALUES(?,?,?,?) ON CONFLICT(id) DO UPDATE SET email=excluded.email,name=excluded.name WHERE users.email<>excluded.email OR users.name<>excluded.name",
+          "count": 3
+        },
+        {
+          "sql": "SELECT COALESCE(r.role,u.role) role,p.display_name,pd.avatar_color,pd.avatar_expression,p.completed_at,p.gender_confirmed,pr.bio,pr.gender,pd.phone FROM users u LEFT JOIN portal_roles r ON r.user_id=u.id LEFT JOIN participant_profiles p ON p.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN profiles pr ON pr.user_id=u.id WHERE u.id=?",
+          "count": 3
+        },
+        {
+          "sql": "SELECT id,email,name,role FROM users WHERE id=?",
+          "count": 3
+        },
+        {
+          "sql": "SELECT * FROM event_settings WHERE id=1",
+          "count": 2
+        },
+        {
+          "sql": "SELECT * FROM submission_versions WHERE team_id=? ORDER BY attempt DESC LIMIT 1",
+          "count": 2
+        },
+        {
+          "sql": "SELECT COALESCE(r.status,'pending') approval,CASE WHEN COALESCE(a.reconciled_at,ra.reconciled_at) IS NOT NULL AND (o.updated_at IS NULL OR o.updated_at<COALESCE(a.reconciled_at,ra.reconciled_at)) THEN 'Absent' ELSE o.status END status,u.email FROM users u LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_status_overrides o ON o.user_id=u.id LEFT JOIN automatic_absences a ON a.user_id=u.id LEFT JOIN registration_absences ra ON ra.email=u.email WHERE u.id=?",
+          "count": 2
+        },
+        {
+          "sql": "SELECT count(*) n FROM memberships m WHERE m.team_id=? AND EXISTS(SELECT 1 FROM users attendance_user WHERE attendance_user.id=m.user_id AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=attendance_user.id AND rr.active=1) AND EXISTS(SELECT 1 FROM registrations ar WHERE ar.email=attendance_user.email AND ar.status='approved') AND COALESCE((SELECT ps.status FROM participant_status_overrides ps WHERE ps.user_id=m.user_id),'Checked in')='Checked in' AND (EXISTS(SELECT 1 FROM check_ins ci WHERE ci.user_id=m.user_id) OR EXISTS(SELECT 1 FROM manual_checkins mc WHERE mc.user_id=m.user_id AND mc.verified_email=lower(attendance_user.email))))",
+          "count": 2
+        },
+        {
+          "sql": "SELECT count(*) n FROM submission_versions WHERE team_id=?",
+          "count": 2
+        },
+        {
+          "sql": "SELECT id FROM users WHERE id=? AND EXISTS(SELECT 1 FROM users attendance_user WHERE attendance_user.id=users.id AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=attendance_user.id AND rr.active=1) AND EXISTS(SELECT 1 FROM registrations ar WHERE ar.email=attendance_user.email AND ar.status='approved') AND COALESCE((SELECT ps.status FROM participant_status_overrides ps WHERE ps.user_id=users.id),'Checked in')='Checked in' AND (EXISTS(SELECT 1 FROM check_ins ci WHERE ci.user_id=users.id) OR EXISTS(SELECT 1 FROM manual_checkins mc WHERE mc.user_id=users.id AND mc.verified_email=lower(attendance_user.email))))",
+          "count": 2
+        },
+        {
+          "sql": "SELECT status,reason FROM project_eligibility WHERE project_id=? AND version_id=?",
+          "count": 2
+        },
+        {
+          "sql": "SELECT target_id FROM record_removals WHERE active=1 AND ((kind='project' AND target_id=?) OR (kind='submission' AND target_id=?))",
+          "count": 2
+        },
+        {
+          "sql": "SELECT * FROM profile_details WHERE user_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT * FROM projects WHERE team_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT * FROM score_releases ORDER BY CASE stage WHEN 'final' THEN 0 ELSE 1 END",
+          "count": 1
+        },
+        {
+          "sql": "SELECT a.*,t.name team_name,COALESCE(NULLIF(pp.display_name,''),u.name) person_name FROM team_actions a JOIN teams t ON t.id=a.team_id JOIN users u ON u.id=a.user_id LEFT JOIN participant_profiles pp ON pp.user_id=u.id WHERE a.user_id=? OR t.leader_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT count(*) n FROM project_upvotes WHERE project_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT count(*) total,COALESCE(sum(CASE WHEN r.status='approved' THEN 1 ELSE 0 END),0) approved FROM memberships m JOIN users u ON u.id=m.user_id LEFT JOIN registrations r ON r.email=u.email WHERE m.team_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT count(*) total,COALESCE(sum(r.status='approved'),0) approved FROM memberships m JOIN users u ON u.id=m.user_id LEFT JOIN registrations r ON r.email=u.email WHERE m.team_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT e.reason FROM project_eligibility e JOIN projects p ON p.id=e.project_id WHERE p.team_id=? AND e.version_id=p.published_version_id AND e.status='ineligible'",
+          "count": 1
+        },
+        {
+          "sql": "SELECT h.id,h.body,h.kind,h.created_at,h.version_id,u.name author FROM project_review_history h JOIN users u ON u.id=h.author_id WHERE h.project_id=? ORDER BY h.created_at DESC",
+          "count": 1
+        },
+        {
+          "sql": "SELECT id,attempt,created_at FROM submission_versions WHERE team_id=? ORDER BY attempt DESC",
+          "count": 1
+        },
+        {
+          "sql": "SELECT leader_id FROM teams WHERE id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT locked_at,locked_by FROM team_locks WHERE team_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT p.*,x.display_name,x.skills,x.completed_at,x.gender_confirmed FROM profiles p LEFT JOIN participant_profiles x ON x.user_id=p.user_id WHERE p.user_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT payload FROM roster_prefills WHERE email=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT published FROM private_venue WHERE id=1",
+          "count": 1
+        },
+        {
+          "sql": "SELECT r.target_id FROM record_removals r JOIN projects p ON r.target_id=p.id AND r.kind='project' WHERE p.team_id=? AND r.active=1",
+          "count": 1
+        },
+        {
+          "sql": "SELECT status,luma_confirmed FROM registrations WHERE email=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT status,reason,rule_reference,evidence FROM team_status_overrides WHERE team_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT t.*,'initials' avatar,COALESCE(s.color_key,s.palette) palette FROM memberships m JOIN teams t ON t.id=m.team_id LEFT JOIN team_styles s ON s.team_id=t.id WHERE m.user_id=? AND NOT EXISTS(SELECT 1 FROM record_removals removed WHERE removed.kind='team' AND removed.target_id=t.id AND removed.active=1) AND NOT EXISTS(SELECT 1 FROM record_removals removed WHERE removed.kind='participant' AND removed.target_id=m.user_id AND removed.active=1)",
+          "count": 1
+        },
+        {
+          "sql": "SELECT t.id type_id,t.name,t.instructions,CASE WHEN a.inventory_id IS NOT NULL THEN 1 ELSE 0 END allocated,a.assigned_at assignedAt,CASE WHEN EXISTS(SELECT 1 FROM credit_inventory i JOIN credit_code_history h ON h.inventory_id=i.id WHERE i.type_id=t.id AND h.assigned=0 AND NOT EXISTS(SELECT 1 FROM credit_allocations used WHERE used.inventory_id=i.id)) THEN 0 ELSE 1 END exhausted FROM credit_types t LEFT JOIN credit_allocations a ON a.type_id=t.id AND a.user_id=? AND lower(a.recipient_email)=? WHERE t.active=1 ORDER BY t.name,t.id",
+          "count": 1
+        },
+        {
+          "sql": "SELECT team_id FROM team_locks WHERE team_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT title,core,description FROM ideas WHERE team_id=?",
+          "count": 1
+        },
+        {
+          "sql": "SELECT u.id,COALESCE(x.display_name,u.name) name,CASE WHEN u.id=t.leader_id THEN 'leader' ELSE 'member' END role,COALESCE(r.status,'pending') approval,pd.phone,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression,p.bio,p.socials,p.public FROM memberships m JOIN users u ON u.id=m.user_id JOIN teams t ON t.id=m.team_id LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN profiles p ON p.user_id=u.id WHERE t.id=? AND EXISTS(SELECT 1 FROM memberships viewer WHERE viewer.user_id=? AND viewer.team_id=t.id) AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=u.id AND rr.active=1)",
+          "count": 1
+        }
+      ],
+      "statementSequence": [
+        "INSERT INTO users(id,email,name,created_at) VALUES(?,?,?,?) ON CONFLICT(id) DO UPDATE SET email=excluded.email,name=excluded.name WHERE users.email<>excluded.email OR users.name<>excluded.name",
+        "INSERT INTO profiles(user_id) VALUES(?) ON CONFLICT(user_id) DO NOTHING",
+        "SELECT id,email,name,role FROM users WHERE id=?",
+        "SELECT COALESCE(r.role,u.role) role,p.display_name,pd.avatar_color,pd.avatar_expression,p.completed_at,p.gender_confirmed,pr.bio,pr.gender,pd.phone FROM users u LEFT JOIN portal_roles r ON r.user_id=u.id LEFT JOIN participant_profiles p ON p.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN profiles pr ON pr.user_id=u.id WHERE u.id=?",
+        "SELECT target_id FROM record_removals WHERE kind='participant' AND target_id=? AND active=1",
+        "SELECT email FROM luma_roster WHERE email=?",
+        "SELECT target_id FROM record_removals WHERE kind='participant' AND target_id=? AND active=1",
+        "SELECT email FROM luma_roster WHERE email=?",
+        "INSERT INTO users(id,email,name,created_at) VALUES(?,?,?,?) ON CONFLICT(id) DO UPDATE SET email=excluded.email,name=excluded.name WHERE users.email<>excluded.email OR users.name<>excluded.name",
+        "INSERT INTO profiles(user_id) VALUES(?) ON CONFLICT(user_id) DO NOTHING",
+        "SELECT id,email,name,role FROM users WHERE id=?",
+        "SELECT COALESCE(r.role,u.role) role,p.display_name,pd.avatar_color,pd.avatar_expression,p.completed_at,p.gender_confirmed,pr.bio,pr.gender,pd.phone FROM users u LEFT JOIN portal_roles r ON r.user_id=u.id LEFT JOIN participant_profiles p ON p.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN profiles pr ON pr.user_id=u.id WHERE u.id=?",
+        "SELECT target_id FROM record_removals WHERE kind='participant' AND target_id=? AND active=1",
+        "SELECT email FROM luma_roster WHERE email=?",
+        "SELECT p.*,x.display_name,x.skills,x.completed_at,x.gender_confirmed FROM profiles p LEFT JOIN participant_profiles x ON x.user_id=p.user_id WHERE p.user_id=?",
+        "SELECT * FROM profile_details WHERE user_id=?",
+        "SELECT payload FROM roster_prefills WHERE email=?",
+        "SELECT t.*,'initials' avatar,COALESCE(s.color_key,s.palette) palette FROM memberships m JOIN teams t ON t.id=m.team_id LEFT JOIN team_styles s ON s.team_id=t.id WHERE m.user_id=? AND NOT EXISTS(SELECT 1 FROM record_removals removed WHERE removed.kind='team' AND removed.target_id=t.id AND removed.active=1) AND NOT EXISTS(SELECT 1 FROM record_removals removed WHERE removed.kind='participant' AND removed.target_id=m.user_id AND removed.active=1)",
+        "SELECT status,luma_confirmed FROM registrations WHERE email=?",
+        "SELECT status,reason,rule_reference,evidence FROM team_status_overrides WHERE team_id=?",
+        "SELECT team_id FROM team_locks WHERE team_id=?",
+        "SELECT count(*) n FROM submission_versions WHERE team_id=?",
+        "SELECT count(*) n FROM memberships m WHERE m.team_id=? AND EXISTS(SELECT 1 FROM users attendance_user WHERE attendance_user.id=m.user_id AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=attendance_user.id AND rr.active=1) AND EXISTS(SELECT 1 FROM registrations ar WHERE ar.email=attendance_user.email AND ar.status='approved') AND COALESCE((SELECT ps.status FROM participant_status_overrides ps WHERE ps.user_id=m.user_id),'Checked in')='Checked in' AND (EXISTS(SELECT 1 FROM check_ins ci WHERE ci.user_id=m.user_id) OR EXISTS(SELECT 1 FROM manual_checkins mc WHERE mc.user_id=m.user_id AND mc.verified_email=lower(attendance_user.email))))",
+        "SELECT e.reason FROM project_eligibility e JOIN projects p ON p.id=e.project_id WHERE p.team_id=? AND e.version_id=p.published_version_id AND e.status='ineligible'",
+        "SELECT COALESCE(r.status,'pending') approval,CASE WHEN COALESCE(a.reconciled_at,ra.reconciled_at) IS NOT NULL AND (o.updated_at IS NULL OR o.updated_at<COALESCE(a.reconciled_at,ra.reconciled_at)) THEN 'Absent' ELSE o.status END status,u.email FROM users u LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_status_overrides o ON o.user_id=u.id LEFT JOIN automatic_absences a ON a.user_id=u.id LEFT JOIN registration_absences ra ON ra.email=u.email WHERE u.id=?",
+        "SELECT id FROM users WHERE id=? AND EXISTS(SELECT 1 FROM users attendance_user WHERE attendance_user.id=users.id AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=attendance_user.id AND rr.active=1) AND EXISTS(SELECT 1 FROM registrations ar WHERE ar.email=attendance_user.email AND ar.status='approved') AND COALESCE((SELECT ps.status FROM participant_status_overrides ps WHERE ps.user_id=users.id),'Checked in')='Checked in' AND (EXISTS(SELECT 1 FROM check_ins ci WHERE ci.user_id=users.id) OR EXISTS(SELECT 1 FROM manual_checkins mc WHERE mc.user_id=users.id AND mc.verified_email=lower(attendance_user.email))))",
+        "SELECT count(*) total,COALESCE(sum(CASE WHEN r.status='approved' THEN 1 ELSE 0 END),0) approved FROM memberships m JOIN users u ON u.id=m.user_id LEFT JOIN registrations r ON r.email=u.email WHERE m.team_id=?",
+        "SELECT * FROM event_settings WHERE id=1",
+        "SELECT count(*) n FROM memberships m WHERE m.team_id=? AND EXISTS(SELECT 1 FROM users attendance_user WHERE attendance_user.id=m.user_id AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=attendance_user.id AND rr.active=1) AND EXISTS(SELECT 1 FROM registrations ar WHERE ar.email=attendance_user.email AND ar.status='approved') AND COALESCE((SELECT ps.status FROM participant_status_overrides ps WHERE ps.user_id=m.user_id),'Checked in')='Checked in' AND (EXISTS(SELECT 1 FROM check_ins ci WHERE ci.user_id=m.user_id) OR EXISTS(SELECT 1 FROM manual_checkins mc WHERE mc.user_id=m.user_id AND mc.verified_email=lower(attendance_user.email))))",
+        "SELECT count(*) n FROM submission_versions WHERE team_id=?",
+        "SELECT count(*) total,COALESCE(sum(r.status='approved'),0) approved FROM memberships m JOIN users u ON u.id=m.user_id LEFT JOIN registrations r ON r.email=u.email WHERE m.team_id=?",
+        "INSERT INTO users(id,email,name,created_at) VALUES(?,?,?,?) ON CONFLICT(id) DO UPDATE SET email=excluded.email,name=excluded.name WHERE users.email<>excluded.email OR users.name<>excluded.name",
+        "INSERT INTO profiles(user_id) VALUES(?) ON CONFLICT(user_id) DO NOTHING",
+        "SELECT id,email,name,role FROM users WHERE id=?",
+        "SELECT COALESCE(r.role,u.role) role,p.display_name,pd.avatar_color,pd.avatar_expression,p.completed_at,p.gender_confirmed,pr.bio,pr.gender,pd.phone FROM users u LEFT JOIN portal_roles r ON r.user_id=u.id LEFT JOIN participant_profiles p ON p.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN profiles pr ON pr.user_id=u.id WHERE u.id=?",
+        "SELECT target_id FROM record_removals WHERE kind='participant' AND target_id=? AND active=1",
+        "SELECT email FROM luma_roster WHERE email=?",
+        "SELECT leader_id FROM teams WHERE id=?",
+        "SELECT COALESCE(r.status,'pending') approval,CASE WHEN COALESCE(a.reconciled_at,ra.reconciled_at) IS NOT NULL AND (o.updated_at IS NULL OR o.updated_at<COALESCE(a.reconciled_at,ra.reconciled_at)) THEN 'Absent' ELSE o.status END status,u.email FROM users u LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_status_overrides o ON o.user_id=u.id LEFT JOIN automatic_absences a ON a.user_id=u.id LEFT JOIN registration_absences ra ON ra.email=u.email WHERE u.id=?",
+        "SELECT id FROM users WHERE id=? AND EXISTS(SELECT 1 FROM users attendance_user WHERE attendance_user.id=users.id AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=attendance_user.id AND rr.active=1) AND EXISTS(SELECT 1 FROM registrations ar WHERE ar.email=attendance_user.email AND ar.status='approved') AND COALESCE((SELECT ps.status FROM participant_status_overrides ps WHERE ps.user_id=users.id),'Checked in')='Checked in' AND (EXISTS(SELECT 1 FROM check_ins ci WHERE ci.user_id=users.id) OR EXISTS(SELECT 1 FROM manual_checkins mc WHERE mc.user_id=users.id AND mc.verified_email=lower(attendance_user.email))))",
+        "SELECT r.target_id FROM record_removals r JOIN projects p ON r.target_id=p.id AND r.kind='project' WHERE p.team_id=? AND r.active=1",
+        "SELECT locked_at,locked_by FROM team_locks WHERE team_id=?",
+        "SELECT id,attempt,created_at FROM submission_versions WHERE team_id=? ORDER BY attempt DESC",
+        "SELECT u.id,COALESCE(x.display_name,u.name) name,CASE WHEN u.id=t.leader_id THEN 'leader' ELSE 'member' END role,COALESCE(r.status,'pending') approval,pd.phone,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression,p.bio,p.socials,p.public FROM memberships m JOIN users u ON u.id=m.user_id JOIN teams t ON t.id=m.team_id LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN profiles p ON p.user_id=u.id WHERE t.id=? AND EXISTS(SELECT 1 FROM memberships viewer WHERE viewer.user_id=? AND viewer.team_id=t.id) AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=u.id AND rr.active=1)",
+        "SELECT * FROM projects WHERE team_id=?",
+        "SELECT h.id,h.body,h.kind,h.created_at,h.version_id,u.name author FROM project_review_history h JOIN users u ON u.id=h.author_id WHERE h.project_id=? ORDER BY h.created_at DESC",
+        "SELECT published FROM private_venue WHERE id=1",
+        "SELECT t.id type_id,t.name,t.instructions,CASE WHEN a.inventory_id IS NOT NULL THEN 1 ELSE 0 END allocated,a.assigned_at assignedAt,CASE WHEN EXISTS(SELECT 1 FROM credit_inventory i JOIN credit_code_history h ON h.inventory_id=i.id WHERE i.type_id=t.id AND h.assigned=0 AND NOT EXISTS(SELECT 1 FROM credit_allocations used WHERE used.inventory_id=i.id)) THEN 0 ELSE 1 END exhausted FROM credit_types t LEFT JOIN credit_allocations a ON a.type_id=t.id AND a.user_id=? AND lower(a.recipient_email)=? WHERE t.active=1 ORDER BY t.name,t.id",
+        "SELECT * FROM score_releases ORDER BY CASE stage WHEN 'final' THEN 0 ELSE 1 END",
+        "SELECT count(*) n FROM project_upvotes WHERE project_id=?",
+        "SELECT * FROM event_settings WHERE id=1",
+        "SELECT title,core,description FROM ideas WHERE team_id=?",
+        "SELECT target_id FROM record_removals WHERE active=1 AND ((kind='project' AND target_id=?) OR (kind='submission' AND target_id=?))",
+        "SELECT * FROM submission_versions WHERE team_id=? ORDER BY attempt DESC LIMIT 1",
+        "SELECT status,reason FROM project_eligibility WHERE project_id=? AND version_id=?",
+        "SELECT target_id FROM record_removals WHERE active=1 AND ((kind='project' AND target_id=?) OR (kind='submission' AND target_id=?))",
+        "SELECT * FROM submission_versions WHERE team_id=? ORDER BY attempt DESC LIMIT 1",
+        "SELECT status,reason FROM project_eligibility WHERE project_id=? AND version_id=?",
+        "SELECT a.*,t.name team_name,COALESCE(NULLIF(pp.display_name,''),u.name) person_name FROM team_actions a JOIN teams t ON t.id=a.team_id JOIN users u ON u.id=a.user_id LEFT JOIN participant_profiles pp ON pp.user_id=u.id WHERE a.user_id=? OR t.leader_id=?"
+      ]
+    }
+  ],
+  "limits": [
+    "Counts, not a timing benchmark or a production TTFB/FCP measurement.",
+    "One matched in-memory SQLite fixture. Both service versions use the same populated data and schema; no native PostgreSQL network/transaction latency is measured.",
+    "Counts application SQL statements, excluding internal SQLite trigger statements, changes() bookkeeping, BEGIN/COMMIT, and backend session authentication.",
+    "No production source edits, hosted database, browser, real auth or provider changes."
+  ]
+}

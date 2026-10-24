@@ -1,0 +1,34 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+sqlite3.IntegrityError: NOT NULL constraint failed: participant_profiles.completed_at
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+Error: Command failed: python3 -c import sqlite3,sys,json; c=sqlite3.connect(sys.argv[1]); old=c.execute("SELECT completed_at FROM participant_profiles WHERE user_id='fake_pending'").fetchone()[0];c.execute("UPDATE participant_profiles SET completed_at=NULL WHERE user_id='fake_pending'");c.commit();print(json.dumps(old)) /tmp/ddd-viewer-20261024-unique01.sqlite
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+sqlite3.IntegrityError: NOT NULL constraint failed: participant_profiles.completed_at
+
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at checkExecSyncError (node:child_process:942:11)
+    at execFileSync (node:child_process:978:15)
+    at file:///workspace/ddd-viewer-browser/scripts/qa-viewer-registration-explore.mjs:10:11 {
+  status: 1,
+  signal: null,
+  output: [
+    null,
+    '',
+    'Traceback (most recent call last):\n' +
+      '  File "<string>", line 1, in <module>\n' +
+      'sqlite3.IntegrityError: NOT NULL constraint failed: participant_profiles.completed_at\n'
+  ],
+  pid: 171318,
+  stdout: '',
+  stderr: 'Traceback (most recent call last):\n' +
+    '  File "<string>", line 1, in <module>\n' +
+    'sqlite3.IntegrityError: NOT NULL constraint failed: participant_profiles.completed_at\n'
+}
+
+Node.js v24.19.0

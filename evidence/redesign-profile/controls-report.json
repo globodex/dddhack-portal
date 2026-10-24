@@ -1,0 +1,148 @@
+{
+  "source": "4c5fbf298d89a398ceab90dbdd5e0f5433235fe4",
+  "origin": "http://localhost:3001",
+  "syntheticOnly": true,
+  "cssInjected": false,
+  "checks": [
+    {
+      "name": "keyboard: authenticated email and stored profile values prefill",
+      "passed": true
+    },
+    {
+      "name": "keyboard: exact 8 expression and8 color choices",
+      "passed": true
+    },
+    {
+      "name": "keyboard: single selected color updates all8 previews, expression staysselected, native radios invisible",
+      "passed": true
+    },
+    {
+      "name": "keyboard: normal document scroll, no horizontal/internal field clipping",
+      "passed": true
+    },
+    {
+      "name": "keyboard: invalid basics shown at fields and first invalid field focused without request",
+      "passed": true
+    },
+    {
+      "name": "keyboard: all expression/color radios and sex respond to input",
+      "passed": true
+    },
+    {
+      "name": "keyboard: international phone andhttps URL errors linked to fields",
+      "passed": true
+    },
+    {
+      "name": "keyboard: icon picker, Add and remove preserve remaining social link",
+      "passed": true
+    },
+    {
+      "name": "keyboard: back and next preserve data across all3 steps",
+      "passed": true
+    },
+    {
+      "name": "keyboard: step3 automated WCAG scan has zero violations",
+      "passed": true
+    },
+    {
+      "name": "keyboard: saving state disables fields andcommits no duplicate request",
+      "passed": true
+    },
+    {
+      "name": "keyboard: Save posts once, persists every field and redirects straight to teams without confirmation",
+      "passed": true
+    },
+    {
+      "name": "touch: authenticated email and stored profile values prefill",
+      "passed": true
+    },
+    {
+      "name": "touch: exact 8 expression and8 color choices",
+      "passed": true
+    },
+    {
+      "name": "touch: single selected color updates all8 previews, expression staysselected, native radios invisible",
+      "passed": true
+    },
+    {
+      "name": "touch: normal document scroll, no horizontal/internal field clipping",
+      "passed": true
+    },
+    {
+      "name": "touch: invalid basics shown at fields and first invalid field focused without request",
+      "passed": true
+    },
+    {
+      "name": "touch: all expression/color radios and sex respond to input",
+      "passed": true
+    },
+    {
+      "name": "touch: international phone andhttps URL errors linked to fields",
+      "passed": true
+    },
+    {
+      "name": "touch: icon picker, Add and remove preserve remaining social link",
+      "passed": true
+    },
+    {
+      "name": "touch: back and next preserve data across all3 steps",
+      "passed": true
+    },
+    {
+      "name": "touch: step3 automated WCAG scan has zero violations",
+      "passed": true
+    },
+    {
+      "name": "touch: saving state disables fields andcommits no duplicate request",
+      "passed": true
+    },
+    {
+      "name": "touch: Save posts once, persists every field and redirects straight to teams without confirmation",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "writes": [
+    {
+      "mode": "keyboard",
+      "actor": "fake_alice",
+      "action": "complete-profile",
+      "count": 1,
+      "status": "persisted"
+    },
+    {
+      "mode": "touch",
+      "actor": "fake_alice",
+      "action": "complete-profile",
+      "count": 1,
+      "status": "persisted"
+    }
+  ],
+  "accessibility": [
+    {
+      "mode": "keyboard",
+      "step": 3,
+      "violations": []
+    },
+    {
+      "mode": "touch",
+      "step": 3,
+      "violations": []
+    }
+  ],
+  "screenshots": [
+    "supporting/profile-error-basics-keyboard.png",
+    "supporting/profile-error-contact-keyboard.png",
+    "supporting/profile-save-loading-keyboard.png",
+    "supporting/profile-error-basics-touch.png",
+    "supporting/profile-error-contact-touch.png",
+    "supporting/profile-save-loading-touch.png"
+  ],
+  "sourceAtEnd": "4c5fbf298d89a398ceab90dbdd5e0f5433235fe4",
+  "result": "passed",
+  "runtime": "Next.js worktree Webpack preview plus disposable synthetic SQLite backend",
+  "limitations": [
+    "Local development emulation, not physical devices or production Google login.",
+    "Main127.0.0.1 Save failed existing local Origin normalization. Actual positive writes verified at localhost3001 with matching synthetic backend origin, without changing production origin guards."
+  ]
+}

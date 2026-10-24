@@ -1,0 +1,101 @@
+{
+  "beforeSource": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+  "afterSource": "ae2b0272d60e2b3d474eafcec9b652d77047a96e",
+  "runtimeChangesBefore": "",
+  "runtimeChangesAfter": "",
+  "backend": "same disposable rich synthetic backend8789",
+  "actor": "owner synthetic fixture",
+  "route": "/admin/participants",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "syntheticOnly": true,
+  "readOnly": true,
+  "measurements": [
+    {
+      "variant": "before",
+      "state": "initial default",
+      "documentElements": 240,
+      "mainElements": 102,
+      "participantSectionElements": 99,
+      "renderedParticipants": 0,
+      "cssVisibleParticipants": 0,
+      "inViewportParticipants": 0,
+      "filters": [
+        {
+          "value": "registered",
+          "label": "Registered"
+        },
+        {
+          "value": "locked",
+          "label": "Locked"
+        }
+      ]
+    },
+    {
+      "variant": "before",
+      "state": "All statuses + All people",
+      "documentElements": 2832,
+      "mainElements": 2694,
+      "participantSectionElements": 2691,
+      "renderedParticipants": 44,
+      "cssVisibleParticipants": 44,
+      "inViewportParticipants": 9,
+      "filters": [
+        {
+          "value": "all",
+          "label": "All statuses"
+        },
+        {
+          "value": "all",
+          "label": "All people"
+        }
+      ]
+    },
+    {
+      "variant": "after",
+      "state": "initial default",
+      "documentElements": 2905,
+      "mainElements": 2710,
+      "participantSectionElements": 2707,
+      "renderedParticipants": 44,
+      "cssVisibleParticipants": 44,
+      "inViewportParticipants": 7,
+      "filters": [
+        {
+          "value": "all",
+          "label": "All statuses"
+        },
+        {
+          "value": "all",
+          "label": "All people"
+        }
+      ]
+    }
+  ],
+  "blocked": [],
+  "errors": [],
+  "limitations": [
+    "Single DOM observation per state, not a latency, transfer-size or performance benchmark.",
+    "CSS-visible row count includes below-the-fold rows; in-viewport row count is reported separately.",
+    "Old Registered+Locked default is retained only to explain the earlier empty-versus-populated confound."
+  ],
+  "likeForLike": {
+    "participantsEach": 44,
+    "documentElements": {
+      "before": 2832,
+      "after": 2905,
+      "difference": 73
+    },
+    "participantSectionElements": {
+      "before": 2691,
+      "after": 2707,
+      "difference": 16
+    },
+    "conclusion": "Use populated All filters for DOM comparisons. Empty old default versus populated new default is a content-state confound, not evidence of a performance regression."
+  },
+  "baselineServerStopped": true,
+  "baselineGeneratedNextEnvRestored": true,
+  "baselineWorkingTreeCleanAfter": true
+}

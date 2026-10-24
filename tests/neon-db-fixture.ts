@@ -14,7 +14,9 @@ import {
  * evidence of MVCC/concurrent-connection behavior. The optional PostgreSQL test
  * runs the same production adapter against an ephemeral local native server.
  */
-export async function createPGliteFixture() {
+export async function createPGliteFixture(
+  options: { excludeMigrations?: string[] } = {},
+) {
   const engine = new PGlite({ extensions: { citext } });
   let tail = Promise.resolve();
   const pool: PostgresPool = {
@@ -44,7 +46,9 @@ export async function createPGliteFixture() {
       await engine.close();
     },
   };
-  const migrations = await loadPortalMigrations();
+  const migrations = (await loadPortalMigrations()).filter(
+    (migration) => !options.excludeMigrations?.includes(migration.name),
+  );
   await applyPortalMigrations(pool, migrations);
   return { engine, pool, migrations, db: createPostgresDatabase(pool) };
 }

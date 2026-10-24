@@ -1,0 +1,128 @@
+{
+  "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+  "syntheticOnly": true,
+  "containerBrowserSandbox": false,
+  "screenshots": [
+    {
+      "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/dashboard",
+      "path": "/workspace/ddd-team/evidence/redesign-team/final/team-locked-1440x900.png",
+      "headingY": 146
+    },
+    {
+      "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/discover/participants",
+      "path": "/workspace/ddd-team/evidence/redesign-team/final/participants-1440x900.png",
+      "headingY": 146
+    },
+    {
+      "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/discover/teams",
+      "path": "/workspace/ddd-team/evidence/redesign-team/final/teams-1440x900.png",
+      "headingY": 146
+    },
+    {
+      "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "route": "/dashboard",
+      "path": "/workspace/ddd-team/evidence/redesign-team/final/team-locked-768x1024.png",
+      "headingY": 143
+    },
+    {
+      "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "route": "/discover/participants",
+      "path": "/workspace/ddd-team/evidence/redesign-team/final/participants-768x1024.png",
+      "headingY": 143
+    },
+    {
+      "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "route": "/discover/teams",
+      "path": "/workspace/ddd-team/evidence/redesign-team/final/teams-768x1024.png",
+      "headingY": 143
+    },
+    {
+      "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/dashboard",
+      "path": "/workspace/ddd-team/evidence/redesign-team/final/team-locked-390x844.png",
+      "headingY": 133
+    },
+    {
+      "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/discover/participants",
+      "path": "/workspace/ddd-team/evidence/redesign-team/final/participants-390x844.png",
+      "headingY": 133
+    },
+    {
+      "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/discover/teams",
+      "path": "/workspace/ddd-team/evidence/redesign-team/final/teams-390x844.png",
+      "headingY": 133
+    },
+    {
+      "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "route": "/dashboard",
+      "path": "/workspace/ddd-team/evidence/redesign-team/final/team-locked-390x480.png",
+      "headingY": 133
+    },
+    {
+      "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "route": "/discover/participants",
+      "path": "/workspace/ddd-team/evidence/redesign-team/final/participants-390x480.png",
+      "headingY": 133
+    },
+    {
+      "source": "6a65f391aa0f6ad30ee7b34b2c6662baf541ec35",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "route": "/discover/teams",
+      "path": "/workspace/ddd-team/evidence/redesign-team/final/teams-390x480.png",
+      "headingY": 133
+    }
+  ],
+  "errors": []
+}

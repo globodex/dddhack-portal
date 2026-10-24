@@ -1,0 +1,41 @@
+{
+  "builtSource": "86862c722233bbd6776f1e2672d78b41fa808a52",
+  "integratedSource": "86862c722233bbd6776f1e2672d78b41fa808a52",
+  "baselineIntegratedSource": "d97d614ac7be2a657df91de42aaf00e9f3cfc336",
+  "baselineArchiveRuntimeSource": "511c191366f0300060c0a0ca30e0b9e3d6e8d028",
+  "comparedBackendPaths": [
+    "neon",
+    "lib",
+    "package.json",
+    "package-lock.json",
+    "neon.ts"
+  ],
+  "changedBackendFiles": [
+    "lib/admin-presentation.ts",
+    "lib/credit-stock.ts",
+    "lib/discover-participants.ts",
+    "lib/experience.ts",
+    "lib/participant-export.ts",
+    "lib/portal-load-state.ts",
+    "lib/roster.ts",
+    "lib/service.ts"
+  ],
+  "changedApiGraphInputs": [
+    "lib/admin-presentation.ts",
+    "lib/credit-stock.ts",
+    "lib/discover-participants.ts",
+    "lib/experience.ts",
+    "lib/participant-export.ts",
+    "lib/roster.ts",
+    "lib/service.ts"
+  ],
+  "unchangedApplicationInputCount": 71,
+  "applicationInputCount": 78,
+  "sourceGraphRecomputed": true,
+  "graphInputCount": 862,
+  "indexSha256": "77b26aed98d0c7c8486c12ee2246ce61dadc98163d2fc5d24989f6fd579669fe",
+  "nativeAndOtherDependencyEntriesByteIdentical": 92,
+  "apiJavaScriptChanged": true,
+  "viewerChangeAddsSchemaMigration": false,
+  "semanticTestGate": "Domain/HTTP/browser tests are independently owned; this archive proof does not replace those gates."
+}

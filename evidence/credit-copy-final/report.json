@@ -1,0 +1,34 @@
+{
+  "source": "667222d5cd2680ec872860b971f32ecb7be42249",
+  "syntheticOnly": true,
+  "fixtureBackend": 8821,
+  "writes": [
+    {
+      "action": "reveal-credit",
+      "typeId": "fake_credit",
+      "status": "revealed-synthetic",
+      "httpStatus": 200
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "evidence/credit-copy-final/masked-320x720.png",
+      "sha256": "984eedb91e3b7ce978898c2c5bdbae7f3753dc51626923eb1d97929e3c5fb45a"
+    },
+    {
+      "path": "evidence/credit-copy-final/copied-visible-320x720.png",
+      "sha256": "1dc4a5a623d43bfedcfa03fc8e6259909813d44fadb0189a696008e55a976f2c"
+    },
+    {
+      "path": "evidence/credit-copy-final/copied-visible-1440x900.png",
+      "sha256": "63a87fa2726f69000d7e1ff5d30aa37481cbbaf8e0bea1c4f3744dfd509bc2e1"
+    }
+  ],
+  "checks": [
+    {
+      "name": "320 touch reveal/copy, actual clipboard, visible CircleCheck/green state and live success announcement; desktop keyboard copy and Hide",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,90 @@
+{
+  "capturedAt": "2026-10-24T15:56:53.801Z",
+  "authorization": "Root local-only resume; no push, hosted migration, deploy or application-source changes",
+  "baselineOriginalSource": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+  "finalCompiledSource": "2657f26254ed323ca84a167a2f220f05f4ec7cbf",
+  "cases": [
+    {
+      "name": "baseline",
+      "root": "/workspace/ddd-perf-prod-baseline",
+      "gitHead": "c353a173a85580ebb4eed47fff0a23a0830b81a6",
+      "pid": 143965,
+      "port": 3443,
+      "buildId": "FxM2l4SoSH0RiG3L9SgqW",
+      "fileHashes": {
+        "next.config.ts": "a596f3f09201f02b53868492c2e2fb38e867090568c985387fcdee2f52706a82",
+        "package.json": "b157875a99b39beefb4104332038d977794ab47f921de1ea9887e49857521e1f",
+        "package-lock.json": "012c834e5021933da47b135aae5642ef4c86592de81407d81b04c7185ba8e9fc",
+        ".next/BUILD_ID": "7e278a6f72ce3b0a1b12780d77869cccb3995ea32100c458e0d06cd6a31ed946",
+        ".next/build-manifest.json": "26c0a8db0d6d3bb6416061a9dade6c49f170f7d643aad218aac48269385f4a1e",
+        ".next/routes-manifest.json": "99d0b5e316c90af608d23a293fd1126628db3974561e5e77a22519ca2d70d155"
+      },
+      "completedFrontTrace": {
+        "path": "evidence/performance-production/resumed-local-run/baseline-front-trace.jsonl",
+        "sha256": "d6162cf227653f54766dcfe986f36e6467565ecdd6acf76b2d42399b53a378ef",
+        "requests": 478,
+        "httpStatusAtLeast400": 0
+      }
+    },
+    {
+      "name": "final",
+      "root": "/workspace/ddd-perf-prod-final",
+      "gitHead": "b3b6da9b2d417c8cb997d41de8abe54c9f470f0d",
+      "pid": 143961,
+      "port": 3444,
+      "buildId": "QdP_-Y3mVZskIG5jIP-YD",
+      "fileHashes": {
+        "next.config.ts": "a596f3f09201f02b53868492c2e2fb38e867090568c985387fcdee2f52706a82",
+        "package.json": "b157875a99b39beefb4104332038d977794ab47f921de1ea9887e49857521e1f",
+        "package-lock.json": "012c834e5021933da47b135aae5642ef4c86592de81407d81b04c7185ba8e9fc",
+        ".next/BUILD_ID": "3adb28c38e61c157b82e779fc16ba2dc39d9f19f223e959bb35e934f419f1d1f",
+        ".next/build-manifest.json": "052128cd48402d8c345144c04c253c55e00c9b38483cff387fbdaf700232acbe",
+        ".next/routes-manifest.json": "0a969c5905ebcc4388ee311ef5e5a733869e444637252f0d889f1cb775776110"
+      },
+      "completedFrontTrace": {
+        "path": "evidence/performance-production/resumed-local-run/final-front-trace.jsonl",
+        "sha256": "2237bb4ffbe6f06b6cbc7ef48de4b17959bde36c150f17d7c05b80bdf7f14586",
+        "requests": 534,
+        "httpStatusAtLeast400": 0
+      }
+    }
+  ],
+  "environment": {
+    "NODE_ENV": "production",
+    "PORTAL_LOCAL_TEST": "absent",
+    "appSourcePatched": false,
+    "providerCredentialsSupplied": false,
+    "TLSVerificationDisabled": false,
+    "routeWarmupRequestsByBuildLane": 0
+  },
+  "timingResultsOwnedBy": "Profile measured matrix; no numerical result inferred here",
+  "completion": {
+    "recordedAt": "2026-10-24T16:00:49.108335+00:00",
+    "profileReported": "56 matched samples plus one bounded CPU trace per variant complete; all browsers closed",
+    "stoppedPids": [
+      143965,
+      143961
+    ],
+    "signal": "SIGTERM",
+    "sessionExitCodes": {
+      "19340": 0,
+      "30393": 0
+    },
+    "portsVerifiedClosed": [
+      3443,
+      3444,
+      3310,
+      3311
+    ],
+    "ownedProcessesAbsent": true,
+    "applicationRuntimeChanges": false,
+    "pushesAfterResume": 0,
+    "hostedChanges": false
+  },
+  "startupLoadObservation": {
+    "loadAverage1m": 0.43,
+    "hostAvailableMemoryMiB": 15159,
+    "cgroupLimitBytes": 17179869184,
+    "notFrontendPerformanceResult": true
+  }
+}
