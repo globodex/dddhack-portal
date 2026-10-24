@@ -1,4 +1,5 @@
 "use client";
+import { useHydrated } from "./use-hydrated";
 import { useId, useState } from "react";
 import { useAdminOperation, type AdminRun } from "./admin-participant-actions";
 
@@ -18,6 +19,7 @@ export default function AddAdmins({
   run: AdminRun;
   title?: string;
 }) {
+  const hydrated = useHydrated();
   const id = useId();
   const [email, setEmail] = useState("");
   const { busy, error, execute } = useAdminOperation();
@@ -29,6 +31,9 @@ export default function AddAdmins({
     >
       <h2 id={`${id}-title`}>{title}</h2>
       <form
+        method="post"
+        inert={!hydrated}
+        data-hydrated={hydrated}
         onSubmit={(event) => {
           event.preventDefault();
           void execute(async () => {
@@ -37,7 +42,10 @@ export default function AddAdmins({
           });
         }}
       >
-        <fieldset disabled={busy} className="admin-email-action">
+        <fieldset
+          disabled={!hydrated || busy}
+          className="admin-email-action"
+        >
           <label>
             <span>
               Email{" "}
@@ -58,7 +66,7 @@ export default function AddAdmins({
           <button
             className="button"
             type="submit"
-            disabled={busy || !email.trim()}
+            disabled={!hydrated || busy || !email.trim()}
           >
             {busy ? "Waiting…" : "Add"}
           </button>

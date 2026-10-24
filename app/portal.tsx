@@ -4663,6 +4663,7 @@ export function ContentEditor({
   run: (a: string, d: Row) => Promise<Row>;
   scope: "public" | "private";
 }) {
+  const hydrated = useHydrated();
   const record = scope === "public" ? data.content : data.venue;
   const initial = JSON.parse(record?.draft || "{}");
   const [content, setContent] = useState<Row>(initial),
@@ -4747,7 +4748,10 @@ export function ContentEditor({
       )}
       <form
         className="panel admin-content-editor"
-        aria-busy={!!busy}
+        method="post"
+        inert={!hydrated}
+        data-hydrated={hydrated}
+        aria-busy={!hydrated || !!busy}
         onSubmit={(event) => {
           event.preventDefault();
           void persist("content-save");
@@ -4759,7 +4763,7 @@ export function ContentEditor({
             : "Private arrival details"}
         </h2>
         <fieldset
-          disabled={!!busy}
+          disabled={!hydrated || !!busy}
           style={{ border: 0, padding: 0, margin: 0, minWidth: 0 }}
         >
           {scope === "public" ? (
@@ -4973,7 +4977,7 @@ export function ContentEditor({
             <button
               type="submit"
               className="button"
-              disabled={!!busy || (!dirty && !!record?.revision)}
+              disabled={!hydrated || !!busy || (!dirty && !!record?.revision)}
             >
               <SaveIcon size={18} aria-hidden="true" focusable="false" />
               {busy === "save" ? "Saving…" : "Save draft"}
@@ -4981,7 +4985,7 @@ export function ContentEditor({
             <button
               type="button"
               className="button secondary"
-              disabled={!!busy || dirty || !record?.revision}
+              disabled={!hydrated || !!busy || dirty || !record?.revision}
               onClick={() => {
                 void persist("content-publish");
               }}

@@ -134,5 +134,6 @@ test("published columns render safe Markdown with separately named delete button
   assert.match(html, /href="https:\/\/example.test\/help"/);
   assert.match(html, /aria-label="Delete column: Synthetic Alpha"/);
   assert.match(html, /aria-label="Delete credit batch: synthetic_batch"/);
-  assert.equal((html.match(/disabled=/g) || []).length, 0);
+  // Native controls stay inactive until the confirmation-aware handlers attach.
+  assert.equal((html.match(/disabled=/g) || []).length, 2);
 });

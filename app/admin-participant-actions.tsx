@@ -1,4 +1,5 @@
 "use client";
+import { useHydrated } from "./use-hydrated";
 import { useRef, useState } from "react";
 import {
   BriefcaseBusiness,
@@ -110,9 +111,13 @@ export default function AdminParticipantActions({
   run: AdminRun;
   compact?: boolean;
 }) {
+  const hydrated = useHydrated();
   const { busy, error, execute } = useAdminOperation();
   return (
     <form
+      method="post"
+      inert={!hydrated}
+      data-hydrated={hydrated}
       className={`admin-control admin-participant-action${compact ? " is-compact" : ""}`}
       onSubmit={(event) => {
         event.preventDefault();
@@ -136,7 +141,7 @@ export default function AdminParticipantActions({
         title={`${participant.removed ? "Restore" : "Remove"} ${participant.name}`}
         aria-busy={busy}
         type="submit"
-        disabled={busy}
+        disabled={busy || !hydrated}
       >
         {participant.removed ? (
           busy ? (

@@ -1,4 +1,5 @@
 "use client";
+import { useHydrated } from "./use-hydrated";
 import { useRef, useState } from "react";
 import {
   ChevronDown,
@@ -106,6 +107,7 @@ function DeleteCreditControl({
   column?: AdminCreditBatch["columns"][number];
   run: AdminRun;
 }) {
+  const hydrated = useHydrated();
   const { busy, error, execute } = useAdminOperation();
   const label = column ? `Delete ${column.heading}` : "Delete batch";
   return (
@@ -119,7 +121,7 @@ function DeleteCreditControl({
             : `Delete credit batch: ${batch.id}`
         }
         aria-busy={busy}
-        disabled={busy}
+        disabled={busy || !hydrated}
         onClick={() =>
           void execute(() =>
             run(
@@ -202,6 +204,7 @@ export default function AdminCreditBatches({
   batches?: AdminCreditBatch[];
   run: AdminRun;
 }) {
+  const hydrated = useHydrated();
   const [csv, setCSV] = useState("");
   const [fileName, setFileName] = useState("");
   const [preview, setPreview] = useState<CreditBatchPreview | null>(null);
@@ -250,6 +253,9 @@ export default function AdminCreditBatches({
           </h2>
           {!preview ? (
             <form
+              method="post"
+              inert={!hydrated}
+              data-hydrated={hydrated}
               onSubmit={(event) => {
                 event.preventDefault();
                 void previewOp.execute(async () => {
@@ -291,7 +297,7 @@ export default function AdminCreditBatches({
                   className="button secondary"
                   type="button"
                   onClick={() => input.current?.click()}
-                  disabled={previewOp.busy}
+                  disabled={previewOp.busy || !hydrated}
                 >
                   <FileUp size={18} aria-hidden="true" />
                   Upload CSV
@@ -325,7 +331,7 @@ export default function AdminCreditBatches({
               <button
                 className="button"
                 type="submit"
-                disabled={previewOp.busy}
+                disabled={previewOp.busy || !hydrated}
                 aria-busy={previewOp.busy}
               >
                 <PendingIcon busy={previewOp.busy} action="upload" />
@@ -339,6 +345,9 @@ export default function AdminCreditBatches({
             </form>
           ) : (
             <form
+              method="post"
+              inert={!hydrated}
+              data-hydrated={hydrated}
               onSubmit={(event) => {
                 event.preventDefault();
                 void publishOp.execute(async () => {
@@ -382,7 +391,7 @@ export default function AdminCreditBatches({
                   type="button"
                   className="button secondary"
                   onClick={reset}
-                  disabled={publishOp.busy}
+                  disabled={publishOp.busy || !hydrated}
                 >
                   Change CSV
                 </button>
@@ -453,7 +462,7 @@ export default function AdminCreditBatches({
                 <button
                   className="button"
                   type="submit"
-                  disabled={publishOp.busy}
+                  disabled={publishOp.busy || !hydrated}
                   aria-busy={publishOp.busy}
                 >
                   <PendingIcon busy={publishOp.busy} action="upload" />

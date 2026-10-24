@@ -1,4 +1,5 @@
 "use client";
+import { useHydrated } from "./use-hydrated";
 import { useState } from "react";
 import {
   AdminIcon,
@@ -53,6 +54,7 @@ export default function AdminProjectActions({
   versions: readonly AdminSubmissionTarget[];
   run: AdminRun;
 }) {
+  const hydrated = useHydrated();
   const [scope, setScope] = useState<ProjectRemovalScope>("project");
   const [restore, setRestore] = useState(Boolean(project.removed));
   const [versionId, setVersionId] = useState("");
@@ -60,6 +62,9 @@ export default function AdminProjectActions({
   const selectedVersion = versions.find((version) => version.id === versionId);
   return (
     <form
+      method="post"
+      inert={!hydrated}
+      data-hydrated={hydrated}
       className="admin-control admin-project-action"
       onSubmit={(event) => {
         event.preventDefault();
@@ -74,7 +79,10 @@ export default function AdminProjectActions({
       }}
     >
       <strong className="admin-action-project-name">{project.name}</strong>
-      <fieldset disabled={busy} className="admin-project-fields">
+      <fieldset
+        disabled={!hydrated || busy}
+        className="admin-project-fields"
+      >
         <label>
           Action
           <select
@@ -126,7 +134,9 @@ export default function AdminProjectActions({
           title={`${restore ? "Restore" : "Remove"} ${scope === "project" ? "project" : scope === "both" ? "project and submission" : "submission"}`}
           aria-busy={busy}
           type="submit"
-          disabled={busy || (scope !== "project" && !selectedVersion)}
+          disabled={
+            !hydrated || busy || (scope !== "project" && !selectedVersion)
+          }
         >
           {restore ? busy ? "Waiting…" : "Restore" : <AdminIcon name="trash" />}
         </button>

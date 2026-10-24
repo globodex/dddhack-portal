@@ -1,4 +1,5 @@
 "use client";
+import { useHydrated } from "./use-hydrated";
 import { automaticAuditReason } from "../lib/audit-contract";
 import { useId, useState } from "react";
 import {
@@ -111,6 +112,7 @@ export default function OwnerSubmissionWindow({
     close: string;
   }) => Promise<SubmissionWindowPreview>;
 }) {
+  const hydrated = useHydrated();
   const id = useId();
   const [openInput, setOpen] = useState(() => inputOrEmpty(open)),
     [closeInput, setClose] = useState(() => inputOrEmpty(close)),
@@ -129,13 +131,15 @@ export default function OwnerSubmissionWindow({
   return (
     <section
       className="admin-control admin-window admin-settings-section"
+      inert={!hydrated}
+      data-hydrated={hydrated}
       aria-labelledby={`${id}-title`}
     >
       <header>
         <h2 id={`${id}-title`}>Submission window</h2>
         <span className="admin-timezone">IST</span>
       </header>
-      <fieldset disabled={busy}>
+      <fieldset disabled={busy || !hydrated}>
         <div className="admin-control-grid">
           <label>
             <span>
@@ -205,7 +209,7 @@ export default function OwnerSubmissionWindow({
           <button
             type="button"
             className="button"
-            disabled={busy || !converted}
+            disabled={busy || !hydrated || !converted}
             onClick={() =>
               void execute(async () => {
                 if (review) {

@@ -1,4 +1,5 @@
 "use client";
+import { useHydrated } from "./use-hydrated";
 import { useId, useState } from "react";
 import {
   useAdminOperation,
@@ -186,6 +187,7 @@ export default function AdminImportControls({
   preview?: (request: ImportPreviewRequest) => Promise<ImportPreview>;
   initialMode?: ParticipantImportMode;
 }) {
+  const hydrated = useHydrated();
   const id = useId();
   const [mode, setMode] = useState<ParticipantImportMode>(initialMode);
   const [csv, setCSV] = useState("");
@@ -205,6 +207,9 @@ export default function AdminImportControls({
     >
       <h2 id={`${id}-title`}>Add participants</h2>
       <form
+        method="post"
+        inert={!hydrated}
+        data-hydrated={hydrated}
         onSubmit={(event) => {
           event.preventDefault();
           void execute(async () => {
@@ -230,7 +235,10 @@ export default function AdminImportControls({
           });
         }}
       >
-        <fieldset disabled={busy} className="admin-import-fields">
+        <fieldset
+          disabled={!hydrated || busy || !hydrated}
+          className="admin-import-fields"
+        >
           <div
             className="admin-source-options"
             role="group"
