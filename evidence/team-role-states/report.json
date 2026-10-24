@@ -1,0 +1,122 @@
+{
+  "source": "244d68febfea4a7ba7ff5966001310db107c7828",
+  "syntheticOnly": true,
+  "fixtureDatabase": "Root isolated synthetic API8821 copy; original API8789 untouched",
+  "responses": [
+    {
+      "actor": "bob",
+      "action": "team-invite",
+      "status": 200,
+      "result": {
+        "message": "Saved in portal. No email sent."
+      }
+    },
+    {
+      "actor": "pending",
+      "action": "team-respond",
+      "status": 200,
+      "result": {
+        "message": "Team response saved."
+      }
+    },
+    {
+      "actor": "bob",
+      "action": "team-invite",
+      "status": 409,
+      "result": {
+        "code": "CONFLICT",
+        "message": "A limit or duplicate record prevented this action. No changes were committed."
+      }
+    }
+  ],
+  "captures": [
+    {
+      "name": "leader-unlocked",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/leader-unlocked-1440x900.png",
+      "source": "244d68febfea4a7ba7ff5966001310db107c7828",
+      "fullPage": false
+    },
+    {
+      "name": "outgoing-invitation",
+      "actor": "bob",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/outgoing-invitation-1440x900.png",
+      "source": "244d68febfea4a7ba7ff5966001310db107c7828",
+      "fullPage": true
+    },
+    {
+      "name": "outgoing-invitation-mobile",
+      "actor": "bob",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/outgoing-invitation-mobile-390x844.png",
+      "source": "244d68febfea4a7ba7ff5966001310db107c7828",
+      "fullPage": false
+    },
+    {
+      "name": "incoming-invitation",
+      "actor": "pending",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/incoming-invitation-390x844.png",
+      "source": "244d68febfea4a7ba7ff5966001310db107c7828",
+      "fullPage": true
+    },
+    {
+      "name": "decline-confirmation-short",
+      "actor": "pending",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/decline-confirmation-short-390x480.png",
+      "source": "244d68febfea4a7ba7ff5966001310db107c7828",
+      "fullPage": false
+    },
+    {
+      "name": "declined-outcome",
+      "actor": "pending",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/workspace/ddd-team/evidence/team-role-states/declined-outcome-390x844.png",
+      "source": "244d68febfea4a7ba7ff5966001310db107c7828",
+      "fullPage": true
+    }
+  ],
+  "checks": [
+    "Leader sends real invitation through existing confirmation and outgoing Pending row appears",
+    "Recipient decline persists, invitation disappears and participant remains teamless"
+  ],
+  "unavailable": [
+    {
+      "action": "Member Leave team confirmation/outcome",
+      "target": "fake_pending",
+      "reason": "No Leave team UI or server action exists. remove-workspace-member authorizes only leader/admin/owner. No self-removal request made and no permission changed."
+    }
+  ],
+  "pageErrors": [],
+  "externalRequests": [],
+  "setup": {
+    "status": 200,
+    "body": {
+      "message": "You’re Going."
+    }
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: team-invite:{\"code\":\"CONFLICT\",\"message\":\"A limit or duplicate record prevented this action. No changes were committed.\"}\n\n409 !== 200\n\n    at doAction (file:///tmp/ddd-team-role-capture.mjs:6:561)\n    at async sendInvite (file:///tmp/ddd-team-role-capture.mjs:8:222)\n    at async file:///tmp/ddd-team-role-capture.mjs:14:19",
+  "browserClosed": true,
+  "sourceAtEnd": "244d68febfea4a7ba7ff5966001310db107c7828"
+}
