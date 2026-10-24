@@ -245,7 +245,7 @@ export function portalConfirmationFor(
     return {
       ...base,
       title: "Add participants?",
-      target: values.singleEmail || `${values.newCount || 0} participants`,
+      target: values.singleEmail || `${values.newCount || 0} ${Number(values.newCount) === 1 ? "participant" : "participants"}`,
       description: "",
       confirmLabel: "Confirm",
       critical: false,

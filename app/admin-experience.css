@@ -1218,3 +1218,10 @@
   font-size: 12px;
   font-weight: 500;
 }
+
+@media (max-width: 767px) {
+  .main:not(.home-main) .admin-workspace .admin-credits-table tr {
+    border-color: var(--line, #e3e4db);
+    background: var(--surface, #fffefa);
+  }
+}
