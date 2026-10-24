@@ -15,13 +15,27 @@ import DelhiWordmark from "./delhi-wordmark";
 import OrganizerSection from "./organizer-section";
 import { HeadingDot } from "./expressive-heading";
 import { defaultPublicContent } from "../lib/public-content-defaults";
-import {
-  confirmedAgenda,
-  desktopChapterGeometry,
-  mobileStackGeometry,
-  stackGeometry,
-} from "./home-geometry";
+import { confirmedAgenda, viewportChapterGeometry } from "./home-geometry";
 type Content = typeof defaultPublicContent;
+type PrivateArrival = { location: string; directions: string; mapUrl: string };
+function arrivalMapUrl(value: string) {
+  if (!value) return undefined;
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" &&
+      !url.username &&
+      !url.password &&
+      !url.port &&
+      (["maps.app.goo.gl", "maps.google.com"].includes(url.hostname) ||
+        (["google.com", "www.google.com"].includes(url.hostname) &&
+          url.pathname.startsWith("/maps")) ||
+        (url.hostname === "goo.gl" && url.pathname.startsWith("/maps")))
+      ? url.href
+      : undefined;
+  } catch {
+    return undefined;
+  }
+}
 const faqs = [
   [
     "Does Luma confirm my place?",
@@ -55,9 +69,11 @@ const faqs = [
 function Chapters({
   items,
   paused,
+  privateVenue,
 }: {
   items: Content["agenda"];
   paused: boolean;
+  privateVenue?: PrivateArrival;
 }) {
   const root = useRef<HTMLDivElement>(null);
   const agenda = confirmedAgenda(items);
@@ -71,54 +87,35 @@ function Chapters({
     const measure = () => {
       frame = 0;
       if (!alive) return;
-      const header = document.querySelector<HTMLElement>(".public-header");
+      const header = node
+        .closest(".public-home-shell")
+        ?.querySelector<HTMLElement>(".navigation-header, .public-header");
       const headerHeight =
         header && getComputedStyle(header).position === "sticky"
           ? header.getBoundingClientRect().height
           : 0;
-      const natural = chapters.map(
-        (chapter) =>
-          chapter.querySelector<HTMLElement>(".chapter-content")!.scrollHeight,
-      );
-      const desktop = stackGeometry(
+      const natural = chapters.map((chapter) => {
+        const content = chapter.querySelector<HTMLElement>(".chapter-content")!;
+        const style = getComputedStyle(chapter);
+        return Math.ceil(
+          content.getBoundingClientRect().height +
+            parseFloat(style.borderTopWidth) +
+            parseFloat(style.borderBottomWidth),
+        );
+      });
+      const layout = viewportChapterGeometry(
         innerWidth,
-        innerHeight - headerHeight,
+        innerHeight,
+        headerHeight,
         natural,
         paused || reduced.matches,
       );
-      const mobile = mobileStackGeometry(
-        innerWidth,
-        innerHeight - headerHeight,
-        chapters.map((chapter) => {
-          const content = chapter.querySelector<HTMLElement>(".chapter-content")!;
-          const style = getComputedStyle(chapter);
-          return Math.ceil(
-            content.getBoundingClientRect().height +
-              parseFloat(style.borderTopWidth) +
-              parseFloat(style.borderBottomWidth),
-          );
-        }),
-        paused || reduced.matches,
-      );
-      const viewportDesktop = desktopChapterGeometry(
-        innerWidth,
-        innerHeight - headerHeight,
-        mobile.stages,
-        paused || reduced.matches,
-      );
-      const layout = mobile.enabled
-        ? mobile
-        : viewportDesktop.enabled
-          ? viewportDesktop
-          : desktop;
       node.dataset.enhanced = String(layout.enabled);
-      node.dataset.mobileStack = String(mobile.enabled);
-      node.dataset.desktopStack = String(viewportDesktop.enabled);
+      node.dataset.mobileStack = String(layout.enabled && innerWidth <= 740);
+      node.dataset.desktopStack = String(layout.enabled && innerWidth >= 1000);
+      node.style.setProperty("--public-header-height", `${headerHeight}px`);
       chapters.forEach((chapter, index) => {
-        chapter.style.setProperty(
-          "--chapter-top",
-          `${layout.tops[index] + headerHeight}px`,
-        );
+        chapter.style.setProperty("--chapter-top", `${layout.tops[index]}px`);
         chapter.style.setProperty(
           "--chapter-stage",
           `${layout.stages[index]}px`,
@@ -132,6 +129,10 @@ function Chapters({
     chapters.forEach((chapter) =>
       resize.observe(chapter.querySelector(".chapter-content")!),
     );
+    const header = node
+      .closest(".public-home-shell")
+      ?.querySelector(".navigation-header, .public-header");
+    if (header) resize.observe(header);
     window.addEventListener("resize", queueMeasure);
     node.addEventListener("toggle", queueMeasure, true);
     reduced.addEventListener("change", queueMeasure);
@@ -205,6 +206,22 @@ function Chapters({
           <div className="chapter-body venue-body">
             <h3>IIIT Delhi</h3>
             <p>New Delhi</p>
+            {privateVenue && (
+              <div className="home-private-arrival">
+                {privateVenue.location && <h4>{privateVenue.location}</h4>}
+                {privateVenue.directions && <p>{privateVenue.directions}</p>}
+                {arrivalMapUrl(privateVenue.mapUrl) && (
+                  <a
+                    className="button secondary"
+                    href={arrivalMapUrl(privateVenue.mapUrl)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Google Maps <ArrowUpRight size={18} aria-hidden="true" />
+                  </a>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -267,17 +284,17 @@ function Chapters({
 export default function Home({
   content = defaultPublicContent,
   signedIn = false,
+  privateVenue,
 }: {
   content?: Content;
   signedIn?: boolean;
+  privateVenue?: PrivateArrival;
   submissionClose?: string | null;
 }) {
   const [paused, setPaused] = useState(false),
     [ready, setReady] = useState(false),
-    [visible, setVisible] = useState(true),
-    [bubble, setBubble] = useState("");
-  const hero = useRef<HTMLElement>(null),
-    lastBubble = useRef("");
+    [visible, setVisible] = useState(true);
+  const hero = useRef<HTMLElement>(null);
   useEffect(() => {
     try {
       setPaused(localStorage.getItem("portal-pause-motion") === "true");
@@ -292,55 +309,6 @@ export default function Home({
     observer.observe(hero.current);
     return () => observer.disconnect();
   }, []);
-  useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>,
-      stopped = false;
-    const media = matchMedia("(prefers-reduced-motion: reduce)");
-    const schedule = () => {
-      if (
-        stopped ||
-        paused ||
-        !ready ||
-        !visible ||
-        media.matches ||
-        document.hidden
-      )
-        return;
-      timer = setTimeout(
-        () => {
-          if (innerWidth >= 1000 && innerHeight >= 700) {
-            const lines = [
-              "Ready to build?",
-              "Let’s build!",
-              "Ship something fun.",
-            ].filter((line) => line !== lastBubble.current);
-            const line = lines[Math.floor(Math.random() * lines.length)];
-            lastBubble.current = line;
-            setBubble(line);
-            timer = setTimeout(() => {
-              setBubble("");
-              schedule();
-            }, 3000);
-          } else schedule();
-        },
-        14000 + Math.random() * 8000,
-      );
-    };
-    const reset = () => {
-      clearTimeout(timer);
-      setBubble("");
-      schedule();
-    };
-    reset();
-    media.addEventListener("change", reset);
-    document.addEventListener("visibilitychange", reset);
-    return () => {
-      stopped = true;
-      clearTimeout(timer);
-      media.removeEventListener("change", reset);
-      document.removeEventListener("visibilitychange", reset);
-    };
-  }, [paused, ready, visible]);
   return (
     <div className="home" data-paused={paused}>
       <section className="home-hero" aria-labelledby="home-title" ref={hero}>
@@ -359,9 +327,20 @@ export default function Home({
           <p className="hero-date">
             <span>Sunday, 1 November 2026</span>
             <span className="hero-host">Hosted by Codex Ambassadors</span>
-            <span className="hero-partner">
-              Co-partner
+            <span className="hero-partner hero-brand-lockup">
               <img
+                className="hero-openai-wordmark"
+                src="/brand/openai-wordmark-official.svg"
+                alt="OpenAI"
+                width={1212}
+                height={542}
+                decoding="async"
+              />
+              <span className="hero-brand-separator" aria-hidden="true">
+                ×
+              </span>
+              <img
+                className="hero-cerebras-wordmark"
                 src="/brand/cerebras-official.webp"
                 alt="Cerebras"
                 width={360}
@@ -389,9 +368,8 @@ export default function Home({
             </a>
           </div>
         </div>
-        <div className="hero-art" aria-hidden="true">
-          <Dots paused={paused || !ready} />
-          {bubble && <span className="speech-bubble">{bubble}</span>}
+        <div className="hero-art hero-rail" aria-hidden="true">
+          <Dots paused={paused || !ready} rail />
         </div>
         <div className="home-motion-strip">
           <Dots paused={paused || !ready} bottom />
@@ -422,10 +400,17 @@ export default function Home({
           )}
         </button>
       </section>
-      <Chapters items={content.agenda} paused={paused} />
+      <Chapters
+        items={content.agenda}
+        paused={paused}
+        privateVenue={privateVenue}
+      />
       <OrganizerSection paused={paused} />
       <footer className="home-footer">
-        <p className="home-community-tags"><span>#DevDayCommunity</span><span>#DevDayCommunityDelhi</span></p>
+        <p className="home-community-tags">
+          <span>#DevDayCommunity</span>
+          <span>#DevDayCommunityDelhi</span>
+        </p>
         <nav aria-label="Legal and contact">
           <a href="/privacy">Privacy</a>
           <a href="/terms">Terms</a>

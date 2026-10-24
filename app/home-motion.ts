@@ -77,6 +77,21 @@ export const desktopDots: PublicDot[] = [
 ];
 // Keep the same eight-instance composition and five size tiers on compact stages.
 export const mobileDots: PublicDot[] = desktopDots;
+/** A narrow desktop rail uses the existing palette and expression assets. */
+export const railDots: PublicDot[] = [
+  { ...desktopDots[3], x: 130, y: 26, diameter: 102 },
+  { ...desktopDots[0], x: 340, y: 58, diameter: 130 },
+  { ...desktopDots[1], x: 180, y: 100, diameter: 116 },
+  { ...desktopDots[5], x: 365, y: 134, diameter: 86 },
+  { ...desktopDots[2], x: 100, y: 170, diameter: 128 },
+  { ...desktopDots[4], x: 310, y: 206, diameter: 112 },
+  { ...desktopDots[6], x: 165, y: 244, diameter: 98 },
+  { ...desktopDots[7], x: 360, y: 278, diameter: 108 },
+  { ...desktopDots[3], x: 115, y: 316, diameter: 92 },
+  { ...desktopDots[2], x: 300, y: 350, diameter: 124 },
+  { ...desktopDots[5], x: 145, y: 388, diameter: 88 },
+  { ...desktopDots[1], x: 355, y: 420, diameter: 114 },
+];
 // The selected compact hero has a quiet centre for its actions and a separate
 // bottom pile. Coordinates share a 480-unit horizontal stage, not desktop height.
 export const compactSideDots: PublicDot[] = [

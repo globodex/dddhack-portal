@@ -1,5 +1,30 @@
 /** Geometry shared by the public chapter stack and its agenda controls. */
 export const clamp01 = (n: number) => Math.max(0, Math.min(1, n));
+/** Full-height chapters share one native sticky model at every breakpoint.
+ * Tall content scrolls to its final line before pinning above the next card.
+ */
+export function viewportChapterGeometry(
+  width: number,
+  viewportHeight: number,
+  headerHeight: number,
+  naturalHeights: number[],
+  disabled = false,
+) {
+  const header = Math.max(0, headerHeight);
+  const step = width >= 1000 ? 14 : 8;
+  return {
+    enabled:
+      !disabled &&
+      width > 0 &&
+      viewportHeight - header >= 240 &&
+      naturalHeights.length > 0 &&
+      naturalHeights.every((value) => Number.isFinite(value) && value > 0),
+    tops: naturalHeights.map((natural, index) =>
+      Math.min(header + 14 + index * step, viewportHeight - natural - 16),
+    ),
+    stages: naturalHeights.map((natural) => Math.max(viewportHeight, natural)),
+  };
+}
 export function stackGeometry(
   width: number,
   height: number,

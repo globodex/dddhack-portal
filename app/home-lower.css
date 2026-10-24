@@ -5,6 +5,8 @@
   padding-inline: clamp(16px, 3vw, 44px);
 }
 .public-home-shell .chapter-stack .chapter {
+  min-height: 100vh;
+  min-height: 100svh;
   background: var(--surface, #fffefa);
   border: 1px solid var(--line, #e3e4db);
   border-radius: 24px 24px 0 0;
@@ -12,13 +14,6 @@
 }
 .public-home-shell .chapter-stack .chapter + .chapter {
   margin-top: -1px;
-}
-/* Sparse chapters stay compact; the content-rich panels still form the stack. */
-.public-home-shell .chapter-stack[data-enhanced="true"] #schedule:has(.agenda-pending),
-.public-home-shell .chapter-stack[data-enhanced="true"] #venue {
-  position: relative;
-  top: auto;
-  min-height: 0;
 }
 .public-home-shell .chapter-stack .chapter .chapter-content,
 .public-home-shell .chapter-stack #venue .chapter-content,
@@ -147,6 +142,30 @@
   letter-spacing: -0.025em;
   margin: 0;
 }
+.public-home-shell .home-private-arrival {
+  display: grid;
+  justify-items: start;
+  gap: 20px;
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line, #e3e4db);
+  overflow-wrap: anywhere;
+}
+.public-home-shell .home-private-arrival h4 {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+}
+.public-home-shell .home-private-arrival p {
+  white-space: pre-line;
+  font-size: 17px;
+  line-height: 1.6;
+}
+.public-home-shell .home-private-arrival a {
+  min-height: 44px;
+  gap: 8px;
+}
 .public-home-shell .chapter-stack .public-rules {
   display: block;
   margin: 0;
@@ -244,7 +263,8 @@
   .public-home-shell .chapter-stack[data-enhanced="true"] .chapter {
     position: relative;
     top: auto;
-    min-height: 0;
+    min-height: 100vh;
+    min-height: 100svh;
     transform: none;
     border-radius: 20px 20px 0 0;
   }
@@ -253,7 +273,7 @@
   .public-home-shell .chapter-stack[data-mobile-stack="true"] #venue {
     position: sticky;
     top: var(--chapter-top);
-    min-height: 0;
+    min-height: var(--chapter-stage, 100svh);
   }
   .public-home-shell .chapter-stack .chapter .chapter-content,
   .public-home-shell .chapter-stack #venue .chapter-content,
@@ -345,9 +365,37 @@
   max-width: none;
   object-fit: contain;
 }
+.public-home-shell .hero-date .hero-brand-lockup {
+  gap: 12px;
+  width: max-content;
+  max-width: 100%;
+  margin-top: 0;
+}
+.public-home-shell .hero-brand-lockup .hero-openai-wordmark {
+  height: 72px;
+}
+.public-home-shell .hero-brand-lockup .hero-cerebras-wordmark {
+  height: 60px;
+}
+.public-home-shell .hero-brand-separator {
+  flex: 0 0 auto;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--muted, #656960);
+}
+@media (max-width: 999px) {
+  .public-home-shell .hero-date .hero-brand-lockup { gap: 10px; }
+  .public-home-shell .hero-brand-lockup .hero-openai-wordmark { height: 56px; }
+  .public-home-shell .hero-brand-lockup .hero-cerebras-wordmark { height: 50px; }
+  .public-home-shell .hero-brand-separator { font-size: 14px; }
+}
+@media (max-width: 360px) {
+  .public-home-shell .hero-date .hero-brand-lockup { gap: 8px; }
+  .public-home-shell .hero-brand-lockup .hero-openai-wordmark { height: 52px; }
+  .public-home-shell .hero-brand-lockup .hero-cerebras-wordmark { height: 48px; }
+}
 
-/* Desktop chapters keep the full viewport scale, including sparse schedules.
-   Reserve their stage before hydration; content can still grow naturally. */
+/* Reserve a full viewport before hydration; content can still grow naturally. */
 @media (min-width: 1000px) {
   .public-home-shell .chapter-stack {
     max-width: none;
@@ -374,7 +422,8 @@
 }
 @media (min-width: 1000px) and (min-height: 680px) and (prefers-reduced-motion: no-preference) {
   .public-home-shell .chapter-stack .chapter {
-    min-height: calc(100svh - var(--public-header-height, 80px) - 38px - var(--chapter-index, 0) * 14px);
+    min-height: 100vh;
+    min-height: 100svh;
   }
   .public-home-shell .chapter-stack[data-desktop-stack="true"] .chapter,
   .public-home-shell .chapter-stack[data-desktop-stack="true"] #schedule:has(.agenda-pending),
@@ -382,8 +431,5 @@
     position: sticky;
     top: var(--chapter-top);
     min-height: var(--chapter-stage);
-  }
-  .public-home-shell .home[data-paused="true"] .chapter-stack .chapter {
-    min-height: 0;
   }
 }

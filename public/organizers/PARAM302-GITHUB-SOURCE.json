@@ -1,0 +1,20 @@
+{
+  "profileVerifiedBy": "authorized GitHub get_profile read",
+  "login": "Param302",
+  "githubUserId": 76559816,
+  "sourceURL": "https://avatars.githubusercontent.com/u/76559816?v=4",
+  "original": {
+    "width": 460,
+    "height": 460,
+    "format": "png",
+    "alpha": true,
+    "sha256": "fcd3a13382ea5b5f13a95568f06c225329ca89bd7c0d129254b143613076a4f2"
+  },
+  "optimized": {
+    "width": 400,
+    "height": 400,
+    "format": "webp",
+    "bytes": 26370,
+    "sha256": "84da5a6a1eb28b5777c48d7706ab660b9b9fbb0afec39d88721a8d9cb85359d8"
+  }
+}

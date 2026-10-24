@@ -800,7 +800,8 @@
   }
   .public-home-shell .chapter-stack .chapter {
     position: relative !important;
-    min-height: 0 !important;
+    min-height: 100vh !important;
+    min-height: 100svh !important;
   }
   .public-home-shell .agenda-duration {
     height: 0 !important;
@@ -1266,11 +1267,18 @@
   border-bottom: 1px solid #e7e9e8;
 }
 .public-home-shell .home-hero {
-  min-height: calc(100svh - var(--public-header-height));
+  min-height: 100vh;
+  min-height: 100svh;
+  grid-template-columns: minmax(0, 1fr) clamp(160px, 13vw, 210px);
   padding-top: 24px;
   padding-bottom: 214px;
 }
 @media (min-width: 1000px) {
+  .public-home-shell .hero-art.hero-rail {
+    width: 100%;
+    height: min(460px, 54svh);
+    aspect-ratio: auto;
+  }
   .public-home-shell .hero-copy {
     max-width: min(100%, calc(min(5.12vw, 8.2svh) * 10.75));
   }
@@ -1330,7 +1338,8 @@
     align-items: start;
     align-content: stretch;
     gap: 0;
-    min-height: calc(100svh - var(--public-header-height, 64px));
+    min-height: 100vh;
+    min-height: 100svh;
     height: auto;
     max-height: none;
     padding: 28px 20px env(safe-area-inset-bottom, 0px);
@@ -1435,6 +1444,9 @@
     margin: 0;
     aspect-ratio: auto;
     overflow: hidden;
+  }
+  .public-home-shell .hero-art.hero-rail {
+    display: none;
   }
   .public-home-shell .hero-art,
   .public-home-shell .hero-art *,

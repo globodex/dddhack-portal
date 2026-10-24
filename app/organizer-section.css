@@ -1,5 +1,10 @@
 /* Exact selected organizer geometry: whole columns/tubes, no pedestal rims. */
 .public-home-shell .organizers.organizer-tubes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100svh;
   --organizer-gutter: clamp(24px, 4.4vw, 72px);
   padding: 56px var(--organizer-gutter) 0;
   background: transparent;

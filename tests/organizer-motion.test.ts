@@ -45,12 +45,12 @@ test("organizer content remains immediately readable without motion or JS and us
   ])
     assert.ok(html.includes(name));
   for (const handle of [
-    "Param3021",
     "HowDevelop",
     "nikhilsbuilds",
     "callmeshuklaji",
   ])
     assert.ok(html.includes(`/organizers/${handle}-x.jpg`));
+  assert.ok(html.includes("/organizers/Param302-github.webp"));
   assert.equal((html.match(/class="organizer-unit"/g) || []).length, 4);
   assert.equal(
     (html.match(/class="organizer-portrait-ring"/g) || []).length,

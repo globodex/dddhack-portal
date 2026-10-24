@@ -1,0 +1,11 @@
+{
+  "owner": "OpenAI",
+  "sourcePage": "https://openai.com/brand/",
+  "downloadURL": "https://cdn.openai.com/brand/openai-logos.zip",
+  "archivePath": "OpenAI-logos/SVGs/OAI_OpenAI_Wordmark_Black.svg",
+  "asset": "openai-wordmark-official.svg",
+  "bytes": 2149,
+  "sha256": "6b5116a32769087308e1acee6f5f593e8989addc760f69dd37f59e54a3926d2d",
+  "modifications": "None. Official SVG, including its original clear space, is rendered at its natural aspect ratio.",
+  "referenceLimit": "The referenced Luma poster was not available for inspection; this is the primary official wordmark, not a claim of poster-specific matching."
+}

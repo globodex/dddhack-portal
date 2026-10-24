@@ -7,6 +7,7 @@ import {
   compactSideDots,
   compactStripDots,
   stripDots,
+  railDots,
   airblowerTarget,
   advanceDot,
   type DotState,
@@ -15,9 +16,11 @@ import {
 export default function Dots({
   paused = false,
   bottom = false,
+  rail = false,
 }: {
   paused?: boolean;
   bottom?: boolean;
+  rail?: boolean;
 }) {
   const root = useRef<HTMLDivElement>(null);
   const entered = useRef(false);
@@ -135,13 +138,15 @@ export default function Dots({
       active = width > 0 && height > 0;
       const entering = !entered.current && !paused && !reduced.matches;
       compact = innerWidth < 1000;
-      const descriptors = bottom
-        ? compact
-          ? compactStripDots
-          : stripDots
-        : compact
-          ? compactSideDots
-          : desktopDots;
+      const descriptors = rail
+        ? railDots
+        : bottom
+          ? compact
+            ? compactStripDots
+            : stripDots
+          : compact
+            ? compactSideDots
+            : desktopDots;
       const scale = compact
         ? Math.min(bottom ? 1.2 : 1, width / 480)
         : bottom
@@ -149,26 +154,30 @@ export default function Dots({
           : width / 480;
       dots = descriptors.map((item, i) => {
         const r = (item.diameter * scale) / 2;
-        const homeX = compact
-          ? Math.max(
-              -r * 0.35,
-              Math.min(width + r * 0.35, (item.x * width) / 480),
-            )
+        const homeX = rail
+          ? (item.x * width) / 480
+          : compact
+            ? Math.max(
+                -r * 0.35,
+                Math.min(width + r * 0.35, (item.x * width) / 480),
+              )
+            : bottom
+              ? Math.max(
+                  r,
+                  Math.min(width - r, ((i + 0.5) * width) / descriptors.length),
+                )
+              : item.x * scale;
+        const homeY = rail
+          ? Math.max(r, Math.min(height - r, (item.y * height) / 440))
           : bottom
             ? Math.max(
                 r,
-                Math.min(width - r, ((i + 0.5) * width) / descriptors.length),
+                Math.min(
+                  height - r * 0.65,
+                  height - r * 0.65 - (compact ? item.y * scale : 0),
+                ),
               )
-            : item.x * scale;
-        const homeY = bottom
-          ? Math.max(
-              r,
-              Math.min(
-                height - r * 0.65,
-                height - r * 0.65 - (compact ? item.y * scale : 0),
-              ),
-            )
-          : Math.max(r, Math.min(height - r, item.y * scale));
+            : Math.max(r, Math.min(height - r, item.y * scale));
         nodes[i].style.display = "block";
         nodes[i].style.width = nodes[i].style.height = `${r * 2}px`;
         nodes[i].querySelector("circle")?.setAttribute("fill", item.fill);
@@ -277,12 +286,18 @@ export default function Dots({
       document.removeEventListener("visibilitychange", visibility);
       reduced.removeEventListener("change", reset);
     };
-  }, [paused, bottom]);
-  const items = bottom ? stripDots : desktopDots;
+  }, [paused, bottom, rail]);
+  const items = rail ? railDots : bottom ? stripDots : desktopDots;
   return (
     <div
       ref={root}
-      className={bottom ? "dot-field bottom-dots" : "dot-field hero-dots"}
+      className={
+        bottom
+          ? "dot-field bottom-dots"
+          : rail
+            ? "dot-field hero-dots hero-rail-dots"
+            : "dot-field hero-dots"
+      }
       aria-hidden="true"
       data-dot-count={items.length}
     >

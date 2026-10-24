@@ -180,7 +180,11 @@ export default function OrganizerSection({ paused }: { paused: boolean }) {
                 <span className="organizer-portrait-ring">
                   <img
                     className="organizer-photo"
-                    src={`/organizers/${host.handle}-x.jpg`}
+                    src={
+                      host.handle === "Param3021"
+                        ? "/organizers/Param302-github.webp"
+                        : `/organizers/${host.handle}-x.jpg`
+                    }
                     alt={host.name}
                     width={200}
                     height={200}
