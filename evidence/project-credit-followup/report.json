@@ -1,0 +1,88 @@
+{
+  "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+  "origin": "http://localhost:3000",
+  "fixtureBackend": 8821,
+  "syntheticOnly": true,
+  "fingerprint": {
+    "app/portal.tsx": "2d5c83fc98772300b5ff5646f846c2998c11c0128811997d60e5ca8d2eea2dcd",
+    "app/projects-rules-experience.css": "decf0175b3959094dd694780c9af6669861bcd45f92738ce91b0b90c3474ffcf",
+    "app/dashboard-v6.css": "60f64879fb3c805f147387fa599bfa1d23f9caecacdfe6c56a15fc74119fa11a",
+    "app/team-discovery-experience.css": "81dd145433a0ce29b3441ab3badf353de1647432b4eb0c783de780cf18dc63f5"
+  },
+  "screenshots": [
+    {
+      "path": "evidence/project-credit-followup/project-after-draft-save-1440x900.png",
+      "sha256": "29f08d70dd0afc3a00ff946d58404c91ab0dfd3c88c75d0b3feac9f9df8b8328"
+    },
+    {
+      "path": "evidence/project-credit-followup/history-after-draft-save-1440x900.png",
+      "sha256": "531617973475910460bd571be48cc5fb4e7dacd218eb16d277b214866a67370e"
+    },
+    {
+      "path": "evidence/project-credit-followup/credits-masked-before-reveal-1440x900.png",
+      "sha256": "d48b56eddb581e85fce95c96f758480527592f1d2df62fd3e435bccad905cbd0"
+    },
+    {
+      "path": "evidence/project-credit-followup/credits-synthetic-revealed-1440x900.png",
+      "sha256": "acb22bce02f61a989bb09125618161228be4d7ba1e38a9f23e6750ee729cf736"
+    },
+    {
+      "path": "evidence/project-credit-followup/credits-synthetic-copied-1440x900.png",
+      "sha256": "f6a5871ce76118be3da67db2d5fbde6630ad71a4c4d689d20637da2e72288fa1"
+    },
+    {
+      "path": "evidence/project-credit-followup/credits-synthetic-copied-390x844.png",
+      "sha256": "0f74bc9bf3c8aabf7c468936bd8608b92852e89b13e8caed8ed64bc54cf29b79"
+    },
+    {
+      "path": "evidence/project-credit-followup/credits-synthetic-copied-320x720.png",
+      "sha256": "d853eba4bfc750f8f78743fceaf06126726934c752599bd62ffe3cf567aa01c5"
+    },
+    {
+      "path": "evidence/project-credit-followup/credits-hidden-again-320x720.png",
+      "sha256": "51855fc63003b7bb866585d753bac598e3927cac0a7407fd332a56c27ec3efe5"
+    }
+  ],
+  "writes": [
+    {
+      "action": "reveal-credit",
+      "data": {
+        "typeId": "fake_credit"
+      },
+      "actor": "fake_alice",
+      "status": "revealed-synthetic",
+      "httpStatus": 200
+    }
+  ],
+  "checks": [
+    {
+      "name": "Fresh context confirms saved draft revision3 and two immutable committed versions; history closes with Escape",
+      "passed": true
+    },
+    {
+      "name": "Assigned fake allocation absent from dashboard payload, one real reveal POST200, clipboard exact-match,390/320 bounds, Hide remasks and disables Copy",
+      "passed": true
+    }
+  ],
+  "network": [
+    {
+      "event": "response",
+      "action": "reveal-credit",
+      "status": 200
+    }
+  ],
+  "errors": [],
+  "findings": [
+    {
+      "owner": "root",
+      "issue": "Copy changes its accessible name to Copied allocation but the visible icon remains Copy with no visible success label/toast.",
+      "evidence": "credits-synthetic-copied-320x720.png"
+    }
+  ],
+  "fingerprintAtEnd": {
+    "app/portal.tsx": "2d5c83fc98772300b5ff5646f846c2998c11c0128811997d60e5ca8d2eea2dcd",
+    "app/projects-rules-experience.css": "decf0175b3959094dd694780c9af6669861bcd45f92738ce91b0b90c3474ffcf",
+    "app/dashboard-v6.css": "60f64879fb3c805f147387fa599bfa1d23f9caecacdfe6c56a15fc74119fa11a",
+    "app/team-discovery-experience.css": "81dd145433a0ce29b3441ab3badf353de1647432b4eb0c783de780cf18dc63f5"
+  }
+}
