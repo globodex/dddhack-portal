@@ -147,6 +147,10 @@ export function portalConfirmationFor(
   target: string,
 ): Confirmation {
   const base = confirmationFor(action, values, target);
+  if (action === "team-invite")
+    return { ...base, title: "Send team invitation?", target: values.email || target, description: "", confirmLabel: "Send invitation" };
+  if (action === "team-respond")
+    return { ...base, title: values.decision === "accepted" ? "Join this team?" : "Decline invitation?", description: "", confirmLabel: values.decision === "accepted" ? "Join team" : "Decline" };
   if (action === "respond-team")
     return {
       ...base,

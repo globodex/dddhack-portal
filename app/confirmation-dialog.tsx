@@ -22,7 +22,7 @@ export default function ConfirmationDialog({
         .filter((node) => node !== popup)
         .at(-1);
     popup.showModal();
-    const releaseHistory = trackDialogHistory(() => decide(false));
+    const releaseHistory = trackDialogHistory(() => decide(false), previous);
     cancel.current?.focus();
     return () => {
       releaseHistory();

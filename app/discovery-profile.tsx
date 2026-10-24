@@ -74,7 +74,7 @@ export function openDiscoveryDialog(
   const releaseHistory = trackDialogHistory(() => {
     dialog.close();
     finish();
-  });
+  }, trigger);
   return () => {
     releaseHistory();
     closed = true;

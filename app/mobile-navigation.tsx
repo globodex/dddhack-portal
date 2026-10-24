@@ -15,7 +15,7 @@ export function openMobileNavigation(
   const bodyOverflow = doc.body.style.overflow;
   const htmlOverflow = doc.documentElement.style.overflow;
   node.showModal();
-  const releaseHistory = trackDialogHistory(onDesktop);
+  const releaseHistory = trackDialogHistory(onDesktop, trigger);
   doc.body.style.overflow = "hidden";
   doc.documentElement.style.overflow = "hidden";
   const resize = () => {
