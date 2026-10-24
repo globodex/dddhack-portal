@@ -1,0 +1,412 @@
+{
+  "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+  "syntheticOnly": true,
+  "domFixturesOnly": true,
+  "screenshots": [
+    {
+      "label": "dom-stress-agenda-url-detail",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/dom-stress-agenda-url-detail-native-zoom-200pct-1440x900.png",
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "sha256": "2fb7374f3b58eef41323e175de5f9af1a84d544ffeb2a8e98db9e7b1ac3af5cd",
+      "inspected": true,
+      "acceptedForRestReview": true
+    },
+    {
+      "label": "home-organizer-2-settled",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-organizer-2-settled-native-zoom-200pct-1440x900.png",
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "sha256": "2d03d666beafec7e260ecb909ab0effcecdc1b29472f4b4d84fbf0c2732d32b4",
+      "inspected": true,
+      "acceptedForRestReview": true
+    },
+    {
+      "label": "home-organizer-3-settled",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-organizer-3-settled-native-zoom-200pct-1440x900.png",
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "sha256": "3ad7339ae1efbd87a99cd2096d7d60f8e33917522dd5614fc2d547f73ab7b511",
+      "inspected": true,
+      "acceptedForRestReview": true
+    },
+    {
+      "label": "home-organizer-4-settled",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-organizer-4-settled-native-zoom-200pct-1440x900.png",
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "sha256": "b16ab12185ae86d93fa43314264221210d479437e0439ec7e1b61834079c17ee",
+      "inspected": true,
+      "acceptedForRestReview": true
+    },
+    {
+      "label": "home-organizers-end-settled",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-organizers-end-settled-320x480.png",
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "sha256": "82f11c2d1ea34891be4fd615defbb2bb28718e9348340e10dbd02d0325620fd9",
+      "inspected": true,
+      "acceptedForRestReview": true
+    },
+    {
+      "label": "home-organizers-end-settled",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-organizers-end-settled-390x480.png",
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "sha256": "7256d86dc52d708a6269f93c2f795d7daaa2196eb5aff8c916c28e3aec5af01a",
+      "inspected": true,
+      "acceptedForRestReview": true
+    },
+    {
+      "label": "home-faq-settled",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/home-faq-settled-390x844.png",
+      "source": "2b35d3e7036a88cf84586dae02ef7b81e39ff9e6",
+      "sha256": "4fdc20eb4616decf45e90506c8baaca3f6ea281f5fbec19bba0d0fe611947bb2",
+      "inspected": true,
+      "acceptedForRestReview": true
+    }
+  ],
+  "checks": [
+    {
+      "config": {
+        "width": 1440,
+        "height": 900,
+        "label": "native-zoom-200pct-1440x900",
+        "zoom": 2
+      },
+      "browserMetrics": {
+        "innerWidth": 720,
+        "innerHeight": 378,
+        "outerWidth": 1440,
+        "outerHeight": 900,
+        "devicePixelRatio": 2,
+        "scale": 1
+      },
+      "shots": [
+        "dom-stress-agenda-url-detail",
+        "home-organizer-2-settled",
+        "home-organizer-3-settled",
+        "home-organizer-4-settled"
+      ],
+      "url": {
+        "box": {
+          "x": 120,
+          "y": 79.7890625,
+          "width": 497.953125,
+          "height": 89.59375,
+          "top": 79.7890625,
+          "right": 617.953125,
+          "bottom": 169.3828125,
+          "left": 120
+        },
+        "clientWidth": 498,
+        "scrollWidth": 498,
+        "documentOverflow": false
+      },
+      "organizers": [
+        {
+          "name": "Parampreet SinghCodex Ambassador",
+          "box": {
+            "x": 0,
+            "y": -481.4765625,
+            "width": 690.5,
+            "height": 164,
+            "top": -481.4765625,
+            "right": 690.5,
+            "bottom": -317.4765625,
+            "left": 0
+          },
+          "animations": 0,
+          "loaded": true
+        },
+        {
+          "name": "Shivay LambaCodex Ambassador",
+          "box": {
+            "x": 22,
+            "y": -289.4765625,
+            "width": 690.5,
+            "height": 164,
+            "top": -289.4765625,
+            "right": 712.5,
+            "bottom": -125.4765625,
+            "left": 22
+          },
+          "animations": 0,
+          "loaded": true
+        },
+        {
+          "name": "Nikhil ShuklaCodex Ambassador",
+          "box": {
+            "x": 0,
+            "y": -97.4765625,
+            "width": 690.5,
+            "height": 164,
+            "top": -97.4765625,
+            "right": 690.5,
+            "bottom": 66.5234375,
+            "left": 0
+          },
+          "animations": 0,
+          "loaded": true
+        },
+        {
+          "name": "Shresth ShuklaCerebras AmbassadorCommunity partner: Cerebras",
+          "box": {
+            "x": 22,
+            "y": 94.5234375,
+            "width": 690.5,
+            "height": 164,
+            "top": 94.5234375,
+            "right": 712.5,
+            "bottom": 258.5234375,
+            "left": 22
+          },
+          "animations": 0,
+          "loaded": true
+        }
+      ],
+      "documentOverflow": false
+    },
+    {
+      "config": {
+        "width": 320,
+        "height": 480,
+        "label": "320x480"
+      },
+      "browserMetrics": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "devicePixelRatio": 1,
+        "scale": 1
+      },
+      "shots": [
+        "home-organizers-end-settled"
+      ],
+      "organizers": [
+        {
+          "name": "Parampreet SinghCodex Ambassador",
+          "box": {
+            "x": 0,
+            "y": -199.515625,
+            "width": 298,
+            "height": 112,
+            "top": -199.515625,
+            "right": 298,
+            "bottom": -87.515625,
+            "left": 0
+          },
+          "animations": 0,
+          "loaded": true
+        },
+        {
+          "name": "Shivay LambaCodex Ambassador",
+          "box": {
+            "x": 22,
+            "y": -59.515625,
+            "width": 298,
+            "height": 112,
+            "top": -59.515625,
+            "right": 320,
+            "bottom": 52.484375,
+            "left": 22
+          },
+          "animations": 0,
+          "loaded": true
+        },
+        {
+          "name": "Nikhil ShuklaCodex Ambassador",
+          "box": {
+            "x": 0,
+            "y": 80.484375,
+            "width": 298,
+            "height": 112,
+            "top": 80.484375,
+            "right": 298,
+            "bottom": 192.484375,
+            "left": 0
+          },
+          "animations": 0,
+          "loaded": true
+        },
+        {
+          "name": "Shresth ShuklaCerebras AmbassadorCommunity partner: Cerebras",
+          "box": {
+            "x": 22,
+            "y": 220.484375,
+            "width": 298,
+            "height": 112,
+            "top": 220.484375,
+            "right": 320,
+            "bottom": 332.484375,
+            "left": 22
+          },
+          "animations": 0,
+          "loaded": true
+        }
+      ],
+      "documentOverflow": false
+    },
+    {
+      "config": {
+        "width": 390,
+        "height": 480,
+        "label": "390x480"
+      },
+      "browserMetrics": {
+        "innerWidth": 390,
+        "innerHeight": 480,
+        "outerWidth": 390,
+        "outerHeight": 480,
+        "devicePixelRatio": 1,
+        "scale": 1
+      },
+      "shots": [
+        "home-organizers-end-settled"
+      ],
+      "organizers": [
+        {
+          "name": "Parampreet SinghCodex Ambassador",
+          "box": {
+            "x": 0,
+            "y": -209.921875,
+            "width": 368,
+            "height": 117,
+            "top": -209.921875,
+            "right": 368,
+            "bottom": -92.921875,
+            "left": 0
+          },
+          "animations": 0,
+          "loaded": true
+        },
+        {
+          "name": "Shivay LambaCodex Ambassador",
+          "box": {
+            "x": 22,
+            "y": -64.921875,
+            "width": 368,
+            "height": 117,
+            "top": -64.921875,
+            "right": 390,
+            "bottom": 52.078125,
+            "left": 22
+          },
+          "animations": 0,
+          "loaded": true
+        },
+        {
+          "name": "Nikhil ShuklaCodex Ambassador",
+          "box": {
+            "x": 0,
+            "y": 80.078125,
+            "width": 368,
+            "height": 117,
+            "top": 80.078125,
+            "right": 368,
+            "bottom": 197.078125,
+            "left": 0
+          },
+          "animations": 0,
+          "loaded": true
+        },
+        {
+          "name": "Shresth ShuklaCerebras AmbassadorCommunity partner: Cerebras",
+          "box": {
+            "x": 22,
+            "y": 225.078125,
+            "width": 368,
+            "height": 117,
+            "top": 225.078125,
+            "right": 390,
+            "bottom": 342.078125,
+            "left": 22
+          },
+          "animations": 0,
+          "loaded": true
+        }
+      ],
+      "documentOverflow": false
+    },
+    {
+      "config": {
+        "width": 390,
+        "height": 844,
+        "label": "390x844"
+      },
+      "browserMetrics": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 390,
+        "outerHeight": 844,
+        "devicePixelRatio": 1,
+        "scale": 1
+      },
+      "shots": [
+        "home-faq-settled"
+      ],
+      "organizers": [
+        {
+          "name": "Parampreet SinghCodex Ambassador",
+          "box": {
+            "x": 0,
+            "y": 816.734375,
+            "width": 368,
+            "height": 117,
+            "top": 816.734375,
+            "right": 368,
+            "bottom": 933.734375,
+            "left": 0
+          },
+          "animations": 0,
+          "loaded": true
+        },
+        {
+          "name": "Shivay LambaCodex Ambassador",
+          "box": {
+            "x": 22,
+            "y": 961.734375,
+            "width": 368,
+            "height": 117,
+            "top": 961.734375,
+            "right": 390,
+            "bottom": 1078.734375,
+            "left": 22
+          },
+          "animations": 0,
+          "loaded": true
+        },
+        {
+          "name": "Nikhil ShuklaCodex Ambassador",
+          "box": {
+            "x": 0,
+            "y": 1106.734375,
+            "width": 368,
+            "height": 117,
+            "top": 1106.734375,
+            "right": 368,
+            "bottom": 1223.734375,
+            "left": 0
+          },
+          "animations": 0,
+          "loaded": true
+        },
+        {
+          "name": "Shresth ShuklaCerebras AmbassadorCommunity partner: Cerebras",
+          "box": {
+            "x": 22,
+            "y": 1251.734375,
+            "width": 368,
+            "height": 117,
+            "top": 1251.734375,
+            "right": 390,
+            "bottom": 1368.734375,
+            "left": 22
+          },
+          "animations": 0,
+          "loaded": true
+        }
+      ],
+      "documentOverflow": false
+    }
+  ],
+  "errors": [],
+  "blockedRequests": [],
+  "finalResult": "passed",
+  "inspectionNotes": "All seven native screenshots opened individually. Full unbroken agenda URL is visible within its column at native200% zoom. Remaining portrait rows and partner text are readable after entrance completion at native200%,320x480 and390x480.390x844 FAQ and adjacent organizer entrance are stable. No source edits were required for these timing corrections."
+}
