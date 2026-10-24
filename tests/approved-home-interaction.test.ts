@@ -109,7 +109,8 @@ test("airblower substantially moves multiple nearby dots and settles home inside
 });
 test("approved Home SSR has exact day/actions, real organizers and unenhanced readable chapters with no fabricated agenda", () => {
   const html = renderToStaticMarkup(createElement(Home));
-  assert.match(html, /Sunday, 1 November 2026 · Hosted by Codex Ambassadors/);
+  assert.match(html, /Sunday, 1 November 2026<\/span>/);
+  assert.match(html, /Hosted by Codex Ambassadors<\/span>/);
   assert.doesNotMatch(html, /—/);
   assert.match(html, /Continue to portal/);
   assert.match(html, /https:\/\/luma.com\/6t5uk4lo/);

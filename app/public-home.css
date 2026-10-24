@@ -1315,84 +1315,121 @@
   }
 }
 
-/* The compact hero is a growing content stack. Decoration never owns a touch
-   target or reserves a tall block between the primary actions and scroll cue. */
+/* Selected mobile board: identity, side expressions, actions and settling pile
+   occupy separate grid rows. Decoration never sits beneath an interactive row. */
+.public-home-shell .hero-host::before {
+  content: " · ";
+}
 @media (max-width: 999px) {
   .public-home-shell .home-hero {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 44px;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto minmax(144px, 1fr) auto 168px;
     align-items: start;
-    align-content: start;
-    column-gap: 12px;
-    row-gap: 18px;
+    align-content: stretch;
+    gap: 0;
     min-height: calc(100svh - var(--public-header-height, 64px));
     height: auto;
     max-height: none;
-    padding: 24px 20px;
-    overflow: visible;
+    padding: 28px 20px env(safe-area-inset-bottom, 0px);
+    overflow: clip;
   }
   .public-home-shell .hero-copy {
-    position: relative;
-    z-index: 1;
-    grid-column: 1 / -1;
-    width: 100%;
-    max-width: none;
-    min-width: 0;
-    margin: 0;
+    display: contents;
   }
   .public-home-shell .home-hero h1 {
-    margin-bottom: 16px;
-    font-size: clamp(26px, 8.15vw, 72px);
-    overflow-wrap: anywhere;
-  }
-  .public-home-shell .hero-title-lines > span {
-    white-space: normal;
-  }
-  .public-home-shell .hero-date {
-    max-width: none;
-    margin: 18px 0;
-    font-size: 16px;
-    line-height: 1.4;
-  }
-  .public-home-shell .hero-actions {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 12px;
-    width: 100%;
-  }
-  .public-home-shell .hero-register,
-  .public-home-shell .primary-cta {
     position: relative;
     z-index: 1;
+    grid-row: 1;
+    margin: 0;
+    font-size: clamp(34px, 10.5vw, 70px);
+    line-height: 1;
+    letter-spacing: -0.06em;
+    overflow-wrap: normal;
+  }
+  .public-home-shell .hero-title-lines > span {
+    display: block;
+    font-size: 1em;
+    white-space: normal;
+  }
+  .public-home-shell .hero-title-lines > span:first-child {
+    font-size: 1em;
+  }
+  .public-home-shell .delhi-wordmark {
+    margin-top: 18px;
+  }
+  .public-home-shell .hero-date {
+    grid-row: 2;
+    position: relative;
+    z-index: 1;
+    max-width: none;
+    margin: 20px 0 0;
+    font-size: clamp(16px, 4.4vw, 21px);
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.03em;
+  }
+  .public-home-shell .hero-date > span {
+    display: block;
+  }
+  .public-home-shell .hero-host {
+    font-weight: 400;
+  }
+  .public-home-shell .hero-host::before {
+    content: none;
+  }
+  .public-home-shell .hero-actions {
+    grid-row: 4;
+    position: relative;
+    z-index: 2;
+    display: grid;
+    gap: 12px;
+    width: 100%;
+    padding: 0;
+  }
+  .public-home-shell .hero-register {
+    justify-self: center;
+    justify-content: center;
+    width: max-content;
+    min-height: 44px;
+    margin: 0;
+    padding: 8px 16px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #111515;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  .public-home-shell .primary-cta {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 16px;
     width: 100%;
-    max-width: none;
-    min-height: 52px;
+    min-height: 58px;
     margin: 0;
-    padding: 14px 20px;
+    padding: 15px 24px;
+    border-radius: 50px;
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.4;
     pointer-events: auto;
   }
-  .public-home-shell .hero-register {
-    border: 1px solid #dce3df;
-    border-radius: 50px;
-    background: #fff;
-    color: #111515;
-  }
   .public-home-shell .hero-actions svg {
-    flex: 0 0 20px;
+    flex: 0 0 22px;
   }
   .public-home-shell .hero-art {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    grid-row: 3;
+    align-self: stretch;
+    inset: auto;
+    left: -20px;
     z-index: 0;
-    width: 100%;
+    width: calc(100% + 40px);
     height: 100%;
-    min-height: 0;
+    min-height: 144px;
     margin: 0;
     aspect-ratio: auto;
     overflow: hidden;
@@ -1404,23 +1441,39 @@
     pointer-events: none;
   }
   .public-home-shell .home-motion-strip {
-    display: none;
+    position: relative;
+    grid-row: 5;
+    inset: auto;
+    left: -20px;
+    display: block;
+    width: calc(100% + 40px);
+    height: 168px;
+    min-height: 168px;
+    overflow: hidden;
   }
   .public-home-shell .scroll-cue,
   .public-home-shell .motion-toggle {
-    position: relative;
-    inset: auto;
-    z-index: 1;
-    align-self: center;
+    position: absolute;
+    z-index: 3;
+    bottom: max(8px, env(safe-area-inset-bottom));
+    width: 44px;
+    height: 44px;
     margin: 0;
   }
   .public-home-shell .scroll-cue {
-    grid-column: 1;
-    justify-self: center;
-    margin-left: 56px;
+    left: calc(50% - 22px);
   }
   .public-home-shell .motion-toggle {
-    grid-column: 2;
-    justify-self: end;
+    left: auto;
+    right: 20px;
+  }
+}
+@media (max-width: 359px) {
+  .public-home-shell .home-hero h1 {
+    font-size: 10.8vw;
+  }
+  .public-home-shell .primary-cta {
+    font-size: 16px;
+    padding-inline: 20px;
   }
 }

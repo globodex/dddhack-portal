@@ -77,6 +77,24 @@ export const desktopDots: PublicDot[] = [
 ];
 // Keep the same eight-instance composition and five size tiers on compact stages.
 export const mobileDots: PublicDot[] = desktopDots;
+// The selected compact hero has a quiet centre for its actions and a separate
+// bottom pile. Coordinates share a 480-unit horizontal stage, not desktop height.
+export const compactSideDots: PublicDot[] = [
+  { ...desktopDots[0], x: 0, y: 112, diameter: 114 },
+  { ...desktopDots[3], x: 86, y: 70, diameter: 76 },
+  { ...desktopDots[1], x: 480, y: 55, diameter: 108 },
+  { ...desktopDots[2], x: 431, y: 138, diameter: 80 },
+];
+export const compactStripDots: PublicDot[] = [
+  { ...desktopDots[0], x: -8, y: -8, diameter: 100 },
+  { ...desktopDots[2], expression: "cheerful", x: 44, y: 16, diameter: 160 },
+  { ...desktopDots[1], x: 150, y: 8, diameter: 128 },
+  { ...desktopDots[5], x: 200, y: -8, diameter: 88 },
+  { ...desktopDots[0], x: 292, y: 0, diameter: 160 },
+  { ...desktopDots[3], x: 368, y: 52, diameter: 112 },
+  { ...desktopDots[4], x: 430, y: -4, diameter: 160 },
+  { ...desktopDots[6], x: 510, y: 44, diameter: 128 },
+];
 export const stripDots: PublicDot[] = [
   { ...desktopDots[6], diameter: 82 },
   { ...desktopDots[5], diameter: 56 },
@@ -115,6 +133,7 @@ export function airblowerTarget(
   width: number,
   height: number,
   bottom: boolean,
+  edgeBleed = false,
 ) {
   if (!pointer) return { x: dot.homeX, y: dot.homeY };
   const dx = dot.homeX - pointer.x,
@@ -128,7 +147,11 @@ export function airblowerTarget(
   const nx = distance > 0.1 ? dx / distance : 0,
     ny = distance > 0.1 ? dy / distance : -1;
   return {
-    x: clamp(dot.homeX + nx * force, dot.r, Math.max(dot.r, width - dot.r)),
+    x: clamp(
+      dot.homeX + nx * force,
+      edgeBleed ? -dot.r * 0.35 : dot.r,
+      Math.max(dot.r, edgeBleed ? width + dot.r * 0.35 : width - dot.r),
+    ),
     y: clamp(
       dot.homeY + ny * force,
       dot.r,
@@ -143,11 +166,16 @@ export function advanceDot(
   width: number,
   height: number,
   bottom: boolean,
+  edgeBleed = false,
 ) {
   const step = clamp(dt, 0.1, 2);
   dot.vx = (dot.vx + (target.x - dot.x) * 0.045 * step) * Math.pow(0.77, step);
   dot.vy = (dot.vy + (target.y - dot.y) * 0.045 * step) * Math.pow(0.77, step);
-  dot.x = clamp(dot.x + dot.vx * step, dot.r, Math.max(dot.r, width - dot.r));
+  dot.x = clamp(
+    dot.x + dot.vx * step,
+    edgeBleed ? -dot.r * 0.35 : dot.r,
+    Math.max(dot.r, edgeBleed ? width + dot.r * 0.35 : width - dot.r),
+  );
   dot.y = clamp(
     dot.y + dot.vy * step,
     dot.r,

@@ -1,9 +1,11 @@
 "use client";
 import { useEffect, useRef, type CSSProperties } from "react";
 import DotAvatar from "./dot-avatar";
+import { dotExpressions } from "../lib/avatar-contract";
 import {
   desktopDots,
-  mobileDots,
+  compactSideDots,
+  compactStripDots,
   stripDots,
   airblowerTarget,
   advanceDot,
@@ -32,6 +34,7 @@ export default function Dots({
       frame = 0,
       previous = 0;
     let entrance = 0,
+      compact = false,
       visible = false,
       alive = true,
       active = false;
@@ -82,11 +85,12 @@ export default function Dots({
           moving =
             advanceDot(
               dot,
-              airblowerTarget(dot, pointer, width, height, bottom),
+              airblowerTarget(dot, pointer, width, height, bottom, compact),
               dt,
               width,
               height,
               bottom,
+              compact,
             ) || moving;
       });
       paint();
@@ -130,25 +134,53 @@ export default function Dots({
       height = rect.height;
       active = width > 0 && height > 0;
       const entering = !entered.current && !paused && !reduced.matches;
-      const compact = innerWidth < 1000;
+      compact = innerWidth < 1000;
       const descriptors = bottom
-        ? stripDots
+        ? compact
+          ? compactStripDots
+          : stripDots
         : compact
-          ? mobileDots
+          ? compactSideDots
           : desktopDots;
-      const scale = bottom ? Math.min(1.55, width / 760) : width / 480;
+      const scale = compact
+        ? Math.min(bottom ? 1.2 : 1, width / 480)
+        : bottom
+          ? Math.min(1.55, width / 760)
+          : width / 480;
       dots = descriptors.map((item, i) => {
         const r = (item.diameter * scale) / 2;
-        const homeX = bottom
+        const homeX = compact
+          ? Math.max(
+              -r * 0.35,
+              Math.min(width + r * 0.35, (item.x * width) / 480),
+            )
+          : bottom
+            ? Math.max(
+                r,
+                Math.min(width - r, ((i + 0.5) * width) / descriptors.length),
+              )
+            : item.x * scale;
+        const homeY = bottom
           ? Math.max(
               r,
-              Math.min(width - r, ((i + 0.5) * width) / descriptors.length),
+              Math.min(
+                height - r * 0.65,
+                height - r * 0.65 - (compact ? item.y * scale : 0),
+              ),
             )
-          : item.x * scale;
-        const homeY = bottom ? height - r * 0.65 : item.y * scale;
+          : Math.max(r, Math.min(height - r, item.y * scale));
         nodes[i].style.display = "block";
         nodes[i].style.width = nodes[i].style.height = `${r * 2}px`;
         nodes[i].querySelector("circle")?.setAttribute("fill", item.fill);
+        const symbols =
+          dotExpressions[item.expression as keyof typeof dotExpressions];
+        marks[i]?.querySelectorAll("tspan").forEach((span, index) => {
+          span.textContent = symbols[index];
+        });
+        marks[i]?.setAttribute(
+          "fill",
+          item.color === "charcoal" ? "white" : "#111",
+        );
         const startY = -r * (i + 2);
         return {
           x: homeX,

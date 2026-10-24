@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import {
   ArrowDown,
-  ArrowLeft,
   ArrowRight,
   ArrowUp,
   ArrowUpRight,
@@ -14,14 +13,9 @@ import {
 import Dots from "./dots";
 import DelhiWordmark from "./delhi-wordmark";
 import OrganizerSection from "./organizer-section";
-import PortraitBackdrop from "./portrait-backdrop";
+import { HeadingDot } from "./expressive-heading";
 import { defaultPublicContent } from "../lib/event-content-contract";
-import {
-  agendaDestination,
-  agendaGeometry,
-  confirmedAgenda,
-  stackGeometry,
-} from "./home-geometry";
+import { confirmedAgenda, stackGeometry } from "./home-geometry";
 type Content = typeof defaultPublicContent;
 const faqs = [
   [
@@ -53,23 +47,6 @@ const faqs = [
     "Check your Dashboard and the event registration page for updates from the organizers.",
   ],
 ];
-// The portrait layout is still under design review. Do not mount extra motion
-// fields there, or turn the approved desktop decoration into a mobile layout.
-function ChapterDecoration({ paused }: { paused: boolean }) {
-  const [desktop, setDesktop] = useState(false);
-  useEffect(() => {
-    const media = matchMedia("(min-width: 741px)");
-    const update = () => setDesktop(media.matches);
-    update();
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, []);
-  return (
-    <div className="chapter-decoration" aria-hidden="true">
-      {desktop && <Dots paused={paused} />}
-    </div>
-  );
-}
 function Chapters({
   items,
   paused,
@@ -77,72 +54,27 @@ function Chapters({
   items: Content["agenda"];
   paused: boolean;
 }) {
-  const root = useRef<HTMLDivElement>(null),
-    track = useRef<HTMLOListElement>(null);
-  const geometry = useRef({ start: 0, distance: 0, offsets: [] as number[] });
-  const [list, setList] = useState(false),
-    [step, setStep] = useState(0);
+  const root = useRef<HTMLDivElement>(null);
   const agenda = confirmedAgenda(items);
   useEffect(() => {
-    const node = root.current,
-      rail = track.current;
+    const node = root.current;
     if (!node) return;
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
     const chapters = [...node.querySelectorAll<HTMLElement>(".chapter")];
     let frame = 0,
-      measureFrame = 0,
-      alive = true,
-      initialized = false,
-      activeStep = -1;
-    const paint = () => {
-      frame = 0;
-      if (!rail || node.dataset.agenda !== "true") return;
-      const { start, distance, offsets } = geometry.current;
-      const { translation } = agendaGeometry(start, distance, scrollY);
-      rail.style.transform = `translate3d(${translation}px,0,0)`;
-      const position = -translation;
-      let index = 0;
-      offsets.forEach((offset, i) => {
-        if (position >= Math.min(offset, distance) - 2) index = i;
-      });
-      if (activeStep !== index) {
-        activeStep = index;
-        setStep(index);
-      }
-    };
-    const scroll = () => {
-      if (!frame) frame = requestAnimationFrame(paint);
-    };
+      alive = true;
     const measure = () => {
-      measureFrame = 0;
+      frame = 0;
       if (!alive) return;
-      const previous = node.dataset.enhanced === "true";
-      const anchor =
-        initialized && node.getBoundingClientRect().top < 0
-          ? [...chapters].reverse().find((chapter) => {
-              const rect = chapter.getBoundingClientRect();
-              return rect.top < innerHeight && rect.bottom > 60;
-            })
-          : undefined;
-      const anchorTop = anchor?.getBoundingClientRect().top;
-      const horizontal =
-        !list &&
-        !paused &&
-        !reduced.matches &&
-        innerWidth >= 768 &&
-        innerHeight >= 620 &&
-        agenda.length > 1;
-      node.dataset.agenda = String(horizontal);
+      const header = document.querySelector<HTMLElement>(".public-header");
+      const headerHeight =
+        header && getComputedStyle(header).position === "sticky"
+          ? header.getBoundingClientRect().height
+          : 0;
       const natural = chapters.map(
         (chapter) =>
           chapter.querySelector<HTMLElement>(".chapter-content")!.scrollHeight,
       );
-      const publicHeader =
-        document.querySelector<HTMLElement>(".public-header");
-      const headerHeight =
-        publicHeader && getComputedStyle(publicHeader).position === "sticky"
-          ? publicHeader.getBoundingClientRect().height
-          : 0;
       const layout = stackGeometry(
         innerWidth,
         innerHeight - headerHeight,
@@ -150,56 +82,25 @@ function Chapters({
         paused || reduced.matches,
       );
       node.dataset.enhanced = String(layout.enabled);
-      node.dataset.agenda = String(layout.enabled && horizontal);
-      chapters.forEach((chapter, i) => {
+      chapters.forEach((chapter, index) => {
         chapter.style.setProperty(
           "--chapter-top",
-          `${layout.tops[i] + headerHeight}px`,
+          `${layout.tops[index] + headerHeight}px`,
         );
-        chapter.style.setProperty("--chapter-stage", `${layout.stages[i]}px`);
+        chapter.style.setProperty(
+          "--chapter-stage",
+          `${layout.stages[index]}px`,
+        );
       });
-      const windowNode = rail?.parentElement;
-      const distance =
-        layout.enabled && horizontal && rail && windowNode
-          ? Math.max(0, rail.scrollWidth - windowNode.clientWidth)
-          : 0;
-      node.style.setProperty("--agenda-travel", `${distance}px`);
-      geometry.current = {
-        start:
-          node.getBoundingClientRect().top +
-          scrollY -
-          layout.tops[0] -
-          headerHeight,
-        distance,
-        offsets: rail
-          ? [...rail.children].map((child) => (child as HTMLElement).offsetLeft)
-          : [],
-      };
-      if (rail && !distance) rail.style.transform = "";
-      if (
-        initialized &&
-        previous !== layout.enabled &&
-        anchor &&
-        anchorTop !== undefined
-      ) {
-        window.scrollBy({
-          top: anchor.getBoundingClientRect().top - anchorTop,
-          behavior: "instant",
-        });
-      }
-      initialized = true;
-      paint();
     };
     const queueMeasure = () => {
-      if (!measureFrame) measureFrame = requestAnimationFrame(measure);
+      if (!frame) frame = requestAnimationFrame(measure);
     };
     const resize = new ResizeObserver(queueMeasure);
     chapters.forEach((chapter) =>
       resize.observe(chapter.querySelector(".chapter-content")!),
     );
-    if (rail?.parentElement) resize.observe(rail.parentElement);
     window.addEventListener("resize", queueMeasure);
-    window.addEventListener("scroll", scroll, { passive: true });
     node.addEventListener("toggle", queueMeasure, true);
     reduced.addEventListener("change", queueMeasure);
     document.fonts.ready.then(() => {
@@ -210,30 +111,24 @@ function Chapters({
       alive = false;
       resize.disconnect();
       cancelAnimationFrame(frame);
-      cancelAnimationFrame(measureFrame);
       window.removeEventListener("resize", queueMeasure);
-      window.removeEventListener("scroll", scroll);
       node.removeEventListener("toggle", queueMeasure, true);
       reduced.removeEventListener("change", queueMeasure);
     };
-  }, [items, paused, list]);
-  const go = (index: number) => {
-    if (root.current?.dataset.agenda === "true") {
-      const { start, distance, offsets } = geometry.current;
-      window.scrollTo({
-        top: agendaDestination(start, distance, offsets[index] || 0),
-        behavior: "instant",
-      });
-    } else
-      document
-        .getElementById(`agenda-${index}`)
-        ?.scrollIntoView({ block: "nearest", behavior: "instant" });
-    setStep(index);
-  };
+  }, [items, paused]);
+  const colors = ["blue", "green", "orange", "purple"] as const;
+  const expressions = ["squeezed", "plus", "sleepy", "round"] as const;
   const heading = (index: number, name: string) => (
     <header className="chapter-heading">
-      <span className="chapter-number">0{index + 1}</span>
-      <h2>{name}</h2>
+      <h2>
+        {name}
+        <HeadingDot
+          color={colors[index]}
+          expression={expressions[index]}
+          size={44}
+          paused={paused}
+        />
+      </h2>
     </header>
   );
   return (
@@ -251,52 +146,23 @@ function Chapters({
               08:00 to 20:00 <span>IST</span>
             </h3>
             {agenda.length ? (
-              <>
-                <div className="agenda-window">
-                  <ol className="agenda-track" ref={track}>
-                    {agenda.map((item, index) => (
-                      <li key={index} id={`agenda-${index}`}>
-                        <span className="eyebrow">{item.time}</span>
-                        <h4>{item.title}</h4>
-                        <p>{item.description}</p>
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-                {agenda.length > 1 && (
-                  <div className="agenda-controls">
-                    <button
-                      className="button secondary"
-                      disabled={step === 0}
-                      onClick={() => go(Math.max(0, step - 1))}
-                    >
-                      <ArrowLeft size={18} aria-hidden="true" /> Previous
-                    </button>
-                    <button
-                      className="button secondary"
-                      disabled={step === agenda.length - 1}
-                      onClick={() => go(Math.min(agenda.length - 1, step + 1))}
-                    >
-                      Next <ArrowRight size={18} aria-hidden="true" />
-                    </button>
-                    <button
-                      className="link-button"
-                      aria-pressed={list}
-                      onClick={() => setList(!list)}
-                    >
-                      {list ? "Use scroll progression" : "Show normal list"}
-                    </button>
-                  </div>
-                )}
-              </>
+              <ol className="agenda-timeline">
+                {agenda.map((item, index) => (
+                  <li key={index} id={`agenda-${index}`}>
+                    <time>{item.time}</time>
+                    <div>
+                      <h4>{item.title}</h4>
+                      {item.description && <p>{item.description}</p>}
+                    </div>
+                  </li>
+                ))}
+              </ol>
             ) : (
               <p className="agenda-pending">Agenda to follow</p>
             )}
           </div>
-          <ChapterDecoration paused={paused} />
         </div>
       </section>
-      <div className="agenda-duration" aria-hidden="true" />
       <section
         id="venue"
         className="chapter"
@@ -308,7 +174,6 @@ function Chapters({
             <h3>IIIT Delhi</h3>
             <p>New Delhi</p>
           </div>
-          <ChapterDecoration paused={paused} />
         </div>
       </section>
       <section
@@ -333,7 +198,6 @@ function Chapters({
               versions.
             </li>
           </ol>
-          <ChapterDecoration paused={paused} />
         </div>
       </section>
       <section
@@ -363,7 +227,6 @@ function Chapters({
               </details>
             ))}
           </div>
-          <ChapterDecoration paused={paused} />
         </div>
       </section>
     </div>
@@ -448,7 +311,6 @@ export default function Home({
   }, [paused, ready, visible]);
   return (
     <div className="home" data-paused={paused}>
-      <PortraitBackdrop paused={paused} />
       <section className="home-hero" aria-labelledby="home-title" ref={hero}>
         <div className="hero-copy">
           <h1
@@ -463,7 +325,8 @@ export default function Home({
             <DelhiWordmark paused={paused || !ready || !visible} />
           </h1>
           <p className="hero-date">
-            Sunday, 1 November 2026 · Hosted by Codex Ambassadors
+            <span>Sunday, 1 November 2026</span>
+            <span className="hero-host">Hosted by Codex Ambassadors</span>
           </p>
           <div className="hero-actions">
             <a
@@ -476,11 +339,7 @@ export default function Home({
             </a>
             <a
               className="button primary-cta"
-              href={
-                signedIn
-                  ? "/dashboard"
-                  : "/signin?returnTo=%2Fdashboard"
-              }
+              href={signedIn ? "/dashboard" : "/signin?returnTo=%2Fdashboard"}
               target="_top"
             >
               {signedIn ? "Open your Dashboard" : "Continue to portal"}
