@@ -1278,7 +1278,7 @@ export class PortalService {
             problemSolution: text(500),
             description: text(6000),
             github: githubUrl,
-            commitSha: z.unknown().transform(() => ""),
+            commitSha: z.unknown().optional().transform(() => ""),
             demo: optionalUrl,
             video: optionalUrl,
             gtm: text(3000),
@@ -1290,8 +1290,8 @@ export class PortalService {
               .max(6)
               .refine((items) => new Set(items).size === items.length)
               .optional(),
-            toolEffectiveness: z.unknown().transform(() => ""),
-            contributions: z.unknown().transform(() => []),
+            toolEffectiveness: z.unknown().optional().transform(() => ""),
+            contributions: z.unknown().optional().transform(() => []),
             openaiClaim: bool,
             cerebrasClaim: bool,
             openaiEvidence: z.string().max(4000).default(""),

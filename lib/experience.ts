@@ -118,7 +118,7 @@ const draftSchema = z
     problemSolution: z.string().max(500).default(""),
     description: z.string().max(6000).default(""),
     github: z.string().max(2048).default(""),
-    commitSha: z.unknown().transform(() => ""),
+    commitSha: z.unknown().optional().transform(() => ""),
     demo: z.string().max(2048).default(""),
     logo: z.string().max(180000).default(""),
     banner: z.string().max(180000).default(""),
@@ -130,7 +130,7 @@ const draftSchema = z
       .refine((items) => new Set(items).size === items.length)
       .optional(),
     // Retired participant fields are ignored before request identity/persistence.
-    contributions: z.unknown().transform(() => []),
+    contributions: z.unknown().optional().transform(() => []),
     attestation: z.boolean().default(false),
   })
   .strict();
