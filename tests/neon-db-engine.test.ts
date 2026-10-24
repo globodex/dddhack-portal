@@ -12,6 +12,32 @@ import * as schema from "../neon/db/schema";
 import manifest from "../neon/migrations/baseline-manifest.json";
 
 const time = "2026-11-01T06:00:00.000Z";
+const stockTriggerNames = [
+  "credit_stock_not_retired",
+  "credit_stock_record",
+  "credit_stock_immutable",
+  "credit_history_no_delete",
+  "credit_history_immutable",
+  "credit_assignment_not_recycled",
+  "credit_assignment_record",
+  "credit_assignment_immutable",
+  "credit_import_no_update",
+  "credit_import_no_delete",
+];
+const terminalTriggerNames = [
+  "terminal_delete_no_update",
+  "terminal_delete_no_delete",
+  "terminal_delete_authority",
+  "terminal_no_restore",
+  "terminal_team_no_reuse",
+  "terminal_participant_no_profile",
+  "attempt_ledger_no_decrease",
+  "attempt_ledger_no_delete",
+  "durable_submission_attempt",
+  "durable_submission_record",
+  "terminal_credit_retire",
+  "terminal_private_metadata",
+];
 
 test("PostgreSQL baseline installs every portal table/trigger and checksum migrations are repeatable", async () => {
   const { db, engine, pool, migrations } = await createPGliteFixture();
@@ -19,17 +45,39 @@ test("PostgreSQL baseline installs every portal table/trigger and checksum migra
     const tables = await engine.query<{ count: number }>(
       "SELECT count(*)::int count FROM pg_tables WHERE schemaname='public' AND tablename <> 'portal_schema_migrations'",
     );
-    assert.equal(tables.rows[0].count, 67);
+    const logicalTables = Object.values(schema).map(getTableConfig);
+    const expectedTriggerNames = [
+      ...manifest.triggers,
+      ...stockTriggerNames,
+      ...terminalTriggerNames,
+    ].sort();
+    assert.equal(tables.rows[0].count, logicalTables.length);
     const triggers = await engine.query<{ count: number }>(
       "SELECT count(*)::int count FROM pg_trigger WHERE NOT tgisinternal",
     );
-    assert.equal(triggers.rows[0].count, 191 + 10 + 67);
+    assert.equal(
+      triggers.rows[0].count,
+      expectedTriggerNames.length + logicalTables.length,
+    );
     const triggerNames = await engine.query<{ tgname: string }>(
       "SELECT tgname FROM pg_trigger WHERE NOT tgisinternal AND tgname <> 'portal_serializable' ORDER BY tgname",
     );
     assert.deepEqual(
       triggerNames.rows.map((row) => row.tgname),
-      [...manifest.triggers, "credit_stock_not_retired", "credit_stock_record", "credit_stock_immutable", "credit_history_no_delete", "credit_history_immutable", "credit_assignment_not_recycled", "credit_assignment_record", "credit_assignment_immutable", "credit_import_no_update", "credit_import_no_delete"].sort(),
+      expectedTriggerNames,
+    );
+    const serializable = await engine.query<{
+      table_name: string;
+      trigger_count: number;
+    }>(
+      "SELECT c.relname table_name,count(*)::int trigger_count FROM pg_trigger t JOIN pg_class c ON c.oid=t.tgrelid JOIN pg_namespace n ON n.oid=c.relnamespace WHERE NOT t.tgisinternal AND t.tgname='portal_serializable' AND n.nspname='public' GROUP BY c.relname ORDER BY c.relname",
+    );
+    assert.deepEqual(
+      serializable.rows,
+      logicalTables
+        .map((table) => ({ table_name: table.name, trigger_count: 1 }))
+        .sort((a, b) => a.table_name.localeCompare(b.table_name)),
+      "every logical table has exactly one SERIALIZABLE mutation guard",
     );
     const columns = await engine.query<{
       table_name: string;

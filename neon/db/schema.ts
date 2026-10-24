@@ -1152,3 +1152,33 @@ export const portal_media_uploads = pgTable(
     ),
   ],
 );
+
+// These identifiers deliberately outlive their removed parent records.
+export const terminal_record_deletions = pgTable(
+  "terminal_record_deletions",
+  {
+    kind: text("kind").notNull(),
+    target_id: text("target_id").notNull(),
+    deleted_at: text("deleted_at").notNull(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.kind, table.target_id] }),
+    check(
+      "terminal_record_deletions_kind_check",
+      sql`${table.kind} IN ('participant','team')`,
+    ),
+  ],
+);
+export const submission_attempt_ledger = pgTable(
+  "submission_attempt_ledger",
+  {
+    team_id: text("team_id").primaryKey(),
+    attempts: integer("attempts").notNull(),
+  },
+  (table) => [
+    check(
+      "submission_attempt_ledger_attempts_check",
+      sql`${table.attempts} BETWEEN 1 AND 3`,
+    ),
+  ],
+);
