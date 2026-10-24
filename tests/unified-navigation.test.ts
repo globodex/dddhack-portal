@@ -44,6 +44,11 @@ test("saved participant and staff avatars use the same header, without a separat
     );
     assert.match(header, /aria-label="Open navigation"/);
     assert.match(header, /data-avatar-state="saved"/);
+    assert.ok(
+      header.indexOf('class="navigation-account"') <
+        header.indexOf('class="navigation-toggle"'),
+      "Saved profile precedes the rightmost hamburger",
+    );
     assert.ok(header.includes(`fill="${dotColors[color]}"`));
     assert.doesNotMatch(header, /lucide-user-round|nav@portal.test/);
     assert.doesNotMatch(html, /<aside class="sidebar"|id="public-navigation"/);

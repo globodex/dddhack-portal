@@ -39,21 +39,6 @@ export function NavigationControls({
   const avatarState = navigationAvatarState(account);
   return (
     <div className="navigation-controls">
-      <button
-        type="button"
-        className="navigation-toggle"
-        aria-label="Open navigation"
-        aria-expanded={open}
-        aria-controls="mobile-navigation"
-        aria-haspopup="dialog"
-        disabled={!hydrated}
-        onClick={(event) => {
-          event.currentTarget.focus();
-          onOpen();
-        }}
-      >
-        <Menu size={22} aria-hidden="true" />
-      </button>
       <a
         className="navigation-account"
         data-avatar-state={avatarState}
@@ -74,6 +59,21 @@ export function NavigationControls({
           <LogIn size={20} aria-hidden="true" />
         )}
       </a>
+      <button
+        type="button"
+        className="navigation-toggle"
+        aria-label="Open navigation"
+        aria-expanded={open}
+        aria-controls="mobile-navigation"
+        aria-haspopup="dialog"
+        disabled={!hydrated}
+        onClick={(event) => {
+          event.currentTarget.focus();
+          onOpen();
+        }}
+      >
+        <Menu size={22} aria-hidden="true" />
+      </button>
     </div>
   );
 }
