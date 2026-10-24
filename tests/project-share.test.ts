@@ -101,6 +101,17 @@ test("success requires a real committed receipt, exact count, and fresh server g
     publicPath: null,
   });
   assert.deepEqual(
+    submittedProjectSuccess(result, {
+      ...fresh,
+      submissionAccess: { attemptsUsed: 3 },
+    }),
+    {
+      attempt: 1,
+      publicPath: "/projects/small-wonder",
+    },
+    "An idempotent receipt keeps its own committed attempt instead of a newer workspace count",
+  );
+  assert.deepEqual(
     submittedProjectSuccess(result, { ...fresh, projectPublicPath: null }),
     { attempt: 1, publicPath: null },
   );

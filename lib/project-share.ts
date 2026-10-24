@@ -76,9 +76,11 @@ export function submittedProjectSuccess(
   // A successful commit receipt is required. Neither an old page nor a draft
   // save can produce the popup or an additional committed-attempt chip.
   if (typeof result.versionId !== "string" || !result.versionId) return null;
-  const attempt = Number.isInteger(fresh?.submissionAccess?.attemptsUsed)
-    ? fresh!.submissionAccess.attemptsUsed
-    : result.attemptsUsed;
+  // The receipt identifies this commit even if a later version is visible by
+  // the time the page refreshes (or this request is an idempotent retry).
+  const attempt = Number.isInteger(result.attemptsUsed)
+    ? result.attemptsUsed
+    : fresh?.submissionAccess?.attemptsUsed;
   if (!Number.isInteger(attempt) || attempt < 1 || attempt > 3) return null;
   return {
     attempt,
