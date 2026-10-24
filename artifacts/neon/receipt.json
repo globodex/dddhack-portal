@@ -1,16 +1,16 @@
 {
-  "runtimeSource": "354aba6bdd36cafd8a83afd46cbf17ab160b24cc",
+  "runtimeSource": "80a37a2e0930631617ed01ff47a629f7847b30ca",
   "runtime": "nodejs24",
   "source": "neon/api.ts",
-  "zipBytes": 9019301,
-  "sha256": "63acbca1b5e671daffa49ab325f236536393d4ca07cd37f3fb0e35e8b11d2276",
+  "zipBytes": 9019298,
+  "sha256": "ccf462c825655b78671dec4cecac78be5da5b77430f982f2275516246cab8b93",
   "env": {},
   "warnings": [],
   "buildOnly": true,
   "deployment": "not performed",
   "packager": "@neon/config-runtime@1.10.2",
   "nativeExecution": "not verified on this x86_64 executor",
-  "uncompressedBytes": 21166387,
+  "uncompressedBytes": 21166383,
   "fileCount": 93,
   "nativeArchitecture": "Linux ARM64 glibc",
   "nativeFiles": [
@@ -32,16 +32,16 @@
   "archiveHasSecretsOrTests": [],
   "bannerPresent": true,
   "externalSharpImport": true,
-  "indexSha256": "b9d22c188df2b78c7595093240151409aaa416b627a4d5c1630c9563b4853741",
+  "indexSha256": "d710a5d53628734b80199b6e76d3e7254fbc647f8ac872a42b85612f20b3038c",
   "archive": "artifacts/neon/portalapi.zip",
   "graphInputCount": 865,
   "graphApplicationInputCount": 81,
   "forbiddenInputs": [],
   "graphFrontendInputs": [],
   "graphRecomputed": true,
-  "graphEvidence": "evidence/final-neon-api-archive/graph.json",
-  "runtimeInputHashes": "evidence/final-neon-api-archive/runtime-input-hashes.json",
-  "allInputHashes": "evidence/final-neon-api-archive/all-input-hashes.json",
+  "graphEvidence": "evidence/final-neon-api-refresh/graph.json",
+  "runtimeInputHashes": "evidence/final-neon-api-refresh/runtime-input-hashes.json",
+  "allInputHashes": "evidence/final-neon-api-refresh/all-input-hashes.json",
   "limits": {
     "maxZipBytes": 10485760,
     "maxTotalBytes": 67108864,
@@ -95,16 +95,16 @@
   ],
   "hostedMigrationLedgerInspected": false,
   "manualMigrationMode": "Owner-operated pending-only upgrade. Existing nine-ledger target applies only0104 after verified backup/restore checkpoint and fresh inspect. Seven historical LF or precisely recognized whole-seven CRLF histories remain supported; no historical ledger rewrite. No migration performed by this archive build.",
-  "previousArchiveSha256": "bbd047173fb4e895bd8148d24674548f05dfaea58e184ca57bcc0e183ca60382",
+  "previousArchiveSha256": "63acbca1b5e671daffa49ab325f236536393d4ca07cd37f3fb0e35e8b11d2276",
   "changedArchiveEntries": [
     "index.mjs"
   ],
   "unchangedArchiveEntryCount": 92,
-  "archiveComparisonEvidence": "evidence/final-neon-api-archive/archive-refresh-comparison.json",
-  "sourceBuildVerifiedAgainst": "354aba6bdd36cafd8a83afd46cbf17ab160b24cc",
+  "archiveComparisonEvidence": "evidence/final-neon-api-refresh/archive-refresh-comparison.json",
+  "sourceBuildVerifiedAgainst": "80a37a2e0930631617ed01ff47a629f7847b30ca",
   "hostSmoke": {
     "passed": true,
-    "report": "evidence/final-neon-api-archive/host-smoke.json",
+    "report": "evidence/final-neon-api-refresh/host-smoke.json",
     "outboundAttempts": 0,
     "trustedHealth": 200,
     "untrustedHealth": 403,
@@ -113,12 +113,12 @@
   },
   "windowsHandoff": {
     "checksPassed": 6,
-    "report": "evidence/final-neon-api-archive/windows-handoff-report.json",
+    "report": "evidence/final-neon-api-refresh/windows-handoff-report.json",
     "powerShellVersion": "7.6.8",
     "platform": "Unix",
     "nativeWindowsExecution": false,
     "liveDownload": false,
     "neonCommands": 0
   },
-  "archiveVerificationEvidence": "evidence/final-neon-api-archive"
+  "archiveVerificationEvidence": "evidence/final-neon-api-refresh"
 }

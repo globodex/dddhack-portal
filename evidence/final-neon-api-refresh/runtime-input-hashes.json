@@ -1,0 +1,326 @@
+[
+  {
+    "path": "lib/absence.ts",
+    "sha256": "ac72b6f1654c9c0a81f3687fe6256ce9de20ee472b82c493610bc123099b9b07"
+  },
+  {
+    "path": "lib/admin-access.ts",
+    "sha256": "688a69014a400f82a139deebb7794266e903e3c6607a28626241506f126e5cd9"
+  },
+  {
+    "path": "lib/admin-presentation.ts",
+    "sha256": "4cf4de2d1ed3e988792959dff374f079915c7fb498b7c5b25a0e30a6bb5e5433"
+  },
+  {
+    "path": "lib/admin-team-corrections.ts",
+    "sha256": "de8a979811d588a9636c61ddf46c8c50e59967c70e4994b25c74594866beab42"
+  },
+  {
+    "path": "lib/audit-contract.ts",
+    "sha256": "f0e1710acc69634fbcf2182d0b4803995d75c26e9530f91cdf5728b532dbb535"
+  },
+  {
+    "path": "lib/avatar-contract.ts",
+    "sha256": "24bd0a8188213d348b67a10b967430c1bf765d50e9a6f30bd3c7b9b570536a77"
+  },
+  {
+    "path": "lib/credit-audit.ts",
+    "sha256": "ad9acdd6c5eacd2bb1932b32a941aa36766d18ae3acd6f34608cbc88cb9df532"
+  },
+  {
+    "path": "lib/credit-batches.ts",
+    "sha256": "d98309b845d206be804965131bce876db4f575f005c861df535cf723e56747d2"
+  },
+  {
+    "path": "lib/credit-stock-import.ts",
+    "sha256": "098a419aa80c38a16c29860eae9e9410098b7a8ef706c8f31cdccb2712249e56"
+  },
+  {
+    "path": "lib/credit-stock.ts",
+    "sha256": "ae2fff08f262142e16975b2fae2d18abb86f254f368e526a54426c2167900122"
+  },
+  {
+    "path": "lib/db.ts",
+    "sha256": "6f1db2f94aa83211cddf05851fc32053381f9f2b3bcbf133bac793ab410c1587"
+  },
+  {
+    "path": "lib/derived-readiness.ts",
+    "sha256": "7fc73c8ec9d00e4fc110c32bd1d83093254e794a70fa6520c9af78e809f4ecb3"
+  },
+  {
+    "path": "lib/directory-facts.ts",
+    "sha256": "22e43358edecc8a52e597f845c6868e7698ff78b114d222e6d5775d5a68e7ea9"
+  },
+  {
+    "path": "lib/discover-participants.ts",
+    "sha256": "23e6789f4f9b498ab1f17cbea8eaae072606e268b319d4863ed45334dd45ab56"
+  },
+  {
+    "path": "lib/ecosystem-verification.ts",
+    "sha256": "f9a2db0458a27c872525ea75c39b8ffb126147e16f1a8c06502ffa273b09d933"
+  },
+  {
+    "path": "lib/engagement-control.ts",
+    "sha256": "74543d4e5481f0d38c1cf19f6c094b3b3801a4659bb0915303c3c89e9e63fa57"
+  },
+  {
+    "path": "lib/engagement-scoring.ts",
+    "sha256": "287fbd090efaf1b93e2863d25c3cc388d346b588094d411bda38d07616d41de5"
+  },
+  {
+    "path": "lib/evaluation-background.ts",
+    "sha256": "4339fb1bed404b7954ad23e73aa77c09a3d4301bea18428c829cc266c730eb27"
+  },
+  {
+    "path": "lib/evaluation.ts",
+    "sha256": "b025415331da000eda742ff3d431998c6ea71a70f0d1eae3a58626621a612a81"
+  },
+  {
+    "path": "lib/event-content-contract.ts",
+    "sha256": "50c7698f840af3f9a854bc662a718b04bf23baead002d1329eab0e44e62f201e"
+  },
+  {
+    "path": "lib/event-content.ts",
+    "sha256": "813739bd51f8b3d7a2650d4ff7e633662be076620dc659414041268fd123ed4a"
+  },
+  {
+    "path": "lib/experience-contract.ts",
+    "sha256": "b11b7e01b143768b56c6ebbe2104594eea3e52503b61dcb707617dcf880eaeae"
+  },
+  {
+    "path": "lib/experience.ts",
+    "sha256": "c79bb1eac7a34ac191c1b9f50aeba5f7596ef233cf12134953c78ca519228b3e"
+  },
+  {
+    "path": "lib/http.ts",
+    "sha256": "c290436eef75771a605112eb5be109828bb7b0ca7632ecdeb0e15035f9618a61"
+  },
+  {
+    "path": "lib/identity.ts",
+    "sha256": "2ad5f8400cb9b37b1b377da2303ecbbdce0ec672a3bbd578872dda170f22ef0e"
+  },
+  {
+    "path": "lib/operational-setup-contract.ts",
+    "sha256": "77c8208939b0504e2456024276af4f240255a92229a18bf1127f65d2066649fd"
+  },
+  {
+    "path": "lib/operational-setup.ts",
+    "sha256": "70252e1ec44ee7e56a3424939b17938eaf2cc574e629df7ef3f47979d285f592"
+  },
+  {
+    "path": "lib/participant-checkin.ts",
+    "sha256": "ac0a8e6942bf27115a7f35e36042d20da069992b68c953c23857eda94844d018"
+  },
+  {
+    "path": "lib/participant-export.ts",
+    "sha256": "c0c90fc4f71f7e308aed85790574a2d9b1451bda4c0dce73f5672faa58ec1e03"
+  },
+  {
+    "path": "lib/participant-filters.ts",
+    "sha256": "a69133e693b52e6111b46e7bc6495d69371fcb8aa2ebbd7a3d981e45d1118914"
+  },
+  {
+    "path": "lib/participant-rules.ts",
+    "sha256": "ad801b915e157403a66ffcd0cafa26c795da5a8666220c121b81b1b68d055428"
+  },
+  {
+    "path": "lib/phone.ts",
+    "sha256": "93d310bd6292c4096f4de4375c2c8bd5dc9490283849fa2321fa969d4dc37031"
+  },
+  {
+    "path": "lib/policy-controls.ts",
+    "sha256": "08a2470a8dd8691ed269077bd219671aaefd43fe05a2df1a36277626293feff3"
+  },
+  {
+    "path": "lib/policy.ts",
+    "sha256": "7fac068ad1c750a677ddb6b9a16831873a385567f12113467fbed9c53a19622a"
+  },
+  {
+    "path": "lib/portal-status.ts",
+    "sha256": "269ff47f283b7b8ed6ac212b59a66122d9c41cc1d12e1e35f91c61152a0d4fcc"
+  },
+  {
+    "path": "lib/profile-contract.ts",
+    "sha256": "1c7c89063c7aa5899fa60c4643a9ab726f3cd85f65cf006158710ab60a1d23a8"
+  },
+  {
+    "path": "lib/project-image-preflight.ts",
+    "sha256": "991dfb4469d9d855860dfc33297b7a1688cda2c0373b2efd0cbe1a288717c077"
+  },
+  {
+    "path": "lib/project-media-policy.ts",
+    "sha256": "536169318d8fd9f7ad7f6baa8643071d8c1ed2146ca7e8fa04c290384436b4ee"
+  },
+  {
+    "path": "lib/project-media.ts",
+    "sha256": "2287bfe98f5fb93548664d3c0765e9efb122172d4cbd58a9876d9a92c0f99fe2"
+  },
+  {
+    "path": "lib/provider-grade.ts",
+    "sha256": "5ae8dbde6edd7e16e4942228bb510520363d28cf0687be60a32b60cc2ab16377"
+  },
+  {
+    "path": "lib/public-content-defaults.ts",
+    "sha256": "cab8182bc3d622d84dd1d64d39779ee626ac07615059214875f1bfe456890165"
+  },
+  {
+    "path": "lib/public-project-facts.ts",
+    "sha256": "86751cb6eebebdcf07e888d09fca4cbd8dd692dd05c0276966c2598e92aa8ca4"
+  },
+  {
+    "path": "lib/public-project-image.ts",
+    "sha256": "ca939d3ffe44c8e10b76cd0459f6c2a7d679969217834ce1421d5dfc3e60cb01"
+  },
+  {
+    "path": "lib/public-team-members.ts",
+    "sha256": "a319c4505c04ab2d520870777c2cb71f12d6dd7437b1127a700737caa881a744"
+  },
+  {
+    "path": "lib/record-removal.ts",
+    "sha256": "feec0aa8882606ca85f9abf6a33747a8de15498e4a0bbee78f505c6f5fc61477"
+  },
+  {
+    "path": "lib/repository-evidence.ts",
+    "sha256": "0cc2aaa69b2fe8524509927e9dd382c12ead6c6aca92a5f8e761ed952ac53621"
+  },
+  {
+    "path": "lib/result-controls.ts",
+    "sha256": "239972bcabf79502ac92662ea2af046dae88f10d14b2524424d5b874d1afda44"
+  },
+  {
+    "path": "lib/roster-import.ts",
+    "sha256": "340a523a23139e226ca9f8b8440c68b5539e294aa174a44c36b8dfcf51318468"
+  },
+  {
+    "path": "lib/roster.ts",
+    "sha256": "23710512516133ac7010cb2508b2360fc4fbf4967d972819b9d352b830e4127f"
+  },
+  {
+    "path": "lib/score-release.ts",
+    "sha256": "30160653fb078dae820096faab314815c8e22ec15a16d149f62a083c4d7b5089"
+  },
+  {
+    "path": "lib/security.ts",
+    "sha256": "ce31b93504b0e9570591bd453edca4a19febdc12e755b16fd888fa4c8d949d8a"
+  },
+  {
+    "path": "lib/service.ts",
+    "sha256": "38f9f8b2680c1c5840035a58b42c9c2370cc410426eb06835b232f382e939dbb"
+  },
+  {
+    "path": "lib/submission-tools.ts",
+    "sha256": "a48abd504ff49b216261b460a335576fc957ae025e84d89ee3c3df4d1e8cd3f7"
+  },
+  {
+    "path": "lib/team-access.ts",
+    "sha256": "3ae35ca6ace2d788ec475af615be7c31b49020c431c2fc3bf22ac9b833133c08"
+  },
+  {
+    "path": "lib/team-color.ts",
+    "sha256": "d1e70496f4fe60aee182ae65ca83bfc29e790f929fb1fdb65c741a9744f16852"
+  },
+  {
+    "path": "lib/team-leader-transfer.ts",
+    "sha256": "62a183dd212efb383d3e9f46781010dca8c33a2ee173ddee332ad85a5dd454d2"
+  },
+  {
+    "path": "lib/time.ts",
+    "sha256": "7430b1662198dd73a9c3fc9cf9244efa10ddfbd1c727a0ed0ccbd23c7ad84caa"
+  },
+  {
+    "path": "neon/ai/http.ts",
+    "sha256": "323bdd74d8eb8feb704ac394709a79ba59cd41cba4443b86c259d47d20650503"
+  },
+  {
+    "path": "neon/ai/index.ts",
+    "sha256": "0aea17c6416785f6f9609481c140a5c697adcd095827dfb377d527c337b35650"
+  },
+  {
+    "path": "neon/ai/input.ts",
+    "sha256": "08223c0ccddbd2e6e9852f3fbbe62ae140c1f55c1b140d5c87973222948f82e5"
+  },
+  {
+    "path": "neon/ai/output.ts",
+    "sha256": "6b1d7dbf3b6e92aef2e1b1f82b48d834da698441a805383dc3085303380f156c"
+  },
+  {
+    "path": "neon/ai/repository.ts",
+    "sha256": "eae14f8f21f7de1b0357d3551d0a130c2eee53ffc410a183941b70fab780b7a6"
+  },
+  {
+    "path": "neon/api.ts",
+    "sha256": "0a1b35660c95dcd1ffc977350ab97060365e1397f5b0636476e89948ca1ff1a2"
+  },
+  {
+    "path": "neon/auth/config.ts",
+    "sha256": "685dd004c790d3eee5465300dfe3e4b2e4fcf89356b50448672c752db59dbb55"
+  },
+  {
+    "path": "neon/auth/email-template.ts",
+    "sha256": "6b5f73406002aecf12a52380f89319025204a51dd8ec07520f10af8f8da0c820"
+  },
+  {
+    "path": "neon/auth/google.ts",
+    "sha256": "68aaf21657f9d7afaf1f9c43d9c029ad9b9df8131d30cf4bf059a352d61a125e"
+  },
+  {
+    "path": "neon/auth/index.ts",
+    "sha256": "8809d5dafd86da44b65321360e73d1ed84d812e465c62f5f3560c6feb2d3697a"
+  },
+  {
+    "path": "neon/auth/smtp.ts",
+    "sha256": "e45f3496684eb1333743e84bae1197f30d9b8489ef06566ee1c9ffb863e736ea"
+  },
+  {
+    "path": "neon/db/adapter.ts",
+    "sha256": "9fa930533fbf17065edc717e246152d5d0f6ef61a5060436ca2f9fde8da0dd41"
+  },
+  {
+    "path": "neon/db/index.ts",
+    "sha256": "aca84084cd262027f534bba828c1c030fe7418c357d8f4858ea7ae26363aba41"
+  },
+  {
+    "path": "neon/db/sql.ts",
+    "sha256": "1f753a167d0136ce4211d872f2c80fbbd7e7959d18a49189cf3bdfde2993fcbb"
+  },
+  {
+    "path": "neon/router.ts",
+    "sha256": "579b236d4b7722aaac9a6422e07bc52d58a707f3f6a9303126fbcb3ff06187c9"
+  },
+  {
+    "path": "neon/storage/authorization.ts",
+    "sha256": "488463dc6dc26d0ebd199664e0a96eea441eb48e3a9467ae049b08d7dc4c53a8"
+  },
+  {
+    "path": "neon/storage/database.ts",
+    "sha256": "16036dff7b987bbedc6f0c8489f53e654a6a81a63be5d9bf09bcb2ad263f7370"
+  },
+  {
+    "path": "neon/storage/http.ts",
+    "sha256": "b18f5434d033b947e8f79a999317f6b7130d5bd607b4f1f3992f93461ee22d9d"
+  },
+  {
+    "path": "neon/storage/image.ts",
+    "sha256": "990054a3d4aa7fe0d6fc92f88f66ee4dbc559c24b49f34e52a2d06ff9afa21ba"
+  },
+  {
+    "path": "neon/storage/index.ts",
+    "sha256": "d854b54e66355d6da065c3399187d7a0244631665f55c7a813844a7f25661c82"
+  },
+  {
+    "path": "neon/storage/reference.ts",
+    "sha256": "66c9c65efb646a208a0946c5711e1f02b54ccb70621d492ecf463d1270810b83"
+  },
+  {
+    "path": "neon/storage/repository.ts",
+    "sha256": "037c88bc319dd11e8cef97a72bd060f739c19fc5c49ead908f763044e8eac671"
+  },
+  {
+    "path": "neon/storage/s3.ts",
+    "sha256": "6669b3de090054a01a4afc8b376a0d8756fc8f7c96fd4a508f386f4a2df4b799"
+  },
+  {
+    "path": "neon/storage/types.ts",
+    "sha256": "09257cf4c3d5735f77b6c25d177c990ed9ff44220633fb7f4151847681c6dc4f"
+  }
+]

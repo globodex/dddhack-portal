@@ -1,0 +1,125 @@
+{
+  "runtimeSource": "80a37a2e0930631617ed01ff47a629f7847b30ca",
+  "archive": {
+    "path": "/workspace/ddd-final-neon-api/artifacts/neon/portalapi.zip",
+    "bytes": 9019298,
+    "sha256": "ccf462c825655b78671dec4cecac78be5da5b77430f982f2275516246cab8b93",
+    "files": 93,
+    "uncompressedBytes": 21166383,
+    "nativeFiles": [
+      {
+        "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
+        "bytes": 18324712,
+        "elfMachine": 183,
+        "sha256": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f"
+      },
+      {
+        "path": "node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.5.node",
+        "bytes": 530120,
+        "elfMachine": 183,
+        "sha256": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b"
+      }
+    ],
+    "forbiddenPaths": []
+  },
+  "indexSha256": "d710a5d53628734b80199b6e76d3e7254fbc647f8ac872a42b85612f20b3038c",
+  "identicalUnmodifiedJavaScript": true,
+  "hostDependencySubstitution": {
+    "path": "/tmp/ddd-final-api-refresh-host-GjjFSw",
+    "nodeModulesTarget": "/workspace/dddhack-portal/node_modules",
+    "purpose": "Resolve sharp against installed host x86_64 native dependencies; original ARM64 archive and extracted tree remain unchanged."
+  },
+  "hostSmoke": {
+    "passed": true,
+    "node": "v24.19.0",
+    "platform": "linux",
+    "architecture": "x64",
+    "environmentKeysAtStart": [
+      "APP_ORIGIN",
+      "LANG",
+      "NODE_ENV",
+      "PATH",
+      "PORTAL_PROXY_SECRET",
+      "TZ"
+    ],
+    "environmentKeysAfterImport": [
+      "APP_ORIGIN",
+      "LANG",
+      "NODE_ENV",
+      "PATH",
+      "PORTAL_PROXY_SECRET",
+      "TZ",
+      "VIPSHOME"
+    ],
+    "guards": [
+      "fetch",
+      "net.connect",
+      "net.createConnection",
+      "net.Socket.connect",
+      "tls.connect",
+      "http.request/get",
+      "https.request/get"
+    ],
+    "outboundAttempts": [],
+    "checks": [
+      {
+        "name": "trusted-health",
+        "method": "GET",
+        "path": "/api/health",
+        "status": 200,
+        "body": {
+          "ok": true,
+          "runtime": "neon-functions"
+        },
+        "cacheControl": "private, no-store, max-age=0"
+      },
+      {
+        "name": "untrusted-health",
+        "method": "GET",
+        "path": "/api/health",
+        "status": 403,
+        "body": {
+          "code": "UNTRUSTED_PROXY"
+        },
+        "cacheControl": "private, no-store, max-age=0"
+      },
+      {
+        "name": "unconfigured-portal",
+        "method": "GET",
+        "path": "/api/portal?view=%2Fdashboard",
+        "status": 503,
+        "body": {
+          "code": "BACKEND_UNAVAILABLE"
+        },
+        "cacheControl": "private, no-store, max-age=0"
+      }
+    ],
+    "sharp": {
+      "version": "0.35.5",
+      "vips": "8.18.7",
+      "resolvedModule": "/workspace/dddhack-portal/node_modules/sharp/dist/index.cjs",
+      "loadedNativeAddons": [
+        {
+          "file": "@img/sharp-linux-x64/lib/sharp-linux-x64-0.35.5.node",
+          "elfMachine": 62
+        }
+      ]
+    }
+  },
+  "noRebuild": true,
+  "noDeploy": true,
+  "noMailSent": true,
+  "noDatabaseConfigured": true,
+  "receiptGraphOnly": {
+    "inputs": 865,
+    "forbiddenInputs": [],
+    "recomputed": false
+  },
+  "nativeARM64Execution": "unverified",
+  "manualBackendRedeploy": "required after user review",
+  "limitations": [
+    "This is JavaScript loading/routing with an explicitly substituted host sharp dependency, not execution of the unmodified ARM64 archive.",
+    "Outbound guards are installed on Node fetch/TCP/TLS/HTTP APIs. No provider, DB, SMTP, Google or storage credential is supplied.",
+    "Hosted ARM64 decoding, storage, SMTP delivery and full login remain unverified."
+  ]
+}

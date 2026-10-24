@@ -1,0 +1,82 @@
+{
+  "runtimeSource": "80a37a2e0930631617ed01ff47a629f7847b30ca",
+  "officialBuild": {
+    "passed": true,
+    "packager": "@neon/config-runtime@1.10.2",
+    "processEnvironmentAllowlist": [
+      "LANG",
+      "PATH",
+      "TZ",
+      "npm_config_audit",
+      "npm_config_cache",
+      "npm_config_fund",
+      "npm_config_globalconfig",
+      "npm_config_offline",
+      "npm_config_userconfig"
+    ],
+    "functionEnv": {},
+    "offlineNativeStaging": true,
+    "warnings": []
+  },
+  "archive": {
+    "sha256": "ccf462c825655b78671dec4cecac78be5da5b77430f982f2275516246cab8b93",
+    "zipBytes": 9019298,
+    "uncompressedBytes": 21166383,
+    "files": 93,
+    "indexSha256": "d710a5d53628734b80199b6e76d3e7254fbc647f8ac872a42b85612f20b3038c",
+    "limits": {
+      "maxZipBytes": 10485760,
+      "maxTotalBytes": 67108864,
+      "maxEntries": 4096
+    }
+  },
+  "freshJavaScriptByteIdentical": true,
+  "graph": {
+    "inputCount": 865,
+    "applicationInputCount": 81,
+    "forbiddenInputs": [],
+    "frontendInputs": [],
+    "seoImported": false,
+    "hashes": "evidence/final-neon-api-refresh/all-input-hashes.json"
+  },
+  "nativeFiles": [
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
+      "elfMachine": 183,
+      "sha256": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f"
+    },
+    {
+      "path": "node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.5.node",
+      "elfMachine": 183,
+      "sha256": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b"
+    }
+  ],
+  "hostSmoke": {
+    "passed": true,
+    "statuses": [
+      200,
+      403,
+      503
+    ],
+    "outboundAttempts": 0,
+    "x86SharpSubstitution": true,
+    "nativeArmExecution": false
+  },
+  "windowsHandoff": {
+    "passed": 6,
+    "powershell": "7.6.8",
+    "platform": "Unix",
+    "nativeWindowsExecution": false,
+    "liveDownload": false,
+    "providerActions": 0
+  },
+  "canonicalPlanDigest": "9bcf3f083d47a1b700e467c60f3b9eff57193491bb1e2929b1c2a4f21ba532d1",
+  "localMigrationFiles": 10,
+  "migrationApplied": false,
+  "hostedLedgerInspected": false,
+  "manualBackendRedeployRequired": true,
+  "noDeploy": true,
+  "noPush": true,
+  "noEmail": true,
+  "noProviderCalls": true
+}
