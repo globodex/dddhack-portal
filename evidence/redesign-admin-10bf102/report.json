@@ -1,0 +1,780 @@
+{
+  "source": "10bf1027ab5643a2c6cd585a55b8d40766d9656c",
+  "sourceRoot": "/workspace/ddd-admin-qa",
+  "syntheticOnly": true,
+  "browserSandbox": false,
+  "checks": [
+    {
+      "name": "all populated admin surfaces fit 1440x900",
+      "passed": true
+    },
+    {
+      "name": "all populated admin surfaces fit 768x1024",
+      "passed": true
+    },
+    {
+      "name": "all populated admin surfaces fit 390x844",
+      "passed": true
+    },
+    {
+      "name": "all populated admin surfaces fit 390x480",
+      "passed": true
+    },
+    {
+      "name": "published credits allocated to checked-in personal recipient",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "team-locked-idea",
+      "path": "evidence/redesign-admin-10bf102/team-locked-idea-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": true,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "submissions-populated",
+      "path": "evidence/redesign-admin-10bf102/submissions-populated-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "submission-management",
+      "path": "evidence/redesign-admin-10bf102/submission-management-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-score-and-history",
+      "path": "evidence/redesign-admin-10bf102/review-score-and-history-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-history-expanded",
+      "path": "evidence/redesign-admin-10bf102/review-history-expanded-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-eligibility-evidence",
+      "path": "evidence/redesign-admin-10bf102/review-eligibility-evidence-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-eligibility-clear",
+      "path": "evidence/redesign-admin-10bf102/review-eligibility-clear-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-rubric",
+      "path": "evidence/redesign-admin-10bf102/review-rubric-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "credits-published",
+      "path": "evidence/redesign-admin-10bf102/credits-published-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": true,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "credits-new-upload",
+      "path": "evidence/redesign-admin-10bf102/credits-new-upload-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "credits-editor",
+      "path": "evidence/redesign-admin-10bf102/credits-editor-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": true,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "credits-source-restored",
+      "path": "evidence/redesign-admin-10bf102/credits-source-restored-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "settings-scoring",
+      "path": "evidence/redesign-admin-10bf102/settings-scoring-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "settings-credit-instructions",
+      "path": "evidence/redesign-admin-10bf102/settings-credit-instructions-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "logs-populated",
+      "path": "evidence/redesign-admin-10bf102/logs-populated-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "log-expanded",
+      "path": "evidence/redesign-admin-10bf102/log-expanded-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "team-locked-idea",
+      "path": "evidence/redesign-admin-10bf102/team-locked-idea-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "submissions-populated",
+      "path": "evidence/redesign-admin-10bf102/submissions-populated-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "submission-management",
+      "path": "evidence/redesign-admin-10bf102/submission-management-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-score-and-history",
+      "path": "evidence/redesign-admin-10bf102/review-score-and-history-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-history-expanded",
+      "path": "evidence/redesign-admin-10bf102/review-history-expanded-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-eligibility-evidence",
+      "path": "evidence/redesign-admin-10bf102/review-eligibility-evidence-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-eligibility-clear",
+      "path": "evidence/redesign-admin-10bf102/review-eligibility-clear-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-rubric",
+      "path": "evidence/redesign-admin-10bf102/review-rubric-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "credits-published",
+      "path": "evidence/redesign-admin-10bf102/credits-published-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "credits-new-upload",
+      "path": "evidence/redesign-admin-10bf102/credits-new-upload-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "credits-editor",
+      "path": "evidence/redesign-admin-10bf102/credits-editor-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "credits-source-restored",
+      "path": "evidence/redesign-admin-10bf102/credits-source-restored-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "settings-scoring",
+      "path": "evidence/redesign-admin-10bf102/settings-scoring-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": true,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "settings-credit-instructions",
+      "path": "evidence/redesign-admin-10bf102/settings-credit-instructions-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "logs-populated",
+      "path": "evidence/redesign-admin-10bf102/logs-populated-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "log-expanded",
+      "path": "evidence/redesign-admin-10bf102/log-expanded-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "team-locked-idea",
+      "path": "evidence/redesign-admin-10bf102/team-locked-idea-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "submissions-populated",
+      "path": "evidence/redesign-admin-10bf102/submissions-populated-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": true,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "submission-management",
+      "path": "evidence/redesign-admin-10bf102/submission-management-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-score-and-history",
+      "path": "evidence/redesign-admin-10bf102/review-score-and-history-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-history-expanded",
+      "path": "evidence/redesign-admin-10bf102/review-history-expanded-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-eligibility-evidence",
+      "path": "evidence/redesign-admin-10bf102/review-eligibility-evidence-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": true,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-eligibility-clear",
+      "path": "evidence/redesign-admin-10bf102/review-eligibility-clear-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-rubric",
+      "path": "evidence/redesign-admin-10bf102/review-rubric-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "credits-published",
+      "path": "evidence/redesign-admin-10bf102/credits-published-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "credits-new-upload",
+      "path": "evidence/redesign-admin-10bf102/credits-new-upload-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "credits-editor",
+      "path": "evidence/redesign-admin-10bf102/credits-editor-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": true,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "credits-source-restored",
+      "path": "evidence/redesign-admin-10bf102/credits-source-restored-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "settings-scoring",
+      "path": "evidence/redesign-admin-10bf102/settings-scoring-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "settings-credit-instructions",
+      "path": "evidence/redesign-admin-10bf102/settings-credit-instructions-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "logs-populated",
+      "path": "evidence/redesign-admin-10bf102/logs-populated-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "log-expanded",
+      "path": "evidence/redesign-admin-10bf102/log-expanded-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "team-locked-idea",
+      "path": "evidence/redesign-admin-10bf102/team-locked-idea-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "submissions-populated",
+      "path": "evidence/redesign-admin-10bf102/submissions-populated-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "submission-management",
+      "path": "evidence/redesign-admin-10bf102/submission-management-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-score-and-history",
+      "path": "evidence/redesign-admin-10bf102/review-score-and-history-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-history-expanded",
+      "path": "evidence/redesign-admin-10bf102/review-history-expanded-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-eligibility-evidence",
+      "path": "evidence/redesign-admin-10bf102/review-eligibility-evidence-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-eligibility-clear",
+      "path": "evidence/redesign-admin-10bf102/review-eligibility-clear-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "review-rubric",
+      "path": "evidence/redesign-admin-10bf102/review-rubric-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "credits-published",
+      "path": "evidence/redesign-admin-10bf102/credits-published-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "credits-new-upload",
+      "path": "evidence/redesign-admin-10bf102/credits-new-upload-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "credits-editor",
+      "path": "evidence/redesign-admin-10bf102/credits-editor-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "credits-source-restored",
+      "path": "evidence/redesign-admin-10bf102/credits-source-restored-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "settings-scoring",
+      "path": "evidence/redesign-admin-10bf102/settings-scoring-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "settings-credit-instructions",
+      "path": "evidence/redesign-admin-10bf102/settings-credit-instructions-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "logs-populated",
+      "path": "evidence/redesign-admin-10bf102/logs-populated-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": false,
+      "developmentOverlayHidden": true
+    },
+    {
+      "name": "log-expanded",
+      "path": "evidence/redesign-admin-10bf102/log-expanded-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "fullPage": true,
+      "inspected": true,
+      "developmentOverlayHidden": true
+    }
+  ],
+  "writes": [
+    {
+      "action": "preview-credit-batch",
+      "data": {
+        "csv": "Synthetic Gamma,Synthetic Delta\nSYNTHETIC-CE756EA-X1,SYNTHETIC-CE756EA-Y1"
+      }
+    },
+    {
+      "action": "preview-credit-batch",
+      "data": {
+        "csv": "Synthetic Gamma,Synthetic Delta\nSYNTHETIC-CE756EA-X1,SYNTHETIC-CE756EA-Y1"
+      }
+    },
+    {
+      "action": "preview-credit-batch",
+      "data": {
+        "csv": "Synthetic Gamma,Synthetic Delta\nSYNTHETIC-CE756EA-X1,SYNTHETIC-CE756EA-Y1"
+      }
+    },
+    {
+      "action": "preview-credit-batch",
+      "data": {
+        "csv": "Synthetic Gamma,Synthetic Delta\nSYNTHETIC-CE756EA-X1,SYNTHETIC-CE756EA-Y1"
+      }
+    }
+  ],
+  "console": [
+    {
+      "type": "error",
+      "text": "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <InnerLayoutRouter url=\"/admin/logs\" tree={[...]} params={{path:[...]}} renderTree={{...}} segmentPath={[...]} ...>\n      <SegmentViewNode type=\"page\" pagePath=\"[[...path]...\">\n        <SegmentTrieNode>\n        <Page>\n          <PortalClient path=\"/admin/logs\" localTest={true} initialView={{...}}>\n            <Portal path=\"/admin/logs\" localTest={true} initialView={{...}} pendingPath={null} ...>\n              <div className=\"app-shell ...\" style={{...}}>\n                <a>\n                <header>\n                <aside>\n                <MobileNavigation>\n                <main id=\"main\" tabIndex={-1} className=\"main\">\n                  <div>\n                  <AdminList data={{...}} path=\"/admin/logs\" run={function run}>\n                    <section className=\"admin-exac...\">\n                      <header>\n                      <div className=\"toolbar ad...\">\n                        <Search value=\"\" onChange={function bound dispatchSetState} label=\"Search logs\">\n                          <label className=\"search-label\">\n                            <span>\n                            <input\n                              type=\"search\"\n                              placeholder=\"Search logs\"\n                              value=\"\"\n                              onChange={function onChange}\n-                             style={{caret-color:\"transparent\"}}\n                            >\n                        ...\n                      ...\n      ...\n"
+    },
+    {
+      "type": "error",
+      "text": "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <InnerLayoutRouter url=\"/admin/logs\" tree={[...]} params={{path:[...]}} renderTree={{...}} segmentPath={[...]} ...>\n      <SegmentViewNode type=\"page\" pagePath=\"[[...path]...\">\n        <SegmentTrieNode>\n        <Page>\n          <PortalClient path=\"/admin/logs\" localTest={true} initialView={{...}}>\n            <Portal path=\"/admin/logs\" localTest={true} initialView={{...}} pendingPath={null} ...>\n              <div className=\"app-shell ...\" style={{...}}>\n                <a>\n                <header>\n                <aside>\n                <MobileNavigation>\n                <main id=\"main\" tabIndex={-1} className=\"main\">\n                  <div>\n                  <AdminList data={{...}} path=\"/admin/logs\" run={function run}>\n                    <section className=\"admin-exac...\">\n                      <header>\n                      <div className=\"toolbar ad...\">\n                        <Search value=\"\" onChange={function bound dispatchSetState} label=\"Search logs\">\n                          <label className=\"search-label\">\n                            <span>\n                            <input\n                              type=\"search\"\n                              placeholder=\"Search logs\"\n                              value=\"\"\n                              onChange={function onChange}\n-                             style={{caret-color:\"transparent\"}}\n                            >\n                        ...\n                      ...\n      ...\n"
+    },
+    {
+      "type": "error",
+      "text": "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <InnerLayoutRouter url=\"/admin/logs\" tree={[...]} params={{path:[...]}} renderTree={{...}} segmentPath={[...]} ...>\n      <SegmentViewNode type=\"page\" pagePath=\"[[...path]...\">\n        <SegmentTrieNode>\n        <Page>\n          <PortalClient path=\"/admin/logs\" localTest={true} initialView={{...}}>\n            <Portal path=\"/admin/logs\" localTest={true} initialView={{...}} pendingPath={null} ...>\n              <div className=\"app-shell ...\" style={{...}}>\n                <a>\n                <header>\n                <aside>\n                <MobileNavigation>\n                <main id=\"main\" tabIndex={-1} className=\"main\">\n                  <div>\n                  <AdminList data={{...}} path=\"/admin/logs\" run={function run}>\n                    <section className=\"admin-exac...\">\n                      <header>\n                      <div className=\"toolbar ad...\">\n                        <Search value=\"\" onChange={function bound dispatchSetState} label=\"Search logs\">\n                          <label className=\"search-label\">\n                            <span>\n                            <input\n                              type=\"search\"\n                              placeholder=\"Search logs\"\n                              value=\"\"\n                              onChange={function onChange}\n-                             style={{caret-color:\"transparent\"}}\n                            >\n                        ...\n                      ...\n      ...\n"
+    }
+  ],
+  "errors": [],
+  "reviewNotes": [
+    "Synthetic solid green project media is intentional fixture content.",
+    "ProjectBody fallback caption and Field stored-zero display are shared components outside this lane. Parent reports central fixes in integrated0f5f823; these historical images retain the prior source.",
+    "Three React console hydration warnings are screenshot capture artifacts: Playwright temporarily set input caret-color transparent before delayed hydration. Current QA scripts use caret initial. No uncaught app errors; these captures do not constitute a zero-console claim."
+  ]
+}

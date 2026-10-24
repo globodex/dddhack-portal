@@ -3,7 +3,13 @@ import assert from "node:assert/strict";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 
-const origin = "http://127.0.0.1:3003";
+const origin = process.env.ADMIN_QA_ORIGIN || "http://localhost:3013";
+const localOrigin = new URL(origin);
+assert(
+  ["localhost", "127.0.0.1", "[::1]"].includes(localOrigin.hostname) &&
+    localOrigin.protocol === "http:" &&
+    localOrigin.origin === origin,
+);
 const output = process.env.ADMIN_QA_OUTPUT || "evidence/redesign-admin";
 mkdirSync(output, { recursive: true });
 const report = {
@@ -75,6 +81,7 @@ for (const viewport of [
       path: `${output}/${name}-${viewport.width}x${viewport.height}.png`,
       fullPage,
       animations: "disabled",
+      caret: "initial",
     });
     const overflowing = await page.evaluate(
       () => document.documentElement.scrollWidth > innerWidth,

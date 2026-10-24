@@ -1,0 +1,47 @@
+{
+  "source": "fa2b184d4dbd0cd1d1c5dadbcb65e04646260a5a",
+  "syntheticOnly": true,
+  "javascriptEnabled": false,
+  "browserSandbox": false,
+  "checks": [
+    {
+      "path": "/admin/participants",
+      "forms": 34,
+      "passed": true
+    },
+    {
+      "path": "/admin/credits",
+      "forms": 1,
+      "passed": true
+    },
+    {
+      "path": "/admin/settings",
+      "forms": 8,
+      "passed": true
+    },
+    {
+      "path": "/admin/submissions/synthetic-alice",
+      "forms": 5,
+      "passed": true
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "url": "http://localhost:3013/admin/participants"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3013/admin/credits"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3013/admin/settings"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3013/admin/submissions/synthetic-alice"
+    }
+  ],
+  "errors": []
+}
