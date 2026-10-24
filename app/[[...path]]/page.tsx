@@ -1,9 +1,10 @@
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import {
   pageMetadata,
   publicPath,
   eventStructuredData,
   safeJSONLD,
+  publicProjectMetadataEntry,
 } from "../../lib/seo";
 import {
   BackendError,
@@ -39,6 +40,8 @@ export default async function Page({ params }: PageProps) {
       initialPublic = await readBackendView(routePath);
     } catch (error) {
       if (!(error instanceof BackendError)) throw error;
+      if (/^\/projects\/[^/]+$/.test(routePath) && error.status === 404)
+        notFound();
       // Static art still renders during downtime, with no invented records,
       // session, deadline or successful mutation fixture.
       if (routePath === "/") initialPublic = { submissionClose: null };
@@ -68,7 +71,9 @@ export async function generateMetadata({ params }: PageProps) {
   if (/^\/projects\/[^/]+$/.test(route)) {
     try {
       const view = await readBackendView(route);
-      return pageMetadata(route, view.project || view.items?.[0]);
+      // Reuse the page's request-scoped read, then select only the service's
+      // eligible published public entry. No private draft or actor enters SEO.
+      return pageMetadata(route, publicProjectMetadataEntry(view.items?.[0]));
     } catch {
       const { openGraph, twitter, ...metadata } = pageMetadata(route);
       return { ...metadata, robots: { index: false, follow: false } };

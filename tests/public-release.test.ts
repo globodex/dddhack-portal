@@ -148,7 +148,10 @@ test("sitemap and metadata reuse anonymous eligible published projections and ex
           time,
         ),
     ]);
-    const sitemap = () => publicSitemap(page => new PortalService(db, null, undefined).view("/projects", { page }));
+    const sitemap = () =>
+      publicSitemap((page) =>
+        new PortalService(db, null, undefined).view("/projects", { page }),
+      );
     const response = await sitemap();
     assert.equal(response.status, 200);
     const xml = await response.text();
@@ -178,7 +181,8 @@ test("sitemap and metadata reuse anonymous eligible published projections and ex
     const removed = await sitemap();
     assert.ok(!(await removed.text()).includes("seo-public"));
     const crawlerRules = await (await robots()).text();
-    assert.ok(crawlerRules.includes("Disallow: /admin"));
+    // Crawlers must be able to read noindex on HTML; auth still protects data.
+    assert.ok(!crawlerRules.includes("Disallow: /admin"));
     assert.ok(crawlerRules.includes("Disallow: /api"));
     assert.ok(crawlerRules.includes("Sitemap: " + siteOrigin + "/sitemap.xml"));
   } finally {
