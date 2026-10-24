@@ -429,6 +429,7 @@ export default function ProfileFlow({
       p.avatar_expression in dotExpressions ? p.avatar_expression : "squeezed",
     ),
     [busy, setBusy] = useState(false),
+    [hydrated, setHydrated] = useState(false),
     [error, setError] = useState(""),
     [fieldErrors, setFieldErrors] = useState<ProfileFieldErrors>({});
   const heading = useRef<HTMLHeadingElement>(null),
@@ -437,6 +438,7 @@ export default function ProfileFlow({
   useEffect(() => {
     if (first.current) {
       first.current = false;
+      setHydrated(true);
       return;
     }
     heading.current?.focus({ preventScroll: true });
@@ -455,6 +457,7 @@ export default function ProfileFlow({
     <section
       className="profile-flow"
       data-step={step}
+      data-hydrated={hydrated}
       aria-label="Your profile"
     >
       <ProfileStepHeader
