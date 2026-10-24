@@ -425,6 +425,7 @@ export default function Home({
       <Chapters items={content.agenda} paused={paused} />
       <OrganizerSection paused={paused} />
       <footer className="home-footer">
+        <p className="home-community-tags"><span>#DevDayCommunity</span><span>#DevDayCommunityDelhi</span></p>
         <nav aria-label="Legal and contact">
           <a href="/privacy">Privacy</a>
           <a href="/terms">Terms</a>

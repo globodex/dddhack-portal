@@ -3184,6 +3184,7 @@ export function Projects({
     (project.projectName + " " + project.teamName + " " + project.problemSolution)
       .toLowerCase().includes(q.toLowerCase()),
   );
+  const emptyCollection = !q && !page && !data.items?.length && !data.hasMore;
   const engagement = (p: Row) => (
     <div className="engagement">
       {data.me ? (
@@ -3343,7 +3344,7 @@ export function Projects({
         <HeadingDot color="purple" expression="squeezed" size={64} />
         <h1>{board ? "Leaderboard" : "Projects"}</h1>
       </header>
-      <div className="project-directory-toolbar">
+      {!emptyCollection && <div className="project-directory-toolbar">
       <div className="project-search" inert={!hydrated}>
         <SearchIcon size={24} aria-hidden="true" />
         <Search
@@ -3357,7 +3358,7 @@ export function Projects({
         />
       </div>
       {searchBusy && <span className="project-search-status" role="status">Searching…</span>}
-      </div>
+      </div>}
       {(listing.engagement?.votingPaused ||
         listing.engagement?.feedbackPaused) && (
         <p className="notice" role="status">
@@ -3401,7 +3402,7 @@ export function Projects({
         {searchBusy && !visibleProjects.length && [1, 2].map((n) => <li className="project-search-placeholder" aria-hidden="true" key={`loading-${n}`}><i /><div><span /><span /><span /></div><b /><b /></li>)}
         {visibleProjects
           .map((p) => (
-            <li key={p.id} id={"entry-" + p.slug}>
+            <li className="public-project-card" key={p.id} id={"entry-" + p.slug} style={projectMediaStyle(p.teamColorKey)}>
               <a className="project-row-link" href={`/projects/${p.slug}`}>
                 <img
                   loading="lazy"
@@ -3415,6 +3416,7 @@ export function Projects({
                   <p>{p.problemSolution}</p>
                   <small>by {p.teamName}</small>
                 </div>
+                <ChevronRight className="project-card-arrow" size={22} aria-hidden="true" />
               </a>
               {board ? (
                 <div className="engagement">
@@ -3433,9 +3435,16 @@ export function Projects({
       </ul>
       {!visibleProjects.length && !searchBusy && !searchError && (
         <section className="project-empty-state" aria-label={q ? "No matching projects" : "No projects yet"}>
-          <HeadingDot color="purple" expression="sleepy" size={48} paused />
-          <h2>{q ? "No matching projects" : "No projects yet"}</h2>
-          {q ? <button className="button secondary" type="button" onClick={() => { setQ(""); setPage(0); }}>Clear search</button> : <a className="button secondary" href="/dashboard#project">Your project</a>}
+          <div className="project-empty-copy">
+            <h2>{q ? "No matching projects" : "No projects yet"}</h2>
+            <p>{q ? "Try another project or team name." : "Eligible team submissions appear here."}</p>
+            {q ? <button className="button" type="button" onClick={() => { setQ(""); setPage(0); }}>Clear search</button> : (
+              <a className="button" href={data.me?.canParticipate ? "/dashboard#project" : data.me ? "/discover/teams" : signIn}>
+                {data.me?.canParticipate ? "Your workspace" : data.me ? "Meet the teams" : "Explore the portal"}<ArrowRight size={18} aria-hidden="true" />
+              </a>
+            )}
+          </div>
+          <HeadingDot color="purple" expression={q ? "sleepy" : "squeezed"} size={96} paused />
         </section>
       )}
       {(visibleProjects.length > 0 || page > 0) && <div className="form-actions project-pagination">

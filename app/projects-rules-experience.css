@@ -271,3 +271,181 @@
   object-position: center;
   background: var(--project-team-wash, #e8f7ef);
 }
+
+/* The showcase uses saved team color and the same warm panels as Team Studio. */
+.app-shell .public-project-list {
+  max-width: none;
+}
+.app-shell .public-project-list .projects-heading {
+  margin-bottom: 32px;
+}
+.app-shell .public-project-list .projects-heading h1 {
+  margin: 0;
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+}
+.app-shell .public-project-list .project-directory-toolbar {
+  justify-content: flex-start;
+  margin-bottom: 24px;
+}
+.app-shell .public-project-list .project-search {
+  max-width: 480px;
+}
+.app-shell .public-project-list .project-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  border: 0;
+}
+.app-shell .public-project-list .project-list:empty {
+  display: none;
+}
+.app-shell .public-project-list .project-list > li {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 24px;
+  min-width: 0;
+  min-height: 248px;
+  padding: 24px;
+  border: 1px solid var(--line, #e3e4db);
+  border-radius: 18px;
+  background: linear-gradient(140deg, var(--project-team-wash, #f2edff), var(--surface, #fffefa) 65%);
+  text-align: left;
+}
+.app-shell .public-project-list .project-row-link {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) 22px;
+  gap: 18px;
+  align-items: start;
+  min-width: 0;
+  color: var(--ink, #202320);
+}
+.app-shell .public-project-list .project-row-link > div {
+  min-width: 0;
+}
+.app-shell .public-project-list .row-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+}
+.app-shell .public-project-list .project-row-link h2 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  overflow-wrap: anywhere;
+}
+.app-shell .public-project-list .project-row-link p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  margin: 12px 0;
+  font-size: 14px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+.app-shell .public-project-list .project-row-link small {
+  font-size: 13px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.app-shell .public-project-list .project-card-arrow {
+  margin-top: 3px;
+  color: var(--muted, #656960);
+}
+.app-shell .public-project-list .public-project-card > .engagement {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid #20232012;
+}
+.app-shell .public-project-list .project-empty-state {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 96px;
+  align-items: center;
+  gap: 40px;
+  min-height: 280px;
+  padding: clamp(28px, 4vw, 52px);
+  border: 1px solid #e4dfee;
+  border-radius: 20px;
+  background: linear-gradient(120deg, #f2edff, #fffefa 75%);
+  text-align: left;
+}
+.app-shell .public-project-list .project-empty-copy {
+  min-width: 0;
+}
+.app-shell .public-project-list .project-empty-state h2 {
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+  overflow-wrap: anywhere;
+}
+.app-shell .public-project-list .project-empty-state p {
+  margin: 14px 0 24px;
+  max-width: 38ch;
+  color: var(--muted, #656960);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.app-shell .public-project-list .project-empty-state .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 12px 18px;
+  border-color: var(--ink, #202320);
+  background: var(--ink, #202320);
+  color: #fffefa;
+}
+.app-shell .public-project-list :is(a, button, input):focus-visible {
+  outline: 2px solid #006afe;
+  outline-offset: 3px;
+}
+@media (max-width: 999px) {
+  .app-shell .public-project-list .project-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 740px) {
+  .app-shell .public-project-list .projects-heading {
+    margin-bottom: 24px;
+  }
+  .app-shell .public-project-list .project-search {
+    max-width: none;
+    width: 100%;
+  }
+  .app-shell .public-project-list .project-list > li {
+    min-height: 232px;
+    padding: 20px;
+    gap: 20px;
+  }
+  .app-shell .public-project-list .project-row-link {
+    grid-template-columns: 48px minmax(0, 1fr) 20px;
+    gap: 12px;
+  }
+  .app-shell .public-project-list .row-logo {
+    width: 48px;
+    height: 48px;
+  }
+  .app-shell .public-project-list .project-row-link h2 {
+    font-size: 22px;
+  }
+  .app-shell .public-project-list .project-empty-state {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    padding: 28px 24px;
+    min-height: 0;
+  }
+  .app-shell .public-project-list .project-empty-state > .expressive-heading-dot {
+    grid-row: 1;
+    width: 64px;
+    height: 64px;
+  }
+}

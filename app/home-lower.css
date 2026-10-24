@@ -316,6 +316,17 @@
   align-items: center;
   gap: 22px;
 }
+.public-home-shell .home-community-tags {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 0 100%;
+  gap: 8px 18px;
+  margin: 0;
+  color: var(--muted, #656960);
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
 
 .public-home-shell .hero-date .hero-partner {
   display: flex;

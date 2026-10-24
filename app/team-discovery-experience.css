@@ -1556,6 +1556,8 @@ dialog.team-create-dialog > form.team-create-form {
 .app-shell .discover-v6 .discover-directory > li.discover-card {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  text-align: left;
   min-width: 0;
   gap: 18px;
   padding: 22px;
@@ -1565,10 +1567,10 @@ dialog.team-create-dialog > form.team-create-form {
   background: var(--surface, #fffefa);
 }
 .app-shell .discover-v6 .discover-directory > li.discover-person-card {
-  min-height: 288px;
+  min-height: 264px;
 }
 .app-shell .discover-v6 .discover-directory > li.discover-team-card {
-  min-height: 264px;
+  min-height: 224px;
   background: linear-gradient(135deg, var(--discover-wash), var(--surface, #fffefa) 72%);
 }
 .app-shell .discover-v6 :is(.discover-person-heading, .discover-team-card-heading) {
@@ -1742,7 +1744,7 @@ dialog.team-create-dialog > form.team-create-form {
   grid-template-columns: 56px minmax(0, 1fr) 44px;
   grid-template-rows: 56px minmax(48px, 1fr) 48px;
   gap: 18px 12px;
-  min-height: 288px;
+  min-height: 264px;
 }
 .app-shell .discover-v6 .discover-person-skeleton .discover-skeleton-avatar { grid-column: 1; grid-row: 1; }
 .app-shell .discover-v6 .discover-person-skeleton .discover-skeleton-name { grid-column: 2 / -1; grid-row: 1; align-self: center; }
@@ -1762,6 +1764,7 @@ dialog.discover-team-dialog-v6.discover-team-sheet {
   border-radius: 20px;
   background: var(--surface, #fffefa);
   color: var(--ink, #202320);
+  text-align: left;
 }
 dialog.discover-team-sheet[open] {
   display: grid;
