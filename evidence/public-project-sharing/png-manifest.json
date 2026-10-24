@@ -1,0 +1,218 @@
+[
+  {
+    "file": "evidence/public-project-sharing/before/1440x900-detail.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 52076,
+    "sha256": "9c06fa8f99eb42ef17bfb57dc6e26f9c3db8c5cf8004e6fe4fbff6f18dd1a365",
+    "source": "41bea03a79386a8208ac95afe5ea622a0581aa49"
+  },
+  {
+    "file": "evidence/public-project-sharing/before/1440x900-leaderboard.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 144258,
+    "sha256": "5ab90b0b6f39edd60398d356575e7e1e23d0496a397ea26bac522c8e9a4bfdab",
+    "source": "41bea03a79386a8208ac95afe5ea622a0581aa49"
+  },
+  {
+    "file": "evidence/public-project-sharing/before/390x844-detail.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 39967,
+    "sha256": "bf865bb57b402a1529380b790a1f9199a13037c17be18099c9c8d92cafbe4c0e",
+    "source": "41bea03a79386a8208ac95afe5ea622a0581aa49"
+  },
+  {
+    "file": "evidence/public-project-sharing/before/390x844-leaderboard.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 95211,
+    "sha256": "75b1170f4f39d5e4e0739365ee9c8360f7714b53acd066e2ffc538e52dd4fec6",
+    "source": "41bea03a79386a8208ac95afe5ea622a0581aa49"
+  },
+  {
+    "file": "evidence/public-project-sharing/after/1440x900-detail-share.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 110549,
+    "sha256": "92a3fdbfa88c695595cbe3ad1e54c1c8a048706fce2f53fed443c927c61f6567",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/after/1440x900-detail.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 128471,
+    "sha256": "7835fb26171bb3ccaf7bf08d42e8e2cc9e6bf087f76bde893741a8eabc8b0171",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/after/1440x900-leaderboard.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 144443,
+    "sha256": "0f28814d680dffa9564258041edf03f150e7e1ac07eec21f3beb62253edbb2f9",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/after/1440x900-list-share.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 103758,
+    "sha256": "d06ed33b64fcce9e845ec5b888329e3b668b06c430a4c2464426ee4b968bf280",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/after/1440x900-list.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 133944,
+    "sha256": "0ce78f12e2946ffca25e67a0fdc70442d462f8a134d1b451898deb77093571a7",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/after/320x480-detail-share.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 33183,
+    "sha256": "e908041c98dcaaa9a03c836c69d3989cb7ae63642a1963ccce12a8c94850e33f",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/after/320x480-detail.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 50710,
+    "sha256": "02d13163e2cfafc09db9c3df0b4a7a1ced206044e94682c92f8800eb42ad37fc",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/after/320x480-leaderboard.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 43525,
+    "sha256": "df6b48feb92f96e247ac736d10132b4c2ef6d68899d65ed7e0aa134f0ae6bbb5",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/after/320x480-list-share.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 33511,
+    "sha256": "f2569e8f9d53ba91fa5938ca216adc7dd6bc049be520d5d302d6c495be86816b",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/after/320x480-list.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 46657,
+    "sha256": "f0967a16c95b98418747406cd6778f01c9ba9207cda12cec7b4cec57c0cf790d",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/after/390x844-detail-share.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 53492,
+    "sha256": "92404bede5915b9e870799e63a82b275a1fb9ad5ce418e7b8ac6f1312e40a0c1",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/after/390x844-detail.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 63487,
+    "sha256": "57eac37c889f3074975b050cf2b35fe5acfc0cabd9b2a5c6118fbfbfe655c253",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/after/390x844-instagram-copy-feedback.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 56748,
+    "sha256": "2fc43ed3170a47017c52da136e5b6cdf28bd53c9e22c6bd53c486c2322a90d98",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/after/390x844-leaderboard.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 97301,
+    "sha256": "bc9206d84461995ed3d9b92db6e17652de24ab4d20b7aeb5c5d59111240c062f",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/after/390x844-list-share.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 57371,
+    "sha256": "a261d92a2ce09061a91e257982fe71c7301258a60a5bf9d5397896c803e3c5f3",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/after/390x844-list.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 90496,
+    "sha256": "e9acf7d29219966e11f656de8e08b96d82f01829c48f0ce938907afd91af7fcd",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/settled/1440x900-share-settled.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 110549,
+    "sha256": "92a3fdbfa88c695595cbe3ad1e54c1c8a048706fce2f53fed443c927c61f6567",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/settled/320x480-share-copy-reachable.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 33183,
+    "sha256": "e908041c98dcaaa9a03c836c69d3989cb7ae63642a1963ccce12a8c94850e33f",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/settled/320x480-share-settled.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 33183,
+    "sha256": "e908041c98dcaaa9a03c836c69d3989cb7ae63642a1963ccce12a8c94850e33f",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/settled/390x844-share-settled.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 53492,
+    "sha256": "92404bede5915b9e870799e63a82b275a1fb9ad5ce418e7b8ac6f1312e40a0c1",
+    "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f"
+  },
+  {
+    "file": "evidence/public-project-sharing/leaderboard-final/1440x900-leaderboard.png",
+    "width": 1440,
+    "height": 900,
+    "bytes": 145287,
+    "sha256": "d73215085c8da6a731cd47d056a2676b2ee045a23313320a0b52048b21a2e7ce",
+    "source": "68d6c1749983cf88250f2f064e36cc0a4d2344b8"
+  },
+  {
+    "file": "evidence/public-project-sharing/leaderboard-final/320x480-leaderboard.png",
+    "width": 320,
+    "height": 480,
+    "bytes": 43525,
+    "sha256": "df6b48feb92f96e247ac736d10132b4c2ef6d68899d65ed7e0aa134f0ae6bbb5",
+    "source": "68d6c1749983cf88250f2f064e36cc0a4d2344b8"
+  },
+  {
+    "file": "evidence/public-project-sharing/leaderboard-final/390x844-leaderboard.png",
+    "width": 390,
+    "height": 844,
+    "bytes": 98302,
+    "sha256": "105c62b49e0efc6acc98123994b78ec0b7288c1a43ec8942a96b8219da4f4967",
+    "source": "68d6c1749983cf88250f2f064e36cc0a4d2344b8"
+  }
+]

@@ -1,0 +1,54 @@
+{
+  "source": "41bea03a79386a8208ac95afe5ea622a0581aa49",
+  "phase": "before",
+  "synthetic": true,
+  "GETOnly": true,
+  "checks": [
+    "1440 detail: no document overflow",
+    "1440 leaderboard: no document overflow",
+    "community board has no hidden score or awards",
+    "390 detail: no document overflow",
+    "390 leaderboard: no document overflow",
+    "community board has no hidden score or awards"
+  ],
+  "captures": [
+    "evidence/public-project-sharing/before/1440x900-detail.png",
+    "evidence/public-project-sharing/before/1440x900-leaderboard.png",
+    "evidence/public-project-sharing/before/390x844-detail.png",
+    "evidence/public-project-sharing/before/390x844-leaderboard.png"
+  ],
+  "pageErrors": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fprojects%2Fsynthetic-alice&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fleaderboard&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fleaderboard",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fprojects%2Fsynthetic-alice&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fleaderboard&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fleaderboard",
+      "method": "GET"
+    }
+  ],
+  "publicStage": {
+    "scoreStage": "community",
+    "finalCountdownComplete": false,
+    "awards": 0,
+    "results": 0
+  },
+  "browserClosed": true
+}

@@ -1,0 +1,129 @@
+{
+  "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f",
+  "phase": "after",
+  "synthetic": true,
+  "GETOnly": true,
+  "checks": [
+    "1440 list: no document overflow",
+    "1440 list:44px icon-only Share",
+    "1440 list: one X + three other platforms",
+    "1440 list: real canonical eligible URL",
+    "1440 list: focus stays in modal",
+    "1440 list: Escape returns initiating control",
+    "1440 detail: no document overflow",
+    "1440 detail:44px icon-only Share",
+    "1440 detail: one X + three other platforms",
+    "1440 detail: real canonical eligible URL",
+    "1440 detail: focus stays in modal",
+    "1440 detail: Escape returns initiating control",
+    "1440 leaderboard: no document overflow",
+    "community board has no hidden score or awards",
+    "390 list: no document overflow",
+    "390 list:44px icon-only Share",
+    "390 list: one X + three other platforms",
+    "390 list: real canonical eligible URL",
+    "390 list: focus stays in modal",
+    "390 list: Escape returns initiating control",
+    "Copy URL uses actual existing eligible route",
+    "Instagram honest fallback copies approved caption+hashtags+URL",
+    "Back dismisses Share without navigation",
+    "390 detail: no document overflow",
+    "390 detail:44px icon-only Share",
+    "390 detail: one X + three other platforms",
+    "390 detail: real canonical eligible URL",
+    "390 detail: focus stays in modal",
+    "390 detail: Escape returns initiating control",
+    "390 leaderboard: no document overflow",
+    "community board has no hidden score or awards",
+    "320 list: no document overflow",
+    "320 list:44px icon-only Share",
+    "320 list: one X + three other platforms",
+    "320 list: real canonical eligible URL",
+    "320 list: focus stays in modal",
+    "320 list: Escape returns initiating control",
+    "320 detail: no document overflow",
+    "320 detail:44px icon-only Share",
+    "320 detail: one X + three other platforms",
+    "320 detail: real canonical eligible URL",
+    "320 detail: focus stays in modal",
+    "320 detail: Escape returns initiating control",
+    "320 leaderboard: no document overflow",
+    "community board has no hidden score or awards"
+  ],
+  "captures": [
+    "evidence/public-project-sharing/after/1440x900-list.png",
+    "evidence/public-project-sharing/after/1440x900-list-share.png",
+    "evidence/public-project-sharing/after/1440x900-detail.png",
+    "evidence/public-project-sharing/after/1440x900-detail-share.png",
+    "evidence/public-project-sharing/after/1440x900-leaderboard.png",
+    "evidence/public-project-sharing/after/390x844-list.png",
+    "evidence/public-project-sharing/after/390x844-list-share.png",
+    "evidence/public-project-sharing/after/390x844-instagram-copy-feedback.png",
+    "evidence/public-project-sharing/after/390x844-detail.png",
+    "evidence/public-project-sharing/after/390x844-detail-share.png",
+    "evidence/public-project-sharing/after/390x844-leaderboard.png",
+    "evidence/public-project-sharing/after/320x480-list.png",
+    "evidence/public-project-sharing/after/320x480-list-share.png",
+    "evidence/public-project-sharing/after/320x480-detail.png",
+    "evidence/public-project-sharing/after/320x480-detail-share.png",
+    "evidence/public-project-sharing/after/320x480-leaderboard.png"
+  ],
+  "pageErrors": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fprojects&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fprojects%2Fsynthetic-alice&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fleaderboard&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fleaderboard",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fprojects&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fprojects%2Fsynthetic-alice&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fleaderboard&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fleaderboard",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fprojects&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fprojects%2Fsynthetic-alice&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fleaderboard&focus=",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:3009/api/portal?view=%2Fleaderboard",
+      "method": "GET"
+    }
+  ],
+  "publicStage": {
+    "scoreStage": "community",
+    "finalCountdownComplete": false,
+    "awards": 0,
+    "results": 0
+  },
+  "browserClosed": true
+}

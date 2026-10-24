@@ -1,0 +1,312 @@
+{
+  "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f",
+  "checks": [
+    "1440: four SVG images decoded",
+    "1440: URL copy control remains reachable",
+    "390: four SVG images decoded",
+    "390: URL copy control remains reachable",
+    "320: four SVG images decoded",
+    "320: URL copy control remains reachable"
+  ],
+  "images": [
+    {
+      "width": 1440,
+      "images": [
+        {
+          "src": "/icons/social/x.svg",
+          "complete": true,
+          "naturalWidth": 24,
+          "naturalHeight": 24,
+          "style": {
+            "width": "26px",
+            "height": "26px",
+            "display": "block",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "rect": {
+            "x": 545,
+            "y": 396.6875,
+            "width": 26,
+            "height": 26,
+            "top": 396.6875,
+            "right": 571,
+            "bottom": 422.6875,
+            "left": 545
+          }
+        },
+        {
+          "src": "/icons/social/facebook.svg",
+          "complete": true,
+          "naturalWidth": 24,
+          "naturalHeight": 24,
+          "style": {
+            "width": "26px",
+            "height": "26px",
+            "display": "block",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "rect": {
+            "x": 648,
+            "y": 396.6875,
+            "width": 26,
+            "height": 26,
+            "top": 396.6875,
+            "right": 674,
+            "bottom": 422.6875,
+            "left": 648
+          }
+        },
+        {
+          "src": "/icons/social/linkedin.svg",
+          "complete": true,
+          "naturalWidth": 24,
+          "naturalHeight": 24,
+          "style": {
+            "width": "26px",
+            "height": "26px",
+            "display": "block",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "rect": {
+            "x": 751,
+            "y": 396.6875,
+            "width": 26,
+            "height": 26,
+            "top": 396.6875,
+            "right": 777,
+            "bottom": 422.6875,
+            "left": 751
+          }
+        },
+        {
+          "src": "/icons/social/instagram.svg",
+          "complete": true,
+          "naturalWidth": 24,
+          "naturalHeight": 24,
+          "style": {
+            "width": "26px",
+            "height": "26px",
+            "display": "block",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "rect": {
+            "x": 854,
+            "y": 396.6875,
+            "width": 26,
+            "height": 26,
+            "top": 396.6875,
+            "right": 880,
+            "bottom": 422.6875,
+            "left": 854
+          }
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "images": [
+        {
+          "src": "/icons/social/x.svg",
+          "complete": true,
+          "naturalWidth": 24,
+          "naturalHeight": 24,
+          "style": {
+            "width": "26px",
+            "height": "26px",
+            "display": "block",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "rect": {
+            "x": 65.75,
+            "y": 367.6875,
+            "width": 26,
+            "height": 26,
+            "top": 367.6875,
+            "right": 91.75,
+            "bottom": 393.6875,
+            "left": 65.75
+          }
+        },
+        {
+          "src": "/icons/social/facebook.svg",
+          "complete": true,
+          "naturalWidth": 24,
+          "naturalHeight": 24,
+          "style": {
+            "width": "26px",
+            "height": "26px",
+            "display": "block",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "rect": {
+            "x": 143.25,
+            "y": 367.6875,
+            "width": 26,
+            "height": 26,
+            "top": 367.6875,
+            "right": 169.25,
+            "bottom": 393.6875,
+            "left": 143.25
+          }
+        },
+        {
+          "src": "/icons/social/linkedin.svg",
+          "complete": true,
+          "naturalWidth": 24,
+          "naturalHeight": 24,
+          "style": {
+            "width": "26px",
+            "height": "26px",
+            "display": "block",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "rect": {
+            "x": 220.75,
+            "y": 367.6875,
+            "width": 26,
+            "height": 26,
+            "top": 367.6875,
+            "right": 246.75,
+            "bottom": 393.6875,
+            "left": 220.75
+          }
+        },
+        {
+          "src": "/icons/social/instagram.svg",
+          "complete": true,
+          "naturalWidth": 24,
+          "naturalHeight": 24,
+          "style": {
+            "width": "26px",
+            "height": "26px",
+            "display": "block",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "rect": {
+            "x": 298.25,
+            "y": 367.6875,
+            "width": 26,
+            "height": 26,
+            "top": 367.6875,
+            "right": 324.25,
+            "bottom": 393.6875,
+            "left": 298.25
+          }
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "images": [
+        {
+          "src": "/icons/social/x.svg",
+          "complete": true,
+          "naturalWidth": 24,
+          "naturalHeight": 24,
+          "style": {
+            "width": "26px",
+            "height": "26px",
+            "display": "block",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "rect": {
+            "x": 54,
+            "y": 186.1875,
+            "width": 26,
+            "height": 26,
+            "top": 186.1875,
+            "right": 80,
+            "bottom": 212.1875,
+            "left": 54
+          }
+        },
+        {
+          "src": "/icons/social/facebook.svg",
+          "complete": true,
+          "naturalWidth": 24,
+          "naturalHeight": 24,
+          "style": {
+            "width": "26px",
+            "height": "26px",
+            "display": "block",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "rect": {
+            "x": 116,
+            "y": 186.1875,
+            "width": 26,
+            "height": 26,
+            "top": 186.1875,
+            "right": 142,
+            "bottom": 212.1875,
+            "left": 116
+          }
+        },
+        {
+          "src": "/icons/social/linkedin.svg",
+          "complete": true,
+          "naturalWidth": 24,
+          "naturalHeight": 24,
+          "style": {
+            "width": "26px",
+            "height": "26px",
+            "display": "block",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "rect": {
+            "x": 178,
+            "y": 186.1875,
+            "width": 26,
+            "height": 26,
+            "top": 186.1875,
+            "right": 204,
+            "bottom": 212.1875,
+            "left": 178
+          }
+        },
+        {
+          "src": "/icons/social/instagram.svg",
+          "complete": true,
+          "naturalWidth": 24,
+          "naturalHeight": 24,
+          "style": {
+            "width": "26px",
+            "height": "26px",
+            "display": "block",
+            "visibility": "visible",
+            "opacity": "1"
+          },
+          "rect": {
+            "x": 240,
+            "y": 186.1875,
+            "width": 26,
+            "height": 26,
+            "top": 186.1875,
+            "right": 266,
+            "bottom": 212.1875,
+            "left": 240
+          }
+        }
+      ]
+    }
+  ],
+  "captures": [
+    "evidence/public-project-sharing/settled/1440x900-share-settled.png",
+    "evidence/public-project-sharing/settled/390x844-share-settled.png",
+    "evidence/public-project-sharing/settled/320x480-share-settled.png",
+    "evidence/public-project-sharing/settled/320x480-share-copy-reachable.png"
+  ],
+  "errors": [],
+  "browserClosed": true
+}

@@ -1,0 +1,35 @@
+{
+  "source": "68d6c1749983cf88250f2f064e36cc0a4d2344b8",
+  "synthetic": true,
+  "GETOnly": true,
+  "states": [
+    {
+      "width": 1440,
+      "overflow": false,
+      "factFont": "14px",
+      "linkHeight": 44,
+      "shareHeight": 44
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "factFont": "14px",
+      "linkHeight": 44,
+      "shareHeight": 44
+    },
+    {
+      "width": 320,
+      "overflow": false,
+      "factFont": "14px",
+      "linkHeight": 44,
+      "shareHeight": 44
+    }
+  ],
+  "captures": [
+    "evidence/public-project-sharing/leaderboard-final/1440x900-leaderboard.png",
+    "evidence/public-project-sharing/leaderboard-final/390x844-leaderboard.png",
+    "evidence/public-project-sharing/leaderboard-final/320x480-leaderboard.png"
+  ],
+  "errors": [],
+  "browserClosed": true
+}

@@ -1,0 +1,34 @@
+✔ server-rendered project forms cannot put private draft fields into a native GET before hydration (91.601426ms)
+✔ project detail omits a team caption when no authoritative team name is supplied (7.510321ms)
+✔ share URLs use only explicit valid public paths and actual origin (4.147725ms)
+✔ exact post text and one X service use supported encoded intent fields (16.070356ms)
+✔ success requires a real committed receipt, exact count, and fresh server granted public path (3.972477ms)
+✔ only supplied public entries get icon-only sharing controls outside their detail links (40.804189ms)
+✔ public detail shares from its header only when the server entry contains a valid public slug (21.557642ms)
+✔ a private draft supplied beside an empty public collection never creates a share control or link (2.400355ms)
+✔ approved Delhi pack matches original or independently verified lossless encoding; inverse fill offsets clamp and scale (17.31699ms)
+✔ public SSR renders the approved shell and public project content before hydration (110.62475ms)
+✔ sitemap and metadata reuse anonymous eligible published projections and exclude drafts and private content (215.048657ms)
+✔ each public response reads score disclosure once and refilters the next response after eligibility revocation (124.052322ms)
+✔ AI reveal requires admin, explicit intent, actual persisted provider score and finalized current-version report (116.115288ms)
+✔ final stage withholds every undisclosed position, allows manual award order, then enables full final ordering and confirmed Info (151.784457ms)
+✔ confirmation decisions are default-safe, single-use and block overlapping prompts; accessible dialog exposes exact target (14.961362ms)
+✔ managed identity persists across ordinary requests; local logout expires its fixture cookie and anonymous private reads fail (151.161839ms)
+✔ configured canonical origin accepts an exact HTTPS origin and rejects credential or path variants (2.763295ms)
+✔ public titles, descriptions, canonical and social URLs are unique and use the configured origin (1.95598ms)
+✔ private, authentication, directory and draft legal routes never publish indexable social metadata (1.091628ms)
+✔ project metadata selects published fields only and rejects arbitrary social-image URLs (2.050858ms)
+✔ sitemap includes only home and bounded valid public project paths across pages (60.4505ms)
+✔ robots lets crawlers read HTML noindex, blocks API crawling and permits only public project media (0.790878ms)
+✔ event structured data uses only approved public facts and no invented commercial claims or private room (0.563124ms)
+✔ legal drafts render server-side semantic content with verified controller, contact and retention categories (37.049233ms)
+✔ legal header reuses the hydrated shared menu with named icon destinations and no visible Menu label (14.350235ms)
+✔ privacy draft acknowledges the confirmed active Cloudflare proxy and distinguishes hiding from erasure (18.944706ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14997.277611

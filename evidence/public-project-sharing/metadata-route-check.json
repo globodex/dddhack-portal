@@ -1,0 +1,24 @@
+{
+  "source": "51166b7f982ec6ce04ca0bed9fc67df6b228f81f",
+  "GETOnly": true,
+  "synthetic": true,
+  "pages": [
+    {
+      "route": "/projects/synthetic-alice",
+      "status": 200,
+      "metadata": [
+        "<meta name=\"robots\" content=\"index, follow\"/>",
+        "<meta property=\"og:image\" content=\"http://127.0.0.1:3009/api/project-image/visual_project_alice/banner?version=visual_alice_v2\"/>",
+        "<meta property=\"og:image:alt\" content=\"Small Wonder\"/>",
+        "<meta name=\"twitter:image\" content=\"http://127.0.0.1:3009/api/project-image/visual_project_alice/banner?version=visual_alice_v2\"/>"
+      ]
+    },
+    {
+      "route": "/projects/nonexistent-public-entry",
+      "status": 404,
+      "metadata": [
+        "<meta name=\"robots\" content=\"noindex\"/>"
+      ]
+    }
+  ]
+}
