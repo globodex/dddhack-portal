@@ -1248,13 +1248,15 @@ function DashboardProject({
   editorOpen,
   setEditing,
   onExit,
+  onInteraction,
 }: {
   data: View;
-  run: (a: string, d: Row) => Promise<Row>;
+  run: (a: string, d: Row, options?: { errorFeedback?: "local" }) => Promise<Row>;
   editing: boolean;
   editorOpen: boolean;
   setEditing: (value: boolean) => void;
   onExit: () => void;
+  onInteraction?: () => void;
 }) {
   const project = data.project,
     draft = project?.draft || {},
@@ -1275,6 +1277,7 @@ function DashboardProject({
         data={data}
         run={run}
         onExit={onExit}
+        onInteraction={onInteraction}
         exitLabel={
           project?.published_version_id
             ? "Back to your project"
@@ -1366,6 +1369,7 @@ function DashboardProject({
               key={`${project?.revision || 0}-${data.team?.id || "none"}`}
               data={data}
               run={run}
+              onInteraction={onInteraction}
             />
           )}
         </>
@@ -1413,9 +1417,11 @@ function DashboardProject({
 export function Dashboard({
   data,
   run,
+  onInteraction,
 }: {
   data: View;
-  run: (a: string, d: Row) => Promise<Row>;
+  run: (a: string, d: Row, options?: { errorFeedback?: "local" }) => Promise<Row>;
+  onInteraction?: () => void;
 }) {
   const [tab, setTab] = useState("team"),
     [projectEditing, setProjectEditing] = useState(false);
@@ -1579,6 +1585,7 @@ export function Dashboard({
           editorOpen={editorOpen}
           setEditing={setProjectEditing}
           onExit={exitProjectEditor}
+          onInteraction={onInteraction}
         />
       </section>
     </div>
@@ -2214,11 +2221,13 @@ export function Submission({
   run,
   onExit,
   exitLabel = "Back to your project",
+  onInteraction,
 }: {
   data: View;
-  run: (a: string, d: Row) => Promise<Row>;
+  run: (a: string, d: Row, options?: { errorFeedback?: "local" }) => Promise<Row>;
   onExit?: () => void;
   exitLabel?: string;
+  onInteraction?: () => void;
 }) {
   const initial = { ...emptyProject, ...data.project?.draft };
   const [project, setProject] = useState(initial),
@@ -5727,7 +5736,10 @@ export default function Portal({
       gate.current?.decide(false);
     };
   }, [path]);
-  const run = async (action: string, values: Row) => {
+  const clearSuccessNotice = () => {
+    if (messageTone === "success") setMessage("");
+  };
+  const run = async (action: string, values: Row, options?: { errorFeedback?: "local" }) => {
     const mutationKey=action+":"+(values.columnId||values.batchId||values.projectId||values.teamId||values.userId||values.typeId||values.digest||"page");
     if (mutationKeys.current.has(mutationKey) || gate.current?.pending) throw new ActionCancelled();
     mutationKeys.current.add(mutationKey);
@@ -5767,7 +5779,7 @@ export default function Portal({
       await load();
       return result;
     } catch (e) {
-      if (!(e instanceof ActionCancelled)) {
+      if (!(e instanceof ActionCancelled) && options?.errorFeedback !== "local") {
         setMessageTone("error");
         setMessage((e as Error).message);
       }
@@ -6170,14 +6182,14 @@ export default function Portal({
                 <Profile data={data} run={run} gated />
               ) : path === "/profile" ? (
                 data.me?.mode === "viewer" ? (
-                  <Dashboard data={data} run={run} />
+                  <Dashboard data={data} run={run} onInteraction={clearSuccessNotice} />
                 ) : (
                   <Profile data={data} run={run} />
                 )
               ) : path === "/rules" ? (
                 <SharedRules categories={data.categories || []} />
               ) : path === "/dashboard" ? (
-                <Dashboard data={data} run={run} />
+                <Dashboard data={data} run={run} onInteraction={clearSuccessNotice} />
               ) : path === "/discover/teams" ||
                 path === "/discover/participants" ? (
                 <Discover data={data} path={path} run={run} />
@@ -6186,6 +6198,7 @@ export default function Portal({
                   key={`${data.project?.revision || 0}-${data.team?.id || "none"}`}
                   data={data}
                   run={run}
+                  onInteraction={clearSuccessNotice}
                 />
               ) : path.startsWith("/projects") || path === "/leaderboard" ? (
                 <Projects data={data} path={path} run={run} />
@@ -6231,6 +6244,7 @@ function StatusChange({
     <>
       {!disabled && (
         <Form
+          key={`${kind}:${target}:${current}`}
           title={name}
           label="Review status change"
           onSave={async (f) => {
