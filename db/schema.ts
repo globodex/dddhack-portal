@@ -1041,3 +1041,28 @@ export const credit_batch_columns = sqliteTable(
     unique().on(table.type_id),
   ],
 );
+
+// Terminal deletions keep only opaque identifiers and committed-attempt counts.
+// Reviewed SQL owns the scoped cascade and immutability triggers.
+export const terminal_record_deletions = sqliteTable(
+  "terminal_record_deletions",
+  {
+    kind: text("kind").notNull(),
+    target_id: text("target_id").notNull(),
+    deleted_at: text("deleted_at").notNull(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.kind, table.target_id] }),
+    check("terminal_deletion_kind", sql`${table.kind} IN ('participant','team')`),
+  ],
+);
+export const submission_attempt_ledger = sqliteTable(
+  "submission_attempt_ledger",
+  {
+    team_id: text("team_id").primaryKey(),
+    attempts: integer("attempts").notNull(),
+  },
+  (table) => [
+    check("submission_attempt_range", sql`${table.attempts} BETWEEN 1 AND 3`),
+  ],
+);
