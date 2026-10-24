@@ -1,4 +1,4 @@
-import { chromium } from "@playwright/test";
+import { chromium, expect } from "@playwright/test";
 import assert from "node:assert/strict";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
@@ -188,10 +188,7 @@ for (const viewport of [
     await page
       .getByRole("dialog", { name: "Add participants", exact: true })
       .waitFor({ state: "hidden" });
-    assert.equal(
-      await importButton.evaluate((node) => node === document.activeElement),
-      true,
-    );
+    await expect(importButton).toBeFocused();
     await importButton.click();
     await page
       .getByRole("dialog", { name: "Add participants", exact: true })
@@ -216,10 +213,7 @@ for (const viewport of [
     await page
       .getByRole("dialog", { name: "Change Alice status", exact: true })
       .waitFor({ state: "hidden" });
-    assert.equal(
-      await status.evaluate((node) => node === document.activeElement),
-      true,
-    );
+    await expect(status).toBeFocused();
     check(`status Escape focus ${viewport.width}x${viewport.height}`);
     await page.goto(`${origin}/admin/teams`, {
       waitUntil: "networkidle",
