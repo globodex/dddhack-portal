@@ -902,8 +902,19 @@ function StudioDialog({
     heading = useId();
   callback.current = onClose;
   useEffect(() => {
-    if (dialog.current)
-      return openDiscoveryDialog(dialog.current, () => callback.current());
+    const node = dialog.current;
+    if (!node) return;
+    const { body, documentElement } = node.ownerDocument;
+    const bodyOverflow = body.style.overflow;
+    const htmlOverflow = documentElement.style.overflow;
+    const close = openDiscoveryDialog(node, () => callback.current());
+    body.style.overflow = "hidden";
+    documentElement.style.overflow = "hidden";
+    return () => {
+      close();
+      body.style.overflow = bodyOverflow;
+      documentElement.style.overflow = htmlOverflow;
+    };
   }, []);
   return (
     <dialog
