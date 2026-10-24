@@ -1,0 +1,51 @@
+{
+  "source": "2d051fda81f406a5c7d43811a3bde19d3aa71181",
+  "origin": "http://localhost:3005",
+  "syntheticOnly": true,
+  "freshDatabase": "/tmp/ddd-projects-controls.sqlite",
+  "checks": [
+    {
+      "name": "Real browser Save draft persists new revision and consumes no committed attempt",
+      "passed": true
+    },
+    {
+      "name": "Real browser upvote persists once; pressed state disables repeat vote",
+      "passed": true
+    },
+    {
+      "name": "Real browser public comment persists through existing permission and confirmation flow",
+      "passed": true
+    }
+  ],
+  "writes": [
+    {
+      "action": "save-project",
+      "actor": "fake_alice",
+      "status": "persisted",
+      "httpStatus": 200,
+      "result": {
+        "message": "Project draft saved.",
+        "projectId": "visual_project_alice"
+      }
+    },
+    {
+      "action": "upvote-project",
+      "actor": "fake_alice",
+      "status": "persisted",
+      "httpStatus": 200,
+      "result": {
+        "message": "Upvote recorded."
+      }
+    },
+    {
+      "action": "comment-project",
+      "actor": "fake_alice",
+      "status": "persisted",
+      "httpStatus": 200,
+      "result": {
+        "message": "Comment posted."
+      }
+    }
+  ],
+  "errors": []
+}

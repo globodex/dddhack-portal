@@ -57,7 +57,6 @@ try {
       if (name === "project-detail" && viewport.width === 1440) {
         const result = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
         report.accessibility.push({ name, viewport, violations: result.violations }); save();
-        assert.equal(result.violations.length, 0, "project detail Axe");
       }
     }
     await loaded(page, "/projects");
@@ -112,7 +111,6 @@ try {
     if (viewport.height === 480) {
       const result = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
       report.accessibility.push({ name: "wizard-step3", viewport, violations: result.violations }); save();
-      assert.equal(result.violations.length, 0, "short mobile wizard Axe");
     }
     await context.close();
   }
@@ -138,6 +136,7 @@ try {
   check("JavaScript-disabled browser: actual server-rendered Submission cannot issue a native GET or submit private draft fields");
   await noJS.close();
   assert.equal(report.errors.length, 0);
+  assert.equal(report.accessibility.flatMap((item) => item.violations).length, 0, "Automated accessibility findings remain; see report");
 } catch (error) {
   report.failure = String(error.stack || error); process.exitCode = 1;
 } finally {
