@@ -2369,8 +2369,10 @@ export function Submission({
       if (!(e instanceof ActionCancelled)) {
         const message = (e as Error).message;
         const field = /banner/i.test(message) ? "banner" : /logo/i.test(message) ? "logo" : undefined;
-        if (field) setFieldErrors((previous) => ({ ...previous, [field]: message }));
-        else setError(message);
+        if (field) {
+          setFieldErrors((previous) => ({ ...previous, [field]: message }));
+          requestAnimationFrame(() => document.getElementById(`submission-${field}-control`)?.focus());
+        } else setError(message);
       }
     } finally {
       saving.current = false;
