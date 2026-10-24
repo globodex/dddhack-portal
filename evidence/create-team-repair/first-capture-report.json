@@ -1,0 +1,308 @@
+{
+  "source": "af98d32505976cbdf94cd2f949646f1ec088e5a9",
+  "workingTreeHasRuntimeChanges": false,
+  "syntheticOnly": true,
+  "captures": [
+    {
+      "path": "/workspace/ddd-team/evidence/create-team-repair/create-team-after-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "geometry": {
+        ".team-creation-header": {
+          "x": 394.5,
+          "y": 167,
+          "width": 636,
+          "height": 85,
+          "top": 167,
+          "right": 1030.5,
+          "bottom": 252,
+          "left": 394.5
+        },
+        ".team-creation-close": {
+          "x": 962.5,
+          "y": 187,
+          "width": 44,
+          "height": 44,
+          "top": 187,
+          "right": 1006.5,
+          "bottom": 231,
+          "left": 962.5
+        },
+        ".team-creation-body": {
+          "x": 394.5,
+          "y": 252,
+          "width": 636,
+          "height": 400,
+          "top": 252,
+          "right": 1030.5,
+          "bottom": 652,
+          "left": 394.5
+        },
+        ".team-creation-identity": {
+          "x": 418.5,
+          "y": 276,
+          "width": 588,
+          "height": 106,
+          "top": 276,
+          "right": 1006.5,
+          "bottom": 382,
+          "left": 418.5
+        },
+        ".team-creation-fields": {
+          "x": 418.5,
+          "y": 406,
+          "width": 588,
+          "height": 222,
+          "top": 406,
+          "right": 1006.5,
+          "bottom": 628,
+          "left": 418.5
+        },
+        ".team-creation-footer": {
+          "x": 394.5,
+          "y": 652,
+          "width": 636,
+          "height": 81,
+          "top": 652,
+          "right": 1030.5,
+          "bottom": 733,
+          "left": 394.5
+        }
+      },
+      "action": {
+        "x": 850.5,
+        "y": 669,
+        "width": 156,
+        "height": 48
+      }
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/create-team-repair/create-team-after-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "geometry": {
+        ".team-creation-header": {
+          "x": 18,
+          "y": 129,
+          "width": 354,
+          "height": 77,
+          "top": 129,
+          "right": 372,
+          "bottom": 206,
+          "left": 18
+        },
+        ".team-creation-close": {
+          "x": 308,
+          "y": 145,
+          "width": 44,
+          "height": 44,
+          "top": 145,
+          "right": 352,
+          "bottom": 189,
+          "left": 308
+        },
+        ".team-creation-body": {
+          "x": 18,
+          "y": 206,
+          "width": 354,
+          "height": 428,
+          "top": 206,
+          "right": 372,
+          "bottom": 634,
+          "left": 18
+        },
+        ".team-creation-identity": {
+          "x": 38,
+          "y": 226,
+          "width": 314,
+          "height": 144,
+          "top": 226,
+          "right": 352,
+          "bottom": 370,
+          "left": 38
+        },
+        ".team-creation-fields": {
+          "x": 38,
+          "y": 394,
+          "width": 314,
+          "height": 220,
+          "top": 394,
+          "right": 352,
+          "bottom": 614,
+          "left": 38
+        },
+        ".team-creation-footer": {
+          "x": 18,
+          "y": 634,
+          "width": 354,
+          "height": 81,
+          "top": 634,
+          "right": 372,
+          "bottom": 715,
+          "left": 18
+        }
+      },
+      "action": {
+        "x": 38,
+        "y": 651,
+        "width": 314,
+        "height": 48
+      }
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/create-team-repair/create-team-after-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "geometry": {
+        ".team-creation-header": {
+          "x": 18,
+          "y": 18,
+          "width": 354,
+          "height": 77,
+          "top": 18,
+          "right": 372,
+          "bottom": 95,
+          "left": 18
+        },
+        ".team-creation-close": {
+          "x": 308,
+          "y": 34,
+          "width": 44,
+          "height": 44,
+          "top": 34,
+          "right": 352,
+          "bottom": 78,
+          "left": 308
+        },
+        ".team-creation-body": {
+          "x": 18,
+          "y": 95,
+          "width": 354,
+          "height": 286,
+          "top": 95,
+          "right": 372,
+          "bottom": 381,
+          "left": 18
+        },
+        ".team-creation-identity": {
+          "x": 38,
+          "y": 115,
+          "width": 314,
+          "height": 144,
+          "top": 115,
+          "right": 352,
+          "bottom": 259,
+          "left": 38
+        },
+        ".team-creation-fields": {
+          "x": 38,
+          "y": 283,
+          "width": 314,
+          "height": 220,
+          "top": 283,
+          "right": 352,
+          "bottom": 503,
+          "left": 38
+        },
+        ".team-creation-footer": {
+          "x": 18,
+          "y": 381,
+          "width": 354,
+          "height": 81,
+          "top": 381,
+          "right": 372,
+          "bottom": 462,
+          "left": 18
+        }
+      },
+      "action": {
+        "x": 38,
+        "y": 398,
+        "width": 314,
+        "height": 48
+      }
+    },
+    {
+      "path": "/workspace/ddd-team/evidence/create-team-repair/create-team-after-320x480.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "geometry": {
+        ".team-creation-header": {
+          "x": 18,
+          "y": 18,
+          "width": 284,
+          "height": 77,
+          "top": 18,
+          "right": 302,
+          "bottom": 95,
+          "left": 18
+        },
+        ".team-creation-close": {
+          "x": 238,
+          "y": 34,
+          "width": 44,
+          "height": 44,
+          "top": 34,
+          "right": 282,
+          "bottom": 78,
+          "left": 238
+        },
+        ".team-creation-body": {
+          "x": 18,
+          "y": 95,
+          "width": 284,
+          "height": 286,
+          "top": 95,
+          "right": 302,
+          "bottom": 381,
+          "left": 18
+        },
+        ".team-creation-identity": {
+          "x": 38,
+          "y": 115,
+          "width": 244,
+          "height": 174,
+          "top": 115,
+          "right": 282,
+          "bottom": 289,
+          "left": 38
+        },
+        ".team-creation-fields": {
+          "x": 38,
+          "y": 313,
+          "width": 244,
+          "height": 220,
+          "top": 313,
+          "right": 282,
+          "bottom": 533,
+          "left": 38
+        },
+        ".team-creation-footer": {
+          "x": 18,
+          "y": 381,
+          "width": 284,
+          "height": 81,
+          "top": 381,
+          "right": 302,
+          "bottom": 462,
+          "left": 18
+        }
+      },
+      "action": {
+        "x": 38,
+        "y": 398,
+        "width": 244,
+        "height": 48
+      }
+    }
+  ],
+  "errors": []
+}
