@@ -1,0 +1,2668 @@
+{
+  "label": "v7-home-hydrated",
+  "sourceRoot": "/workspace/wt-qa",
+  "source": "93b1810000710b0e16ad9b1d9f3e122a46a347fe",
+  "origin": "http://127.0.0.1:5173",
+  "runtime": "vinext-source",
+  "backend": "synthetic-sqlite",
+  "syntheticOnly": true,
+  "disposable": true,
+  "browserSandbox": false,
+  "scenarios": [
+    {
+      "label": "home",
+      "route": "/",
+      "actor": null,
+      "axe": true
+    }
+  ],
+  "runtimeFingerprint": "e53ed1fb41e0a24ca71932d93cb0898e9a0ffb684256c82477d33ec3c8e0222e",
+  "sourceHasUncommittedRuntimeChanges": true,
+  "startedAt": "2026-10-24T09:17:39.211Z",
+  "writes": false,
+  "screenshots": [
+    {
+      "path": "/workspace/wt-qa/evidence/migration/v7-home-hydrated/home-1440x900-viewport.png",
+      "route": "/",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "93b1810000710b0e16ad9b1d9f3e122a46a347fe",
+      "runtime": "vinext-source",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "1c6a33e0d3254933dcab0649ef99cbdcf84e452c1719c99e771b38f9390ab36f",
+      "inspected": true,
+      "inspection": "Reviewed against matching viewport by QA and UI; wordmark/Metro registration and composition preserved. CTA intentionally changed to new auth entry."
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/v7-home-hydrated/home-390x844-viewport.png",
+      "route": "/",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "93b1810000710b0e16ad9b1d9f3e122a46a347fe",
+      "runtime": "vinext-source",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "f0ec732ebbf8b431e42eca695bb4f5d9b4387923088692eeffb5c2f274227366",
+      "inspected": true,
+      "inspection": "Reviewed against matching viewport by QA and UI; wordmark/Metro registration and composition preserved. CTA intentionally changed to new auth entry."
+    }
+  ],
+  "samples": [
+    {
+      "scenario": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "elapsedToCaptureMs": 1463.513172,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "DevDay ExchangeCommunity Hackathon:New Delhi",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://127.0.0.1:5173/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 370.80000000004657,
+          "navigationId": 3013,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 2.199999999953434,
+          "domainLookupStart": 2.199999999953434,
+          "domainLookupEnd": 2.199999999953434,
+          "connectStart": 2.199999999953434,
+          "secureConnectionStart": 0,
+          "connectEnd": 2.199999999953434,
+          "requestStart": 15.099999999976717,
+          "responseStart": 61.800000000046566,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 61.800000000046566,
+          "responseEnd": 62.40000000002328,
+          "transferSize": 64108,
+          "encodedBodySize": 63808,
+          "decodedBodySize": 63808,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 284.4000000000233,
+          "domContentLoadedEventStart": 284.4000000000233,
+          "domContentLoadedEventEnd": 284.5,
+          "domComplete": 370.5999999999767,
+          "loadEventStart": 370.80000000004657,
+          "loadEventEnd": 370.80000000004657,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "#main",
+          "x": 0,
+          "y": 80,
+          "width": 1440,
+          "height": 4120.03125
+        },
+        {
+          "selector": "home-hero",
+          "x": 0,
+          "y": 114,
+          "width": 1440,
+          "height": 820
+        },
+        {
+          "selector": "delhi-wordmark",
+          "x": 63.359375,
+          "y": 324.671875,
+          "width": 792.5625,
+          "height": 182.1875
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 880.75,
+          "y": 187.15625,
+          "width": 495.890625,
+          "height": 454.5625
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 894.125,
+          "y": 973,
+          "width": 490,
+          "height": 449.15625
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 894.125,
+          "y": 1535,
+          "width": 490,
+          "height": 449.15625
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 894.125,
+          "y": 2097,
+          "width": 490,
+          "height": 449.15625
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 894.125,
+          "y": 2705.46875,
+          "width": 490,
+          "height": 449.15625
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 1074.59375,
+          "y": 3323.328125,
+          "width": 302.046875,
+          "height": 276.875
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/app/style.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/public-home.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/home-lower.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/organizer-section.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/portrait-backdrop.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/participant-ui.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/admin-controls.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/navigation-correction.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/discovery-profile.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/dashboard-v6.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/discover-rules-v6.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/projects-submission-v6.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/portal-shell.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/mobile-navigation.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/route-skeleton.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/admin-credit-batches.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vite-rsc/entry-browser",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/art/delhi-v3/fallback-approved-v3.webp",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/@fontsource/dm-sans/files/dm-sans-latin-700-normal.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/@fontsource/dm-sans/files/dm-sans-latin-900-normal.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/@vite/client",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@react-refresh",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vite/dist/client/env.mjs",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vinext-app-browser-entry",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/react-instance-bootstrap.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-entry.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/react-instance.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/react.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/base-path.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/headers.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/routing/utils.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/app-router-context.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/routing/route-pattern.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/window-next.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/hash-scroll.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-elements-wire.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-elements.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/navigation-context-state.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/navigation-errors.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/default-global-error.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/app-nav-failure-handler.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/error-boundary.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/app-router-scroll-state.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/app-router-scroll.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/slot.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-rsc-cache-busting.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/instrumentation-client-state.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/instrumentation-client.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/navigation-runtime.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-bfcache-identity.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-action-result.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-client-reuse-manifest.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-interception-context.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-history-state.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-mpa-navigation.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/rsc-completion-metadata.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-rsc-redirect.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/navigation-planner.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/navigation.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-stream.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-state.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-navigation-controller.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-route-tree.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-navigation-response.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-supplemental-refresh.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-navigation-abort.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-hydration.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-history-controller.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-visited-response-cache.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-popstate.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-error.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-hydration-cache-publication.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-prefetch-response.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-optimistic-routing.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-inline-css-client.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/react-dom.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/react-dom_client.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/@vitejs/plugin-rsc/dist/browser.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vinext-app-capabilities",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/react-4hkZzRew.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/protocol-headers.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-rsc-vary.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/record.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/compare.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/normalize-path.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-elements-wire-key.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/artifact-compatibility.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-render-dependency.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-mounted-slots-header.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/redirect-digest.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/react_jsx-runtime.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/navigation-signal.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/navigation-server.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/error-boundary-navigation.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/dev-error-recovery-event.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/bfcache-identity.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/disable-smooth-scroll.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/empty-module.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-rsc-render-mode.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/hash.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/deployment-id.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-rsc-state-fingerprint.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/routing/browser-route-manifest.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/browser-globals.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-bfcache-id.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/cache-proof.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/client-reuse-manifest.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/static-layout-client-reuse-proof.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/number.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/url-safety.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/navigation-trace.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/operation-token.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/html-limited-bots.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/external-url.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/ppr-fallback-shell.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/hybrid-client-route-owner-direct.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/url-utils.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/unrecognized-action-error.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/readonly-url-search-params.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/pages-router-accessor.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/app-prefetch-fetch-queue.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-rsc-embedded-chunks.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-visible-commit.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/react-dom-CRx58tZq.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/html.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/routing/optimistic-route-trie.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-page-segment-state.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/@vitejs/plugin-rsc/dist/core/browser.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/@vitejs/plugin-rsc/dist/react/browser.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vite-rsc/client-references",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/rolldown-runtime-SbdDWaPq.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/jsx-runtime-cNwuCTLA.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/promise.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/sorted-array.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/als-registry.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/make-hanging-promise.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/routing/route-matching.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/domain-locale.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/routing/hashed-route-patterns.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/@vitejs/plugin-rsc/dist/shared-BWJvctW6.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/@vitejs/plugin-rsc/dist/shared-Y4B6DJ99.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__vinext:async-hooks-stub",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/routing/route-trie.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vinext-app-route-manifest",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/dev-error-overlay.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/dev-stack-sourcemap-endpoint.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/dev-error-overlay-store.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/%2Fworkspace%2Fwt-qa%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Fslot.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/%2Fworkspace%2Fwt-qa%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Ferror-boundary.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/%2Fworkspace%2Fwt-qa%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Fdefault-global-error.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/%2Fworkspace%2Fwt-qa%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Flayout-segment-context.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/%2Fworkspace%2Fwt-qa%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Fapp-router-scroll.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/portal.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/%2Fworkspace%2Fwt-qa%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Fstreamed-icons.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vite-rsc/remove-duplicate-server-css",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/layout-segment-context.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/streamed-icons.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/lucide-react.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/add-admins.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/admin-credit-batches.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/admin-leader-transfer.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/link.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/use-discover-people.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/expressive-heading.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/route-skeleton.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/mobile-navigation.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/portal-read.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/admin-presentation.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/discovery-profile.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/navigation.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/submission-tools.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/participant-filters.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/dot-avatar.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/avatar-contract.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/home.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/profile-flow.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/admin-import-dialog.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/admin-status-menu.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/dialog-focus.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/admin-participant-actions.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/admin-project-actions.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/owner-submission-window.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/credit-instructions.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/confirmation-dialog.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/action-confirmation.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/team-avatar.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/experience-contract.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/time.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/event-content-contract.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/admin-import-controls.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/router-context.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/pages-data-target.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/app-route-detection.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/interpolate-as.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/format-url-object.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/normalize-router-href.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/route-pattern-for-warning.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/client-locale.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/pages-router-link-navigation.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/i18n-context.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/link-prefetch.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/app-route-prefetch-policy.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/link-status-registry.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/dots.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/delhi-wordmark.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/organizer-section.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/portrait-backdrop.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/home-geometry.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/profile-icons.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/profile-contract.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/audit-contract.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/instruction-markdown.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/zod.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/pages-data-url.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/pages-data-fetch-dedup.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/pages-router-components.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/query.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/home-motion.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/delhi-motion.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/delhi-mask.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/organizer-motion.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/portrait-backdrop.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/api/portal",
+          "resourceType": "fetch"
+        }
+      ],
+      "portalApiRequests": 1
+    },
+    {
+      "scenario": "home",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "elapsedToCaptureMs": 1602.6758630000004,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "DevDay ExchangeCommunity Hackathon:New Delhi",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://127.0.0.1:5173/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 468.30000000004657,
+          "navigationId": 3320,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.5,
+          "domainLookupStart": 0.5,
+          "domainLookupEnd": 0.5,
+          "connectStart": 0.5,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.5,
+          "requestStart": 27.099999999976717,
+          "responseStart": 78,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 78,
+          "responseEnd": 78.70000000006985,
+          "transferSize": 64115,
+          "encodedBodySize": 63815,
+          "decodedBodySize": 63815,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 389.80000000004657,
+          "domContentLoadedEventStart": 389.9000000000233,
+          "domContentLoadedEventEnd": 390.0999999999767,
+          "domComplete": 468.30000000004657,
+          "loadEventStart": 468.30000000004657,
+          "loadEventEnd": 468.30000000004657,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "#main",
+          "x": 0,
+          "y": 64,
+          "width": 390,
+          "height": 3619.921875
+        },
+        {
+          "selector": "home-hero",
+          "x": 0,
+          "y": 98,
+          "width": 390,
+          "height": 780
+        },
+        {
+          "selector": "delhi-wordmark",
+          "x": 20,
+          "y": 211.5,
+          "width": 350,
+          "height": 80.453125
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 0,
+          "y": 98,
+          "width": 390,
+          "height": 780
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/app/style.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/public-home.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/home-lower.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/organizer-section.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/portrait-backdrop.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/participant-ui.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/admin-controls.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/navigation-correction.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/discovery-profile.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/dashboard-v6.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/discover-rules-v6.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/projects-submission-v6.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/portal-shell.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/mobile-navigation.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/route-skeleton.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/app/admin-credit-batches.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vite-rsc/entry-browser",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/art/delhi-v3/fallback-approved-v3.webp",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/@fontsource/dm-sans/files/dm-sans-latin-700-normal.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/@fontsource/dm-sans/files/dm-sans-latin-900-normal.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/@fontsource/dm-sans/files/dm-sans-latin-500-normal.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/@vite/client",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@react-refresh",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vite/dist/client/env.mjs",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vinext-app-browser-entry",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/react-instance-bootstrap.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-entry.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/react-instance.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/react.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/base-path.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/headers.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/routing/utils.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/app-router-context.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/routing/route-pattern.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/window-next.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/hash-scroll.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-elements-wire.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-elements.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/navigation-context-state.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/navigation-errors.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/default-global-error.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/app-nav-failure-handler.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/error-boundary.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/app-router-scroll-state.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/app-router-scroll.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/slot.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-rsc-cache-busting.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/instrumentation-client-state.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/instrumentation-client.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/navigation-runtime.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-bfcache-identity.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-action-result.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-client-reuse-manifest.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-interception-context.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-history-state.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-mpa-navigation.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/rsc-completion-metadata.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-rsc-redirect.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/navigation-planner.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/navigation.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-stream.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-state.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-navigation-controller.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-route-tree.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-navigation-response.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-supplemental-refresh.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-navigation-abort.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-hydration.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-history-controller.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-visited-response-cache.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-popstate.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-error.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-hydration-cache-publication.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-prefetch-response.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-optimistic-routing.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-inline-css-client.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/react-dom.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/react-dom_client.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/@vitejs/plugin-rsc/dist/browser.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vinext-app-capabilities",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/react-4hkZzRew.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/protocol-headers.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-rsc-vary.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/record.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/compare.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/normalize-path.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-elements-wire-key.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/artifact-compatibility.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-render-dependency.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/redirect-digest.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/react_jsx-runtime.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-mounted-slots-header.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/navigation-signal.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/navigation-server.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/error-boundary-navigation.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/dev-error-recovery-event.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/disable-smooth-scroll.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/bfcache-identity.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-rsc-render-mode.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/hash.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/deployment-id.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-rsc-state-fingerprint.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/empty-module.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/routing/browser-route-manifest.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/browser-globals.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-bfcache-id.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/cache-proof.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/client-reuse-manifest.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/static-layout-client-reuse-proof.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/number.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/url-safety.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/navigation-trace.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/operation-token.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/html-limited-bots.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/external-url.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/ppr-fallback-shell.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/hybrid-client-route-owner-direct.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/url-utils.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/unrecognized-action-error.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/readonly-url-search-params.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/pages-router-accessor.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/app-prefetch-fetch-queue.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-rsc-embedded-chunks.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-browser-visible-commit.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/react-dom-CRx58tZq.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/routing/optimistic-route-trie.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/app-page-segment-state.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/server/html.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/rolldown-runtime-SbdDWaPq.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/@vitejs/plugin-rsc/dist/core/browser.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/@vitejs/plugin-rsc/dist/react/browser.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vite-rsc/client-references",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/promise.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/jsx-runtime-cNwuCTLA.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/sorted-array.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/als-registry.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/make-hanging-promise.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/routing/route-matching.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/domain-locale.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/routing/hashed-route-patterns.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/@vitejs/plugin-rsc/dist/shared-BWJvctW6.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/@vitejs/plugin-rsc/dist/shared-Y4B6DJ99.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__vinext:async-hooks-stub",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/routing/route-trie.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vinext-app-route-manifest",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/dev-error-overlay.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/dev-stack-sourcemap-endpoint.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/dev-error-overlay-store.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/%2Fworkspace%2Fwt-qa%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Fslot.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/%2Fworkspace%2Fwt-qa%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Ferror-boundary.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/%2Fworkspace%2Fwt-qa%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Fdefault-global-error.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/%2Fworkspace%2Fwt-qa%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Flayout-segment-context.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/%2Fworkspace%2Fwt-qa%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Fapp-router-scroll.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/portal.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/%2Fworkspace%2Fwt-qa%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Fstreamed-icons.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/@id/__x00__virtual:vite-rsc/remove-duplicate-server-css",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/layout-segment-context.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/streamed-icons.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/lucide-react.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/add-admins.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/admin-credit-batches.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/admin-leader-transfer.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/link.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/use-discover-people.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/expressive-heading.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/route-skeleton.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/mobile-navigation.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/portal-read.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/admin-presentation.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/discovery-profile.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/navigation.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/submission-tools.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/participant-filters.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/dot-avatar.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/avatar-contract.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/home.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/profile-flow.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/admin-import-dialog.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/admin-status-menu.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/dialog-focus.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/admin-participant-actions.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/admin-project-actions.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/owner-submission-window.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/credit-instructions.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/confirmation-dialog.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/action-confirmation.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/team-avatar.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/experience-contract.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/time.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/event-content-contract.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/admin-import-controls.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/router-context.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/pages-data-target.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/app-route-detection.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/interpolate-as.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/format-url-object.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/normalize-router-href.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/route-pattern-for-warning.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/client-locale.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/client/pages-router-link-navigation.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/i18n-context.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/link-prefetch.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/app-route-prefetch-policy.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/link-status-registry.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/dots.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/delhi-wordmark.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/organizer-section.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/portrait-backdrop.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/home-geometry.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/profile-icons.tsx",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/profile-contract.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/audit-contract.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/instruction-markdown.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/.vite/deps/zod.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/pages-data-url.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/pages-data-fetch-dedup.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/shims/internal/pages-router-components.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/node_modules/vinext/dist/utils/query.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/app/home-motion.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/delhi-motion.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/delhi-mask.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/portrait-backdrop.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/lib/organizer-motion.ts",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/api/portal",
+          "resourceType": "fetch"
+        }
+      ],
+      "portalApiRequests": 1
+    }
+  ],
+  "accessibility": [
+    {
+      "scenario": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 27
+        }
+      ]
+    },
+    {
+      "scenario": "home",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 13
+        }
+      ]
+    }
+  ],
+  "findings": [],
+  "errors": [],
+  "blocked": [],
+  "limitations": [
+    "Local development runtime and disposable synthetic fixtures; no hosted timing, real sign-in, physical-device or production-data evidence.",
+    "Cold timings are one unthrottled diagnostic observation per route, not a benchmark or capacity estimate.",
+    "Screenshots use reduced motion and identical viewports. They prove the captured runtime only; mock API captures are explicitly labelled.",
+    "Chromium native sandbox is unavailable in this container (sandbox helper owner/user namespaces). Browser launched without it against allowlisted localhost only, fresh disposable contexts, and denied external DNS/requests."
+  ],
+  "browser": "154.0.8037.57",
+  "browserClosed": true,
+  "finishedAt": "2026-10-24T09:17:44.457Z"
+}

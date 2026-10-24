@@ -1,0 +1,46 @@
+[
+  {
+    "viewport": "1440x900",
+    "source": "/workspace/wt-qa/evidence/migration/v7-home-hydrated/home-1440x900-viewport.png",
+    "next": "/workspace/wt-qa/evidence/migration/next-home-hydrated/home-1440x900-viewport.png",
+    "changedPixels": 17044,
+    "totalPixels": 1296000,
+    "changedPercent": 1.3151234567901233,
+    "differentBounds": [
+      0,
+      250,
+      1440,
+      900
+    ],
+    "interpretation": "Wordmark crop pixels identical. CTA label intentionally changed for new authentication; desktop dot edge rasterization changed with transient compositor hints. This does not claim full-page pixel identity.",
+    "wordmarkCrop": [
+      63,
+      325,
+      856,
+      507
+    ],
+    "wordmarkPixelsIdentical": true
+  },
+  {
+    "viewport": "390x844",
+    "source": "/workspace/wt-qa/evidence/migration/v7-home-hydrated/home-390x844-viewport.png",
+    "next": "/workspace/wt-qa/evidence/migration/next-home-hydrated/home-390x844-viewport.png",
+    "changedPixels": 851,
+    "totalPixels": 329160,
+    "changedPercent": 0.2585368817596306,
+    "differentBounds": [
+      41,
+      394,
+      370,
+      490
+    ],
+    "interpretation": "Wordmark crop pixels identical. CTA label intentionally changed for new authentication; desktop dot edge rasterization changed with transient compositor hints. This does not claim full-page pixel identity.",
+    "wordmarkCrop": [
+      20,
+      212,
+      370,
+      292
+    ],
+    "wordmarkPixelsIdentical": true
+  }
+]

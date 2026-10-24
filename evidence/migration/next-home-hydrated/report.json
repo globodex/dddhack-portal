@@ -1,0 +1,658 @@
+{
+  "label": "next-home-hydrated",
+  "sourceRoot": "/workspace/wt-next",
+  "source": "c8e0352b55033ecd846a08c6a621d53c6df041c0",
+  "origin": "http://localhost:3000",
+  "runtime": "next-migration",
+  "backend": "synthetic-sqlite",
+  "syntheticOnly": true,
+  "disposable": true,
+  "browserSandbox": false,
+  "scenarios": [
+    {
+      "label": "home",
+      "route": "/",
+      "actor": null,
+      "axe": true
+    }
+  ],
+  "runtimeFingerprint": "d1aec7644a3d4a5e3b6d8e52a9c8889317f9deb146747c5f2d0b028c04b5987e",
+  "sourceHasUncommittedRuntimeChanges": true,
+  "startedAt": "2026-10-24T09:18:41.484Z",
+  "writes": false,
+  "screenshots": [
+    {
+      "path": "/workspace/wt-qa/evidence/migration/next-home-hydrated/home-1440x900-viewport.png",
+      "route": "/",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "c8e0352b55033ecd846a08c6a621d53c6df041c0",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "5556ba9ba38f58cbdbea1ae10a20d02fe944cb00f935e7c9a755b31c3ddb0849",
+      "inspected": true,
+      "inspection": "Reviewed against matching viewport by QA and UI; wordmark/Metro registration and composition preserved. CTA intentionally changed to new auth entry."
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/next-home-hydrated/home-390x844-viewport.png",
+      "route": "/",
+      "actor": "anonymous",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "developmentToolOverlayHidden": true,
+      "source": "c8e0352b55033ecd846a08c6a621d53c6df041c0",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "realBackend": true,
+      "sha256": "a1a82eb155fc0563746d373e8b9e9cf79bf7ad00cac3cf7a3c076b5348dbe424",
+      "inspected": true,
+      "inspection": "Reviewed against matching viewport by QA and UI; wordmark/Metro registration and composition preserved. CTA intentionally changed to new auth entry."
+    }
+  ],
+  "samples": [
+    {
+      "scenario": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "elapsedToCaptureMs": 2209.4293770000004,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "DevDay ExchangeCommunity Hackathon:New Delhi",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3000/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 1314.5999999999767,
+          "navigationId": 6851,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.6999999999534339,
+          "domainLookupStart": 0.6999999999534339,
+          "domainLookupEnd": 0.6999999999534339,
+          "connectStart": 0.6999999999534339,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.6999999999534339,
+          "requestStart": 32.699999999953434,
+          "responseStart": 287,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 287,
+          "responseEnd": 382.5999999999767,
+          "transferSize": 11056,
+          "encodedBodySize": 10756,
+          "decodedBodySize": 54451,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 607.0999999999767,
+          "domContentLoadedEventStart": 607.1999999999534,
+          "domContentLoadedEventEnd": 607.1999999999534,
+          "domComplete": 1314.5,
+          "loadEventStart": 1314.5999999999767,
+          "loadEventEnd": 1314.5999999999767,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "#main",
+          "x": 0,
+          "y": 80,
+          "width": 1440,
+          "height": 4120.03125
+        },
+        {
+          "selector": "home-hero",
+          "x": 0,
+          "y": 114,
+          "width": 1440,
+          "height": 820
+        },
+        {
+          "selector": "delhi-wordmark",
+          "x": 63.359375,
+          "y": 324.671875,
+          "width": 792.5625,
+          "height": 182.1875
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 880.75,
+          "y": 187.15625,
+          "width": 495.890625,
+          "height": 454.5625
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 894.125,
+          "y": 973,
+          "width": 490,
+          "height": 449.15625
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 894.125,
+          "y": 1535,
+          "width": 490,
+          "height": 449.15625
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 894.125,
+          "y": 2097,
+          "width": 490,
+          "height": 449.15625
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 894.125,
+          "y": 2705.46875,
+          "width": 490,
+          "height": 449.15625
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 1074.59375,
+          "y": 3323.328125,
+          "width": 302.046875,
+          "height": 276.875
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_0jn3su15ze-pu._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1p79jqh43ipnh._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_1fwn5mru787c9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/art/delhi-v3/fallback-approved-v3.webp",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-900-normal.01rgh-jimrwzu.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        },
+        {
+          "method": "GET",
+          "path": "/api/portal",
+          "resourceType": "fetch"
+        }
+      ],
+      "portalApiRequests": 1
+    },
+    {
+      "scenario": "home",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "elapsedToCaptureMs": 1289.8652259999994,
+      "title": "DevDay Exchange Community Hackathon: New Delhi",
+      "heading": "DevDay ExchangeCommunity Hackathon:New Delhi",
+      "horizontalOverflow": false,
+      "navigation": [
+        {
+          "name": "http://localhost:3000/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 707.7999999999302,
+          "navigationId": 2462,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.6999999999534339,
+          "domainLookupStart": 0.6999999999534339,
+          "domainLookupEnd": 0.6999999999534339,
+          "connectStart": 0.6999999999534339,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.6999999999534339,
+          "requestStart": 10.5,
+          "responseStart": 133.5,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 133.5,
+          "responseEnd": 223,
+          "transferSize": 11056,
+          "encodedBodySize": 10756,
+          "decodedBodySize": 54451,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 440.19999999995343,
+          "domContentLoadedEventStart": 440.29999999993015,
+          "domContentLoadedEventEnd": 440.29999999993015,
+          "domComplete": 707.7999999999302,
+          "loadEventStart": 707.7999999999302,
+          "loadEventEnd": 707.7999999999302,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        }
+      ],
+      "anchors": [
+        {
+          "selector": "mobile-header",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "sidebar",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "selector": "#main",
+          "x": 0,
+          "y": 64,
+          "width": 390,
+          "height": 3619.921875
+        },
+        {
+          "selector": "home-hero",
+          "x": 0,
+          "y": 98,
+          "width": 390,
+          "height": 780
+        },
+        {
+          "selector": "delhi-wordmark",
+          "x": 20,
+          "y": 211.5,
+          "width": 350,
+          "height": 80.453125
+        },
+        {
+          "selector": "dot-field hero-dots",
+          "x": 0,
+          "y": 98,
+          "width": 390,
+          "height": 780
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/",
+          "resourceType": "document"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1s20a93htoq81._.css",
+          "resourceType": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1anvha4rlo79g._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_1sxr1554bw_2i._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/_0jn3su15ze-pu._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app_1p79jqh43ipnh._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/lib_1i-vmn9k0xel0._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/node_modules_1fwn5mru787c9._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/art/delhi-v3/fallback-approved-v3.webp",
+          "resourceType": "image"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.0471snlmja818.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+          "resourceType": "script"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "resourceType": "other"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.1a6kzvi7en7g-.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-900-normal.01rgh-jimrwzu.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.0brn-8r9pdr2e.woff2",
+          "resourceType": "font"
+        },
+        {
+          "method": "GET",
+          "path": "/api/portal",
+          "resourceType": "fetch"
+        }
+      ],
+      "portalApiRequests": 1
+    }
+  ],
+  "accessibility": [
+    {
+      "scenario": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 27
+        }
+      ]
+    },
+    {
+      "scenario": "home",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 13
+        }
+      ]
+    }
+  ],
+  "findings": [],
+  "errors": [],
+  "blocked": [],
+  "limitations": [
+    "Local development runtime and disposable synthetic fixtures; no hosted timing, real sign-in, physical-device or production-data evidence.",
+    "Cold timings are one unthrottled diagnostic observation per route, not a benchmark or capacity estimate.",
+    "Screenshots use reduced motion and identical viewports. They prove the captured runtime only; mock API captures are explicitly labelled.",
+    "Chromium native sandbox is unavailable in this container (sandbox helper owner/user namespaces). Browser launched without it against allowlisted localhost only, fresh disposable contexts, and denied external DNS/requests."
+  ],
+  "browser": "154.0.8037.57",
+  "browserClosed": true,
+  "finishedAt": "2026-10-24T09:18:47.132Z"
+}

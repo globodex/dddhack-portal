@@ -1,0 +1,76 @@
+{
+  "label": "next-home-hydrated",
+  "sourceRoot": "/workspace/wt-next",
+  "source": "c8e0352b55033ecd846a08c6a621d53c6df041c0",
+  "origin": "http://localhost:3000",
+  "runtime": "next-migration",
+  "backend": "synthetic-sqlite",
+  "syntheticOnly": true,
+  "disposable": true,
+  "browserSandbox": false,
+  "scenarios": [
+    {
+      "label": "home",
+      "route": "/",
+      "actor": null,
+      "axe": true
+    }
+  ],
+  "kind": "actual Chromium with controlled hidden-state events",
+  "checks": [
+    {
+      "mode": "desktop",
+      "name": "entrance reaches rest and releases its scheduled animation work",
+      "passed": true
+    },
+    {
+      "mode": "desktop",
+      "name": "Pause/Resume preserves composition and does not replay entrance",
+      "passed": true
+    },
+    {
+      "mode": "desktop",
+      "name": "resize preserves the settled field without another fall",
+      "passed": true
+    },
+    {
+      "mode": "desktop",
+      "name": "real pointer repulsion returns home when pointer leaves the field",
+      "passed": true
+    },
+    {
+      "mode": "desktop",
+      "name": "only Delhi interior fill moves; mask and Metro stay registered; blur resets fill",
+      "passed": true
+    },
+    {
+      "mode": "desktop",
+      "name": "controlled hidden document stops field work and shows static wordmark before safe resume",
+      "passed": true
+    },
+    {
+      "mode": "desktop",
+      "name": "actual offscreen field schedules no pointer work and wordmark uses fallback",
+      "passed": true
+    },
+    {
+      "mode": "reduced",
+      "name": "static Delhi fallback never requests moving fill, mask or Metro layers",
+      "passed": true,
+      "artworkRequests": []
+    },
+    {
+      "mode": "coarse",
+      "name": "static Delhi fallback never requests moving fill, mask or Metro layers",
+      "passed": true,
+      "artworkRequests": []
+    }
+  ],
+  "blocked": [],
+  "errors": [],
+  "limitations": [
+    "Local synthetic runtime and emulated pointer/motion preferences; no physical-device or background-tab throttling claim.",
+    "Document.hidden is controlled to deterministically exercise real registered visibility handlers; this is not proof of browser tab scheduling."
+  ],
+  "browserClosed": true
+}
