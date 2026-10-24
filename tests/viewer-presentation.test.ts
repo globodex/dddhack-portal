@@ -39,7 +39,7 @@ test("real server/session failures render immediately with accessible recovery a
     assert.match(html, /Try again/);
     assert.doesNotMatch(html, /route-skeleton|Register on Luma|Take a look around/);
     assert.ok(!html.includes(`>${code}<`));
-    if (status === 401) assert.match(html, /Sign in to continue/);
+    if (status === 401) assert.equal((html.match(/Sign in to continue/g) || []).length, 1);
   }
   assert.equal(portalLoadFailure(409, { code: "SCORING_CHANGED_RETRY", message: "Scores changed. Reload before publishing." }).message, "Scores changed. Reload before publishing.");
 });

@@ -5954,6 +5954,7 @@ export default function Portal({
     (path === "/dashboard" &&
       !!data.profileIncomplete &&
       data.me?.mode !== "viewer");
+  const loadErrorTitle = errorCode === "SIGN_IN_REQUIRED" || errorCode === "AUTH_REQUIRED" ? "Sign in to continue" : "This page could not load";
   const publicBrowse = path.startsWith("/projects") || path === "/leaderboard";
   const workspaceShell = path !== "/" && !publicBrowse && !profileOnboarding;
   const studioDashboard = path === "/dashboard" && !profileOnboarding;
@@ -6238,8 +6239,8 @@ export default function Portal({
         {error && (
           <section className="page-error-card" role="alert" aria-busy={refreshing}>
             <HeadingDot color="orange" expression="sleepy" size={48} paused />
-            <h1>{errorCode === "SIGN_IN_REQUIRED" || errorCode === "AUTH_REQUIRED" ? "Sign in to continue" : "This page could not load"}</h1>
-            <p>{error}</p>
+            <h1>{loadErrorTitle}</h1>
+            {error.trim().replace(/[.!]$/, "") !== loadErrorTitle && <p>{error}</p>}
             <div className="form-actions">
             <button
               className="button secondary"
