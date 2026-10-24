@@ -1,0 +1,17 @@
+{
+  "source": "4c5fbf298d89a398ceab90dbdd5e0f5433235fe4",
+  "checks": [
+    {
+      "name": "invalidname fullyvisiblebelow64px stickyheader at390x480",
+      "passed": true
+    }
+  ],
+  "syntheticOnly": true,
+  "geometry": {
+    "x": 18,
+    "y": 228,
+    "width": 354,
+    "height": 48
+  },
+  "result": "passed"
+}

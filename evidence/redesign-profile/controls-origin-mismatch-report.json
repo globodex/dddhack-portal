@@ -1,0 +1,64 @@
+{
+  "source": "f8b4788ccb527c18b53fcaf4071168a874fdde11",
+  "origin": "http://127.0.0.1:3000",
+  "syntheticOnly": true,
+  "cssInjected": false,
+  "checks": [
+    {
+      "name": "keyboard: authenticated email and stored profile values prefill",
+      "passed": true
+    },
+    {
+      "name": "keyboard: exact 8 expression and8 color choices",
+      "passed": true
+    },
+    {
+      "name": "keyboard: normal document scroll, no horizontal/internal field clipping",
+      "passed": true
+    },
+    {
+      "name": "keyboard: invalid basics shown at fields and first invalid field focused without request",
+      "passed": true
+    },
+    {
+      "name": "keyboard: all expression/color radios and sex respond to input",
+      "passed": true
+    },
+    {
+      "name": "keyboard: international phone andhttps URL errors linked to fields",
+      "passed": true
+    },
+    {
+      "name": "keyboard: icon picker, Add and remove preserve remaining social link",
+      "passed": true
+    },
+    {
+      "name": "keyboard: back and next preserve data across all3 steps",
+      "passed": true
+    },
+    {
+      "name": "keyboard: step3 automated WCAG scan has zero violations",
+      "passed": true
+    },
+    {
+      "name": "keyboard: saving state disables fields andcommits no duplicate request",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "writes": [],
+  "accessibility": [
+    {
+      "mode": "keyboard",
+      "step": 3,
+      "violations": []
+    }
+  ],
+  "screenshots": [
+    "profile-error-basics-keyboard.png",
+    "profile-error-contact-keyboard.png",
+    "profile-save-loading-keyboard.png"
+  ],
+  "failure": "page.waitForURL: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/teams\" until \"load\"\n============================================================\n    at /tmp/ddd-profile-controls.mjs:123:13",
+  "sourceAtEnd": "f8b4788ccb527c18b53fcaf4071168a874fdde11"
+}

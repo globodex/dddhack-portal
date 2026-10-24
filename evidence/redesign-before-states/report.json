@@ -1,0 +1,778 @@
+{
+  "source": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+  "sourceRuntimeChanges": "",
+  "syntheticOnly": true,
+  "readOnly": true,
+  "runtime": "Next16.4.3 webpack development",
+  "browserSandbox": false,
+  "screenshots": [
+    {
+      "label": "unauth-error",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/unauth-error-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "url": "http://127.0.0.1:3004/dashboard",
+      "heading": [],
+      "dialogs": 0,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "account-error",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/account-error-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "url": "http://127.0.0.1:3004/dashboard",
+      "heading": [],
+      "dialogs": 0,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "discover-empty",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/discover-empty-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "url": "http://127.0.0.1:3004/discover/participants",
+      "heading": [
+        "><Discover"
+      ],
+      "dialogs": 0,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "person-dialog",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/person-dialog-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "url": "http://127.0.0.1:3004/discover/participants",
+      "heading": [
+        "><Discover"
+      ],
+      "dialogs": 1,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "team-dialog",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/team-dialog-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "url": "http://127.0.0.1:3004/discover/teams",
+      "heading": [
+        "><Discover"
+      ],
+      "dialogs": 1,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "admin-add-dialog",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/admin-add-dialog-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "url": "http://127.0.0.1:3004/admin/participants",
+      "heading": [
+        "--Participants"
+      ],
+      "dialogs": 1,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "route-loading",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/route-loading-1440x900.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "url": "http://127.0.0.1:3004/dashboard",
+      "heading": [],
+      "dialogs": 0,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "unauth-error",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/unauth-error-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://127.0.0.1:3004/dashboard",
+      "heading": [],
+      "dialogs": 0,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "account-error",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/account-error-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://127.0.0.1:3004/dashboard",
+      "heading": [],
+      "dialogs": 0,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "discover-empty",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/discover-empty-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://127.0.0.1:3004/discover/participants",
+      "heading": [
+        "><Discover"
+      ],
+      "dialogs": 0,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "person-dialog",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/person-dialog-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://127.0.0.1:3004/discover/participants",
+      "heading": [
+        "><Discover"
+      ],
+      "dialogs": 1,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "team-dialog",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/team-dialog-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://127.0.0.1:3004/discover/teams",
+      "heading": [
+        "><Discover"
+      ],
+      "dialogs": 1,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "admin-add-dialog",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/admin-add-dialog-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://127.0.0.1:3004/admin/participants",
+      "heading": [
+        "--Participants"
+      ],
+      "dialogs": 1,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "navigation-open",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/navigation-open-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://127.0.0.1:3004/dashboard",
+      "heading": [
+        "><Dashboard"
+      ],
+      "dialogs": 1,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "route-loading",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/route-loading-768x1024.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://127.0.0.1:3004/dashboard",
+      "heading": [],
+      "dialogs": 0,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "unauth-error",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/unauth-error-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:3004/dashboard",
+      "heading": [],
+      "dialogs": 0,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "account-error",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/account-error-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:3004/dashboard",
+      "heading": [],
+      "dialogs": 0,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "discover-empty",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/discover-empty-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:3004/discover/participants",
+      "heading": [
+        "><Discover"
+      ],
+      "dialogs": 0,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "person-dialog",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/person-dialog-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:3004/discover/participants",
+      "heading": [
+        "><Discover"
+      ],
+      "dialogs": 1,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "team-dialog",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/team-dialog-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:3004/discover/teams",
+      "heading": [
+        "><Discover"
+      ],
+      "dialogs": 1,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "admin-add-dialog",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/admin-add-dialog-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:3004/admin/participants",
+      "heading": [
+        "--Participants"
+      ],
+      "dialogs": 1,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "navigation-open",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/navigation-open-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:3004/dashboard",
+      "heading": [
+        "><Dashboard"
+      ],
+      "dialogs": 1,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "route-loading",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/route-loading-390x844.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:3004/dashboard",
+      "heading": [],
+      "dialogs": 0,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "unauth-error",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/unauth-error-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "url": "http://127.0.0.1:3004/dashboard",
+      "heading": [],
+      "dialogs": 0,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "account-error",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/account-error-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "url": "http://127.0.0.1:3004/dashboard",
+      "heading": [],
+      "dialogs": 0,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "discover-empty",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/discover-empty-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "url": "http://127.0.0.1:3004/discover/participants",
+      "heading": [
+        "><Discover"
+      ],
+      "dialogs": 0,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "person-dialog",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/person-dialog-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "url": "http://127.0.0.1:3004/discover/participants",
+      "heading": [
+        "><Discover"
+      ],
+      "dialogs": 1,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "team-dialog",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/team-dialog-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "url": "http://127.0.0.1:3004/discover/teams",
+      "heading": [
+        "><Discover"
+      ],
+      "dialogs": 1,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "admin-add-dialog",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/admin-add-dialog-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "url": "http://127.0.0.1:3004/admin/participants",
+      "heading": [
+        "--Participants"
+      ],
+      "dialogs": 1,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "navigation-open",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/navigation-open-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "url": "http://127.0.0.1:3004/dashboard",
+      "heading": [
+        "><Dashboard"
+      ],
+      "dialogs": 1,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "route-loading",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/route-loading-390x480.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "url": "http://127.0.0.1:3004/dashboard",
+      "heading": [],
+      "dialogs": 0,
+      "inspected": true,
+      "overflow": false
+    },
+    {
+      "label": "person-dialog-viewport",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/person-dialog-390x480-viewport.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "inspected": true
+    },
+    {
+      "label": "team-dialog-viewport",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/team-dialog-390x480-viewport.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "inspected": true
+    },
+    {
+      "label": "admin-add-dialog-viewport",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/admin-add-dialog-390x480-viewport.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "url": "http://127.0.0.1:3004/admin/participants",
+      "inspected": true,
+      "before": {
+        "scrollY": 0,
+        "bodyWidth": 390
+      },
+      "geometry": {
+        "dialog": {
+          "x": 16,
+          "y": 91.5,
+          "width": 358,
+          "height": 297,
+          "top": 91.5,
+          "right": 374,
+          "bottom": 388.5,
+          "left": 16
+        },
+        "viewport": {
+          "width": 390,
+          "height": 480
+        },
+        "scrollY": 0,
+        "bodyWidth": 390,
+        "focus": "<button type=\"button\" class=\"admin-toolbar-icon\" aria-label=\"Close add participants\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-x\" aria-hidde"
+      }
+    },
+    {
+      "label": "navigation-open-viewport",
+      "file": "/workspace/dddhack-portal/evidence/redesign-before-states/navigation-open-390x480-viewport.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "url": "http://127.0.0.1:3004/dashboard",
+      "inspected": true,
+      "before": {
+        "scrollY": 0,
+        "bodyWidth": 390
+      },
+      "geometry": {
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 480,
+          "top": 0,
+          "right": 390,
+          "bottom": 480,
+          "left": 0
+        },
+        "viewport": {
+          "width": 390,
+          "height": 480
+        },
+        "scrollY": 0,
+        "bodyWidth": 390,
+        "focus": "<button type=\"button\" class=\"mobile-navigation-close\" aria-label=\"Close navigation\" autofocus=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-x"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "state": "person-dialog",
+      "trigger": "View Alice's profile",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "state": "person-dialog",
+      "check": "Escape closes",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "state": "team-dialog",
+      "check": "Escape closes",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "state": "admin-add-dialog",
+      "check": "Escape closes",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "state": "mobile-navigation",
+      "check": "Desktop uses visible sidebar; mobile trigger hidden",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "state": "loading",
+      "event": "existing RSC GET delayed",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "url": "http://127.0.0.1:3004/discover/teams?_rsc=kNfxD3lGVTaTot7C"
+    },
+    {
+      "state": "route-loading",
+      "check": "Existing route GET released and real destination rendered",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "state": "person-dialog",
+      "trigger": "View Alice's profile",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      }
+    },
+    {
+      "state": "person-dialog",
+      "check": "Escape closes",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      }
+    },
+    {
+      "state": "team-dialog",
+      "check": "Escape closes",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      }
+    },
+    {
+      "state": "admin-add-dialog",
+      "check": "Escape closes",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      }
+    },
+    {
+      "state": "mobile-navigation",
+      "check": "Escape closes",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      }
+    },
+    {
+      "state": "loading",
+      "event": "existing RSC GET delayed",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://127.0.0.1:3004/discover/teams?_rsc=kNfxD3lGVTaTot7C"
+    },
+    {
+      "state": "route-loading",
+      "check": "Existing route GET released and real destination rendered",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      }
+    },
+    {
+      "state": "person-dialog",
+      "trigger": "View Alice's profile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "state": "person-dialog",
+      "check": "Escape closes",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "state": "team-dialog",
+      "check": "Escape closes",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "state": "admin-add-dialog",
+      "check": "Escape closes",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "state": "mobile-navigation",
+      "check": "Escape closes",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "state": "loading",
+      "event": "existing RSC GET delayed",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:3004/discover/teams?_rsc=kNfxD3lGVTaTot7C"
+    },
+    {
+      "state": "route-loading",
+      "check": "Existing route GET released and real destination rendered",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "state": "person-dialog",
+      "trigger": "View Alice's profile",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      }
+    },
+    {
+      "state": "person-dialog",
+      "check": "Escape closes",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      }
+    },
+    {
+      "state": "team-dialog",
+      "check": "Escape closes",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      }
+    },
+    {
+      "state": "admin-add-dialog",
+      "check": "Escape closes",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      }
+    },
+    {
+      "state": "mobile-navigation",
+      "check": "Escape closes",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      }
+    },
+    {
+      "state": "loading",
+      "event": "existing RSC GET delayed",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "url": "http://127.0.0.1:3004/discover/teams?_rsc=kNfxD3lGVTaTot7C"
+    },
+    {
+      "state": "route-loading",
+      "check": "Existing route GET released and real destination rendered",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      }
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "limitations": [
+    "Synthetic fixture identities only. No real login or production changes.",
+    "Chromium native sandbox unavailable in executor; isolated local-only contexts, all non-GET requests denied.",
+    "Loading captured by delaying the existing route RSC GET, without adding an application request."
+  ],
+  "inspectionNotes": [
+    "All35original screenshot files opened with view_image. Initial capture harness attempts are excluded from accepted report; retries waited for client hydration and used specific application alert/visible control selectors.",
+    "Account mismatch and sign-in-required errors use wide tinted panels; match actual reported rejection.",
+    "No-match search,person/team/import dialogs,mobile menu,and actual delayed-existing-RSC loading captured. Escape closed each captured modal. Desktop has visible sidebar rather than mobile menu.",
+    "Use the four390x480-viewport images for short modal comparisons. Full-page Chromium screenshots extend beyond fixed-dialog/backdrop viewport; extra visible content below the viewport is a capture artifact."
+  ]
+}
