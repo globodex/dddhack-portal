@@ -3,6 +3,7 @@ import type { Report } from "../../lib/evaluation";
 import {
   assertSafeEvaluationText,
   requireEvaluation,
+  validateApprovedSnapshot,
   type ApprovedEvaluationSnapshot,
 } from "./input";
 
@@ -18,6 +19,20 @@ export const reviewAreas = [
   "readiness",
   "seo",
 ] as const;
+// Existing reportSchema rubric, unchanged: total30. These are dimension caps,
+// not global result weights or an automatic project eligibility decision.
+export const reviewAreaCaps = {
+  functionality: 6,
+  complexity: 5,
+  openai: 4,
+  cerebras: 2,
+  ux: 3,
+  docs: 2,
+  contributors: 2,
+  deployment: 2,
+  readiness: 3,
+  seo: 1,
+} as const;
 const observationSchema = z
   .object({
     area: z.enum(reviewAreas),
@@ -43,6 +58,27 @@ const resultSchema = z
     observations: z.array(observationSchema).min(1).max(reviewAreas.length),
   })
   .strict();
+const gradedObservationSchema = observationSchema
+  .extend({
+    status: z.enum(["SCORED", "UNKNOWN", "NEEDS_MANUAL_REVIEW"]),
+    score: z.number().finite().nullable(),
+  })
+  .strict();
+const gradedResultSchema = resultSchema
+  .extend({
+    observations: z.array(gradedObservationSchema).length(reviewAreas.length),
+  })
+  .strict();
+const referenceJSONSchema = {
+  type: "object",
+  additionalProperties: false,
+  properties: {
+    source: { type: "string", maxLength: 200 },
+    startLine: { type: ["integer", "null"], minimum: 1 },
+    endLine: { type: ["integer", "null"], minimum: 1 },
+  },
+  required: ["source", "startLine", "endLine"],
+} as const;
 export const structuredReviewSchema = {
   type: "object",
   additionalProperties: false,
@@ -51,31 +87,32 @@ export const structuredReviewSchema = {
     revision: { type: "string" },
     observations: {
       type: "array",
-      minItems: 1,
+      minItems: reviewAreas.length,
       maxItems: reviewAreas.length,
       items: {
-        type: "object",
-        additionalProperties: false,
-        properties: {
-          area: { type: "string", enum: [...reviewAreas] },
-          status: { type: "string", enum: ["UNKNOWN", "NEEDS_MANUAL_REVIEW"] },
-          explanation: { type: "string", minLength: 1, maxLength: 2000 },
-          evidence: {
-            type: "array",
-            maxItems: 8,
-            items: {
-              type: "object",
-              additionalProperties: false,
-              properties: {
-                source: { type: "string", maxLength: 200 },
-                startLine: { type: ["integer", "null"], minimum: 1 },
-                endLine: { type: ["integer", "null"], minimum: 1 },
-              },
-              required: ["source", "startLine", "endLine"],
+        anyOf: reviewAreas.map((area) => ({
+          type: "object",
+          additionalProperties: false,
+          properties: {
+            area: { type: "string", enum: [area] },
+            status: {
+              type: "string",
+              enum: ["SCORED", "UNKNOWN", "NEEDS_MANUAL_REVIEW"],
+            },
+            score: {
+              type: ["number", "null"],
+              minimum: 0,
+              maximum: reviewAreaCaps[area],
+            },
+            explanation: { type: "string", minLength: 1, maxLength: 2000 },
+            evidence: {
+              type: "array",
+              maxItems: 8,
+              items: referenceJSONSchema,
             },
           },
-        },
-        required: ["area", "status", "explanation", "evidence"],
+          required: ["area", "status", "score", "explanation", "evidence"],
+        })),
       },
     },
   },
@@ -87,7 +124,19 @@ export function modelReviewReport(
   snapshot: ApprovedEvaluationSnapshot,
   model: string,
 ): Report {
-  const parsed = resultSchema.safeParse(input);
+  // Revalidate at the mapping boundary too, rather than trusting a caller's type
+  // assertion or a mutable snapshot after a provider response.
+  try {
+    snapshot = validateApprovedSnapshot(
+      snapshot,
+      snapshot.versionId,
+      snapshot.commitSha,
+    );
+  } catch {
+    requireEvaluation(false, "OPENAI_OUTPUT_INVALID");
+  }
+  const graded = gradedResultSchema.safeParse(input);
+  const parsed = graded.success ? graded : resultSchema.safeParse(input);
   requireEvaluation(parsed.success, "OPENAI_OUTPUT_INVALID");
   const result = parsed.data;
   requireEvaluation(
@@ -106,12 +155,26 @@ export function modelReviewReport(
         "Approved version and file digests match locally. Only the explicitly selected project evidence was transmitted; runtime behavior, eligibility, authorship and claims remain unverified.",
     },
   ];
+  const dimensions = {} as NonNullable<Report["dimensions"]>;
+  let complete = graded.success;
   for (const item of result.observations) {
     try {
       assertSafeEvaluationText(item.explanation);
     } catch {
       requireEvaluation(false, "OPENAI_OUTPUT_INVALID");
     }
+    // Keep summaries and citations, never reproduce substantial selected source.
+    const explanation = item.explanation.replace(/\s+/g, " ").trim();
+    requireEvaluation(
+      !item.explanation.includes("```") &&
+        !snapshot.files.some((file) =>
+          file.content.split(/\r?\n/).some((line) => {
+            const selected = line.replace(/\s+/g, " ").trim();
+            return selected.length >= 24 && explanation.includes(selected);
+          }),
+        ),
+      "OPENAI_OUTPUT_INVALID",
+    );
     requireEvaluation(
       item.status !== "NEEDS_MANUAL_REVIEW" || item.evidence.length > 0,
       "OPENAI_OUTPUT_INVALID",
@@ -155,21 +218,37 @@ export function modelReviewReport(
       );
       return `${file.path}:L${reference.startLine}-L${reference.endLine}`;
     });
+    const scored = "score" in item;
+    if (scored) {
+      requireEvaluation(
+        item.status === "SCORED"
+          ? typeof item.score === "number" &&
+              Number.isFinite(item.score) &&
+              item.score >= 0 &&
+              item.score <= reviewAreaCaps[item.area] &&
+              evidence.length > 0
+          : item.score === null,
+        "OPENAI_OUTPUT_INVALID",
+      );
+      if (item.status === "SCORED")
+        dimensions[item.area] = item.score as number;
+      else complete = false;
+    } else complete = false;
     checks.push({
       id: `ai-evidence:${item.area}`,
-      status: item.status,
+      status: item.status === "SCORED" ? "PASS" : item.status,
       evidence,
       explanation: item.explanation,
     });
   }
   return {
     versionId: snapshot.versionId,
-    status: "needs_review",
+    status: complete ? "finalized" : "needs_review",
     model,
     rubricVersion: 1,
     revision: snapshot.commitSha,
     checks,
-    dimensions: null,
+    dimensions: complete ? dimensions : null,
     suspectedFalseClaims: [],
   };
 }
