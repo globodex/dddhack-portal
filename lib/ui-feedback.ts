@@ -31,6 +31,9 @@ const successes: Record<string, string> = {
   "content-publish": "Content published.",
   "admin-status": "Status updated.",
   "admin-status-bulk": "Statuses updated.",
+  "participant-bulk": "Status updated.",
+  "quick-check-in": "Checked in.",
+  "bulk-check-in": "Checked in.",
   "update-credit-instructions": "Credit instructions saved.",
 };
 export function portalSuccessText(action: string, message?: string) {

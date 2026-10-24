@@ -5631,6 +5631,11 @@ export default function Portal({
     hasLoadedView = useRef(!!initialView || !!initialPublic),
     presentationCache = useRef(new AdminPresentationCache());
   if (!gate.current) gate.current = new ConfirmationGate(setConfirmation);
+  useEffect(() => {
+    if (!message || messageTone !== "success") return;
+    const timer = window.setTimeout(() => setMessage(""), 5000);
+    return () => window.clearTimeout(timer);
+  }, [message, messageTone]);
   async function load() {
     const generation = ++loadGeneration.current;
     loadAbort.current?.abort();
