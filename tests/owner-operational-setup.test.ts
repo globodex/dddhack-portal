@@ -409,7 +409,7 @@ test("retained legacy setup component stays unmounted from Settings and preserve
     "Submission operations",
   );
   assert.equal(c.critical, true);
-  assert.match(c.description, /does not enable operations/);
+  assert.match(c.description, /does not enable an event operation/);
   const gate = new ConfirmationGate(() => {}),
     decision = gate.ask(c);
   gate.decide(false);
