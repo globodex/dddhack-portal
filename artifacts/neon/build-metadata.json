@@ -1,0 +1,13 @@
+{
+  "runtimeSource": "2cf51d72602447b43d1893cc0b6fb1e6fd207996",
+  "runtime": "nodejs24",
+  "source": "neon/api.ts",
+  "zipBytes": 9009666,
+  "sha256": "db3c06505c15066c1ca918e32c8d77a2a5a86b5d47b080f3ee885ed6498baf85",
+  "env": {},
+  "warnings": [],
+  "buildOnly": true,
+  "deployment": "not performed",
+  "packager": "@neon/config-runtime@1.10.2",
+  "nativeExecution": "not verified on this x86_64 executor"
+}

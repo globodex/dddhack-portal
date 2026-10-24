@@ -1,19 +1,47 @@
 {
-  "zipBytes": 9008686,
-  "uncompressedBytes": 21131228,
+  "runtimeSource": "2cf51d72602447b43d1893cc0b6fb1e6fd207996",
+  "runtime": "nodejs24",
+  "source": "neon/api.ts",
+  "zipBytes": 9009666,
+  "sha256": "db3c06505c15066c1ca918e32c8d77a2a5a86b5d47b080f3ee885ed6498baf85",
+  "env": {},
+  "warnings": [],
+  "buildOnly": true,
+  "deployment": "not performed",
+  "packager": "@neon/config-runtime@1.10.2",
+  "nativeExecution": "not verified on this x86_64 executor",
+  "uncompressedBytes": 21134827,
   "fileCount": 93,
-  "sha256": "950077d2c024c6bb2ce42991ee59f91ed343928938852dda8eb1ae90361eae40",
+  "nativeArchitecture": "Linux ARM64 glibc",
+  "nativeFiles": [
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
+      "bytes": 18324712,
+      "elfMachine": 183,
+      "sha256": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f"
+    },
+    {
+      "path": "node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.5.node",
+      "bytes": 530120,
+      "elfMachine": 183,
+      "sha256": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b"
+    }
+  ],
+  "archiveHasSecretsOrTests": [],
   "bannerPresent": true,
   "externalSharpImport": true,
-  "graphInputCount": 853,
-  "forbiddenInputs": [],
-  "archiveHasSecretsOrTests": [],
-  "warnings": [],
-  "runtimeSource": "e9f9592",
+  "indexSha256": "4bf01421341eb73d7e6d61a246024f66645d6e0d0763144e74243df53b08c08d",
   "archive": "artifacts/neon/portalapi.zip",
-  "runtime": "nodejs24",
-  "nativeArchitecture": "Linux ARM64 glibc",
-  "nativeExecution": "not verified; x86_64 host smoke uses host-native sharp substitute",
-  "env": {},
-  "deployment": "not performed"
+  "graphInputCount": 854,
+  "forbiddenInputs": [],
+  "hostSmoke": {
+    "passed": true,
+    "report": "evidence/neon-host-archive/report.json",
+    "outboundAttempts": 0,
+    "trustedHealth": 200,
+    "untrustedHealth": 403,
+    "unconfiguredPortal": 503,
+    "dependencySubstitution": "existing x86_64 host Sharp; archive unchanged"
+  },
+  "manualBackendRedeployRequired": true
 }
