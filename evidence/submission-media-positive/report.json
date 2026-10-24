@@ -1,0 +1,46 @@
+{
+  "source": "32dadb2ac6295cdc4fe9da49b83698b0934c833d",
+  "backend": 8834,
+  "syntheticOnly": true,
+  "fingerprint": {
+    "app/portal.tsx": "2b7f71c485f9666c533df59aa8f547b77280cb1c8a2b1ef13e041745e6aea374",
+    "app/project-media-field.tsx": "cea6b1720017337a8a44229d581d4748383eaa7ad8ce12052230c864fe8e423c",
+    "app/prepare-project-image.ts": "0469a25fc13da6b39ea09837d340cad5c2993af254ff70fc41cae01d60365276",
+    "app/projects-rules-experience.css": "8edc84868154cca5b76fda7e022e2a702eff0f6e17807a027629015e64579b01",
+    "lib/project-media-policy.ts": "536169318d8fd9f7ad7f6baa8643071d8c1ed2146ca7e8fa04c290384436b4ee"
+  },
+  "writes": [],
+  "screenshots": [
+    {
+      "path": "evidence/submission-media-positive/full-aspect-media-before-save.png",
+      "sha256": "02c60048fa75ea62341188ea0a2823937a4ab5161570daf4e4c5cf5a64b2e5bc"
+    }
+  ],
+  "checks": [],
+  "errors": [],
+  "before": {
+    "attempts": 2,
+    "revision": 2,
+    "projectId": "visual_project_alice"
+  },
+  "oldVersions": [
+    {
+      "id": "visual_alice_v2",
+      "attempt": 2,
+      "sha256": "a79dbe3b8559dcb286802bfe5594976d921818c3fe99b18f5fdf44a81b5de875"
+    },
+    {
+      "id": "visual_alice_v1",
+      "attempt": 1,
+      "sha256": "51cc7a91c1a8e9118f79ee8bfb887b4ff15b406354bb4cf10e1589652537f1c2"
+    }
+  ],
+  "failure": "page.waitForResponse: Timeout 60000ms exceeded while waiting for event \"response\"\n    at /workspace/ddd-projects/scripts/qa-submission-media-positive.mjs:41:27",
+  "fingerprintAtEnd": {
+    "app/portal.tsx": "2b7f71c485f9666c533df59aa8f547b77280cb1c8a2b1ef13e041745e6aea374",
+    "app/project-media-field.tsx": "cea6b1720017337a8a44229d581d4748383eaa7ad8ce12052230c864fe8e423c",
+    "app/prepare-project-image.ts": "0469a25fc13da6b39ea09837d340cad5c2993af254ff70fc41cae01d60365276",
+    "app/projects-rules-experience.css": "8edc84868154cca5b76fda7e022e2a702eff0f6e17807a027629015e64579b01",
+    "lib/project-media-policy.ts": "536169318d8fd9f7ad7f6baa8643071d8c1ed2146ca7e8fa04c290384436b4ee"
+  }
+}
