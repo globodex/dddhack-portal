@@ -1,0 +1,140 @@
+/* The selected Team Studio frame. Content and controls keep their existing data. */
+.app-shell.workspace-shell.studio-dashboard-shell {
+  background: #fdfcf9;
+}
+.app-shell.workspace-shell.studio-dashboard-shell > .sidebar {
+  display: none;
+}
+.app-shell.workspace-shell.studio-dashboard-shell > .mobile-header {
+  display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  width: 100%;
+  height: 88px;
+  min-height: 88px;
+  padding: 16px 44px;
+  border: 0;
+  background: #fdfcf9;
+  box-shadow: none;
+}
+.app-shell.workspace-shell.studio-dashboard-shell > .mobile-header .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-right: auto;
+  color: var(--ink);
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+.app-shell.workspace-shell.studio-dashboard-shell > .mobile-header .brand img {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+}
+.app-shell.workspace-shell.studio-dashboard-shell > .mobile-header .brand span {
+  max-width: none;
+  white-space: normal;
+}
+.app-shell.workspace-shell.studio-dashboard-shell > .mobile-header > button[aria-controls="mobile-navigation"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
+  min-height: 56px;
+  padding: 14px;
+  border: 0;
+  border-radius: 50%;
+  background: #111515;
+  color: #fff;
+}
+.app-shell.workspace-shell.studio-dashboard-shell > .mobile-header > .header-account {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
+  min-height: 56px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+}
+.app-shell.workspace-shell.studio-dashboard-shell > .mobile-header > .header-account svg {
+  width: 54px;
+  height: 54px;
+}
+.app-shell.workspace-shell.studio-dashboard-shell > .main {
+  width: 100%;
+  max-width: none;
+  min-height: calc(100svh - 88px);
+  margin: 0;
+  padding: 0 0 48px;
+  background: #fdfcf9;
+}
+.studio-dashboard-shell > .main > .rehearsal-banner {
+  margin: 12px 44px 0;
+}
+.studio-dashboard-shell > .main > .page-error-card {
+  max-width: 720px;
+  margin: 32px auto;
+}
+.studio-dashboard-shell > .main > .dashboard-v6[data-editor-open="true"] {
+  padding: 32px 24px;
+}
+@media (max-width: 767px) {
+  .app-shell.workspace-shell.studio-dashboard-shell > .mobile-header {
+    height: auto;
+    min-height: 72px;
+    gap: 10px;
+    padding: max(12px, env(safe-area-inset-top)) 20px 12px;
+  }
+  .app-shell.workspace-shell.studio-dashboard-shell > .mobile-header .brand {
+    gap: 8px;
+    font-size: 14px;
+  }
+  .app-shell.workspace-shell.studio-dashboard-shell > .mobile-header .brand img {
+    flex-basis: 24px;
+    width: 24px;
+    height: 24px;
+  }
+  .app-shell.workspace-shell.studio-dashboard-shell > .mobile-header > button[aria-controls="mobile-navigation"],
+  .app-shell.workspace-shell.studio-dashboard-shell > .mobile-header > .header-account {
+    flex-basis: 44px;
+    width: 44px;
+    height: 44px;
+    min-height: 44px;
+  }
+  .app-shell.workspace-shell.studio-dashboard-shell > .mobile-header > button[aria-controls="mobile-navigation"] {
+    padding: 10px;
+  }
+  .app-shell.workspace-shell.studio-dashboard-shell > .mobile-header > .header-account svg {
+    width: 38px;
+    height: 38px;
+  }
+  .studio-dashboard-shell > .main > .rehearsal-banner {
+    margin-inline: 20px;
+  }
+  .studio-dashboard-shell > .main > .dashboard-v6[data-editor-open="true"] {
+    padding: 24px 20px;
+  }
+}
+@media (max-width: 359px) {
+  .app-shell.workspace-shell.studio-dashboard-shell > .mobile-header {
+    gap: 8px;
+    padding-inline: 16px;
+  }
+  .app-shell.workspace-shell.studio-dashboard-shell > .mobile-header .brand {
+    font-size: 13px;
+  }
+}

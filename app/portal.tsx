@@ -255,6 +255,14 @@ export function portalConfirmationFor(
       confirmLabel: "Confirm",
       critical: true,
     };
+  if (action === "revoke-admin")
+    return {
+      ...base,
+      title: "Revoke admin access?",
+      description: "They keep their participant account, profile and team.",
+      confirmLabel: "Revoke access",
+      critical: true,
+    };
   if (action === "commit-import")
     return {
       ...base,
@@ -290,6 +298,7 @@ export function portalTargetName(data: View, values: Row): string {
     ...(data.project ? [data.project] : []),
     ...(data.items || []),
     ...(data.roles || []),
+    ...(data.adminAccess?.items || []),
     ...(data.members || []),
     ...(data.items || []).flatMap((item: Row) => item.members || []),
     ...(data.reviewers || []),
@@ -5682,12 +5691,13 @@ export default function Portal({
       data.me?.mode !== "viewer");
   const publicBrowse = path.startsWith("/projects") || path === "/leaderboard";
   const workspaceShell = path !== "/" && !publicBrowse && !profileOnboarding;
+  const studioDashboard = path === "/dashboard" && !profileOnboarding;
   const c =
     teamPalettes[(data.team?.palette || "forest") as Palette] ||
     teamPalettes.forest;
   return (
     <div
-      className={`app-shell ${path === "/" ? "public-home-shell" : ""} ${profileOnboarding ? "onboarding-shell" : ""} ${workspaceShell ? "workspace-shell" : ""} ${publicBrowse ? "public-project-shell" : ""}`.trim()}
+      className={`app-shell ${path === "/" ? "public-home-shell" : ""} ${profileOnboarding ? "onboarding-shell" : ""} ${workspaceShell ? "workspace-shell" : ""} ${publicBrowse ? "public-project-shell" : ""} ${studioDashboard ? "studio-dashboard-shell" : ""}`.trim()}
       data-hydrated={hydrated}
       style={{ "--team-accent": c.ink, "--team-wash": c.wash } as CSSProperties}
     >
