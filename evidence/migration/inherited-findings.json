@@ -1,0 +1,540 @@
+{
+  "syntheticOnly": true,
+  "purpose": "Before-fix actual source/Next accessibility and overflow observations. Early snapshots are not full fidelity acceptance.",
+  "evidence": [
+    {
+      "label": "v7-source",
+      "source": "93b1810000710b0e16ad9b1d9f3e122a46a347fe",
+      "runtime": "vinext-source",
+      "backend": "synthetic-sqlite",
+      "syntheticOnly": true,
+      "accessibility": [
+        {
+          "scenario": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "violations": []
+        },
+        {
+          "scenario": "rules",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "violations": []
+        },
+        {
+          "scenario": "dashboard",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "violations": []
+        },
+        {
+          "scenario": "profile",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "violations": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "tags": [
+                "cat.color",
+                "wcag2aa",
+                "wcag143",
+                "TTv5",
+                "TT13.c",
+                "EN-301-549",
+                "EN-9.1.4.3",
+                "ACT",
+                "RGAAv4",
+                "RGAA-3.2.1"
+              ],
+              "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+              "help": "Elements must meet minimum color contrast ratio thresholds",
+              "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+              "nodes": [
+                {
+                  "any": [
+                    {
+                      "id": "color-contrast",
+                      "data": {
+                        "fgColor": "#778594",
+                        "bgColor": "#edf2f5",
+                        "contrastRatio": 3.34,
+                        "fontSize": "12.0pt (16px)",
+                        "fontWeight": "normal",
+                        "messageKey": null,
+                        "expectedContrastRatio": "4.5:1"
+                      },
+                      "relatedNodes": [
+                        {
+                          "html": "<input readonly=\"\" autocomplete=\"email\" type=\"email\" value=\"alice@portal.test\" name=\"email\" style=\"\">",
+                          "target": [
+                            "input[readonly=\"\"]"
+                          ]
+                        }
+                      ],
+                      "impact": "serious",
+                      "message": "Element has insufficient color contrast of 3.34 (foreground color: #778594, background color: #edf2f5, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                    }
+                  ],
+                  "all": [],
+                  "none": [],
+                  "impact": "serious",
+                  "html": "<input readonly=\"\" autocomplete=\"email\" type=\"email\" value=\"alice@portal.test\" name=\"email\" style=\"\">",
+                  "target": [
+                    "input[readonly=\"\"]"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.34 (foreground color: #778594, background color: #edf2f5, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                },
+                {
+                  "any": [
+                    {
+                      "id": "color-contrast",
+                      "data": {
+                        "fgColor": "#ffffff",
+                        "bgColor": "#008d66",
+                        "contrastRatio": 4.19,
+                        "fontSize": "10.5pt (14px)",
+                        "fontWeight": "bold",
+                        "messageKey": null,
+                        "expectedContrastRatio": "4.5:1"
+                      },
+                      "relatedNodes": [
+                        {
+                          "html": "<span>Non-binary</span>",
+                          "target": [
+                            ".sex-choices > label:nth-child(4) > span"
+                          ]
+                        }
+                      ],
+                      "impact": "serious",
+                      "message": "Element has insufficient color contrast of 4.19 (foreground color: #ffffff, background color: #008d66, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+                    }
+                  ],
+                  "all": [],
+                  "none": [],
+                  "impact": "serious",
+                  "html": "<span>Non-binary</span>",
+                  "target": [
+                    ".sex-choices > label:nth-child(4) > span"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.19 (foreground color: #ffffff, background color: #008d66, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "scenario": "home",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "violations": []
+        },
+        {
+          "scenario": "rules",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "violations": []
+        },
+        {
+          "scenario": "dashboard",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "violations": []
+        },
+        {
+          "scenario": "profile",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "violations": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "tags": [
+                "cat.color",
+                "wcag2aa",
+                "wcag143",
+                "TTv5",
+                "TT13.c",
+                "EN-301-549",
+                "EN-9.1.4.3",
+                "ACT",
+                "RGAAv4",
+                "RGAA-3.2.1"
+              ],
+              "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+              "help": "Elements must meet minimum color contrast ratio thresholds",
+              "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+              "nodes": [
+                {
+                  "any": [
+                    {
+                      "id": "color-contrast",
+                      "data": {
+                        "fgColor": "#778594",
+                        "bgColor": "#edf2f5",
+                        "contrastRatio": 3.34,
+                        "fontSize": "12.0pt (16px)",
+                        "fontWeight": "normal",
+                        "messageKey": null,
+                        "expectedContrastRatio": "4.5:1"
+                      },
+                      "relatedNodes": [
+                        {
+                          "html": "<input readonly=\"\" autocomplete=\"email\" type=\"email\" value=\"alice@portal.test\" name=\"email\" style=\"\">",
+                          "target": [
+                            "input[readonly=\"\"]"
+                          ]
+                        }
+                      ],
+                      "impact": "serious",
+                      "message": "Element has insufficient color contrast of 3.34 (foreground color: #778594, background color: #edf2f5, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                    }
+                  ],
+                  "all": [],
+                  "none": [],
+                  "impact": "serious",
+                  "html": "<input readonly=\"\" autocomplete=\"email\" type=\"email\" value=\"alice@portal.test\" name=\"email\" style=\"\">",
+                  "target": [
+                    "input[readonly=\"\"]"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.34 (foreground color: #778594, background color: #edf2f5, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                },
+                {
+                  "any": [
+                    {
+                      "id": "color-contrast",
+                      "data": {
+                        "fgColor": "#ffffff",
+                        "bgColor": "#008d66",
+                        "contrastRatio": 4.19,
+                        "fontSize": "9.8pt (13px)",
+                        "fontWeight": "bold",
+                        "messageKey": null,
+                        "expectedContrastRatio": "4.5:1"
+                      },
+                      "relatedNodes": [
+                        {
+                          "html": "<span>Non-binary</span>",
+                          "target": [
+                            ".sex-choices > label:nth-child(4) > span"
+                          ]
+                        }
+                      ],
+                      "impact": "serious",
+                      "message": "Element has insufficient color contrast of 4.19 (foreground color: #ffffff, background color: #008d66, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1"
+                    }
+                  ],
+                  "all": [],
+                  "none": [],
+                  "impact": "serious",
+                  "html": "<span>Non-binary</span>",
+                  "target": [
+                    ".sex-choices > label:nth-child(4) > span"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.19 (foreground color: #ffffff, background color: #008d66, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "findings": [
+        {
+          "scenario": "admin-credits",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "issue": "horizontal-overflow"
+        },
+        {
+          "issue": "accessibility-violations",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "label": "next-initial",
+      "source": "f577c705c944cf99fa134c9003766f3e8d5b4ea2",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "syntheticOnly": true,
+      "accessibility": [
+        {
+          "scenario": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "violations": []
+        },
+        {
+          "scenario": "rules",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "violations": []
+        },
+        {
+          "scenario": "dashboard",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "violations": []
+        },
+        {
+          "scenario": "profile",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "violations": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "tags": [
+                "cat.color",
+                "wcag2aa",
+                "wcag143",
+                "TTv5",
+                "TT13.c",
+                "EN-301-549",
+                "EN-9.1.4.3",
+                "ACT",
+                "RGAAv4",
+                "RGAA-3.2.1"
+              ],
+              "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+              "help": "Elements must meet minimum color contrast ratio thresholds",
+              "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+              "nodes": [
+                {
+                  "any": [
+                    {
+                      "id": "color-contrast",
+                      "data": {
+                        "fgColor": "#778594",
+                        "bgColor": "#edf2f5",
+                        "contrastRatio": 3.34,
+                        "fontSize": "12.0pt (16px)",
+                        "fontWeight": "normal",
+                        "messageKey": null,
+                        "expectedContrastRatio": "4.5:1"
+                      },
+                      "relatedNodes": [
+                        {
+                          "html": "<input type=\"email\" readonly=\"\" autocomplete=\"email\" name=\"email\" value=\"alice@portal.test\" style=\"\">",
+                          "target": [
+                            "input[type=\"email\"]"
+                          ]
+                        }
+                      ],
+                      "impact": "serious",
+                      "message": "Element has insufficient color contrast of 3.34 (foreground color: #778594, background color: #edf2f5, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                    }
+                  ],
+                  "all": [],
+                  "none": [],
+                  "impact": "serious",
+                  "html": "<input type=\"email\" readonly=\"\" autocomplete=\"email\" name=\"email\" value=\"alice@portal.test\" style=\"\">",
+                  "target": [
+                    "input[type=\"email\"]"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.34 (foreground color: #778594, background color: #edf2f5, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                },
+                {
+                  "any": [
+                    {
+                      "id": "color-contrast",
+                      "data": {
+                        "fgColor": "#ffffff",
+                        "bgColor": "#008d66",
+                        "contrastRatio": 4.19,
+                        "fontSize": "10.5pt (14px)",
+                        "fontWeight": "bold",
+                        "messageKey": null,
+                        "expectedContrastRatio": "4.5:1"
+                      },
+                      "relatedNodes": [
+                        {
+                          "html": "<span>Non-binary</span>",
+                          "target": [
+                            ".sex-choices > label:nth-child(4) > span"
+                          ]
+                        }
+                      ],
+                      "impact": "serious",
+                      "message": "Element has insufficient color contrast of 4.19 (foreground color: #ffffff, background color: #008d66, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+                    }
+                  ],
+                  "all": [],
+                  "none": [],
+                  "impact": "serious",
+                  "html": "<span>Non-binary</span>",
+                  "target": [
+                    ".sex-choices > label:nth-child(4) > span"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.19 (foreground color: #ffffff, background color: #008d66, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "scenario": "home",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "violations": []
+        },
+        {
+          "scenario": "rules",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "violations": []
+        },
+        {
+          "scenario": "dashboard",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "violations": []
+        },
+        {
+          "scenario": "profile",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "violations": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "tags": [
+                "cat.color",
+                "wcag2aa",
+                "wcag143",
+                "TTv5",
+                "TT13.c",
+                "EN-301-549",
+                "EN-9.1.4.3",
+                "ACT",
+                "RGAAv4",
+                "RGAA-3.2.1"
+              ],
+              "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+              "help": "Elements must meet minimum color contrast ratio thresholds",
+              "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+              "nodes": [
+                {
+                  "any": [
+                    {
+                      "id": "color-contrast",
+                      "data": {
+                        "fgColor": "#778594",
+                        "bgColor": "#edf2f5",
+                        "contrastRatio": 3.34,
+                        "fontSize": "12.0pt (16px)",
+                        "fontWeight": "normal",
+                        "messageKey": null,
+                        "expectedContrastRatio": "4.5:1"
+                      },
+                      "relatedNodes": [
+                        {
+                          "html": "<input type=\"email\" readonly=\"\" autocomplete=\"email\" name=\"email\" value=\"alice@portal.test\" style=\"\">",
+                          "target": [
+                            "input[type=\"email\"]"
+                          ]
+                        }
+                      ],
+                      "impact": "serious",
+                      "message": "Element has insufficient color contrast of 3.34 (foreground color: #778594, background color: #edf2f5, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                    }
+                  ],
+                  "all": [],
+                  "none": [],
+                  "impact": "serious",
+                  "html": "<input type=\"email\" readonly=\"\" autocomplete=\"email\" name=\"email\" value=\"alice@portal.test\" style=\"\">",
+                  "target": [
+                    "input[type=\"email\"]"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.34 (foreground color: #778594, background color: #edf2f5, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                },
+                {
+                  "any": [
+                    {
+                      "id": "color-contrast",
+                      "data": {
+                        "fgColor": "#ffffff",
+                        "bgColor": "#008d66",
+                        "contrastRatio": 4.19,
+                        "fontSize": "9.8pt (13px)",
+                        "fontWeight": "bold",
+                        "messageKey": null,
+                        "expectedContrastRatio": "4.5:1"
+                      },
+                      "relatedNodes": [
+                        {
+                          "html": "<span>Non-binary</span>",
+                          "target": [
+                            ".sex-choices > label:nth-child(4) > span"
+                          ]
+                        }
+                      ],
+                      "impact": "serious",
+                      "message": "Element has insufficient color contrast of 4.19 (foreground color: #ffffff, background color: #008d66, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1"
+                    }
+                  ],
+                  "all": [],
+                  "none": [],
+                  "impact": "serious",
+                  "html": "<span>Non-binary</span>",
+                  "target": [
+                    ".sex-choices > label:nth-child(4) > span"
+                  ],
+                  "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.19 (foreground color: #ffffff, background color: #008d66, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "findings": [
+        {
+          "scenario": "admin-credits",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "issue": "horizontal-overflow"
+        },
+        {
+          "issue": "accessibility-violations",
+          "count": 2
+        }
+      ]
+    }
+  ]
+}

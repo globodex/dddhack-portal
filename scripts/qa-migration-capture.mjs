@@ -112,7 +112,8 @@ try {
       "--host-resolver-rules=MAP * ~NOTFOUND,EXCLUDE 127.0.0.1,EXCLUDE localhost",
     ],
     env: {
-      ...process.env,
+      PATH: process.env.PATH,
+      LANG: "C.UTF-8",
       XDG_CONFIG_HOME: "/tmp/qa-migration-browser-config",
       XDG_CACHE_HOME: "/tmp/qa-migration-browser-cache",
     },
@@ -199,6 +200,13 @@ try {
         });
         assert.equal(response.status(), 200, scenario.route);
         await page.locator("#main h1,h1").first().waitFor({ timeout: 30_000 });
+        if (scenario.tab) {
+          await page.waitForLoadState("networkidle");
+          await page
+            .getByRole("tab", { name: scenario.tab, exact: true })
+            .click();
+        }
+
         await page.waitForFunction(
           () =>
             !document.querySelector(".route-skeleton") &&
@@ -248,6 +256,7 @@ try {
           path,
           route: scenario.route,
           actor: scenario.actor || "anonymous",
+          tab: scenario.tab || null,
           viewport,
           fullPage: false,
           developmentToolOverlayHidden: true,
@@ -285,6 +294,21 @@ try {
             (request) => request.path === "/api/portal",
           ).length,
         });
+        if (scenario.nativeFileChooser) {
+          const [chooser] = await Promise.all([
+            page.waitForEvent("filechooser"),
+            page
+              .getByRole("button", { name: "Upload CSV", exact: true })
+              .click(),
+          ]);
+          report.samples.at(-1).nativeFileChooser = {
+            opened: true,
+            multiple: chooser.isMultiple(),
+            hiddenInputBox: await page
+              .locator('input.sr-only[type="file"]')
+              .boundingBox(),
+          };
+        }
         if (scenario.axe) {
           const result = await new AxeBuilder({ page })
             .withTags(["wcag2a", "wcag2aa", "wcag21aa"])

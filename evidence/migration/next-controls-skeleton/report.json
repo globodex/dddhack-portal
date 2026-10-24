@@ -1,0 +1,134 @@
+{
+  "runtimeFingerprint": "a082c4eb409bf2d0f25a818483b654bbfea0c2805cde6ff4aaf1af1077002a85",
+  "sourceHasUncommittedRuntimeChanges": false,
+  "source": "856311fc9004557ecccbae5a01c352282f7cbc48",
+  "runtime": "next-migration",
+  "backend": "synthetic-sqlite",
+  "syntheticOnly": true,
+  "chromiumSandbox": false,
+  "controlledNetworkGates": true,
+  "performanceBenchmark": false,
+  "limitations": [
+    "PageTransitionEvents exercise the real page restoration handlers; this does not assert browser BFCache eligibility."
+  ],
+  "cases": [
+    {
+      "label": "desktop-dashboard",
+      "route": "/dashboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "reducedMotion": "no-preference",
+      "passed": true,
+      "checks": 11,
+      "reads": 2,
+      "assertions": [
+        "SSR has no loading overlay",
+        "SSR has no bootstrap API",
+        "busy status",
+        "decorative controls",
+        "shell visible",
+        "motion preference",
+        "no horizontal overflow",
+        "no extra request",
+        "error removes skeleton",
+        "retry loads content",
+        "no loaded-content overlay"
+      ]
+    },
+    {
+      "label": "touch-people",
+      "route": "/discover/participants",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "reducedMotion": "reduce",
+      "passed": true,
+      "checks": 11,
+      "reads": 2,
+      "assertions": [
+        "SSR has no loading overlay",
+        "SSR has no bootstrap API",
+        "busy status",
+        "decorative controls",
+        "shell visible",
+        "motion preference",
+        "no horizontal overflow",
+        "no extra request",
+        "error removes skeleton",
+        "retry loads content",
+        "no loaded-content overlay"
+      ]
+    },
+    {
+      "label": "desktop-profile",
+      "route": "/profile",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "reducedMotion": "reduce",
+      "passed": true,
+      "checks": 11,
+      "reads": 2,
+      "assertions": [
+        "SSR has no loading overlay",
+        "SSR has no bootstrap API",
+        "busy status",
+        "decorative controls",
+        "shell visible",
+        "motion preference",
+        "no horizontal overflow",
+        "no extra request",
+        "error removes skeleton",
+        "retry loads content",
+        "no loaded-content overlay"
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "/workspace/wt-qa/evidence/migration/next-controls-skeleton/desktop-dashboard-loading-1440x900.png",
+      "route": "/dashboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "856311fc9004557ecccbae5a01c352282f7cbc48",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/next-controls-skeleton/touch-people-loading-390x844.png",
+      "route": "/discover/participants",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "856311fc9004557ecccbae5a01c352282f7cbc48",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "inspected": false
+    },
+    {
+      "path": "/workspace/wt-qa/evidence/migration/next-controls-skeleton/desktop-profile-loading-1440x900.png",
+      "route": "/profile",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "856311fc9004557ecccbae5a01c352282f7cbc48",
+      "runtime": "next-migration",
+      "backend": "synthetic-sqlite",
+      "inspected": false
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "browserClosed": true,
+  "browser": "154.0.8037.57",
+  "browserSandbox": false
+}

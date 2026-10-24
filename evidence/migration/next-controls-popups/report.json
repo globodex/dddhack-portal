@@ -1,0 +1,479 @@
+{
+  "runtimeFingerprint": "968c2e0c3d3d55c9d43f12747fc30ee2ce485926faf03cc0f5265130dce15f76",
+  "sourceHasUncommittedRuntimeChanges": false,
+  "source": "5fc013ef95d2feedf38df805efb592b7411ac65c",
+  "runtime": "next-migration",
+  "backend": "synthetic-sqlite",
+  "browserSandbox": false,
+  "syntheticOnly": true,
+  "writes": false,
+  "chromiumSandbox": false,
+  "checks": [
+    {
+      "name": "person: top-layer overlay preserves row/list geometry and scroll; native focus trap and background scroll blocking",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "passed": true
+    },
+    {
+      "name": "person: confirmation stacks above status dialog and cancellation preserves the page and draft",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "passed": true
+    },
+    {
+      "name": "person: Escape/outside dismissal restores focus without scroll/reflow or click-through",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "passed": true
+    },
+    {
+      "name": "person: visible close control accepts mouse/touch without changing the underlying layout",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "passed": true
+    },
+    {
+      "name": "team: top-layer overlay preserves row/list geometry and scroll; native focus trap and background scroll blocking",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "passed": true
+    },
+    {
+      "name": "team: confirmation stacks above status dialog and cancellation preserves the page and draft",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "passed": true
+    },
+    {
+      "name": "team: Escape/outside dismissal restores focus without scroll/reflow or click-through",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "passed": true
+    },
+    {
+      "name": "team: visible close control accepts mouse/touch without changing the underlying layout",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "passed": true
+    },
+    {
+      "name": "Import dialog overlays the table, fits viewport and restores opener without layout/scroll change",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "passed": true
+    },
+    {
+      "name": "/discover/participants: native dialog preserves cards/list, fits viewport and restores focus with Escape",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "passed": true
+    },
+    {
+      "name": "/discover/teams: native dialog preserves cards/list, fits viewport and restores focus with Escape",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "passed": true
+    },
+    {
+      "name": "Committed history remains a bounded native overlay with Escape and scroll-preserving focus restoration",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "passed": true
+    },
+    {
+      "name": "person: top-layer overlay preserves row/list geometry and scroll; native focus trap and background scroll blocking",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "passed": true
+    },
+    {
+      "name": "person: confirmation stacks above status dialog and cancellation preserves the page and draft",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "passed": true
+    },
+    {
+      "name": "person: Escape/outside dismissal restores focus without scroll/reflow or click-through",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "passed": true
+    },
+    {
+      "name": "person: visible close control accepts mouse/touch without changing the underlying layout",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "passed": true
+    },
+    {
+      "name": "team: top-layer overlay preserves row/list geometry and scroll; native focus trap and background scroll blocking",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "passed": true
+    },
+    {
+      "name": "team: confirmation stacks above status dialog and cancellation preserves the page and draft",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "passed": true
+    },
+    {
+      "name": "team: Escape/outside dismissal restores focus without scroll/reflow or click-through",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "passed": true
+    },
+    {
+      "name": "team: visible close control accepts mouse/touch without changing the underlying layout",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "passed": true
+    },
+    {
+      "name": "Import dialog overlays the table, fits viewport and restores opener without layout/scroll change",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "passed": true
+    },
+    {
+      "name": "/discover/participants: native dialog preserves cards/list, fits viewport and restores focus with Escape",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "passed": true
+    },
+    {
+      "name": "/discover/teams: native dialog preserves cards/list, fits viewport and restores focus with Escape",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "passed": true
+    },
+    {
+      "name": "Committed history remains a bounded native overlay with Escape and scroll-preserving focus restoration",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "passed": true
+    },
+    {
+      "name": "person: top-layer overlay preserves row/list geometry and scroll; native focus trap and background scroll blocking",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "passed": true
+    },
+    {
+      "name": "person: confirmation stacks above status dialog and cancellation preserves the page and draft",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "passed": true
+    },
+    {
+      "name": "person: Escape/outside dismissal restores focus without scroll/reflow or click-through",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "passed": true
+    },
+    {
+      "name": "person: visible close control accepts mouse/touch without changing the underlying layout",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "passed": true
+    },
+    {
+      "name": "team: top-layer overlay preserves row/list geometry and scroll; native focus trap and background scroll blocking",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "passed": true
+    },
+    {
+      "name": "team: confirmation stacks above status dialog and cancellation preserves the page and draft",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "passed": true
+    },
+    {
+      "name": "team: Escape/outside dismissal restores focus without scroll/reflow or click-through",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "passed": true
+    },
+    {
+      "name": "team: visible close control accepts mouse/touch without changing the underlying layout",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "passed": true
+    },
+    {
+      "name": "Import dialog overlays the table, fits viewport and restores opener without layout/scroll change",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "passed": true
+    },
+    {
+      "name": "/discover/participants: native dialog preserves cards/list, fits viewport and restores focus with Escape",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "passed": true
+    },
+    {
+      "name": "/discover/teams: native dialog preserves cards/list, fits viewport and restores focus with Escape",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "passed": true
+    },
+    {
+      "name": "Committed history remains a bounded native overlay with Escape and scroll-preserving focus restoration",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "passed": true
+    }
+  ],
+  "layouts": [
+    {
+      "kind": "person",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "before": {
+        "x": 264,
+        "y": 320,
+        "width": 1144,
+        "height": 1140,
+        "pageX": 0,
+        "pageY": 0,
+        "documentWidth": 1440,
+        "documentHeight": 1516
+      },
+      "after": {
+        "x": 264,
+        "y": 320,
+        "width": 1144,
+        "height": 1140,
+        "pageX": 0,
+        "pageY": 0,
+        "documentWidth": 1440,
+        "documentHeight": 1516
+      }
+    },
+    {
+      "kind": "team",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "before": {
+        "x": 264,
+        "y": 265,
+        "width": 1144,
+        "height": 295,
+        "pageX": 0,
+        "pageY": 0,
+        "documentWidth": 1440,
+        "documentHeight": 900
+      },
+      "after": {
+        "x": 264,
+        "y": 265,
+        "width": 1144,
+        "height": 295,
+        "pageX": 0,
+        "pageY": 0,
+        "documentWidth": 1440,
+        "documentHeight": 900
+      }
+    },
+    {
+      "kind": "person",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "before": {
+        "x": 18,
+        "y": 307,
+        "width": 354,
+        "height": 2844.546875,
+        "pageX": 0,
+        "pageY": 0,
+        "documentWidth": 390,
+        "documentHeight": 3200
+      },
+      "after": {
+        "x": 18,
+        "y": 307,
+        "width": 354,
+        "height": 2844.546875,
+        "pageX": 0,
+        "pageY": 0,
+        "documentWidth": 390,
+        "documentHeight": 3200
+      }
+    },
+    {
+      "kind": "team",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "before": {
+        "x": 18,
+        "y": 251,
+        "width": 354,
+        "height": 295,
+        "pageX": 0,
+        "pageY": 0,
+        "documentWidth": 390,
+        "documentHeight": 844
+      },
+      "after": {
+        "x": 18,
+        "y": 251,
+        "width": 354,
+        "height": 295,
+        "pageX": 0,
+        "pageY": 0,
+        "documentWidth": 390,
+        "documentHeight": 844
+      }
+    },
+    {
+      "kind": "person",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "before": {
+        "x": 18,
+        "y": 325,
+        "width": 284,
+        "height": 2844.546875,
+        "pageX": 0,
+        "pageY": 0,
+        "documentWidth": 320,
+        "documentHeight": 3218
+      },
+      "after": {
+        "x": 18,
+        "y": 325,
+        "width": 284,
+        "height": 2844.546875,
+        "pageX": 0,
+        "pageY": 0,
+        "documentWidth": 320,
+        "documentHeight": 3218
+      }
+    },
+    {
+      "kind": "team",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "before": {
+        "x": 18,
+        "y": 269,
+        "width": 284,
+        "height": 295,
+        "pageX": 0,
+        "pageY": 0,
+        "documentWidth": 320,
+        "documentHeight": 612
+      },
+      "after": {
+        "x": 18,
+        "y": 269,
+        "width": 284,
+        "height": 295,
+        "pageX": 0,
+        "pageY": 0,
+        "documentWidth": 320,
+        "documentHeight": 612
+      }
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "screenshots": [
+    "/workspace/wt-qa/evidence/migration/next-controls-popups/person-1440x900.png",
+    "/workspace/wt-qa/evidence/migration/next-controls-popups/team-1440x900.png",
+    "/workspace/wt-qa/evidence/migration/next-controls-popups/person-390x844.png",
+    "/workspace/wt-qa/evidence/migration/next-controls-popups/team-390x844.png",
+    "/workspace/wt-qa/evidence/migration/next-controls-popups/person-320x480.png",
+    "/workspace/wt-qa/evidence/migration/next-controls-popups/team-320x480.png"
+  ],
+  "limitations": [
+    "Chromium mouse/keyboard/touch emulation, not physical-device or hosted-session evidence."
+  ],
+  "browserClosed": true
+}

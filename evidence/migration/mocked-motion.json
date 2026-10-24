@@ -1,0 +1,16 @@
+{
+  "sourceRoot": "/workspace/wt-ui",
+  "kind": "mocked effect lifecycle; no browser or pixel claim",
+  "results": [
+    {
+      "component": "Dots",
+      "checks": 9,
+      "passed": true
+    },
+    {
+      "component": "Delhi",
+      "checks": 8,
+      "passed": true
+    }
+  ]
+}

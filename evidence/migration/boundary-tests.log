@@ -1,0 +1,22 @@
+✔ public Function rejects untrusted proxy requests before invoking authentication or data dependencies (21.720797ms)
+✔ trusted request uses the browser origin and session cookie while stripping forged identity and forwarding hosts (1.005781ms)
+✔ backend path reconstruction cannot switch origins through scheme-relative or non-API paths (0.667142ms)
+✔ backend session resolver owns identity; forged headers cannot read private state or export records (46.032011ms)
+✔ backend mutation rechecks exact browser Origin and refuses missing/foreign origins without committing (28.516095ms)
+✔ fresh backend actor resolution revokes team privacy and enforces viewer read-only on every request (44.246514ms)
+✔ auth routes preserve independent cookie headers and avoid the private runtime resolver (0.560191ms)
+✔ backend errors return stable codes without exception text, stack or credentials (0.383947ms)
+✔ Next proxy forwards only allowlisted client headers and pins backend origin, exact path and query (5.22615ms)
+✔ Next proxy rejects missing/foreign mutation Origin and foreign request hosts before fetch (1.883749ms)
+✔ Next proxy preserves independent Set-Cookie values containing Expires commas and removes upstream-only headers (1.355776ms)
+✔ Next proxy allows same-app relative redirects and rejects external, scheme-relative and backslash redirects (2.060496ms)
+✔ Next proxy fails closed for local fixtures in production and unsafe upstream configuration (1.288556ms)
+✔ Next proxy streams a valid same-origin body and redacts unexpected upstream exceptions (1.515627ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 678.579463

@@ -1,0 +1,37 @@
+{
+  "runtimeFingerprint": "a082c4eb409bf2d0f25a818483b654bbfea0c2805cde6ff4aaf1af1077002a85",
+  "sourceHasUncommittedRuntimeChanges": false,
+  "source": "856311fc9004557ecccbae5a01c352282f7cbc48",
+  "syntheticOnly": true,
+  "writes": false,
+  "chromiumSandbox": false,
+  "checks": [
+    {
+      "name": "person: top-layer overlay preserves row/list geometry and scroll; native focus trap and background scroll blocking",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "passed": true
+    }
+  ],
+  "layouts": [],
+  "errors": [],
+  "blocked": [],
+  "screenshots": [],
+  "limitations": [
+    "Chromium mouse/keyboard/touch emulation, not physical-device or hosted-session evidence."
+  ],
+  "focusFailure": {
+    "active": "<body><div hidden=\"\"><!--$--><!--/$--></div><div class=\"app-shell   workspace-shell\" style=\"--team-accent:#006b43;--team-wash:#e8f7ef\"><a class=\"skip-link\" href=\"#main\">Skip to content</a><header class=\"mobile-header\"><a class=\"brand\" href=\"/\" aria-label=\"DevDay Exchange home\"><img src=\"/brand/codex-user-supplied.svg\" width=\"32\" height=\"32\" alt=\"\"><span>Codex Community New Delhi</span></a><button class=\"button secondary\" aria-expanded=\"false\" aria-controls=\"mobile-navigation\" aria-haspopup=\"dialog\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-menu ui-icon\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M4 5h16\"></path><path d=\"M4 12h16\"></path><path d=\"M4 19h16\"></path></svg><span class=\"sr-only\">Open menu</span></button><a class=\"header-account\" href=\"/dashboard\" aria-label=\"Your Dashboard\"><svg xmlns=\"http://www.w3.org/2000/svg\"",
+    "modals": [
+      {
+        "class": "admin-status-popover",
+        "modal": true,
+        "active": false
+      }
+    ]
+  },
+  "failure": "page.waitForFunction: Timeout 10000ms exceeded.\n    at /workspace/wt-qa/scripts/qa-migration-popups.mjs:215:20",
+  "browserClosed": true
+}

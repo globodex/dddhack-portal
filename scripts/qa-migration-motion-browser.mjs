@@ -42,7 +42,8 @@ try {
       "--host-resolver-rules=MAP * ~NOTFOUND,EXCLUDE localhost,EXCLUDE 127.0.0.1",
     ],
     env: {
-      ...process.env,
+      PATH: process.env.PATH,
+      LANG: "C.UTF-8",
       XDG_CONFIG_HOME: "/tmp/qa-migration-browser-config",
     },
   });

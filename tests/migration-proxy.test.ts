@@ -211,6 +211,7 @@ test("Next proxy fails closed for local fixtures in production and unsafe upstre
     { NEON_API_ORIGIN: "http://synthetic.function.test" },
     { NEON_API_ORIGIN: "https://127.0.0.1" },
     { PORTAL_PROXY_SECRET: undefined },
+    { PORTAL_PROXY_SECRET: "short-synthetic-secret" },
   ])
     await configured(async () => {
       const response = await proxyBackendRequest(
