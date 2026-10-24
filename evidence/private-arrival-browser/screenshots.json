@@ -1,0 +1,87 @@
+{
+  "source": "4a9c57e2171a4f2a08c59d6da3bea4c682221d4b",
+  "pngsStoredOutsideGit": true,
+  "screenshots": [
+    {
+      "file": "01-public-home-1440.png",
+      "localPath": "/tmp/ddd-venue-proof-3fee/final-screens/01-public-home-1440.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "2ba7a8df759427565365c3343d481950f23e7857e19c4a9f5bab1a0d3c8b21be",
+      "pixelsViewed": true,
+      "syntheticOnly": true
+    },
+    {
+      "file": "02-going-home-1440.png",
+      "localPath": "/tmp/ddd-venue-proof-3fee/final-screens/02-going-home-1440.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "fc5605dee08f8d525469fa15fa23672e00ef5304ee77665a1fe61cf10b164179",
+      "pixelsViewed": true,
+      "syntheticOnly": true
+    },
+    {
+      "file": "03-owner-private-config-1440.png",
+      "localPath": "/tmp/ddd-venue-proof-3fee/final-screens/03-owner-private-config-1440.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "142e19d1193dbab2e7e16e7d6a481c8e6abccfd75dee01ed38250184bd9189b7",
+      "pixelsViewed": true,
+      "syntheticOnly": true
+    },
+    {
+      "file": "04-public-home-390.png",
+      "localPath": "/tmp/ddd-venue-proof-3fee/final-screens/04-public-home-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "041ab72b4b6746d9919258efab36db394ff11d15932261f2e25141a23049fe5f",
+      "pixelsViewed": true,
+      "syntheticOnly": true
+    },
+    {
+      "file": "05-going-home-390.png",
+      "localPath": "/tmp/ddd-venue-proof-3fee/final-screens/05-going-home-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "06bf06a465cef1462bc6a8f59745c15f5ea2c667d1d82a220e1c17178f997e79",
+      "pixelsViewed": true,
+      "syntheticOnly": true
+    },
+    {
+      "file": "06-owner-private-config-390.png",
+      "localPath": "/tmp/ddd-venue-proof-3fee/final-screens/06-owner-private-config-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "b1cd10ba09656348cc1cbd16e677d371b2a57193d9be5fe559dd99e3e71370b2",
+      "pixelsViewed": true,
+      "syntheticOnly": true
+    },
+    {
+      "file": "07-going-without-team-1440.png",
+      "localPath": "/tmp/ddd-venue-proof-3fee/final-screens/07-going-without-team-1440.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "67cb1f784072821c7af3733d489444095b7ff3e301fafb683b4f5ee0a10e371d",
+      "pixelsViewed": true,
+      "syntheticOnly": true
+    },
+    {
+      "file": "08-going-without-team-390.png",
+      "localPath": "/tmp/ddd-venue-proof-3fee/final-screens/08-going-without-team-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "bcff87a8737bafda45ea8f1d7e2d58aae27178e3fb4e2f94b0f29a49b5c17e12",
+      "pixelsViewed": true,
+      "syntheticOnly": true
+    },
+    {
+      "file": "09-granted-admin-private-config-390.png",
+      "localPath": "/tmp/ddd-venue-proof-3fee/final-screens/09-granted-admin-private-config-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "3235f9474cf0e4b990e3569a7b40db2d6c80adef95d553ed08de1b43a5a382fd",
+      "pixelsViewed": true,
+      "syntheticOnly": true
+    }
+  ]
+}

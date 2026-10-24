@@ -1,0 +1,137 @@
+{
+  "source": "4a9c57e2171a4f2a08c59d6da3bea4c682221d4b",
+  "syntheticOnly": true,
+  "shots": [
+    {
+      "name": "01-public-home-1440",
+      "path": "/tmp/ddd-venue-proof-3fee/final-screens/01-public-home-1440.png",
+      "url": "http://localhost:3031/#venue",
+      "width": 1440
+    },
+    {
+      "name": "02-going-home-1440",
+      "path": "/tmp/ddd-venue-proof-3fee/final-screens/02-going-home-1440.png",
+      "url": "http://localhost:3031/#venue",
+      "width": 1440
+    },
+    {
+      "name": "03-owner-private-config-1440",
+      "path": "/tmp/ddd-venue-proof-3fee/final-screens/03-owner-private-config-1440.png",
+      "url": "http://localhost:3031/admin/settings",
+      "width": 1440
+    },
+    {
+      "name": "06-owner-private-config-390",
+      "path": "/tmp/ddd-venue-proof-3fee/final-screens/06-owner-private-config-390.png",
+      "url": "http://localhost:3031/admin/settings",
+      "width": 390
+    },
+    {
+      "name": "04-public-home-390",
+      "path": "/tmp/ddd-venue-proof-3fee/final-screens/04-public-home-390.png",
+      "url": "http://localhost:3031/#venue",
+      "width": 390
+    },
+    {
+      "name": "05-going-home-390",
+      "path": "/tmp/ddd-venue-proof-3fee/final-screens/05-going-home-390.png",
+      "url": "http://localhost:3031/#venue",
+      "width": 390
+    },
+    {
+      "name": "07-going-without-team-1440",
+      "path": "/tmp/ddd-venue-proof-3fee/final-screens/07-going-without-team-1440.png",
+      "url": "http://localhost:3031/dashboard",
+      "width": 1440
+    },
+    {
+      "name": "08-going-without-team-390",
+      "path": "/tmp/ddd-venue-proof-3fee/final-screens/08-going-without-team-390.png",
+      "url": "http://localhost:3031/dashboard",
+      "width": 390
+    },
+    {
+      "name": "09-granted-admin-private-config-390",
+      "path": "/tmp/ddd-venue-proof-3fee/final-screens/09-granted-admin-private-config-390.png",
+      "url": "http://localhost:3031/admin/settings",
+      "width": 390
+    }
+  ],
+  "matrix": [
+    {
+      "label": "Anonymous",
+      "who": null,
+      "viewport": 1440,
+      "privateVisible": false,
+      "apiPrivate": false
+    },
+    {
+      "label": "Viewer",
+      "who": "stranger",
+      "viewport": 1440,
+      "privateVisible": false,
+      "apiPrivate": false
+    },
+    {
+      "label": "Registered",
+      "who": "pending",
+      "viewport": 1440,
+      "privateVisible": false,
+      "apiPrivate": false
+    },
+    {
+      "label": "RegisteredLockedTeam",
+      "who": "bob",
+      "viewport": 1440,
+      "privateVisible": false,
+      "apiPrivate": false
+    },
+    {
+      "label": "Going",
+      "who": "alice",
+      "viewport": 1440,
+      "privateVisible": true,
+      "apiPrivate": true
+    },
+    {
+      "label": "GoingNoTeam",
+      "who": "dave",
+      "viewport": 1440,
+      "privateVisible": true,
+      "apiPrivate": true
+    },
+    {
+      "label": "CheckedIn",
+      "who": "eve",
+      "viewport": 1440,
+      "privateVisible": true,
+      "apiPrivate": true
+    },
+    {
+      "label": "Absent",
+      "who": "gina",
+      "viewport": 1440,
+      "privateVisible": false,
+      "apiPrivate": false
+    },
+    {
+      "label": "AdminRegisteredNoGrant",
+      "who": "admin",
+      "viewport": 1440,
+      "privateVisible": true,
+      "apiPrivate": true
+    },
+    {
+      "label": "OwnerRegistered",
+      "who": "owner",
+      "viewport": 1440,
+      "privateVisible": true,
+      "apiPrivate": true
+    }
+  ],
+  "checks": [
+    "Admin read does not imply edit; owner grant enables only private configuration",
+    "Existing Home focus refresh removes Absent details and restores Going details"
+  ],
+  "errors": []
+}

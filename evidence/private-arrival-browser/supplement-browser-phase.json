@@ -1,0 +1,9 @@
+{
+  "source": "4a9c57e2171a4f2a08c59d6da3bea4c682221d4b",
+  "checks": [
+    "Both no-team Dashboard captures retaken with hydrated controls",
+    "Same browser context reload with Registered locked-team account removes prior Going details",
+    "Mobile logout Escape cancels safely; accepted logout clears cookie and private venue"
+  ],
+  "errors": []
+}

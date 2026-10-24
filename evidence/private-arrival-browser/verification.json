@@ -1,0 +1,54 @@
+{
+  "source": "4a9c57e2171a4f2a08c59d6da3bea4c682221d4b",
+  "syntheticOnly": true,
+  "apiRoleRowsPassed": 40,
+  "fullHomeSSRRowsPassed": 4,
+  "fullHomeSSRExactPrivateDetails": false,
+  "browserRoleRowsPassed": 10,
+  "browserFlowChecks": [
+    "Current published arrival shown only Going/Checked in/all Admin/Owner",
+    "Registered locked-team/Viewer/Anonymous/nonstaffAbsent omitted",
+    "Ordinary admin read does not grant edit; owner grant enables only private config",
+    "Current open Home focus refresh removes Absent details and restores Going details",
+    "Same-context account reload to Registered locked-team account removes prior private details",
+    "Mobile logout Escape cancels; accepted logout clears local cookie and private details",
+    "Google Maps configured URL/target/focus/44px verified"
+  ],
+  "pageErrors": [],
+  "screenshotsCapturedAndViewed": 9,
+  "screenshotsInGit": false,
+  "share": {
+    "bin": "ddd-venue-d04da9fc956181fd41a1",
+    "url": "https://filebin.net/ddd-venue-d04da9fc956181fd41a1/venue-final-4a9-synthetic.zip",
+    "sha256": "687f25186e3839cffaa0dcafbd190c729fddfc08e9a29e72e514f0924136fa48",
+    "expiredAt": "2026-10-31T22:16:18.662356Z",
+    "firstStatus": "302",
+    "downloadStatus": "200",
+    "downloadHashMatches": true,
+    "contents": "Nine viewed synthetic-only PNG screenshots; no source/logs/env/DB/manifest"
+  },
+  "captureCorrections": [
+    "First owner tab capture retried after explicit existing-header hydrated gate; fresh DOM showed correct editor",
+    "Initial no-team captures rejected for disabled pre-hydration controls and retaken after readiness gate",
+    "Account-switch goto same hash caused no document request; targeted supplement correctly reloads after cookie change"
+  ],
+  "productSourceChangesInThisProof": false,
+  "productionVenueRead": false,
+  "realPrivateVenueUploaded": false,
+  "hostedReadOrWrite": false,
+  "providerCalls": false,
+  "paidAI": false,
+  "deploy": false,
+  "push": false,
+  "ownedBrowsersClosed": true,
+  "ownedPortsStopped": [
+    3031,
+    8891
+  ],
+  "limits": [
+    "Local development fixture proof, not live configuration verification",
+    "No actual C201 destination or real participant data used",
+    "External Google Maps destination was not opened",
+    "No native PostgreSQL concurrency or full accessibility certification claim"
+  ]
+}
