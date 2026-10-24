@@ -164,6 +164,21 @@ try {
         `${kind}: top-layer overlay preserves row/list geometry and scroll; native focus trap and background scroll blocking`,
         viewport,
       );
+      const status = dialog.getByLabel("New status", { exact: true });
+      const nextStatus = kind === "person" ? "Going" : "Locked";
+      assert.equal(
+        await status.evaluate((node) => {
+          const r = node.getBoundingClientRect();
+          return (
+            document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2) ===
+            node
+          );
+        }),
+        true,
+        "Native status select must own its touch target",
+      );
+      await status.selectOption(nextStatus);
+      assert.equal(await status.inputValue(), nextStatus);
       const saveButton = dialog.getByRole("button", {
         name: "Review status change",
         exact: true,
@@ -183,9 +198,15 @@ try {
       );
       await confirmation.waitFor({ state: "hidden" });
       assert.equal(await dialog.isVisible(), true);
+      await page.waitForFunction(() =>
+        document
+          .querySelector(".admin-status-popover[open]")
+          ?.contains(document.activeElement),
+      );
       assert.equal(
-        await dialog.evaluate((node) => node.contains(document.activeElement)),
-        true,
+        await status.inputValue(),
+        nextStatus,
+        "Cancel keeps the uncommitted selection",
       );
       sameLayout(before, await layout(selector), `${kind} confirmation cancel`);
       check(

@@ -22,7 +22,11 @@ export default function ConfirmationDialog({
         !(previous instanceof HTMLButtonElement && previous.disabled)
       )
         previous.focus({ preventScroll: true });
-      else document.getElementById("main")?.focus({ preventScroll: true });
+      else {
+        const parentDialog = previous?.closest<HTMLDialogElement>("dialog[open]");
+        const target = parentDialog?.querySelector<HTMLElement>("button:not([disabled]),select:not([disabled]),input:not([disabled])") || document.getElementById("main");
+        target?.focus({ preventScroll: true });
+      }
     };
   }, []);
   return (

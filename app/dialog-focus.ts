@@ -5,7 +5,7 @@ export function trapDialogFocus(event: KeyboardEvent<HTMLDialogElement>) {
   if (event.key !== "Tab") return;
   const controls = [
     ...event.currentTarget.querySelectorAll<HTMLElement>(
-      "a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex='-1'])",
+      "a[href],button:enabled,input:enabled,select:enabled,textarea:enabled,[tabindex]:not([tabindex='-1'])",
     ),
   ].filter((node) => node.getClientRects().length > 0);
   const first = controls[0],
