@@ -492,6 +492,10 @@
 }
 .admin-workspace .admin-team-disclosure > summary strong {
   font-size: 17px;
+  overflow-wrap: anywhere;
+}
+.admin-workspace .admin-team-disclosure > summary > div {
+  min-width: 0;
 }
 .admin-workspace .admin-team-disclosure > summary small {
   margin-top: 5px;
@@ -532,6 +536,16 @@
 }
 .main:not(.home-main) .admin-workspace .admin-submission-records h2 {
   font-size: 18px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.main:not(.home-main)
+  .admin-workspace
+  .admin-submission-records
+  > li
+  > a
+  > div {
+  min-width: 0;
 }
 .main:not(.home-main) .admin-workspace.admin-exact .admin-submission-management.panel {
   border: 0;
