@@ -111,7 +111,7 @@ if ($before.historicalEncoding -notin @('canonical-lf', 'legacy-windows-crlf')) 
 }
 ```
 
-The post-inspect comparison selects all original receipt names, preserving every prior checksum and timestamp for either prefix. The CLI verifies each new LF checksum, exact source plan and unchanged existing row counts transactionally. Unknown hashes, mixed historical encodings and non-prefix ledgers remain refused. A target already at ten entries needs no migration apply; retain a fresh read-only receipt and continue with the matching backend package.
+The post-inspect comparison checks every original receipt name and checksum for either prefix. Existing ledger timestamps are left unchanged by the migrations and covered by local preservation tests; the receipt comparison does not independently check timestamps. The CLI verifies each new LF checksum, exact source plan and unchanged existing row counts transactionally. Unknown hashes, mixed historical encodings and non-prefix ledgers remain refused. A target already at ten entries needs no migration apply; retain a fresh read-only receipt and continue with the matching backend package.
 
 ## Immutable source and local proof
 
