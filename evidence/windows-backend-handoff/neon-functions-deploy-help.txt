@@ -1,0 +1,36 @@
+neon functions deploy <slug>
+
+Deploy a function from a local directory
+
+Positionals:
+slug                Function slug (1-20 lowercase letters and digits)
+                    [string] [required]
+
+Options:
+--project-id
+└────────────────>  Project ID [string]
+--branch
+└────────────────>  Branch ID or name [string]
+--src
+└────────────────>  Function source: a directory containing index.ts,
+                    index.js, or index.mjs (first file match is the
+                    entry), or a path to the entry file [string]
+--runtime
+└────────────────>  Function runtime [string] [choices: "nodejs24"]
+--env
+└────────────────>  Environment variable as KEY=VALUE (repeatable) [array]
+--wait
+└────────────────>  Wait for the deployment to finish building [boolean]
+                    [default: true]
+--bundle
+└────────────────>  Bundle --src with esbuild. Use --no-bundle to zip a
+                    prebuilt directory (root must contain index.mjs or
+                    index.js) or a file of that name. [boolean] [default:
+                    true]
+
+Global options: see neon --help
+
+ Use neon deploy with a neon.ts file for a full deployment (declared services and functions).
+ Use neon functions deploy to deploy one function manually, including a targeted env update.
+ neon deploy --env <file> loads that .env file so neon.ts can read Function env from it.
+ neon functions deploy --env is KEY=VALUE (repeatable), not a file path.
