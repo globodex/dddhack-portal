@@ -225,3 +225,18 @@ dialog::backdrop { background: #20232066; }
 @media (prefers-reduced-motion: reduce) {
   .workspace-shell .sidebar nav a { transition: none; }
 }
+
+@media (max-width: 360px) {
+  .app-shell .main .dashboard-v6 .dashboard-heading {
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .app-shell .main .dashboard-v6 .dashboard-heading > h1 {
+    flex: 0 0 100%;
+    white-space: nowrap;
+  }
+  .app-shell .main .dashboard-v6 .dashboard-heading > .pill {
+    margin-inline-start: 46px;
+  }
+}
