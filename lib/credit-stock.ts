@@ -138,12 +138,54 @@ export async function creditStockView(
     `SELECT count(*) n ${from} WHERE ${predicate}`,
     ...args,
   ))!.n;
-  const items = await rows(
+  const stock = await rows<{
+    id: string;
+    person: string | null;
+    email: string | null;
+    assignedAt: string | null;
+    status: "Assigned" | "Available";
+    voucher_value: string | null;
+    ciphertext: string;
+  }>(
     s.db,
-    `SELECT i.id,COALESCE(pp.display_name,u.name) person,a.recipient_email email,a.assigned_at assignedAt,'[masked]' maskedCode,CASE WHEN a.inventory_id IS NOT NULL THEN 'Assigned' ELSE 'Available' END status ${from} WHERE ${predicate} ORDER BY i.rowid LIMIT ? OFFSET ?`,
+    `SELECT i.id,COALESCE(pp.display_name,u.name) person,a.recipient_email email,a.assigned_at assignedAt,i.voucher_value,i.ciphertext,CASE WHEN a.inventory_id IS NOT NULL THEN 'Assigned' ELSE 'Available' END status ${from} WHERE ${predicate} ORDER BY i.rowid LIMIT ? OFFSET ?`,
     ...args,
     pageSize,
     page * pageSize,
+  );
+  // Only the authorized, selected page is decoded. The GET remains read-only:
+  // visibility is not an allocation or an exposure/history mutation.
+  const items = await Promise.all(
+    stock.map(async ({ voucher_value, ciphertext, ...entry }) => {
+      try {
+        const value =
+          voucher_value !== null
+            ? voucher_value
+            : await unseal(ciphertext, s.creditKey);
+        if (!value)
+          return {
+            ...entry,
+            value: null,
+            codeAvailability: "unavailable" as const,
+            codeError:
+              "This stock entry has no code. Ask an owner to verify the imported value.",
+          };
+        return {
+          ...entry,
+          value,
+          codeAvailability: "ready" as const,
+          codeError: null,
+        };
+      } catch {
+        return {
+          ...entry,
+          value: null,
+          codeAvailability: "unavailable" as const,
+          codeError:
+            "Legacy code unavailable. Ask an owner to verify the stored code and credit encryption configuration.",
+        };
+      }
+    }),
   );
   return {
     me,

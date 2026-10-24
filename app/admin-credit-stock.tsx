@@ -1,18 +1,10 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import {
-  ArrowLeft,
-  ArrowRight,
-  CircleCheck,
-  Copy,
-  Eye,
-  EyeOff,
-  LoaderCircle,
-  Search,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, CircleCheck, Copy, Search } from "lucide-react";
 import { portalErrorText } from "../lib/ui-feedback";
 import { ist } from "../lib/time";
+import styles from "./admin-credit-stock.module.css";
 
 export type StockSummary = {
   total: number;
@@ -25,7 +17,9 @@ export type StockEntry = {
   id: string;
   person: string | null;
   email: string | null;
-  maskedCode: string;
+  value: string | null;
+  codeAvailability: "ready" | "unavailable";
+  codeError: string | null;
   assignedAt: string | null;
   status: "Assigned" | "Available";
 };
@@ -55,45 +49,25 @@ export default function AdminCreditStock({
     [data, setData] = useState<StockPage | null>(null),
     [loading, setLoading] = useState(true),
     [error, setError] = useState(""),
-    [revealed, setRevealed] = useState<Record<string, string>>({}),
-    [rowBusy, setRowBusy] = useState(""),
     [rowError, setRowError] = useState<Record<string, string>>({}),
     [copied, setCopied] = useState("");
   const active = useRef(true),
     generation = useRef(0),
-    secretGeneration = useRef(0),
-    requestKey = useRef(""),
     summary = useRef(onSummary),
-    revealPending = useRef(false),
     listId = useId();
   summary.current = onSummary;
   useEffect(() => {
     active.current = true;
-    const hide = () => {
-      ++secretGeneration.current;
-      setRevealed({});
-      setCopied("");
-    };
-    const visibility = () => {
-      if (document.hidden) hide();
-    };
-    window.addEventListener("blur", hide);
-    document.addEventListener("visibilitychange", visibility);
     return () => {
       active.current = false;
-      window.removeEventListener("blur", hide);
-      document.removeEventListener("visibilitychange", visibility);
     };
   }, []);
   useEffect(() => {
-    const key = JSON.stringify([typeId, status, query, page, attempt]);
-    if (requestKey.current === key) return;
-    requestKey.current = key;
     const epoch = ++generation.current;
-    ++secretGeneration.current;
+    const controller = new AbortController();
     setLoading(true);
     setError("");
-    setRevealed({});
+    setData(null);
     setCopied("");
     setRowError({});
     const params = new URLSearchParams({
@@ -106,6 +80,7 @@ export default function AdminCreditStock({
         const response = await fetch(`/api/portal?${params}`, {
           credentials: "same-origin",
           cache: "no-store",
+          signal: controller.signal,
         });
         const body = (await response.json()) as StockPage & {
           code?: string;
@@ -115,7 +90,14 @@ export default function AdminCreditStock({
         if (
           !Array.isArray(body.items) ||
           body.items.length > 25 ||
-          !body.summary
+          !body.summary ||
+          body.items.some(
+            (entry) =>
+              !(entry.value === null || typeof entry.value === "string") ||
+              !(
+                entry.codeError === null || typeof entry.codeError === "string"
+              ),
+          )
         )
           throw new Error("Stock could not be loaded.");
         if (active.current && epoch === generation.current) {
@@ -123,17 +105,22 @@ export default function AdminCreditStock({
           summary.current(body.summary);
         }
       } catch (cause) {
-        if (active.current && epoch === generation.current)
+        if (
+          active.current &&
+          epoch === generation.current &&
+          !controller.signal.aborted
+        )
           setError((cause as Error).message);
       } finally {
         if (active.current && epoch === generation.current) setLoading(false);
       }
     })();
+    return () => controller.abort();
   }, [typeId, status, query, page, attempt]);
 
   return (
     <section
-      className="credit-stock-detail"
+      className={`credit-stock-detail ${styles.visibleCodes}`}
       aria-label={`${heading} stock`}
       aria-busy={loading}
     >
@@ -223,8 +210,7 @@ export default function AdminCreditStock({
                     </tr>
                   ))
                 : (data?.items || []).map((entry, index) => {
-                    const value = revealed[entry.id],
-                      busy = rowBusy === entry.id,
+                    const value = entry.value,
                       recipient = entry.person
                         ? `for ${entry.person}${entry.email ? `, ${entry.email}` : ""}`
                         : `in available stock ${page * 25 + index + 1}`;
@@ -240,121 +226,48 @@ export default function AdminCreditStock({
                         </td>
                         <td role="cell" data-label="Code">
                           <div className="credit-stock-code">
-                            <code
-                              aria-label={
-                                value
-                                  ? `Revealed code for ${entry.person || "available stock"}`
-                                  : "Code hidden"
-                              }
-                            >
-                              {value || entry.maskedCode || "[masked]"}
-                            </code>
+                            {value ? (
+                              <code
+                                aria-label={
+                                  value
+                                    ? `Code for ${entry.person || "available stock"}`
+                                    : "Code unavailable"
+                                }
+                              >
+                                {value}
+                              </code>
+                            ) : (
+                              <span className={styles.unavailable}>
+                                Code unavailable
+                              </span>
+                            )}
                             <div className="credit-stock-code-actions">
                               <button
                                 type="button"
                                 className="button secondary"
-                                disabled={!!rowBusy}
-                                aria-label={`${value ? "Hide" : "Reveal"} code ${recipient}`}
-                                aria-pressed={!!value}
-                                aria-busy={busy}
-                                onClick={async () => {
-                                  if (value) {
-                                    setRevealed((current) => {
-                                      const next = { ...current };
-                                      delete next[entry.id];
-                                      return next;
-                                    });
-                                    setCopied("");
-                                    return;
-                                  }
-                                  if (revealPending.current) return;
-                                  revealPending.current = true;
-                                  const epoch = secretGeneration.current;
-                                  setRowBusy(entry.id);
-                                  setRowError((current) => ({
-                                    ...current,
-                                    [entry.id]: "",
-                                  }));
-                                  try {
-                                    const response = await fetch(
-                                      "/api/portal",
-                                      {
-                                        method: "POST",
-                                        credentials: "same-origin",
-                                        cache: "no-store",
-                                        headers: {
-                                          "content-type": "application/json",
-                                        },
-                                        body: JSON.stringify({
-                                          action: "admin-reveal-credit",
-                                          data: { inventoryId: entry.id },
-                                        }),
-                                      },
-                                    );
-                                    const result = (await response.json()) as {
-                                      value?: string;
-                                      code?: string;
-                                      message?: string;
-                                    };
-                                    if (!response.ok)
-                                      throw new Error(portalErrorText(result));
-                                    if (
-                                      typeof result.value !== "string" ||
-                                      !result.value
-                                    )
-                                      throw new Error(
-                                        "This code could not be revealed.",
-                                      );
-                                    const code = result.value;
-                                    if (
-                                      active.current &&
-                                      epoch === secretGeneration.current &&
-                                      !document.hidden
-                                    )
-                                      setRevealed((current) => ({
-                                        ...current,
-                                        [entry.id]: code,
-                                      }));
-                                  } catch (cause) {
-                                    if (active.current)
-                                      setRowError((current) => ({
-                                        ...current,
-                                        [entry.id]: (cause as Error).message,
-                                      }));
-                                  } finally {
-                                    revealPending.current = false;
-                                    if (active.current) setRowBusy("");
-                                  }
-                                }}
-                              >
-                                {busy ? (
-                                  <LoaderCircle
-                                    size={18}
-                                    className="credit-batch-spinner"
-                                    aria-hidden="true"
-                                  />
-                                ) : value ? (
-                                  <EyeOff size={18} aria-hidden="true" />
-                                ) : (
-                                  <Eye size={18} aria-hidden="true" />
-                                )}
-                              </button>
-                              <button
-                                type="button"
-                                className="button secondary"
-                                disabled={!value || busy}
+                                disabled={!value}
                                 aria-label={`${copied === entry.id ? "Copied" : "Copy"} code ${recipient}`}
                                 data-copied={copied === entry.id}
                                 onClick={async () => {
+                                  if (!value) return;
+                                  const epoch = generation.current;
                                   try {
                                     await navigator.clipboard.writeText(value);
-                                    setCopied(entry.id);
+                                    if (
+                                      active.current &&
+                                      epoch === generation.current
+                                    )
+                                      setCopied(entry.id);
                                   } catch {
-                                    setRowError((current) => ({
-                                      ...current,
-                                      [entry.id]:
-                                        "Copy failed. Select and copy the revealed code.",
-                                    }));
+                                    if (
+                                      active.current &&
+                                      epoch === generation.current
+                                    )
+                                      setRowError((current) => ({
+                                        ...current,
+                                        [entry.id]:
+                                          "Copy failed. Select and copy the code.",
+                                      }));
                                   }
                                 }}
                               >
@@ -366,6 +279,11 @@ export default function AdminCreditStock({
                               </button>
                             </div>
                           </div>
+                          {entry.codeError && (
+                            <p className="credit-stock-row-error">
+                              {entry.codeError}
+                            </p>
+                          )}
                           {rowError[entry.id] && (
                             <p className="credit-stock-row-error" role="alert">
                               {rowError[entry.id]}

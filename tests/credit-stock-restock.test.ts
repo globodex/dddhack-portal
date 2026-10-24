@@ -441,20 +441,19 @@ for (const engine of ["sqlite", "postgres"] as const) {
       assert.ok(
         (assigned.items as any[]).every(
           (row) =>
-            row.maskedCode === "[masked]" &&
+            values.includes(row.value) &&
+            row.codeAvailability === "ready" &&
+            row.codeError === null &&
             row.person &&
             row.email &&
             row.assignedAt &&
             row.status === "Assigned",
         ),
       );
-      const encoded = JSON.stringify([
-        page,
-        next,
-        assigned,
-        await admin.view("/admin/credits"),
-      ]);
-      for (const value of values) assert.ok(!encoded.includes(value));
+      const encoded = JSON.stringify([page, next, assigned]);
+      for (const value of values) assert.ok(encoded.includes(value));
+      const overview = JSON.stringify(await admin.view("/admin/credits"));
+      for (const value of values) assert.ok(!overview.includes(value));
       const inventoryId = (assigned.items as any[])[0].id;
       for (const who of ["alice", "judge", "pending", "stranger"])
         await assert.rejects(

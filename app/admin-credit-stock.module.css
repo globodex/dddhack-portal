@@ -1,0 +1,11 @@
+.visibleCodes .unavailable {
+  color: #686d63;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.visibleCodes code {
+  user-select: text;
+}
+.visibleCodes button:disabled {
+  cursor: default;
+}
