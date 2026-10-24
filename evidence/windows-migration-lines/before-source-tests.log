@@ -1,0 +1,11 @@
+✔ independent Windows source: approved LF plan is nine exact HEAD blobs and keeps the published digest (104.234419ms)
+✔ independent Windows source: actual CRLF loader and offline CLI reject; strict checker never normalizes bytes (615.479976ms)
+✔ independent Windows source: missing, extra, reordered, BOM and literal-edit plans still stop strictly (8.609133ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1202.965971
