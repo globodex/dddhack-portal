@@ -1824,5 +1824,6 @@ dialog.discover-team-sheet::backdrop { background: #20232066; }
 @media (max-width: 360px) {
   .app-shell .discover-v6 :is(.discover-person-heading, .discover-team-card-heading) { grid-template-columns: 48px minmax(0, 1fr) 44px; gap: 8px; }
   .app-shell .discover-v6 :is(.discover-person-heading, .discover-team-card-heading) > svg { width: 48px; height: 48px; }
+  .app-shell .discover-v6 :is(.discover-person-heading, .discover-team-card-heading) > .discover-identity { grid-column: 1 / -1; grid-row: 2; }
   .app-shell .discover-v6 .discover-team-card-heading .discover-identity h2 { font-size: 21px; }
 }
