@@ -1552,3 +1552,26 @@ dialog.team-create-dialog > form.team-create-form {
     min-width: 0;
   }
 }
+@media (max-width: 360px) {
+  .app-shell .team-creation-identity {
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 8px 12px;
+  }
+  .app-shell .team-creation-preview,
+  .app-shell .team-creation-preview svg {
+    width: 48px;
+    height: 48px;
+  }
+  .app-shell fieldset.team-creation-color {
+    display: contents;
+  }
+  .app-shell .team-creation-color > legend {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    margin: 0;
+  }
+  .app-shell .team-creation-palette {
+    grid-column: 1 / -1;
+  }
+}
