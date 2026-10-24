@@ -1,35 +1,46 @@
-# Rebuilt backend archive: independent host verification
+# Final backend archive verification
 
-Verified runtime source `2cf51d72602447b43d1893cc0b6fb1e6fd207996`. No rebuild, deployment, mail send or application/runtime file change was performed by this verification lane.
+Freshly rebuilt from `d2f12933191a7633f8bffa252aa568fe65654160`, source-equivalent in backend/configuration/package paths to integrated `191b76ed26f430128b14112f77b74ad3e26b1ec0`. The new feature SQL names are `0102_credit_stock.sql` and `0103_project_media_limits.sql`; historical auth/evaluation order and checksums are preserved. No app/lib source edit was made by this packaging lane.
 
-| Check                                                       | Observed result                                                         |
-| ----------------------------------------------------------- | ----------------------------------------------------------------------- |
-| ZIP SHA-256                                                 | `db3c06505c15066c1ca918e32c8d77a2a5a86b5d47b080f3ee885ed6498baf85`      |
-| Archive size                                                | 9,009,666 bytes compressed; 21,134,827 bytes uncompressed               |
-| Files                                                       | 93                                                                      |
-| Native files                                                | Two Linux ARM64 ELF files, both machine 183                             |
-| Forbidden archive paths                                     | None found                                                              |
-| Original and host-copy JavaScript SHA-256                   | Both `4bf01421341eb73d7e6d61a246024f66645d6e0d0763144e74243df53b08c08d` |
-| Trusted in-process GET `/api/health`                        | 200, expected runtime JSON, private/no-store                            |
-| Untrusted in-process GET `/api/health`                      | 403, `UNTRUSTED_PROXY`, code-only body                                  |
-| Unconfigured in-process GET `/api/portal?view=%2Fdashboard` | 503, `BACKEND_UNAVAILABLE`, code-only redacted body                     |
-| Outbound API attempts during smoke                          | Zero                                                                    |
+| Check                                            | Observed result                                                        |
+| ------------------------------------------------ | ---------------------------------------------------------------------- |
+| ZIP SHA256                                       | `6d71e987f3019140b802b207eb7a9cd92fe1de57887d463b73449b87f6ce4a5f`     |
+| Archive                                          | 9,014,174 compressed bytes; 21,149,045 raw bytes; 93 files             |
+| Official limits                                  | 10,485,760 compressed bytes; 67,108,864 raw bytes; 4,096 entries       |
+| Native files                                     | Sharp 0.35.5/libvips 8.18.7, two Linux ARM64 ELF machine 183 files     |
+| Forbidden paths                                  | None                                                                   |
+| Fresh graph                                      | 861 inputs, 77 application inputs; zero frontend/forbidden inputs      |
+| Archive/analysis/host-copy JS hash               | All `5f33d61cf558e6dd9ea32c98f31cd4a166e74a8e7192c74505ff3eb36077b7d6` |
+| Trusted GET `/api/health`                        | 200, expected runtime JSON, private/no-store                           |
+| Untrusted GET `/api/health`                      | 403, redacted `UNTRUSTED_PROXY`                                        |
+| Unconfigured GET `/api/portal?view=%2Fdashboard` | 503, redacted `BACKEND_UNAVAILABLE`                                    |
+| Outbound attempts                                | Zero                                                                   |
 
-The child Node.js 24 process starts with only six whitelisted synthetic/system environment keys. No database, SMTP, Google, storage or other real credential is supplied. Node fetch, TCP socket connect, TLS and HTTP(S) request APIs are replaced with throwing guards before the archive JavaScript is imported. The module loads without startup migrations, fixture loading, network calls or background processing. Sharp adds its non-secret `VIPSHOME` native-library path during import; the report distinguishes initial and post-import environment key names without recording environment values.
+The official `@neon/config-runtime@1.10.2` `buildFunctionBundle` API used function `env: {}`, no warnings and no plan/apply/deploy call. The final build ran after the migration ordering fix. Separate fresh analysis used its exact esbuild 0.28.2 options/banner and emitted the identical JavaScript hash. The 861-input count is recomputed, not the earlier 854. The existing archive verifier consumes this fresh receipt; its `receiptGraphOnly.recomputed: false` means that verifier does not itself repeat the separate graph build.
 
-The unchanged JavaScript entry was loaded from `/tmp/ddd-neon-host-smoke/index.mjs`, whose `node_modules` resolves to the executor's installed host dependencies. Sharp 0.35.5/libvips 8.18.7 loaded an **x86_64 ELF machine 62** addon. This substitution is deliberate and external to the ZIP. The original archive and extracted ARM64 tree were unchanged, with ZIP, entry and both ARM native-file hashes checked before and after the smoke.
+New extraction `/tmp/ddd-neon-final-extracted-m_erelu8` and unchanged-JavaScript host copy `/tmp/ddd-neon-final-host-m_t3efh3` were used. Host node_modules resolves to installed executor dependencies, loading x86_64 Sharp ELF machine 62. ZIP, original/host JavaScript and both ARM native hashes were checked before and after the smoke. The original ARM archive/extraction stayed unchanged.
 
-**This does not execute the unmodified ARM64 archive.** Actual ARM64 cold start, image decoding, hosted storage, SMTP delivery and full login remain unverified. The dependency graph's 854 inputs and empty forbidden-input list are retained from the existing build receipt, not recomputed by this script. File inventory, archive/index hashes and native ELF headers were independently revalidated.
+The Node 24 child starts with six whitelisted system/synthetic keys. Fetch, TCP sockets, TLS and HTTP(S) requests are blocked before import; no provider/DB/SMTP/Google/storage credentials are supplied. Sharp adds only its non-secret native-library path `VIPSHOME`. **This does not execute the unmodified ARM64 ZIP.** ARM64 cold start/decoding, hosted storage, SMTP delivery and full login remain unverified. No deployment, migration apply, mail send, provider setting change or hosted data read/write occurred.
 
-Reproduce using the existing extracted archive and separate host-copy directory:
+An earlier pre-fix build process omitted the executor's public npm proxy transport and failed before replacing the archive. The completed final build retained only ordinary proxy/certificate transport and a writable public npm cache; function env remained empty. Build metadata and operations evidence distinguish this setup correction from any provider action.
+
+## Manual populated-target upgrade
+
+The hosted target contains real data. Follow [the operator-owned incremental plan](NEON_POPULATED_UPGRADE_PLAN.md): backup/restore checkpoint, exact target and historical ledger/checksum review, pending-only `0102` then `0103` inside the existing `SERIALIZABLE`/advisory-lock migration procedure, private collision review and read-only validation. Never reset/reseed it, rewrite historical checksums or use the synthetic apply flags on that target. No hosted ledger was inspected or migration applied by this lane.
+
+The source-only plan has historical `0000`..`0004`, `0100_auth.sql`, `0101_approved_evaluation.sql`, then new `0102_credit_stock.sql` and `0103_project_media_limits.sql`. The source expectations and exact checksums are recorded in `historical-ledger-checksums.json` and `migration-plan.json`. Stock duplicates fail atomically rather than silently merging/deleting codes; previously valid media references/receipt states remain valid.
+
+Re-run the existing read-only verifier against a fresh extraction and separate host-copy directory:
 
 ```sh
 node scripts/verify-neon-host-archive.mjs \
-  --archive /workspace/dddhack-portal/artifacts/neon/portalapi.zip \
-  --receipt /workspace/dddhack-portal/artifacts/neon/receipt.json \
-  --extracted /tmp/ddd-neon-verified \
-  --host /tmp/ddd-neon-host-smoke \
+  --archive artifacts/neon/portalapi.zip \
+  --receipt artifacts/neon/receipt.json \
+  --extracted /tmp/ddd-neon-final-extracted-m_erelu8 \
+  --host /tmp/ddd-neon-final-host-m_t3efh3 \
   --report evidence/neon-host-archive/report.json
 ```
 
-The command reads the archive and writes only its selected report. It does not create a package or call a provider. [Machine-readable evidence](../evidence/neon-host-archive/report.json) contains the exact response checks, host substitution and limitations. The user must manually redeploy the reviewed backend archive for the email changes to take effect.
+[Receipt](../artifacts/neon/receipt.json), [inventory](../evidence/neon-host-archive/inventory.json), [graph](../evidence/neon-host-archive/graph.json), [source equivalence](../evidence/neon-host-archive/source-equivalence.json) and [host smoke](../evidence/neon-host-archive/report.json) preserve actual outputs. Local host substitution and payload checks do not establish hosted performance or provider success.
+
+Independent [populated upgrade proof](https://github.com/Param302/dddhack-portal/blob/d195fe89b8d327709ffe11d6e87e6c747d1dd96b/docs/COMBINED_MIGRATION_UPGRADE_INDEPENDENT_REVIEW.md) passes six local cases against integrated source `191b76ed26f430128b14112f77b74ad3e26b1ec0`: the seven-entry historical ledger gains only `0102`/`0103`, populated synthetic records remain equal, repeat is empty, and both legacy collision cases roll back atomically. The proof covers actual persisted synthetic auth/profile/team/project/submission/evaluation/inventory/allocation/media rows. It uses local single-connection PGlite and does not claim a hosted ledger inspection or native multi-connection concurrency result. Root integrated the proof as `4b9a6498087a4cca38d465d90e3643778140b942`.

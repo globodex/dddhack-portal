@@ -1,11 +1,11 @@
 {
-  "runtimeSource": "2cf51d72602447b43d1893cc0b6fb1e6fd207996",
+  "runtimeSource": "d2f12933191a7633f8bffa252aa568fe65654160",
   "archive": {
-    "path": "/workspace/dddhack-portal/artifacts/neon/portalapi.zip",
-    "bytes": 9009666,
-    "sha256": "db3c06505c15066c1ca918e32c8d77a2a5a86b5d47b080f3ee885ed6498baf85",
+    "path": "/workspace/ddd-release/artifacts/neon/portalapi.zip",
+    "bytes": 9014174,
+    "sha256": "6d71e987f3019140b802b207eb7a9cd92fe1de57887d463b73449b87f6ce4a5f",
     "files": 93,
-    "uncompressedBytes": 21134827,
+    "uncompressedBytes": 21149045,
     "nativeFiles": [
       {
         "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
@@ -22,10 +22,10 @@
     ],
     "forbiddenPaths": []
   },
-  "indexSha256": "4bf01421341eb73d7e6d61a246024f66645d6e0d0763144e74243df53b08c08d",
+  "indexSha256": "5f33d61cf558e6dd9ea32c98f31cd4a166e74a8e7192c74505ff3eb36077b7d6",
   "identicalUnmodifiedJavaScript": true,
   "hostDependencySubstitution": {
-    "path": "/tmp/ddd-neon-host-smoke",
+    "path": "/tmp/ddd-neon-final-host-m_t3efh3",
     "nodeModulesTarget": "/workspace/dddhack-portal/node_modules",
     "purpose": "Resolve sharp against installed host x86_64 native dependencies; original ARM64 archive and extracted tree remain unchanged."
   },
@@ -111,7 +111,7 @@
   "noMailSent": true,
   "noDatabaseConfigured": true,
   "receiptGraphOnly": {
-    "inputs": 854,
+    "inputs": 861,
     "forbiddenInputs": [],
     "recomputed": false
   },

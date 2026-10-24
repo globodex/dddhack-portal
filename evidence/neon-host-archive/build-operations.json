@@ -1,0 +1,15 @@
+{
+  "runtimeSource": "d2f12933191a7633f8bffa252aa568fe65654160",
+  "integratedSourceEquivalentTo": "191b76ed26f430128b14112f77b74ad3e26b1ec0",
+  "officialAPI": "@neon/config-runtime@1.10.2 buildFunctionBundle",
+  "functionEnv": {},
+  "initialTransportFailure": "Earlier sanitized build process omitted executor network proxies; public npm install failed before replacement. Corrected only local proxy/certificate transport, no provider values.",
+  "finalBuild": "Fresh official build after0102/0103 rename and combined plan sorting; writable public npm cache preferred.",
+  "warnings": [],
+  "planInvoked": false,
+  "applyInvoked": false,
+  "deployInvoked": false,
+  "sourceMigrationInspection": "Local file inspection only; no provider plan API.",
+  "hostedDatabaseReadOrWrite": false,
+  "credentialOrProviderSettingsChange": false
+}

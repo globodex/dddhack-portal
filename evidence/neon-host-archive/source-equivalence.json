@@ -1,0 +1,18 @@
+{
+  "builtSource": "d2f12933191a7633f8bffa252aa568fe65654160",
+  "integratedSource": "191b76ed26f430128b14112f77b74ad3e26b1ec0",
+  "comparedPaths": [
+    "neon",
+    "lib",
+    "package.json",
+    "package-lock.json",
+    "neon.ts"
+  ],
+  "gitDiffEmpty": true,
+  "indexSha256": "5f33d61cf558e6dd9ea32c98f31cd4a166e74a8e7192c74505ff3eb36077b7d6",
+  "graphInputCount": 861,
+  "migrationInputsInEntryGraph": [],
+  "sourceGraphRecomputed": true,
+  "previousFrozenAPIIndexSha256": "5f33d61cf558e6dd9ea32c98f31cd4a166e74a8e7192c74505ff3eb36077b7d6",
+  "freshOfficialBuildAfterOrderingFix": true
+}
