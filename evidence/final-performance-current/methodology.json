@@ -1,0 +1,39 @@
+{
+  "source": "405387286eee7a5a8b1034af6cf5df81369766ef",
+  "runtime": "Next16.4.3 development webpack",
+  "runner": "scripts/measure-redesign-browser.mjs",
+  "runnerSha256": "38f2037463e911ef75aeb4ef70f884fb595ec39dc791f37baef0114fc05e26fb",
+  "runnerUnmodified": true,
+  "origin": "http://127.0.0.1:3004",
+  "backend": "preserved synthetic8789",
+  "database": "/tmp/ddd-redesign-rich.sqlite",
+  "readOnly": true,
+  "samples": {
+    "desktop": {
+      "viewport": [
+        1440,
+        900
+      ],
+      "routes": 7,
+      "perRoute": 3
+    },
+    "mobile": {
+      "viewport": [
+        390,
+        844
+      ],
+      "routes": 7,
+      "perRoute": 1
+    }
+  },
+  "concurrency": "Numerical browser run waits for root full suite and production build to finish. No other browser job or build/test load is intentionally run during the28 samples; local cache/process differences from the original baseline still limit causal timing claims.",
+  "baseline": "evidence/redesign-rich-before/report.json",
+  "previousAfterHistoricalOnly": "evidence/final-performance/report.json atae2b027",
+  "loadingCaptures": "Actual9initialRSCgatedframes atf7 plus targetedStudio390/320 at405; no browserdata request added. Captures preceded finalnumeric but are independentlysourcebound.",
+  "idleGoUtc": "2026-10-24T15:07:21.959736+00:00",
+  "rootIdleConfirmation": "Root reports541testsended535pass/6nativePGskip/0fail andproductionbuildpassed; no builds/tests/browser jobs active while numerical collection begins.",
+  "firstBeforeFixSource": "ba9574bcc4e26cf69f5ba7d07a4a612fe7879405",
+  "runtimeEquivalentRootSource": "2657f26254ed323ca84a167a2f220f05f4ec7cbf",
+  "finalIdleGoUtc": "2026-10-24T15:18:07.854948+00:00",
+  "warmupState": "Private webpack server already served the preserved pre-venue-fix28 and required loading/venue pixel checks; baseline firstcompile outlier remains in its original raw report. Final contexts and HTTP cache are fresh/disabled."
+}
