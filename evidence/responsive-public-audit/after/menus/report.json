@@ -1,0 +1,218 @@
+{
+  "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+  "screenshots": [
+    {
+      "label": "home-menu-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/menus/home-menu-rest-768x1024.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "sha256": "de0d6fbc0041e5c63ca25a84a1a62ae07314ad70dc979cb063b39d69fa0d9170",
+      "inspected": true
+    },
+    {
+      "label": "home-menu-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/menus/home-menu-rest-390x844.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "sha256": "ee0fd41635d0f2ff74d13ea022a8d35b6ca22d9d9e1ec68c1db7234a8e9b7ff7",
+      "inspected": true
+    },
+    {
+      "label": "home-menu-rest",
+      "file": "/workspace/ddd-landing/evidence/responsive-public-audit/after/menus/home-menu-rest-320x480.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "sha256": "2108a0f56a59dcc6b31b4b5215bf25b2fb8a85e4c005993dd16723a06c41eb24",
+      "inspected": true
+    }
+  ],
+  "checks": [
+    {
+      "path": "/",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 753,
+        "height": 1024,
+        "top": 0,
+        "right": 753,
+        "bottom": 1024,
+        "left": 0
+      },
+      "innerHeight": 1024,
+      "rows": [
+        {
+          "text": "Home",
+          "box": {
+            "x": 20,
+            "y": 92,
+            "width": 713,
+            "height": 68,
+            "top": 92,
+            "right": 733,
+            "bottom": 160,
+            "left": 20
+          }
+        },
+        {
+          "text": "Projects",
+          "box": {
+            "x": 20,
+            "y": 160,
+            "width": 713,
+            "height": 68,
+            "top": 160,
+            "right": 733,
+            "bottom": 228,
+            "left": 20
+          }
+        },
+        {
+          "text": "Sign in",
+          "box": {
+            "x": 20,
+            "y": 228,
+            "width": 713,
+            "height": 68,
+            "top": 228,
+            "right": 733,
+            "bottom": 296,
+            "left": 20
+          }
+        }
+      ],
+      "overflowX": false,
+      "escapeClosed": true,
+      "focusReturned": true
+    },
+    {
+      "path": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "innerHeight": 844,
+      "rows": [
+        {
+          "text": "Home",
+          "box": {
+            "x": 20,
+            "y": 92,
+            "width": 350,
+            "height": 60,
+            "top": 92,
+            "right": 370,
+            "bottom": 152,
+            "left": 20
+          }
+        },
+        {
+          "text": "Projects",
+          "box": {
+            "x": 20,
+            "y": 152,
+            "width": 350,
+            "height": 60,
+            "top": 152,
+            "right": 370,
+            "bottom": 212,
+            "left": 20
+          }
+        },
+        {
+          "text": "Sign in",
+          "box": {
+            "x": 20,
+            "y": 212,
+            "width": 350,
+            "height": 60,
+            "top": 212,
+            "right": 370,
+            "bottom": 272,
+            "left": 20
+          }
+        }
+      ],
+      "overflowX": false,
+      "escapeClosed": true,
+      "focusReturned": true
+    },
+    {
+      "path": "/",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 480,
+        "top": 0,
+        "right": 320,
+        "bottom": 480,
+        "left": 0
+      },
+      "innerHeight": 480,
+      "rows": [
+        {
+          "text": "Home",
+          "box": {
+            "x": 20,
+            "y": 92,
+            "width": 280,
+            "height": 60,
+            "top": 92,
+            "right": 300,
+            "bottom": 152,
+            "left": 20
+          }
+        },
+        {
+          "text": "Projects",
+          "box": {
+            "x": 20,
+            "y": 152,
+            "width": 280,
+            "height": 60,
+            "top": 152,
+            "right": 300,
+            "bottom": 212,
+            "left": 20
+          }
+        },
+        {
+          "text": "Sign in",
+          "box": {
+            "x": 20,
+            "y": 212,
+            "width": 280,
+            "height": 60,
+            "top": 212,
+            "right": 300,
+            "bottom": 272,
+            "left": 20
+          }
+        }
+      ],
+      "overflowX": false,
+      "escapeClosed": true,
+      "focusReturned": true
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "finalResult": "Home menus passed; sign-in hydration defect awaiting e4a8d9d integrated verification",
+  "failure": "Sign-in320prehydration menu button accepted a click before its React handler attached; dialog did not open. Fix e4a8d9d adds the missing hydration guard and explicit trigger focus. No native menu phase was attempted after that failure."
+}

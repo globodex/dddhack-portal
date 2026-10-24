@@ -1,0 +1,154 @@
+{
+  "source": "244d68febfea4a7ba7ff5966001310db107c7828",
+  "cssSha256": "e04f4627bd0b870bf26a3272f714407357d8212cebfbccced15ddacbd50cb639",
+  "screenshots": [
+    {
+      "file": "/workspace/ddd-landing/evidence/organizer-desktop-refinement/before/organizers-1024x768.png",
+      "source": "244d68febfea4a7ba7ff5966001310db107c7828",
+      "sha256": "3bc7a1443bd9f62c383141633f6b1c5d59b775b236be9a0ed5298458dda90b64",
+      "inspected": true
+    },
+    {
+      "file": "/workspace/ddd-landing/evidence/organizer-desktop-refinement/before/organizers-1440x900.png",
+      "source": "244d68febfea4a7ba7ff5966001310db107c7828",
+      "sha256": "140a429531f29877af623da0e07f5d9c81290b93e7bdc996972d89aa61ecb8be",
+      "inspected": true
+    }
+  ],
+  "checks": [
+    {
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "section": {
+        "x": 0,
+        "y": 40.234375,
+        "width": 1009,
+        "height": 724,
+        "top": 40.234375,
+        "right": 1009,
+        "bottom": 764.234375,
+        "left": 0
+      },
+      "heading": {
+        "x": 45.046875,
+        "y": 96.234375,
+        "width": 918.90625,
+        "height": 170,
+        "top": 96.234375,
+        "right": 963.953125,
+        "bottom": 266.234375,
+        "left": 45.046875
+      },
+      "list": {
+        "x": 45.046875,
+        "y": 294.234375,
+        "width": 918.90625,
+        "height": 470,
+        "top": 294.234375,
+        "right": 963.953125,
+        "bottom": 764.234375,
+        "left": 45.046875
+      },
+      "unit": {
+        "x": 45.046875,
+        "y": 294.234375,
+        "width": 216.671875,
+        "height": 470,
+        "top": 294.234375,
+        "right": 261.71875,
+        "bottom": 764.234375,
+        "left": 45.046875
+      },
+      "circle": {
+        "x": 45.046875,
+        "y": 294.234375,
+        "width": 216.671875,
+        "height": 216.671875,
+        "top": 294.234375,
+        "right": 261.71875,
+        "bottom": 510.90625,
+        "left": 45.046875
+      },
+      "paddingTop": "56px",
+      "gap": "17.408px",
+      "nameFont": "22.016px",
+      "roleFont": "17.408px",
+      "partnerFont": "14px",
+      "nameWordWidth": 117.453125,
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "section": {
+        "x": 0,
+        "y": 40.171875,
+        "width": 1425,
+        "height": 811.953125,
+        "top": 40.171875,
+        "right": 1425,
+        "bottom": 852.125,
+        "left": 0
+      },
+      "heading": {
+        "x": 63.359375,
+        "y": 96.171875,
+        "width": 1298.28125,
+        "height": 170.53125,
+        "top": 96.171875,
+        "right": 1361.640625,
+        "bottom": 266.703125,
+        "left": 63.359375
+      },
+      "list": {
+        "x": 63.359375,
+        "y": 294.703125,
+        "width": 1298.28125,
+        "height": 557.421875,
+        "top": 294.703125,
+        "right": 1361.640625,
+        "bottom": 852.125,
+        "left": 63.359375
+      },
+      "unit": {
+        "x": 63.359375,
+        "y": 294.703125,
+        "width": 306.21875,
+        "height": 557.421875,
+        "top": 294.703125,
+        "right": 369.578125,
+        "bottom": 852.125,
+        "left": 63.359375
+      },
+      "circle": {
+        "x": 63.359375,
+        "y": 294.703125,
+        "width": 306.21875,
+        "height": 306.21875,
+        "top": 294.703125,
+        "right": 369.578125,
+        "bottom": 600.921875,
+        "left": 63.359375
+      },
+      "paddingTop": "56px",
+      "gap": "24.48px",
+      "nameFont": "30.96px",
+      "roleFont": "24.48px",
+      "partnerFont": "19.008px",
+      "nameWordWidth": 165.265625,
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "rejectedCaptures": [
+    {
+      "file": "/workspace/ddd-landing/evidence/organizer-desktop-refinement/before/rejected-late-hydration-1440x900.png",
+      "reason": "Late chapter hydration moved the section after first geometry read. Rejected as organizer composition evidence; fresh retake waits Home/chapter hydration and a stable scroll."
+    }
+  ]
+}

@@ -1,0 +1,442 @@
+{
+  "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+  "ownerCommit": "69ee2775d6562988d341fdee8e602bd31725ab89",
+  "cssSha256": "b9493c8eec3fc2c07502f0e3e656bc66b540883c98d5a56b7d7f1f41c1e082a8",
+  "screenshots": [
+    {
+      "label": "organizers",
+      "file": "/workspace/ddd-landing/evidence/organizer-desktop-refinement/after/organizers-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "sha256": "c4cbb855f525bd172d4b9c030a215cfef6ebc490441dc1b1a8090e2751b6e938",
+      "inspected": true
+    },
+    {
+      "label": "organizers-component",
+      "file": "/workspace/ddd-landing/evidence/organizer-desktop-refinement/after/organizers-component-1440x900.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "sha256": "4b6fdaf2607beb39eb32966da9eb72dd90a80d1623ec7185576865c87f9fd35e",
+      "inspected": true
+    },
+    {
+      "label": "organizers",
+      "file": "/workspace/ddd-landing/evidence/organizer-desktop-refinement/after/organizers-1024x768.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "sha256": "dad726516104b375a5f6e8e9ebefe184a20ef8030072142b6b3517d5ecacb3e6",
+      "inspected": true
+    },
+    {
+      "label": "organizers-component",
+      "file": "/workspace/ddd-landing/evidence/organizer-desktop-refinement/after/organizers-component-1024x768.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "sha256": "9e7701369ee7fb268b4e8004fdf6f99b374abdfb99973795580c89bfbdebeea4",
+      "inspected": true
+    },
+    {
+      "label": "organizers",
+      "file": "/workspace/ddd-landing/evidence/organizer-desktop-refinement/after/organizers-768x1024.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "sha256": "5176a4e13d1e855af1b5cb3431739cd7eae32a9a1b191921b41b81be042eb608",
+      "inspected": true
+    },
+    {
+      "label": "organizers-component",
+      "file": "/workspace/ddd-landing/evidence/organizer-desktop-refinement/after/organizers-component-768x1024.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "sha256": "c97e897c192fb07699a23430994e18f827b07430012e7883f827dec548b61a87",
+      "inspected": true
+    },
+    {
+      "label": "organizers",
+      "file": "/workspace/ddd-landing/evidence/organizer-desktop-refinement/after/organizers-390x844.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "sha256": "36d800d3af5ef952db6f284d1110339f9d02a6eaad2227b322a24214752dd7fd",
+      "inspected": true
+    },
+    {
+      "label": "organizers-component",
+      "file": "/workspace/ddd-landing/evidence/organizer-desktop-refinement/after/organizers-component-390x844.png",
+      "source": "182c2bd2077d139a7b5f50b89e9730e5961e397c",
+      "sha256": "55fef13a039b8f613cdbb7357f3cb35ff96838ca61f6ec6103b2e1b75fb74ff5",
+      "inspected": true
+    }
+  ],
+  "checks": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "section": {
+        "x": 0,
+        "y": 399.171875,
+        "width": 1425,
+        "height": 412.828125,
+        "top": 399.171875,
+        "right": 1425,
+        "bottom": 812,
+        "left": 0
+      },
+      "heading": {
+        "x": 63.359375,
+        "y": 427.171875,
+        "width": 1298.28125,
+        "height": 60.46875,
+        "top": 427.171875,
+        "right": 1361.640625,
+        "bottom": 487.640625,
+        "left": 63.359375
+      },
+      "list": {
+        "x": 376.296875,
+        "y": 507.640625,
+        "width": 672.40625,
+        "height": 304.359375,
+        "top": 507.640625,
+        "right": 1048.703125,
+        "bottom": 812,
+        "left": 376.296875
+      },
+      "unit": {
+        "x": 376.296875,
+        "y": 507.640625,
+        "width": 153.09375,
+        "height": 304.359375,
+        "top": 507.640625,
+        "right": 529.390625,
+        "bottom": 812,
+        "left": 376.296875
+      },
+      "circle": {
+        "x": 376.296875,
+        "y": 507.640625,
+        "width": 153.09375,
+        "height": 153.09375,
+        "top": 507.640625,
+        "right": 529.390625,
+        "bottom": 660.734375,
+        "left": 376.296875
+      },
+      "paddingTop": "28px",
+      "gap": "20px",
+      "nameFont": "22px",
+      "roleFont": "17px",
+      "partnerFont": "16px",
+      "minHeight": "0px",
+      "overflow": false,
+      "textOverflow": [],
+      "normalAnimationCalls": [
+        {
+          "duration": 700,
+          "delay": 0
+        },
+        {
+          "duration": 700,
+          "delay": 40
+        },
+        {
+          "duration": 700,
+          "delay": 80
+        },
+        {
+          "duration": 700,
+          "delay": 120
+        }
+      ],
+      "offscreenStopped": true,
+      "reducedMotionStopped": true,
+      "comparison": {
+        "circle": {
+          "before": 306.21875,
+          "after": 153.09375,
+          "percentOfBefore": 49.99489743851414
+        },
+        "unit": {
+          "before": 557.421875,
+          "after": 304.359375,
+          "percentOfBefore": 54.60126138752628
+        },
+        "section": {
+          "before": 811.953125,
+          "after": 412.828125,
+          "percentOfBefore": 50.843837198114116
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "section": {
+        "x": 0,
+        "y": 288.421875,
+        "width": 1009,
+        "height": 391.34375,
+        "top": 288.421875,
+        "right": 1009,
+        "bottom": 679.765625,
+        "left": 0
+      },
+      "heading": {
+        "x": 45.046875,
+        "y": 316.421875,
+        "width": 918.90625,
+        "height": 45.359375,
+        "top": 316.421875,
+        "right": 963.953125,
+        "bottom": 361.78125,
+        "left": 45.046875
+      },
+      "list": {
+        "x": 266.328125,
+        "y": 381.78125,
+        "width": 476.34375,
+        "height": 297.984375,
+        "top": 381.78125,
+        "right": 742.671875,
+        "bottom": 679.765625,
+        "left": 266.328125
+      },
+      "unit": {
+        "x": 266.328125,
+        "y": 381.78125,
+        "width": 108.328125,
+        "height": 297.984375,
+        "top": 381.78125,
+        "right": 374.65625,
+        "bottom": 679.765625,
+        "left": 266.328125
+      },
+      "circle": {
+        "x": 266.328125,
+        "y": 381.78125,
+        "width": 108.328125,
+        "height": 108.328125,
+        "top": 381.78125,
+        "right": 374.65625,
+        "bottom": 490.109375,
+        "left": 266.328125
+      },
+      "paddingTop": "28px",
+      "gap": "14.336px",
+      "nameFont": "19px",
+      "roleFont": "17px",
+      "partnerFont": "16px",
+      "minHeight": "0px",
+      "overflow": false,
+      "textOverflow": [],
+      "normalAnimationCalls": [
+        {
+          "duration": 700,
+          "delay": 0
+        },
+        {
+          "duration": 700,
+          "delay": 40
+        },
+        {
+          "duration": 700,
+          "delay": 80
+        },
+        {
+          "duration": 700,
+          "delay": 120
+        }
+      ],
+      "offscreenStopped": true,
+      "reducedMotionStopped": true,
+      "comparison": {
+        "circle": {
+          "before": 216.671875,
+          "after": 108.328125,
+          "percentOfBefore": 49.99639431744429
+        },
+        "unit": {
+          "before": 470,
+          "after": 297.984375,
+          "percentOfBefore": 63.400930851063826
+        },
+        "section": {
+          "before": 724,
+          "after": 391.34375,
+          "percentOfBefore": 54.05300414364641
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": {
+        "x": 0,
+        "y": 43.640625,
+        "width": 753,
+        "height": 905.3125,
+        "top": 43.640625,
+        "right": 753,
+        "bottom": 948.953125,
+        "left": 0
+      },
+      "heading": {
+        "x": 20,
+        "y": 79.640625,
+        "width": 713,
+        "height": 63.3125,
+        "top": 79.640625,
+        "right": 733,
+        "bottom": 142.953125,
+        "left": 20
+      },
+      "list": {
+        "x": 0,
+        "y": 170.953125,
+        "width": 753,
+        "height": 778,
+        "top": 170.953125,
+        "right": 753,
+        "bottom": 948.953125,
+        "left": 0
+      },
+      "unit": {
+        "x": 0,
+        "y": 176.953125,
+        "width": 731,
+        "height": 164,
+        "top": 176.953125,
+        "right": 731,
+        "bottom": 340.953125,
+        "left": 0
+      },
+      "circle": {
+        "x": 567,
+        "y": 176.953125,
+        "width": 164,
+        "height": 164,
+        "top": 176.953125,
+        "right": 731,
+        "bottom": 340.953125,
+        "left": 567
+      },
+      "paddingTop": "36px",
+      "gap": "28px",
+      "nameFont": "26px",
+      "roleFont": "18px",
+      "partnerFont": "15px",
+      "minHeight": "164px",
+      "overflow": false,
+      "textOverflow": [],
+      "normalAnimationCalls": [
+        {
+          "duration": 600,
+          "delay": 0
+        },
+        {
+          "duration": 600,
+          "delay": 80
+        },
+        {
+          "duration": 600,
+          "delay": 160
+        },
+        {
+          "duration": 600,
+          "delay": 240
+        }
+      ],
+      "offscreenStopped": true,
+      "reducedMotionStopped": true,
+      "portraitGeometryUnchanged": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": {
+        "x": 0,
+        "y": 43.9375,
+        "width": 390,
+        "height": 700.796875,
+        "top": 43.9375,
+        "right": 390,
+        "bottom": 744.734375,
+        "left": 0
+      },
+      "heading": {
+        "x": 20,
+        "y": 79.9375,
+        "width": 350,
+        "height": 46.796875,
+        "top": 79.9375,
+        "right": 370,
+        "bottom": 126.734375,
+        "left": 20
+      },
+      "list": {
+        "x": 0,
+        "y": 154.734375,
+        "width": 390,
+        "height": 590,
+        "top": 154.734375,
+        "right": 390,
+        "bottom": 744.734375,
+        "left": 0
+      },
+      "unit": {
+        "x": 0,
+        "y": 160.734375,
+        "width": 368,
+        "height": 117,
+        "top": 160.734375,
+        "right": 368,
+        "bottom": 277.734375,
+        "left": 0
+      },
+      "circle": {
+        "x": 251,
+        "y": 160.734375,
+        "width": 117,
+        "height": 117,
+        "top": 160.734375,
+        "right": 368,
+        "bottom": 277.734375,
+        "left": 251
+      },
+      "paddingTop": "36px",
+      "gap": "28px",
+      "nameFont": "17px",
+      "roleFont": "13px",
+      "partnerFont": "11px",
+      "minHeight": "117px",
+      "overflow": false,
+      "textOverflow": [],
+      "normalAnimationCalls": [
+        {
+          "duration": 600,
+          "delay": 0
+        },
+        {
+          "duration": 600,
+          "delay": 80
+        },
+        {
+          "duration": 600,
+          "delay": 160
+        },
+        {
+          "duration": 600,
+          "delay": 240
+        }
+      ],
+      "offscreenStopped": true,
+      "reducedMotionStopped": true,
+      "portraitGeometryUnchanged": true
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "cssMatchesOwner": true,
+  "finalResult": "passed",
+  "inspectionNotes": "All eight native viewport/component screenshots opened individually. Desktop circles are50% of their prior measured diameters within subpixel rounding; section heights drop to50.84% and54.05%. Fonts remain19\u201322px names,17px roles and16px partner; no text or document overflow. Mobile390and portrait768 geometry is unchanged. Four original WAAPI entrance calls, offscreen stop and reduced-motion stop verified at each size. Desktop component crops show exact section bounds; full viewport frames also include preceding FAQ/footer. Mobile full-viewport frames are the primary regression evidence; element crops preserve a small fixed-header edge in upper padding."
+}
