@@ -1,0 +1,11 @@
+✔ admin current-page values are bounded, decode legacy stock, and preserve allocations/exposure/audit (133.081777ms)
+✔ directly viewed but never-exposed available stock remains permanently retired after deletion (219.855988ms)
+✔ stock HTTP authorizes each user freshly, stays private/no-store, and never expands personal summaries (209.436118ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2084.113024

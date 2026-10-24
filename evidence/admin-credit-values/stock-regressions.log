@@ -1,0 +1,25 @@
+✔ restocking keeps server metadata exactly and new categories still require instructions (4.567108ms)
+✔ stock overview is bounded metadata with counters and no plaintext inventory fields (23.806816ms)
+✔ unallocated personal categories never imply that a private secret exists (6.820173ms)
+✔ personal display stays masked for assigned recipients and closed before check-in (5.103367ms)
+✔ assignment recovery is explicit only when both waiting recipients and stock exist (20.983847ms)
+✔ sqlite: raced new canonical header with different display headings cannot create two categories (462.513442ms)
+✔ sqlite: overlapping restock race rolls back all new rows and asks for current counts (251.640397ms)
+✔ sqlite:50/10 then late10 gives20/30; exhaustion and100 restock fill waiting without republishing (503.538042ms)
+✔ sqlite: dedup within/later/across categories, masked paging, authorized explicit reveal, delete and no recycle (239.268446ms)
+✔ sqlite: checked-in admin and judge get own credits without team/profile gate; no cross-user or nonchecked access (159.364137ms)
+✔ sqlite: concurrent check-ins and repeated publish assign each physical code/person/category once (144.615698ms)
+✔ postgres: raced new canonical header with different display headings cannot create two categories (8082.697379ms)
+✔ postgres: overlapping restock race rolls back all new rows and asks for current counts (6521.450836ms)
+✔ postgres:50/10 then late10 gives20/30; exhaustion and100 restock fill waiting without republishing (15750.325167ms)
+✔ postgres: dedup within/later/across categories, masked paging, authorized explicit reveal, delete and no recycle (11516.562393ms)
+✔ postgres: checked-in admin and judge get own credits without team/profile gate; no cross-user or nonchecked access (10681.774462ms)
+✔ postgres: concurrent check-ins and repeated publish assign each physical code/person/category once (8005.660584ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 66519.22953

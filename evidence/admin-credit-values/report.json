@@ -1,0 +1,130 @@
+{
+  "source": "ff83ae6f4f72b2d70dd898dd8319e0abfe6b07d8",
+  "syntheticOnly": true,
+  "freshInMemoryDatabase": true,
+  "realComponentAndHttpHandler": true,
+  "before": "0fedd858da8b7c774e3565e8098ad6a8080268c73561a3a637efa4db3f8e1449",
+  "gets": [
+    {
+      "view": "/admin/credit-stock/fake_credit",
+      "q": "",
+      "page": "0",
+      "actor": "admin"
+    },
+    {
+      "view": "/admin/credit-stock/fake_credit",
+      "q": "",
+      "page": "1",
+      "actor": "admin"
+    },
+    {
+      "view": "/admin/credit-stock/fake_credit",
+      "q": "alice@portal.test",
+      "page": "0",
+      "actor": "admin"
+    },
+    {
+      "view": "/admin/credit-stock/fake_credit/available",
+      "q": "alice@portal.test",
+      "page": "0",
+      "actor": "admin"
+    },
+    {
+      "view": "/admin/credit-stock/fake_credit",
+      "q": "",
+      "page": "0",
+      "actor": "admin"
+    },
+    {
+      "view": "/admin/credit-stock/fake_credit",
+      "q": "",
+      "page": "1",
+      "actor": "admin"
+    },
+    {
+      "view": "/admin/credit-stock/fake_credit",
+      "q": "alice@portal.test",
+      "page": "0",
+      "actor": "admin"
+    },
+    {
+      "view": "/admin/credit-stock/fake_credit/available",
+      "q": "alice@portal.test",
+      "page": "0",
+      "actor": "admin"
+    },
+    {
+      "view": "/admin/credit-stock/fake_credit",
+      "q": "",
+      "page": "0",
+      "actor": "admin"
+    },
+    {
+      "view": "/admin/credit-stock/fake_credit",
+      "q": "",
+      "page": "1",
+      "actor": "admin"
+    },
+    {
+      "view": "/admin/credit-stock/fake_credit",
+      "q": "alice@portal.test",
+      "page": "0",
+      "actor": "admin"
+    },
+    {
+      "view": "/admin/credit-stock/fake_credit/available",
+      "q": "alice@portal.test",
+      "page": "0",
+      "actor": "admin"
+    },
+    {
+      "view": "/admin/credit-stock/fake_credit",
+      "q": "",
+      "page": "0",
+      "actor": "alice"
+    }
+  ],
+  "writesBlocked": 0,
+  "externalRequests": [],
+  "checks": [
+    {
+      "name": "1440x900: direct page25 values, Copy and honest failure, legacy unavailable/disabledCopy, next page11, search/status, no Reveal/POST/all-pages/polling/overflow",
+      "passed": true,
+      "pageGets": 4
+    },
+    {
+      "name": "390x844: direct page25 values, Copy and honest failure, legacy unavailable/disabledCopy, next page11, search/status, no Reveal/POST/all-pages/polling/overflow",
+      "passed": true,
+      "pageGets": 4
+    },
+    {
+      "name": "320x480: direct page25 values, Copy and honest failure, legacy unavailable/disabledCopy, next page11, search/status, no Reveal/POST/all-pages/polling/overflow",
+      "passed": true,
+      "pageGets": 4
+    },
+    {
+      "name": "Actual HTTP denies checked-in assigned participant; no inventory codes render",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "evidence/admin-credit-values/visible-page1-1440x900.png",
+    "evidence/admin-credit-values/visible-values-1440x900.png",
+    "evidence/admin-credit-values/copy-error-1440x900.png",
+    "evidence/admin-credit-values/legacy-unavailable-1440x900.png",
+    "evidence/admin-credit-values/visible-page2-1440x900.png",
+    "evidence/admin-credit-values/visible-page1-390x844.png",
+    "evidence/admin-credit-values/visible-values-390x844.png",
+    "evidence/admin-credit-values/copy-error-390x844.png",
+    "evidence/admin-credit-values/legacy-unavailable-390x844.png",
+    "evidence/admin-credit-values/visible-page2-390x844.png",
+    "evidence/admin-credit-values/visible-page1-320x480.png",
+    "evidence/admin-credit-values/visible-values-320x480.png",
+    "evidence/admin-credit-values/copy-error-320x480.png",
+    "evidence/admin-credit-values/legacy-unavailable-320x480.png",
+    "evidence/admin-credit-values/visible-page2-320x480.png",
+    "evidence/admin-credit-values/participant-denied-390x844.png"
+  ],
+  "after": "0fedd858da8b7c774e3565e8098ad6a8080268c73561a3a637efa4db3f8e1449"
+}
