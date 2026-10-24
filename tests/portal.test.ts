@@ -199,8 +199,10 @@ test("check-in allocations are idempotent, encrypted, private and retryable afte
   );
   await assert.rejects(
     service("judge").view("/dashboard/credits"),
-    /JUDGES_CANNOT/,
+    /CHECKIN_REQUIRED/,
   );
+  await service("admin").command("check-in", { userId: "fake_judge", reason: "Synthetic role-independent personal attendance" });
+  assert.ok(((await service("judge").view("/dashboard/credits")).items as any[]).some(credit => credit.type_id === "fake_credit" && credit.allocated === 1));
   await assert.rejects(
     service("judge").view("/admin/credits"),
     /ADMIN_REQUIRED/,
