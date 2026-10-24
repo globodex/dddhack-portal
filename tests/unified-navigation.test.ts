@@ -96,6 +96,7 @@ test("standalone information/auth headers keep an anonymous sign-in affordance w
     );
     assert.match(html, /class="navigation-header"/);
     assert.match(html, /data-avatar-state="anonymous"/);
+    assert.match(html, /title="Sign in" target="_top"/);
     assert.match(
       html,
       /href="\/signin\?returnTo=%2Fdashboard" aria-label="Sign in"/,

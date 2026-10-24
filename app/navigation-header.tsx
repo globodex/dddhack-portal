@@ -45,6 +45,7 @@ export function NavigationControls({
         href={accountHref}
         aria-label={accountLabel}
         title={accountLabel}
+        target={!account ? "_top" : undefined}
       >
         {avatarState === "saved" ? (
           <DotAvatar
