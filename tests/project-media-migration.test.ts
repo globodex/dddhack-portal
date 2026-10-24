@@ -11,9 +11,8 @@ import {
   loadPortalMigrations,
   applyPortalMigrations,
 } from "../neon/db/migrate";
-import { seedLocal, fixtures, LOCAL_CREDIT_KEY } from "../scripts/fixtures";
+import { seedLocal } from "../scripts/fixtures";
 import { attend, rehearsalPolicy, submission } from "./helpers";
-import { PortalService } from "../lib/service";
 import { batch, one, rows } from "../lib/db";
 import { projectImageByteLimit } from "../lib/project-media-policy";
 
@@ -56,26 +55,25 @@ test("additive media upgrade preserves old pending/ready/consumed rows and enfor
       ],
     ]);
     await attend(db, "fake_alice");
-    const service = new PortalService(
-      db,
-      fixtures.alice,
-      LOCAL_CREDIT_KEY,
-      () => "2026-11-01T04:30:00.000Z",
-    );
-    const committed = (await service.command("submit-project", {
-      revision: 0,
-      project: {
-        projectName: submission.projectName,
-        problemSolution: submission.problemSolution,
-        description: submission.description,
-        logo: submission.logo,
-        banner: submission.banner,
-        github: submission.github,
-        demo: "",
-        tools: submission.tools,
-        attestation: true,
-      },
-    })) as { versionId: string };
+    // Seed the already-committed historical record directly. Today's actor
+    // authorization requires0105 and must not run against this pre0103 schema.
+    const payload = JSON.stringify({
+      projectName: submission.projectName,
+      problemSolution: submission.problemSolution,
+      description: submission.description,
+      logo: submission.logo,
+      banner: submission.banner,
+      github: submission.github,
+      demo: "",
+      tools: submission.tools,
+      attestation: true,
+    });
+    const committed = { versionId: "synthetic-historical-media-v1" };
+    await batch(db, [
+      ["INSERT INTO projects(id,team_id,slug,draft,revision,updated_at) VALUES('synthetic-historical-media-project','fake_team1','synthetic-historical-media',?,1,'2026-11-01T04:30:00.000Z')", payload],
+      ["INSERT INTO submission_versions(id,team_id,attempt,payload,created_at) VALUES(?,'fake_team1',1,?,'2026-11-01T04:30:00.000Z')", committed.versionId, payload],
+      ["UPDATE projects SET published_version_id=? WHERE id='synthetic-historical-media-project'", committed.versionId],
+    ]);
     for (const state of ["pending", "ready", "consumed"]) {
       const complete = state !== "pending";
       await db
