@@ -62,15 +62,36 @@ const project = {
 test("team management mounts named crown transfer with explicit old and new leaders", () => {
   const data = {
     me: { ...admin, mode: "staff" as const },
-    items: [{ id: "locked-team", name: "Locked Team", leader_id: "old-leader", locked: true,
-      members: [{ id: "old-leader", name: "Absent Leader" }, { id: "new-leader", name: "Present Teammate" }] }],
+    items: [
+      {
+        id: "locked-team",
+        name: "Locked Team",
+        leader_id: "old-leader",
+        locked: true,
+        members: [
+          { id: "old-leader", name: "Absent Leader" },
+          { id: "new-leader", name: "Present Teammate" },
+        ],
+      },
+    ],
   };
   const markup = html(AdminList, { data, path: "/admin/teams", run });
   assert.match(markup, /Make Present Teammate team leader for Locked Team/);
   assert.doesNotMatch(markup, /Make Absent Leader team leader/);
-  const values = { teamId: "locked-team", userId: "new-leader", expectedLeaderId: "old-leader" };
-  const confirmation = portalConfirmationFor("transfer-team-leader", values, portalTargetName(data, values));
-  assert.equal(confirmation.target, "Locked Team · Absent Leader → Present Teammate");
+  const values = {
+    teamId: "locked-team",
+    userId: "new-leader",
+    expectedLeaderId: "old-leader",
+  };
+  const confirmation = portalConfirmationFor(
+    "transfer-team-leader",
+    values,
+    portalTargetName(data, values),
+  );
+  assert.equal(
+    confirmation.target,
+    "Locked Team · Absent Leader → Present Teammate",
+  );
   assert.equal(confirmation.confirmLabel, "Transfer crown");
   assert.equal(confirmation.critical, true);
 });
@@ -193,13 +214,17 @@ test("review detail wires project management for staff while mentor duties stay 
     reviewKind: "admin",
   };
   const markup = html(Review, { data, run });
-  assert.match(markup, /Manage project and submission versions/);
+  assert.match(markup, /Manage project/);
   assert.match(markup, /Score \(1 to 10\)/);
   assert.equal((markup.match(/type="radio" name="rating"/g) || []).length, 10);
   for (let score = 1; score <= 10; score++)
     assert.ok(markup.includes(`name="rating" value="${score}"`));
   assert.match(markup, /Not configured[\s\S]*?disabled=""/);
-  assert.match(markup, /aria-controls="admin-project-details"/);
+  assert.match(markup, /aria-label="Back"/);
+  assert.doesNotMatch(
+    markup,
+    /Final judging rubric|Assign a reviewer|role="tablist"/,
+  );
   const mentor = html(Review, {
     data: {
       ...data,

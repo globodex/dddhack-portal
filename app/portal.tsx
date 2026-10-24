@@ -48,6 +48,9 @@ import AdminCreditBatches from "./admin-credit-batches";
 import PersonalCredits, { PersonalCreditsContent } from "./personal-credits";
 import AdminLeaderTransfer from "./admin-leader-transfer";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+import ResultVisibility, { PrivateAIEvaluation } from "./result-visibility";
+const JudgingSettings = dynamic(() => import("./judging-settings"));
 import { useDiscoverPeople, peopleDirectoryUrl, readPeoplePage } from "./use-discover-people";
 import { HeadingDot } from "./expressive-heading";
 import RouteSkeleton from "./route-skeleton";
@@ -4086,272 +4089,187 @@ export function Review({
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
-  const [reviewTab, setReviewTab] = useState("review"),
-    [eligibilityStatus, setEligibilityStatus] = useState(
-      data.eligibility?.status || "needs_review",
-    );
+  const [eligibilityStatus, setEligibilityStatus] = useState(
+    data.eligibility?.status || "needs_review",
+  );
   const p = data.project,
     v = data.version;
   if (!p) return <Empty>Select a submitted project.</Empty>;
-  const selectReviewTab = (value: string, focus = false) => {
-    setReviewTab(value);
-    if (focus)
-      document
-        .getElementById(
-          value === "details"
-            ? "admin-project-details-tab"
-            : "admin-project-review-tab",
-        )
-        ?.focus();
-  };
-  const reviewTabKey = (event: { key: string; preventDefault: () => void }) => {
-    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
-    event.preventDefault();
-    selectReviewTab(
-      event.key === "Home"
-        ? "details"
-        : event.key === "End"
-          ? "review"
-          : reviewTab === "details"
-            ? "review"
-            : "details",
-      true,
-    );
-  };
-  const payload = v?.payload || p.draft;
+  const payload = v?.payload || p.draft || {},
+    staff = data.me?.owner || data.me?.role === "admin";
+  const current = data.selectedIsCurrent !== false;
   const ownReview = (data.history || []).find(
-    (item: Row) =>
-      item.author_id === data.me?.id &&
-      item.version_id === v?.id &&
-      item.rating != null,
+    (item: Row) => item.author_id === data.me?.id && item.version_id === v?.id,
   );
-  const versionRows: Row[] = data.versions || (v ? [v] : []);
+  const versions: Row[] = data.versions || (v ? [v] : []);
+  const github = safeExternalUrl(payload.github),
+    demo = safeExternalUrl(payload.demo);
+  const repository = github
+    ? new URL(github).pathname.replace(/^\//, "").replace(/\/$/, "")
+    : "";
+  const recordedTools = Array.isArray(payload.ecosystemSelections)
+    ? payload.ecosystemSelections.filter(
+        (value: unknown) => typeof value === "string",
+      )
+    : typeof payload.tools === "string" && payload.tools.trim()
+      ? payload.tools
+          .split(/[\n,]/)
+          .map((value: string) => value.trim())
+          .filter(Boolean)
+      : null;
+  const answer = (value: unknown) =>
+    typeof value === "string" && value.trim() ? (
+      value
+    ) : (
+      <span className="results-ui-unavailable">
+        Unavailable in this version
+      </span>
+    );
   return (
-    <section
-      className="admin-exact admin-workspace admin-review-page"
-      data-review-tab={reviewTab}
-    >
-      <header className="admin-review-header">
-        <a
-          className="back-link"
-          href={
-            data.me?.owner || data.me?.role === "admin"
-              ? "/admin/submissions"
-              : "/review"
-          }
+    <section className="admin-exact admin-workspace results-ui-review">
+      <header className="results-ui-reviewHeader">
+        <Link
+          className="results-ui-back"
+          href={staff ? "/admin/submissions" : "/review"}
+          aria-label="Back"
         >
-          <ArrowLeft size={20} aria-hidden="true" /> Submissions
-        </a>
-        <div className="admin-review-identity">
-          {p.teamName ? (
-            <TeamAvatar name={p.teamName} palette={p.teamPalette} size={40} />
-          ) : payload.logo ? (
-            <img src={payload.logo} alt="" width={40} height={40} />
-          ) : null}
-          <strong>
-            {p.teamName || payload.projectName || "Project review"}
-          </strong>
+          <ArrowLeft size={21} aria-hidden="true" />
+        </Link>
+        <div className="results-ui-reviewHeading">
+          <span>{p.teamName || "Project review"}</span>
+          <h1>{payload.projectName || "Untitled project"}</h1>
         </div>
+        {v && (
+          <span className="results-ui-status">
+            v{v.attempt}
+            {!current ? " · Historical" : " · Current"}
+          </span>
+        )}
       </header>
-      <div
-        className="admin-review-tabs"
-        role="tablist"
-        aria-label="Project review"
-      >
-        <button
-          type="button"
-          role="tab"
-          id="admin-project-details-tab"
-          aria-selected={reviewTab === "details"}
-          aria-controls="admin-project-details"
-          tabIndex={reviewTab === "details" ? 0 : -1}
-          onKeyDown={reviewTabKey}
-          onClick={() => selectReviewTab("details")}
-        >
-          Project details
-        </button>
-        <button
-          type="button"
-          role="tab"
-          id="admin-project-review-tab"
-          aria-selected={reviewTab === "review"}
-          aria-controls="admin-project-review"
-          tabIndex={reviewTab === "review" ? 0 : -1}
-          onKeyDown={reviewTabKey}
-          onClick={() => selectReviewTab("review")}
-        >
-          Review
-        </button>
-      </div>
-      <div className="review-layout">
-        <article
-          id="admin-project-details"
-          aria-labelledby="admin-project-details-tab"
-        >
-          {payload.logo && payload.banner ? (
-            <ProjectBody project={payload} teamColorKey={p.teamPalette} />
-          ) : (
-            <>
-              <h1>{payload.projectName || "Untitled draft"}</h1>
-              <p>Required project media is not complete.</p>
-            </>
+      {!current && (
+        <p className="results-ui-historical">
+          Viewing a previous submission. Review actions apply to the current
+          version.
+        </p>
+      )}
+      <div className="results-ui-reviewGrid">
+        <article className="results-ui-projectPanel">
+          {(payload.logo || payload.banner) && (
+            <div className="results-ui-projectMedia">
+              {payload.logo && (
+                <img
+                  className="results-ui-projectLogo"
+                  src={payload.logo}
+                  alt=""
+                  width={72}
+                  height={72}
+                />
+              )}
+              {payload.banner && (
+                <img
+                  className="results-ui-projectBanner"
+                  src={payload.banner}
+                  alt=""
+                />
+              )}
+            </div>
           )}
-
-          {(data.me?.owner || data.me?.role === "admin") && (
-            <details className="panel">
-              <summary>Manage project and submission versions</summary>
+          {(github || demo) && (
+            <div className="results-ui-projectLinks">
+              {github && (
+                <a href={github} target="_blank" rel="noopener noreferrer">
+                  <img
+                    src="/icons/social/github.svg"
+                    width={18}
+                    height={18}
+                    alt=""
+                  />
+                  <span>{repository || new URL(github).hostname}</span>
+                  <ExternalLink size={16} aria-hidden="true" />
+                </a>
+              )}
+              {demo && (
+                <a href={demo} target="_blank" rel="noopener noreferrer">
+                  <Link2 size={18} aria-hidden="true" />
+                  <span>{new URL(demo).hostname}</span>
+                  <ExternalLink size={16} aria-hidden="true" />
+                </a>
+              )}
+            </div>
+          )}
+          <dl className="results-ui-answers">
+            <div>
+              <dt>What problem does your project solve?</dt>
+              <dd>{answer(payload.problemSolution)}</dd>
+            </div>
+            <div>
+              <dt>Describe your project</dt>
+              <dd>{answer(payload.description)}</dd>
+            </div>
+            <div>
+              <dt>Which OpenAI ecosystem tools did you use?</dt>
+              <dd>
+                {recordedTools ? (
+                  recordedTools.length ? (
+                    <ul className="results-ui-toolList">
+                      {recordedTools.map((tool: string, index: number) => (
+                        <li key={`${tool}-${index}`}>{tool}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    "None selected"
+                  )
+                ) : (
+                  <span className="results-ui-unavailable">
+                    Unavailable in this version
+                  </span>
+                )}
+              </dd>
+            </div>
+            <div>
+              <dt>Did you integrate Cerebras?</dt>
+              <dd>
+                {payload.cerebrasIntegration === "yes" ? (
+                  "Yes"
+                ) : payload.cerebrasIntegration === "no" ? (
+                  "No"
+                ) : (
+                  <span className="results-ui-unavailable">
+                    Unavailable in this version
+                  </span>
+                )}
+              </dd>
+            </div>
+          </dl>
+          {staff && (
+            <details className="results-ui-reviewDetails">
+              <summary>Manage project</summary>
               <AdminProjectActions
-                key={`${p.id}-${p.deleted_at || "active"}-${JSON.stringify(data.versions || p.versions || [])}`}
-                {...adminProjectProjection(p, data.versions)}
+                key={`${p.id}-${p.deleted_at || "active"}-${JSON.stringify(versions)}`}
+                {...adminProjectProjection(p, versions)}
                 run={run}
               />
             </details>
           )}
-          {(data.me?.owner || data.me?.role === "admin") && v && (
-            <details className="panel">
-              <summary>Final judging rubric · reviewer private</summary>
-              {data.scoringReady !== true && (
-                <p className="notice">
-                  Judging configuration is incomplete.
-                </p>
-              )}
-              <Form
-                disabled={data.scoringReady !== true}
-                onSave={async (f) => {
-                  await run("review", {
-                    teamId: p.team_id,
-                    versionId: v.id,
-                    eligibility:
-                      data.eligibility.status === "ineligible"
-                        ? "ineligible"
-                        : data.eligibility.status === "eligible"
-                          ? "eligible"
-                          : "needs_review",
-                    astra: Number(f.get("astra")),
-                    codex: Number(f.get("codex")),
-                    diversity: Number(f.get("diversity")),
-                    falseClaims: Number(f.get("falseClaims")),
-                    evidence: f.get("evidence"),
-                    reason: f.get("reason"),
-                  });
-                }}
-              >
-                {[
-                  ["astra", "Technical rubric · 0–30"],
-                  ["codex", "Codex evidence · 0–5"],
-                  ["diversity", "Collaboration rubric · 0–10"],
-                  ["falseClaims", "Approved false-claim findings · 0–2"],
-                ].map(([name, label]) => (
-                  <Field
-                    key={name}
-                    name={name}
-                    type="number"
-                    label={label}
-                    required
-                    value={
-                      data.rubricReview?.[
-                        name === "falseClaims" ? "false_claims" : name
-                      ] ?? ""
-                    }
-                  />
-                ))}
-                <Field
-                  name="evidence"
-                  label="Verified evidence and review rationale"
-                  type="textarea"
-                  required
-                  value={data.rubricReview?.evidence || ""}
-                />
-                <Field
-                  name="reason"
-                  label="Change reason"
-                  required
-                  minLength={5}
-                />
-              </Form>
-            </details>
-          )}
-          {(data.me?.owner ||
-            data.me?.role === "admin" ||
-            data.canRestoreEligibility) &&
-            v && (
-              <Form
-                className="panel"
-                title="Eligibility check"
-                label="Record eligibility"
-                onSave={async (f) => {
-                  await run("set-project-eligibility", {
-                    projectId: p.id,
-                    versionId: v.id,
-                    status: f.get("status"),
-                    reason: f.get("reason"),
-                    ...(f.get("status") === "ineligible"
-                      ? {
-                          violation: {
-                            rule: f.get("rule"),
-                            evidence: f.get("evidence"),
-                          },
-                        }
-                      : {}),
-                  });
-                }}
-              >
-                <Field name="status" label="Eligibility">
-                  <select
-                    name="status"
-                    aria-label="Eligibility"
-                    value={eligibilityStatus}
-                    onChange={(event) =>
-                      setEligibilityStatus(event.target.value)
-                    }
-                  >
-                    <option value="needs_review">Checks pending</option>
-                    <option value="eligible">Eligible</option>
-                    <option value="ineligible">Ineligible</option>
-                  </select>
-                </Field>
-                {eligibilityStatus === "ineligible" && (
-                  <div className="admin-eligibility-evidence">
-                    <Field name="rule" label="Rule" required minLength={5} />
-                    <Field
-                      name="evidence"
-                      label="Private evidence"
-                      type="textarea"
-                      required
-                      minLength={10}
-                    />
-                  </div>
-                )}
-                <Field
-                  name="reason"
-                  label="Verified evidence or reason"
-                  required
-                  minLength={5}
-                />
-              </Form>
-            )}
         </article>
-        <aside
-          id="admin-project-review"
-          aria-labelledby="admin-project-review-tab"
-        >
+        <aside className="results-ui-reviewAside">
           <Form
             key={`${p.id}-${v?.id || "draft"}`}
-            className="panel admin-review-score"
+            className="results-ui-card results-ui-scoreForm"
             title={
               data.reviewKind === "mentor" ? "Private advice" : "Your score"
             }
-            label={data.reviewKind === "mentor" ? "Save advice" : "Save score"}
+            label="Save"
+            disabled={!v || !current}
             onSave={async (f) => {
               await run(
                 "review-project",
                 privateReviewValues(f, data.reviewKind, p.id, v?.id),
               );
             }}
-            disabled={!v}
           >
             {["admin", "judge"].includes(data.reviewKind) && (
-              <fieldset className="admin-review-score-picker">
+              <fieldset className="results-ui-rating">
                 <legend>Score (1 to 10)</legend>
                 {Array.from({ length: 10 }, (_, index) => index + 1).map(
                   (rating) => (
@@ -4376,132 +4294,107 @@ export function Review({
                   : "Feedback for the team"
               }
               type="textarea"
+              value={ownReview?.body || ""}
               required={!["admin", "judge"].includes(data.reviewKind)}
             />
-
             {!v && (
-              <p className="notice">
-                A committed version is required before a review can be saved.
+              <p className="results-ui-reason">
+                A committed version is required.
               </p>
             )}
           </Form>
-
-          {(data.me?.owner || data.me?.role === "admin") && (
-            <section className="panel admin-review-ai">
-              <h2>AI evaluation</h2>
-              <Pill>
-                {data.evaluationConfigured ? "Configured" : "Not configured"}
-              </Pill>
-
-              <button
-                className="button secondary"
-                disabled={
-                  !data.evaluationConfigured ||
-                  data.scoringReady !== true ||
-                  !v ||
-                  (data.runs || []).some((r: Row) =>
-                    ["queued", "running"].includes(r.state),
-                  )
-                }
-                onClick={() => {
-                  void run("reevaluate-project", {
-                    projectId: p.id,
-                    versionId: v?.id,
-                  }).catch(() => {});
-                }}
+          {(staff || data.canRestoreEligibility) && v && (
+            <Form
+              className="results-ui-card results-ui-eligibility"
+              title="Eligibility"
+              label="Update eligibility"
+              disabled={!current || data.resultsFrozen === true}
+              onSave={async (f) => {
+                await run("set-project-eligibility", {
+                  projectId: p.id,
+                  versionId: v.id,
+                  status: f.get("status"),
+                  ...(f.get("status") === "ineligible"
+                    ? {
+                        violation: {
+                          rule: f.get("rule"),
+                          evidence: f.get("evidence"),
+                        },
+                      }
+                    : {}),
+                });
+              }}
+            >
+              <select
+                name="status"
+                aria-label="Eligibility"
+                value={eligibilityStatus}
+                onChange={(event) => setEligibilityStatus(event.target.value)}
               >
-                Re-evaluate
-              </button>
-              {(data.runs || []).map((r: Row) => (
-                <p key={r.id}>
-                  {r.state} · {ist(r.created_at)}
-                  {r.error && <small>{r.error}</small>}
-                </p>
-              ))}
-            </section>
+                <option value="needs_review">Checks pending</option>
+                <option value="eligible">Eligible</option>
+                <option value="ineligible">Ineligible</option>
+              </select>
+              {eligibilityStatus === "ineligible" && (
+                <>
+                  <Field name="rule" label="Rule" required minLength={5} />
+                  <Field
+                    name="evidence"
+                    label="Private evidence"
+                    type="textarea"
+                    required
+                    minLength={10}
+                  />
+                </>
+              )}
+              {data.resultsFrozen && (
+                <p className="results-ui-reason">Final scores are frozen.</p>
+              )}
+            </Form>
           )}
-          <details className="panel admin-review-versions" open>
+          <PrivateAIEvaluation data={data} run={run} />
+          <details className="results-ui-card results-ui-reviewDetails">
             <summary>
-              <span>Versions</span>
-              <span>
-                {versionRows.length
-                  ? Math.max(
-                      ...versionRows.map((item) => Number(item.attempt) || 0),
-                    )
-                  : 0}{" "}
-                / 3
-              </span>
+              Versions <span>{versions.length} / 3</span>
             </summary>
-            <ul>
-              {versionRows.map((item) => (
+            <ul className="results-ui-versions">
+              {versions.map((item) => (
                 <li key={item.id}>
-                  <strong>v{item.attempt}</strong>
-                  <span>
-                    {item.deleted_at ? "Removed" : "Committed"}
-                    {item.created_at ? ` · ${ist(item.created_at)}` : ""}
-                  </span>
-                  {item.id === v?.id && !item.deleted_at && (
-                    <button
-                      type="button"
-                      className="button secondary"
-                      onClick={() => setReviewTab("details")}
-                    >
-                      View
-                    </button>
+                  <div>
+                    <strong>v{item.attempt}</strong>
+                    <span>
+                      {item.deleted_at ? "Removed" : "Committed"}
+                      {item.created_at ? ` · ${ist(item.created_at)}` : ""}
+                    </span>
+                  </div>
+                  {item.id === v?.id ? (
+                    <span className="results-ui-meta">Viewing</span>
+                  ) : (
+                    <span className="results-ui-meta">Historical</span>
                   )}
                 </li>
               ))}
             </ul>
           </details>
-          <details className="panel">
-            <summary>Review history · unrevealed</summary>
-            {(data.history || []).map((h: Row) => (
-              <article className="feedback-entry" key={h.id}>
-                <strong>
-                  {h.author} · {h.kind}
-                </strong>
-                {h.rating !== undefined && h.rating !== null && (
-                  <Pill>Score {h.rating}</Pill>
-                )}
-                <p>{h.body}</p>
-                <small>{ist(h.created_at)}</small>
-              </article>
-            ))}
+          <details className="results-ui-card results-ui-reviewDetails">
+            <summary>Private review history</summary>
+            {(data.history || []).length ? (
+              data.history.map((item: Row) => (
+                <article className="results-ui-history" key={item.id}>
+                  <header>
+                    <strong>
+                      {item.author} · {item.kind}
+                    </strong>
+                    {item.rating != null && <span>{item.rating} / 10</span>}
+                  </header>
+                  {item.body && <p>{item.body}</p>}
+                  <small>{ist(item.created_at)}</small>
+                </article>
+              ))
+            ) : (
+              <p className="results-ui-reason">No reviews yet.</p>
+            )}
           </details>
-          {(data.me?.owner || data.me?.role === "admin") && (
-            <Form
-              title="Assign a reviewer"
-              onSave={async (f) => {
-                const reviewer = (data.reviewers || []).find(
-                  (r: Row) => r.id === f.get("userId"),
-                );
-                if (!reviewer) throw new Error("Choose a reviewer.");
-                await run("assign-project", {
-                  projectId: p.id,
-                  userId: reviewer.id,
-                  kind: reviewer.role,
-                  reason: f.get("reason"),
-                });
-              }}
-            >
-              <Field name="userId" label="Assigned judge or mentor">
-                <select name="userId" aria-label="Assigned judge or mentor" required>
-                  <option value="">Choose a person</option>
-                  {(data.reviewers || []).map((r: Row) => (
-                    <option key={r.id} value={r.id}>
-                      {r.name} · {r.role}
-                    </option>
-                  ))}
-                </select>
-              </Field>
-              <Field
-                name="reason"
-                label="Assignment reason"
-                required
-                minLength={5}
-              />
-            </Form>
-          )}
         </aside>
       </div>
     </section>
@@ -5484,10 +5377,6 @@ export function Settings({
     hidden: section !== id,
     className: "admin-settings-panel",
   });
-  const resultControl = (kind: "ai" | "freeze" | "final") => ({
-    allowed: data.resultControls?.[kind]?.allowed === true,
-    reason: data.resultControls?.[kind]?.reason || "Reload result controls.",
-  });
   return (
     <section className="admin-exact admin-workspace admin-settings-page">
       <header className="page-heading admin-exact-heading">
@@ -5520,113 +5409,8 @@ export function Settings({
         />
       </div>
       <div {...panel("results")}>
-        {(data.me?.owner || data.me?.role === "admin") && (
-          <section className="admin-settings-section admin-settings-reveals">
-            <h2>Results visibility</h2>
-            <p className="admin-results-state">
-              {data.scoreRelease?.stage === "ai"
-                ? "AI scores revealed"
-                : data.scoreRelease?.stage === "final"
-                  ? "Final scores revealed"
-                  : "Hidden"}
-            </p>
-
-            <Form
-              title="AI evaluation"
-              disabled={!resultControl("ai").allowed}
-              disabledReason={resultControl("ai").reason}
-              label="Reveal AI scores"
-              onSave={async (f) => {
-                await run("reveal-ai-scores", { reason: f.get("reason") });
-              }}
-            >
-              <Field
-                name="reason"
-                label="Reveal reason"
-                required
-                minLength={5}
-              />
-            </Form>
-            {data.me?.owner && (
-              <Form
-                title="Final judging snapshot"
-                disabled={!resultControl("freeze").allowed}
-                disabledReason={resultControl("freeze").reason}
-                label="Freeze final scores"
-                onSave={async (f) => {
-                  await run("freeze-results", { reason: f.get("reason") });
-                }}
-              >
-                <Field
-                  name="reason"
-                  label="Freeze reason"
-                  required
-                  minLength={5}
-                />
-              </Form>
-            )}
-            <Form
-              title="Final results"
-              disabled={!resultControl("final").allowed}
-              disabledReason={resultControl("final").reason}
-              label="Reveal Final score"
-              onSave={async (f) => {
-                await run("reveal-final-scores", {
-                  snapshotId: f.get("snapshotId"),
-                  reason: f.get("reason"),
-                });
-              }}
-            >
-              <Field name="snapshotId" label="Frozen final snapshot">
-                <select name="snapshotId" aria-label="Frozen final snapshot" required>
-                  <option value="">Choose a frozen snapshot</option>
-                  {(data.resultSnapshots || []).map((r: Row) => (
-                    <option key={r.id} value={r.id}>
-                      {r.created_at}
-                    </option>
-                  ))}
-                </select>
-              </Field>
-              <Field
-                name="reason"
-                label="Reveal reason"
-                required
-                minLength={5}
-              />
-            </Form>
-            {data.scoreRelease?.remainingAwards?.length > 0 && (
-              <Form
-                title="Unveil one award"
-                disabled={data.readiness?.scoring?.ready !== true}
-                label="Unveil selected award"
-                onSave={async (f) => {
-                  await run("unveil-winner", {
-                    releaseId: data.scoreRelease.releaseId,
-                    position: Number(f.get("position")),
-                    reason: f.get("reason"),
-                  });
-                }}
-              >
-                <Field name="position" label="Choose an unrevealed award">
-                  <select name="position" aria-label="Unrevealed award" required>
-                    <option value="">Choose an award</option>
-                    {data.scoreRelease.remainingAwards.map((a: Row) => (
-                      <option key={a.position} value={a.position}>
-                        Award {a.position}
-                      </option>
-                    ))}
-                  </select>
-                </Field>
-                <Field
-                  name="reason"
-                  label="Unveil reason"
-                  required
-                  minLength={5}
-                />
-              </Form>
-            )}
-          </section>
-        )}
+        <JudgingSettings key={`judging-${data.policyVersion}`} data={data} run={run} />
+        <ResultVisibility data={data} run={run} />
       </div>
       <div {...panel("access")}>
         <AddAdmins owner={!!data.me?.owner} title="Admin access" access={data.adminAccess} run={run} />

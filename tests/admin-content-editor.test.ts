@@ -62,15 +62,17 @@ test("Results controls keep unavailable gates and explain each disabled action a
     }),
   );
   const controls = [
-    ...html.matchAll(
-      /<button class="button" disabled="" title="([^"]+)" aria-describedby="([^"]+)">([^<]+)<\/button>/g,
-    ),
+    ...html.matchAll(/<button[^>]*aria-describedby="([^"]+)"[^>]*>/g),
   ];
   assert.equal(controls.length, 3);
-  for (const [, reason, id] of controls) {
-    assert.match(reason, /required\./);
-    assert.ok(html.includes(`id="${id}"`));
-  }
+  for (const [, id] of controls) assert.ok(html.includes(`id="${id}"`));
+  for (const reason of [
+    "Current eligible evaluations required.",
+    "Scoring rules required.",
+    "Frozen snapshot required.",
+  ])
+    assert.ok(html.includes(reason));
+  assert.doesNotMatch(html, /Frozen final snapshot|Choose a frozen snapshot/);
 });
 
 test("Results controls use actual per-action availability rather than obsolete manual readiness", () => {
@@ -94,12 +96,9 @@ test("Results controls use actual per-action availability rather than obsolete m
       run,
     }),
   );
-  assert.match(
-    html,
-    /<button class="button" disabled="">Reveal AI scores<\/button>/,
-  );
+  assert.match(html, /<button[^>]*disabled=""[^>]*>Reveal AI scores<\/button>/);
   assert.match(html, /data-hydrated="false"/);
-  assert.match(html, /title="Reviews required\."/);
-  assert.match(html, /title="Frozen snapshot required\."/);
+  assert.match(html, /Reviews required\./);
+  assert.match(html, /Frozen snapshot required\./);
   assert.doesNotMatch(html, /Complete scoring configuration/);
 });
