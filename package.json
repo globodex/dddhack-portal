@@ -10,17 +10,19 @@
     "dev": "next dev --hostname 127.0.0.1 --port 3000",
     "build": "next build",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test tests/*.test.ts",
+    "test": "tsx --test --test-concurrency=1 tests/*.test.ts",
     "test:e2e": "playwright test",
     "db:local": "tsx scripts/local-db.ts",
     "test:load": "tsx scripts/load.ts",
     "test:production": "node --import tsx scripts/production-smoke.mjs",
     "format": "prettier --write app lib scripts tests docs README.md",
     "start": "next start --hostname 127.0.0.1 --port 3000",
-    "db:generate": "drizzle-kit generate",
+    "db:generate": "drizzle-kit generate --config=neon/drizzle.config.ts",
     "dev:legacy": "node scripts/run-framework.mjs dev",
     "build:legacy": "node scripts/run-framework.mjs build && node scripts/review-production-artifact.mjs",
-    "test:artifact:legacy": "node scripts/review-production-artifact.mjs"
+    "test:artifact:legacy": "node scripts/review-production-artifact.mjs",
+    "db:generate:legacy": "drizzle-kit generate",
+    "db:inspect": "tsx neon/scripts/migrate.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1156.0",

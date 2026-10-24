@@ -4,7 +4,11 @@ import { defineConfig } from "drizzle-kit";
 // drizzle-kit push would omit the required PL/pgSQL invariants.
 export default defineConfig({
   dialect: "postgresql",
-  schema: "./neon/db/schema.ts",
+  schema: [
+    "./neon/db/schema.ts",
+    "./neon/auth/schema.ts",
+    "./neon/ai/schema.ts",
+  ],
   out: "./neon/drizzle-generated",
   dbCredentials: { url: process.env.DATABASE_URL_UNPOOLED || "" },
   strict: true,

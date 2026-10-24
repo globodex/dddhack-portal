@@ -1,0 +1,26 @@
+{
+  "mode": "x86_64 JavaScript cold-load with host sharp substitution; not ARM64 execution",
+  "codeSha256": "04dc7dd6fa3d42615cead33a2402514480964ddbf9f23aee6b95d6ae3b08c69b",
+  "defaultFetchType": "function",
+  "health": {
+    "status": 200,
+    "body": {
+      "ok": true,
+      "runtime": "neon-functions"
+    }
+  },
+  "untrusted": {
+    "status": 403,
+    "body": {
+      "code": "UNTRUSTED_PROXY"
+    }
+  },
+  "missingBackendConfig": {
+    "status": 503,
+    "body": {
+      "code": "BACKEND_UNAVAILABLE"
+    }
+  },
+  "withoutBanner": "Dynamic require of \"events\" is not supported",
+  "network": "fetch/TCP/TLS disabled; no database/storage/auth credentials provided"
+}

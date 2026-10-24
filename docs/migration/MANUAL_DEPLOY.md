@@ -1,91 +1,66 @@
-# Manual migration and deployment runbook
+# User-operated deployment handoff
 
-This is the user-operated path. No plugin connection is required. These commands have not deployed the portal. Keep the live Sites branch, default branch setting, production records and DNS unchanged. The GitHub `main` branch is a migration branch descended from verified v7; it is not the repository default.
+The user handles all deployment. No agent provider connection, token sharing, CLI sign-in, account provisioning or automatic deployment is required by this handoff. The reviewed source is GitHub branch `main`; the repository default and live Sites branch remain unchanged. No production records or DNS are moved.
 
-## 1. Local checkout and private files
+## Non-secret details to share
 
-Use Node.js 24 and install the official CLIs on your own machine if absent:
+1. Target project `mute-mud-82135883`, development branch `br-divine-tooth-azx4j4md` (user supplied; verify the actual target before writes).
+2. Public `portalapi` Function invocation URL after deployment.
+3. Final frontend URL after the user deploys it to Vercel.
+
+Never share passwords, API keys, connection strings, auth/proxy secrets, session cookies or env-file contents in chat. These identifiers are deployment selectors, not application runtime credentials. Singapore (`aws-ap-southeast-1`) and private `project-media` are the intended configuration; inspect the actual target before applying anything.
+
+## Deployment files
+
+- `neon.ts`: Node.js 24 Function `portalapi`, entry `neon/api.ts`, private bucket declaration, explicit backend environment allowlist and `externalPackages: ["sharp"]`.
+- `artifacts/neon/portalapi.zip`: locally built official Neon archive, including native ARM64 sharp/libvips and the required CommonJS banner. Its receipt records the runtime source revision and SHA-256. It contains no env files, credentials, test fixtures or production data. Unmodified ARM64 execution still requires hosted verification.
+- `neon/migrations/0000*` through `0004*`, plus `neon/auth-migrations/0001_auth.sql` and `0002_approved_evaluation.sql`: reviewed schema/invariants, ordered by `neon/migration-plan.ts` in one checksum ledger. They create schema only and transfer no production rows.
+- Next.js frontend: repository `main`, Node.js24, `npm ci`, `npm run build`, Next.js framework preset. Deploy this reviewed branch/checkout without changing the GitHub default branch or publishing Sites.
+
+Neon's official deployment API accepts a ZIP source part plus an environment JSON map on the branch/function deployment endpoint. A plain single TypeScript file or one-file bundle without native dependencies is insufficient. Console source-editor/upload capabilities have not been verified here; do not assume a particular menu exists. The user may use their own supported deployment method. [Official Function deployment contract](https://neon.com/docs/compute/functions/deploy)
+
+## Exact runtime environment map
+
+| Variable                                | Neon Function                                                     | Vercel                                                    |
+| --------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------- |
+| APP_ORIGIN                              | Exact final frontend origin                                       | Same origin                                               |
+| PORTAL_PROXY_SECRET                     | Private random value, minimum32characters                         | Exact same private value                                  |
+| BETTER_AUTH_SECRET                      | Private random value, minimum32characters                         | No                                                        |
+| GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET | Existing Web OAuth client values                                  | No                                                        |
+| SMTP_HOST                               | smtp.gmail.com                                                    | No                                                        |
+| SMTP_PORT / SMTP_SECURE                 | 465 / true                                                        | No                                                        |
+| SMTP_USER / SMTP_PASS                   | Gmail address / private app password                              | No                                                        |
+| SMTP_FROM                               | Plain sender address is simplest; named address also supported    | No                                                        |
+| NEON_MEDIA_BUCKET                       | project-media (default)                                           | No                                                        |
+| NEON_API_ORIGIN                         | No                                                                | Public Function **origin**, without a trailing path/slash |
+| OPENAI_API_KEY                          | Manually reused key, backend only                                 | No                                                        |
+| OPENAI_MODEL                            | Explicit available Responses/Structured Outputs model; no default | No                                                        |
+| PORTAL_OPENAI_EVALUATION_APPROVED       | false by default; enable only for approved snapshot processing    | No                                                        |
+
+`AUTH_BASE_URL` is optional and defaults to APP_ORIGIN. `AUTH_SECRET` and `SMTP_PASSWORD` are compatibility aliases for BETTER_AUTH_SECRET and SMTP_PASS, so duplicate secrets are unnecessary. This implementation uses custom auth with jose/nodemailer, not a managed Auth service. `CREDIT_ENCRYPTION_KEY` is optional for legacy encrypted credits; no legacy data/key is transferred. `JOB_RUNNER_SECRET` is reserved and unused; no separate scheduler is configured.
+
+Neon automatically injects enabled `DATABASE_URL`, `DATABASE_URL_UNPOOLED`, `NEON_BRANCH`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_ENDPOINT_URL_S3` and `AWS_REGION`. Do not redundantly copy these into a deployed Function or put them on Vercel. Local reproductions may use gitignored `.env.backend.local` and `.env.frontend.local` with restrictive permissions. Codex Cloud Envvars are a separate test environment and do **not** configure the deployed Function/Vercel runtimes. [Injected environment contract](https://neon.com/docs/compute/functions/environment-variables)
+
+## Authentication and storage contracts
+
+Google callback: `https://dddhack-portal.vercel.app/api/auth/callback/google`; localhost callback: `http://localhost:3000/api/auth/callback/google`. If the final frontend origin changes, register its exact callback and configure APP_ORIGIN consistently before testing. Browser API/auth calls stay same-origin through Next's trusted proxy, with host-only HttpOnly Secure SameSite=Lax cookies. Direct Function requests without proxy proof fail closed.
+
+The preserved UI posts bounded PNG/JPEG data URIs; the backend stores immutable private bucket references. Public lists fetch no object bytes; each eligible published image route retrieves and verifies only its requested image. Optional signed-upload APIs require exact bucket CORS before a direct browser client uses them. Neither anonymous bucket access nor public project-list access exposes drafts, team ideas, phones or scores.
+
+## Reviewed schema operation and verification
+
+Node.js24 is required. In an existing checkout, preserve local edits and inspect before switching/fetching; do not reset others' work. The migration runner's default is **file inspection only**, with no database connection:
 
 ```sh
-npm install -g neon vercel
-git clone https://github.com/Param302/dddhack-portal.git
-cd dddhack-portal
-git switch main
-npm ci
-neon login
-vercel login
-```
-
-If the repository already exists locally, fetch and switch to `main` after preserving local edits; do not clone over it or reset someone else's work. Browser login is performed by you. Never send tokens, passwords, env-file contents or CLI authentication files through chat.
-
-Create gitignored `.env.backend.local` and `.env.frontend.local` privately with restrictive permissions. On macOS/Linux, `chmod 600 .env.backend.local .env.frontend.local`. Copy variable names from `.env.example`, not secret values from Sites. Backend file:
-
-- Required: `APP_ORIGIN=https://dddhack-portal.vercel.app`, `BETTER_AUTH_SECRET`, `PORTAL_PROXY_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=465`, `SMTP_SECURE=true`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`.
-- `SMTP_FROM` may be the plain Gmail address. The app also supports a named address. `SMTP_PASS` is the privately generated Gmail app password.
-- Generate distinct authentication/proxy secrets privately, for example with `openssl rand -hex 32` for each. The same proxy value goes in both backend and frontend configurations. `AUTH_SECRET` and `SMTP_PASSWORD` are compatibility aliases; do not create duplicate values. `AUTH_BASE_URL` is optional and defaults to APP_ORIGIN.
-- `DATABASE_URL` and `DATABASE_URL_UNPOOLED` must both target the empty/synthetic **development** branch. Postgres URLs and storage keys are pulled from Neon below; do not copy production values.
-- `NEON_MEDIA_BUCKET=project-media` is the default. Legacy `CREDIT_ENCRYPTION_KEY` is optional and only needed for already encrypted legacy credits, which are not transferred in this migration. Do not extract a Sites key.
-- OpenAI remains opt-in. The reused `OPENAI_API_KEY` belongs only in backend configuration. `OPENAI_MODEL` must be an actual available model selected/configured explicitly, and approved snapshot selection is required. No Astra API model ID is assumed. Real evaluation is not activated by deploying alone.
-
-Frontend file contains only `APP_ORIGIN`, `NEON_API_ORIGIN` (after the Function exists) and `PORTAL_PROXY_SECRET`. No NEXT_PUBLIC secrets or database/provider credentials.
-
-## 2. Link and inspect the development target
-
-Obtain the project ID from your existing Neon project and substitute it below; it is an identifier, not a password:
-
-```sh
-neon link --project-id <project-id> --branch development --no-env-pull
-neon env pull --file .env.backend.local
 node --env-file=.env.backend.local --import tsx neon/scripts/migrate.ts
-neon config plan --env .env.backend.local --branch development
 ```
 
-Confirm the linked branch is `development`, region is Singapore (`aws-ap-southeast-1`), and the existing bucket is private `project-media`. `env pull` adds enabled branch-managed DATABASE_URL/DATABASE_URL_UNPOOLED/AWS_* values and preserves other env lines. Do not print or commit that file. The migration command above only prints migration names/checksums. The config plan must show only the reviewed API Function/private bucket changes, without unexpected service/branch/production changes. Do not use automatic overwrite/protected-branch flags.
+There is no `--dry-run` flag. Applying the reviewed empty/synthetic development target requires both the explicit `--apply-synthetic` flag and `PORTAL_SYNTHETIC_DATABASE=1`. This has not been run against the user's hosted database by this task. Do not run the fixture seed against a hosted branch. Never use `drizzle-kit push`: it would omit required invariant/immutability triggers.
 
-## 3. Apply reviewed schema and deploy the backend
+After the user deploys, verify Google login/logout, verified-email identity linking, roles, one bounded private image upload and authorized synthetic writes. SMTP connectivity from **Neon Functions** remains unverified; a refused Cloud SMTP connection does not establish Neon runtime behavior. The user approved one test login email to the owner; none has been sent by this implementation task. Avoid duplicate sends.
 
-After separately approving the inspected development target and reviewed schema/deployment:
+Jobs use durable Postgres leases/retries and explicit authenticated portal requests. Provider batches are capped at one and awaited within that invocation. No cron, fire-and-forget loop or automatic data export is configured. The selected snapshot must be approved against current published repository evidence; input excludes credentials, voucher codes, phones and unrelated profiles. Reports remain unscored and need human review; accepted scoring/reveal requirements are unchanged.
 
-```sh
-PORTAL_SYNTHETIC_DATABASE=1 node --env-file=.env.backend.local --import tsx neon/scripts/migrate.ts --apply-synthetic
-neon deploy --env .env.backend.local --branch development
-neon functions get portalapi --branch development
-```
+A separately approved one-request **synthetic-only** OpenAI smoke is available in `neon/scripts/evaluation-smoke.ts`; it requires a present key, explicit model and `PORTAL_OPENAI_SMOKE_APPROVED=1`, permits at most one outbound request, reads no repository/user records and prints metadata only. This task's environment has no key, so no provider call has run.
 
-The schema runner is versioned/checksummed and defaults to inspection; it transfers no production rows. Do not run the fixture seed against a hosted branch. The Function config declares `externalPackages: ["sharp"]`; Neon's official bundler stages the ARM64 native package and CommonJS interoperability banner. A plain one-file esbuild output is insufficient for deployment. The validated archive is close to the compressed size cap, so recheck package size after backend dependency growth.
-
-Record the Function's public invocation **origin** as `NEON_API_ORIGIN`; do not share a credential-bearing URL. Neon injects enabled database/storage credentials automatically at Function runtime. SMTP outbound connectivity from this deployed runtime must be verified; Cloud SMTP port failures do not establish Neon runtime behavior. No test email has been sent by this implementation task.
-
-## 4. Configure and build Vercel
-
-Use `vercel link` interactively to choose the intended project. Confirm the project name/domain is available; no availability is assumed. Do not change the GitHub repository's default branch, connect an unintended live branch or enable an automatic deployment as a side effect. Configure server-only Vercel variables in its UI or its interactive `vercel env add` prompts:
-
-- `APP_ORIGIN=https://dddhack-portal.vercel.app`
-- `NEON_API_ORIGIN=<public Function origin>`
-- `PORTAL_PROXY_SECRET=<same private proxy secret>`
-
-Never put database URLs, Google client secret, SMTP password, storage keys or OpenAI key on Vercel. Build and review first:
-
-```sh
-npm run typecheck
-npm test
-npm run build
-```
-
-The final public deployment/promotion is a separate user-approved step. When explicitly approved, the user may run `vercel --prod` from this reviewed `main` checkout. This sends the frontend source to Vercel; it does not migrate production data or republish Sites. If an alternate/preview origin is chosen, configure that exact APP_ORIGIN and register its exact Google callback before testing authentication.
-
-## 5. Verify actual flows before switching users
-
-Google's exact callback is `https://dddhack-portal.vercel.app/api/auth/callback/google`; localhost callback is `http://localhost:3000/api/auth/callback/google`. Browser API/auth calls stay same-origin through the Next proxy with host-only HttpOnly Secure SameSite=Lax cookies. Direct Function calls without the proxy secret fail closed.
-
-Verify Google login/logout, verified email-to-existing-user linking, role boundaries, a bounded private image upload, and authenticated read/write on synthetic data. The user approved **one** test login email to the owner address; send it only after connectivity/configuration are verified and avoid duplicate sends. Do not send it from an unverified environment.
-
-Verify submission attempt races, check-in, credits instructions/mappings/deletions and staged score disclosure using isolated synthetic targets. Local native PostgreSQL and offline/provider fixtures are already tested; they do not prove hosted SMTP, OAuth, Object Storage or latency. Preserve cache/motion/image budgets and reduced-motion behavior. No production-data transfer or DNS/Sites cutover is included.
-
-Queue processing is an explicit authenticated `astra-run` or `astra-process` portal request. Provider batches are capped at one and awaited in that invocation; durable leases/results allow safe recovery. Automatic cron activation is separate. Before enabling any scheduler, verify worker authentication, current-admin authorization, model configuration, approved snapshot payloads and idempotency. Never rely on process memory or waitUntil alone for durable jobs.
-
-## Codex Cloud environment note
-
-The current Cloud UI uses private **Envvars** for direct Postgres/SMTP clients. Network secrets are HTTPS proxy placeholders and do not substitute for raw TCP client credentials. Save/Republish, then start a fresh task to inherit updated values; the current process does not gain them automatically. Check presence only and never print values. No broad network setting authorizes unrelated private-data transfers.
-
-Official references: [Neon install/login](https://neon.com/docs/cli/install), [Neon config/deploy](https://neon.com/docs/compute/functions/deploy), [Neon injected variables](https://neon.com/docs/compute/functions/environment-variables), [Vercel CLI login](https://vercel.com/docs/cli/login).
+Hosted OAuth, SMTP, object access, ARM64 execution and latency still need verification. Local tests/screenshots are supporting evidence, not a hosted capacity claim. No production-data transfer, scheduler activation, purchases or DNS/Sites cutover is included.

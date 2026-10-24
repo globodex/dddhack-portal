@@ -1,0 +1,19 @@
+{
+  "zipBytes": 9008686,
+  "uncompressedBytes": 21131228,
+  "fileCount": 93,
+  "sha256": "950077d2c024c6bb2ce42991ee59f91ed343928938852dda8eb1ae90361eae40",
+  "bannerPresent": true,
+  "externalSharpImport": true,
+  "graphInputCount": 853,
+  "forbiddenInputs": [],
+  "archiveHasSecretsOrTests": [],
+  "warnings": [],
+  "runtimeSource": "e9f9592",
+  "archive": "artifacts/neon/portalapi.zip",
+  "runtime": "nodejs24",
+  "nativeArchitecture": "Linux ARM64 glibc",
+  "nativeExecution": "not verified; x86_64 host smoke uses host-native sharp substitute",
+  "env": {},
+  "deployment": "not performed"
+}

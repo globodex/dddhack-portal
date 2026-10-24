@@ -1,0 +1,56 @@
+{
+  "runtimeSource": "e9f9592",
+  "tests": {
+    "total": 405,
+    "passed": 405,
+    "failed": 0,
+    "skipped": 0,
+    "nativePostgres": "18.4; loopback synthetic schemas only"
+  },
+  "frontend": {
+    "framework": "Next.js 16.4.3",
+    "build": "passed",
+    "typecheck": "passed",
+    "traceFiles": 12,
+    "uniqueTraceFiles": 175,
+    "forbiddenBackendEntries": []
+  },
+  "browser": {
+    "popupChecks": 36,
+    "skeletonChecks": 33,
+    "axeScans": 8,
+    "axeViolations": 0,
+    "motionChecks": 9,
+    "actualImagesCommitted": 10,
+    "nativeBrowserSandbox": false,
+    "sandboxFallback": "fresh profiles; local-only network allowlist"
+  },
+  "backendArchive": {
+    "zipBytes": 9008686,
+    "uncompressedBytes": 21131228,
+    "fileCount": 93,
+    "sha256": "950077d2c024c6bb2ce42991ee59f91ed343928938852dda8eb1ae90361eae40",
+    "bannerPresent": true,
+    "externalSharpImport": true,
+    "graphInputCount": 853,
+    "forbiddenInputs": [],
+    "archiveHasSecretsOrTests": [],
+    "warnings": [],
+    "runtimeSource": "e9f9592",
+    "archive": "artifacts/neon/portalapi.zip",
+    "runtime": "nodejs24",
+    "nativeArchitecture": "Linux ARM64 glibc",
+    "nativeExecution": "not verified; x86_64 host smoke uses host-native sharp substitute",
+    "env": {},
+    "deployment": "not performed"
+  },
+  "productionAudit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "hostedTests": "not performed by this task; no deployment"
+}
