@@ -164,7 +164,7 @@ try {
         `${kind}: top-layer overlay preserves row/list geometry and scroll; native focus trap and background scroll blocking`,
         viewport,
       );
-      const status = dialog.getByLabel("New status", { exact: true });
+      const status = dialog.getByRole("combobox");
       const nextStatus = kind === "person" ? "Going" : "Locked";
       assert.equal(
         await status.evaluate((node) => {

@@ -13,18 +13,25 @@ export default function ConfirmationDialog({
     cancel = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     const previous = document.activeElement as HTMLElement | null;
+    const parentDialog =
+      document.querySelector<HTMLDialogElement>("dialog:modal");
     dialog.current?.showModal();
     cancel.current?.focus();
     return () => {
       dialog.current?.close();
       if (
         previous?.isConnected &&
-        !(previous instanceof HTMLButtonElement && previous.disabled)
+        previous.tabIndex >= 0 &&
+        !previous.matches(":disabled")
       )
         previous.focus({ preventScroll: true });
       else {
-        const parentDialog = previous?.closest<HTMLDialogElement>("dialog[open]");
-        const target = parentDialog?.querySelector<HTMLElement>("button:not([disabled]),select:not([disabled]),input:not([disabled])") || document.getElementById("main");
+        const target =
+          (parentDialog?.open &&
+            parentDialog.querySelector<HTMLElement>(
+              "button:enabled,select:enabled,input:enabled",
+            )) ||
+          document.getElementById("main");
         target?.focus({ preventScroll: true });
       }
     };
