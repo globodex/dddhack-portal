@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Image as ImageIcon, Upload, Trash2 } from "lucide-react";
 
 export default function ProjectMediaField({ kind, value, info, error, busy, onUpload, onRemove }: {
@@ -11,6 +11,13 @@ export default function ProjectMediaField({ kind, value, info, error, busy, onUp
   onRemove: () => void;
 }) {
   const input = useRef<HTMLInputElement>(null);
+  const preview = useRef<HTMLImageElement>(null);
+  const [dimensions, setDimensions] = useState("");
+  const updateDimensions = () => {
+    const image = preview.current;
+    if (image?.naturalWidth) setDimensions(`${image.naturalWidth} × ${image.naturalHeight} px`);
+  };
+  useEffect(() => { setDimensions(""); updateDimensions(); }, [value]);
   const title = kind === "logo" ? "Project logo" : "Project banner";
   const description = `submission-${kind}-description`;
   const errorId = `submission-${kind}-error`;
@@ -18,7 +25,7 @@ export default function ProjectMediaField({ kind, value, info, error, busy, onUp
     <section className={`submission-media-field submission-media-field-${kind}`} aria-labelledby={`submission-${kind}-label`} aria-busy={busy}>
       <h2 id={`submission-${kind}-label`}>{title} <span className="required-marker" aria-hidden="true">*</span></h2>
       <div className={`submission-media-frame submission-media-frame-${kind}`} data-empty={!value}>
-        {value ? <img src={value} alt={`${title} preview`} /> : <div className="submission-media-empty"><ImageIcon size={28} strokeWidth={1.5} aria-hidden="true" /><span>{kind === "banner" ? "Your project at a glance" : "Your project identity"}</span></div>}
+        {value ? <img ref={preview} src={value} alt={`${title} preview`} onLoad={updateDimensions} /> : <div className="submission-media-empty"><ImageIcon size={28} strokeWidth={1.5} aria-hidden="true" /><span>{kind === "banner" ? "Your project at a glance" : "Your project identity"}</span></div>}
       </div>
       <div className="submission-media-controls">
         <button id={`submission-${kind}-control`} className="button secondary" type="button" disabled={busy}
@@ -28,7 +35,7 @@ export default function ProjectMediaField({ kind, value, info, error, busy, onUp
         <input ref={input} type="file" accept="image/png,image/jpeg" hidden aria-label={`Upload ${kind}`} onChange={(event) => { onUpload(event.target.files?.[0]); event.currentTarget.value = ""; }} />
       </div>
       <p className="submission-media-description" id={description}>PNG or JPEG · Up to {kind === "logo" ? "1" : "5"} MB · Any aspect ratio</p>
-      {info && <p className="submission-media-file" title={info}>{info}</p>}
+      {value && <p className="submission-media-file" title={info || dimensions}>{info || dimensions}</p>}
       {error && <p className="submission-field-error" id={errorId} role="alert">{error}</p>}
     </section>
   );
