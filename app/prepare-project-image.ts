@@ -4,6 +4,7 @@ import {
   PROJECT_MEDIA_JPEG_QUALITIES, PROJECT_MEDIA_MAX_OPTIMIZATION_STEPS, PROJECT_MEDIA_RESIZE_FACTOR,
   type ProjectMediaKind,
 } from "../lib/project-media-policy";
+import { inspectProjectImageBytes } from "../lib/project-image-preflight";
 export type ProjectImageKind = ProjectMediaKind;
 
 function blobDataUrl(blob: Blob): Promise<string> {
@@ -23,14 +24,20 @@ export async function prepareProjectImage(file: File, kind: ProjectImageKind) {
   if (!["image/png", "image/jpeg"].includes(file.type)) throw new Error("Choose a PNG or JPEG image.");
   if (file.size > policy.sourceMaxBytes) throw new Error(`Choose a ${kind} of ${kind === "logo" ? "1" : "5"} MB or smaller.`);
   if (!file.size) throw new Error("That image is empty. Choose another PNG or JPEG.");
-  const objectUrl = URL.createObjectURL(file);
-  const source = new Image();
+  const bytes = new Uint8Array(await file.arrayBuffer());
   try {
-    await new Promise<void>((resolve, reject) => {
-      source.onload = () => resolve();
-      source.onerror = () => reject(new Error("That file is not a readable PNG or JPEG."));
-      source.src = objectUrl;
-    });
+    inspectProjectImageBytes(bytes, file.type, kind, "source");
+  } catch (cause) {
+    const code = (cause as { code?: string }).code;
+    if (code === "IMAGE_DIMENSIONS") throw new Error("Use an image between 64 and 4096 pixels on each side.");
+    throw new Error("That file is not a readable PNG or JPEG. Choose another image.");
+  }
+  const objectUrl = URL.createObjectURL(file);
+  try {
+    const source = new Image();
+    source.src = objectUrl;
+    try { await source.decode(); }
+    catch { throw new Error("That file is not a readable PNG or JPEG. Choose another image."); }
     const sourceWidth = source.naturalWidth, sourceHeight = source.naturalHeight;
     if (Math.min(sourceWidth, sourceHeight) < PROJECT_MEDIA_SOURCE_MIN_DIMENSION || Math.max(sourceWidth, sourceHeight) > PROJECT_MEDIA_MAX_DIMENSION)
       throw new Error("Use an image between 64 and 4096 pixels on each side.");
