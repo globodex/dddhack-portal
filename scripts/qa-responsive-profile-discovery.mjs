@@ -17,11 +17,15 @@ const root = "/workspace/dddhack-portal";
 const output = resolve(
   process.env.QA_OUTPUT || "evidence/responsive-profile-discovery-d092147",
 );
+const scopedSurfaces = process.env.QA_SCOPES
+  ? JSON.parse(process.env.QA_SCOPES)
+  : {};
 mkdirSync(output, { recursive: true });
 const git = (...args) =>
   execFileSync("git", args, { cwd: root, encoding: "utf8" }).trim();
 let report = {
-  source: git("rev-parse", "HEAD"),
+  source: process.env.QA_EXPECTED_SOURCE || git("rev-parse", "HEAD"),
+  revisionAtStart: git("rev-parse", "HEAD"),
   origin,
   syntheticOnly: true,
   readOnly: true,
@@ -48,19 +52,37 @@ if (process.env.QA_RESUME) {
 }
 if (process.env.QA_EXPECTED_SOURCE)
   assert.equal(report.source, process.env.QA_EXPECTED_SOURCE);
+const verifyRuntime = () => {
+  execFileSync(
+    "git",
+    [
+      "diff",
+      "--quiet",
+      report.source,
+      "HEAD",
+      "--",
+      "app",
+      "lib",
+      "neon",
+      "next.config.ts",
+    ],
+    { cwd: root },
+  );
+  assert.equal(
+    git("status", "--porcelain", "--", "app", "lib", "neon", "next.config.ts"),
+    "",
+    "Runtime source has uncommitted edits",
+  );
+};
+verifyRuntime();
 const save = () =>
   writeFileSync(
     resolve(output, "report.json"),
     JSON.stringify(report, null, 2) + "\n",
   );
-const browser = await chromium.launch({
-  executablePath: "/usr/bin/chromium",
-  headless: true,
-  chromiumSandbox: false,
-});
+let browser;
 const activeContexts = new Set(),
   temporaryProfiles = new Set();
-report.browser = browser.version();
 const geometry = (page, expectedWidth) =>
   page.evaluate((expectedWidth) => {
     const viewport = expectedWidth;
@@ -85,6 +107,19 @@ const geometry = (page, expectedWidth) =>
       heading: [...document.querySelectorAll("h1")].map((e) =>
         e.textContent.trim(),
       ),
+      clippedHeadings: [
+        ...document.querySelectorAll(
+          "main :is(h1,h2,h3,h4),dialog[open] :is(h1,h2,h3,h4)",
+        ),
+      ]
+        .filter(visible)
+        .filter((element) => element.scrollWidth > element.clientWidth + 1)
+        .map((element) => ({
+          tag: element.tagName,
+          text: element.textContent.slice(0, 100),
+          scrollWidth: element.scrollWidth,
+          clientWidth: element.clientWidth,
+        })),
       overflow: [...document.querySelectorAll("main *, dialog[open] *")]
         .filter(visible)
         .flatMap((element) => {
@@ -154,7 +189,8 @@ async function capture(page, name, viewport, state = "baseline") {
     name,
     viewport,
     state,
-    source: git("rev-parse", "HEAD"),
+    source: report.source,
+    revisionAtCapture: git("rev-parse", "HEAD"),
     dimensions,
     pixelDimensions,
     inspected: false,
@@ -171,6 +207,7 @@ async function layout(page, name, viewport, state) {
   check(
     `${name}: ${state} reflow`,
     dimensions.scrollWidth <= dimensions.width &&
+      dimensions.clippedHeadings.length === 0 &&
       dimensions.overflow.length === 0,
     { viewport: viewport.label, dimensions },
   );
@@ -305,6 +342,13 @@ async function dialogCheck(page, viewport, name, dialog, close) {
   await dialog
     .locator("h2")
     .evaluate((element) => (element.textContent = "Alexandria".repeat(10)));
+  await dialog
+    .locator("h4")
+    .evaluateAll((elements) =>
+      elements.forEach(
+        (element) => (element.textContent = "SyntheticLongTeamName".repeat(5)),
+      ),
+    );
   const paragraphs = dialog.locator("p");
   if (await paragraphs.count())
     await paragraphs
@@ -507,7 +551,12 @@ async function session(viewport) {
       return true;
     });
     await settings.close();
-  } else
+  } else {
+    browser ||= await chromium.launch({
+      executablePath: "/usr/bin/chromium",
+      headless: true,
+      chromiumSandbox: false,
+    });
     context = await browser.newContext({
       viewport: { width: viewport.width, height: viewport.height },
       hasTouch: viewport.width < 500,
@@ -515,7 +564,10 @@ async function session(viewport) {
       reducedMotion: "reduce",
       serviceWorkers: "block",
     });
+  }
+  report.browser = context.browser()?.version();
   activeContexts.add(context);
+  report.browserClosed = false;
   await context.addCookies([
     {
       name: "portal_local_fixture",
@@ -568,7 +620,7 @@ async function session(viewport) {
       metrics,
     });
   }
-  page.setDefaultTimeout(15000);
+  page.setDefaultTimeout(30000);
   page.on("pageerror", (error) => {
     report.errors.push({ error: error.message });
     save();
@@ -577,7 +629,7 @@ async function session(viewport) {
 }
 
 try {
-  const viewports = process.env.QA_BASELINE_ONLY
+  let viewports = process.env.QA_BASELINE_ONLY
     ? [{ label: "320x640", width: 320, height: 640 }]
     : [
         { label: "320x640", width: 320, height: 640 },
@@ -587,6 +639,14 @@ try {
         { label: "1440x900", width: 1440, height: 900 },
         { label: "native-200pct", width: 720, height: 450, zoom: true },
       ];
+  if (process.env.QA_CASES) {
+    const selected = process.env.QA_CASES.split(",");
+    viewports = selected.map((label) => {
+      const viewport = viewports.find((viewport) => viewport.label === label);
+      assert.ok(viewport, `Unknown viewport ${label}`);
+      return viewport;
+    });
+  }
   for (const viewport of viewports) {
     const { page, context, zoomProfile } = await session(viewport);
     for (const [name, path] of [
@@ -595,6 +655,11 @@ try {
       ["participants", "/discover/participants"],
       ["teams", "/discover/teams"],
     ]) {
+      if (
+        scopedSurfaces[viewport.label] &&
+        !scopedSurfaces[viewport.label].includes(name)
+      )
+        continue;
       const completion = `${viewport.label}:${name}`;
       if (report.completedSurfaces?.includes(completion)) continue;
       await page.goto(origin + path, {
@@ -632,15 +697,22 @@ try {
     activeContexts.delete(context);
     if (zoomProfile) rmSync(zoomProfile, { recursive: true, force: true });
   }
+  verifyRuntime();
+  report.revisionAtEnd = git("rev-parse", "HEAD");
+  report.result = report.checks.some((check) => !check.passed)
+    ? "findings"
+    : "passed";
 } catch (error) {
   report.errors.push({ error: String(error.stack || error) });
+  report.result = "blocked";
   process.exitCode = 1;
 } finally {
-  await browser.close();
+  await browser?.close();
   for (const context of activeContexts) await context.close();
   for (const profile of temporaryProfiles)
     rmSync(profile, { recursive: true, force: true });
   report.finishedAt = new Date().toISOString();
+  report.browserClosed = true;
   save();
 }
 console.log(
