@@ -4,6 +4,7 @@ import type { PortalService } from "./service";
 import { one, assertPreviousWrite, type SQL } from "./db";
 import { demand } from "./security";
 import { OWNER_EMAIL } from "./identity";
+import { terminalDeletionCommand, terminallyDeleted } from "./terminal-deletion";
 export const notRemoved = (kind: string, id: string) =>
   `NOT EXISTS(SELECT 1 FROM record_removals removed WHERE removed.kind='${kind}' AND removed.target_id=${id} AND removed.active=1)`;
 export async function removalCommand(
@@ -11,6 +12,8 @@ export async function removalCommand(
   action: string,
   input: unknown,
 ) {
+  const terminal = await terminalDeletionCommand(s, action, input);
+  if (terminal) return terminal;
   if (action === "delete-own-team") {
     const actor = await s.actor();
     const d = z
@@ -104,6 +107,7 @@ export async function removalCommand(
         })
         .strict()
         .parse(input);
+    demand(!(await terminallyDeleted(s, "team", d.teamId)), 409, "RECORD_PERMANENTLY_DELETED", "This team was permanently deleted and cannot be restored.");
     const team = await one<{ leader_id: string }>(
       s.db,
       "SELECT leader_id FROM teams WHERE id=?",
@@ -172,6 +176,7 @@ export async function removalCommand(
       .strict()
       .parse(input);
     const active = action === "participant-deactivate";
+    demand(!(await terminallyDeleted(s, "participant", d.userId)), 409, "RECORD_PERMANENTLY_DELETED", "This participant was permanently deleted and cannot be restored.");
     demand(
       d.confirmation ===
         (active ? "REMOVE_PARTICIPANT" : "RESTORE_PARTICIPANT"),

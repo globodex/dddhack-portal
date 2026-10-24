@@ -104,25 +104,41 @@ export class PortalService {
       ...this.identity,
       email: normalizeRosterEmail(this.identity.email),
     };
+    // Keep the auth/audit identity while refusing to recreate terminal portal data.
+    // This uses the existing batch/read, without another actor lookup round trip.
     await batch(this.db, [
       [
-        "INSERT INTO users(id,email,name,created_at) VALUES(?,?,?,?) ON CONFLICT(id) DO UPDATE SET email=excluded.email,name=excluded.name WHERE users.email<>excluded.email OR users.name<>excluded.name",
+        "INSERT INTO users(id,email,name,created_at) SELECT ?,?,?,? WHERE NOT EXISTS(SELECT 1 FROM terminal_record_deletions WHERE kind='participant' AND target_id=?) ON CONFLICT(id) DO UPDATE SET email=excluded.email,name=excluded.name WHERE users.email<>excluded.email OR users.name<>excluded.name",
         i.id,
         i.email,
         i.name,
         this.now(),
+        i.id,
       ],
       [
-        "INSERT INTO profiles(user_id) VALUES(?) ON CONFLICT(user_id) DO NOTHING",
+        "INSERT INTO profiles(user_id) SELECT ? WHERE NOT EXISTS(SELECT 1 FROM terminal_record_deletions WHERE kind='participant' AND target_id=?) ON CONFLICT(user_id) DO NOTHING",
+        i.id,
         i.id,
       ],
     ]);
-    await reconcileAbsences(this, i.id);
-    const u = (await one<User>(
+    const storedUser = (await one<User & { terminal_deleted: number }>(
       this.db,
-      "SELECT id,email,name,role FROM users WHERE id=?",
+      "SELECT u.id,u.email,u.name,u.role,CASE WHEN EXISTS(SELECT 1 FROM terminal_record_deletions t WHERE t.kind='participant' AND t.target_id=u.id) THEN 1 ELSE 0 END terminal_deleted FROM users u WHERE u.id=?",
       i.id,
     ))!;
+    demand(
+      storedUser && !storedUser.terminal_deleted,
+      403,
+      "PARTICIPANT_REMOVED",
+      "This participant was permanently deleted. Contact an organizer.",
+    );
+    const u: User = {
+      id: storedUser.id,
+      email: storedUser.email,
+      name: storedUser.name,
+      role: storedUser.role,
+    };
+    await reconcileAbsences(this, i.id);
     const extra = await one<{
       role: string;
       display_name: string | null;
