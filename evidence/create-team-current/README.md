@@ -1,4 +1,6 @@
-# Current team creation form
+# Team creation before the requested alignment correction
+
+**User review: short-mobile composition rejected as disturbed/misaligned. These originals are before evidence, not an accepted final design. A coordinated desktop/mobile layout correction is in progress.**
 
 Actual Next.js runtime source `e1209bc6608f9b46ce242d5d4285a2f6549cc17f`. Main-only Vercel deployment filter is included. Local synthetic participant fixture `pending`; no team was created or changed.
 

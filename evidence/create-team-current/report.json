@@ -29,5 +29,11 @@
       },
       "source": "e1209bc6608f9b46ce242d5d4285a2f6549cc17f"
     }
-  ]
+  ],
+  "userReview": {
+    "status": "rejected",
+    "scope": "short-mobile dialog composition",
+    "finding": "disturbed and misaligned; header, identity picker, fields and primary action need a deliberate consistent grid",
+    "rework": "in progress; originals preserved as before evidence"
+  }
 }

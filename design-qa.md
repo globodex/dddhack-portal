@@ -53,4 +53,8 @@ The user subsequently authorized only main commit e386cc72244c5613588ec60b029986
 
 Final team creation evidence was requested separately and delivered at a431f4c: desktop1440×900, mobile390×844 and short390×480 originals were captured from sourcee1209bc, opened and inspected, without any creation mutation.
 
-final result: passed
+## Reopened creation-layout review
+
+After these checks, the user rejected the short390×480 team-creation composition as disturbed/misaligned. The screenshots at a431f4c are now before evidence, not an accepted final design. Header/close, initials/color picker, fields and action are being reworked together. Fresh same-viewport screenshots and focus/touch/persistence checks are required before this page closes. Other recorded checks remain historical evidence.
+
+final result: blocked
