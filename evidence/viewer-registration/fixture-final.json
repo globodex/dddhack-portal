@@ -1,0 +1,21 @@
+{
+  "path": "/tmp/ddd-viewer-20261024-unique01.sqlite",
+  "syntheticOnly": true,
+  "integrity": "ok",
+  "foreignKeyFailures": [],
+  "strangerRegistration": [
+    [
+      "stranger@portal.test",
+      "pending",
+      0
+    ]
+  ],
+  "strangerRoster": [
+    [
+      "stranger@portal.test"
+    ]
+  ],
+  "strangerMembershipCount": 0,
+  "pendingGenderConfirmedRestored": 1,
+  "extraSyntheticAccountCount": 27
+}

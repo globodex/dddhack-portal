@@ -1,0 +1,18 @@
+{
+  "ownedPidsStopped": [
+    174205,
+    174230,
+    166863,
+    171256
+  ],
+  "remainingOwnedProcesses": [],
+  "ownedPorts": [
+    3008,
+    8853,
+    8855
+  ],
+  "remainingOwnedListeners": [],
+  "allBrowsersClosed": true,
+  "noPush": true,
+  "otherAgentsProcessesUntouched": true
+}

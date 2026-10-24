@@ -1,0 +1,40 @@
+{
+  "source": "c205b404b32ecf444c6897777421f297574a31c6",
+  "syntheticOnly": true,
+  "checks": [
+    {
+      "name": "Viewer can read /discover/participants without private fields or participant write controls",
+      "items": 13,
+      "file": "evidence/viewer-registration/after/viewer-explore-participants-390.png"
+    },
+    {
+      "name": "Viewer public profile dialog contains no phone or WhatsApp",
+      "file": "evidence/viewer-registration/after/viewer-public-profile-390.png"
+    },
+    {
+      "name": "Viewer can read /discover/teams without private fields or participant write controls",
+      "items": 28,
+      "file": "evidence/viewer-registration/after/viewer-explore-teams-390.png"
+    },
+    {
+      "name": "Viewer team dialog no private idea or member contacts; Back closes",
+      "file": "evidence/viewer-registration/after/viewer-public-team-390.png"
+    },
+    {
+      "name": "Viewer can read /projects without private fields or participant write controls",
+      "items": 24,
+      "file": "evidence/viewer-registration/after/viewer-explore-projects-390.png"
+    },
+    {
+      "name": "Registered pending stays participant; no Viewer welcome/error",
+      "file": "evidence/viewer-registration/after/pending-participant-dashboard-390.png"
+    }
+  ],
+  "errors": [],
+  "result": "FAIL",
+  "failure": {
+    "message": "Command failed: python3 -c import sqlite3,sys,json; c=sqlite3.connect(sys.argv[1]); old=c.execute(\"SELECT completed_at FROM participant_profiles WHERE user_id='fake_pending'\").fetchone()[0];c.execute(\"UPDATE participant_profiles SET completed_at=NULL WHERE user_id='fake_pending'\");c.commit();print(json.dumps(old)) /tmp/ddd-viewer-20261024-unique01.sqlite\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nsqlite3.IntegrityError: NOT NULL constraint failed: participant_profiles.completed_at\n",
+    "stack": "Error: Command failed: python3 -c import sqlite3,sys,json; c=sqlite3.connect(sys.argv[1]); old=c.execute(\"SELECT completed_at FROM participant_profiles WHERE user_id='fake_pending'\").fetchone()[0];c.execute(\"UPDATE participant_profiles SET completed_at=NULL WHERE user_id='fake_pending'\");c.commit();print(json.dumps(old)) /tmp/ddd-viewer-20261024-unique01.sqlite\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nsqlite3.IntegrityError: NOT NULL constraint failed: participant_profiles.completed_at\n\n    at genericNodeError (node:internal/errors:985:15)\n    at wrappedFn (node:internal/errors:539:14)\n    at checkExecSyncError (node:child_process:942:11)\n    at execFileSync (node:child_process:978:15)\n    at file:///workspace/ddd-viewer-browser/scripts/qa-viewer-registration-explore.mjs:10:11"
+  },
+  "browserClosed": true
+}

@@ -1,0 +1,47 @@
+{
+  "source": "c205b404b32ecf444c6897777421f297574a31c6",
+  "syntheticOnly": true,
+  "checks": [
+    {
+      "name": "Viewer can read /discover/participants without private fields or participant write controls",
+      "items": 13,
+      "file": "evidence/viewer-registration/after/viewer-explore-participants-390.png"
+    },
+    {
+      "name": "Viewer public profile dialog contains no phone or WhatsApp",
+      "file": "evidence/viewer-registration/after/viewer-public-profile-390.png"
+    },
+    {
+      "name": "Viewer can read /discover/teams without private fields or participant write controls",
+      "items": 28,
+      "file": "evidence/viewer-registration/after/viewer-explore-teams-390.png"
+    },
+    {
+      "name": "Viewer team dialog no private idea or member contacts; Back closes",
+      "file": "evidence/viewer-registration/after/viewer-public-team-390.png"
+    },
+    {
+      "name": "Viewer can read /projects without private fields or participant write controls",
+      "items": 24,
+      "file": "evidence/viewer-registration/after/viewer-explore-projects-390.png"
+    },
+    {
+      "name": "Registered pending stays participant; no Viewer welcome/error",
+      "file": "evidence/viewer-registration/after/pending-participant-dashboard-390.png"
+    },
+    {
+      "name": "Registered incomplete profile still opens real three-step profile gate",
+      "fixtureChange": "Only fake_pending gender_confirmed set0, restored in finally",
+      "file": "evidence/viewer-registration/after/pending-incomplete-profile-390.png"
+    }
+  ],
+  "errors": [],
+  "harnessCorrection": "SQLite correctly rejected NULL completed_at setup without mutation. Remaining gate uses existing supported gender_confirmed=0 and restores original1. Prior successful exploration/pending checks are retained, not rerun.",
+  "result": "FAIL",
+  "failure": {
+    "message": "Cannot read properties of undefined (reading 'some')",
+    "stack": "TypeError: Cannot read properties of undefined (reading 'some')\n    at file:///workspace/ddd-viewer-browser/scripts/qa-viewer-registration-explore.mjs:6:538"
+  },
+  "pendingGenderConfirmedRestored": true,
+  "browserClosed": true
+}

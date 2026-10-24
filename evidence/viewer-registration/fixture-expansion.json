@@ -1,0 +1,10 @@
+{
+  "database": "/tmp/ddd-viewer-20261024-unique01.sqlite",
+  "syntheticOnly": true,
+  "operation": "27 additional unregistered existing synthetic accounts; no application content or production data",
+  "newViewerRows": 27,
+  "existingFixtureViewer": "fake_stranger",
+  "expectedNotRegisteredViewerRows": 28,
+  "integrity": "ok",
+  "foreignKeyFailures": []
+}

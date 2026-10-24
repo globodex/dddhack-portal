@@ -1,0 +1,14 @@
+{"case":1,"path":"/dashboard","viewport":{"width":1440,"height":900},"result":"PASS"}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Open menu', exact: true }) to be visible[22m
+
+    at /workspace/ddd-viewer-browser/scripts/qa-viewer-registration-after.mjs:12:228 {
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

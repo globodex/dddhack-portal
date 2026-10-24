@@ -1,0 +1,316 @@
+{
+  "source": "86e89812937a68e609fd9af521c85b5eb1a19dae",
+  "applicationEquivalentTo": "86862c722233bbd6776f1e2672d78b41fa808a52",
+  "syntheticOnly": true,
+  "cases": [
+    {
+      "path": "/dashboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "responses": [
+        {
+          "url": "http://localhost:3008/dashboard",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864360418",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864360418",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864360418",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "status": 200
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://localhost:3008/dashboard",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864360418",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864360418",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864360418",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+          "method": "GET"
+        },
+        {
+          "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+          "method": "GET"
+        }
+      ],
+      "pageErrors": [],
+      "text": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects",
+      "overflow": false,
+      "viewportWidth": 1440,
+      "documentWidth": 1425,
+      "timeline": [
+        {
+          "ms": 3353.800000000745,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "",
+          "main": ""
+        },
+        {
+          "ms": 3363.900000002235,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [],
+          "account": "",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": ""
+        },
+        {
+          "ms": 3658.300000000745,
+          "headings": [],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode"
+        },
+        {
+          "ms": 4108.60000000149,
+          "headings": [
+            "Take a look around."
+          ],
+          "skeletons": 0,
+          "errors": 0,
+          "nav": [
+            [
+              "Discover",
+              "/discover/teams"
+            ],
+            [
+              "Projects",
+              "/projects"
+            ],
+            [
+              "Rules",
+              "/rules"
+            ]
+          ],
+          "account": "StrangerViewerLog out",
+          "shell": "app-shell   workspace-shell  studio-dashboard-shell",
+          "main": "Local rehearsal · synthetic accounts only Switch fixture\nViewer mode\n++\nTake a look around.\n\nRegister on Luma to join the hackathon. Until then, explore the people, teams and projects.\n\nRegister on Luma\nPeople\nTeams\nProjects"
+        }
+      ],
+      "registration": [
+        {
+          "text": "Register on Luma",
+          "href": "https://luma.com/6t5uk4lo"
+        },
+        {
+          "text": "People",
+          "href": "/discover/participants"
+        },
+        {
+          "text": "Teams",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Discover",
+          "href": "/discover/teams"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "Rules",
+          "href": "/rules"
+        }
+      ],
+      "account": "StrangerViewerLog out",
+      "errors": 0,
+      "skeletons": 0,
+      "file": "evidence/viewer-registration/after/viewer-dashboard-1440x900.png"
+    }
+  ],
+  "startedAt": "2026-10-24T17:52:36.203Z",
+  "inFlightCase": {
+    "path": "/profile",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "responses": [
+      {
+        "url": "http://localhost:3008/profile",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864366990",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864366990",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:3008/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864366990",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+        "status": 200
+      }
+    ],
+    "requests": [
+      {
+        "url": "http://localhost:3008/profile",
+        "method": "GET"
+      },
+      {
+        "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792864366990",
+        "method": "GET"
+      },
+      {
+        "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+        "method": "GET"
+      },
+      {
+        "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792864366990",
+        "method": "GET"
+      },
+      {
+        "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792864366990",
+        "method": "GET"
+      },
+      {
+        "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+        "method": "GET"
+      },
+      {
+        "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+        "method": "GET"
+      },
+      {
+        "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+        "method": "GET"
+      },
+      {
+        "url": "http://localhost:3008/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+        "method": "GET"
+      },
+      {
+        "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+        "method": "GET"
+      },
+      {
+        "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+        "method": "GET"
+      }
+    ],
+    "pageErrors": []
+  },
+  "result": "FAIL",
+  "failure": {
+    "message": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Open menu', exact: true }) to be visible\u001b[22m\n",
+    "stack": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Open menu', exact: true }) to be visible\u001b[22m\n\n    at /workspace/ddd-viewer-browser/scripts/qa-viewer-registration-after.mjs:12:228"
+  },
+  "browserClosed": true
+}

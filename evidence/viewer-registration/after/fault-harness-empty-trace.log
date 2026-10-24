@@ -1,0 +1,15 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+Error: ENOENT: no such file or directory, open 'evidence/viewer-registration/after/backend-fault-trace.jsonl'
+    at readFileSync (node:fs:484:20)
+    at trace (file:///workspace/ddd-viewer-browser/scripts/qa-viewer-registration-faults.mjs:1:260)
+    at file:///workspace/ddd-viewer-browser/scripts/qa-viewer-registration-faults.mjs:4:304 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'evidence/viewer-registration/after/backend-fault-trace.jsonl'
+}
+
+Node.js v24.19.0

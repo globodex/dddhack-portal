@@ -1,0 +1,23 @@
+{
+  "source": "86e89812937a68e609fd9af521c85b5eb1a19dae",
+  "observation": {
+    "shell": "app-shell   workspace-shell",
+    "mobileHeaderDisplay": "flex",
+    "sidebarDisplay": "flex",
+    "nav": [
+      {
+        "text": "Discover",
+        "href": "/discover/teams"
+      },
+      {
+        "text": "Projects",
+        "href": "/projects"
+      },
+      {
+        "text": "Rules",
+        "href": "/rules"
+      }
+    ]
+  },
+  "browserClosed": true
+}

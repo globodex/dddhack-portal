@@ -1,0 +1,2036 @@
+{
+  "source": "41ab0bef2845166939cd51e296bbdb8e2257125c",
+  "syntheticOnly": true,
+  "checks": [
+    {
+      "name": "Not registered resets team filter; count28; page1has25; no selectable/actionable Viewer rows",
+      "file": "evidence/viewer-registration/after/admin-not-registered-page1-1440.png"
+    },
+    {
+      "name": "Next page has3records; count retained28",
+      "file": "evidence/viewer-registration/after/admin-not-registered-page2-1440.png"
+    },
+    {
+      "name": "Search email returns1correct Viewer and resets pagination",
+      "file": "evidence/viewer-registration/after/admin-not-registered-search-1440.png"
+    },
+    {
+      "name": "Empty search shows0viewers and No matches",
+      "file": "evidence/viewer-registration/after/admin-not-registered-empty-1440.png"
+    },
+    {
+      "name": "320short admin filters/pagination has no document overflow",
+      "file": "evidence/viewer-registration/after/admin-not-registered-320x480.png"
+    },
+    {
+      "name": "Fixed320 Viewer rows no visible redundant label/name overlap",
+      "label": {
+        "text": "Viewer access",
+        "className": "sr-only",
+        "box": {
+          "x": 276,
+          "y": 352,
+          "width": 1,
+          "height": 1,
+          "top": 352,
+          "right": 277,
+          "bottom": 353,
+          "left": 276
+        }
+      },
+      "file": "evidence/viewer-registration/after/admin-viewer-label-fixed-320-full.png"
+    },
+    {
+      "name": "Real adminAdd preview confirmation names synthetic stranger",
+      "file": "evidence/viewer-registration/after/admin-register-viewer-confirmation-1440.png",
+      "confirmation": "Add participants?\n\nstranger@portal.test\n\nCancel\nConfirm"
+    },
+    {
+      "name": "Commit200; Notregistered total drops28to27",
+      "file": "evidence/viewer-registration/after/admin-not-registered-after-add-1440.png"
+    },
+    {
+      "name": "Already-open Viewer focus refresh becomes participant without signout/reload",
+      "file": "evidence/viewer-registration/after/viewer-registered-focus-transition-390.png",
+      "response": {
+        "me": {
+          "id": "fake_stranger",
+          "email": "stranger@portal.test",
+          "name": "Stranger",
+          "role": "participant",
+          "mode": "participant",
+          "rostered": true,
+          "deactivated": false,
+          "canEngage": true,
+          "canParticipate": true,
+          "owner": false,
+          "avatarColor": "blue",
+          "avatarExpression": "squeezed"
+        },
+        "profile": {
+          "user_id": "fake_stranger",
+          "bio": "Synthetic local builder profile",
+          "socials": [],
+          "gender": "non-binary",
+          "gender_description": "",
+          "public": 0,
+          "display_name": "Stranger",
+          "skills": "Synthetic coding skills",
+          "completed_at": "2026-10-22T07:00:00.000Z",
+          "gender_confirmed": 1,
+          "phone": "+12025550100",
+          "best_description": "",
+          "organization": "",
+          "openai_org_id": "",
+          "avatar_color": "blue",
+          "avatar_expression": "squeezed",
+          "gender_prefilled": false,
+          "socialLinks": [],
+          "descriptionChoices": [
+            "Startup Founder",
+            "Working Professional",
+            "Independent Developer",
+            "College Student",
+            "School Student",
+            "Other (non-tech)"
+          ],
+          "complete": true
+        },
+        "registration": {
+          "status": "pending",
+          "luma_confirmed": 0
+        },
+        "submissionAccess": {
+          "canAccess": false,
+          "canCommit": false,
+          "projectRemoved": false,
+          "isLeader": false,
+          "personallyCheckedIn": false,
+          "canRead": false,
+          "checkedInMembers": 0,
+          "going": false,
+          "attemptsUsed": 0,
+          "maxAttempts": 3,
+          "locked": false,
+          "progress": "Not submitted",
+          "message": "Create or join your team first."
+        },
+        "projectStats": {
+          "upvotes": 0
+        },
+        "submissionProgress": {
+          "status": "Not submitted",
+          "attemptsUsed": 0,
+          "maxAttempts": 3,
+          "locked": false
+        },
+        "teamReadiness": {
+          "total": 0,
+          "approved": 0,
+          "allApproved": false,
+          "label": "No team yet"
+        },
+        "individualStatus": "Registered",
+        "ideaLocked": false,
+        "members": [],
+        "attempts": [],
+        "feedback": [],
+        "eligibility": {
+          "status": "not_submitted"
+        },
+        "credits": [],
+        "checkedIn": false,
+        "status": "Registered",
+        "actions": [],
+        "submissionStatus": {
+          "configured": true,
+          "enabled": true,
+          "allowed": true,
+          "state": "open",
+          "message": "Submissions are open.",
+          "blockers": []
+        },
+        "eventDraft": false,
+        "localTest": true
+      }
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/admin/participants",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792865034808",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792865034808",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792865034808",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+      "body": null
+    },
+    {
+      "method": "POST",
+      "url": "http://localhost:3008/api/portal",
+      "body": {
+        "action": "preview-import",
+        "data": {
+          "kind": "roster",
+          "csv": "stranger@portal.test"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/_next/static/webpack/4bf17f7541b8e2e2.webpack.hot-update.json",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/_next/static/webpack/webpack.4bf17f7541b8e2e2.hot-update.js",
+      "body": null
+    },
+    {
+      "method": "POST",
+      "url": "http://localhost:3008/api/portal",
+      "body": {
+        "action": "commit-import",
+        "data": {
+          "kind": "roster",
+          "csv": "stranger@portal.test",
+          "fieldMap": {
+            "email": "email"
+          },
+          "digest": "568ee2b452506eeead0b2bb39ddd3b2917901cd1c1202d64c2a6a6d15689fe38"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3008/api/portal?view=%2Fadmin%2Fparticipants&focus=&presentation=apv1.2f1470f62c5eebcc74432d071000b3470346445da0b7abf62d81d67faf31c127",
+      "body": null
+    }
+  ],
+  "responses": [
+    {
+      "url": "http://localhost:3008/admin/participants",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/_next/static/css/app/layout.css?v=1792865034808",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/_next/static/chunks/app-pages-internals.js",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/_next/static/chunks/webpack.js?v=1792865034808",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/_next/static/chunks/main-app.js?v=1792865034808",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/brand/codex-user-supplied.svg",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/_next/static/webpack/4bf17f7541b8e2e2.webpack.hot-update.json",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/api/portal",
+      "status": 200,
+      "body": {
+        "digest": "568ee2b452506eeead0b2bb39ddd3b2917901cd1c1202d64c2a6a6d15689fe38",
+        "headers": [
+          "email"
+        ],
+        "fieldMap": {
+          "email": "email"
+        },
+        "counts": {
+          "new": 1,
+          "existing": 0,
+          "invalid": 0,
+          "duplicates": 0,
+          "prefills": 0
+        },
+        "rows": [
+          {
+            "row": 2,
+            "email": "stranger@portal.test",
+            "existing": false,
+            "action": "Add Registered participant",
+            "rosterMatched": false
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "url": "http://localhost:3008/_next/static/webpack/webpack.4bf17f7541b8e2e2.hot-update.js",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3008/api/portal",
+      "status": 200,
+      "body": {
+        "message": "Add-only roster import committed. Existing profiles, statuses and removed accounts were preserved."
+      }
+    },
+    {
+      "url": "http://localhost:3008/api/portal?view=%2Fadmin%2Fparticipants&focus=&presentation=apv1.2f1470f62c5eebcc74432d071000b3470346445da0b7abf62d81d67faf31c127",
+      "status": 200,
+      "body": {
+        "me": {
+          "id": "fake_owner",
+          "email": "owner@portal.test",
+          "name": "Owner",
+          "role": "participant",
+          "mode": "staff",
+          "rostered": true,
+          "deactivated": false,
+          "canEngage": true,
+          "canParticipate": true,
+          "owner": true,
+          "avatarColor": "blue",
+          "avatarExpression": "squeezed"
+        },
+        "items": [
+          {
+            "id": "fake_alice",
+            "name": "Alice",
+            "email": "alice@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_team1",
+            "team_name": "Small Wonder",
+            "submitted": 2,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 3,
+              "approved": 3,
+              "allApproved": true,
+              "label": "3/3 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": true,
+            "teamLockedAt": "2026-10-24T17:45:56.324Z"
+          },
+          {
+            "id": "fake_review_one",
+            "name": "Synthetic Member One",
+            "email": "review_one@portal.test",
+            "approval": "approved",
+            "checked_in": null,
+            "team_id": "fake_team1",
+            "team_name": "Small Wonder",
+            "submitted": 2,
+            "avatarColor": "orange",
+            "avatarExpression": "sleepy",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 3,
+              "approved": 3,
+              "allApproved": true,
+              "label": "3/3 individual approvals"
+            },
+            "status": "Going",
+            "teamStatus": "Submitted",
+            "teamLocked": true,
+            "teamLockedAt": "2026-10-24T17:45:56.324Z"
+          },
+          {
+            "id": "fake_review_two",
+            "name": "Synthetic Member Two",
+            "email": "review_two@portal.test",
+            "approval": "approved",
+            "checked_in": null,
+            "team_id": "fake_team1",
+            "team_name": "Small Wonder",
+            "submitted": 2,
+            "avatarColor": "purple",
+            "avatarExpression": "plus",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 3,
+              "approved": 3,
+              "allApproved": true,
+              "label": "3/3 individual approvals"
+            },
+            "status": "Going",
+            "teamStatus": "Submitted",
+            "teamLocked": true,
+            "teamLockedAt": "2026-10-24T17:45:56.324Z"
+          },
+          {
+            "id": "fake_admin",
+            "name": "Admin",
+            "email": "admin@portal.test",
+            "approval": "approved",
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Going",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "fake_bob",
+            "name": "Bob",
+            "email": "bob@portal.test",
+            "approval": "approved",
+            "checked_in": null,
+            "team_id": "fake_team3",
+            "team_name": "Common Ground",
+            "submitted": 0,
+            "avatarColor": "green",
+            "avatarExpression": "sleepy",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 3,
+              "approved": 3,
+              "allApproved": true,
+              "label": "3/3 individual approvals"
+            },
+            "status": "Going",
+            "teamStatus": "Forming",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_carol",
+            "name": "Carol",
+            "email": "carol@portal.test",
+            "approval": "approved",
+            "checked_in": null,
+            "team_id": "fake_team3",
+            "team_name": "Common Ground",
+            "submitted": 0,
+            "avatarColor": "purple",
+            "avatarExpression": "plus",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 3,
+              "approved": 3,
+              "allApproved": true,
+              "label": "3/3 individual approvals"
+            },
+            "status": "Going",
+            "teamStatus": "Forming",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_00",
+            "name": "Synthetic Control Project 00 Builder",
+            "email": "control00@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_00",
+            "team_name": "Synthetic Control Project 00 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_01",
+            "name": "Synthetic Control Project 01 Builder",
+            "email": "control01@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_01",
+            "team_name": "Synthetic Control Project 01 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_02",
+            "name": "Synthetic Control Project 02 Builder",
+            "email": "control02@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_02",
+            "team_name": "Synthetic Control Project 02 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_03",
+            "name": "Synthetic Control Project 03 Builder",
+            "email": "control03@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_03",
+            "team_name": "Synthetic Control Project 03 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_04",
+            "name": "Synthetic Control Project 04 Builder",
+            "email": "control04@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_04",
+            "team_name": "Synthetic Control Project 04 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_05",
+            "name": "Synthetic Control Project 05 Builder",
+            "email": "control05@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_05",
+            "team_name": "Synthetic Control Project 05 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_06",
+            "name": "Synthetic Control Project 06 Builder",
+            "email": "control06@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_06",
+            "team_name": "Synthetic Control Project 06 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_07",
+            "name": "Synthetic Control Project 07 Builder",
+            "email": "control07@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_07",
+            "team_name": "Synthetic Control Project 07 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_08",
+            "name": "Synthetic Control Project 08 Builder",
+            "email": "control08@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_08",
+            "team_name": "Synthetic Control Project 08 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_09",
+            "name": "Synthetic Control Project 09 Builder",
+            "email": "control09@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_09",
+            "team_name": "Synthetic Control Project 09 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_10",
+            "name": "Synthetic Control Project 10 Builder",
+            "email": "control10@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_10",
+            "team_name": "Synthetic Control Project 10 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_11",
+            "name": "Synthetic Control Project 11 Builder",
+            "email": "control11@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_11",
+            "team_name": "Synthetic Control Project 11 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_12",
+            "name": "Synthetic Control Project 12 Builder",
+            "email": "control12@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_12",
+            "team_name": "Synthetic Control Project 12 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_13",
+            "name": "Synthetic Control Project 13 Builder",
+            "email": "control13@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_13",
+            "team_name": "Synthetic Control Project 13 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_14",
+            "name": "Synthetic Control Project 14 Builder",
+            "email": "control14@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_14",
+            "team_name": "Synthetic Control Project 14 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_15",
+            "name": "Synthetic Control Project 15 Builder",
+            "email": "control15@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_15",
+            "team_name": "Synthetic Control Project 15 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_16",
+            "name": "Synthetic Control Project 16 Builder",
+            "email": "control16@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_16",
+            "team_name": "Synthetic Control Project 16 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_17",
+            "name": "Synthetic Control Project 17 Builder",
+            "email": "control17@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_17",
+            "team_name": "Synthetic Control Project 17 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_18",
+            "name": "Synthetic Control Project 18 Builder",
+            "email": "control18@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_18",
+            "team_name": "Synthetic Control Project 18 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_19",
+            "name": "Synthetic Control Project 19 Builder",
+            "email": "control19@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_19",
+            "team_name": "Synthetic Control Project 19 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_20",
+            "name": "Synthetic Control Project 20 Builder",
+            "email": "control20@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_20",
+            "team_name": "Synthetic Control Project 20 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_21",
+            "name": "Synthetic Control Project 21 Builder",
+            "email": "control21@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_21",
+            "team_name": "Synthetic Control Project 21 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_22",
+            "name": "Synthetic Control Project 22 Builder",
+            "email": "control22@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_22",
+            "team_name": "Synthetic Control Project 22 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_23",
+            "name": "Synthetic Control Project 23 Builder",
+            "email": "control23@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_23",
+            "team_name": "Synthetic Control Project 23 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_control_user_24",
+            "name": "Synthetic Control Project 24 Builder",
+            "email": "control24@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_control_team_24",
+            "team_name": "Synthetic Control Project 24 Team",
+            "submitted": 1,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 1,
+              "approved": 1,
+              "allApproved": true,
+              "label": "1/1 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_dave",
+            "name": "Dave",
+            "email": "dave@portal.test",
+            "approval": "approved",
+            "checked_in": null,
+            "team_id": "fake_team3",
+            "team_name": "Common Ground",
+            "submitted": 0,
+            "avatarColor": "orange",
+            "avatarExpression": "star",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 3,
+              "approved": 3,
+              "allApproved": true,
+              "label": "3/3 individual approvals"
+            },
+            "status": "Going",
+            "teamStatus": "Forming",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_eve",
+            "name": "Eve",
+            "email": "eve@portal.test",
+            "approval": "approved",
+            "checked_in": "Manually checked in",
+            "team_id": "fake_team5",
+            "team_name": "The Fifth Element",
+            "submitted": 3,
+            "avatarColor": "grey",
+            "avatarExpression": "cheerful",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 5,
+              "approved": 5,
+              "allApproved": true,
+              "label": "5/5 individual approvals"
+            },
+            "status": "Checked in",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_frank",
+            "name": "Frank",
+            "email": "frank@portal.test",
+            "approval": "approved",
+            "checked_in": null,
+            "team_id": "fake_team5",
+            "team_name": "The Fifth Element",
+            "submitted": 3,
+            "avatarColor": "coral",
+            "avatarExpression": "mixed-plus",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 5,
+              "approved": 5,
+              "allApproved": true,
+              "label": "5/5 individual approvals"
+            },
+            "status": "Going",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_gina",
+            "name": "Gina",
+            "email": "gina@portal.test",
+            "approval": "approved",
+            "checked_in": null,
+            "team_id": "fake_team5",
+            "team_name": "The Fifth Element",
+            "submitted": 3,
+            "avatarColor": "yellow",
+            "avatarExpression": "mixed-slash",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 5,
+              "approved": 5,
+              "allApproved": true,
+              "label": "5/5 individual approvals"
+            },
+            "status": "Going",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_hari",
+            "name": "Hari",
+            "email": "hari@portal.test",
+            "approval": "approved",
+            "checked_in": null,
+            "team_id": "fake_team5",
+            "team_name": "The Fifth Element",
+            "submitted": 3,
+            "avatarColor": "charcoal",
+            "avatarExpression": "round",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 5,
+              "approved": 5,
+              "allApproved": true,
+              "label": "5/5 individual approvals"
+            },
+            "status": "Going",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_ivy",
+            "name": "Ivy",
+            "email": "ivy@portal.test",
+            "approval": "approved",
+            "checked_in": null,
+            "team_id": "fake_team5",
+            "team_name": "The Fifth Element",
+            "submitted": 3,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 5,
+              "approved": 5,
+              "allApproved": true,
+              "label": "5/5 individual approvals"
+            },
+            "status": "Going",
+            "teamStatus": "Submitted",
+            "teamLocked": false
+          },
+          {
+            "id": "fake_judge",
+            "name": "Judge",
+            "email": "judge@portal.test",
+            "approval": "approved",
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Going",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "fake_judge2",
+            "name": "Judge2",
+            "email": "judge2@portal.test",
+            "approval": "approved",
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Going",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "fake_mentor",
+            "name": "Synthetic mentor",
+            "email": "mentor@portal.test",
+            "approval": "pending",
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "fake_owner",
+            "name": "Owner",
+            "email": "owner@portal.test",
+            "approval": "approved",
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Going",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "fake_pending",
+            "name": "Pending",
+            "email": "pending@portal.test",
+            "approval": "pending",
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": "green",
+            "avatarExpression": "sleepy",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "fake_stranger",
+            "name": "Stranger",
+            "email": "stranger@portal.test",
+            "approval": "pending",
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": "blue",
+            "avatarExpression": "squeezed",
+            "registered": true,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_001",
+            "name": "QA Viewer 001",
+            "email": "viewer001@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_002",
+            "name": "QA Viewer 002",
+            "email": "viewer002@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_003",
+            "name": "QA Viewer 003",
+            "email": "viewer003@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_004",
+            "name": "QA Viewer 004",
+            "email": "viewer004@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_005",
+            "name": "QA Viewer 005",
+            "email": "viewer005@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_006",
+            "name": "QA Viewer 006",
+            "email": "viewer006@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_007",
+            "name": "QA Viewer 007",
+            "email": "viewer007@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_008",
+            "name": "QA Viewer 008",
+            "email": "viewer008@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_009",
+            "name": "QA Viewer 009",
+            "email": "viewer009@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_010",
+            "name": "QA Viewer 010",
+            "email": "viewer010@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_011",
+            "name": "QA Viewer 011",
+            "email": "viewer011@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_012",
+            "name": "QA Viewer 012",
+            "email": "viewer012@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_013",
+            "name": "QA Viewer 013",
+            "email": "viewer013@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_014",
+            "name": "QA Viewer 014",
+            "email": "viewer014@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_015",
+            "name": "QA Viewer 015",
+            "email": "viewer015@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_016",
+            "name": "QA Viewer 016",
+            "email": "viewer016@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_017",
+            "name": "QA Viewer 017",
+            "email": "viewer017@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_018",
+            "name": "QA Viewer 018",
+            "email": "viewer018@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_019",
+            "name": "QA Viewer 019",
+            "email": "viewer019@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_020",
+            "name": "QA Viewer 020",
+            "email": "viewer020@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_021",
+            "name": "QA Viewer 021",
+            "email": "viewer021@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_022",
+            "name": "QA Viewer 022",
+            "email": "viewer022@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_023",
+            "name": "QA Viewer 023",
+            "email": "viewer023@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_024",
+            "name": "QA Viewer 024",
+            "email": "viewer024@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_025",
+            "name": "QA Viewer 025",
+            "email": "viewer025@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_026",
+            "name": "QA Viewer 026",
+            "email": "viewer026@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "qa_viewer_027",
+            "name": "QA Viewer 027",
+            "email": "viewer027@portal.test",
+            "approval": null,
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": true,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Not registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          },
+          {
+            "id": "fake_volunteer",
+            "name": "Synthetic volunteer",
+            "email": "volunteer@portal.test",
+            "approval": "pending",
+            "checked_in": null,
+            "team_id": null,
+            "team_name": null,
+            "submitted": 0,
+            "avatarColor": null,
+            "avatarExpression": null,
+            "registered": false,
+            "viewer": false,
+            "teamReadiness": {
+              "total": 0,
+              "approved": 0,
+              "allApproved": false,
+              "label": "No team yet"
+            },
+            "status": "Registered",
+            "teamLocked": false,
+            "teamLockedAt": null
+          }
+        ],
+        "lookupOnly": false,
+        "checkInConfigured": true,
+        "checkInStatus": {
+          "configured": true,
+          "enabled": true,
+          "allowed": true,
+          "state": "ready",
+          "message": "Check-in is ready.",
+          "blockers": []
+        },
+        "adminPresentation": {
+          "scope": "aps1.3d0c518cd59ccf7a2f1b2f8a842f3c3f22cf2be484bd14485810b63f9a45cdd1",
+          "version": "apv1.1f8acf12c1bc2f16f3ca3ce4b2a8d43c824da1e57e66d4b033020002cc5f8b40",
+          "unchanged": false
+        },
+        "localTest": true
+      }
+    }
+  ],
+  "pageErrors": [],
+  "priorCheckSource": "c205b404b32ecf444c6897777421f297574a31c6",
+  "harnessCorrection": "Prior5successful list checks retained. Preview failed in QA fault bridge502 (no commit request); frontend returned to direct8853. Confirmation is actual Add participants? modal, not base contract Import participants.",
+  "registrationCommit": {
+    "status": 200,
+    "body": {
+      "message": "Add-only roster import committed. Existing profiles, statuses and removed accounts were preserved."
+    }
+  },
+  "result": "FAIL",
+  "failure": {
+    "message": "search is not defined",
+    "stack": "ReferenceError: search is not defined\n    at file:///workspace/ddd-viewer-browser/scripts/qa-viewer-registration-admin.mjs:13:82"
+  },
+  "browserClosed": true
+}
