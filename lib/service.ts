@@ -176,6 +176,8 @@ export class PortalService {
       owner,
       avatarColor: extra?.avatar_color || "blue",
       avatarExpression: extra?.avatar_expression || "squeezed",
+      hasProfileAvatar:
+        !!extra?.completed_at && !!extra.avatar_color && !!extra.avatar_expression,
     };
   }
   async staff(ownerOnly = false) {
