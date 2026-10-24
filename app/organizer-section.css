@@ -212,10 +212,11 @@
   }
   .public-home-shell .organizer-heading-dots {
     top: -12px;
-    width: 140px;
+    width: 11.5%;
   }
   .public-home-shell .organizer-list {
-    width: clamp(552px, 50vw, 720px);
+    /* Half each original column, then add this row's three compact gaps. */
+    width: calc(50% - clamp(24px, 2.55vw, 42px) + clamp(36px, 4.2vw, 60px));
     max-width: 100%;
     margin-inline: auto;
     gap: clamp(12px, 1.4vw, 20px);
@@ -228,7 +229,7 @@
     width: 100%;
     min-height: 0;
     height: auto;
-    padding: calc(100% + 12px) 8px 16px;
+    padding: calc(100% + 12px) 0 16px;
     border-radius: 50% 50% 16px 16px;
   }
   .public-home-shell .organizer-surface {
@@ -238,7 +239,7 @@
     gap: 8px;
   }
   .public-home-shell .organizer-name {
-    font-size: 22px;
+    font-size: clamp(19px, 1.8vw, 22px);
   }
   .public-home-shell .organizer-role {
     font-size: 17px;
