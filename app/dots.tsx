@@ -18,6 +18,7 @@ export default function Dots({
   bottom?: boolean;
 }) {
   const root = useRef<HTMLDivElement>(null);
+  const entered = useRef(false);
   useEffect(() => {
     const stage = root.current;
     if (!stage) return;
@@ -28,17 +29,23 @@ export default function Dots({
     );
     let width = 0,
       height = 0,
-      left = 0,
-      top = 0,
       frame = 0,
       previous = 0;
     let entrance = 0,
-      visible = true,
+      visible = false,
       alive = true,
       active = false;
     let pointer: { x: number; y: number } | null = null;
     let touchTimer: ReturnType<typeof setTimeout> | undefined;
     let dots: (DotState & { startY: number; angle: number })[] = [];
+    const stop = () => {
+      cancelAnimationFrame(frame);
+      clearTimeout(touchTimer);
+      frame = 0;
+      previous = 0;
+      pointer = null;
+      stage.dataset.running = "false";
+    };
     const paint = () => {
       dots.forEach((dot, i) => {
         nodes[i].style.transform =
@@ -56,12 +63,17 @@ export default function Dots({
     };
     const draw = (now: number) => {
       frame = 0;
-      if (!alive || !visible || document.hidden || paused || reduced.matches)
+      if (!alive || !visible || document.hidden || paused || reduced.matches) {
+        stage.dataset.running = "false";
         return;
-      const dt = previous ? (now - previous) / 16.67 : 1;
+      }
+      const elapsed = previous ? Math.min(now - previous, 64) : 0;
+      const dt = elapsed ? elapsed / 16.67 : 1;
       previous = now;
-      if (!entrance) entrance = now;
-      const progress = Math.min(1, (now - entrance) / 850);
+      entered.current = true;
+      // Count visible animation time, so returning to the tab cannot skip ahead.
+      entrance = Math.min(850, entrance + elapsed);
+      const progress = entrance / 850;
       const ease = 1 - Math.pow(1 - progress, 3);
       let moving = progress < 1;
       dots.forEach((dot) => {
@@ -79,6 +91,10 @@ export default function Dots({
       });
       paint();
       if (moving) frame = requestAnimationFrame(draw);
+      else {
+        previous = 0;
+        stage.dataset.running = "false";
+      }
     };
     const start = () => {
       if (
@@ -89,15 +105,16 @@ export default function Dots({
         !document.hidden &&
         width &&
         height
-      )
+      ) {
+        stage.dataset.running = "true";
         frame = requestAnimationFrame(draw);
+      }
     };
     const reset = () => {
-      cancelAnimationFrame(frame);
-      frame = 0;
-      previous = 0;
-      pointer = null;
+      stop();
       if (paused || reduced.matches) {
+        if (reduced.matches) entered.current = true;
+        entrance = 850;
         dots.forEach((dot) => {
           dot.x = dot.homeX;
           dot.y = dot.homeY;
@@ -108,11 +125,11 @@ export default function Dots({
     };
     const measure = () => {
       const rect = stage.getBoundingClientRect();
+      if (width === rect.width && height === rect.height) return;
       width = rect.width;
       height = rect.height;
-      left = rect.left + window.scrollX;
-      top = rect.top + window.scrollY;
       active = width > 0 && height > 0;
+      const entering = !entered.current && !paused && !reduced.matches;
       const compact = innerWidth < 1000;
       const descriptors = bottom
         ? stripDots
@@ -135,7 +152,7 @@ export default function Dots({
         const startY = -r * (i + 2);
         return {
           x: homeX,
-          y: paused || reduced.matches ? homeY : startY,
+          y: entering ? startY : homeY,
           homeX,
           homeY,
           r,
@@ -148,7 +165,7 @@ export default function Dots({
       nodes.slice(descriptors.length).forEach((node) => {
         node.style.display = "none";
       });
-      entrance = 0;
+      entrance = entering ? 0 : 850;
       previous = 0;
       paint();
       reset();
@@ -156,15 +173,22 @@ export default function Dots({
     const move = (event: PointerEvent) => {
       if (
         !active ||
+        !visible ||
+        document.hidden ||
         paused ||
         reduced.matches ||
         (!bottom && event.pointerType !== "mouse")
       )
         return;
       if (event.pointerType !== "mouse" && event.type !== "pointerdown") return;
-      const x = event.pageX - left,
-        y = event.pageY - top;
-      pointer = x >= 0 && x <= width && y >= 0 && y <= height ? { x, y } : null;
+      // Sticky chapters move without resizing; use their current viewport bounds.
+      const rect = stage.getBoundingClientRect();
+      const x = event.clientX - rect.left,
+        y = event.clientY - rect.top;
+      const next =
+        x >= 0 && x <= width && y >= 0 && y <= height ? { x, y } : null;
+      if (!pointer && !next) return;
+      pointer = next;
       if (event.pointerType !== "mouse") {
         clearTimeout(touchTimer);
         touchTimer = setTimeout(() => {
@@ -175,45 +199,48 @@ export default function Dots({
       start();
     };
     const leave = () => {
+      if (!pointer) return;
+      clearTimeout(touchTimer);
       pointer = null;
       start();
     };
+    const leaveWindow = (event: PointerEvent) => {
+      if (!event.relatedTarget) leave();
+    };
     const visibility = () => {
-      if (document.hidden) {
-        cancelAnimationFrame(frame);
-        frame = 0;
-        previous = 0;
-        pointer = null;
-      } else start();
+      stage.dataset.visible = String(visible && !document.hidden);
+      if (document.hidden) stop();
+      else start();
     };
     const resize = new ResizeObserver(measure);
     resize.observe(stage);
     const intersection = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
-      if (!visible) {
-        cancelAnimationFrame(frame);
-        frame = 0;
-        previous = 0;
-        pointer = null;
-      } else start();
+      stage.dataset.visible = String(visible && !document.hidden);
+      if (!visible) stop();
+      else start();
     });
     intersection.observe(stage);
     window.addEventListener("pointermove", move, { passive: true });
     window.addEventListener("pointerdown", move, { passive: true });
     window.addEventListener("pointercancel", leave, { passive: true });
+    window.addEventListener("pointerout", leaveWindow, { passive: true });
+    window.addEventListener("scroll", leave, { passive: true, capture: true });
     window.addEventListener("blur", leave);
     document.addEventListener("visibilitychange", visibility);
     reduced.addEventListener("change", reset);
+    stage.dataset.visible = "false";
     measure();
     return () => {
       alive = false;
-      cancelAnimationFrame(frame);
-      clearTimeout(touchTimer);
+      stop();
       resize.disconnect();
       intersection.disconnect();
       window.removeEventListener("pointermove", move);
       window.removeEventListener("pointerdown", move);
       window.removeEventListener("pointercancel", leave);
+      window.removeEventListener("pointerout", leaveWindow);
+      window.removeEventListener("scroll", leave, true);
       window.removeEventListener("blur", leave);
       document.removeEventListener("visibilitychange", visibility);
       reduced.removeEventListener("change", reset);

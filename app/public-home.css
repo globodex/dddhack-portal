@@ -147,6 +147,8 @@
   width: var(--dot-width);
   aspect-ratio: 1;
   transform: translate(calc(var(--dot-x) - 50%), calc(var(--dot-y) - 50%));
+}
+.public-home-shell .dot-field[data-running="true"] .public-dot {
   will-change: transform;
 }
 .public-home-shell .public-dot svg {
@@ -233,6 +235,11 @@
   }
 }
 .public-home-shell .home[data-paused="true"] .scroll-cue {
+  animation-play-state: paused;
+}
+.public-home-shell
+  .home-hero:has(.hero-dots[data-visible="false"])
+  .scroll-cue {
   animation-play-state: paused;
 }
 /* Remove only transparent master-canvas padding; all four approved layers retain registration. */

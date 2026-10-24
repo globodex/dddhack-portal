@@ -55,7 +55,8 @@ export default function DelhiWordmark({
     const media = matchMedia(
       "(prefers-reduced-motion: reduce), (pointer: coarse), (hover: none)",
     );
-    let alive = true;
+    let alive = true,
+      visible = false;
     const resetFill = () => {
       if (fill.current) fill.current.style.transform = "translate(0px, 0px)";
     };
@@ -63,6 +64,8 @@ export default function DelhiWordmark({
       const eligible =
         !media.matches &&
         !paused &&
+        visible &&
+        !document.hidden &&
         typeof CSS !== "undefined" &&
         (CSS.supports("mask-image", "url('x.png')") ||
           CSS.supports("-webkit-mask-image", "url('x.png')"));
@@ -112,12 +115,29 @@ export default function DelhiWordmark({
     };
     update();
     media.addEventListener("change", update);
+    document.addEventListener("visibilitychange", update);
+    window.addEventListener("blur", resetFill);
+    window.addEventListener("scroll", resetFill, {
+      passive: true,
+      capture: true,
+    });
     const observer = new ResizeObserver(resetFill);
-    if (root.current) observer.observe(root.current);
+    const intersection = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      update();
+    });
+    if (root.current) {
+      observer.observe(root.current);
+      intersection.observe(root.current);
+    }
     return () => {
       alive = false;
       observer.disconnect();
+      intersection.disconnect();
       media.removeEventListener("change", update);
+      document.removeEventListener("visibilitychange", update);
+      window.removeEventListener("blur", resetFill);
+      window.removeEventListener("scroll", resetFill, true);
     };
   }, [paused]);
   const showFallback = () => {
@@ -145,6 +165,9 @@ export default function DelhiWordmark({
           fill.current.style.transform = `translate(${(p.x * 2048) / 1927}px,${(p.y * 2048) / 1927}px)`;
       }}
       onPointerLeave={() => {
+        if (fill.current) fill.current.style.transform = "translate(0px,0px)";
+      }}
+      onPointerCancel={() => {
         if (fill.current) fill.current.style.transform = "translate(0px,0px)";
       }}
     >
