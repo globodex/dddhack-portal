@@ -1,0 +1,17 @@
+
+[32;1mPassed                 : [0m6
+[32;1mChecks                 : [0m{Actual reviewed ZIP copied, hash-checked, expanded, f
+                         ull entry/native files validated, Second run uses a ne
+                         w directory and preserves the first result, Wrong dige
+                         st rejects before ZIP extraction, HTTPS download branc
+                         h tested with explicit local transport mock, no networ
+                         k request…}
+[32;1mPowerShellVersion      : [0m7.6.8
+[32;1mRuntimePlatform        : [0mUnix
+[32;1mArchiveSHA256          : [0mfcd0941113bb8dcd7b35f965bf3e37fef5890090a0280b90159331
+                         f8c708d521
+[32;1mArchiveEntries         : [0m93
+[32;1mNativeWindowsExecution : [0mnot performed
+[32;1mLiveDownload           : [0mnot performed; transport mocked explicitly
+[32;1mProviderActions        : [0m0
+

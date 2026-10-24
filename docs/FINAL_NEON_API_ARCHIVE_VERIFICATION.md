@@ -1,7 +1,7 @@
 # Final backend archive verification
 
 The official Function archive was freshly built from exact integrated API source
-`80a37a2e0930631617ed01ff47a629f7847b30ca`. The isolated packaging branch changed
+`c56904fca3966c8d8c83327f574aedc3de8c0df3`. The isolated packaging branch changed
 only archive artifacts, handoff digest pins and verification evidence.
 
 `scripts/build-neon-archive.mjs` called the installed
@@ -14,10 +14,10 @@ email or push was used.
 
 | Check | Verified result |
 | --- | --- |
-| ZIP SHA256 | `ccf462c825655b78671dec4cecac78be5da5b77430f982f2275516246cab8b93` |
-| ZIP / raw bytes / files | 9,019,298 / 21,166,383 / 93 |
+| ZIP SHA256 | `fcd0941113bb8dcd7b35f965bf3e37fef5890090a0280b90159331f8c708d521` |
+| ZIP / raw bytes / files | 9,019,301 / 21,166,452 / 93 |
 | Official limits | 10,485,760 ZIP bytes / 67,108,864 raw bytes / 4,096 entries |
-| ZIP index, fresh esbuild output and host-copy SHA256 | `d710a5d53628734b80199b6e76d3e7254fbc647f8ac872a42b85612f20b3038c` |
+| ZIP index, fresh esbuild output and host-copy SHA256 | `d469ba71915df092585c5e6f956400daf9738f6ba5bfc48d2b895c46ec7f8b85` |
 | Fresh API graph | 865 inputs, including 81 application files; zero forbidden or frontend inputs |
 | SEO boundary | `lib/seo.ts` is absent from the API graph |
 | Native files | Sharp 0.35.5 and libvips 8.18.7, both Linux AArch64 ELF machine 183 |
@@ -39,10 +39,16 @@ and private selected-profile projection are covered by the separate domain/API
 test gates; the archive smoke has no configured database and cannot prove those
 flows by itself.
 
-Relative to the previous archive from `354aba6bdd36cafd8a83afd46cbf17ab160b24cc`,
-only `lib/discover-participants.ts` changes among the same 81 application inputs,
-adding the approved saved-gender field to authorized selected-profile views.
-The entry changes from 1,665,510 to 1,665,506 raw bytes. The graph still has 865
+Relative to the previous archive from `80a37a2e0930631617ed01ff47a629f7847b30ca`,
+only `lib/experience.ts` changes among the same 81 application inputs. It omits
+own phone and organization-ID editor fields from a completed non-admin
+workspace profile while preserving the explicit editor, incomplete onboarding,
+admin response, current-team contacts and public saved gender. The separate
+[privacy audit](PROFILE_CONTACT_INDEPENDENT_AUDIT.md) records six actual HTTP
+SQLite/PGlite cases and typecheck passing; this is data minimization, not a
+cross-user exposure fix.
+
+The entry changes from 1,665,506 to 1,665,575 raw bytes. The graph still has 865
 inputs. No application input was added or removed, and every other archive
 entry is byte-identical. This is a real JavaScript update, not a timestamp-only
 rebuild. These byte counts make no application speed claim.
@@ -80,16 +86,16 @@ archive has been built and verified locally; it has not been deployed.
 
 [Receipt](../artifacts/neon/receipt.json),
 [build metadata](../artifacts/neon/build-metadata.json),
-[verification summary](../evidence/final-neon-api-refresh/verification.json),
-[build operations](../evidence/final-neon-api-refresh/build-operations.json),
-[fresh graph](../evidence/final-neon-api-refresh/graph.json),
-[all input hashes](../evidence/final-neon-api-refresh/all-input-hashes.json),
-[application input hashes](../evidence/final-neon-api-refresh/runtime-input-hashes.json),
-[archive comparison](../evidence/final-neon-api-refresh/archive-refresh-comparison.json),
-[native headers](../evidence/final-neon-api-refresh/native-readelf.json),
-[local SQL checksums](../evidence/final-neon-api-refresh/local-sql-hash-review.json),
-[host smoke](../evidence/final-neon-api-refresh/host-smoke.json) and
-[PowerShell checks](../evidence/final-neon-api-refresh/windows-handoff-report.json)
+[verification summary](../evidence/privacy-neon-api-refresh/verification.json),
+[build operations](../evidence/privacy-neon-api-refresh/build-operations.json),
+[fresh graph](../evidence/privacy-neon-api-refresh/graph.json),
+[all input hashes](../evidence/privacy-neon-api-refresh/all-input-hashes.json),
+[application input hashes](../evidence/privacy-neon-api-refresh/runtime-input-hashes.json),
+[archive comparison](../evidence/privacy-neon-api-refresh/archive-refresh-comparison.json),
+[native headers](../evidence/privacy-neon-api-refresh/native-readelf.json),
+[local SQL checksums](../evidence/privacy-neon-api-refresh/local-sql-hash-review.json),
+[host smoke](../evidence/privacy-neon-api-refresh/host-smoke.json) and
+[PowerShell checks](../evidence/privacy-neon-api-refresh/windows-handoff-report.json)
 record the current facts. Older evidence under `evidence/neon-host-archive/` and
-`evidence/final-neon-api-archive/` remains historical and unchanged. The smoke report's `noRebuild` describes only
+`evidence/final-neon-api-archive/` and `evidence/final-neon-api-refresh/` remain historical and unchanged. The smoke report's `noRebuild` describes only
 that read-only smoke step; the fresh build is recorded separately.
