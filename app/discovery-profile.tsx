@@ -144,7 +144,7 @@ export default function DiscoveryProfile({
       aria-labelledby={titleId}
       aria-describedby={person.bio ? bioId : undefined}
     >
-      <button
+      <div className="discovery-profile-dismiss"><button
         type="button"
         className="discovery-profile-close"
         autoFocus
@@ -152,7 +152,7 @@ export default function DiscoveryProfile({
         aria-label="Close profile"
       >
         <X size={22} aria-hidden="true" />
-      </button>
+      </button></div>
       <div className="discovery-profile-identity-v6">
         <DotAvatar
           color={person.avatarColor}
