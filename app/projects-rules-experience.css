@@ -27,7 +27,7 @@
 .project-search-status { color: var(--muted, #656960); font-size: 13px; }
 .app-shell .projects-v6 .project-list { padding: 0; margin: 0; border-color: var(--line, #e3e4db); }
 .app-shell .projects-v6 .project-list > li { min-height: 124px; gap: 24px; padding: 24px 0; border-color: var(--line, #e3e4db); }
-.app-shell .projects-v6 .project-search-placeholder { display: flex; align-items: center; }
+.app-shell .projects-v6 .project-list > li.project-search-placeholder { display: flex; align-items: center; }
 .project-search-placeholder > i { width: 64px; height: 64px; flex: 0 0 64px; border-radius: 12px; background: #e4e6dc; }
 .project-search-placeholder > div { display: grid; flex: 1; gap: 9px; }
 .project-search-placeholder span { width: 75%; height: 12px; border-radius: 4px; background: #e4e6dc; }
@@ -165,7 +165,7 @@
   .app-shell .projects-v6 .project-row-link h2 { font-size: 19px; line-height: 1.25; }
   .app-shell .projects-v6 .project-row-link p { font-size: 13px; line-height: 1.5; }
   .app-shell .projects-v6 .project-list > li > .engagement { margin-left: 66px; gap: 8px; flex-wrap: wrap; }
-  .app-shell .projects-v6 .project-search-placeholder { display: grid; grid-template-columns: 52px 64px minmax(0, 1fr); align-items: start; gap: 14px; }
+  .app-shell .projects-v6 .project-list > li.project-search-placeholder { display: grid; grid-template-columns: 52px 64px minmax(0, 1fr); align-items: start; gap: 14px; }
   .project-search-placeholder > i { width: 52px; height: 52px; flex-basis: 52px; }
   .project-search-placeholder > div { grid-column: 2 / -1; min-height: 74px; align-content: start; }
   .project-search-placeholder > b { display: block; grid-row: 2; grid-column: 2; }
