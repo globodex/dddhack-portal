@@ -347,11 +347,11 @@
   .app-shell .profile-flow {
     height: auto;
     min-height: 0;
-    padding: 16px 0 0;
+    padding: 12px 0 0;
   }
   .app-shell .profile-toolbar {
     gap: 16px;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
   .app-shell .profile-flow h1 {
     font-size: 28px;
@@ -369,13 +369,13 @@
   }
   .app-shell .profile-basics-layout {
     grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
+    gap: 16px;
   }
   .app-shell .profile-avatar {
     grid-column: 1;
     grid-row: 1;
     width: 100%;
-    padding: 0 0 16px;
+    padding: 0 0 12px;
     border: 0;
     border-bottom: 1px solid var(--line, #e3e4db);
   }
@@ -397,7 +397,7 @@
     outline-offset: 3px;
   }
   .app-shell .profile-fields .profile-avatar-options + .profile-avatar-options {
-    margin-top: 12px;
+    margin-top: 8px;
     padding-top: 0;
     border: 0;
   }
@@ -421,8 +421,8 @@
     .profile-flow[data-step="1"]
     .profile-actions:not(:has([role="alert"])) {
     width: 100%;
-    margin-top: 24px;
-    padding-top: 20px;
+    margin-top: 20px;
+    padding-top: 16px;
     padding-bottom: max(8px, env(safe-area-inset-bottom));
   }
   .app-shell .profile-next {
