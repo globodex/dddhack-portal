@@ -213,11 +213,11 @@
 .app-shell .submission-v6 .submission-heading { display: flex; align-items: center; gap: 10px; margin: 0; min-width: 0; }
 .app-shell .submission-v6 .submission-heading > div { justify-content: flex-start; gap: 12px; min-width: 0; }
 .app-shell .submission-v6 .submission-heading h1 { margin: 0; font-size: 28px; line-height: 1.2; }
-.app-shell .submission-v6 .submission-back { flex: 0 0 40px; width: 40px; height: 44px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.app-shell .submission-v6 .submission-back { flex: 0 0 44px; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
 .app-shell .submission-v6 .submission-progress { margin: 0; justify-items: end; gap: 7px; font-size: 12px; }
 .app-shell .submission-v6 .submission-progress-bars { width: 112px; }
 .app-shell .submission-v6 .submission-progress-bars i { height: 4px; }
-.app-shell .submission-v6 .submission-window-status { grid-column: 1 / -1; position: static; display: flex; justify-content: flex-start; justify-items: start; margin: 0 0 0 50px; color: #48613b; font-size: 12px; }
+.app-shell .submission-v6 .submission-window-status { grid-column: 1 / -1; position: static; display: flex; justify-content: flex-start; justify-items: start; margin: 0 0 0 54px; color: #48613b; font-size: 12px; }
 .app-shell .submission-v6 .submission-window-status > span { gap: 7px; }
 .app-shell .submission-v6 .submission-window-status i { width: 7px; height: 7px; }
 .app-shell .submission-v6 .project-editor { width: 100%; max-width: none; padding: 28px; margin: 0; border-radius: 16px; }
@@ -248,10 +248,10 @@
   .app-shell .submission-v6 .submission-heading > div { gap: 8px; }
   .app-shell .submission-v6 .submission-heading h1 { font-size: 23px; }
   .app-shell .submission-v6 .submission-heading .expressive-heading-dot { width: 30px; height: 30px; }
-  .app-shell .submission-v6 .submission-back { flex-basis: 36px; width: 36px; }
+  .app-shell .submission-v6 .submission-back { flex-basis: 44px; width: 44px; }
   .app-shell .submission-v6 .submission-progress { gap: 6px; font-size: 11px; }
   .app-shell .submission-v6 .submission-progress-bars { width: 64px; gap: 4px; }
-  .app-shell .submission-v6 .submission-window-status { margin-left: 44px; }
+  .app-shell .submission-v6 .submission-window-status { margin-left: 52px; }
   .app-shell .submission-v6 .project-editor { padding: 22px 18px; }
   .app-shell .submission-v6 .submission-media { grid-template-columns: minmax(0, 1fr); gap: 28px; }
   .app-shell .submission-v6 .submission-media-side { grid-template-columns: minmax(0, 1fr); gap: 24px; }
