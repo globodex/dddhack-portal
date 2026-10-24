@@ -253,6 +253,10 @@ export function portalConfirmationFor(
   return base;
 }
 export function portalTargetName(data: View, values: Row): string {
+  if (typeof values.id === "string" && ["accepted", "declined"].includes(values.decision)) {
+    const invitation = (data.actions || []).find((item: Row) => item.id === values.id && item.kind === "invite");
+    if (typeof invitation?.team_name === "string" && invitation.team_name.trim()) return invitation.team_name;
+  }
   if (values.expectedLeaderId && values.teamId && values.userId) {
     const team = (data.items || []).find((item: Row) => item.id === values.teamId);
     const oldLeader = team?.members?.find((member: Row) => member.id === values.expectedLeaderId);
