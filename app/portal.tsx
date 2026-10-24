@@ -46,6 +46,7 @@ import { useDiscoverPeople, peopleDirectoryUrl, readPeoplePage } from "./use-dis
 import { HeadingDot } from "./expressive-heading";
 import RouteSkeleton from "./route-skeleton";
 import MobileNavigation from "./mobile-navigation";
+import { useHydrated } from "./use-hydrated";
 import { readPortalView } from "../lib/portal-read";
 import {AdminPresentationCache, AdminPresentationCacheMiss} from "../lib/admin-presentation";
 import DiscoveryProfile, {
@@ -491,12 +492,17 @@ function Form({
   disabled?: boolean;
   disabledReason?: string;
 }) {
+  const hydrated = useHydrated();
   const disabledReasonId = useId();
   const [busy, setBusy] = useState(false),
     [error, setError] = useState("");
   return (
     <form
       className={className}
+      method="post"
+      inert={!hydrated}
+      data-hydrated={hydrated}
+      aria-busy={!hydrated || busy}
       onSubmit={async (e) => {
         e.preventDefault();
         if (disabled || busy) return;
@@ -518,7 +524,7 @@ function Form({
       <div className="form-actions">
         <button
           className="button"
-          disabled={busy || disabled}
+          disabled={!hydrated || busy || disabled}
           title={disabled ? disabledReason : undefined}
           aria-describedby={
             disabled && disabledReason ? disabledReasonId : undefined
@@ -5312,6 +5318,7 @@ export default function Portal({
   pendingPath?: string | null;
   onNavigate?: (event: { preventDefault(): void }, destination: string) => void;
 }) {
+  const hydrated = useHydrated();
   const path = canonical(original);
   function navigate(event: { preventDefault(): void }, destination: string) {
     if (!onNavigate || canonical(destination) === path) return;
@@ -5551,6 +5558,7 @@ export default function Portal({
           </a>
           <button
             className="public-menu button secondary"
+            disabled={!hydrated}
             aria-controls="mobile-navigation"
             aria-haspopup="dialog"
             aria-expanded={menu}
@@ -5607,6 +5615,7 @@ export default function Portal({
         </a>
         <button
           className="button secondary"
+          disabled={!hydrated}
           aria-expanded={menu}
           aria-controls="mobile-navigation"
           aria-haspopup="dialog"

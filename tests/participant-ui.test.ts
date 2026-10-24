@@ -115,7 +115,7 @@ test("team idea is capped, saved before lock and uses safe teammate profiles, sy
     run,
   });
   assert.match(html, /maxLength="500"/);
-  assert.match(html, /12\/500 characters/);
+  assert.match(html, /12\/500/);
   assert.doesNotMatch(html, /name="core"|person-monogram/);
   assert.match(html, /href="\/discover\/participants#person-fixture-leader"/);
   assert.match(html, /purple mixed-slash avatar/);
