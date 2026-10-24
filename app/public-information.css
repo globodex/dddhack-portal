@@ -40,22 +40,28 @@
 .information-brand img {
   flex: 0 0 28px;
 }
-.information-return {
+.information-menu-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
   min-height: 44px;
-  padding: 10px 16px;
-  border-radius: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
   color: #fffefa;
   background: #202320;
-  font-size: 13px;
-  font-weight: 600;
 }
-.information-return:hover {
+.information-menu-button:hover:not(:disabled) {
   background: #384034;
-  text-decoration: none;
+}
+.information-page .mobile-navigation nav > a {
+  gap: 16px;
+}
+.information-page .mobile-navigation nav > a > svg {
+  flex: 0 0 24px;
 }
 .information-layout {
   display: grid;
@@ -253,10 +259,6 @@
     gap: 8px;
     font-size: 12px;
     line-height: 1.35;
-  }
-  .information-return {
-    padding-inline: 12px;
-    flex-shrink: 0;
   }
   .information-title h1 {
     gap: 10px;

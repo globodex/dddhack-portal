@@ -26,7 +26,7 @@ No ranking, indexing, rich-result or AI-answer inclusion guarantee is made. No S
 
 ## Legal draft facts and inventory
 
-`/privacy` and `/terms` are visible drafts, noindex and excluded from the sitemap. They render semantic public text on the server without sign-in or an API request. The landing/sign-in owner is linking those paths and `mailto:hey@itsparam.in`.
+`/privacy` and `/terms` are visible drafts, noindex and excluded from the sitemap. They render semantic public text on the server without sign-in or an API request. A small client header reuses the shared full-screen menu, with a black circular44px hamburger and Lucide destinations for Home, Projects, Dashboard, Privacy and Terms. It remains disabled until hydration and fetches no session or API data. The landing/sign-in owner is linking those paths and `mailto:hey@itsparam.in`.
 
 User-confirmed facts: controller/operator and organizer Parampreet Singh; privacy/deletion contact `hey@itsparam.in`; unnecessary private participant data has a 90-day period after the event. Public showcase retention unless removal is requested and separate indefinite owner audit retention match the parent's category copy. Requests use a manual email/review process. No automatic purge, provider deletion, response deadline or blanket legal compliance is promised.
 
@@ -36,17 +36,17 @@ Source inventory reviewed:
 - `neon/auth/config.ts`, auth handler and SMTP: Google identity, configured Gmail email delivery, necessary host-only cookies, seven-day sessions, 15-minute magic-link browser verification and 10-minute Google verification.
 - Next proxy, `neon/api.ts`, database/storage and deployment source: selected Vercel frontend and Neon backend/database/media.
 - `neon/ai/input.ts`, evaluator and approved-snapshot repository: optional authorized OpenAI processing of bounded selected descriptions, approved text and commit metadata. Private record fields are excluded by projection. No real model request ran.
-- Legacy Cloudflare source exists. Active DNS/network/legacy deployment for the new hostname was not verified or changed; the draft explicitly flags this.
+- The user confirmed Cloudflare DNS/proxy is active for the custom hostname. The privacy draft acknowledges current network processing; exact logs, analytics settings and retention were not inspected or changed.
 - No added advertising/analytics SDK was found in source. This does not establish absence of deployment analytics or provider logs. Browser-local pause preference and external Luma, GitHub, social, maps, WhatsApp and provider links are disclosed.
 
 ## Unresolved facts and manual alignment
 
-Still under organizer review: processing locations/cross-border arrangements, active Cloudflare/deployment analytics, backups and provider log retention, exceptional retained records, school-age/guardian policy, applicable cancellation/refund arrangements, legal jurisdiction and dispute handling. The draft does not invent answers.
+Still under organizer review: processing locations/cross-border arrangements, deployment analytics settings, backups and provider log retention, exceptional retained records, school-age/guardian policy, applicable cancellation/refund arrangements, legal jurisdiction and dispute handling. The draft does not invent answers. Record hiding is explicitly distinguished from erasure; no automatic purge is claimed.
 
 The parent is aligning legacy default retention copy while preserving validation/gates. Already persisted event policies are unchanged and need owner review/publication through the existing workflow. This branch deletes no records and creates no deletion job.
 
 ## Verification
 
-Typecheck and11 focused tests pass. They cover exact configured origins, distinct public metadata, private/draft noindex, published-field projection, social-image restrictions, sitemap contents/pagination/failure, robots compatibility, public Event facts and semantic legal draft content. Existing public-release integration tests also exercise actual eligible, draft and ineligible database projections.
+Typecheck and 13 focused tests pass. They cover exact configured origins, distinct public metadata, private/draft noindex, published-field projection, social-image restrictions, sitemap contents/pagination/failure, robots compatibility, public Event facts, semantic legal draft content, the hydrated icon menu and confirmed active Cloudflare processing. Existing public-release integration tests also exercise actual eligible, draft and ineligible database projections.
 
 Rendered desktop/mobile screenshots, console/accessibility and HTTP/metadata checks remain for integration after cherry-pick. No additional persistent frontend server was started for this lane. Source checks alone are not visual acceptance.

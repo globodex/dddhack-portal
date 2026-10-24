@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { HeadingDot } from "./expressive-heading";
+import InformationNavigation from "./information-navigation";
 
 export const privacyContact = "hey@itsparam.in";
 export const portalOperator = "Parampreet Singh";
@@ -118,9 +119,10 @@ const privacySections: InformationSection[] = [
           <div>
             <dt>Cloudflare</dt>
             <dd>
-              The repository also contains a legacy Cloudflare hosting path.
-              Whether Cloudflare is active for DNS, network delivery or a legacy
-              deployment needs confirmation for the published hostname.
+              Cloudflare provides DNS and proxy/network delivery for the custom
+              hostname, processing requests that pass through its network. Exact
+              logging, analytics settings and retention still need organizer
+              confirmation.
             </dd>
           </div>
         </dl>
@@ -162,9 +164,10 @@ const privacySections: InformationSection[] = [
       <>
         <p>
           <strong>Unnecessary private participant data:</strong> the organizer's
-          confirmed policy is a 90-day retention period after the event.
-          Applying that policy requires an authorized manual review and removal
-          process; this release does not implement an automatic purge.
+          confirmed policy is a 90-day retention period after the event. The
+          organizer handles retention and removal requests through authorized
+          manual review. There is no automatic purge. Hiding a record from
+          portal views does not itself erase its stored data.
         </p>
         <p>
           <strong>Public project showcase:</strong> published showcase content
@@ -210,11 +213,10 @@ const privacySections: InformationSection[] = [
     content: (
       <p>
         The organizer still needs to confirm exceptional retention categories,
-        backups and provider logs, active Cloudflare or deployment analytics
-        settings, processing locations and the policy for school-age
-        participants. Existing stored event notices must be reviewed and aligned
-        with the retention categories above. This draft makes no blanket
-        legal-compliance guarantee.
+        backups, provider logs and deployment analytics settings, processing
+        locations and the policy for school-age participants. Existing stored
+        event notices must be reviewed and aligned with the retention categories
+        above. This draft makes no blanket legal-compliance guarantee.
       </p>
     ),
   },
@@ -368,9 +370,7 @@ export default function PublicInformation({
           />
           <span>Codex Community New Delhi</span>
         </a>
-        <a className="information-return" href="/">
-          <ArrowLeft size={17} aria-hidden="true" /> Event
-        </a>
+        <InformationNavigation path={`/${kind}`} />
       </header>
       <main id="information-main" className="information-layout">
         <header className="information-title">

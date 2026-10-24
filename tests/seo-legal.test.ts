@@ -15,6 +15,7 @@ import PublicInformation, {
   privacyContact,
   portalOperator,
 } from "../app/public-information";
+import InformationNavigation from "../app/information-navigation";
 
 test("configured canonical origin accepts an exact HTTPS origin and rejects credential or path variants", () => {
   assert.equal(
@@ -195,4 +196,34 @@ test("legal drafts render server-side semantic content with verified controller,
     );
     assert.equal(pageMetadata("/" + kind).robots.index, false);
   }
+});
+
+test("legal header reuses the hydrated shared menu with named icon destinations and no visible Menu label", () => {
+  const html = renderToStaticMarkup(
+    createElement(InformationNavigation, { path: "/privacy" }),
+  );
+  assert.match(html, /aria-label="Open navigation"/);
+  assert.match(html, /aria-controls="mobile-navigation"/);
+  assert.match(html, /aria-haspopup="dialog" disabled=""/);
+  for (const [path, name] of [
+    ["/", "Home"],
+    ["/projects", "Projects"],
+    ["/dashboard", "Dashboard"],
+    ["/privacy", "Privacy"],
+    ["/terms", "Terms"],
+  ]) {
+    assert.ok(html.includes(`href="${path}"`));
+    assert.ok(html.includes(`<span>${name}</span>`));
+  }
+  assert.match(html, /href="\/privacy" aria-current="page"/);
+  assert.doesNotMatch(html, />Menu</);
+});
+
+test("privacy draft acknowledges the confirmed active Cloudflare proxy and distinguishes hiding from erasure", () => {
+  const html = renderToStaticMarkup(
+    createElement(PublicInformation, { kind: "privacy" }),
+  );
+  assert.match(html, /Cloudflare provides DNS and proxy\/network delivery/);
+  assert.match(html, /Hiding a record from portal views does not itself erase/);
+  assert.doesNotMatch(html, /Whether Cloudflare is active|this release/);
 });
