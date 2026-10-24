@@ -1019,3 +1019,9 @@
 .app-shell .studio-dialog .team-settings-appearance .palette-swatch{width:22px;height:22px;display:block;flex:0 0 22px}
 .app-shell .studio-dialog .team-settings-appearance .form-actions{width:100%;margin-top:20px;justify-content:flex-end}
 @media(max-width:480px){.app-shell .studio-dialog .team-settings-appearance .palette-picker{grid-template-columns:repeat(4,minmax(0,1fr));gap:2px 12px}}
+
+/* Preserve AA contrast at small sizes and show both identity actions at full height. */
+.app-shell .main .team-studio .studio-idea-heading .studio-saved{color:#006b43}
+.app-shell .main .team-studio .studio-next .button{background:#007c50;border-color:#007c50}
+.app-shell .main .team-studio .studio-next .button:hover:not(:disabled){background:#006b43;border-color:#006b43}
+.studio-dialog.studio-identity-dialog{height:min(640px,calc(100dvh - 32px))}

@@ -908,7 +908,7 @@ function StudioDialog({
   return (
     <dialog
       ref={dialog}
-      className="studio-dialog"
+      className={`studio-dialog${title === "Team identity" ? " studio-identity-dialog" : ""}`}
       aria-labelledby={heading}
       onKeyDown={trapDialogFocus}
     >
