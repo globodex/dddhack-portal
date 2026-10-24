@@ -71,4 +71,4 @@ ADMIN_QA_ORIGIN=http://localhost:3013 ADMIN_QA_OUTPUT=evidence/new-admin-hydrati
 
 The populated and native-control scripts expect the rich synthetic project/credit fixture. The populated script may persist/restore a synthetic idea and publish synthetic credits if missing. Never point these at a real dataset. The native-control supplement permits only preview mutation actions and cancels all destructive confirmations.
 
-The isolated frontend 3013 and fixture backend 8813 were stopped after the reports were saved to release resources for root's final validation.
+The isolated Next frontends 3003 and 3013 are confirmed stopped, releasing their memory for root's final validation. The synthetic backend wrapper chain for 8813 was terminated, but listeners on 8813 and earlier 8793 still respond. Their child processes are outside this executor's visible process list, so backend termination has an uncertain outcome. Root was informed; no production service is involved.
