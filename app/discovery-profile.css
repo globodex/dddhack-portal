@@ -156,3 +156,4 @@ dialog.discovery-profile-v6 { --profile-dialog-padding: 28px; }
 .discovery-profile-v6 .discovery-profile-dismiss { position: sticky; top: var(--profile-dialog-padding); z-index: 2; height: 0; }
 dialog.discovery-profile-v6 .discovery-profile-dismiss .discovery-profile-close { top: calc(8px - var(--profile-dialog-padding)); right: calc(8px - var(--profile-dialog-padding)); border-radius: 50%; background: var(--surface, #fffefa); }
 @media (max-width: 480px) { dialog.discovery-profile-v6 { --profile-dialog-padding: 20px; } }
+.discovery-profile-fact .discovery-profile-gender-value { display: inline-block; padding: 3px 9px; border-radius: 999px; background: #f0f1e9; color: var(--ink, #202320); font-size: 12px; font-weight: 600; line-height: 1.4; }
