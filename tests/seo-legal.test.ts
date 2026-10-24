@@ -16,6 +16,46 @@ import PublicInformation, {
   portalOperator,
 } from "../app/public-information";
 import InformationNavigation from "../app/information-navigation";
+import { readFileSync } from "node:fs";
+import sharp from "sharp";
+
+test("homepage social metadata and Event share the actual 1200x630 hero while project banners retain their own policy", async () => {
+  const image = siteOrigin + "/og/devday-new-delhi-home.jpg";
+  const home = pageMetadata("/");
+  assert.deepEqual(home.openGraph?.images, [
+    {
+      url: image,
+      alt: "DevDay Exchange Community Hackathon: New Delhi",
+      width: 1200,
+      height: 630,
+      type: "image/jpeg",
+    },
+  ]);
+  assert.deepEqual(home.twitter?.images, [image]);
+  assert.deepEqual(eventStructuredData.image, [image]);
+  const bytes = readFileSync(
+    new URL("../public/og/devday-new-delhi-home.jpg", import.meta.url),
+  );
+  const asset = await sharp(bytes).metadata();
+  assert.equal(asset.width, 1200);
+  assert.equal(asset.height, 630);
+  assert.equal(asset.format, "jpeg");
+  assert.ok(
+    bytes.length < 120000,
+    "The static social image remains lightweight",
+  );
+  assert.equal(
+    pageMetadata("/projects").openGraph?.images[0].url,
+    siteOrigin + "/art/delhi-v3/fallback-approved-v3.png",
+  );
+  assert.equal(
+    pageMetadata("/projects/eligible", {
+      projectName: "Public project",
+      banner: "/api/project-image/project-123/banner?version=v1",
+    }).openGraph?.images[0].url,
+    siteOrigin + "/api/project-image/project-123/banner?version=v1",
+  );
+});
 
 test("configured canonical origin accepts an exact HTTPS origin and rejects credential or path variants", () => {
   assert.equal(

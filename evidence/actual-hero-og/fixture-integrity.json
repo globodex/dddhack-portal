@@ -1,0 +1,11 @@
+{
+  "source": "d004c3a7d060389b3677d484c2e87635a72acfd7",
+  "fixture": "/tmp/ddd-actual-hero-og-20261024-unique01.sqlite",
+  "newDisposableSyntheticFixture": true,
+  "integrity": [
+    [
+      "ok"
+    ]
+  ],
+  "foreignKeys": []
+}

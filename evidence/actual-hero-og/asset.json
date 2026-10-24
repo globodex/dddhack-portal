@@ -1,0 +1,10 @@
+{
+  "input": "evidence/actual-hero-og/hero-native-1440x756.png",
+  "output": "public/og/devday-new-delhi-home.jpg",
+  "width": 1200,
+  "height": 630,
+  "format": "jpeg",
+  "bytes": 85741,
+  "sha256": "a521a7976eede3353443e57b325145aed10af5a5619e826e31fdc16a4e7f8ea7",
+  "conversion": "Exact proportional5/6 downscale1440x756→1200x630, JPEGquality86/mozjpeg/4:4:4, no crop/composition/art change"
+}

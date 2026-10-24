@@ -1,0 +1,19 @@
+{
+  "status": 200,
+  "canonical": "https://portal-perf.test:3443/",
+  "ogImages": [
+    "https://portal-perf.test:3443/og/devday-new-delhi-home.jpg"
+  ],
+  "twitterImages": [
+    "https://portal-perf.test:3443/og/devday-new-delhi-home.jpg"
+  ],
+  "ogWidth": "1200",
+  "ogHeight": "630",
+  "eventImage": true,
+  "asset": {
+    "status": 200,
+    "type": "image/jpeg",
+    "bytes": 85741
+  },
+  "result": "PASS"
+}

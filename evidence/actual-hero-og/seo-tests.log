@@ -1,0 +1,19 @@
+✔ homepage social metadata and Event share the actual 1200x630 hero while project banners retain their own policy (13.695519ms)
+✔ configured canonical origin accepts an exact HTTPS origin and rejects credential or path variants (1.076907ms)
+✔ public titles, descriptions, canonical and social URLs are unique and use the configured origin (0.654702ms)
+✔ private, authentication, directory and draft legal routes never publish indexable social metadata (0.801808ms)
+✔ project metadata selects published fields only and rejects arbitrary social-image URLs (0.579402ms)
+✔ sitemap includes only home and bounded valid public project paths across pages (43.044634ms)
+✔ robots lets crawlers read HTML noindex, blocks API crawling and permits only public project media (0.913812ms)
+✔ event structured data uses only approved public facts and no invented commercial claims or private room (0.60144ms)
+✔ legal drafts render server-side semantic content with verified controller, contact and retention categories (29.899079ms)
+✔ legal header reuses the hydrated shared menu with named icon destinations and no visible Menu label (7.891194ms)
+✔ privacy draft acknowledges the confirmed active Cloudflare proxy and distinguishes hiding from erasure (10.288569ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1447.013941

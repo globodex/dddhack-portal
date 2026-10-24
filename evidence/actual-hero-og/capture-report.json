@@ -1,0 +1,105 @@
+{
+  "source": "d004c3a7d060389b3677d484c2e87635a72acfd7",
+  "fixture": "/tmp/ddd-actual-hero-og-20261024-unique01.sqlite",
+  "browser": "Chromium, native page screenshot, no DOM or CSS replacement",
+  "frontendLocalTest": false,
+  "requests": [
+    {
+      "url": "https://portal-perf.test:3443/",
+      "status": 200,
+      "method": "GET"
+    },
+    {
+      "url": "https://portal-perf.test:3443/_next/static/css/app/layout.css?v=1792871276784",
+      "status": 200,
+      "method": "GET"
+    },
+    {
+      "url": "https://portal-perf.test:3443/art/delhi-v3/fallback-approved-v3.webp",
+      "status": 200,
+      "method": "GET"
+    },
+    {
+      "url": "https://portal-perf.test:3443/brand/cerebras-official.webp",
+      "status": 200,
+      "method": "GET"
+    },
+    {
+      "url": "https://portal-perf.test:3443/brand/codex-user-supplied.svg",
+      "status": 200,
+      "method": "GET"
+    },
+    {
+      "url": "https://portal-perf.test:3443/_next/static/chunks/webpack.js?v=1792871276784",
+      "status": 200,
+      "method": "GET"
+    },
+    {
+      "url": "https://portal-perf.test:3443/_next/static/chunks/app-pages-internals.js",
+      "status": 200,
+      "method": "GET"
+    },
+    {
+      "url": "https://portal-perf.test:3443/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+      "status": 200,
+      "method": "GET"
+    },
+    {
+      "url": "https://portal-perf.test:3443/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+      "status": 200,
+      "method": "GET"
+    },
+    {
+      "url": "https://portal-perf.test:3443/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+      "status": 200,
+      "method": "GET"
+    },
+    {
+      "url": "https://portal-perf.test:3443/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+      "status": 200,
+      "method": "GET"
+    },
+    {
+      "url": "https://portal-perf.test:3443/_next/static/chunks/main-app.js?v=1792871276784",
+      "status": 200,
+      "method": "GET"
+    },
+    {
+      "url": "https://portal-perf.test:3443/_next/static/chunks/app/%5B%5B...path%5D%5D/page.js",
+      "status": 200,
+      "method": "GET"
+    },
+    {
+      "url": "https://portal-perf.test:3443/brand/codex-user-supplied.svg",
+      "status": 200,
+      "method": "GET"
+    },
+    {
+      "url": "https://portal-perf.test:3443/api/portal?view=%2F&focus=",
+      "status": 200,
+      "method": "GET"
+    }
+  ],
+  "errors": [],
+  "status": 200,
+  "observed": {
+    "title": "DevDay ExchangeCommunity Hackathon:New Delhi",
+    "rehearsal": false,
+    "savedAvatar": false,
+    "signIn": true,
+    "horizontalOverflow": false,
+    "hero": {
+      "x": 0,
+      "y": 80,
+      "width": 1425,
+      "height": 789.03125,
+      "top": 80,
+      "right": 1425,
+      "bottom": 869.03125,
+      "left": 0
+    },
+    "cookies": ""
+  },
+  "result": "PASS",
+  "browserClosed": true
+}

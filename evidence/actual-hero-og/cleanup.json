@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-10-24T19:49:04.602020+00:00",
+  "ownedPidsStopped": [
+    228619,
+    228607,
+    228590
+  ],
+  "remainingPids": [],
+  "listeners": "State Recv-Q Send-Q Local Address:Port Peer Address:PortProcess\n",
+  "browserClosed": true,
+  "result": "PASS"
+}

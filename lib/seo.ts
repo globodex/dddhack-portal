@@ -24,6 +24,7 @@ export function configuredSiteOrigin(
 export const siteOrigin = configuredSiteOrigin();
 export const eventTitle = "DevDay Exchange Community Hackathon: New Delhi";
 export const eventShortTitle = "DevDay Exchange New Delhi";
+const homepageSocialImage = "/og/devday-new-delhi-home.jpg";
 export const publicPath = (path: string) =>
   path === "/" ||
   path === "/projects" ||
@@ -124,7 +125,10 @@ export function pageMetadata(
   const image =
     projectPath && published?.banner
       ? siteOrigin + published.banner
-      : siteOrigin + "/art/delhi-v3/fallback-approved-v3.png";
+      : siteOrigin +
+        (path === "/"
+          ? homepageSocialImage
+          : "/art/delhi-v3/fallback-approved-v3.png");
   return {
     title,
     description,
@@ -139,7 +143,15 @@ export function pageMetadata(
             type: "website",
             siteName: eventShortTitle,
             locale: "en_IN",
-            images: [{ url: image, alt: published?.projectName || eventTitle }],
+            images: [
+              {
+                url: image,
+                alt: published?.projectName || eventTitle,
+                ...(path === "/"
+                  ? { width: 1200, height: 630, type: "image/jpeg" }
+                  : {}),
+              },
+            ],
           },
           twitter: {
             card: "summary_large_image",
@@ -160,7 +172,7 @@ export const eventStructuredData = {
   endDate: "2026-11-01T20:00:00+05:30",
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
-  image: [siteOrigin + "/art/delhi-v3/fallback-approved-v3.png"],
+  image: [siteOrigin + homepageSocialImage],
   organizer: { "@type": "Person", name: "Parampreet Singh" },
   location: {
     "@type": "Place",
