@@ -1,0 +1,110 @@
+{
+  "source": "e1d50c27ef0785a93faf4c2e1f48929937d65aac",
+  "originalNativePNGs": true,
+  "images": [
+    {
+      "file": "step1-1440x900.png",
+      "width": 1440,
+      "height": 912,
+      "bytes": 54535,
+      "sha256": "a38a1edd6613697e5c544c0b2cb858d1e31025f37f4842188af88bda6af7c835",
+      "viewed": true
+    },
+    {
+      "file": "step2-1440x900.png",
+      "width": 1440,
+      "height": 912,
+      "bytes": 60656,
+      "sha256": "5ab7b69108b3f00816f9b52d6258039439af28c04289eb5deb29c0eb838d2ec0",
+      "viewed": true
+    },
+    {
+      "file": "step3-1440x900.png",
+      "width": 1440,
+      "height": 912,
+      "bytes": 53774,
+      "sha256": "62e04bb7fd624067bfee9ee786e70a5e78fb7945470e75c2ccdd5c1e1e2bdd0e",
+      "viewed": true
+    },
+    {
+      "file": "step1-390x844.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 46016,
+      "sha256": "7a4f818d6f89a037f791d3da8ad375d950c96df69da367c7cd18f09d9d93a37d",
+      "viewed": true
+    },
+    {
+      "file": "step2-390x844.png",
+      "width": 390,
+      "height": 874,
+      "bytes": 51182,
+      "sha256": "a46909111b76a24bac589b149bfb7e3f521b9d48ad62f732c352724640aa23eb",
+      "viewed": true
+    },
+    {
+      "file": "step3-390x844.png",
+      "width": 390,
+      "height": 1109,
+      "bytes": 44779,
+      "sha256": "d250664b7ecb0e278335e757fcb953b032a22f1ea7e3dde0ff7e295b71b783bd",
+      "viewed": true
+    },
+    {
+      "file": "studio-menu-390x844.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 23636,
+      "sha256": "c79978b596bbcd99e4ddea7e5d74a0c43c1c2d26412664f996652bd0ce8a5d2f",
+      "viewed": true
+    },
+    {
+      "file": "step3-320x480.png",
+      "width": 320,
+      "height": 1108,
+      "bytes": 42453,
+      "sha256": "7476ea7b9848fb20b52d554b289d409103763454c2b1c1f922ec2864edc84f3e",
+      "viewed": true
+    },
+    {
+      "file": "step3-footer-320x480.png",
+      "width": 320,
+      "height": 480,
+      "bytes": 20673,
+      "sha256": "44316ea19360072d9c9781f1f399003c8b5927356b819c9f4ad0370a87be584c",
+      "viewed": true
+    },
+    {
+      "file": "step3-inline-media-error-320x480.png",
+      "width": 320,
+      "height": 480,
+      "bytes": 18722,
+      "sha256": "404946e1b5df59bc7f10a4cf01bc7d62c9f887a16dfdd912d4987f0ab260e3e3",
+      "viewed": true
+    },
+    {
+      "file": "step3-valid-media-focus-320x480.png",
+      "width": 320,
+      "height": 480,
+      "bytes": 17138,
+      "sha256": "bbee00d3171a9333adb8020dd35c57762ce0b40ff21628129e41a2be9e3bd6c9",
+      "viewed": true
+    },
+    {
+      "file": "step3-valid-media-full-320x480.png",
+      "width": 320,
+      "height": 1108,
+      "bytes": 44205,
+      "sha256": "8c4262073f50e79c4e9552a36857e66a7dc2b7a16928b75ca4f3ebcba2348401",
+      "viewed": true
+    },
+    {
+      "file": "saved-window-enabled-after-reload-390x844.png",
+      "width": 390,
+      "height": 975,
+      "bytes": 47306,
+      "sha256": "e7530783ffa94922d152a16b6d2884574f9ccef3af074eacea9d30f9a837d413",
+      "viewed": true
+    }
+  ]
+}

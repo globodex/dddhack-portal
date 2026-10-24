@@ -1,0 +1,258 @@
+{
+  "reviewDate": "2026-10-24",
+  "heldAppSource": "2657f26254ed323ca84a167a2f220f05f4ec7cbf",
+  "reviewSource": "e1d50c27ef0785a93faf4c2e1f48929937d65aac",
+  "browserRuns": 0,
+  "testRuns": 0,
+  "buildRuns": 0,
+  "dataMutations": 0,
+  "componentComparisons": [
+    {
+      "label": "submission_media",
+      "evidenceSource": "28ebbfc81a49ab839316b0d9121902e3cf645173",
+      "components": [
+        {
+          "component": "SharedRules",
+          "evidenceSha256": "bafaa5eb35ac899956d2bb5c03b015095f8d924b328da11d2ed353e420049fba",
+          "currentSha256": "bafaa5eb35ac899956d2bb5c03b015095f8d924b328da11d2ed353e420049fba",
+          "equal": true
+        },
+        {
+          "component": "Submission",
+          "evidenceSha256": "0e91cc6c106bede3e2f0926f3a64e2dfcf017aa29b7a1418fcf1b84ed8863365",
+          "currentSha256": "0e91cc6c106bede3e2f0926f3a64e2dfcf017aa29b7a1418fcf1b84ed8863365",
+          "equal": true
+        },
+        {
+          "component": "ProjectHistory",
+          "evidenceSha256": "ec985bfeb5e8d609d9648b2b981cb86e29e710684e212772c2f44f46c13dee4c",
+          "currentSha256": "ec985bfeb5e8d609d9648b2b981cb86e29e710684e212772c2f44f46c13dee4c",
+          "equal": true
+        },
+        {
+          "component": "ProjectVersion",
+          "evidenceSha256": "784e338a6fe3c5494e0a6ac79db9cdf89894a8a179a038692b4bd564168b8dea",
+          "currentSha256": "784e338a6fe3c5494e0a6ac79db9cdf89894a8a179a038692b4bd564168b8dea",
+          "equal": true
+        },
+        {
+          "component": "ProjectBody",
+          "evidenceSha256": "9aa376e9f3d93c554339c659c7b4f3bbc0d8a840ed437955507ca17e19312039",
+          "currentSha256": "9aa376e9f3d93c554339c659c7b4f3bbc0d8a840ed437955507ca17e19312039",
+          "equal": true
+        },
+        {
+          "component": "UpvoteButton",
+          "evidenceSha256": "0be9fa19bb1a7df4b9bccdbcb339bf524da90da84c914fc4a38ceea15071d23c",
+          "currentSha256": "0be9fa19bb1a7df4b9bccdbcb339bf524da90da84c914fc4a38ceea15071d23c",
+          "equal": true
+        },
+        {
+          "component": "Projects",
+          "evidenceSha256": "aaef257ab5b3eccbeac71cab25a350a37ba31152177e17a7468af6df1d32d383",
+          "currentSha256": "aaef257ab5b3eccbeac71cab25a350a37ba31152177e17a7468af6df1d32d383",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "label": "scores",
+      "evidenceSource": "62c8105af837e62ab0013ac5cd879eec4ab32114",
+      "components": [
+        {
+          "component": "SharedRules",
+          "evidenceSha256": "bafaa5eb35ac899956d2bb5c03b015095f8d924b328da11d2ed353e420049fba",
+          "currentSha256": "bafaa5eb35ac899956d2bb5c03b015095f8d924b328da11d2ed353e420049fba",
+          "equal": true
+        },
+        {
+          "component": "Submission",
+          "evidenceSha256": "0e91cc6c106bede3e2f0926f3a64e2dfcf017aa29b7a1418fcf1b84ed8863365",
+          "currentSha256": "0e91cc6c106bede3e2f0926f3a64e2dfcf017aa29b7a1418fcf1b84ed8863365",
+          "equal": true
+        },
+        {
+          "component": "ProjectHistory",
+          "evidenceSha256": "ec985bfeb5e8d609d9648b2b981cb86e29e710684e212772c2f44f46c13dee4c",
+          "currentSha256": "ec985bfeb5e8d609d9648b2b981cb86e29e710684e212772c2f44f46c13dee4c",
+          "equal": true
+        },
+        {
+          "component": "ProjectVersion",
+          "evidenceSha256": "784e338a6fe3c5494e0a6ac79db9cdf89894a8a179a038692b4bd564168b8dea",
+          "currentSha256": "784e338a6fe3c5494e0a6ac79db9cdf89894a8a179a038692b4bd564168b8dea",
+          "equal": true
+        },
+        {
+          "component": "ProjectBody",
+          "evidenceSha256": "9aa376e9f3d93c554339c659c7b4f3bbc0d8a840ed437955507ca17e19312039",
+          "currentSha256": "9aa376e9f3d93c554339c659c7b4f3bbc0d8a840ed437955507ca17e19312039",
+          "equal": true
+        },
+        {
+          "component": "UpvoteButton",
+          "evidenceSha256": "0be9fa19bb1a7df4b9bccdbcb339bf524da90da84c914fc4a38ceea15071d23c",
+          "currentSha256": "0be9fa19bb1a7df4b9bccdbcb339bf524da90da84c914fc4a38ceea15071d23c",
+          "equal": true
+        },
+        {
+          "component": "Projects",
+          "evidenceSha256": "aaef257ab5b3eccbeac71cab25a350a37ba31152177e17a7468af6df1d32d383",
+          "currentSha256": "aaef257ab5b3eccbeac71cab25a350a37ba31152177e17a7468af6df1d32d383",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "label": "community",
+      "evidenceSource": "191b76ed26f430128b14112f77b74ad3e26b1ec0",
+      "components": [
+        {
+          "component": "SharedRules",
+          "evidenceSha256": "bafaa5eb35ac899956d2bb5c03b015095f8d924b328da11d2ed353e420049fba",
+          "currentSha256": "bafaa5eb35ac899956d2bb5c03b015095f8d924b328da11d2ed353e420049fba",
+          "equal": true
+        },
+        {
+          "component": "Submission",
+          "evidenceSha256": "0e91cc6c106bede3e2f0926f3a64e2dfcf017aa29b7a1418fcf1b84ed8863365",
+          "currentSha256": "0e91cc6c106bede3e2f0926f3a64e2dfcf017aa29b7a1418fcf1b84ed8863365",
+          "equal": true
+        },
+        {
+          "component": "ProjectHistory",
+          "evidenceSha256": "ec985bfeb5e8d609d9648b2b981cb86e29e710684e212772c2f44f46c13dee4c",
+          "currentSha256": "ec985bfeb5e8d609d9648b2b981cb86e29e710684e212772c2f44f46c13dee4c",
+          "equal": true
+        },
+        {
+          "component": "ProjectVersion",
+          "evidenceSha256": "784e338a6fe3c5494e0a6ac79db9cdf89894a8a179a038692b4bd564168b8dea",
+          "currentSha256": "784e338a6fe3c5494e0a6ac79db9cdf89894a8a179a038692b4bd564168b8dea",
+          "equal": true
+        },
+        {
+          "component": "ProjectBody",
+          "evidenceSha256": "9aa376e9f3d93c554339c659c7b4f3bbc0d8a840ed437955507ca17e19312039",
+          "currentSha256": "9aa376e9f3d93c554339c659c7b4f3bbc0d8a840ed437955507ca17e19312039",
+          "equal": true
+        },
+        {
+          "component": "UpvoteButton",
+          "evidenceSha256": "0be9fa19bb1a7df4b9bccdbcb339bf524da90da84c914fc4a38ceea15071d23c",
+          "currentSha256": "0be9fa19bb1a7df4b9bccdbcb339bf524da90da84c914fc4a38ceea15071d23c",
+          "equal": true
+        },
+        {
+          "component": "Projects",
+          "evidenceSha256": "aaef257ab5b3eccbeac71cab25a350a37ba31152177e17a7468af6df1d32d383",
+          "currentSha256": "aaef257ab5b3eccbeac71cab25a350a37ba31152177e17a7468af6df1d32d383",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "label": "team_dialog_final",
+      "evidenceSource": "927845c5a3cf6755f94a219d8c9cf0060774fd58",
+      "components": [
+        {
+          "component": "StudioDialog",
+          "evidenceSha256": "73605bc269edd3e490dccc56d62b3702a09abe96e57d2ddb50e8f75e41c07b15",
+          "currentSha256": "73605bc269edd3e490dccc56d62b3702a09abe96e57d2ddb50e8f75e41c07b15",
+          "equal": true
+        },
+        {
+          "component": "TeamWorkspace",
+          "evidenceSha256": "19783adaa5335ea7001c8e6a717ee910fd20e047c5aec379604d77843e76d8a5",
+          "currentSha256": "19783adaa5335ea7001c8e6a717ee910fd20e047c5aec379604d77843e76d8a5",
+          "equal": true
+        },
+        {
+          "component": "DashboardProject",
+          "evidenceSha256": "9d78694ac0bd3d322804dbe7e754cedec07f996ec995ebaf37bc906504c5477f",
+          "currentSha256": "9d78694ac0bd3d322804dbe7e754cedec07f996ec995ebaf37bc906504c5477f",
+          "equal": true
+        }
+      ]
+    }
+  ],
+  "fileComparisons": [
+    {
+      "path": "app/prepare-project-image.ts",
+      "evidenceSha256": "0469a25fc13da6b39ea09837d340cad5c2993af254ff70fc41cae01d60365276",
+      "currentSha256": "0469a25fc13da6b39ea09837d340cad5c2993af254ff70fc41cae01d60365276",
+      "equal": true
+    },
+    {
+      "path": "app/project-media-field.tsx",
+      "evidenceSha256": "cea6b1720017337a8a44229d581d4748383eaa7ad8ce12052230c864fe8e423c",
+      "currentSha256": "cea6b1720017337a8a44229d581d4748383eaa7ad8ce12052230c864fe8e423c",
+      "equal": true
+    },
+    {
+      "path": "app/projects-rules-experience.css",
+      "evidenceSha256": "8edc84868154cca5b76fda7e022e2a702eff0f6e17807a027629015e64579b01",
+      "currentSha256": "8edc84868154cca5b76fda7e022e2a702eff0f6e17807a027629015e64579b01",
+      "equal": true
+    },
+    {
+      "path": "app/owner-submission-window.tsx",
+      "evidenceSha256": "7cb5a9a9c0ea7c55087aeb7dfa6df12957b146647a27d2eb39742af5fa6211b7",
+      "currentSha256": "7cb5a9a9c0ea7c55087aeb7dfa6df12957b146647a27d2eb39742af5fa6211b7",
+      "equal": true
+    },
+    {
+      "path": "lib/project-media-policy.ts",
+      "evidenceSha256": "536169318d8fd9f7ad7f6baa8643071d8c1ed2146ca7e8fa04c290384436b4ee",
+      "currentSha256": "536169318d8fd9f7ad7f6baa8643071d8c1ed2146ca7e8fa04c290384436b4ee",
+      "equal": true
+    },
+    {
+      "path": "lib/project-image-preflight.ts",
+      "evidenceSha256": "991dfb4469d9d855860dfc33297b7a1688cda2c0373b2efd0cbe1a288717c077",
+      "currentSha256": "991dfb4469d9d855860dfc33297b7a1688cda2c0373b2efd0cbe1a288717c077",
+      "equal": true
+    },
+    {
+      "path": "lib/project-media.ts",
+      "evidenceSha256": "2287bfe98f5fb93548664d3c0765e9efb122172d4cbd58a9876d9a92c0f99fe2",
+      "currentSha256": "2287bfe98f5fb93548664d3c0765e9efb122172d4cbd58a9876d9a92c0f99fe2",
+      "equal": true
+    },
+    {
+      "path": "lib/public-project-facts.ts",
+      "evidenceSha256": "86751cb6eebebdcf07e888d09fca4cbd8dd692dd05c0276966c2598e92aa8ca4",
+      "currentSha256": "86751cb6eebebdcf07e888d09fca4cbd8dd692dd05c0276966c2598e92aa8ca4",
+      "equal": true
+    },
+    {
+      "path": "lib/team-color.ts",
+      "evidenceSha256": "d1e70496f4fe60aee182ae65ca83bfc29e790f929fb1fdb65c741a9744f16852",
+      "currentSha256": "d1e70496f4fe60aee182ae65ca83bfc29e790f929fb1fdb65c741a9744f16852",
+      "equal": true
+    },
+    {
+      "path": "lib/participant-rules.ts",
+      "evidenceSha256": "ad801b915e157403a66ffcd0cafa26c795da5a8666220c121b81b1b68d055428",
+      "currentSha256": "ad801b915e157403a66ffcd0cafa26c795da5a8666220c121b81b1b68d055428",
+      "equal": true
+    }
+  ],
+  "applicationRelevantDiffSinceHeld": [
+    "M\tneon/db/migrate.ts",
+    "A\tneon/db/populated-upgrade.ts",
+    "A\tneon/scripts/upgrade-populated.ts"
+  ],
+  "method": "Committed function source from declaration to next function declaration; exact file bytes for listed modules. Does not assert whole-portal pixel equivalence.",
+  "sharedRenderBoundary": {
+    "component": "Dashboard",
+    "evidenceSha256": "0b5cfa672e7a86707975b589a4d579c696184714dfcdec8e063dcd3926e8500d",
+    "currentSha256": "5f3572cac499eb207bba807787b83919d5e9d28a252ce76517f879a8d030e1a8",
+    "equal": false,
+    "addedLayoutFiles": [
+      "app/team-studio-shell.css",
+      "app/team-studio-experience.css"
+    ],
+    "visualLimitation": "Historical submission PNGs retain prior sidebar shell. Current-shell editor visual retake remains missing despite identical Submission component."
+  }
+}
