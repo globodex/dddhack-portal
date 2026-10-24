@@ -13,7 +13,9 @@ const tls={key:readFileSync(tlsRoot+'/leaf-key.pem'),cert:readFileSync(tlsRoot+'
 const servers=[];
 writeFileSync(trace,'');
 function log(row){appendFileSync(trace,JSON.stringify({time:new Date().toISOString(),...row})+'\n');}
-for(const [port,targetPort,kind]of [[3443,3310,'baseline-front'],[3444,3311,'final-front'],[8842,Number(process.env.QA_API_PORT||8789),'fixture-api']]){
+const apiPort=Number(process.env.QA_API_PORT);
+if(!Number.isInteger(apiPort)||apiPort<1024)throw new Error('EXPLICIT_QA_API_PORT_REQUIRED');
+for(const [port,targetPort,kind]of [[8842,apiPort,'fixture-api']]){
  const server=https.createServer(tls,(request,response)=>{
   const started=performance.now(),path=request.url||'/',method=request.method||'GET';
   const hostname=(request.headers.host||'').split(':')[0];
@@ -29,8 +31,6 @@ for(const [port,targetPort,kind]of [[3443,3310,'baseline-front'],[3444,3311,'fin
   }
   const headers={...request.headers,host:`127.0.0.1:${targetPort}`};
   delete headers.connection;delete headers['x-portal-proxy-secret'];delete headers['x-portal-forwarded-origin'];
-  // Frontend receives original external Host as a normal reverse proxy would.
-  if(kind!=='fixture-api'){headers.host=`portal-perf.test:${port}`;headers['x-forwarded-host']=headers.host;headers['x-forwarded-proto']='https';}
   const upstream=http.request({hostname:'127.0.0.1',port:targetPort,path,method,headers},incoming=>{
    response.writeHead(incoming.statusCode||502,incoming.headers);
    let bytes=0;incoming.on('data',chunk=>bytes+=chunk.length);incoming.pipe(response);

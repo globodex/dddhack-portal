@@ -1,0 +1,14 @@
+{"time":"2026-10-24T15:41:35.596Z","kind":"browser-proxy","method":"GET","path":"http://clients2.google.com/time/1/current?cup2key=10:A70jTfkdW50znOWK_1qwbAuaxKtoTsfvmzhTCjpD1o4&cup2hreq=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","status":403,"denied":"CONNECT_ONLY"}
+{"time":"2026-10-24T15:41:35.602Z","kind":"browser-proxy","method":"CONNECT","path":"update.googleapis.com:443","status":403,"denied":"FIXTURE_DESTINATION_ONLY"}
+{"time":"2026-10-24T15:41:35.603Z","kind":"browser-proxy","method":"CONNECT","path":"accounts.google.com:443","status":403,"denied":"FIXTURE_DESTINATION_ONLY"}
+{"time":"2026-10-24T15:41:36.464Z","kind":"fixture-api","method":"GET","path":"/api/portal?view=%2Fdashboard&q=&page=0&focus=","status":200,"bytes":7637,"durationMs":40.143,"forwardedOrigin":"https://portal-perf.test:3443"}
+{"time":"2026-10-24T15:41:36.562Z","kind":"browser-proxy","method":"CONNECT","path":"accounts.google.com:443","status":403,"denied":"FIXTURE_DESTINATION_ONLY"}
+{"time":"2026-10-24T15:41:48.975Z","kind":"browser-proxy","method":"GET","path":"http://clients2.google.com/time/1/current?cup2key=10:TxVoiWwzmOI5S6wgF8_M4mUgyjnUeg2drgldDjWEOm0&cup2hreq=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","status":403,"denied":"CONNECT_ONLY"}
+{"time":"2026-10-24T15:41:48.982Z","kind":"browser-proxy","method":"CONNECT","path":"update.googleapis.com:443","status":403,"denied":"FIXTURE_DESTINATION_ONLY"}
+{"time":"2026-10-24T15:41:48.984Z","kind":"browser-proxy","method":"CONNECT","path":"accounts.google.com:443","status":403,"denied":"FIXTURE_DESTINATION_ONLY"}
+{"time":"2026-10-24T15:41:49.336Z","kind":"fixture-api","method":"GET","path":"/api/portal?view=%2Fdashboard&q=&page=0&focus=","status":200,"bytes":7637,"durationMs":27.66,"forwardedOrigin":"https://portal-perf.test:3443"}
+{"time":"2026-10-24T15:41:49.898Z","kind":"browser-proxy","method":"CONNECT","path":"accounts.google.com:443","status":403,"denied":"FIXTURE_DESTINATION_ONLY"}
+{"time":"2026-10-24T15:41:50.448Z","kind":"fixture-api","method":"GET","path":"/api/auth/session","status":200,"bytes":92,"durationMs":3.806,"forwardedOrigin":"https://portal-perf.test:3443"}
+{"time":"2026-10-24T15:41:51.029Z","kind":"fixture-api","method":"GET","path":"/api/portal?view=%2Fdashboard&q=&page=0&focus=","status":200,"bytes":7637,"durationMs":7.659,"forwardedOrigin":"https://portal-perf.test:3444"}
+{"time":"2026-10-24T15:41:52.277Z","kind":"fixture-api","method":"GET","path":"/api/auth/session","status":200,"bytes":92,"durationMs":2.847,"forwardedOrigin":"https://portal-perf.test:3444"}
+{"time":"2026-10-24T15:41:52.350Z","kind":"browser-proxy","method":"CONNECT","path":"accounts.google.com:443","status":403,"denied":"FIXTURE_DESTINATION_ONLY"}

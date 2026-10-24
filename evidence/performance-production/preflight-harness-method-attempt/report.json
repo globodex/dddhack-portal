@@ -1,0 +1,12 @@
+{
+  "syntheticOnly": true,
+  "readOnly": true,
+  "cases": [],
+  "errors": [
+    {
+      "error": "TypeError: q.method is not a function"
+    }
+  ],
+  "result": "FAIL",
+  "browserClosed": true
+}

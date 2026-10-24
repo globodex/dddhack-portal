@@ -1,0 +1,259 @@
+{
+  "syntheticOnly": true,
+  "readOnly": true,
+  "cases": [
+    {
+      "variant": "baseline",
+      "httpStatus": 200,
+      "heading": "><Dashboard",
+      "initialApi": [],
+      "sessionTransport": {
+        "status": 200,
+        "body": {
+          "user": {
+            "id": "fake_alice",
+            "email": "alice@portal.test",
+            "name": "Alice",
+            "emailVerified": true
+          }
+        }
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/dashboard",
+          "url": "https://portal-perf.test:3443/dashboard"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/css/614a4aca95eb4c7a.css",
+          "url": "https://portal-perf.test:3443/_next/static/css/614a4aca95eb4c7a.css"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/css/6e69855840ff679f.css",
+          "url": "https://portal-perf.test:3443/_next/static/css/6e69855840ff679f.css"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/css/1df01e941ed5ccbd.css",
+          "url": "https://portal-perf.test:3443/_next/static/css/1df01e941ed5ccbd.css"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "url": "https://portal-perf.test:3443/brand/codex-user-supplied.svg"
+        },
+        {
+          "method": "GET",
+          "path": "/icons/social/github.svg",
+          "url": "https://portal-perf.test:3443/icons/social/github.svg"
+        },
+        {
+          "method": "GET",
+          "path": "/icons/social/linkedin.svg",
+          "url": "https://portal-perf.test:3443/icons/social/linkedin.svg"
+        },
+        {
+          "method": "GET",
+          "path": "/icons/social/whatsapp.svg",
+          "url": "https://portal-perf.test:3443/icons/social/whatsapp.svg"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/webpack-74d2bb02f2fbf9ce.js",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/webpack-74d2bb02f2fbf9ce.js"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/8706df1e-a1d71d4401eeccae.js",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/8706df1e-a1d71d4401eeccae.js"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/636-ffb384086c34c920.js",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/636-ffb384086c34c920.js"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/main-app-32277aadbaba61c6.js",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/main-app-32277aadbaba61c6.js"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "url": "https://portal-perf.test:3443/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "url": "https://portal-perf.test:3443/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "url": "https://portal-perf.test:3443/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/992-8fa86547648050f9.js",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/992-8fa86547648050f9.js"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page-6afe0f484501e7ec.js",
+          "url": "https://portal-perf.test:3443/_next/static/chunks/app/%5B%5B...path%5D%5D/page-6afe0f484501e7ec.js"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "url": "https://portal-perf.test:3443/brand/codex-user-supplied.svg"
+        },
+        {
+          "method": "GET",
+          "path": "/api/auth/session",
+          "url": "https://portal-perf.test:3443/api/auth/session"
+        }
+      ],
+      "screenshot": "baseline-dashboard.png"
+    },
+    {
+      "variant": "final",
+      "httpStatus": 200,
+      "heading": "Small Wonder",
+      "initialApi": [],
+      "sessionTransport": {
+        "status": 200,
+        "body": {
+          "user": {
+            "id": "fake_alice",
+            "email": "alice@portal.test",
+            "name": "Alice",
+            "emailVerified": true
+          }
+        }
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/dashboard",
+          "url": "https://portal-perf.test:3444/dashboard"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/css/8809e623ff52f09d.css",
+          "url": "https://portal-perf.test:3444/_next/static/css/8809e623ff52f09d.css"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/css/6e69855840ff679f.css",
+          "url": "https://portal-perf.test:3444/_next/static/css/6e69855840ff679f.css"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/css/eb86810ad77fc3a3.css",
+          "url": "https://portal-perf.test:3444/_next/static/css/eb86810ad77fc3a3.css"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/css/3be7d25f586b063e.css",
+          "url": "https://portal-perf.test:3444/_next/static/css/3be7d25f586b063e.css"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/css/55bbc64ae4d39192.css",
+          "url": "https://portal-perf.test:3444/_next/static/css/55bbc64ae4d39192.css"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "url": "https://portal-perf.test:3444/brand/codex-user-supplied.svg"
+        },
+        {
+          "method": "GET",
+          "path": "/icons/social/github.svg",
+          "url": "https://portal-perf.test:3444/icons/social/github.svg"
+        },
+        {
+          "method": "GET",
+          "path": "/icons/social/linkedin.svg",
+          "url": "https://portal-perf.test:3444/icons/social/linkedin.svg"
+        },
+        {
+          "method": "GET",
+          "path": "/icons/social/whatsapp.svg",
+          "url": "https://portal-perf.test:3444/icons/social/whatsapp.svg"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/webpack-2c10f90d120e4d90.js",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/webpack-2c10f90d120e4d90.js"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/8706df1e-a1d71d4401eeccae.js",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/8706df1e-a1d71d4401eeccae.js"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/636-ffb384086c34c920.js",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/636-ffb384086c34c920.js"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/main-app-32277aadbaba61c6.js",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/main-app-32277aadbaba61c6.js"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2",
+          "url": "https://portal-perf.test:3444/_next/static/media/dm-sans-latin-400-normal.7abd0811.woff2"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2",
+          "url": "https://portal-perf.test:3444/_next/static/media/dm-sans-latin-700-normal.db6484ff.woff2"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2",
+          "url": "https://portal-perf.test:3444/_next/static/media/dm-sans-latin-500-normal.210398b6.woff2"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2",
+          "url": "https://portal-perf.test:3444/_next/static/media/dm-sans-latin-900-normal.b2fb54a7.woff2"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/330-4c357f8dea252b4d.js",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/330-4c357f8dea252b4d.js"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/46-25dc4d392de3b32b.js",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/46-25dc4d392de3b32b.js"
+        },
+        {
+          "method": "GET",
+          "path": "/_next/static/chunks/app/%5B%5B...path%5D%5D/page-7d330e6961fa396b.js",
+          "url": "https://portal-perf.test:3444/_next/static/chunks/app/%5B%5B...path%5D%5D/page-7d330e6961fa396b.js"
+        },
+        {
+          "method": "GET",
+          "path": "/brand/codex-user-supplied.svg",
+          "url": "https://portal-perf.test:3444/brand/codex-user-supplied.svg"
+        },
+        {
+          "method": "GET",
+          "path": "/api/auth/session",
+          "url": "https://portal-perf.test:3444/api/auth/session"
+        }
+      ],
+      "screenshot": "final-dashboard.png"
+    }
+  ],
+  "errors": [],
+  "result": "PASS",
+  "browserClosed": true
+}

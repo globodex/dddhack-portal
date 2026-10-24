@@ -1,0 +1,636 @@
+{
+  "method": "Offline inspection of the complete56-sample matrix and one separate Chrome timeline pervariant. No source change or causal A/B optimization trial.",
+  "routes": {
+    "dashboard": {
+      "cold": {
+        "baseline": {
+          "byType": {
+            "Script": {
+              "requestsMedian": 6,
+              "wireBytesMedian": 224260
+            },
+            "Stylesheet": {
+              "requestsMedian": 3,
+              "wireBytesMedian": 33841
+            },
+            "Document": {
+              "requestsMedian": 1,
+              "wireBytesMedian": 9041
+            },
+            "Other": {
+              "requestsMedian": 1,
+              "wireBytesMedian": 2890
+            },
+            "Font": {
+              "requestsMedian": 3,
+              "wireBytesMedian": 43941
+            },
+            "Image": {
+              "requestsMedian": 5,
+              "wireBytesMedian": 5957
+            }
+          },
+          "FCPbyRound": [
+            {
+              "round": 1,
+              "fcpMs": 428
+            },
+            {
+              "round": 2,
+              "fcpMs": 412
+            },
+            {
+              "round": 3,
+              "fcpMs": 852
+            },
+            {
+              "round": 4,
+              "fcpMs": 640
+            },
+            {
+              "round": 5,
+              "fcpMs": 436
+            },
+            {
+              "round": 6,
+              "fcpMs": 600
+            },
+            {
+              "round": 7,
+              "fcpMs": 360
+            }
+          ]
+        },
+        "final": {
+          "byType": {
+            "Script": {
+              "requestsMedian": 7,
+              "wireBytesMedian": 238645
+            },
+            "Stylesheet": {
+              "requestsMedian": 5,
+              "wireBytesMedian": 57151
+            },
+            "Document": {
+              "requestsMedian": 1,
+              "wireBytesMedian": 10125
+            },
+            "Other": {
+              "requestsMedian": 1,
+              "wireBytesMedian": 2890
+            },
+            "Font": {
+              "requestsMedian": 4,
+              "wireBytesMedian": 58536
+            },
+            "Image": {
+              "requestsMedian": 5,
+              "wireBytesMedian": 5957
+            }
+          },
+          "FCPbyRound": [
+            {
+              "round": 1,
+              "fcpMs": 1440
+            },
+            {
+              "round": 2,
+              "fcpMs": 596
+            },
+            {
+              "round": 3,
+              "fcpMs": 908
+            },
+            {
+              "round": 4,
+              "fcpMs": 856
+            },
+            {
+              "round": 5,
+              "fcpMs": 472
+            },
+            {
+              "round": 6,
+              "fcpMs": 372
+            },
+            {
+              "round": 7,
+              "fcpMs": 468
+            }
+          ]
+        },
+        "pairedFCP": {
+          "deltasMs": [
+            1012,
+            184,
+            56,
+            216,
+            36,
+            -228,
+            108
+          ],
+          "medianDeltaMs": 108,
+          "finalSlowerPairs": 6,
+          "pairs": 7
+        }
+      },
+      "repeat": {
+        "baseline": {
+          "byType": {
+            "Script": {
+              "requestsMedian": 6,
+              "wireBytesMedian": 0
+            },
+            "Stylesheet": {
+              "requestsMedian": 3,
+              "wireBytesMedian": 0
+            },
+            "Document": {
+              "requestsMedian": 1,
+              "wireBytesMedian": 9041
+            },
+            "Other": {
+              "requestsMedian": 1,
+              "wireBytesMedian": 2890
+            },
+            "Font": {
+              "requestsMedian": 3,
+              "wireBytesMedian": 0
+            },
+            "Image": {
+              "requestsMedian": 5,
+              "wireBytesMedian": 3805
+            }
+          },
+          "FCPbyRound": [
+            {
+              "round": 1,
+              "fcpMs": 152
+            },
+            {
+              "round": 2,
+              "fcpMs": 108
+            },
+            {
+              "round": 3,
+              "fcpMs": 316
+            },
+            {
+              "round": 4,
+              "fcpMs": 96
+            },
+            {
+              "round": 5,
+              "fcpMs": 132
+            },
+            {
+              "round": 6,
+              "fcpMs": 128
+            },
+            {
+              "round": 7,
+              "fcpMs": 144
+            }
+          ]
+        },
+        "final": {
+          "byType": {
+            "Script": {
+              "requestsMedian": 7,
+              "wireBytesMedian": 0
+            },
+            "Stylesheet": {
+              "requestsMedian": 5,
+              "wireBytesMedian": 0
+            },
+            "Document": {
+              "requestsMedian": 1,
+              "wireBytesMedian": 10125
+            },
+            "Other": {
+              "requestsMedian": 1,
+              "wireBytesMedian": 2890
+            },
+            "Font": {
+              "requestsMedian": 4,
+              "wireBytesMedian": 0
+            },
+            "Image": {
+              "requestsMedian": 5,
+              "wireBytesMedian": 3805
+            }
+          },
+          "FCPbyRound": [
+            {
+              "round": 1,
+              "fcpMs": 176
+            },
+            {
+              "round": 2,
+              "fcpMs": 120
+            },
+            {
+              "round": 3,
+              "fcpMs": 180
+            },
+            {
+              "round": 4,
+              "fcpMs": 196
+            },
+            {
+              "round": 5,
+              "fcpMs": 120
+            },
+            {
+              "round": 6,
+              "fcpMs": 108
+            },
+            {
+              "round": 7,
+              "fcpMs": 132
+            }
+          ]
+        },
+        "pairedFCP": {
+          "deltasMs": [
+            24,
+            12,
+            -136,
+            100,
+            -12,
+            -20,
+            -12
+          ],
+          "medianDeltaMs": -12,
+          "finalSlowerPairs": 3,
+          "pairs": 7
+        }
+      }
+    },
+    "people": {
+      "cold": {
+        "baseline": {
+          "byType": {
+            "Script": {
+              "requestsMedian": 6,
+              "wireBytesMedian": 224260
+            },
+            "Stylesheet": {
+              "requestsMedian": 3,
+              "wireBytesMedian": 33841
+            },
+            "Document": {
+              "requestsMedian": 1,
+              "wireBytesMedian": 6559
+            },
+            "Other": {
+              "requestsMedian": 1,
+              "wireBytesMedian": 2890
+            },
+            "Font": {
+              "requestsMedian": 4,
+              "wireBytesMedian": 58536
+            },
+            "Image": {
+              "requestsMedian": 3,
+              "wireBytesMedian": 4876
+            }
+          },
+          "FCPbyRound": [
+            {
+              "round": 1,
+              "fcpMs": 448
+            },
+            {
+              "round": 2,
+              "fcpMs": 1000
+            },
+            {
+              "round": 3,
+              "fcpMs": 516
+            },
+            {
+              "round": 4,
+              "fcpMs": 416
+            },
+            {
+              "round": 5,
+              "fcpMs": 432
+            },
+            {
+              "round": 6,
+              "fcpMs": 348
+            },
+            {
+              "round": 7,
+              "fcpMs": 416
+            }
+          ]
+        },
+        "final": {
+          "byType": {
+            "Script": {
+              "requestsMedian": 7,
+              "wireBytesMedian": 238645
+            },
+            "Stylesheet": {
+              "requestsMedian": 5,
+              "wireBytesMedian": 57151
+            },
+            "Document": {
+              "requestsMedian": 1,
+              "wireBytesMedian": 7050
+            },
+            "Other": {
+              "requestsMedian": 1,
+              "wireBytesMedian": 2890
+            },
+            "Font": {
+              "requestsMedian": 3,
+              "wireBytesMedian": 43941
+            },
+            "Image": {
+              "requestsMedian": 3,
+              "wireBytesMedian": 4876
+            }
+          },
+          "FCPbyRound": [
+            {
+              "round": 1,
+              "fcpMs": 548
+            },
+            {
+              "round": 2,
+              "fcpMs": 484
+            },
+            {
+              "round": 3,
+              "fcpMs": 584
+            },
+            {
+              "round": 4,
+              "fcpMs": 448
+            },
+            {
+              "round": 5,
+              "fcpMs": 436
+            },
+            {
+              "round": 6,
+              "fcpMs": 460
+            },
+            {
+              "round": 7,
+              "fcpMs": 456
+            }
+          ]
+        },
+        "pairedFCP": {
+          "deltasMs": [
+            100,
+            -516,
+            68,
+            32,
+            4,
+            112,
+            40
+          ],
+          "medianDeltaMs": 40,
+          "finalSlowerPairs": 6,
+          "pairs": 7
+        }
+      },
+      "repeat": {
+        "baseline": {
+          "byType": {
+            "Script": {
+              "requestsMedian": 6,
+              "wireBytesMedian": 0
+            },
+            "Stylesheet": {
+              "requestsMedian": 3,
+              "wireBytesMedian": 0
+            },
+            "Document": {
+              "requestsMedian": 1,
+              "wireBytesMedian": 6559
+            },
+            "Other": {
+              "requestsMedian": 1,
+              "wireBytesMedian": 2890
+            },
+            "Font": {
+              "requestsMedian": 4,
+              "wireBytesMedian": 0
+            },
+            "Image": {
+              "requestsMedian": 3,
+              "wireBytesMedian": 3500
+            }
+          },
+          "FCPbyRound": [
+            {
+              "round": 1,
+              "fcpMs": 92
+            },
+            {
+              "round": 2,
+              "fcpMs": 448
+            },
+            {
+              "round": 3,
+              "fcpMs": 136
+            },
+            {
+              "round": 4,
+              "fcpMs": 152
+            },
+            {
+              "round": 5,
+              "fcpMs": 128
+            },
+            {
+              "round": 6,
+              "fcpMs": 116
+            },
+            {
+              "round": 7,
+              "fcpMs": 136
+            }
+          ]
+        },
+        "final": {
+          "byType": {
+            "Script": {
+              "requestsMedian": 7,
+              "wireBytesMedian": 0
+            },
+            "Stylesheet": {
+              "requestsMedian": 5,
+              "wireBytesMedian": 0
+            },
+            "Document": {
+              "requestsMedian": 1,
+              "wireBytesMedian": 7050
+            },
+            "Other": {
+              "requestsMedian": 1,
+              "wireBytesMedian": 2890
+            },
+            "Font": {
+              "requestsMedian": 3,
+              "wireBytesMedian": 0
+            },
+            "Image": {
+              "requestsMedian": 3,
+              "wireBytesMedian": 3500
+            }
+          },
+          "FCPbyRound": [
+            {
+              "round": 1,
+              "fcpMs": 116
+            },
+            {
+              "round": 2,
+              "fcpMs": 284
+            },
+            {
+              "round": 3,
+              "fcpMs": 336
+            },
+            {
+              "round": 4,
+              "fcpMs": 112
+            },
+            {
+              "round": 5,
+              "fcpMs": 100
+            },
+            {
+              "round": 6,
+              "fcpMs": 120
+            },
+            {
+              "round": 7,
+              "fcpMs": 120
+            }
+          ]
+        },
+        "pairedFCP": {
+          "deltasMs": [
+            24,
+            -164,
+            200,
+            -40,
+            -28,
+            4,
+            -16
+          ],
+          "medianDeltaMs": -16,
+          "finalSlowerPairs": 3,
+          "pairs": 7
+        }
+      }
+    }
+  },
+  "traces": {
+    "baseline": {
+      "inclusiveEventTotalsMs": {
+        "RunTask": 686.0999999999995,
+        "Layout": 96.28400000000002,
+        "UpdateLayoutTree": 18.573,
+        "EvaluateScript": 240.07,
+        "V8.CompileCode": 189.90200000000027,
+        "ParseAuthorStyleSheet": 5.375,
+        "Paint": 29.152
+      },
+      "limitation": "n1 diagnostic with tracing overhead; inclusive nested event durations overlap and must not be added. Not another timing benchmark."
+    },
+    "final": {
+      "inclusiveEventTotalsMs": {
+        "RunTask": 654.3339999999996,
+        "Layout": 195.29200000000003,
+        "UpdateLayoutTree": 28.428,
+        "EvaluateScript": 166.654,
+        "V8.CompileCode": 126.70900000000023,
+        "ParseAuthorStyleSheet": 8.646,
+        "Paint": 19.837
+      },
+      "limitation": "n1 diagnostic with tracing overhead; inclusive nested event durations overlap and must not be added. Not another timing benchmark."
+    }
+  },
+  "fontWaterfalls": [
+    {
+      "round": 1,
+      "font900StartMs": 1138.699999999255,
+      "font900EndMs": 1241.0999999977648,
+      "lastBlockingCssEndMs": 971.5,
+      "fcpMs": 1440,
+      "fontFinishedBeforeFCPms": 198.90000000223517
+    },
+    {
+      "round": 2,
+      "font900StartMs": 446.5999999977648,
+      "font900EndMs": 456.69999999925494,
+      "lastBlockingCssEndMs": 320.8999999985099,
+      "fcpMs": 596,
+      "fontFinishedBeforeFCPms": 139.30000000074506
+    },
+    {
+      "round": 3,
+      "font900StartMs": 561.4000000022352,
+      "font900EndMs": 658.6999999992549,
+      "lastBlockingCssEndMs": 469.5,
+      "fcpMs": 908,
+      "fontFinishedBeforeFCPms": 249.30000000074506
+    },
+    {
+      "round": 4,
+      "font900StartMs": 604.2000000029802,
+      "font900EndMs": 613.7000000029802,
+      "lastBlockingCssEndMs": 449.9000000022352,
+      "fcpMs": 856,
+      "fontFinishedBeforeFCPms": 242.29999999701977
+    },
+    {
+      "round": 5,
+      "font900StartMs": 277.20000000298023,
+      "font900EndMs": 300.1000000014901,
+      "lastBlockingCssEndMs": 213.30000000074506,
+      "fcpMs": 472,
+      "fontFinishedBeforeFCPms": 171.89999999850988
+    },
+    {
+      "round": 6,
+      "font900StartMs": 191.30000000074506,
+      "font900EndMs": 210.80000000074506,
+      "lastBlockingCssEndMs": 140.09999999776483,
+      "fcpMs": 372,
+      "fontFinishedBeforeFCPms": 161.19999999925494
+    },
+    {
+      "round": 7,
+      "font900StartMs": 252.10000000149012,
+      "font900EndMs": 261.8999999985099,
+      "lastBlockingCssEndMs": 195.19999999925494,
+      "fcpMs": 468,
+      "fontFinishedBeforeFCPms": 206.10000000149012
+    }
+  ],
+  "conclusion": {
+    "measured": "Dashboard cold medianFCP436\u2192596ms, wire+53374bytes, slower6of7pairedcold visits. Cachedrepeat medianFCP132\u2192132ms. People control cold432\u2192460ms, repeat136\u2192120ms.",
+    "fixedDashboardWireDelta": {
+      "css": 23310,
+      "javascript": 14385,
+      "font": 14595,
+      "document": 1084,
+      "total": 53374
+    },
+    "mechanismSupported": "Final serves5render-blocking stylesheets versus3; fixed extraCSS/JS/font transfer. A separate trace observes larger first-layout work but does not show JS execution slowing. Shared fixed backend still1projection/navigation,0initialbrowserAPI.",
+    "fontPreloadNotProven": "All7font900responses finish139\u2013249ms beforeFCP. In trace900finishes1.8ms after the other finalfont, followed by10ms secondLayout, not a100msfont-swap penalty. No demonstrated preload fix for160msmedian cost.",
+    "visualConstraint": "Selected Studio target/actual use the heavy headline. Changing800CSS to700would stop matching900face and save14595bytes, but reduces accepted visual weight; no such change made.",
+    "scope": "GlobalCSS route splitting/deleting legacy overridden rules could reduce payload, but needs a separate measured implementation and cross-route visual/interaction verification. No speculative refactor in this bounded evidence lane.",
+    "status": "Performance comparison complete with an unresolved cold-load tradeoff; no blanket speed improvement or hosted performance guarantee."
+  }
+}
