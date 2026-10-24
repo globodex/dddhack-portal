@@ -1,31 +1,19 @@
 import { createHash, randomUUID } from "node:crypto";
-import { z } from "zod";
 import { one, type Database, type Statement } from "../../lib/db";
 import { demand, PortalError } from "../../lib/security";
 import { validateProjectImage } from "../../lib/project-media";
 import { validateUploadedImage } from "./image";
+import {
+  parseProjectMediaReference,
+  projectMediaMarker as marker,
+  type ProjectMediaReference as Reference,
+} from "./reference";
 import {
   MAX_IMAGE_BYTES,
   type MediaKind,
   type MediaObjectStore,
 } from "./types";
 
-const marker = "neon-project-media";
-const referenceSchema = z
-  .object({
-    storage: z.literal(marker),
-    version: z.literal(1),
-    bucket: z.string(),
-    key: z.string(),
-    kind: z.enum(["logo", "banner"]),
-    contentType: z.enum(["image/png", "image/jpeg"]),
-    byteLength: z.number().int().min(32).max(MAX_IMAGE_BYTES),
-    width: z.number().int().min(64).max(4096),
-    height: z.number().int().min(64).max(4096),
-    sha256: z.string().regex(/^[a-f0-9]{64}$/),
-  })
-  .strict();
-type Reference = z.infer<typeof referenceSchema>;
 type Bound = { sql: string; args: unknown[] };
 const hash = (bytes: Uint8Array | string) =>
   createHash("sha256").update(bytes).digest("hex");
@@ -191,22 +179,12 @@ export function createMediaDatabase(
     value: unknown,
     kind: MediaKind,
     cache: Map<string, Promise<string>>,
+    teamId?: string,
   ) {
-    const parsed = referenceSchema.safeParse(value);
-    demand(parsed.success, 422, "INVALID_STORED_MEDIA_REFERENCE");
-    const reference = parsed.data;
-    const prefix = kind === "logo" ? "logos" : "banners";
-    const extension = reference.contentType === "image/png" ? "png" : "jpg";
-    const keyPattern = new RegExp(
-      `^${prefix}/objects/teams/[a-f0-9]{32}/(?:d[a-f0-9]{64}|r[0-9]+)/[a-f0-9-]{36}\\.${extension}$`,
-    );
-    demand(
-      reference.bucket === bucket &&
-        reference.kind === kind &&
-        keyPattern.test(reference.key),
-      422,
-      "INVALID_STORED_MEDIA_REFERENCE",
-    );
+    const reference = parseProjectMediaReference(value, kind, {
+      mediaBucket: bucket,
+      teamId,
+    });
     const cacheKey = JSON.stringify(reference);
     let pending = cache.get(cacheKey);
     if (!pending) {
@@ -249,6 +227,44 @@ export function createMediaDatabase(
       result.results.map(async (row) => {
         if (!row || typeof row !== "object") return row;
         const output = { ...row } as Record<string, unknown>;
+        // This explicit projection is for the already-authorized public image query.
+        // Public-list payload aliases remain raw metadata and trigger no object reads.
+        if ("project_image_value" in output) {
+          const value = output.project_image_value;
+          demand(
+            (output.project_image_kind === "logo" ||
+              output.project_image_kind === "banner") &&
+              typeof output.project_image_team_id === "string" &&
+              output.project_image_team_id.length > 0 &&
+              output.project_image_team_id.length <= 200,
+            422,
+            "INVALID_STORED_MEDIA_REFERENCE",
+          );
+          const kind = output.project_image_kind;
+          if (typeof value === "string" && value.startsWith("data:")) {
+            validateProjectImage(value, kind);
+          } else {
+            let reference: unknown = value;
+            if (typeof value === "string") {
+              demand(
+                Buffer.byteLength(value) <= 4096,
+                422,
+                "INVALID_STORED_MEDIA_REFERENCE",
+              );
+              try {
+                reference = JSON.parse(value);
+              } catch {
+                throw new PortalError(422, "INVALID_STORED_MEDIA_REFERENCE");
+              }
+            }
+            output.project_image_value = await readReference(
+              reference,
+              kind,
+              cache,
+              output.project_image_team_id,
+            );
+          }
+        }
         for (const field of ["draft", "payload"] as const) {
           const value = output[field];
           if (typeof value !== "string" || !value.includes(marker)) continue;

@@ -5,7 +5,11 @@ import { batch, one } from "../lib/db";
 import { PortalService } from "../lib/service";
 import { PortalError } from "../lib/security";
 import { publicProjectImage } from "../lib/public-project-image";
-import { createMediaDatabase, type MediaObjectStore } from "../neon/storage";
+import {
+  createMediaDatabase,
+  validatePublishedProjectMedia,
+  type MediaObjectStore,
+} from "../neon/storage";
 import {
   activate,
   attend,
@@ -361,6 +365,151 @@ test("legacy inline payloads and unrelated payload queries remain readable witho
     assert.equal(row!.draft, JSON.stringify(submission));
     assert.equal(f.reads(), 0);
     assert.equal(f.writes(), 0);
+  } finally {
+    f.db.close();
+  }
+});
+
+test("public list metadata validates 1000 projected rows without fetching any objects", async () => {
+  const f = await fixture();
+  try {
+    const committed = (await f.service.command("submit-project", {
+      revision: 0,
+      project: submission,
+    })) as { projectId: string; versionId: string };
+    const before = f.reads();
+    const result = await f.wrapped
+      .prepare(
+        `WITH RECURSIVE copies(n) AS (SELECT 1 UNION ALL SELECT n+1 FROM copies WHERE n<1000)
+      SELECT v.payload AS public_media_payload,v.team_id FROM submission_versions v CROSS JOIN copies WHERE v.id=?`,
+      )
+      .bind(committed.versionId)
+      .all<{ public_media_payload: string; team_id: string }>();
+    assert.equal(result.results.length, 1000);
+    for (const row of result.results) {
+      const payload = JSON.parse(row.public_media_payload);
+      assert.deepEqual(
+        validatePublishedProjectMedia(payload.logo, "logo", row.team_id),
+        { width: 64, height: 64 },
+      );
+      assert.deepEqual(
+        validatePublishedProjectMedia(payload.banner, "banner", row.team_id),
+        { width: 160, height: 90 },
+      );
+    }
+    assert.equal(f.reads(), before);
+  } finally {
+    f.db.close();
+  }
+});
+
+test("selective published image projection fetches exactly one raster after eligibility and version checks", async () => {
+  const f = await fixture();
+  try {
+    const committed = (await f.service.command("submit-project", {
+      revision: 0,
+      project: submission,
+    })) as { projectId: string; versionId: string };
+    const select = (kind: "logo" | "banner", version = committed.versionId) =>
+      one<{ project_image_value: string }>(
+        f.wrapped,
+        `SELECT json_extract(v.payload,'$.${kind}') AS project_image_value,v.team_id AS project_image_team_id,'${kind}' AS project_image_kind
+       FROM projects p JOIN submission_versions v ON v.id=p.published_version_id AND v.team_id=p.team_id
+       WHERE NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.active=1 AND ((rr.kind='project' AND rr.target_id=p.id) OR (rr.kind='submission' AND rr.target_id=v.id)))
+       AND p.id=? AND p.published_version_id=? AND COALESCE((SELECT e.status FROM project_eligibility e WHERE e.project_id=p.id AND e.version_id=v.id),
+       (SELECT r.eligibility FROM reviews r WHERE r.team_id=p.team_id AND r.version_id=v.id),'needs_review')='eligible'`,
+        committed.projectId,
+        version,
+      );
+    const before = f.reads();
+    assert.equal(await select("logo"), undefined);
+    assert.equal(f.reads(), before);
+    await f.db
+      .prepare(
+        `INSERT INTO project_eligibility(project_id,version_id,status,reason,decided_by,updated_at)
+      VALUES(?,?,'eligible','Synthetic local test','fake_admin','2026-11-01T04:30:01.000Z')`,
+      )
+      .bind(committed.projectId, committed.versionId)
+      .all();
+    assert.equal((await select("logo"))!.project_image_value, submission.logo);
+    assert.equal(f.reads(), before + 1, "logo response does not fetch banner");
+    assert.equal(
+      (await select("banner"))!.project_image_value,
+      submission.banner,
+    );
+    assert.equal(f.reads(), before + 2);
+    assert.equal(await select("logo", "wrong-version"), undefined);
+    assert.equal(f.reads(), before + 2);
+    const raw = JSON.parse(
+      (await one<{ payload: string }>(
+        f.db,
+        "SELECT payload FROM submission_versions WHERE id=?",
+        committed.versionId,
+      ))!.payload,
+    );
+    const object = f.objects.get(raw.logo.key)!;
+    const altered = Uint8Array.from(object.bytes);
+    altered[44] ^= 1;
+    f.objects.set(raw.logo.key, { ...object, bytes: altered });
+    await assert.rejects(
+      select("logo"),
+      (error) =>
+        error instanceof PortalError && error.code === "STORED_IMAGE_CHANGED",
+    );
+  } finally {
+    f.db.close();
+  }
+});
+
+test("public media metadata rejects foreign namespaces, malformed shapes, wrong kinds and inline invalid images", async () => {
+  const f = await fixture();
+  try {
+    await f.service.command("save-project", {
+      revision: 0,
+      project: submission,
+    });
+    const raw = JSON.parse(
+      (await one<{ draft: string }>(
+        f.db,
+        "SELECT draft FROM projects WHERE team_id='fake_team1'",
+      ))!.draft,
+    );
+    const ref = raw.logo;
+    for (const change of [
+      { bucket: "other-bucket" },
+      { key: "../../secret" },
+      { sha256: "f".repeat(64) },
+      { width: 65 },
+      { byteLength: 131073 },
+      { contentType: "image/svg+xml" },
+      { extra: true },
+    ]) {
+      assert.throws(() =>
+        validatePublishedProjectMedia(
+          { ...ref, ...change },
+          "logo",
+          "fake_team1",
+        ),
+      );
+    }
+    assert.throws(() =>
+      validatePublishedProjectMedia(ref, "logo", "fake_team3"),
+    );
+    assert.throws(() =>
+      validatePublishedProjectMedia(ref, "banner", "fake_team1"),
+    );
+    assert.throws(() =>
+      validatePublishedProjectMedia(
+        "https://evil.test/image.png",
+        "logo",
+        "fake_team1",
+      ),
+    );
+    assert.deepEqual(
+      validatePublishedProjectMedia(submission.logo, "logo", "fake_team1"),
+      { width: 64, height: 64 },
+    );
+    assert.equal(f.reads(), 0);
   } finally {
     f.db.close();
   }

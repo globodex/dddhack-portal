@@ -26,6 +26,7 @@ export {
 export { createPortalMediaAuthorizer } from "./authorization";
 export { createStorageApiHandler } from "./http";
 export { createMediaDatabase } from "./database";
+export { validatePublishedProjectMedia } from "./reference";
 
 export const scopeSchema = z.object({
   teamId: z.string().min(1).max(200),
