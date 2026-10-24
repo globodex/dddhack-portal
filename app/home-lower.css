@@ -114,6 +114,15 @@
   max-width: 52ch;
   margin: 0;
 }
+.public-home-shell .agenda-timeline > li > div {
+  min-width: 0;
+}
+.public-home-shell .agenda-timeline h4,
+.public-home-shell .agenda-timeline p,
+.public-home-shell .chapter-stack .public-faq summary,
+.public-home-shell .chapter-stack .public-faq details p {
+  overflow-wrap: anywhere;
+}
 .public-home-shell .chapter-stack .agenda-pending {
   padding-block: 28px;
   border-top: 1px solid var(--line, #e3e4db);
