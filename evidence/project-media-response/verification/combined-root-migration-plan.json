@@ -1,0 +1,41 @@
+{
+  "mode": "inspect-only",
+  "migrations": [
+    {
+      "name": "0000_compatibility.sql",
+      "checksum": "5e5f7c29d376532f6a32771f556f965aaed666c3bd8bf6fc32d2f00bd9f0ac66"
+    },
+    {
+      "name": "0001_portal.sql",
+      "checksum": "f9e5a1379f598c6c7bc86c771148f16c4c7d5767c773dffbcb14e50e7285b031"
+    },
+    {
+      "name": "0002_invariants.sql",
+      "checksum": "abdea4e04ea373c8a86ba2848d10a0122ab09308f52c1e51d439d138a8670928"
+    },
+    {
+      "name": "0003_transaction_safety.sql",
+      "checksum": "9e3e440b4d0a14d1fee077a3a4c9ab92fd972d61e377931f602f46d0f5bbed24"
+    },
+    {
+      "name": "0004_media_uploads.sql",
+      "checksum": "32cf9496df32661e65299f846359da306b8efca2a15f4c6070b8f0f8a1cab8e7"
+    },
+    {
+      "name": "0005_credit_stock.sql",
+      "checksum": "74bf8549edbecb753424a86e692844e962be02c0faeddda8f0b2dd3ffaacb72e"
+    },
+    {
+      "name": "0006_project_media_limits.sql",
+      "checksum": "3f42da160787977b7655fe74647655bd656f4c55467c2a42b3dd1627859f462c"
+    },
+    {
+      "name": "0100_auth.sql",
+      "checksum": "d7a7d26116c1cf892f129edfbbf70ee4a7b3014165667e5b4b7cda8a916d6bbf"
+    },
+    {
+      "name": "0101_approved_evaluation.sql",
+      "checksum": "21929ac1cf790d34644b385fa4506c69db6df9be3d5ddaae00db9ee2bccb5797"
+    }
+  ]
+}

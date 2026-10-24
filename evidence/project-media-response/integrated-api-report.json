@@ -1,0 +1,163 @@
+{
+  "source": "28ebbfc81a49ab839316b0d9121902e3cf645173",
+  "syntheticOnly": true,
+  "uncompressedBodies": true,
+  "canonicalBinaryPairBytes": 524288,
+  "frontend": "http://127.0.0.1:8898",
+  "cases": [
+    {
+      "fixtureName": "two-commits-and-different-draft",
+      "projectId": "699c70fa-b3a1-4450-9b54-9041241ef4ed",
+      "versionId": "8bc87598-ff32-43ee-8016-ba6877210937",
+      "saveRequestBytes": 711937
+    },
+    {
+      "fixtureName": "three-commits-history",
+      "projectId": "13842e0a-16ce-4078-a3c8-23478e486e3a",
+      "versionId": "18c84d87-d209-4a43-821b-16f6a20b81bd",
+      "saveRequestBytes": 711937
+    }
+  ],
+  "records": [
+    {
+      "path": "/api/portal?view=%2Fdashboard",
+      "representation": "api",
+      "fixture": "different-draft",
+      "role": "alice",
+      "status": 200,
+      "bytes": 715338,
+      "sha256": "282a762e3d9e37c0fb76bcae4d09f6af2ef1b720a7a28d9f02c6884290394319",
+      "contentType": "application/json",
+      "cacheControl": "private, no-store, max-age=0",
+      "contentEncoding": null,
+      "imageDataUriOccurrences": 2,
+      "belowConservative4M": true
+    },
+    {
+      "path": "/api/portal?view=%2Fsubmission",
+      "representation": "api",
+      "fixture": "different-draft",
+      "role": "alice",
+      "status": 200,
+      "bytes": 715273,
+      "sha256": "a605629ebe34fa803e15131480ade09f4c06c65fe603d7e2e4b09712d958a054",
+      "contentType": "application/json",
+      "cacheControl": "private, no-store, max-age=0",
+      "contentEncoding": null,
+      "imageDataUriOccurrences": 2,
+      "belowConservative4M": true
+    },
+    {
+      "path": "/api/portal?view=%2Fproject-history",
+      "representation": "api",
+      "fixture": "three-unique-commits",
+      "role": "alice",
+      "status": 200,
+      "bytes": 2136344,
+      "sha256": "6798f1164da61bafe8715916f51b6a6092b00c7c1023b607569073ecd000a5ef",
+      "contentType": "application/json",
+      "cacheControl": "private, no-store, max-age=0",
+      "contentEncoding": null,
+      "imageDataUriOccurrences": 6,
+      "belowConservative4M": true
+    },
+    {
+      "path": "/api/portal?view=%2Fadmin%2Fsubmissions%2F699c70fa-b3a1-4450-9b54-9041241ef4ed",
+      "representation": "api",
+      "fixture": "different-draft-and-published",
+      "role": "owner",
+      "status": 200,
+      "bytes": 1425026,
+      "sha256": "8e27f3e76e5c9750dae113224230ed3d640fb29872d0d5c6db6fd46ff8870e1d",
+      "contentType": "application/json",
+      "cacheControl": "private, no-store, max-age=0",
+      "contentEncoding": null,
+      "imageDataUriOccurrences": 4,
+      "belowConservative4M": true
+    },
+    {
+      "path": "/api/portal?view=%2Fadmin%2Fsubmissions",
+      "representation": "api",
+      "fixture": "metadata-list",
+      "role": "owner",
+      "status": 200,
+      "bytes": 760,
+      "sha256": "8d41067ef80df12b44e6cec6eb4f7fac2f2bc4fad1274bf6a5a15513f5aa19b1",
+      "contentType": "application/json",
+      "cacheControl": "private, no-store, max-age=0",
+      "contentEncoding": null,
+      "imageDataUriOccurrences": 0,
+      "belowConservative4M": true
+    },
+    {
+      "path": "/api/portal?view=%2Fprojects",
+      "representation": "api",
+      "fixture": "public-list",
+      "role": null,
+      "status": 200,
+      "bytes": 11453,
+      "sha256": "84d642a13b474147878e2b7b20a494559c5c04d6d3fef038f125bf611fd03afc",
+      "contentType": "application/json",
+      "cacheControl": "private, no-store, max-age=0",
+      "contentEncoding": null,
+      "imageDataUriOccurrences": 0,
+      "belowConservative4M": true
+    },
+    {
+      "path": "/api/portal?view=%2Fsubmission",
+      "representation": "api",
+      "fixture": "unauthenticated-error",
+      "role": null,
+      "status": 401,
+      "bytes": 56,
+      "sha256": "500d4b81348de05c1138c2ac55f950ba1c31b3e7c9ad65b1d4da4da4cf21d2f3",
+      "contentType": "application/json",
+      "cacheControl": "private, no-store, max-age=0",
+      "contentEncoding": null,
+      "imageDataUriOccurrences": 0,
+      "belowConservative4M": true
+    },
+    {
+      "path": "/api/portal?view=%2Fadmin%2Fsubmissions",
+      "representation": "api",
+      "fixture": "forbidden-error",
+      "role": "alice",
+      "status": 403,
+      "bytes": 58,
+      "sha256": "086080ed80f14ab4ce22a6f49791aea774b71120e54fce4d5844f57bf59c5a89",
+      "contentType": "application/json",
+      "cacheControl": "private, no-store, max-age=0",
+      "contentEncoding": null,
+      "imageDataUriOccurrences": 0,
+      "belowConservative4M": true
+    },
+    {
+      "path": "/api/project-image/699c70fa-b3a1-4450-9b54-9041241ef4ed/logo?version=8bc87598-ff32-43ee-8016-ba6877210937",
+      "representation": "api",
+      "fixture": "public-logo-raster",
+      "role": null,
+      "status": 200,
+      "bytes": 131072,
+      "sha256": "4b0c67f37364a722d268add9f2681361e71b13866da3bc738d246d24f7851b0a",
+      "contentType": "image/jpeg",
+      "cacheControl": "private, no-store",
+      "contentEncoding": null,
+      "imageDataUriOccurrences": 0,
+      "belowConservative4M": true
+    },
+    {
+      "path": "/api/project-image/699c70fa-b3a1-4450-9b54-9041241ef4ed/banner?version=8bc87598-ff32-43ee-8016-ba6877210937",
+      "representation": "api",
+      "fixture": "public-banner-raster",
+      "role": null,
+      "status": 200,
+      "bytes": 393216,
+      "sha256": "b17846e65f1c95874ab8abb419f5da999274060dd307fb6bd248dcee74bfae6b",
+      "contentType": "image/jpeg",
+      "cacheControl": "private, no-store",
+      "contentEncoding": null,
+      "imageDataUriOccurrences": 0,
+      "belowConservative4M": true
+    }
+  ]
+}

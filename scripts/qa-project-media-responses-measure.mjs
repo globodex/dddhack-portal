@@ -59,7 +59,10 @@ async function measure(entry, path, representation) {
     headers["x-portal-forwarded-origin"] = fixture.appOrigin;
   }
   if (representation === "rsc") headers.RSC = "1";
-  const response = await fetch(new URL(path, base), {
+  const requestUrl = new URL(path, base);
+  // Next16 validates RSC cache-busting headers. With no router-tree headers the expected hash is empty.
+  if (representation === "rsc") requestUrl.searchParams.set("_rsc", "");
+  const response = await fetch(requestUrl, {
     headers,
     redirect: "manual",
     signal: AbortSignal.timeout(120000),
@@ -67,12 +70,30 @@ async function measure(entry, path, representation) {
   const bytes = Buffer.from(await response.arrayBuffer());
   const type = response.headers.get("content-type");
   const text = type?.includes("image/") ? "" : bytes.toString("utf8");
+  const expectedStatus =
+    entry.case === "unauthenticated-error"
+      ? 401
+      : entry.case === "forbidden-error"
+        ? 403
+        : 200;
+  const expectedType =
+    representation === "html"
+      ? "text/html"
+      : representation === "rsc"
+        ? "text/x-component"
+        : entry.case.startsWith("public-") && entry.case.endsWith("-raster")
+          ? "image/jpeg"
+          : "application/json";
   const record = {
     path,
+    requestUrl: requestUrl.pathname + requestUrl.search,
     representation,
     fixture: entry.case,
     role: entry.role,
     status: response.status,
+    expectedStatus,
+    statusAndTypeMatch:
+      response.status === expectedStatus && !!type?.includes(expectedType),
     bytes: bytes.length,
     sha256: createHash("sha256").update(bytes).digest("hex"),
     contentType: type,
@@ -127,4 +148,5 @@ await writeFile(
     2,
   ) + "\n",
 );
-if (records.some((row) => !row.belowConservative4M)) process.exitCode = 1;
+if (records.some((row) => !row.belowConservative4M || !row.statusAndTypeMatch))
+  process.exitCode = 1;
