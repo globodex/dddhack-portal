@@ -1,0 +1,27 @@
+✔ Going status stands alone and primary UserCheck action precedes admin menu (259.686388ms)
+✔ volunteers retain their separate action cell without admin menu; ineligible rows have no quick action (372.234083ms)
+✔ column trash is icon-only and retains its exact accessible name and tooltip; batch delete keeps text (136.534444ms)
+✔ team header has sibling disclosure and menu controls and preserves literal team names (22.200561ms)
+✔ submission confirmations show the committed attempt and correct remaining count (26.766306ms)
+✔ team admin confirmations retain exact identity and backend confirmation tokens (0.527705ms)
+✔ concise copy retains irreversible reveal and credit deletion consequences (0.377647ms)
+✔ confirmation captures the initiating control before pending rendering changes focus (0.409263ms)
+✔ profile starts a three-step flow with authenticated email and eight approved symbolic avatar choices (59.564796ms)
+✔ Dashboard consolidates Team, Credits and Project and keeps upvotes read-only and private feedback separate (180.135154ms)
+✔ team idea is capped, saved before lock and uses safe teammate profiles, symbolic avatars and supplied phone links (196.412962ms)
+✔ viewer discovery and dashboard remain read-only without forcing profile completion (79.358915ms)
+✔ project mutation controls fail closed unless server grants canCommit to this leader, with history available after edit close (107.856019ms)
+✔ credit allocations start masked and never expose secret fields from the projection (23.170877ms)
+✔ showcase votes use server capabilities and persistent pressed state without a downvote action (105.593113ms)
+✔ vote controller permits one pending action, rolls back rejection and can retry after failure (0.811955ms)
+✔ profile and external links are constrained; immutable version view renders explicit project fields only (0.70928ms)
+✔ destructive and publishing confirmations identify exact scope and preserve policy/history (0.753697ms)
+✔ explicit sex and typed social prefills are preserved for review without inventing selections (53.071865ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9946.422265

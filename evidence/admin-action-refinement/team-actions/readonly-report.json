@@ -1,0 +1,127 @@
+{
+  "syntheticOnly": true,
+  "phase": "read-only dialogs, before team mutations",
+  "checks": [
+    {
+      "name": "Rename opens without candidate fetch; editable current name; Escape restores its menu item",
+      "passed": true
+    },
+    {
+      "name": "Add fetches only on open, bounded25 and stable modal geometry at4viewports",
+      "passed": true
+    },
+    {
+      "name": "Search pagination is server-bounded25,11 and existing-team selection is disabled",
+      "passed": true
+    },
+    {
+      "name": "Back dismisses only Add modal, preserving parent menu and route",
+      "passed": true
+    }
+  ],
+  "candidateRequests": [
+    {
+      "view": "/admin/team-candidates/fake_team3",
+      "q": "",
+      "page": "0"
+    },
+    {
+      "view": "/admin/team-candidates/fake_team3",
+      "q": "Synthetic Candidate",
+      "page": "0"
+    },
+    {
+      "view": "/admin/team-candidates/fake_team3",
+      "q": "Synthetic Candidate",
+      "page": "1"
+    },
+    {
+      "view": "/admin/team-candidates/fake_team3",
+      "q": "alice@portal.test",
+      "page": "0"
+    },
+    {
+      "view": "/admin/team-candidates/fake_team3",
+      "q": "stranger@portal.test",
+      "page": "0"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "evidence/admin-action-refinement/team-actions/rename-390-short.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/team-actions/add-candidates-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/team-actions/add-candidates-768.png",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/team-actions/add-candidates-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/team-actions/add-candidates-320.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/team-actions/candidate-page2-320.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/team-actions/other-team-disabled-320.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/team-actions/viewer-excluded-320.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "inspected": true
+    }
+  ],
+  "errors": [],
+  "mutations": [],
+  "closed": true,
+  "source": "d9e080a5c241a71b80aca4550f1359fca53deedf",
+  "files": {
+    "app/admin-team-actions.tsx": "28ae90a2297aa58425837033154867c4974e131f385170057a57183c8205d94a",
+    "app/admin-experience.css": "7991889230180583a0f125bccf939b8f2d0d1cb4f0a12eb433505cabd3632aef",
+    "app/portal.tsx": "7cf8745881abedf356a7e8cd8bd735dd4d4648225f56d5ebf28a50cfe40a85d6",
+    "app/confirmation-dialog.tsx": "ad300b286fda8aded2ba0eea588b1b3dd6c74c4ff43d5e46b1c40f179a920d8e",
+    "lib/action-confirmation.ts": "b81979d1f4705f79bedc46be01a861885ea2a3122926c2f12ec5149905b6448b"
+  },
+  "inspection": "Original native PNG pixels opened with view_image. No image scaling/editing."
+}

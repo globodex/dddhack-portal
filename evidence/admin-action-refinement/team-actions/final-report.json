@@ -1,0 +1,78 @@
+{
+  "source": "a3f076ea6b62ffb5623edb68bd687e985c3c95e5",
+  "syntheticOnly": true,
+  "checks": [
+    {
+      "name": "Hydrated320 team card, long100-character name and five member controls stay within page width",
+      "passed": true
+    },
+    {
+      "name": "Nested Add dialog confines Tab and ShiftTab;503 search error is local and retry recovers",
+      "passed": true
+    },
+    {
+      "name": "Rename field boundary and compact error preserve the exact entered value after503",
+      "passed": true
+    },
+    {
+      "name": "Final hydrated desktop team cards retain header action alignment and five persisted members",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "evidence/admin-action-refinement/team-actions/locked-team-five-members-320-hydrated.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/team-actions/candidate-search-503-320.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/team-actions/rename-503-max-name-320.png",
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "inspected": true
+    },
+    {
+      "path": "evidence/admin-action-refinement/team-actions/locked-team-five-members-1440-final.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "inspected": true
+    }
+  ],
+  "errors": [],
+  "serverMutations": 0,
+  "simulated503": [
+    {
+      "action": "admin-rename-team",
+      "data": {
+        "teamId": "fake_team3",
+        "name": "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR",
+        "expectedName": "Common Ground refined",
+        "confirmation": "RENAME_TEAM"
+      }
+    }
+  ],
+  "files": {
+    "app/admin-team-actions.tsx": "28ae90a2297aa58425837033154867c4974e131f385170057a57183c8205d94a",
+    "app/admin-experience.css": "514f0100a8aeffc4e89fe129a36d4b14b593ecd916201421c498d2f4f2d5f611",
+    "app/portal.tsx": "7cf8745881abedf356a7e8cd8bd735dd4d4648225f56d5ebf28a50cfe40a85d6",
+    "app/confirmation-dialog.tsx": "ad300b286fda8aded2ba0eea588b1b3dd6c74c4ff43d5e46b1c40f179a920d8e",
+    "lib/action-confirmation.ts": "b81979d1f4705f79bedc46be01a861885ea2a3122926c2f12ec5149905b6448b"
+  },
+  "closed": true,
+  "inspection": "Original native PNG pixels opened with view_image. No image scaling/editing."
+}

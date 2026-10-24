@@ -1,0 +1,3 @@
+{"action":"admin-rename-team","data":{"teamId":"fake_team3","name":"Common Ground refined","expectedName":"Common Ground","confirmation":"RENAME_TEAM"}}
+{"action":"admin-add-team-member","data":{"teamId":"fake_team3","email":"pending@portal.test","confirmation":"ADD_TEAM_MEMBER"}}
+{"action":"admin-add-team-member","data":{"teamId":"fake_team3","email":"candidate-00@portal.test","confirmation":"ADD_TEAM_MEMBER"}}
