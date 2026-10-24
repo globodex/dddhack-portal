@@ -60,6 +60,7 @@ import {
   unresolvedEventDecisions,
 } from "./experience-contract";
 import { validateProjectImage } from "./project-media";
+import { validatePublishedProjectMedia } from "../neon/storage/reference";
 import {
   eventContentCommand,
   publicEventContent,
@@ -308,8 +309,8 @@ export class PortalExperience {
     demand(fact.payload, 404, "PROJECT_NOT_PUBLISHED");
     const d = JSON.parse(fact.payload) as Payload;
     // Legacy versions without required media stay private until explicitly reconciled.
-    validateProjectImage(d.logo || "", "logo");
-    validateProjectImage(d.banner || "", "banner");
+    validatePublishedProjectMedia(d.logo || "", "logo", p.team_id);
+    validatePublishedProjectMedia(d.banner || "", "banner", p.team_id);
     const publishedScores = disclosure ?? (await publicScores(this.s));
     const revealed = publishedScores.scores.find(
       (e) => e.projectId === p.id && e.versionId === p.published_version_id,

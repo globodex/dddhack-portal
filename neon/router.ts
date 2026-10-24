@@ -11,6 +11,7 @@ export type BackendDependencies = {
   runtime(request: Request): Promise<Runtime>;
   auth(request: Request): Promise<Response>;
   storage?(request: Request, runtime: Runtime): Promise<Response>;
+  evaluation?(request: Request, runtime: Runtime): Promise<Response>;
 };
 const privateHeaders = {
   "Cache-Control": "private, no-store, max-age=0",
@@ -69,6 +70,8 @@ export function createPortalBackend(env: BackendEnvironment, dependencies: Backe
       if (path === "/api/health" && request.method === "GET")
         return Response.json({ ok: true, runtime: "neon-functions" }, { headers: privateHeaders });
       const runtime = await dependencies.runtime(request);
+      if (path.startsWith("/api/evaluation/") && dependencies.evaluation)
+        return await dependencies.evaluation(request, runtime);
       if (path === "/api/portal") return await handlePortal(request, runtime);
       if (path === "/api/export" && request.method === "GET") return await handleExport(request, runtime);
       if ((path.startsWith("/api/storage/") || path.startsWith("/api/media/")) && dependencies.storage)

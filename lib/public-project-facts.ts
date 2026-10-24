@@ -24,7 +24,7 @@ export async function publicProjectFacts(
   const facts = new Map<string, PublicProjectFact>();
   for (let at = 0; at < selected.length; at += 80) {
     const chunk = selected.slice(at, at + 80);
-    const result = await rows<PublicProjectFact>(
+    const result = await rows<Omit<PublicProjectFact, "payload"> & { public_media_payload: string | null }>(
       db,
       `WITH selected AS (
         SELECT id,team_id,published_version_id FROM projects WHERE id IN (${chunk.map(() => "?").join(",")})
@@ -38,7 +38,7 @@ export async function publicProjectFacts(
         SELECT c.project_id,count(*) total FROM project_comments c
         JOIN selected s ON s.id=c.project_id GROUP BY c.project_id
       )
-      SELECT s.id,s.team_id,s.published_version_id,published.payload,t.name teamName,
+      SELECT s.id,s.team_id,s.published_version_id,published.payload AS public_media_payload,t.name teamName,
         first.created_at firstSubmittedAt,COALESCE(e.status,r.eligibility,'needs_review') eligibility,
         EXISTS(SELECT 1 FROM record_removals rr WHERE rr.active=1 AND
           ((rr.kind='project' AND rr.target_id=s.id) OR (rr.kind='submission' AND rr.target_id=s.published_version_id))) removed,
@@ -54,7 +54,10 @@ export async function publicProjectFacts(
       ...chunk,
       actorId || null,
     );
-    for (const fact of result) facts.set(fact.id, fact);
+    for (const fact of result) {
+      const { public_media_payload, ...selectedFact } = fact;
+      facts.set(fact.id, { ...selectedFact, payload: public_media_payload });
+    }
   }
   return facts;
 }
