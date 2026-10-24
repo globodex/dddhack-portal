@@ -28,9 +28,9 @@ export class UpgradeStopped extends Error {
     super(code);
   }
 }
-const stop = (code: string): never => {
+function stop(code: string): never {
   throw new UpgradeStopped(code);
-};
+}
 const digest = (value: unknown) =>
   createHash("sha256").update(JSON.stringify(value)).digest("hex");
 const entries = (plan: readonly PortalMigration[]) =>
