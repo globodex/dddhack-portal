@@ -715,7 +715,7 @@
     flex: 0 0 23px;
   }
   .app-shell.workspace-shell > .sidebar nav > a[aria-current="page"] {
-    background: #009c68;
+    background: #008559;
     color: #fff;
     font-weight: 500;
   }
@@ -724,7 +724,7 @@
     background: #eef4f7;
   }
   .app-shell.workspace-shell > .sidebar nav > a[aria-current="page"]:hover {
-    background: #00885a;
+    background: #00764e;
   }
   .app-shell.workspace-shell > .main {
     margin-left: 232px;

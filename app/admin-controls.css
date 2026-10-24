@@ -749,7 +749,7 @@ details.panel:has(> .admin-import)[open] {
   display: none;
 }
 .main:not(.home-main) .admin-toolbar-icon,
-.main:not(.home-main) .admin-status-menu > summary {
+.main:not(.home-main) .admin-status-menu > :is(summary, button) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -766,7 +766,7 @@ details.panel:has(> .admin-import)[open] {
   list-style: none;
 }
 .main:not(.home-main) .admin-toolbar-icon:hover,
-.main:not(.home-main) .admin-status-menu > summary:hover {
+.main:not(.home-main) .admin-status-menu > :is(summary, button):hover {
   color: #111515;
   background: #f0f3f5;
   filter: none;
@@ -777,7 +777,7 @@ details.panel:has(> .admin-import)[open] {
   background: #ecf3ff;
 }
 .main:not(.home-main) .admin-toolbar-icon:focus-visible,
-.main:not(.home-main) .admin-status-menu > summary:focus-visible {
+.main:not(.home-main) .admin-status-menu > :is(summary, button):focus-visible {
   outline: 3px solid #006afe;
   outline-offset: 2px;
 }
@@ -879,41 +879,55 @@ details.panel:has(> .admin-import)[open] {
 .main:not(.home-main) .admin-status-menu {
   margin: 0;
 }
-.main:not(.home-main) .admin-status-menu > summary {
+.main:not(.home-main) .admin-status-menu > :is(summary, button) {
   padding: 10px;
   border-color: transparent;
   background: transparent;
 }
-.main:not(.home-main) .admin-status-menu > form {
+.main:not(.home-main) .admin-status-popover > form {
   width: min(100%, 480px);
   min-width: 240px;
-  margin: 8px 0;
+  margin: 0;
   padding: 16px;
   border-color: #dce3e8;
   border-radius: 12px;
 }
-.main:not(.home-main) .admin-status-menu > form h2 {
+.main:not(.home-main) .admin-status-popover > form h2 {
   margin: 0 0 12px;
   font-size: 16px;
 }
-.main:not(.home-main) .admin-status-menu > form label {
+.main:not(.home-main) .admin-status-popover > form label {
   margin-block: 12px;
   font-size: 13px;
 }
-.main:not(.home-main) .admin-status-menu > form .form-actions {
+.main:not(.home-main) .admin-status-popover > form .form-actions {
   margin: 14px 0 0;
 }
-.main:not(.home-main) .admin-row-actions:has(.admin-status-menu[open]),
-.main:not(.home-main) .admin-team-actions:has(.admin-status-menu[open]) {
-  flex-wrap: wrap;
-  align-items: start;
+.admin-status-popover {
+  position: fixed;
+  inset: auto;
+  width: min(480px, calc(100vw - 32px));
+  max-width: calc(100vw - 32px);
+  max-height: calc(100svh - 32px);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: #fff;
+  color: #111515;
+  overflow: auto;
+  overscroll-behavior: contain;
 }
-.main:not(.home-main) .admin-row-actions .admin-status-menu[open],
-.main:not(.home-main) .admin-team-actions .admin-status-menu[open] {
-  flex: 1 1 100%;
+.admin-status-popover::backdrop {
+  background: transparent;
 }
-.main:not(.home-main) .admin-team-actions .admin-status-menu[open] > form {
-  min-width: 0;
+.admin-status-popover > .admin-status-close {
+  position: absolute;
+  inset: 4px 4px auto auto;
+  border-color: transparent;
+}
+.main:not(.home-main) .admin-status-popover > form h2 {
+  padding-right: 40px;
 }
 .main:not(.home-main) .admin-team-list .member-list > li > .admin-toolbar-icon {
   flex: 0 0 44px;
@@ -1263,9 +1277,6 @@ details.panel:has(> .admin-import)[open] {
 }
 .admin-exact .admin-row-actions {
   justify-content: end;
-}
-.main:not(.home-main) .admin-exact .admin-status-menu[open] {
-  min-width: 240px;
 }
 .admin-status-target-actions {
   padding: 8px 0;

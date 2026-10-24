@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import type { Confirmation } from "../lib/action-confirmation";
+import { trapDialogFocus } from "./dialog-focus";
 export default function ConfirmationDialog({
   value,
   decide,
@@ -20,14 +21,15 @@ export default function ConfirmationDialog({
         previous?.isConnected &&
         !(previous instanceof HTMLButtonElement && previous.disabled)
       )
-        previous.focus();
-      else document.getElementById("main")?.focus();
+        previous.focus({ preventScroll: true });
+      else document.getElementById("main")?.focus({ preventScroll: true });
     };
   }, []);
   return (
     <dialog
       className="confirmation-dialog"
       ref={dialog}
+      onKeyDown={trapDialogFocus}
       aria-labelledby="confirmation-title"
       aria-describedby={
         value.description

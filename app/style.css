@@ -1725,7 +1725,11 @@ td strong {
 }
 
 .confirmation-dialog {
+  box-sizing: border-box;
   max-width: min(34rem, calc(100vw - 2rem));
+  max-height: calc(100svh - 2rem);
+  overflow: auto;
+  overscroll-behavior: contain;
   border: 1px solid var(--line, #deded8);
   border-radius: 1rem;
   padding: 1.5rem;

@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { X } from "lucide-react";
 import AdminImportControls from "./admin-import-controls";
 import type { AdminRun } from "./admin-participant-actions";
+import { trapDialogFocus } from "./dialog-focus";
 
 export default function AdminImportDialog({
   run,
@@ -19,12 +20,13 @@ export default function AdminImportDialog({
     dismiss.current?.focus();
     return () => {
       dialog.current?.close();
-      if (previous?.isConnected) previous.focus();
+      if (previous?.isConnected) previous.focus({ preventScroll: true });
     };
   }, []);
   return (
     <dialog
       ref={dialog}
+      onKeyDown={trapDialogFocus}
       className="admin-import-dialog"
       aria-labelledby="admin-import-title"
       onCancel={(event) => {

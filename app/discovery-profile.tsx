@@ -4,6 +4,7 @@ import { useEffect, useId, useRef } from "react";
 import { X } from "lucide-react";
 import TeamAvatar from "./team-avatar";
 import DotAvatar from "./dot-avatar";
+import { trapDialogFocus } from "./dialog-focus";
 
 export type DiscoveryPerson = {
   name: string;
@@ -51,7 +52,7 @@ export function openDiscoveryDialog(
   const trigger = dialog.ownerDocument.activeElement as HTMLElement | null;
   let closed = false;
   const restoreFocus = () => {
-    if (trigger?.isConnected) trigger.focus();
+    if (trigger?.isConnected) trigger.focus({ preventScroll: true });
   };
   const finish = () => {
     if (closed) return;
@@ -99,6 +100,7 @@ export default function DiscoveryProfile({
   return (
     <dialog
       ref={dialog}
+      onKeyDown={trapDialogFocus}
       className="discovery-profile discovery-profile-v6"
       aria-labelledby={titleId}
       aria-describedby={person.bio ? bioId : undefined}

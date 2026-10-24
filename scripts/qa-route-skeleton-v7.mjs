@@ -1,4 +1,4 @@
-// GET-only controlled loading/error/retry QA, not a latency benchmark.
+// GET-only SSR and controlled restored-page loading/error/retry QA, not a latency benchmark.
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
@@ -20,6 +20,7 @@ mkdirSync(root, { recursive: true });
 const output = mkdtempSync(join(root, manifest.source.slice(0, 7) + "-"));
 const report = { source: manifest.source, workerSha: manifest.worker, syntheticOnly: true,
   chromiumSandbox: true, controlledNetworkGates: true, performanceBenchmark: false,
+  limitations: ["PageTransitionEvents exercise the real page restoration handlers; this does not assert browser BFCache eligibility."],
   cases: [], screenshots: [], errors: [], blocked: [], browserClosed: false };
 const persist = () => writeFileSync(join(output, "report.json"), JSON.stringify(report, null, 2));
 const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium", headless: true, chromiumSandbox: true });
@@ -55,7 +56,15 @@ try {
     try {
       await page.goto(manifest.origin + path, { waitUntil: "domcontentloaded" });
       const skeleton = page.locator(".route-skeleton");
+      await page.locator("#main h1").first().waitFor();
+      await page.waitForLoadState("networkidle");
+      assert.equal(await skeleton.count(), 0, "SSR content has no loading overlay");
+      assert.equal(reads, 0, "SSR hydration must not repeat the protected bootstrap API");
+      // A restored private page must reauthorize after pagehide clears its snapshot.
+      await page.evaluate(() => window.dispatchEvent(new PageTransitionEvent("pagehide")));
       await skeleton.waitFor();
+      await page.evaluate(() => window.dispatchEvent(new PageTransitionEvent("pageshow", { persisted: true })));
+      await page.waitForTimeout(100);
       assert.equal(await skeleton.getAttribute("aria-busy"), "true");
       assert.equal(await skeleton.getByRole("status").count(), 1);
       assert.equal(await skeleton.locator("button,input,a").count(), 0);
@@ -76,8 +85,8 @@ try {
       await page.waitForFunction(() => !document.querySelector(".error-message") && !document.querySelector(".route-skeleton") && document.querySelector("#main h1"));
       assert.equal(reads, 2, "Retry performs one explicit fresh data read");
       assert.equal(await skeleton.count(), 0, "Loaded content must not be obscured");
-      report.cases.push({ label, route: path, viewport, reducedMotion: motion, passed: true, checks: 9, reads,
-        assertions: ["busy status", "decorative controls", "shell visible", "motion preference", "no horizontal overflow", "no extra request", "error removes skeleton", "retry loads content", "no loaded-content overlay"] });
+      report.cases.push({ label, route: path, viewport, reducedMotion: motion, passed: true, checks: 11, reads,
+        assertions: ["SSR has no loading overlay", "SSR has no bootstrap API", "busy status", "decorative controls", "shell visible", "motion preference", "no horizontal overflow", "no extra request", "error removes skeleton", "retry loads content", "no loaded-content overlay"] });
       persist();
     } finally { release(); await context.close(); }
   }

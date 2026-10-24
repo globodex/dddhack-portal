@@ -81,6 +81,8 @@ import {
 import Home from "./home";
 import ProfileFlow from "./profile-flow";
 import AdminImportDialog from "./admin-import-dialog";
+import AdminStatusMenu from "./admin-status-menu";
+import { trapDialogFocus } from "./dialog-focus";
 import AdminParticipantActions, {
   AdminParticipantFilters,
   AdminIcon,
@@ -1520,6 +1522,7 @@ function DiscoverTeamDialog({
     <dialog
       ref={dialog}
       className="discover-team-dialog-v6"
+      onKeyDown={trapDialogFocus}
       aria-labelledby="discover-team-title"
     >
       <button
@@ -2371,7 +2374,7 @@ export function ProjectHistory({
     return () => {
       controller.abort();
       dialog.current?.close();
-      previous?.isConnected && previous.focus();
+      previous?.isConnected && previous.focus({ preventScroll: true });
     };
   }, [open, canRead]);
   if (!canRead) return null;
@@ -2388,6 +2391,7 @@ export function ProjectHistory({
       {open && (
         <dialog
           className="project-history-dialog"
+          onKeyDown={trapDialogFocus}
           ref={dialog}
           aria-labelledby="history-title"
 
@@ -5000,11 +5004,7 @@ export default function Portal({
       await load();
       return result;
     } catch (e) {
-      setMessage(
-        e instanceof ActionCancelled
-          ? "Cancelled. No changes were made."
-          : (e as Error).message,
-      );
+      if (!(e instanceof ActionCancelled)) setMessage((e as Error).message);
       throw e;
     } finally {
       mutationKeys.current.delete(mutationKey);
@@ -5020,7 +5020,6 @@ export default function Portal({
           confirmationFor("logout", {}, data.me?.name || "This Site session"),
         ))
       ) {
-        setMessage("Logout cancelled.");
         return;
       }
       if (localTest) await api("local-signout", {});
@@ -5441,14 +5440,8 @@ function StatusChange({
   disabled?: boolean;
   children?: ReactNode;
 }) {
-  return (
-    <details className={compact ? "admin-status-menu" : undefined}>
-      <summary
-        aria-label={`Change ${name} status`}
-        title={`Change ${name} status`}
-      >
-        {compact ? <AdminIcon name="more" /> : <>Change {name} status</>}
-      </summary>
+  const content = (
+    <>
       {!disabled && (
         <Form
           title={name}
@@ -5479,6 +5472,11 @@ function StatusChange({
       {children && (
         <div className="admin-status-target-actions">{children}</div>
       )}
-    </details>
+    </>
   );
+  if (compact) return <AdminStatusMenu name={name}>{content}</AdminStatusMenu>;
+  return <details>
+    <summary aria-label={`Change ${name} status`} title={`Change ${name} status`}>Change {name} status</summary>
+    {content}
+  </details>;
 }
