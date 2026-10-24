@@ -3,6 +3,7 @@ import { useHydrated } from "./use-hydrated";
 import { useRef, useState } from "react";
 import {
   BriefcaseBusiness,
+  Check,
   Clock3,
   Download,
   EllipsisVertical,
@@ -53,6 +54,7 @@ export function AdminIcon({
     | "upload"
     | "project"
     | "clock"
+    | "check"
     | "filter"
     | "download"
     | "users"
@@ -65,6 +67,7 @@ export function AdminIcon({
     upload: Upload,
     project: BriefcaseBusiness,
     clock: Clock3,
+    check: Check,
     filter: ListFilter,
     download: Download,
     users: Users,

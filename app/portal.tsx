@@ -3439,6 +3439,7 @@ export function AdminParticipants({
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
+  const hydrated = useHydrated();
   const [filters, setFilters] = useState<AdminParticipantFiltersValue>({
       ...defaultAdminParticipantFilters,
       status: "all",
@@ -3450,8 +3451,12 @@ export function AdminParticipants({
     [reason] = useState("Confirmed portal action"),
     [error, setError] = useState(""),
     [filtersExpanded, setFiltersExpanded] = useState(false),
-    [adding, setAdding] = useState(false);
+    [adding, setAdding] = useState(false),
+    [actionPending, setActionPending] = useState(false),
+    [quickCheckInEmail, setQuickCheckInEmail] = useState<string | null>(null);
+  const pendingAction = useRef(false);
   const canManage = data.me?.owner === true || data.me?.role === "admin";
+  const canCheckIn = canManage || data.me?.role === "volunteer";
   const rows = (data.items || []).map(adminParticipantProjection);
   const items = filterAdminParticipants(rows, filters).filter(
     (r) =>
@@ -3459,17 +3464,63 @@ export function AdminParticipants({
       (recordState === "removed" ? r.removed : !r.removed),
   );
   const selectable = items.filter((r) => !r.removed);
+  const visibleEmails = new Set(selectable.map((r) => r.email));
+  const visibleSelected = selected.filter((email) => visibleEmails.has(email));
+  const selectedPeople = selectable.filter((r) =>
+    visibleSelected.includes(r.email),
+  );
+  const personalStatus = (r: Row) =>
+    r.status || (r.approval === "approved" ? "Going" : "Registered");
+  const checkInEligible = selectedPeople.every(
+    (r) => personalStatus(r) === "Going" && !!r.id && !r.checked_in,
+  );
   useEffect(() => {
-    setSelected((previous) =>
-      previous.filter((email) =>
-        rows.some((r) => r.email === email && !r.removed),
-      ),
-    );
-  }, [data.items]);
+    setSelected((previous) => {
+      const next = previous.filter((email) => visibleEmails.has(email));
+      return next.length === previous.length ? previous : next;
+    });
+  }, [data.items, filters, recordState]);
   const updateFilters = (value: AdminParticipantFiltersValue) => {
     setFilters(value);
-    setSelected([]);
     setError("");
+  };
+  const clearFilters = () => {
+    updateFilters({
+      ...defaultAdminParticipantFilters,
+      status: "all",
+      team: "all",
+    });
+    setRecordState("active");
+    setSelected([]);
+  };
+  const hasFilters = !!(
+    filters.individual ||
+    filters.teamQuery ||
+    filters.status !== "all" ||
+    filters.team !== "all" ||
+    recordState !== "active"
+  );
+  const recordActionError = (cause: unknown) => {
+    if (!(cause instanceof ActionCancelled))
+      setError(
+        cause instanceof Error
+          ? cause.message
+          : "The participant could not be updated.",
+      );
+  };
+  const runParticipantAction = async (action: string, values: Row) => {
+    if (pendingAction.current) throw new ActionCancelled();
+    pendingAction.current = true;
+    setActionPending(true);
+    setError("");
+    try {
+      const result = await run(action, values);
+      setSelected([]);
+      return result;
+    } finally {
+      pendingAction.current = false;
+      setActionPending(false);
+    }
   };
   return (
     <section className="admin-exact admin-workspace admin-participants-page">
@@ -3491,6 +3542,7 @@ export function AdminParticipants({
             <button
               type="button"
               className="button"
+              disabled={!hydrated || actionPending}
               onClick={() => setAdding(true)}
             >
               <AdminIcon name="person" />
@@ -3500,7 +3552,10 @@ export function AdminParticipants({
         )}
       </header>
       {canManage && adding && (
-        <AdminImportDialog run={run} close={() => setAdding(false)} />
+        <AdminImportDialog
+          run={runParticipantAction}
+          close={() => setAdding(false)}
+        />
       )}
       <div className="admin-roster-tools">
         <AdminParticipantFilters
@@ -3538,34 +3593,26 @@ export function AdminParticipants({
             <option value="all">All records</option>
           </select>
         </label>
-        {(filters.individual ||
-          filters.status !== "all" ||
-          filters.team !== "all" ||
-          recordState !== "active") && (
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => {
-              updateFilters({
-                ...defaultAdminParticipantFilters,
-                status: "all",
-                team: "all",
-              });
-              setRecordState("active");
-            }}
-          >
+        {hasFilters && items.length > 0 && (
+          <button type="button" className="link-button" onClick={clearFilters}>
             Clear filters
           </button>
         )}
       </div>
-      {selected.length > 0 && (
-        <div className="bulk-bar">
-          <strong>{selected.length} selected</strong>
+      {visibleSelected.length > 0 && (
+        <div
+          className="bulk-bar"
+          role="group"
+          aria-label="Selected participants"
+          aria-busy={actionPending}
+        >
+          <strong>{visibleSelected.length} selected</strong>
           {canManage && (
             <label>
               <span className="sr-only">Individual approval status</span>
               <select
                 value={status}
+                disabled={actionPending}
                 onChange={(e) => setStatus(e.target.value)}
               >
                 <option value="pending">Registered</option>
@@ -3578,11 +3625,11 @@ export function AdminParticipants({
           {canManage && (
             <button
               className="button secondary"
-              disabled={!selected.length}
+              disabled={!visibleSelected.length || actionPending}
               onClick={() => {
                 if (["checked", "absent"].includes(status)) {
                   const people = (data.items || []).filter((r) =>
-                    selected.includes(r.email),
+                    visibleSelected.includes(r.email),
                   );
                   if (people.some((r) => !r.id)) {
                     setError(
@@ -3590,203 +3637,271 @@ export function AdminParticipants({
                     );
                     return;
                   }
-                  void run("admin-status-bulk", {
+                  void runParticipantAction("admin-status-bulk", {
                     userIds: people.map((r) => r.id),
                     status: status === "checked" ? "Checked in" : "Absent",
                     reason,
-                  }).catch(() => {});
+                  }).catch(recordActionError);
                 } else
-                  void run("participant-bulk", {
-                    emails: selected,
+                  void runParticipantAction("participant-bulk", {
+                    emails: visibleSelected,
                     status,
                     reason,
-                  }).catch(() => {});
+                  }).catch(recordActionError);
               }}
             >
               Update approval
             </button>
           )}
-          <button
-            className="button"
-            disabled={!selected.length || !data.checkInConfigured}
-            onClick={() => {
-              void run("participant-bulk", {
-                emails: selected,
-                checkIn: true,
-                reason,
-              }).catch(() => {});
-            }}
-          >
-            Check in
-          </button>
+          {canCheckIn && (
+            <button
+              type="button"
+              className="button"
+              aria-label="Check in selected participants"
+              aria-busy={actionPending}
+              title={
+                checkInEligible
+                  ? "Check in selected participants"
+                  : "Select Going participants with signed-in accounts to check in."
+              }
+              disabled={
+                !visibleSelected.length ||
+                !data.checkInConfigured ||
+                !checkInEligible ||
+                actionPending
+              }
+              onClick={() => {
+                void runParticipantAction("bulk-check-in", {
+                  emails: visibleSelected,
+                }).catch(recordActionError);
+              }}
+            >
+              <AdminIcon name="check" /> Check in
+            </button>
+          )}
         </div>
       )}
 
-      <div className="table-scroll">
-        <table className="participants-table">
-          <thead>
-            <tr>
-              <th>
-                <input
-                  type="checkbox"
-                  aria-label="Select visible active participants"
-                  disabled={!selectable.length}
-                  checked={
-                    !!selectable.length &&
-                    selectable.every((r) => selected.includes(r.email))
-                  }
-                  onChange={(e) =>
-                    setSelected(
-                      e.target.checked ? selectable.map((r) => r.email) : [],
-                    )
-                  }
-                />
-              </th>
-              <th>Person</th>
-              <th>Team</th>
-              <th>Personal status</th>
-              <th>Team status</th>
-              <th>Locked at</th>
-              {canManage && <th>Manage participant</th>}
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((r) => (
-              <tr key={r.email}>
-                <td>
+      {items.length > 0 && (
+        <div className="table-scroll">
+          <table className="participants-table">
+            <thead>
+              <tr>
+                <th>
                   <input
                     type="checkbox"
-                    aria-label={`Select ${r.email}`}
-                    disabled={r.removed}
-                    checked={selected.includes(r.email)}
+                    aria-label="Select visible active participants"
+                    disabled={!selectable.length || actionPending}
+                    checked={
+                      !!selectable.length &&
+                      selectable.every((r) => visibleSelected.includes(r.email))
+                    }
                     onChange={(e) =>
                       setSelected(
-                        e.target.checked
-                          ? [...selected, r.email]
-                          : selected.filter((x) => x !== r.email),
+                        e.target.checked ? selectable.map((r) => r.email) : [],
                       )
                     }
                   />
-                </td>
-                <td className="admin-person-cell">
-                  <div className="admin-person-identity">
-                    <DotAvatar
-                      color={r.avatarColor || r.avatar_color || "blue"}
-                      expression={
-                        r.avatarExpression || r.avatar_expression || "squeezed"
+                </th>
+                <th>Person</th>
+                <th>Team</th>
+                <th>Personal status</th>
+                <th>Team status</th>
+                <th>Locked at</th>
+                {canManage && <th>Manage participant</th>}
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((r) => (
+                <tr key={r.email}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      aria-label={`Select ${r.email}`}
+                      disabled={r.removed || actionPending}
+                      checked={visibleSelected.includes(r.email)}
+                      onChange={(e) =>
+                        setSelected(
+                          e.target.checked
+                            ? [...visibleSelected, r.email]
+                            : visibleSelected.filter((x) => x !== r.email),
+                        )
                       }
-                      size={32}
-                      decorative
                     />
-                    <div>
-                      <strong>{r.name || "Not signed in yet"}</strong>
-                      <small>{r.email}</small>
-                      {r.removed && <Pill>Removed</Pill>}
-                    </div>
-                  </div>
-                </td>
-                <td className="admin-team-cell">
-                  {r.teamName ? (
-                    <div className="admin-team-identity">
-                      <TeamAvatar
-                        name={r.teamName}
-                        palette={r.teamPalette}
+                  </td>
+                  <td className="admin-person-cell">
+                    <div className="admin-person-identity">
+                      <DotAvatar
+                        color={r.avatarColor || r.avatar_color || "blue"}
+                        expression={
+                          r.avatarExpression ||
+                          r.avatar_expression ||
+                          "squeezed"
+                        }
                         size={32}
+                        decorative
                       />
                       <div>
-                        {r.teamName}
-                        <small>
-                          {r.teamReadiness?.total
-                            ? `${r.teamReadiness.approved}/${r.teamReadiness.total} approved`
-                            : ""}
-                        </small>
+                        <strong>{r.name || "Not signed in yet"}</strong>
+                        <small>{r.email}</small>
+                        {r.removed && <Pill>Removed</Pill>}
                       </div>
                     </div>
-                  ) : (
-                    "Not in a team"
-                  )}
-                </td>
-                <td className="admin-personal-status-cell">
-                  <Pill
-                    tone={
-                      ["Going", "Checked in"].includes(r.status)
-                        ? "positive"
-                        : "neutral"
-                    }
-                  >
-                    {r.status ||
-                      (r.approval === "approved" ? "Going" : "Registered")}
-                  </Pill>
-                  {r.checked_in && r.status !== "Checked in" && (
-                    <small>Checked in</small>
-                  )}
-                </td>
-                <td
-                  className="admin-team-status-cell"
-                  data-empty-team={!r.teamId}
-                >
-                  <Pill
-                    tone={r.teamStatus === "Submitted" ? "positive" : "neutral"}
-                  >
-                    {r.teamStatus ||
-                      (r.teamId
-                        ? r.teamLocked
-                          ? "Locked"
-                          : "Forming"
-                        : "Not in a team")}
-                  </Pill>
-                </td>
-                <td className="admin-locked-at">
-                  {r.teamLockedAt ? (
-                    <time dateTime={r.teamLockedAt}>{ist(r.teamLockedAt)}</time>
-                  ) : (
-                    <span className="admin-not-locked">Not locked</span>
-                  )}
-                </td>
-                {canManage && (
-                  <td className="admin-manage-cell">
-                    {r.id ? (
-                      <div className="admin-row-actions">
-                        <StatusChange
-                          kind="person"
-                          target={r.id}
-                          name={r.name || r.email}
-                          current={r.status}
-                          run={run}
-                          compact
-                          disabled={r.removed}
-                        >
-                          <AdminParticipantActions
-                            key={`${r.id}-${r.removed}`}
-                            participant={{
-                              id: r.id,
-                              name: r.name,
-                              email: r.email,
-                              removed: r.removed,
-                            }}
-                            run={run}
-                            compact
-                          />
-                        </StatusChange>
+                  </td>
+                  <td className="admin-team-cell">
+                    {r.teamName ? (
+                      <div className="admin-team-identity">
+                        <TeamAvatar
+                          name={r.teamName}
+                          palette={r.teamPalette}
+                          size={32}
+                        />
+                        <div>
+                          {r.teamName}
+                          <small>
+                            {r.teamReadiness?.total
+                              ? `${r.teamReadiness.approved}/${r.teamReadiness.total} approved`
+                              : ""}
+                          </small>
+                        </div>
                       </div>
                     ) : (
-                      <span className="muted">
-                        Account has not signed in yet.
-                      </span>
+                      "Not in a team"
                     )}
                   </td>
-                )}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                  <td className="admin-personal-status-cell">
+                    <div className="admin-person-status">
+                      <Pill
+                        tone={
+                          ["Going", "Checked in"].includes(r.status)
+                            ? "positive"
+                            : "neutral"
+                        }
+                      >
+                        {personalStatus(r) === "Checked in" && (
+                          <AdminIcon name="check" />
+                        )}
+                        {personalStatus(r)}
+                      </Pill>
+                      {canCheckIn &&
+                        !r.removed &&
+                        personalStatus(r) === "Going" &&
+                        !r.checked_in && (
+                          <button
+                            type="button"
+                            className="button secondary admin-quick-check-in"
+                            aria-label={`Check in ${r.name || r.email}`}
+                            aria-busy={quickCheckInEmail === r.email}
+                            title={
+                              !r.id
+                                ? "Participant must sign in before check-in."
+                                : "Check in participant"
+                            }
+                            disabled={
+                              !hydrated ||
+                              actionPending ||
+                              !data.checkInConfigured ||
+                              !r.id
+                            }
+                            onClick={() => {
+                              if (pendingAction.current) return;
+                              setQuickCheckInEmail(r.email);
+                              void runParticipantAction("quick-check-in", {
+                                emails: [r.email],
+                              })
+                                .catch(recordActionError)
+                                .finally(() => setQuickCheckInEmail(null));
+                            }}
+                          >
+                            <AdminIcon name="check" />
+                            {quickCheckInEmail === r.email
+                              ? "Checking in…"
+                              : "Check in"}
+                          </button>
+                        )}
+                    </div>
+                    {r.checked_in && r.status !== "Checked in" && (
+                      <small>Checked in</small>
+                    )}
+                  </td>
+                  <td
+                    className="admin-team-status-cell"
+                    data-empty-team={!r.teamId}
+                  >
+                    <Pill
+                      tone={
+                        r.teamStatus === "Submitted" ? "positive" : "neutral"
+                      }
+                    >
+                      {r.teamStatus ||
+                        (r.teamId
+                          ? r.teamLocked
+                            ? "Locked"
+                            : "Forming"
+                          : "Not in a team")}
+                    </Pill>
+                  </td>
+                  <td className="admin-locked-at">
+                    {r.teamLockedAt ? (
+                      <time dateTime={r.teamLockedAt}>
+                        {ist(r.teamLockedAt)}
+                      </time>
+                    ) : (
+                      <span className="admin-not-locked">Not locked</span>
+                    )}
+                  </td>
+                  {canManage && (
+                    <td className="admin-manage-cell">
+                      {r.id ? (
+                        <div className="admin-row-actions">
+                          <StatusChange
+                            kind="person"
+                            target={r.id}
+                            name={r.name || r.email}
+                            current={r.status}
+                            run={runParticipantAction}
+                            compact
+                            disabled={r.removed}
+                          >
+                            <AdminParticipantActions
+                              key={`${r.id}-${r.removed}`}
+                              participant={{
+                                id: r.id,
+                                name: r.name,
+                                email: r.email,
+                                removed: r.removed,
+                              }}
+                              run={runParticipantAction}
+                              compact
+                            />
+                          </StatusChange>
+                        </div>
+                      ) : (
+                        <span className="muted">
+                          Account has not signed in yet.
+                        </span>
+                      )}
+                    </td>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
       {error && (
         <p className="error-message" role="alert">
           {error}
         </p>
       )}
-      {!items.length && <Empty>No participants match your filters.</Empty>}
+      {!items.length && (
+        <div className="admin-roster-empty" role="status">
+          <p>No matches</p>
+          <button type="button" className="link-button" onClick={clearFilters}>
+            Clear filters
+          </button>
+        </div>
+      )}
     </section>
   );
 }

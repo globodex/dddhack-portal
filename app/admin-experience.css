@@ -1239,3 +1239,40 @@
     background: var(--surface, #fffefa);
   }
 }
+
+.admin-workspace .admin-roster-empty {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 16px;
+  padding: 20px;
+  border: 1px solid var(--line, #e3e4db);
+  border-radius: 12px;
+  background: var(--surface, #fffefa);
+}
+.admin-workspace .admin-roster-empty p {
+  margin: 0;
+  color: var(--muted, #656960);
+  font-size: 14px;
+}
+.admin-workspace .admin-person-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.admin-workspace .admin-person-status .pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.admin-workspace .admin-person-status .pill .admin-control-icon {
+  width: 14px;
+  height: 14px;
+}
+.admin-workspace .admin-quick-check-in {
+  min-height: 44px;
+  padding: 8px 12px;
+  font-size: 12px;
+}
