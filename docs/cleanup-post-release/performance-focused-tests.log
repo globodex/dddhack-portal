@@ -1,0 +1,19 @@
+✔ Delhi SSR is the exact immediate fallback without unused motion image requests (13.817182ms)
+✔ smaller lossless WebPs preserve every decoded RGBA byte and original PNG hash/dimensions (422.695647ms)
+✔ SSR offers a typed WebP fallback without preloading its original PNG or any motion layers (12.416048ms)
+✔ moving artwork tries WebP decode first and preserves original PNG recovery (3.9442ms)
+✔ Delhi mask shares one fetched Blob and waits for its decode before reveal (83.556965ms)
+✔ Delhi mask decode failure revokes the Blob and never returns a reveal URL (4.738109ms)
+✔ measured organizer units begin fully beyond their origin edge, including the attached portrait (2.158379ms)
+✔ organizer content remains immediately readable without motion or JS and uses only verified original photos (15.311047ms)
+✔ portrait backdrop is deterministic and grows from four dots to a capped36-dot pile near80% viewport height (8.780961ms)
+✔ portrait pointer displacement stays local and settles without a pointer (0.870798ms)
+✔ dense portrait piles stagger their lanes and vary row heights without changing the fill envelope (0.74457ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3638.507845

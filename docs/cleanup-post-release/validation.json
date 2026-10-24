@@ -1,0 +1,36 @@
+{
+  "base": "bddb869f3209adcb6cc4ea6161014d51f340cd96",
+  "mainReviewImageCommit": "86af259dd8706896fabe831d6aab3147567d019b",
+  "auditCommit": "bc6a602",
+  "performanceImageCommit": "beef2956ca7887129198cf7e0ffa0428960a2a6d",
+  "onlyManifestImagesRemoved": true,
+  "protectedSourceRuntimeTestsAndArtifactsUnchanged": 600,
+  "originalJSONFilesUnchanged": 621,
+  "mainReview": {
+    "removedImages": 2198,
+    "imageBytesRemoved": 181474626,
+    "requiredEvidenceImageInputsPreserved": 7,
+    "runtimeImagesPreserved": 22,
+    "focusedTests": 24,
+    "focusedFailures": 0,
+    "typecheck": "pass",
+    "productionBuild": "default Next16.4.3 Turbopack pass",
+    "OGRegeneratedInMemoryByteEqual": true,
+    "threePerformancePixelPairsUnchanged": true
+  },
+  "performanceTip": {
+    "removedImages": 1482,
+    "imageBytesRemoved": 129925052,
+    "runtimeImagesPreserved": 19,
+    "focusedTests": 11,
+    "focusedFailures": 0,
+    "typecheck": "pass",
+    "productionBuild": "Next16.4.3 webpack pass"
+  },
+  "schemaChanges": false,
+  "backendZIPChanged": false,
+  "remoteBranchesDeleted": [],
+  "pushPerformed": false,
+  "AIResultsPolicyChanged": false,
+  "gate": "Exact branch-deletion approval pending; no unique/uncertain branch deleted"
+}

@@ -1,0 +1,33 @@
+{
+  "base": "6fcb7d5be117d234ae60a4a4b04af966f9134af8",
+  "approvedDeletedImages": 1482,
+  "removedBytes": 129925052,
+  "allOtherTrackedFiles": 1200,
+  "unchangedBlobs": 1170,
+  "changedMarkdownOrHTML": 30,
+  "unchangedJSONFiles": 365,
+  "unchangedPublicImages": 19,
+  "runtimePaths": [
+    "public/art/delhi-v3/delhi-fill-overscan.png",
+    "public/art/delhi-v3/delhi-fill-overscan.webp",
+    "public/art/delhi-v3/fallback-approved-v3.png",
+    "public/art/delhi-v3/fallback-approved-v3.webp",
+    "public/art/delhi-v3/metro-static.png",
+    "public/art/delhi-v3/metro-static.webp",
+    "public/art/delhi-v3/text-mask-alpha.png",
+    "public/art/delhi-v3/text-mask-alpha.webp",
+    "public/brand/codex-user-supplied.svg",
+    "public/icons/social/github.svg",
+    "public/icons/social/instagram.svg",
+    "public/icons/social/linkedin.svg",
+    "public/icons/social/website.svg",
+    "public/icons/social/whatsapp.svg",
+    "public/icons/social/x.svg",
+    "public/organizers/HowDevelop-x.jpg",
+    "public/organizers/Param3021-x.jpg",
+    "public/organizers/callmeshuklaji-x.jpg",
+    "public/organizers/nikhilsbuilds-x.jpg"
+  ],
+  "unexpected": [],
+  "result": "PASS"
+}

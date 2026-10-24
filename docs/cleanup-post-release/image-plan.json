@@ -11,7 +11,7 @@
     "svg",
     "ico"
   ],
-  "execution": "Main/review image removal prepared locally; validation pending; no push or remote branch deletion",
+  "execution": "Local normal deletion commits and checks complete. No push, remote branch deletion, local worktree deletion or history rewrite.",
   "branches": [
     {
       "branches": "main+feat/portal-experience-rework",
@@ -75,5 +75,9 @@
       "evidence/discover-profile-completeness/public-gender/admin-bob-390x844.png"
     ],
     "libraryIDs": "Held by parent; no IDs guessed"
+  },
+  "localCommits": {
+    "mainReview": "86af259dd8706896fabe831d6aab3147567d019b",
+    "performance": "beef2956ca7887129198cf7e0ffa0428960a2a6d"
   }
 }
