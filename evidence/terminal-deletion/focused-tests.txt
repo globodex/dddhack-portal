@@ -1,0 +1,34 @@
+✔ SQLite populated0025 upgrade: transactional failure restores guards/data;0026 preserves every old row, seeds exact attempt maxima and remains immutable (249.538527ms)
+✔ PostgreSQL full populated0104 ledger upgrade preserves auth/audit/all old rows, then removes target source/media while retaining the deleted former leader's surviving-team draft assets (6368.572228ms)
+✔ sqlite: a crown transfer before the request cannot broaden the confirmed participant cascade (147.735219ms)
+✔ sqlite: imports after preview or during commit cannot re-enroll terminal identities and keep unrelated existing/new participants (131.155572ms)
+✔ sqlite: terminal cascade adds no approval/check-in gates and preserves legacy soft restore contracts (82.926368ms)
+✔ sqlite: stale profile mutation cannot recreate participant data after terminal deletion (72.802613ms)
+✔ sqlite: explicit team deletion atomically erases locked three-attempt content/dependencies, releases members, preserves unrelated records and durable attempt count (95.650338ms)
+✔ sqlite: deleting the leader deletes only their team/content, keeps every other member as a teamless participant and retains audit identity (146.538414ms)
+✔ sqlite: nonleader deletion leaves locked team, crown, idea and unrelated projects intact; personal assigned codes retire forever (108.7556ms)
+✔ sqlite: strict single-target confirmation, real staff authorization and protected owner/self/staff accounts (101.434786ms)
+✔ sqlite: injected mid-cascade failure rolls back every deletion, guard, tombstone and audit (126.761151ms)
+✔ sqlite: concurrent replay commits one deletion audit; frozen results and ordinary immutable deletes remain protected (128.315501ms)
+✔ sqlite: role revocation and new crown between read and transaction deny stale deletion without partial data loss (141.498903ms)
+✔ sqlite: late provider completion cannot recreate jobs, reports or project data after terminal cascade (128.968015ms)
+✔ postgres: a crown transfer before the request cannot broaden the confirmed participant cascade (4361.876522ms)
+✔ postgres: imports after preview or during commit cannot re-enroll terminal identities and keep unrelated existing/new participants (3113.718354ms)
+✔ postgres: terminal cascade adds no approval/check-in gates and preserves legacy soft restore contracts (4343.722797ms)
+✔ postgres: stale profile mutation cannot recreate participant data after terminal deletion (5405.455668ms)
+✔ postgres: explicit team deletion atomically erases locked three-attempt content/dependencies, releases members, preserves unrelated records and durable attempt count (5044.041461ms)
+✔ postgres: deleting the leader deletes only their team/content, keeps every other member as a teamless participant and retains audit identity (5218.816766ms)
+✔ postgres: nonleader deletion leaves locked team, crown, idea and unrelated projects intact; personal assigned codes retire forever (5931.167924ms)
+✔ postgres: strict single-target confirmation, real staff authorization and protected owner/self/staff accounts (6050.857686ms)
+✔ postgres: injected mid-cascade failure rolls back every deletion, guard, tombstone and audit (4626.616266ms)
+✔ postgres: concurrent replay commits one deletion audit; frozen results and ordinary immutable deletes remain protected (4153.465825ms)
+✔ postgres: role revocation and new crown between read and transaction deny stale deletion without partial data loss (4346.752446ms)
+✔ postgres: late provider completion cannot recreate jobs, reports or project data after terminal cascade (4612.055847ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 68133.49872

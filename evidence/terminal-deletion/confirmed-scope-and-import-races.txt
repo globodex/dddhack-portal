@@ -1,0 +1,12 @@
+✔ sqlite: a crown transfer before the request cannot broaden the confirmed participant cascade (144.177526ms)
+✔ sqlite: imports after preview or during commit cannot re-enroll terminal identities and keep unrelated existing/new participants (144.541317ms)
+✔ postgres: a crown transfer before the request cannot broaden the confirmed participant cascade (4759.185526ms)
+✔ postgres: imports after preview or during commit cannot re-enroll terminal identities and keep unrelated existing/new participants (3844.670368ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10882.185564

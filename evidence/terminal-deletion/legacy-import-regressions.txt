@@ -1,0 +1,13 @@
+✔ single participant deactivation revokes stale-session capabilities and imports cannot restore; protected owners/leaders are blocked (236.702755ms)
+✔ project/version soft removal suppresses public APIs and images without resetting attempts or falling back to old versions (196.100263ms)
+✔ pasted/single emails and explicitly mapped full CSV imports are add-only, previewed and prefill only new profiles (212.083841ms)
+✔ profile imports stop supplying defaults after first save, preserve explicit clears, and accept only exact imported category (131.903573ms)
+✔ in-flight mutation cannot persist after single participant deactivation commits (131.40523ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2927.302439

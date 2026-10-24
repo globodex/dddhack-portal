@@ -1,0 +1,20 @@
+✔ sqlite: raced new canonical header with different display headings cannot create two categories (244.988786ms)
+✔ sqlite: overlapping restock race rolls back all new rows and asks for current counts (109.895541ms)
+✔ sqlite:50/10 then late10 gives20/30; exhaustion and100 restock fill waiting without republishing (303.936872ms)
+✔ sqlite: dedup within/later/across categories, masked paging, authorized explicit reveal, delete and no recycle (228.587997ms)
+✔ sqlite: checked-in admin and judge get own credits without team/profile gate; no cross-user or nonchecked access (89.053765ms)
+✔ sqlite: concurrent check-ins and repeated publish assign each physical code/person/category once (96.599264ms)
+✔ postgres: raced new canonical header with different display headings cannot create two categories (6276.052322ms)
+✔ postgres: overlapping restock race rolls back all new rows and asks for current counts (4353.408068ms)
+✔ postgres:50/10 then late10 gives20/30; exhaustion and100 restock fill waiting without republishing (5817.538749ms)
+✔ postgres: dedup within/later/across categories, masked paging, authorized explicit reveal, delete and no recycle (4209.981624ms)
+✔ postgres: checked-in admin and judge get own credits without team/profile gate; no cross-user or nonchecked access (3511.955789ms)
+✔ postgres: concurrent check-ins and repeated publish assign each physical code/person/category once (4024.03677ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 30761.426397

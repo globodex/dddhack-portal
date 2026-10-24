@@ -1,0 +1,83 @@
+✔ sqlite: admin adds and renames locked teams after membership freeze without changing crown, lock, registration, private idea or history (435.797218ms)
+✔ sqlite: staff permission, registration, current membership, capacity, rename CAS and results freeze remain authoritative (236.702741ms)
+✔ sqlite: candidate search is private, paginated25 and includes truthful disabled current-team identities (175.891328ms)
+✔ sqlite: simultaneous corrections preserve five-member cap, global membership uniqueness and atomic audit/guard cleanup (164.553968ms)
+✔ sqlite: scoped overrides cannot change unrelated locked fields and audit failure rolls membership and guards back (190.363386ms)
+✔ postgres: admin adds and renames locked teams after membership freeze without changing crown, lock, registration, private idea or history (13100.352904ms)
+✔ postgres: staff permission, registration, current membership, capacity, rename CAS and results freeze remain authoritative (8164.643064ms)
+✔ postgres: candidate search is private, paginated25 and includes truthful disabled current-team identities (6989.972724ms)
+✔ postgres: simultaneous corrections preserve five-member cap, global membership uniqueness and atomic audit/guard cleanup (5980.570427ms)
+✔ postgres: scoped overrides cannot change unrelated locked fields and audit failure rolls membership and guards back (4906.060138ms)
+✔ sqlite: actual personal-credit GET gives removed self actionable403 without exposing credits (4563.267652ms)
+✔ postgres: actual personal-credit GET gives removed self actionable403 without exposing credits (12229.629953ms)
+✔ sqlite: raced new canonical header with different display headings cannot create two categories (221.54058ms)
+✔ sqlite: overlapping restock race rolls back all new rows and asks for current counts (118.91721ms)
+✔ sqlite:50/10 then late10 gives20/30; exhaustion and100 restock fill waiting without republishing (251.028089ms)
+✔ sqlite: dedup within/later/across categories, masked paging, authorized explicit reveal, delete and no recycle (193.12968ms)
+✔ sqlite: checked-in admin and judge get own credits without team/profile gate; no cross-user or nonchecked access (126.46136ms)
+✔ sqlite: concurrent check-ins and repeated publish assign each physical code/person/category once (137.834907ms)
+✔ postgres: raced new canonical header with different display headings cannot create two categories (5274.268246ms)
+✔ postgres: overlapping restock race rolls back all new rows and asks for current counts (4075.493233ms)
+✔ postgres:50/10 then late10 gives20/30; exhaustion and100 restock fill waiting without republishing (5527.065631ms)
+✔ postgres: dedup within/later/across categories, masked paging, authorized explicit reveal, delete and no recycle (4181.778882ms)
+
+
+#
+# Fatal error in , line 0
+# Check failed: jit_page_->allocations_.erase(addr) == 1.
+#
+#
+#
+#FailureMessage Object: 0x7fffaf05c8b0
+----- Native stack trace -----
+
+ 1: 0x9cc081  [/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node]
+ 2: 0x2778d13 V8_Fatal(char const*, ...) [/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node]
+ 3: 0xd4e4d4 v8::internal::ThreadIsolation::JitPageReference::UnregisterAllocation(unsigned long) [/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node]
+ 4: 0xd4e69c v8::internal::ThreadIsolation::UnregisterWasmAllocation(unsigned long, unsigned long) [/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node]
+ 5: 0x18b0ce3  [/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node]
+ 6: 0x18eb73f  [/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node]
+ 7: 0x18d061e  [/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node]
+ 8: 0x18d07d1  [/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node]
+ 9: 0x18a862f  [/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node]
+10: 0x18ab42c  [/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node]
+11: 0x174055f  [/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node]
+12: 0x7f4ca7e76d09 
+✖ tests/credit-stock-restock.test.ts (22186.923847ms)
+✔ leader must personally check in for drafts/commits while a teammate can unlock read-only project/history (165.391784ms)
+✔ own project votes require personal check-in; other project votes have no check-in/time window or global quota and stay idempotent (118.124227ms)
+✔ sole unlocked leader can recoverably remove own team; locked/multiple-member and committed-history teams cannot self-delete (90.391426ms)
+✔ absence reconciles lazily once at midnight IST, preserving Registered/ever-attended and respecting later manual corrections (76.238536ms)
+✔ single participant deactivation revokes stale-session capabilities and imports cannot restore; protected owners/leaders are blocked (115.203375ms)
+✔ project/version soft removal suppresses public APIs and images without resetting attempts or falling back to old versions (137.045998ms)
+✔ owner previews both real submission dates with version-bound confirmation, leaving fixed repository cutoff and attempts intact (102.677223ms)
+✔ pasted/single emails and explicitly mapped full CSV imports are add-only, previewed and prefill only new profiles (88.299437ms)
+✔ profile imports stop supplying defaults after first save, preserve explicit clears, and accept only exact imported category (90.835005ms)
+✔ in-flight mutation cannot persist after single participant deactivation commits (90.884193ms)
+✔ approved never-login registrants become Absent without inventing a user and retain this state at first sign-in (84.249808ms)
+✔ admin engagement pause is versioned, backend enforced, and reopening preserves one vote per project (97.290641ms)
+✔ unreviewed removed projects do not block active scoring coverage and cannot be edited, while history remains (88.619131ms)
+✔ independent provider mapping: mocked response keeps exact bound caps/evidence and unknown stays unscored; unavailable model performs no lookup or fetch (83.508926ms)
+✔ sqlite: independent bridge rejects wrong version/revision, preserves true zero and private scores, and caps three committed attempts (193.423413ms)
+✔ sqlite: independent provider stale recovery frees the actual configuration, permits one retry and discards the late original (107.393601ms)
+✔ sqlite: independent late provider success preserves every frozen job/run/revision and returns stopped (99.974821ms)
+✔ sqlite: independent late provider failure preserves every frozen job/run/revision and returns stopped (118.087787ms)
+✔ postgres: independent bridge rejects wrong version/revision, preserves true zero and private scores, and caps three committed attempts (5661.923862ms)
+✔ postgres: independent provider stale recovery frees the actual configuration, permits one retry and discards the late original (3720.01721ms)
+✔ postgres: independent late provider success preserves every frozen job/run/revision and returns stopped (6947.386282ms)
+✔ postgres: independent late provider failure preserves every frozen job/run/revision and returns stopped (5774.165374ms)
+✔ local Team control seed is additive, guarded and exercises existing membership/lock/removal contracts (274.512072ms)
+ℹ tests 46
+ℹ suites 0
+ℹ pass 45
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 111698.095758
+
+✖ failing tests:
+
+test at tests/credit-stock-restock.test.ts:1:1
+✖ tests/credit-stock-restock.test.ts (22186.923847ms)
+  'test failed'

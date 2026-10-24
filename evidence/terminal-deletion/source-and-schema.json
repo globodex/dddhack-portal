@@ -1,0 +1,303 @@
+{
+  "source": "5722b599e3aa6aa55de93ff4fbad0b4c9575daf8",
+  "base": "3fee26d8c5a352c9ef829929ee64f2576c4b3a22",
+  "syntheticOnly": true,
+  "hostedWrites": false,
+  "providerCalls": false,
+  "physicalObjectDeletion": false,
+  "publishedSQLUnchanged": [
+    {
+      "path": "db/migrations/0001_portal.sql",
+      "sha256": "7f72889c749f17144464e49cc7c4c714caae40495af2439b538c9de641db57e6",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0002_tie_resolutions.sql",
+      "sha256": "d81f52037a9ad5491ab89d10b6376e634dcfbaaa7d4302bf1588d384aadd0050",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0003_experience.sql",
+      "sha256": "92b56bbd0a0767c8abb65e9b9c74bd38470d3cd3806a9e51562ed5578cb6f962",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0004_required_gender.sql",
+      "sha256": "46237667882900613befbdf4ed6f01036f212e2500c731d70c968ae14894aa6f",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0005_score_reveals.sql",
+      "sha256": "ba6b6458f1f83758c662b64b7fa74b94e8a813bbd7184e2524367a05623c813c",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0006_policy_controls.sql",
+      "sha256": "55cf3202818ea8fc8cc55af0757097e83bd580f7c4b614f47cdeab88cc0244e7",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0007_operational_qualification.sql",
+      "sha256": "3ab5ddbf7afcc549db79c7378967ada2c091ebbcd3637912e3574b1fec956163",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0008_team_submission_credits.sql",
+      "sha256": "90cc84e1cbb2cca656a315bc3440be49f3537c974e19d99680ec4e7c7e44a978",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0009_status_repository_evidence.sql",
+      "sha256": "5c88354cc556eca3118324db7eb2d6973d054f2f5f2b5873eb8c23269a1c4fc2",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0010_profile_photos.sql",
+      "sha256": "3e4bbdea12f370dd7f327ccdac8f95466fa8436a4b01b417188aa3aaebdceb02",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0011_luma_roster.sql",
+      "sha256": "f1c7b7bb81a7378b27fc44aefb5f09a05b1abe49afb9117a37b4441d20190270",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0012_profile_details.sql",
+      "sha256": "9b304444ca62671c34018addd94528181c72f77e00277e162485bc7a78d10ed7",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0013_dot_avatars.sql",
+      "sha256": "161aed4a084448162d8fcd78549a1b39d90c38bead0b2e784b9746a0b064f8b1",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0014_idea_override_permissions.sql",
+      "sha256": "52588ecada53be7ecede9913e6748a7da3321a5e9bf7029b51671bf3907d0cbd",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0015_team_colors.sql",
+      "sha256": "ca123d61c07714a1c80a493945dfc8035dd37d8c8688ddbc3bebbf805d13854f",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0016_personal_checkin.sql",
+      "sha256": "b44498f42bd1c162bab549c38db2c67ca7eaa33c9e56cd8b7b4c040e7f8cfc3a",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0017_removals_absence_prefills.sql",
+      "sha256": "76c98c1a076d81d3b45d07f92ecf6be04eadc02e0cb3146dec2efbc2e451cc10",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0018_engagement_controls.sql",
+      "sha256": "39c20caf89a4b724b6dc34a3b492755f4dc12d754166a61b0b5e608c1dae9769",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0019_registration_absences.sql",
+      "sha256": "f769e090894a090e0621e54a94b8857594b146500c2d8bb41cc2a5f6f1a55501",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0020_voucher_credit_values.sql",
+      "sha256": "aab2596510cb52412d6ac28c13db58f17876e14532f98412ecee3a6172658e0c",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0021_credit_batches.sql",
+      "sha256": "aedba6eb13e693ceb13fe60fafe0ae90546ba3517fe9fbc735cd188b455cb3de",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0022_derived_operational_gates.sql",
+      "sha256": "26cbae9adea6d899fc6d3d3d0b9f2997a7402f662db17ce3a11ff80d12f61eee",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0023_admin_leader_transfer.sql",
+      "sha256": "6d6ddc18690301f03584fd3bd8f6cbdaad808c93b43a10b0c1991ffe369c3297",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0024_credit_stock.sql",
+      "sha256": "e1e85637989c0c94e55dbd6207e0632b06594f73d9948d14fe33f6cbe025338f",
+      "unchanged": true
+    },
+    {
+      "path": "db/migrations/0025_admin_team_corrections.sql",
+      "sha256": "28440e6ab16ae86cf3726507d9ab4ebce876c1fa990352b9af2dd339ead4af24",
+      "unchanged": true
+    },
+    {
+      "path": "neon/auth-migrations/0001_auth.sql",
+      "sha256": "d7a7d26116c1cf892f129edfbbf70ee4a7b3014165667e5b4b7cda8a916d6bbf",
+      "unchanged": true
+    },
+    {
+      "path": "neon/auth-migrations/0002_approved_evaluation.sql",
+      "sha256": "21929ac1cf790d34644b385fa4506c69db6df9be3d5ddaae00db9ee2bccb5797",
+      "unchanged": true
+    },
+    {
+      "path": "neon/migrations/0000_compatibility.sql",
+      "sha256": "5e5f7c29d376532f6a32771f556f965aaed666c3bd8bf6fc32d2f00bd9f0ac66",
+      "unchanged": true
+    },
+    {
+      "path": "neon/migrations/0001_portal.sql",
+      "sha256": "f9e5a1379f598c6c7bc86c771148f16c4c7d5767c773dffbcb14e50e7285b031",
+      "unchanged": true
+    },
+    {
+      "path": "neon/migrations/0002_invariants.sql",
+      "sha256": "abdea4e04ea373c8a86ba2848d10a0122ab09308f52c1e51d439d138a8670928",
+      "unchanged": true
+    },
+    {
+      "path": "neon/migrations/0003_transaction_safety.sql",
+      "sha256": "9e3e440b4d0a14d1fee077a3a4c9ab92fd972d61e377931f602f46d0f5bbed24",
+      "unchanged": true
+    },
+    {
+      "path": "neon/migrations/0004_media_uploads.sql",
+      "sha256": "32cf9496df32661e65299f846359da306b8efca2a15f4c6070b8f0f8a1cab8e7",
+      "unchanged": true
+    },
+    {
+      "path": "neon/migrations/0102_credit_stock.sql",
+      "sha256": "74bf8549edbecb753424a86e692844e962be02c0faeddda8f0b2dd3ffaacb72e",
+      "unchanged": true
+    },
+    {
+      "path": "neon/migrations/0103_project_media_limits.sql",
+      "sha256": "3f42da160787977b7655fe74647655bd656f4c55467c2a42b3dd1627859f462c",
+      "unchanged": true
+    },
+    {
+      "path": "neon/migrations/0104_admin_team_corrections.sql",
+      "sha256": "a931aeafba01be07f43e35fc7c17cae80f11bbd212fbd92f0e5fd8d475c40500",
+      "unchanged": true
+    }
+  ],
+  "runtimeFiles": {
+    "lib/terminal-deletion.ts": "14dae54a5869522c8560ce706d622a18363fb378229876807454fcb0829bd7a6",
+    "lib/record-removal.ts": "cf14396eeeb231701674336b8687026ac15ce196198fc6bec8cbd5c2506248f7",
+    "lib/service.ts": "820be710c3d6195db32a2ec521cc8379584b4d6c962b95bdbff9fe5cb7c124f8",
+    "neon/migrations/0105_terminal_record_deletion.sql": "088b96a239915cd518765b5ef260c73feee913d8e0b181234110f7591676ccde",
+    "db/migrations/0026_terminal_record_deletion.sql": "96b05c0a7e6184291a17e2eea702f11e27535f359b3948ed6034167719ddc22e",
+    "tests/terminal-deletion.test.ts": "810d590c66c49fe9ffe578c9efd429c017e8e8edb031b4ea94efe5fa75f1b0a0",
+    "tests/terminal-deletion-migration.test.ts": "163f3972f33c32cb79cbce9f811e6162a8fe3de0cfb3133d7dc5621f8c0b8f85",
+    "lib/roster-import.ts": "f4070b70bd1e307d725cf1e5719b764d080e3c852a79f20797314f71d2ce4319"
+  },
+  "limits": [
+    "PGlite provides actual PostgreSQL trigger semantics through a serial single-connection pool, not native multi-connection MVCC evidence.",
+    "Private physical object bytes remain pending a separate verified storage cleanup path.",
+    "Owner-only audit logs and immutable global numeric score-release history are preserved."
+  ],
+  "verification": {
+    "newFocusedCases": 26,
+    "existingUniqueRegressions": 47,
+    "typecheck": "pass",
+    "initialRegressionProcessFailure": "Native Node/V8 WebAssembly jit_page_ allocations assertion in credit-stock-restock.test.ts; no product assertion failed. Complete stock file passed12/12 in a separate isolated retry.",
+    "currentPrivateAdminProjection": "Parent-owned integration; the child proves terminal roster/profile/registration absence, not the root UI query.",
+    "newCaseNames": [
+      "PostgreSQL full populated0104 ledger upgrade preserves auth/audit/all old rows, then removes target source/media while retaining the deleted former leader's surviving-team draft assets",
+      "SQLite populated0025 upgrade: transactional failure restores guards/data;0026 preserves every old row, seeds exact attempt maxima and remains immutable",
+      "postgres: a crown transfer before the request cannot broaden the confirmed participant cascade",
+      "postgres: concurrent replay commits one deletion audit; frozen results and ordinary immutable deletes remain protected",
+      "postgres: deleting the leader deletes only their team/content, keeps every other member as a teamless participant and retains audit identity",
+      "postgres: explicit team deletion atomically erases locked three-attempt content/dependencies, releases members, preserves unrelated records and durable attempt count",
+      "postgres: imports after preview or during commit cannot re-enroll terminal identities and keep unrelated existing/new participants",
+      "postgres: injected mid-cascade failure rolls back every deletion, guard, tombstone and audit",
+      "postgres: late provider completion cannot recreate jobs, reports or project data after terminal cascade",
+      "postgres: nonleader deletion leaves locked team, crown, idea and unrelated projects intact; personal assigned codes retire forever",
+      "postgres: role revocation and new crown between read and transaction deny stale deletion without partial data loss",
+      "postgres: stale profile mutation cannot recreate participant data after terminal deletion",
+      "postgres: strict single-target confirmation, real staff authorization and protected owner/self/staff accounts",
+      "postgres: terminal cascade adds no approval/check-in gates and preserves legacy soft restore contracts",
+      "sqlite: a crown transfer before the request cannot broaden the confirmed participant cascade",
+      "sqlite: concurrent replay commits one deletion audit; frozen results and ordinary immutable deletes remain protected",
+      "sqlite: deleting the leader deletes only their team/content, keeps every other member as a teamless participant and retains audit identity",
+      "sqlite: explicit team deletion atomically erases locked three-attempt content/dependencies, releases members, preserves unrelated records and durable attempt count",
+      "sqlite: imports after preview or during commit cannot re-enroll terminal identities and keep unrelated existing/new participants",
+      "sqlite: injected mid-cascade failure rolls back every deletion, guard, tombstone and audit",
+      "sqlite: late provider completion cannot recreate jobs, reports or project data after terminal cascade",
+      "sqlite: nonleader deletion leaves locked team, crown, idea and unrelated projects intact; personal assigned codes retire forever",
+      "sqlite: role revocation and new crown between read and transaction deny stale deletion without partial data loss",
+      "sqlite: stale profile mutation cannot recreate participant data after terminal deletion",
+      "sqlite: strict single-target confirmation, real staff authorization and protected owner/self/staff accounts",
+      "sqlite: terminal cascade adds no approval/check-in gates and preserves legacy soft restore contracts"
+    ],
+    "existingCaseNames": [
+      "absence reconciles lazily once at midnight IST, preserving Registered/ever-attended and respecting later manual corrections",
+      "admin engagement pause is versioned, backend enforced, and reopening preserves one vote per project",
+      "approved never-login registrants become Absent without inventing a user and retain this state at first sign-in",
+      "in-flight mutation cannot persist after single participant deactivation commits",
+      "independent provider mapping: mocked response keeps exact bound caps/evidence and unknown stays unscored; unavailable model performs no lookup or fetch",
+      "leader must personally check in for drafts/commits while a teammate can unlock read-only project/history",
+      "local Team control seed is additive, guarded and exercises existing membership/lock/removal contracts",
+      "own project votes require personal check-in; other project votes have no check-in/time window or global quota and stay idempotent",
+      "owner previews both real submission dates with version-bound confirmation, leaving fixed repository cutoff and attempts intact",
+      "pasted/single emails and explicitly mapped full CSV imports are add-only, previewed and prefill only new profiles",
+      "postgres: actual personal-credit GET gives removed self actionable403 without exposing credits",
+      "postgres: admin adds and renames locked teams after membership freeze without changing crown, lock, registration, private idea or history",
+      "postgres: candidate search is private, paginated25 and includes truthful disabled current-team identities",
+      "postgres: checked-in admin and judge get own credits without team/profile gate; no cross-user or nonchecked access",
+      "postgres: concurrent check-ins and repeated publish assign each physical code/person/category once",
+      "postgres: dedup within/later/across categories, masked paging, authorized explicit reveal, delete and no recycle",
+      "postgres: independent bridge rejects wrong version/revision, preserves true zero and private scores, and caps three committed attempts",
+      "postgres: independent late provider failure preserves every frozen job/run/revision and returns stopped",
+      "postgres: independent late provider success preserves every frozen job/run/revision and returns stopped",
+      "postgres: independent provider stale recovery frees the actual configuration, permits one retry and discards the late original",
+      "postgres: overlapping restock race rolls back all new rows and asks for current counts",
+      "postgres: raced new canonical header with different display headings cannot create two categories",
+      "postgres: scoped overrides cannot change unrelated locked fields and audit failure rolls membership and guards back",
+      "postgres: simultaneous corrections preserve five-member cap, global membership uniqueness and atomic audit/guard cleanup",
+      "postgres: staff permission, registration, current membership, capacity, rename CAS and results freeze remain authoritative",
+      "postgres:50/10 then late10 gives20/30; exhaustion and100 restock fill waiting without republishing",
+      "profile imports stop supplying defaults after first save, preserve explicit clears, and accept only exact imported category",
+      "project/version soft removal suppresses public APIs and images without resetting attempts or falling back to old versions",
+      "single participant deactivation revokes stale-session capabilities and imports cannot restore; protected owners/leaders are blocked",
+      "sole unlocked leader can recoverably remove own team; locked/multiple-member and committed-history teams cannot self-delete",
+      "sqlite: actual personal-credit GET gives removed self actionable403 without exposing credits",
+      "sqlite: admin adds and renames locked teams after membership freeze without changing crown, lock, registration, private idea or history",
+      "sqlite: candidate search is private, paginated25 and includes truthful disabled current-team identities",
+      "sqlite: checked-in admin and judge get own credits without team/profile gate; no cross-user or nonchecked access",
+      "sqlite: concurrent check-ins and repeated publish assign each physical code/person/category once",
+      "sqlite: dedup within/later/across categories, masked paging, authorized explicit reveal, delete and no recycle",
+      "sqlite: independent bridge rejects wrong version/revision, preserves true zero and private scores, and caps three committed attempts",
+      "sqlite: independent late provider failure preserves every frozen job/run/revision and returns stopped",
+      "sqlite: independent late provider success preserves every frozen job/run/revision and returns stopped",
+      "sqlite: independent provider stale recovery frees the actual configuration, permits one retry and discards the late original",
+      "sqlite: overlapping restock race rolls back all new rows and asks for current counts",
+      "sqlite: raced new canonical header with different display headings cannot create two categories",
+      "sqlite: scoped overrides cannot change unrelated locked fields and audit failure rolls membership and guards back",
+      "sqlite: simultaneous corrections preserve five-member cap, global membership uniqueness and atomic audit/guard cleanup",
+      "sqlite: staff permission, registration, current membership, capacity, rename CAS and results freeze remain authoritative",
+      "sqlite:50/10 then late10 gives20/30; exhaustion and100 restock fill waiting without republishing",
+      "unreviewed removed projects do not block active scoring coverage and cannot be edited, while history remains"
+    ]
+  },
+  "contract": {
+    "admin-delete-participant": {
+      "required": [
+        "userId",
+        "expectedLeaderTeamIds",
+        "confirmation"
+      ],
+      "confirmation": "DELETE_PARTICIPANT",
+      "maximumExpectedTeamIds": 100,
+      "scope": "All currently led teams including archived, exact confirmed set checked before and during mutation."
+    },
+    "admin-delete-team": {
+      "required": [
+        "teamId",
+        "confirmation"
+      ],
+      "confirmation": "DELETE_TEAM"
+    }
+  }
+}
