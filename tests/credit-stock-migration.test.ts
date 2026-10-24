@@ -17,7 +17,7 @@ async function previous(engine: "sqlite" | "postgres") {
       directory = new URL("../db/migrations/", import.meta.url);
     for (const name of readdirSync(directory)
       .filter(
-        (name) => name.endsWith(".sql") && name !== "0024_credit_stock.sql",
+        (name) => name.endsWith(".sql") && name < "0024_credit_stock.sql",
       )
       .sort())
       db.raw.exec(readFileSync(new URL(name, directory), "utf8"));
@@ -39,7 +39,11 @@ async function previous(engine: "sqlite" | "postgres") {
     };
   }
   const context = await createPGliteFixture({
-    excludeMigrations: ["0005_credit_stock.sql"],
+    // Model the schema immediately before stock. Applying a later media
+    // migration first would correctly make this upgrade out of order.
+    excludeMigrations: (await loadPortalMigrations())
+      .filter((migration) => migration.name >= "0005_credit_stock.sql")
+      .map((migration) => migration.name),
   });
   await seedLocal(context.db);
   return {
