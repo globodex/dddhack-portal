@@ -6026,7 +6026,7 @@ export default function Portal({
             >
               {publicBrowse && <Icon name="person" />}
               {data.me
-                ? publicBrowse
+                ? data.me.mode === "viewer" ? "Explore the portal" : publicBrowse
                   ? "Open your Dashboard"
                   : "Dashboard"
                 : "Sign in"}
@@ -6069,7 +6069,7 @@ export default function Portal({
               privileged ||
               data.me.role === "volunteer" ||
               data.me.mode === "viewer"
-                ? "Your Dashboard"
+                ? data.me.mode === "viewer" ? "Viewer mode" : "Your Dashboard"
                 : "Your profile"
             }
           >
@@ -6256,7 +6256,7 @@ export default function Portal({
             </div>
           </section>
         )}
-        {!error && (pendingPath ? (
+        {(!error || path === "/") && (pendingPath ? (
           <RouteSkeleton path={pendingPath} />
         ) : path === "/" ? (
           <Home

@@ -8,6 +8,7 @@ import { AdminParticipantFilters } from "../app/admin-participant-actions";
 import { filterParticipants } from "../lib/participant-filters";
 import { portalLoadFailure } from "../lib/portal-load-state";
 import { readFileSync } from "node:fs";
+import { portalNavigation } from "../lib/navigation";
 const viewer = { id: "synthetic-viewer", email: "viewer@example.invalid", name: "Synthetic viewer", role: "participant", owner: false, mode: "viewer" as const, canParticipate: false, canEngage: false };
 const render = (component: any, props: any) => renderToStaticMarkup(createElement(component, props));
 
@@ -50,4 +51,19 @@ test("Not registered filter is an admin option and matches separate Viewer recor
   const filters = { status: "not registered", team: "all" as const, individual: "", teamQuery: "" };
   assert.deepEqual(filterParticipants(rows, filters).map(row => row.id), ["v"]);
   assert.deepEqual(filterParticipants(rows, { ...filters, individual: "no match" }), []);
+});
+
+
+test("Viewer navigation includes discovery and public projects without workspace destinations", () => {
+  const navigation = portalNavigation("/dashboard", viewer);
+  assert.deepEqual(navigation.items.map(item => item[0]), ["/discover/teams", "/projects", "/rules"]);
+  const html = render(Portal, { path: "/dashboard", initialView: { me: viewer, registrationRequired: true } });
+  assert.doesNotMatch(html, />Dashboard<|My credits|Your profile/);
+});
+
+test("public landing keeps its approved static content available during a failed refresh", () => {
+  const html = render(Portal, { path: "/", initialPublic: { submissionClose: null }, initialFailure: portalLoadFailure(503, { code: "BACKEND_UNAVAILABLE" }) });
+  assert.match(html, /role="alert"/);
+  assert.match(html, /fallback-approved-v3\.png/);
+  assert.doesNotMatch(html, /route-skeleton/);
 });

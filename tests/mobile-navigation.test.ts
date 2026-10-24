@@ -57,7 +57,7 @@ test("all role shells share one mobile dialog with ordinary role-authorized link
     {
       path: "/projects",
       me: { role: "participant", mode: "viewer", name: "Synthetic viewer" },
-      links: ["Dashboard", "Projects", "Log out"],
+      links: ["Discover", "Projects", "Log out"],
     },
   ];
   for (const entry of cases) {
