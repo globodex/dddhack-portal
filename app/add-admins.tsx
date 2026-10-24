@@ -28,7 +28,8 @@ export default function AddAdmins({
 }) {
   const hydrated = useHydrated(),
     id = useId(),
-    pending = useRef(false);
+    pending = useRef(false),
+    emailInput = useRef<HTMLInputElement>(null);
   const [email, setEmail] = useState(""),
     [error, setError] = useState(""),
     [busy, setBusy] = useState<string | null>(null);
@@ -36,6 +37,10 @@ export default function AddAdmins({
   const perform = async (target: string, operation: () => Promise<unknown>) => {
     if (pending.current) return;
     pending.current = true;
+    const opener =
+      document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null;
     setBusy(target);
     setError("");
     try {
@@ -45,6 +50,18 @@ export default function AddAdmins({
     } finally {
       pending.current = false;
       setBusy(null);
+      // Pending disables the native opener before the shared dialog can retain it.
+      // Restore after React enables controls and the dialog's history cleanup settles.
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
+          if (document.querySelector("dialog[open]")) return;
+          const target =
+            opener?.isConnected && !opener.matches(":disabled")
+              ? opener
+              : emailInput.current;
+          target?.focus({ preventScroll: true });
+        }),
+      );
     }
   };
   return (
@@ -115,6 +132,7 @@ export default function AddAdmins({
               </span>
             </span>
             <input
+              ref={emailInput}
               aria-label="Admin email"
               type="email"
               required
