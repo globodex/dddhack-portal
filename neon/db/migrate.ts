@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { readFile, readdir } from "node:fs/promises";
-import type { PostgresPool } from "./adapter";
+import type { PostgresConnection, PostgresPool } from "./adapter";
 
 export type PortalMigration = { name: string; sql: string; checksum: string };
 export async function loadPortalMigrations(
@@ -27,11 +27,32 @@ export async function loadPortalMigrations(
 export async function applyPortalMigrations(
   pool: PostgresPool,
   migrations: PortalMigration[],
+  checks: {
+    lockTimeoutMilliseconds?: number;
+    statementTimeoutMilliseconds?: number;
+    beforeApply?: (connection: PostgresConnection) => Promise<void>;
+    afterApply?: (
+      connection: PostgresConnection,
+      applied: readonly string[],
+    ) => Promise<void>;
+  } = {},
 ) {
   const connection = await pool.connect();
   try {
     await connection.query("BEGIN ISOLATION LEVEL SERIALIZABLE");
+    for (const [setting, value] of [
+      ["lock_timeout", checks.lockTimeoutMilliseconds],
+      ["statement_timeout", checks.statementTimeoutMilliseconds],
+    ] as const) {
+      if (value === undefined) continue;
+      if (!Number.isInteger(value) || value < 1 || value > 600000)
+        throw new Error("MIGRATION_TIMEOUT_INVALID");
+      await connection.query(`SET LOCAL ${setting} = '${value}ms'`);
+    }
     await connection.query("SELECT pg_advisory_xact_lock(742019, 1)");
+    // Populated upgrades verify their target, existing ledger and reviewed
+    // receipt under this same lock, before even creating a ledger table.
+    await checks.beforeApply?.(connection);
     await connection.query(
       "CREATE TABLE IF NOT EXISTS portal_schema_migrations(name text PRIMARY KEY, checksum text NOT NULL, applied_at timestamptz NOT NULL DEFAULT now())",
     );
@@ -63,6 +84,7 @@ export async function applyPortalMigrations(
       known.set(migration.name, migration.checksum);
       applied.push(migration.name);
     }
+    await checks.afterApply?.(connection, applied);
     await connection.query("COMMIT");
     return applied;
   } catch (error) {
