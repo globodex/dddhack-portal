@@ -1,0 +1,373 @@
+{
+  "syntheticOnly": true,
+  "sourceBase": "aa741dc",
+  "origin": "http://localhost:3000",
+  "discoverySourceSha256": "c85c15a416b72bf2a2aa1b44220630ac0196bf183cdc1ab6ca3471fa99c57885",
+  "browserSandbox": false,
+  "limitation": "Local hydrated Next dev Strict Mode; synthetic role fixtures only, no physical device or hosted authentication proof. Native Chromium sandbox unavailable; fresh localhost-only contexts reject all external/mutation requests.",
+  "authorizationScenarios": [
+    "owner",
+    "admin",
+    "judge",
+    "alice",
+    "pending",
+    "stranger"
+  ],
+  "unavailableLocalFixtures": [
+    {
+      "actor": "mentor",
+      "status": 401
+    },
+    {
+      "actor": "volunteer",
+      "status": 401
+    }
+  ],
+  "cases": [
+    {
+      "actor": "owner",
+      "path": "/discover/participants",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "input": "mouse",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "owner",
+      "path": "/discover/teams",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "input": "mouse",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "owner",
+      "path": "/discover/participants",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "input": "touch",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "owner",
+      "path": "/discover/teams",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "input": "touch",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "admin",
+      "path": "/discover/participants",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "input": "mouse",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "admin",
+      "path": "/discover/teams",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "input": "mouse",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "admin",
+      "path": "/discover/participants",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "input": "touch",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "admin",
+      "path": "/discover/teams",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "input": "touch",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "judge",
+      "path": "/discover/participants",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "input": "mouse",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "judge",
+      "path": "/discover/teams",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "input": "mouse",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "judge",
+      "path": "/discover/participants",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "input": "touch",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "judge",
+      "path": "/discover/teams",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "input": "touch",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "alice",
+      "path": "/discover/participants",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "input": "mouse",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "alice",
+      "path": "/discover/teams",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "input": "mouse",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "alice",
+      "path": "/discover/participants",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "input": "touch",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "alice",
+      "path": "/discover/teams",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "input": "touch",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "pending",
+      "path": "/discover/participants",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "input": "mouse",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "pending",
+      "path": "/discover/teams",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "input": "mouse",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "pending",
+      "path": "/discover/participants",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "input": "touch",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "pending",
+      "path": "/discover/teams",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "input": "touch",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "stranger",
+      "path": "/discover/participants",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "input": "mouse",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "stranger",
+      "path": "/discover/teams",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "input": "mouse",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "stranger",
+      "path": "/discover/participants",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "input": "touch",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    },
+    {
+      "actor": "stranger",
+      "path": "/discover/teams",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "input": "touch",
+      "openCloseAndReopen": true,
+      "dismissals": [
+        "close-button",
+        "escape"
+      ]
+    }
+  ],
+  "assertions": 362,
+  "errors": [],
+  "blocked": [],
+  "browserClosed": true,
+  "diagnosis": {
+    "before": "After networkidle, the first profile click executed showModal, cleanup close, replay showModal, then a queued native close event while dialog.open was true; that old event dismissed the reopened dialog.",
+    "fix": "The finish handler ignores close events while the current dialog is open. Real close and Escape still close with dialog.open false and notify once.",
+    "unitRegression": "tests/discovery-profile.test.ts queues native close events across cleanup/reopen and verifies stale close ignored plus genuine close delivered once; all 8 tests pass."
+  }
+}

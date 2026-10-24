@@ -169,6 +169,48 @@ test("Escape cancel closes the native dialog, and unmount cleanup never calls on
   assert.equal(calls, 1);
 });
 
+test("a queued native close from cleanup cannot dismiss the reopened modal lifetime", () => {
+  const fixture = nativeDialogFixture();
+  const queuedCloseEvents: (() => void)[] = [];
+  // Browsers queue close events; Strict Mode can replay the effect before the
+  // previous event is dispatched. The synchronous fixture above stays intact.
+  fixture.dialog.close = () => {
+    if (!fixture.dialog.open) return;
+    fixture.dialog.open = false;
+    queuedCloseEvents.push(() =>
+      fixture.dialog.dispatchEvent(new Event("close")),
+    );
+  };
+  let firstCalls = 0;
+  let secondCalls = 0;
+  const firstCleanup = openDiscoveryDialog(
+    fixture.dialog as unknown as HTMLDialogElement,
+    () => {
+      firstCalls++;
+    },
+  );
+  firstCleanup();
+  const secondCleanup = openDiscoveryDialog(
+    fixture.dialog as unknown as HTMLDialogElement,
+    () => {
+      secondCalls++;
+    },
+  );
+  queuedCloseEvents.shift()!();
+  assert.equal(fixture.dialog.open, true);
+  assert.equal(firstCalls, 0);
+  assert.equal(secondCalls, 0);
+  assert.equal(fixture.modalCalls(), 2);
+
+  fixture.dialog.close();
+  queuedCloseEvents.shift()!();
+  assert.equal(fixture.dialog.open, false);
+  assert.equal(secondCalls, 1);
+  secondCleanup();
+  assert.equal(firstCalls, 0);
+  assert.equal(secondCalls, 1);
+});
+
 test("directory dialog projection never forwards private row fields", async () => {
   const { discoveryProfileProjection } = await import("../app/portal");
   const projected = discoveryProfileProjection({

@@ -55,7 +55,9 @@ export function openDiscoveryDialog(
     if (trigger?.isConnected) trigger.focus({ preventScroll: true });
   };
   const finish = () => {
-    if (closed) return;
+    // close() queues its native event. Strict Mode can reopen the same node
+    // before that event arrives, so it must not dismiss the new modal lifetime.
+    if (closed || dialog.open) return;
     closed = true;
     restoreFocus();
     onClose();
