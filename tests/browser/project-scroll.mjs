@@ -236,6 +236,15 @@ try {
       await card.locator("[role=alert]").innerText(),
       /BACKEND_UNAVAILABLE/,
     );
+    const errorBox = await card.locator("[role=alert]").boundingBox(),
+      cardBox = await card.boundingBox();
+    assert.ok(
+      errorBox &&
+        cardBox &&
+        errorBox.x >= cardBox.x &&
+        errorBox.x + errorBox.width <= cardBox.x + cardBox.width,
+      "Vote error stays inside its card",
+    );
     assert.equal(await vote.getAttribute("aria-pressed"), "false");
     assert.equal(Number(await vote.innerText()), before);
     assert.equal(await cards.count(), 60);

@@ -491,7 +491,7 @@
 .app-shell .projects-v6 .engagement:has(.vote-control [role="alert"]),
 .app-shell .public-project-list .public-project-card-actions:has(.vote-control [role="alert"]) { align-items: flex-start; }
 .app-shell .projects-v6 .engagement .vote-control:has([role="alert"]) { grid-template-columns: 64px; width: 64px; max-width: none; }
-.app-shell .projects-v6 .engagement .vote-control [role="alert"] { width: min(220px, calc(100vw - 96px)); max-width: none; margin: 0; padding: 0; border: 0; }
+.app-shell .projects-v6 .engagement .vote-control [role="alert"] { width: min(220px, calc(100vw - 96px)); max-width: none; margin: 0; padding: 0; border: 0; justify-self: start; text-align: left; }
 .app-shell .public-project-list .public-project-card-actions > .project-share-trigger {
   flex: 0 0 44px;
   width: 44px;
