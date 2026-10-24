@@ -55,6 +55,16 @@ Final team creation evidence was requested separately and delivered at a431f4c: 
 
 ## Reopened creation-layout review
 
-After these checks, the user rejected the short390×480 team-creation composition as disturbed/misaligned. The screenshots at a431f4c are now before evidence, not an accepted final design. Header/close, initials/color picker, fields and action are being reworked together. Fresh same-viewport screenshots and focus/touch/persistence checks are required before this page closes. Other recorded checks remain historical evidence.
+After these checks, the user rejected the short390×480 team-creation composition as disturbed/misaligned. The screenshots at a431f4c are before evidence. The replacement uses an aligned header/close, grouped initials/color picker, fixed outer dialog geometry and a padded scrolling field region. Actual creation persistence, touch/keyboard/focus/error states and native200% zoom were checked. The last textarea line/caret stays20px above the fixed footer at320×480 and390×480. Busy/error outer-frame shifts are0px. See `evidence/create-team-repair/final-qa.json`, `geometry-after`, `geometry-short` and `stable-geometry.json`; the source of the final geometry checks is667222d.
+
+## Current release gate after additional requests
+
+The earlier full-suite/build/performance results above predate the expanded attendance, date publishing and active credit-stock scope. They remain historical evidence and are not the final gate for those changes.
+
+- Integrated attendance/invitation regression group:27/27 SQLite/PostgreSQL cases pass, including an independent reproduction and fix of the legacy retry/absence status bug. Source fix0ef07fa. Existing manual attendance override and idempotent legacy allocation retries remain available.
+- Participant selection correction and Going-only row action are integrated; final native UI evidence is in progress. Row Check in bypasses confirmation; checkbox bulk retains it. Shared success notices dismiss after5seconds; actionable errors persist.
+- The direct submission-window flow is in progress: first Publish must open the time confirmation and save on confirmation without an intermediate preview screen. Server version/token validation remains.
+- Approved append/restock/live allocation and personal staff credit access are being implemented in isolated backend/UI worktrees. Local schema review, stock/concurrency/privacy tests, actual screenshots and a rebuilt backend archive remain required.
+- Team role states, third-submission/history lock, native zoom and half-size desktop organizers have committed original screenshots. No blanket all-page pass is asserted while the new scope is pending.
 
 final result: blocked
