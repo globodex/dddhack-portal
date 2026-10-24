@@ -1,6 +1,10 @@
 import { createHash } from "node:crypto";
 import type { PostgresConnection, PostgresPool } from "./adapter";
 import { applyPortalMigrations, type PortalMigration } from "./migrate";
+import {
+  historicalLedgerCompatibility,
+  type HistoricalEncoding,
+} from "./historical-ledger-compatibility";
 
 type LedgerEntry = { name: string; checksum: string };
 export type UpgradeBaseline = {
@@ -21,6 +25,7 @@ export type UpgradeReceipt = {
   ledger: LedgerEntry[];
   pending: string[];
   counts: Record<string, string>;
+  historicalEncoding?: HistoricalEncoding;
 };
 
 export class UpgradeStopped extends Error {
@@ -112,7 +117,11 @@ async function readState(
   target: UpgradeTarget,
   plan: readonly PortalMigration[],
   baseline: UpgradeBaseline,
-): Promise<Pick<UpgradeReceipt, "ledger" | "pending" | "counts">> {
+): Promise<
+  Pick<UpgradeReceipt, "ledger" | "pending" | "counts"> & {
+    historicalEncoding: HistoricalEncoding;
+  }
+> {
   const identity = (
     await connection.query(
       "SELECT current_database() AS database, current_user AS role",
@@ -132,19 +141,9 @@ async function readState(
     name: String(row.name),
     checksum: String(row.checksum),
   }));
-  const approved = new Map(
-    entries(plan).map((entry) => [entry.name, entry.checksum]),
-  );
+  const compatibility = historicalLedgerCompatibility(plan, ledger);
   const recorded = new Map(ledger.map((entry) => [entry.name, entry.checksum]));
-  if (
-    ledger.some((entry) => approved.get(entry.name) !== entry.checksum) ||
-    baseline.historical.some(
-      (entry) => recorded.get(entry.name) !== entry.checksum,
-    ) ||
-    (recorded.has("0103_project_media_limits.sql") &&
-      !recorded.has("0102_credit_stock.sql"))
-  )
-    stop("UPGRADE_HISTORICAL_LEDGER_MISMATCH");
+  if (!compatibility) stop("UPGRADE_HISTORICAL_LEDGER_MISMATCH");
   const pending = plan
     .filter((entry) => !recorded.has(entry.name))
     .map((entry) => entry.name);
@@ -171,7 +170,12 @@ async function readState(
     if (!/^\d+$/.test(count)) stop("UPGRADE_COUNT_INVALID");
     counts[table] = count;
   }
-  return { ledger, pending, counts };
+  return {
+    ledger,
+    pending,
+    counts,
+    historicalEncoding: compatibility.historicalEncoding,
+  };
 }
 
 export async function inspectPopulatedUpgrade(
@@ -236,8 +240,25 @@ export async function applyPopulatedUpgrade(
     receipt.targetDigest !== digest(target)
   )
     stop("UPGRADE_RECEIPT_INVALID_OR_STALE");
+  if (
+    !Array.isArray(receipt.ledger) ||
+    receipt.ledger.some(
+      (entry) =>
+        !entry ||
+        typeof entry.name !== "string" ||
+        typeof entry.checksum !== "string",
+    )
+  )
+    stop("UPGRADE_RECEIPT_INVALID_OR_STALE");
+  const compatibility = historicalLedgerCompatibility(plan, receipt.ledger);
+  if (
+    !compatibility ||
+    (receipt.historicalEncoding !== undefined &&
+      receipt.historicalEncoding !== compatibility.historicalEncoding)
+  )
+    stop("UPGRADE_RECEIPT_INVALID_OR_STALE");
   let after: Awaited<ReturnType<typeof readState>> | undefined;
-  const applied = await applyPortalMigrations(pool, plan, {
+  const applied = await applyPortalMigrations(pool, compatibility.migrations, {
     lockTimeoutMilliseconds: 15000,
     statementTimeoutMilliseconds: 120000,
     async beforeApply(connection) {
@@ -248,6 +269,7 @@ export async function applyPopulatedUpgrade(
           ledger: receipt.ledger,
           pending: receipt.pending,
           counts: receipt.counts,
+          historicalEncoding: compatibility.historicalEncoding,
         })
       )
         stop("UPGRADE_DATABASE_CHANGED_SINCE_INSPECTION");
