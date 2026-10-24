@@ -149,6 +149,7 @@ export default function OwnerSubmissionWindow({
               step="60"
               required
               value={openInput}
+              aria-label="Opens (IST)"
               aria-invalid={showValidation || undefined}
               aria-describedby={showValidation ? `${id}-validation` : undefined}
               onBlur={() =>
@@ -173,6 +174,7 @@ export default function OwnerSubmissionWindow({
               step="60"
               required
               value={closeInput}
+              aria-label="Closes (IST)"
               aria-invalid={showValidation || undefined}
               aria-describedby={showValidation ? `${id}-validation` : undefined}
               onBlur={() =>
