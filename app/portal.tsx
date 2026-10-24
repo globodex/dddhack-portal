@@ -186,7 +186,7 @@ export function portalConfirmationFor(
       ...base,
       title: "Delete your team",
       description:
-        "Remove your unlocked, sole-member team after dependency checks. This is recoverable and preserves history. A project or allocation dependency can block deletion.",
+        "Remove this sole-member team. History stays intact.",
       confirmLabel: "Delete this team",
       critical: true,
     };
@@ -195,7 +195,7 @@ export function portalConfirmationFor(
       ...base,
       title: "Remove participant",
       description:
-        "Remove this specific participant from active participation. Revoke private access, credits and mutation eligibility while retaining their history. Imports cannot restore them. Owner and leader dependencies can block removal.",
+        "Revoke participation and private access. Their history stays intact.",
       confirmLabel: "Remove this participant",
       critical: true,
     };
@@ -204,7 +204,7 @@ export function portalConfirmationFor(
       ...base,
       title: "Restore participant",
       description:
-        "Restore this specific removed participant. The server checks their participation and dependencies again. This does not grant an administrative role.",
+        "Restore participation without granting admin access.",
       confirmLabel: "Restore this participant",
       critical: true,
     };
@@ -220,8 +220,8 @@ export function portalConfirmationFor(
       ...base,
       title: `${restoring ? "Restore" : "Remove"} ${scope}`,
       description: restoring
-        ? "Restore this exact project or submission target under server eligibility checks. Existing votes, comments, immutable history and the used attempt count are preserved."
-        : "Apply a recoverable removal to this exact target. Votes, comments, immutable history and used attempts remain intact. Removing a version does not automatically expose an older version.",
+        ? `Restore this ${scope}. History and used attempts stay unchanged.`
+        : `Hide this ${scope}. History and used attempts remain; older versions stay hidden.`,
       confirmLabel: `${restoring ? "Restore" : "Remove"} this target`,
       critical: true,
     };
@@ -230,7 +230,7 @@ export function portalConfirmationFor(
     return {
       ...base,
       title: "Confirm operational setup",
-      description: `Save the reviewed ${values.operation === "checkin" ? "check-in" : "submission"} rules and retention policy. Existing enabled scopes stay unchanged; this does not enable operations or confirm any judging policy.`,
+      description: "Save these rules. This does not enable an event operation.",
       confirmLabel: "Save these confirmations",
       critical: true,
     };
@@ -238,9 +238,8 @@ export function portalConfirmationFor(
     return {
       ...base,
       title: "Publish submission window",
-      description: Array.isArray(values.windowWarnings) && values.windowWarnings.length
-        ? values.windowWarnings.filter((warning: unknown) => typeof warning === "string").slice(0, 3).join(" ")
-        : "Save both times as real portal settings. Existing attempts and the fixed repository cutoff of 1 November, 08:00 IST stay unchanged.",
+      description: "Save these times for everyone. Attempts and the repository cutoff stay unchanged." +
+        (Array.isArray(values.windowWarnings) && values.windowWarnings.some((warning: unknown) => typeof warning === "string" && /judging/i.test(warning)) ? " Judging dates also need updating." : ""),
       confirmLabel: "Publish these times",
       critical: true,
     };
@@ -248,7 +247,7 @@ export function portalConfirmationFor(
     return {
       ...base,
       title: "Change community engagement",
-      description: `Voting will be ${values.votingPaused ? "paused" : "open"}; public feedback will be ${values.feedbackPaused ? "paused" : "open"}. This applies to community actions across projects. Existing votes, comments and frozen scores remain unchanged.`,
+      description: `Voting will be ${values.votingPaused ? "paused" : "open"}; public feedback will be ${values.feedbackPaused ? "paused" : "open"}. Existing votes, comments and frozen scores remain unchanged.`,
       confirmLabel: "Apply engagement settings",
       critical: true,
     };

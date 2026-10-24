@@ -16,12 +16,16 @@ export default function ConfirmationDialog({
     const popup = dialog.current;
     if (!popup) return;
     const previous = document.activeElement as HTMLElement | null;
+    const bodyOverflow = document.body.style.overflow;
+    const documentOverflow = document.documentElement.style.overflow;
     const parentDialog =
       previous?.closest<HTMLDialogElement>("dialog:modal") ||
       [...document.querySelectorAll<HTMLDialogElement>("dialog:modal")]
         .filter((node) => node !== popup)
         .at(-1);
     popup.showModal();
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
     const releaseHistory = trackDialogHistory(() => decide(false), previous);
     cancel.current?.focus();
     return () => {
@@ -30,6 +34,8 @@ export default function ConfirmationDialog({
       // captured by this effect so its top-layer focus lock is released before
       // restoring focus to the still-open parent, including Strict Mode replay.
       popup.close();
+      document.body.style.overflow = bodyOverflow;
+      document.documentElement.style.overflow = documentOverflow;
       if (
         previous?.isConnected &&
         previous.tabIndex >= 0 &&
@@ -50,14 +56,11 @@ export default function ConfirmationDialog({
   return (
     <dialog
       className="confirmation-dialog"
+      data-tone={value.tone || "default"}
       ref={dialog}
       onKeyDown={trapDialogFocus}
       aria-labelledby="confirmation-title"
-      aria-describedby={
-        value.description
-          ? "confirmation-target confirmation-description"
-          : "confirmation-target"
-      }
+      aria-describedby={["confirmation-target", value.badge && "confirmation-badge", value.description && "confirmation-description", value.note && "confirmation-note"].filter(Boolean).join(" ")}
       onCancel={(e) => {
         e.preventDefault();
         decide(false);
@@ -67,9 +70,11 @@ export default function ConfirmationDialog({
       <p id="confirmation-target">
         <strong>{value.target}</strong>
       </p>
+      {value.badge && <span id="confirmation-badge" className="confirmation-badge">{value.badge}</span>}
       {value.description && (
         <p id="confirmation-description">{value.description}</p>
       )}
+      {value.note && <p id="confirmation-note" className="confirmation-note">{value.note}</p>}
       <div className="form-actions">
         <button
           ref={cancel}
@@ -80,7 +85,7 @@ export default function ConfirmationDialog({
         >
           Cancel
         </button>
-        <button type="button" className="button" onClick={() => decide(true)}>
+        <button type="button" className="button confirmation-accept" onClick={() => decide(true)}>
           {value.confirmLabel}
         </button>
       </div>

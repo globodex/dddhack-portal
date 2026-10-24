@@ -4,6 +4,9 @@ export type Confirmation = {
   description: string;
   confirmLabel: string;
   critical: boolean;
+  badge?: string;
+  note?: string;
+  tone?: "default" | "positive" | "danger";
 };
 export class ActionCancelled extends Error {
   constructor() {
@@ -28,6 +31,8 @@ const labels: Record<string, string> = {
   "submit-project": "Submit project version",
   "admin-idea-override": "Override private locked idea",
   "rename-team": "Rename your team",
+  "admin-add-team-member": "Add team member?",
+  "admin-rename-team": "Rename team?",
   "team-style": "Update team appearance",
   "remove-workspace-member": "Remove team member",
   "respond-team": "Update membership request",
@@ -79,56 +84,73 @@ export function confirmationFor(
   ].includes(action);
   const title = labels[action] || action.replaceAll("-", " ");
   let description = "";
+  if (action === "admin-add-team-member")
+    return { title, target: `${values.email} → ${target}`, description: "They will gain access to this team's private details.", confirmLabel: "Add member", critical: false };
+  if (action === "admin-rename-team")
+    return { title, target: `${values.expectedName} → ${values.name}`, description: "", confirmLabel: "Rename team", critical: false };
+  if (action === "submit-project") {
+    const used = Number(values.attemptsUsed);
+    const attempt = Number.isInteger(used) && used >= 0 ? Math.min(3, used + 1) : 1;
+    const left = 3 - attempt;
+    return {
+      title: "Submit project?", target,
+      badge: `Commit submission ${attempt}/3`,
+      description: left ? `You’ll have ${left} ${left === 1 ? "submission" : "submissions"} left.` : "No submissions left after this.",
+      ...(left === 0 ? { note: "The project will be read-only." } : {}),
+      confirmLabel: "Submit project", critical: true, tone: "positive",
+    };
+  }
   if (action === "transfer-team-leader")
-    description = "Move the crown to this current teammate. The team stays locked and its submission history and three-attempt limit are preserved.";
+    description = "Give this teammate the crown. Team and submission history stay intact.";
   if (action === "publish-credit-batch")
     description =
-      "Publish these headings and instructions. Available codes will be assigned once to eligible checked-in recipients.";
+      "Assign available codes to eligible checked-in recipients.";
   if (action === "delete-credit-batch" || action === "delete-credit-column")
     description =
-      "Delete the selected credit inventory, recipient mappings, headings and instructions. This cannot revoke vouchers already redeemed with an external provider.";
+      "Delete this inventory and recipient mappings. Already shared codes cannot be recalled.";
   if (action === "content-publish")
     description =
       values.scope === "private"
-        ? "Publish these directions to personally Going or Checked in attendees and authorized venue operators. The previous revision remains in protected history."
-        : "Publish this content to everyone visiting the public Site. The previous revision remains in history.";
+        ? "Publish to Going or Checked in attendees and permitted staff."
+        : "Publish this content to everyone.";
   if (action === "reveal-ai-scores")
     description =
-      "Make persisted AI scores public and change leaderboard ordering. Public disclosure cannot be undone. This does not reveal the formula or private feedback.";
+      "Make AI scores public. This cannot be undone.";
   if (action === "reveal-final-scores")
     description =
-      "Start the public final-award stage. Top-five awards stay hidden until the manual unveiling; all remaining final positions stay undisclosed until every top-five award has been unveiled. Public disclosures cannot be undone.";
+      "Start final reveals. The top five stay hidden until you unveil them. Public reveals cannot be undone.";
   if (action === "unveil-winner")
-    description = `Reveal award ${values.position} to everyone. Its identity, position and score become public and cannot be withdrawn by this action.`;
+    description = `Reveal award ${values.position} to everyone. This cannot be undone.`;
   if (action === "publish-submission-extension")
     description =
-      "Extend the public deadline for everyone by the previewed positive number of minutes. No existing submission is changed.";
+      "Apply the new submission deadline to everyone.";
   if (action === "publish-policy-weights")
     description =
-      "Apply the previewed global weights to every team in one policy version. No team-specific override is possible. Frozen results block this change.";
+      "Apply these scoring weights to every team.";
   if (action === "activate-operations")
     description =
-      "Enable only the selected operation under its confirmed operational rules. Judging and score reveals remain separately gated.";
+      "Enable the selected event operation.";
   if (["admin-status", "admin-status-bulk"].includes(action))
     description =
-      "Record this manual status. Attendance history, team lock and the three-submission limit remain intact. A Submitted label alone creates no public project. Checked in records manual attendance; personal credits remain bound to their recipient.";
+      "Update the selected status. Attendance and submission history stay intact.";
   if (action === "lock-team")
     description =
-      "Freeze this team’s membership and details for admin review. There is no unlock action. This does not approve any member.";
-  if (action === "submit-project")
-    description = `Commit submission ${Number(values.attemptsUsed || 0) + 1} of 3. This consumes one attempt; ${Math.max(0, 2 - Number(values.attemptsUsed || 0))} remain afterward. The third committed submission makes the entire project read-only. Draft saves consume no attempts.`;
-  if (action === "logout")
-    description =
-      "End this Site session using managed ChatGPT sign-out. You can sign in again later.";
+      "Membership and team details become read-only. There is no unlock action.";
+  if (action === "freeze-results")
+    description = "Freeze the current final scores. Scoring changes will be blocked.";
   if (action === "remove-workspace-member")
     description =
-      "Remove this person from the team. Their private team access and Going-only venue access are checked again on the next request.";
+      "They will lose access to this team's private details.";
   return {
     title,
     target,
     description,
     confirmLabel:
       action === "transfer-team-leader" ? "Transfer crown" :
+      action === "freeze-results" ? "Freeze scores" :
+      action === "reveal-ai-scores" ? "Reveal AI scores" :
+      action === "reveal-final-scores" ? "Reveal final scores" :
+      action === "unveil-winner" ? "Unveil award" :
       action === "publish-credit-batch" ? "Publish credits" :
       ["delete-credit-batch","delete-credit-column"].includes(action) ? "Delete credits" :
       action === "submit-project"
@@ -141,6 +163,7 @@ export function confirmationFor(
               ? "Confirm public action"
               : "Confirm change",
     critical,
+    ...(["delete-credit-batch", "delete-credit-column", "remove-workspace-member"].includes(action) ? { tone: "danger" as const } : {}),
   };
 }
 export class ConfirmationGate {
@@ -175,6 +198,8 @@ export function revealConfirmation(
   if (action === "delete-credit-batch") return "DELETE_CREDIT_BATCH";
   if (action === "delete-credit-column") return "DELETE_CREDIT_COLUMN";
   if (action === "add-admin") return "ADD_ADMIN";
+  if (action === "admin-add-team-member") return "ADD_TEAM_MEMBER";
+  if (action === "admin-rename-team") return "RENAME_TEAM";
   return action === "admin-idea-override"
     ? "OVERRIDE_TEAM_IDEA"
     : ["admin-status", "admin-status-bulk"].includes(action)

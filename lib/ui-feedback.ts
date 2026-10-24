@@ -23,6 +23,7 @@ const successes: Record<string, string> = {
   "complete-profile": "Profile saved.",
   "create-workspace-team": "Team created.",
   "save-workspace-idea": "Team idea saved.",
+  "submit-project": "Project submitted successfully.",
   "team-style": "Team color updated.",
   "team-invite": "Invitation added to the portal.",
   "review-project": "Review saved.",
