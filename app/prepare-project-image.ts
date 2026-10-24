@@ -41,12 +41,12 @@ export async function prepareProjectImage(file: File, kind: ProjectImageKind) {
     const sourceWidth = source.naturalWidth, sourceHeight = source.naturalHeight;
     if (Math.min(sourceWidth, sourceHeight) < PROJECT_MEDIA_SOURCE_MIN_DIMENSION || Math.max(sourceWidth, sourceHeight) > PROJECT_MEDIA_MAX_DIMENSION)
       throw new Error("Use an image between 64 and 4096 pixels on each side.");
-    if (file.size <= policy.canonicalMaxBytes && Math.max(sourceWidth, sourceHeight) <= policy.optimizationMaxEdge) return { dataUrl: await blobDataUrl(file), sourceWidth, sourceHeight };
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
     if (!context) throw new Error("Your browser could not prepare the image. Try another browser.");
     let scale = Math.min(1, policy.optimizationMaxEdge / Math.max(sourceWidth, sourceHeight));
-    // PNG always remains PNG to retain alpha; JPEG stays JPEG. Both keep the full image.
+    // Normalize every newly selected file to strip metadata and bake displayed orientation.
+    // PNG remains PNG to retain alpha; JPEG stays JPEG. Both keep the full image.
     for (let attempt = 0; attempt < PROJECT_MEDIA_MAX_OPTIMIZATION_STEPS; attempt++) {
       canvas.width = Math.max(1, Math.round(sourceWidth * scale));
       canvas.height = Math.max(1, Math.round(sourceHeight * scale));

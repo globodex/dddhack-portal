@@ -55,21 +55,21 @@ try {
       const image=page.locator(`.submission-media-frame-${kind} img`);
       await image.evaluate(el=>el.decode());
       const metrics=await image.evaluate(el=>{
-        const bytes=atob(el.src.split(',')[1]).length;
+        const decoded=atob(el.src.split(',')[1]);const bytes=decoded.length;const hasExif=decoded.includes('Exif\u0000\u0000');
         const canvas=document.createElement('canvas');canvas.width=el.naturalWidth;canvas.height=el.naturalHeight;
         const context=canvas.getContext('2d');context.drawImage(el,0,0);
         const alpha=context.getImageData(Math.floor(canvas.width/2),Math.floor(canvas.height/2),1,1).data[3];
-        return{width:el.naturalWidth,height:el.naturalHeight,encodedBytes:bytes,type:el.src.slice(5,el.src.indexOf(';')),objectFit:getComputedStyle(el).objectFit,frameWash:getComputedStyle(el.parentElement).backgroundColor,centerAlpha:alpha};
+        return{width:el.naturalWidth,height:el.naturalHeight,encodedBytes:bytes,type:el.src.slice(5,el.src.indexOf(';')),objectFit:getComputedStyle(el).objectFit,frameWash:getComputedStyle(el.parentElement).backgroundColor,centerAlpha:alpha,hasExif};
       });
       assert.ok(metrics.encodedBytes<=(kind==='logo'?131072:393216));assert.equal(metrics.objectFit,'contain');
-      if(/square-alpha|portrait|ultrawide|exact/.test(name))assert.equal(metrics.centerAlpha,0,'PNGalpha stays transparent');
-      report.imageMeasurements.push({mode:mode.name,kind,name,...metrics});save();
+      if(!/jpeg|orientation6/.test(name)&&/square-alpha|portrait|ultrawide|exact/.test(name))assert.equal(metrics.centerAlpha,0,'PNGalpha stays transparent');
+      if(name==='orientation6'){assert.deepEqual([metrics.width,metrics.height],[64,128]);assert.equal(metrics.hasExif,false,'NewfileEXIF/GPSstripped');}report.imageMeasurements.push({mode:mode.name,kind,name,...metrics});save();
     };
     const next=async()=>{for(const label of["Save draft","Submit"]){const control=page.getByRole("button",{name:label,exact:true});await control.scrollIntoViewIfNeeded();const box=await control.boundingBox();assert.ok(box.height>=44&&box.x>=0&&box.x+box.width<=mode.width+1);}};await next();await shot("step3-actions-visible",false);
     if(mode.name==="1440x900"||mode.name==="390x844"){
       const banner=page.getByLabel("Upload banner",{exact:true}),logo=page.getByLabel("Upload logo",{exact:true});
-      const uploads=[['portrait','banner'],['square-alpha','logo'],['ultrawide','banner']];
-      for(const[name,kind]of uploads){if(name==='portrait'){const chooserPromise=page.waitForEvent('filechooser');await activate(page.locator('.submission-media-field-banner').getByRole('button',{name:'Replace',exact:true}));const chooser=await chooserPromise;await chooser.setFiles(`/tmp/ddd-media-fixtures/${name}.png`);}else await(kind==='banner'?banner:logo).setInputFiles(`/tmp/ddd-media-fixtures/${name}.png`);await page.locator(`.submission-media-field-${kind} .submission-media-file`).filter({hasText:name}).waitFor();await page.locator(`.submission-media-field-${kind}[aria-busy="false"]`).waitFor();assert.equal(await page.locator(`#submission-${kind}-error`).count(),0);assert.equal(await page.locator(`.submission-media-frame-${kind} img`).evaluate(el=>getComputedStyle(el).objectFit),'contain');await measureImage(kind,name);await shot(name);}
+      const uploads=[['portrait','banner'],['square-alpha','logo'],['ultrawide','banner'],['portrait-jpeg','banner'],['orientation6','banner']];
+      for(const[name,kind]of uploads){const started=performance.now();const extension=/jpeg|orientation6/.test(name)?'jpg':'png';if(name==='portrait'){const chooserPromise=page.waitForEvent('filechooser');await activate(page.locator('.submission-media-field-banner').getByRole('button',{name:'Replace',exact:true}));const chooser=await chooserPromise;await chooser.setFiles(`/tmp/ddd-media-fixtures/${name}.${extension}`);}else await(kind==='banner'?banner:logo).setInputFiles(`/tmp/ddd-media-fixtures/${name}.${extension}`);await page.locator(`.submission-media-field-${kind} .submission-media-file`).filter({hasText:name}).waitFor();await page.locator(`.submission-media-field-${kind}[aria-busy="false"]`).waitFor();assert.equal(await page.locator(`#submission-${kind}-error`).count(),0);assert.equal(await page.locator(`.submission-media-frame-${kind} img`).evaluate(el=>getComputedStyle(el).objectFit),'contain');await measureImage(kind,name);report.imageMeasurements.at(-1).preparationAndRenderMs=Math.round(performance.now()-started);save();await shot(name);}
       const previous=await page.locator('.submission-media-frame-banner img').getAttribute('src');
       await banner.setInputFiles('/tmp/ddd-media-fixtures/banner-over.png');await page.locator('#submission-banner-error').waitFor();assert.equal(await page.locator('.submission-media-frame-banner img').getAttribute('src'),previous);assert.equal(await page.locator('.action-message').count(),0);await shot('source-too-large-inline-error');
       await banner.setInputFiles('/tmp/ddd-media-fixtures/banner-exact.png');await page.locator('.submission-media-field-banner .submission-media-file').filter({hasText:'banner-exact.png'}).waitFor();await page.locator('.submission-media-field-banner[aria-busy="false"]').waitFor();assert.equal(await page.locator('#submission-banner-error').count(),0);await measureImage('banner','exact-5MB');await shot('exact-5MB-banner-prepared');
