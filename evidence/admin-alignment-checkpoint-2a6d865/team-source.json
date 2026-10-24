@@ -1,0 +1,26 @@
+{
+  "name": "team-expanded-long",
+  "path": "evidence/admin-alignment-checkpoint-2a6d865/team-expanded-real-name.png",
+  "fixtureDOMTextInjection": false,
+  "source": {
+    "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+    "files": {
+      "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+      "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+      "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+      "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+      "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+    }
+  },
+  "geometry": {
+    "innerWidth": 320,
+    "innerHeight": 480,
+    "dpr": 1,
+    "scrollWidth": 320,
+    "horizontalOverflow": false,
+    "outside": [],
+    "clipped": [],
+    "dialogs": []
+  },
+  "inspected": true
+}

@@ -1,0 +1,852 @@
+{
+  "mode": "320-short",
+  "viewport": {
+    "width": 320,
+    "height": 480
+  },
+  "zoom": "100% native, no CSS zoom",
+  "source": {
+    "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+    "files": {
+      "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+      "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+      "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+      "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+      "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+    }
+  },
+  "syntheticOnly": true,
+  "readOnly": true,
+  "touchEmulation": true,
+  "physicalDevice": false,
+  "checks": [
+    {
+      "name": "Participants search, filters, import, status keyboard and Back",
+      "passed": true
+    },
+    {
+      "name": "Teams actual long synthetic record, expanded members and private idea",
+      "passed": false,
+      "error": "page.goto: net::ERR_ABORTED at http://localhost:3000/admin/teams\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/admin/teams\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at go (/workspace/ddd-admin/scripts/qa-admin-alignment.mjs:23:33)\n    at /workspace/ddd-admin/scripts/qa-admin-alignment.mjs:29:101\n    at group (/workspace/ddd-admin/scripts/qa-admin-alignment.mjs:25:42)\n    at /workspace/ddd-admin/scripts/qa-admin-alignment.mjs:29:7"
+    },
+    {
+      "name": "Submission management target, native select keyboard and long name",
+      "passed": true
+    },
+    {
+      "name": "Review details, eligibility, rubric, score, version and review history",
+      "passed": true
+    },
+    {
+      "name": "Credits published, upload editor and safe deletion dialog cancellation",
+      "passed": true
+    },
+    {
+      "name": "Settings all tabs, content entry panels, scoring and keyboard navigation",
+      "passed": true
+    },
+    {
+      "name": "Owner Logs populated detail, search and filter",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "participants",
+      "path": "evidence/admin-alignment-2a6d865-320-final/participants.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/participants-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": false
+    },
+    {
+      "name": "participant-filters",
+      "path": "evidence/admin-alignment-2a6d865-320-final/participant-filters.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/participant-filters-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": false
+    },
+    {
+      "name": "participant-import",
+      "path": "evidence/admin-alignment-2a6d865-320-final/participant-import.png",
+      "viewportPath": null,
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": [
+          {
+            "width": 288,
+            "height": 311,
+            "left": 16,
+            "top": 84.5,
+            "right": 304,
+            "bottom": 395.5,
+            "scrollHeight": 309,
+            "clientHeight": 309
+          }
+        ]
+      },
+      "inspected": true
+    },
+    {
+      "name": "participant-status",
+      "path": "evidence/admin-alignment-2a6d865-320-final/participant-status.png",
+      "viewportPath": null,
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": [
+          {
+            "width": 288,
+            "height": 252.265625,
+            "left": 16,
+            "top": 16,
+            "right": 304,
+            "bottom": 268.265625,
+            "scrollHeight": 252,
+            "clientHeight": 252
+          }
+        ]
+      },
+      "inspected": true
+    },
+    {
+      "name": "participant-DOM-long-name",
+      "path": "evidence/admin-alignment-2a6d865-320-final/participant-DOM-long-name.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/participant-DOM-long-name-viewport.png",
+      "fixtureDOMTextInjection": true,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": false,
+      "inspectedFiles": [
+        "evidence/admin-alignment-2a6d865-320-final/participant-DOM-long-name-viewport.png"
+      ],
+      "inspectionLimit": "Header viewport opened; injected name is below fold and remains pending visual review."
+    },
+    {
+      "name": "submission-management",
+      "path": "evidence/admin-alignment-2a6d865-320-final/submission-management.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/submission-management-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": true
+    },
+    {
+      "name": "submission-DOM-long-name",
+      "path": "evidence/admin-alignment-2a6d865-320-final/submission-DOM-long-name.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/submission-DOM-long-name-viewport.png",
+      "fixtureDOMTextInjection": true,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": false
+    },
+    {
+      "name": "review-details",
+      "path": "evidence/admin-alignment-2a6d865-320-final/review-details.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/review-details-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": false
+    },
+    {
+      "name": "review-ineligible",
+      "path": "evidence/admin-alignment-2a6d865-320-final/review-ineligible.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/review-ineligible-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": false
+    },
+    {
+      "name": "review-rubric",
+      "path": "evidence/admin-alignment-2a6d865-320-final/review-rubric.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/review-rubric-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": false
+    },
+    {
+      "name": "review-DOM-long-URL",
+      "path": "evidence/admin-alignment-2a6d865-320-final/review-DOM-long-URL.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/review-DOM-long-URL-viewport.png",
+      "fixtureDOMTextInjection": true,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": true
+    },
+    {
+      "name": "review-score",
+      "path": "evidence/admin-alignment-2a6d865-320-final/review-score.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/review-score-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": false
+    },
+    {
+      "name": "review-history",
+      "path": "evidence/admin-alignment-2a6d865-320-final/review-history.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/review-history-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": false
+    },
+    {
+      "name": "credits",
+      "path": "evidence/admin-alignment-2a6d865-320-final/credits.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/credits-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": false
+    },
+    {
+      "name": "credits-upload",
+      "path": "evidence/admin-alignment-2a6d865-320-final/credits-upload.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/credits-upload-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": false
+    },
+    {
+      "name": "settings-event",
+      "path": "evidence/admin-alignment-2a6d865-320-final/settings-event.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/settings-event-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": false
+    },
+    {
+      "name": "settings-results",
+      "path": "evidence/admin-alignment-2a6d865-320-final/settings-results.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/settings-results-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": true
+    },
+    {
+      "name": "settings-access",
+      "path": "evidence/admin-alignment-2a6d865-320-final/settings-access.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/settings-access-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": false
+    },
+    {
+      "name": "settings-content",
+      "path": "evidence/admin-alignment-2a6d865-320-final/settings-content.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/settings-content-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": false
+    },
+    {
+      "name": "settings-content-faq",
+      "path": "evidence/admin-alignment-2a6d865-320-final/settings-content-faq.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/settings-content-faq-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": false
+    },
+    {
+      "name": "settings-content-rules",
+      "path": "evidence/admin-alignment-2a6d865-320-final/settings-content-rules.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/settings-content-rules-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": false
+    },
+    {
+      "name": "settings-content-agenda",
+      "path": "evidence/admin-alignment-2a6d865-320-final/settings-content-agenda.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/settings-content-agenda-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": false
+    },
+    {
+      "name": "settings-scoring",
+      "path": "evidence/admin-alignment-2a6d865-320-final/settings-scoring.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/settings-scoring-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": true
+    },
+    {
+      "name": "owner-logs-expanded",
+      "path": "evidence/admin-alignment-2a6d865-320-final/owner-logs-expanded.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/owner-logs-expanded-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": true,
+      "inspectionScope": "Viewport"
+    },
+    {
+      "name": "owner-logs-filter",
+      "path": "evidence/admin-alignment-2a6d865-320-final/owner-logs-filter.png",
+      "viewportPath": "evidence/admin-alignment-2a6d865-320-final/owner-logs-filter-viewport.png",
+      "fixtureDOMTextInjection": false,
+      "source": {
+        "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+        "files": {
+          "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+          "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+          "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+          "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+          "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+        }
+      },
+      "geometry": {
+        "innerWidth": 320,
+        "innerHeight": 480,
+        "outerWidth": 320,
+        "outerHeight": 480,
+        "visualViewportScale": 1,
+        "dpr": 1,
+        "scrollWidth": 320,
+        "horizontalOverflow": false,
+        "outside": [],
+        "clipped": [],
+        "dialogs": []
+      },
+      "inspected": false
+    }
+  ],
+  "findings": [],
+  "errors": [],
+  "blockedWrites": [],
+  "endSource": {
+    "commit": "2a6d865517e5903ef974ca198f073d27aaf39265",
+    "files": {
+      "app/portal.tsx": "2979aefdba40d59f8019e62f3b790092eb51346775f74f0a889591922a56d5e6",
+      "app/admin-experience.css": "6dd9e9d294f8feb6f893473dd1b7fc4fd921ab9763154598be1344321e37edf3",
+      "app/admin-controls.css": "7b5cd76be4e753be2d1fc0012dc8b3cd831589cde3548b5dfc9442660028e811",
+      "app/redesign.css": "8b70381e3afbe59490aa67051e3be0fd980d9d016966fdbf8d77022858120940",
+      "app/layout.tsx": "a2abdd0f7fe77618e1c870e8c089ce51a1d5ff766725aa15b5873f577cc38696"
+    }
+  },
+  "reviewNotes": [
+    "No app runtime edits or database writes during this audit.",
+    "One Teams full-page navigation was aborted after browser Back modal cleanup; this is an incomplete check and remains pending independent supplement.",
+    "Long name/URL stress screenshots marked fixtureDOMTextInjection use local DOM text only, never persisted records.",
+    "Native200%zoom is a separate pending capture.",
+    "The browser context completed final save and closed; capture job stopped at requested resource boundary."
+  ]
+}
