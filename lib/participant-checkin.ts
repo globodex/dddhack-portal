@@ -79,7 +79,15 @@ export async function checkInParticipants(
         actor.id,
         s.now(),
       ],
-      ["DELETE FROM participant_status_overrides WHERE user_id=?", user.id],
+      // A later explicit Going override can supersede preserved automatic
+      // absence history. Keep that newer status rather than uncovering Absent.
+      [
+        "UPDATE participant_status_overrides SET status='Checked in',reason=?,actor_id=?,updated_at=? WHERE user_id=?",
+        d.reason,
+        actor.id,
+        s.now(),
+        user.id,
+      ],
     );
   }
   try {

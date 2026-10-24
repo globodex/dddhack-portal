@@ -9,6 +9,7 @@ import {
   requiresActionConfirmation,
   revealConfirmation,
 } from "../lib/action-confirmation";
+import { personStatus } from "../lib/portal-status";
 
 const time = "2026-10-22T08:00:00.000Z";
 const intent = { confirmation: "CHECK_IN_PARTICIPANTS" };
@@ -96,6 +97,33 @@ for (const engine of ["sqlite", "postgres"] as const) {
           })
         ).checkedIn,
         1,
+      );
+      await batch(db, [
+        [
+          "INSERT INTO automatic_absences VALUES('fake_carol','2026-10-22T07:00:00.000Z','synthetic-cutoff')",
+        ],
+      ]);
+      await service("admin").command("admin-status", {
+        kind: "person",
+        targetId: "fake_carol",
+        status: "Going",
+        confirmation: "CHANGE_STATUS",
+      });
+      await service("admin").command("quick-check-in", {
+        emails: ["carol@portal.test"],
+      });
+      const restored = await personStatus(service("admin"), "fake_carol");
+      assert.equal(restored.status, "Checked in");
+      assert.equal(restored.checkedIn, true);
+      assert.equal(
+        (
+          await one(
+            db,
+            "SELECT count(*) n FROM automatic_absences WHERE user_id='fake_carol'",
+          )
+        )?.n,
+        1,
+        "absence history remains preserved",
       );
       assert.equal(
         (
