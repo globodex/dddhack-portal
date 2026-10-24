@@ -12,6 +12,7 @@ export interface AuthEnv {
   SMTP_PORT?: string;
   SMTP_SECURE?: string;
   SMTP_USER?: string;
+  SMTP_PASS?: string;
   SMTP_PASSWORD?: string;
   SMTP_FROM?: string;
 }

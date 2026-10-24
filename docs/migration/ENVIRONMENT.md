@@ -5,7 +5,7 @@ The intended public browser origin is `https://dddhack-portal.vercel.app`; name 
 | Destination | Variables | Secrets |
 | --- | --- | --- |
 | Vercel frontend | APP_ORIGIN, NEON_API_ORIGIN | PORTAL_PROXY_SECRET |
-| Neon API Function | APP_ORIGIN, AUTH_BASE_URL, GOOGLE_CLIENT_ID, SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_FROM, NEON_MEDIA_BUCKET=project-media | AUTH_SECRET, PORTAL_PROXY_SECRET, GOOGLE_CLIENT_SECRET, SMTP_USER, SMTP_PASSWORD, CREDIT_ENCRYPTION_KEY |
+| Neon API Function | APP_ORIGIN, AUTH_BASE_URL, GOOGLE_CLIENT_ID, SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_FROM, NEON_MEDIA_BUCKET=project-media | AUTH_SECRET, PORTAL_PROXY_SECRET, GOOGLE_CLIENT_SECRET, SMTP_USER, SMTP_PASS, CREDIT_ENCRYPTION_KEY |
 | Codex Cloud synthetic tests | PORTAL_LOCAL_TEST=1, APP_ORIGIN=http://localhost:3000, NEON_API_ORIGIN=http://127.0.0.1:8788 | None |
 | Codex Cloud future approved backend integration | Same backend configuration, restricted to a dedicated synthetic database and object prefix/bucket | Same provider credentials only if user supplies them securely; never live-data targets |
 

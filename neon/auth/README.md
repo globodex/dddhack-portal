@@ -19,7 +19,7 @@ Both exports accept the existing `lib/db.Database` contract. `createAuthHandler`
 
 Every request requires `x-portal-proxy-secret` matching `PORTAL_PROXY_SECRET` and `x-portal-forwarded-origin` matching `APP_ORIGIN`. Both secrets (`AUTH_SECRET`, `PORTAL_PROXY_SECRET`) must contain at least 32 characters; provision independent cryptographically random values. Caller-controlled Host, Forwarded, X-Forwarded-* and Sites headers confer no trust. All POST requests additionally require the exact browser `Origin`.
 
-Secrets are backend-only and pending secure manual configuration. SMTP also requires a selected provider, approved sending address/domain and deliverability setup. Use `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM`; only implicit TLS on 465 (`true`) or mandatory STARTTLS on 587 (`false`) is accepted. Certificates are verified; file and URL access from message content is disabled. `SMTP_FROM` is a bare email address.
+Secrets are backend-only and pending secure manual configuration. SMTP also requires a selected provider, approved sending address/domain and deliverability setup. Use `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`; only implicit TLS on 465 (`true`) or mandatory STARTTLS on 587 (`false`) is accepted. Certificates are verified; file and URL access from message content is disabled. `SMTP_FROM` is a bare email address.
 
 Google requires `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`, with exactly `${APP_ORIGIN}/api/auth/callback/google` registered as the Web OAuth redirect. No wildcard callback, provider credentials, account or email is provisioned by this change.
 

@@ -16,6 +16,7 @@ import {
   type MediaUpload,
 } from "./types";
 export * from "./types";
+export type { StorageEnvironment } from "./s3";
 export { createNeonStorageClient, createS3ObjectStore } from "./s3";
 export {
   createDatabaseMediaRepository,
