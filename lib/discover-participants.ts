@@ -10,6 +10,7 @@ export type DiscoverParticipantOptions = {
   person?: string;
 };
 export type PortalViewOptions = DiscoverParticipantOptions & {
+  includePrivateVenue?: boolean;
   search?: string;
   page?: number;
   focus?: string;

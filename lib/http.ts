@@ -137,6 +137,10 @@ export async function handlePortal(request: Request, runtime: Runtime) {
       const params = new URL(request.url).searchParams;
       const view = params.get("view") || "/";
       const options = {
+        ...((view.replace(/\/+/g, "/").replace(/\/$/, "") || "/") === "/" &&
+        params.get("arrival") === "1"
+          ? { includePrivateVenue: true }
+          : {}),
         ...(view.replace(/\/+/g, "/").replace(/\/$/, "") ===
         "/discover/participants"
           ? participantPagingFromParams(params)

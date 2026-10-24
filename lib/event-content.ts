@@ -3,6 +3,7 @@ import { z } from "zod";
 import { one, assertPreviousWrite } from "./db";
 import type { PortalService } from "./service";
 import { demand } from "./security";
+import { personStatus } from "./portal-status";
 import {
   plain,
   publicContentSchema,
@@ -36,6 +37,31 @@ export async function managesPrivateVenue(
         actor.id,
       )))
   );
+}
+
+/** Read access is personal attendance or current admin/owner status. The
+ * separate managesPrivateVenue predicate still controls draft/edit/publish.
+ */
+export async function publishedPrivateVenue(
+  s: PortalService,
+  actor: Awaited<ReturnType<PortalService["actor"]>>,
+  individual?: Awaited<ReturnType<typeof personStatus>>,
+) {
+  if (actor.deactivated) return undefined;
+  if (!actor.owner && actor.role !== "admin") {
+    const personal = individual || (await personStatus(s, actor.id));
+    if (
+      personal.approval !== "approved" ||
+      !["Going", "Checked in"].includes(personal.status)
+    ) return undefined;
+  }
+  const venue = await one<{ published: string | null }>(
+    s.db,
+    "SELECT published FROM private_venue WHERE id=1",
+  );
+  return venue?.published
+    ? privateVenueSchema.parse(JSON.parse(venue.published))
+    : undefined;
 }
 export async function eventContentCommand(
   s: PortalService,

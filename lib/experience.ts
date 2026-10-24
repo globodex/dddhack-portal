@@ -72,8 +72,8 @@ import {
   eventContentCommand,
   publicEventContent,
   managesPrivateVenue,
+  publishedPrivateVenue,
   publicContentSchema,
-  privateVenueSchema,
   defaultPublicContent,
 } from "./event-content";
 import { disabledEvaluator, reportSchema } from "./evaluation";
@@ -477,15 +477,7 @@ export class PortalExperience {
           )
         : [];
     // Feedback has no numeric rating, evaluation report or hidden score fields.
-    const venue =
-      (registration?.status === "approved" &&
-        ["Going", "Checked in"].includes(individual.status)) ||
-      (await managesPrivateVenue(this.s, actor))
-        ? await one<{ published: string | null }>(
-            this.s.db,
-            "SELECT published FROM private_venue WHERE id=1",
-          )
-        : undefined;
+    const privateVenue = await publishedPrivateVenue(this.s, actor, individual);
     const checked = individual.checkedIn;
     const credits =
       checked
@@ -582,11 +574,7 @@ export class PortalExperience {
         actor.id,
         actor.id,
       ),
-      ...(venue?.published
-        ? {
-            privateVenue: privateVenueSchema.parse(JSON.parse(venue.published)),
-          }
-        : {}),
+      ...(privateVenue ? { privateVenue } : {}),
       submissionStatus: operational.submissions,
       eventDraft: !operational.submissions.enabled,
     };
@@ -617,12 +605,18 @@ export class PortalExperience {
         ),
       };
     }
-    if (route === "/")
+    if (route === "/") {
+      const me = this.s.identity ? await this.s.actor() : undefined;
+      const privateVenue = options.includePrivateVenue && me
+        ? await publishedPrivateVenue(this.s, me)
+        : undefined;
       return {
         content: await publicEventContent(this.s),
         submissionClose: (await this.s.settings(true)).policy.submissionClose,
-        ...(this.s.identity ? { me: await this.s.actor() } : {}),
+        ...(me ? { me } : {}),
+        ...(privateVenue ? { privateVenue } : {}),
       };
+    }
     if (
       route === "/projects" ||
       route === "/leaderboard" ||

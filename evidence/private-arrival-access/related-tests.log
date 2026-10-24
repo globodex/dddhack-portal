@@ -1,0 +1,29 @@
+✔ Dashboard tab panels keep default Team visible and published project mutations fail closed after three attempts (86.351157ms)
+✔ Team rows show one expression avatar each, keep initials only on the team badge and take arrival details only from safe server data (39.018357ms)
+✔ focused project editor has a real button exit without duplicate history actions (97.032197ms)
+✔ nonleader retains authorized read access to an unpublished saved draft (64.489669ms)
+✔ additive local upgrade preserves existing users and is idempotent (74.398971ms)
+✔ inline profile gate, registered team creation, presets, partial readiness and revocation (290.766495ms)
+✔ private venue uses personal Going approval and scoped admin access, never other-team approval or public projections (291.623568ms)
+✔ owner event drafts, safe Maps URLs, plain text and optimistic edits preserve published content (135.504671ms)
+✔ shared draft/committed project, required media, concurrent writes and public version isolation (205.235681ms)
+✔ signed-in engagement permits admins and pending people, is idempotent, and stays separate from private reviews (175.625732ms)
+✔ volunteer, mentor and judge boundaries, owner Logs, role and assignment revocation (173.48302ms)
+✔ reevaluation stays Not configured while API setup is pending; active-run guard and history remain structural (167.169373ms)
+✔ leaderboard orders by upvotes then immutable first submission time, excludes ineligible, and exposes no evaluation or rank (396.046303ms)
+✔ revised judge reviews feed only an owner-revealed frozen score; public engagement remains independent (188.391705ms)
+✔ exact timestamp ties use a stable key and a focused leaderboard link selects its containing page (145.080928ms)
+✔ synthetic Team HTTP flow persists ten writes and revokes removed-member private access (523.930681ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10691.508201
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

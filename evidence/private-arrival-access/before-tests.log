@@ -1,0 +1,111 @@
+✖ sqlite: only explicit authenticated Home enrichment receives published personal arrival details (1419.405429ms)
+✖ sqlite: fresh status/account/role changes revoke arrival while all-admin read does not grant editing (497.141937ms)
+✖ postgres: only explicit authenticated Home enrichment receives published personal arrival details (28423.792224ms)
+✖ postgres: fresh status/account/role changes revoke arrival while all-admin read does not grant editing (12280.754807ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 65625.669228
+
+✖ failing tests:
+
+test at tests/private-arrival-access.test.ts:1:2656
+✖ sqlite: only explicit authenticated Home enrichment receives published personal arrival details (1419.405429ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   directions: 'SYNTHETIC Test Block floor 2; test gate only.',
+  -   location: 'SYNTHETIC ROOM TEST-201',
+  -   mapUrl: 'https://www.google.com/maps?q=SYNTHETIC_VENUE_FIXTURE'
+  - }
+  
+      at TestContext.<anonymous> (/workspace/ddd-venue-audit/tests/private-arrival-access.test.ts:53:18)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { location: 'SYNTHETIC ROOM TEST-201', directions: 'SYNTHETIC Test Block floor 2; test gate only.', mapUrl: 'https://www.google.com/maps?q=SYNTHETIC_VENUE_FIXTURE' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/private-arrival-access.test.ts:1:4052
+✖ sqlite: fresh status/account/role changes revoke arrival while all-admin read does not grant editing (497.141937ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   directions: 'SYNTHETIC Test Block floor 2; test gate only.',
+  -   location: 'SYNTHETIC ROOM TEST-201',
+  -   mapUrl: 'https://www.google.com/maps?q=SYNTHETIC_VENUE_FIXTURE'
+  - }
+  
+      at TestContext.<anonymous> (/workspace/ddd-venue-audit/tests/private-arrival-access.test.ts:73:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { location: 'SYNTHETIC ROOM TEST-201', directions: 'SYNTHETIC Test Block floor 2; test gate only.', mapUrl: 'https://www.google.com/maps?q=SYNTHETIC_VENUE_FIXTURE' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/private-arrival-access.test.ts:1:2656
+✖ postgres: only explicit authenticated Home enrichment receives published personal arrival details (28423.792224ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   directions: 'SYNTHETIC Test Block floor 2; test gate only.',
+  -   location: 'SYNTHETIC ROOM TEST-201',
+  -   mapUrl: 'https://www.google.com/maps?q=SYNTHETIC_VENUE_FIXTURE'
+  - }
+  
+      at TestContext.<anonymous> (/workspace/ddd-venue-audit/tests/private-arrival-access.test.ts:53:18)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { location: 'SYNTHETIC ROOM TEST-201', directions: 'SYNTHETIC Test Block floor 2; test gate only.', mapUrl: 'https://www.google.com/maps?q=SYNTHETIC_VENUE_FIXTURE' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/private-arrival-access.test.ts:1:4052
+✖ postgres: fresh status/account/role changes revoke arrival while all-admin read does not grant editing (12280.754807ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   directions: 'SYNTHETIC Test Block floor 2; test gate only.',
+  -   location: 'SYNTHETIC ROOM TEST-201',
+  -   mapUrl: 'https://www.google.com/maps?q=SYNTHETIC_VENUE_FIXTURE'
+  - }
+  
+      at TestContext.<anonymous> (/workspace/ddd-venue-audit/tests/private-arrival-access.test.ts:73:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { location: 'SYNTHETIC ROOM TEST-201', directions: 'SYNTHETIC Test Block floor 2; test gate only.', mapUrl: 'https://www.google.com/maps?q=SYNTHETIC_VENUE_FIXTURE' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

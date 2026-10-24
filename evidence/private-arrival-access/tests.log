@@ -1,0 +1,17 @@
+✔ sqlite: only explicit authenticated Home enrichment receives published personal arrival details (1178.400805ms)
+✔ sqlite: fresh status/account/role changes revoke arrival while all-admin read does not grant editing (395.960825ms)
+✔ postgres: only explicit authenticated Home enrichment receives published personal arrival details (17043.493232ms)
+✔ postgres: fresh status/account/role changes revoke arrival while all-admin read does not grant editing (8570.851503ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 32413.357249
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
