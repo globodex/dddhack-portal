@@ -533,7 +533,7 @@
 .main:not(.home-main) .admin-workspace .admin-submission-records h2 {
   font-size: 18px;
 }
-.main:not(.home-main) .admin-workspace .admin-submission-management.panel {
+.main:not(.home-main) .admin-workspace.admin-exact .admin-submission-management.panel {
   border: 0;
   border-top: 1px solid var(--line, #e3e4db);
   border-radius: 0;
@@ -542,7 +542,7 @@
   padding: 0;
 }
 .main:not(.home-main)
-  .admin-workspace
+  .admin-workspace.admin-exact
   .admin-submission-management.panel
   > summary {
   display: flex;
@@ -558,7 +558,7 @@
   list-style: none;
 }
 .main:not(.home-main)
-  .admin-workspace
+  .admin-workspace.admin-exact
   .admin-submission-management.panel
   > .admin-project-action {
   margin: 0;
