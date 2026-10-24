@@ -1,0 +1,89 @@
+{
+  "validatedSource": "3e17119a02f5009042e48749255e91bf05481798",
+  "createdAt": "2026-10-24T22:34:07.889455+00:00",
+  "initialSweep": {
+    "startedFrom": "340bf33175ce8b5c1b1901da75a6a251ee553c69",
+    "workingTreeChangedForObservedCorrectionsDuringSweep": true,
+    "tests": 749,
+    "pass": 730,
+    "fail": 12,
+    "skip": 7,
+    "singleCleanFinalRun": false,
+    "runtimeFailure": "Native Node/V8 WebAssembly allocation assertion in one PGlite test process; no product assertion reported by that process."
+  },
+  "finalReruns": [
+    {
+      "path": "/tmp/ddd-followup-final-regression-rerun.log",
+      "sha256": "e9f8a1e95ac240ce4eb5b898dfa1519dee2f32ef82d180e09468c526e6242202",
+      "passingChecks": 41,
+      "fail": 0,
+      "testOnlyV8Flag": "--no-wasm-code-gc"
+    },
+    {
+      "path": "/tmp/ddd-followup-final-verified-content.log",
+      "sha256": "c30a3c2b19f1f14ebe01220eba6fff02d45809ae0501571fe3f78594abae4c59",
+      "passingChecks": 3,
+      "fail": 0,
+      "testOnlyV8Flag": null
+    },
+    {
+      "path": "/tmp/ddd-followup-final-settings-contract.log",
+      "sha256": "aa34a15487b91e0acaaa24955fd590f3be03cc3bfa9837b878b81a7e7e820442",
+      "passingChecks": 8,
+      "fail": 0,
+      "testOnlyV8Flag": null
+    }
+  ],
+  "coverage": {
+    "distinctPassingCheckNames": 746,
+    "nativePostgreSQLSkipped": 7,
+    "allInitiallyFailingAssertionsRecovered": true,
+    "recoveredAssertionNames": [
+      "PostgreSQL baseline installs every portal table/trigger and checksum migrations are repeatable",
+      "Team rows show one expression avatar each, keep initials only on the team badge and take arrival details only from safe server data",
+      "actual D1 API Admin deltas keep fresh status and locked ideas, invalidate labels and reauthorize every actor",
+      "additive media upgrade preserves old pending/ready/consumed rows and enforces kind-specific bounds atomically",
+      "optional control fixtures add25 public entries without altering rich source or settings",
+      "organizer photos match verified public sources, including the requested Param302 GitHub avatar",
+      "participant admin page wires reviewed imports and only individual removal, excluding removed records by default",
+      "postgres: stock upgrade preserves every existing code and mapping, backfills minimal non-personal tombstones",
+      "settings keep private arrival editing capability-scoped without role selectors, reason inputs or rejected filler",
+      "sqlite: stock upgrade preserves every existing code and mapping, backfills minimal non-personal tombstones",
+      "trash actions have exact accessible targets and retained confirmation payloads"
+    ],
+    "initialNativeProcessRetestedAllSixCases": true,
+    "newDrizzleMirrorCases": 3,
+    "knownFailingAssertions": 0,
+    "isOneCleanFullRun": false,
+    "passingNamesDigest": "2719e345afcd022a1d107c7fef41758fc155fdae1b4c06c844f4f9ee8843b372"
+  },
+  "frontendBuild": {
+    "source": "3e17119a02f5009042e48749255e91bf05481798",
+    "command": "env -i PATH LANG TZ NEXT_TELEMETRY_DISABLED=1 npm run build",
+    "passed": true,
+    "logSHA256": "0d79acf3c5f77ad4d33aae16e998bb6ee93640ff42c59b5744c821fa138207ad"
+  },
+  "backend": {
+    "runtimeSource": "340bf33175ce8b5c1b1901da75a6a251ee553c69",
+    "applicationInputsUnchanged": 83,
+    "sha256": "ea9b0a2f9f99de33626cdffd7dafbe096eee6f3812ffe7d56cfc5793856d1dcb",
+    "schemaBeforeDeployment": "0104 if pending, then0105; eleven-entry post-inspection required",
+    "deployed": false
+  },
+  "historicalSqlUnchanged": 63,
+  "newCommitIdentitiesVerified": 25,
+  "onlyChangedImagesAreRequiredRuntimeAssets": [
+    "public/brand/openai-wordmark-official.svg",
+    "public/og/devday-new-delhi-home.jpg",
+    "public/organizers/Param302-github.webp"
+  ],
+  "hostedDataOperations": 0,
+  "paidProviderEvaluations": 0,
+  "remotePublication": "pending at receipt creation",
+  "blockedIndependentRequirements": [
+    "Restore semantics: unremove history versus promote previous version remains unresolved.",
+    "Independent monument entrance requires separate transparent layers.",
+    "AI snapshot approval UI and automatic queue dispatch remain incomplete; hosted model access unverified.",
+    "Physical storage-object erasure is not implemented by terminal database cascades."
+  ]
+}
