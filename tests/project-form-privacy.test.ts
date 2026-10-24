@@ -10,12 +10,16 @@ test("server-rendered project forms cannot put private draft fields into a nativ
     data: { me, team: { id: "fake_team", leader_id: me.id }, submissionAccess: { canRead: true, canCommit: true }, project: { draft: { projectName: "SYNTHETIC_PRIVATE_NAME", description: "SYNTHETIC_PRIVATE_DESCRIPTION" } } },
     run: async () => ({}),
   }));
-  assert.match(editor, /<form[^>]*class="project-editor"[^>]*method="post"[^>]*inert=""/);
+  const editorForm = editor.match(/<form[^>]*class="project-editor"[^>]*>/)?.[0] || "";
+  assert.match(editorForm, /method="post"/);
+  assert.match(editorForm, /inert=""/);
   assert.match(editor, /<fieldset disabled="">/);
   const comments = renderToStaticMarkup(createElement(Projects, {
     path: "/projects/synthetic", run: async () => ({}), data: { me, items: [{ id: "synthetic", slug: "synthetic", projectName: "Synthetic", canComment: true }] },
   }));
-  assert.match(comments, /<form[^>]*class="project-comment-composer"[^>]*method="post"[^>]*inert=""/);
+  const commentForm = comments.match(/<form[^>]*class="project-comment-composer"[^>]*>/)?.[0] || "";
+  assert.match(commentForm, /method="post"/);
+  assert.match(commentForm, /inert=""/);
   assert.match(comments, /<textarea[^>]*name="body"[^>]*disabled=""/);
   assert.doesNotMatch(editor + comments, /method="get"/);
 });

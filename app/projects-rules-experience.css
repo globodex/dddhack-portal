@@ -73,7 +73,7 @@
 .app-shell .public-project-detail #comments h2 > span { display: grid; place-items: center; min-width: 24px; height: 24px; padding: 0 7px; border-radius: 6px; color: var(--muted, #656960); background: #e9ece1; font-size: 12px; font-weight: 500; }
 .app-shell .public-project-detail .public-comment { padding: 20px 0; border-bottom: 1px solid var(--line, #e3e4db); }
 .app-shell .public-project-detail .public-comment-content header { gap: 12px; align-items: baseline; flex-wrap: wrap; }
-.app-shell .public-project-detail .public-comment-content small { color: #6b7564; font-size: 11px; }
+.app-shell .public-project-detail .public-comment-content small { color: #626f5b; font-size: 11px; }
 .app-shell .public-project-detail .public-comment p { color: #4e594a; font-size: 14px; line-height: 1.65; }
 .app-shell .project-empty-comments { margin: 0 0 24px; color: var(--muted, #656960); font-size: 14px; }
 .app-shell .public-project-detail .project-comment-composer { margin-top: 24px; padding: 10px; border-color: var(--line, #e3e4db); border-radius: 12px; background: var(--surface, #fffefa); }
