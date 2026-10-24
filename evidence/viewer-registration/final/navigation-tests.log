@@ -1,0 +1,18 @@
+✔ all role shells share one mobile dialog with ordinary role-authorized links and no section labels (501.93009ms)
+✔ modal lifetime locks page scroll, dismisses on desktop resize and restores trigger without moving the page (1.71333ms)
+✔ participant primary navigation stays focused and admin discovery retains management context (19.2936ms)
+✔ locked team idea is a concise read-only view while unlocked leader retains editor (2780.589788ms)
+✔ all signed-in Viewer workspace entry points render one registration invitation, without errors or participant actions (277.817228ms)
+✔ removed access has an organizer contact instead of suggesting re-registration will bypass it (9.65712ms)
+✔ real server/session failures render immediately with accessible recovery and no misleading Viewer or simultaneous skeleton (71.657886ms)
+✔ Not registered filter is an admin option and matches separate Viewer records without classifying ordinary registrations (10.655148ms)
+✔ Viewer navigation includes discovery and public projects without workspace destinations (16.399574ms)
+✔ public landing keeps its approved static content available during a failed refresh (63.760053ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4434.296639

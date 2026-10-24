@@ -1,0 +1,35 @@
+{
+  "action": "Save three requested landing screenshot files to Library",
+  "outcome": "blocked before upload",
+  "reason": "Hosted apps tools/list HTTP 401; no explicit policy-denial detail returned",
+  "retry": "not attempted",
+  "libraryFileIds": [],
+  "base64Handoff": "Stopped after sizes and hashes only, following parent instruction; no encoded payload sent",
+  "originalFilesUnchanged": true,
+  "heroImages": [
+    {
+      "filename": "landing-desktop-1440x900-7fe857b.lossless.webp",
+      "sourceRevision": "7fe857b5e063f81b6883240be162c85e9851ae88",
+      "originalDimensions": {
+        "width": 1440,
+        "height": 900
+      },
+      "originalSha256": "dbaa5f066023a903727c07492c6069d440f24cf750c375d2fdeef6fd171de324",
+      "losslessWebpBytes": 229342,
+      "losslessWebpSha256": "ea267f30e025e7ebef96eaca9f2305caf42dcdcf0f3e1e5507394aba120adb24",
+      "pixelEquality": true
+    },
+    {
+      "filename": "landing-mobile-390x844-7fe857b.lossless.webp",
+      "sourceRevision": "7fe857b5e063f81b6883240be162c85e9851ae88",
+      "originalDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "originalSha256": "7aed9c1d3d3a12d1d05f686e7fdffc5c53a80b6519019811499805a4bb728b12",
+      "losslessWebpBytes": 75992,
+      "losslessWebpSha256": "f54cb239313cfbfdeff136d68d0dd72f8ba131da225d45a82f8968fc18751211",
+      "pixelEquality": true
+    }
+  ]
+}

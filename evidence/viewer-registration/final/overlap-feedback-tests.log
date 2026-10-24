@@ -1,0 +1,17 @@
+✔ row quick check-in is limited to Going participants and retains manual status controls (89.214372ms)
+✔ existing volunteer check-in does not expose manual participant administration (5.501101ms)
+✔ empty roster has one concise recovery action and no selection toolbar (3.378208ms)
+✔ all signed-in Viewer workspace entry points render one registration invitation, without errors or participant actions (140.818268ms)
+✔ removed access has an organizer contact instead of suggesting re-registration will bypass it (6.804519ms)
+✔ real server/session failures render immediately with accessible recovery and no misleading Viewer or simultaneous skeleton (22.736077ms)
+✔ Not registered filter is an admin option and matches separate Viewer records without classifying ordinary registrations (10.021591ms)
+✔ Viewer navigation includes discovery and public projects without workspace destinations (11.338171ms)
+✔ public landing keeps its approved static content available during a failed refresh (29.145663ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2260.066963

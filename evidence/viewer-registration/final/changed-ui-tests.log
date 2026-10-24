@@ -1,0 +1,19 @@
+✔ normal phone chapters pin below the header with visible layer offsets (2.974077ms)
+✔ short phones and an expanded FAQ can scroll every row before pinning (0.202974ms)
+✔ motion settings, tiny viewports and desktop keep the ordinary fallback (0.267456ms)
+✔ measured organizer units begin fully beyond their origin edge, including the attached portrait (2.694656ms)
+✔ organizer content remains immediately readable without motion or JS and uses only verified original photos (12.101809ms)
+✔ all signed-in Viewer workspace entry points render one registration invitation, without errors or participant actions (107.506989ms)
+✔ removed access has an organizer contact instead of suggesting re-registration will bypass it (5.500652ms)
+✔ real server/session failures render immediately with accessible recovery and no misleading Viewer or simultaneous skeleton (23.364049ms)
+✔ Not registered filter is an admin option and matches separate Viewer records without classifying ordinary registrations (6.880581ms)
+✔ Viewer navigation includes discovery and public projects without workspace destinations (8.524574ms)
+✔ public landing keeps its approved static content available during a failed refresh (47.771908ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2016.524176

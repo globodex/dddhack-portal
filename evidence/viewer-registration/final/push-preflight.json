@@ -1,0 +1,12 @@
+{
+  "repository": "Param302/dddhack-portal",
+  "repositoryId": 1429423925,
+  "privateAndPushPermissions": "verified by parent authenticated GitHub connector",
+  "originVerified": true,
+  "pushUrlCount": 1,
+  "remoteMirror": false,
+  "branch": "feat/portal-experience-rework",
+  "expectedRemoteReviewBefore": "28568c6175fbe660135ed1b4114458f24610eafe",
+  "expectedMainUnchanged": "e386cc72244c5613588ec60b02998637a9aadcb7",
+  "authorization": "User explicitly approved review branch push; main merge and deployment remain unauthorized"
+}

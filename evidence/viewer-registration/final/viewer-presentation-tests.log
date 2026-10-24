@@ -1,0 +1,14 @@
+✔ all signed-in Viewer workspace entry points render one registration invitation, without errors or participant actions (111.285205ms)
+✔ removed access has an organizer contact instead of suggesting re-registration will bypass it (4.313273ms)
+✔ real server/session failures render immediately with accessible recovery and no misleading Viewer or simultaneous skeleton (23.710318ms)
+✔ Not registered filter is an admin option and matches separate Viewer records without classifying ordinary registrations (9.166297ms)
+✔ Viewer navigation includes discovery and public projects without workspace destinations (9.513027ms)
+✔ public landing keeps its approved static content available during a failed refresh (28.995629ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3204.002461

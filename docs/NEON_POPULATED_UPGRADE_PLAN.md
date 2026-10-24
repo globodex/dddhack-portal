@@ -1,6 +1,6 @@
 # Windows rollout for the populated portal database
 
-These are owner-run instructions for a future approved release. No hosted database was inspected or changed here. All current work remains local and unpushed. Wait for fresh publication approval before fetching a new release, applying SQL, deploying the backend or publishing the frontend.
+These are owner-run instructions for a future approved release. No hosted database was inspected or changed here. The user separately authorized the review-branch push. That does not authorize hosted SQL, backend deployment or publishing main. Wait for the owner's deployment go-ahead and verified backup before those operations.
 
 The hosted branch already contains participants, teams, submissions and credit inventory. **Never use `PORTAL_SYNTHETIC_DATABASE=1`, `--apply-synthetic`, seed/reset commands or schema replacement on it.** Keep `.env.backend.local`, existing credentials, the default branch and linked provider project intact. No migration runs at Function startup.
 
