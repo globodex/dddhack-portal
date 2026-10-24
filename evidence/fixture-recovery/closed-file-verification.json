@@ -1,0 +1,13 @@
+{
+  "verification": "Separate read-only connection after recovered database close",
+  "database": "/tmp/ddd-redesign-rich-recovered-exact.sqlite",
+  "matchedTables": 64,
+  "logicalSha256": "bf01ef3f41c8ffced1c2d7d9109a3c4f43de014427c8da40d672e946cbd06d45",
+  "integrityCheck": [
+    [
+      "ok"
+    ]
+  ],
+  "foreignKeyCheck": [],
+  "damagedOriginalSha256": "d13479df286671a8f57c1bf5f4d7d58d6fd96f3a300ae61d661be3360ff38101"
+}

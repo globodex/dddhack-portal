@@ -1,0 +1,345 @@
+{
+  "syntheticOnly": true,
+  "damagedFilePreserved": "/tmp/ddd-redesign-rich.sqlite",
+  "damagedFileSha256": "d13479df286671a8f57c1bf5f4d7d58d6fd96f3a300ae61d661be3360ff38101",
+  "expectedManifest": "/workspace/dddhack-portal/evidence/performance-production/fixture-incident/overwritten-manifest.json",
+  "recoveredDatabase": "/tmp/ddd-redesign-rich-recovered-exact.sqlite",
+  "baseBackup": "/tmp/ddd-projects-controls.sqlite",
+  "matchedTables": 64,
+  "expectedTables": 64,
+  "logicalSha256": "bf01ef3f41c8ffced1c2d7d9109a3c4f43de014427c8da40d672e946cbd06d45",
+  "allTableSchemaAndContentHashesMatch": true,
+  "allSchemaObjectsRetainedExactly": true,
+  "integrityCheck": [
+    [
+      "ok"
+    ]
+  ],
+  "foreignKeyCheck": [],
+  "restoredTables": [
+    "project_comments",
+    "project_upvotes",
+    "request_buckets",
+    "audit_logs",
+    "projects",
+    "scoring_revision"
+  ],
+  "provenance": {
+    "astra_jobs": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "automatic_absences": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "check_ins": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "credit_allocations": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "credit_batch_columns": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "credit_batches": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "credit_inventory": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "credit_types": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "eligibility_history": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "engagement_controls": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "evaluation_runs": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "event_content": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "event_content_history": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "event_policy_history": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "event_settings": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "feedback": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "human_scores": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "idea_revisions": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "ideas": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "import_previews": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "judge_assignments": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "local_schema_migrations": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "luma_roster": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "manual_checkins": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "memberships": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "participant_profiles": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "participant_status_overrides": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "portal_roles": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "private_venue": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "private_venue_managers": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "profile_details": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "profile_photos": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "profiles": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "project_assignments": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "project_comments": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-admin-window-invite-8834.sqlite"
+    },
+    "project_commit_receipts": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "project_eligibility": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "project_feedback_reviews": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "project_review_history": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "project_upvotes": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-admin-window-invite-8834.sqlite"
+    },
+    "record_removals": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "registration_absences": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "registrations": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "repository_evidence": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "request_buckets": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-before.sqlite"
+    },
+    "result_publication": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "result_snapshots": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "reviews": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "roster_prefills": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "score_releases": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "submission_versions": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "team_actions": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "team_locks": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "team_status_overrides": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "team_styles": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "teams": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "tie_resolutions": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "users": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "votes": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "winner_reveals": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "write_guards": {
+      "method": "whole matching table",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "audit_logs": {
+      "method": "existing single row with exact entire-table hash",
+      "source": "/tmp/ddd-projects-controls.sqlite"
+    },
+    "projects": {
+      "method": "observed project fields plus immutable submission payload/timestamp variants; exact entire-table hash",
+      "candidateCombinations": 1890,
+      "tested": 1601,
+      "sources": [
+        "/tmp/ddd-projects-controls.sqlite",
+        "/tmp/ddd-admin-experience.sqlite",
+        "/tmp/ddd-admin-window-invite-8834.sqlite",
+        "/tmp/ddd-before.sqlite",
+        "/tmp/ddd-community-8835.sqlite",
+        "/tmp/ddd-create-final-capture.sqlite",
+        "/tmp/ddd-create-repair.sqlite",
+        "/tmp/ddd-create-team-revised-root.sqlite",
+        "/tmp/ddd-credit-fixture-validation.sqlite",
+        "/tmp/ddd-credit-mode-default-v2.sqlite",
+        "/tmp/ddd-credit-mode-exhausted-v2.sqlite",
+        "/tmp/ddd-credit-mode-legacy-v2.sqlite",
+        "/tmp/ddd-credit-ui-exhausted.sqlite",
+        "/tmp/ddd-credit-ui-legacy.sqlite",
+        "/tmp/ddd-hydration-safety.sqlite",
+        "/tmp/ddd-landing-ui.sqlite",
+        "/tmp/ddd-profile-after.sqlite",
+        "/tmp/ddd-score-phases-8833-before-reveal.sqlite",
+        "/tmp/ddd-score-phases-8833.sqlite",
+        "/tmp/ddd-team-redesign.sqlite",
+        "/tmp/ddd-team-studio-final.sqlite",
+        "/tmp/ddd-team-studio.sqlite"
+      ]
+    },
+    "scoring_revision": {
+      "method": "bounded integer counter search accepted only exact entire-table hash",
+      "range": [
+        0,
+        272
+      ],
+      "matchedVersion": 217
+    }
+  },
+  "sourcesReadOnlyAndPhysicalHashesUnchanged": {
+    "/tmp/ddd-projects-controls.sqlite": "3210255c8fb92e2f9b28655754f128c959e53f95e2904ba25777023d97b259bb",
+    "/tmp/ddd-admin-experience.sqlite": "52a371445ce0812ca930aea418e7d7e9d6459f1778a6e14cb56592f08f5a08af",
+    "/tmp/ddd-admin-window-invite-8834.sqlite": "3210255c8fb92e2f9b28655754f128c959e53f95e2904ba25777023d97b259bb",
+    "/tmp/ddd-before.sqlite": "52a371445ce0812ca930aea418e7d7e9d6459f1778a6e14cb56592f08f5a08af",
+    "/tmp/ddd-community-8835.sqlite": "02ed4fd1bdce4f2c453b9b5aeb03b48621608795dc4232a657983edbc1e926dc",
+    "/tmp/ddd-create-final-capture.sqlite": "52a371445ce0812ca930aea418e7d7e9d6459f1778a6e14cb56592f08f5a08af",
+    "/tmp/ddd-create-repair.sqlite": "52a371445ce0812ca930aea418e7d7e9d6459f1778a6e14cb56592f08f5a08af",
+    "/tmp/ddd-create-team-revised-root.sqlite": "3210255c8fb92e2f9b28655754f128c959e53f95e2904ba25777023d97b259bb",
+    "/tmp/ddd-credit-fixture-validation.sqlite": "531d2240ee0abcbbea3a492dbf2769e36b82daec8658a67b31a919e0a6daafc0",
+    "/tmp/ddd-credit-mode-default-v2.sqlite": "5763e3751019b850be72a3513756c1ac503584b90e6429302da95412f21e10a9",
+    "/tmp/ddd-credit-mode-exhausted-v2.sqlite": "c0b7197aa5f3aefc9ce272670a8041ce912ed285798da3cf61f7705a4875b535",
+    "/tmp/ddd-credit-mode-legacy-v2.sqlite": "b5869366c151da2d3975675ba27e8c9d4019593135ac2d8e4b51282bc9177472",
+    "/tmp/ddd-credit-ui-exhausted.sqlite": "01b1f83c46b6afdb22f684022cbe0e787eb38806e612f1f1aed04b5a3fe943ab",
+    "/tmp/ddd-credit-ui-legacy.sqlite": "e771777eec881215a8e3de7e682cef35b7ad8ba682111ed35ded8c7fe8f49e43",
+    "/tmp/ddd-hydration-safety.sqlite": "52a371445ce0812ca930aea418e7d7e9d6459f1778a6e14cb56592f08f5a08af",
+    "/tmp/ddd-landing-ui.sqlite": "b5003910f41a5c025c0ad2ddeb74d8c3343542a51008db3065c0ea8b15e71f27",
+    "/tmp/ddd-profile-after.sqlite": "52a371445ce0812ca930aea418e7d7e9d6459f1778a6e14cb56592f08f5a08af",
+    "/tmp/ddd-score-phases-8833-before-reveal.sqlite": "02ed4fd1bdce4f2c453b9b5aeb03b48621608795dc4232a657983edbc1e926dc",
+    "/tmp/ddd-score-phases-8833.sqlite": "47f841a37f479ed0e7db7e9fff79534a26bf1de495853d1d286cd4372b7308c8",
+    "/tmp/ddd-team-redesign.sqlite": "52a371445ce0812ca930aea418e7d7e9d6459f1778a6e14cb56592f08f5a08af",
+    "/tmp/ddd-team-studio-final.sqlite": "41f20ee959b1b6e4a3a3ba94fa6c37503d255518e08583f073399816727c34f6",
+    "/tmp/ddd-team-studio.sqlite": "0093c9979e574db739a73e24b50e4d56ad567ba6fa1e0c96576e2ffe8bc8cdce"
+  },
+  "productionOrProviderActions": [],
+  "notes": [
+    "No source database was modified or started by an application.",
+    "Raw recovered database remains in/tmp; no raw rows/codes are committed.",
+    "FK and triggers were suspended only in the new scratch and restored before final checks.",
+    "Logical equality is the exact pre-incident64table schema/content manifest; recovered file bytes are not claimed identical to the lostSQLite file."
+  ]
+}
