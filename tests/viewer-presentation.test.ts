@@ -21,7 +21,8 @@ test("all signed-in Viewer workspace entry points render one registration invita
     assert.match(html, /href="https:\/\/luma.com\/6t5uk4lo" target="_blank" rel="noopener noreferrer"/);
     for (const destination of ["/discover/participants", "/discover/teams", "/projects"]) assert.ok(html.includes(`href="${destination}"`));
     assert.doesNotMatch(html, /role="alert"|route-skeleton|My credits|Create team|Join team|Step 1 of 3|Save profile/);
-    assert.match(html, /account-logout/);
+    assert.match(html, /aria-label="Open navigation"/);
+    assert.match(html, /class="navigation-logout"/);
   }
 });
 

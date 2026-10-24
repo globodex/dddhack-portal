@@ -381,7 +381,9 @@ for (const engine of ["sqlite", "postgres"] as const) {
       assert.equal(focused.body.focusedPerson.id, fixtures.bob.id);
       assert.equal(focused.body.focusedPerson.bio, "");
       assert.deepEqual(focused.body.focusedPerson.socials, []);
-      noPrivateFields(focused.body.focusedPerson);
+      const { details, ...publicIdentity } = focused.body.focusedPerson;
+      assert.deepEqual(details, { gender: "non-binary" }, "Only the explicitly approved saved gender chip joins the selected profile projection");
+      noPrivateFields(publicIdentity);
       await batch(db, [
         ["UPDATE users SET role='admin' WHERE id='fake_stranger'"],
       ]);
