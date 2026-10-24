@@ -1,0 +1,32 @@
+✔ all four chapters share fitting viewport geometry on laptop and tablet; tall content and motion fallback coherently (9.602693ms)
+✔ confirmed agenda uses measured distance, variable item offsets and the actual sticky start (2.744638ms)
+✔ airblower substantially moves multiple nearby dots and settles home inside its own stage (4.282777ms)
+✔ approved Home SSR has exact day/actions, real organizers and unenhanced readable chapters with no fabricated agenda (122.135227ms)
+✔ Delhi SSR is the exact immediate fallback without unused motion image requests (46.348824ms)
+✔ cropped hero expressions return to rest without a perpetual animation loop (2.188456ms)
+✔ auth requires exact configured origin and proxy proof; Sites and forwarded-host headers cannot authenticate (25.886521ms)
+✔ auth mutations require exact Origin, bounded JSON and known fields; roles cannot be supplied (27.628233ms)
+✔ relative return paths reject encoded, normalized and auth-loop redirect attacks (6.732913ms)
+✔ magic request normalizes email, creates no identity before proof and stores only hashed bearer credentials (8.849875ms)
+✔ magic link GET is a scanner-safe confirmation, browser-bound, with same-origin POST required (6.013721ms)
+✔ verified magic login preserves legacy portal ID and server role and grants no client-selected role (4.096674ms)
+✔ magic tokens are atomically single-use, reject expiration and revoke other pending links (7.183262ms)
+✔ session credentials rotate, expire, reject shadowed cookies and are revoked by protected signout (9.106632ms)
+✔ durable normalized-email limits are atomic and reset only after their window (5.990882ms)
+✔ SMTP is mandatory without injection, enforces TLS and failed delivery removes tokens (3.968968ms)
+✔ local HTTP uses host-only development cookies and still requires proxy and origin proof (1.87907ms)
+✔ Google start pins exact browser callback, scopes, state, nonce and S256 PKCE (3.12039ms)
+✔ Google callback requires browser-bound, unexpired, single-use state before exchanging a code (14.427923ms)
+✔ Google JWT verification rejects bad audience, issuer, expiry, nonce, verification, authorized party and future issue time (26.594808ms)
+✔ Google verified email links to the same proven identity; a different subject or changed email cannot take over (22.898702ms)
+✔ external Google accounts need fresh mailbox proof; authoritative Workspace and Gmail identities can sign in (7.821535ms)
+✔ owner authority requires verified normalized identity and cannot come from arbitrary localOwner on a hosted identity (0.275055ms)
+✔ a portal email change invalidates a previously issued session rather than moving its authority (2.501824ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2714.383045

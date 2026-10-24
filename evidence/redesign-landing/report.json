@@ -1,0 +1,1583 @@
+{
+  "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+  "baseline": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+  "syntheticOnly": true,
+  "fixture": "/tmp/ddd-landing-ui.sqlite",
+  "browserSandbox": false,
+  "bannerHidden": true,
+  "realGoogleLogin": false,
+  "screenshots": [
+    {
+      "label": "before-hero",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/before-hero-1440x900.png",
+      "fullPage": false,
+      "source": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+      "inspected": true,
+      "sha256": "9ce6caba2ff8a23b1409d2a1dcfac218f67e2e50f6a8da1950b8e4a8186e6e75"
+    },
+    {
+      "label": "before-schedule",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/before-schedule-1440x900.png",
+      "fullPage": false,
+      "source": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+      "inspected": true,
+      "sha256": "1eb1566deef9bf232b01d9950e06233974a874bfa126e824080cda865155b6cd"
+    },
+    {
+      "label": "after-hero",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-hero-1440x900.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "48a0ef9f7d8151b154c1873882e26b2c166e23d822305ed67a50f268cc66c40d"
+    },
+    {
+      "label": "after-schedule",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-schedule-1440x900.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "8796df94287f1b23e4366f181e02524fa09dacc0e40c6d121e7a4f44a6416df3"
+    },
+    {
+      "label": "after-venue",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-venue-1440x900.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "3f368e7de527d94293cf5aad322e2108d7c210f10f1db7ca112c8988e728253c"
+    },
+    {
+      "label": "after-rules",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-rules-1440x900.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "341360c40bbfc5f23d48956035979f6835924e8e17a2f768f1fd85acc8e968d7"
+    },
+    {
+      "label": "after-faq",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-faq-1440x900.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "3f7a7b4dbe68288085f6cbfc6701a74739a1a8505fc573e4015b83dedbb3e9e0"
+    },
+    {
+      "label": "after-signed-in-hero",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signed-in-hero-1440x900.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "6101f6940d59875fab9dec83d3fad1c939faf1b38ec831447a5d92ba97a6fc16"
+    },
+    {
+      "label": "after-organizers",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-organizers-1440x900.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "74f0b49d7afadd785ae1102c9b3bc48d85c372032839a427ea8a3991536345d2"
+    },
+    {
+      "label": "after-signin-empty",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-empty-1440x900.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "2a4241c4a37b951a629e15fa37deb890ca157cab31b6e9f2c73e0eb30c4717d4"
+    },
+    {
+      "label": "after-signin-error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-error-1440x900.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "a1ef559cf6754a24b995d73c65b8eca5864c0caa0cda45f5b940baf6e345885f"
+    },
+    {
+      "label": "after-signin-loading",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-loading-1440x900.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "7a881ca86949eb0e6f51453653e27576526d9642e00ce3d590cfc272438c5b45"
+    },
+    {
+      "label": "after-signin-success",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-success-1440x900.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "e80329812f7319efb6e7571f3ee60ce4b4f182ce3bb5f31f380037207522aba0"
+    },
+    {
+      "label": "after-signin-google-error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-google-error-1440x900.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "78abbe66db8f391733e80720e3becb14514754c860ac8106e66ca0d2491739e3"
+    },
+    {
+      "label": "before-hero",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/before-hero-768x1024.png",
+      "fullPage": false,
+      "source": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+      "inspected": true,
+      "sha256": "e072d409065ce42810949936079ce8fc8c884229acf4e274344c7b67a6b3d3f4"
+    },
+    {
+      "label": "before-schedule",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/before-schedule-768x1024.png",
+      "fullPage": false,
+      "source": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+      "inspected": true,
+      "sha256": "858ee2306cf48fef56762f564dbd97ba45c974da171958f53de69ff025284d9a"
+    },
+    {
+      "label": "after-hero",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-hero-768x1024.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "713b48fe51b36def0d9bf3aa401774d28caa85811f667ebc01a7f358d84848f5"
+    },
+    {
+      "label": "after-schedule",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-schedule-768x1024.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "c2b245bfedfc0f9d5ea7a0b0fca439f3ee09d851642e0a69e4976921c908fc6d"
+    },
+    {
+      "label": "after-venue",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-venue-768x1024.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "6c88115395544e0a7ce96ebf3c997084f9b60b25fb14315d775a54e577976b69"
+    },
+    {
+      "label": "after-rules",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-rules-768x1024.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "cfc72660eaec81b5e08eed3996530b178ca6f25d4a3a7143c4150ddc1f15e548"
+    },
+    {
+      "label": "after-faq",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-faq-768x1024.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "f8e75c76f9cd2ba2713b9507442e25e5bcd64611fd322fb68fcfc3446d82fccf"
+    },
+    {
+      "label": "after-signed-in-hero",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signed-in-hero-768x1024.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "a20833c70747e4ca2a4d84f9f2d4272f427af89fde57204734c3d04b3354a7ad"
+    },
+    {
+      "label": "after-organizers",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-organizers-768x1024.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "c2133d3231f2301e8adae71dc1e62e46695671d0f6e422c01c70312e0f6996df"
+    },
+    {
+      "label": "after-signin-empty",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-empty-768x1024.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "40d339eacd08ac89118ccdb1e231de2c7946b02fd87bfc5ff60162e6bf545364"
+    },
+    {
+      "label": "after-signin-error",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-error-768x1024.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "d065e6008d656aafc459738fc4bd42ebe92e23280e5f399f83a0da68d28ff019"
+    },
+    {
+      "label": "after-signin-loading",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-loading-768x1024.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "cf62b0114812afb184a1622fbe31046918db94d128eb4096805679982e47bbfe"
+    },
+    {
+      "label": "after-signin-success",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-success-768x1024.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "7d46050dac13a6599d6e02bf284442d3715688580ba4ed5805958b390b71b030"
+    },
+    {
+      "label": "after-signin-google-error",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-google-error-768x1024.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "8d89b45f979b47479e7b1d16ee8bb80fce53e8ff5381685e8dc94e9c72da47fc"
+    },
+    {
+      "label": "after-signin-menu",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-menu-768x1024.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "5099d5fe2e6530a46dabe63c4b925a25504a65255cacc185fcaeb510b4fbc7ae"
+    },
+    {
+      "label": "before-hero",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/before-hero-390x844.png",
+      "fullPage": false,
+      "source": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+      "inspected": true,
+      "sha256": "48a308ac0e470867309371de2b6c47b7a38499f6c0f7a7ef667f8e1513deb441"
+    },
+    {
+      "label": "before-schedule",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/before-schedule-390x844.png",
+      "fullPage": false,
+      "source": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+      "inspected": true,
+      "sha256": "4b755959b1572c39ddd301688200749341660e65ff41c45d1deab32d11879a61"
+    },
+    {
+      "label": "after-hero",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-hero-390x844.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "257d1033235bf57df66001b2c5c85d9202489d1fd1ae0e9585caea90720ab563"
+    },
+    {
+      "label": "after-schedule",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-schedule-390x844.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "8f23ca6a43ae80e3692fe0e89c42cdb1dd7ecdca7409e1ccba8a1aa2544e288f"
+    },
+    {
+      "label": "after-venue",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-venue-390x844.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "049f9484a450d80e216d42c08d36a228188f71262dcba8756c5809ab81a7eb94"
+    },
+    {
+      "label": "after-rules",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-rules-390x844.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "89dc1b1c5563d098d9926e435db19394b9fd147085e80c38209c01c4effd18a4"
+    },
+    {
+      "label": "after-faq",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-faq-390x844.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "d339410bfe34f1f587028997719b729c7279cc9eaeb556c4f996501ee050bb86"
+    },
+    {
+      "label": "after-signed-in-hero",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signed-in-hero-390x844.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "4388c43e024cbce14f95db769189295ca321386110150649fba23b9e286fea12"
+    },
+    {
+      "label": "after-organizers",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-organizers-390x844.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "c704ddd3a7e5af07d94affca4cc425f3a316e17426f544784df51806a107f7ad"
+    },
+    {
+      "label": "before-hero",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/before-hero-390x480.png",
+      "source": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+      "inspected": true,
+      "sha256": "bd2fe7049c9f499223c6eeadd2084614a5f78b96b8c17eb26228a2bcf341668a"
+    },
+    {
+      "label": "before-schedule",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/before-schedule-390x480.png",
+      "source": "696b125f9711a4fd6e02c3ece3adadb18b83cba7",
+      "inspected": true,
+      "sha256": "825f5da3892eadc639126f04b536d2defac2fe33ad919509e8f21e6ac43163c6"
+    },
+    {
+      "label": "after-signin-empty",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-empty-390x844.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "f8923ecd1aa0f3e284a3645f1fd6261c294173b406910232455da54d385f4668"
+    },
+    {
+      "label": "after-signin-error",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-error-390x844.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "68b2b20717f31cdc160582a788bdf065735ec1509920cbdef4c9e15942992e02"
+    },
+    {
+      "label": "after-signin-loading",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-loading-390x844.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "5bc00e65702303179635ea87ddff53e9266c5f157ce93d4a15263fb08c87b4fa"
+    },
+    {
+      "label": "after-signin-success",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-success-390x844.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "447fe3c5a69f99acde405207a0a6a15e0b04d981e27df22474fe24bbb643a142"
+    },
+    {
+      "label": "after-signin-google-error",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-google-error-390x844.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "0e39621104f7559df139efd937d7dccdf337e8a8d05620d423a569fec4dce1e7"
+    },
+    {
+      "label": "after-signin-menu",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-menu-390x844.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "790b5d3897bedcc44b92ffad44a67d584b6e1f44987b0080706df33f5ceba21a"
+    },
+    {
+      "label": "after-hero",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-hero-390x480.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "6dfcd426749e36cb75988feeb5ec3f02d851f86b3f1d76ce3f37e0b3131d8358"
+    },
+    {
+      "label": "after-schedule",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-schedule-390x480.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "1fe9ba765d97f40f692a0d936d6b5ad2c3dead893c3c61eed7e6388bf4a61dc4"
+    },
+    {
+      "label": "after-venue",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-venue-390x480.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "e1b78051d62334c91b68f8cbb3048b002e2ca24374737bd1eefe0e88fa99ea5a"
+    },
+    {
+      "label": "after-rules",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-rules-390x480.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "07fff34e1e7a281f77dabbb0c7bf1bc9bbecf1fc5c859c6b376590a2de61b6dd"
+    },
+    {
+      "label": "after-faq",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-faq-390x480.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "e4c792ae8cd4a5482587a7853230958bc32c414dca617c2ea474b660609be754"
+    },
+    {
+      "label": "after-short-cta-reachable",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-short-cta-reachable-390x480.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "ee8d47329a1c37bc7d14100cd086b91b6900437eb429210e4759f64b785a8028"
+    },
+    {
+      "label": "after-signed-in-hero",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signed-in-hero-390x480.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "6dfcd426749e36cb75988feeb5ec3f02d851f86b3f1d76ce3f37e0b3131d8358"
+    },
+    {
+      "label": "after-organizers",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-organizers-390x480.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "889b18f4683bd1aa2e0f29ae66fddbd0b2a2dfcba09b5b6d7f7c055bec838957"
+    },
+    {
+      "label": "after-signin-empty",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-empty-390x480.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "9f9a6706144adaf8a179fce8b298c73364b01479a551d8c651507553c505e1f4"
+    },
+    {
+      "label": "after-signin-error",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-error-390x480.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "dee95f8fe9432a41140824836ca9b6eb88ea42e1334494e5071bf7cdb44b1b53"
+    },
+    {
+      "label": "after-signin-loading",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-loading-390x480.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "9b2815aeba01144222325d96d2d25bca75f9f003553b571d05afdc097432eae5"
+    },
+    {
+      "label": "after-signin-success",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-success-390x480.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "052abf7e7819803b4d8b920054680ec6eed532f8fc06f1d31aafe14cf7895b39"
+    },
+    {
+      "label": "after-signin-google-error",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-google-error-390x480.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "18ff10ded0cf27d2e5ff0a2a722918c9dd187261de57f222f2b7d5d1f2a04580"
+    },
+    {
+      "label": "after-signin-menu",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "file": "/workspace/ddd-landing/evidence/redesign-landing/after-signin-menu-390x480.png",
+      "fullPage": false,
+      "source": "3dc7c1ccc91d7cde47602db6989644031fecd3de",
+      "inspected": true,
+      "sha256": "c81c4efd33526acf76babec61cfc25ea44f0bf6801dc691c0d8bb6b0fb129888"
+    }
+  ],
+  "metrics": [
+    {
+      "phase": "before",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "navigation": [
+        {
+          "name": "http://127.0.0.1:3014/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 3441.3000000000466,
+          "navigationId": 5239,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 1.0999999998603016,
+          "domainLookupStart": 3.300000000046566,
+          "domainLookupEnd": 3.300000000046566,
+          "connectStart": 3.300000000046566,
+          "secureConnectionStart": 0,
+          "connectEnd": 4.300000000046566,
+          "requestStart": 4.5,
+          "responseStart": 371.5,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 371.5,
+          "responseEnd": 387,
+          "transferSize": 9402,
+          "encodedBodySize": 9102,
+          "decodedBodySize": 48755,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 1356.5999999998603,
+          "domContentLoadedEventStart": 1356.6999999999534,
+          "domContentLoadedEventEnd": 1356.8000000000466,
+          "domComplete": 3440.8000000000466,
+          "loadEventStart": 3441.3000000000466,
+          "loadEventEnd": 3441.3000000000466,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        }
+      ],
+      "requests": 13,
+      "transferBytes": 5255450,
+      "domNodes": 704,
+      "overflow": false,
+      "heroHeight": 820,
+      "cta": {
+        "x": 63.359375,
+        "y": 598.09375,
+        "width": 253.484375,
+        "height": 58.796875,
+        "top": 598.09375,
+        "right": 316.84375,
+        "bottom": 656.890625,
+        "left": 63.359375
+      }
+    },
+    {
+      "phase": "after",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "navigation": [
+        {
+          "name": "http://127.0.0.1:3004/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 2487.1999999999534,
+          "navigationId": 7921,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 7.199999999953434,
+          "domainLookupStart": 7.199999999953434,
+          "domainLookupEnd": 7.199999999953434,
+          "connectStart": 7.199999999953434,
+          "secureConnectionStart": 0,
+          "connectEnd": 7.199999999953434,
+          "requestStart": 8.5,
+          "responseStart": 510.5,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 510.5,
+          "responseEnd": 516.5,
+          "transferSize": 9445,
+          "encodedBodySize": 9145,
+          "decodedBodySize": 49551,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 944.0999999998603,
+          "domContentLoadedEventStart": 944.0999999998603,
+          "domContentLoadedEventEnd": 944.1999999999534,
+          "domComplete": 2486.899999999907,
+          "loadEventStart": 2487.1999999999534,
+          "loadEventEnd": 2487.1999999999534,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        }
+      ],
+      "requests": 13,
+      "transferBytes": 5241153,
+      "domNodes": 521,
+      "overflow": false,
+      "heroHeight": 820,
+      "cta": {
+        "x": 63.359375,
+        "y": 596.171875,
+        "width": 253.484375,
+        "height": 58.796875,
+        "top": 596.171875,
+        "right": 316.84375,
+        "bottom": 654.96875,
+        "left": 63.359375
+      }
+    },
+    {
+      "phase": "before",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigation": [
+        {
+          "name": "http://127.0.0.1:3014/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 2660.5999999998603,
+          "navigationId": 1152,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.5,
+          "domainLookupStart": 0.5,
+          "domainLookupEnd": 0.5,
+          "connectStart": 0.5,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.5,
+          "requestStart": 6.099999999860302,
+          "responseStart": 329.80000000004657,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 329.80000000004657,
+          "responseEnd": 340.0999999998603,
+          "transferSize": 9404,
+          "encodedBodySize": 9104,
+          "decodedBodySize": 48755,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 835.5,
+          "domContentLoadedEventStart": 835.5,
+          "domContentLoadedEventEnd": 840.5,
+          "domComplete": 2660.1999999999534,
+          "loadEventStart": 2660.5999999998603,
+          "loadEventEnd": 2660.5999999998603,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "requests": 13,
+      "transferBytes": 5255450,
+      "domNodes": 872,
+      "overflow": false,
+      "heroHeight": 960,
+      "cta": {
+        "x": 20,
+        "y": 539.34375,
+        "width": 728,
+        "height": 52.390625,
+        "top": 539.34375,
+        "right": 748,
+        "bottom": 591.734375,
+        "left": 20
+      }
+    },
+    {
+      "phase": "after",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigation": [
+        {
+          "name": "http://127.0.0.1:3004/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 1662.6000000000931,
+          "navigationId": 9150,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.8000000000465661,
+          "domainLookupStart": 2.1000000000931323,
+          "domainLookupEnd": 2.1000000000931323,
+          "connectStart": 2.1000000000931323,
+          "secureConnectionStart": 0,
+          "connectEnd": 2.699999999953434,
+          "requestStart": 2.800000000046566,
+          "responseStart": 161.60000000009313,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 161.60000000009313,
+          "responseEnd": 167.80000000004657,
+          "transferSize": 9440,
+          "encodedBodySize": 9140,
+          "decodedBodySize": 49551,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 517.6000000000931,
+          "domContentLoadedEventStart": 517.8000000000466,
+          "domContentLoadedEventEnd": 518,
+          "domComplete": 1662.3999999999069,
+          "loadEventStart": 1662.6000000000931,
+          "loadEventEnd": 1662.6000000000931,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "requests": 13,
+      "transferBytes": 5241153,
+      "domNodes": 472,
+      "overflow": false,
+      "heroHeight": 960,
+      "cta": {
+        "x": 20,
+        "y": 798,
+        "width": 713,
+        "height": 58,
+        "top": 798,
+        "right": 733,
+        "bottom": 856,
+        "left": 20
+      }
+    },
+    {
+      "phase": "before",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigation": [
+        {
+          "name": "http://127.0.0.1:3014/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 1986.1999999999534,
+          "navigationId": 3248,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.9000000001396984,
+          "domainLookupStart": 0.9000000001396984,
+          "domainLookupEnd": 0.9000000001396984,
+          "connectStart": 0.9000000001396984,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.9000000001396984,
+          "requestStart": 2.300000000046566,
+          "responseStart": 296.80000000004657,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 296.80000000004657,
+          "responseEnd": 307,
+          "transferSize": 9406,
+          "encodedBodySize": 9106,
+          "decodedBodySize": 48755,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 703.6999999999534,
+          "domContentLoadedEventStart": 703.8000000000466,
+          "domContentLoadedEventEnd": 703.8000000000466,
+          "domComplete": 1986,
+          "loadEventStart": 1986.1000000000931,
+          "loadEventEnd": 1986.1999999999534,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "requests": 13,
+      "transferBytes": 5255450,
+      "domNodes": 676,
+      "overflow": false,
+      "heroHeight": 780,
+      "cta": {
+        "x": 20,
+        "y": 403.125,
+        "width": 350,
+        "height": 52.390625,
+        "top": 403.125,
+        "right": 370,
+        "bottom": 455.515625,
+        "left": 20
+      }
+    },
+    {
+      "phase": "after",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigation": [
+        {
+          "name": "http://127.0.0.1:3004/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 3285.600000000093,
+          "navigationId": 6471,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 2.1000000000931323,
+          "domainLookupStart": 2.1000000000931323,
+          "domainLookupEnd": 2.1000000000931323,
+          "connectStart": 2.1000000000931323,
+          "secureConnectionStart": 0,
+          "connectEnd": 2.1000000000931323,
+          "requestStart": 3.7000000001862645,
+          "responseStart": 487,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 487,
+          "responseEnd": 547.3000000000466,
+          "transferSize": 9445,
+          "encodedBodySize": 9145,
+          "decodedBodySize": 49551,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 1109.8000000000466,
+          "domContentLoadedEventStart": 1109.8000000000466,
+          "domContentLoadedEventEnd": 1109.8000000000466,
+          "domComplete": 3285.4000000001397,
+          "loadEventStart": 3285.600000000093,
+          "loadEventEnd": 3285.600000000093,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "requests": 13,
+      "transferBytes": 5241153,
+      "domNodes": 472,
+      "overflow": false,
+      "heroHeight": 780,
+      "cta": {
+        "x": 20,
+        "y": 618,
+        "width": 350,
+        "height": 58,
+        "top": 618,
+        "right": 370,
+        "bottom": 676,
+        "left": 20
+      }
+    },
+    {
+      "phase": "after",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "navigation": [
+        {
+          "name": "http://127.0.0.1:3004/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 4569.300000000279,
+          "navigationId": 8017,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.900000000372529,
+          "domainLookupStart": 0.900000000372529,
+          "domainLookupEnd": 0.900000000372529,
+          "connectStart": 0.900000000372529,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.900000000372529,
+          "requestStart": 6.2000000001862645,
+          "responseStart": 531.7000000001863,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 531.7000000001863,
+          "responseEnd": 650.8000000002794,
+          "transferSize": 9444,
+          "encodedBodySize": 9144,
+          "decodedBodySize": 49551,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 1567.5,
+          "domContentLoadedEventStart": 1568.4000000003725,
+          "domContentLoadedEventEnd": 1568.5,
+          "domComplete": 4569.200000000186,
+          "loadEventStart": 4569.300000000279,
+          "loadEventEnd": 4569.300000000279,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        }
+      ],
+      "requests": 13,
+      "transferBytes": 5241153,
+      "domNodes": 472,
+      "overflow": false,
+      "heroHeight": 743.34375,
+      "cta": {
+        "x": 20,
+        "y": 581.34375,
+        "width": 350,
+        "height": 58,
+        "top": 581.34375,
+        "right": 370,
+        "bottom": 639.34375,
+        "left": 20
+      }
+    }
+  ],
+  "checks": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "timelineContent": true,
+      "faqKeyboard": true,
+      "faqTouch": false,
+      "ctaActivations": [
+        {
+          "href": "/signin?returnTo=%2Fdashboard",
+          "trusted": true
+        },
+        {
+          "href": "/signin?returnTo=%2Fdashboard",
+          "trusted": true
+        }
+      ],
+      "decorativePointerInert": true,
+      "compactDotCount": "8+18",
+      "pauseResume": true
+    },
+    {
+      "surface": "signin",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "nativeEmailValidation": true,
+      "serverFieldError": true,
+      "loadingDisabled": true,
+      "successFeedback": true,
+      "googleMockOnly": true,
+      "menuEscape": false,
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "timelineContent": true,
+      "faqKeyboard": true,
+      "faqTouch": false,
+      "ctaActivations": [
+        {
+          "href": "/signin?returnTo=%2Fdashboard",
+          "trusted": true
+        },
+        {
+          "href": "/signin?returnTo=%2Fdashboard",
+          "trusted": true
+        }
+      ],
+      "decorativePointerInert": true,
+      "compactDotCount": "4+8",
+      "pauseResume": true
+    },
+    {
+      "surface": "signin",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "nativeEmailValidation": true,
+      "serverFieldError": true,
+      "loadingDisabled": true,
+      "successFeedback": true,
+      "googleMockOnly": true,
+      "menuEscape": true,
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "timelineContent": true,
+      "faqKeyboard": true,
+      "faqTouch": true,
+      "ctaActivations": [
+        {
+          "href": "/signin?returnTo=%2Fdashboard",
+          "trusted": true
+        },
+        {
+          "href": "/signin?returnTo=%2Fdashboard",
+          "trusted": true
+        }
+      ],
+      "decorativePointerInert": true,
+      "compactDotCount": "4+8",
+      "pauseResume": true
+    },
+    {
+      "surface": "signin",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "nativeEmailValidation": true,
+      "serverFieldError": true,
+      "loadingDisabled": true,
+      "successFeedback": true,
+      "googleMockOnly": true,
+      "menuEscape": true,
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "timelineContent": true,
+      "faqKeyboard": true,
+      "faqTouch": true,
+      "ctaActivations": [
+        {
+          "href": "/signin?returnTo=%2Fdashboard",
+          "trusted": true
+        },
+        {
+          "href": "/signin?returnTo=%2Fdashboard",
+          "trusted": true
+        }
+      ],
+      "decorativePointerInert": true,
+      "compactDotCount": "4+8",
+      "pauseResume": true
+    },
+    {
+      "surface": "signin",
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "nativeEmailValidation": true,
+      "serverFieldError": true,
+      "loadingDisabled": true,
+      "successFeedback": true,
+      "googleMockOnly": true,
+      "menuEscape": true,
+      "overflow": false
+    },
+    {
+      "surface": "signin-prehydration",
+      "methodPost": true,
+      "privateInputDisabled": true,
+      "submitDisabled": true
+    }
+  ],
+  "errors": [],
+  "mockRequests": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/api/auth/magic/request",
+      "body": {
+        "email": "builder@example.test",
+        "returnTo": "/dashboard#team"
+      },
+      "mode": "invalid-email"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/api/auth/magic/request",
+      "body": {
+        "email": "builder@example.test",
+        "returnTo": "/dashboard#team"
+      },
+      "mode": "loading"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "/api/auth/google/start",
+      "body": {
+        "returnTo": "/dashboard#team"
+      },
+      "mode": "google-error"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "path": "/api/auth/magic/request",
+      "body": {
+        "email": "builder@example.test",
+        "returnTo": "/dashboard#team"
+      },
+      "mode": "invalid-email"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "path": "/api/auth/magic/request",
+      "body": {
+        "email": "builder@example.test",
+        "returnTo": "/dashboard#team"
+      },
+      "mode": "loading"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "path": "/api/auth/google/start",
+      "body": {
+        "returnTo": "/dashboard#team"
+      },
+      "mode": "google-error"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/api/auth/magic/request",
+      "body": {
+        "email": "builder@example.test",
+        "returnTo": "/dashboard#team"
+      },
+      "mode": "invalid-email"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/api/auth/magic/request",
+      "body": {
+        "email": "builder@example.test",
+        "returnTo": "/dashboard#team"
+      },
+      "mode": "loading"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "/api/auth/google/start",
+      "body": {
+        "returnTo": "/dashboard#team"
+      },
+      "mode": "google-error"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "/api/auth/magic/request",
+      "body": {
+        "email": "builder@example.test",
+        "returnTo": "/dashboard#team"
+      },
+      "mode": "invalid-email"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "/api/auth/magic/request",
+      "body": {
+        "email": "builder@example.test",
+        "returnTo": "/dashboard#team"
+      },
+      "mode": "loading"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 480
+      },
+      "path": "/api/auth/google/start",
+      "body": {
+        "returnTo": "/dashboard#team"
+      },
+      "mode": "google-error"
+    }
+  ],
+  "accessibility": [
+    {
+      "surface": "signin",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": []
+    }
+  ],
+  "finishedAt": "2026-10-24T11:48:43.879Z",
+  "finalResult": "passed",
+  "inspectionNotes": [
+    "Rendered originals and matching-state comparison sheets were opened. Desktop/tablet typography and field states were inspected at original resolution. Short390x480 states were also inspected as1:1 four-frame sheets; natural vertical scrolling is intended.",
+    "Hero target and implementation were compared together in mobile-target-comparison-final.png and mobile-cta-detail-comparison-final.png.",
+    "Main matrix frames are source3dc7c1c. Final hero coordinates and Google loading frames are source07b076d; no auth, chapter or sign-in form code changed between these revisions.",
+    "Shared sign-in menu inherits central5b622c8 in this worktree. Parent centralee7a159 already adds16px icon spacing; integrated menu recapture belongs to the shared-shell lane."
+  ]
+}
