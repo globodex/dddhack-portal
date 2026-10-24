@@ -3501,13 +3501,9 @@ export function AdminParticipants({
     filters.team !== "all" ||
     recordState !== "active"
   );
-  const recordActionError = (cause: unknown) => {
-    if (!(cause instanceof ActionCancelled))
-      setError(
-        cause instanceof Error
-          ? cause.message
-          : "The participant could not be updated.",
-      );
+  const recordActionError = () => {
+    // Portal.run keeps the full server error in its persistent action notice.
+    // Preserve selection for retry without rendering the same error twice.
   };
   const runParticipantAction = async (action: string, values: Row) => {
     if (pendingAction.current) throw new ActionCancelled();
