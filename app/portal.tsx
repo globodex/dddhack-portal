@@ -81,6 +81,8 @@ import {
   type CSSProperties,
 } from "react";
 import Home from "./home";
+import ProjectMediaField from "./project-media-field";
+import { prepareProjectImage } from "./prepare-project-image";
 import ProfileFlow from "./profile-flow";
 import AdminImportDialog from "./admin-import-dialog";
 import AdminStatusMenu from "./admin-status-menu";
@@ -1306,7 +1308,7 @@ function DashboardProject({
             className="dashboard-upvotes"
             aria-label={
               Number.isFinite(data.projectStats.upvotes)
-                ? `${data.projectStats.upvotes} upvotes`
+                ? upvoteCountLabel(data.projectStats.upvotes)
                 : "Upvote count unavailable"
             }
           >
@@ -2204,6 +2206,16 @@ export function SharedRules({ categories = [] }: { categories?: Row[] }) {
   );
 }
 
+function upvoteCountLabel(count: number | null) {
+  return count === null ? "Unknown upvotes" : `${count} ${count === 1 ? "upvote" : "upvotes"}`;
+}
+
+function projectMediaStyle(colorKey: unknown): CSSProperties {
+  const key = typeof colorKey === "string" && teamColorKeys.includes(colorKey as typeof teamColorKeys[number])
+    ? colorKey as typeof teamColorKeys[number] : "graphite";
+  return { "--project-team-color": teamDotColors[key] } as CSSProperties;
+}
+
 const emptyProject = {
   projectName: "",
   problemSolution: "",
@@ -2237,11 +2249,16 @@ export function Submission({
     [fieldErrors, setFieldErrors] = useState<Record<string, string>>({}),
     [step, setStep] = useState(1);
   const wizardHeading = useRef<HTMLHeadingElement>(null);
+  const uploadSequence = useRef({ logo: 0, banner: 0 });
+  const [mediaBusy, setMediaBusy] = useState({ logo: false, banner: false });
+  const [mediaInfo, setMediaInfo] = useState<Record<string, string>>({});
+  const processingMedia = mediaBusy.logo || mediaBusy.banner;
   useEffect(() => setHydrated(true), []);
   useEffect(() => {
     if (step !== 1) wizardHeading.current?.focus();
   }, [step]);
   const next = () => {
+    onInteraction?.();
     setError("");
     const issues: Record<string, string> = {};
     if (step === 1) {
@@ -2270,6 +2287,7 @@ export function Submission({
     attemptsUsed < 3;
   const saving = useRef(false);
   const set = (name: string, value: unknown) => {
+    onInteraction?.();
     setProject((p: Row) => ({ ...p, [name]: value }));
     setFieldErrors((previous) => { const next = { ...previous }; delete next[name]; return next; });
     const corrected = { ...project, [name]: value };
@@ -2289,31 +2307,47 @@ export function Submission({
         : current,
     );
   };
-  const upload = async (file: File | undefined, kind: string) => {
+  const upload = async (file: File | undefined, kind: "logo" | "banner") => {
     if (!file) return;
-    if (
-      !["image/png", "image/jpeg"].includes(file.type) ||
-      file.size > 131072
-    ) {
-      setError("Use a PNG or JPEG at most 128 KB. Logo: 1:1. Banner: 16:9.");
-      return;
+    onInteraction?.();
+    const sequence = ++uploadSequence.current[kind];
+    setFieldErrors((previous) => { const next = { ...previous }; delete next[kind]; return next; });
+    setMediaBusy((previous) => ({ ...previous, [kind]: true }));
+    try {
+      const image = await prepareProjectImage(file, kind);
+      if (uploadSequence.current[kind] !== sequence) return;
+      set(kind, image.dataUrl);
+      setMediaInfo((previous) => ({ ...previous, [kind]: `${file.name} · ${image.sourceWidth} × ${image.sourceHeight}` }));
+    } catch (cause) {
+      if (uploadSequence.current[kind] !== sequence) return;
+      setFieldErrors((previous) => ({ ...previous, [kind]: (cause as Error).message }));
+    } finally {
+      if (uploadSequence.current[kind] === sequence)
+        setMediaBusy((previous) => ({ ...previous, [kind]: false }));
     }
-    const reader = new FileReader();
-    reader.onload = () => {
-      set(kind, String(reader.result));
-      setError("");
-    };
-    reader.onerror = () => setError("That image could not be read.");
-    reader.readAsDataURL(file);
+  };
+  const removeImage = (kind: "logo" | "banner") => {
+    uploadSequence.current[kind]++;
+    setMediaBusy((previous) => ({ ...previous, [kind]: false }));
+    setMediaInfo((previous) => { const next = { ...previous }; delete next[kind]; return next; });
+    set(kind, "");
   };
   const save = async (submit = false) => {
-    if (!canCommit || saving.current) return;
-    if (submit && (!project.logo || !project.banner || !project.attestation)) {
-      setError(
-        !project.logo || !project.banner
-          ? "Add your square logo and 16:9 banner."
-          : "Confirm this submission is accurate.",
-      );
+    if (!canCommit || saving.current || processingMedia) return;
+    const invalidMedia = fieldErrors.banner ? "banner" : fieldErrors.logo ? "logo" : undefined;
+    if (invalidMedia) {
+      document.getElementById(`submission-${invalidMedia}-control`)?.focus();
+      return;
+    }
+    const issues: Record<string, string> = {};
+    if (submit) {
+      if (!project.logo) issues.logo = "Add a project logo.";
+      if (!project.banner) issues.banner = "Add a project banner.";
+      if (!project.attestation) issues.attestation = "Confirm this submission is accurate.";
+    }
+    if (Object.keys(issues).length) {
+      setFieldErrors((previous) => ({ ...previous, ...issues }));
+      requestAnimationFrame(() => document.getElementById(`submission-${Object.keys(issues)[0]}-control`)?.focus());
       return;
     }
     saving.current = true;
@@ -2329,9 +2363,14 @@ export function Submission({
           ),
           contributions: undefined,
         },
-      });
+      }, { errorFeedback: "local" });
     } catch (e) {
-      if (!(e instanceof ActionCancelled)) setError((e as Error).message);
+      if (!(e instanceof ActionCancelled)) {
+        const message = (e as Error).message;
+        const field = /banner/i.test(message) ? "banner" : /logo/i.test(message) ? "logo" : undefined;
+        if (field) setFieldErrors((previous) => ({ ...previous, [field]: message }));
+        else setError(message);
+      }
     } finally {
       saving.current = false;
       setBusy(false);
@@ -2348,28 +2387,8 @@ export function Submission({
       </Empty>
     );
   return (
-    <section className="submission-v6" data-readonly={!canCommit}>
+    <section className="submission-v6" data-readonly={!canCommit} data-hydrated={hydrated} style={projectMediaStyle(data.team?.palette)}>
       <header className="submission-wizard-header">
-        <div className="submission-progress" aria-label={`Step ${step} of 3`}>
-          <span className="submission-progress-bars" aria-hidden="true">
-            {[1, 2, 3].map((n) => (
-              <i key={n} data-active={n === step} />
-            ))}
-          </span>
-          <span>{step} of 3</span>
-        </div>
-        <div className="submission-window-status">
-          {(data.submissionStatus?.allowed === true || canCommit) && (
-            <span>
-              <i aria-hidden="true" />
-              Submission window open
-            </span>
-          )}
-          <small>
-            {remaining} {remaining === 1 ? "submission" : "submissions"}{" "}
-            remaining
-          </small>
-        </div>
         <div className="submission-heading">
           {step > 1 && canCommit ? (
             <button
@@ -2377,6 +2396,7 @@ export function Submission({
               className="submission-back"
               aria-label="Previous submission step"
               onClick={() => {
+                onInteraction?.();
                 setError("");
                 setStep(step - 1);
               }}
@@ -2407,7 +2427,17 @@ export function Submission({
               Submit project
             </h1>
           </div>
-          <span aria-hidden="true" />
+        </div>
+        <div className="submission-progress" aria-label={`Step ${step} of 3`}>
+          <span className="submission-progress-bars" aria-hidden="true">
+            {[1, 2, 3].map((n) => (
+              <i key={n} data-active={n === step} />
+            ))}
+          </span>
+          <span>{step} of 3</span>
+        </div>
+        <div className="submission-window-status">
+          {(data.submissionStatus?.allowed === true || canCommit) && <span><i aria-hidden="true" />Submission window open</span>}
         </div>
       </header>
       {data.eligibility?.status === "ineligible" && (
@@ -2528,6 +2558,7 @@ export function Submission({
                         const choices = e.target.checked
                           ? [...selected, tool]
                           : selected.filter((item) => item !== tool);
+                        onInteraction?.();
                         setProject((p: Row) => ({
                           ...p,
                           tools: choices.join("\n"),
@@ -2570,65 +2601,24 @@ export function Submission({
             data-step="3"
             hidden={step !== 3 && canCommit}
           >
-            {(["logo", "banner"] as const).map((kind) => (
-              <div
-                className={`submission-upload submission-upload-${kind}`}
-                key={kind}
-              >
-                <span className="submission-upload-label">
-                  {kind === "logo" ? "Logo (1:1)" : "Banner (16:9)"}{" "}
-                  <span className="required-marker" aria-hidden="true">
-                    *
-                  </span>
-                </span>
-                <div className="submission-upload-content">
-                  {project[kind] && (
-                    <img
-                      className={`upload-preview ${kind}`}
-                      src={project[kind]}
-                      alt={`${kind} preview`}
-                    />
-                  )}
-                  <div className="submission-upload-actions">
-                    <label className="button secondary submission-file-button">
-                      <Upload size={20} aria-hidden="true" />
-                      <span>{project[kind] ? "Change" : `Upload ${kind}`}</span>
-                      <input
-                        className="sr-only"
-                        type="file"
-                        accept="image/png,image/jpeg"
-                        aria-label={`Upload ${kind}`}
-                        onChange={(e) => {
-                          void upload(e.target.files?.[0], kind);
-                          e.currentTarget.value = "";
-                        }}
-                      />
-                    </label>
-                    {project[kind] && (
-                      <button
-                        type="button"
-                        className="button secondary submission-remove-image"
-                        aria-label={`Remove ${kind} image`}
-                        onClick={() => set(kind, "")}
-                      >
-                        <Trash2 size={20} aria-hidden="true" />
-                      </button>
-                    )}
-                  </div>
-                </div>
+            <ProjectMediaField kind="banner" value={project.banner} info={mediaInfo.banner} error={fieldErrors.banner} busy={mediaBusy.banner} onUpload={(file) => void upload(file, "banner")} onRemove={() => removeImage("banner")} />
+            <div className="submission-media-side">
+              <ProjectMediaField kind="logo" value={project.logo} info={mediaInfo.logo} error={fieldErrors.logo} busy={mediaBusy.logo} onUpload={(file) => void upload(file, "logo")} onRemove={() => removeImage("logo")} />
+              <div className="submission-attestation-wrap">
+                <label className="check-label submission-attestation">
+                  <input id="submission-attestation-control" type="checkbox" checked={!!project.attestation}
+                    aria-invalid={fieldErrors.attestation ? true : undefined}
+                    aria-describedby={fieldErrors.attestation ? "submission-attestation-error" : undefined}
+                    onChange={(e) => set("attestation", e.target.checked)} />
+                  <span>I confirm this submission is accurate.<span className="required-marker" aria-hidden="true"> *</span></span>
+                </label>
+                {fieldErrors.attestation && <small className="submission-field-error" id="submission-attestation-error" role="alert">{fieldErrors.attestation}</small>}
               </div>
-            ))}
-            <label className="check-label submission-attestation">
-              <input
-                type="checkbox"
-                checked={!!project.attestation}
-                onChange={(e) => set("attestation", e.target.checked)}
-              />
-              I confirm this submission is accurate.
-            </label>
+            </div>
           </div>
           {canCommit && (
             <footer className="submission-actions">
+              <small className="submission-remaining">{remaining} {remaining === 1 ? "submission" : "submissions"} remaining</small>
               {step < 3 ? (
                 <button
                   key="submission-next"
@@ -2648,24 +2638,21 @@ export function Submission({
                   <button
                     type="submit"
                     className="button secondary"
-                    disabled={busy}
+                    disabled={busy || processingMedia}
                   >
-                    Save draft
+                    {busy ? "Saving…" : "Save draft"}
                   </button>
                   <button
                     type="button"
                     className="button"
-                    disabled={busy}
+                    disabled={busy || processingMedia}
                     onClick={() => {
                       void save(true);
                     }}
                   >
-                    Submit
+                    Submit <ArrowRight size={18} aria-hidden="true" />
                   </button>
-                  <small className="submission-remaining">
-                    {remaining} {remaining === 1 ? "submission" : "submissions"}{" "}
-                    remaining
-                  </small>
+
                 </>
               )}
             </footer>
@@ -2680,7 +2667,7 @@ export function Submission({
           </p>
         )}
         {error && (
-          <p role="alert" className="error-message">
+          <p role="alert" className="submission-action-error">
             {error}
           </p>
         )}
@@ -2842,7 +2829,7 @@ function ProjectBody({
   publicView?: boolean;
 }) {
   return (
-    <div className="project-presentation">
+    <div className="project-presentation" style={projectMediaStyle(project.teamColorKey)}>
       <img
         className="project-banner"
         src={project.banner}
@@ -2960,7 +2947,7 @@ export function UpvoteButton({
       <button
         type="button"
         className="upvote-button"
-        aria-label={`${voted ? "Upvoted" : "Upvote"} ${project.projectName}; ${count ?? "unknown"} upvotes`}
+        aria-label={`${voted ? "Upvoted" : "Upvote"} ${project.projectName}; ${upvoteCountLabel(count)}`}
         aria-pressed={voted}
         aria-busy={busy}
         disabled={!allowed || busy}
@@ -3302,7 +3289,7 @@ export function Projects({
                 <img
                   loading="lazy"
                   decoding="async"
-                  className="row-logo"
+                  className="row-logo" style={projectMediaStyle(p.teamColorKey)}
                   src={p.logo}
                   alt=""
                 />
@@ -3317,7 +3304,7 @@ export function Projects({
                   <strong>
                     {p.result
                       ? `${p.result.score} ${p.result.stage === "ai" ? "AI" : "final"} score`
-                      : `${p.upvotes} upvotes`}
+                      : upvoteCountLabel(p.upvotes)}
                   </strong>
                   <a href={`/projects/${p.slug}`}>View project</a>
                 </div>

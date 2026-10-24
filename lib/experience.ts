@@ -322,6 +322,7 @@ export class PortalExperience {
       firstSubmittedAt: fact.firstSubmittedAt ?? undefined,
       slug: p.slug,
       teamName: fact.teamName,
+      teamColorKey: fact.teamColorKey,
       projectName: d.projectName,
       problemSolution: d.problemSolution,
       description: d.description,

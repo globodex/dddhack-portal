@@ -378,3 +378,30 @@ test("complete final awards spanning more than one bind chunk reuse bounded page
     db.close();
   }
 });
+
+
+test("public media uses the current whitelisted team color without extra reads or style payloads", async () => {
+  const { db, f, service, count, reset } = await fixture();
+  try {
+    const team = f.teams[0];
+    const route = "/projects/synthetic-" + team.index;
+    const read = async () => {
+      reset();
+      const view = (await service(null).view(route)) as View;
+      assert.ok(count() <= 15, `public detail made ${count()} reads`);
+      const project = view.items[0];
+      assert.equal(project.draft, undefined);
+      assert.equal(project.palette, undefined);
+      assert.equal(project.color_key, undefined);
+      return project;
+    };
+    await db.prepare("INSERT INTO team_styles(team_id,avatar,palette,color_key) VALUES(?,'initials','graphite','coral') ON CONFLICT(team_id) DO UPDATE SET color_key=excluded.color_key").bind(team.id).all();
+    assert.equal((await read()).teamColorKey, "coral");
+    await db.prepare("UPDATE team_styles SET color_key='yellow' WHERE team_id=?").bind(team.id).all();
+    assert.equal((await read()).teamColorKey, "yellow", "new request reflects current style rather than a submission snapshot");
+    await db.prepare("UPDATE team_styles SET color_key=NULL,palette='forest' WHERE team_id=?").bind(team.id).all();
+    assert.equal((await read()).teamColorKey, "forest", "legacy canonical palette remains supported");
+    await db.prepare("DELETE FROM team_styles WHERE team_id=?").bind(team.id).all();
+    assert.equal((await read()).teamColorKey, "graphite");
+  } finally { db.close(); }
+});

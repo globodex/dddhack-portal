@@ -26,7 +26,7 @@ export function participantRules(open: string | null, close: string | null) {
           (close ? ist(close) : "at the published deadline") +
           ".",
         "Exactly three committed submissions per team, including the initial version. Drafts and wizard navigation use no attempt. No project edits after the third commit.",
-        "Project logo (1:1) and banner (16:9) are required. Deployment link is optional for all projects.",
+        "Project logo and banner are required. Any image aspect ratio is accepted and displayed in square logo and 16:9 banner frames without cropping. Deployment link is optional for all projects.",
         "Credits are personal to their assigned checked-in recipient. Use the current setup instructions; do not share private credit values.",
       ],
     },

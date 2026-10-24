@@ -1,0 +1,11 @@
+# Submission media rework
+
+Source audit: the actual rejected live Step 3 PNG is `/workspace/library-files/live-submission-step3/current.png`. It shows the same ratio error in a green notice and a red bar, a detached Back control, and left-heavy media with unused right space. The source image is private reference evidence, never a test fixture.
+
+The approved replacement uses a single aligned header: Back, expression dot and title on the left; three-step progress on the right. The form below uses one width and gutter. Step 3 places the banner in a wider left column and the logo plus attestation in a compact right column. On mobile these become a readable single stack. Save draft and Submit share one clear footer, with the remaining committed submissions shown once.
+
+Both logo and banner accept any valid aspect ratio. Images are centered and contained in square logo / 16:9 banner presentation frames, without cropping, stretching or padding the encoded file. The surrounding pastel wash follows the current server-authorized team color, including public presentation. Upload controls, current file information and linked field errors stay together. Invalid replacement leaves the previous image and all other values intact. Edits clear stale success notices; local errors do not create another global error toast.
+
+Source inputs: PNG/JPEG, logo at most 1,000,000 bytes, banner at most 5,000,000 bytes, each source axis 64..4096 pixels. The agreed transport contract retains small originals or optimizes locally while preserving aspect and alpha: canonical logo at most 131,072 bytes / max edge512; banner at most393,216 bytes / max edge1600; encoded axes may be1..4096. Server checks remain authoritative. No new upload provider, crop dependency or production setting changes.
+
+QA must cover full-aspect portrait/square/ultrawide/transparent fixtures, exact source limits and rejection above them, invalid MIME/dimensions, replace/remove/retry, preserved values and attempts, one synthetic Save draft and at most one synthetic Submit on a fresh two-attempt fixture. Inspect actual1440/768/390/320 and short-mobile/200% screenshots after hydration, plus inline errors and public frame/color parity. No readiness claim until rendered evidence and relevant tests pass.

@@ -63,7 +63,7 @@
 .app-shell .project-detail-topline { gap: 12px; margin-bottom: 28px; color: var(--muted, #656960); font-size: 14px; }
 .app-shell .project-detail-topline .expressive-heading-dot { width: 30px; height: 30px; }
 .app-shell .public-project-detail .project-presentation { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); align-items: start; gap: 32px 48px; }
-.app-shell .public-project-detail .project-presentation > .project-banner { grid-column: 2; grid-row: 1; width: 100%; aspect-ratio: 16 / 9; height: auto; margin: 0; border-radius: 12px; object-fit: contain; background: #e9ece1; }
+.app-shell .public-project-detail .project-presentation > .project-banner { grid-column: 2; grid-row: 1; width: 100%; aspect-ratio: 16 / 9; height: auto; margin: 0; border-radius: 12px; object-fit: contain; background: color-mix(in srgb, var(--project-team-color, #262626) 11%, var(--surface, #fffefa)); }
 .app-shell .public-project-detail .project-overview { grid-column: 1; grid-row: 1; }
 .app-shell .public-project-detail .project-identity { display: flex; align-items: center; gap: 18px; margin-bottom: 24px; }
 .app-shell .public-project-detail .project-logo { width: 64px; height: 64px; flex-basis: 64px; border-radius: 12px; }
@@ -205,4 +205,64 @@
   .app-shell .submission-v6 .submission-heading { grid-template-columns: 44px minmax(0, 1fr); gap: 8px; }
   .app-shell .submission-v6 .submission-heading > div { justify-content: flex-start; }
   .app-shell .submission-v6 .submission-heading > span[aria-hidden="true"] { display: none; }
+}
+
+/* A single form axis and full-aspect media, shared with public presentation. */
+.app-shell .submission-v6 { max-width: 960px; margin-inline: auto; }
+.app-shell .submission-v6 .submission-wizard-header { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px 28px; margin-bottom: 24px; }
+.app-shell .submission-v6 .submission-heading { display: flex; align-items: center; gap: 10px; margin: 0; min-width: 0; }
+.app-shell .submission-v6 .submission-heading > div { justify-content: flex-start; gap: 12px; min-width: 0; }
+.app-shell .submission-v6 .submission-heading h1 { margin: 0; font-size: 28px; line-height: 1.2; }
+.app-shell .submission-v6 .submission-back { flex: 0 0 40px; width: 40px; height: 44px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.app-shell .submission-v6 .submission-progress { margin: 0; justify-items: end; gap: 7px; font-size: 12px; }
+.app-shell .submission-v6 .submission-progress-bars { width: 112px; }
+.app-shell .submission-v6 .submission-progress-bars i { height: 4px; }
+.app-shell .submission-v6 .submission-window-status { grid-column: 1 / -1; position: static; display: flex; justify-content: flex-start; justify-items: start; margin: 0 0 0 50px; color: #48613b; font-size: 12px; }
+.app-shell .submission-v6 .submission-window-status > span { gap: 7px; }
+.app-shell .submission-v6 .submission-window-status i { width: 7px; height: 7px; }
+.app-shell .submission-v6 .project-editor { width: 100%; max-width: none; padding: 28px; margin: 0; border-radius: 16px; }
+.app-shell .submission-v6 .submission-media { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(200px, 1fr); gap: 32px; align-items: start; }
+.app-shell .submission-v6 .submission-media-side { display: grid; gap: 26px; min-width: 0; }
+.app-shell .submission-media-field { min-width: 0; }
+.app-shell .submission-media-field h2 { margin: 0 0 12px; color: var(--ink); font-size: 14px; font-weight: 600; line-height: 1.4; letter-spacing: -.01em; }
+.app-shell .submission-media-frame { display: grid; place-items: center; overflow: hidden; width: 100%; border: 1px solid color-mix(in srgb, var(--project-team-color) 16%, var(--line)); border-radius: 12px; background: color-mix(in srgb, var(--project-team-color) 11%, var(--surface, #fffefa)); }
+.app-shell .submission-media-frame-banner { aspect-ratio: 16 / 9; }
+.app-shell .submission-media-frame-logo { aspect-ratio: 1; max-width: 180px; }
+.app-shell .submission-media-frame img { display: block; width: 100%; height: 100%; min-height: 0; max-height: 100%; object-fit: contain; }
+.app-shell .submission-media-empty { display: grid; justify-items: center; gap: 10px; padding: 16px; color: var(--muted); font-size: 12px; text-align: center; }
+.app-shell .submission-media-controls { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.app-shell .submission-v6 .submission-media-controls .button { display: inline-flex; justify-content: center; align-items: center; gap: 7px; min-height: 44px; min-width: 0; margin: 0; padding: 10px 13px; border-radius: 9px; background: var(--surface); border-color: var(--line); color: var(--ink); font-size: 13px; }
+.app-shell .submission-v6 .submission-media-controls .submission-remove-image { width: 44px; padding: 10px; }
+.app-shell .submission-media-description, .app-shell .submission-media-file { margin: 9px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
+.app-shell .submission-media-file { color: var(--ink); }
+.app-shell .submission-v6 .submission-media .submission-attestation { display: flex; gap: 10px; font-size: 13px; line-height: 1.5; color: var(--ink); }
+.app-shell .submission-attestation-wrap { padding-top: 20px; border-top: 1px solid var(--line); }
+.app-shell .submission-v6 .submission-actions { display: flex; align-items: center; gap: 10px; padding-top: 22px; margin-top: 28px; }
+.app-shell .submission-v6 .submission-remaining { display: block; margin-right: auto; color: var(--muted); font-size: 12px; line-height: 1.4; }
+.app-shell .submission-v6 .submission-action-error { width: fit-content; max-width: 100%; margin: 16px 0 0; padding-left: 12px; border-left: 2px solid #b13a2d; color: #9d3025; font-size: 13px; line-height: 1.5; }
+.app-shell :is(.project-presentation .project-banner,.project-presentation .project-logo,.projects-v6 .row-logo) { object-fit: contain; background: color-mix(in srgb, var(--project-team-color, #262626) 11%, var(--surface, #fffefa)); }
+.app-shell .submission-history-actions { max-width: none; }
+@media (max-width: 740px) {
+  .app-shell .submission-v6 .submission-wizard-header { grid-template-columns: minmax(0, 1fr) auto; gap: 12px 12px; }
+  .app-shell .submission-v6 .submission-heading { gap: 8px; }
+  .app-shell .submission-v6 .submission-heading > div { gap: 8px; }
+  .app-shell .submission-v6 .submission-heading h1 { font-size: 23px; }
+  .app-shell .submission-v6 .submission-heading .expressive-heading-dot { width: 30px; height: 30px; }
+  .app-shell .submission-v6 .submission-back { flex-basis: 36px; width: 36px; }
+  .app-shell .submission-v6 .submission-progress { gap: 6px; font-size: 11px; }
+  .app-shell .submission-v6 .submission-progress-bars { width: 64px; gap: 4px; }
+  .app-shell .submission-v6 .submission-window-status { margin-left: 44px; }
+  .app-shell .submission-v6 .project-editor { padding: 22px 18px; }
+  .app-shell .submission-v6 .submission-media { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .app-shell .submission-v6 .submission-media-side { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .app-shell .submission-media-frame-logo { max-width: 144px; }
+  .app-shell .submission-v6 .submission-actions { flex-wrap: wrap; gap: 10px; margin-top: 24px; padding-top: 20px; }
+  .app-shell .submission-v6 .submission-remaining { width: 100%; flex-basis: 100%; margin: 0 0 4px; }
+  .app-shell .submission-v6 .submission-actions .button { flex: 1; min-width: 0; font-size: 14px; padding: 11px 12px; }
+}
+@media (max-width: 360px) {
+  .app-shell .submission-v6 .submission-heading h1 { font-size: 20px; }
+  .app-shell .submission-v6 .submission-heading .expressive-heading-dot { width: 26px; height: 26px; }
+  .app-shell .submission-v6 .submission-heading > div { gap: 6px; }
+  .app-shell .submission-v6 .submission-progress-bars { width: 48px; }
 }
