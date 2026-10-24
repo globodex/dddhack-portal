@@ -1279,3 +1279,43 @@
   font-size: 12px;
   white-space: nowrap;
 }
+.admin-access-list {
+  margin: 0 0 20px;
+  padding: 0;
+  list-style: none;
+}
+.admin-access-list > li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line, #e3e4db);
+}
+.admin-access-person {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.admin-access-person strong {
+  font-size: 14px;
+}
+.admin-access-person span {
+  color: var(--muted, #656960);
+  font-size: 13px;
+}
+.admin-access-owner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted, #656960);
+  font-size: 13px;
+}
+.main:not(.home-main) .admin-add-admins .admin-access-revoke {
+  inline-size: 112px;
+  min-height: 44px;
+  padding: 8px 10px;
+  font-size: 12px;
+  white-space: nowrap;
+}

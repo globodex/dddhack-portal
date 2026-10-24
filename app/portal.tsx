@@ -5414,7 +5414,7 @@ export function Settings({
         )}
       </div>
       <div {...panel("access")}>
-        <AddAdmins owner={!!data.me?.owner} title="Admin access" run={run} />
+        <AddAdmins owner={!!data.me?.owner} title="Admin access" access={data.adminAccess} run={run} />
         <AdminCreditInstructions
           providers={data.creditInstructions || []}
           run={run}

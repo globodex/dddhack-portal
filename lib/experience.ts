@@ -1,4 +1,5 @@
 import { projectMediaPolicy } from "./project-media-policy";
+import { adminAccessView, revokeAdminAccess } from "./admin-access";
 import { auditReason } from "./security";
 import { checkInParticipants } from "./participant-checkin";
 import { personalCreditRows } from "./credit-stock";
@@ -934,6 +935,7 @@ export class PortalExperience {
           }),
       };
     }
+    if (route === "/admin/access") return adminAccessView(this.s);
     if (route === "/admin/settings") {
       const me = await this.s.staff();
       const settings = await this.s.settings(true);
@@ -953,6 +955,7 @@ export class PortalExperience {
       return {
         me,
         engagement: await engagementState(this.s),
+        ...(me.owner ? { adminAccess: await adminAccessView(this.s) } : {}),
         creditInstructions: await rows(
           this.s.db,
           "SELECT id,name,instructions FROM credit_types WHERE active=1",
@@ -2057,6 +2060,7 @@ export class PortalExperience {
             : "Participant status updated.",
       };
     }
+    if (action === "revoke-admin") return revokeAdminAccess(this.s, data);
     if (action === "add-admin") {
       await this.s.staff(true);
       const d = z
