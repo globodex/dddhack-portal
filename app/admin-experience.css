@@ -533,24 +533,39 @@
 .main:not(.home-main) .admin-workspace .admin-submission-records h2 {
   font-size: 18px;
 }
-.main:not(.home-main) .admin-workspace .admin-submission-management {
+.main:not(.home-main) .admin-workspace .admin-submission-management.panel {
+  border: 0;
   border-top: 1px solid var(--line, #e3e4db);
+  border-radius: 0;
   background: transparent;
   margin: 0;
-  padding-inline: 20px;
+  padding: 0;
 }
-.main:not(.home-main) .admin-workspace .admin-submission-management > summary {
+.main:not(.home-main)
+  .admin-workspace
+  .admin-submission-management.panel
+  > summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   min-height: 52px;
-  margin: 0 -20px;
+  margin: 0;
   padding: 14px 20px;
   color: var(--ink, #202320);
   font-size: 13px;
   line-height: 1.5;
   list-style: none;
+}
+.main:not(.home-main)
+  .admin-workspace
+  .admin-submission-management.panel
+  > .admin-project-action {
+  margin: 0;
+  padding: 0 20px 20px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 .admin-submission-management > summary::-webkit-details-marker {
   display: none;
