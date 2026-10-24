@@ -1482,6 +1482,7 @@ dialog.team-create-dialog .team-create-form > .form-actions {
 dialog.team-create-dialog {
   box-sizing: border-box;
   width: min(640px, calc(100vw - 32px));
+  height: min(624px, calc(100dvh - 48px));
   max-width: none;
   max-height: calc(100dvh - 48px);
   margin: auto;
@@ -1494,6 +1495,7 @@ dialog.team-create-dialog {
 dialog.team-create-dialog > form.team-create-form {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
+  height: 100%;
   max-height: calc(100dvh - 50px);
   min-height: 0;
   padding: 0;
@@ -1504,6 +1506,7 @@ dialog.team-create-dialog > form.team-create-form {
 }
 @media (max-width: 640px) {
   dialog.team-create-dialog {
+    height: min(624px, calc(100dvh - 32px));
     max-height: calc(100dvh - 32px);
     border-radius: 14px;
   }
