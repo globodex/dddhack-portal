@@ -1,4 +1,5 @@
 import { auditReason } from "./security";
+import { checkInParticipants } from "./participant-checkin";
 import { resultControls } from "./result-controls";
 import { discoverParticipants, type PortalViewOptions } from "./discover-participants";
 import { teamFacts, personFacts, selectedRows } from "./directory-facts";
@@ -37,7 +38,6 @@ import {
   submissionAccess,
   requireSubmissionAccess,
   assertUnlockedTeam,
-  requireGoingForCheckin,
 } from "./team-access";
 import { qualificationCommand } from "./engagement-scoring";
 import { z } from "zod";
@@ -1155,6 +1155,8 @@ export class PortalExperience {
     data: unknown,
     actor: Actor,
   ): Promise<Record<string, unknown> | null> {
+    if (action === "quick-check-in" || action === "bulk-check-in")
+      return checkInParticipants(this.s, actor, action, data);
     if (
       [
         "create-workspace-team",
@@ -2021,29 +2023,14 @@ export class PortalExperience {
         );
       else await this.s.staff();
       demand(!(d.checkIn && d.status), 422, "SEPARATE_STATUS_AND_ATTENDANCE");
+      if (d.checkIn)
+        return checkInParticipants(this.s, actor, action, {
+          emails: d.emails,
+          reason: d.reason,
+        });
       const emails = [...new Set(d.emails)],
         sql: SQL[] = [];
-      if (d.checkIn) {
-        await this.s.operational("checkin");
-        for (const email of emails) {
-          const u = await one<{ id: string }>(
-            this.s.db,
-            "SELECT id FROM users WHERE email=?",
-            email,
-          );
-          demand(u, 422, "PARTICIPANT_NOT_SIGNED_IN");
-          await requireGoingForCheckin(this.s, u.id);
-          sql.push(
-            [
-              "INSERT INTO check_ins VALUES(?,?,?) ON CONFLICT(user_id) DO NOTHING",
-              u.id,
-              actor.id,
-              this.s.now(),
-            ],
-            ["DELETE FROM participant_status_overrides WHERE user_id=?", u.id],
-          );
-        }
-      } else {
+      {
         demand(d.status, 422, "STATUS_REQUIRED");
         for (const email of emails) {
           sql.push([
