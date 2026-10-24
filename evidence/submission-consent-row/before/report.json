@@ -1,0 +1,49 @@
+{
+  "phase": "before",
+  "source": "f54306b76c17f5dc5b101354c17142583b3efe09",
+  "syntheticOnly": true,
+  "origin": "http://localhost:3013",
+  "backendPort": 8858,
+  "screenshots": [
+    {
+      "path": "evidence/submission-consent-row/before/step3-1440x900.png",
+      "sha256": "d304baced50ad99e74c4f5ba1858b8f9451dd8faca2607c8e66555e2f471a136"
+    },
+    {
+      "path": "evidence/submission-consent-row/before/step3-full-1440x900.png",
+      "sha256": "273941322fca5575c8f793396bbbb795a00ab912e2acf73582310de20aa7f9b6"
+    },
+    {
+      "path": "evidence/submission-consent-row/before/step3-390x844.png",
+      "sha256": "d72181b2775332fd0d9c0edd15cb4014f022aaa6e845e0cf6b824a02877341e7"
+    },
+    {
+      "path": "evidence/submission-consent-row/before/step3-full-390x844.png",
+      "sha256": "aad19344a4088a620525d789364ff798c2fb6db77ca4eaa50863bfec4697ad95"
+    },
+    {
+      "path": "evidence/submission-consent-row/before/step3-320x480.png",
+      "sha256": "6f3bd6584d2af612ee973afcefde349560f66aa378ecb44dab45e58f51338d48"
+    },
+    {
+      "path": "evidence/submission-consent-row/before/step3-full-320x480.png",
+      "sha256": "6f1aea07bfbf498947135f35506c255405660d14f87b6e5d08baf444426bbf2c"
+    }
+  ],
+  "checks": [
+    {
+      "name": "1440x900 actual final step captured",
+      "passed": true
+    },
+    {
+      "name": "390x844 actual final step captured",
+      "passed": true
+    },
+    {
+      "name": "320x480 actual final step captured",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "writes": []
+}

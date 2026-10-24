@@ -1,0 +1,49 @@
+{
+  "syntheticOnly": true,
+  "origin": "http://localhost:3013",
+  "screenshots": [
+    "evidence/submission-consent-row/history/closed-1440x900.png",
+    "evidence/submission-consent-row/history/expanded-1440x900.png",
+    "evidence/submission-consent-row/history/team-header-1440x900.png",
+    "evidence/submission-consent-row/history/closed-390x844.png",
+    "evidence/submission-consent-row/history/expanded-390x844.png",
+    "evidence/submission-consent-row/history/team-header-390x844.png",
+    "evidence/submission-consent-row/history/closed-320x480.png",
+    "evidence/submission-consent-row/history/expanded-320x480.png",
+    "evidence/submission-consent-row/history/team-header-320x480.png",
+    "evidence/submission-consent-row/history/third-attempt-readonly-390x844.png",
+    "evidence/submission-consent-row/history/member-history-only-390x844.png",
+    "evidence/submission-consent-row/history/history-response-error-390x844.png"
+  ],
+  "checks": [
+    {
+      "name": "1440x900 action row above history; native keyboard/touch accordions show saved snapshots and exact Current chip; one lazy GET; compact media; clean Team header",
+      "passed": true,
+      "historyGets": 1
+    },
+    {
+      "name": "390x844 action row above history; native keyboard/touch accordions show saved snapshots and exact Current chip; one lazy GET; compact media; clean Team header",
+      "passed": true,
+      "historyGets": 1
+    },
+    {
+      "name": "320x480 action row above history; native keyboard/touch accordions show saved snapshots and exact Current chip; one lazy GET; compact media; clean Team header",
+      "passed": true,
+      "historyGets": 1
+    },
+    {
+      "name": "Third committed attempt shows exactly three accordions and no Update project capability",
+      "passed": true
+    },
+    {
+      "name": "Existing teammate can read committed history and has no Update capability",
+      "passed": true
+    },
+    {
+      "name": "Controlled local history503 shows honest error and Retry restores saved snapshot without changing metadata",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "writes": []
+}

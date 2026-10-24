@@ -1,0 +1,59 @@
+✔ Dashboard tab panels keep default Team visible and published project mutations fail closed after three attempts (97.325053ms)
+✔ Team rows show one expression avatar each, keep initials only on the team badge and take arrival details only from safe server data (14.724555ms)
+✔ focused project editor has a real button exit without duplicate history actions (99.901354ms)
+✔ nonleader retains authorized read access to an unpublished saved draft (49.271838ms)
+✔ leader must personally check in for drafts/commits while a teammate can unlock read-only project/history (166.691562ms)
+✔ own project votes require personal check-in; other project votes have no check-in/time window or global quota and stay idempotent (113.979057ms)
+✔ sole unlocked leader can recoverably remove own team; locked/multiple-member and committed-history teams cannot self-delete (87.985712ms)
+✔ absence reconciles lazily once at midnight IST, preserving Registered/ever-attended and respecting later manual corrections (79.86712ms)
+✔ single participant deactivation revokes stale-session capabilities and imports cannot restore; protected owners/leaders are blocked (95.70461ms)
+✔ project/version soft removal suppresses public APIs and images without resetting attempts or falling back to old versions (139.628831ms)
+✔ owner previews both real submission dates with version-bound confirmation, leaving fixed repository cutoff and attempts intact (106.523291ms)
+✔ pasted/single emails and explicitly mapped full CSV imports are add-only, previewed and prefill only new profiles (103.008095ms)
+✔ profile imports stop supplying defaults after first save, preserve explicit clears, and accept only exact imported category (113.648603ms)
+✔ in-flight mutation cannot persist after single participant deactivation commits (70.798329ms)
+✔ approved never-login registrants become Absent without inventing a user and retain this state at first sign-in (86.129359ms)
+✔ admin engagement pause is versioned, backend enforced, and reopening preserves one vote per project (113.381984ms)
+✔ unreviewed removed projects do not block active scoring coverage and cannot be edited, while history remains (118.882424ms)
+✔ profile starts a three-step flow with authenticated email and eight approved symbolic avatar choices (27.323895ms)
+✔ Dashboard consolidates Team, Credits and Project and keeps upvotes read-only and private feedback separate (55.420531ms)
+✔ team idea is capped, saved before lock and uses safe teammate profiles, symbolic avatars and supplied phone links (71.572579ms)
+✔ viewer discovery and dashboard remain read-only without forcing profile completion (28.964075ms)
+✔ project mutation controls fail closed unless server grants canCommit to this leader, with history available after edit close (34.339501ms)
+✔ credit allocations start masked and never expose secret fields from the projection (4.60434ms)
+✔ showcase votes use server capabilities and persistent pressed state without a downvote action (2.436993ms)
+✔ vote controller permits one pending action, rolls back rejection and can retry after failure (0.978053ms)
+✔ profile and external links are constrained; immutable version view renders explicit project fields only (1.055043ms)
+✖ destructive and publishing confirmations identify exact scope and preserve policy/history (6.623612ms)
+✔ explicit sex and typed social prefills are preserved for review without inventing selections (20.577198ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 27
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7229.838562
+
+✖ failing tests:
+
+test at tests/participant-ui.test.ts:1:8639
+✖ destructive and publishing confirmations identify exact scope and preserve policy/history (6.623612ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Imports cannot restore/. Input:
+  
+  'Revoke participation and private access. Their history stays intact.'
+  
+      at TestContext.<anonymous> (/workspace/dddhack-submission-consent/tests/participant-ui.test.ts:408:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Revoke participation and private access. Their history stays intact.',
+    expected: /Imports cannot restore/,
+    operator: 'match',
+    diff: 'simple'
+  }

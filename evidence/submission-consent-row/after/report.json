@@ -1,0 +1,298 @@
+{
+  "phase": "after",
+  "source": "dd448de82a942bc2adc3c0d964b238203537d5d3",
+  "syntheticOnly": true,
+  "origin": "http://localhost:3013",
+  "backendPort": 8858,
+  "screenshots": [
+    {
+      "path": "evidence/submission-consent-row/after/step3-1440x900.png",
+      "sha256": "65c87bfdd9965e7e844c5bda35c08a455469e080a0c97eb6e6dcfac4388caafb"
+    },
+    {
+      "path": "evidence/submission-consent-row/after/step3-full-1440x900.png",
+      "sha256": "44378de8e7877f33e00ac77ab9f61e8e7ede11fbf6ad2c0bd892a351a7fdc8e8"
+    },
+    {
+      "path": "evidence/submission-consent-row/after/accuracy-error-1440x900.png",
+      "sha256": "aa1ec4345fc10c5b58cfd4a94b4731593841b387c2ced359b35fa6c8361482aa"
+    },
+    {
+      "path": "evidence/submission-consent-row/after/confirmation-1440x900.png",
+      "sha256": "cff0f67738854e4293c4a28539a3c7146e0e89603fc2ac77b93829e48a2efc28"
+    },
+    {
+      "path": "evidence/submission-consent-row/after/step3-390x844.png",
+      "sha256": "a85f2736c71bc841fd831df7dd43ff3e58166f1c5a9d90bf9a53a17d5e7225b7"
+    },
+    {
+      "path": "evidence/submission-consent-row/after/step3-full-390x844.png",
+      "sha256": "eea418a31cff5ba37d4f3c21557f95c5d71cb08459b8dedf392e8cf670912934"
+    },
+    {
+      "path": "evidence/submission-consent-row/after/accuracy-error-390x844.png",
+      "sha256": "2ef2c9102ab88bf66a8cd83a340cf655b10910e814227795b6a9ce81475c7e4d"
+    },
+    {
+      "path": "evidence/submission-consent-row/after/confirmation-390x844.png",
+      "sha256": "e6c3ede930a68b35d996b34b854e46b39c61da89a8ea75c5b4a5022088bb14c8"
+    },
+    {
+      "path": "evidence/submission-consent-row/after/step3-320x480.png",
+      "sha256": "0aa1b450ad5e0d9840b25b0788dd15d5f20e0a6cb05c2c9a54da072ccfbfafc4"
+    },
+    {
+      "path": "evidence/submission-consent-row/after/step3-full-320x480.png",
+      "sha256": "932c948e0365551d4d7693bd67fb09d11bf4f3a26b157d18b4a84d9945a7f6b1"
+    },
+    {
+      "path": "evidence/submission-consent-row/after/accuracy-error-320x480.png",
+      "sha256": "0c3bcf60e3718ec76a608a3848b22b7d2c612d5808c40c2da6975b8db2a0eb3f"
+    },
+    {
+      "path": "evidence/submission-consent-row/after/confirmation-320x480.png",
+      "sha256": "9a2eb2dc48c3353db031dd703c5b15f202d68531cd2de8f9bc2b5fa575fe594a"
+    },
+    {
+      "path": "evidence/submission-consent-row/after/fine-pointer-repel.png",
+      "sha256": "3787b5ac2ec53d6d915a5aa3e739f0a9535526ba3ee4142b6cd0aa444f997e2a"
+    }
+  ],
+  "checks": [
+    {
+      "name": "1440x900 actual final step captured",
+      "passed": true
+    },
+    {
+      "name": "1440x900 full-width accuracy row, target, focus, validation, green contrast, cancellation, static dots and no overflow",
+      "passed": true,
+      "contrast": 5.575507590527107,
+      "metrics": {
+        "checkbox": {
+          "x": 274.5,
+          "y": 763.703125,
+          "width": 44,
+          "height": 44,
+          "bottom": 807.703125
+        },
+        "row": {
+          "x": 261.5,
+          "y": 729.703125,
+          "width": 902,
+          "height": 89,
+          "bottom": 818.703125
+        },
+        "banner": {
+          "x": 261.5,
+          "y": 251,
+          "width": 547.765625,
+          "height": 446.703125,
+          "bottom": 697.703125
+        },
+        "logo": {
+          "x": 841.265625,
+          "y": 251,
+          "width": 322.234375,
+          "height": 318.59375,
+          "bottom": 569.59375
+        },
+        "media": {
+          "x": 261.5,
+          "y": 251,
+          "width": 902,
+          "height": 567.703125,
+          "bottom": 818.703125
+        },
+        "actions": {
+          "x": 261.5,
+          "y": 846.703125,
+          "width": 902,
+          "height": 67,
+          "bottom": 913.703125
+        },
+        "form": {
+          "x": 232.5,
+          "y": 222,
+          "width": 960,
+          "height": 720.703125,
+          "bottom": 942.703125
+        },
+        "dots": {
+          "x": 232.5,
+          "y": 966.703125,
+          "width": 960,
+          "height": 132,
+          "bottom": 1098.703125
+        },
+        "decorationInForm": false,
+        "decorationPointerEvents": "none",
+        "decorationAriaHidden": "true",
+        "motion": "static",
+        "running": "false",
+        "documentWidth": 1425,
+        "viewportWidth": 1440,
+        "background": "rgb(8, 120, 62)",
+        "foreground": "rgb(255, 255, 255)"
+      }
+    },
+    {
+      "name": "390x844 actual final step captured",
+      "passed": true
+    },
+    {
+      "name": "390x844 full-width accuracy row, target, focus, validation, green contrast, cancellation, static dots and no overflow",
+      "passed": true,
+      "contrast": 5.575507590527107,
+      "metrics": {
+        "checkbox": {
+          "x": 50,
+          "y": 492.6875,
+          "width": 44,
+          "height": 44,
+          "bottom": 536.6875
+        },
+        "row": {
+          "x": 39,
+          "y": 458.6875,
+          "width": 312,
+          "height": 89,
+          "bottom": 547.6875
+        },
+        "banner": {
+          "x": 39,
+          "y": -194,
+          "width": 312,
+          "height": 314.09375,
+          "bottom": 120.09375
+        },
+        "logo": {
+          "x": 39,
+          "y": 148.09375,
+          "width": 312,
+          "height": 282.59375,
+          "bottom": 430.6875
+        },
+        "media": {
+          "x": 39,
+          "y": -194,
+          "width": 312,
+          "height": 741.6875,
+          "bottom": 547.6875
+        },
+        "actions": {
+          "x": 39,
+          "y": 571.6875,
+          "width": 312,
+          "height": 95.796875,
+          "bottom": 667.484375
+        },
+        "form": {
+          "x": 20,
+          "y": -217,
+          "width": 350,
+          "height": 907.484375,
+          "bottom": 690.484375
+        },
+        "dots": {
+          "x": 20,
+          "y": 708.484375,
+          "width": 350,
+          "height": 88,
+          "bottom": 796.484375
+        },
+        "decorationInForm": false,
+        "decorationPointerEvents": "none",
+        "decorationAriaHidden": "true",
+        "motion": "static",
+        "running": "false",
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "background": "rgb(8, 120, 62)",
+        "foreground": "rgb(255, 255, 255)"
+      }
+    },
+    {
+      "name": "320x480 actual final step captured",
+      "passed": true
+    },
+    {
+      "name": "320x480 full-width accuracy row, target, focus, validation, green contrast, cancellation, static dots and no overflow",
+      "passed": true,
+      "contrast": 5.575507590527107,
+      "metrics": {
+        "checkbox": {
+          "x": 46,
+          "y": 127.8125,
+          "width": 44,
+          "height": 44,
+          "bottom": 171.8125
+        },
+        "row": {
+          "x": 35,
+          "y": 93.8125,
+          "width": 250,
+          "height": 89,
+          "bottom": 182.8125
+        },
+        "banner": {
+          "x": 35,
+          "y": -524,
+          "width": 250,
+          "height": 279.21875,
+          "bottom": -244.78125
+        },
+        "logo": {
+          "x": 35,
+          "y": -216.78125,
+          "width": 250,
+          "height": 282.59375,
+          "bottom": 65.8125
+        },
+        "media": {
+          "x": 35,
+          "y": -524,
+          "width": 250,
+          "height": 706.8125,
+          "bottom": 182.8125
+        },
+        "actions": {
+          "x": 35,
+          "y": 206.8125,
+          "width": 250,
+          "height": 95.796875,
+          "bottom": 302.609375
+        },
+        "form": {
+          "x": 16,
+          "y": -547,
+          "width": 288,
+          "height": 872.609375,
+          "bottom": 325.609375
+        },
+        "dots": {
+          "x": 16,
+          "y": 343.609375,
+          "width": 288,
+          "height": 88,
+          "bottom": 431.609375
+        },
+        "decorationInForm": false,
+        "decorationPointerEvents": "none",
+        "decorationAriaHidden": "true",
+        "motion": "static",
+        "running": "false",
+        "documentWidth": 320,
+        "viewportWidth": 320,
+        "background": "rgb(8, 120, 62)",
+        "foreground": "rgb(255, 255, 255)"
+      }
+    },
+    {
+      "name": "Fine pointer repels and settles; offscreen/reduced motion pause; controlled document.hidden visibility event stops animation",
+      "passed": true,
+      "moved": "-14.1318px 14.043px"
+    }
+  ],
+  "errors": [],
+  "writes": []
+}
