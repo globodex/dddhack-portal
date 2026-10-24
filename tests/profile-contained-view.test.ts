@@ -19,7 +19,7 @@ test("profile mounts one step with a keyboard-focusable field region and named N
   });
   assert.match(html, /data-step="1"/);
   assert.equal((html.match(/<form /g) || []).length, 1);
-  assert.match(html, /<form method="post"/);
+  assert.match(html, /<form[^>]*method="post"/);
   assert.match(html, /data-hydrated="false"/);
   assert.match(
     html,
