@@ -9,7 +9,7 @@ test("known permission errors are actionable and specific server explanations st
 });
 test("known success toasts are concise while unknown receipt messages remain available", () => {
   assert.equal(portalSuccessText("review-project", "Private review saved. Additional backend policy prose."), "Review saved.");
-  assert.equal(portalSuccessText("submit-project", "Submission 2 of 3 committed."), "Submission 2 of 3 committed.");
+  assert.equal(portalSuccessText("submit-project", "Submission 2 of 3 committed."), "Project submitted successfully.");
   assert.equal(portalSuccessText("participant-bulk", "You’re Going. Individual approvals updated."), "Status updated.");
   assert.equal(portalSuccessText("quick-check-in", "Participant attendance updated."), "Checked in.");
   assert.equal(portalSuccessText("bulk-check-in"), "Checked in.");
