@@ -1,0 +1,408 @@
+[
+  {
+    "file": "after-c1ad8d3/comparison-1440x1024.png",
+    "pixels": {
+      "width": 2880,
+      "height": 1056
+    }
+  },
+  {
+    "file": "after-c1ad8d3/comparison-1487x1058.png",
+    "pixels": {
+      "width": 2974,
+      "height": 1090
+    }
+  },
+  {
+    "file": "after-c1ad8d3/idea-dirty-mobile-390x844.png",
+    "pixels": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "file": "after-c1ad8d3/idea-short-390x480.png",
+    "pixels": {
+      "width": 390,
+      "height": 480
+    }
+  },
+  {
+    "file": "after-c1ad8d3/identity-orange-preview-short-390x480.png",
+    "pixels": {
+      "width": 390,
+      "height": 480
+    }
+  },
+  {
+    "file": "after-c1ad8d3/leader-locked-1440x900-full.png",
+    "pixels": {
+      "width": 1440,
+      "height": 1175
+    }
+  },
+  {
+    "file": "after-c1ad8d3/lock-confirmation-short-390x480.png",
+    "pixels": {
+      "width": 390,
+      "height": 480
+    }
+  },
+  {
+    "file": "after-c1ad8d3/member-locked-mobile-390x844-full.png",
+    "pixels": {
+      "width": 390,
+      "height": 1458
+    }
+  },
+  {
+    "file": "after-c1ad8d3/next-short-390x480.png",
+    "pixels": {
+      "width": 390,
+      "height": 480
+    }
+  },
+  {
+    "file": "after-c1ad8d3/team-orange-1440x1024.png",
+    "pixels": {
+      "width": 1440,
+      "height": 1024
+    }
+  },
+  {
+    "file": "after-c1ad8d3/team-orange-1487x1058.png",
+    "pixels": {
+      "width": 1487,
+      "height": 1058
+    }
+  },
+  {
+    "file": "after-c1ad8d3/team-orange-320x480-full.png",
+    "pixels": {
+      "width": 320,
+      "height": 1625
+    }
+  },
+  {
+    "file": "after-c1ad8d3/team-orange-390x844-full.png",
+    "pixels": {
+      "width": 390,
+      "height": 1575
+    }
+  },
+  {
+    "file": "after-c1ad8d3/team-orange-768x1024-full.png",
+    "pixels": {
+      "width": 768,
+      "height": 1511
+    }
+  },
+  {
+    "file": "final-7d22631/comparison-1440x1024.png",
+    "pixels": {
+      "width": 2880,
+      "height": 1056
+    }
+  },
+  {
+    "file": "final-7d22631/comparison-1487-normalized-local-banner.png",
+    "pixels": {
+      "width": 2974,
+      "height": 1090
+    }
+  },
+  {
+    "file": "final-7d22631/comparison-1487x1058.png",
+    "pixels": {
+      "width": 2974,
+      "height": 1090
+    }
+  },
+  {
+    "file": "final-7d22631/idea-short-390x480.png",
+    "pixels": {
+      "width": 390,
+      "height": 480
+    }
+  },
+  {
+    "file": "final-7d22631/identity-390x844.png",
+    "pixels": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "file": "final-7d22631/identity-native200.png",
+    "pixels": {
+      "width": 1440,
+      "height": 757
+    }
+  },
+  {
+    "file": "final-7d22631/identity-palette-short-320x480.png",
+    "pixels": {
+      "width": 320,
+      "height": 480
+    }
+  },
+  {
+    "file": "final-7d22631/identity-palette-short-390x480.png",
+    "pixels": {
+      "width": 390,
+      "height": 480
+    }
+  },
+  {
+    "file": "final-7d22631/next-short-390x480.png",
+    "pixels": {
+      "width": 390,
+      "height": 480
+    }
+  },
+  {
+    "file": "final-7d22631/team-1440x1024.png",
+    "pixels": {
+      "width": 1440,
+      "height": 1024
+    }
+  },
+  {
+    "file": "final-7d22631/team-1487-local-banner-removed-comparison-only.png",
+    "pixels": {
+      "width": 1487,
+      "height": 1058
+    }
+  },
+  {
+    "file": "final-7d22631/team-1487x1058-full.png",
+    "pixels": {
+      "width": 1472,
+      "height": 1176
+    }
+  },
+  {
+    "file": "final-7d22631/team-1487x1058.png",
+    "pixels": {
+      "width": 1487,
+      "height": 1058
+    }
+  },
+  {
+    "file": "final-7d22631/team-320x480-full.png",
+    "pixels": {
+      "width": 305,
+      "height": 1625
+    }
+  },
+  {
+    "file": "final-7d22631/team-390x844-full.png",
+    "pixels": {
+      "width": 375,
+      "height": 1575
+    }
+  },
+  {
+    "file": "final-7d22631/team-768x1024-full.png",
+    "pixels": {
+      "width": 753,
+      "height": 1511
+    }
+  },
+  {
+    "file": "final-7d22631/team-native200-1440.png",
+    "pixels": {
+      "width": 1440,
+      "height": 757
+    }
+  },
+  {
+    "file": "first/comparison-1440x1024.png",
+    "pixels": {
+      "width": 2880,
+      "height": 1056
+    }
+  },
+  {
+    "file": "first/comparison-1487x1058.png",
+    "pixels": {
+      "width": 2974,
+      "height": 1090
+    }
+  },
+  {
+    "file": "first/focused-hero.png",
+    "pixels": {
+      "width": 1410,
+      "height": 366
+    }
+  },
+  {
+    "file": "first/focused-idea-next.png",
+    "pixels": {
+      "width": 1405,
+      "height": 872
+    }
+  },
+  {
+    "file": "first/focused-members.png",
+    "pixels": {
+      "width": 1060,
+      "height": 320
+    }
+  },
+  {
+    "file": "first/focused-timeline.png",
+    "pixels": {
+      "width": 1405,
+      "height": 182
+    }
+  },
+  {
+    "file": "first/team-1440x1024.png",
+    "pixels": {
+      "width": 1440,
+      "height": 1024
+    }
+  },
+  {
+    "file": "first/team-1440x900.png",
+    "pixels": {
+      "width": 1440,
+      "height": 900
+    }
+  },
+  {
+    "file": "first/team-1487x1058.png",
+    "pixels": {
+      "width": 1487,
+      "height": 1058
+    }
+  },
+  {
+    "file": "first/team-390x480.png",
+    "pixels": {
+      "width": 390,
+      "height": 480
+    }
+  },
+  {
+    "file": "first/team-390x844.png",
+    "pixels": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "file": "read-only/01-team-320-short.png",
+    "pixels": {
+      "width": 320,
+      "height": 480
+    }
+  },
+  {
+    "file": "read-only/02-identity-320-short.png",
+    "pixels": {
+      "width": 320,
+      "height": 480
+    }
+  },
+  {
+    "file": "read-only/03-invite-320-short.png",
+    "pixels": {
+      "width": 320,
+      "height": 480
+    }
+  },
+  {
+    "file": "read-only/04-next-320-short.png",
+    "pixels": {
+      "width": 320,
+      "height": 480
+    }
+  },
+  {
+    "file": "read-only-before-scroll-lock/01-team-320-short.png",
+    "pixels": {
+      "width": 320,
+      "height": 480
+    }
+  },
+  {
+    "file": "read-only-before-scroll-lock/02-identity-320-short.png",
+    "pixels": {
+      "width": 320,
+      "height": 480
+    }
+  },
+  {
+    "file": "read-only-before-scroll-lock/FAIL-current-ui.png",
+    "pixels": {
+      "width": 320,
+      "height": 480
+    }
+  },
+  {
+    "file": "read-only-focus-harness-attempt/01-team-320-short.png",
+    "pixels": {
+      "width": 320,
+      "height": 480
+    }
+  },
+  {
+    "file": "read-only-focus-harness-attempt/02-identity-320-short.png",
+    "pixels": {
+      "width": 320,
+      "height": 480
+    }
+  },
+  {
+    "file": "read-only-focus-harness-attempt/03-invite-320-short.png",
+    "pixels": {
+      "width": 320,
+      "height": 480
+    }
+  },
+  {
+    "file": "read-only-focus-harness-attempt/FAIL-current-ui.png",
+    "pixels": {
+      "width": 320,
+      "height": 480
+    }
+  },
+  {
+    "file": "scroll-fix-927845c/idea-native200.png",
+    "pixels": {
+      "width": 1440,
+      "height": 757
+    }
+  },
+  {
+    "file": "scroll-fix-927845c/identity-body-scroll-320x480.png",
+    "pixels": {
+      "width": 320,
+      "height": 480
+    }
+  },
+  {
+    "file": "scroll-fix-927845c/next-native200.png",
+    "pixels": {
+      "width": 1440,
+      "height": 757
+    }
+  },
+  {
+    "file": "scroll-fix-927845c/progress-native200.png",
+    "pixels": {
+      "width": 1440,
+      "height": 757
+    }
+  },
+  {
+    "file": "selected-source.png",
+    "pixels": {
+      "width": 1487,
+      "height": 1058
+    }
+  }
+]

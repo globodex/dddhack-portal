@@ -1,0 +1,66 @@
+{
+  "source": "7d226314e4bc3140623d0d77074a66973ceb8329",
+  "origin": "http://localhost:3003",
+  "readOnly": true,
+  "device": "Chromium mobile emulation, not a physical device",
+  "viewport": {
+    "width": 320,
+    "height": 480
+  },
+  "startedAt": "2026-10-24T14:38:23.290Z",
+  "checks": [
+    {
+      "name": "Isolated fixture is a real local unlocked leader workspace",
+      "passed": true
+    },
+    {
+      "name": "320 short viewport has no horizontal overflow",
+      "passed": true,
+      "innerWidth": 320,
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "scrollY": 0
+    },
+    {
+      "name": "Touch drag on identity backdrop keeps background scroll fixed",
+      "passed": false,
+      "before": 0,
+      "after": 951
+    }
+  ],
+  "captures": [
+    {
+      "file": "01-team-320-short.png",
+      "fullPage": false,
+      "source": "7d226314e4bc3140623d0d77074a66973ceb8329",
+      "inspected": true
+    },
+    {
+      "file": "02-identity-320-short.png",
+      "fullPage": false,
+      "source": "7d226314e4bc3140623d0d77074a66973ceb8329",
+      "inspected": true
+    },
+    {
+      "file": "FAIL-current-ui.png",
+      "fullPage": false,
+      "source": "7d226314e4bc3140623d0d77074a66973ceb8329",
+      "inspected": true
+    }
+  ],
+  "blocked": [],
+  "pageErrors": [],
+  "fixture": {
+    "status": 200,
+    "localTest": true,
+    "actor": "fake_bob",
+    "locked": false,
+    "members": 3,
+    "ideaLength": 112
+  },
+  "result": "failed",
+  "failure": "AssertionError [ERR_ASSERTION]: Touch drag on identity backdrop keeps background scroll fixed\n    at check (file:///workspace/ddd-seo/scripts/qa-team-studio-independent.mjs:44:10)\n    at file:///workspace/ddd-seo/scripts/qa-team-studio-independent.mjs:178:3",
+  "browserClosed": true,
+  "finishedAt": "2026-10-24T14:38:38.439Z",
+  "classification": "Confirmed P2 background touch scroll under Studio dialog on7d226; fixed in927845c and verified in final read-only run."
+}
