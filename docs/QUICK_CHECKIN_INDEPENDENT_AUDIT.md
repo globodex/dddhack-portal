@@ -40,3 +40,6 @@ Result: **12 tests, 10 pass, 2 fail**, both failures representing the single con
 An initial SQLite comparison treated a null-prototype database row as a plain-object mismatch. That harness issue was corrected by comparing extracted values; it is not an application finding. The final output contains only the two real case-2 failures.
 
 PGlite validates the production PostgreSQL adapter and trigger semantics with a single serialized connection. Intervening changes are injected immediately before the service's mutation transaction to test stale preflight state and full rollback deterministically. This is not a multi-connection MVCC, load, live Neon or production-login claim. No browser was launched, no app server was started and no positive action touched the shared fixture runtime.
+# Legacy retry repair
+
+The follow-up changes only the legacy `check-in` status write: it advances an existing override to Checked in instead of deleting the override and uncovering preserved automatic absence. Attendance history, current permissions and idempotent credit allocation remain intact. The independent audit rerun is recorded in `evidence/checkin-independent-audit-ba7d03d/after-retry-fix.txt`; typecheck also passed. No provider, hosted data or deployment action was used.

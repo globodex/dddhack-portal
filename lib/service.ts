@@ -820,7 +820,10 @@ export class PortalService {
               this.now(),
             ],
             [
-              "DELETE FROM participant_status_overrides WHERE user_id=?",
+              "UPDATE participant_status_overrides SET status='Checked in',reason=?,actor_id=?,updated_at=? WHERE user_id=?",
+              d.reason,
+              actor.id,
+              this.now(),
               d.userId,
             ],
           ],
