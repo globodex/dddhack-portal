@@ -483,7 +483,7 @@ export default function Home({
               }
               target="_top"
             >
-              {signedIn ? "Open your Dashboard" : "Continue with ChatGPT"}
+              {signedIn ? "Open your Dashboard" : "Continue to portal"}
               <ArrowRight size={20} aria-hidden="true" />
             </a>
           </div>

@@ -108,7 +108,7 @@ function backendConfiguration(request: Request) {
   )
     throw new BackendError(503, "NEON_API_ORIGIN_INVALID");
   const secret = process.env.PORTAL_PROXY_SECRET;
-  if (!secret || /[\r\n]/.test(secret))
+  if (!secret || secret.length < 32 || /[\r\n]/.test(secret))
     throw new BackendError(503, "PORTAL_PROXY_NOT_CONFIGURED");
   return { app, backend, secret };
 }

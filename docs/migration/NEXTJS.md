@@ -12,7 +12,7 @@ Every `/api/*` path is forwarded to the exact configured `NEON_API_ORIGIN`, pres
 
 The new `/signin` page is owned by the auth workstream. Portal links point there with `returnTo`; existing `/signin-with-chatgpt?return_to=` bookmarks redirect there safely. Log out calls `POST /api/auth/signout`, clears the client presentation cache and navigates to the home page. The compatibility `app/chatgpt-auth.ts` export names now use a backend-verified cookie session, not ChatGPT/Sites headers. Auth's session contract is `{user:{id,email,name,emailVerified:true}}` or `{user:null}`. Google callback remains `/api/auth/callback/google` through the same proxy.
 
-Production defaults to the user-selected intended origin `https://dddhack-portal.vercel.app`; domain availability and deployment remain unverified. Optional `APP_ORIGIN` must be an exact HTTPS origin. Vercel's only service secret is `PORTAL_PROXY_SECRET`; `NEON_API_ORIGIN` is server-only configuration. No database, SMTP, Google, storage or OpenAI credentials are read by Next. The server bundle never imports application DB/service/auth/storage modules. A backend outage may still render the static home artwork without a deadline; it never invents an authenticated session, fixture record or successful operation.
+Production defaults to the user-selected intended origin `https://dddhack-portal.vercel.app`; domain availability and deployment remain unverified. Optional `APP_ORIGIN` must be an exact HTTPS origin. Vercel's only service secret is `PORTAL_PROXY_SECRET` (at least 32 characters); `NEON_API_ORIGIN` is server-only configuration. No database, SMTP, Google, storage or OpenAI credentials are read by Next. The server bundle never imports application DB/service/auth/storage modules. A backend outage may still render the static home artwork without a deadline; it never invents an authenticated session, fixture record or successful operation.
 
 ## Local synthetic rehearsal
 
@@ -23,7 +23,7 @@ Run the integrator's `neon/local-server.ts` as a separate process. The Next fron
 PORTAL_LOCAL_TEST=1 APP_ORIGIN=http://localhost:3000 node --import tsx neon/local-server.ts
 
 # Frontend:
-APP_ORIGIN=http://localhost:3000 PORTAL_LOCAL_TEST=1 NEON_API_ORIGIN=http://127.0.0.1:8788 PORTAL_PROXY_SECRET=local-synthetic-proxy-secret npm run dev
+APP_ORIGIN=http://localhost:3000 PORTAL_LOCAL_TEST=1 NEON_API_ORIGIN=http://127.0.0.1:8788 PORTAL_PROXY_SECRET=local-synthetic-proxy-secret-for-nextjs npm run dev
 ```
 
 The frontend listens on loopback port 3000. Use `http://localhost:3000` to match the backend's exact browser origin. `/local-test` exposes the established synthetic fixture picker. Its requests remain `POST /api/portal` with `{action:"local-signin",data:{fixture:"owner"}}` or `{action:"local-signout",data:{}}`. The backend sets/clears the host-only fixture cookie. Session reads are available at `/api/auth/session`.

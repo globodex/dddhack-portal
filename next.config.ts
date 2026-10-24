@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const config: NextConfig = {
   poweredByHeader: false,
+  devIndicators: false,
   // Keep the approved V7 local art/font URLs. API routes are always dynamic.
   async headers() {
     return [
