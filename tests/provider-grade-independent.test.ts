@@ -252,6 +252,14 @@ for (const engine of ["sqlite", "postgres"] as const) {
     const f = await prepared(engine);
     try {
       const admin = f.service("admin");
+      const eligibilityBefore = await rows(
+        f.db,
+        "SELECT * FROM project_eligibility ORDER BY project_id",
+      );
+      const eligibilityHistoryBefore = await rows(
+        f.db,
+        "SELECT * FROM eligibility_history ORDER BY id",
+      );
       let calls = 0;
       admin.evaluator = {
         provenance: "provider",
@@ -280,11 +288,15 @@ for (const engine of ["sqlite", "postgres"] as const) {
         configuration: "independent-bound-config",
         async evaluate(versionId) {
           calls++;
-          return calls === 1
-            ? { ...report(versionId), versionId: "wrong-version" }
-            : calls === 2
-              ? { ...report(versionId), revision: "b".repeat(40) }
-              : report(versionId, 0);
+          if (calls === 1)
+            return { ...report(versionId), versionId: "wrong-version" };
+          if (calls === 2) {
+            const changed = report(versionId);
+            changed.revision = "b".repeat(40);
+            changed.checks[0].evidence = ["commit:" + changed.revision];
+            return changed;
+          }
+          return report(versionId, 0);
         },
       };
       await assert.rejects(
@@ -341,6 +353,17 @@ for (const engine of ["sqlite", "postgres"] as const) {
         0,
         "Provider must not write manual scores/eligibility/penalties",
       );
+      assert.deepEqual(
+        await rows(
+          f.db,
+          "SELECT * FROM project_eligibility ORDER BY project_id",
+        ),
+        eligibilityBefore,
+      );
+      assert.deepEqual(
+        await rows(f.db, "SELECT * FROM eligibility_history ORDER BY id"),
+        eligibilityHistoryBefore,
+      );
       for (const who of ["stranger", "alice"]) {
         const view = (await f.service(who).view("/projects")) as any;
         assert.ok(view.items.every((item: any) => !item.result));
@@ -353,6 +376,22 @@ for (const engine of ["sqlite", "postgres"] as const) {
         "/admin/submissions/" + f.projectId,
       )) as any;
       assert.equal(privateView.evaluation.score, 0);
+      await f.service("owner").command("assign-project", {
+        projectId: f.projectId,
+        userId: "fake_judge",
+        kind: "judge",
+        reason: "Independent assigned-review privacy fixture.",
+      });
+      const judge = f.service("judge");
+      judge.evaluator = admin.evaluator;
+      const assignedView = (await judge.view("/review/" + f.projectId)) as any;
+      assert.equal(assignedView.evaluation, null);
+      assert.deepEqual(assignedView.runs, []);
+      assert.equal(assignedView.rubricReview, undefined);
+      assert.doesNotMatch(
+        JSON.stringify(assignedView),
+        /independent-synthetic-provider|approved-snapshot|rubricVersion|dimensions/,
+      );
       await admin.command("review-project", {
         ...f.values,
         rating: 8,
@@ -455,6 +494,22 @@ for (const engine of ["sqlite", "postgres"] as const) {
           .length,
         1,
       );
+      await admin.command("review-project", {
+        ...f.values,
+        rating: 8,
+        body: "Independent synthetic manual zero review.",
+      });
+      await admin.command("review", {
+        teamId: "fake_team1",
+        versionId: f.versionId,
+        eligibility: "eligible",
+        astra: 0,
+        codex: 4,
+        diversity: 6,
+        falseClaims: 0,
+        evidence: "Independent manual zero takes precedence over provider ten.",
+      });
+      assert.equal((await admin.compute())[0].components!.astra, 0);
     } finally {
       release();
       if (task) await task;
@@ -462,86 +517,113 @@ for (const engine of ["sqlite", "postgres"] as const) {
     }
   });
 
-  test(`${engine}: independent in-flight provider completion cannot add a numeric grade after owner freezes results`, async () => {
-    const f = await prepared(engine);
-    let release!: () => void,
-      entered!: () => void,
-      task: Promise<unknown> | undefined;
-    const gate = new Promise<void>((r) => {
-        release = r;
-      }),
-      started = new Promise<void>((r) => {
-        entered = r;
-      });
-    try {
-      const admin = f.service("admin");
-      await admin.command("review-project", {
-        ...f.values,
-        rating: 8,
-        body: "Independent synthetic human review.",
-      });
-      await admin.command("review", {
-        teamId: "fake_team1",
-        versionId: f.versionId,
-        eligibility: "eligible",
-        astra: 12,
-        codex: 4,
-        diversity: 6,
-        falseClaims: 0,
-        evidence: "Independent manually checked rubric.",
-      });
-      admin.evaluator = {
-        provenance: "provider",
-        available: true,
-        configuration: "independent-freeze-config",
-        async evaluate(versionId) {
-          entered();
-          await gate;
-          return report(versionId);
-        },
-      };
-      task = admin.command("reevaluate-project", f.values);
-      await started;
-      f.clock("2026-11-01T13:00:00.000Z");
-      await f
-        .service("owner")
-        .command("freeze-results", {
+  for (const providerFails of [false, true]) {
+    test(`${engine}: independent late provider ${providerFails ? "failure" : "success"} preserves every frozen job/run/revision and returns stopped`, async () => {
+      const f = await prepared(engine);
+      let release!: () => void,
+        entered!: () => void,
+        task: Promise<unknown> | undefined;
+      const gate = new Promise<void>((r) => {
+          release = r;
+        }),
+        started = new Promise<void>((r) => {
+          entered = r;
+        });
+      try {
+        const admin = f.service("admin");
+        await admin.command("review-project", {
+          ...f.values,
+          rating: 8,
+          body: "Independent synthetic human review.",
+        });
+        await admin.command("review", {
+          teamId: "fake_team1",
+          versionId: f.versionId,
+          eligibility: "eligible",
+          astra: 12,
+          codex: 4,
+          diversity: 6,
+          falseClaims: 0,
+          evidence: "Independent manually checked rubric.",
+        });
+        admin.evaluator = {
+          provenance: "provider",
+          available: true,
+          configuration: "independent-freeze-config",
+          async evaluate(versionId) {
+            entered();
+            await gate;
+            if (providerFails)
+              throw new Error("INDEPENDENT_SYNTHETIC_UPSTREAM_DETAIL");
+            return report(versionId);
+          },
+        };
+        task = admin.command("reevaluate-project", f.values);
+        await started;
+        f.clock("2026-11-01T13:00:00.000Z");
+        await f.service("owner").command("freeze-results", {
           reason: "Independent synthetic frozen-score proof.",
         });
-      const frozen = await rows(f.db, "SELECT * FROM result_snapshots");
-      await assert.rejects(admin.command("reevaluate-project", f.values), {
-        code: "RESULTS_FROZEN",
-      });
-      release();
-      await task;
-      assert.equal(
-        await latestProviderGrade(f.db, f.projectId, f.versionId),
-        null,
-      );
-      assert.equal(
-        (await one(
+        const frozen = await rows(f.db, "SELECT * FROM result_snapshots");
+        await assert.rejects(admin.command("reevaluate-project", f.values), {
+          code: "RESULTS_FROZEN",
+        });
+        const jobsBefore = await rows(
           f.db,
-          "SELECT score FROM evaluation_runs WHERE version_id=?",
-          f.versionId,
-        ))!.score,
-        null,
-      );
-      assert.deepEqual(
-        await rows(f.db, "SELECT * FROM result_snapshots"),
-        frozen,
-      );
-      assert.equal(
-        (await one(
+          "SELECT * FROM astra_jobs ORDER BY id",
+        );
+        const runsBefore = await rows(
           f.db,
-          "SELECT astra FROM reviews WHERE version_id=?",
-          f.versionId,
-        ))!.astra,
-        12,
-      );
-    } finally {
-      release();
-      if (task) await task;
-      await f.close();
-    }
-  });
+          "SELECT * FROM evaluation_runs ORDER BY id",
+        );
+        const revisionBefore = await rows(
+          f.db,
+          "SELECT * FROM scoring_revision",
+        );
+        release();
+        const stopped = (await task) as Record<string, unknown>;
+        assert.match(String(stopped.message), /frozen|stopped/i);
+        assert.equal(
+          await latestProviderGrade(f.db, f.projectId, f.versionId),
+          null,
+        );
+        assert.equal(
+          (await one(
+            f.db,
+            "SELECT score FROM evaluation_runs WHERE version_id=?",
+            f.versionId,
+          ))!.score,
+          null,
+        );
+        assert.deepEqual(
+          await rows(f.db, "SELECT * FROM result_snapshots"),
+          frozen,
+        );
+        assert.deepEqual(
+          await rows(f.db, "SELECT * FROM astra_jobs ORDER BY id"),
+          jobsBefore,
+        );
+        assert.deepEqual(
+          await rows(f.db, "SELECT * FROM evaluation_runs ORDER BY id"),
+          runsBefore,
+        );
+        assert.deepEqual(
+          await rows(f.db, "SELECT * FROM scoring_revision"),
+          revisionBefore,
+        );
+        assert.equal(
+          (await one(
+            f.db,
+            "SELECT astra FROM reviews WHERE version_id=?",
+            f.versionId,
+          ))!.astra,
+          12,
+        );
+      } finally {
+        release();
+        if (task) await task;
+        await f.close();
+      }
+    });
+  }
 }

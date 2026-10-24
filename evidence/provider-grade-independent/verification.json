@@ -1,0 +1,57 @@
+{
+  "baselineSource": "cde3ce4e5a69158eaf5a2b0f7ae489800740982c",
+  "parentFixSource": "46afa8b52e09c7da56bace5e4e68a8e766abd3d6",
+  "before": {
+    "tests": 7,
+    "passed": 3,
+    "failed": 4,
+    "distinctConfirmedIssues": 2,
+    "engines": [
+      "SQLite",
+      "PGlite production PostgreSQL adapter"
+    ],
+    "log": "before-independent-tests.log"
+  },
+  "after": {
+    "tests": 9,
+    "passed": 9,
+    "failed": 0,
+    "log": "after-independent-tests.log"
+  },
+  "native": {
+    "tests": 2,
+    "skipped": 2,
+    "log": "native-explicit-skip.log",
+    "testUrlExplicitlyUnset": true
+  },
+  "typecheck": {
+    "exitCode": 0,
+    "log": "typecheck.log"
+  },
+  "verified": [
+    "Bound version and expected revision",
+    "Finite local rubric sum and unchanged dimension caps",
+    "Unknown/missing remains unscored; evidence references validated",
+    "Real zero preserved and manual zero overrides provider ten",
+    "No automatic eligibility, eligibility history or manual rubric writes",
+    "Public before-reveal and assigned-judge private-report boundaries",
+    "Duplicate claim rejected and three attempts enforced",
+    "Original provider lease recovered without active-index retry deadlock",
+    "Late original result cannot replace resumed result",
+    "Late success and error after freeze return stopped with job/run/scoring revision/snapshot/manual rubric unchanged"
+  ],
+  "liveProviderCalls": 0,
+  "providerFetchBoundary": "Injected mock only",
+  "credentialsInspected": false,
+  "providerSettingsChanged": false,
+  "hostedDatabaseRead": false,
+  "hostedDatabaseWrite": false,
+  "runtimeEditedByAudit": false,
+  "pushed": false,
+  "limits": [
+    "PGlite verifies SQL semantics but not native multi-connection MVCC",
+    "Native PostgreSQL cases explicitly skipped",
+    "Parent reports missing live model; no actual model/key configuration inspected",
+    "ScoringSetup UI has not been audited in this lane"
+  ]
+}

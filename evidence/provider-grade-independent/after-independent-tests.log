@@ -1,0 +1,17 @@
+✔ independent provider mapping: mocked response keeps exact bound caps/evidence and unknown stays unscored; unavailable model performs no lookup or fetch (69.59788ms)
+✔ sqlite: independent bridge rejects wrong version/revision, preserves true zero and private scores, and caps three committed attempts (282.251385ms)
+✔ sqlite: independent provider stale recovery frees the actual configuration, permits one retry and discards the late original (122.655402ms)
+✔ sqlite: independent late provider success preserves every frozen job/run/revision and returns stopped (84.264498ms)
+✔ sqlite: independent late provider failure preserves every frozen job/run/revision and returns stopped (89.845681ms)
+✔ postgres: independent bridge rejects wrong version/revision, preserves true zero and private scores, and caps three committed attempts (6488.110974ms)
+✔ postgres: independent provider stale recovery frees the actual configuration, permits one retry and discards the late original (7737.346635ms)
+✔ postgres: independent late provider success preserves every frozen job/run/revision and returns stopped (4641.429165ms)
+✔ postgres: independent late provider failure preserves every frozen job/run/revision and returns stopped (6457.670004ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 29498.196766
