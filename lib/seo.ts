@@ -1,6 +1,6 @@
 // Pure route policy shared by metadata and the backend. No database/runtime import.
 const protectedPath = (path: string) =>
-  /^\/(dashboard|admin|judge|teams|profile|submission|review|rules|project-history|discover)(\/|$)/.test(
+  path === "/personal/credits" || /^\/(dashboard|admin|judge|teams|profile|submission|review|rules|project-history|discover)(\/|$)/.test(
     path,
   );
 export function configuredSiteOrigin(
@@ -33,6 +33,10 @@ export const legalDraftPath = (path: string) =>
   path === "/privacy" || path === "/terms";
 
 const routeCopy: Record<string, { title: string; description: string }> = {
+  "/personal/credits": {
+    title: `Your credits · ${eventShortTitle}`,
+    description: "Your private credit allocations for DevDay Exchange New Delhi.",
+  },
   "/": {
     title: `${eventTitle} · 1 November 2026`,
     description:

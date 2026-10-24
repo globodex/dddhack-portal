@@ -15,6 +15,7 @@ import "./portal-shell.css";
 import "./mobile-navigation.css";
 import "./route-skeleton.css";
 import "./admin-credit-batches.css";
+import "./personal-credits.css";
 import "./redesign.css";
 import "./profile-experience.css";
 import "./team-discovery-experience.css";

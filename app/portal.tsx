@@ -10,7 +10,6 @@ import {
   ArrowUp,
   CircleCheck,
   ExternalLink,
-  EyeOff,
   LockKeyhole,
   MapPin,
   MessageSquare,
@@ -40,6 +39,7 @@ import {
 } from "lucide-react";
 import AddAdmins from "./add-admins";
 import AdminCreditBatches from "./admin-credit-batches";
+import PersonalCredits, { PersonalCreditsContent } from "./personal-credits";
 import AdminLeaderTransfer from "./admin-leader-transfer";
 import Link from "next/link";
 import { useDiscoverPeople, peopleDirectoryUrl, readPeoplePage } from "./use-discover-people";
@@ -153,6 +153,16 @@ export function portalConfirmationFor(
   target: string,
 ): Confirmation {
   const base = confirmationFor(action, values, target);
+  if (action === "publish-credit-batch" && values.creditImportSummary) {
+    const counts = values.creditImportSummary;
+    return {
+      ...base,
+      title: "Add credits?",
+      target: Array.isArray(values.columns) ? values.columns.length > 3 ? `${values.columns.length} categories` : values.columns.map((column: Row) => column.heading).join(", ") : target,
+      description: `${counts.added} to add · ${counts.duplicates} duplicates skipped${counts.retired ? ` · ${counts.retired} previously removed` : ""}`,
+      confirmLabel: "Add credits",
+    };
+  }
   if (action === "team-invite")
     return { ...base, title: "Send team invitation?", target: values.email || target, description: "", confirmLabel: "Send invitation" };
   if (action === "team-respond")
@@ -1563,15 +1573,7 @@ export function Dashboard({
         className="dashboard-section dashboard-credits"
         aria-labelledby="dashboard-tab-credits"
       >
-        {(data.credits || []).map((c: Row) => (
-          <Credit key={`${tab}-${c.type_id}`} credit={c} />
-        ))}
-        {!data.credits?.length && (
-          <div className="dashboard-empty-state">
-            <Ticket size={28} aria-hidden="true" />
-            <h3>No credits assigned.</h3>
-          </div>
-        )}
+        <PersonalCreditsContent checkedIn={data.checkedIn === true} credits={data.credits || []} />
       </section>
       <section
         id="project"
@@ -1609,115 +1611,7 @@ function PublicResult({ result }: { result: Row }) {
     </span>
   );
 }
-export function Credit({ credit }: { credit: Row }) {
-  const [value, setValue] = useState(""),
-    [error, setError] = useState(""),
-    [busy, setBusy] = useState(false),
-    [copied, setCopied] = useState(false);
-  const pending = useRef(false),
-    active = useRef(true),
-    revealGeneration = useRef(0);
-  useEffect(() => {
-    active.current = true;
-    const hide = () => {
-      ++revealGeneration.current;
-      setValue("");
-      setCopied(false);
-    };
-    const visibility = () => {
-      if (document.hidden) hide();
-    };
-    window.addEventListener("blur", hide);
-    document.addEventListener("visibilitychange", visibility);
-    return () => {
-      active.current = false;
-      window.removeEventListener("blur", hide);
-      document.removeEventListener("visibilitychange", visibility);
-    };
-  }, []);
-  return (
-    <article className="credit-row dashboard-credit">
-      <h3>{credit.name}</h3>
-      <CreditInstructions markdown={credit.instructions || ""} />
-      <div className="credit-secret">
-        <code
-          aria-label={value ? "Your private allocation" : "Allocation hidden"}
-        >
-          {value || "••••••••••••••••"}
-        </code>
-        <button
-          type="button"
-          className="button secondary"
-          disabled={!credit.allocated || busy}
-          aria-label={value ? "Hide allocation" : "Reveal my allocation"}
-          aria-pressed={!!value}
-          onClick={async () => {
-            if (value) {
-              setValue("");
-              setCopied(false);
-              return;
-            }
-            if (pending.current) return;
-            pending.current = true;
-            const generation = ++revealGeneration.current;
-            setBusy(true);
-            setError("");
-            try {
-              const result = await api("reveal-credit", {
-                typeId: credit.type_id,
-              });
-              if (typeof result.value !== "string" || !result.value)
-                throw new Error("Your allocation could not be revealed.");
-              if (
-                active.current &&
-                generation === revealGeneration.current &&
-                !document.hidden
-              )
-                setValue(result.value);
-            } catch (e) {
-              if (active.current) setError((e as Error).message);
-            } finally {
-              pending.current = false;
-              if (active.current) setBusy(false);
-            }
-          }}
-        >
-          {value ? (
-            <EyeOff size={20} aria-hidden="true" />
-          ) : (
-            <Eye size={20} aria-hidden="true" />
-          )}
-          <span className="sr-only">
-            {busy ? "Revealing…" : value ? "Hide" : "Reveal"}
-          </span>
-        </button>
-        <button
-          type="button"
-          className="button secondary"
-          disabled={!value || busy}
-          aria-label={copied ? "Copied allocation" : "Copy allocation"}
-          title={copied ? "Copied" : "Copy allocation"}
-          data-copied={copied}
-          onClick={async () => {
-            setError("");
-            try {
-              await navigator.clipboard.writeText(value);
-              setCopied(true);
-            } catch {
-              setError("Copy failed. Select and copy the revealed value.");
-            }
-          }}
-        >
-          {copied ? <CircleCheck size={20} aria-hidden="true" /> : <Copy size={20} aria-hidden="true" />}
-          <span className="sr-only">{copied ? "Copied" : "Copy"}</span>
-        </button>
-      </div>
-
-      <span className="sr-only" role="status" aria-live="polite">{copied ? "Allocation copied." : ""}</span>
-      {error && <p role="alert">{error}</p>}
-    </article>
-  );
-}
+export { Credit } from "./personal-credits";
 export function discoveryProfileProjection(row: Row): DiscoveryPerson {
   const teamName = typeof row.teamName === "string" ? row.teamName.trim() : "";
   return {
@@ -4569,44 +4463,7 @@ export function AdminList({
         )}
       </div>
       {credits ? (
-        <>
-          <AdminCreditBatches batches={data.creditBatches || []} run={run} />
-          <div className="table-scroll admin-credit-inventory">
-            <table className="admin-credits-table">
-              <thead>
-                <tr>
-                  <th>Credit</th>
-                  <th>Status</th>
-                  <th>Inventory</th>
-                  <th>Assigned</th>
-                </tr>
-              </thead>
-              <tbody>
-                {items.map((credit) => (
-                  <tr key={credit.id}>
-                    <td className="credit-identity">
-                      <AdminIcon name="ticket" />
-                      <strong>{credit.name}</strong>
-                    </td>
-                    <td className="credit-state">
-                      <Pill tone={credit.active ? "positive" : "neutral"}>
-                        {credit.active ? "Active" : "Inactive"}
-                      </Pill>
-                    </td>
-                    <td className="credit-metric">
-                      <span className="credit-metric-label">Inventory</span>
-                      <strong>{credit.inventory}</strong>
-                    </td>
-                    <td className="credit-metric">
-                      <span className="credit-metric-label">Assigned</span>
-                      <strong>{credit.assigned}</strong>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </>
+        <AdminCreditBatches batches={data.creditBatches || []} categories={items as any} run={run} />
       ) : teams ? (
         <ul className="admin-team-list">
           {items.map((team) => (
@@ -5761,7 +5618,7 @@ export default function Portal({
       )
         throw new ActionCancelled();
       const token = revealConfirmation(action, values);
-      const { newCount: _count, singleEmail: _email, windowWarnings: _windowWarnings, ...payload } = values;
+      const { newCount: _count, singleEmail: _email, windowWarnings: _windowWarnings, creditImportSummary: _creditSummary, ...payload } = values;
       setMessage("");
       const result = await api(
         action,
@@ -6181,6 +6038,8 @@ export default function Portal({
                 )
               ) : path === "/rules" ? (
                 <SharedRules categories={data.categories || []} />
+              ) : path === "/personal/credits" ? (
+                <PersonalCredits data={data} />
               ) : path === "/dashboard" ? (
                 <Dashboard data={data} run={run} onInteraction={clearSuccessNotice} />
               ) : path === "/discover/teams" ||

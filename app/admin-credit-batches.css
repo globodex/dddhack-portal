@@ -140,3 +140,411 @@
     animation: none;
   }
 }
+
+/* Stock is the primary view. Rows are fetched only after View stock opens. */
+.app-shell .credit-stock-categories {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+.app-shell .credit-stock-category {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--line, #e3e4db);
+  border-radius: 14px;
+  background: var(--surface, #fffefa);
+}
+.app-shell .credit-stock-category > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+.app-shell .credit-stock-category > header h2 {
+  margin: 0;
+  font-size: 21px;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.app-shell .credit-stock-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #f0f0e9;
+  color: #656960;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.app-shell .credit-stock-status.is-assigned {
+  background: #e4f7ed;
+  color: #126b43;
+}
+.app-shell .credit-stock-counters {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  margin: 24px 0;
+}
+.app-shell .credit-stock-counters > div {
+  min-width: 0;
+}
+.app-shell .credit-stock-counters dt {
+  color: var(--muted, #656960);
+  font-size: 13px;
+}
+.app-shell .credit-stock-counters dd {
+  margin: 8px 0 0;
+  color: var(--ink, #202320);
+  font-size: 28px;
+  font-weight: 650;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  overflow-wrap: anywhere;
+}
+.app-shell .credit-stock-category-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.app-shell .credit-stock-category-actions .button {
+  min-height: 44px;
+}
+.app-shell .credit-stock-detail {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+  padding-top: 24px;
+  margin-top: 24px;
+  border-top: 1px solid var(--line, #e3e4db);
+}
+.app-shell .credit-stock-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px;
+  align-items: start;
+  gap: 12px;
+  min-width: 0;
+}
+.app-shell .credit-stock-filters form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 48px;
+  gap: 8px;
+  min-width: 0;
+}
+.app-shell .credit-stock-filters :is(input, select) {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  margin: 0;
+}
+.app-shell .credit-stock-filters .button {
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+}
+.app-shell .credit-stock-table-frame {
+  min-width: 0;
+  max-width: 100%;
+  height: min(560px, 60dvh);
+  min-height: 240px;
+  overflow: auto;
+  border: 1px solid var(--line, #e3e4db);
+  border-radius: 10px;
+  background: var(--surface, #fffefa);
+}
+.app-shell table.credit-stock-table {
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.app-shell .credit-stock-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 14px 16px;
+  text-align: left;
+  color: var(--muted, #656960);
+  background: #f1f1ea;
+  border-bottom: 1px solid var(--line, #e3e4db);
+  font-size: 12px;
+  font-weight: 500;
+}
+.app-shell .credit-stock-table :is(td, th) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  vertical-align: top;
+}
+.app-shell .credit-stock-table th:first-child {
+  width: 27%;
+}
+.app-shell .credit-stock-table th:nth-child(2) {
+  width: 37%;
+}
+.app-shell .credit-stock-table th:nth-child(3) {
+  width: 21%;
+}
+.app-shell .credit-stock-table th:last-child {
+  width: 15%;
+}
+.app-shell .credit-stock-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--line, #e3e4db);
+}
+.app-shell .credit-stock-table td > strong {
+  display: block;
+  color: var(--ink, #202320);
+  font-weight: 600;
+}
+.app-shell .credit-stock-email {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted, #656960);
+  font-size: 12px;
+}
+.app-shell .credit-stock-code {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+}
+.app-shell .credit-stock-code code {
+  min-width: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  font-size: 13px;
+}
+.app-shell .credit-stock-code-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 4px;
+}
+.app-shell .credit-stock-code-actions .button {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  padding: 11px;
+  border-radius: 8px;
+}
+.app-shell .credit-stock-code-actions [data-copied="true"] {
+  color: #126b43;
+  border-color: #b8d9c7;
+  background: #e4f7ed;
+}
+.app-shell .credit-stock-row-error {
+  margin: 8px 0 0;
+  color: #a43e39;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.app-shell .credit-stock-empty {
+  color: var(--muted, #656960);
+  text-align: center;
+  padding: 40px 16px;
+}
+.app-shell .credit-stock-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.app-shell .credit-stock-pagination > span {
+  color: var(--muted, #656960);
+  font-size: 13px;
+}
+.app-shell .credit-stock-pagination > div {
+  display: flex;
+  gap: 8px;
+}
+.app-shell .credit-stock-pagination .button {
+  width: 44px;
+  height: 44px;
+  padding: 11px;
+}
+.app-shell .credit-stock-load-error {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+  min-height: 240px;
+  align-content: center;
+}
+.app-shell .credit-stock-load-error p {
+  color: #a43e39;
+  margin: 0;
+}
+.app-shell .credit-stock-loading-row td {
+  height: 68px;
+}
+.app-shell .credit-stock-loading-row span {
+  display: block;
+  width: 65%;
+  height: 12px;
+  margin: 3px 0 8px;
+  border-radius: 4px;
+  background: #eceee5;
+}
+.app-shell .credit-stock-loading-row span + span {
+  width: 42%;
+  height: 9px;
+}
+.app-shell .credit-stock-lazy-loading {
+  display: grid;
+  gap: 16px;
+  padding-top: 24px;
+  margin-top: 24px;
+  border-top: 1px solid var(--line, #e3e4db);
+}
+.app-shell .credit-stock-filter-skeleton {
+  height: 48px;
+  border-radius: 8px;
+  background: #eceee5;
+}
+.app-shell .credit-stock-table-skeleton {
+  height: min(560px, 60dvh);
+  min-height: 240px;
+  border: 1px solid var(--line, #e3e4db);
+  border-radius: 10px;
+  background: repeating-linear-gradient(
+    #f6f6f0 0,
+    #f6f6f0 67px,
+    #e3e4db 67px,
+    #e3e4db 68px
+  );
+}
+.app-shell .credit-upload-management {
+  min-width: 0;
+  border-top: 1px solid var(--line, #e3e4db);
+  padding-top: 16px;
+}
+.app-shell .credit-upload-management > summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  list-style: none;
+}
+.app-shell .credit-upload-management > summary::-webkit-details-marker {
+  display: none;
+}
+.app-shell .credit-upload-management > summary > span {
+  color: var(--muted, #656960);
+  font-weight: 400;
+}
+.app-shell .credit-upload-management > summary > svg {
+  margin-left: auto;
+}
+.app-shell .credit-upload-management .credit-batch-published {
+  margin-top: 20px;
+}
+.app-shell .credit-import-counts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
+  min-width: 0;
+  font-size: 13px;
+}
+.app-shell .credit-import-counts > span {
+  color: var(--muted, #656960);
+}
+.app-shell .credit-existing-metadata {
+  display: grid;
+  gap: 12px;
+}
+.app-shell .credit-existing-metadata .credit-instructions {
+  font-size: 14px;
+}
+.app-shell .credit-batch-new-upload {
+  scroll-margin-top: 88px;
+}
+@media (max-width: 740px) {
+  .app-shell .credit-stock-category {
+    padding: 20px;
+  }
+  .app-shell .credit-stock-category > header {
+    align-items: flex-start;
+  }
+  .app-shell .credit-stock-category > header h2 {
+    font-size: 20px;
+  }
+  .app-shell .credit-stock-counters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .app-shell .credit-stock-filters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .app-shell .credit-stock-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .app-shell .credit-stock-table tbody > tr:not(.credit-stock-loading-row) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    padding: 16px;
+    border-bottom: 1px solid var(--line, #e3e4db);
+  }
+  .app-shell .credit-stock-table tbody > tr > td {
+    display: block;
+    padding: 0;
+    border: 0;
+  }
+  .app-shell .credit-stock-table tbody > tr > td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 6px;
+    color: var(--muted, #656960);
+    font-size: 11px;
+  }
+  .app-shell .credit-stock-table td[data-label="Code"]::before {
+    margin-bottom: 4px;
+  }
+  .app-shell .credit-stock-code {
+    align-items: start;
+  }
+  .app-shell .credit-stock-code code {
+    padding-top: 12px;
+  }
+  .app-shell .credit-stock-loading-row td {
+    height: 250px;
+    padding: 16px;
+  }
+  .app-shell .credit-stock-pagination {
+    align-items: flex-start;
+  }
+}
+@media (max-width: 360px) {
+  .app-shell .credit-stock-category {
+    padding: 16px;
+  }
+  .app-shell .credit-stock-category > header {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .app-shell .credit-stock-category-actions {
+    gap: 8px;
+  }
+  .app-shell .credit-stock-category-actions .button {
+    padding-inline: 12px;
+  }
+}
+.app-shell .credit-stock-pagination-skeleton {
+  height: 44px;
+}

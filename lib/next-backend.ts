@@ -68,7 +68,7 @@ function exactOrigin(value: string, code: string) {
 }
 
 export function protectedPath(path: string) {
-  return /^\/(dashboard|admin|judge|teams|profile|submission|review|rules|project-history|discover)(\/|$)/.test(
+  return path === "/personal/credits" || /^\/(dashboard|admin|judge|teams|profile|submission|review|rules|project-history|discover)(\/|$)/.test(
     path,
   );
 }
