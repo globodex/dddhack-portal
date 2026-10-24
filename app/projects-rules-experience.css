@@ -449,3 +449,86 @@
     height: 64px;
   }
 }
+
+/* Eligible public entries share through the existing dialog, outside card links. */
+.app-shell .public-project-list .public-project-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid #20232012;
+}
+.app-shell .public-project-list .public-project-card-actions > .engagement {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.app-shell .public-project-list .public-project-card-actions > .project-share-trigger {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+}
+.app-shell .public-project-detail {
+  max-width: none;
+}
+.app-shell .public-project-detail .project-detail-topline {
+  min-width: 0;
+  margin-bottom: 24px;
+}
+.app-shell .public-project-detail .project-detail-topline > strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.app-shell .public-project-detail .project-detail-topline > .project-share-trigger {
+  margin-left: auto;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+}
+.app-shell .public-project-detail .project-presentation {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: 28px;
+}
+.app-shell .public-project-detail .project-overview {
+  padding: 28px;
+  border: 1px solid var(--line, #e3e4db);
+  border-radius: 18px;
+  background: linear-gradient(130deg, var(--project-team-wash, #e8f7ef), var(--surface, #fffefa) 72%);
+}
+.app-shell .public-project-detail .project-identity h1 {
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  overflow-wrap: anywhere;
+}
+.app-shell .public-project-detail .project-presentation > .project-banner {
+  border: 1px solid var(--line, #e3e4db);
+  border-radius: 18px;
+}
+@media (max-width: 740px) {
+  .app-shell .public-project-detail .project-overview {
+    order: 0;
+    padding: 22px;
+  }
+  .app-shell .public-project-detail .project-presentation > .project-banner {
+    order: 1;
+  }
+  .app-shell .public-project-detail .project-story {
+    order: 2;
+  }
+  .app-shell .public-project-detail .project-detail-topline {
+    gap: 10px;
+  }
+  .app-shell .public-project-detail .project-detail-topline > .expressive-heading-dot {
+    display: none;
+  }
+}

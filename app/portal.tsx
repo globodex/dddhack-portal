@@ -46,6 +46,7 @@ import AdminTeamCard from "./admin-team-card";
 import AdminTeamActions from "./admin-team-actions";
 import AdminCreditBatches from "./admin-credit-batches";
 import PersonalCredits, { PersonalCreditsContent } from "./personal-credits";
+import ProjectShare from "./project-share";
 import AdminLeaderTransfer from "./admin-leader-transfer";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -3234,6 +3235,7 @@ export function Projects({
           </a>
           <HeadingDot color="purple" expression="squeezed" size={40} />
           <strong>{p.teamName || p.projectName}</strong>
+          {typeof p.slug === "string" && <ProjectShare publicPath={`/projects/${encodeURIComponent(p.slug)}`} projectName={p.projectName} />}
         </header>
         <article className="project-detail">
           <ProjectBody project={p} publicView teamColorKey={p.teamColorKey} />
@@ -3423,6 +3425,7 @@ export function Projects({
                 </div>
                 <ChevronRight className="project-card-arrow" size={22} aria-hidden="true" />
               </a>
+              <div className="public-project-card-actions">
               {board ? (
                 <div className="engagement">
                   <strong>
@@ -3435,6 +3438,8 @@ export function Projects({
               ) : (
                 engagement(p)
               )}
+              {typeof p.slug === "string" && <ProjectShare publicPath={`/projects/${encodeURIComponent(p.slug)}`} projectName={p.projectName} />}
+              </div>
             </li>
           ))}
       </ul>
