@@ -235,6 +235,9 @@
   gap: 8px;
   min-width: 0;
 }
+.app-shell .credit-stock-filters > label {
+  margin: 0;
+}
 .app-shell .credit-stock-filters :is(input, select) {
   width: 100%;
   min-width: 0;
