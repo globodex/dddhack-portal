@@ -36,6 +36,9 @@ import {
   UsersRound,
   X,
   Ticket,
+  Pencil,
+  LockKeyholeOpen,
+  Flag,
 } from "lucide-react";
 import AddAdmins from "./add-admins";
 import AdminCreditBatches from "./admin-credit-batches";
@@ -885,29 +888,76 @@ function TeamStyle({
     </section>
   );
 }
+function StudioDialog({
+  title,
+  children,
+  onClose,
+}: {
+  title: string;
+  children: ReactNode;
+  onClose: () => void;
+}) {
+  const dialog = useRef<HTMLDialogElement>(null),
+    callback = useRef(onClose),
+    heading = useId();
+  callback.current = onClose;
+  useEffect(() => {
+    if (dialog.current)
+      return openDiscoveryDialog(dialog.current, () => callback.current());
+  }, []);
+  return (
+    <dialog
+      ref={dialog}
+      className="studio-dialog"
+      aria-labelledby={heading}
+      onKeyDown={trapDialogFocus}
+    >
+      <header>
+        <h2 id={heading}>{title}</h2>
+        <button
+          type="button"
+          autoFocus
+          className="studio-icon-button"
+          aria-label={`Close ${title.toLowerCase()}`}
+          onClick={() => dialog.current?.close()}
+        >
+          <X size={22} aria-hidden="true" />
+        </button>
+      </header>
+      <div className="studio-dialog-body">{children}</div>
+    </dialog>
+  );
+}
 export function TeamWorkspace({
   data,
   run,
+  onProject,
 }: {
   data: View;
   run: (a: string, d: Row) => Promise<Row>;
+  onProject?: () => void;
 }) {
-  const [description, setDescription] = useState(data.idea?.description || "");
-  const t = data.team;
-  const leader = !!t && data.me?.id === t.leader_id;
-  const locked = !!(t?.locked || data.ideaLocked);
+  const t = data.team,
+    leader = !!t && data.me?.id === t.leader_id,
+    locked = !!(t?.locked || data.ideaLocked);
+  const [description, setDescription] = useState(
+      String(data.idea?.description || ""),
+    ),
+    [title, setTitle] = useState(String(data.idea?.title || "")),
+    [editing, setEditing] = useState(!data.idea?.title),
+    [dialog, setDialog] = useState<"identity" | "invite" | null>(null);
+  useEffect(() => {
+    setTitle(String(data.idea?.title || ""));
+    setDescription(String(data.idea?.description || ""));
+  }, [data.idea?.title, data.idea?.description]);
   const requests = (data.actions || []).filter(
-    (action: Row) =>
-      action.kind === "request" &&
-      action.status === "pending" &&
-      action.team_id === t?.id,
-  );
-  const invitations = (data.actions || []).filter(
-    (action: Row) =>
-      action.kind === "invite" &&
-      action.status === "pending" &&
-      action.team_id === t?.id,
-  );
+      (a: Row) =>
+        a.kind === "request" && a.status === "pending" && a.team_id === t?.id,
+    ),
+    invitations = (data.actions || []).filter(
+      (a: Row) =>
+        a.kind === "invite" && a.status === "pending" && a.team_id === t?.id,
+    );
   if (!t)
     return (
       <div className="dashboard-empty-team">
@@ -924,316 +974,520 @@ export function TeamWorkspace({
         {data.me?.canParticipate === true && <CreateTeam run={run} />}
       </div>
     );
+  const color = resolveTeamColor(t.palette),
+    count = data.members?.length || 0,
+    persisted = !!data.idea?.title?.trim() && !!data.idea?.description?.trim(),
+    unchanged =
+      title === String(data.idea?.title || "") &&
+      description === String(data.idea?.description || ""),
+    saved = persisted && unchanged;
+  const used = Number.isInteger(data.submissionAccess?.attemptsUsed)
+      ? data.submissionAccess.attemptsUsed
+      : data.attempts?.length || 0,
+    checkedCount = Math.max(
+      0,
+      Math.min(count, Number(data.teamFacts?.checkedInMembers) || 0),
+    ),
+    teamChecked = count > 0 && checkedCount === count;
+  const canEditProject =
+    leader &&
+    data.me?.canParticipate === true &&
+    data.submissionAccess?.canCommit === true &&
+    !data.submissionAccess?.locked &&
+    used < 3;
+  const next = !locked
+    ? {
+        title: persisted ? "Make it official." : "Start with your idea.",
+        detail: saved
+          ? "Team not locked"
+          : persisted
+            ? "Save your changes before locking."
+            : "Add a title and a short description.",
+        action: "Review & lock team",
+        kind: "lock",
+      }
+    : used >= 3
+      ? {
+          title: "Your project is in.",
+          detail: "All three submissions are committed.",
+          action: "View your project",
+          kind: "project",
+        }
+      : canEditProject
+        ? {
+            title: used ? "Keep building." : "Bring it to life.",
+            detail: used
+              ? `${used}/3 submissions committed`
+              : "Team locked. Your project is next.",
+            action: used ? "Open project" : "Create your project",
+            kind: "project",
+          }
+        : {
+            title: used
+              ? "Your project is in."
+              : data.checkedIn
+                ? "Ready for what's next."
+                : "See you at check-in.",
+            detail:
+              data.submissionAccess?.message ||
+              (!leader
+                ? "Your leader submits the project."
+                : "Project submission is not available yet."),
+            action: data.submissionAccess?.canRead ? "View your project" : "",
+            kind: "project",
+          };
   return (
-    <section className="team-workspace dashboard-team">
-      <div className="dashboard-team-heading">
-        <TeamAvatar name={t.name} palette={t.palette} size={64} />
-        <div className="dashboard-team-title">
-          <h3>{t.name}</h3>
-          {t.bio && <p>{t.bio}</p>}
-        </div>
-        <Pill tone={locked ? "locked" : "neutral"}>
-          {locked && <LockKeyhole size={16} aria-hidden="true" />}
-          {locked ? "Locked" : data.teamStatus || "Forming"}
-        </Pill>
-      </div>
-      {data.privateVenue && <DashboardVenue venue={data.privateVenue} />}
-      <div className="dashboard-team-grid">
-        <section
-          className="dashboard-members"
-          aria-labelledby="dashboard-members-heading"
-        >
-          <div className="team-section-heading">
-            <h3 id="dashboard-members-heading">Team members</h3>
-            <span>{data.members?.length || 0}/5</span>
+    <section
+      className="team-workspace studio-team"
+      style={
+        {
+          "--studio-team-fill": color.fill,
+          "--studio-team-wash": color.wash,
+          "--studio-team-ink": color.ink,
+        } as CSSProperties
+      }
+    >
+      <header className="studio-team-identity">
+        <TeamAvatar name={t.name} palette={t.palette} size={150} />
+        <div className="studio-team-name">
+          <p className="studio-eyebrow">Your team</p>
+          <div>
+            <h1>{t.name}</h1>
+            {leader && !locked && (
+              <button
+                type="button"
+                className="studio-icon-button"
+                aria-label="Edit team name and color"
+                onClick={() => setDialog("identity")}
+              >
+                <Pencil size={23} aria-hidden="true" />
+              </button>
+            )}
           </div>
-          <ul className="member-list dashboard-member-list">
-            {(data.members || []).map((m: Row) => (
-              <li key={m.id}>
-                <DotAvatar
-                  color={m.avatarColor}
-                  expression={m.avatarExpression}
-                  size={40}
-                />
-                <div className="dashboard-member-name">
+          <span className="studio-team-color">
+            <span style={{ backgroundColor: color.fill }} aria-hidden="true" />
+            {teamColorLabels[color.key] || color.label}
+          </span>
+        </div>
+        <div className="studio-team-status">
+          <span>
+            <UsersRound size={22} aria-hidden="true" />
+            {locked ? "Team locked" : "Forming team"}
+          </span>
+          <span>{count}/5</span>
+        </div>
+      </header>
+      <section className="studio-people" aria-label="Team members">
+        <ul className="studio-member-list">
+          {(data.members || []).map((m: Row) => (
+            <li key={m.id}>
+              <DotAvatar
+                color={m.avatarColor}
+                expression={m.avatarExpression}
+                size={84}
+              />
+              <div className="studio-member-info">
+                <div className="studio-member-name">
                   <strong>
                     {safeProfileUrl(m.profileUrl) ? (
-                      <a
-                        className="text-link"
-                        href={safeProfileUrl(m.profileUrl)}
-                      >
-                        {m.name}
-                      </a>
+                      <a href={safeProfileUrl(m.profileUrl)}>{m.name}</a>
                     ) : (
                       m.name
                     )}
                   </strong>
-                  <span className="sr-only">
-                    {m.status ||
-                      (m.approval === "approved" ? "Going" : "Registered")}
-                  </span>
                   {m.role === "leader" && <Pill tone="positive">Leader</Pill>}
                 </div>
-                <div className="dashboard-member-contact">
-                  <div className="dashboard-member-links">
-                    {discoverySocialLinks(
-                      Array.isArray(m.socials) ? m.socials : [],
-                    ).map((link) => (
-                      <a
-                        key={link.href}
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${m.name} on ${link.label}`}
-                        title={link.label}
-                      >
-                        <img
-                          src={`/icons/social/${link.icon}.svg`}
-                          width={22}
-                          height={22}
-                          alt=""
-                        />
-                      </a>
-                    ))}
-                    {safeExternalUrl(m.whatsappUrl) && (
-                      <a
-                        className="dashboard-whatsapp"
-                        href={safeExternalUrl(m.whatsappUrl)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Open WhatsApp chat with ${m.name}`}
-                        title="WhatsApp"
-                      >
-                        <img
-                          src="/icons/social/whatsapp.svg"
-                          width={23}
-                          height={23}
-                          alt=""
-                        />
-                      </a>
-                    )}
-                  </div>
-                  {m.phone && (
+                <span className="sr-only">
+                  {m.status ||
+                    (m.approval === "approved" ? "Going" : "Registered")}
+                </span>
+                <div className="studio-member-links">
+                  {discoverySocialLinks(
+                    Array.isArray(m.socials) ? m.socials : [],
+                  ).map((link) => (
                     <a
-                      className="dashboard-member-phone"
-                      href={`tel:${String(m.phone).replace(/[^+0-9]/g, "")}`}
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${m.name} on ${link.label}`}
+                      title={link.label}
                     >
-                      <Phone size={15} aria-hidden="true" />
-                      {m.phone}
+                      <img
+                        src={`/icons/social/${link.icon}.svg`}
+                        width={23}
+                        height={23}
+                        alt=""
+                      />
+                    </a>
+                  ))}
+                  {safeExternalUrl(m.whatsappUrl) && (
+                    <a
+                      href={safeExternalUrl(m.whatsappUrl)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Open WhatsApp chat with ${m.name}`}
+                      title="WhatsApp"
+                    >
+                      <img
+                        src="/icons/social/whatsapp.svg"
+                        width={23}
+                        height={23}
+                        alt=""
+                      />
                     </a>
                   )}
-                </div>
-                {leader && !locked && m.role !== "leader" && (
-                  <TeamAction
-                    action="remove-workspace-member"
-                    values={{
-                      userId: m.id,
-                      reason: "Team leader removed membership",
-                    }}
-                    run={run}
-                    className="dashboard-icon-button dashboard-remove"
-                  >
-                    <Trash2 size={18} aria-hidden="true" />
-                    <span className="sr-only">Remove {m.name} from team</span>
-                  </TeamAction>
-                )}
-              </li>
-            ))}
-          </ul>
-          {leader && !locked && Number(data.members?.length || 0) < 5 && (
-            <a className="team-find-people" href="/discover/participants">
-              <Plus size={17} aria-hidden="true" />
-              Find teammates
-            </a>
-          )}
-          {leader && !locked && requests.length > 0 && (
-            <section
-              className="team-membership-requests"
-              aria-label="Membership requests"
-            >
-              <h4>
-                Requests <span>{requests.length}</span>
-              </h4>
-              {requests.map((r: Row) => (
-                <div className="team-request-item" key={r.id}>
-                  <strong>{r.person_name}</strong>
-                  <div className="team-request-actions">
-                    <TeamAction
-                      action="respond-team"
-                      values={{ requestId: r.id, accept: true }}
-                      run={run}
+                  {m.phone && (
+                    <a
+                      href={`tel:${String(m.phone).replace(/[^+0-9]/g, "")}`}
+                      aria-label={`Call ${m.name} at ${m.phone}`}
+                      title={m.phone}
                     >
-                      Accept
-                    </TeamAction>
+                      <Phone size={20} aria-hidden="true" />
+                    </a>
+                  )}
+                  {leader && !locked && m.role !== "leader" && (
                     <TeamAction
-                      action="respond-team"
-                      values={{ requestId: r.id, accept: false }}
+                      action="remove-workspace-member"
+                      values={{
+                        userId: m.id,
+                        reason: "Team leader removed membership",
+                      }}
                       run={run}
-                      className="link-button"
+                      className="studio-icon-button studio-remove"
                     >
-                      Decline
+                      <Trash2 size={17} aria-hidden="true" />
+                      <span className="sr-only">Remove {m.name} from team</span>
                     </TeamAction>
-                  </div>
+                  )}
                 </div>
-              ))}
-            </section>
-          )}
-        </section>
-        <section
-          className="dashboard-idea"
-          aria-labelledby="dashboard-idea-heading"
-        >
-          <div className="team-section-heading">
-            <h3 id="dashboard-idea-heading">Team idea</h3>
-            <LockKeyhole
-              size={16}
-              aria-label="Private to team members and admins"
-            />
-          </div>
-          {leader && !locked ? (
-            <>
-              <Form
-                className="dashboard-idea-form"
-                disabled={locked}
-                label="Save team idea"
-                onSave={async (f) => {
-                  await run("save-workspace-idea", {
-                    title: f.get("title"),
-                    description: description.trim(),
-                  });
-                }}
-              >
-                <fieldset disabled={locked}>
-                  <Field
-                    name="title"
-                    label="Idea title"
-                    value={data.idea?.title}
-                    required
-                  />
-                  <label>
-                    <span>
-                      Short description{" "}
-                      <span className="required-mark" aria-hidden="true">
-                        *
-                      </span>
-                    </span>
-                    <textarea
-                      name="description"
-                      required
-                      maxLength={500}
-                      rows={5}
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                      aria-describedby="idea-count"
-                    />
-                    <small id="idea-count">{description.length}/500</small>
-                  </label>
-                </fieldset>
-              </Form>
-              <div className="dashboard-lock-actions">
+              </div>
+            </li>
+          ))}
+        </ul>
+        {leader && !locked && (
+          <button
+            type="button"
+            className="studio-invite"
+            disabled={count >= 5}
+            onClick={() => setDialog("invite")}
+          >
+            <span>
+              <Plus size={29} aria-hidden="true" />
+            </span>
+            <span>{count >= 5 ? "Team is full" : "Invite member"}</span>
+          </button>
+        )}
+      </section>
+      {requests.length > 0 && leader && !locked && (
+        <section className="studio-requests" aria-label="Membership requests">
+          <h3>
+            Requests <span>{requests.length}</span>
+          </h3>
+          {requests.map((r: Row) => (
+            <div className="team-request-item" key={r.id}>
+              <strong>{r.person_name}</strong>
+              <div className="team-request-actions">
                 <TeamAction
-                  action="lock-team"
-                  values={{ confirmation: "LOCK_TEAM" }}
+                  action="respond-team"
+                  values={{ requestId: r.id, accept: true }}
                   run={run}
-                  disabled={
-                    !data.idea?.title?.trim() || !data.idea?.description?.trim()
-                  }
                 >
-                  <LockKeyhole size={17} aria-hidden="true" />
-                  Lock team
+                  Accept
+                </TeamAction>
+                <TeamAction
+                  action="respond-team"
+                  values={{ requestId: r.id, accept: false }}
+                  run={run}
+                  className="link-button"
+                >
+                  Decline
                 </TeamAction>
               </div>
-            </>
-          ) : data.idea ? (
-            <div className="dashboard-locked-idea">
-              <div>
-                <h4>{data.idea.title}</h4>
-              </div>
-              <p className="prose">{data.idea.description}</p>
-              <span className="dashboard-idea-count">
-                {String(data.idea.description || "").length}/500
-              </span>
             </div>
-          ) : (
-            <p className="team-empty-copy">No team idea yet.</p>
-          )}
+          ))}
         </section>
-      </div>
-      {leader && !locked && (
-        <details className="dashboard-team-settings">
-          <summary>
-            <SlidersHorizontal size={18} aria-hidden="true" />
-            Team settings
-            <ChevronDown size={18} aria-hidden="true" />
-          </summary>
-          <div className="team-settings-grid">
-            <section>
-              <Form
-                className="inset-form"
-                label="Rename team"
-                onSave={async (f) => {
-                  await run("rename-team", {
-                    name: f.get("name"),
-                    reason: "Leader renamed unlocked team",
-                  });
-                }}
-              >
-                <Field
-                  name="name"
-                  label="Team name"
-                  value={t.name}
-                  required
-                  minLength={2}
-                />
-              </Form>
-            </section>
-            <section className="team-settings-invite">
-              <h3>Invite a teammate</h3>
-              <Form
-                className="inset-form"
-                label="Send invitation"
-                disabled={Number(data.members?.length || 0) >= 5}
-                disabledReason={
-                  Number(data.members?.length || 0) >= 5
-                    ? "Your team has five members."
-                    : undefined
-                }
-                onSave={async (f) => {
-                  await run("team-invite", {
-                    teamId: t.id,
-                    email: f.get("email"),
-                  });
-                }}
-              >
-                <Field name="email" label="Email" type="email" required />
-              </Form>
-              {invitations.length > 0 && (
-                <ul className="team-pending-invites">
-                  {invitations.map((r: Row) => (
-                    <li key={r.id}>
-                      <span>{r.person_name}</span>
-                      <span>Invited</span>
-                    </li>
-                  ))}
-                </ul>
+      )}
+      <div className="studio-work-grid">
+        <section className="studio-idea" aria-label="Private team idea">
+          <header className="studio-idea-heading">
+            <span>
+              <LockKeyhole size={21} aria-hidden="true" />
+              Private idea
+            </span>
+            {saved && (
+              <span className="studio-saved">
+                <CircleCheck size={19} aria-hidden="true" />
+                Saved
+              </span>
+            )}
+          </header>
+          {leader && !locked && editing ? (
+            <Form
+              className="studio-idea-form"
+              label="Save idea"
+              onSave={async () => {
+                await run("save-workspace-idea", {
+                  title: title.trim(),
+                  description: description.trim(),
+                });
+                setEditing(false);
+              }}
+            >
+              <fieldset>
+                <label>
+                  <span>
+                    Idea title{" "}
+                    <span className="required-mark" aria-hidden="true">
+                      *
+                    </span>
+                  </span>
+                  <input
+                    autoFocus
+                    name="title"
+                    required
+                    value={title}
+                    minLength={2}
+                    maxLength={120}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                </label>
+                <label>
+                  <span>
+                    Description{" "}
+                    <span className="required-mark" aria-hidden="true">
+                      *
+                    </span>
+                  </span>
+                  <textarea
+                    name="description"
+                    required
+                    value={description}
+                    maxLength={500}
+                    rows={5}
+                    aria-describedby="studio-idea-count"
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                </label>
+              </fieldset>
+              {persisted && (
+                <button
+                  type="button"
+                  className="link-button studio-cancel-idea"
+                  onClick={() => {
+                    setTitle(String(data.idea.title));
+                    setDescription(String(data.idea.description));
+                    setEditing(false);
+                  }}
+                >
+                  Cancel
+                </button>
               )}
-            </section>
-            <TeamStyle team={t} run={run} />
-          </div>
-          {data.members?.length === 1 && (
-            <div className="team-delete-action">
-              <TeamAction
-                action="delete-own-team"
-                values={{ confirmation: "DELETE_OWN_TEAM" }}
-                run={run}
-                className="link-button"
-              >
-                <Trash2 size={17} aria-hidden="true" />
-                Delete team
-              </TeamAction>
+            </Form>
+          ) : (
+            <div className="studio-idea-content">
+              <div className="studio-idea-title">
+                <h2>{data.idea?.title || "Your next big idea."}</h2>
+                {leader && !locked && (
+                  <button
+                    type="button"
+                    className="studio-icon-button"
+                    aria-label="Edit team idea"
+                    onClick={() => setEditing(true)}
+                  >
+                    <Pencil size={22} aria-hidden="true" />
+                  </button>
+                )}
+              </div>
+              {data.idea?.description ? (
+                <p>{data.idea.description}</p>
+              ) : (
+                <p className="studio-idea-empty">
+                  Your leader hasn't saved an idea yet.
+                </p>
+              )}
             </div>
           )}
-        </details>
+          <div className="studio-idea-footer">
+            <span>
+              {locked ? (
+                <>
+                  <LockKeyhole size={15} aria-hidden="true" />
+                  Locked with your team
+                </>
+              ) : null}
+            </span>
+            <output
+              id="studio-idea-count"
+              aria-label="Description character count"
+            >
+              {editing
+                ? description.length
+                : String(data.idea?.description || "").length}
+              /500
+            </output>
+          </div>
+        </section>
+        <aside className="studio-next" aria-labelledby="studio-next-title">
+          <div className="studio-next-expression" aria-hidden="true">
+            <DotAvatar
+              color="grey"
+              expression="squeezed"
+              size={132}
+              decorative
+            />
+          </div>
+          <p className="studio-eyebrow">Next up</p>
+          <h2 id="studio-next-title">{next.title}</h2>
+          <p className="studio-next-detail">
+            {locked ? (
+              <LockKeyhole size={20} aria-hidden="true" />
+            ) : (
+              <LockKeyholeOpen size={20} aria-hidden="true" />
+            )}
+            {next.detail}
+          </p>
+          {next.kind === "lock" ? (
+            leader ? (
+              <TeamAction
+                action="lock-team"
+                values={{ confirmation: "LOCK_TEAM" }}
+                run={run}
+                disabled={!saved}
+              >
+                <span>{next.action}</span>
+                <ArrowRight size={24} aria-hidden="true" />
+              </TeamAction>
+            ) : (
+              <p className="studio-waiting-leader">
+                Your leader locks the team.
+              </p>
+            )
+          ) : (
+            next.action && (
+              <button type="button" className="button" onClick={onProject}>
+                <span>{next.action}</span>
+                <ArrowRight size={24} aria-hidden="true" />
+              </button>
+            )
+          )}
+        </aside>
+      </div>
+      <ol className="studio-progress" aria-label="Team progress">
+        {[
+          {
+            label: "Forming team",
+            icon: <UsersRound size={22} />,
+            done: true,
+            current: !locked,
+          },
+          {
+            label: "Locked",
+            icon: <LockKeyhole size={22} />,
+            done: !!t.locked,
+            current: !!t.locked && !teamChecked && !used,
+          },
+          {
+            label: "Team checked in",
+            icon: <CircleCheck size={22} />,
+            done: teamChecked,
+            current: teamChecked && !used,
+            detail: `${checkedCount}/${count} members`,
+          },
+          {
+            label: "Submitted",
+            icon: <Flag size={22} />,
+            done: used > 0,
+            current: used > 0,
+          },
+        ].map((stage) => (
+          <li
+            key={stage.label}
+            data-complete={stage.done}
+            aria-current={stage.current ? "step" : undefined}
+          >
+            <span className="studio-progress-icon" aria-hidden="true">
+              {stage.icon}
+            </span>
+            <span>
+              <strong>{stage.label}</strong>
+              {stage.detail && <small>{stage.detail}</small>}
+            </span>
+          </li>
+        ))}
+      </ol>
+      <div className="studio-personal-status">
+        <UserRound size={16} aria-hidden="true" />
+        You: {data.individualStatus || "Registered"}
+      </div>
+      {data.privateVenue && <DashboardVenue venue={data.privateVenue} />}
+      {leader && !locked && count === 1 && (
+        <div className="studio-delete-team">
+          <TeamAction
+            action="delete-own-team"
+            values={{ confirmation: "DELETE_OWN_TEAM" }}
+            run={run}
+            className="link-button"
+          >
+            <Trash2 size={17} aria-hidden="true" />
+            Delete team
+          </TeamAction>
+        </div>
+      )}
+      {dialog === "identity" && leader && !locked && (
+        <StudioDialog title="Team identity" onClose={() => setDialog(null)}>
+          <Form
+            className="studio-identity-form"
+            label="Save name"
+            onSave={async (f) => {
+              await run("rename-team", {
+                name: f.get("name"),
+                reason: "Leader renamed unlocked team",
+              });
+            }}
+          >
+            <Field
+              name="name"
+              label="Team name"
+              value={t.name}
+              required
+              minLength={2}
+            />
+          </Form>
+          <TeamStyle key={t.palette} team={t} run={run} />
+        </StudioDialog>
+      )}
+      {dialog === "invite" && leader && !locked && (
+        <StudioDialog title="Invite a teammate" onClose={() => setDialog(null)}>
+          <Form
+            className="studio-invite-form"
+            label="Send invitation"
+            disabled={count >= 5}
+            disabledReason={
+              count >= 5 ? "Your team has five members." : undefined
+            }
+            onSave={async (f) => {
+              await run("team-invite", { teamId: t.id, email: f.get("email") });
+              setDialog(null);
+            }}
+          >
+            <Field name="email" label="Email" type="email" required />
+          </Form>
+          <a className="text-link" href="/discover/participants">
+            Find teammates
+            <ArrowRight size={17} aria-hidden="true" />
+          </a>
+          {invitations.length > 0 && (
+            <ul className="team-pending-invites">
+              {invitations.map((r: Row) => (
+                <li key={r.id}>
+                  <span>{r.person_name}</span>
+                  <span>Invited</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </StudioDialog>
       )}
     </section>
   );
@@ -1499,32 +1753,7 @@ export function Dashboard({
       </>
     );
   return (
-    <div className="dashboard-v6" data-editor-open={editorOpen}>
-      <header className="page-heading dashboard-heading" hidden={editorOpen}>
-        <h1>
-          <HeadingDot
-            color={(data.me?.avatarColor || "green") as keyof typeof dotColors}
-            expression={
-              (data.me?.avatarExpression ||
-                "squeezed") as keyof typeof dotExpressions
-            }
-          />
-          Dashboard
-        </h1>
-        <Pill
-          tone={
-            data.individualStatus === "Checked in" ||
-            data.individualStatus === "Going"
-              ? "positive"
-              : "neutral"
-          }
-        >
-          {data.individualStatus === "Checked in" && (
-            <CircleCheck size={18} aria-hidden="true" />
-          )}
-          {data.individualStatus || "Registered"}
-        </Pill>
-      </header>
+    <div className="dashboard-v6 team-studio" data-editor-open={editorOpen}>
       <nav
         hidden={editorOpen}
         className="dashboard-sections"
@@ -1573,6 +1802,7 @@ export function Dashboard({
           key={`${data.team?.id || "none"}-${data.idea?.description || ""}`}
           data={data}
           run={run}
+          onProject={() => select("project")}
         />
       </section>
       <section
