@@ -1569,6 +1569,9 @@ dialog.team-create-dialog > form.team-create-form {
 .app-shell .discover-v6 .discover-directory > li.discover-person-card {
   min-height: 264px;
 }
+.app-shell .discover-v6 .discover-directory > li.discover-person-card[data-has-bio="false"] {
+  min-height: 176px;
+}
 .app-shell .discover-v6 .discover-directory > li.discover-team-card {
   min-height: 224px;
   background: linear-gradient(135deg, var(--discover-wash), var(--surface, #fffefa) 72%);
