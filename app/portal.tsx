@@ -4850,13 +4850,22 @@ export default function Portal({
   localTest = false,
   initialPublic,
   initialView,
+  pendingPath = null,
+  onNavigate,
 }: {
   path: string;
   localTest?: boolean;
   initialPublic?: View;
   initialView?: View;
+  pendingPath?: string | null;
+  onNavigate?: (event: { preventDefault(): void }, destination: string) => void;
 }) {
   const path = canonical(original);
+  function navigate(event: { preventDefault(): void }, destination: string) {
+    if (!onNavigate || canonical(destination) === path) return;
+    setMenu(false);
+    onNavigate(event, destination);
+  }
   const [data, setData] = useState<View>(initialView || initialPublic || {}),
     [loading, setLoading] = useState(!initialView && !initialPublic && path !== "/"),
     [error, setError] = useState(""),
@@ -5096,13 +5105,14 @@ export default function Portal({
             aria-label="Public navigation"
             data-open={false}
           >
-            <Link prefetch={false} href="/" aria-current={path === "/" ? "page" : undefined}>
+            <Link prefetch={false} href="/" onNavigate={(event) => navigate(event, "/")} aria-current={path === "/" ? "page" : undefined}>
               {publicBrowse && <Icon name="home" />}
               Home
             </Link>
             <Link
               prefetch={false}
               href="/projects"
+              onNavigate={(event) => navigate(event, "/projects")}
               aria-current={publicBrowse ? "page" : undefined}
             >
               {publicBrowse && <Icon name="projects" />}Projects
@@ -5196,6 +5206,7 @@ export default function Portal({
               prefetch={false}
               key={href}
               href={href}
+              onNavigate={(event) => navigate(event, href)}
               aria-current={
                 path === href ||
                 (href === "/dashboard" && path === "/submission") ||
@@ -5286,7 +5297,7 @@ export default function Portal({
       </aside>
       <MobileNavigation open={menu} onClose={() => setMenu(false)}>
         {nav.map(([href, label]) => (
-          <Link prefetch={false} key={href} href={href} aria-current={path === href ? "page" : undefined}>{label}</Link>
+          <Link prefetch={false} key={href} href={href} onNavigate={(event) => navigate(event, href)} aria-current={path === href ? "page" : undefined}>{label}</Link>
         ))}
         {!data.me ? (
           <a href="/signin?returnTo=%2Fdashboard" target="_top">Sign in</a>
@@ -5349,7 +5360,9 @@ export default function Portal({
             )}
           </div>
         )}
-        {path === "/" ? (
+        {pendingPath ? (
+          <RouteSkeleton path={pendingPath} />
+        ) : path === "/" ? (
           <Home
             content={data.content || defaultPublicContent}
             submissionClose={data.submissionClose}

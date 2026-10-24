@@ -1,0 +1,65 @@
+{
+  "syntheticOnly": true,
+  "origin": "http://localhost:3000",
+  "upstreamGate": "http://127.0.0.1:8791",
+  "realBackend": "http://127.0.0.1:8788",
+  "sourceBase": "60d6e02",
+  "portalSourceSha256": "868e6309101c60b697eab44b8da47b1a19f05607b1c4088c44763a12951c4c3d",
+  "controlledBackendWait": true,
+  "browserSandbox": false,
+  "limitation": "Container Chromium helper/user namespaces unavailable; fresh allowlisted localhost-only contexts, external browser requests denied. Local dev/synthetic evidence, not hosted or production performance.",
+  "cases": [
+    {
+      "label": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "checks": 12,
+      "backendReadsDuringWait": 1,
+      "shellSameNode": true,
+      "documentRequests": 1,
+      "rscRequests": 1,
+      "bootstrapRequestsDuringWait": 0,
+      "loaded": true,
+      "errorRetry": false,
+      "screenshot": "evidence/migration/next-nav-shell/desktop-upstream-wait.png"
+    },
+    {
+      "label": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "checks": 12,
+      "backendReadsDuringWait": 1,
+      "shellSameNode": true,
+      "documentRequests": 1,
+      "rscRequests": 1,
+      "bootstrapRequestsDuringWait": 0,
+      "loaded": true,
+      "errorRetry": false,
+      "screenshot": "evidence/migration/next-nav-shell/mobile-upstream-wait.png"
+    },
+    {
+      "label": "desktop-error-retry",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "checks": 12,
+      "backendReadsDuringWait": 1,
+      "shellSameNode": true,
+      "documentRequests": 1,
+      "rscRequests": 1,
+      "bootstrapRequestsDuringWait": 0,
+      "loaded": true,
+      "errorRetry": true,
+      "screenshot": "evidence/migration/next-nav-shell/desktop-error-retry-upstream-wait.png"
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "browserClosed": true,
+  "portalClientSha256": "c1fd2e77f7abccb0b2a2ba16d0d03b180fa038ae60b7fbf237eb3248c9a4724b"
+}

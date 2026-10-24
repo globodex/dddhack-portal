@@ -12,7 +12,7 @@ import {
   readBackendView,
 } from "../../lib/next-backend";
 import { chatGPTSignInPath } from "../chatgpt-auth";
-import Portal from "../portal";
+import Portal from "./portal-client";
 
 export const dynamic = "force-dynamic";
 type PageProps = { params: Promise<{ path?: string[] }> };
