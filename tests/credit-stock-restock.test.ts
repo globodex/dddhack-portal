@@ -94,6 +94,66 @@ async function check(admin: PortalService, identities: { email: string }[]) {
 }
 
 for (const engine of ["sqlite", "postgres"] as const) {
+  test(`${engine}: overlapping restock race rolls back all new rows and asks for current counts`, async () => {
+    const f = await fixture(engine),
+      admin = f.service("admin");
+    try {
+      const original = await publish(
+        admin,
+        csv("Overlapping stock", ["FAKE-OVERLAP-BASE"]),
+      );
+      const typeId = original.result.typeIds[0],
+        incoming = csv("Overlapping stock", [
+          "FAKE-OVERLAP-SHARED",
+          "FAKE-OVERLAP-OUTER",
+        ]);
+      const prepared = await admin.command("preview-credit-batch", {
+        csv: incoming,
+      });
+      const mutate = admin.mutate.bind(admin);
+      let injected = false;
+      admin.mutate = async (...args) => {
+        if (args[1] === "publish-credit-batch" && !injected) {
+          injected = true;
+          await publish(
+            f.service("owner"),
+            csv("Overlapping stock", [
+              "FAKE-OVERLAP-SHARED",
+              "FAKE-OVERLAP-INNER",
+            ]),
+          );
+        }
+        return mutate(...args);
+      };
+      await assert.rejects(
+        admin.command("publish-credit-batch", {
+          csv: incoming,
+          digest: prepared.digest,
+          confirmation: "PUBLISH_CREDIT_BATCH",
+        }),
+        { code: "PREVIEW_REQUIRED" },
+      );
+      assert.equal((await summary(admin, typeId)).total, 3);
+      assert.equal(
+        (
+          await rows(
+            f.db,
+            "SELECT * FROM credit_inventory WHERE voucher_value='FAKE-OVERLAP-OUTER'",
+          )
+        ).length,
+        0,
+      );
+      const retried = await publish(admin, incoming);
+      assert.deepEqual(retried.prepared.totals, {
+        added: 1,
+        duplicates: 1,
+        retired: 0,
+      });
+      assert.equal((await summary(admin, typeId)).total, 4);
+    } finally {
+      await f.db.close();
+    }
+  });
   test(`${engine}:50/10 then late10 gives20/30; exhaustion and100 restock fill waiting without republishing`, async () => {
     const f = await fixture(engine, 65);
     const admin = f.service("admin");

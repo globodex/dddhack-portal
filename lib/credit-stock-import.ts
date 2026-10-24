@@ -1,6 +1,6 @@
 import type { PortalService } from "./service";
 import { one, rows, assertPreviousWrite, type SQL } from "./db";
-import { demand, sha256 } from "./security";
+import { demand, sha256, PortalError } from "./security";
 import { creditAuditMetadata } from "./credit-audit";
 import { creditAssignmentStatements } from "./credit-stock";
 
@@ -347,6 +347,25 @@ export async function importCreditStock(
         alreadyImported: true,
         message: "Credits were already imported.",
       };
+    const message = error instanceof Error ? error.message : String(error);
+    const constraint =
+      typeof error === "object" && error !== null && "constraint" in error
+        ? String(error.constraint)
+        : "";
+    if (
+      /CREDIT_CODE_RETIRED/.test(message) ||
+      (/UNIQUE constraint failed:/i.test(message) &&
+        /credit_(inventory|types|category_keys|code_history)/.test(message)) ||
+      (/duplicate key value violates unique constraint/i.test(message) &&
+        /credit_(inventory|types|category_keys|code_history)/.test(
+          constraint || message,
+        ))
+    )
+      throw new PortalError(
+        409,
+        "PREVIEW_REQUIRED",
+        "Stock changed during the import. Confirm the updated import counts.",
+      );
     throw error;
   }
   return result;

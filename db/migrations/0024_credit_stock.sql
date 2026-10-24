@@ -47,6 +47,9 @@ CREATE TRIGGER credit_assignment_not_recycled BEFORE INSERT ON credit_allocation
  BEGIN SELECT RAISE(ABORT,'CREDIT_CODE_ALREADY_ASSIGNED'); END;
 CREATE TRIGGER credit_assignment_record AFTER INSERT ON credit_allocations
  BEGIN UPDATE credit_code_history SET assigned=1 WHERE inventory_id=NEW.inventory_id AND assigned=0; END;
+CREATE TRIGGER credit_assignment_immutable BEFORE UPDATE ON credit_allocations
+ WHEN NEW.inventory_id IS NOT OLD.inventory_id OR NEW.type_id IS NOT OLD.type_id OR NEW.user_id IS NOT OLD.user_id
+ BEGIN SELECT RAISE(ABORT,'CREDIT_ASSIGNMENT_IMMUTABLE'); END;
 CREATE TRIGGER credit_import_no_update BEFORE UPDATE ON credit_stock_imports
  BEGIN SELECT RAISE(ABORT,'CREDIT_IMPORT_IMMUTABLE'); END;
 CREATE TRIGGER credit_import_no_delete BEFORE DELETE ON credit_stock_imports

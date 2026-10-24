@@ -7,7 +7,8 @@ import {
   applyPortalMigrations,
   loadPortalMigrations,
 } from "../neon/db/migrate";
-import { seedLocal } from "../scripts/fixtures";
+import { seedLocal, fixtures, LOCAL_CREDIT_KEY } from "../scripts/fixtures";
+import { PortalService } from "../lib/service";
 import { batch, rows, one } from "../lib/db";
 
 async function previous(engine: "sqlite" | "postgres") {
@@ -64,6 +65,12 @@ for (const engine of ["sqlite", "postgres"] as const) {
         [
           "INSERT INTO credit_allocations(inventory_id,type_id,user_id,assigned_at,recipient_email) VALUES('fake_item_0','fake_credit','fake_alice','2026-10-22T08:00:00.000Z','alice@portal.test')",
         ],
+        [
+          "INSERT INTO check_ins VALUES('fake_admin','fake_owner','2026-10-22T08:00:00.000Z')",
+        ],
+        [
+          "INSERT INTO check_ins VALUES('fake_owner','fake_admin','2026-10-22T08:00:00.000Z')",
+        ],
       ]);
       const stock = await rows(
           db,
@@ -106,6 +113,14 @@ for (const engine of ["sqlite", "postgres"] as const) {
       await assert.rejects(
         batch(db, [
           [
+            "UPDATE credit_allocations SET user_id='fake_bob' WHERE inventory_id='fake_item_0'",
+          ],
+        ]),
+        /CREDIT_ASSIGNMENT_IMMUTABLE/,
+      );
+      await assert.rejects(
+        batch(db, [
+          [
             "UPDATE credit_code_history SET assigned=0 WHERE inventory_id='fake_item_0'",
           ],
         ]),
@@ -114,6 +129,66 @@ for (const engine of ["sqlite", "postgres"] as const) {
       await assert.rejects(
         batch(db, [["DELETE FROM credit_code_history"]]),
         /CREDIT_HISTORY_IMMUTABLE/,
+      );
+      const admin = new PortalService(
+        db,
+        fixtures.admin,
+        LOCAL_CREDIT_KEY,
+        () => "2026-10-22T08:00:00.000Z",
+      );
+      const owner = new PortalService(
+        db,
+        fixtures.owner,
+        LOCAL_CREDIT_KEY,
+        () => "2026-10-22T08:00:00.000Z",
+      );
+      assert.equal(
+        ((await admin.view("/personal/credits")).credits as any[])[0].allocated,
+        0,
+        "migration itself never allocates production stock",
+      );
+      assert.equal(
+        ((await owner.view("/personal/credits")).credits as any[])[0].allocated,
+        0,
+      );
+      const repair = await admin.command("repair-credit-allocations", {});
+      assert.deepEqual(
+        (repair.categories as any[]).map((row) => [
+          row.total,
+          row.assigned,
+          row.available,
+          row.waiting,
+        ])[0],
+        [20, 3, 17, 0],
+      );
+      const repaired = await rows(
+        db,
+        "SELECT * FROM credit_allocations ORDER BY inventory_id",
+      );
+      assert.equal(repaired.length, 3);
+      assert.deepEqual(
+        repaired.find((row) => row.user_id === "fake_alice"),
+        allocations[0],
+      );
+      assert.equal(
+        ((await admin.view("/personal/credits")).credits as any[])[0].allocated,
+        1,
+      );
+      assert.equal(
+        ((await owner.view("/personal/credits")).credits as any[])[0].allocated,
+        1,
+      );
+      await owner.command("repair-credit-allocations", {});
+      assert.deepEqual(
+        await rows(
+          db,
+          "SELECT * FROM credit_allocations ORDER BY inventory_id",
+        ),
+        repaired,
+      );
+      assert.deepEqual(
+        await rows(db, "SELECT * FROM credit_inventory ORDER BY id"),
+        stock,
       );
     } finally {
       await db.close();

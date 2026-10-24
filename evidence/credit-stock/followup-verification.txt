@@ -1,0 +1,27 @@
+✔ sqlite: stock upgrade preserves every existing code and mapping, backfills minimal non-personal tombstones (341.775538ms)
+✔ sqlite: existing header collision aborts additive migration without merging or deleting data (96.186919ms)
+✔ sqlite: existing fingerprint collision aborts additive migration without merging or deleting data (199.248417ms)
+✔ postgres: stock upgrade preserves every existing code and mapping, backfills minimal non-personal tombstones (4927.196848ms)
+✔ postgres: existing header collision aborts additive migration without merging or deleting data (2922.5634ms)
+✔ postgres: existing fingerprint collision aborts additive migration without merging or deleting data (2842.163063ms)
+✔ sqlite: overlapping restock race rolls back all new rows and asks for current counts (128.075594ms)
+✔ sqlite:50/10 then late10 gives20/30; exhaustion and100 restock fill waiting without republishing (197.902148ms)
+✔ sqlite: dedup within/later/across categories, masked paging, authorized explicit reveal, delete and no recycle (110.279103ms)
+✔ sqlite: checked-in admin and judge get own credits without team/profile gate; no cross-user or nonchecked access (87.458734ms)
+✔ sqlite: concurrent check-ins and repeated publish assign each physical code/person/category once (88.139376ms)
+✔ postgres: overlapping restock race rolls back all new rows and asks for current counts (4717.45777ms)
+✔ postgres:50/10 then late10 gives20/30; exhaustion and100 restock fill waiting without republishing (9208.921389ms)
+✔ postgres: dedup within/later/across categories, masked paging, authorized explicit reveal, delete and no recycle (6569.84223ms)
+✔ postgres: checked-in admin and judge get own credits without team/profile gate; no cross-user or nonchecked access (4965.60851ms)
+✔ postgres: concurrent check-ins and repeated publish assign each physical code/person/category once (4243.383318ms)
+✔ PostgreSQL baseline installs every portal table/trigger and checksum migrations are repeatable (3801.809536ms)
+✔ PostgreSQL executes the synthetic portal seed, case-insensitive identity, directory aliases and atomic revision guards (3904.313847ms)
+✔ PostgreSQL rejects bad submission windows, requires personal leader check-in, caps three immutable attempts and preserves frozen snapshots (5636.871424ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 60729.851054

@@ -50,6 +50,12 @@ BEGIN
  RETURN NEW;
 END;$portal$;
 CREATE TRIGGER credit_assignment_record AFTER INSERT ON credit_allocations FOR EACH ROW EXECUTE FUNCTION portal_credit_assignment_record();
+CREATE FUNCTION portal_credit_assignment_immutable() RETURNS trigger LANGUAGE plpgsql AS $portal$
+BEGIN
+ IF NEW.inventory_id IS DISTINCT FROM OLD.inventory_id OR NEW.type_id IS DISTINCT FROM OLD.type_id OR NEW.user_id IS DISTINCT FROM OLD.user_id THEN RAISE EXCEPTION 'CREDIT_ASSIGNMENT_IMMUTABLE' USING ERRCODE='23514'; END IF;
+ RETURN NEW;
+END;$portal$;
+CREATE TRIGGER credit_assignment_immutable BEFORE UPDATE ON credit_allocations FOR EACH ROW EXECUTE FUNCTION portal_credit_assignment_immutable();
 CREATE FUNCTION portal_credit_import_immutable() RETURNS trigger LANGUAGE plpgsql AS $portal$
 BEGIN RAISE EXCEPTION 'CREDIT_IMPORT_IMMUTABLE' USING ERRCODE='23514'; END;$portal$;
 CREATE TRIGGER credit_import_no_update BEFORE UPDATE ON credit_stock_imports FOR EACH ROW EXECUTE FUNCTION portal_credit_import_immutable();
