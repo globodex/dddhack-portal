@@ -1,19 +1,23 @@
-import { createNeonDatabase } from "./db/index";
-import { authenticateRequest, createAuthHandler } from "./auth/index";
-import { createPortalBackend } from "./router";
+import { createNeonDatabase, type NeonDatabaseEnvironment } from "./db/index";
+import { authenticateRequest, createAuthHandler, type AuthEnv } from "./auth/index";
+import { createPortalBackend, type BackendEnvironment } from "./router";
+
+const env = process.env as AuthEnv & NeonDatabaseEnvironment & BackendEnvironment & {
+  CREDIT_ENCRYPTION_KEY?: string;
+};
 
 let database: ReturnType<typeof createNeonDatabase> | undefined;
-const db = () => (database ??= createNeonDatabase(process.env));
-const handler = createPortalBackend(process.env, {
+const db = () => (database ??= createNeonDatabase(env));
+const handler = createPortalBackend(env, {
   async runtime(request) {
     return {
       db: db(),
-      identity: await authenticateRequest(request, process.env, db()),
-      key: process.env.CREDIT_ENCRYPTION_KEY,
+      identity: await authenticateRequest(request, env, db()),
+      key: env.CREDIT_ENCRYPTION_KEY,
     };
   },
   auth(request) {
-    return createAuthHandler(process.env, db())(request);
+    return createAuthHandler(env, db())(request);
   },
 });
 

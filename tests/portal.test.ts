@@ -40,7 +40,7 @@ test("owner derives only from trusted Sites identity; local header spoofing and 
   assert.throws(() => signInPath("/\\evil.test"));
   assert.equal(
     signInPath("/dashboard"),
-    "/signin-with-chatgpt?return_to=%2Fdashboard",
+    "/signin?returnTo=%2Fdashboard",
   );
 });
 test("unresolved scoring content blocks activation while genuine attendance guards submission", async () => {
