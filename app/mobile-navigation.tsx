@@ -6,6 +6,47 @@ import {
   trackDialogHistory,
 } from "./dialog-history";
 
+type MenuClick = Pick<
+  MouseEvent,
+  | "defaultPrevented"
+  | "button"
+  | "metaKey"
+  | "ctrlKey"
+  | "shiftKey"
+  | "altKey"
+  | "preventDefault"
+>;
+
+/** Release this menu's history entry without changing native top-frame sign-in. */
+export function consumeMenuLinkNavigation(
+  event: MenuClick,
+  link: Pick<HTMLAnchorElement, "href" | "target" | "hasAttribute">,
+) {
+  if (
+    event.defaultPrevented ||
+    event.button !== 0 ||
+    event.metaKey ||
+    event.ctrlKey ||
+    event.shiftKey ||
+    event.altKey ||
+    link.hasAttribute("download")
+  )
+    return false;
+  const sameFrame = !link.target || link.target === "_self";
+  if (!sameFrame && link.target !== "_top") return false;
+  const destination = new URL(link.href, window.location.href);
+  if (
+    destination.origin !== window.location.origin ||
+    !consumeDialogHistoryForNavigation()
+  )
+    return false;
+  if (sameFrame) {
+    event.preventDefault();
+    window.location.replace(destination.href);
+  }
+  return true;
+}
+
 // Native showModal supplies the focus trap and makes the page behind it inert.
 // Keep our scroll/focus cleanup paired with that same modal lifetime.
 export function openMobileNavigation(
@@ -58,25 +99,7 @@ export default function MobileNavigation({
           "a[href]",
         );
         if (!link) return;
-        if (
-          !event.defaultPrevented &&
-          event.button === 0 &&
-          !event.metaKey &&
-          !event.ctrlKey &&
-          !event.shiftKey &&
-          !event.altKey &&
-          !link.hasAttribute("download") &&
-          (!link.target || link.target === "_self")
-        ) {
-          const destination = new URL(link.href, window.location.href);
-          if (
-            destination.origin === window.location.origin &&
-            consumeDialogHistoryForNavigation()
-          ) {
-            event.preventDefault();
-            window.location.replace(destination.href);
-          }
-        }
+        consumeMenuLinkNavigation(event, link);
         onClose();
       }}
       onKeyDown={(event) => {
