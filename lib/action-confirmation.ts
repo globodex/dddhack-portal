@@ -35,6 +35,8 @@ const labels: Record<string, string> = {
   "rename-team": "Rename your team",
   "admin-add-team-member": "Add team member?",
   "admin-rename-team": "Rename team?",
+  "admin-unlock-team": "Unlock team?",
+  "leave-workspace-team": "Leave team?",
   "admin-delete-participant": "Delete participant?",
   "admin-delete-team": "Delete team?",
   "team-style": "Update team appearance",
@@ -83,12 +85,15 @@ export function confirmationFor(
     "content-publish",
     "activate-operations",
     "lock-team",
+    "admin-unlock-team",
     "submit-project",
     "publish-submission-extension",
     "publish-policy-weights",
   ].includes(action);
   const title = labels[action] || action.replaceAll("-", " ");
   let description = "";
+  if (action === "leave-workspace-team") return { title, target, description: "You will lose access to this team's private workspace.", confirmLabel: "Leave team", critical: false, tone: "danger" };
+  if (action === "admin-unlock-team") return { title, target, description: "Reopen normal team membership and idea editing. Members and history stay intact.", confirmLabel: "Unlock team", critical: true };
   if (action === "admin-delete-participant") {
     const summary = values.participantDeleteSummary;
     return { title, target,
@@ -155,7 +160,7 @@ export function confirmationFor(
       "Update the selected status. Attendance and submission history stay intact.";
   if (action === "lock-team")
     description =
-      "Membership and team details become read-only. There is no unlock action.";
+      "Membership and idea details become read-only. Only an admin can reopen an eligible team.";
   if (action === "freeze-results")
     description = "Freeze the current final scores. Scoring changes will be blocked.";
   if (action === "remove-workspace-member")
@@ -225,6 +230,8 @@ export function revealConfirmation(
   if (action === "add-admin") return "ADD_ADMIN";
   if (action === "admin-add-team-member") return "ADD_TEAM_MEMBER";
   if (action === "admin-rename-team") return "RENAME_TEAM";
+  if (action === "admin-unlock-team") return "UNLOCK_TEAM";
+  if (action === "leave-workspace-team") return "LEAVE_TEAM";
   return action === "admin-idea-override"
     ? "OVERRIDE_TEAM_IDEA"
     : ["admin-status", "admin-status-bulk"].includes(action)

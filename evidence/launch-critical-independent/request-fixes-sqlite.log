@@ -1,0 +1,14 @@
+✔ accepted former member can submit a fresh actionable request to the same team (412.853738ms)
+✔ concurrent accept and decline resolves a team request exactly once (237.867303ms)
+✔ concurrent repeated acceptance creates one membership and one response audit (236.612435ms)
+✔ new and declined requests have one stable pending ID under concurrent retries (705.572862ms)
+✔ requesting a full team reserves no seat; acceptance keeps capacity, registration and deadline guards (246.742454ms)
+✔ concurrent retry recovery preserves the owner's existing participant-role request permission (202.992361ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3747.786878

@@ -46,6 +46,8 @@ import {
   requireSubmissionAccess,
   assertUnlockedTeam,
 } from "./team-access";
+import { adminTeamUnlock, teamUnlockBlocker } from "./admin-team-unlock";
+import { readAdminStats } from "./admin-stats";
 import { qualificationCommand } from "./engagement-scoring";
 import { z } from "zod";
 import type { PortalService } from "./service";
@@ -474,11 +476,12 @@ export class PortalExperience {
     const members = team
       ? await rows(
           this.s.db,
-          "SELECT u.id,COALESCE(x.display_name,u.name) name,CASE WHEN u.id=t.leader_id THEN 'leader' ELSE 'member' END role,COALESCE(r.status,'pending') approval,pd.phone,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression,p.bio,p.socials,p.public FROM memberships m JOIN users u ON u.id=m.user_id JOIN teams t ON t.id=m.team_id LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN profiles p ON p.user_id=u.id WHERE t.id=? AND EXISTS(SELECT 1 FROM memberships viewer WHERE viewer.user_id=? AND viewer.team_id=t.id) AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=u.id AND rr.active=1)",
+          "SELECT u.id,COALESCE(x.display_name,u.name) name,CASE WHEN u.id=t.leader_id THEN 'leader' ELSE 'member' END role,COALESCE(r.status,'pending') approval,pd.phone,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression,p.bio,p.socials,p.public,CASE WHEN x.completed_at IS NOT NULL AND x.gender_confirmed=1 AND length(trim(COALESCE(x.display_name,'')))>0 AND length(trim(COALESCE(p.bio,'')))>0 AND p.gender IN ('man','woman','non-binary') THEN 1 ELSE 0 END profileContentComplete FROM memberships m JOIN users u ON u.id=m.user_id JOIN teams t ON t.id=m.team_id LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id LEFT JOIN profiles p ON p.user_id=u.id WHERE t.id=? AND EXISTS(SELECT 1 FROM memberships viewer WHERE viewer.user_id=? AND viewer.team_id=t.id) AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=u.id AND rr.active=1)",
           team.id,
           actor.id,
         )
       : [];
+    const memberStatuses = await personFacts(this.s.db, members.map((member) => String(member.id)));
     const project = team
       ? await one<Project>(
           this.s.db,
@@ -560,8 +563,10 @@ export class PortalExperience {
       ideaLocked:
         !!lock || this.s.now() >= (await this.s.settings(true)).policy.ideaLock,
       members: members.map(
-        ({ phone, public: visible, socials, bio, ...m }) => ({
+        ({ phone, public: visible, socials, bio, profileContentComplete, ...m }) => ({
           ...m,
+          status: memberStatuses.get(String(m.id))?.status || "Registered",
+          profileComplete: Number(profileContentComplete) === 1 && !!teamPhone(String(phone || "")).phone,
           profileUrl: "/discover/participants#person-" + String(m.id),
           ...(visible
             ? { bio, socials: JSON.parse(String(socials || "[]")) }
@@ -876,6 +881,7 @@ export class PortalExperience {
           (item) => !item.viewer || me.owner || me.role === "admin",
         ),
         lookupOnly: me.role === "volunteer",
+        ...(me.owner || me.role === "admin" ? { stats: await readAdminStats(this.s, "participants") } : {}),
         checkInConfigured: setupReadiness(
           await this.s.settings(true),
           this.s.now(),
@@ -941,8 +947,12 @@ export class PortalExperience {
         });
         byTeam.set(team_id, group);
       }
+      const unlockPolicy = (await this.s.settings(true)).policy;
+      const unlockFrozen = !!(await one(this.s.db, "SELECT id FROM result_snapshots LIMIT 1"));
+      const durableAttempts = new Map((await selectedRows<{ team_id: string; attempts: number }>(this.s.db, ids, (marks) => `SELECT team_id,attempts FROM submission_attempt_ledger WHERE team_id IN (${marks})`)).map((item) => [item.team_id, item.attempts]));
       return {
         me,
+        stats: await readAdminStats(this.s, "teams"),
         items: all
           .map((t) => {
             const fact = facts.get(t.id)!;
@@ -950,6 +960,7 @@ export class PortalExperience {
               ...t,
               locked: fact.locked,
               lockedAt: fact.lockedAt,
+              unlockBlockedReason: fact.locked ? teamUnlockBlocker({ frozen: unlockFrozen, attempts: Math.max(fact.attemptsUsed, Number(durableAttempts.get(t.id)) || 0), now: this.s.now(), membershipFreeze: unlockPolicy.membershipFreeze, ideaLock: unlockPolicy.ideaLock })?.message || "" : "",
               status: fact.status,
               idea: ideas.get(t.id),
               readiness: fact.readiness,
@@ -1101,6 +1112,7 @@ export class PortalExperience {
       }
       return {
         me,
+        ...(me.owner || me.role === "admin" ? { stats: await readAdminStats(this.s, "submissions") } : {}),
         items: items.map((item) => ({
           ...item,
           deleted_at: item.deleted_at ?? undefined,
@@ -1212,6 +1224,8 @@ export class PortalExperience {
     data: unknown,
     actor: Actor,
   ): Promise<Record<string, unknown> | null> {
+    const unlocked = await adminTeamUnlock(this.s, action, data);
+    if (unlocked !== null) return unlocked;
     const correction = await adminTeamCorrection(this.s, action, data);
     if (correction !== null) return correction;
     if (action === "quick-check-in" || action === "bulk-check-in")
@@ -1227,6 +1241,7 @@ export class PortalExperience {
         "team-respond",
         "remove-member",
         "remove-workspace-member",
+        "leave-workspace-team",
         "team-style",
         "rename-team",
       ].includes(action)
@@ -1680,12 +1695,14 @@ export class PortalExperience {
       );
       return { message: "Team identity updated for every member." };
     }
-    if (action === "remove-workspace-member") {
-      const d = z.object({ userId: id, reason: why }).strict().parse(data),
+    if (action === "remove-workspace-member" || action === "leave-workspace-team") {
+      const leaving = action === "leave-workspace-team";
+      if (leaving) z.object({ confirmation: z.literal("LEAVE_TEAM") }).strict().parse(data);
+      const d = leaving ? { userId: actor.id, reason: "Participant left their team" } : z.object({ userId: id, reason: why }).strict().parse(data),
         t = await this.team(d.userId);
       demand(t, 404, "TEAM_NOT_FOUND");
       demand(
-        actor.owner || actor.role === "admin" || t.leader_id === actor.id,
+        actor.owner || actor.role === "admin" || t.leader_id === actor.id || (leaving && actor.id === d.userId),
         403,
         "TEAM_MANAGER_REQUIRED",
       );
@@ -1708,13 +1725,14 @@ export class PortalExperience {
             d.userId,
             t.id,
           ],
+          ...(leaving ? assertPreviousWrite() : []),
         ],
         { userId: d.userId },
         d.reason,
       );
       return {
         message:
-          "Membership removed. Readiness and private venue access recalculated.",
+          leaving ? "You left the team." : "Membership removed. Readiness and private venue access recalculated.",
       };
     }
     if (action === "request-team" || action === "respond-team") {
@@ -1729,22 +1747,61 @@ export class PortalExperience {
           404,
           "TEAM_NOT_FOUND",
         );
-        await this.s.mutate(
-          actor.id,
-          action,
+        const previous = await one<{ id: string; status: string; created_at: string }>(
+          this.s.db,
+          "SELECT id,status,created_at FROM team_actions WHERE team_id=? AND user_id=? AND kind='request'",
           d.teamId,
-          [
-            [
-              "INSERT INTO team_actions VALUES(?,?,?,'request','pending',?) ON CONFLICT(team_id,user_id,kind) DO UPDATE SET status='pending',created_at=excluded.created_at WHERE team_actions.status<>'accepted'",
-              crypto.randomUUID(),
-              d.teamId,
-              actor.id,
-              this.s.now(),
-            ],
-          ],
-          {},
+          actor.id,
         );
-        return { message: "Request sent to the team leader." };
+        const response = (requestId: string) => ({
+          requestId,
+          message: "Request sent to the team leader.",
+        });
+        if (previous?.status === "pending") return response(previous.id);
+        const requestId = crypto.randomUUID();
+        try {
+          await this.s.mutate(
+            actor.id,
+            action,
+            d.teamId,
+            [
+              [
+                "INSERT INTO team_actions VALUES(?,?,?,'request','pending',?) ON CONFLICT(team_id,user_id,kind) DO UPDATE SET id=excluded.id,status='pending',created_at=excluded.created_at WHERE team_actions.id=? AND team_actions.status=? AND team_actions.status<>'pending'",
+                requestId,
+                d.teamId,
+                actor.id,
+                this.s.now(),
+                previous?.id || "",
+                previous?.status || "",
+              ],
+              ...assertPreviousWrite(),
+            ],
+            {
+              requestId,
+              ...(previous ? { previousRequest: {
+                id: previous.id,
+                status: previous.status,
+                createdAt: previous.created_at,
+              } } : {}),
+            },
+          );
+        } catch (error) {
+          if (!/CHECK constraint failed: valid=1|write_guards.*check|write_guards_valid_check/i.test(
+            error instanceof Error ? error.message : String(error),
+          )) throw error;
+          const fresh = await this.s.actor();
+          demand(!fresh.deactivated, 403, "PARTICIPANT_REMOVED");
+          demand(fresh.role === "participant", 403, "PARTICIPANT_REQUIRED");
+          demand(fresh.rostered || fresh.owner, 403, "VIEWER_READ_ONLY");
+          demand(!(await this.team(actor.id)), 409, "ALREADY_IN_TEAM");
+          await assertUnlockedTeam(this.s, d.teamId);
+          const pending = await one<{ id: string }>(this.s.db,
+            "SELECT id FROM team_actions WHERE team_id=? AND user_id=? AND kind='request' AND status='pending'",
+            d.teamId, actor.id);
+          if (pending) return response(pending.id);
+          throw new PortalError(409, "REQUEST_CHANGED_RELOAD", "This request changed. Refresh and try again.");
+        }
+        return response(requestId);
       }
       const d = z
           .object({ requestId: id, accept: z.boolean() })
@@ -1764,30 +1821,44 @@ export class PortalExperience {
       demand(r && r.leader_id === actor.id, 403, "LEADER_REQUIRED");
       await assertUnlockedTeam(this.s, r.team_id);
       demand(r.status === "pending", 409, "REQUEST_ALREADY_RESOLVED");
-      await this.s.mutate(
-        actor.id,
-        action,
-        r.team_id,
-        [
-          ...(d.accept
-            ? [
-                [
-                  "INSERT INTO memberships(user_id,team_id,joined_at) SELECT ?,?,? WHERE EXISTS(SELECT 1 FROM team_actions WHERE id=? AND status='pending')",
-                  r.user_id,
-                  r.team_id,
-                  this.s.now(),
-                  r.id,
-                ] as SQL,
-              ]
-            : []),
+      try {
+        await this.s.mutate(
+          actor.id,
+          action,
+          r.team_id,
           [
-            "UPDATE team_actions SET status=? WHERE id=? AND status='pending'",
-            d.accept ? "accepted" : "declined",
-            r.id,
+            ...(d.accept
+              ? [
+                  [
+                    "INSERT INTO memberships(user_id,team_id,joined_at) SELECT ?,?,? WHERE EXISTS(SELECT 1 FROM team_actions WHERE id=? AND status='pending')",
+                    r.user_id,
+                    r.team_id,
+                    this.s.now(),
+                    r.id,
+                  ] as SQL,
+                ]
+              : []),
+            [
+              "UPDATE team_actions SET status=? WHERE id=? AND status='pending'",
+              d.accept ? "accepted" : "declined",
+              r.id,
+            ],
+            ...assertPreviousWrite(),
           ],
-        ],
-        { accepted: d.accept },
-      );
+          { accepted: d.accept },
+        );
+      } catch (error) {
+        if (!/CHECK constraint failed: valid=1|write_guards.*check|write_guards_valid_check/i.test(
+          error instanceof Error ? error.message : String(error),
+        )) throw error;
+        const fresh = await this.s.actor();
+        demand(!fresh.deactivated, 403, "PARTICIPANT_REMOVED");
+        const latest = await one<{ status: string; leader_id: string }>(this.s.db,
+          "SELECT a.status,t.leader_id FROM team_actions a JOIN teams t ON t.id=a.team_id WHERE a.id=? AND a.kind='request'", r.id);
+        demand(latest?.leader_id === actor.id, 403, "LEADER_REQUIRED");
+        demand(latest.status === "pending", 409, "REQUEST_ALREADY_RESOLVED");
+        throw error;
+      }
       return {
         message: d.accept
           ? "Member joined. Team readiness recalculated."

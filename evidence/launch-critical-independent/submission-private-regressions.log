@@ -1,0 +1,19 @@
+✔ sqlite: direct admin values stay private, paged and read-only with assigned/search filters (180.307736ms)
+✔ sqlite: fresh role checks precede secret reads and personal/public projections stay separate (106.843949ms)
+✔ sqlite: only the selected legacy page decodes, with safe per-row failures and keyless plaintext (68.743886ms)
+✔ sqlite: only explicit authenticated Home enrichment receives published personal arrival details (360.80837ms)
+✔ sqlite: fresh status/account/role changes revoke arrival while all-admin read does not grant editing (141.043691ms)
+✔ revised: multi-member submission omits contributions; retired values do not change persisted data or concurrent retry identity (154.291442ms)
+✔ revised: retiring contributions retains leader attendance, submission window, accuracy attestation and raster media guards (123.72181ms)
+✔ revised: ignored contributions cannot consume extra retry attempts or bypass the immutable three-version ceiling (98.616941ms)
+✔ legacy: multi-member submission omits contributions; retired values do not change persisted data or concurrent retry identity (96.852921ms)
+✔ legacy: retiring contributions retains leader attendance, submission window, accuracy attestation and raster media guards (93.132651ms)
+✔ legacy: ignored contributions cannot consume extra retry attempts or bypass the immutable three-version ceiling (85.673252ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4797.153516

@@ -1,0 +1,19 @@
+{
+  "baseline": "59ddf2b9146117bc76e561c402c62a9e93392afd",
+  "scope": "Bounded independent launch-critical team/submission/private-projection audit",
+  "syntheticOnly": true,
+  "hostedOperations": 0,
+  "providerCalls": 0,
+  "findings": [
+    { "severity": "P2", "kind": "resolved-request-cannot-be-reissued", "reproducedVia": "actual handlePortal HTTP", "before": "200 success but accepted status persisted after member removal", "fix": "fresh request ID, prior resolution preserved in audit, pending retry idempotence" },
+    { "severity": "P2", "kind": "competing-request-responses-report-false-success", "reproducedVia": "concurrent actual handlePortal HTTP", "before": "decline and accept both 200; losing acceptance produced false audit and no membership", "fix": "conditional update write assertion with transaction rollback and stale-resolution 409" }
+  ],
+  "requestCases": { "engine": "SQLite", "passed": 6 },
+  "relatedCases": { "engine": "SQLite", "passed": 18 },
+  "typecheck": "pass",
+  "postgresExecuted": false,
+  "postgresLimit": "Coordinated PGlite slot retained by migration/admin-unlock owner; no native PostgreSQL multi-connection proof",
+  "newParentSelfLeaveAndAdminUnlock": "Outside baseline; parent owns integrated verification",
+  "sourceChanges": ["lib/experience.ts request-team block", "lib/experience.ts respond-team block"],
+  "noAdditionalConfirmedFinding": true
+}

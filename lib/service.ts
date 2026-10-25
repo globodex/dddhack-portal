@@ -380,6 +380,7 @@ export class PortalService {
         "rename-team",
         "remove-member",
         "remove-workspace-member",
+        "leave-workspace-team",
         "save-project",
         "submit-project",
         "submit",

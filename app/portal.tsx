@@ -44,6 +44,8 @@ import {
 import AddAdmins from "./add-admins";
 import AdminTeamCard from "./admin-team-card";
 import AdminTeamActions from "./admin-team-actions";
+import AdminStats from "./admin-stats";
+import TeamPreparation from "./team-preparation";
 import AdminCreditBatches from "./admin-credit-batches";
 import PersonalCredits, { PersonalCreditsContent } from "./personal-credits";
 import ProjectShare from "./project-share";
@@ -992,6 +994,7 @@ export function TeamWorkspace({
   if (!t)
     return (
       <div className="dashboard-empty-team">
+        <TeamPreparation hasTeam={false} ideaSaved={false} locked={false} />
         <TeamInvitations data={data} run={run} />
         <section className="team-find-panel">
           <div className="team-empty-mark">
@@ -1205,6 +1208,14 @@ export function TeamWorkspace({
           </button>
         )}
       </section>
+      <TeamPreparation
+        hasTeam
+        ideaSaved={persisted}
+        locked={locked}
+        memberProfilesComplete={count > 0 && data.members.every((member: Row) => member.profileComplete === true)}
+        approvalTotal={count}
+        approvalGoing={(data.members || []).filter((member: Row) => ["Going", "Checked in"].includes(member.status)).length}
+      />
       {requests.length > 0 && leader && !locked && (
         <section className="studio-requests" aria-label="Membership requests">
           <h3>
@@ -1442,6 +1453,11 @@ export function TeamWorkspace({
           </li>
         ))}
       </ol>
+      {!leader && !locked && (
+        <TeamAction action="leave-workspace-team" values={{ confirmation: "LEAVE_TEAM" }} run={run} className="button secondary">
+          <LogOut size={18} aria-hidden="true" />Leave team
+        </TeamAction>
+      )}
       <div className="studio-personal-status">
         <UserRound size={16} aria-hidden="true" />
         You: {data.individualStatus || "Registered"}
@@ -1896,6 +1912,13 @@ function DiscoverSocials({ socials = [] }: { socials?: string[] }) {
   );
 }
 
+function discoveryTeamStatus(team: Row) {
+  // A manual lifecycle label does not remove the independent membership lock.
+  return team.locked && (!team.status || team.status === "Forming")
+    ? "Locked"
+    : team.status || (team.locked ? "Locked" : "Forming");
+}
+
 export function DiscoverTeamDialog({
   team,
   onClose,
@@ -1938,7 +1961,7 @@ export function DiscoverTeamDialog({
           <div className="discover-team-facts">
             <span>{team.readiness?.total ?? "?"}/5 members</span>
             <span className={`discover-state ${team.locked ? "locked" : "forming"}`}>
-              {team.status || (team.locked ? "Locked" : "Forming")}
+              {discoveryTeamStatus(team)}
             </span>
           </div>
         </div>
@@ -2229,7 +2252,7 @@ export function Discover({
                   {bio && <p className="discover-team-summary">{bio}</p>}
                   <div className="discover-team-facts">
                     <span className="discover-team-size"><Users size={17} aria-hidden="true" />{row.readiness?.total ?? "?"}/5 members</span>
-                    <span className={`discover-state ${row.locked ? "locked" : "forming"}`}>{row.status || (row.locked ? "Locked" : "Forming")}</span>
+                    <span className={`discover-state ${row.locked ? "locked" : "forming"}`}>{discoveryTeamStatus(row)}</span>
                   </div>
                   {(data.team?.id === row.id || (canCreate && !row.locked && Number(row.readiness?.total) < 5)) && (
                     <div className="discover-team-action">
@@ -3769,6 +3792,7 @@ export function AdminParticipants({
           close={() => setAdding(false)}
         />
       )}
+      {data.stats && <AdminStats stats={data.stats} />}
       <div className="admin-roster-tools">
         <AdminParticipantFilters
           value={filters}
@@ -4677,6 +4701,7 @@ export function AdminList({
                 : "Submissions"}
         </h1>
       </header>
+      {data.stats && <AdminStats stats={data.stats} />}
       <div
         className={`toolbar admin-list-toolbar${filtersExpanded ? " is-expanded" : ""}`}
       >
@@ -4780,8 +4805,8 @@ export function AdminList({
               name={team.name}
               defaultOpen={Boolean(team.locked)}
               avatar={<TeamAvatar name={team.name} palette={team.palette} size={48} />}
-              caption={<>{team.status} · {team.readiness?.total ? `${team.readiness.approved}/${team.readiness.total} approved` : `${team.members.length} members`}</>}
-              menu={<StatusChange kind="team" target={team.id} name={team.name} current={team.status} run={run} compact>{(data.me?.owner || data.me?.role === "admin") && <AdminTeamActions team={team as { id: string; name: string; members: unknown[] }} run={run} />}</StatusChange>}
+              caption={<>{discoveryTeamStatus(team)} · {team.readiness?.total ? `${team.readiness.approved}/${team.readiness.total} approved` : `${team.members.length} members`}</>}
+              menu={<StatusChange kind="team" target={team.id} name={team.name} current={team.status} teamLocked={team.locked === true} run={run} compact>{(data.me?.owner || data.me?.role === "admin") && <AdminTeamActions team={team as { id: string; name: string; members: unknown[] }} run={run} />}</StatusChange>}
             >
                 <ul className="member-list">
                   {team.members.map((member: Row) => (
@@ -6079,6 +6104,7 @@ function StatusChange({
   run,
   compact = false,
   disabled = false,
+  teamLocked = false,
   children,
 }: {
   kind: "person" | "team";
@@ -6088,6 +6114,7 @@ function StatusChange({
   run: (a: string, d: Row, options?: { errorFeedback?: "local" }) => Promise<Row>;
   compact?: boolean;
   disabled?: boolean;
+  teamLocked?: boolean;
   children?: ReactNode;
 }) {
   const content = (
@@ -6107,7 +6134,7 @@ function StatusChange({
           }}
         >
           <label>
-            New status
+            {kind === "team" ? "New display status" : "New status"}
             <select name="status" defaultValue={current}>
               {(kind === "person"
                 ? ["Registered", "Going", "Checked in", "Absent"]
@@ -6117,6 +6144,7 @@ function StatusChange({
               ))}
             </select>
           </label>
+          {kind === "team" && teamLocked && <p className="small">Status changes do not unlock teams.</p>}
         </Form>
       )}
       {children && (

@@ -1,0 +1,15 @@
+✔ sqlite: actual personal-credit GET gives removed self actionable403 without exposing credits (254.001215ms)
+✔ shared draft/committed project, required media, concurrent writes and public version isolation (629.025387ms)
+✔ signed-in engagement permits admins and pending people, is idempotent, and stays separate from private reviews (277.586287ms)
+✔ leaderboard orders by upvotes then immutable first submission time, excludes ineligible, and exposes no evaluation or rank (776.32226ms)
+✔ sqlite: authenticated Viewer has a narrow private-route registration projection, never participant writes or removed access (880.809406ms)
+✔ sqlite: admin add refreshes the unchanged authenticated Viewer and registration-state delta without approval or check-in (500.000391ms)
+✔ sqlite: registered-only eligibility stays separate from approval and public Viewer payloads omit all private fields (239.885823ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10374.824602

@@ -1,4 +1,5 @@
 /* Approved preparation card only. Team identity, idea and Next Up stay owned elsewhere. */
+.dashboard-empty-team > .team-preparation { grid-column: 1 / -1; }
 .team-preparation {
   --preparation-accent: var(--studio-team-ink, #007c50);
   --preparation-wash: var(--studio-team-wash, #edf8e9);

@@ -1,0 +1,30 @@
+✖ accepted former member can submit a fresh actionable request to the same team (198.031468ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2133.96079
+
+✖ failing tests:
+
+test at tests/launch-critical-independent.test.ts:1:391
+✖ accepted former member can submit a fresh actionable request to the same team (198.031468ms)
+  AssertionError [ERR_ASSERTION]: A successful request response must leave a pending leader action
+  + actual - expected
+  
+  + 'accepted'
+  - 'pending'
+  
+      at TestContext.<anonymous> (/workspace/ddd-launch-critical-audit/tests/launch-critical-independent.test.ts:36:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'accepted',
+    expected: 'pending',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

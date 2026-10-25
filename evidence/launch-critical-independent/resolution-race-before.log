@@ -1,0 +1,29 @@
+✔ accepted former member can submit a fresh actionable request to the same team (191.756065ms)
+✖ concurrent accept and decline resolves a team request exactly once (173.808601ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1273.201858
+
+✖ failing tests:
+
+test at tests/launch-critical-independent.test.ts:1:3476
+✖ concurrent accept and decline resolves a team request exactly once (173.808601ms)
+  AssertionError [ERR_ASSERTION]: [{"status":200,"body":{"message":"Request declined."}},{"status":200,"body":{"message":"Member joined. Team readiness recalculated."}}]
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (/workspace/ddd-launch-critical-audit/tests/launch-critical-independent.test.ts:74:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
