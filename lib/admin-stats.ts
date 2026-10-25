@@ -1,12 +1,19 @@
 import type { PortalService } from "./service";
 import { one } from "./db";
 import { demand } from "./security";
+import { attendancePredicate } from "./portal-status";
 
 export type AdminStatsCollection = "participants" | "teams" | "submissions";
 export type AdminStatsDTO = {
   collection: AdminStatsCollection;
   scope: "Entire collection";
-  cards: { key: string; label: string; value: number }[];
+  cards: {
+    key: string;
+    label: string;
+    value: number | null;
+    caption?: string;
+  }[];
+  teamSizes?: { label: string; value: number }[];
   note?: string;
 };
 
@@ -23,11 +30,28 @@ const queries = {
   participants: `WITH roster AS (
     SELECT lower(trim(email)) email FROM registrations
     UNION SELECT lower(trim(email)) email FROM luma_roster
+  ), participant_states AS (
+    SELECT roster.email,u.id,COALESCE(r.status,'pending') approval,
+      CASE WHEN COALESCE(a.reconciled_at,ra.reconciled_at) IS NOT NULL
+        AND (o.updated_at IS NULL OR o.updated_at<COALESCE(a.reconciled_at,ra.reconciled_at))
+        THEN 'Absent' ELSE o.status END status_override,
+      CASE WHEN ${attendancePredicate("u.id")} THEN 1 ELSE 0 END attended
+    FROM roster LEFT JOIN users u ON u.email=roster.email
+    LEFT JOIN registrations r ON r.email=roster.email
+    LEFT JOIN participant_status_overrides o ON o.user_id=u.id
+    LEFT JOIN automatic_absences a ON a.user_id=u.id
+    LEFT JOIN registration_absences ra ON ra.email=roster.email
+    WHERE u.id IS NULL OR (${active("participant", "u.id")})
+  ), effective_states AS (
+    SELECT id,attended,COALESCE(status_override,CASE WHEN attended=1 THEN 'Checked in'
+      WHEN approval='approved' THEN 'Going' ELSE 'Registered' END) status
+    FROM participant_states
   )
   SELECT count(*) roster,
-    COALESCE(sum(CASE WHEN u.id IS NOT NULL THEN 1 ELSE 0 END),0) accounts
-  FROM roster r LEFT JOIN users u ON u.email=r.email
-  WHERE u.id IS NULL OR (${active("participant", "u.id")})`,
+    COALESCE(sum(CASE WHEN id IS NOT NULL THEN 1 ELSE 0 END),0) accounts,
+    COALESCE(sum(CASE WHEN status='Going' THEN 1 ELSE 0 END),0) going,
+    COALESCE(sum(CASE WHEN status='Checked in' AND attended=1 THEN 1 ELSE 0 END),0) checked_in
+  FROM effective_states`,
   teams: `WITH active_teams AS (
     SELECT t.id FROM teams t WHERE ${active("team", "t.id")}
   ), member_states AS (
@@ -45,7 +69,12 @@ const queries = {
   )
   SELECT count(*) formed,
     COALESCE(sum(CASE WHEN EXISTS(SELECT 1 FROM team_locks l WHERE l.team_id=t.id) THEN 1 ELSE 0 END),0) locked,
-    COALESCE(sum(CASE WHEN m.total>0 AND m.total=m.approved THEN 1 ELSE 0 END),0) approved
+    COALESCE(sum(CASE WHEN m.total>0 AND m.total=m.approved THEN 1 ELSE 0 END),0) approved,
+    COALESCE(sum(CASE WHEN m.total=1 THEN 1 ELSE 0 END),0) size_1,
+    COALESCE(sum(CASE WHEN m.total=2 THEN 1 ELSE 0 END),0) size_2,
+    COALESCE(sum(CASE WHEN m.total=3 THEN 1 ELSE 0 END),0) size_3,
+    COALESCE(sum(CASE WHEN m.total=4 THEN 1 ELSE 0 END),0) size_4,
+    COALESCE(sum(CASE WHEN m.total=5 THEN 1 ELSE 0 END),0) size_5
   FROM active_teams t LEFT JOIN member_states m ON m.team_id=t.id`,
   submissions: `WITH active_projects AS (
     SELECT p.id,p.team_id FROM projects p JOIN teams t ON t.id=p.team_id
@@ -55,8 +84,10 @@ const queries = {
     WHERE ${active("submission", "v.id")}
   )
   SELECT (SELECT count(*) FROM active_projects) projects,
-    (SELECT count(DISTINCT team_id) FROM visible_versions) submitted_teams,
-    (SELECT count(*) FROM visible_versions) versions`,
+    (SELECT count(*) FROM visible_versions) versions,
+    (SELECT count(*) FROM active_projects p WHERE NOT EXISTS(
+      SELECT 1 FROM submission_versions v WHERE v.team_id=p.team_id
+    ) AND NOT EXISTS(SELECT 1 FROM submission_attempt_ledger l WHERE l.team_id=p.team_id AND l.attempts>0)) drafts`,
 } as const;
 
 function count(value: unknown) {
@@ -70,11 +101,16 @@ function count(value: unknown) {
  * Roster = the existing registrations/Luma union, including pending approvals.
  * Portal accounts = roster emails with a users record, not an auth/session claim.
  * No historical source split or profile-completeness approximation is inferred.
+ * Going follows the effective individual status, including reconciled absence
+ * and manual override precedence. Checked-in also requires actual attendance
+ * evidence and approved registration; a stale status alone never fabricates it.
  * Removed/terminal people and teams are excluded. Team approval requires every
  * current member to have approved registration and effective Going/Checked in
  * status; empty teams fail. Locks and approvals are independent, overlapping sets.
  * Submission counts exclude removed teams/projects/versions. Visible versions
  * are not consumed attempts; this read never changes durable attempt history.
+ * Drafts have neither any committed version (including hidden history) nor a
+ * positive durable attempt record. Later edits of submitted projects are not drafts.
  * One aggregate result row/query is fetched after the server staff guard.
  */
 export async function readAdminStats(
@@ -125,6 +161,8 @@ export async function readAdminStats(
           "No portal account",
           count(result.roster) - count(result.accounts),
         ),
+        card("going", "Going"),
+        card("checked_in", "Checked-in"),
       ],
     };
   if (collection === "teams")
@@ -134,17 +172,21 @@ export async function readAdminStats(
       cards: [
         card("formed", "Teams formed"),
         card("locked", "Locked teams"),
-        card("approved", "All members approved"),
+        card("approved", "Approved teams"),
       ],
+      teamSizes: Array.from({ length: 5 }, (_, index) => ({
+        label: index === 0 ? "Solo" : `${index + 1} people`,
+        value: count(result[`size_${index + 1}`]),
+      })),
       note: "Locked and approved counts can overlap.",
     };
   return {
     collection,
     scope: "Entire collection",
     cards: [
-      card("projects", "Active projects"),
-      card("submitted_teams", "Submitted teams"),
-      card("versions", "Visible versions"),
+      card("projects", "Projects"),
+      { ...card("versions", "Submissions"), caption: "Committed versions" },
+      { ...card("drafts", "Drafts"), caption: "Never submitted" },
     ],
   };
 }

@@ -3,6 +3,7 @@ import { test } from "node:test";
 import { LocalDatabase } from "../lib/local-test/sqlite";
 import { batch, one, type Database } from "../lib/db";
 import { readAdminStats, type AdminStatsDTO } from "../lib/admin-stats";
+import { personStatus } from "../lib/portal-status";
 import { PortalService } from "../lib/service";
 import { fixtures, LOCAL_CREDIT_KEY, seedLocal } from "../scripts/fixtures";
 import { attend } from "./helpers";
@@ -163,9 +164,14 @@ for (const engine of ["sqlite", "postgres"] as const) {
             assert.equal(calls, before + 1);
             assert.deepEqual(
               result.cards.map((card) => card.value),
-              [0, 0, 0],
+              Array(result.cards.length).fill(0),
             );
             assert.equal(result.scope, "Entire collection");
+            if (collection === "teams")
+              assert.deepEqual(
+                result.teamSizes?.map((size) => size.value),
+                [0, 0, 0, 0, 0],
+              );
           }
         },
       );
@@ -239,6 +245,8 @@ for (const engine of ["sqlite", "postgres"] as const) {
             roster: 14,
             accounts: 12,
             without_account: 2,
+            going: 11,
+            checked_in: 0,
           });
           assert.equal(result.cards[1].label, "Portal accounts");
           assert.doesNotMatch(
@@ -252,6 +260,11 @@ for (const engine of ["sqlite", "postgres"] as const) {
             ],
           ]);
           assert.deepEqual(await stats("participants"), result);
+          const filtered = (await service().view("/admin/participants", {
+            search: "no-such-participant",
+            page: 7,
+          })) as { stats: AdminStatsDTO };
+          assert.deepEqual(filtered.stats, result);
         },
       );
       await t.test(
@@ -321,10 +334,170 @@ for (const engine of ["sqlite", "postgres"] as const) {
             approved: 1,
           });
           assert.match(result.note!, /can overlap/);
+          assert.equal(
+            result.cards.find((card) => card.key === "approved")?.label,
+            "Approved teams",
+          );
         },
       );
       await t.test(
-        "distinct projects, submitted teams and visible versions do not multiply and never reset durable attempts",
+        "one team-size breakdown uses current memberships, excludes empty/removed teams, and remains independent of filtering",
+        async () => {
+          const before = await stats("teams");
+          assert.deepEqual(before.teamSizes, [
+            { label: "Solo", value: 1 },
+            { label: "2 people", value: 1 },
+            { label: "3 people", value: 0 },
+            { label: "4 people", value: 0 },
+            { label: "5 people", value: 1 },
+          ]);
+          await batch(db, [
+            [
+              "INSERT INTO teams VALUES('four-person-team','Four person team','fake_owner','',?)",
+              time,
+            ],
+            ...["owner", "admin", "judge", "judge2"].map(
+              (who) =>
+                [
+                  "INSERT INTO memberships VALUES(?,?,?)",
+                  "fake_" + who,
+                  "four-person-team",
+                  time,
+                ] as [string, ...unknown[]],
+            ),
+            [
+              "DELETE FROM memberships WHERE team_id='fake_team5' AND user_id IN ('fake_hari','fake_ivy')",
+            ],
+          ]);
+          const changed = await stats("teams");
+          assert.deepEqual(
+            changed.teamSizes?.map((size) => size.value),
+            [1, 1, 1, 1, 0],
+          );
+          assert.equal(values(changed).formed, 5);
+          const filtered = (await service().view("/admin/teams", {
+            search: "missing-team",
+            page: 9,
+          })) as { stats: AdminStatsDTO };
+          assert.deepEqual(filtered.stats, changed);
+          await batch(db, [
+            ...["hari", "ivy"].map(
+              (who) =>
+                [
+                  "INSERT INTO memberships VALUES(?,?,?)",
+                  "fake_" + who,
+                  "fake_team5",
+                  time,
+                ] as [string, ...unknown[]],
+            ),
+          ]);
+        },
+      );
+      await t.test(
+        "Going and Checked-in follow status/absence precedence while check-in also requires valid attendance evidence",
+        async () => {
+          const initial = values(await stats("participants"));
+          // A manual Checked in label alone is not an attendance record.
+          assert.equal(
+            (await personStatus(service(), "fake_alice")).status,
+            "Checked in",
+          );
+          assert.equal(
+            (await personStatus(service(), "fake_alice")).checkedIn,
+            false,
+          );
+          await attend(db, "fake_alice");
+          assert.equal(
+            values(await stats("participants")).checked_in,
+            initial.checked_in! + 1,
+          );
+          await batch(db, [
+            [
+              "UPDATE participant_status_overrides SET status='Going',updated_at=? WHERE user_id='fake_alice'",
+              time,
+            ],
+          ]);
+          const going = values(await stats("participants"));
+          assert.equal(going.checked_in, initial.checked_in);
+          assert.equal(going.going, initial.going! + 1);
+          assert.equal(
+            (await one<{ n: number }>(
+              db,
+              "SELECT count(*) n FROM manual_checkins WHERE user_id='fake_alice'",
+            ))!.n,
+            1,
+          );
+          await batch(db, [
+            [
+              "UPDATE participant_status_overrides SET updated_at='2026-10-22T06:00:00.000Z' WHERE user_id='fake_alice'",
+            ],
+          ]);
+          assert.equal(
+            (await personStatus(service(), "fake_alice")).status,
+            "Absent",
+          );
+          assert.equal(
+            values(await stats("participants")).going,
+            initial.going,
+          );
+          await batch(db, [
+            [
+              "UPDATE participant_status_overrides SET status='Checked in' WHERE user_id='fake_alice'",
+            ],
+          ]);
+          // A reconciled absence is newer than this stale override despite preserved receipt.
+          assert.equal(
+            (await personStatus(service(), "fake_alice")).checkedIn,
+            true,
+          );
+          assert.equal(
+            values(await stats("participants")).checked_in,
+            initial.checked_in,
+          );
+          await batch(db, [
+            [
+              "UPDATE participant_status_overrides SET updated_at=? WHERE user_id='fake_alice'",
+              time,
+            ],
+            [
+              "UPDATE registrations SET status='pending' WHERE email='alice@portal.test'",
+            ],
+          ]);
+          assert.equal(
+            values(await stats("participants")).checked_in,
+            initial.checked_in,
+          );
+          await batch(db, [
+            [
+              "UPDATE registrations SET status='approved' WHERE email='alice@portal.test'",
+            ],
+          ]);
+          assert.equal(
+            values(await stats("participants")).checked_in,
+            initial.checked_in! + 1,
+          );
+          // A roster-only approved email can be Going, then explicitly reconciled Absent.
+          await batch(db, [
+            [
+              "UPDATE registrations SET status='approved' WHERE email='roster-only@portal.test'",
+            ],
+          ]);
+          const beforeAbsence = values(await stats("participants"));
+          await batch(db, [
+            [
+              "INSERT INTO registration_absences VALUES('roster-only@portal.test',?,?)",
+              time,
+              time,
+            ],
+          ]);
+          assert.equal(
+            values(await stats("participants")).going,
+            beforeAbsence.going! - 1,
+          );
+        },
+      );
+      await t.test(
+        "Projects, visible committed versions and never-submitted Drafts preserve hidden and durable history",
         async () => {
           // Use the still-active team5 and restore its attendance eligibility for fixture writes.
           await batch(db, [
@@ -358,14 +531,49 @@ for (const engine of ["sqlite", "postgres"] as const) {
           );
           assert.deepEqual(values(await stats("submissions")), {
             projects: 2,
-            submitted_teams: 1,
             versions: 1,
+            drafts: 1,
           });
+          const cards = (await stats("submissions")).cards;
+          assert.deepEqual(
+            cards.map((card) => card.label),
+            ["Projects", "Submissions", "Drafts"],
+          );
+          assert.equal(cards[1].caption, "Committed versions");
+          // Editing a submitted project's working draft is not a never-submitted draft.
+          await batch(db, [
+            [
+              "UPDATE projects SET draft=?,revision=revision+1,updated_at=? WHERE id='active-project'",
+              JSON.stringify({ projectName: "Later saved edit" }),
+              "2026-11-01T05:00:00.000Z",
+            ],
+          ]);
+          assert.equal(values(await stats("submissions")).drafts, 1);
+          await batch(db, [removal("submission", "visible-v1")]);
+          assert.deepEqual(values(await stats("submissions")), {
+            projects: 2,
+            versions: 0,
+            drafts: 1,
+          });
+          // Legacy/pruned history can retain only the positive immutable attempt ledger.
+          await batch(db, [
+            ["INSERT INTO submission_attempt_ledger VALUES('fake_team1',1)"],
+          ]);
+          assert.deepEqual(values(await stats("submissions")), {
+            projects: 2,
+            versions: 0,
+            drafts: 0,
+          });
+          const filtered = (await service().view("/admin/submissions", {
+            search: "missing-project",
+            page: 6,
+          })) as { stats: AdminStatsDTO };
+          assert.deepEqual(filtered.stats, await stats("submissions"));
           await batch(db, [removal("project", "active-project")]);
           assert.deepEqual(values(await stats("submissions")), {
             projects: 1,
-            submitted_teams: 0,
             versions: 0,
+            drafts: 0,
           });
           assert.deepEqual(
             await one(

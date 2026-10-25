@@ -12,9 +12,16 @@ const examples: AdminStatsDTO[] = [
     collection: "participants",
     scope: "Entire collection",
     cards: [
-      { key: "roster", label: "On roster", value: 160 },
-      { key: "accounts", label: "Portal accounts", value: 130 },
-      { key: "without_account", label: "No portal account", value: 30 },
+      { key: "roster", label: "Added manually", value: 160 },
+      { key: "signed_in", label: "Signed-in", value: 130 },
+      { key: "going", label: "Going", value: 82 },
+      { key: "checked_in", label: "Checked-in", value: 35 },
+      {
+        key: "pending",
+        label: "Pending",
+        value: null,
+        caption: "Definition pending",
+      },
     ],
   },
   {
@@ -23,17 +30,40 @@ const examples: AdminStatsDTO[] = [
     cards: [
       { key: "formed", label: "Teams formed", value: 40 },
       { key: "locked", label: "Locked teams", value: 28 },
-      { key: "approved", label: "All members approved", value: 30 },
+      { key: "approved", label: "Approved teams", value: 30 },
+      {
+        key: "pending",
+        label: "Pending teams",
+        value: null,
+        caption: "Definition pending",
+      },
     ],
     note: "Locked and approved counts can overlap.",
+    teamSizes: [
+      { label: "Solo", value: 8 },
+      { label: "2 person", value: 10 },
+      { label: "3 person", value: 7 },
+      { label: "4 person", value: 5 },
+      { label: "5 person", value: 10 },
+    ],
   },
   {
     collection: "submissions",
     scope: "Entire collection",
     cards: [
-      { key: "projects", label: "Active projects", value: 30 },
-      { key: "submitted_teams", label: "Submitted teams", value: 25 },
-      { key: "versions", label: "Visible versions", value: 56 },
+      { key: "projects", label: "Projects", value: 30 },
+      {
+        key: "versions",
+        label: "Submissions",
+        value: 56,
+        caption: "Committed versions",
+      },
+      {
+        key: "drafts",
+        label: "Drafts",
+        value: 5,
+        caption: "Not yet submitted",
+      },
     ],
   },
 ];
@@ -41,8 +71,14 @@ const examples: AdminStatsDTO[] = [
 test("each count has a semantic label and entire-collection scope without filters or actions", () => {
   for (const stats of examples) {
     const html = renderToStaticMarkup(createElement(AdminStats, { stats }));
-    assert.equal((html.match(/<dt>/g) || []).length, 3);
-    assert.equal((html.match(/<dd>/g) || []).length, 3);
+    assert.equal(
+      (html.match(/<dt>/g) || []).length,
+      stats.cards.length + (stats.teamSizes ? stats.teamSizes.length + 1 : 0),
+    );
+    assert.equal(
+      (html.match(/<dd(?: aria-label="Count unavailable")?>/g) || []).length,
+      stats.cards.length + (stats.teamSizes ? stats.teamSizes.length + 1 : 0),
+    );
     assert.equal((html.match(/Entire collection/g) || []).length, 1);
     assert.match(html, /aria-label="(Participant|Team|Submission) statistics"/);
     assert.doesNotMatch(
@@ -62,12 +98,12 @@ test("real zeroes render as zero rather than absent data", () => {
     cards: examples[0].cards.map((card) => ({ ...card, value: 0 })),
   };
   const html = renderToStaticMarkup(createElement(AdminStats, { stats }));
-  assert.equal((html.match(/<dd>0<\/dd>/g) || []).length, 3);
+  assert.equal((html.match(/<dd>0<\/dd>/g) || []).length, stats.cards.length);
 });
 
 const chromiumPath = process.env.CHROMIUM_PATH || "/usr/bin/chromium";
 test(
-  "three compact cards and values remain aligned without overflow at desktop, tablet and narrow mobile widths",
+  "colored metric cards and single team-size card stay readable without overflow at desktop, tablet and narrow mobile widths",
   {
     skip: !existsSync(chromiumPath),
   },
@@ -105,6 +141,7 @@ test(
                 const rect = card.getBoundingClientRect(),
                   value = card.querySelector("dd")!.getBoundingClientRect();
                 return {
+                  breakdown: card.classList.contains("admin-team-size-card"),
                   x: rect.x,
                   right: rect.right,
                   top: rect.top,
@@ -112,6 +149,10 @@ test(
                   valueTop: value.top,
                   valueBottom: value.bottom,
                   overflow: card.scrollWidth > card.clientWidth,
+                  gradient: getComputedStyle(card).backgroundImage,
+                  dot: card
+                    .querySelector(".admin-stat-dot")!
+                    .getBoundingClientRect().width,
                 };
               });
               return {
@@ -125,13 +166,19 @@ test(
             false,
             JSON.stringify({ stats, viewport, geometry }),
           );
-          assert.equal(
-            new Set(geometry.cards.map((card) => card.valueTop)).size,
-            1,
-          );
-          assert.equal(new Set(geometry.cards.map((card) => card.top)).size, 1);
+          for (const rowTop of new Set(
+            geometry.cards.map((card) => card.top),
+          )) {
+            const row = geometry.cards.filter(
+              (card) => card.top === rowTop && !card.breakdown,
+            );
+            if (row.length)
+              assert.equal(new Set(row.map((card) => card.valueTop)).size, 1);
+          }
           for (const card of geometry.cards) {
             assert.equal(card.overflow, false);
+            assert.match(card.gradient, /linear-gradient/);
+            assert.ok(card.dot >= 8);
             assert.ok(card.x >= 0 && card.right <= viewport.width);
             assert.ok(card.valueBottom < card.bottom);
           }
