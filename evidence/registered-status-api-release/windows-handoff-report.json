@@ -1,0 +1,23 @@
+{
+  "Passed": 6,
+  "Checks": [
+    "Actual reviewed ZIP copied, hash-checked, expanded, full entry/native files validated",
+    "Second run uses a new directory and preserves the first result",
+    "Wrong digest rejects before ZIP extraction",
+    "HTTPS download branch tested with explicit local transport mock, no network request",
+    "HTTP, embedded credential and query-bearing URLs rejected without transport",
+    "Synthetic environment sentinel unchanged; no env file packaged; zero Neon commands"
+  ],
+  "PowerShellVersion": "7.6.8",
+  "RuntimePlatform": "Unix",
+  "ArchiveSHA256": "9f16cda2e48f635251905cfb41669e35a41cf09c986e0507688a272bbd5ad626",
+  "ArchiveEntries": 93,
+  "NativeWindowsExecution": "not performed",
+  "LiveDownload": "not performed; transport mocked explicitly",
+  "ProviderActions": 0,
+  "ActualPromotedRepositoryHelperTested": true,
+  "TestedHelper": "scripts/prepare-backend-windows.ps1",
+  "TestedArchive": "artifacts/neon/portalapi.zip",
+  "BundleSource": "6da7b10372892cd6d126b7d092cabeeffe9f5e50",
+  "RepositoryHeadAtCheck": "c645f088731a50a9b5de065b38c0eda7b6859fbf"
+}

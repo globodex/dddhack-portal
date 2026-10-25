@@ -1,0 +1,90 @@
+{
+  "runtimeSource": "6da7b10372892cd6d126b7d092cabeeffe9f5e50",
+  "candidateArchive": "/tmp/ddd-next-release-6da7b1037289/candidate/portalapi.zip",
+  "sha256": "9f16cda2e48f635251905cfb41669e35a41cf09c986e0507688a272bbd5ad626",
+  "zipBytes": 9029918,
+  "uncompressedBytes": 21202946,
+  "files": 93,
+  "indexSha256": "afba40494c79ad01de8518c60da0d278a7e6906b047a620b3900d4c600c55057",
+  "limits": {
+    "maxZipBytes": 10485760,
+    "maxTotalBytes": 67108864,
+    "maxEntries": 4096
+  },
+  "freshJavaScriptByteIdentical": true,
+  "allGraphInputHashesRechecked": true,
+  "applicationInputsMatchExactGitSnapshot": true,
+  "graphInputs": 873,
+  "applicationInputs": 89,
+  "forbiddenInputs": [],
+  "frontendOrImageInputs": [],
+  "archiveForbiddenPaths": [],
+  "nativeFiles": [
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
+      "bytes": 18324712,
+      "compressedBytes": 8195758,
+      "sha256": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f",
+      "elfMachine": 183
+    },
+    {
+      "path": "node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.5.node",
+      "bytes": 530120,
+      "compressedBytes": 167789,
+      "sha256": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b",
+      "elfMachine": 183
+    }
+  ],
+  "nativeArmExecution": false,
+  "hostStatuses": [
+    200,
+    403,
+    503
+  ],
+  "outboundAttempts": 0,
+  "powershellChecks": 6,
+  "nativeWindowsExecution": false,
+  "canonicalPlanDigest": "73c64b0acbe9df80f9ca6627c0a1d4a3485c83214a6923918c530c1ab2b5d160",
+  "requiredSchemaBeforeDeploy": {
+    "expectedFinalLedgerEntries": 12,
+    "nineEntryTargetPending": [
+      "0104_admin_team_corrections.sql",
+      "0105_terminal_record_deletion.sql",
+      "0106_admin_team_unlock.sql"
+    ],
+    "tenEntryTargetPending": [
+      "0105_terminal_record_deletion.sql",
+      "0106_admin_team_unlock.sql"
+    ],
+    "elevenEntryTargetPending": [
+      "0106_admin_team_unlock.sql"
+    ],
+    "twelveEntryTargetPending": [],
+    "ownerBackupRestoreVerificationRequired": true,
+    "sourceUpgradeGuide": "/tmp/ddd-next-release-6da7b1037289/source/docs/NEON_POPULATED_UPGRADE_PLAN.md",
+    "automaticMigration": false,
+    "zipContainsSql": false
+  },
+  "repositoryArchiveSha256Unchanged": "ea9b0a2f9f99de33626cdffd7dafbe096eee6f3812ffe7d56cfc5793856d1dcb",
+  "repositoryHelpersAndReleaseDocsUnchanged": true,
+  "rootUncommittedNoBackupWorkExcluded": true,
+  "previousCandidatePreserved": true,
+  "changedInputsFromPreviousCandidate": [
+    "lib/participant-export.ts",
+    "lib/participant-filters.ts"
+  ],
+  "credentialsRead": false,
+  "sourceUploaded": false,
+  "providerOperations": false,
+  "databaseAccess": false,
+  "migrationPerformed": false,
+  "deploymentPerformed": false,
+  "publicationAuthorized": true,
+  "repositoryPromotionCompleted": true,
+  "repositoryPackagingFilesPromoted": 27,
+  "actualRepositoryPinnedHelperChecksPassed": 6,
+  "repositoryHeadAtPinnedHelperCheck": "c645f088731a50a9b5de065b38c0eda7b6859fbf",
+  "bundleSourceRetained": "6da7b10372892cd6d126b7d092cabeeffe9f5e50",
+  "runtimeInputsStillMatchBundleSource": true,
+  "repositoryArchiveSha256": "9f16cda2e48f635251905cfb41669e35a41cf09c986e0507688a272bbd5ad626"
+}

@@ -1,0 +1,39 @@
+{
+  "officialRuntimeVersion": "1.10.2",
+  "runtimeRoot": "/tmp/ddd-neon-build-tools",
+  "esbuildVersion": "0.28.2",
+  "officialRegistryOnly": true,
+  "installScriptsDisabled": true,
+  "emptyNpmConfigFiles": true,
+  "nativeCache": "/tmp/ddd-npm-cache",
+  "offlineNativeInstallPassed": true,
+  "arm64NativeFiles": [
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
+      "bytes": 18324712,
+      "sha256": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f",
+      "elfMachine": 183,
+      "matchesCurrentArchive": true
+    },
+    {
+      "path": "node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.5.node",
+      "bytes": 530120,
+      "sha256": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b",
+      "elfMachine": 183,
+      "matchesCurrentArchive": true
+    }
+  ],
+  "powershellVersion": "7.6.8",
+  "powershellRoot": "/tmp/ddd-powershell-7.6.8",
+  "powershellOfficialRelease": "https://github.com/PowerShell/PowerShell/releases/tag/v7.6.8",
+  "powershellArchiveSha256": "59112e38ad83350e4f6dc0195953c66b5926792f300ca2e7691b8242e7a16e7f",
+  "powershellPublishedAssetAndChecksumMatch": true,
+  "toolStartupPassed": true,
+  "systemProxyAndTrustPreservedWithoutLoggingValues": true,
+  "tlsVerificationDisabled": false,
+  "apiArchiveBuilt": false,
+  "repositoryFilesChanged": false,
+  "credentialsRead": false,
+  "providerOperations": false,
+  "phase": "Public tool preparation before candidate build"
+}

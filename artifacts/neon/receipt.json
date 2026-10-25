@@ -1,17 +1,20 @@
 {
-  "runtimeSource": "340bf33175ce8b5c1b1901da75a6a251ee553c69",
+  "runtimeSource": "6da7b10372892cd6d126b7d092cabeeffe9f5e50",
   "runtime": "nodejs24",
   "source": "neon/api.ts",
-  "zipBytes": 9021973,
-  "sha256": "ea9b0a2f9f99de33626cdffd7dafbe096eee6f3812ffe7d56cfc5793856d1dcb",
+  "zipBytes": 9029918,
+  "sha256": "9f16cda2e48f635251905cfb41669e35a41cf09c986e0507688a272bbd5ad626",
   "env": {},
   "warnings": [],
   "buildOnly": true,
   "deployment": "not performed",
   "packager": "@neon/config-runtime@1.10.2",
-  "nativeExecution": "not verified on this x86_64 executor",
-  "uncompressedBytes": 21176645,
+  "nativeExecution": "not performed; headers only",
+  "archive": "artifacts/neon/portalapi.zip",
+  "candidateOnly": false,
+  "uncompressedBytes": 21202946,
   "fileCount": 93,
+  "indexSha256": "afba40494c79ad01de8518c60da0d278a7e6906b047a620b3900d4c600c55057",
   "nativeArchitecture": "Linux ARM64 glibc",
   "nativeFiles": [
     {
@@ -29,44 +32,26 @@
       "elfMachine": 183
     }
   ],
-  "archiveHasSecretsOrTests": [],
-  "bannerPresent": true,
-  "externalSharpImport": true,
-  "indexSha256": "ac6e91129b873692e0a92481f57e957a7f3705a79c0b8c1ad79a6f6d218daa22",
-  "archive": "artifacts/neon/portalapi.zip",
-  "graphInputCount": 867,
-  "graphApplicationInputCount": 83,
+  "archiveHasForbiddenPaths": [],
+  "graphInputCount": 873,
+  "graphApplicationInputCount": 89,
   "forbiddenInputs": [],
   "graphFrontendInputs": [],
   "graphRecomputed": true,
-  "graphEvidence": "evidence/followup-api-refresh/graph.json",
-  "runtimeInputHashes": "evidence/followup-api-refresh/runtime-input-hashes.json",
-  "allInputHashes": "evidence/followup-api-refresh/all-input-hashes.json",
+  "graphEvidence": "evidence/registered-status-api-release/graph.json",
+  "runtimeInputHashes": "evidence/registered-status-api-release/runtime-input-hashes.json",
+  "allInputHashes": "evidence/registered-status-api-release/all-input-hashes.json",
   "limits": {
     "maxZipBytes": 10485760,
     "maxTotalBytes": 67108864,
     "maxEntries": 4096
   },
-  "manualBackendRedeployRequired": true,
-  "manualMigrationPlan": [
-    {
-      "name": "0102_credit_stock.sql",
-      "sha256": "74bf8549edbecb753424a86e692844e962be02c0faeddda8f0b2dd3ffaacb72e"
-    },
-    {
-      "name": "0103_project_media_limits.sql",
-      "sha256": "3f42da160787977b7655fe74647655bd656f4c55467c2a42b3dd1627859f462c"
-    },
-    {
-      "name": "0104_admin_team_corrections.sql",
-      "sha256": "a931aeafba01be07f43e35fc7c17cae80f11bbd212fbd92f0e5fd8d475c40500"
-    },
-    {
-      "name": "0105_terminal_record_deletion.sql",
-      "sha256": "088b96a239915cd518765b5ef260c73feee913d8e0b181234110f7591676ccde"
-    }
+  "previousArchiveSha256": "ea9b0a2f9f99de33626cdffd7dafbe096eee6f3812ffe7d56cfc5793856d1dcb",
+  "changedArchiveEntries": [
+    "index.mjs"
   ],
-  "canonicalPlanDigest": "e3b7a348e2c9e3f4f066a78fbd02274a0e111155b3af527f99bdc545bbe32691",
+  "unchangedArchiveEntryCount": 92,
+  "canonicalPlanDigest": "73c64b0acbe9df80f9ca6627c0a1d4a3485c83214a6923918c530c1ab2b5d160",
   "historicalMigrationsPreserved": [
     {
       "name": "0000_compatibility.sql",
@@ -97,46 +82,82 @@
       "checksum": "21929ac1cf790d34644b385fa4506c69db6df9be3d5ddaae00db9ee2bccb5797"
     }
   ],
-  "hostedMigrationLedgerInspected": false,
-  "manualMigrationMode": "Owner-operated pending-only upgrade before deployment: an existing nine-entry ledger applies 0104 and 0105; an existing ten-entry ledger applies only 0105. Both finish at eleven entries after an owner-verified backup/restore checkpoint and fresh inspect. Seven historical LF or precisely recognized whole-seven CRLF histories remain supported; no historical ledger rewrite. No migration performed by this archive build.",
-  "previousArchiveSha256": "fcd0941113bb8dcd7b35f965bf3e37fef5890090a0280b90159331f8c708d521",
-  "changedArchiveEntries": [
-    "index.mjs"
+  "manualMigrationPlan": [
+    {
+      "name": "0102_credit_stock.sql",
+      "sha256": "74bf8549edbecb753424a86e692844e962be02c0faeddda8f0b2dd3ffaacb72e"
+    },
+    {
+      "name": "0103_project_media_limits.sql",
+      "sha256": "3f42da160787977b7655fe74647655bd656f4c55467c2a42b3dd1627859f462c"
+    },
+    {
+      "name": "0104_admin_team_corrections.sql",
+      "sha256": "a931aeafba01be07f43e35fc7c17cae80f11bbd212fbd92f0e5fd8d475c40500"
+    },
+    {
+      "name": "0105_terminal_record_deletion.sql",
+      "sha256": "088b96a239915cd518765b5ef260c73feee913d8e0b181234110f7591676ccde"
+    },
+    {
+      "name": "0106_admin_team_unlock.sql",
+      "sha256": "dd437230bcbc5d9ffc65b63464992976b7b0ddcd1fd64a675f76f113623c17aa"
+    }
   ],
-  "unchangedArchiveEntryCount": 92,
-  "archiveComparisonEvidence": "evidence/followup-api-refresh/archive-refresh-comparison.json",
-  "sourceBuildVerifiedAgainst": "340bf33175ce8b5c1b1901da75a6a251ee553c69",
+  "requiredSchemaBeforeDeploy": {
+    "expectedFinalLedgerEntries": 12,
+    "nineEntryTargetPending": [
+      "0104_admin_team_corrections.sql",
+      "0105_terminal_record_deletion.sql",
+      "0106_admin_team_unlock.sql"
+    ],
+    "tenEntryTargetPending": [
+      "0105_terminal_record_deletion.sql",
+      "0106_admin_team_unlock.sql"
+    ],
+    "elevenEntryTargetPending": [
+      "0106_admin_team_unlock.sql"
+    ],
+    "twelveEntryTargetPending": [],
+    "ownerBackupRestoreVerificationRequired": true,
+    "sourceUpgradeGuide": "docs/NEON_POPULATED_UPGRADE_PLAN.md",
+    "automaticMigration": false,
+    "zipContainsSql": false
+  },
+  "manualBackendRedeployRequired": true,
+  "publicationAuthorized": true,
+  "hostedMigrationLedgerInspected": false,
+  "migrationPerformed": false,
+  "sourceSnapshotMethod": "git archive exact committed snapshot; each exported file verified against same Git commit blob; uncommitted work excluded",
+  "sourceExportManifest": "evidence/registered-status-api-release/exported-source-hashes.json",
   "hostSmoke": {
     "passed": true,
-    "report": "evidence/followup-api-refresh/host-smoke.json",
+    "report": "evidence/registered-status-api-release/host-smoke.json",
+    "statuses": [
+      200,
+      403,
+      503
+    ],
     "outboundAttempts": 0,
-    "trustedHealth": 200,
-    "untrustedHealth": 403,
-    "unconfiguredPortal": 503,
-    "dependencySubstitution": "Installed x86_64 host Sharp; original ARM64 archive/extracted tree unchanged"
+    "dependencySubstitution": "Separate unchanged-JavaScript host copy resolves installed x86_64 Sharp; ARM64 archive and extracted tree remain unchanged",
+    "nativeArmExecution": false
   },
   "windowsHandoff": {
     "checksPassed": 6,
-    "report": "evidence/followup-api-refresh/windows-handoff-report.json",
+    "report": "evidence/registered-status-api-release/windows-handoff-report.json",
     "powerShellVersion": "7.6.8",
     "platform": "Unix",
     "nativeWindowsExecution": false,
     "liveDownload": false,
-    "neonCommands": 0
+    "neonCommands": 0,
+    "helpers": "scripts",
+    "repositoryHelpersUnchanged": true,
+    "helperSemanticChanges": "Digest-only changes tested in isolated copies; CLI and environment-file behavior unchanged",
+    "repositoryHelperAndArchiveActuallyTested": true,
+    "copiedHelperAndRepositoryHelperBothPassed": true,
+    "repositoryHeadAtCheck": "c645f088731a50a9b5de065b38c0eda7b6859fbf"
   },
-  "archiveVerificationEvidence": "evidence/followup-api-refresh",
-  "requiredSchemaBeforeDeploy": {
-    "expectedFinalLedgerEntries": 11,
-    "nineEntryTargetPending": [
-      "0104_admin_team_corrections.sql",
-      "0105_terminal_record_deletion.sql"
-    ],
-    "tenEntryTargetPending": [
-      "0105_terminal_record_deletion.sql"
-    ],
-    "elevenEntryTargetPending": [],
-    "ownerRunUpgradeGuide": "docs/NEON_POPULATED_UPGRADE_PLAN.md",
-    "zipContainsSql": false,
-    "automaticMigration": false
-  }
+  "verificationEvidence": "evidence/registered-status-api-release",
+  "privateConfigurationExcluded": true,
+  "archiveComparisonEvidence": "evidence/registered-status-api-release/archive-refresh-comparison.json"
 }

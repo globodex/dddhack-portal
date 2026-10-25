@@ -1,0 +1,1 @@
+{"runtimeSource":"6da7b10372892cd6d126b7d092cabeeffe9f5e50","archiveSha256":"9f16cda2e48f635251905cfb41669e35a41cf09c986e0507688a272bbd5ad626","checks":[{"name":"trusted-health","status":200},{"name":"untrusted-health","status":403},{"name":"unconfigured-portal","status":503}],"outboundAttempts":[],"nativeARM64Execution":"unverified"}
