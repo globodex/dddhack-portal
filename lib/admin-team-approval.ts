@@ -73,8 +73,8 @@ const ideaColumns = `i.title,i.description,i.hash,i.updated_at,${revision}`;
 const ideaFrom = "FROM ideas i WHERE i.team_id=?";
 const optional = (value: string | null | undefined) => value?.trim() || null;
 const genderLabels: Record<string, string> = {
-  man: "Man",
-  woman: "Woman",
+  man: "Male",
+  woman: "Female",
   "non-binary": "Non-binary",
   "self-described": "Self-described",
   "prefer-not-to-say": "Prefer not to say",

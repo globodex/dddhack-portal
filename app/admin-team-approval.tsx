@@ -164,8 +164,8 @@ export function TeamApprovalDetails({
                 "linkedin",
               );
               const sex =
-                member.genderLabel ||
                 genderLabel(member.gender) ||
+                member.genderLabel ||
                 "Sex unavailable";
               return (
                 <li key={member.id}>

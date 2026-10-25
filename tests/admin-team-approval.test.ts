@@ -122,7 +122,7 @@ for (const engine of ["sqlite", "postgres"] as const) {
         "https://www.linkedin.com/in/synthetic-bob/",
       );
       assert.equal(bob.profession, "Working Professional");
-      assert.equal(bob.genderLabel, "Woman");
+      assert.equal(bob.genderLabel, "Female");
       assert.equal(bob.role, "leader");
       assert.equal(bob.checkedIn, true);
       assert.equal(bob.attendanceRecorded, true);
