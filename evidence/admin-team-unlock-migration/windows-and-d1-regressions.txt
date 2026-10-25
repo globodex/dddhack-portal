@@ -1,0 +1,18 @@
+✔ actual D1 API Admin deltas keep fresh status and locked ideas, invalidate labels and reauthorize every actor (6390.760591ms)
+✔ Drizzle journal registers every SQL file and new mirror has one executable statement per breakpoint (2.875228ms)
+✔ Drizzle mirror creates the exact canonical terminal tables and scoped immutable guards (89.666799ms)
+✔ Populated legacy upgrade preserves data and gives the real actor/admin commands terminal cascade and attempt guards (106.70453ms)
+✔ independent Windows source: approved LF plan is twelve exact HEAD blobs and keeps the published digest (93.435593ms)
+✔ independent Windows repair: check is read-only, exact CRLF repair preserves HEAD/index/approval and recovers the strict source plan (1632.830714ms)
+✔ independent Windows repair: edits, BOM, changed HEAD/index/approval and unexpected file sets refuse before any SQL write (2950.860172ms)
+✔ independent Windows source: actual CRLF loader and offline CLI reject; strict checker never normalizes bytes (935.470745ms)
+✔ independent Windows source: missing, extra, reordered, BOM and literal-edit plans still stop strictly (5.297967ms)
+✔ independent Windows checkout: autocrlf=true still checks out only the ten pinned migration paths as canonical LF (179.007031ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15253.036694

@@ -327,7 +327,7 @@ test("independent Windows source: missing, extra, reordered, BOM and literal-edi
     });
 });
 
-test("independent Windows checkout: autocrlf=true still checks out only the ten pinned migration paths as canonical LF", () => {
+test("independent Windows checkout: autocrlf=true still checks out only the twelve pinned migration paths as canonical LF", () => {
   const f = fixture();
   try {
     assert.ok(

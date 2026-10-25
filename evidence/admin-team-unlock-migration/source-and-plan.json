@@ -62,5 +62,15 @@
   "hostedRead": false,
   "hostedApply": false,
   "archiveChanged": false,
-  "nativePostgresConcurrencyVerified": false
+  "nativePostgresConcurrencyVerified": false,
+  "sourceCommit": "dbddac32a1e4046e4c94adc54da3f8dcb162eb66",
+  "verification": {
+    "newDatabaseAndPopulatedTests": 28,
+    "windowsCheckoutChecks": 6,
+    "drizzleTerminalMirrorRegressions": 3,
+    "actualD1AdminProjection": 1,
+    "actualD1DerivedGuardParity": 1,
+    "typecheck": "pass",
+    "offlinePlanAndSourceCheckout": "pass"
+  }
 }
