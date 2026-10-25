@@ -27,6 +27,10 @@ import {
   type GoogleClaims,
 } from "./google";
 import { sendMagicEmail, smtpConfig, type MagicMessage } from "./smtp";
+import {
+  issuedSessionEvidenceStatement,
+  retainedSessionEvidenceStatement,
+} from "../../lib/sign-in-evidence";
 
 export type { AuthEnv } from "./config";
 export { trustedBrowserOrigin } from "./config";
@@ -189,6 +193,7 @@ async function rateLimit(
 }
 async function cleanup(db: Database, now: number) {
   await batch(db, [
+    retainedSessionEvidenceStatement(new Date(now).toISOString()),
     ["DELETE FROM auth_magic_tokens WHERE expires_at<=?", now],
     ["DELETE FROM auth_oauth_transactions WHERE expires_at<=?", now],
     ["DELETE FROM auth_sessions WHERE expires_at<=?", now],
@@ -230,9 +235,15 @@ async function issueSession(
 ) {
   const token = randomToken();
   const previous = readCookie(request, cookieName(config, "session"));
+  const observedAt = new Date(now).toISOString();
+  const sessionHash = tokenHash(config, "session", token);
   await batch(db, [
     ...(previous
       ? [
+          retainedSessionEvidenceStatement(
+            observedAt,
+            tokenHash(config, "session", previous),
+          ),
           [
             "DELETE FROM auth_sessions WHERE token_hash=?",
             tokenHash(config, "session", previous),
@@ -241,10 +252,11 @@ async function issueSession(
       : []),
     [
       "INSERT INTO auth_sessions(token_hash,auth_user_id,expires_at) VALUES(?,?,?)",
-      tokenHash(config, "session", token),
+      sessionHash,
       user.id,
       now + SESSION_TTL,
     ],
+    issuedSessionEvidenceStatement(observedAt, sessionHash),
   ]);
   return authCookie(config, "session", token, SESSION_TTL);
 }
@@ -319,11 +331,16 @@ export function createAuthHandler(
         const returnTo = safeReturnTo(body.returnTo, "/");
         const token = readCookie(request, cookieName(config, "session"));
         if (token)
-          await rows(
-            db,
-            "DELETE FROM auth_sessions WHERE token_hash=?",
-            tokenHash(config, "session", token),
-          );
+          await batch(db, [
+            retainedSessionEvidenceStatement(
+              new Date(time).toISOString(),
+              tokenHash(config, "session", token),
+            ),
+            [
+              "DELETE FROM auth_sessions WHERE token_hash=?",
+              tokenHash(config, "session", token),
+            ],
+          ]);
         return json(
           { redirectTo: returnTo },
           200,
