@@ -1,0 +1,99 @@
+.app-shell .participant-profile-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  box-sizing: border-box;
+  width: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  margin: 0;
+  padding: 10px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted, #656960);
+  text-decoration: none;
+  cursor: pointer;
+}
+.app-shell .participant-profile-info:hover {
+  background: var(--paper, #f8f7f3);
+  color: var(--ink, #202320);
+}
+.app-shell .participant-profile-info:focus-visible {
+  outline: 3px solid #006afe;
+  outline-offset: 2px;
+}
+.app-shell .admin-person-identity > .participant-profile-info {
+  margin-inline-start: auto;
+}
+.app-shell .admin-team-member-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.app-shell .admin-team-member-name > strong {
+  flex: 1;
+  min-width: 0;
+}
+.app-shell .project-team-members {
+  margin-block: 24px;
+  min-width: 0;
+}
+.app-shell .project-team-members h2 {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+.app-shell .project-team-members ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.app-shell .project-team-members li {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-block: 8px;
+  border-bottom: 1px solid var(--line, #e3e4db);
+}
+.app-shell .project-team-member-name {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.app-shell .project-team-member-status {
+  font-size: 12px;
+  color: var(--muted, #656960);
+}
+.discovery-profile .profile-info-feedback h2 {
+  margin: 0 0 20px;
+  overflow-wrap: anywhere;
+}
+.discovery-profile .profile-info-feedback p {
+  line-height: 1.5;
+}
+.discovery-profile .profile-info-loading {
+  display: grid;
+  gap: 16px;
+  padding-block: 20px;
+}
+.discovery-profile .profile-info-loading span {
+  display: block;
+  height: 24px;
+  border-radius: 6px;
+  background: #eceee8;
+}
+.discovery-profile .profile-info-loading span:first-child {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  justify-self: center;
+}
+.discovery-profile .profile-info-loading span:last-child {
+  width: 70%;
+}
+
+dialog.discovery-profile.profile-info-dialog {
+  height: min(640px, calc(100dvh - 32px));
+}

@@ -89,8 +89,9 @@ import {
   AdminPresentationCache,
   AdminPresentationCacheMiss,
 } from "../lib/admin-presentation";
+import { ParticipantProfiles, ProfileInfoButton, ProjectTeamMembers } from "./participant-profile-info";
 import DiscoveryProfile, {
-  discoveryDetailsProjection,
+  discoveryProfileProjection,
   discoverySocialLinks,
   openDiscoveryDialog,
   type DiscoveryPerson,
@@ -2093,31 +2094,7 @@ function PublicResult({ result }: { result: Row }) {
   );
 }
 export { Credit } from "./personal-credits";
-export function discoveryProfileProjection(row: Row): DiscoveryPerson {
-  const teamName = typeof row.teamName === "string" ? row.teamName.trim() : "";
-  return {
-    name: String(row.name || "Participant"),
-    bio: String(row.bio || ""),
-    socials: Array.isArray(row.socials)
-      ? row.socials.filter((value: unknown) => typeof value === "string")
-      : [],
-    avatarColor: String(row.avatarColor || "blue"),
-    avatarExpression: String(row.avatarExpression || "squeezed"),
-    ...(row.details && typeof row.details === "object"
-      ? { details: discoveryDetailsProjection(row.details) }
-      : {}),
-    ...(teamName
-      ? {
-          team: {
-            name: teamName,
-            ...(typeof row.teamPalette === "string"
-              ? { palette: row.teamPalette }
-              : {}),
-          },
-        }
-      : {}),
-  };
-}
+export { discoveryProfileProjection } from "./discovery-profile";
 
 function DiscoverSocials({ socials = [] }: { socials?: string[] }) {
   const links = discoverySocialLinks(socials);
@@ -3910,6 +3887,7 @@ export function Projects({
         </header>
         <article className="project-detail">
           <ProjectBody project={p} publicView teamColorKey={p.teamColorKey} />
+          <ProjectTeamMembers members={data.teamMembers} />
           {p.result && (
             <p className="notice">
               Revealed {p.result.stage === "ai" ? "AI" : "final"} score{" "}
@@ -4711,6 +4689,7 @@ export function AdminParticipants({
                         <small>{r.email}</small>
                         {r.removed && <Pill>Removed</Pill>}
                       </div>
+                      {canManage && <ProfileInfoButton personId={r.id} name={r.name} />}
                     </div>
                   </td>
                   <td className="admin-team-cell">
@@ -5174,6 +5153,7 @@ export function Review({
               </dd>
             </div>
           </dl>
+          {staff && <ProjectTeamMembers members={data.teamMembers} admin />}
           {staff && current && (
             <details className="results-ui-reviewDetails">
               <summary>Manage project</summary>
@@ -5613,8 +5593,9 @@ export function AdminList({
                       size={36}
                       decorative
                     />
-                    <div>
+                    <div className="admin-team-member-name">
                       <strong>{member.name}</strong>
+                      {(data.me?.owner || data.me?.role === "admin") && <ProfileInfoButton personId={member.id} name={member.name} />}
                     </div>
                     <Pill
                       tone={
@@ -6805,6 +6786,7 @@ export default function Portal({
     teamPalettes[(data.team?.palette || "forest") as Palette] ||
     teamPalettes.forest;
   return (
+    <ParticipantProfiles key={`${path}:${data.me?.id || "anonymous"}:${data.me?.role || ""}:${data.me?.owner === true}`} actorKey={`${data.me?.id || "anonymous"}:${data.me?.role || ""}:${data.me?.owner === true}`} actorId={data.me?.id || ""} returnTo={path} accessVersion={data}>
     <div
       className={`app-shell navigation-shell ${path === "/" ? "public-home-shell" : ""} ${profileOnboarding ? "onboarding-shell" : ""} ${workspaceShell ? "workspace-shell" : ""} ${publicBrowse ? "public-project-shell" : ""} ${studioDashboard ? "studio-dashboard-shell" : ""}`.trim()}
       data-hydrated={hydrated}
@@ -7085,6 +7067,7 @@ export default function Portal({
           ))}
       </main>
     </div>
+    </ParticipantProfiles>
   );
 }
 

@@ -1,3 +1,4 @@
+import { publicProjectMembers, adminSubmissionMembers } from "./project-member-profiles";
 import { projectMediaPolicy } from "./project-media-policy";
 import { adminTeamCandidates, adminTeamCorrection } from "./admin-team-corrections";
 import { adminTeamApprovalView, approveTeam } from "./admin-team-approval";
@@ -771,6 +772,7 @@ export class PortalExperience {
         ...(scores.criteria ? { scoringInfo: scores.criteria } : {}),
         ...(!listRoute
           ? {
+              teamMembers: await publicProjectMembers(this.s.db, all[0].team_id),
               comments: await rows(
                 this.s.db,
                 "SELECT c.id,c.body,c.created_at,COALESCE(x.display_name,u.name) author,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression FROM project_comments c JOIN users u ON u.id=c.author_id LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id WHERE c.project_id=? ORDER BY c.created_at LIMIT 500",
@@ -1173,6 +1175,7 @@ export class PortalExperience {
         version: v ? { ...v, payload: JSON.parse(v.payload) } : undefined,
         currentVersionId: currentVersion?.id || null,
         selectedIsCurrent: !!v && v.id === currentVersion?.id && v.id === p.published_version_id,
+        ...(me.owner || me.role === "admin" ? { teamMembers: await adminSubmissionMembers(this.s.db, p.team_id) } : {}),
         reviewKind: kind,
         canRestoreEligibility: kind === "judge",
         eligibility: await this.eligibility(p),
