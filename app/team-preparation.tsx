@@ -88,7 +88,7 @@ export default function TeamPreparation({
         </span>
         <div>
           <h3>{approved ? "Team approved" : "Team approval"}</h3>
-          <p>Your team is approved when every member is marked Going.</p>
+          <p>Your team is approved when every member is approved to attend.</p>
           <p>
             Venue details and rules will be shared in the portal. Be ready with your idea. All the best!
             <em>~ Codex Ambassadors</em>

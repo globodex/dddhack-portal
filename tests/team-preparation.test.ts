@@ -51,7 +51,7 @@ test("lock explanation preserves the admin-unlock exception and approval stays s
   assert.match(html, /you can’t change the team, members or idea/);
   assert.match(html, /An admin can unlock eligible teams/);
   assert.match(html, /<\/ol>[\s\S]*<aside[^>]+aria-label="Team approval"/);
-  assert.match(html, /every member is marked Going/);
+  assert.match(html, /every member is approved to attend/);
   assert.match(html, /Venue details and rules will be shared in the portal/);
   assert.match(html, /Be ready with your idea. All the best/);
   assert.match(html, /<em>~ Codex Ambassadors<\/em>/);
