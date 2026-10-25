@@ -60,6 +60,7 @@ export function verifyUpgradePlan(
         "0103_project_media_limits.sql",
         "0104_admin_team_corrections.sql",
         "0105_terminal_record_deletion.sql",
+        "0106_admin_team_unlock.sql",
       ],
     ) ||
     !same(entries(plan), approved) ||

@@ -24,6 +24,7 @@ const paths = [
   "neon/migrations/0103_project_media_limits.sql",
   "neon/migrations/0104_admin_team_corrections.sql",
   "neon/migrations/0105_terminal_record_deletion.sql",
+  "neon/migrations/0106_admin_team_unlock.sql",
 ];
 const baseline = JSON.parse(
   await readFile(

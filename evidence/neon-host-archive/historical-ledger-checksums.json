@@ -46,6 +46,10 @@
     {
       "name": "0105_terminal_record_deletion.sql",
       "checksum": "088b96a239915cd518765b5ef260c73feee913d8e0b181234110f7591676ccde"
+    },
+    {
+      "name": "0106_admin_team_unlock.sql",
+      "checksum": "dd437230bcbc5d9ffc65b63464992976b7b0ddcd1fd64a675f76f113623c17aa"
     }
   ],
   "hostedRead": false,

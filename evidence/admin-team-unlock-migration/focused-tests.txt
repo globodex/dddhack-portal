@@ -1,0 +1,39 @@
+✔ unlock mirror is canonical SQL with individually executable statement breakpoints; previous migration bytes remain immutable (1.751017ms)
+▶ sqlite: exact admin unlock restores pre-lock mutability; stale, committed, durable and frozen barriers preserve state and cascade authority
+  ✔ unguarded, stale, wrong-team and differently serialized tokens are denied (13.926973ms)
+  ✔ a later transaction failure rolls back lock removal and its guard (3.066158ms)
+  ✔ exact lock removal preserves every other row and permits idea edit/member leave and rejoin (3.927302ms)
+  ✔ relocking invalidates the old timestamp token and never enables lock UPDATE (3.917449ms)
+  ✔ committed version blocks unlock; retired payload still leaves a durable attempt barrier; terminal cascade remains allowed (5.47443ms)
+  ✔ a frozen snapshot blocks both admin unlock and terminal-cascade lock removal (6.655573ms)
+✔ sqlite: exact admin unlock restores pre-lock mutability; stale, committed, durable and frozen barriers preserve state and cascade authority (109.625871ms)
+▶ drizzle: exact admin unlock restores pre-lock mutability; stale, committed, durable and frozen barriers preserve state and cascade authority
+  ✔ unguarded, stale, wrong-team and differently serialized tokens are denied (8.007141ms)
+  ✔ a later transaction failure rolls back lock removal and its guard (1.942914ms)
+  ✔ exact lock removal preserves every other row and permits idea edit/member leave and rejoin (2.560077ms)
+  ✔ relocking invalidates the old timestamp token and never enables lock UPDATE (3.93485ms)
+  ✔ committed version blocks unlock; retired payload still leaves a durable attempt barrier; terminal cascade remains allowed (6.270792ms)
+  ✔ a frozen snapshot blocks both admin unlock and terminal-cascade lock removal (4.54176ms)
+✔ drizzle: exact admin unlock restores pre-lock mutability; stale, committed, durable and frozen barriers preserve state and cascade authority (82.834487ms)
+▶ postgres: exact admin unlock restores pre-lock mutability; stale, committed, durable and frozen barriers preserve state and cascade authority
+  ✔ unguarded, stale, wrong-team and differently serialized tokens are denied (361.270022ms)
+  ✔ a later transaction failure rolls back lock removal and its guard (66.002306ms)
+  ✔ exact lock removal preserves every other row and permits idea edit/member leave and rejoin (114.312222ms)
+  ✔ relocking invalidates the old timestamp token and never enables lock UPDATE (136.569462ms)
+  ✔ committed version blocks unlock; retired payload still leaves a durable attempt barrier; terminal cascade remains allowed (226.475146ms)
+  ✔ a frozen snapshot blocks both admin unlock and terminal-cascade lock removal (195.736708ms)
+✔ postgres: exact admin unlock restores pre-lock mutability; stale, committed, durable and frozen barriers preserve state and cascade authority (4120.292558ms)
+✔ 0106 upgrade lf: populated9→12 applies the exact pending suffix, preserves all old data/ledger/locks, then repeats[] (6392.41423ms)
+✔ 0106 upgrade lf: populated11→12 applies the exact pending suffix, preserves all old data/ledger/locks, then repeats[] (3007.145074ms)
+✔ 0106 upgrade crlf: populated9→12 applies the exact pending suffix, preserves all old data/ledger/locks, then repeats[] (3401.566602ms)
+✔ 0106 upgrade crlf: populated11→12 applies the exact pending suffix, preserves all old data/ledger/locks, then repeats[] (2856.377228ms)
+✔ 0106 upgrade: an eleven-entry receipt cannot authorize this plan; gaps, unknown entries and feature CRLF remain rejected (2461.618706ms)
+✔ 0106 upgrade: DDL failure rolls the replacement lock guard and ledger back atomically without changing old rows (2583.82648ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 26777.255474
