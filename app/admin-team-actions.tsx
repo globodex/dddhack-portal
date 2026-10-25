@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { Pencil, Search, Trash2, UserRoundPlus, X } from "lucide-react";
+import { LockOpen, Pencil, Search, Trash2, UserRoundPlus, X } from "lucide-react";
 import { ActionCancelled } from "../lib/action-confirmation";
 import { readPortalView } from "../lib/portal-read";
 import { portalErrorText } from "../lib/ui-feedback";
@@ -9,7 +9,14 @@ import { trapDialogFocus } from "./dialog-focus";
 import { trackDialogHistory } from "./dialog-history";
 import { useHydrated } from "./use-hydrated";
 
-type Team = { id: string; name: string; members: unknown[] };
+type Team = {
+  id: string;
+  name: string;
+  members: unknown[];
+  locked?: boolean;
+  lockedAt?: string;
+  unlockBlockedReason?: string;
+};
 type Candidate = {
   id: string;
   name: string;
@@ -114,7 +121,12 @@ export default function AdminTeamActions({
   const hydrated = useHydrated(),
     id = useId(),
     opener = useRef<HTMLElement | null>(null),
-    pending = useRef(false);
+    pending = useRef(false),
+    unlockButton = useRef<HTMLButtonElement>(null),
+    restoreUnlockFocus = useRef(false);
+  const unlockBlockedReason =
+    team.unlockBlockedReason ||
+    (team.locked && !team.lockedAt ? "Refresh to load this team's lock." : "");
   const [mode, setMode] = useState<"rename" | "add" | null>(null),
     [name, setName] = useState(team.name),
     [expectedName, setExpectedName] = useState(team.name),
@@ -126,6 +138,13 @@ export default function AdminTeamActions({
     [loadError, setLoadError] = useState(""),
     [error, setError] = useState(""),
     [busy, setBusy] = useState("");
+  useEffect(() => {
+    if (!busy && restoreUnlockFocus.current) {
+      restoreUnlockFocus.current = false;
+      if (unlockButton.current && !unlockButton.current.disabled)
+        unlockButton.current.focus({ preventScroll: true });
+    }
+  }, [busy]);
   const open = (value: "rename" | "add", trigger: HTMLElement) => {
     opener.current = trigger;
     setError("");
@@ -195,6 +214,7 @@ export default function AdminTeamActions({
         setError((cause as Error).message);
     } finally {
       pending.current = false;
+      if (target === "unlock") restoreUnlockFocus.current = true;
       setBusy("");
     }
   };
@@ -219,6 +239,31 @@ export default function AdminTeamActions({
           <UserRoundPlus size={18} aria-hidden="true" />
           Add member
         </button>
+        {team.locked && (
+          <>
+            <button
+              ref={unlockButton}
+              type="button"
+              className="button secondary"
+              disabled={!hydrated || !!busy || !!unlockBlockedReason}
+              aria-busy={busy === "unlock"}
+              aria-describedby={unlockBlockedReason ? `${id}-unlock-blocked` : undefined}
+              onClick={() => void perform("unlock", "admin-unlock-team", {
+                teamId: team.id,
+                expectedLockedAt: team.lockedAt,
+                confirmation: "UNLOCK_TEAM",
+              })}
+            >
+              <LockOpen size={18} aria-hidden="true" />
+              {busy === "unlock" ? "Unlocking…" : "Unlock team"}
+            </button>
+            {unlockBlockedReason && (
+              <p id={`${id}-unlock-blocked`} className="control-feedback">
+                {unlockBlockedReason}
+              </p>
+            )}
+          </>
+        )}
         <button
           type="button"
           className="button secondary admin-icon-danger"
