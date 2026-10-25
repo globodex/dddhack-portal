@@ -80,9 +80,16 @@ test("300-person / 90-team directories use bounded queries and preserve private/
           );
         for (const team of response.items)
           for (const member of team.members)
-            assert.deepEqual(Object.keys(member).sort(), [
-              "id", "name", "avatarColor", "avatarExpression", "profileUrl",
-            ].sort());
+            assert.deepEqual(
+              Object.keys(member).sort(),
+              [
+                "id",
+                "name",
+                "avatarColor",
+                "avatarExpression",
+                "profileUrl",
+              ].sort(),
+            );
         for (const secret of [
           "Synthetic private core",
           "+12025550100",
@@ -181,7 +188,16 @@ test("bulk team facts match authoritative status, avoid fan-out and re-read atte
       .bind(team.id, f.operations[0].id, now)
       .all();
     fact = await compare();
-    assert.equal(fact.status, "Forming");
+    assert.equal(
+      fact.status,
+      "Submitted",
+      "A manual display override cannot hide committed submissions",
+    );
+    assert.equal(
+      fact.manual,
+      true,
+      "The old override record remains preserved",
+    );
     assert.equal(fact.derivedStatus, "Submitted");
     assert.equal(fact.locked, true);
     await db

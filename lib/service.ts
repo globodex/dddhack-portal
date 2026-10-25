@@ -1,8 +1,13 @@
 import { projectMediaPolicy } from "./project-media-policy";
-import { validatedProviderGrade, storedEvaluationReport, latestProviderGrade } from "./provider-grade";
+import { authenticatedRequestEvidenceStatement } from "./sign-in-evidence";
+import {
+  validatedProviderGrade, storedEvaluationReport, latestProviderGrade,
+} from "./provider-grade";
 import { auditReason } from "./security";
-import { creditBatchCommand, creditBatchesView, legacyCreditStockImport } from "./credit-batches";
-import { creditAssignmentStatements, creditStockCommand, creditStockView, creditSummaries, personalCredits } from "./credit-stock";
+import { creditBatchCommand, creditBatchesView, legacyCreditStockImport,
+} from "./credit-batches";
+import { creditAssignmentStatements, creditStockCommand, creditStockView, creditSummaries, personalCredits,
+} from "./credit-stock";
 import { transferTeamLeader } from "./team-leader-transfer";
 import type { PortalViewOptions } from "./discover-participants";
 import { submissionToolChoices } from "./submission-tools";
@@ -121,9 +126,9 @@ export class PortalService {
         i.id,
       ],
     ]);
-    const storedUser = (await one<User & { terminal_deleted: number }>(
+    const storedUser = (await one<User & { terminal_deleted: number; sign_in_recorded: number }>(
       this.db,
-      "SELECT u.id,u.email,u.name,u.role,CASE WHEN EXISTS(SELECT 1 FROM terminal_record_deletions t WHERE t.kind='participant' AND t.target_id=u.id) THEN 1 ELSE 0 END terminal_deleted FROM users u WHERE u.id=?",
+      "SELECT u.id,u.email,u.name,u.role,CASE WHEN EXISTS(SELECT 1 FROM terminal_record_deletions t WHERE t.kind='participant' AND t.target_id=u.id) THEN 1 ELSE 0 END terminal_deleted,CASE WHEN EXISTS(SELECT 1 FROM audit_logs a WHERE a.id='auth-sign-in:'||u.id AND a.action='auth-sign-in-evidence') THEN 1 ELSE 0 END sign_in_recorded FROM users u WHERE u.id=?",
       i.id,
     ))!;
     demand(
@@ -173,6 +178,10 @@ export class PortalService {
         !!extra.bio?.trim() &&
         ["man", "woman", "non-binary"].includes(extra.gender) &&
         !!teamPhone(extra.phone || "").phone;
+    if (!deactivated && !storedUser.sign_in_recorded) {
+      const evidence = authenticatedRequestEvidenceStatement(i, this.now());
+      if (evidence) await batch(this.db, [evidence]);
+    }
     return {
       ...u,
       mode: deactivated
@@ -850,7 +859,7 @@ export class PortalService {
               this.now(),
               d.userId,
             ],
-            ...await creditAssignmentStatements(this),
+            ...(await creditAssignmentStatements(this)),
           ],
           {},
           d.reason,
@@ -965,7 +974,8 @@ export class PortalService {
             c.inventory_id,
           ],
           ["DELETE FROM write_guards WHERE token=?", guard],
-          ["UPDATE credit_code_history SET exposed=1 WHERE inventory_id=? AND exposed=0", c.inventory_id],
+          ["UPDATE credit_code_history SET exposed=1 WHERE inventory_id=? AND exposed=0", c.inventory_id,
+          ],
         ]);
         return { value };
       }
@@ -977,9 +987,11 @@ export class PortalService {
       }
       case "settings": {
         await this.staff(true);
-        const d = z.object({ policy: z.unknown(), version: z.number().int().min(0).optional(), reason }).parse(data);
+        const d = z.object({ policy: z.unknown(), version: z.number().int().min(0).optional(), reason,
+          }).parse(data);
         const old = await this.settings();
-        demand(d.version === undefined || d.version === old.version, 409, "POLICY_CHANGED_RELOAD");
+        demand(d.version === undefined || d.version === old.version, 409, "POLICY_CHANGED_RELOAD",
+        );
         await this.unfrozen();
         const p = policySchema.parse(json(d.policy));
         if (
@@ -1435,8 +1447,11 @@ export class PortalService {
         const cutoff = new Date(
           Date.parse(this.now()) - 15 * 60_000,
         ).toISOString();
-        const lease = await one<{ version_id: string; state: string; attempts: number; updated_at: string }>(this.db, "SELECT version_id,state,attempts,updated_at FROM astra_jobs WHERE id=?", d.jobId);
-        demand(lease?.state === "running" && lease.updated_at <= cutoff, 409, "JOB_NOT_RECOVERABLE");
+        const lease = await one<{ version_id: string; state: string; attempts: number; updated_at: string;
+        }>(this.db, "SELECT version_id,state,attempts,updated_at FROM astra_jobs WHERE id=?", d.jobId,
+        );
+        demand(lease?.state === "running" && lease.updated_at <= cutoff, 409, "JOB_NOT_RECOVERABLE",
+        );
         await this.mutate(
           actor.id,
           action,
@@ -1558,7 +1573,8 @@ export class PortalService {
             action,
             j.id,
             [
-              ["INSERT INTO write_guards VALUES(?,CASE WHEN NOT EXISTS(SELECT 1 FROM result_snapshots) THEN 1 ELSE 0 END)", completionGuard],
+              ["INSERT INTO write_guards VALUES(?,CASE WHEN NOT EXISTS(SELECT 1 FROM result_snapshots) THEN 1 ELSE 0 END)", completionGuard,
+              ],
               [
                 "UPDATE astra_jobs SET state=?,report=?,error=NULL,updated_at=? WHERE id=? AND state='running' AND attempts=? AND updated_at=?",
                 grade === null ? "needs_review" : "finalized",
@@ -1582,7 +1598,8 @@ export class PortalService {
                 : []),
               ["DELETE FROM write_guards WHERE token=?", completionGuard],
             ],
-            { state: grade === null ? "needs_review" : "finalized", scored: grade !== null },
+            { state: grade === null ? "needs_review" : "finalized", scored: grade !== null,
+            },
           );
           return {
             message:
@@ -1954,7 +1971,8 @@ export class PortalService {
         );
         if (eligible) review.eligibility = eligible.status;
         if (review.astra === null) {
-          const provider = await latestProviderGrade(this.db, revisedProject.id, v.id);
+          const provider = await latestProviderGrade(this.db, revisedProject.id, v.id,
+          );
           if (provider) review.astra = provider.score;
         }
       }

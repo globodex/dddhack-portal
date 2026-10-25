@@ -1,6 +1,7 @@
-import { rows, type Database } from "./db";
+import { one, rows, type Database } from "./db";
 import { readiness } from "./experience-contract";
 import { attendancePredicate } from "./portal-status";
+import { teamLifecycle, submissionWindowHasOpened } from "./team-lifecycle";
 
 // A request owns these maps. Never retain them on the service or across requests:
 // approvals, attendance, overrides and removals may change before the next read.
@@ -11,7 +12,21 @@ const chunks = (ids: string[]) => {
   );
 };
 const marks = (ids: string[]) => ids.map(() => "?").join(",");
-export async function teamFacts(db: Database, ids: string[], actorId?: string) {
+export async function teamFacts(
+  db: Database,
+  ids: string[],
+  actorId?: string,
+  now = new Date().toISOString(),
+) {
+  const setting = ids.length
+    ? await one<{ policy: string }>(
+        db,
+        "SELECT policy FROM event_settings WHERE id=1",
+      )
+    : undefined;
+  const windowOpened = setting
+    ? submissionWindowHasOpened(JSON.parse(setting.policy), now)
+    : false;
   const result = new Map<
     string,
     {
@@ -62,15 +77,21 @@ export async function teamFacts(db: Database, ids: string[], actorId?: string) {
     );
     for (const fact of facts) {
       const locked = fact.locked_at !== null,
-        derived = fact.attempts
-          ? "Submitted"
-          : fact.attended
-            ? "Not submitted"
-            : locked
-              ? "Locked"
-              : "Forming";
+        derived = teamLifecycle({
+          locked,
+          attempts: fact.attempts,
+          total: fact.total,
+          approved: fact.approved,
+          windowOpened,
+        });
       result.set(fact.id, {
-        status: fact.override_status || derived,
+        status: ["Forming", "Approved", "Yet to submit", "Submitted"].includes(
+          derived,
+        )
+          ? derived
+          : ["Approved", "Yet to submit"].includes(fact.override_status || "")
+            ? derived
+            : fact.override_status || derived,
         derivedStatus: derived,
         manual: fact.override_status !== null,
         locked,

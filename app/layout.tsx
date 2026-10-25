@@ -21,6 +21,7 @@ import "./profile-experience.css";
 import "./team-discovery-experience.css";
 import "./admin-experience.css";
 import "./admin-stats.css";
+import "./admin-team-approval.css";
 import "./projects-rules-experience.css";
 import "./team-studio-shell.css";
 import "./team-studio-experience.css";

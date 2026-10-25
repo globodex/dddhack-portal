@@ -44,6 +44,11 @@ import {
 import AddAdmins from "./add-admins";
 import AdminTeamCard from "./admin-team-card";
 import AdminTeamActions from "./admin-team-actions";
+import AdminTeamApproval, {
+  hasTeamApprovalConfirmation,
+  teamIsApproved,
+  teamNeedsApproval,
+} from "./admin-team-approval";
 import AdminStats from "./admin-stats";
 import TeamPreparation from "./team-preparation";
 import AdminCreditBatches from "./admin-credit-batches";
@@ -54,20 +59,36 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import ResultVisibility, { PrivateAIEvaluation } from "./result-visibility";
 const JudgingSettings = dynamic(() => import("./judging-settings"), {
-  loading: () => <div className="results-ui-judgingLoading" role="status" aria-label="Loading judging setup" />,
+  loading: () => (
+    <div
+      className="results-ui-judgingLoading"
+      role="status"
+      aria-label="Loading judging setup"
+    />
+  ),
 });
-import { useDiscoverPeople, peopleDirectoryUrl, readPeoplePage } from "./use-discover-people";
+import {
+  useDiscoverPeople,
+  peopleDirectoryUrl,
+  readPeoplePage,
+} from "./use-discover-people";
 import { useProjectFeed, readProjectVote } from "./use-project-feed";
 import { HeadingDot } from "./expressive-heading";
 import RouteSkeleton from "./route-skeleton";
 import ViewerWelcome from "./viewer-welcome";
-import { portalLoadFailure, type PortalLoadFailure } from "../lib/portal-load-state";
+import {
+  portalLoadFailure,
+  type PortalLoadFailure,
+} from "../lib/portal-load-state";
 import MobileNavigation from "./mobile-navigation";
 import NavigationHeader from "./navigation-header";
 import { useHydrated } from "./use-hydrated";
 import { portalErrorText, portalSuccessText } from "../lib/ui-feedback";
 import { readPortalView } from "../lib/portal-read";
-import {AdminPresentationCache, AdminPresentationCacheMiss} from "../lib/admin-presentation";
+import {
+  AdminPresentationCache,
+  AdminPresentationCacheMiss,
+} from "../lib/admin-presentation";
 import DiscoveryProfile, {
   discoveryDetailsProjection,
   discoverySocialLinks,
@@ -103,15 +124,24 @@ import Home from "./home";
 import ProjectMediaField from "./project-media-field";
 import SubmissionDots from "./submission-dots";
 import ProjectSubmissionSuccess from "./project-submission-success";
-import { submittedProjectSuccess, type SubmissionSuccessState } from "../lib/project-share";
-import CommittedSubmissions, { CommittedSubmission } from "./committed-submissions";
+import {
+  submittedProjectSuccess,
+  type SubmissionSuccessState,
+} from "../lib/project-share";
+import CommittedSubmissions, {
+  CommittedSubmission,
+} from "./committed-submissions";
 import { resolveTeamColor } from "../lib/team-color";
+import { teamLifecycle } from "../lib/team-lifecycle";
 import { prepareProjectImage } from "./prepare-project-image";
 import ProfileFlow from "./profile-flow";
 import AdminImportDialog from "./admin-import-dialog";
 import AdminStatusMenu from "./admin-status-menu";
 import { trapDialogFocus } from "./dialog-focus";
-import { consumeDialogHistoryForNavigation, trackDialogHistory } from "./dialog-history";
+import {
+  consumeDialogHistoryForNavigation,
+  trackDialogHistory,
+} from "./dialog-history";
 import AdminParticipantActions, {
   AdminParticipantFilters,
   AdminIcon,
@@ -169,7 +199,11 @@ async function api(action: string, data: Row) {
     credentials: "same-origin",
   });
   const b = (await r.json()) as Row;
-  if (!r.ok) throw new Error(portalErrorText(b));
+  if (!r.ok)
+    throw Object.assign(new Error(portalErrorText(b)), {
+      status: r.status,
+      code: b.code,
+    });
   return b as Row;
 }
 export function portalConfirmationFor(
@@ -183,15 +217,33 @@ export function portalConfirmationFor(
     return {
       ...base,
       title: "Add credits?",
-      target: Array.isArray(values.columns) ? values.columns.length > 3 ? `${values.columns.length} categories` : values.columns.map((column: Row) => column.heading).join(", ") : target,
+      target: Array.isArray(values.columns)
+        ? values.columns.length > 3
+          ? `${values.columns.length} categories`
+          : values.columns.map((column: Row) => column.heading).join(", ")
+        : target,
       description: `${counts.added} to add · ${counts.duplicates} duplicates skipped${counts.retired ? ` · ${counts.retired} previously removed` : ""}`,
       confirmLabel: "Add credits",
     };
   }
   if (action === "team-invite")
-    return { ...base, title: "Send team invitation?", target: values.email || target, description: "", confirmLabel: "Send invitation" };
+    return {
+      ...base,
+      title: "Send team invitation?",
+      target: values.email || target,
+      description: "",
+      confirmLabel: "Send invitation",
+    };
   if (action === "team-respond")
-    return { ...base, title: values.decision === "accepted" ? "Join this team?" : "Decline invitation?", description: "", confirmLabel: values.decision === "accepted" ? "Join team" : "Decline" };
+    return {
+      ...base,
+      title:
+        values.decision === "accepted"
+          ? "Join this team?"
+          : "Decline invitation?",
+      description: "",
+      confirmLabel: values.decision === "accepted" ? "Join team" : "Decline",
+    };
   if (action === "respond-team")
     return {
       ...base,
@@ -204,8 +256,7 @@ export function portalConfirmationFor(
     return {
       ...base,
       title: "Delete your team",
-      description:
-        "Remove this sole-member team. History stays intact.",
+      description: "Remove this sole-member team. History stays intact.",
       confirmLabel: "Delete this team",
       critical: true,
     };
@@ -222,8 +273,7 @@ export function portalConfirmationFor(
     return {
       ...base,
       title: "Restore participant",
-      description:
-        "Restore participation without granting admin access.",
+      description: "Restore participation without granting admin access.",
       confirmLabel: "Restore this participant",
       critical: true,
     };
@@ -257,8 +307,15 @@ export function portalConfirmationFor(
     return {
       ...base,
       title: "Publish submission window",
-      description: "Save these times for everyone. Attempts and the repository cutoff stay unchanged." +
-        (Array.isArray(values.windowWarnings) && values.windowWarnings.some((warning: unknown) => typeof warning === "string" && /judging/i.test(warning)) ? " Judging dates also need updating." : ""),
+      description:
+        "Save these times for everyone. Attempts and the repository cutoff stay unchanged." +
+        (Array.isArray(values.windowWarnings) &&
+        values.windowWarnings.some(
+          (warning: unknown) =>
+            typeof warning === "string" && /judging/i.test(warning),
+        )
+          ? " Judging dates also need updating."
+          : ""),
       confirmLabel: "Publish these times",
       critical: true,
     };
@@ -291,23 +348,42 @@ export function portalConfirmationFor(
     return {
       ...base,
       title: "Add participants?",
-      target: values.singleEmail || `${values.newCount || 0} ${Number(values.newCount) === 1 ? "participant" : "participants"}`,
+      target:
+        values.singleEmail ||
+        `${values.newCount || 0} ${Number(values.newCount) === 1 ? "participant" : "participants"}`,
       description: "",
       confirmLabel: "Confirm",
       critical: false,
-      ...(Array.isArray(values.importWebsiteReview) ? { importWebsites: values.importWebsiteReview } : {}),
+      ...(Array.isArray(values.importWebsiteReview)
+        ? { importWebsites: values.importWebsiteReview }
+        : {}),
     };
   return base;
 }
 export function portalTargetName(data: View, values: Row): string {
-  if (typeof values.id === "string" && ["accepted", "declined"].includes(values.decision)) {
-    const invitation = (data.actions || []).find((item: Row) => item.id === values.id && item.kind === "invite");
-    if (typeof invitation?.team_name === "string" && invitation.team_name.trim()) return invitation.team_name;
+  if (
+    typeof values.id === "string" &&
+    ["accepted", "declined"].includes(values.decision)
+  ) {
+    const invitation = (data.actions || []).find(
+      (item: Row) => item.id === values.id && item.kind === "invite",
+    );
+    if (
+      typeof invitation?.team_name === "string" &&
+      invitation.team_name.trim()
+    )
+      return invitation.team_name;
   }
   if (values.expectedLeaderId && values.teamId && values.userId) {
-    const team = (data.items || []).find((item: Row) => item.id === values.teamId);
-    const oldLeader = team?.members?.find((member: Row) => member.id === values.expectedLeaderId);
-    const nextLeader = team?.members?.find((member: Row) => member.id === values.userId);
+    const team = (data.items || []).find(
+      (item: Row) => item.id === values.teamId,
+    );
+    const oldLeader = team?.members?.find(
+      (member: Row) => member.id === values.expectedLeaderId,
+    );
+    const nextLeader = team?.members?.find(
+      (member: Row) => member.id === values.userId,
+    );
     return `${team?.name || values.teamId} · ${oldLeader?.name || values.expectedLeaderId} → ${nextLeader?.name || values.userId}`;
   }
   const id =
@@ -329,8 +405,13 @@ export function portalTargetName(data: View, values: Row): string {
     ...(data.reviewers || []),
     ...(data.actions || []),
     ...(data.creditInstructions || []),
-    ...(data.creditBatches || []).map((batch: Row) => ({...batch,name:batch.columns.map((c:Row)=>c.heading).join(", ")})),
-    ...(data.creditBatches || []).flatMap((batch:Row)=>batch.columns.map((c:Row)=>({...c,name:c.heading}))),
+    ...(data.creditBatches || []).map((batch: Row) => ({
+      ...batch,
+      name: batch.columns.map((c: Row) => c.heading).join(", "),
+    })),
+    ...(data.creditBatches || []).flatMap((batch: Row) =>
+      batch.columns.map((c: Row) => ({ ...c, name: c.heading })),
+    ),
   ].find(
     (r: Row) =>
       typeof id === "string" &&
@@ -368,7 +449,11 @@ export function portalTargetName(data: View, values: Row): string {
     return `${ist(values.open)} → ${ist(values.close)}`;
   if (values.kind === "roster" && values.digest)
     return `Previewed roster import · digest ${String(values.digest).slice(0, 16)}`;
-  if(values.columns && Array.isArray(values.columns)) return values.columns.map((column:Row)=>column.heading).join(", ")+(values.newCount?` · ${values.newCount} codes`:"");
+  if (values.columns && Array.isArray(values.columns))
+    return (
+      values.columns.map((column: Row) => column.heading).join(", ") +
+      (values.newCount ? ` · ${values.newCount} codes` : "")
+    );
   if (values.scope === "private") return "Private venue and directions";
   if (values.scope === "public") return "Public agenda, rules, FAQ and venue";
   if (values.userIds)
@@ -414,7 +499,26 @@ type IconName =
   | "team"
   | "credits";
 function navigationIcon(label: string): IconName {
-  return ({ Home: "home", Dashboard: "dashboard", Discover: "discover", Participants: "users", Teams: "team", Projects: "projects", Leaderboard: "leaderboard", Rules: "rules", Settings: "settings", Logs: "logs", Credits: "credits", Workspace: "dashboard", Administration: "settings", "Assigned projects": "projects" } as Record<string, IconName>)[label] || "projects";
+  return (
+    (
+      {
+        Home: "home",
+        Dashboard: "dashboard",
+        Discover: "discover",
+        Participants: "users",
+        Teams: "team",
+        Projects: "projects",
+        Leaderboard: "leaderboard",
+        Rules: "rules",
+        Settings: "settings",
+        Logs: "logs",
+        Credits: "credits",
+        Workspace: "dashboard",
+        Administration: "settings",
+        "Assigned projects": "projects",
+      } as Record<string, IconName>
+    )[label] || "projects"
+  );
 }
 function Icon({ name, size = 20 }: { name: IconName; size?: number }) {
   const Component = {
@@ -505,7 +609,15 @@ function Field({
   if (name === "reason") return null;
   return (
     <label>
-      <span>{label}{required && <span className="required-mark" aria-hidden="true"> *</span>}</span>
+      <span>
+        {label}
+        {required && (
+          <span className="required-mark" aria-hidden="true">
+            {" "}
+            *
+          </span>
+        )}
+      </span>
       {children ||
         (type === "textarea" ? (
           <textarea
@@ -667,10 +779,20 @@ function AvatarChooser({
         <TeamAvatar name={name} palette={palette} size={88} />
       </div>
       <fieldset className="team-color-fieldset">
-        <legend>Team color <output className="team-color-name" aria-live="polite">{teamColorLabels[palette] || "Green"}</output></legend>
+        <legend>
+          Team color{" "}
+          <output className="team-color-name" aria-live="polite">
+            {teamColorLabels[palette] || "Green"}
+          </output>
+        </legend>
         <div className="palette-picker">
           {teamColorKeys.map((key) => (
-            <label key={key} title={teamColorLabels[key]} className="team-color-choice" data-selected={palette === key}>
+            <label
+              key={key}
+              title={teamColorLabels[key]}
+              className="team-color-choice"
+              data-selected={palette === key}
+            >
               <input
                 type="radio"
                 className="team-color-radio"
@@ -707,7 +829,9 @@ function CreateTeam({
     [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
     [hydrated, setHydrated] = useState(false);
-  const fallbackTitle = useId(), errorId = useId(), submitting = useRef(false),
+  const fallbackTitle = useId(),
+    errorId = useId(),
+    submitting = useRef(false),
     closeButton = useRef<HTMLButtonElement>(null);
   const headingId = titleId || fallbackTitle;
   useEffect(() => setHydrated(true), []);
@@ -737,7 +861,8 @@ function CreateTeam({
             palette,
           });
         } catch (cause) {
-          if (!(cause instanceof ActionCancelled)) setError((cause as Error).message);
+          if (!(cause instanceof ActionCancelled))
+            setError((cause as Error).message);
         } finally {
           submitting.current = false;
           setBusy(false);
@@ -747,25 +872,55 @@ function CreateTeam({
       <header className="team-creation-header">
         <h2 id={headingId}>Create your team</h2>
         {onClose && (
-          <button ref={closeButton} type="button" className="team-creation-close" autoFocus aria-label="Close team creation" onClick={onClose}>
+          <button
+            ref={closeButton}
+            type="button"
+            className="team-creation-close"
+            autoFocus
+            aria-label="Close team creation"
+            onClick={onClose}
+          >
             <X size={22} aria-hidden="true" />
           </button>
         )}
       </header>
       <div className="team-creation-body">
-        <fieldset className="team-creation-controls" disabled={busy || !hydrated}>
+        <fieldset
+          className="team-creation-controls"
+          disabled={busy || !hydrated}
+        >
           <legend className="sr-only">Team details</legend>
-          <section className="team-creation-identity" aria-label="Team identity">
+          <section
+            className="team-creation-identity"
+            aria-label="Team identity"
+          >
             <div className="team-creation-preview">
               <TeamAvatar name={name || "Team"} palette={palette} size={64} />
             </div>
             <fieldset className="team-creation-color">
-              <legend>Team color <output aria-live="polite">{teamColorLabels[palette]}</output></legend>
+              <legend>
+                Team color{" "}
+                <output aria-live="polite">{teamColorLabels[palette]}</output>
+              </legend>
               <div className="team-creation-palette">
                 {teamColorKeys.map((key) => (
-                  <label key={key} title={teamColorLabels[key]} data-selected={palette === key}>
-                    <input type="radio" name="palette" value={key} checked={palette === key} onChange={() => setPalette(key)} />
-                    <span className="team-creation-swatch" style={{ backgroundColor: teamDotColors[key] }} aria-hidden="true" />
+                  <label
+                    key={key}
+                    title={teamColorLabels[key]}
+                    data-selected={palette === key}
+                  >
+                    <input
+                      type="radio"
+                      name="palette"
+                      value={key}
+                      checked={palette === key}
+                      onChange={() => setPalette(key)}
+                    />
+                    <span
+                      className="team-creation-swatch"
+                      style={{ backgroundColor: teamDotColors[key] }}
+                      aria-hidden="true"
+                    />
                     <span className="sr-only">{teamColorLabels[key]}</span>
                   </label>
                 ))}
@@ -774,8 +929,20 @@ function CreateTeam({
           </section>
           <div className="team-creation-fields">
             <label>
-              <span>Team name <span className="required-mark" aria-hidden="true">*</span></span>
-              <input name="name" required maxLength={80} autoComplete="off" value={name} onChange={(event) => setName(event.target.value)} />
+              <span>
+                Team name{" "}
+                <span className="required-mark" aria-hidden="true">
+                  *
+                </span>
+              </span>
+              <input
+                name="name"
+                required
+                maxLength={80}
+                autoComplete="off"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              />
             </label>
             <label>
               <span>Team intro</span>
@@ -785,8 +952,17 @@ function CreateTeam({
         </fieldset>
       </div>
       <footer className="team-creation-footer">
-        {error && <p className="team-creation-error" id={errorId} role="alert">{error}</p>}
-        <button className="button" type="submit" disabled={busy || !hydrated} aria-describedby={error ? errorId : undefined}>
+        {error && (
+          <p className="team-creation-error" id={errorId} role="alert">
+            {error}
+          </p>
+        )}
+        <button
+          className="button"
+          type="submit"
+          disabled={busy || !hydrated}
+          aria-describedby={error ? errorId : undefined}
+        >
           {busy ? "Creating…" : "Create team"}
         </button>
       </footer>
@@ -1017,12 +1193,15 @@ export function TeamWorkspace({
     saved = persisted && unchanged;
   const used = Number.isInteger(data.submissionAccess?.attemptsUsed)
       ? data.submissionAccess.attemptsUsed
-      : data.attempts?.length || 0,
-    checkedCount = Math.max(
-      0,
-      Math.min(count, Number(data.teamFacts?.checkedInMembers) || 0),
-    ),
-    teamChecked = count > 0 && checkedCount === count;
+      : data.attempts?.length || 0;
+  const phase = teamLifecycle({
+    locked: t.locked === true,
+    attempts: used,
+    total: count,
+    approved: (data.members || []).filter((member: Row) => member.approval === "approved").length,
+    windowOpened: data.submissionAccess?.windowHasOpened === true,
+  });
+  const phaseIndex = ["Forming", "Locked", "Approved", "Yet to submit", "Submitted"].indexOf(phase);
   const canEditProject =
     leader &&
     data.me?.canParticipate === true &&
@@ -1099,9 +1278,18 @@ export function TeamWorkspace({
           </div>
         </div>
         <div className="studio-team-status">
+          {teamIsApproved({
+            locked: t.locked === true,
+            members: data.members || [],
+          }) && (
+            <strong className="studio-approved-chip">
+              <CircleCheck size={16} aria-hidden="true" />
+              Team approved
+            </strong>
+          )}
           <span>
-            <UsersRound size={22} aria-hidden="true" />
-            {locked ? "Team locked" : "Forming team"}
+            {phase === "Yet to submit" ? <ClipboardList size={22} aria-hidden="true" /> : phase === "Submitted" ? <Flag size={22} aria-hidden="true" /> : <UsersRound size={22} aria-hidden="true" />}
+            {phase === "Yet to submit" || phase === "Submitted" ? phase : locked ? "Team locked" : "Forming team"}
           </span>
           <span>{count}/5</span>
         </div>
@@ -1212,9 +1400,16 @@ export function TeamWorkspace({
         hasTeam
         ideaSaved={persisted}
         locked={locked}
-        memberProfilesComplete={count > 0 && data.members.every((member: Row) => member.profileComplete === true)}
+        memberProfilesComplete={
+          count > 0 &&
+          data.members.every((member: Row) => member.profileComplete === true)
+        }
         approvalTotal={count}
-        approvalGoing={(data.members || []).filter((member: Row) => ["Going", "Checked in"].includes(member.status)).length}
+        approvalGoing={
+          (data.members || []).filter(
+            (member: Row) => member.approval === "approved",
+          ).length
+        }
       />
       {requests.length > 0 && leader && !locked && (
         <section className="studio-requests" aria-label="Membership requests">
@@ -1410,52 +1605,56 @@ export function TeamWorkspace({
           )}
         </aside>
       </div>
-      <ol className="studio-progress" aria-label="Team progress" data-stage={used > 0 ? 3 : teamChecked ? 2 : t.locked ? 1 : 0}>
+      <ol
+        className="studio-progress"
+        aria-label="Team progress"
+        data-stage={phaseIndex}
+      >
         {[
           {
             label: "Forming team",
             icon: <UsersRound size={22} />,
-            done: true,
-            current: !locked,
           },
           {
             label: "Locked",
             icon: <LockKeyhole size={22} />,
-            done: !!t.locked,
-            current: !!t.locked && !teamChecked && !used,
           },
           {
-            label: "Team checked in",
+            label: "Approved",
             icon: <CircleCheck size={22} />,
-            done: teamChecked,
-            current: teamChecked && !used,
-            detail: `${checkedCount}/${count} members`,
+          },
+          {
+            label: "Yet to submit",
+            icon: <ClipboardList size={22} />,
           },
           {
             label: "Submitted",
             icon: <Flag size={22} />,
-            done: used > 0,
-            current: used > 0,
           },
-        ].map((stage) => (
+        ].map((stage, index) => (
           <li
             key={stage.label}
-            data-complete={stage.done}
-            aria-current={stage.current ? "step" : undefined}
+            data-complete={phaseIndex >= index}
+            aria-current={phaseIndex === index ? "step" : undefined}
           >
             <span className="studio-progress-icon" aria-hidden="true">
               {stage.icon}
             </span>
             <span>
               <strong>{stage.label}</strong>
-              {stage.detail && <small>{stage.detail}</small>}
             </span>
           </li>
         ))}
       </ol>
       {!leader && !locked && (
-        <TeamAction action="leave-workspace-team" values={{ confirmation: "LEAVE_TEAM" }} run={run} className="button secondary">
-          <LogOut size={18} aria-hidden="true" />Leave team
+        <TeamAction
+          action="leave-workspace-team"
+          values={{ confirmation: "LEAVE_TEAM" }}
+          run={run}
+          className="button secondary"
+        >
+          <LogOut size={18} aria-hidden="true" />
+          Leave team
         </TeamAction>
       )}
       <div className="studio-personal-status">
@@ -1568,7 +1767,11 @@ function DashboardProject({
   onInteraction,
 }: {
   data: View;
-  run: (a: string, d: Row, options?: { errorFeedback?: "local" }) => Promise<Row>;
+  run: (
+    a: string,
+    d: Row,
+    options?: { errorFeedback?: "local" },
+  ) => Promise<Row>;
   editing: boolean;
   editorOpen: boolean;
   setEditing: (value: boolean) => void;
@@ -1621,38 +1824,58 @@ function DashboardProject({
       {data.projectStats?.result && (
         <PublicResult result={data.projectStats.result} />
       )}
-          <div className="dashboard-project-toolbar">
-            <div className="dashboard-project-metrics">
-              {data.projectStats && <span className="dashboard-upvotes" aria-label={Number.isFinite(data.projectStats.upvotes) ? upvoteCountLabel(data.projectStats.upvotes) : "Upvote count unavailable"}>
-                <ArrowUp size={20} aria-hidden="true" /><span aria-hidden="true">{Number.isFinite(data.projectStats.upvotes) ? data.projectStats.upvotes : "?"}</span>
-              </span>}
-              <span className="dashboard-project-feedback-count" aria-label={`Feedback: ${data.feedback?.length || 0}`}>
-                <MessageSquare size={20} aria-hidden="true" /><span aria-hidden="true">{data.feedback?.length || 0}</span>
+      <div className="dashboard-project-toolbar">
+        <div className="dashboard-project-metrics">
+          {data.projectStats && (
+            <span
+              className="dashboard-upvotes"
+              aria-label={
+                Number.isFinite(data.projectStats.upvotes)
+                  ? upvoteCountLabel(data.projectStats.upvotes)
+                  : "Upvote count unavailable"
+              }
+            >
+              <ArrowUp size={20} aria-hidden="true" />
+              <span aria-hidden="true">
+                {Number.isFinite(data.projectStats.upvotes)
+                  ? data.projectStats.upvotes
+                  : "?"}
               </span>
-            </div>
-            {canRead && project?.published_version_id &&
-              typeof project.slug === "string" && project.slug.trim() &&
-              data.eligibility?.status === "eligible" && (
-                <a
-                  className="button secondary"
-                  href={`/projects/${encodeURIComponent(project.slug)}`}
-                >
-                  View project
-                  <ExternalLink size={17} aria-hidden="true" />
-                </a>
-              )}
-            {canRead && canEdit && project?.published_version_id && (
-              <button
-                className="button dashboard-project-update"
-                id="dashboard-project-edit"
-                type="button"
-                aria-expanded={editing}
-                onClick={() => setEditing(!editing)}
-              >
-                {editing ? "Close editor" : "Update project"}
-              </button>
-            )}
-          </div>
+            </span>
+          )}
+          <span
+            className="dashboard-project-feedback-count"
+            aria-label={`Feedback: ${data.feedback?.length || 0}`}
+          >
+            <MessageSquare size={20} aria-hidden="true" />
+            <span aria-hidden="true">{data.feedback?.length || 0}</span>
+          </span>
+        </div>
+        {canRead &&
+          project?.published_version_id &&
+          typeof project.slug === "string" &&
+          project.slug.trim() &&
+          data.eligibility?.status === "eligible" && (
+            <a
+              className="button secondary"
+              href={`/projects/${encodeURIComponent(project.slug)}`}
+            >
+              View project
+              <ExternalLink size={17} aria-hidden="true" />
+            </a>
+          )}
+        {canRead && canEdit && project?.published_version_id && (
+          <button
+            className="button dashboard-project-update"
+            id="dashboard-project-edit"
+            type="button"
+            aria-expanded={editing}
+            onClick={() => setEditing(!editing)}
+          >
+            {editing ? "Close editor" : "Update project"}
+          </button>
+        )}
+      </div>
       {canRead ? (
         <>
           {project?.published_version_id && !editorOpen && (
@@ -1721,7 +1944,11 @@ export function Dashboard({
   onInteraction,
 }: {
   data: View;
-  run: (a: string, d: Row, options?: { errorFeedback?: "local" }) => Promise<Row>;
+  run: (
+    a: string,
+    d: Row,
+    options?: { errorFeedback?: "local" },
+  ) => Promise<Row>;
   onInteraction?: () => void;
 }) {
   const [tab, setTab] = useState("team"),
@@ -1824,7 +2051,10 @@ export function Dashboard({
         className="dashboard-section dashboard-credits"
         aria-labelledby="dashboard-tab-credits"
       >
-        <PersonalCreditsContent checkedIn={data.checkedIn === true} credits={data.credits || []} />
+        <PersonalCreditsContent
+          checkedIn={data.checkedIn === true}
+          credits={data.credits || []}
+        />
       </section>
       <section
         id="project"
@@ -1873,7 +2103,9 @@ export function discoveryProfileProjection(row: Row): DiscoveryPerson {
       : [],
     avatarColor: String(row.avatarColor || "blue"),
     avatarExpression: String(row.avatarExpression || "squeezed"),
-    ...(row.details && typeof row.details === "object" ? { details: discoveryDetailsProjection(row.details) } : {}),
+    ...(row.details && typeof row.details === "object"
+      ? { details: discoveryDetailsProjection(row.details) }
+      : {}),
     ...(teamName
       ? {
           team: {
@@ -1939,7 +2171,9 @@ export function DiscoverTeamDialog({
     const gutter = document.documentElement.style.scrollbarGutter;
     document.documentElement.style.scrollbarGutter = "stable";
     document.body.style.overflow = "hidden";
-    const release = openDiscoveryDialog(dialog.current, () => callback.current());
+    const release = openDiscoveryDialog(dialog.current, () =>
+      callback.current(),
+    );
     return () => {
       release();
       document.body.style.overflow = overflow;
@@ -1960,12 +2194,20 @@ export function DiscoverTeamDialog({
           <h2 id="discover-team-title">{team.name}</h2>
           <div className="discover-team-facts">
             <span>{team.readiness?.total ?? "?"}/5 members</span>
-            <span className={`discover-state ${team.locked ? "locked" : "forming"}`}>
+            <span
+              className={`discover-state ${team.locked ? "locked" : "forming"}`}
+            >
               {discoveryTeamStatus(team)}
             </span>
           </div>
         </div>
-        <button type="button" className="discover-dialog-close" autoFocus aria-label="Close team" onClick={() => dialog.current?.close()}>
+        <button
+          type="button"
+          className="discover-dialog-close"
+          autoFocus
+          aria-label="Close team"
+          onClick={() => dialog.current?.close()}
+        >
           <X size={22} aria-hidden="true" />
         </button>
       </header>
@@ -1976,15 +2218,40 @@ export function DiscoverTeamDialog({
           <ul className="discover-team-members">
             {members.map((member: Row, index: number) => {
               const href = safeProfileUrl(member.profileUrl);
-              const identity = <><DotAvatar color={member.avatarColor} expression={member.avatarExpression} size={44} decorative /><strong>{member.name}</strong></>;
-              return <li key={member.id || index}>{href ? (
-                <a href={href} aria-label={`View ${member.name}'s profile`} onClick={() => consumeDialogHistoryForNavigation()}>
-                  {identity}<ChevronRight size={20} aria-hidden="true" />
-                </a>
-              ) : <div>{identity}</div>}</li>;
+              const identity = (
+                <>
+                  <DotAvatar
+                    color={member.avatarColor}
+                    expression={member.avatarExpression}
+                    size={44}
+                    decorative
+                  />
+                  <strong>{member.name}</strong>
+                </>
+              );
+              return (
+                <li key={member.id || index}>
+                  {href ? (
+                    <a
+                      href={href}
+                      aria-label={`View ${member.name}'s profile`}
+                      onClick={() => consumeDialogHistoryForNavigation()}
+                    >
+                      {identity}
+                      <ChevronRight size={20} aria-hidden="true" />
+                    </a>
+                  ) : (
+                    <div>{identity}</div>
+                  )}
+                </li>
+              );
             })}
           </ul>
-        ) : <p className="discover-members-unavailable" role="status">Member details are unavailable.</p>}
+        ) : (
+          <p className="discover-members-unavailable" role="status">
+            Member details are unavailable.
+          </p>
+        )}
       </div>
     </dialog>
   );
@@ -2008,8 +2275,17 @@ function CreateTeamDialog({
       return openDiscoveryDialog(dialog.current, () => callback.current());
   }, []);
   return (
-    <dialog ref={dialog} className="team-create-dialog" onKeyDown={trapDialogFocus} aria-labelledby={titleId}>
-      <CreateTeam run={run} titleId={titleId} onClose={() => dialog.current?.close()} />
+    <dialog
+      ref={dialog}
+      className="team-create-dialog"
+      onKeyDown={trapDialogFocus}
+      aria-labelledby={titleId}
+    >
+      <CreateTeam
+        run={run}
+        titleId={titleId}
+        onClose={() => dialog.current?.close()}
+      />
     </dialog>
   );
 }
@@ -2037,7 +2313,10 @@ export function Discover({
   const canCreate = data.me?.canParticipate === true && !data.team;
   const [focusError, setFocusError] = useState("");
   const [personLoading, setPersonLoading] = useState("");
-  const [personError, setPersonError] = useState<{ id: string; message: string } | null>(null);
+  const [personError, setPersonError] = useState<{
+    id: string;
+    message: string;
+  } | null>(null);
   const profileRequest = useRef<AbortController | null>(null);
   useEffect(() => () => profileRequest.current?.abort(), []);
   const openPerson = async (row: Row) => {
@@ -2048,13 +2327,23 @@ export function Discover({
     setPersonLoading(row.id);
     setPersonError(null);
     try {
-      const page = await readPeoplePage(peopleDirectoryUrl({ person: row.id }), request.signal);
+      const page = await readPeoplePage(
+        peopleDirectoryUrl({ person: row.id }),
+        request.signal,
+      );
       if (request.signal.aborted) return;
       if (!page.focusedPerson) throw new Error("Profile unavailable.");
-      document.getElementById(`person-${row.id}`)?.querySelector<HTMLButtonElement>(".discover-profile-open")?.focus({ preventScroll: true });
+      document
+        .getElementById(`person-${row.id}`)
+        ?.querySelector<HTMLButtonElement>(".discover-profile-open")
+        ?.focus({ preventScroll: true });
       setSelectedPerson(discoveryProfileProjection(page.focusedPerson));
     } catch (cause) {
-      if (!request.signal.aborted) setPersonError({ id: row.id, message: (cause as Error).message || "Profile could not be loaded." });
+      if (!request.signal.aborted)
+        setPersonError({
+          id: row.id,
+          message: (cause as Error).message || "Profile could not be loaded.",
+        });
     } finally {
       if (profileRequest.current === request) {
         profileRequest.current = null;
@@ -2208,32 +2497,80 @@ export function Discover({
       >
         {items.map((row) => {
           const bio = typeof row.bio === "string" ? row.bio.trim() : "";
-          const color = resolveTeamColor(participants ? row.teamPalette : row.palette);
+          const color = resolveTeamColor(
+            participants ? row.teamPalette : row.palette,
+          );
           return (
             <li
               key={row.id}
               id={participants ? `person-${row.id}` : undefined}
               className={`discover-card ${participants ? "discover-person-card" : "discover-team-card"}`}
               data-has-bio={!!bio}
-              style={{ "--discover-wash": color.wash, "--discover-accent": color.ink } as CSSProperties}
+              style={
+                {
+                  "--discover-wash": color.wash,
+                  "--discover-accent": color.ink,
+                } as CSSProperties
+              }
             >
               {participants ? (
                 <>
                   <div className="discover-person-heading">
-                    <DotAvatar color={row.avatarColor} expression={row.avatarExpression} size={56} decorative />
-                    <div className="discover-identity"><h2>{row.name}</h2></div>
-                    <button type="button" className="discover-profile-open discover-card-arrow" aria-label={`View ${row.name}'s profile`} aria-haspopup="dialog" aria-busy={personLoading === row.id} disabled={!hydrated} onClick={() => void openPerson(row)}>
+                    <DotAvatar
+                      color={row.avatarColor}
+                      expression={row.avatarExpression}
+                      size={56}
+                      decorative
+                    />
+                    <div className="discover-identity">
+                      <h2>{row.name}</h2>
+                    </div>
+                    <button
+                      type="button"
+                      className="discover-profile-open discover-card-arrow"
+                      aria-label={`View ${row.name}'s profile`}
+                      aria-haspopup="dialog"
+                      aria-busy={personLoading === row.id}
+                      disabled={!hydrated}
+                      onClick={() => void openPerson(row)}
+                    >
                       <ChevronRight size={22} aria-hidden="true" />
                     </button>
                   </div>
                   {bio && <p className="discover-person-bio">{bio}</p>}
-                  {personLoading === row.id && <p className="discover-profile-loading" role="status">Loading profile…</p>}
-                  {personError && personError.id === row.id && <div className="discover-profile-error" role="alert"><span>{personError.message}</span><button type="button" onClick={() => void openPerson(row)}>Retry</button></div>}
+                  {personLoading === row.id && (
+                    <p className="discover-profile-loading" role="status">
+                      Loading profile…
+                    </p>
+                  )}
+                  {personError && personError.id === row.id && (
+                    <div className="discover-profile-error" role="alert">
+                      <span>{personError.message}</span>
+                      <button
+                        type="button"
+                        onClick={() => void openPerson(row)}
+                      >
+                        Retry
+                      </button>
+                    </div>
+                  )}
                   <div className="discover-person-footer">
-                    <div className={`discover-card-membership ${row.teamName ? "joined" : "unjoined"}`}>
-                      {row.teamName ? <TeamAvatar name={row.teamName} palette={row.teamPalette} size={28} /> : <Users size={18} aria-hidden="true" />}
+                    <div
+                      className={`discover-card-membership ${row.teamName ? "joined" : "unjoined"}`}
+                    >
+                      {row.teamName ? (
+                        <TeamAvatar
+                          name={row.teamName}
+                          palette={row.teamPalette}
+                          size={28}
+                        />
+                      ) : (
+                        <Users size={18} aria-hidden="true" />
+                      )}
                       <span className="discover-card-team-name">
-                        {row.teamName && <span className="sr-only">In a team: </span>}
+                        {row.teamName && (
+                          <span className="sr-only">In a team: </span>
+                        )}
                         {row.teamName || "Not in a team"}
                       </span>
                     </div>
@@ -2243,21 +2580,55 @@ export function Discover({
               ) : (
                 <>
                   <div className="discover-team-card-heading">
-                    <TeamAvatar name={row.name} palette={row.palette} size={64} />
-                    <div className="discover-identity"><h2>{row.name}</h2></div>
-                    <button type="button" className="discover-team-open discover-card-arrow" aria-label={`View ${row.name} team`} aria-haspopup="dialog" disabled={!hydrated} onClick={() => setSelectedTeam(row)}>
+                    <TeamAvatar
+                      name={row.name}
+                      palette={row.palette}
+                      size={64}
+                    />
+                    <div className="discover-identity">
+                      <h2>{row.name}</h2>
+                    </div>
+                    <button
+                      type="button"
+                      className="discover-team-open discover-card-arrow"
+                      aria-label={`View ${row.name} team`}
+                      aria-haspopup="dialog"
+                      disabled={!hydrated}
+                      onClick={() => setSelectedTeam(row)}
+                    >
                       <ChevronRight size={22} aria-hidden="true" />
                     </button>
                   </div>
                   {bio && <p className="discover-team-summary">{bio}</p>}
                   <div className="discover-team-facts">
-                    <span className="discover-team-size"><Users size={17} aria-hidden="true" />{row.readiness?.total ?? "?"}/5 members</span>
-                    <span className={`discover-state ${row.locked ? "locked" : "forming"}`}>{discoveryTeamStatus(row)}</span>
+                    <span className="discover-team-size">
+                      <Users size={17} aria-hidden="true" />
+                      {row.readiness?.total ?? "?"}/5 members
+                    </span>
+                    <span
+                      className={`discover-state ${row.locked ? "locked" : "forming"}`}
+                    >
+                      {discoveryTeamStatus(row)}
+                    </span>
                   </div>
-                  {(data.team?.id === row.id || (canCreate && !row.locked && Number(row.readiness?.total) < 5)) && (
+                  {(data.team?.id === row.id ||
+                    (canCreate &&
+                      !row.locked &&
+                      Number(row.readiness?.total) < 5)) && (
                     <div className="discover-team-action">
-                      {data.team?.id === row.id ? <a href="/dashboard" className="discover-view-team">Your team<ArrowRight size={17} aria-hidden="true" /></a> : (
-                        <TeamAction action="request-team" values={{ teamId: row.id }} run={run} className="discover-request" disabled={!!row.requested}>
+                      {data.team?.id === row.id ? (
+                        <a href="/dashboard" className="discover-view-team">
+                          Your team
+                          <ArrowRight size={17} aria-hidden="true" />
+                        </a>
+                      ) : (
+                        <TeamAction
+                          action="request-team"
+                          values={{ teamId: row.id }}
+                          run={run}
+                          className="discover-request"
+                          disabled={!!row.requested}
+                        >
                           {row.requested ? "Requested" : "Request to join"}
                         </TeamAction>
                       )}
@@ -2290,7 +2661,11 @@ export function Discover({
       )}
       {participants && (
         <div className="discover-pagination" ref={people.sentinel}>
-          {people.loading && <p role="status" aria-live="polite">Loading people…</p>}
+          {people.loading && (
+            <p role="status" aria-live="polite">
+              Loading people…
+            </p>
+          )}
           {people.error && <p role="alert">{people.error}</p>}
           {(people.hasMore || people.error) && (
             <button
@@ -2357,9 +2732,15 @@ export function SharedRules({ categories = [] }: { categories?: Row[] }) {
       </header>
       <div className="rules-groups">
         {categories.map((category, index) => (
-          <section className="rule-group" key={category.title} aria-labelledby={`rule-group-${index}`}>
+          <section
+            className="rule-group"
+            key={category.title}
+            aria-labelledby={`rule-group-${index}`}
+          >
             <header>
-              <span className="rule-group-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+              <span className="rule-group-number" aria-hidden="true">
+                {String(index + 1).padStart(2, "0")}
+              </span>
               <h2 id={`rule-group-${index}`}>{category.title}</h2>
             </header>
             <ol>
@@ -2375,12 +2756,17 @@ export function SharedRules({ categories = [] }: { categories?: Row[] }) {
 }
 
 function upvoteCountLabel(count: number | null) {
-  return count === null ? "Unknown upvotes" : `${count} ${count === 1 ? "upvote" : "upvotes"}`;
+  return count === null
+    ? "Unknown upvotes"
+    : `${count} ${count === 1 ? "upvote" : "upvotes"}`;
 }
 
 function projectMediaStyle(colorKey: unknown): CSSProperties {
   const color = resolveTeamColor(colorKey);
-  return { "--project-team-color": color.fill, "--project-team-wash": color.wash } as CSSProperties;
+  return {
+    "--project-team-color": color.fill,
+    "--project-team-wash": color.wash,
+  } as CSSProperties;
 }
 
 const emptyProject = {
@@ -2403,7 +2789,11 @@ export function Submission({
   onInteraction,
 }: {
   data: View;
-  run: (a: string, d: Row, options?: { errorFeedback?: "local" }) => Promise<Row>;
+  run: (
+    a: string,
+    d: Row,
+    options?: { errorFeedback?: "local" },
+  ) => Promise<Row>;
   onExit?: () => void;
   exitLabel?: string;
   onInteraction?: () => void;
@@ -2430,14 +2820,24 @@ export function Submission({
     setError("");
     const issues: Record<string, string> = {};
     if (step === 1) {
-      for (const [name, message] of [["projectName", "Enter a project name."], ["problemSolution", "Add a one-line summary."], ["description", "Describe your project."]])
+      for (const [name, message] of [
+        ["projectName", "Enter a project name."],
+        ["problemSolution", "Add a one-line summary."],
+        ["description", "Describe your project."],
+      ])
         if (!project[name]?.trim()) issues[name] = message;
     }
     if (step === 2 && !/^https:\/\/github\.com\//.test(project.github || ""))
       issues.github = "Enter your GitHub repository URL.";
     setFieldErrors(issues);
     if (Object.keys(issues).length) {
-      requestAnimationFrame(() => document.querySelector<HTMLInputElement | HTMLTextAreaElement>(`.project-editor [name="${Object.keys(issues)[0]}"]`)?.focus());
+      requestAnimationFrame(() =>
+        document
+          .querySelector<HTMLInputElement | HTMLTextAreaElement>(
+            `.project-editor [name="${Object.keys(issues)[0]}"]`,
+          )
+          ?.focus(),
+      );
       return;
     }
     setStep(Math.min(3, step + 1));
@@ -2457,7 +2857,11 @@ export function Submission({
   const set = (name: string, value: unknown) => {
     onInteraction?.();
     setProject((p: Row) => ({ ...p, [name]: value }));
-    setFieldErrors((previous) => { const next = { ...previous }; delete next[name]; return next; });
+    setFieldErrors((previous) => {
+      const next = { ...previous };
+      delete next[name];
+      return next;
+    });
     const corrected = { ...project, [name]: value };
     setError((current) =>
       (current === "Add a project name, summary and description." &&
@@ -2479,16 +2883,26 @@ export function Submission({
     if (!file) return;
     onInteraction?.();
     const sequence = ++uploadSequence.current[kind];
-    setFieldErrors((previous) => { const next = { ...previous }; delete next[kind]; return next; });
+    setFieldErrors((previous) => {
+      const next = { ...previous };
+      delete next[kind];
+      return next;
+    });
     setMediaBusy((previous) => ({ ...previous, [kind]: true }));
     try {
       const image = await prepareProjectImage(file, kind);
       if (uploadSequence.current[kind] !== sequence) return;
       set(kind, image.dataUrl);
-      setMediaInfo((previous) => ({ ...previous, [kind]: `${file.name} · ${image.sourceWidth} × ${image.sourceHeight}` }));
+      setMediaInfo((previous) => ({
+        ...previous,
+        [kind]: `${file.name} · ${image.sourceWidth} × ${image.sourceHeight}`,
+      }));
     } catch (cause) {
       if (uploadSequence.current[kind] !== sequence) return;
-      setFieldErrors((previous) => ({ ...previous, [kind]: (cause as Error).message }));
+      setFieldErrors((previous) => ({
+        ...previous,
+        [kind]: (cause as Error).message,
+      }));
     } finally {
       if (uploadSequence.current[kind] === sequence)
         setMediaBusy((previous) => ({ ...previous, [kind]: false }));
@@ -2497,13 +2911,23 @@ export function Submission({
   const removeImage = (kind: "logo" | "banner") => {
     uploadSequence.current[kind]++;
     setMediaBusy((previous) => ({ ...previous, [kind]: false }));
-    setMediaInfo((previous) => { const next = { ...previous }; delete next[kind]; return next; });
+    setMediaInfo((previous) => {
+      const next = { ...previous };
+      delete next[kind];
+      return next;
+    });
     set(kind, "");
   };
   const save = async (submit = false) => {
     onInteraction?.();
     if (!canCommit || saving.current || processingMedia) return;
-    const invalidMedia = submit ? (fieldErrors.banner ? "banner" : fieldErrors.logo ? "logo" : undefined) : undefined;
+    const invalidMedia = submit
+      ? fieldErrors.banner
+        ? "banner"
+        : fieldErrors.logo
+          ? "logo"
+          : undefined
+      : undefined;
     if (invalidMedia) {
       document.getElementById(`submission-${invalidMedia}-control`)?.focus();
       return;
@@ -2512,11 +2936,16 @@ export function Submission({
     if (submit) {
       if (!project.logo) issues.logo = "Add a project logo.";
       if (!project.banner) issues.banner = "Add a project banner.";
-      if (!project.attestation) issues.attestation = "Confirm this submission is accurate.";
+      if (!project.attestation)
+        issues.attestation = "Confirm this submission is accurate.";
     }
     if (Object.keys(issues).length) {
       setFieldErrors((previous) => ({ ...previous, ...issues }));
-      requestAnimationFrame(() => document.getElementById(`submission-${Object.keys(issues)[0]}-control`)?.focus());
+      requestAnimationFrame(() =>
+        document
+          .getElementById(`submission-${Object.keys(issues)[0]}-control`)
+          ?.focus(),
+      );
       return;
     }
     saving.current = true;
@@ -2524,23 +2953,33 @@ export function Submission({
     setBusy(true);
     setError("");
     try {
-      await run(submit ? "submit-project" : "save-project", {
-        revision: data.project?.revision || 0,
-        project: {
-          ...project,
-          ecosystemSelections: selectedSubmissionTools(
-            project.ecosystemSelections ?? project.tools,
-          ),
-          contributions: undefined,
+      await run(
+        submit ? "submit-project" : "save-project",
+        {
+          revision: data.project?.revision || 0,
+          project: {
+            ...project,
+            ecosystemSelections: selectedSubmissionTools(
+              project.ecosystemSelections ?? project.tools,
+            ),
+            contributions: undefined,
+          },
         },
-      }, { errorFeedback: "local" });
+        { errorFeedback: "local" },
+      );
     } catch (e) {
       if (!(e instanceof ActionCancelled)) {
         const message = (e as Error).message;
-        const field = /banner/i.test(message) ? "banner" : /logo/i.test(message) ? "logo" : undefined;
+        const field = /banner/i.test(message)
+          ? "banner"
+          : /logo/i.test(message)
+            ? "logo"
+            : undefined;
         if (field) {
           setFieldErrors((previous) => ({ ...previous, [field]: message }));
-          requestAnimationFrame(() => document.getElementById(`submission-${field}-control`)?.focus());
+          requestAnimationFrame(() =>
+            document.getElementById(`submission-${field}-control`)?.focus(),
+          );
         } else setError(message);
       }
     } finally {
@@ -2560,7 +2999,12 @@ export function Submission({
       </Empty>
     );
   return (
-    <section className="submission-v6" data-readonly={!canCommit} data-hydrated={hydrated} style={projectMediaStyle(data.team?.palette)}>
+    <section
+      className="submission-v6"
+      data-readonly={!canCommit}
+      data-hydrated={hydrated}
+      style={projectMediaStyle(data.team?.palette)}
+    >
       <header className="submission-wizard-header">
         <div className="submission-heading">
           {step > 1 && canCommit ? (
@@ -2610,7 +3054,12 @@ export function Submission({
           <span>{step} of 3</span>
         </div>
         <div className="submission-window-status">
-          {(data.submissionStatus?.allowed === true || canCommit) && <span><i aria-hidden="true" />Submission window open</span>}
+          {(data.submissionStatus?.allowed === true || canCommit) && (
+            <span>
+              <i aria-hidden="true" />
+              Submission window open
+            </span>
+          )}
         </div>
       </header>
       {data.eligibility?.status === "ineligible" && (
@@ -2656,7 +3105,9 @@ export function Submission({
                     rows={5}
                     aria-required="true"
                     aria-invalid={fieldErrors[name] ? true : undefined}
-                    aria-describedby={fieldErrors[name] ? `submission-${name}-error` : undefined}
+                    aria-describedby={
+                      fieldErrors[name] ? `submission-${name}-error` : undefined
+                    }
                     value={project[name]}
                     onChange={(e) => set(name, e.target.value)}
                   />
@@ -2665,12 +3116,21 @@ export function Submission({
                     name={name}
                     aria-required="true"
                     aria-invalid={fieldErrors[name] ? true : undefined}
-                    aria-describedby={fieldErrors[name] ? `submission-${name}-error` : undefined}
+                    aria-describedby={
+                      fieldErrors[name] ? `submission-${name}-error` : undefined
+                    }
                     value={project[name]}
                     onChange={(e) => set(name, e.target.value)}
                   />
                 )}
-                {fieldErrors[name] && <small className="submission-field-error" id={`submission-${name}-error`}>{fieldErrors[name]}</small>}
+                {fieldErrors[name] && (
+                  <small
+                    className="submission-field-error"
+                    id={`submission-${name}-error`}
+                  >
+                    {fieldErrors[name]}
+                  </small>
+                )}
               </label>
             ))}
           </div>
@@ -2696,12 +3156,21 @@ export function Submission({
                   type="url"
                   aria-required="true"
                   aria-invalid={fieldErrors.github ? true : undefined}
-                  aria-describedby={fieldErrors.github ? "submission-github-error" : undefined}
+                  aria-describedby={
+                    fieldErrors.github ? "submission-github-error" : undefined
+                  }
                   value={project.github}
                   onChange={(e) => set("github", e.target.value)}
                 />
               </span>
-              {fieldErrors.github && <small className="submission-field-error" id="submission-github-error">{fieldErrors.github}</small>}
+              {fieldErrors.github && (
+                <small
+                  className="submission-field-error"
+                  id="submission-github-error"
+                >
+                  {fieldErrors.github}
+                </small>
+              )}
             </label>
             <label>
               Deployment URL
@@ -2775,25 +3244,66 @@ export function Submission({
             data-step="3"
             hidden={step !== 3 && canCommit}
           >
-            <ProjectMediaField kind="banner" value={project.banner} info={mediaInfo.banner} error={fieldErrors.banner} busy={mediaBusy.banner} onUpload={(file) => void upload(file, "banner")} onRemove={() => removeImage("banner")} />
+            <ProjectMediaField
+              kind="banner"
+              value={project.banner}
+              info={mediaInfo.banner}
+              error={fieldErrors.banner}
+              busy={mediaBusy.banner}
+              onUpload={(file) => void upload(file, "banner")}
+              onRemove={() => removeImage("banner")}
+            />
             <div className="submission-media-side">
-              <ProjectMediaField kind="logo" value={project.logo} info={mediaInfo.logo} error={fieldErrors.logo} busy={mediaBusy.logo} onUpload={(file) => void upload(file, "logo")} onRemove={() => removeImage("logo")} />
+              <ProjectMediaField
+                kind="logo"
+                value={project.logo}
+                info={mediaInfo.logo}
+                error={fieldErrors.logo}
+                busy={mediaBusy.logo}
+                onUpload={(file) => void upload(file, "logo")}
+                onRemove={() => removeImage("logo")}
+              />
             </div>
             <div className="submission-attestation-wrap">
-                <label className="check-label submission-attestation">
-                  <input id="submission-attestation-control" type="checkbox" checked={!!project.attestation}
-                    aria-required="true"
-                    aria-invalid={fieldErrors.attestation ? true : undefined}
-                    aria-describedby={fieldErrors.attestation ? "submission-attestation-error" : undefined}
-                    onChange={(e) => set("attestation", e.target.checked)} />
-                  <span>I confirm this submission is accurate.<span className="required-marker" aria-hidden="true"> *</span></span>
-                </label>
-                {fieldErrors.attestation && <small className="submission-field-error" id="submission-attestation-error" role="alert">{fieldErrors.attestation}</small>}
+              <label className="check-label submission-attestation">
+                <input
+                  id="submission-attestation-control"
+                  type="checkbox"
+                  checked={!!project.attestation}
+                  aria-required="true"
+                  aria-invalid={fieldErrors.attestation ? true : undefined}
+                  aria-describedby={
+                    fieldErrors.attestation
+                      ? "submission-attestation-error"
+                      : undefined
+                  }
+                  onChange={(e) => set("attestation", e.target.checked)}
+                />
+                <span>
+                  I confirm this submission is accurate.
+                  <span className="required-marker" aria-hidden="true">
+                    {" "}
+                    *
+                  </span>
+                </span>
+              </label>
+              {fieldErrors.attestation && (
+                <small
+                  className="submission-field-error"
+                  id="submission-attestation-error"
+                  role="alert"
+                >
+                  {fieldErrors.attestation}
+                </small>
+              )}
             </div>
           </div>
           {canCommit && (
             <footer className="submission-actions">
-              <small className="submission-remaining">{remaining} {remaining === 1 ? "submission" : "submissions"} remaining</small>
+              <small className="submission-remaining">
+                {remaining} {remaining === 1 ? "submission" : "submissions"}{" "}
+                remaining
+              </small>
               {step < 3 ? (
                 <button
                   key="submission-next"
@@ -2826,9 +3336,9 @@ export function Submission({
                       void save(true);
                     }}
                   >
-                    {busy && savingSubmission ? "Submitting…" : "Submit"} <ArrowRight size={18} aria-hidden="true" />
+                    {busy && savingSubmission ? "Submitting…" : "Submit"}{" "}
+                    <ArrowRight size={18} aria-hidden="true" />
                   </button>
-
                 </>
               )}
             </footer>
@@ -2851,7 +3361,10 @@ export function Submission({
       {step === 3 && canCommit && <SubmissionDots />}
       {!onExit && (
         <div className="submission-history-actions">
-          <ProjectHistory canRead={data.submissionAccess?.canRead === true} currentVersionId={data.project?.published_version_id} />
+          <ProjectHistory
+            canRead={data.submissionAccess?.canRead === true}
+            currentVersionId={data.project?.published_version_id}
+          />
           {data.leaderboardUrl && (
             <a className="button secondary" href={data.leaderboardUrl}>
               View project <ExternalLink size={18} aria-hidden="true" />
@@ -2921,7 +3434,10 @@ export function ProjectHistory({
       <button
         type="button"
         className="button secondary"
-        onClick={(event) => { opener.current = event.currentTarget; setOpen(true); }}
+        onClick={(event) => {
+          opener.current = event.currentTarget;
+          setOpen(true);
+        }}
       >
         <Icon name="history" />
         {label}
@@ -2951,13 +3467,37 @@ export function ProjectHistory({
             </button>
           </div>
 
-          {busy && <div className="history-loading" role="status" aria-label="Loading committed history"><span className="sr-only">Loading committed history…</span>{[1, 2, 3].map((n) => <div key={n} aria-hidden="true"><i /><span /><span /></div>)}</div>}
-          {error && <p role="alert" className="history-error">{error}</p>}
+          {busy && (
+            <div
+              className="history-loading"
+              role="status"
+              aria-label="Loading committed history"
+            >
+              <span className="sr-only">Loading committed history…</span>
+              {[1, 2, 3].map((n) => (
+                <div key={n} aria-hidden="true">
+                  <i />
+                  <span />
+                  <span />
+                </div>
+              ))}
+            </div>
+          )}
+          {error && (
+            <p role="alert" className="history-error">
+              {error}
+            </p>
+          )}
           {!busy && !error && !items.length && (
             <p className="history-empty">No committed versions yet.</p>
           )}
           {items.map((item) => (
-            <CommittedSubmission item={item as { id: string; attempt: number; created_at: string }} payload={item.payload} currentVersionId={currentVersionId} key={item.id}>
+            <CommittedSubmission
+              item={item as { id: string; attempt: number; created_at: string }}
+              payload={item.payload}
+              currentVersionId={currentVersionId}
+              key={item.id}
+            >
               <ProjectVersion payload={item.payload} />
             </CommittedSubmission>
           ))}
@@ -3009,67 +3549,77 @@ function ProjectBody({
   teamColorKey?: unknown;
 }) {
   return (
-    <div className="project-presentation" style={projectMediaStyle(teamColorKey)}>
+    <div
+      className="project-presentation"
+      style={projectMediaStyle(teamColorKey)}
+    >
       <img
         className="project-banner"
         src={project.banner}
         alt={`${project.projectName} project banner`}
       />
       <div className="project-overview">
-      <div className="project-identity">
-        <img
-          className="project-logo"
-          src={project.logo}
-          alt={`${project.projectName} logo`}
-        />
-        <div>
-          <h1>{project.projectName}</h1>
-          {project.teamName && <p>
-            {publicView ? "by " : "Team "}
-            {project.teamName}
-          </p>}
-        </div>
-      </div>
-      <p className="project-description">{project.problemSolution}</p>
-      <div className="form-actions">
-        {publicView && project.github && (
-          <a
-            className="button secondary"
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src="/icons/social/github.svg" width="20" height="20" alt="" />{" "}
-            GitHub
-          </a>
-        )}
-        {project.demo && (
-          <a
-            className={publicView ? "button secondary" : "button"}
-            href={project.demo}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {publicView ? (
-              <>
-                <ExternalLink size={20} aria-hidden="true" /> Visit project
-              </>
-            ) : (
-              "Open demo"
+        <div className="project-identity">
+          <img
+            className="project-logo"
+            src={project.logo}
+            alt={`${project.projectName} logo`}
+          />
+          <div>
+            <h1>{project.projectName}</h1>
+            {project.teamName && (
+              <p>
+                {publicView ? "by " : "Team "}
+                {project.teamName}
+              </p>
             )}
-          </a>
-        )}
-        {!publicView && project.github && (
-          <a
-            className="button secondary"
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Repository
-          </a>
-        )}
-      </div>
+          </div>
+        </div>
+        <p className="project-description">{project.problemSolution}</p>
+        <div className="form-actions">
+          {publicView && project.github && (
+            <a
+              className="button secondary"
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="/icons/social/github.svg"
+                width="20"
+                height="20"
+                alt=""
+              />{" "}
+              GitHub
+            </a>
+          )}
+          {project.demo && (
+            <a
+              className={publicView ? "button secondary" : "button"}
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {publicView ? (
+                <>
+                  <ExternalLink size={20} aria-hidden="true" /> Visit project
+                </>
+              ) : (
+                "Open demo"
+              )}
+            </a>
+          )}
+          {!publicView && project.github && (
+            <a
+              className="button secondary"
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Repository
+            </a>
+          )}
+        </div>
       </div>
       <div className="project-story">
         <h2>About the project</h2>
@@ -3174,8 +3724,9 @@ export function UpvoteButton({
               },
             );
             if (saved) {
-              try { await reconcile(); }
-              catch (error) {
+              try {
+                await reconcile();
+              } catch (error) {
                 if ((error as Error).name !== "AbortError") {
                   setCount(null);
                   setError("Upvote saved. Refresh to update the count.");
@@ -3185,10 +3736,16 @@ export function UpvoteButton({
           } catch (e) {
             if (!(e instanceof ActionCancelled)) {
               const message = (e as Error).message;
-              setError(e instanceof TypeError || /^[A-Z][A-Z0-9_]+$/.test(message) ? "Could not upvote. Try again." : message);
+              setError(
+                e instanceof TypeError || /^[A-Z][A-Z0-9_]+$/.test(message)
+                  ? "Could not upvote. Try again."
+                  : message,
+              );
               // A lost response may follow a committed vote. Ask the existing
               // public projection before presenting a retry as still available.
-              try { if ((await reconcile())?.upvoted) setError(""); } catch {}
+              try {
+                if ((await reconcile())?.upvoted) setError("");
+              } catch {}
             }
           } finally {
             setBusy(false);
@@ -3229,7 +3786,11 @@ export function Projects({
     detail = path !== "/projects" && !board,
     p = data.items?.[0];
   const feed = useProjectFeed(data, q, !board && !detail);
-  const listing: View = board ? boardListing : detail ? data : { ...data, ...feed.page, items: feed.items };
+  const listing: View = board
+    ? boardListing
+    : detail
+      ? data
+      : { ...data, ...feed.page, items: feed.items };
   const searchBusy = board ? boardBusy : feed.loading;
   const searchError = board ? boardError : feed.error;
   const highlighted = useRef(false),
@@ -3281,10 +3842,18 @@ export function Projects({
   const signIn = "/signin?returnTo=" + encodeURIComponent(path);
   const normalizedSearch = q.trim().slice(0, 200).toLowerCase();
   const visibleProjects = (listing.items || []).filter((project) =>
-    (project.projectName + " " + project.teamName + " " + project.problemSolution)
-      .toLowerCase().includes(normalizedSearch),
+    (
+      project.projectName +
+      " " +
+      project.teamName +
+      " " +
+      project.problemSolution
+    )
+      .toLowerCase()
+      .includes(normalizedSearch),
   );
-  const emptyCollection = !normalizedSearch && !page && !data.items?.length && !data.hasMore;
+  const emptyCollection =
+    !normalizedSearch && !page && !data.items?.length && !data.hasMore;
   const engagement = (p: Row) => (
     <div className="engagement">
       {data.me ? (
@@ -3318,7 +3887,10 @@ export function Projects({
   );
   if (detail && p)
     return (
-      <section className="projects-v6 public-project-detail" data-hydrated={hydrated}>
+      <section
+        className="projects-v6 public-project-detail"
+        data-hydrated={hydrated}
+      >
         <header className="project-detail-topline">
           <a
             className="back-link"
@@ -3329,7 +3901,12 @@ export function Projects({
           </a>
           <HeadingDot color="purple" expression="squeezed" size={40} />
           <strong>{p.teamName || p.projectName}</strong>
-          {typeof p.slug === "string" && <ProjectShare publicPath={`/projects/${encodeURIComponent(p.slug)}`} projectName={p.projectName} />}
+          {typeof p.slug === "string" && (
+            <ProjectShare
+              publicPath={`/projects/${encodeURIComponent(p.slug)}`}
+              projectName={p.projectName}
+            />
+          )}
         </header>
         <article className="project-detail">
           <ProjectBody project={p} publicView teamColorKey={p.teamColorKey} />
@@ -3356,8 +3933,12 @@ export function Projects({
             </p>
           )}
           <section id="comments" aria-labelledby="project-comments-heading">
-            <h2 id="project-comments-heading">Comments <span>{data.comments?.length || 0}</span></h2>
-            {!data.comments?.length && <p className="project-empty-comments">No comments yet.</p>}
+            <h2 id="project-comments-heading">
+              Comments <span>{data.comments?.length || 0}</span>
+            </h2>
+            {!data.comments?.length && (
+              <p className="project-empty-comments">No comments yet.</p>
+            )}
             {(data.comments || []).map((c: Row) => (
               <article className="public-comment" key={c.id}>
                 <DotAvatar
@@ -3440,26 +4021,35 @@ export function Projects({
       </section>
     );
   return (
-    <section className="projects-v6 public-project-list" data-hydrated={hydrated}>
+    <section
+      className="projects-v6 public-project-list"
+      data-hydrated={hydrated}
+    >
       <header className="page-heading projects-heading">
         <HeadingDot color="purple" expression="squeezed" size={64} />
         <h1>{board ? "Leaderboard" : "Projects"}</h1>
       </header>
-      {!emptyCollection && <div className="project-directory-toolbar">
-      <div className="project-search" inert={!hydrated}>
-        <SearchIcon size={24} aria-hidden="true" />
-        <Search
-          value={q}
-          onChange={(v) => {
-            setQ(v);
-            setPage(0);
-            if (board && v.trim()) setSearchBusy(true);
-          }}
-          label="Search projects"
-        />
-      </div>
-      {searchBusy && <span className="project-search-status" role="status">Searching…</span>}
-      </div>}
+      {!emptyCollection && (
+        <div className="project-directory-toolbar">
+          <div className="project-search" inert={!hydrated}>
+            <SearchIcon size={24} aria-hidden="true" />
+            <Search
+              value={q}
+              onChange={(v) => {
+                setQ(v);
+                setPage(0);
+                if (board && v.trim()) setSearchBusy(true);
+              }}
+              label="Search projects"
+            />
+          </div>
+          {searchBusy && (
+            <span className="project-search-status" role="status">
+              Searching…
+            </span>
+          )}
+        </div>
+      )}
       {(listing.engagement?.votingPaused ||
         listing.engagement?.feedbackPaused) && (
         <p className="notice" role="status">
@@ -3498,28 +4088,69 @@ export function Projects({
           <p>{listing.scoringInfo.weightage}</p>
         </details>
       )}
-      {board && searchError && <div role="alert" className="project-search-error"><span>{searchError}</span><button type="button" className="button secondary" disabled={searchBusy} onClick={() => { setSearchBusy(true); setSearchRetry((n) => n + 1); }}>Retry search</button></div>}
+      {board && searchError && (
+        <div role="alert" className="project-search-error">
+          <span>{searchError}</span>
+          <button
+            type="button"
+            className="button secondary"
+            disabled={searchBusy}
+            onClick={() => {
+              setSearchBusy(true);
+              setSearchRetry((n) => n + 1);
+            }}
+          >
+            Retry search
+          </button>
+        </div>
+      )}
       <ul className="project-list" aria-busy={searchBusy}>
-        {searchBusy && !visibleProjects.length && [1, 2].map((n) => <li className="project-search-placeholder" aria-hidden="true" key={`loading-${n}`}><i /><div><span /><span /><span /></div><b /><b /></li>)}
-        {visibleProjects
-          .map((p) => (
-            <li className="public-project-card" key={p.id} id={"entry-" + p.slug} style={projectMediaStyle(p.teamColorKey)}>
-              <a className="project-row-link" href={`/projects/${p.slug}`}>
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  className="row-logo" style={projectMediaStyle(p.teamColorKey)}
-                  src={p.logo}
-                  alt=""
-                />
-                <div>
-                  <h2>{p.projectName}</h2>
-                  <p>{p.problemSolution}</p>
-                  <small>by {p.teamName}</small>
-                </div>
-                <ChevronRight className="project-card-arrow" size={22} aria-hidden="true" />
-              </a>
-              <div className="public-project-card-actions">
+        {searchBusy &&
+          !visibleProjects.length &&
+          [1, 2].map((n) => (
+            <li
+              className="project-search-placeholder"
+              aria-hidden="true"
+              key={`loading-${n}`}
+            >
+              <i />
+              <div>
+                <span />
+                <span />
+                <span />
+              </div>
+              <b />
+              <b />
+            </li>
+          ))}
+        {visibleProjects.map((p) => (
+          <li
+            className="public-project-card"
+            key={p.id}
+            id={"entry-" + p.slug}
+            style={projectMediaStyle(p.teamColorKey)}
+          >
+            <a className="project-row-link" href={`/projects/${p.slug}`}>
+              <img
+                loading="lazy"
+                decoding="async"
+                className="row-logo"
+                style={projectMediaStyle(p.teamColorKey)}
+                src={p.logo}
+                alt=""
+              />
+              <div>
+                <h2>{p.projectName}</h2>
+                <p>{p.problemSolution}</p>
+                <small>by {p.teamName}</small>
+              </div>
+              <ChevronRight
+                className="project-card-arrow"
+                size={22}
+                aria-hidden="true"
+              />
+            </a>
+            <div className="public-project-card-actions">
               {board ? (
                 <div className="engagement">
                   <strong>
@@ -3532,48 +4163,128 @@ export function Projects({
               ) : (
                 engagement(p)
               )}
-              {typeof p.slug === "string" && <ProjectShare publicPath={`/projects/${encodeURIComponent(p.slug)}`} projectName={p.projectName} />}
+              {typeof p.slug === "string" && (
+                <ProjectShare
+                  publicPath={`/projects/${encodeURIComponent(p.slug)}`}
+                  projectName={p.projectName}
+                />
+              )}
+            </div>
+          </li>
+        ))}
+        {!board &&
+          searchBusy &&
+          visibleProjects.length > 0 &&
+          [1, 2].map((n) => (
+            <li
+              className="project-search-placeholder"
+              aria-hidden="true"
+              key={`appending-${n}`}
+            >
+              <i />
+              <div>
+                <span />
+                <span />
+                <span />
               </div>
+              <b />
+              <b />
             </li>
           ))}
-        {!board && searchBusy && visibleProjects.length > 0 && [1, 2].map((n) => <li className="project-search-placeholder" aria-hidden="true" key={`appending-${n}`}><i /><div><span /><span /><span /></div><b /><b /></li>)}
       </ul>
-      {!board && <div className="discover-pagination project-scroll-pagination" ref={feed.sentinel}>
-        {feed.loading && <p role="status" aria-live="polite">Loading projects…</p>}
-        {feed.error && <p role="alert">{feed.error}</p>}
-        {(feed.hasMore || feed.error) && <button className="button secondary" type="button" disabled={!hydrated || feed.loading} onClick={() => void feed.loadMore()}>{feed.error ? "Retry" : "Load more"}</button>}
-      </div>}
+      {!board && (
+        <div
+          className="discover-pagination project-scroll-pagination"
+          ref={feed.sentinel}
+        >
+          {feed.loading && (
+            <p role="status" aria-live="polite">
+              Loading projects…
+            </p>
+          )}
+          {feed.error && <p role="alert">{feed.error}</p>}
+          {(feed.hasMore || feed.error) && (
+            <button
+              className="button secondary"
+              type="button"
+              disabled={!hydrated || feed.loading}
+              onClick={() => void feed.loadMore()}
+            >
+              {feed.error ? "Retry" : "Load more"}
+            </button>
+          )}
+        </div>
+      )}
       {!visibleProjects.length && !searchBusy && !searchError && (
-        <section className="project-empty-state" aria-label={q ? "No matching projects" : "No projects yet"}>
+        <section
+          className="project-empty-state"
+          aria-label={q ? "No matching projects" : "No projects yet"}
+        >
           <div className="project-empty-copy">
             <h2>{q ? "No matching projects" : "No projects yet"}</h2>
-            <p>{q ? "Try another project or team name." : "Eligible team submissions appear here."}</p>
-            {q ? <button className="button" type="button" onClick={() => { setQ(""); setPage(0); }}>Clear search</button> : (
-              <a className="button" href={data.me?.canParticipate ? "/dashboard#project" : data.me ? "/discover/teams" : signIn}>
-                {data.me?.canParticipate ? "Your workspace" : data.me ? "Meet the teams" : "Explore the portal"}<ArrowRight size={18} aria-hidden="true" />
+            <p>
+              {q
+                ? "Try another project or team name."
+                : "Eligible team submissions appear here."}
+            </p>
+            {q ? (
+              <button
+                className="button"
+                type="button"
+                onClick={() => {
+                  setQ("");
+                  setPage(0);
+                }}
+              >
+                Clear search
+              </button>
+            ) : (
+              <a
+                className="button"
+                href={
+                  data.me?.canParticipate
+                    ? "/dashboard#project"
+                    : data.me
+                      ? "/discover/teams"
+                      : signIn
+                }
+              >
+                {data.me?.canParticipate
+                  ? "Your workspace"
+                  : data.me
+                    ? "Meet the teams"
+                    : "Explore the portal"}
+                <ArrowRight size={18} aria-hidden="true" />
               </a>
             )}
           </div>
-          <HeadingDot color="purple" expression={q ? "sleepy" : "squeezed"} size={96} paused />
+          <HeadingDot
+            color="purple"
+            expression={q ? "sleepy" : "squeezed"}
+            size={96}
+            paused
+          />
         </section>
       )}
-      {board && (visibleProjects.length > 0 || page > 0) && <div className="form-actions project-pagination">
-        <button
-          className="button secondary"
-          disabled={!page}
-          onClick={() => setPage(page - 1)}
-        >
-          Previous page
-        </button>
-        <span>Page {page + 1}</span>
-        <button
-          className="button secondary"
-          disabled={!listing.hasMore}
-          onClick={() => setPage(page + 1)}
-        >
-          Next page
-        </button>
-      </div>}
+      {board && (visibleProjects.length > 0 || page > 0) && (
+        <div className="form-actions project-pagination">
+          <button
+            className="button secondary"
+            disabled={!page}
+            onClick={() => setPage(page - 1)}
+          >
+            Previous page
+          </button>
+          <span>Page {page + 1}</span>
+          <button
+            className="button secondary"
+            disabled={!listing.hasMore}
+            onClick={() => setPage(page + 1)}
+          >
+            Next page
+          </button>
+        </div>
+      )}
     </section>
   );
 }
@@ -3670,7 +4381,11 @@ export function AdminParticipants({
   run,
 }: {
   data: View;
-  run: (a: string, d: Row, options?: { errorFeedback?: "local" }) => Promise<Row>;
+  run: (
+    a: string,
+    d: Row,
+    options?: { errorFeedback?: "local" },
+  ) => Promise<Row>;
 }) {
   const hydrated = useHydrated();
   const [filters, setFilters] = useState<AdminParticipantFiltersValue>({
@@ -3700,7 +4415,9 @@ export function AdminParticipants({
   const [viewerPage, setViewerPage] = useState(0);
   const viewerPages = Math.max(1, Math.ceil(items.length / 25));
   const currentViewerPage = Math.min(viewerPage, viewerPages - 1);
-  const displayedItems = viewerFilter ? items.slice(currentViewerPage * 25, (currentViewerPage + 1) * 25) : items;
+  const displayedItems = viewerFilter
+    ? items.slice(currentViewerPage * 25, (currentViewerPage + 1) * 25)
+    : items;
   const selectable = items.filter((r) => !r.removed && r.viewer !== true);
   const visibleEmails = new Set(selectable.map((r) => r.email));
   const visibleSelected = selected.filter((email) => visibleEmails.has(email));
@@ -3743,7 +4460,11 @@ export function AdminParticipants({
     // Portal.run keeps the full server error in its persistent action notice.
     // Preserve selection for retry without rendering the same error twice.
   };
-  const runParticipantAction = async (action: string, values: Row, options?: { errorFeedback?: "local" }) => {
+  const runParticipantAction = async (
+    action: string,
+    values: Row,
+    options?: { errorFeedback?: "local" },
+  ) => {
     if (pendingAction.current) throw new ActionCancelled();
     pendingAction.current = true;
     setActionPending(true);
@@ -3812,7 +4533,14 @@ export function AdminParticipants({
       </div>
       <div className="admin-result-bar">
         <span>
-          {items.length} {viewerFilter ? (items.length === 1 ? "viewer" : "viewers") : (items.length === 1 ? "participant" : "participants")}
+          {items.length}{" "}
+          {viewerFilter
+            ? items.length === 1
+              ? "viewer"
+              : "viewers"
+            : items.length === 1
+              ? "participant"
+              : "participants"}
         </span>
         <label className="admin-record-select">
           <span className="sr-only">Participation record</span>
@@ -4020,7 +4748,6 @@ export function AdminParticipants({
                         )}
                         {personalStatus(r)}
                       </Pill>
-
                     </div>
                     {r.checked_in && r.status !== "Checked in" && (
                       <small>Checked in</small>
@@ -4053,83 +4780,94 @@ export function AdminParticipants({
                     )}
                   </td>
                   {canCheckIn && (
-                    <td className="admin-manage-cell" data-empty-actions={r.viewer === true || (!canManage && (personalStatus(r) !== "Going" || !!r.checked_in || r.removed))}>
+                    <td
+                      className="admin-manage-cell"
+                      data-empty-actions={
+                        r.viewer === true ||
+                        (!canManage &&
+                          (personalStatus(r) !== "Going" ||
+                            !!r.checked_in ||
+                            r.removed))
+                      }
+                    >
                       <div className="admin-row-actions admin-participant-action-cluster">
-                      {canCheckIn &&
-                        !r.removed &&
-                        r.viewer !== true &&
-                        personalStatus(r) === "Going" &&
-                        !r.checked_in && (
-                          <button
-                            type="button"
-                            className="button admin-quick-check-in"
-                            aria-label={`Check in ${r.name || r.email}`}
-                            aria-busy={quickCheckInEmail === r.email}
-                            title={
-                              !r.id
-                                ? "Participant must sign in before check-in."
-                                : "Check in participant"
-                            }
-                            disabled={
-                              !hydrated ||
-                              actionPending ||
-                              !data.checkInConfigured ||
-                              !r.id
-                            }
-                            onClick={() => {
-                              if (pendingAction.current) return;
-                              setQuickCheckInEmail(r.email);
-                              void runParticipantAction("quick-check-in", {
-                                emails: [r.email],
-                              })
-                                .catch(recordActionError)
-                                .finally(() => setQuickCheckInEmail(null));
-                            }}
-                          >
-                            <UserCheck size={18} aria-hidden="true" />
-                            {quickCheckInEmail === r.email
-                              ? "Checking in…"
-                              : "Check in"}
-                          </button>
-                        )}
-                      {canManage && (
-                      r.viewer === true ? (
-                        <span className="sr-only">Viewer access</span>
-                      ) : r.id ? (
-                        <>
-                          <StatusChange
-                            kind="person"
-                            target={r.id}
-                            name={r.name || r.email}
-                            current={r.status}
-                            run={runParticipantAction}
-                            compact
-                            disabled={r.removed}
-                          >
-                            <AdminParticipantActions
-                              key={`${r.id}-${r.removed}`}
-                              participant={{
-                                id: r.id,
-                                name: r.name,
-                                email: r.email,
-                                removed: r.removed,
-                                canDelete: r.canDeleteParticipant === true && r.id !== data.me?.id,
-                                teamId: r.teamId,
-                                teamName: r.teamName,
-                                teamLeader: r.teamLeader === true,
-                                leaderTeamIds: r.leaderTeamIds || [],
-                                leaderTeamNames: r.leaderTeamNames || [],
+                        {canCheckIn &&
+                          !r.removed &&
+                          r.viewer !== true &&
+                          personalStatus(r) === "Going" &&
+                          !r.checked_in && (
+                            <button
+                              type="button"
+                              className="button admin-quick-check-in"
+                              aria-label={`Check in ${r.name || r.email}`}
+                              aria-busy={quickCheckInEmail === r.email}
+                              title={
+                                !r.id
+                                  ? "Participant must sign in before check-in."
+                                  : "Check in participant"
+                              }
+                              disabled={
+                                !hydrated ||
+                                actionPending ||
+                                !data.checkInConfigured ||
+                                !r.id
+                              }
+                              onClick={() => {
+                                if (pendingAction.current) return;
+                                setQuickCheckInEmail(r.email);
+                                void runParticipantAction("quick-check-in", {
+                                  emails: [r.email],
+                                })
+                                  .catch(recordActionError)
+                                  .finally(() => setQuickCheckInEmail(null));
                               }}
-                              run={runParticipantAction}
-                              compact
-                            />
-                          </StatusChange>
-                        </>
-                      ) : (
-                        <span className="muted">
-                          Account has not signed in yet.
-                        </span>
-                      ))}
+                            >
+                              <UserCheck size={18} aria-hidden="true" />
+                              {quickCheckInEmail === r.email
+                                ? "Checking in…"
+                                : "Check in"}
+                            </button>
+                          )}
+                        {canManage &&
+                          (r.viewer === true ? (
+                            <span className="sr-only">Viewer access</span>
+                          ) : r.id ? (
+                            <>
+                              <StatusChange
+                                kind="person"
+                                target={r.id}
+                                name={r.name || r.email}
+                                current={r.status}
+                                run={runParticipantAction}
+                                compact
+                                disabled={r.removed}
+                              >
+                                <AdminParticipantActions
+                                  key={`${r.id}-${r.removed}`}
+                                  participant={{
+                                    id: r.id,
+                                    name: r.name,
+                                    email: r.email,
+                                    removed: r.removed,
+                                    canDelete:
+                                      r.canDeleteParticipant === true &&
+                                      r.id !== data.me?.id,
+                                    teamId: r.teamId,
+                                    teamName: r.teamName,
+                                    teamLeader: r.teamLeader === true,
+                                    leaderTeamIds: r.leaderTeamIds || [],
+                                    leaderTeamNames: r.leaderTeamNames || [],
+                                  }}
+                                  run={runParticipantAction}
+                                  compact
+                                />
+                              </StatusChange>
+                            </>
+                          ) : (
+                            <span className="muted">
+                              Account has not signed in yet.
+                            </span>
+                          ))}
                       </div>
                     </td>
                   )}
@@ -4141,9 +4879,27 @@ export function AdminParticipants({
       )}
       {viewerFilter && viewerPages > 1 && (
         <nav className="viewer-pagination" aria-label="Viewer pages">
-          <span>{currentViewerPage * 25 + 1}–{Math.min((currentViewerPage + 1) * 25, items.length)} of {items.length}</span>
-          <button className="button secondary" type="button" disabled={currentViewerPage === 0} onClick={() => setViewerPage(currentViewerPage - 1)}>Previous</button>
-          <button className="button secondary" type="button" disabled={currentViewerPage + 1 >= viewerPages} onClick={() => setViewerPage(currentViewerPage + 1)}>Next</button>
+          <span>
+            {currentViewerPage * 25 + 1}–
+            {Math.min((currentViewerPage + 1) * 25, items.length)} of{" "}
+            {items.length}
+          </span>
+          <button
+            className="button secondary"
+            type="button"
+            disabled={currentViewerPage === 0}
+            onClick={() => setViewerPage(currentViewerPage - 1)}
+          >
+            Previous
+          </button>
+          <button
+            className="button secondary"
+            type="button"
+            disabled={currentViewerPage + 1 >= viewerPages}
+            onClick={() => setViewerPage(currentViewerPage + 1)}
+          >
+            Next
+          </button>
         </nav>
       )}
       {error && (
@@ -4312,7 +5068,9 @@ export function Review({
         </Link>
         <div className="results-ui-reviewHeading">
           <span>{p.teamName || "Project review"}</span>
-          <h1 ref={versionHeading} tabIndex={-1}>{payload.projectName || "Untitled project"}</h1>
+          <h1 ref={versionHeading} tabIndex={-1}>
+            {payload.projectName || "Untitled project"}
+          </h1>
         </div>
         {v && (
           <span className="results-ui-status">
@@ -4742,7 +5500,7 @@ export function AdminList({
           >
             <option value="">All statuses</option>
             {(teams
-              ? ["Forming", "Locked", "Not submitted", "Submitted"]
+              ? ["Forming", "Locked", "Approved", "Yet to submit", "Submitted"]
               : ["Draft", "Submitted"]
             ).map((status) => (
               <option key={status}>{status}</option>
@@ -4796,7 +5554,11 @@ export function AdminList({
         )}
       </div>
       {credits ? (
-        <AdminCreditBatches batches={data.creditBatches || []} categories={items as any} run={run} />
+        <AdminCreditBatches
+          batches={data.creditBatches || []}
+          categories={items as any}
+          run={run}
+        />
       ) : teams ? (
         <ul className="admin-team-list">
           {items.map((team) => (
@@ -4804,84 +5566,118 @@ export function AdminList({
               key={team.id}
               name={team.name}
               defaultOpen={Boolean(team.locked)}
-              avatar={<TeamAvatar name={team.name} palette={team.palette} size={48} />}
-              caption={<>{discoveryTeamStatus(team)} · {team.readiness?.total ? `${team.readiness.approved}/${team.readiness.total} approved` : `${team.members.length} members`}</>}
-              menu={<StatusChange kind="team" target={team.id} name={team.name} current={team.status} teamLocked={team.locked === true} run={run} compact>{(data.me?.owner || data.me?.role === "admin") && <AdminTeamActions team={team as { id: string; name: string; members: unknown[] }} run={run} />}</StatusChange>}
+              avatar={
+                <TeamAvatar name={team.name} palette={team.palette} size={48} />
+              }
+              caption={
+                <>
+                  {discoveryTeamStatus(team)} ·{" "}
+                  {team.readiness?.total
+                    ? `${team.readiness.approved}/${team.readiness.total} approved`
+                    : `${team.members.length} members`}
+                </>
+              }
+              actions={
+                (data.me?.owner || data.me?.role === "admin") &&
+                teamNeedsApproval(team as any) ? (
+                  <AdminTeamApproval team={team as any} run={run} />
+                ) : null
+              }
+              menu={
+                <StatusChange
+                  kind="team"
+                  target={team.id}
+                  name={team.name}
+                  current={team.status}
+                  teamLocked={team.locked === true}
+                  run={run}
+                  compact
+                >
+                  {(data.me?.owner || data.me?.role === "admin") && (
+                    <AdminTeamActions
+                      team={
+                        team as { id: string; name: string; members: unknown[] }
+                      }
+                      run={run}
+                    />
+                  )}
+                </StatusChange>
+              }
             >
-                <ul className="member-list">
-                  {team.members.map((member: Row) => (
-                    <li key={member.id}>
-                      <DotAvatar
-                        color={member.avatarColor}
-                        expression={member.avatarExpression}
-                        size={36}
-                        decorative
-                      />
-                      <div>
-                        <strong>{member.name}</strong>
-                      </div>
-                      <Pill
-                        tone={
-                          ["Going", "Checked in"].includes(
-                            member.status ||
-                              (member.approval === "approved"
-                                ? "Going"
-                                : "Registered"),
-                          )
-                            ? "positive"
-                            : "neutral"
+              <ul className="member-list">
+                {team.members.map((member: Row) => (
+                  <li key={member.id}>
+                    <DotAvatar
+                      color={member.avatarColor}
+                      expression={member.avatarExpression}
+                      size={36}
+                      decorative
+                    />
+                    <div>
+                      <strong>{member.name}</strong>
+                    </div>
+                    <Pill
+                      tone={
+                        ["Going", "Checked in"].includes(
+                          member.status ||
+                            (member.approval === "approved"
+                              ? "Going"
+                              : "Registered"),
+                        )
+                          ? "positive"
+                          : "neutral"
+                      }
+                    >
+                      {member.status ||
+                        (member.approval === "approved"
+                          ? "Going"
+                          : "Registered")}
+                    </Pill>
+                    <AdminLeaderTransfer
+                      team={
+                        team as {
+                          id: string;
+                          name: string;
+                          leader_id: string;
                         }
-                      >
-                        {member.status ||
-                          (member.approval === "approved"
-                            ? "Going"
-                            : "Registered")}
-                      </Pill>
-                      <AdminLeaderTransfer
-                        team={
-                          team as {
-                            id: string;
-                            name: string;
-                            leader_id: string;
-                          }
+                      }
+                      member={
+                        member as {
+                          id: string;
+                          name: string;
+                          removed?: boolean;
                         }
-                        member={
-                          member as {
-                            id: string;
-                            name: string;
-                            removed?: boolean;
-                          }
-                        }
-                        canTransfer={Boolean(
-                          data.me?.owner || data.me?.role === "admin",
-                        )}
-                        run={run}
-                      />
-                      {member.id !== team.leader_id && (
-                        <button
-                          className="admin-toolbar-icon admin-icon-danger"
-                          aria-label={`Remove ${member.name || member.email} from ${team.name}`}
-                          title={`Remove ${member.name || member.email} (${member.email})`}
-                          onClick={() => {
-                            void run("remove-workspace-member", {
-                              userId: member.id,
-                              reason: "Administrator updated team membership",
-                            }).catch(() => {});
-                          }}
-                        >
-                          <AdminIcon name="trash" />
-                        </button>
+                      }
+                      canTransfer={Boolean(
+                        data.me?.owner || data.me?.role === "admin",
                       )}
-                    </li>
-                  ))}
-                </ul>
-                {(data.me?.owner || data.me?.role === "admin") && (
-                  <AdminTeamIdea
-                    key={`${team.id}-${team.idea?.title}-${team.idea?.description}`}
-                    team={team}
-                    run={run}
-                  />
-                )}
+                      run={run}
+                    />
+                    {member.id !== team.leader_id && (
+                      <button
+                        className="admin-toolbar-icon admin-icon-danger"
+                        aria-label={`Remove ${member.name || member.email} from ${team.name}`}
+                        title={`Remove ${member.name || member.email} (${member.email})`}
+                        onClick={() => {
+                          void run("remove-workspace-member", {
+                            userId: member.id,
+                            reason: "Administrator updated team membership",
+                          }).catch(() => {});
+                        }}
+                      >
+                        <AdminIcon name="trash" />
+                      </button>
+                    )}
+                  </li>
+                ))}
+              </ul>
+              {(data.me?.owner || data.me?.role === "admin") && (
+                <AdminTeamIdea
+                  key={`${team.id}-${team.idea?.title}-${team.idea?.description}`}
+                  team={team}
+                  run={run}
+                />
+              )}
             </AdminTeamCard>
           ))}
         </ul>
@@ -5559,7 +6355,9 @@ export function Settings({
     { id: "event", label: "Event" },
     { id: "results", label: "Results" },
     { id: "access", label: "Access" },
-    ...(data.me?.owner || data.canManageVenue ? [{ id: "content", label: "Content" }] : []),
+    ...(data.me?.owner || data.canManageVenue
+      ? [{ id: "content", label: "Content" }]
+      : []),
   ];
   const panel = (id: string) => ({
     id: `${settingsId}-panel-${id}`,
@@ -5601,12 +6399,21 @@ export function Settings({
       </div>
       <div {...panel("results")}>
         {section === "results" && data.me?.owner && (
-          <JudgingSettings key={`judging-${data.policyVersion}`} data={data} run={run} />
+          <JudgingSettings
+            key={`judging-${data.policyVersion}`}
+            data={data}
+            run={run}
+          />
         )}
         <ResultVisibility data={data} run={run} />
       </div>
       <div {...panel("access")}>
-        <AddAdmins owner={!!data.me?.owner} title="Admin access" access={data.adminAccess} run={run} />
+        <AddAdmins
+          owner={!!data.me?.owner}
+          title="Admin access"
+          access={data.adminAccess}
+          run={run}
+        />
         <AdminCreditInstructions
           providers={data.creditInstructions || []}
           run={run}
@@ -5674,7 +6481,11 @@ export default function Portal({
   initialView?: View;
   initialFailure?: PortalLoadFailure;
   pendingPath?: string | null;
-  onNavigate?: (event: { preventDefault(): void }, destination: string, options?: { replace?: boolean }) => void;
+  onNavigate?: (
+    event: { preventDefault(): void },
+    destination: string,
+    options?: { replace?: boolean },
+  ) => void;
 }) {
   const hydrated = useHydrated();
   const path = canonical(original);
@@ -5685,7 +6496,9 @@ export default function Portal({
     onNavigate(event, destination, { replace });
   }
   const [data, setData] = useState<View>(initialView || initialPublic || {}),
-    [loading, setLoading] = useState(!initialView && !initialPublic && !initialFailure && path !== "/"),
+    [loading, setLoading] = useState(
+      !initialView && !initialPublic && !initialFailure && path !== "/",
+    ),
     [error, setError] = useState(initialFailure?.message || ""),
     [errorCode, setErrorCode] = useState(initialFailure?.code || ""),
     [refreshing, setRefreshing] = useState(false),
@@ -5693,7 +6506,8 @@ export default function Portal({
     [messageTone, setMessageTone] = useState<"success" | "error">("success"),
     [menu, setMenu] = useState(false);
   const [confirmation, setConfirmation] = useState<Confirmation | null>(null);
-  const [submissionSuccess, setSubmissionSuccess] = useState<SubmissionSuccessState | null>(null);
+  const [submissionSuccess, setSubmissionSuccess] =
+    useState<SubmissionSuccessState | null>(null);
   const gate = useRef<ConfirmationGate | null>(null),
     actionBusy = useRef(false),
     mutationKeys = useRef(new Set<string>()),
@@ -5717,11 +6531,19 @@ export default function Portal({
     setRefreshing(true);
     setLoading(!hasLoadedView.current);
     try {
-      const focus=new URLSearchParams(window.location.search).get("project") || "";
-      const options={search:"",page:0,focus};
-      const version=await presentationCache.current.knownVersion(path,data.me,options);
-      const url=`/api/portal?view=${encodeURIComponent(path)}&focus=${encodeURIComponent(focus)}${path === "/" ? "&arrival=1" : ""}`;
-      let {response: r,body}=await readPortalView(url+(version?"&presentation="+encodeURIComponent(version):""),controller.signal);
+      const focus =
+        new URLSearchParams(window.location.search).get("project") || "";
+      const options = { search: "", page: 0, focus };
+      const version = await presentationCache.current.knownVersion(
+        path,
+        data.me,
+        options,
+      );
+      const url = `/api/portal?view=${encodeURIComponent(path)}&focus=${encodeURIComponent(focus)}${path === "/" ? "&arrival=1" : ""}`;
+      let { response: r, body } = await readPortalView(
+        url + (version ? "&presentation=" + encodeURIComponent(version) : ""),
+        controller.signal,
+      );
       if (generation !== loadGeneration.current) return;
       if (!r.ok) {
         presentationCache.current.clear();
@@ -5734,14 +6556,23 @@ export default function Portal({
         throw new Error(failure.message);
       }
       let hydrated: View;
-      try {hydrated=await presentationCache.current.merge(body,path,options);}
-      catch(error){
-        if(!(error instanceof AdminPresentationCacheMiss))throw error;
-        const full=await readPortalView(url,controller.signal);
-        if(!full.response.ok)throw new Error(full.body.message || "This page could not be loaded.");
-        hydrated=await presentationCache.current.merge(full.body,path,options);
+      try {
+        hydrated = await presentationCache.current.merge(body, path, options);
+      } catch (error) {
+        if (!(error instanceof AdminPresentationCacheMiss)) throw error;
+        const full = await readPortalView(url, controller.signal);
+        if (!full.response.ok)
+          throw new Error(
+            full.body.message || "This page could not be loaded.",
+          );
+        hydrated = await presentationCache.current.merge(
+          full.body,
+          path,
+          options,
+        );
       }
-      if(generation!==loadGeneration.current || controller.signal.aborted)return;
+      if (generation !== loadGeneration.current || controller.signal.aborted)
+        return;
       setErrorCode("");
       setError("");
       hasLoadedView.current = true;
@@ -5751,11 +6582,18 @@ export default function Portal({
       if (generation === loadGeneration.current && !controller.signal.aborted) {
         if (e instanceof TypeError || e instanceof SyntaxError) {
           setErrorCode("LOAD_FAILED");
-          setError(e instanceof SyntaxError ? "The portal returned an unreadable response. Try again." : "Unable to reach the portal. Check your connection and try again.");
+          setError(
+            e instanceof SyntaxError
+              ? "The portal returned an unreadable response. Try again."
+              : "Unable to reach the portal. Check your connection and try again.",
+          );
         } else setError((e as Error).message);
       }
     } finally {
-      if (generation === loadGeneration.current) { setLoading(false); setRefreshing(false); }
+      if (generation === loadGeneration.current) {
+        setLoading(false);
+        setRefreshing(false);
+      }
       if (loadAbort.current === controller) loadAbort.current = null;
     }
   }
@@ -5771,11 +6609,13 @@ export default function Portal({
       setLoading(false);
       lastRefresh.current = Date.now();
     } else if (initialView) {
-      void presentationCache.current.merge(initialView,path,{search:"",page:0,focus:""}).catch(()=>{});
+      void presentationCache.current
+        .merge(initialView, path, { search: "", page: 0, focus: "" })
+        .catch(() => {});
       setData(initialView);
       hasLoadedView.current = true;
       setLoading(false);
-      lastRefresh.current=Date.now();
+      lastRefresh.current = Date.now();
     } else {
       if (initialPublic) {
         setData(initialPublic);
@@ -5786,7 +6626,12 @@ export default function Portal({
       void load();
     }
     const refresh = () => {
-      if (document.visibilityState === "visible" && !actionBusy.current && !loadAbort.current && Date.now()-lastRefresh.current>=2_000)
+      if (
+        document.visibilityState === "visible" &&
+        !actionBusy.current &&
+        !loadAbort.current &&
+        Date.now() - lastRefresh.current >= 2_000
+      )
         void load();
     };
     window.addEventListener("focus", refresh);
@@ -5822,14 +6667,30 @@ export default function Portal({
   const clearSuccessNotice = () => {
     if (messageTone === "success") setMessage("");
   };
-  const run = async (action: string, values: Row, options?: { errorFeedback?: "local" }) => {
-    const mutationKey=action+":"+(values.columnId||values.batchId||values.projectId||values.teamId||values.userId||values.typeId||values.digest||"page");
-    if (mutationKeys.current.has(mutationKey) || gate.current?.pending) throw new ActionCancelled();
+  const run = async (
+    action: string,
+    values: Row,
+    options?: { errorFeedback?: "local" },
+  ) => {
+    const mutationKey =
+      action +
+      ":" +
+      (values.columnId ||
+        values.batchId ||
+        values.projectId ||
+        values.teamId ||
+        values.userId ||
+        values.typeId ||
+        values.digest ||
+        "page");
+    if (mutationKeys.current.has(mutationKey) || gate.current?.pending)
+      throw new ActionCancelled();
     mutationKeys.current.add(mutationKey);
     actionBusy.current = true;
     try {
       if (
         requiresActionConfirmation(action) &&
+        !hasTeamApprovalConfirmation(action, values) &&
         !(await gate.current!.ask(
           portalConfirmationFor(
             action,
@@ -5851,7 +6712,15 @@ export default function Portal({
       )
         throw new ActionCancelled();
       const token = revealConfirmation(action, values);
-      const { newCount: _count, singleEmail: _email, importWebsiteReview: _websiteReview, windowWarnings: _windowWarnings, creditImportSummary: _creditSummary, participantDeleteSummary: _deleteSummary, ...payload } = values;
+      const {
+        newCount: _count,
+        singleEmail: _email,
+        importWebsiteReview: _websiteReview,
+        windowWarnings: _windowWarnings,
+        creditImportSummary: _creditSummary,
+        participantDeleteSummary: _deleteSummary,
+        ...payload
+      } = values;
       setMessage("");
       const result = await api(
         action,
@@ -5861,19 +6730,25 @@ export default function Portal({
       // route reload here would discard the showcase's incrementally loaded pages.
       if (action === "upvote-project") return result;
       setMessageTone("success");
-      if (action !== "submit-project") setMessage(portalSuccessText(action, result.message));
+      if (action !== "submit-project")
+        setMessage(portalSuccessText(action, result.message));
       const fresh = await load();
-      if (action === "submit-project") setSubmissionSuccess(submittedProjectSuccess(result, fresh));
+      if (action === "submit-project")
+        setSubmissionSuccess(submittedProjectSuccess(result, fresh));
       return result;
     } catch (e) {
-      if (!(e instanceof ActionCancelled) && action !== "upvote-project" && options?.errorFeedback !== "local") {
+      if (
+        !(e instanceof ActionCancelled) &&
+        action !== "upvote-project" &&
+        options?.errorFeedback !== "local"
+      ) {
         setMessageTone("error");
         setMessage((e as Error).message);
       }
       throw e;
     } finally {
       mutationKeys.current.delete(mutationKey);
-      actionBusy.current = mutationKeys.current.size>0;
+      actionBusy.current = mutationKeys.current.size > 0;
     }
   };
   const logout = async () => {
@@ -5890,7 +6765,9 @@ export default function Portal({
       if (localTest) await api("local-signout", {});
       else {
         const response = await fetch("/api/auth/signout", {
-          method: "POST", credentials: "same-origin", cache: "no-store",
+          method: "POST",
+          credentials: "same-origin",
+          cache: "no-store",
           headers: { "content-type": "application/json" },
           body: JSON.stringify({ returnTo: "/" }),
         });
@@ -5917,7 +6794,10 @@ export default function Portal({
     (path === "/dashboard" &&
       !!data.profileIncomplete &&
       data.me?.mode !== "viewer");
-  const loadErrorTitle = errorCode === "SIGN_IN_REQUIRED" || errorCode === "AUTH_REQUIRED" ? "Sign in to continue" : "This page could not load";
+  const loadErrorTitle =
+    errorCode === "SIGN_IN_REQUIRED" || errorCode === "AUTH_REQUIRED"
+      ? "Sign in to continue"
+      : "This page could not load";
   const publicBrowse = path.startsWith("/projects") || path === "/leaderboard";
   const workspaceShell = path !== "/" && !publicBrowse && !profileOnboarding;
   const studioDashboard = path === "/dashboard" && !profileOnboarding;
@@ -5936,7 +6816,12 @@ export default function Portal({
           decide={(yes) => gate.current?.decide(yes)}
         />
       )}
-      {submissionSuccess && <ProjectSubmissionSuccess value={submissionSuccess} onClose={() => setSubmissionSuccess(null)} />}
+      {submissionSuccess && (
+        <ProjectSubmissionSuccess
+          value={submissionSuccess}
+          onClose={() => setSubmissionSuccess(null)}
+        />
+      )}
 
       <a className="skip-link" href="#main">
         Skip to content
@@ -5946,26 +6831,94 @@ export default function Portal({
         hydrated={hydrated}
         onOpen={() => setMenu(true)}
         account={data.me}
-        accountHref={data.me ? privileged || data.me.role === "volunteer" || data.me.mode === "viewer" ? "/dashboard" : "/profile" : undefined}
-        accountLabel={data.me ? data.me.mode === "viewer" ? "Viewer mode" : privileged || data.me.role === "volunteer" ? "Your Dashboard" : "Your profile" : undefined}
+        accountHref={
+          data.me
+            ? privileged ||
+              data.me.role === "volunteer" ||
+              data.me.mode === "viewer"
+              ? "/dashboard"
+              : "/profile"
+            : undefined
+        }
+        accountLabel={
+          data.me
+            ? data.me.mode === "viewer"
+              ? "Viewer mode"
+              : privileged || data.me.role === "volunteer"
+                ? "Your Dashboard"
+                : "Your profile"
+            : undefined
+        }
       />
       <MobileNavigation open={menu} onClose={() => setMenu(false)}>
         {nav.map(([href, label]) => (
-          <Link prefetch={false} key={href} href={href} onNavigate={(event) => navigate(event, href)} aria-current={path === href || (href === "/discover/teams" && path === "/discover/participants") ? "page" : undefined}><Icon name={navigationIcon(label)} />{label}</Link>
+          <Link
+            prefetch={false}
+            key={href}
+            href={href}
+            onNavigate={(event) => navigate(event, href)}
+            aria-current={
+              path === href ||
+              (href === "/discover/teams" && path === "/discover/participants")
+                ? "page"
+                : undefined
+            }
+          >
+            <Icon name={navigationIcon(label)} />
+            {label}
+          </Link>
         ))}
         {!data.me ? (
-          <a href="/signin?returnTo=%2Fdashboard" target="_top"><Icon name="person" />Sign in</a>
+          <a href="/signin?returnTo=%2Fdashboard" target="_top">
+            <Icon name="person" />
+            Sign in
+          </a>
         ) : (
           <>
-            {data.me.mode !== "viewer" && <Link prefetch={false} href="/profile" onNavigate={(event) => navigate(event, "/profile")}><Icon name="person" />Your profile</Link>}
+            {data.me.mode !== "viewer" && (
+              <Link
+                prefetch={false}
+                href="/profile"
+                onNavigate={(event) => navigate(event, "/profile")}
+              >
+                <Icon name="person" />
+                Your profile
+              </Link>
+            )}
             {(privileged || data.me.role === "volunteer") && (
-              <Link prefetch={false} href={admin ? "/dashboard" : "/admin/participants"} onNavigate={(event) => navigate(event, admin ? "/dashboard" : "/admin/participants")}>
+              <Link
+                prefetch={false}
+                href={admin ? "/dashboard" : "/admin/participants"}
+                onNavigate={(event) =>
+                  navigate(event, admin ? "/dashboard" : "/admin/participants")
+                }
+              >
                 <Icon name={admin ? "dashboard" : "settings"} />
                 {admin ? "Workspace" : "Administration"}
               </Link>
             )}
-            {data.me.mode !== "viewer" && <Link prefetch={false} href="/personal/credits" onNavigate={(event) => navigate(event, "/personal/credits")} aria-current={path === "/personal/credits" ? "page" : undefined}><Icon name="credits" />My credits</Link>}
-            <button className="navigation-logout" type="button" onClick={() => { setMenu(false); requestAnimationFrame(() => void logout()); }}><LogOut size={24} aria-hidden="true" />Log out</button>
+            {data.me.mode !== "viewer" && (
+              <Link
+                prefetch={false}
+                href="/personal/credits"
+                onNavigate={(event) => navigate(event, "/personal/credits")}
+                aria-current={path === "/personal/credits" ? "page" : undefined}
+              >
+                <Icon name="credits" />
+                My credits
+              </Link>
+            )}
+            <button
+              className="navigation-logout"
+              type="button"
+              onClick={() => {
+                setMenu(false);
+                requestAnimationFrame(() => void logout());
+              }}
+            >
+              <LogOut size={24} aria-hidden="true" />
+              Log out
+            </button>
           </>
         )}
       </MobileNavigation>
@@ -5981,116 +6934,155 @@ export default function Portal({
           </div>
         )}
         {message && (
-          <div className="action-message" data-tone={messageTone} role={messageTone === "error" ? "alert" : "status"}>
-            {messageTone === "success" && <CircleCheck size={20} aria-hidden="true" />}
+          <div
+            className="action-message"
+            data-tone={messageTone}
+            role={messageTone === "error" ? "alert" : "status"}
+          >
+            {messageTone === "success" && (
+              <CircleCheck size={20} aria-hidden="true" />
+            )}
             <span>{message}</span>
-            <button type="button" onClick={() => setMessage("")} aria-label="Dismiss notification"><X size={18} aria-hidden="true" /></button>
+            <button
+              type="button"
+              onClick={() => setMessage("")}
+              aria-label="Dismiss notification"
+            >
+              <X size={18} aria-hidden="true" />
+            </button>
           </div>
         )}
         {error && (
-          <section className="page-error-card" role="alert" aria-busy={refreshing}>
+          <section
+            className="page-error-card"
+            role="alert"
+            aria-busy={refreshing}
+          >
             <HeadingDot color="orange" expression="sleepy" size={48} paused />
             <h1>{loadErrorTitle}</h1>
-            {error.trim().replace(/[.!]$/, "") !== loadErrorTitle && <p>{error}</p>}
-            <div className="form-actions">
-            <button
-              className="button secondary"
-              disabled={refreshing}
-              onClick={() => {
-                void load();
-              }}
-            >
-              {refreshing ? "Trying again…" : "Try again"}
-            </button>
-            {!data.me && (
-              <a className="button" target="_top" href={`/signin?returnTo=${encodeURIComponent(path)}`}>Sign in</a>
+            {error.trim().replace(/[.!]$/, "") !== loadErrorTitle && (
+              <p>{error}</p>
             )}
+            <div className="form-actions">
+              <button
+                className="button secondary"
+                disabled={refreshing}
+                onClick={() => {
+                  void load();
+                }}
+              >
+                {refreshing ? "Trying again…" : "Try again"}
+              </button>
+              {!data.me && (
+                <a
+                  className="button"
+                  target="_top"
+                  href={`/signin?returnTo=${encodeURIComponent(path)}`}
+                >
+                  Sign in
+                </a>
+              )}
             </div>
           </section>
         )}
-        {(!error || path === "/") && (pendingPath ? (
-          <RouteSkeleton path={pendingPath} />
-        ) : path === "/" ? (
-          <Home
-            content={data.content || defaultPublicContent}
-            submissionClose={data.submissionClose}
-            signedIn={!!data.me}
-            privateVenue={data.privateVenue}
-          />
-        ) : path === "/local-test" && localTest ? (
-          <section className="panel">
-            <h1>Local rehearsal</h1>
-            <p>These are fake identities, never production sign-in.</p>
-            {[
-              "owner",
-              "admin",
-              "judge",
-              "alice",
-              "bob",
-              "pending",
-              "stranger",
-            ].map((f) => (
-              <button
-                key={f}
-                className="button secondary"
-                onClick={async () => {
-                  await api("local-signin", { fixture: f });
-                  window.location.assign("/dashboard");
-                }}
-              >
-                {f}
-              </button>
-            ))}
-          </section>
-        ) : loading ? (
-          <RouteSkeleton path={path} />
-        ) : (
-          !error && (
-            <>
-              {data.me?.mode === "viewer" && ["/dashboard", "/profile", "/submission", "/personal/credits"].includes(path) ? (
-                <ViewerWelcome removed={!!data.me.deactivated} />
-              ) : data.profileIncomplete &&
-              data.me?.mode !== "viewer" &&
-              (path === "/dashboard" || path === "/profile") ? (
-                <Profile data={data} run={run} gated />
-              ) : path === "/profile" ? (
-                data.me?.mode === "viewer" ? (
-                  <Dashboard data={data} run={run} onInteraction={clearSuccessNotice} />
+        {(!error || path === "/") &&
+          (pendingPath ? (
+            <RouteSkeleton path={pendingPath} />
+          ) : path === "/" ? (
+            <Home
+              content={data.content || defaultPublicContent}
+              submissionClose={data.submissionClose}
+              signedIn={!!data.me}
+              privateVenue={data.privateVenue}
+            />
+          ) : path === "/local-test" && localTest ? (
+            <section className="panel">
+              <h1>Local rehearsal</h1>
+              <p>These are fake identities, never production sign-in.</p>
+              {[
+                "owner",
+                "admin",
+                "judge",
+                "alice",
+                "bob",
+                "pending",
+                "stranger",
+              ].map((f) => (
+                <button
+                  key={f}
+                  className="button secondary"
+                  onClick={async () => {
+                    await api("local-signin", { fixture: f });
+                    window.location.assign("/dashboard");
+                  }}
+                >
+                  {f}
+                </button>
+              ))}
+            </section>
+          ) : loading ? (
+            <RouteSkeleton path={path} />
+          ) : (
+            !error && (
+              <>
+                {data.me?.mode === "viewer" &&
+                [
+                  "/dashboard",
+                  "/profile",
+                  "/submission",
+                  "/personal/credits",
+                ].includes(path) ? (
+                  <ViewerWelcome removed={!!data.me.deactivated} />
+                ) : data.profileIncomplete &&
+                  data.me?.mode !== "viewer" &&
+                  (path === "/dashboard" || path === "/profile") ? (
+                  <Profile data={data} run={run} gated />
+                ) : path === "/profile" ? (
+                  data.me?.mode === "viewer" ? (
+                    <Dashboard
+                      data={data}
+                      run={run}
+                      onInteraction={clearSuccessNotice}
+                    />
+                  ) : (
+                    <Profile data={data} run={run} />
+                  )
+                ) : path === "/rules" ? (
+                  <SharedRules categories={data.categories || []} />
+                ) : path === "/personal/credits" ? (
+                  <PersonalCredits data={data} />
+                ) : path === "/dashboard" ? (
+                  <Dashboard
+                    data={data}
+                    run={run}
+                    onInteraction={clearSuccessNotice}
+                  />
+                ) : path === "/discover/teams" ||
+                  path === "/discover/participants" ? (
+                  <Discover data={data} path={path} run={run} />
+                ) : path === "/submission" ? (
+                  <Submission
+                    key={`${data.project?.revision || 0}-${data.team?.id || "none"}`}
+                    data={data}
+                    run={run}
+                    onInteraction={clearSuccessNotice}
+                  />
+                ) : path.startsWith("/projects") || path === "/leaderboard" ? (
+                  <Projects data={data} path={path} run={run} />
+                ) : path === "/admin/participants" ? (
+                  <AdminParticipants data={data} run={run} />
+                ) : path === "/admin/settings" ? (
+                  <Settings data={data} run={run} />
+                ) : /^\/(admin\/submissions|review)\//.test(path) ? (
+                  <Review data={data} run={run} />
+                ) : path.startsWith("/admin") || path === "/review" ? (
+                  <AdminList data={data} path={path} run={run} />
                 ) : (
-                  <Profile data={data} run={run} />
-                )
-              ) : path === "/rules" ? (
-                <SharedRules categories={data.categories || []} />
-              ) : path === "/personal/credits" ? (
-                <PersonalCredits data={data} />
-              ) : path === "/dashboard" ? (
-                <Dashboard data={data} run={run} onInteraction={clearSuccessNotice} />
-              ) : path === "/discover/teams" ||
-                path === "/discover/participants" ? (
-                <Discover data={data} path={path} run={run} />
-              ) : path === "/submission" ? (
-                <Submission
-                  key={`${data.project?.revision || 0}-${data.team?.id || "none"}`}
-                  data={data}
-                  run={run}
-                  onInteraction={clearSuccessNotice}
-                />
-              ) : path.startsWith("/projects") || path === "/leaderboard" ? (
-                <Projects data={data} path={path} run={run} />
-              ) : path === "/admin/participants" ? (
-                <AdminParticipants data={data} run={run} />
-              ) : path === "/admin/settings" ? (
-                <Settings data={data} run={run} />
-              ) : /^\/(admin\/submissions|review)\//.test(path) ? (
-                <Review data={data} run={run} />
-              ) : path.startsWith("/admin") || path === "/review" ? (
-                <AdminList data={data} path={path} run={run} />
-              ) : (
-                <Empty>Choose a page from the navigation.</Empty>
-              )}
-            </>
-          )
-        ))}
+                  <Empty>Choose a page from the navigation.</Empty>
+                )}
+              </>
+            )
+          ))}
       </main>
     </div>
   );
@@ -6111,7 +7103,11 @@ function StatusChange({
   target: string;
   name: string;
   current: string;
-  run: (a: string, d: Row, options?: { errorFeedback?: "local" }) => Promise<Row>;
+  run: (
+    a: string,
+    d: Row,
+    options?: { errorFeedback?: "local" },
+  ) => Promise<Row>;
   compact?: boolean;
   disabled?: boolean;
   teamLocked?: boolean;
@@ -6125,12 +7121,16 @@ function StatusChange({
           title={name}
           label="Review status change"
           onSave={async (f) => {
-            await run("admin-status", {
-              kind,
-              targetId: target,
-              status: f.get("status"),
-              reason: "Administrator updated status",
-            }, { errorFeedback: "local" });
+            await run(
+              "admin-status",
+              {
+                kind,
+                targetId: target,
+                status: f.get("status"),
+                reason: "Administrator updated status",
+              },
+              { errorFeedback: "local" },
+            );
           }}
         >
           <label>
@@ -6144,7 +7144,9 @@ function StatusChange({
               ))}
             </select>
           </label>
-          {kind === "team" && teamLocked && <p className="small">Status changes do not unlock teams.</p>}
+          {kind === "team" && teamLocked && (
+            <p className="small">Status changes do not unlock teams.</p>
+          )}
         </Form>
       )}
       {children && (
@@ -6153,8 +7155,15 @@ function StatusChange({
     </>
   );
   if (compact) return <AdminStatusMenu name={name}>{content}</AdminStatusMenu>;
-  return <details>
-    <summary aria-label={`Change ${name} status`} title={`Change ${name} status`}>Change {name} status</summary>
-    {content}
-  </details>;
+  return (
+    <details>
+      <summary
+        aria-label={`Change ${name} status`}
+        title={`Change ${name} status`}
+      >
+        Change {name} status
+      </summary>
+      {content}
+    </details>
+  );
 }

@@ -58,6 +58,7 @@ export async function submissionAccess(s: PortalService, teamId?: string) {
     attemptsUsed < 3 &&
     !projectRemoved;
   return {
+    windowHasOpened: operation.configured && (operation.state === "open" || operation.state === "closed"),
     canAccess,
     canCommit,
     projectRemoved,

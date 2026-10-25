@@ -56,6 +56,9 @@ function setup(
     "CREATE TABLE users(id TEXT PRIMARY KEY,email TEXT NOT NULL COLLATE NOCASE UNIQUE,name TEXT NOT NULL,role TEXT NOT NULL DEFAULT 'participant',created_at TEXT NOT NULL)",
   );
   db.raw.exec(
+    "CREATE TABLE audit_logs(id TEXT PRIMARY KEY,actor_id TEXT NOT NULL REFERENCES users(id),action TEXT NOT NULL,entity_id TEXT NOT NULL,detail TEXT NOT NULL CHECK(json_valid(detail)),reason TEXT NOT NULL,created_at TEXT NOT NULL)",
+  );
+  db.raw.exec(
     readFileSync(
       new URL("../neon/auth-migrations/0001_auth.sql", import.meta.url),
       "utf8",

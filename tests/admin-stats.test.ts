@@ -243,15 +243,15 @@ for (const engine of ["sqlite", "postgres"] as const) {
           assert.equal(calls, before + 1);
           assert.deepEqual(values(result), {
             roster: 14,
-            accounts: 12,
-            without_account: 2,
+            signed_in: null,
             going: 11,
             checked_in: 0,
+            pending: 0,
           });
-          assert.equal(result.cards[1].label, "Portal accounts");
+          assert.equal(result.cards[1].label, "Signed-in");
           assert.doesNotMatch(
             JSON.stringify(result),
-            /@|fake_|email|phone|manual|CSV|Profile complete|Signed in/i,
+            /@|fake_|email|phone|CSV|Profile complete/i,
           );
           // Actual profile completeness is deliberately not approximated by completed_at.
           await batch(db, [
@@ -268,7 +268,7 @@ for (const engine of ["sqlite", "postgres"] as const) {
         },
       );
       await t.test(
-        "approval is all-current-member Going/Checked in, empty false, independent of actual lock and manual team status",
+        "approval follows registration flags, including approved Absent, empty false, independent of lock and attendance",
         async () => {
           await batch(db, [
             [
@@ -297,20 +297,21 @@ for (const engine of ["sqlite", "postgres"] as const) {
           assert.deepEqual(values(await stats("teams")), {
             formed: 4,
             locked: 2,
-            approved: 1,
+            approved: 3,
+            pending: 1,
           });
           await batch(db, [
             [
               "UPDATE registrations SET status='pending' WHERE email='alice@portal.test'",
             ],
           ]);
-          assert.equal(values(await stats("teams")).approved, 0);
+          assert.equal(values(await stats("teams")).approved, 2);
           await batch(db, [
             [
               "UPDATE registrations SET status='approved' WHERE email='alice@portal.test'",
             ],
           ]);
-          // A reconciled absence overrides an older Going choice.
+          // Attendance can change without revoking registration approval.
           await batch(db, [
             [
               "INSERT INTO participant_status_overrides VALUES('fake_alice','Going','Synthetic choice','fake_owner','2026-10-22T06:00:00.000Z')",
@@ -319,8 +320,8 @@ for (const engine of ["sqlite", "postgres"] as const) {
               "INSERT INTO automatic_absences VALUES('fake_alice','2026-10-22T07:00:00.000Z','2026-10-22T07:00:00.000Z')",
             ],
           ]);
-          assert.equal(values(await stats("teams")).approved, 0);
-          // A later explicit Checked in state is approved again; no team lock changes.
+          assert.equal(values(await stats("teams")).approved, 3);
+          // A later Checked-in state changes attendance, not approval or lock.
           await batch(db, [
             [
               "UPDATE participant_status_overrides SET status='Checked in',updated_at=? WHERE user_id='fake_alice'",
@@ -331,7 +332,8 @@ for (const engine of ["sqlite", "postgres"] as const) {
           assert.deepEqual(values(result), {
             formed: 4,
             locked: 2,
-            approved: 1,
+            approved: 3,
+            pending: 1,
           });
           assert.match(result.note!, /can overlap/);
           assert.equal(

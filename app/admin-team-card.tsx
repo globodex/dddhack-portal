@@ -8,6 +8,7 @@ export default function AdminTeamCard({
   avatar,
   caption,
   menu,
+  actions,
   defaultOpen,
   children,
 }: {
@@ -15,6 +16,7 @@ export default function AdminTeamCard({
   avatar: ReactNode;
   caption: ReactNode;
   menu: ReactNode;
+  actions?: ReactNode;
   defaultOpen: boolean;
   children: ReactNode;
 }) {
@@ -22,12 +24,19 @@ export default function AdminTeamCard({
   const id = useId();
   const hydrated = useHydrated();
   return (
-    <li className="admin-team-card" data-expanded={open} data-hydrated={hydrated}>
-      <header className="admin-team-card-header">
+    <li
+      className="admin-team-card"
+      data-expanded={open}
+      data-hydrated={hydrated}
+    >
+      <header
+        className="admin-team-card-header"
+        data-has-actions={Boolean(actions)}
+      >
         <button
           type="button"
           className="admin-team-card-toggle"
-          aria-label={`Toggle ${name} details`}
+          aria-label={`View ${name} team details`}
           aria-expanded={open}
           aria-controls={id}
           disabled={!hydrated}
@@ -38,13 +47,26 @@ export default function AdminTeamCard({
             <strong>{name}</strong>
             <small>{caption}</small>
           </span>
+        </button>
+        <div className="admin-team-card-actions">{actions}</div>
+        <button
+          type="button"
+          className="admin-team-card-chevron-toggle"
+          aria-label={`Toggle ${name} details`}
+          aria-expanded={open}
+          aria-controls={id}
+          disabled={!hydrated}
+          onClick={() => setOpen((value) => !value)}
+        >
           <ChevronDown
             className="admin-team-card-chevron"
             size={20}
             aria-hidden="true"
           />
         </button>
-        <div className="admin-team-card-menu" inert={!hydrated}>{menu}</div>
+        <div className="admin-team-card-menu" inert={!hydrated}>
+          {menu}
+        </div>
       </header>
       <div id={id} className="admin-team-card-body" hidden={!open}>
         {children}

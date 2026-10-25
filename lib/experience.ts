@@ -1,5 +1,6 @@
 import { projectMediaPolicy } from "./project-media-policy";
 import { adminTeamCandidates, adminTeamCorrection } from "./admin-team-corrections";
+import { adminTeamApprovalView, approveTeam } from "./admin-team-approval";
 import { publicTeamMembers } from "./public-team-members";
 import { OWNER_EMAIL } from "./identity";
 import { adminAccessView, revokeAdminAccess } from "./admin-access";
@@ -372,6 +373,8 @@ export class PortalExperience {
     const teams = await teamFacts(
         this.s.db,
         items.flatMap((item) => (item.team_id ? [item.team_id] : [])),
+        undefined,
+        this.s.now(),
       ),
       people = await personFacts(
         this.s.db,
@@ -607,6 +610,8 @@ export class PortalExperience {
     options: PortalViewOptions = {},
   ): Promise<Record<string, unknown> | null> {
     let route = path.replace(/\/+/g, "/").replace(/\/$/, "") || "/";
+    const approval = await adminTeamApprovalView(this.s, route, options);
+    if (approval !== null) return approval;
     const candidates = await adminTeamCandidates(this.s, route, options);
     if (candidates !== null) return candidates;
     if (route === "/discover/teams") route = "/teams";
@@ -824,6 +829,7 @@ export class PortalExperience {
           this.s.db,
           selected.map((t) => t.id),
           me.id,
+          this.s.now(),
         ),
         members = await publicTeamMembers(this.s.db, selected.map((t) => t.id));
       return {
@@ -904,7 +910,7 @@ export class PortalExperience {
         "SELECT t.*,'initials' avatar,COALESCE(s.color_key,s.palette) palette,COALESCE(ul.attempts,0) unlock_attempts,CASE WHEN EXISTS(SELECT 1 FROM result_snapshots) THEN 1 ELSE 0 END unlock_frozen FROM teams t LEFT JOIN team_styles s ON s.team_id=t.id LEFT JOIN submission_attempt_ledger ul ON ul.team_id=t.id ORDER BY t.name",
       );
       const ids = all.map((t) => t.id),
-        facts = await teamFacts(this.s.db, ids),
+        facts = await teamFacts(this.s.db, ids, undefined, this.s.now()),
         ideas = new Map(
           (
             await selectedRows<{
@@ -1223,6 +1229,8 @@ export class PortalExperience {
     data: unknown,
     actor: Actor,
   ): Promise<Record<string, unknown> | null> {
+    const approval = await approveTeam(this.s, action, data);
+    if (approval !== null) return approval;
     const unlocked = await adminTeamUnlock(this.s, action, data);
     if (unlocked !== null) return unlocked;
     const correction = await adminTeamCorrection(this.s, action, data);

@@ -19,8 +19,7 @@ const examples: AdminStatsDTO[] = [
       {
         key: "pending",
         label: "Pending",
-        value: null,
-        caption: "Definition pending",
+        value: 12,
       },
     ],
   },
@@ -34,8 +33,7 @@ const examples: AdminStatsDTO[] = [
       {
         key: "pending",
         label: "Pending teams",
-        value: null,
-        caption: "Definition pending",
+        value: 10,
       },
     ],
     note: "Locked and approved counts can overlap.",

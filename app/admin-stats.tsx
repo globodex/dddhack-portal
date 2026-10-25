@@ -40,9 +40,17 @@ export default function AdminStats({ stats }: { stats: AdminStatsDTO }) {
               {card.label}
             </dt>
             <dd
-              aria-label={card.value === null ? "Count unavailable" : undefined}
+              aria-label={
+                card.value === null
+                  ? "Count unavailable"
+                  : card.lowerBound
+                    ? `At least ${numbers.format(card.value)}`
+                    : undefined
+              }
             >
-              {card.value === null ? "Not available" : numbers.format(card.value)}
+              {card.value === null
+                ? "Not available"
+                : `${card.lowerBound ? "≥" : ""}${numbers.format(card.value)}`}
             </dd>
             {card.caption && <small>{card.caption}</small>}
           </div>

@@ -4,6 +4,7 @@ import { one, rows } from "./db";
 import { z } from "zod";
 import { demand } from "./security";
 import { creditAssignmentStatements } from "./credit-stock";
+import { teamFacts } from "./directory-facts";
 export const personStatuses = [
   "Registered",
   "Going",
@@ -13,6 +14,8 @@ export const personStatuses = [
 export const teamStatuses = [
   "Forming",
   "Locked",
+  "Approved",
+  "Yet to submit",
   "Not submitted",
   "Submitted",
 ] as const;
@@ -48,54 +51,22 @@ export async function personStatus(s: PortalService, userId: string) {
   };
 }
 export async function teamStatus(s: PortalService, teamId: string) {
-  const override = await one<{
-    status: string;
-    reason: string;
-    rule_reference: string | null;
-    evidence: string | null;
-  }>(
-    s.db,
-    "SELECT status,reason,rule_reference,evidence FROM team_status_overrides WHERE team_id=?",
+  const fact = (await teamFacts(s.db, [teamId], undefined, s.now())).get(
     teamId,
   );
-  const locked = !!(await one(
-    s.db,
-    "SELECT team_id FROM team_locks WHERE team_id=?",
-    teamId,
-  ));
-  const versions = await one<{ n: number }>(
-    s.db,
-    "SELECT count(*) n FROM submission_versions WHERE team_id=?",
-    teamId,
-  );
-  const attended = await one<{ n: number }>(
-    s.db,
-    `SELECT count(*) n FROM memberships m WHERE m.team_id=? AND ${attendancePredicate("m.user_id")}`,
-    teamId,
-  );
-  const invalid = await one<{ reason: string }>(
-    s.db,
-    "SELECT e.reason FROM project_eligibility e JOIN projects p ON p.id=e.project_id WHERE p.team_id=? AND e.version_id=p.published_version_id AND e.status='ineligible'",
-    teamId,
-  );
-  const derived = versions?.n
-    ? "Submitted"
-    : attended?.n
-      ? "Not submitted"
-      : locked
-        ? "Locked"
-        : "Forming";
+  demand(fact, 404, "TEAM_NOT_FOUND");
   return {
-    status: override?.status || derived,
-    derivedStatus: derived,
-    manual: !!override,
-    locked,
-    checkedInMembers: attended?.n || 0,
-    attemptsUsed: versions?.n || 0,
-    ineligible: !!invalid,
-    reason: invalid?.reason,
+    status: fact.status,
+    derivedStatus: fact.derivedStatus,
+    manual: fact.manual,
+    locked: fact.locked,
+    checkedInMembers: fact.checkedInMembers,
+    attemptsUsed: fact.attemptsUsed,
+    ineligible: fact.ineligible,
+    reason: fact.reason,
   };
 }
+
 export async function statusCommand(
   s: PortalService,
   action: string,
@@ -141,7 +112,8 @@ export async function statusCommand(
         s.now(),
       ]);
     }
-    if (d.status === "Checked in") sql.push(...await creditAssignmentStatements(s));
+    if (d.status === "Checked in")
+      sql.push(...(await creditAssignmentStatements(s)));
     await s.mutate(
       actor.id,
       action,
@@ -229,6 +201,12 @@ export async function statusCommand(
     };
   }
   const status = z.enum(teamStatuses).parse(d.status);
+  demand(
+    status !== "Approved",
+    422,
+    "TEAM_APPROVAL_ACTION_REQUIRED",
+    "Use Approve team to update member approvals.",
+  );
   demand(
     await one(s.db, "SELECT id FROM teams WHERE id=?", d.targetId),
     404,

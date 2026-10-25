@@ -1053,3 +1053,19 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Five authoritative lifecycle milestones; attendance stays in its own panel. */
+.app-shell .main .team-studio .studio-progress { grid-template-columns:repeat(5,minmax(0,1fr)); }
+.app-shell .main .team-studio .studio-progress:before { left:24px;right:calc(20% - 24px); }
+.app-shell .main .team-studio .studio-progress:after { left:24px;right:auto;width:0; }
+.app-shell .main .team-studio .studio-progress[data-stage="1"]:after { width:20%; }
+.app-shell .main .team-studio .studio-progress[data-stage="2"]:after { width:40%; }
+.app-shell .main .team-studio .studio-progress[data-stage="3"]:after { width:60%; }
+.app-shell .main .team-studio .studio-progress[data-stage="4"]:after { width:80%; }
+.app-shell .main .team-studio .studio-progress > li > span:last-child { min-width:0; }
+.app-shell .main .team-studio .studio-progress > li:last-child > span:last-child { align-self:flex-start;text-align:left; }
+@media(max-width:600px) {
+ .app-shell .main .team-studio .studio-progress { grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px; }
+ .app-shell .main .team-studio .studio-progress:before,.app-shell .main .team-studio .studio-progress:after { display:none; }
+ .app-shell .main .team-studio .studio-progress > li { min-height:44px;flex-direction:row;gap:10px;align-items:center; }
+}
