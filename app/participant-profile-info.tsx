@@ -20,6 +20,7 @@ export class ProfileLookupError extends Error {
   constructor(
     message: string,
     public status: number,
+    public retryable = ![401, 403, 404].includes(status),
   ) {
     super(message);
   }
@@ -28,6 +29,7 @@ export class ProfileLookupError extends Error {
 /** One selected lookup per click, no cache; changing account/target cancels stale data. */
 export class SelectedProfileRequest {
   private controller: AbortController | null = null;
+  constructor(private readonly timeoutMs = 15_000) {}
   cancel() {
     this.controller?.abort();
     this.controller = null;
@@ -36,34 +38,83 @@ export class SelectedProfileRequest {
     this.cancel();
     const controller = new AbortController();
     this.controller = controller;
+    let timedOut = false;
+    const canceled = () =>
+      new DOMException("Profile request canceled", "AbortError");
+    let rejectAbort!: () => void;
+    const aborted = new Promise<never>((_, reject) => {
+      rejectAbort = () =>
+        reject(
+          timedOut
+            ? new ProfileLookupError(
+                "Profile loading timed out. Try again.",
+                408,
+              )
+            : canceled(),
+        );
+      controller.signal.addEventListener("abort", rejectAbort, { once: true });
+    });
+    const timer = setTimeout(() => {
+      timedOut = true;
+      controller.abort();
+    }, this.timeoutMs);
     const params = new URLSearchParams({
       view: "/discover/participants",
       person: id,
       limit: "1",
     });
-    try {
+    const read = async () => {
       const response = await fetch(`/api/portal?${params}`, {
         signal: controller.signal,
         cache: "no-store",
         credentials: "same-origin",
       });
-      const body = (await response.json()) as {
+      if (controller.signal.aborted) throw canceled();
+      // An expired session may be an HTML response from a proxy. Its status
+      // remains actionable even when it has no JSON error body.
+      if (response.status === 401) {
+        void response.body?.cancel().catch(() => {});
+        throw new ProfileLookupError("Sign in to view this profile.", 401);
+      }
+      let raw: unknown;
+      try {
+        raw = await response.json();
+      } catch {
+        if (controller.signal.aborted) throw canceled();
+        throw new ProfileLookupError(
+          "Profile could not be loaded. Try again.",
+          response.status,
+          true,
+        );
+      }
+      if (controller.signal.aborted) throw canceled();
+      if (!raw || typeof raw !== "object" || Array.isArray(raw))
+        throw new ProfileLookupError(
+          "Profile could not be loaded. Try again.",
+          response.status,
+          true,
+        );
+      const body = raw as {
         message?: string;
         focusedPerson?: Record<string, any>;
       };
-      if (controller.signal.aborted)
-        throw new DOMException("Profile request canceled", "AbortError");
       if (!response.ok)
         throw new ProfileLookupError(
-          response.status === 401
-            ? "Sign in to view this profile."
-            : body.message || "Profile could not be loaded.",
+          typeof body.message === "string" && body.message.trim()
+            ? body.message
+            : "Profile could not be loaded. Try again.",
           response.status,
         );
       if (body.focusedPerson?.id !== id)
         throw new ProfileLookupError("This profile is unavailable.", 404);
       return discoveryProfileProjection(body.focusedPerson);
+    };
+    try {
+      // Bound headers and body loading even if a test/transport ignores abort.
+      return await Promise.race([read(), aborted]);
     } finally {
+      clearTimeout(timer);
+      controller.signal.removeEventListener("abort", rejectAbort);
       if (this.controller === controller) this.controller = null;
     }
   }
@@ -101,6 +152,7 @@ export function ParticipantProfiles({
     pending: boolean;
     error?: string;
     status?: number;
+    retryable?: boolean;
   } | null>(null);
   useEffect(() => {
     lookup.current?.cancel();
@@ -138,6 +190,8 @@ export function ParticipantProfiles({
               : (error as Error).message,
           status:
             error instanceof ProfileLookupError ? error.status : undefined,
+          retryable:
+            error instanceof ProfileLookupError ? error.retryable : true,
         });
     }
   };
@@ -170,7 +224,7 @@ export function ParticipantProfiles({
           error={state.error}
           signInUrl={state.status === 401 ? signIn : undefined}
           onRetry={
-            state.status === 404 || state.status === 403
+            state.retryable === false
               ? undefined
               : () => void read(state.target)
           }
