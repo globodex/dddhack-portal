@@ -6,6 +6,35 @@ Keep the working public origin `https://dddhack-portal.vercel.app` and current `
 
 Use the existing checkout already linked to the privately verified correct Neon project and branch, with the existing authenticated CLI. Keep its `.neon` context and `.env.backend.local` in place. `.neon` supplies target context; it is not build metadata and stays outside the Function directory. [Neon context reference](https://neon.com/docs/cli/link).
 
+## Manual path when Get-FileHash is unavailable
+
+From the updated repository root in Windows PowerShell, verify this release's exact ZIP using Node's built-in crypto. This does not read environment files or connect to a database:
+
+```powershell
+@'
+const fs = require('node:fs');
+const crypto = require('node:crypto');
+const actual = crypto.createHash('sha256').update(fs.readFileSync(process.argv[2])).digest('hex');
+if (actual !== process.argv[3]) throw new Error('Archive checksum mismatch. Stop.');
+console.log('Archive verified: ' + actual);
+'@ | node --input-type=commonjs - ".\artifacts\neon\portalapi.zip" "9f16cda2e48f635251905cfb41669e35a41cf09c986e0507688a272bbd5ad626"
+if ($LASTEXITCODE -ne 0) { throw 'Archive verification failed. Stop.' }
+```
+
+In Windows Explorer, right-click **that verified** `artifacts\neon\portalapi.zip`, choose **Extract All**, and extract into the new empty folder `.local\portalapi-9f16cda2` inside this repository. Do not reuse an earlier extraction. This ZIP has `index.mjs` and `node_modules` at its root, so both must appear directly inside `.local\portalapi-9f16cda2`.
+
+After the guarded schema inspection/upgrade above and this extraction, deploy from the same linked repository root using a literal source path:
+
+```powershell
+node --check .\.local\portalapi-9f16cda2\index.mjs
+if ($LASTEXITCODE -ne 0) { throw 'Extracted entry is missing or invalid. Stop.' }
+neon functions deploy portalapi --src .\.local\portalapi-9f16cda2 --no-bundle --runtime nodejs24
+```
+
+This path needs neither `Get-FileHash` nor `$portalApiBuild`. It does not override deployed environment values. The automated helper checks below were run on Linux PowerShell; they are not acceptance evidence for the owner's Windows shell.
+
+## Optional automated preparation helper
+
 In PowerShell, from that repository root, first check the existing CLI version and help. The verified interface is CLI 8.11.1; do not substitute an unverified deployment flag.
 
 ```powershell
