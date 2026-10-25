@@ -93,7 +93,7 @@ test("lock freezes facts without approving members; manual statuses preserve loc
     });
     assert.equal(
       (await teamStatus(service(), "fake_team1")).status,
-      "Not submitted",
+      "Approved",
     );
     assert.equal(
       (await prizeEligibility(service(), "fake_alice")).eligible,
@@ -182,7 +182,7 @@ test("zero check-in denies endpoint and draft; concurrent retries consume one ve
       confirmation: "CHANGE_STATUS",
     });
     w = row(await service().view("/dashboard"));
-    assert.equal(w.teamStatus, "Forming");
+    assert.equal(w.teamStatus, "Submitted"); // Real committed history wins over a display override.
     assert.equal(w.submissionAccess.attemptsUsed, 3);
     assert.equal(w.submissionAccess.locked, true);
     await service("admin").command("admin-status", {
@@ -583,14 +583,14 @@ test("admin defaults prioritize Registered members of earliest Locked teams; com
       reason: "Synthetic reviewed approval",
       confirmation: "CHANGE_STATUS",
     });
-    assert.equal((await teamStatus(service(), "fake_team1")).status, "Locked");
-    assert.equal((await teamStatus(service(), "fake_team3")).status, "Locked");
+    assert.equal((await teamStatus(service(), "fake_team1")).status, "Approved");
+    assert.equal((await teamStatus(service(), "fake_team3")).status, "Approved");
     assert.equal((await rows(db, "SELECT * FROM manual_checkins")).length, 0);
     const { handleExport } = await import("../lib/http"),
       { fixtures } = await import("../scripts/fixtures");
     const response = await handleExport(
       new Request(
-        "https://portal.test/api/export?list=participants&status=Going&teamStatus=Locked",
+        "https://portal.test/api/export?list=participants&status=Going&teamStatus=Approved",
       ),
       { db, identity: fixtures.admin, key: undefined },
     );
@@ -612,7 +612,7 @@ test("admin defaults prioritize Registered members of earliest Locked teams; com
     });
     assert.equal(
       (await teamStatus(service(), "fake_team3")).status,
-      "Not submitted",
+      "Approved",
     );
     assert.equal(
       (await one<{ active: number }>(db, "SELECT active FROM event_settings"))!

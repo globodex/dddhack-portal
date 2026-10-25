@@ -37,7 +37,7 @@ test("leader must personally check in for drafts/commits while a teammate can un
     const state = asRow(await service("bob").view("/dashboard"));
     assert.equal(state.submissionAccess.canRead, true);
     assert.equal(state.submissionAccess.canCommit, false);
-    assert.equal(state.teamStatus, "Not submitted");
+    assert.equal(state.teamStatus, "Forming"); // A checked-in teammate does not lock or approve the team.
     for (const action of ["save-project", "submit-project"])
       await assert.rejects(
         service("bob").command(action, {

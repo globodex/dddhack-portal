@@ -32,15 +32,16 @@ test("locked team cannot masquerade as Forming after an admin display-status ove
     const view = (await service("pending").view("/discover/teams")) as any;
     const item = view.items.find((row: any) => row.id === "fake_team1");
     assert.equal(item.locked, true);
-    assert.equal(item.status, "Forming"); // Preserve the actual admin override record.
+    assert.equal(item.status, "Approved"); // Approval lifecycle wins; the historical override row remains preserved.
+    assert.equal((await one<any>(db, "SELECT status FROM team_status_overrides WHERE team_id='fake_team1'"))?.status, "Forming");
     assert.equal(view.me.canParticipate, true);
     const html = render({ ...view, items: [item] });
-    assert.match(html, /discover-state locked">Locked</);
+    assert.match(html, /discover-state locked">Approved</);
     assert.doesNotMatch(html, /Request to join/);
     const dialog = renderToStaticMarkup(
       createElement(DiscoverTeamDialog, { team: item, onClose() {} }),
     );
-    assert.match(dialog, /discover-state locked">Locked</);
+    assert.match(dialog, /discover-state locked">Approved</);
     const admin = (await service("admin").view("/admin/teams")) as any;
     const management = renderToStaticMarkup(
       createElement(AdminList, {

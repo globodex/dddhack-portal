@@ -45,6 +45,8 @@ const synthetic = [
     teamStatus: null,
   }),
   sample("submitted", { teamStatus: "Submitted" }),
+  sample("approved", { teamStatus: "Approved", status: "Going" }),
+  sample("waiting", { teamStatus: "Yet to submit", status: "Going" }),
   sample("unsigned", {
     id: null,
     name: null,
@@ -63,6 +65,8 @@ test("shared table/export filters agree for every personal/team status and activ
       "all",
       "locked",
       "forming",
+      "approved",
+      "yet to submit",
       "not submitted",
       "submitted",
       "unlocked",

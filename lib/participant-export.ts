@@ -20,6 +20,8 @@ const parameters = z.object({
       "all",
       "locked",
       "forming",
+      "approved",
+      "yet to submit",
       "not submitted",
       "submitted",
       "unlocked",

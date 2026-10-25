@@ -253,6 +253,8 @@ export function AdminParticipantFilters({
         >
           <option value="locked">Locked</option>
           <option value="forming">Forming</option>
+          <option value="approved">Approved</option>
+          <option value="yet to submit">Yet to submit</option>
           <option value="not submitted">Not submitted</option>
           <option value="submitted">Submitted</option>
           <option value="unlocked">Unlocked</option>

@@ -4,6 +4,8 @@ export type ParticipantFilters = {
   team:
     | "locked"
     | "forming"
+    | "approved"
+    | "yet to submit"
     | "not submitted"
     | "submitted"
     | "unlocked"
@@ -58,7 +60,7 @@ export function filterParticipants<T extends ParticipantFilterRow>(
       )
         return false;
       if (
-        ["forming", "not submitted", "submitted"].includes(filters.team) &&
+        ["forming", "approved", "yet to submit", "not submitted", "submitted"].includes(filters.team) &&
         normalize(row.teamStatus || "") !== filters.team
       )
         return false;
