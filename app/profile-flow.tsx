@@ -675,7 +675,7 @@ export default function ProfileFlow({
                           clearFieldError("sex");
                         }}
                       />
-                      <span style={{ gap: 4 }}><GenderSymbol value={value} size={14} />{genderLabel(value)}</span>
+                      <span style={{ gap: 2, whiteSpace: "nowrap" }}><GenderSymbol value={value} size={12} />{genderLabel(value)}</span>
                     </label>
                   ))}
                 </fieldset>
