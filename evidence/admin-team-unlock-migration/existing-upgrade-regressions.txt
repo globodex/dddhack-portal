@@ -1,0 +1,40 @@
+✔ 0104 upgrade lf: populated existing9→12 applies only0104/0105/0106, preserves all prior rows/hashes and repeats with no work (5036.083045ms)
+✔ 0104 upgrade crlf: populated existing9→12 applies only0104/0105/0106, preserves all prior rows/hashes and repeats with no work (8336.860428ms)
+✔ 0104 upgrade: old nine-entry receipts stop before connection; unknown/mixed/tampered ledger and stale same-target state stop before DDL (11635.098915ms)
+✔ 0104 upgrade: real postcondition failure rolls function replacements, ledger append and triggered data back atomically (5832.934394ms)
+✔ 0104 source plan pins exactly twelve LF files and leaves all nine previous SQL blobs and seven historical approval entries unchanged (166.193599ms)
+✔ independent legacy ledger: exact seven CRLF aliases derive from pinned LF source while canonical twelve-entry digest matches the reviewed plan (39.106791ms)
+✔ independent legacy ledger: canonical LF history and an existing canonical receipt without the new mode field stay valid (4519.21769ms)
+✔ independent actual CRLF history: readonly inspect, populated7→12 canonical features, unchanged legacy ledger/data and repeat[] (4722.946668ms)
+✔ independent legacy ledger: mixed, arbitrary, missing, unknown and CRLF/out-of-order feature rows refuse without ledger or domain writes (3369.085018ms)
+✔ independent legacy ledger: canonical alias mode changes after receipt are rejected under the same lock before DDL (3207.382401ms)
+✔ independent legacy ledger: feature collision rolls back all new schema and retains seven original CRLF ledger rows and populated records (3151.743573ms)
+✔ historical Windows CRLF: actual seven-entry ledger inspects read-only and upgrades the current canonical feature suffix without rewriting old rows (4201.986253ms)
+✔ historical Windows CRLF: canonical0102 already applied leaves0103/0104/0105/0106 pending and keeps all existing stock records (2679.67918ms)
+✔ historical Windows CRLF: mixed, arbitrary, missing, unknown and noncanonical feature ledgers fail before DDL (3498.445325ms)
+✔ historical Windows CRLF: stale receipt data and whole-encoding switch are rechecked under the unchanged migration lock (3192.917105ms)
+✔ historical Windows CRLF: failed postcondition rolls feature DDL, new ledger entries and triggered writes back atomically (4633.748253ms)
+✔ independent populated upgrade: read-only inspection, pending-only7→12, all old data preserved and fresh-receipt repeat[] (4514.983637ms)
+✔ independent populated upgrade: missing ledger refuses without creating or adopting one (3886.673071ms)
+✔ independent populated upgrade: existing0102 ledger allows remaining0103/0104/0105/0106 and preserves existing stock backfill (4551.092935ms)
+✔ independent populated upgrade: unknown, missing, mismatched and0103-only ledger states fail before DDL and retain current data (5323.760053ms)
+✔ independent populated upgrade: connected role and changed table counts revalidated after inspection under migration lock (3374.474926ms)
+✔ independent populated upgrade: actual PostgreSQL postcondition failure rolls all feature DDL, ledger and triggered data back (4477.145912ms)
+✔ independent populated upgrade: legacy credit collision aborts with existing ledger and data unchanged (3911.463563ms)
+✔ independent populated upgrade: source, receipt age/digest and owner restore acknowledgment guards refuse before connection (6.108702ms)
+✔ independent populated upgrade: private target input rejects override URLs, pooler, wrong identity and control characters (1.445422ms)
+✔ independent populated upgrade CLI: offline default/strict flags, private receipt no-overwrite and generic secret-free errors (3755.248224ms)
+✔ 0105 upgrade lf: populated9→12 preserves existing data/ledger and max attempts, pending-only then repeat[] (7035.057797ms)
+✔ 0105 upgrade lf: populated10→12 preserves existing data/ledger and max attempts, pending-only then repeat[] (4201.706714ms)
+✔ 0105 upgrade crlf: populated9→12 preserves existing data/ledger and max attempts, pending-only then repeat[] (3640.506405ms)
+✔ 0105 upgrade crlf: populated10→12 preserves existing data/ledger and max attempts, pending-only then repeat[] (4287.529535ms)
+✔ 0105 upgrade: previous ten-entry receipt stops offline, and mixed/unknown/noncanonical feature ledgers remain rejected (3627.707861ms)
+✔ 0105 upgrade: a real incorrect attempt backfill fails postvalidation and rolls tables/functions/ledger back atomically (4444.159963ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 134459.555748

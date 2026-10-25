@@ -71,6 +71,12 @@
     "actualD1AdminProjection": 1,
     "actualD1DerivedGuardParity": 1,
     "typecheck": "pass",
-    "offlinePlanAndSourceCheckout": "pass"
+    "offlinePlanAndSourceCheckout": "pass",
+    "existingPostgreSqlUpgradeRegressions": 32,
+    "totalPassingChecks": 71,
+    "existingPostgreSqlRunFlags": [
+      "--no-wasm-code-gc",
+      "--test-concurrency=1"
+    ]
   }
 }
