@@ -80,8 +80,29 @@ function count(value: unknown) {
 export async function readAdminStats(
   s: Pick<PortalService, "staff" | "db">,
   collection: AdminStatsCollection,
+  authorizedActor?: Awaited<ReturnType<PortalService["actor"]>>,
 ): Promise<AdminStatsDTO> {
-  await s.staff();
+  if (authorizedActor) {
+    // Only the route's already verified actor is passed here, never request
+    // input. Recheck current authority without repeating profile/bootstrap reads.
+    demand(
+      !authorizedActor.deactivated &&
+        (authorizedActor.owner || authorizedActor.role === "admin"),
+      403,
+      "ADMIN_REQUIRED",
+    );
+    demand(
+      await one(
+        s.db,
+        `SELECT u.id FROM users u LEFT JOIN portal_roles p ON p.user_id=u.id
+       WHERE u.id=? AND (?=1 OR COALESCE(p.role,u.role)='admin') AND ${active("participant", "u.id")}`,
+        authorizedActor.id,
+        authorizedActor.owner ? 1 : 0,
+      ),
+      403,
+      "ADMIN_REQUIRED",
+    );
+  } else await s.staff();
   demand(Object.hasOwn(queries, collection), 422, "INVALID_STATS_COLLECTION");
   const result = (await one<Record<string, number>>(
     s.db,

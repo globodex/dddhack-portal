@@ -39,8 +39,8 @@ test("routine admin status menus ask for the status without demanding a reason",
   const me = { id: "fake_admin", name: "Synthetic admin", email: "admin@portal.test", role: "admin", owner: false };
   const people = renderToStaticMarkup(createElement(AdminParticipants, { data: { me, items: [{ ...target, status: "Going", approval: "approved", canDeleteParticipant: true }] }, run }));
   const teams = renderToStaticMarkup(createElement(AdminList, { path: "/admin/teams", data: { me, items: [{ id: "fake_team", name: "Synthetic team", status: "Forming", members: [] }] }, run }));
-  for (const markup of [people, teams]) {
-    assert.match(markup, /New status/);
+  for (const [kind, markup] of [["person", people], ["team", teams]] as const) {
+    assert.match(markup, kind === "team" ? /New display status/ : /New status/);
     assert.doesNotMatch(markup, /Audit reason|name="reason"/);
   }
 });

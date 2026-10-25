@@ -19,6 +19,65 @@ const removal = (kind: string, target: string) =>
     time,
   ] as [string, ...unknown[]];
 
+test("reused route authority is checked freshly before collection counts", async () => {
+  const db = new LocalDatabase(":memory:");
+  db.migrate();
+  try {
+    await seedLocal(db);
+    const service = new PortalService(
+      db,
+      fixtures.admin,
+      LOCAL_CREDIT_KEY,
+      () => time,
+    );
+    const actor = await service.staff();
+    let repeatedBootstrap = false;
+    const reader = {
+      db,
+      async staff() {
+        repeatedBootstrap = true;
+        throw new Error("Unexpected repeated bootstrap");
+      },
+    };
+    assert.equal(
+      (await readAdminStats(reader, "participants", actor)).collection,
+      "participants",
+    );
+    assert.equal(repeatedBootstrap, false);
+    await batch(db, [
+      [
+        "INSERT INTO portal_roles VALUES('fake_admin','participant','fake_owner',?)",
+        time,
+      ],
+    ]);
+    await assert.rejects(readAdminStats(reader, "participants", actor), {
+      code: "ADMIN_REQUIRED",
+    });
+    await batch(db, [
+      ["DELETE FROM portal_roles WHERE user_id='fake_admin'"],
+      removal("participant", "fake_admin"),
+    ]);
+    await assert.rejects(readAdminStats(reader, "teams", actor), {
+      code: "ADMIN_REQUIRED",
+    });
+    await assert.rejects(
+      readAdminStats(reader, "submissions", { ...actor, deactivated: true }),
+      { code: "ADMIN_REQUIRED" },
+    );
+    const participant = await new PortalService(
+      db,
+      fixtures.alice,
+      LOCAL_CREDIT_KEY,
+      () => time,
+    ).actor();
+    await assert.rejects(readAdminStats(reader, "participants", participant), {
+      code: "ADMIN_REQUIRED",
+    });
+  } finally {
+    db.close();
+  }
+});
+
 test("staff authorization runs before any aggregate SQL and invalid collection input fails closed", async () => {
   let prepared = 0;
   const db = {

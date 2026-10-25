@@ -881,7 +881,7 @@ export class PortalExperience {
           (item) => !item.viewer || me.owner || me.role === "admin",
         ),
         lookupOnly: me.role === "volunteer",
-        ...(me.owner || me.role === "admin" ? { stats: await readAdminStats(this.s, "participants") } : {}),
+        ...(me.owner || me.role === "admin" ? { stats: await readAdminStats(this.s, "participants", me) } : {}),
         checkInConfigured: setupReadiness(
           await this.s.settings(true),
           this.s.now(),
@@ -899,9 +899,9 @@ export class PortalExperience {
     }
     if (route === "/admin/teams") {
       const me = await this.s.staff();
-      const all = await rows<Team>(
+      const all = await rows<Team & { unlock_attempts: number; unlock_frozen: number }>(
         this.s.db,
-        "SELECT t.*,'initials' avatar,COALESCE(s.color_key,s.palette) palette FROM teams t LEFT JOIN team_styles s ON s.team_id=t.id ORDER BY t.name",
+        "SELECT t.*,'initials' avatar,COALESCE(s.color_key,s.palette) palette,COALESCE(ul.attempts,0) unlock_attempts,CASE WHEN EXISTS(SELECT 1 FROM result_snapshots) THEN 1 ELSE 0 END unlock_frozen FROM teams t LEFT JOIN team_styles s ON s.team_id=t.id LEFT JOIN submission_attempt_ledger ul ON ul.team_id=t.id ORDER BY t.name",
       );
       const ids = all.map((t) => t.id),
         facts = await teamFacts(this.s.db, ids),
@@ -948,19 +948,18 @@ export class PortalExperience {
         byTeam.set(team_id, group);
       }
       const unlockPolicy = (await this.s.settings(true)).policy;
-      const unlockFrozen = !!(await one(this.s.db, "SELECT id FROM result_snapshots LIMIT 1"));
-      const durableAttempts = new Map((await selectedRows<{ team_id: string; attempts: number }>(this.s.db, ids, (marks) => `SELECT team_id,attempts FROM submission_attempt_ledger WHERE team_id IN (${marks})`)).map((item) => [item.team_id, item.attempts]));
       return {
         me,
-        stats: await readAdminStats(this.s, "teams"),
+        stats: await readAdminStats(this.s, "teams", me),
         items: all
           .map((t) => {
             const fact = facts.get(t.id)!;
+            const { unlock_attempts, unlock_frozen, ...visibleTeam } = t;
             return {
-              ...t,
+              ...visibleTeam,
               locked: fact.locked,
               lockedAt: fact.lockedAt,
-              unlockBlockedReason: fact.locked ? teamUnlockBlocker({ frozen: unlockFrozen, attempts: Math.max(fact.attemptsUsed, Number(durableAttempts.get(t.id)) || 0), now: this.s.now(), membershipFreeze: unlockPolicy.membershipFreeze, ideaLock: unlockPolicy.ideaLock })?.message || "" : "",
+              unlockBlockedReason: fact.locked ? teamUnlockBlocker({ frozen: !!unlock_frozen, attempts: Math.max(fact.attemptsUsed, Number(unlock_attempts) || 0), now: this.s.now(), membershipFreeze: unlockPolicy.membershipFreeze, ideaLock: unlockPolicy.ideaLock })?.message || "" : "",
               status: fact.status,
               idea: ideas.get(t.id),
               readiness: fact.readiness,
@@ -1112,7 +1111,7 @@ export class PortalExperience {
       }
       return {
         me,
-        ...(me.owner || me.role === "admin" ? { stats: await readAdminStats(this.s, "submissions") } : {}),
+        ...(me.owner || me.role === "admin" ? { stats: await readAdminStats(this.s, "submissions", me) } : {}),
         items: items.map((item) => ({
           ...item,
           deleted_at: item.deleted_at ?? undefined,
