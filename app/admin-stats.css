@@ -1,0 +1,64 @@
+.app-shell .admin-collection-stats {
+  margin-block: 0 24px;
+  min-width: 0;
+}
+.app-shell .admin-collection-stats-scope,
+.app-shell .admin-collection-stats-note {
+  margin: 0;
+  color: var(--muted, #656960);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.app-shell .admin-collection-stats-scope {
+  margin-bottom: 8px;
+}
+.app-shell .admin-collection-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.app-shell .admin-collection-stats-card {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 8px;
+  min-width: 0;
+  padding: 16px 18px;
+  border: 1px solid var(--line, #e3e4db);
+  border-radius: 12px;
+  background: var(--surface, #fffefa);
+}
+.app-shell .admin-collection-stats-card dt {
+  color: var(--muted, #656960);
+  font-size: 13px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.app-shell .admin-collection-stats-card dd {
+  margin: 0;
+  color: var(--ink, #202320);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.app-shell .admin-collection-stats-note {
+  margin-top: 8px;
+}
+@media (max-width: 520px) {
+  .app-shell .admin-collection-stats-grid {
+    gap: 8px;
+  }
+  .app-shell .admin-collection-stats-card {
+    padding: 12px 10px;
+  }
+  .app-shell .admin-collection-stats-card dt {
+    min-height: 34px;
+    font-size: 12px;
+  }
+  .app-shell .admin-collection-stats-card dd {
+    font-size: 26px;
+  }
+}
