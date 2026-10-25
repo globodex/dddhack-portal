@@ -119,38 +119,68 @@ export function parseCSV(input: string): string[][] {
     "CSV_TOO_LARGE",
   );
   const rows: string[][] = [];
+  // An optional UTF-8 BOM precedes the first field, including a quoted header.
+  const source = input.replace(/^\uFEFF/, "");
   let row: string[] = [],
     cell = "",
-    quote = false;
-  for (let i = 0; i < input.length; i++) {
-    const c = input[i];
-    if (c === '"') {
-      if (quote && input[i + 1] === '"') {
+    quote = false,
+    closedQuote = false;
+  const quoteError = (detail: string) =>
+    demand(
+      false,
+      422,
+      "INVALID_CSV_QUOTE",
+      `Row ${rows.length + 1}: ${detail}`,
+    );
+  for (let i = 0; i < source.length; i++) {
+    const c = source[i];
+    if (quote) {
+      if (c === '"' && source[i + 1] === '"') {
         cell += '"';
         i++;
-      } else if (!quote && cell.length) demand(false, 422, "INVALID_CSV_QUOTE");
-      else quote = !quote;
-    } else if (c === "," && !quote) {
+      } else if (c === '"') {
+        quote = false;
+        closedQuote = true;
+      } else cell += c;
+    } else if (c === ",") {
       row.push(cell.trim());
       cell = "";
-    } else if ((c === "\n" || c === "\r") && !quote) {
-      if (c === "\r" && input[i + 1] === "\n") i++;
+      closedQuote = false;
+    } else if (c === "\n" || c === "\r") {
+      if (c === "\r" && source[i + 1] === "\n") i++;
       row.push(cell.trim());
       if (row.some(Boolean)) rows.push(row);
       row = [];
       cell = "";
+      closedQuote = false;
+    } else if (closedQuote) {
+      if (c !== " " && c !== "\t")
+        quoteError(
+          "Text follows a closing quote. Re-export the CSV with correctly quoted cells.",
+        );
+    } else if (c === '"') {
+      if (cell.length)
+        quoteError(
+          "A quote appears inside an unquoted field. Re-export the CSV with correctly quoted cells.",
+        );
+      quote = true;
     } else cell += c;
   }
-  demand(!quote, 422, "INVALID_CSV_QUOTE");
+  if (quote)
+    quoteError(
+      "A quoted field is not closed. Re-export the CSV with correctly quoted cells.",
+    );
   row.push(cell.trim());
   if (row.some(Boolean)) rows.push(row);
   demand(rows.length <= 1001, 422, "CSV_ROW_LIMIT");
   demand(rows.length > 1, 422, "CSV_EMPTY");
   const width = rows[0].length;
+  const mismatch = rows.findIndex((r) => r.length !== width);
   demand(
-    rows.every((r) => r.length === width),
+    mismatch === -1,
     422,
     "CSV_COLUMN_MISMATCH",
+    `Row ${mismatch + 1}: Expected ${width} columns. Check quotes and re-export the CSV.`,
   );
   return rows;
 }

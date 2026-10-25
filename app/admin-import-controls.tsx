@@ -42,6 +42,7 @@ export type ImportPreview = {
     email: string;
     existing: boolean;
     action: string;
+    website?: string;
     warnings?: string[];
   }[];
   errors?: (string | { row?: number; message?: string; code?: string })[];
@@ -74,6 +75,15 @@ export function adminPreviewError(action: string, body: AdminRow): string {
     INVALID_CREDIT_VALUE: "Keep each credit under 4,000 characters.",
   };
   const code = String(body.code || body.message || "");
+  // Parser messages contain only logical row numbers and repair instructions,
+  // never cell contents. Preserve them instead of hiding the actionable row.
+  if (
+    action === "preview-import" &&
+    ["INVALID_CSV_QUOTE", "CSV_COLUMN_MISMATCH"].includes(code) &&
+    typeof body.message === "string" &&
+    body.message !== code
+  )
+    return body.message;
   return (
     (action === "preview-import" && messages[code]) ||
     (action === "preview-credit-batch" && creditMessages[code]) ||
@@ -195,6 +205,13 @@ export function confirmedImportValues(
     ...importRequest(csv, fieldMap),
     digest: review.digest,
     newCount: review.counts.new,
+    ...(additions.some((row) => row.website)
+      ? {
+          importWebsiteReview: additions
+            .filter((row) => row.website)
+            .map((row) => ({ row: row.row, url: row.website! })),
+        }
+      : {}),
     ...(mode === "single" ? { singleEmail: additions[0].email } : {}),
   };
 }

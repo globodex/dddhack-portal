@@ -3,6 +3,7 @@ import type { PortalService } from "./service";
 import { one, rows, type SQL } from "./db";
 import { demand, emailSchema, httpsUrl, parseCSV, sha256 } from "./security";
 import { normalizePhone } from "./phone";
+import { rosterFirstWebsite } from "./roster-website";
 import {
   rosterEmailColumns,
   rosterPrefillColumns,
@@ -156,7 +157,11 @@ export async function rosterImport(
         const v = value(key);
         if (v) {
           const link = httpsUrl.safeParse(
-            key === "github" ? rosterGitHubURL(v) : v,
+            key === "github"
+              ? rosterGitHubURL(v)
+              : key === "website"
+                ? rosterFirstWebsite(v)
+                : v,
           );
           if (link.success) socialLinks.push({ type, url: link.data });
           else
@@ -234,6 +239,14 @@ export async function rosterImport(
           : existing.has(r.email)
             ? "Skip all existing participant fields and statuses"
             : "Add Registered participant",
+        ...(Array.isArray(r.prefill.socialLinks) &&
+        r.prefill.socialLinks.some((link: any) => link.type === "Website")
+          ? {
+              website: (
+                r.prefill.socialLinks as { type: string; url: string }[]
+              ).find((link) => link.type === "Website")!.url,
+            }
+          : {}),
         rosterMatched: existing.has(r.email),
       })),
       errors,

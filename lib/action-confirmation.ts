@@ -8,6 +8,7 @@ export type Confirmation = {
   note?: string;
   tone?: "default" | "positive" | "danger";
   opener?: HTMLElement | null;
+  importWebsites?: { row: number; url: string }[];
 };
 export class ActionCancelled extends Error {
   constructor() {

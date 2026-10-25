@@ -17,7 +17,7 @@
   margin: 0 0 10px;
   font-size: clamp(23px, 4vw, 28px);
   line-height: 1.15;
-  letter-spacing: -.035em;
+  letter-spacing: -0.035em;
   text-wrap: balance;
 }
 .confirmation-dialog #confirmation-target {
@@ -27,7 +27,9 @@
   color: #566057;
   overflow-wrap: anywhere;
 }
-.confirmation-dialog #confirmation-target strong { font-weight: 550; }
+.confirmation-dialog #confirmation-target strong {
+  font-weight: 550;
+}
 .confirmation-dialog .confirmation-badge {
   display: inline-flex;
   align-items: center;
@@ -49,7 +51,11 @@
   line-height: 1.55;
   overflow-wrap: anywhere;
 }
-.confirmation-dialog .confirmation-note { margin-block-start: 7px; color: #566057; font-size: 14px; }
+.confirmation-dialog .confirmation-note {
+  margin-block-start: 7px;
+  color: #566057;
+  font-size: 14px;
+}
 .confirmation-dialog .form-actions {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -72,10 +78,44 @@
   border-color: #007d45;
   color: #fff;
 }
-.confirmation-dialog[data-tone="positive"] .confirmation-accept:hover { background: #006838; }
+.confirmation-dialog[data-tone="positive"] .confirmation-accept:hover {
+  background: #006838;
+}
 .confirmation-dialog[data-tone="danger"] .confirmation-accept {
   background: #aa3029;
   border-color: #aa3029;
   color: #fff;
 }
-.confirmation-dialog .button:focus-visible { outline: 3px solid #006afe; outline-offset: 3px; }
+.confirmation-dialog .button:focus-visible {
+  outline: 3px solid #006afe;
+  outline-offset: 3px;
+}
+.confirmation-websites {
+  margin-block: 1rem;
+  min-width: 0;
+}
+.confirmation-websites summary {
+  cursor: pointer;
+  min-height: 44px;
+  display: list-item;
+  align-content: center;
+  font-weight: 600;
+}
+.confirmation-websites ol {
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  max-height: 14rem;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.confirmation-websites li {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  gap: 0.5rem;
+  padding-block: 0.5rem;
+  font-size: 0.875rem;
+}
+.confirmation-websites li span:last-child {
+  overflow-wrap: anywhere;
+}

@@ -95,6 +95,19 @@ export default function ConfirmationDialog({
           {value.note}
         </p>
       )}
+      {!!value.importWebsites?.length && (
+        <details className="confirmation-websites">
+          <summary>Websites ({value.importWebsites.length})</summary>
+          <ol aria-label="Website values to import">
+            {value.importWebsites.map((item) => (
+              <li key={item.row}>
+                <span>Row {item.row}</span>
+                <span>{item.url}</span>
+              </li>
+            ))}
+          </ol>
+        </details>
+      )}
       <div className="form-actions">
         <button
           ref={cancel}

@@ -293,6 +293,7 @@ export function portalConfirmationFor(
       description: "",
       confirmLabel: "Confirm",
       critical: false,
+      ...(Array.isArray(values.importWebsiteReview) ? { importWebsites: values.importWebsiteReview } : {}),
     };
   return base;
 }
@@ -5825,7 +5826,7 @@ export default function Portal({
       )
         throw new ActionCancelled();
       const token = revealConfirmation(action, values);
-      const { newCount: _count, singleEmail: _email, windowWarnings: _windowWarnings, creditImportSummary: _creditSummary, participantDeleteSummary: _deleteSummary, ...payload } = values;
+      const { newCount: _count, singleEmail: _email, importWebsiteReview: _websiteReview, windowWarnings: _windowWarnings, creditImportSummary: _creditSummary, participantDeleteSummary: _deleteSummary, ...payload } = values;
       setMessage("");
       const result = await api(
         action,
