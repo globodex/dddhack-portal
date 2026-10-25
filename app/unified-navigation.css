@@ -87,8 +87,31 @@
   border-radius: 50%;
   background: #dedfd8;
 }
-.app-shell.navigation-shell.workspace-shell > .main {
-  margin-left: 0;
+/* The unified header replaces the sidebar on every route. Collection pages
+   use the available canvas; reading and form measures remain component-owned. */
+.app-shell.navigation-shell:not(.public-home-shell):not(.onboarding-shell) > .main {
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  margin-inline: 0;
+}
+.app-shell.navigation-shell > .main > :is(.discover-v6, .admin-workspace, .rules-essentials) {
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  margin-inline: 0;
+}
+.app-shell.navigation-shell .rules-essentials .rule-group > ol {
+  max-width: 75ch;
+}
+@media (min-width: 1600px) {
+  .app-shell.navigation-shell .discover-v6 .discover-teams,
+  .app-shell.navigation-shell .admin-workspace .admin-team-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .app-shell.navigation-shell .discover-v6 .discover-people-cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 .app-shell.navigation-shell.onboarding-shell > .navigation-header {
   border-start-start-radius: inherit;

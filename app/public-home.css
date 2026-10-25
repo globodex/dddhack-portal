@@ -1334,7 +1334,7 @@
   .public-home-shell .home-hero {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto auto minmax(144px, 1fr) auto 168px;
+    grid-template-rows: auto auto clamp(24px, 5svh, 64px) auto minmax(168px, 1fr);
     align-items: start;
     align-content: stretch;
     gap: 0;
@@ -1461,7 +1461,7 @@
     left: -20px;
     display: block;
     width: calc(100% + 40px);
-    height: 168px;
+    height: 100%;
     min-height: 168px;
     overflow: hidden;
   }
