@@ -1,9 +1,9 @@
 {
-  "runtimeSource": "6da7b10372892cd6d126b7d092cabeeffe9f5e50",
+  "runtimeSource": "72ec164d3056469c239a011984e83ff88f2aacaf",
   "runtime": "nodejs24",
   "source": "neon/api.ts",
-  "zipBytes": 9029918,
-  "sha256": "9f16cda2e48f635251905cfb41669e35a41cf09c986e0507688a272bbd5ad626",
+  "zipBytes": 9035605,
+  "sha256": "cef0cb28499525c48fbf4825d4a50c988b19337c5b0ff240ed3d0c5719bac6cb",
   "env": {},
   "warnings": [],
   "buildOnly": true,
@@ -12,9 +12,9 @@
   "nativeExecution": "not performed; headers only",
   "archive": "artifacts/neon/portalapi.zip",
   "candidateOnly": false,
-  "uncompressedBytes": 21202946,
+  "uncompressedBytes": 21222159,
   "fileCount": 93,
-  "indexSha256": "afba40494c79ad01de8518c60da0d278a7e6906b047a620b3900d4c600c55057",
+  "indexSha256": "1f4d9a41c6658bb61dff9f381535df0f069a1fb6efd72ff5e06c99dc6203c98b",
   "nativeArchitecture": "Linux ARM64 glibc",
   "nativeFiles": [
     {
@@ -33,20 +33,20 @@
     }
   ],
   "archiveHasForbiddenPaths": [],
-  "graphInputCount": 873,
-  "graphApplicationInputCount": 89,
+  "graphInputCount": 875,
+  "graphApplicationInputCount": 91,
   "forbiddenInputs": [],
   "graphFrontendInputs": [],
   "graphRecomputed": true,
-  "graphEvidence": "evidence/registered-status-api-release/graph.json",
-  "runtimeInputHashes": "evidence/registered-status-api-release/runtime-input-hashes.json",
-  "allInputHashes": "evidence/registered-status-api-release/all-input-hashes.json",
+  "graphEvidence": "evidence/analytics-member-info-api-release/graph.json",
+  "runtimeInputHashes": "evidence/analytics-member-info-api-release/runtime-input-hashes.json",
+  "allInputHashes": "evidence/analytics-member-info-api-release/all-input-hashes.json",
   "limits": {
     "maxZipBytes": 10485760,
     "maxTotalBytes": 67108864,
     "maxEntries": 4096
   },
-  "previousArchiveSha256": "ea9b0a2f9f99de33626cdffd7dafbe096eee6f3812ffe7d56cfc5793856d1dcb",
+  "previousArchiveSha256": "9f16cda2e48f635251905cfb41669e35a41cf09c986e0507688a272bbd5ad626",
   "changedArchiveEntries": [
     "index.mjs"
   ],
@@ -119,45 +119,62 @@
       "0106_admin_team_unlock.sql"
     ],
     "twelveEntryTargetPending": [],
-    "ownerBackupRestoreVerificationRequired": true,
+    "ownerBackupRestoreVerificationRequiredForPendingApply": true,
     "sourceUpgradeGuide": "docs/NEON_POPULATED_UPGRADE_PLAN.md",
     "automaticMigration": false,
     "zipContainsSql": false
   },
+  "schemaChangedThisRelease": false,
+  "migrationsUnchangedFromPublishedArchive": true,
   "manualBackendRedeployRequired": true,
-  "publicationAuthorized": true,
+  "publicationAuthorized": false,
   "hostedMigrationLedgerInspected": false,
   "migrationPerformed": false,
-  "sourceSnapshotMethod": "git archive exact committed snapshot; each exported file verified against same Git commit blob; uncommitted work excluded",
-  "sourceExportManifest": "evidence/registered-status-api-release/exported-source-hashes.json",
+  "sourceSnapshotMethod": "git archive exact committed snapshot; each selected file verified against its Git blob; uncommitted work excluded",
+  "sourceExportManifest": "evidence/analytics-member-info-api-release/exported-source-hashes.json",
   "hostSmoke": {
     "passed": true,
-    "report": "evidence/registered-status-api-release/host-smoke.json",
+    "report": "evidence/analytics-member-info-api-release/host-smoke.json",
     "statuses": [
       200,
       403,
       503
     ],
     "outboundAttempts": 0,
-    "dependencySubstitution": "Separate unchanged-JavaScript host copy resolves installed x86_64 Sharp; ARM64 archive and extracted tree remain unchanged",
+    "dependencySubstitution": "Separate identical-JavaScript host copy resolves installed x86_64 Sharp; original ARM64 archive and extracted tree remain unchanged",
     "nativeArmExecution": false
   },
-  "windowsHandoff": {
+  "legacyHelperCompatibility": {
     "checksPassed": 6,
-    "report": "evidence/registered-status-api-release/windows-handoff-report.json",
+    "report": "evidence/analytics-member-info-api-release/windows-handoff-report.json",
     "powerShellVersion": "7.6.8",
     "platform": "Unix",
-    "nativeWindowsExecution": false,
+    "nativeWindowsAcceptance": false,
     "liveDownload": false,
     "neonCommands": 0,
     "helpers": "scripts",
-    "repositoryHelpersUnchanged": true,
-    "helperSemanticChanges": "Digest-only changes tested in isolated copies; CLI and environment-file behavior unchanged",
-    "repositoryHelperAndArchiveActuallyTested": true,
-    "copiedHelperAndRepositoryHelperBothPassed": true,
-    "repositoryHeadAtCheck": "c645f088731a50a9b5de065b38c0eda7b6859fbf"
+    "ownerRolloutRequiresHelper": false,
+    "actualPromotedRepositoryChecksPassed": 6,
+    "repositoryHeadAtCheck": "72ec164d3056469c239a011984e83ff88f2aacaf"
   },
-  "verificationEvidence": "evidence/registered-status-api-release",
-  "privateConfigurationExcluded": true,
-  "archiveComparisonEvidence": "evidence/registered-status-api-release/archive-refresh-comparison.json"
+  "verificationEvidence": "evidence/analytics-member-info-api-release",
+  "runtimeFinalConfirmedByRoot": true,
+  "manualWindowsGuide": "docs/ANALYTICS_MEMBER_INFO_WINDOWS_ROLLOUT.md",
+  "windowsHandoff": {
+    "checksPassed": 6,
+    "report": "evidence/analytics-member-info-api-release/windows-handoff-report.json",
+    "powerShellVersion": "7.6.8",
+    "platform": "Unix",
+    "nativeWindowsAcceptance": false,
+    "liveDownload": false,
+    "neonCommands": 0,
+    "helpers": "scripts",
+    "ownerRolloutRequiresHelper": false,
+    "nativeWindowsExecution": false,
+    "ownerGuide": "docs/ANALYTICS_MEMBER_INFO_WINDOWS_ROLLOUT.md",
+    "actualPromotedRepositoryChecksPassed": 6,
+    "repositoryHeadAtCheck": "72ec164d3056469c239a011984e83ff88f2aacaf"
+  },
+  "publicationStatus": "On hold: fresh user approval required before any push, publication or deployment",
+  "ownerGuideDirectNodeChecksumTestedAgainstPromotedZip": true
 }

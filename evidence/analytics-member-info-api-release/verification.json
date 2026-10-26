@@ -1,0 +1,62 @@
+{
+  "source": "72ec164d3056469c239a011984e83ff88f2aacaf",
+  "archive": "/tmp/ddd-analytics-member-72ec164d3056/candidate/portalapi.zip",
+  "sha256": "cef0cb28499525c48fbf4825d4a50c988b19337c5b0ff240ed3d0c5719bac6cb",
+  "indexSha256": "1f4d9a41c6658bb61dff9f381535df0f069a1fb6efd72ff5e06c99dc6203c98b",
+  "zipBytes": 9035605,
+  "rawBytes": 21222159,
+  "files": 93,
+  "limits": {
+    "maxZipBytes": 10485760,
+    "maxTotalBytes": 67108864,
+    "maxEntries": 4096
+  },
+  "freshJavaScriptByteIdentical": true,
+  "allGraphInputHashesRechecked": true,
+  "graphInputs": 875,
+  "applicationInputs": 91,
+  "allApplicationHashesMatchGitSnapshot": true,
+  "forbiddenInputs": [],
+  "frontendOrImageInputs": [],
+  "nativeFiles": [
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
+      "bytes": 18324712,
+      "compressedBytes": 8195758,
+      "sha256": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f",
+      "elfMachine": 183
+    },
+    {
+      "path": "node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.5.node",
+      "bytes": 530120,
+      "compressedBytes": 167789,
+      "sha256": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b",
+      "elfMachine": 183
+    }
+  ],
+  "nativeArmExecution": false,
+  "hostStatuses": [
+    200,
+    403,
+    503
+  ],
+  "outboundAttempts": 0,
+  "legacyPowerShellCompatibilityChecks": 6,
+  "nativeWindowsAcceptance": false,
+  "schemaChangedThisRelease": false,
+  "canonicalPlanDigest": "73c64b0acbe9df80f9ca6627c0a1d4a3485c83214a6923918c530c1ab2b5d160",
+  "publishedZipUnchanged": "9f16cda2e48f635251905cfb41669e35a41cf09c986e0507688a272bbd5ad626",
+  "providerCalls": false,
+  "databaseAccess": false,
+  "deploymentPerformed": false,
+  "repositoryChanges": false,
+  "runtimeFinalConfirmedByRoot": true,
+  "publicationAuthorized": false,
+  "publicationStatus": "On hold: fresh user approval required before any push, publication or deployment",
+  "repositoryPromotionCompleted": true,
+  "repositoryFilesPromoted": 29,
+  "actualRepositoryLegacyChecksPassed": 6,
+  "guideNodeChecksumPipelinePassedAgainstPromotedZip": true,
+  "repositoryHeadAtCheck": "72ec164d3056469c239a011984e83ff88f2aacaf",
+  "runtimeInputsStillMatchBundleSource": true
+}

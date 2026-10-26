@@ -1,0 +1,42 @@
+{
+  "previousSource": "6da7b10372892cd6d126b7d092cabeeffe9f5e50",
+  "previousSha256": "9f16cda2e48f635251905cfb41669e35a41cf09c986e0507688a272bbd5ad626",
+  "currentSource": "72ec164d3056469c239a011984e83ff88f2aacaf",
+  "currentSha256": "cef0cb28499525c48fbf4825d4a50c988b19337c5b0ff240ed3d0c5719bac6cb",
+  "changedEntries": [
+    {
+      "path": "index.mjs",
+      "sha256": "1f4d9a41c6658bb61dff9f381535df0f069a1fb6efd72ff5e06c99dc6203c98b",
+      "bytes": 1721282
+    }
+  ],
+  "unchangedEntries": 92,
+  "applicationInputChanges": [
+    {
+      "path": "lib/admin-stats.ts",
+      "sha256": "362504e97ebdc659aec5b0e7cee1cdd2204efdee475fd02080928a8a9469f722",
+      "state": "changed"
+    },
+    {
+      "path": "lib/admin-submission-analytics.ts",
+      "sha256": "89220ad1404134babc2bed23af385286597fdb4803d2d8b39a5a3bbae17269f8",
+      "state": "added"
+    },
+    {
+      "path": "lib/discover-participants.ts",
+      "sha256": "c5a5cacb0fe1a798a73c5bbb916ca732fdad9eb3ece16c0dcaed78c4e7de4da9",
+      "state": "changed"
+    },
+    {
+      "path": "lib/experience.ts",
+      "sha256": "b5393652336b00397a4c075891f87c21148bf3fd535c1147e14e6b0edc29ff49",
+      "state": "changed"
+    },
+    {
+      "path": "lib/project-member-profiles.ts",
+      "sha256": "0b2d9578e941aa68b2387baee4d69dbbaf3bfd9f5c23a049758cf746ed3e725e",
+      "state": "added"
+    }
+  ],
+  "removedApplicationInputs": []
+}

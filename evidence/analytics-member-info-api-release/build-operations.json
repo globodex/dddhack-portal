@@ -1,0 +1,33 @@
+{
+  "runtimeSource": "72ec164d3056469c239a011984e83ff88f2aacaf",
+  "sourceSnapshot": "git archive exact committed snapshot; each selected file verified against its Git blob; uncommitted work excluded",
+  "exportedFiles": 155,
+  "officialAPI": "@neon/config-runtime@1.10.2 buildFunctionBundle",
+  "functionEnv": {},
+  "buildProcessEnvironmentKeys": [
+    "LANG",
+    "PATH",
+    "TZ",
+    "npm_config_audit",
+    "npm_config_cache",
+    "npm_config_fund",
+    "npm_config_globalconfig",
+    "npm_config_offline",
+    "npm_config_userconfig"
+  ],
+  "offlineBuild": true,
+  "emptyNpmConfigs": true,
+  "buildWarnings": [],
+  "buildExitCode": 0,
+  "timeoutsSeconds": {
+    "build": 180,
+    "freshGraph": 90,
+    "hostSmoke": 60,
+    "legacyPowerShellChecks": 90
+  },
+  "sourceUploaded": false,
+  "providerCalls": false,
+  "databaseAccess": false,
+  "deploymentPerformed": false,
+  "repositoryPackagingChanges": false
+}

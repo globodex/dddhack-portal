@@ -1,0 +1,19 @@
+{
+  "officialRuntime": "@neon/config-runtime@1.10.2",
+  "esbuild": "0.28.2",
+  "registry": "https://registry.npmjs.org",
+  "allNpmLockResolutionsOfficialRegistry": true,
+  "installScriptsDisabled": true,
+  "npmUserAndGlobalConfigFilesEmpty": true,
+  "nativeStagingTarget": "linux-arm64-glibc",
+  "offlineOfficialArchiveBuildPassed": true,
+  "powerShell": "7.6.8",
+  "powerShellOfficialUrl": "https://github.com/PowerShell/PowerShell/releases/download/v7.6.8/powershell-7.6.8-linux-x64.tar.gz",
+  "powerShellArchiveSha256": "59112e38ad83350e4f6dc0195953c66b5926792f300ca2e7691b8242e7a16e7f",
+  "publishedChecksumsAndPinnedDigestMatch": true,
+  "publicAcquisitionUsedExistingInfrastructureProxyAndTrust": true,
+  "proxyTrustValuesPrinted": false,
+  "tlsVerificationDisabled": false,
+  "accountCredentialsRead": false,
+  "providerOperations": false
+}
