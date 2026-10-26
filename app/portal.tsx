@@ -50,6 +50,8 @@ import AdminTeamApproval, {
   teamNeedsApproval,
 } from "./admin-team-approval";
 import AdminStats from "./admin-stats";
+import AdminSubmissionAnalytics from "./admin-submission-analytics";
+import AdminProjectScore from "./admin-project-score";
 import TeamPreparation from "./team-preparation";
 import AdminCreditBatches from "./admin-credit-batches";
 import PersonalCredits, { PersonalCreditsContent } from "./personal-credits";
@@ -5408,7 +5410,10 @@ export function AdminList({
     credits = path === "/admin/credits";
   const items = (data.items || []).filter(
     (r) =>
-      JSON.stringify(r).toLowerCase().includes(q.toLowerCase()) &&
+      (teams || logs || credits
+        ? JSON.stringify(r)
+        : `${r.projectName || ""} ${r.teamName || ""} ${r.slug || ""}`
+      ).toLowerCase().includes(q.toLowerCase()) &&
       (!filter || r.status === filter) &&
       (!lockFilter || (lockFilter === "locked" ? r.locked : !r.locked)),
   );
@@ -5440,6 +5445,7 @@ export function AdminList({
         </h1>
       </header>
       {data.stats && <AdminStats stats={data.stats} />}
+      {data.submissionAnalytics && <AdminSubmissionAnalytics analytics={data.submissionAnalytics} />}
       <div
         className={`toolbar admin-list-toolbar${filtersExpanded ? " is-expanded" : ""}`}
       >
@@ -5726,6 +5732,8 @@ export function AdminList({
                 <ChevronRight size={20} aria-hidden="true" />
                 <span className="sr-only">Review project</span>
               </a>
+              {record.score && <AdminProjectScore score={record.score} />}
+              {record.frozenScore && <AdminProjectScore score={record.frozenScore} />}
               {path === "/admin/submissions" &&
                 (data.me?.owner || data.me?.role === "admin") && (
                   <details className="panel admin-submission-management">

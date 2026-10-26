@@ -50,6 +50,7 @@ import {
 } from "./team-access";
 import { adminTeamUnlock, teamUnlockBlocker } from "./admin-team-unlock";
 import { readAdminStats } from "./admin-stats";
+import { readAdminSubmissionAnalytics } from "./admin-submission-analytics";
 import { qualificationCommand } from "./engagement-scoring";
 import { z } from "zod";
 import type { PortalService } from "./service";
@@ -1117,11 +1118,21 @@ export class PortalExperience {
           byProject.set(project_id, group);
         }
       }
+      const adminAnalytics = me.owner || me.role === "admin"
+        ? await readAdminSubmissionAnalytics(this.s)
+        : undefined;
+      const currentScores = new Map(adminAnalytics?.scores.map(score => [score.projectId, score]) || []);
+      const frozenScores = new Map(adminAnalytics?.frozenScores.map(score => [score.projectId, score]) || []);
       return {
         me,
         ...(me.owner || me.role === "admin" ? { stats: await readAdminStats(this.s, "submissions", me) } : {}),
+        ...(adminAnalytics ? { submissionAnalytics: adminAnalytics.analytics } : {}),
         items: items.map((item) => ({
           ...item,
+          ...(adminAnalytics ? {
+            score: currentScores.get(String(item.id)),
+            frozenScore: frozenScores.get(String(item.id)),
+          } : {}),
           deleted_at: item.deleted_at ?? undefined,
           versions:
             me.owner || me.role === "admin"
