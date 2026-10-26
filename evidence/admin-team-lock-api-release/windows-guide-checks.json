@@ -1,0 +1,9 @@
+{
+  "ParsePassed": true,
+  "OrderedBlocks": 5,
+  "NodeChecksPassed": 2,
+  "Platform": "Linux",
+  "PowerShell": "7.6.8",
+  "NativeWindowsAcceptance": false,
+  "HostedCommandsExecuted": false
+}

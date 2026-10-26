@@ -1,6 +1,10 @@
-# Incremental 0106 upgrade for the populated portal
+# Incremental 0107 upgrade for the populated portal
 
-A fresh inspection decides the exact pending suffix. An eleven-entry target requires only `0106_admin_team_unlock.sql`; an older nine-entry target requires canonical0104+0105+0106. A twelve-entry target needs no apply. Do not infer hosted state from a local checkout or health200.
+A fresh inspection decides the exact pending suffix. A twelve-entry target requires only `0107_admin_team_lock.sql`; an eleven-entry target requires canonical0106+0107. A thirteen-entry target needs no apply. Do not infer hosted state from a local checkout or health200. The current easy Windows sequence is [Admin lock rollout](ADMIN_TEAM_LOCK_WINDOWS_ROLLOUT.md).
+
+The earlier roster-removal0107 was an unimplemented proposal and is not part of this plan. Future roster work needs a new unused number. Do not apply a draft with that earlier meaning.
+
+0107 replaces only the existing lock-insert guard function. It adds no table and changes no participant or team rows. The application issues a transaction-bound admin capability only after fresh staff authorization, reviewed membership/idea identity and structural/history/frozen-result checks. It bypasses participant idea/profile/leader prerequisites for the explicit admin action. Normal participant lock prerequisites remain unchanged. Applying0107 does not lock or approve a team.
 
 0106 replaces only the existing lock-delete guard function. It creates no table and changes no rows. An exact admin-unlock token can remove one lock only before results are frozen and before that team has any committed submission version or durable attempt. Removing a lock restores the existing pre-lock behavior for its idea and memberships; capacity, registration, roles and deadlines still apply. The terminal-deletion cascade exception remains scoped and frozen-result protection remains active. Applying this migration does not unlock or delete any team.
 
@@ -36,11 +40,11 @@ if ($env:PORTAL_SYNTHETIC_DATABASE -eq '1') { throw 'Stop: this is a populated t
 New-Item -ItemType Directory -Force .local | Out-Null
 ```
 
-The source plan must contain **twelve entries**, digest `73c64b0acbe9df80f9ca6627c0a1d4a3485c83214a6923918c530c1ab2b5d160`. The checkout helper validates every Git HEAD blob and index entry before repairing exact CRLF/LF representations. It refuses real edits, BOMs, unexpected SQL and changed approved hashes. It does not edit the index, load env files or contact a database. SQL remains LF in the reviewed checkout.
+The source plan must contain **thirteen entries**, digest `2dc505efb7e5cf25f4e9da1a56e9aa9cb4a816735b222127b9fdfdb5daafa277`. The checkout helper validates every Git HEAD blob and index entry before repairing exact CRLF/LF representations. It refuses real edits, BOMs, unexpected SQL and changed approved hashes. It does not edit the index, load env files or contact a database. SQL remains LF in the reviewed checkout.
 
 Use the existing `DATABASE_URL_UNPOOLED`. Node `--env-file` does not override already-set variables; resolve conflicts privately. Never print/share the URL, password, backup identifier or private receipts. The CLI checks the exact expected direct URL host/database/role and connected `current_database()`/`current_user`, rejects pooled hosts and target overrides, and preserves TLS requirements. No new credential, role or provider setting is needed.
 
-All seven canonical historical hashes and their exact whole-history Windows CRLF aliases remain unchanged. Features0102–0106 require canonical LF; features never receive CRLF ledger aliases. Previous nine-/ten-/eleven-entry-plan receipts are historical records, including digests `498280b69647485b4f55c35331a0f8af486983d819ee2dc25fb1840f1e657506` and `9bcf3f083d47a1b700e467c60f3b9eff57193491bb1e2929b1c2a4f21ba532d1`. The prior eleven-entry digest is `e3b7a348e2c9e3f4f066a78fbd02274a0e111155b3af527f99bdc545bbe32691`. They cannot authorize this plan. Save fresh receipts under new filenames.
+All seven canonical historical hashes and their exact whole-history Windows CRLF aliases remain unchanged. Features0102–0107 require canonical LF; features never receive CRLF ledger aliases. Previous nine-/ten-/eleven-entry-plan receipts are historical records, including digests `498280b69647485b4f55c35331a0f8af486983d819ee2dc25fb1840f1e657506` and `9bcf3f083d47a1b700e467c60f3b9eff57193491bb1e2929b1c2a4f21ba532d1`. The prior eleven-entry digest is `e3b7a348e2c9e3f4f066a78fbd02274a0e111155b3af527f99bdc545bbe32691`. The prior twelve-entry digest is `73c64b0acbe9df80f9ca6627c0a1d4a3485c83214a6923918c530c1ab2b5d160`. None can authorize this plan. Save fresh receipts under new filenames.
 
 ## Inspect, apply only the exact pending set, inspect again
 
@@ -48,19 +52,20 @@ Use an exclusive migration window without concurrent release/admin changes. Insp
 
 ```powershell
 $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
-$beforeReceipt = '.local/pre-0106-' + $stamp + '.json'
+$beforeReceipt = '.local/pre-0107-' + $stamp + '.json'
 node --env-file=.env.backend.local --import tsx neon/scripts/upgrade-populated.ts --inspect-populated --receipt $beforeReceipt
 if ($LASTEXITCODE -ne 0) { throw 'Inspection stopped. Do not apply' }
 $before = Get-Content -Raw -LiteralPath $beforeReceipt | ConvertFrom-Json
-if ($before.planDigest -ne '73c64b0acbe9df80f9ca6627c0a1d4a3485c83214a6923918c530c1ab2b5d160') {
-    throw 'Expected the reviewed twelve-entry source plan'
+if ($before.planDigest -ne '2dc505efb7e5cf25f4e9da1a56e9aa9cb4a816735b222127b9fdfdb5daafa277') {
+    throw 'Expected the reviewed thirteen-entry source plan'
 }
 switch (@($before.ledger).Count) {
-    9 { $expectedPending = @('0104_admin_team_corrections.sql', '0105_terminal_record_deletion.sql', '0106_admin_team_unlock.sql') }
-    10 { $expectedPending = @('0105_terminal_record_deletion.sql', '0106_admin_team_unlock.sql') }
-    11 { $expectedPending = @('0106_admin_team_unlock.sql') }
-    12 { $expectedPending = @() }
-    default { throw 'Expected the independently verified nine- through twelve-entry target. Preserve receipt for review' }
+    9 { $expectedPending = @('0104_admin_team_corrections.sql', '0105_terminal_record_deletion.sql', '0106_admin_team_unlock.sql', '0107_admin_team_lock.sql') }
+    10 { $expectedPending = @('0105_terminal_record_deletion.sql', '0106_admin_team_unlock.sql', '0107_admin_team_lock.sql') }
+    11 { $expectedPending = @('0106_admin_team_unlock.sql', '0107_admin_team_lock.sql') }
+    12 { $expectedPending = @('0107_admin_team_lock.sql') }
+    13 { $expectedPending = @() }
+    default { throw 'Expected the independently verified nine- through thirteen-entry target. Preserve receipt for review' }
 }
 if ((ConvertTo-Json -InputObject @($before.pending) -Compress) -ne
     (ConvertTo-Json -InputObject $expectedPending -Compress)) {
@@ -76,12 +81,12 @@ if ($expectedPending.Count -gt 0) {
     if ($LASTEXITCODE -ne 0) { throw 'Upgrade not confirmed. Inspect actual ledger before deciding on a retry' }
 }
 
-$afterReceipt = '.local/post-0106-' + $stamp + '.json'
+$afterReceipt = '.local/post-0107-' + $stamp + '.json'
 node --env-file=.env.backend.local --import tsx neon/scripts/upgrade-populated.ts --inspect-populated --receipt $afterReceipt
 if ($LASTEXITCODE -ne 0) { throw 'Post-upgrade inspection failed. Stop rollout' }
 $after = Get-Content -Raw -LiteralPath $afterReceipt | ConvertFrom-Json
-if ($after.planDigest -ne $before.planDigest -or @($after.ledger).Count -ne 12 -or @($after.pending).Count -ne 0) {
-    throw 'Expected twelve ledger entries with no pending work'
+if ($after.planDigest -ne $before.planDigest -or @($after.ledger).Count -ne 13 -or @($after.pending).Count -ne 0) {
+    throw 'Expected thirteen ledger entries with no pending work'
 }
 $priorNames = @($before.ledger | ForEach-Object { $_.name })
 $priorAfter = @($after.ledger | Where-Object { $_.name -in $priorNames })
@@ -93,6 +98,7 @@ $requiredFeatures = @{
     '0104_admin_team_corrections.sql' = 'a931aeafba01be07f43e35fc7c17cae80f11bbd212fbd92f0e5fd8d475c40500'
     '0105_terminal_record_deletion.sql' = '088b96a239915cd518765b5ef260c73feee913d8e0b181234110f7591676ccde'
     '0106_admin_team_unlock.sql' = 'dd437230bcbc5d9ffc65b63464992976b7b0ddcd1fd64a675f76f113623c17aa'
+    '0107_admin_team_lock.sql' = '008d9ede3191d0ef8e3198ba0ddfde3188349db9a0003738ec64b44955f4215a'
 }
 foreach ($name in $requiredFeatures.Keys) {
     $entry = @($after.ledger | Where-Object { $_.name -eq $name })
@@ -112,22 +118,23 @@ An unexpected seven-entry receipt does not authorize applying to another branch/
 
 | Existing ledger | Exact pending set | Result |
 | --- | --- | --- |
-| Seven historical entries, all LF or all exact recognized CRLF | 0102,0103,0104,0105,0106 | Twelve entries |
-| Same history plus canonical0102 | 0103,0104,0105,0106 | Twelve entries |
-| Same history plus canonical0102/0103 | 0104,0105,0106 | Twelve entries |
-| Same history plus canonical0102/0103/0104 | 0105,0106 | Twelve entries |
-| Same history plus canonical0102/0103/0104/0105 | 0106 | Twelve entries |
-| All twelve reviewed entries | None | No apply needed |
+| Seven historical entries, all LF or all exact recognized CRLF | 0102,0103,0104,0105,0106,0107 | Thirteen entries |
+| Same history plus canonical0102 | 0103,0104,0105,0106,0107 | Thirteen entries |
+| Same history plus canonical0102/0103 | 0104,0105,0106,0107 | Thirteen entries |
+| Same history plus canonical0102/0103/0104 | 0105,0106,0107 | Thirteen entries |
+| Same history plus canonical0102/0103/0104/0105 | 0106,0107 | Thirteen entries |
+| All twelve entries through0106 | 0107 | Thirteen entries |
+| All thirteen reviewed entries | None | No apply needed |
 
-For an intentionally selected seven-entry target, use a fresh receipt and replace only the nine-through-twelve-entry pending assertion above with this exact assertion; retain all source/target/backup/apply/post-inspect guards:
+For an intentionally selected seven-entry target, use a fresh receipt and replace only the nine-through-thirteen-entry pending assertion above with this exact assertion; retain all source/target/backup/apply/post-inspect guards:
 
 ```powershell
-$expectedPending = @('0102_credit_stock.sql', '0103_project_media_limits.sql', '0104_admin_team_corrections.sql', '0105_terminal_record_deletion.sql', '0106_admin_team_unlock.sql')
-if ($before.planDigest -ne '73c64b0acbe9df80f9ca6627c0a1d4a3485c83214a6923918c530c1ab2b5d160' -or
+$expectedPending = @('0102_credit_stock.sql', '0103_project_media_limits.sql', '0104_admin_team_corrections.sql', '0105_terminal_record_deletion.sql', '0106_admin_team_unlock.sql', '0107_admin_team_lock.sql')
+if ($before.planDigest -ne '2dc505efb7e5cf25f4e9da1a56e9aa9cb4a816735b222127b9fdfdb5daafa277' -or
     @($before.ledger).Count -ne 7 -or
     (ConvertTo-Json -InputObject @($before.pending) -Compress) -ne
     (ConvertTo-Json -InputObject $expectedPending -Compress)) {
-    throw 'Expected the independently verified seven-entry target and exact0102/0103/0104/0105/0106 pending'
+    throw 'Expected the independently verified seven-entry target and exact0102/0103/0104/0105/0106/0107 pending'
 }
 if ($before.historicalEncoding -notin @('canonical-lf', 'legacy-windows-crlf')) {
     throw 'Unexpected historical ledger encoding'
@@ -143,5 +150,6 @@ if ($before.historicalEncoding -notin @('canonical-lf', 'legacy-windows-crlf')) 
 | 0104_admin_team_corrections.sql | `a931aeafba01be07f43e35fc7c17cae80f11bbd212fbd92f0e5fd8d475c40500` |
 | 0105_terminal_record_deletion.sql | `088b96a239915cd518765b5ef260c73feee913d8e0b181234110f7591676ccde` |
 | 0106_admin_team_unlock.sql | `dd437230bcbc5d9ffc65b63464992976b7b0ddcd1fd64a675f76f113623c17aa` |
+| 0107_admin_team_lock.sql | `008d9ede3191d0ef8e3198ba0ddfde3188349db9a0003738ec64b44955f4215a` |
 
-Historical SQL, existing approval entries, exact seven CRLF aliases and previous proof records remain unchanged. Approval metadata only appends0106 to the eleven previously reviewed entries. [0106 verification](ADMIN_TEAM_UNLOCK_MIGRATION.md) records the current local proof; [0105 verification](TERMINAL_DELETION_UPGRADE_VERIFICATION.md) remains historical evidence. PGlite proves local PostgreSQL trigger/transaction semantics, not native multi-connection concurrency, a verified restore or hosted state. After schema verification, follow the separate owner-run Windows archive/deployment handoff with the matching release artifact. This tooling change updates no archive digest and performs no deployment.
+Historical SQL, existing approval entries, exact seven CRLF aliases and previous proof records remain unchanged. Approval metadata only appends0107 to the twelve previously reviewed entries. [0106 verification](ADMIN_TEAM_UNLOCK_MIGRATION.md) records the prior local proof; [0105 verification](TERMINAL_DELETION_UPGRADE_VERIFICATION.md) remains historical evidence. PGlite proves local PostgreSQL trigger/transaction semantics, not native multi-connection concurrency, a verified restore or hosted state. After schema verification, follow the separate owner-run Windows archive/deployment handoff with the matching release artifact. This release requires the matching refreshed backend archive; no hosted deployment is performed by the agent.

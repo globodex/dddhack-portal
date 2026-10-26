@@ -25,7 +25,7 @@ $sentinel = Join-Path $TestRoot '.env.backend.local'
 $sentinelBefore = (Get-FileHash -LiteralPath $sentinel -Algorithm SHA256).Hash
 $copy = & $helper -ArchivePath $global:dddHandoffArchiveFixture -StagingParent $TestRoot
 Assert-True ($copy.ArchiveEntries -eq 93) 'Unexpected archive inventory.'
-Assert-True ((Get-FileHash -LiteralPath (Join-Path $copy.SourceDirectory 'index.mjs') -Algorithm SHA256).Hash.ToLowerInvariant() -eq '1f4d9a41c6658bb61dff9f381535df0f069a1fb6efd72ff5e06c99dc6203c98b') 'Unexpected deployed JavaScript bytes.'
+Assert-True ((Get-FileHash -LiteralPath (Join-Path $copy.SourceDirectory 'index.mjs') -Algorithm SHA256).Hash.ToLowerInvariant() -eq 'caff2c5785c0bc188a94cd9ad4b8d17a7babc3b80d709636d4e681e9d0bc7be6') 'Unexpected deployed JavaScript bytes.'
 $checks.Add('Actual reviewed ZIP copied, hash-checked, expanded, full entry/native files validated')
 $copyAgain = & $helper -ArchivePath $global:dddHandoffArchiveFixture -StagingParent $TestRoot
 Assert-True ($copyAgain.SourceDirectory -ne $copy.SourceDirectory) 'Repeated preparation reused an existing directory.'

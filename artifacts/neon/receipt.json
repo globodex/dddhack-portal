@@ -1,9 +1,9 @@
 {
-  "runtimeSource": "72ec164d3056469c239a011984e83ff88f2aacaf",
+  "runtimeSource": "cd7ecb91812ca9b36178969a404ce41cade00891",
   "runtime": "nodejs24",
   "source": "neon/api.ts",
-  "zipBytes": 9035605,
-  "sha256": "cef0cb28499525c48fbf4825d4a50c988b19337c5b0ff240ed3d0c5719bac6cb",
+  "zipBytes": 9038029,
+  "sha256": "77dbb77b2c3c459bcaf910bbcfa945a3fce06f1f2cefa4426d7abe7121d2e0f2",
   "env": {},
   "warnings": [],
   "buildOnly": true,
@@ -11,10 +11,10 @@
   "packager": "@neon/config-runtime@1.10.2",
   "nativeExecution": "not performed; headers only",
   "archive": "artifacts/neon/portalapi.zip",
-  "candidateOnly": false,
-  "uncompressedBytes": 21222159,
+  "candidateOnly": true,
+  "uncompressedBytes": 21231557,
   "fileCount": 93,
-  "indexSha256": "1f4d9a41c6658bb61dff9f381535df0f069a1fb6efd72ff5e06c99dc6203c98b",
+  "indexSha256": "caff2c5785c0bc188a94cd9ad4b8d17a7babc3b80d709636d4e681e9d0bc7be6",
   "nativeArchitecture": "Linux ARM64 glibc",
   "nativeFiles": [
     {
@@ -32,26 +32,19 @@
       "elfMachine": 183
     }
   ],
-  "archiveHasForbiddenPaths": [],
-  "graphInputCount": 875,
-  "graphApplicationInputCount": 91,
   "forbiddenInputs": [],
+  "graphInputCount": 878,
+  "graphApplicationInputCount": 94,
   "graphFrontendInputs": [],
   "graphRecomputed": true,
-  "graphEvidence": "evidence/analytics-member-info-api-release/graph.json",
-  "runtimeInputHashes": "evidence/analytics-member-info-api-release/runtime-input-hashes.json",
-  "allInputHashes": "evidence/analytics-member-info-api-release/all-input-hashes.json",
-  "limits": {
-    "maxZipBytes": 10485760,
-    "maxTotalBytes": 67108864,
-    "maxEntries": 4096
-  },
-  "previousArchiveSha256": "9f16cda2e48f635251905cfb41669e35a41cf09c986e0507688a272bbd5ad626",
+  "archiveIndexBytesIdentical": true,
+  "applicationInputsMatchExactGitSnapshot": true,
+  "previousArchiveSha256": "cef0cb28499525c48fbf4825d4a50c988b19337c5b0ff240ed3d0c5719bac6cb",
   "changedArchiveEntries": [
     "index.mjs"
   ],
   "unchangedArchiveEntryCount": 92,
-  "canonicalPlanDigest": "73c64b0acbe9df80f9ca6627c0a1d4a3485c83214a6923918c530c1ab2b5d160",
+  "canonicalPlanDigest": "2dc505efb7e5cf25f4e9da1a56e9aa9cb4a816735b222127b9fdfdb5daafa277",
   "historicalMigrationsPreserved": [
     {
       "name": "0000_compatibility.sql",
@@ -102,79 +95,41 @@
     {
       "name": "0106_admin_team_unlock.sql",
       "sha256": "dd437230bcbc5d9ffc65b63464992976b7b0ddcd1fd64a675f76f113623c17aa"
+    },
+    {
+      "name": "0107_admin_team_lock.sql",
+      "sha256": "008d9ede3191d0ef8e3198ba0ddfde3188349db9a0003738ec64b44955f4215a"
     }
   ],
   "requiredSchemaBeforeDeploy": {
-    "expectedFinalLedgerEntries": 12,
-    "nineEntryTargetPending": [
-      "0104_admin_team_corrections.sql",
-      "0105_terminal_record_deletion.sql",
-      "0106_admin_team_unlock.sql"
-    ],
-    "tenEntryTargetPending": [
-      "0105_terminal_record_deletion.sql",
-      "0106_admin_team_unlock.sql"
+    "expectedFinalLedgerEntries": 13,
+    "twelveEntryTargetPending": [
+      "0107_admin_team_lock.sql"
     ],
     "elevenEntryTargetPending": [
-      "0106_admin_team_unlock.sql"
+      "0106_admin_team_unlock.sql",
+      "0107_admin_team_lock.sql"
     ],
-    "twelveEntryTargetPending": [],
+    "thirteenEntryTargetPending": [],
     "ownerBackupRestoreVerificationRequiredForPendingApply": true,
-    "sourceUpgradeGuide": "docs/NEON_POPULATED_UPGRADE_PLAN.md",
     "automaticMigration": false,
     "zipContainsSql": false
   },
-  "schemaChangedThisRelease": false,
-  "migrationsUnchangedFromPublishedArchive": true,
+  "schemaChangedThisRelease": true,
+  "migrationsUnchangedFromPublishedArchive": false,
   "manualBackendRedeployRequired": true,
   "publicationAuthorized": false,
   "hostedMigrationLedgerInspected": false,
   "migrationPerformed": false,
-  "sourceSnapshotMethod": "git archive exact committed snapshot; each selected file verified against its Git blob; uncommitted work excluded",
-  "sourceExportManifest": "evidence/analytics-member-info-api-release/exported-source-hashes.json",
+  "sourceSnapshotMethod": "git archive exact committed runtime source; all runtime application input hashes verified against Git blobs",
+  "verificationEvidence": "evidence/admin-team-lock-api-release",
+  "manualWindowsGuide": "docs/ADMIN_TEAM_LOCK_WINDOWS_ROLLOUT.md",
+  "publicationStatus": "Local candidate only; user screenshot review and fresh push approval required",
   "hostSmoke": {
     "passed": true,
-    "report": "evidence/analytics-member-info-api-release/host-smoke.json",
-    "statuses": [
-      200,
-      403,
-      503
-    ],
+    "report": "evidence/admin-team-lock-api-release/host-smoke.json",
     "outboundAttempts": 0,
-    "dependencySubstitution": "Separate identical-JavaScript host copy resolves installed x86_64 Sharp; original ARM64 archive and extracted tree remain unchanged",
     "nativeArmExecution": false
   },
-  "legacyHelperCompatibility": {
-    "checksPassed": 6,
-    "report": "evidence/analytics-member-info-api-release/windows-handoff-report.json",
-    "powerShellVersion": "7.6.8",
-    "platform": "Unix",
-    "nativeWindowsAcceptance": false,
-    "liveDownload": false,
-    "neonCommands": 0,
-    "helpers": "scripts",
-    "ownerRolloutRequiresHelper": false,
-    "actualPromotedRepositoryChecksPassed": 6,
-    "repositoryHeadAtCheck": "72ec164d3056469c239a011984e83ff88f2aacaf"
-  },
-  "verificationEvidence": "evidence/analytics-member-info-api-release",
-  "runtimeFinalConfirmedByRoot": true,
-  "manualWindowsGuide": "docs/ANALYTICS_MEMBER_INFO_WINDOWS_ROLLOUT.md",
-  "windowsHandoff": {
-    "checksPassed": 6,
-    "report": "evidence/analytics-member-info-api-release/windows-handoff-report.json",
-    "powerShellVersion": "7.6.8",
-    "platform": "Unix",
-    "nativeWindowsAcceptance": false,
-    "liveDownload": false,
-    "neonCommands": 0,
-    "helpers": "scripts",
-    "ownerRolloutRequiresHelper": false,
-    "nativeWindowsExecution": false,
-    "ownerGuide": "docs/ANALYTICS_MEMBER_INFO_WINDOWS_ROLLOUT.md",
-    "actualPromotedRepositoryChecksPassed": 6,
-    "repositoryHeadAtCheck": "72ec164d3056469c239a011984e83ff88f2aacaf"
-  },
-  "publicationStatus": "On hold: fresh user approval required before any push, publication or deployment",
-  "ownerGuideDirectNodeChecksumTestedAgainstPromotedZip": true
+  "runtimeFinalConfirmedByRoot": false
 }

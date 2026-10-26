@@ -108,3 +108,4 @@ dialog.discovery-profile.profile-info-dialog {
 .app-shell .project-team-member-links > a:hover { background:var(--paper,#f4f4ee); }
 .app-shell .project-team-member-links > a:focus-visible { outline:3px solid #006afe; outline-offset:2px; }
 .app-shell .project-team-member-links > span { display:inline-flex; align-items:center; gap:5px; font-size:12px; max-width:100%; overflow-wrap:anywhere; }
+@media(min-width:768px) { .app-shell .public-project-detail .project-team-members ul { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:28px; } }

@@ -45,7 +45,8 @@ test("Drizzle journal registers every SQL file and new mirror has one executable
   );
   assert(journal.entries.every((entry: any) => entry.breakpoints === true));
   assert.equal(journal.entries[28].tag, "0028_terminal_record_deletion");
-  assert.equal(journal.entries.at(-1).tag, "0029_admin_team_unlock");
+  assert.equal(journal.entries[29].tag, "0029_admin_team_unlock");
+  assert.equal(journal.entries.at(-1).tag, "0030_admin_team_lock");
   const parts = mirror
     .split("--> statement-breakpoint")
     .filter((part) => part.trim());
