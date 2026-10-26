@@ -1,4 +1,5 @@
-import { adminDemographics, hasDemographics, demographicPredicate, matchingDemographicPeople } from "./admin-demographic-filters";
+import { submissionWindowHasOpened } from "./team-lifecycle";
+import { adminDemographics, hasDemographics, demographicPredicate, matchingDemographicPeople, matchesAdminParticipant } from "./admin-demographic-filters";
 import { publicProjectMembers, adminSubmissionMembers } from "./project-member-profiles";
 import { projectMediaPolicy } from "./project-media-policy";
 import { adminTeamCandidates, adminTeamCorrection } from "./admin-team-corrections";
@@ -893,12 +894,12 @@ export class PortalExperience {
         403,
         "ADMIN_REQUIRED",
       );
-      const matching = hasDemographics(demographics) ? await matchingDemographicPeople(this.s.db, demographics) : null;
+      const matching = demographics.gender || demographics.profession ? await matchingDemographicPeople(this.s.db, { gender: demographics.gender, profession: demographics.profession }) : null;
       return {
         me,
         demographicFilters: demographics,
         items: (await this.participantRows()).filter(
-          (item) => (!item.viewer || me.owner || me.role === "admin") && (!matching || (!!item.id && matching.has(item.id))),
+          (item) => (!item.viewer || me.owner || me.role === "admin") && (!matching || (!!item.id && matching.has(item.id))) && matchesAdminParticipant(item, demographics),
         ),
         lookupOnly: me.role === "volunteer",
         ...(me.owner || me.role === "admin" ? { stats: await readAdminStats(this.s, "participants", me) } : {}),
@@ -919,7 +920,7 @@ export class PortalExperience {
     }
     if (route === "/admin/teams") {
       const me = await this.s.staff();
-      const demographic = demographicPredicate("team", "t.id", demographics);
+      const demographic = demographicPredicate("team", "t.id", demographics, demographics.teamStatus ? submissionWindowHasOpened((await this.s.settings(true)).policy, this.s.now()) : false);
       const all = await rows<Team & { unlock_attempts: number; unlock_frozen: number }>(
         this.s.db,
         "SELECT t.*,'initials' avatar,COALESCE(s.color_key,s.palette) palette,COALESCE(ul.attempts,0) unlock_attempts,CASE WHEN EXISTS(SELECT 1 FROM result_snapshots) THEN 1 ELSE 0 END unlock_frozen FROM teams t LEFT JOIN team_styles s ON s.team_id=t.id LEFT JOIN submission_attempt_ledger ul ON ul.team_id=t.id WHERE " + demographic.sql + " ORDER BY t.name",
@@ -1104,7 +1105,7 @@ export class PortalExperience {
         403,
         "REVIEWER_REQUIRED",
       );
-      const demographic = demographicPredicate("team", "p.team_id", demographics);
+      const demographic = demographicPredicate("team", "p.team_id", demographics, demographics.teamStatus ? submissionWindowHasOpened((await this.s.settings(true)).policy, this.s.now()) : false);
       const query =
         "SELECT p.id,p.slug,t.name teamName,json_extract(p.draft,'$.projectName') projectName,CASE WHEN EXISTS(SELECT 1 FROM submission_versions v WHERE v.team_id=p.team_id) THEN 'Submitted' ELSE 'Draft' END status,p.updated_at,rr.updated_at deleted_at FROM projects p JOIN teams t ON t.id=p.team_id LEFT JOIN record_removals rr ON rr.kind='project' AND rr.target_id=p.id AND rr.active=1 ";
       const items = await rows<Record<string, any>>(

@@ -1,4 +1,4 @@
-import { adminDemographics, hasDemographics, matchingDemographicPeople } from "./admin-demographic-filters";
+import { adminDemographics, hasDemographics, matchingDemographicPeople, matchesAdminParticipant } from "./admin-demographic-filters";
 import {
   isProjectMediaCommand,
   PROJECT_MEDIA_DEFAULT_JSON_BYTES,
@@ -140,6 +140,8 @@ export async function handlePortal(request: Request, runtime: Runtime) {
       const options = {
         gender: params.get("gender") || "",
         profession: params.get("profession") || "",
+        participantStatus: params.get("participantStatus") || "",
+        teamStatus: params.get("teamStatus") || "",
         ...((view.replace(/\/+/g, "/").replace(/\/$/, "") || "/") === "/" &&
         params.get("arrival") === "1"
           ? { includePrivateVenue: true }
@@ -168,7 +170,7 @@ export async function handlePortal(request: Request, runtime: Runtime) {
       const optimized = await prepareAdminPresentation(
         projected,
         view,
-        { search: options.search, page: options.page, focus: options.focus, ...(options.gender || options.profession ? {gender: options.gender, profession: options.profession} : {}) },
+        { search: options.search, page: options.page, focus: options.focus, ...(options.gender || options.profession || options.participantStatus || options.teamStatus ? {gender: options.gender, profession: options.profession, participantStatus: options.participantStatus, teamStatus: options.teamStatus} : {}) },
         params.get("presentation") || undefined,
       );
       return Response.json(
@@ -269,7 +271,7 @@ export async function handleExport(request: Request, runtime: Runtime) {
     if (list === "audit" || list === "logs") await service.staff(true);
     if (["settings", "permissions"].includes(list)) await service.staff(true);
     const exportParams = new URL(request.url).searchParams;
-    const demographics = adminDemographics({ gender: exportParams.get("gender") || "", profession: exportParams.get("profession") || "" });
+    const demographics = adminDemographics({ gender: exportParams.get("gender") || "", profession: exportParams.get("profession") || "", participantStatus: exportParams.get("participantStatus") || "", teamStatus: exportParams.get("teamStatus") || "" });
     if (hasDemographics(demographics)) {
       demand(["participants", "teams", "team-emails", "submissions"].includes(list), 422, "ADMIN_FILTER_ROUTE_REQUIRED");
       await service.staff();
@@ -281,8 +283,8 @@ export async function handleExport(request: Request, runtime: Runtime) {
     } else {
       data = await service.adminList(list === "logs" ? "audit" : list);
       if (hasDemographics(demographics) && list === "participants") {
-        const matching = await matchingDemographicPeople(runtime.db, demographics);
-        data = data.filter(row => typeof row.id === "string" && matching.has(row.id));
+        const matching = demographics.gender || demographics.profession ? await matchingDemographicPeople(runtime.db, {gender: demographics.gender, profession: demographics.profession}) : null;
+        data = data.filter(row => (!matching || (typeof row.id === "string" && matching.has(row.id))) && matchesAdminParticipant(row, demographics));
       }
     }
     if (list === "participants") {
@@ -330,7 +332,7 @@ export async function handleExport(request: Request, runtime: Runtime) {
       (row) =>
         (!query || JSON.stringify(row).toLowerCase().includes(query)) &&
         (!status || row.status === status) &&
-        (!teamStatus || row.teamStatus === teamStatus) &&
+        (!teamStatus || hasDemographics(demographics) || row.teamStatus === teamStatus) &&
         (!lock ||
           (lock === "locked"
             ? row.teamLocked === true || row.locked === true

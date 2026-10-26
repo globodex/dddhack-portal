@@ -92,7 +92,7 @@ import {
   AdminPresentationCacheMiss,
 } from "../lib/admin-presentation";
 import AdminDemographicFilters, { type AdminDemographicControls } from "./admin-demographic-filters";
-import type { AdminDemographics } from "../lib/admin-demographic-filters";
+import type { AdminDemographics } from "../lib/admin-filter-options";
 import { ParticipantProfiles, ProfileInfoButton, ProjectTeamMembers } from "./participant-profile-info";
 import DiscoveryProfile, {
   discoveryProfileProjection,
@@ -4395,8 +4395,12 @@ export function AdminParticipants({
       recordState === "all" ||
       (recordState === "removed" ? r.removed : !r.removed),
   );
-  const viewerFilter = filters.status === "not registered";
+  const viewerFilter = filters.status === "not registered" || demographics?.value.participantStatus === "Not registered";
   const [viewerPage, setViewerPage] = useState(0);
+  useEffect(() => {
+    setViewerPage(0);
+    setSelected([]);
+  }, [demographics?.value.participantStatus, demographics?.value.teamStatus, demographics?.value.gender, demographics?.value.profession]);
   const viewerPages = Math.max(1, Math.ceil(items.length / 25));
   const currentViewerPage = Math.min(viewerPage, viewerPages - 1);
   const displayedItems = viewerFilter
@@ -4432,14 +4436,14 @@ export function AdminParticipants({
     });
     setRecordState("active");
     setSelected([]);
-    demographics?.onChange({ gender: "", profession: "" });
+    demographics?.onChange({ gender: "", profession: "", participantStatus: "", teamStatus: "" });
   };
   const hasFilters = !!(
     filters.individual ||
     filters.teamQuery ||
     filters.status !== "all" ||
     filters.team !== "all" ||
-    recordState !== "active" || demographics?.value.gender || demographics?.value.profession
+    recordState !== "active" || demographics?.value.gender || demographics?.value.profession || demographics?.value.participantStatus || demographics?.value.teamStatus
   );
   const recordActionError = () => {
     // Portal.run keeps the full server error in its persistent action notice.
@@ -4475,7 +4479,7 @@ export function AdminParticipants({
             <a
               className="button secondary"
               aria-label={`Export filtered participants (${items.length})`}
-              href={participantExportHref(filters, recordState) + (demographics ? "&" + new URLSearchParams({gender: demographics.value.gender || "", profession: demographics.value.profession || ""}) : "")}
+              href={participantExportHref(filters, recordState) + (demographics ? "&" + new URLSearchParams({gender: demographics.value.gender || "", profession: demographics.value.profession || "", participantStatus: demographics.value.participantStatus || "", teamStatus: demographics.value.teamStatus || ""}) : "")}
             >
               <AdminIcon name="download" />
               Export
@@ -4499,23 +4503,14 @@ export function AdminParticipants({
         />
       )}
       {data.stats && <AdminStats stats={data.stats} />}
-      {canManage && demographics && <AdminDemographicFilters {...demographics} />}
-      <div className="admin-roster-tools">
-        <AdminParticipantFilters
-          value={filters}
-          onChange={updateFilters}
-          expanded={filtersExpanded}
-          showUnregistered={canManage}
-        />
-        <button
-          type="button"
-          className="admin-toolbar-icon admin-roster-filter-toggle"
-          aria-label="Participant filters"
-          aria-expanded={filtersExpanded}
-          onClick={() => setFiltersExpanded(!filtersExpanded)}
-        >
-          <AdminIcon name="filter" />
-        </button>
+      <div className={`admin-roster-tools${canManage && demographics ? " is-compact" : ""}`}>
+        {canManage && demographics ? <>
+          <Search value={filters.individual} onChange={value => updateFilters({...filters, individual: value, teamQuery: ""})} label="Name, email or team" />
+          <AdminDemographicFilters {...demographics} participants />
+        </> : <>
+          <AdminParticipantFilters value={filters} onChange={updateFilters} expanded={filtersExpanded} showUnregistered={canManage} />
+          <button type="button" className="admin-toolbar-icon admin-roster-filter-toggle" aria-label="Participant filters" aria-expanded={filtersExpanded} onClick={() => setFiltersExpanded(!filtersExpanded)}><AdminIcon name="filter" /></button>
+        </>}
       </div>
       <div className="admin-result-bar">
         <span>
@@ -5430,7 +5425,7 @@ export function AdminList({
       (data.items || []).map((row) => String(row.action || "")).filter(Boolean),
     ),
   ].sort();
-  const exportHref = `/api/export?list=${logs ? "logs" : teams ? "teams" : credits ? "credits" : "submissions"}&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}${demographics ? "&" + new URLSearchParams({gender: demographics.value.gender || "", profession: demographics.value.profession || ""}) : ""}`;
+  const exportHref = `/api/export?list=${logs ? "logs" : teams ? "teams" : credits ? "credits" : "submissions"}&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}${demographics ? "&" + new URLSearchParams({gender: demographics.value.gender || "", profession: demographics.value.profession || "", participantStatus: demographics.value.participantStatus || "", teamStatus: demographics.value.teamStatus || ""}) : ""}`;
   return (
     <section
       className={`admin-exact admin-workspace admin-list-page${teams ? " admin-teams-page" : logs ? " admin-logs-page" : credits ? " admin-credits-page" : " admin-submissions-page"}`}
@@ -5454,7 +5449,6 @@ export function AdminList({
       </header>
       {data.stats && <AdminStats stats={data.stats} />}
       {data.submissionAnalytics && <AdminSubmissionAnalytics analytics={data.submissionAnalytics} />}
-      {demographics && <AdminDemographicFilters {...demographics} />}
       <div
         className={`toolbar admin-list-toolbar${filtersExpanded ? " is-expanded" : ""}`}
       >
@@ -5471,7 +5465,8 @@ export function AdminList({
                   : "Search projects"
           }
         />
-        {!credits && (
+        {demographics && <AdminDemographicFilters {...demographics} />}
+        {!credits && !demographics && (
           <button
             className="admin-toolbar-icon admin-mobile-filter"
             aria-label={
@@ -5487,7 +5482,7 @@ export function AdminList({
             <AdminIcon name="filter" />
           </button>
         )}
-        {!logs && !credits && (
+        {!logs && !credits && !demographics && (
           <select
             aria-label={teams ? "Team lock status" : "Submission status"}
             value={filter}
@@ -5502,7 +5497,7 @@ export function AdminList({
             ))}
           </select>
         )}
-        {teams && (
+        {teams && !demographics && (
           <select
             aria-label="Membership lock filter"
             value={lockFilter}
@@ -5531,7 +5526,7 @@ export function AdminList({
           <a
             className="button secondary admin-member-export"
             aria-label="Export member emails"
-            href={`/api/export?list=team-emails&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}${demographics ? "&" + new URLSearchParams({gender: demographics.value.gender || "", profession: demographics.value.profession || ""}) : ""}`}
+            href={`/api/export?list=team-emails&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}${demographics ? "&" + new URLSearchParams({gender: demographics.value.gender || "", profession: demographics.value.profession || "", participantStatus: demographics.value.participantStatus || "", teamStatus: demographics.value.teamStatus || ""}) : ""}`}
           >
             <AdminIcon name="users" />
             <span className="admin-export-label">Member emails</span>
@@ -6544,13 +6539,13 @@ export default function Portal({
       const focus =
         new URLSearchParams(window.location.search).get("project") || "";
       const selected = demographicSelection.current.path === path ? demographicSelection.current.value : {};
-      const options = { search: "", page: 0, focus, ...(selected.gender || selected.profession ? {gender: selected.gender || "", profession: selected.profession || ""} : {}) };
+      const options = { search: "", page: 0, focus, ...(selected.gender || selected.profession || selected.participantStatus || selected.teamStatus ? {gender: selected.gender || "", profession: selected.profession || "", participantStatus: selected.participantStatus || "", teamStatus: selected.teamStatus || ""} : {}) };
       const version = await presentationCache.current.knownVersion(
         path,
         data.me,
         options,
       );
-      const url = `/api/portal?view=${encodeURIComponent(path)}&focus=${encodeURIComponent(focus)}${path === "/" ? "&arrival=1" : ""}&gender=${encodeURIComponent(options.gender || "")}&profession=${encodeURIComponent(options.profession || "")}`;
+      const url = `/api/portal?view=${encodeURIComponent(path)}&focus=${encodeURIComponent(focus)}${path === "/" ? "&arrival=1" : ""}&gender=${encodeURIComponent(options.gender || "")}&profession=${encodeURIComponent(options.profession || "")}&participantStatus=${encodeURIComponent(options.participantStatus || "")}&teamStatus=${encodeURIComponent(options.teamStatus || "")}`;
       let { response: r, body } = await readPortalView(
         url + (version ? "&presentation=" + encodeURIComponent(version) : ""),
         controller.signal,

@@ -241,19 +241,20 @@ for (const engine of ["sqlite", "postgres"] as const)
     }
   });
 
-test("filter controls are limited to actual portal choices and accessible clear action", () => {
-  assert.deepEqual(adminDemographics({}), { gender: "", profession: "" });
+test("filter trigger is compact, accessible and reports selected fields without a separate row", () => {
+  assert.deepEqual(adminDemographics({}), {
+    gender: "",
+    profession: "",
+    participantStatus: "",
+    teamStatus: "",
+  });
   const html = renderToStaticMarkup(
     createElement(AdminDemographicFilters, {
       value: { gender: "woman", profession: "Startup Founder" },
       onChange() {},
     }),
   );
-  assert.match(html, /Gender/);
-  assert.match(html, /Profession/);
-  assert.match(html, /Clear profile filters/);
-  assert.doesNotMatch(
-    html,
-    /Self-described|Prefer not|Not provided|Matching mode|Minimum/,
-  );
+  assert.match(html, /Filters \(2 active\)/);
+  assert.match(html, /aria-haspopup="dialog"/);
+  assert.doesNotMatch(html, /<select|<fieldset|Gender|Matching mode|Minimum/);
 });

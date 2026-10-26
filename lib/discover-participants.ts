@@ -16,6 +16,8 @@ export type PortalViewOptions = DiscoverParticipantOptions & {
   focus?: string;
   gender?: string;
   profession?: string;
+  participantStatus?: string;
+  teamStatus?: string;
 };
 type Membership = "all" | "in" | "out";
 type Cursor = {

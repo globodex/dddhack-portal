@@ -1,3 +1,4 @@
+import { attendanceOverrideSQL } from "./admin-filter-status";
 import { one, rows, type Database } from "./db";
 import { readiness } from "./experience-contract";
 import { attendancePredicate } from "./portal-status";
@@ -130,8 +131,7 @@ export async function personFacts(db: Database, ids: string[]) {
     }>(
       db,
       `SELECT u.id,COALESCE(r.status,'pending') approval,
-      CASE WHEN COALESCE(a.reconciled_at,ra.reconciled_at) IS NOT NULL AND
-        (o.updated_at IS NULL OR o.updated_at<COALESCE(a.reconciled_at,ra.reconciled_at)) THEN 'Absent' ELSE o.status END status,
+      ${attendanceOverrideSQL("o", "a", "ra")} status,
       u.email,CASE WHEN ${attendancePredicate("u.id")} THEN 1 ELSE 0 END checked,rr.updated_at deactivated_at
       FROM users u LEFT JOIN registrations r ON r.email=u.email LEFT JOIN participant_status_overrides o ON o.user_id=u.id
       LEFT JOIN automatic_absences a ON a.user_id=u.id LEFT JOIN registration_absences ra ON ra.email=u.email
