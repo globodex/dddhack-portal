@@ -1,0 +1,95 @@
+{
+  "status": "Local validation complete; push/publication/deployment held pending fresh user approval",
+  "validatedAtUTC": "2026-10-26T10:56:03.385771+00:00",
+  "sourceBeforeEvidenceCommit": "542936eefdc7cec9d16d05904d973dfc7fb134a4",
+  "backendSource": "72ec164d3056469c239a011984e83ff88f2aacaf",
+  "lastFrontendChange": "c91ef2b",
+  "fullRegression": {
+    "command": "env -i PATH=\"$PATH\" NODE_ENV=test node --no-wasm-code-gc --import tsx --test --test-concurrency=1 tests/*.test.ts",
+    "exitCode": 0,
+    "tests": 953,
+    "pass": 946,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": [
+      "\ufe63 native PostgreSQL: concurrent guarded admin corrections retain max5, one team per person, rename CAS and empty guards (1.002203ms) # SKIP",
+      "\ufe63 native PostgreSQL magic link GET confirms without consumption, POST has one winner, and session resolves preserved portal staff (3.007505ms) # SKIP",
+      "\ufe63 native PostgreSQL verified login grants no viewer role escalation and ignores spoofed identity and cookies (0.258589ms) # SKIP",
+      "\ufe63 native PostgreSQL sessions recheck current portal roles and reject a changed verified-email binding (0.182571ms) # SKIP",
+      "\ufe63 native PostgreSQL concurrent connections preserve guards, member/vote caps, three attempts, and frozen snapshots (1.097145ms) # SKIP",
+      "\ufe63 native PostgreSQL snapshot API rejects unauthorized, unbound, wrong-origin and unsafe source requests through the complete migration plan (0.865439ms) # SKIP",
+      "\ufe63 native PostgreSQL approved snapshots retry idempotently, audit no source, and permit only one-way immutable revocation (0.135482ms) # SKIP"
+    ],
+    "todo": 0,
+    "durationMs": 860323.980873,
+    "logSHA256": "ddf0b4fa32156c2850c2e143a18a869a1a7670aa7400026c696e9d1f6a8c2b8f"
+  },
+  "affectedRerun": {
+    "pass": 10,
+    "fail": 0,
+    "logSHA256": "c1f707982cc4a65cd645fab2ef00dcfe2d5cae97e670e1231ae0b96881c99f61"
+  },
+  "productionBuildAndTypecheck": {
+    "passed": true,
+    "logSHA256": "8d4b802e7f2ae52bc0ca0293b3724d8a9a266c42bdb76071238c7d55730c8c78"
+  },
+  "actualAppBrowser": {
+    "groupedChecks": 17,
+    "screenshots": 26,
+    "errors": 0,
+    "normalSource": "72ec164d3056469c239a011984e83ff88f2aacaf",
+    "addendumSource": "c91ef2b",
+    "viewports": [
+      "1440x900",
+      "390x844",
+      "320x480",
+      "768x900"
+    ],
+    "syntheticOnly": true,
+    "normalReportSHA256": "ce8cd6af594d854aa6a67693e02ca598ebae7192ca6bfbd188ef8c3939946f36",
+    "addendumReportSHA256": "4dcc0cf7edda26e4226690b7efcac599ecee38723c7ab5d7548b0e4808be3a39"
+  },
+  "package": {
+    "archive": "artifacts/neon/portalapi.zip",
+    "sha256": "cef0cb28499525c48fbf4825d4a50c988b19337c5b0ff240ed3d0c5719bac6cb",
+    "applicationRuntimeInputsMatchFinalCheckout": 91,
+    "nativeARM64Execution": false,
+    "nativeWindowsExecution": false,
+    "manualBackendDeploymentRequired": true
+  },
+  "schema": {
+    "changedThisBatch": false,
+    "newMigrationBeyond0106": false,
+    "planEntries": 12,
+    "planDigest": "73c64b0acbe9df80f9ca6627c0a1d4a3485c83214a6923918c530c1ab2b5d160",
+    "hostedLedgerInspected": false,
+    "ownerMustInspectWhetherPrior0106IsPending": true
+  },
+  "library": {
+    "gallery": "libfile_7ae8564bd820819187f0b1f0a711e6b2",
+    "guide": "libfile_0a7061bf5ddc8191a9f2996af8af077f",
+    "backendZIP": "libfile_b2e7ada5b6888191bd81a6c159f7ad29"
+  },
+  "unchanged": {
+    "scoringWeights": true,
+    "revealPolicy": true,
+    "credentialsAndProviderSettings": true
+  },
+  "excluded": [
+    "Reversible roster removal",
+    "Paused development no-backup helper"
+  ],
+  "unverified": [
+    "Hosted backend/schema compatibility until owner inspection and deployment",
+    "Real OAuth and paid model/account access",
+    "Native Windows execution",
+    "Native ARM64 execution"
+  ],
+  "externalActions": {
+    "pushPerformed": false,
+    "backendDeploymentPerformed": false,
+    "hostedMigrationPerformed": false,
+    "paidEvaluationPerformed": false
+  },
+  "signedInMetricLimit": "Only durable or provable historical authentication evidence is counted; unavailable history is not represented as exact zero."
+}
