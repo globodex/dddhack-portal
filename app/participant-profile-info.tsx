@@ -8,11 +8,21 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { Info } from "lucide-react";
+import {
+  Info,
+  BriefcaseBusiness,
+  Building2,
+  Phone,
+  Mail,
+  ExternalLink,
+} from "lucide-react";
 import DiscoveryProfile, {
   discoveryProfileProjection,
+  discoverySocialLinks,
+  discoveryDetailsProjection,
   type DiscoveryPerson,
 } from "./discovery-profile";
+import { GenderSymbol, genderLabel } from "./gender-presentation";
 import DotAvatar from "./dot-avatar";
 import { useHydrated } from "./use-hydrated";
 
@@ -290,23 +300,98 @@ export function ProjectTeamMembers({
     <section className="project-team-members" aria-label="Team members">
       <h2>Team members</h2>
       <ul>
-        {members.map((member) => (
-          <li key={member.id}>
-            <DotAvatar
-              color={member.avatarColor || "blue"}
-              expression={member.avatarExpression || "squeezed"}
-              size={36}
-              decorative
-            />
-            <span className="project-team-member-name">{member.name}</span>
-            {admin && typeof member.status === "string" && (
-              <span className="project-team-member-status">
-                {member.status}
-              </span>
-            )}
-            <ProfileInfoButton personId={member.id} name={member.name} />
-          </li>
-        ))}
+        {members.map((member) => {
+          const details = discoveryDetailsProjection(member.details);
+          const links = discoverySocialLinks(
+            Array.isArray(member.socials) ? member.socials : [],
+          );
+          return (
+            <li key={member.id}>
+              <DotAvatar
+                color={member.avatarColor || "blue"}
+                expression={member.avatarExpression || "squeezed"}
+                size={40}
+                decorative
+              />
+              <div className="project-team-member-body">
+                <div className="project-team-member-heading">
+                  <strong className="project-team-member-name">
+                    {member.name}
+                  </strong>
+                  {admin && typeof member.status === "string" && (
+                    <span className="project-team-member-status">
+                      {member.status}
+                    </span>
+                  )}
+                </div>
+                <div className="project-team-member-chips">
+                  {details?.profession && (
+                    <span>
+                      <BriefcaseBusiness size={15} aria-hidden="true" />
+                      {details.profession}
+                    </span>
+                  )}
+                  {details?.gender && (
+                    <span>
+                      <GenderSymbol value={details.gender} size={15} />
+                      {genderLabel(details.gender)}
+                    </span>
+                  )}
+                  {details?.organization && (
+                    <span>
+                      <Building2 size={15} aria-hidden="true" />
+                      {details.organization}
+                    </span>
+                  )}
+                </div>
+                {member.bio && (
+                  <p className="project-team-member-bio">{member.bio}</p>
+                )}
+                {(links.length > 0 ||
+                  (admin &&
+                    (member.email ||
+                      details?.phone ||
+                      details?.openaiOrgId))) && (
+                  <div className="project-team-member-links">
+                    {links.map((link) => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${member.name}: ${link.label} (opens in a new tab)`}
+                        title={link.label}
+                      >
+                        <img
+                          src={`/icons/social/${link.icon}.svg`}
+                          width={20}
+                          height={20}
+                          alt=""
+                        />
+                        <ExternalLink size={12} aria-hidden="true" />
+                      </a>
+                    ))}
+                    {admin && typeof member.email === "string" && (
+                      <span>
+                        <Mail size={15} aria-hidden="true" />
+                        {member.email}
+                      </span>
+                    )}
+                    {admin && details?.phone && (
+                      <span>
+                        <Phone size={15} aria-hidden="true" />
+                        {details.phone}
+                      </span>
+                    )}
+                    {admin && details?.openaiOrgId && (
+                      <span>{details.openaiOrgId}</span>
+                    )}
+                  </div>
+                )}
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </section>
   );

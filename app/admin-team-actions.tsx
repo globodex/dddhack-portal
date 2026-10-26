@@ -131,11 +131,13 @@ export default function AdminTeamActions({
     id = useId(),
     opener = useRef<HTMLElement | null>(null),
     pending = useRef(false),
+    lockPreviewRequest = useRef<AbortController | null>(null),
     unlockButton = useRef<HTMLButtonElement>(null),
     restoreUnlockFocus = useRef(false);
   const unlockBlockedReason =
     team.unlockBlockedReason ||
     (team.locked && !team.lockedAt ? "Refresh to load this team's lock." : "");
+  useEffect(() => () => lockPreviewRequest.current?.abort(), [team.id]);
   const [mode, setMode] = useState<"rename" | "add" | null>(null),
     [name, setName] = useState(team.name),
     [expectedName, setExpectedName] = useState(team.name),
@@ -252,9 +254,12 @@ export default function AdminTeamActions({
                     view: "/admin/team-lock",
                     focus: team.id,
                   });
+                  const controller = new AbortController();
+                  lockPreviewRequest.current = controller;
                   const { response, body } = await readPortalView(
-                    `/api/portal?${params}`,
+                    `/api/portal?${params}`, controller.signal,
                   );
+                  if (controller.signal.aborted) throw new ActionCancelled();
                   if (!response.ok) throw new Error(portalErrorText(body));
                   if (!body.canLock)
                     throw new Error(

@@ -1,5 +1,5 @@
 import { one, rows, type Database } from "./db";
-import { teamPhone } from "./phone";
+import { selectedProfileFacts, type ProfileViewer, type SelectedProfileFacts } from "./selected-profile-facts";
 import { demand, PortalError } from "./security";
 import { registeredEmailPredicate } from "./roster";
 
@@ -14,6 +14,8 @@ export type PortalViewOptions = DiscoverParticipantOptions & {
   search?: string;
   page?: number;
   focus?: string;
+  gender?: string;
+  profession?: string;
 };
 type Membership = "all" | "in" | "out";
 type Cursor = {
@@ -136,39 +138,14 @@ const project = (row: DirectoryRow) => ({
   socials: JSON.parse(row.socials),
 });
 
-// Supplied only by the freshly authenticated service actor, never query params.
-type ProfileViewer = {
-  id: string;
-  role: string;
-  owner?: boolean;
-  deactivated?: boolean;
-  canParticipate?: boolean;
-};
 async function selectedPerson(
   db: Database,
   row: DirectoryRow,
   viewer?: ProfileViewer,
 ) {
   const publicPerson = project(row);
-  const admin =
-    !!viewer &&
-    !viewer.deactivated &&
-    (viewer.owner || viewer.role === "admin");
-  const participant =
-    !!viewer && !viewer.deactivated && viewer.canParticipate === true;
   if (!viewer) return { ...publicPerson, details: {} };
-  const self = participant && viewer!.id === row.id;
-  const extra = await one<{
-    bio: string;
-    socials: string;
-    gender: string;
-    genderDescription: string;
-    profession: string;
-    organization: string;
-    openaiOrgId: string;
-    phone: string;
-    sameTeam: number;
-  }>(
+  const extra = await one<SelectedProfileFacts>(
     db,
     `SELECT p.bio,p.socials,p.gender,p.gender_description genderDescription,
     pd.best_description profession,pd.organization,pd.openai_org_id openaiOrgId,pd.phone,
@@ -179,37 +156,7 @@ async function selectedPerson(
     row.id,
   );
   if (!extra) return { ...publicPerson, details: {} };
-  const personal = admin || self;
-  return {
-    ...publicPerson,
-    ...(personal
-      ? { bio: extra.bio, socials: JSON.parse(extra.socials || "[]") }
-      : {}),
-    details: {
-      // The owner explicitly approved the saved gender value in selected profiles.
-      // This does not add it to directory cards or publish the freeform description.
-      ...(extra.gender ? { gender: extra.gender } : {}),
-      ...(personal
-        ? {
-            ...(extra.profession?.trim()
-              ? { profession: extra.profession }
-              : {}),
-            ...(extra.organization?.trim()
-              ? { organization: extra.organization }
-              : {}),
-            ...(extra.genderDescription?.trim()
-              ? { genderDescription: extra.genderDescription }
-              : {}),
-          }
-        : {}),
-      ...(admin && /^org-[A-Za-z0-9_-]+$/.test(extra.openaiOrgId || "")
-        ? { openaiOrgId: extra.openaiOrgId }
-        : {}),
-      ...(admin || (participant && extra.sameTeam === 1)
-        ? teamPhone(extra.phone)
-        : {}),
-    },
-  };
+  return { ...publicPerson, ...selectedProfileFacts(extra, viewer, row.id) };
 }
 
 export async function discoverParticipants(

@@ -1,3 +1,4 @@
+import { adminDemographics, hasDemographics, demographicPredicate, matchingDemographicPeople } from "./admin-demographic-filters";
 import { publicProjectMembers, adminSubmissionMembers } from "./project-member-profiles";
 import { projectMediaPolicy } from "./project-media-policy";
 import { adminTeamCandidates, adminTeamCorrection } from "./admin-team-corrections";
@@ -613,6 +614,11 @@ export class PortalExperience {
     options: PortalViewOptions = {},
   ): Promise<Record<string, unknown> | null> {
     let route = path.replace(/\/+/g, "/").replace(/\/$/, "") || "/";
+    const demographics = adminDemographics(options);
+    if (hasDemographics(demographics)) {
+      demand(["/admin", "/admin/participants", "/admin/teams", "/admin/submissions"].includes(route), 422, "ADMIN_FILTER_ROUTE_REQUIRED");
+      await this.s.staff();
+    }
     const lockPreview = await adminTeamLockView(this.s, route, options);
     if (lockPreview !== null) return lockPreview;
     const approval = await adminTeamApprovalView(this.s, route, options);
@@ -776,7 +782,7 @@ export class PortalExperience {
         ...(scores.criteria ? { scoringInfo: scores.criteria } : {}),
         ...(!listRoute
           ? {
-              teamMembers: await publicProjectMembers(this.s.db, all[0].team_id),
+              teamMembers: await publicProjectMembers(this.s.db, all[0].team_id, me),
               comments: await rows(
                 this.s.db,
                 "SELECT c.id,c.body,c.created_at,COALESCE(x.display_name,u.name) author,pd.avatar_color avatarColor,pd.avatar_expression avatarExpression FROM project_comments c JOIN users u ON u.id=c.author_id LEFT JOIN participant_profiles x ON x.user_id=u.id LEFT JOIN profile_details pd ON pd.user_id=u.id WHERE c.project_id=? ORDER BY c.created_at LIMIT 500",
@@ -887,10 +893,12 @@ export class PortalExperience {
         403,
         "ADMIN_REQUIRED",
       );
+      const matching = hasDemographics(demographics) ? await matchingDemographicPeople(this.s.db, demographics) : null;
       return {
         me,
+        demographicFilters: demographics,
         items: (await this.participantRows()).filter(
-          (item) => !item.viewer || me.owner || me.role === "admin",
+          (item) => (!item.viewer || me.owner || me.role === "admin") && (!matching || (!!item.id && matching.has(item.id))),
         ),
         lookupOnly: me.role === "volunteer",
         ...(me.owner || me.role === "admin" ? { stats: await readAdminStats(this.s, "participants", me) } : {}),
@@ -911,9 +919,11 @@ export class PortalExperience {
     }
     if (route === "/admin/teams") {
       const me = await this.s.staff();
+      const demographic = demographicPredicate("team", "t.id", demographics);
       const all = await rows<Team & { unlock_attempts: number; unlock_frozen: number }>(
         this.s.db,
-        "SELECT t.*,'initials' avatar,COALESCE(s.color_key,s.palette) palette,COALESCE(ul.attempts,0) unlock_attempts,CASE WHEN EXISTS(SELECT 1 FROM result_snapshots) THEN 1 ELSE 0 END unlock_frozen FROM teams t LEFT JOIN team_styles s ON s.team_id=t.id LEFT JOIN submission_attempt_ledger ul ON ul.team_id=t.id ORDER BY t.name",
+        "SELECT t.*,'initials' avatar,COALESCE(s.color_key,s.palette) palette,COALESCE(ul.attempts,0) unlock_attempts,CASE WHEN EXISTS(SELECT 1 FROM result_snapshots) THEN 1 ELSE 0 END unlock_frozen FROM teams t LEFT JOIN team_styles s ON s.team_id=t.id LEFT JOIN submission_attempt_ledger ul ON ul.team_id=t.id WHERE " + demographic.sql + " ORDER BY t.name",
+        ...demographic.args,
       );
       const ids = all.map((t) => t.id),
         facts = await teamFacts(this.s.db, ids, undefined, this.s.now()),
@@ -963,6 +973,7 @@ export class PortalExperience {
       return {
         me,
         stats: await readAdminStats(this.s, "teams", me),
+        demographicFilters: demographics,
         items: all
           .map((t) => {
             const fact = facts.get(t.id)!;
@@ -1093,15 +1104,16 @@ export class PortalExperience {
         403,
         "REVIEWER_REQUIRED",
       );
+      const demographic = demographicPredicate("team", "p.team_id", demographics);
       const query =
         "SELECT p.id,p.slug,t.name teamName,json_extract(p.draft,'$.projectName') projectName,CASE WHEN EXISTS(SELECT 1 FROM submission_versions v WHERE v.team_id=p.team_id) THEN 'Submitted' ELSE 'Draft' END status,p.updated_at,rr.updated_at deleted_at FROM projects p JOIN teams t ON t.id=p.team_id LEFT JOIN record_removals rr ON rr.kind='project' AND rr.target_id=p.id AND rr.active=1 ";
       const items = await rows<Record<string, any>>(
         this.s.db,
         me.owner || me.role === "admin"
-          ? query + " ORDER BY p.updated_at DESC LIMIT 1000"
+          ? query + " WHERE " + demographic.sql + " ORDER BY p.updated_at DESC LIMIT 1000"
           : query +
               " JOIN project_assignments a ON a.project_id=p.id WHERE a.user_id=? AND a.kind=? ORDER BY p.updated_at DESC LIMIT 1000",
-        ...(me.owner || me.role === "admin" ? [] : [me.id, me.role]),
+        ...(me.owner || me.role === "admin" ? demographic.args : [me.id, me.role]),
       );
       const byProject = new Map<string, Record<string, unknown>[]>();
       if (me.owner || me.role === "admin") {
@@ -1129,7 +1141,7 @@ export class PortalExperience {
       const frozenScores = new Map(adminAnalytics?.frozenScores.map(score => [score.projectId, score]) || []);
       return {
         me,
-        ...(me.owner || me.role === "admin" ? { stats: await readAdminStats(this.s, "submissions", me) } : {}),
+        ...(me.owner || me.role === "admin" ? { stats: await readAdminStats(this.s, "submissions", me), demographicFilters: demographics } : {}),
         ...(adminAnalytics ? { submissionAnalytics: adminAnalytics.analytics } : {}),
         items: items.map((item) => ({
           ...item,
@@ -1190,7 +1202,7 @@ export class PortalExperience {
         version: v ? { ...v, payload: JSON.parse(v.payload) } : undefined,
         currentVersionId: currentVersion?.id || null,
         selectedIsCurrent: !!v && v.id === currentVersion?.id && v.id === p.published_version_id,
-        ...(me.owner || me.role === "admin" ? { teamMembers: await adminSubmissionMembers(this.s.db, p.team_id) } : {}),
+        ...(me.owner || me.role === "admin" ? { teamMembers: await adminSubmissionMembers(this.s.db, p.team_id, me) } : {}),
         reviewKind: kind,
         canRestoreEligibility: kind === "judge",
         eligibility: await this.eligibility(p),

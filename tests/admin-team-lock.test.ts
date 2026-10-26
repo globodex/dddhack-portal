@@ -208,6 +208,17 @@ for (const engine of ["sqlite", "postgres"] as const) {
       await assert.rejects(admin.command("admin-lock-team", payload(stale)), {
         code: "TEAM_LOCK_CHANGED",
       });
+      const staleIdea = await preview(admin);
+      await batch(f.db, [["UPDATE ideas SET description='Changed after review' WHERE team_id=?", teamId]]);
+      await assert.rejects(admin.command("admin-lock-team", payload(staleIdea)), { code: "TEAM_LOCK_CHANGED" });
+      const staleMembers = await preview(admin);
+      await batch(f.db, [["DELETE FROM memberships WHERE user_id='fake_dave'"]]);
+      await assert.rejects(admin.command("admin-lock-team", payload(staleMembers)), { code: "TEAM_LOCK_CHANGED" });
+      await batch(f.db, [["INSERT INTO memberships VALUES('fake_dave',?,'2026-10-22T07:00:00.000Z')", teamId]]);
+      const staleLeader = await preview(admin);
+      await batch(f.db, [["UPDATE teams SET leader_id='fake_carol' WHERE id=?", teamId]]);
+      await assert.rejects(admin.command("admin-lock-team", payload(staleLeader)), { code: "TEAM_LOCK_CHANGED" });
+      await batch(f.db, [["UPDATE teams SET leader_id='fake_bob' WHERE id=?", teamId]]);
       const current = await preview(admin),
         original = admin.mutate.bind(admin);
       admin.mutate = async (actor, action, entity, sql, detail, why) =>

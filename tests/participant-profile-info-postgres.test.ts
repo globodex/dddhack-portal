@@ -81,7 +81,7 @@ test("PostgreSQL profile-info projection and role/membership boundaries", async 
           for (const member of page.teamMembers)
             assert.deepEqual(
               Object.keys(member).sort(),
-              ["id", "name", "avatarColor", "avatarExpression"].sort(),
+              ["id", "name", "avatarColor", "avatarExpression", ...(who === null ? [] : ["bio", "socials", "details"])].sort(),
             );
           assert.doesNotMatch(
             JSON.stringify(page),
@@ -113,7 +113,7 @@ test("PostgreSQL profile-info projection and role/membership boundaries", async 
           );
           assert.ok(
             page.teamMembers.every(
-              (member: any) => !("email" in member) && !("details" in member),
+              (member: any) => typeof member.email === "string" && typeof member.details === "object",
             ),
           );
         }

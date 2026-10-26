@@ -91,6 +91,8 @@ import {
   AdminPresentationCache,
   AdminPresentationCacheMiss,
 } from "../lib/admin-presentation";
+import AdminDemographicFilters, { type AdminDemographicControls } from "./admin-demographic-filters";
+import type { AdminDemographics } from "../lib/admin-demographic-filters";
 import { ParticipantProfiles, ProfileInfoButton, ProjectTeamMembers } from "./participant-profile-info";
 import DiscoveryProfile, {
   discoveryProfileProjection,
@@ -4359,8 +4361,10 @@ function AdminWorkspaceTabs({
 export function AdminParticipants({
   data,
   run,
+  demographics,
 }: {
   data: View;
+  demographics?: AdminDemographicControls;
   run: (
     a: string,
     d: Row,
@@ -4428,13 +4432,14 @@ export function AdminParticipants({
     });
     setRecordState("active");
     setSelected([]);
+    demographics?.onChange({ gender: "", profession: "" });
   };
   const hasFilters = !!(
     filters.individual ||
     filters.teamQuery ||
     filters.status !== "all" ||
     filters.team !== "all" ||
-    recordState !== "active"
+    recordState !== "active" || demographics?.value.gender || demographics?.value.profession
   );
   const recordActionError = () => {
     // Portal.run keeps the full server error in its persistent action notice.
@@ -4470,7 +4475,7 @@ export function AdminParticipants({
             <a
               className="button secondary"
               aria-label={`Export filtered participants (${items.length})`}
-              href={participantExportHref(filters, recordState)}
+              href={participantExportHref(filters, recordState) + (demographics ? "&" + new URLSearchParams({gender: demographics.value.gender || "", profession: demographics.value.profession || ""}) : "")}
             >
               <AdminIcon name="download" />
               Export
@@ -4494,6 +4499,7 @@ export function AdminParticipants({
         />
       )}
       {data.stats && <AdminStats stats={data.stats} />}
+      {canManage && demographics && <AdminDemographicFilters {...demographics} />}
       <div className="admin-roster-tools">
         <AdminParticipantFilters
           value={filters}
@@ -5396,8 +5402,10 @@ export function AdminList({
   data,
   path,
   run,
+  demographics,
 }: {
   data: View;
+  demographics?: AdminDemographicControls;
   path: string;
   run: (a: string, d: Row) => Promise<Row>;
 }) {
@@ -5422,7 +5430,7 @@ export function AdminList({
       (data.items || []).map((row) => String(row.action || "")).filter(Boolean),
     ),
   ].sort();
-  const exportHref = `/api/export?list=${logs ? "logs" : teams ? "teams" : credits ? "credits" : "submissions"}&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}`;
+  const exportHref = `/api/export?list=${logs ? "logs" : teams ? "teams" : credits ? "credits" : "submissions"}&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}${demographics ? "&" + new URLSearchParams({gender: demographics.value.gender || "", profession: demographics.value.profession || ""}) : ""}`;
   return (
     <section
       className={`admin-exact admin-workspace admin-list-page${teams ? " admin-teams-page" : logs ? " admin-logs-page" : credits ? " admin-credits-page" : " admin-submissions-page"}`}
@@ -5446,6 +5454,7 @@ export function AdminList({
       </header>
       {data.stats && <AdminStats stats={data.stats} />}
       {data.submissionAnalytics && <AdminSubmissionAnalytics analytics={data.submissionAnalytics} />}
+      {demographics && <AdminDemographicFilters {...demographics} />}
       <div
         className={`toolbar admin-list-toolbar${filtersExpanded ? " is-expanded" : ""}`}
       >
@@ -5522,7 +5531,7 @@ export function AdminList({
           <a
             className="button secondary admin-member-export"
             aria-label="Export member emails"
-            href={`/api/export?list=team-emails&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}`}
+            href={`/api/export?list=team-emails&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}${demographics ? "&" + new URLSearchParams({gender: demographics.value.gender || "", profession: demographics.value.profession || ""}) : ""}`}
           >
             <AdminIcon name="users" />
             <span className="admin-export-label">Member emails</span>
@@ -6504,7 +6513,19 @@ export default function Portal({
     loadAbort = useRef<AbortController | null>(null),
     lastRefresh = useRef(0),
     hasLoadedView = useRef(!!initialView || !!initialPublic),
-    presentationCache = useRef(new AdminPresentationCache());
+    presentationCache = useRef(new AdminPresentationCache()),
+    demographicSelection = useRef<{ path: string; value: AdminDemographics }>({ path, value: {} });
+  const demographicValue = demographicSelection.current.path === path ? demographicSelection.current.value : {};
+  const demographicControls: AdminDemographicControls = {
+    value: demographicValue,
+    pending: refreshing,
+    onChange(value) {
+      demographicSelection.current = { path, value };
+      // Never leave stale, actionable rows on screen while changing scope.
+      setData(previous => ({ ...previous, items: [] }));
+      void load();
+    },
+  };
   if (!gate.current) gate.current = new ConfirmationGate(setConfirmation);
   useEffect(() => {
     if (!message || messageTone !== "success") return;
@@ -6522,13 +6543,14 @@ export default function Portal({
     try {
       const focus =
         new URLSearchParams(window.location.search).get("project") || "";
-      const options = { search: "", page: 0, focus };
+      const selected = demographicSelection.current.path === path ? demographicSelection.current.value : {};
+      const options = { search: "", page: 0, focus, ...(selected.gender || selected.profession ? {gender: selected.gender || "", profession: selected.profession || ""} : {}) };
       const version = await presentationCache.current.knownVersion(
         path,
         data.me,
         options,
       );
-      const url = `/api/portal?view=${encodeURIComponent(path)}&focus=${encodeURIComponent(focus)}${path === "/" ? "&arrival=1" : ""}`;
+      const url = `/api/portal?view=${encodeURIComponent(path)}&focus=${encodeURIComponent(focus)}${path === "/" ? "&arrival=1" : ""}&gender=${encodeURIComponent(options.gender || "")}&profession=${encodeURIComponent(options.profession || "")}`;
       let { response: r, body } = await readPortalView(
         url + (version ? "&presentation=" + encodeURIComponent(version) : ""),
         controller.signal,
@@ -7060,13 +7082,13 @@ export default function Portal({
                 ) : path.startsWith("/projects") || path === "/leaderboard" ? (
                   <Projects data={data} path={path} run={run} />
                 ) : path === "/admin/participants" ? (
-                  <AdminParticipants data={data} run={run} />
+                  <AdminParticipants data={data} run={run} demographics={demographicControls} />
                 ) : path === "/admin/settings" ? (
                   <Settings data={data} run={run} />
                 ) : /^\/(admin\/submissions|review)\//.test(path) ? (
                   <Review data={data} run={run} />
                 ) : path.startsWith("/admin") || path === "/review" ? (
-                  <AdminList data={data} path={path} run={run} />
+                  <AdminList data={data} path={path} run={run} demographics={["/admin/teams", "/admin/submissions"].includes(path) ? demographicControls : undefined} />
                 ) : (
                   <Empty>Choose a page from the navigation.</Empty>
                 )}
@@ -7126,7 +7148,8 @@ function StatusChange({
         >
           <label>
             {kind === "team" ? "New display status" : "New status"}
-            <select name="status" defaultValue={current}>
+            <select name="status" defaultValue={kind === "team" && !["Forming", "Not submitted", "Submitted"].includes(current) ? "" : current}>
+              {kind === "team" && <option value="" disabled>Select display status</option>}
               {(kind === "person"
                 ? ["Registered", "Going", "Checked in", "Absent"]
                 : ["Forming", "Not submitted", "Submitted"]

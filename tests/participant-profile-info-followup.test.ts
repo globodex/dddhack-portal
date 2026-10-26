@@ -83,11 +83,10 @@ test("public project SSR member payload is allowlisted for anonymous, Viewer and
         JSON.stringify(page),
         /PRIVATE_|org-private-synthetic|12025550123/,
       );
-      for (const member of page.teamMembers)
-        assert.deepEqual(
-          Object.keys(member).sort(),
-          ["id", "name", "avatarColor", "avatarExpression"].sort(),
-        );
+      for (const member of page.teamMembers) {
+        const keys = ["id", "name", "avatarColor", "avatarExpression", ...(service === anonymous ? [] : ["bio", "socials", "details"])].sort();
+        assert.deepEqual(Object.keys(member).sort(), keys);
+      }
       assert.doesNotMatch(
         JSON.stringify(page.teamMembers),
         /PRIVATE_|org-private|12025550123|status|approval|email|phone|Checked in|Absent/,
@@ -127,7 +126,7 @@ test("admin submission detail shows every current member and authoritative perso
       );
       assert.ok(
         page.teamMembers.every(
-          (r: any) => !("email" in r) && !("phone" in r) && !("details" in r),
+          (r: any) => typeof r.email === "string" && typeof r.details === "object" && !("phone" in r),
         ),
       );
     }
@@ -272,7 +271,7 @@ test("info controls are labeled, omit idless rows and anonymous audiences get si
   assert.doesNotMatch(admin, /<dialog/);
 });
 
-test("all four requested surfaces include profile info controls and public rows never render private status", () => {
+test("administrative lists retain info controls; project details show inline members without private public status", () => {
   const member = {
     id: "p1",
     name: "Synthetic Person",
@@ -330,7 +329,7 @@ test("all four requested surfaces include profile info controls and public rows 
   );
   assert.match(review, /Team members/);
   assert.match(review, /Absent/);
-  assert.match(review, /View Synthetic Person/);
+  assert.doesNotMatch(review, /View Synthetic Person|participant-profile-info/);
   const project = renderToStaticMarkup(
     wrap(
       createElement(Projects, {
@@ -350,7 +349,8 @@ test("all four requested surfaces include profile info controls and public rows 
       "",
     ),
   );
-  assert.match(project, /Sign in to view Synthetic Person/);
+  assert.match(project, /Synthetic Person/);
+  assert.doesNotMatch(project, /Sign in to view Synthetic Person|participant-profile-info/);
   assert.doesNotMatch(project, /Absent/);
 });
 

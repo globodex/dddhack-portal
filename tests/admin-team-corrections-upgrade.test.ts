@@ -393,7 +393,7 @@ test("0104 upgrade: real postcondition failure rolls function replacements, ledg
   }
 });
 
-test("0104 source plan pins exactly twelve LF files and leaves all nine previous SQL blobs and seven historical approval entries unchanged", async () => {
+test("0104 source plan pins exactly thirteen LF files and leaves all nine previous SQL blobs and seven historical approval entries unchanged", async () => {
   const { loadMigrationPlan } = await import("../neon/migration-plan");
   const plan = await loadMigrationPlan();
   assert.equal(plan.length, 13);

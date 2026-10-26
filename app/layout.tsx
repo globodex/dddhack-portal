@@ -1,3 +1,4 @@
+import "./admin-demographic-filters.css";
 import type { ReactNode } from "react";
 import "./style.css";
 import "./public-home.css";

@@ -97,3 +97,14 @@
 dialog.discovery-profile.profile-info-dialog {
   height: min(640px, calc(100dvh - 32px));
 }
+.app-shell .project-team-members li { align-items:flex-start; padding-block:16px; }
+.app-shell .project-team-member-body { flex:1; min-width:0; }
+.app-shell .project-team-member-heading { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.app-shell .project-team-member-chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+.app-shell .project-team-member-chips > span { display:inline-flex; align-items:center; gap:5px; font-size:12px; padding:5px 8px; border-radius:8px; background:var(--paper,#f4f4ee); max-width:100%; overflow-wrap:anywhere; }
+.app-shell .project-team-member-bio { font-size:13px; line-height:1.5; margin:8px 0; white-space:pre-wrap; overflow-wrap:anywhere; }
+.app-shell .project-team-member-links { display:flex; align-items:center; flex-wrap:wrap; gap:4px 12px; margin-top:8px; }
+.app-shell .project-team-member-links > a { display:inline-flex; align-items:center; justify-content:center; gap:3px; min-width:44px; min-height:44px; color:var(--ink); border-radius:8px; }
+.app-shell .project-team-member-links > a:hover { background:var(--paper,#f4f4ee); }
+.app-shell .project-team-member-links > a:focus-visible { outline:3px solid #006afe; outline-offset:2px; }
+.app-shell .project-team-member-links > span { display:inline-flex; align-items:center; gap:5px; font-size:12px; max-width:100%; overflow-wrap:anywhere; }
