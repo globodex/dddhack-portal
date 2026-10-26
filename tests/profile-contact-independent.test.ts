@@ -369,9 +369,15 @@ for (const engine of ["sqlite", "postgres"] as const) {
         )[0].active,
         1,
       );
+      // Administrative info controls may inspect an existing account even when
+      // it is no longer rostered. That exception never broadens public lookup.
       assert.equal(
         (await f.lookup("owner", { person: "fake_stranger" })).body
-          .focusedPerson,
+          .focusedPerson.id,
+        "fake_stranger",
+      );
+      assert.equal(
+        (await f.lookup("carol", { person: "fake_stranger" })).body.focusedPerson,
         null,
       );
     } finally {

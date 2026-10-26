@@ -264,6 +264,11 @@ test("project scores display canonical totals without client recomputation, dist
   assert.match(partial, /Awaiting scores/);
   assert.match(partial, /Not evaluated/);
   assert.match(partial, /<b>0<\/b>/);
+  const ineligible = renderToStaticMarkup(
+    createElement(AdminProjectScore, { score: { ...awaiting, eligibility: "ineligible" } }),
+  );
+  assert.match(ineligible, /Not eligible/);
+  assert.doesNotMatch(ineligible, /Awaiting scores/);
   const snapshot = renderToStaticMarkup(
     createElement(AdminProjectScore, { score: frozen }),
   );

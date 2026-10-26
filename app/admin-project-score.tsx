@@ -33,7 +33,9 @@ export default function AdminProjectScore({
           <span>{frozen ? "Frozen score" : "Current score"}</span>
           {score.total === null ? (
             <strong className="admin-project-score-awaiting">
-              {frozen ? "Not recorded" : "Awaiting scores"}
+              {score.eligibility === "ineligible"
+                ? "Not eligible"
+                : frozen ? "Not recorded" : "Awaiting scores"}
             </strong>
           ) : (
             <strong>
