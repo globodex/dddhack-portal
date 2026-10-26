@@ -2,7 +2,8 @@
 import DotAvatar from "./dot-avatar";
 import { ProfileIcon } from "./profile-icons";
 import { HeadingDot } from "./expressive-heading";
-import { GenderSymbol, genderLabel } from "./gender-presentation";
+import { GenderSymbol } from "./gender-presentation";
+import { profileGenderChoices } from "./profile-gender-options";
 import { dotColors, dotExpressions } from "../lib/avatar-contract";
 import { useEffect, useRef, useState, type Ref } from "react";
 import { Lock } from "lucide-react";
@@ -413,7 +414,7 @@ export default function ProfileFlow({
     [name, setName] = useState(p.display_name || data.me?.name || ""),
     [sex, setSex] = useState(
       (p.gender_confirmed || p.gender_prefilled) &&
-        ["man", "woman", "non-binary"].includes(p.gender)
+        profileGenderChoices.some((choice) => choice.key === p.gender)
         ? p.gender
         : "",
     ),
@@ -658,7 +659,7 @@ export default function ProfileFlow({
                       *
                     </span>
                   </legend>
-                  {["man", "woman", "non-binary"].map((value) => (
+                  {profileGenderChoices.map(({ key: value, label }) => (
                     <label key={value}>
                       <input
                         type="radio"
@@ -675,7 +676,10 @@ export default function ProfileFlow({
                           clearFieldError("sex");
                         }}
                       />
-                      <span style={{ gap: 2, whiteSpace: "nowrap" }}><GenderSymbol value={value} size={12} />{genderLabel(value)}</span>
+                      <span style={{ gap: 2, whiteSpace: "nowrap" }}>
+                        <GenderSymbol value={value} size={12} />
+                        {label}
+                      </span>
                     </label>
                   ))}
                 </fieldset>

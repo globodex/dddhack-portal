@@ -42,7 +42,14 @@ function breakdown(value: number): AdminParticipantBreakdown {
       "Prefer not to say",
       "Not provided",
     ].map((label, index) => ({
-      key: `gender-${index}`,
+      key: [
+        "man",
+        "woman",
+        "non-binary",
+        "self-described",
+        "prefer-not-to-say",
+        "not-provided",
+      ][index],
       label,
       value: index === 0 ? value - missing : index === 5 ? missing : 0,
     })),
@@ -265,7 +272,9 @@ test("project scores display canonical totals without client recomputation, dist
   assert.match(partial, /Not evaluated/);
   assert.match(partial, /<b>0<\/b>/);
   const ineligible = renderToStaticMarkup(
-    createElement(AdminProjectScore, { score: { ...awaiting, eligibility: "ineligible" } }),
+    createElement(AdminProjectScore, {
+      score: { ...awaiting, eligibility: "ineligible" },
+    }),
   );
   assert.match(ineligible, /Not eligible/);
   assert.doesNotMatch(ineligible, /Awaiting scores/);
@@ -390,6 +399,24 @@ test(
         5,
       );
       assert.equal(
+        await page.getByRole("region", { name: "gender breakdown" }).count(),
+        5,
+      );
+      for (const section of await page
+        .getByRole("region", { name: "gender breakdown" })
+        .all()) {
+        assert.deepEqual(await section.locator("li > span").allTextContents(), [
+          "Male",
+          "Female",
+          "Non-binary",
+        ]);
+        assert.equal(await section.locator("li").count(), 3);
+        assert.equal(
+          await section.locator(".admin-stat-breakdown-note").textContent(),
+          "Not provided: 1",
+        );
+      }
+      assert.equal(
         await page
           .getByText("Confirmed sign-ins only", { exact: true })
           .count(),
@@ -476,13 +503,14 @@ test(
           (el) => el.textContent === "0",
         ),
       );
-      assert.equal(await page.locator(".admin-stat-breakdown li").count(), 70);
+      assert.equal(await page.locator(".admin-stat-breakdown li").count(), 55);
+      assert.equal(await page.locator(".admin-stat-breakdown-note").count(), 0);
       assert.equal(
         await page
           .locator(".admin-stat-breakdown b")
           .filter({ hasText: /^0$/ })
           .count(),
-        70,
+        55,
       );
       await page.screenshot({
         path: `${output}/participants-empty-320.png`,

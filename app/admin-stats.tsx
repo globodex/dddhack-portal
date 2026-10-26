@@ -7,6 +7,7 @@ import type {
 } from "../lib/admin-stats";
 import { resolveTeamColor } from "../lib/team-color";
 import { useHydrated } from "./use-hydrated";
+import { genderBreakdownDisplay } from "./profile-gender-options";
 
 const names = {
   participants: "Participant statistics",
@@ -130,6 +131,15 @@ function ParticipantBreakdown({
   breakdown: AdminParticipantBreakdown;
   cohortLabel: string;
 }) {
+  const gender = genderBreakdownDisplay(breakdown.gender);
+  const genderNotes = [
+    ...(gender.notProvided > 0
+      ? [`Not provided: ${numbers.format(gender.notProvided)}`]
+      : []),
+    ...(gender.otherSaved > 0
+      ? [`Other saved responses: ${numbers.format(gender.otherSaved)}`]
+      : []),
+  ];
   return (
     <div
       className="admin-stat-breakdown"
@@ -146,13 +156,21 @@ function ParticipantBreakdown({
           <section key={dimension} aria-label={`${dimension} breakdown`}>
             <h3>{dimension === "gender" ? "Gender" : "Profession"}</h3>
             <ul>
-              {breakdown[dimension].map((bucket) => (
+              {(dimension === "gender"
+                ? gender.choices
+                : breakdown.profession
+              ).map((bucket) => (
                 <li key={bucket.key}>
                   <span>{bucket.label}</span>
                   <b>{numbers.format(bucket.value)}</b>
                 </li>
               ))}
             </ul>
+            {dimension === "gender" && genderNotes.length > 0 && (
+              <p className="admin-stat-breakdown-note">
+                {genderNotes.join(" · ")}
+              </p>
+            )}
           </section>
         ))
       )}

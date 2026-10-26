@@ -8,6 +8,7 @@ import { authenticatedRequestEvidenceStatement } from "../lib/sign-in-evidence";
 import { fixtures, LOCAL_CREDIT_KEY, seedLocal } from "../scripts/fixtures";
 import { attend } from "./helpers";
 import { createPGliteFixture } from "./neon-db-fixture";
+import { genderBreakdownDisplay } from "../app/profile-gender-options";
 
 const at = "2026-10-22T08:00:00.000Z";
 const card = (stats: AdminStatsDTO, key: string) =>
@@ -29,6 +30,17 @@ function reconcile(stats: AdminStatsDTO) {
       assert.deepEqual(breakdown.gender, []);
       assert.deepEqual(breakdown.profession, []);
     } else {
+      const shown = genderBreakdownDisplay(breakdown.gender);
+      assert.deepEqual(
+        shown.choices.map((choice) => choice.label),
+        ["Male", "Female", "Non-binary"],
+      );
+      assert.equal(
+        shown.choices.reduce((sum, choice) => sum + choice.value, 0) +
+          shown.notProvided +
+          shown.otherSaved,
+        item.value,
+      );
       for (const axis of [breakdown.gender, breakdown.profession]) {
         assert.equal(
           axis.reduce((total, entry) => total + entry.value, 0),

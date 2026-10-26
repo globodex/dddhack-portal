@@ -190,11 +190,15 @@
   font-variant-numeric: tabular-nums;
 }
 .app-shell .admin-stat-breakdown-scope,
-.app-shell .admin-stat-breakdown-unavailable {
+.app-shell .admin-stat-breakdown-unavailable,
+.app-shell .admin-stat-breakdown-note {
   margin: 0;
   color: var(--muted, #656960);
   font-size: 11px;
   line-height: 1.5;
+}
+.app-shell .admin-stat-breakdown-note {
+  margin-top: 6px;
 }
 .app-shell .admin-team-size-values {
   display: grid;
