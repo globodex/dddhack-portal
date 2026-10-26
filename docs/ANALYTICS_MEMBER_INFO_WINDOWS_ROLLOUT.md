@@ -68,8 +68,9 @@ The required schema digest is
 
 7. **Verify in the existing authenticated owner browser.** After deployment succeeds,
    privately retain its deployment identifier. On the working public origin
-   `https://dddhack-portal.vercel.app`, check `/api/health`, open Admin → Stats,
-   and inspect the completed-team member information as an authorized viewer.
+   `https://dddhack-portal.vercel.app`, check `/api/health`, open `/admin/participants` and select **Detailed** view,
+   then open `/admin/submissions` for analytics and project cards. Use the member
+   **Info** icons to inspect completed-member information as an authorized viewer.
    Check expected access restrictions without sharing participant rows or private
    analytics. Health200 alone does not prove schema state or authenticated behavior.
    If deployment/COMMIT outcome is uncertain, inspect actual state before retrying;
@@ -89,6 +90,7 @@ $stamp = Get-Date -Format 'yyyyMMdd-HHmmssfff'
 $beforeReceipt = '.local/analytics-member-before-' + $stamp + '.json'
 $applyReceipt = '.local/analytics-member-pre-apply-' + $stamp + '.json'
 $afterReceipt = '.local/analytics-member-after-' + $stamp + '.json'
+$nodeVersion = ''
 $nodeMajor = 0
 $releaseReceipt = $null
 $sourcePlan = $null
@@ -102,10 +104,11 @@ $deployAnswer = ''
 
 # 1. Existing location and software; preserve local/private settings.
 Set-Location 'D:\Dev\dddhack-portal\dddhack-portal-migration'
-node --version
+$nodeVersion = (node --version | Out-String).Trim()
 if ($LASTEXITCODE -ne 0) { throw 'Install/use Node24+ before continuing' }
-$nodeMajor = [int](node -p 'process.versions.node.split(".")[0]')
-if ($LASTEXITCODE -ne 0 -or $nodeMajor -lt 24) { throw 'Node24+ is required' }
+if ($nodeVersion -notmatch '^v[0-9]+[.][0-9]+[.][0-9]+$') { throw 'Cannot read a stable Node version' }
+$nodeMajor = [int](($nodeVersion.Substring(1).Split('.'))[0])
+if ($nodeMajor -lt 24) { throw 'Node24+ is required' }
 git --version
 if ($LASTEXITCODE -ne 0) { throw 'Git is unavailable' }
 neon --version

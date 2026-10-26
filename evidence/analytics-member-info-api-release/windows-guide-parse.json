@@ -5,6 +5,12 @@
   "Platform": "Linux",
   "NativeWindowsAcceptance": false,
   "HostedCommandsExecuted": false,
-  "guideSha256": "5c66d435c2b039f117fe62fff3be9eb2d65d1250b3a0e95ba73b65534d9fe95a",
-  "powerShellBlockSha256": "cdece442f477eb3eb28aec746a62338c44cf4517f5077593517a0b6076b3daa7"
+  "ActualNodeVersion": "v24.19.0",
+  "ActualNodeMajor": 24,
+  "ActualNodeVersionCheckPassed": true,
+  "Node23Rejected": true,
+  "MalformedVersionRejected": true,
+  "QuotedJavaScriptNativeArgumentsUsed": false,
+  "guideSha256": "2d1dbf5bf220403c6bea799e320f5b8b0dbdf84ebd9a54fc3a252e9fdc35bd89",
+  "powerShellBlockSha256": "b6c0410b9ebb931014ea63f350344b99ead7577a0bdc027916651867f881833f"
 }
