@@ -1,0 +1,205 @@
+{
+  "applicationSource": "882bc7c311a4a52f6b7da971f56f6e8cfe09af42",
+  "validatedCheckpoint": "8f0f250141183e03579e3726268c04f65d98742f",
+  "candidateOnly": true,
+  "publicationAuthorized": false,
+  "pushed": false,
+  "productionBuildPassed": true,
+  "typecheckPassed": true,
+  "buildEnvironmentRecovery": "Initial Turbopack attempt rejected the external shared node_modules symlink. A private physical dependency copy inside this worktree restored its hermetic root; shared dependencies and source config were unchanged.",
+  "applicationTreeMatchesBuiltSource": true,
+  "npmTestScript": "node --no-wasm-code-gc --import tsx --test --test-concurrency=1 tests/*.test.ts",
+  "fullRegression": {
+    "tests": 977,
+    "pass": 970,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 7,
+    "durationMs": 1584764.885089,
+    "command": "node --no-wasm-code-gc --import tsx --test --test-concurrency=1 --test-reporter=tap tests/*.test.ts",
+    "passed": true
+  },
+  "testRuntimeWorkaround": {
+    "node": "v24.19.0",
+    "flag": "--no-wasm-code-gc",
+    "reason": "A preceding run aborted a PGlite test process inside V8 ThreadIsolation::UnregisterWasmAllocation with jit_page_->allocations_.erase(addr) == 1.",
+    "primarySource": "https://github.com/nodejs/node/issues/66366",
+    "productionRuntimeChanged": false,
+    "testAssertionsChanged": false,
+    "failedRunStoppedAfterD1Passed": true
+  },
+  "nativePostgresSkips": [
+    "native PostgreSQL: concurrent guarded admin corrections retain max5, one team per person, rename CAS and empty guards",
+    "native PostgreSQL magic link GET confirms without consumption, POST has one winner, and session resolves preserved portal staff",
+    "native PostgreSQL verified login grants no viewer role escalation and ignores spoofed identity and cookies",
+    "native PostgreSQL sessions recheck current portal roles and reject a changed verified-email binding",
+    "native PostgreSQL concurrent connections preserve guards, member/vote caps, three attempts, and frozen snapshots",
+    "native PostgreSQL snapshot API rejects unauthorized, unbound, wrong-origin and unsafe source requests through the complete migration plan",
+    "native PostgreSQL approved snapshots retry idempotently, audit no source, and permit only one-way immutable revocation"
+  ],
+  "focusedFilterTestsPassed": 7,
+  "browser": {
+    "cases": [
+      "1440x900 /admin/participants four-filter AND/apply/reset/whole stats/overflow",
+      "1440x900 /admin/teams four-filter AND/apply/reset/whole stats/overflow",
+      "1440x900 /admin/submissions four-filter AND/apply/reset/whole stats/overflow",
+      "390x844 /admin/participants four-filter AND/apply/reset/whole stats/overflow",
+      "390x844 /admin/teams four-filter AND/apply/reset/whole stats/overflow",
+      "390x844 /admin/submissions four-filter AND/apply/reset/whole stats/overflow",
+      "320x480 /admin/participants four-filter AND/apply/reset/whole stats/overflow",
+      "320x480 /admin/teams four-filter AND/apply/reset/whole stats/overflow",
+      "320x480 /admin/submissions four-filter AND/apply/reset/whole stats/overflow",
+      "768x900 /admin/participants four-filter AND/apply/reset/whole stats/overflow",
+      "768x900 /admin/teams four-filter AND/apply/reset/whole stats/overflow",
+      "768x900 /admin/submissions four-filter AND/apply/reset/whole stats/overflow"
+    ],
+    "errors": [],
+    "synthetic": true,
+    "source": "882bc7c311a4a52f6b7da971f56f6e8cfe09af42",
+    "imagesTrackedInGit": false
+  },
+  "package": {
+    "sha256": "0c3e35e8894fe48b40dfb58b848f1b131a917aca691357fb09a77a461d0864e2",
+    "indexSha256": "0bf9225529da30ffbd5226fb6022b3509063feb53399a3e08dee03a550849d10",
+    "applicationInputsMatchCheckpoint": 96,
+    "fileCount": 93
+  },
+  "d1Investigation": {
+    "applicationSource": "882bc7c311a4a52f6b7da971f56f6e8cfe09af42",
+    "initialFullRun": {
+      "tests": 977,
+      "passed": 969,
+      "failed": 1,
+      "skipped": 7,
+      "failure": "D1 concurrent legacy submissions: fulfilled1 expected3; no evidence of exceeding three committed attempts",
+      "durationMs": 1669716.272677
+    },
+    "diagnosticChange": "Failure-only reporting of synthetic concurrent request error codes/messages; all assertions unchanged",
+    "isolatedD1RunsPassed": 5,
+    "cause": "not yet reproduced with diagnostics; no runtime change attributed",
+    "cleanFullRerun": {
+      "counts": {
+        "tests": 977,
+        "pass": 970,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 7
+      },
+      "durationMs": 1584764.885089,
+      "passed": true
+    },
+    "logDigests": [
+      {
+        "log": "final-full-regression.log",
+        "sha256": "b9948efcb6fe26f414c991527c611d0f67f30ae94bf97cb7d0d59bff9951e32a",
+        "bytes": 118821
+      },
+      {
+        "log": "d1-isolation.log",
+        "sha256": "1460f925339e0d739cffc192ee775a5a7230a77a83edb09dc37d65e2c6f8ed94",
+        "bytes": 247
+      },
+      {
+        "log": "d1-diagnostic.log",
+        "sha256": "cf4f5dacfb3da1896573b2acc3829c7d7efd0e14adbee5855241375de123ebd3",
+        "bytes": 246
+      },
+      {
+        "log": "d1-diagnostic-repeat-1.log",
+        "sha256": "3d99d6fa84f9ed1ad97b3b25546ccbaabab82e10729c74bb42e7f5fa331ddc0f",
+        "bytes": 247
+      },
+      {
+        "log": "d1-diagnostic-repeat-2.log",
+        "sha256": "a05674b91a56aec1c82e8656418b58d5517b49e5484c23c7d211a2cc01ec58bf",
+        "bytes": 247
+      },
+      {
+        "log": "d1-diagnostic-repeat-3.log",
+        "sha256": "b357f24727fcd6be9c8b4773addbd5e8ee4290e34002c407f595b69510aaa033",
+        "bytes": 247
+      }
+    ]
+  },
+  "limitations": [
+    "Earlier complete run underfilled legacy concurrent D1 submissions (1 success vs expected3); five isolated runs and subsequent full-run D1 cases passed. Cause was not reproduced; no runtime fix or relaxed assertion is claimed.",
+    "The full suite uses a test-only supported V8 code-GC workaround after a matching Node24/PGlite native crash; the default no-flag suite is not claimed clean.",
+    "Native PostgreSQL multi-connection tests skipped: no target configured.",
+    "Native Windows and unmodified Linux ARM64 package execution not performed.",
+    "No hosted migration, backend deployment, env edit, paid evaluation or production record mutation performed."
+  ],
+  "logs": [
+    {
+      "name": "final-no-wasm-gc-regression.log",
+      "sha256": "9f29feda3ce3502210b7466b555b70dc288b701f456e30958b22905a9104236e",
+      "bytes": 266877,
+      "localOnly": true
+    },
+    {
+      "name": "final-clean-regression.log",
+      "sha256": "369d716db67157573f7ed656b4c03dc135e8321976f0a030a5fea0b69c34b1e9",
+      "bytes": 72079,
+      "localOnly": true
+    },
+    {
+      "name": "final-full-regression.log",
+      "sha256": "b9948efcb6fe26f414c991527c611d0f67f30ae94bf97cb7d0d59bff9951e32a",
+      "bytes": 118821,
+      "localOnly": true
+    },
+    {
+      "name": "final-committed-build.log",
+      "sha256": "9d2eae0427401af04d92f6adf872028803c62a6315f3c6d62b87f9c91555ca91",
+      "bytes": 1218,
+      "localOnly": true
+    },
+    {
+      "name": "final-turbopack-symlink-failure.log",
+      "sha256": "8eae206e0491cabc57e4c405b3e540916afc77b74be335900756acf0332c188c",
+      "bytes": 1761,
+      "localOnly": true
+    },
+    {
+      "name": "final-committed-typecheck.log",
+      "sha256": "6610db233911b67d968ae766778b6b13519989e13312fadaf0b6cc2984335bfd",
+      "bytes": 266,
+      "localOnly": true
+    },
+    {
+      "name": "popover-final-focused.log",
+      "sha256": "e5b658902acd9601b335f9dd276f2fa532ba07b3c6ab68e4467d74e7ad5fb3fc",
+      "bytes": 995,
+      "localOnly": true
+    },
+    {
+      "name": "popover-ui-final.log",
+      "sha256": "2f815734e67e5ae40375db3f952abbbc892b2ef2e3b90c8a889dfc336b31db0c",
+      "bytes": 273,
+      "localOnly": true
+    },
+    {
+      "name": "popover-browser-stable.log",
+      "sha256": "90274fee708d16172edb5764fe3fe92fe60e763f67ce24070fbb86d8a29b4b11",
+      "bytes": 1420,
+      "localOnly": true
+    },
+    {
+      "name": "popover-helper-check.log",
+      "sha256": "4a33dc5b54a07b1ef95ab59e6502d2765dc1a9c6f7accab12d82982371118ba6",
+      "bytes": 807,
+      "localOnly": true
+    },
+    {
+      "name": "popover-guide-check.log",
+      "sha256": "cd7bc8b74b7b2c69561ee1a677baf86f298978cc52e4dc69e28d60afa5aa7572",
+      "bytes": 71,
+      "localOnly": true
+    },
+    {
+      "name": "v8-workaround-approval.log",
+      "sha256": "1a8167a5cec518e501ce821553fd5a77864ed5010be980725b3acb49960f38f6",
+      "bytes": 2539,
+      "localOnly": true
+    }
+  ]
+}

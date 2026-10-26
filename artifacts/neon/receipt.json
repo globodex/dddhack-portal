@@ -131,6 +131,21 @@
     "outboundAttempts": 0,
     "nativeArmExecution": false
   },
-  "runtimeFinalConfirmedByRoot": false,
-  "supersedesLocalCandidateSHA256": "77dbb77b2c3c459bcaf910bbcfa945a3fce06f1f2cefa4426d7abe7121d2e0f2"
+  "runtimeFinalConfirmedByRoot": true,
+  "supersedesLocalCandidateSHA256": "77dbb77b2c3c459bcaf910bbcfa945a3fce06f1f2cefa4426d7abe7121d2e0f2",
+  "validationEvidence": "evidence/admin-team-lock-api-release/validation.json",
+  "finalFullRegression": {
+    "tests": 977,
+    "pass": 970,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 7
+  },
+  "validationLimitations": [
+    "Earlier complete run underfilled legacy concurrent D1 submissions (1 success vs expected3); five isolated runs and subsequent full-run D1 cases passed. Cause was not reproduced; no runtime fix or relaxed assertion is claimed.",
+    "The full suite uses a test-only supported V8 code-GC workaround after a matching Node24/PGlite native crash; the default no-flag suite is not claimed clean.",
+    "Native PostgreSQL multi-connection tests skipped: no target configured.",
+    "Native Windows and unmodified Linux ARM64 package execution not performed.",
+    "No hosted migration, backend deployment, env edit, paid evaluation or production record mutation performed."
+  ]
 }
