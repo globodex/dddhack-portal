@@ -10,7 +10,7 @@
     "dev": "next dev --hostname 127.0.0.1 --port 3000",
     "build": "next build",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test --test-concurrency=1 tests/*.test.ts",
+    "test": "node --no-wasm-code-gc --import tsx --test --test-concurrency=1 tests/*.test.ts",
     "test:e2e": "playwright test",
     "db:local": "tsx scripts/local-db.ts",
     "test:load": "tsx scripts/load.ts",

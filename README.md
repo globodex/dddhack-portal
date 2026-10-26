@@ -51,6 +51,8 @@ npm exec -- tsx scripts/backup-local.ts
 
 Browser testing uses an installed Chromium; set `CHROMIUM_PATH` for your machine. Server tests include a real **local Miniflare D1 binding**, not just the SQLite adapter. Load tests use 200 distinct fake HTTP sessions plus independent WAL worker threads. They do not establish hosted Sites capacity or real ChatGPT sign-in. Test evidence is under `evidence/`; screenshots are delivered through Library (see `docs/DELIVERY.md`). Build warnings from Vinext's chunk layout are recorded and are not test failures.
 
+The test command disables WebAssembly code GC to avoid the documented [Node24/PGlite native crash](https://github.com/nodejs/node/issues/66366). This flag affects only the test process; production commands, database guards and test assertions are unchanged.
+
 ## Architecture and security
 
 - Vinext App Router, React, TypeScript; public and protected screens call a server API. SQLite is only the named local adapter. The domain service accepts the D1 interface and uses parameterized, one-statement `prepare()` calls and atomic `batch()` writes.
