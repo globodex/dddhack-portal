@@ -25,7 +25,7 @@ const approval: UpgradeBaseline = JSON.parse(
   ),
 );
 const digest =
-  "73c64b0acbe9df80f9ca6627c0a1d4a3485c83214a6923918c530c1ab2b5d160";
+  "2dc505efb7e5cf25f4e9da1a56e9aa9cb4a816735b222127b9fdfdb5daafa277";
 const feature = "0106_admin_team_unlock.sql";
 const now = new Date("2026-10-25T18:00:00.000Z");
 const confirmation = {
@@ -95,7 +95,7 @@ async function fixture(encoding: "lf" | "crlf", prefix: 9 | 11) {
 
 for (const encoding of ["lf", "crlf"] as const)
   for (const prefix of [9, 11] as const)
-    test(`0106 upgrade ${encoding}: populated${prefix}→12 applies the exact pending suffix, preserves all old data/ledger/locks, then repeats[]`, async () => {
+    test(`0106 upgrade ${encoding}: populated${prefix}→13 applies the exact pending suffix, preserves all old data/ledger/locks, then repeats[]`, async () => {
       const f = await fixture(encoding, prefix);
       try {
         const before = await f.state(),
@@ -115,11 +115,12 @@ for (const encoding of ["lf", "crlf"] as const)
         );
         const pending =
           prefix === 11
-            ? [feature]
+            ? [feature, "0107_admin_team_lock.sql"]
             : [
                 "0104_admin_team_corrections.sql",
                 "0105_terminal_record_deletion.sql",
                 feature,
+                "0107_admin_team_lock.sql",
               ];
         assert.deepEqual(receipt.pending, pending);
         assert.equal(receipt.planDigest, digest);
@@ -139,7 +140,7 @@ for (const encoding of ["lf", "crlf"] as const)
         );
         assert.deepEqual(result.applied, pending);
         const after = await f.state();
-        assert.equal(after.portal_schema_migrations.length, 12);
+        assert.equal(after.portal_schema_migrations.length, 13);
         for (const [table, data] of Object.entries(before))
           if (table !== "portal_schema_migrations")
             assert.deepEqual(after[table], data, table);

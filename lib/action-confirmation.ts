@@ -36,6 +36,7 @@ const labels: Record<string, string> = {
   "admin-add-team-member": "Add team member?",
   "admin-rename-team": "Rename team?",
   "admin-unlock-team": "Unlock team?",
+  "admin-lock-team": "Lock team?",
   "leave-workspace-team": "Leave team?",
   "admin-delete-participant": "Delete participant?",
   "admin-delete-team": "Delete team?",
@@ -86,6 +87,7 @@ export function confirmationFor(
     "activate-operations",
     "lock-team",
     "admin-unlock-team",
+    "admin-lock-team",
     "submit-project",
     "publish-submission-extension",
     "publish-policy-weights",
@@ -94,6 +96,7 @@ export function confirmationFor(
   let description = "";
   if (action === "leave-workspace-team") return { title, target, description: "You will lose access to this team's private workspace.", confirmLabel: "Leave team", critical: false, tone: "danger" };
   if (action === "admin-unlock-team") return { title, target, description: "Reopen normal team membership and idea editing. Members and history stay intact.", confirmLabel: "Unlock team", critical: true };
+  if (action === "admin-lock-team") return { title, target: values.expectedName || target, description: "Lock team and idea editing. Member approval stays unchanged.", confirmLabel: "Lock team", critical: true };
   if (action === "admin-delete-participant") {
     const summary = values.participantDeleteSummary;
     return { title, target,
@@ -231,6 +234,7 @@ export function revealConfirmation(
   if (action === "admin-add-team-member") return "ADD_TEAM_MEMBER";
   if (action === "admin-rename-team") return "RENAME_TEAM";
   if (action === "admin-unlock-team") return "UNLOCK_TEAM";
+  if (action === "admin-lock-team") return "ADMIN_LOCK_TEAM";
   if (action === "leave-workspace-team") return "LEAVE_TEAM";
   return action === "admin-idea-override"
     ? "OVERRIDE_TEAM_IDEA"

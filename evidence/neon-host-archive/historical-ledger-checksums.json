@@ -50,6 +50,10 @@
     {
       "name": "0106_admin_team_unlock.sql",
       "checksum": "dd437230bcbc5d9ffc65b63464992976b7b0ddcd1fd64a675f76f113623c17aa"
+    },
+    {
+      "name": "0107_admin_team_lock.sql",
+      "checksum": "008d9ede3191d0ef8e3198ba0ddfde3188349db9a0003738ec64b44955f4215a"
     }
   ],
   "hostedRead": false,

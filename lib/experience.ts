@@ -2,6 +2,7 @@ import { publicProjectMembers, adminSubmissionMembers } from "./project-member-p
 import { projectMediaPolicy } from "./project-media-policy";
 import { adminTeamCandidates, adminTeamCorrection } from "./admin-team-corrections";
 import { adminTeamApprovalView, approveTeam } from "./admin-team-approval";
+import { adminTeamLock, adminTeamLockView } from "./admin-team-lock";
 import { publicTeamMembers } from "./public-team-members";
 import { OWNER_EMAIL } from "./identity";
 import { adminAccessView, revokeAdminAccess } from "./admin-access";
@@ -612,6 +613,8 @@ export class PortalExperience {
     options: PortalViewOptions = {},
   ): Promise<Record<string, unknown> | null> {
     let route = path.replace(/\/+/g, "/").replace(/\/$/, "") || "/";
+    const lockPreview = await adminTeamLockView(this.s, route, options);
+    if (lockPreview !== null) return lockPreview;
     const approval = await adminTeamApprovalView(this.s, route, options);
     if (approval !== null) return approval;
     const candidates = await adminTeamCandidates(this.s, route, options);
@@ -968,6 +971,7 @@ export class PortalExperience {
               ...visibleTeam,
               locked: fact.locked,
               lockedAt: fact.lockedAt,
+              lockBlockedReason: unlock_frozen ? "Final results are frozen." : Math.max(fact.attemptsUsed, Number(unlock_attempts) || 0) > 0 ? "Committed submissions protect this team's lock state." : "",
               unlockBlockedReason: fact.locked ? teamUnlockBlocker({ frozen: !!unlock_frozen, attempts: Math.max(fact.attemptsUsed, Number(unlock_attempts) || 0), now: this.s.now(), membershipFreeze: unlockPolicy.membershipFreeze, ideaLock: unlockPolicy.ideaLock })?.message || "" : "",
               status: fact.status,
               idea: ideas.get(t.id),
@@ -1243,6 +1247,8 @@ export class PortalExperience {
     data: unknown,
     actor: Actor,
   ): Promise<Record<string, unknown> | null> {
+    const locked = await adminTeamLock(this.s, action, data);
+    if (locked !== null) return locked;
     const approval = await approveTeam(this.s, action, data);
     if (approval !== null) return approval;
     const unlocked = await adminTeamUnlock(this.s, action, data);

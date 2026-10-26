@@ -61,6 +61,7 @@ export function verifyUpgradePlan(
         "0104_admin_team_corrections.sql",
         "0105_terminal_record_deletion.sql",
         "0106_admin_team_unlock.sql",
+        "0107_admin_team_lock.sql",
       ],
     ) ||
     !same(entries(plan), approved) ||

@@ -1,7 +1,15 @@
 "use client";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { LockOpen, Pencil, Search, Trash2, UserRoundPlus, X } from "lucide-react";
+import {
+  LockKeyhole,
+  LockOpen,
+  Pencil,
+  Search,
+  Trash2,
+  UserRoundPlus,
+  X,
+} from "lucide-react";
 import { ActionCancelled } from "../lib/action-confirmation";
 import { readPortalView } from "../lib/portal-read";
 import { portalErrorText } from "../lib/ui-feedback";
@@ -16,6 +24,7 @@ type Team = {
   locked?: boolean;
   lockedAt?: string;
   unlockBlockedReason?: string;
+  lockBlockedReason?: string;
 };
 type Candidate = {
   id: string;
@@ -200,27 +209,85 @@ export default function AdminTeamActions({
   const perform = async (
     target: string,
     action: string,
-    values: Record<string, any>,
+    values: Record<string, any> | (() => Promise<Record<string, any>>),
   ) => {
     if (pending.current) return;
     pending.current = true;
     setBusy(target);
     setError("");
     try {
-      await run(action, values, { errorFeedback: "local" });
+      await run(
+        action,
+        typeof values === "function" ? await values() : values,
+        { errorFeedback: "local" },
+      );
       setMode(null);
     } catch (cause) {
       if (!(cause instanceof ActionCancelled))
         setError((cause as Error).message);
     } finally {
       pending.current = false;
-      if (target === "unlock") restoreUnlockFocus.current = true;
+      if (target === "unlock" || target === "lock")
+        restoreUnlockFocus.current = true;
       setBusy("");
     }
   };
   return (
     <>
       <div className="admin-team-menu-actions">
+        {!team.locked && (
+          <>
+            <button
+              ref={unlockButton}
+              type="button"
+              className="button secondary"
+              disabled={!hydrated || !!busy || !!team.lockBlockedReason}
+              aria-busy={busy === "lock"}
+              aria-describedby={
+                team.lockBlockedReason ? `${id}-lock-blocked` : undefined
+              }
+              onClick={() =>
+                void perform("lock", "admin-lock-team", async () => {
+                  const params = new URLSearchParams({
+                    view: "/admin/team-lock",
+                    focus: team.id,
+                  });
+                  const { response, body } = await readPortalView(
+                    `/api/portal?${params}`,
+                  );
+                  if (!response.ok) throw new Error(portalErrorText(body));
+                  if (!body.canLock)
+                    throw new Error(
+                      body.blockedReason ||
+                        "Team cannot be locked. Refresh and try again.",
+                    );
+                  if (
+                    body.team?.id !== team.id ||
+                    typeof body.team.name !== "string" ||
+                    !/^[a-f0-9]{64}$/.test(body.snapshotDigest)
+                  )
+                    throw new Error(
+                      "Team details could not be verified. Refresh and try again.",
+                    );
+                  return {
+                    teamId: team.id,
+                    expectedName: body.team.name,
+                    snapshotDigest: body.snapshotDigest,
+                    confirmation: "ADMIN_LOCK_TEAM",
+                  };
+                })
+              }
+            >
+              <LockKeyhole size={18} aria-hidden="true" />
+              {busy === "lock" ? "Locking…" : "Lock team"}
+            </button>
+            {team.lockBlockedReason && (
+              <p id={`${id}-lock-blocked`} className="control-feedback">
+                {team.lockBlockedReason}
+              </p>
+            )}
+          </>
+        )}
         <button
           type="button"
           className="button secondary"
@@ -247,12 +314,16 @@ export default function AdminTeamActions({
               className="button secondary"
               disabled={!hydrated || !!busy || !!unlockBlockedReason}
               aria-busy={busy === "unlock"}
-              aria-describedby={unlockBlockedReason ? `${id}-unlock-blocked` : undefined}
-              onClick={() => void perform("unlock", "admin-unlock-team", {
-                teamId: team.id,
-                expectedLockedAt: team.lockedAt,
-                confirmation: "UNLOCK_TEAM",
-              })}
+              aria-describedby={
+                unlockBlockedReason ? `${id}-unlock-blocked` : undefined
+              }
+              onClick={() =>
+                void perform("unlock", "admin-unlock-team", {
+                  teamId: team.id,
+                  expectedLockedAt: team.lockedAt,
+                  confirmation: "UNLOCK_TEAM",
+                })
+              }
             >
               <LockOpen size={18} aria-hidden="true" />
               {busy === "unlock" ? "Unlocking…" : "Unlock team"}
@@ -269,12 +340,21 @@ export default function AdminTeamActions({
           className="button secondary admin-icon-danger"
           disabled={!hydrated || !!busy}
           aria-busy={busy === "delete"}
-          onClick={() => void perform("delete", "admin-delete-team", { teamId: team.id, confirmation: "DELETE_TEAM" })}
+          onClick={() =>
+            void perform("delete", "admin-delete-team", {
+              teamId: team.id,
+              confirmation: "DELETE_TEAM",
+            })
+          }
         >
           <Trash2 size={18} aria-hidden="true" />
           Delete team
         </button>
-        {!mode && error && <p className="error-message" role="alert">{error}</p>}
+        {!mode && error && (
+          <p className="error-message" role="alert">
+            {error}
+          </p>
+        )}
       </div>
       {mode && (
         <TeamActionDialog

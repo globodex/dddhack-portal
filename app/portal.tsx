@@ -7129,7 +7129,7 @@ function StatusChange({
             <select name="status" defaultValue={current}>
               {(kind === "person"
                 ? ["Registered", "Going", "Checked in", "Absent"]
-                : ["Forming", "Locked", "Not submitted", "Submitted"]
+                : ["Forming", "Not submitted", "Submitted"]
               ).map((v) => (
                 <option key={v}>{v}</option>
               ))}

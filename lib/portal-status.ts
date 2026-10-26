@@ -202,6 +202,12 @@ export async function statusCommand(
   }
   const status = z.enum(teamStatuses).parse(d.status);
   demand(
+    status !== "Locked",
+    422,
+    "TEAM_LOCK_ACTION_REQUIRED",
+    "Use Lock team to lock team and idea editing.",
+  );
+  demand(
     status !== "Approved",
     422,
     "TEAM_APPROVAL_ACTION_REQUIRED",
