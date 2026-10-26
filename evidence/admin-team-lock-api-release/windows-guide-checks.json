@@ -5,5 +5,6 @@
   "Platform": "Linux",
   "PowerShell": "7.6.8",
   "NativeWindowsAcceptance": false,
-  "HostedCommandsExecuted": false
+  "HostedCommandsExecuted": false,
+  "guideSHA256": "03ee6e12a59da0620d690298bd8076174cce1cc8a207a07bf866c1ccac596d1c"
 }

@@ -1,9 +1,9 @@
 {
-  "runtimeSource": "cd7ecb91812ca9b36178969a404ce41cade00891",
+  "runtimeSource": "882bc7c311a4a52f6b7da971f56f6e8cfe09af42",
   "runtime": "nodejs24",
   "source": "neon/api.ts",
-  "zipBytes": 9038029,
-  "sha256": "77dbb77b2c3c459bcaf910bbcfa945a3fce06f1f2cefa4426d7abe7121d2e0f2",
+  "zipBytes": 9039133,
+  "sha256": "0c3e35e8894fe48b40dfb58b848f1b131a917aca691357fb09a77a461d0864e2",
   "env": {},
   "warnings": [],
   "buildOnly": true,
@@ -12,9 +12,9 @@
   "nativeExecution": "not performed; headers only",
   "archive": "artifacts/neon/portalapi.zip",
   "candidateOnly": true,
-  "uncompressedBytes": 21231557,
+  "uncompressedBytes": 21234424,
   "fileCount": 93,
-  "indexSha256": "caff2c5785c0bc188a94cd9ad4b8d17a7babc3b80d709636d4e681e9d0bc7be6",
+  "indexSha256": "0bf9225529da30ffbd5226fb6022b3509063feb53399a3e08dee03a550849d10",
   "nativeArchitecture": "Linux ARM64 glibc",
   "nativeFiles": [
     {
@@ -33,8 +33,8 @@
     }
   ],
   "forbiddenInputs": [],
-  "graphInputCount": 878,
-  "graphApplicationInputCount": 94,
+  "graphInputCount": 880,
+  "graphApplicationInputCount": 96,
   "graphFrontendInputs": [],
   "graphRecomputed": true,
   "archiveIndexBytesIdentical": true,
@@ -131,5 +131,6 @@
     "outboundAttempts": 0,
     "nativeArmExecution": false
   },
-  "runtimeFinalConfirmedByRoot": false
+  "runtimeFinalConfirmedByRoot": false,
+  "supersedesLocalCandidateSHA256": "77dbb77b2c3c459bcaf910bbcfa945a3fce06f1f2cefa4426d7abe7121d2e0f2"
 }

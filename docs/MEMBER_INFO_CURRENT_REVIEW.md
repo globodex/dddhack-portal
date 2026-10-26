@@ -20,6 +20,6 @@ Both browser jobs and the narrow two-state follow-up closed. Owned Next3012 and 
 
 ## Roster remains deferred
 
-No roster-removal implementation or migration is included. A dedicated normalized-email removal table in future additive0107 is the engineering plan because it avoids arbitrary external user-ID namespace collisions. Existing user-ID tombstones remain supported, and explicit authorized restoration must clear the relevant revocations without login/session/CSV reimport silently restoring access. Accounts/history/team records and the leader-successor block remain protected.
+No roster-removal implementation or migration is included. A dedicated normalized-email removal table in a future additive migration using a then-unused number is the engineering plan. The earlier0107 proposal was never implemented;0107 is now assigned to `0107_admin_team_lock.sql`. An email-keyed table avoids arbitrary external user-ID namespace collisions. Existing user-ID tombstones remain supported, and explicit authorized restoration must clear the relevant revocations without login/session/CSV reimport silently restoring access. Accounts/history/team records and the leader-successor block remain protected.
 
 The only pending product decision is whether removal retains the occupied team seat and pauses active approval, or detaches the person, frees the seat and restores them teamless. This note does not request an additional broad schema-approval step and does not change current readiness, saved approval, membership, credit, identity or historical submission data.

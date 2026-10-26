@@ -1,11 +1,11 @@
 {
-  "runtimeSource": "cd7ecb91812ca9b36178969a404ce41cade00891",
+  "runtimeSource": "882bc7c311a4a52f6b7da971f56f6e8cfe09af42",
   "archive": {
-    "path": "/tmp/ddd-admin-lock-cd7ecb91812c/candidate/portalapi.zip",
-    "bytes": 9038029,
-    "sha256": "77dbb77b2c3c459bcaf910bbcfa945a3fce06f1f2cefa4426d7abe7121d2e0f2",
+    "path": "/tmp/ddd-admin-lock-882bc7c311a4/candidate/portalapi.zip",
+    "bytes": 9039133,
+    "sha256": "0c3e35e8894fe48b40dfb58b848f1b131a917aca691357fb09a77a461d0864e2",
     "files": 93,
-    "uncompressedBytes": 21231557,
+    "uncompressedBytes": 21234424,
     "nativeFiles": [
       {
         "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
@@ -22,10 +22,10 @@
     ],
     "forbiddenPaths": []
   },
-  "indexSha256": "caff2c5785c0bc188a94cd9ad4b8d17a7babc3b80d709636d4e681e9d0bc7be6",
+  "indexSha256": "0bf9225529da30ffbd5226fb6022b3509063feb53399a3e08dee03a550849d10",
   "identicalUnmodifiedJavaScript": true,
   "hostDependencySubstitution": {
-    "path": "/tmp/ddd-admin-lock-cd7ecb91812c/host",
+    "path": "/tmp/ddd-admin-lock-882bc7c311a4/host",
     "nodeModulesTarget": "/workspace/dddhack-portal/node_modules",
     "purpose": "Resolve sharp against installed host x86_64 native dependencies; original ARM64 archive and extracted tree remain unchanged."
   },
@@ -111,7 +111,7 @@
   "noMailSent": true,
   "noDatabaseConfigured": true,
   "receiptGraphOnly": {
-    "inputs": 878,
+    "inputs": 880,
     "forbiddenInputs": [],
     "recomputed": false
   },

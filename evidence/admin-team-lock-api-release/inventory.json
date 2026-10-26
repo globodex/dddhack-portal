@@ -1,6 +1,6 @@
 {
   "fileCount": 93,
-  "uncompressedBytes": 21231557,
+  "uncompressedBytes": 21234424,
   "nativeFiles": [
     {
       "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
@@ -21,8 +21,8 @@
   "changedEntries": [
     {
       "path": "index.mjs",
-      "sha256": "caff2c5785c0bc188a94cd9ad4b8d17a7babc3b80d709636d4e681e9d0bc7be6",
-      "bytes": 1730680
+      "sha256": "0bf9225529da30ffbd5226fb6022b3509063feb53399a3e08dee03a550849d10",
+      "bytes": 1733547
     }
   ],
   "unchangedEntries": [
@@ -123,8 +123,8 @@
   "allArchiveInputHashes": [
     {
       "path": "index.mjs",
-      "sha256": "caff2c5785c0bc188a94cd9ad4b8d17a7babc3b80d709636d4e681e9d0bc7be6",
-      "bytes": 1730680
+      "sha256": "0bf9225529da30ffbd5226fb6022b3509063feb53399a3e08dee03a550849d10",
+      "bytes": 1733547
     },
     {
       "path": "node_modules/@emnapi/runtime/dist/emnapi.cjs.js",

@@ -150,7 +150,13 @@ test(
           }),
         ),
       );
-      assert.equal(outcomes.filter((o) => o.status === "fulfilled").length, 3);
+      assert.equal(
+        outcomes.filter((o) => o.status === "fulfilled").length,
+        3,
+        JSON.stringify(outcomes.map((outcome) => outcome.status === "fulfilled"
+          ? { status: outcome.status }
+          : { status: outcome.status, code: outcome.reason?.code, message: outcome.reason?.message })),
+      );
       assert.equal(
         (await rows(db, "SELECT * FROM submission_versions")).length,
         3,

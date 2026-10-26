@@ -15,8 +15,8 @@ apply requires an actual current recovery checkpoint whose restored copy you hav
 independently verified. Use a quiet migration window; on a changed-state/uncertain
 outcome, inspect again rather than blindly repeating apply.
 
-Bundle runtime source: `cd7ecb91812ca9b36178969a404ce41cade00891`.
-ZIP SHA256: `77dbb77b2c3c459bcaf910bbcfa945a3fce06f1f2cefa4426d7abe7121d2e0f2`.
+Bundle runtime source: `882bc7c311a4a52f6b7da971f56f6e8cfe09af42`.
+ZIP SHA256: `0c3e35e8894fe48b40dfb58b848f1b131a917aca691357fb09a77a461d0864e2`.
 Plan digest: `2dc505efb7e5cf25f4e9da1a56e9aa9cb4a816735b222127b9fdfdb5daafa277`.
 
 Recommended order: publish the approved review branch with main unchanged → owner
@@ -33,11 +33,11 @@ variable is initialized here; stop on any error. All commands are provided upfro
 ```powershell
 $ErrorActionPreference = 'Stop'
 Set-Location 'D:\Dev\dddhack-portal\dddhack-portal-migration'
-$zipSHA = '77dbb77b2c3c459bcaf910bbcfa945a3fce06f1f2cefa4426d7abe7121d2e0f2'
-$indexSHA = 'caff2c5785c0bc188a94cd9ad4b8d17a7babc3b80d709636d4e681e9d0bc7be6'
+$zipSHA = '0c3e35e8894fe48b40dfb58b848f1b131a917aca691357fb09a77a461d0864e2'
+$indexSHA = '0bf9225529da30ffbd5226fb6022b3509063feb53399a3e08dee03a550849d10'
 $planDigest = '2dc505efb7e5cf25f4e9da1a56e9aa9cb4a816735b222127b9fdfdb5daafa277'
 $archive = '.\artifacts\neon\portalapi.zip'
-$extract = '.\.local\portalapi-77dbb77b2c3c'
+$extract = '.\.local\portalapi-0c3e35e8894f'
 $stamp = Get-Date -Format 'yyyyMMdd-HHmmssfff'
 $receipt = '.local/admin-lock-before-' + $stamp + '.json'
 $freshReceipt = '.local/admin-lock-fresh-' + $stamp + '.json'
@@ -115,7 +115,7 @@ console.log('Exact new ZIP verified.');
 if ($LASTEXITCODE -ne 0) { throw 'Archive verification failed' }
 if (Test-Path $extract) { throw 'Extraction folder already exists; do not overlay an older attempt' }
 explorer.exe 'D:\Dev\dddhack-portal\dddhack-portal-migration\artifacts\neon'
-Write-Host 'Extract portalapi.zip to D:\Dev\dddhack-portal\dddhack-portal-migration\.local\portalapi-77dbb77b2c3c'
+Write-Host 'Extract portalapi.zip to D:\Dev\dddhack-portal\dddhack-portal-migration\.local\portalapi-0c3e35e8894f'
 if ((Read-Host 'When extraction is complete, type EXTRACTED') -cne 'EXTRACTED') { throw 'Extraction not confirmed' }
 ```
 
@@ -133,7 +133,7 @@ console.log('Entry bytes and packaged source root verified.');
 '@ | node - $extract $indexSHA
 if ($LASTEXITCODE -ne 0) { throw 'Extraction verification failed' }
 if ((Read-Host 'Type DEPLOY to update the existing linked portalapi Function') -cne 'DEPLOY') { throw 'Deployment not requested' }
-neon functions deploy portalapi --src .\.local\portalapi-77dbb77b2c3c --no-bundle --runtime nodejs24
+neon functions deploy portalapi --src .\.local\portalapi-0c3e35e8894f --no-bundle --runtime nodejs24
 if ($LASTEXITCODE -ne 0) { throw 'Deployment outcome unconfirmed; inspect before retrying' }
 ```
 

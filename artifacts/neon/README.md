@@ -1,23 +1,40 @@
-# Reviewed Viewer-registration backend archive
+# Admin lock, compact filters and inline-member backend candidate
 
-Freshly built from integrated source `86862c722233bbd6776f1e2672d78b41fa808a52`. The official `@neon/config-runtime@1.10.2` buildFunctionBundle used function `env: {}` and the existing public npm cache in offline mode. No warning, provider call, hosted SQL operation, push or deployment occurred.
+Local review candidate. **Not pushed, deployed or applied to a hosted database.**
+
+Built from runtime source `882bc7c311a4a52f6b7da971f56f6e8cfe09af42` using the official
+`@neon/config-runtime@1.10.2` packager with function `env: {}` and no warnings.
+No real credentials, fixture database, screenshots, SQL files or tests are packaged.
 
 | Check | Result |
 | --- | --- |
-| Runtime | Node.js 24, Linux ARM64 glibc |
-| Archive | 93 files; 9,014,656 compressed bytes; 21,150,237 raw bytes |
-| ZIP SHA256 | `bbd047173fb4e895bd8148d24674548f05dfaea58e184ca57bcc0e183ca60382` |
-| JavaScript SHA256 | `77b26aed98d0c7c8486c12ee2246ce61dadc98163d2fc5d24989f6fd579669fe` |
-| Fresh API graph | 862 inputs; 78 application inputs; no frontend/forbidden inputs |
-| Native files | Two unchanged ARM64 ELF binaries, machine 183 |
-| Host JavaScript smoke | Trusted health 200, untrusted 403, unconfigured portal 503; zero outbound attempts |
+| Runtime | Node.js24, Linux ARM64 glibc |
+| ZIP | 93 files; 9,039,133 compressed bytes; 21,234,424 raw bytes |
+| ZIP SHA256 | `0c3e35e8894fe48b40dfb58b848f1b131a917aca691357fb09a77a461d0864e2` |
+| JavaScript SHA256 | `0bf9225529da30ffbd5226fb6022b3509063feb53399a3e08dee03a550849d10` |
+| Source graph | 880 inputs; 96 application inputs; all application hashes match the committed runtime source |
+| Native dependencies | 92 unchanged archive entries versus the published cef0 archive, including both ARM64 ELF files |
+| Host smoke | Health200, untrusted403, unconfigured503; zero outbound attempts |
 
-This source adds an authenticated Viewer registration-required response on eight private routes, owner/admin-only Viewer rows and registration metadata, and preserves the separate approval/check-in/write gates. It adds no schema migration. Archive checks bind those source files to the ZIP; separate domain/HTTP/browser checks remain the integration owner's gate.
+Only `index.mjs` changed versus the published archive. The fresh official build and
+an independent fresh esbuild result have identical JavaScript bytes. Native ARM64
+execution is unverified; host smoke explicitly substitutes the existing x86_64 Sharp
+dependency in a separate copy without modifying the original package.
 
-Compared with previous ZIP `1afca1c65f0c3b58bde89a5e1b80d3dec92c87b392239da0315ed762ebd0730f`, only `index.mjs` changed. The other 92 entries, including both native binaries, are byte-identical. The JavaScript entry is 1,188 raw bytes larger. No speed improvement follows from these counts.
+This batch needs the exact thirteen-entry source plan through
+`0107_admin_team_lock.sql`. A target already through0106 applies only0107 using the
+fresh guarded inspection/verified-recovery procedure. Earlier roster0107 was an
+unimplemented proposal and is excluded. The migration alone locks/approves no team.
 
-The outgoing-blocked host smoke uses unchanged JavaScript with an explicitly substituted existing x86_64 Sharp dependency. It does not execute the original ARM64 ZIP. Actual ARM64 execution, hosted storage/SMTP and full login remain unverified. The ZIP contains no environment files, fixture database or tests. The Windows preparation helper pins this exact ZIP; its [six-check report](../../evidence/neon-host-archive/windows-handoff-report.json) is current.
+Safest order after approval: publish the review branch, perform the owner-run
+schema/backend rollout, then publish the frontend to main. Preserve existing
+origins, linked target and deployed environment variables. The Windows guide uses
+Node checksum verification and Explorer extraction, without `Get-FileHash`.
 
-The existing nine migration-plan names/checksums are unchanged: seven historical entries plus pending `0102_credit_stock.sql` and `0103_project_media_limits.sql`. Viewer handling adds none; that does not remove the prior release's populated-database prerequisite. Follow the owner-operated [pending-only upgrade handoff](../../docs/NEON_POPULATED_UPGRADE_PLAN.md) before manual backend/frontend publication. No migration CLI or hosted ledger was accessed here. Never run synthetic seeds or resets on the populated target.
-
-[Verification and limits](../../docs/NEON_HOST_ARCHIVE_VERIFICATION.md), [receipt](receipt.json), [build metadata](build-metadata.json), [graph](../../evidence/neon-host-archive/graph.json), [comparison](../../evidence/neon-host-archive/archive-refresh-comparison.json), [source mapping](../../evidence/neon-host-archive/source-equivalence.json), [SQL-file proof](../../evidence/neon-host-archive/local-sql-hash-review.json) and [host smoke](../../evidence/neon-host-archive/report.json) preserve provenance.
+[Current Windows steps](../../docs/ADMIN_TEAM_LOCK_WINDOWS_ROLLOUT.md),
+[pending-only migration details](../../docs/NEON_POPULATED_UPGRADE_PLAN.md),
+[receipt](receipt.json), [build metadata](build-metadata.json),
+[source graph](../../evidence/admin-team-lock-api-release/graph.json),
+[runtime hashes](../../evidence/admin-team-lock-api-release/runtime-input-hashes.json),
+[archive inventory](../../evidence/admin-team-lock-api-release/inventory.json), and
+[host smoke](../../evidence/admin-team-lock-api-release/host-smoke.json).
