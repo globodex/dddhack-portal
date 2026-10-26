@@ -35,6 +35,7 @@ import "./project-share.css";
 import "./results-settings.css";
 import "./admin-credit-stock-values.css";
 import "./participant-profile-info.css";
+import "./hero-viewport.css";
 export const metadata = {
   icons: { icon: "/brand/codex-user-supplied.svg" },
   title: "DevDay Exchange Community Hackathon: New Delhi",

@@ -88,12 +88,21 @@ export default function Dots({
           moving =
             advanceDot(
               dot,
-              airblowerTarget(dot, pointer, width, height, bottom, compact),
+              airblowerTarget(
+                dot,
+                pointer,
+                width,
+                height,
+                bottom,
+                compact,
+                bottom,
+              ),
               dt,
               width,
               height,
               bottom,
               compact,
+              bottom,
             ) || moving;
       });
       paint();
@@ -147,24 +156,36 @@ export default function Dots({
           : compact
             ? compactSideDots
             : desktopDots;
-      const scale = compact
+      const baseScale = compact
         ? Math.min(bottom ? 1.2 : 1, width / 480)
         : bottom
           ? Math.min(1.55, width / 760)
           : width / 480;
+      const scale = bottom
+        ? Math.min(
+            baseScale,
+            Math.max(0, height - 16) /
+              Math.max(...descriptors.map((item) => item.diameter)),
+          )
+        : baseScale;
       dots = descriptors.map((item, i) => {
         const r = (item.diameter * scale) / 2;
         const homeX = rail
           ? (item.x * width) / 480
-          : compact
+          : bottom
             ? Math.max(
-                -r * 0.35,
-                Math.min(width + r * 0.35, (item.x * width) / 480),
+                r,
+                Math.min(
+                  width - r,
+                  compact
+                    ? (item.x * width) / 480
+                    : ((i + 0.5) * width) / descriptors.length,
+                ),
               )
-            : bottom
+            : compact
               ? Math.max(
-                  r,
-                  Math.min(width - r, ((i + 0.5) * width) / descriptors.length),
+                  -r * 0.35,
+                  Math.min(width + r * 0.35, (item.x * width) / 480),
                 )
               : item.x * scale;
         const homeY = rail
@@ -173,8 +194,8 @@ export default function Dots({
             ? Math.max(
                 r,
                 Math.min(
-                  height - r * 0.65,
-                  height - r * 0.65 - (compact ? item.y * scale : 0),
+                  height - r - 8,
+                  height - r - 8 - (compact ? item.y * scale : 0),
                 ),
               )
             : Math.max(r, Math.min(height - r, item.y * scale));

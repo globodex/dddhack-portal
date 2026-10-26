@@ -302,17 +302,39 @@ export default function Home({
     setReady(true);
   }, []);
   useEffect(() => {
-    if (!hero.current) return;
+    const section = hero.current;
+    if (!section) return;
+    // The sticky header (and any real notice above Home) already occupies the
+    // viewport. Measure layout space, not an assumed breakpoint-specific height.
+    const measure = () => {
+      const top = Math.max(0, section.getBoundingClientRect().top + scrollY);
+      section.style.setProperty("--hero-header-height", `${top}px`);
+    };
+    const resize = new ResizeObserver(measure);
+    const shell = section.closest(".public-home-shell");
+    const header = shell?.querySelector(".navigation-header, .public-header");
+    if (header) resize.observe(header);
+    if (section.parentElement?.parentElement)
+      resize.observe(section.parentElement.parentElement);
+    measure();
     const observer = new IntersectionObserver(([entry]) =>
       setVisible(entry.isIntersecting),
     );
-    observer.observe(hero.current);
-    return () => observer.disconnect();
+    observer.observe(section);
+    return () => {
+      resize.disconnect();
+      observer.disconnect();
+    };
   }, []);
   return (
     <div className="home" data-paused={paused}>
       <section className="home-hero" aria-labelledby="home-title" ref={hero}>
-        <div className="hero-copy">
+        <div
+          className="hero-copy"
+          tabIndex={0}
+          role="region"
+          aria-label="Event information and registration"
+        >
           <h1
             id="home-title"
             aria-label="DevDay Exchange Community Hackathon: New Delhi"

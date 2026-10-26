@@ -149,6 +149,7 @@ export function airblowerTarget(
   height: number,
   bottom: boolean,
   edgeBleed = false,
+  contained = false,
 ) {
   if (!pointer) return { x: dot.homeX, y: dot.homeY };
   const dx = dot.homeX - pointer.x,
@@ -164,13 +165,16 @@ export function airblowerTarget(
   return {
     x: clamp(
       dot.homeX + nx * force,
-      edgeBleed ? -dot.r * 0.35 : dot.r,
-      Math.max(dot.r, edgeBleed ? width + dot.r * 0.35 : width - dot.r),
+      edgeBleed && !contained ? -dot.r * 0.35 : dot.r,
+      Math.max(
+        dot.r,
+        edgeBleed && !contained ? width + dot.r * 0.35 : width - dot.r,
+      ),
     ),
     y: clamp(
       dot.homeY + ny * force,
       dot.r,
-      Math.max(dot.r, height - dot.r * (bottom ? 0.65 : 1)),
+      Math.max(dot.r, height - dot.r * (bottom && !contained ? 0.65 : 1)),
     ),
   };
 }
@@ -182,19 +186,23 @@ export function advanceDot(
   height: number,
   bottom: boolean,
   edgeBleed = false,
+  contained = false,
 ) {
   const step = clamp(dt, 0.1, 2);
   dot.vx = (dot.vx + (target.x - dot.x) * 0.045 * step) * Math.pow(0.77, step);
   dot.vy = (dot.vy + (target.y - dot.y) * 0.045 * step) * Math.pow(0.77, step);
   dot.x = clamp(
     dot.x + dot.vx * step,
-    edgeBleed ? -dot.r * 0.35 : dot.r,
-    Math.max(dot.r, edgeBleed ? width + dot.r * 0.35 : width - dot.r),
+    edgeBleed && !contained ? -dot.r * 0.35 : dot.r,
+    Math.max(
+      dot.r,
+      edgeBleed && !contained ? width + dot.r * 0.35 : width - dot.r,
+    ),
   );
   dot.y = clamp(
     dot.y + dot.vy * step,
     dot.r,
-    Math.max(dot.r, height - dot.r * (bottom ? 0.65 : 1)),
+    Math.max(dot.r, height - dot.r * (bottom && !contained ? 0.65 : 1)),
   );
   return (
     Math.abs(dot.vx) +
