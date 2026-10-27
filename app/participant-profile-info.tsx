@@ -142,12 +142,14 @@ export function ParticipantProfiles({
   actorId,
   returnTo,
   accessVersion,
+  staff = false,
   children,
 }: {
   actorKey: string;
   actorId: string;
   returnTo: string;
   accessVersion?: unknown;
+  staff?: boolean;
   children: ReactNode;
 }) {
   const lookup = useRef<SelectedProfileRequest | null>(null);
@@ -231,6 +233,7 @@ export function ParticipantProfiles({
             }
           }
           pending={state.pending}
+          emailUnavailable={staff && !!state.person && !state.person.details?.email}
           error={state.error}
           signInUrl={state.status === 401 ? signIn : undefined}
           onRetry={

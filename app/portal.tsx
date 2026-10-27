@@ -50,6 +50,7 @@ import AdminTeamApproval, {
   teamNeedsApproval,
 } from "./admin-team-approval";
 import AdminStats from "./admin-stats";
+import AdminBackendNotice from "./admin-backend-notice";
 import AdminSubmissionAnalytics from "./admin-submission-analytics";
 import AdminProjectScore from "./admin-project-score";
 import TeamPreparation from "./team-preparation";
@@ -4502,7 +4503,7 @@ export function AdminParticipants({
           close={() => setAdding(false)}
         />
       )}
-      {data.stats && <AdminStats stats={data.stats} />}
+      {data.stats ? <AdminStats stats={data.stats} /> : <AdminBackendNotice me={data.me} />}
       <div className={`admin-roster-tools${canManage && demographics ? " is-compact" : ""}`}>
         {canManage && demographics ? <>
           <Search value={filters.individual} onChange={value => updateFilters({...filters, individual: value, teamQuery: ""})} label="Name, email or team" />
@@ -5447,7 +5448,7 @@ export function AdminList({
                 : "Submissions"}
         </h1>
       </header>
-      {data.stats && <AdminStats stats={data.stats} />}
+      {data.stats ? <AdminStats stats={data.stats} /> : (teams || !logs && !credits) && <AdminBackendNotice me={data.me} />}
       {data.submissionAnalytics && <AdminSubmissionAnalytics analytics={data.submissionAnalytics} />}
       <div
         className={`toolbar admin-list-toolbar${filtersExpanded ? " is-expanded" : ""}`}
@@ -6811,7 +6812,7 @@ export default function Portal({
     teamPalettes[(data.team?.palette || "forest") as Palette] ||
     teamPalettes.forest;
   return (
-    <ParticipantProfiles key={`${path}:${data.me?.id || "anonymous"}:${data.me?.role || ""}:${data.me?.owner === true}`} actorKey={`${data.me?.id || "anonymous"}:${data.me?.role || ""}:${data.me?.owner === true}`} actorId={data.me?.id || ""} returnTo={path} accessVersion={data}>
+    <ParticipantProfiles key={`${path}:${data.me?.id || "anonymous"}:${data.me?.role || ""}:${data.me?.owner === true}`} actorKey={`${data.me?.id || "anonymous"}:${data.me?.role || ""}:${data.me?.owner === true}`} actorId={data.me?.id || ""} returnTo={path} accessVersion={data} staff={data.me?.owner === true || data.me?.role === "admin"}>
     <div
       className={`app-shell navigation-shell ${path === "/" ? "public-home-shell" : ""} ${profileOnboarding ? "onboarding-shell" : ""} ${workspaceShell ? "workspace-shell" : ""} ${publicBrowse ? "public-project-shell" : ""} ${studioDashboard ? "studio-dashboard-shell" : ""}`.trim()}
       data-hydrated={hydrated}

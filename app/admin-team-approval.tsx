@@ -17,6 +17,13 @@ import { trapDialogFocus } from "./dialog-focus";
 import { trackDialogHistory } from "./dialog-history";
 import { useHydrated } from "./use-hydrated";
 import type { AdminTeamRun } from "./admin-team-actions";
+import { adminBackendUpdateMessage } from "./admin-backend-notice";
+
+export function approvalPreviewError(status: number, body: { code?: string; message?: string }) {
+  return status === 404 && body.code === "LIST_NOT_FOUND"
+    ? adminBackendUpdateMessage
+    : portalErrorText(body);
+}
 
 type ApprovalMember = {
   id: string;
@@ -342,7 +349,7 @@ function ApprovalDialog({
           `/api/portal?${params}`,
           controller.signal,
         );
-        if (!response.ok) throw new Error(portalErrorText(body));
+        if (!response.ok) throw new Error(approvalPreviewError(response.status, body));
         const next = parseTeamApprovalPreview(body, team.id);
         if (!controller.signal.aborted) setPreview(next);
       } catch (cause) {

@@ -282,3 +282,15 @@
     margin-bottom: 5px;
   }
 }
+.app-shell .admin-backend-notice,
+dialog .admin-backend-notice {
+  padding: 14px 18px;
+  margin: 0 0 24px;
+  border: 1px solid #e4d3aa;
+  border-radius: 12px;
+  background: #fff8e8;
+  color: #614a18;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}

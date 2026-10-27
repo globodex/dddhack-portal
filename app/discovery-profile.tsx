@@ -172,6 +172,7 @@ export default function DiscoveryProfile({
   onRetry,
   signInUrl,
   stableFrame = false,
+  emailUnavailable = false,
 }: {
   person: DiscoveryPerson;
   onClose: () => void;
@@ -180,6 +181,7 @@ export default function DiscoveryProfile({
   onRetry?: () => void;
   signInUrl?: string;
   stableFrame?: boolean;
+  emailUnavailable?: boolean;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const closeCallback = useRef(onClose);
@@ -314,6 +316,11 @@ export default function DiscoveryProfile({
               </nav>
             )}
           </div>
+          {emailUnavailable && (
+            <p className="admin-backend-notice" role="status">
+              Email is unavailable from the backend. Deploy the matching backend package, then reopen this profile.
+            </p>
+          )}
           {details && Object.keys(details).length > 0 && (
             <section
               className="discovery-profile-details"

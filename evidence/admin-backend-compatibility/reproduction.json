@@ -1,0 +1,34 @@
+[
+  {
+    "version": "legacy-0b5f130",
+    "stats": {
+      "status": 200,
+      "present": false
+    },
+    "email": {
+      "status": 200,
+      "present": false
+    },
+    "approval": {
+      "status": 404,
+      "code": "LIST_NOT_FOUND",
+      "preview": false
+    }
+  },
+  {
+    "version": "published-363fa35",
+    "stats": {
+      "status": 200,
+      "present": true
+    },
+    "email": {
+      "status": 200,
+      "present": true
+    },
+    "approval": {
+      "status": 200,
+      "code": null,
+      "preview": true
+    }
+  }
+]

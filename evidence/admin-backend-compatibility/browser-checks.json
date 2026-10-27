@@ -1,0 +1,34 @@
+[
+  {
+    "width": 1440,
+    "legacy": true,
+    "statsCorrect": true,
+    "profileCorrect": true,
+    "approvalPreviewCorrect": true,
+    "noMutation": true
+  },
+  {
+    "width": 1440,
+    "legacy": false,
+    "statsCorrect": true,
+    "profileCorrect": true,
+    "approvalPreviewCorrect": true,
+    "noMutation": true
+  },
+  {
+    "width": 390,
+    "legacy": true,
+    "statsCorrect": true,
+    "profileCorrect": true,
+    "approvalPreviewCorrect": true,
+    "noMutation": true
+  },
+  {
+    "width": 390,
+    "legacy": false,
+    "statsCorrect": true,
+    "profileCorrect": true,
+    "approvalPreviewCorrect": true,
+    "noMutation": true
+  }
+]
