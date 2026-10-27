@@ -1,7 +1,14 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { BriefcaseBusiness, Building2, Copy, Phone, X } from "lucide-react";
+import {
+  BriefcaseBusiness,
+  Building2,
+  Copy,
+  Mail,
+  Phone,
+  X,
+} from "lucide-react";
 import { GenderSymbol, genderLabel } from "./gender-presentation";
 import TeamAvatar from "./team-avatar";
 import DotAvatar from "./dot-avatar";
@@ -16,6 +23,7 @@ export type DiscoveryPerson = {
   avatarExpression: string;
   team?: { name: string; palette?: string };
   details?: {
+    email?: string;
     profession?: string;
     organization?: string;
     gender?: string;
@@ -33,6 +41,11 @@ export function discoveryDetailsProjection(
     return undefined;
   const row = value as Record<string, unknown>;
   const details: NonNullable<DiscoveryPerson["details"]> = {};
+  if (
+    typeof row.email === "string" &&
+    /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(row.email)
+  )
+    details.email = row.email;
   for (const key of [
     "profession",
     "organization",
@@ -306,6 +319,15 @@ export default function DiscoveryProfile({
               className="discovery-profile-details"
               aria-label="Profile details"
             >
+              {details.email && (
+                <div className="discovery-profile-fact">
+                  <Mail size={20} aria-hidden="true" />
+                  <span style={{ overflowWrap: "anywhere" }}>
+                    <span className="sr-only">Email: </span>
+                    {details.email}
+                  </span>
+                </div>
+              )}
               {details.profession && (
                 <div className="discovery-profile-fact">
                   <BriefcaseBusiness size={20} aria-hidden="true" />

@@ -1,5 +1,9 @@
 import { one, rows, type Database } from "./db";
-import { selectedProfileFacts, type ProfileViewer, type SelectedProfileFacts } from "./selected-profile-facts";
+import {
+  selectedProfileFacts,
+  type ProfileViewer,
+  type SelectedProfileFacts,
+} from "./selected-profile-facts";
 import { demand, PortalError } from "./security";
 import { registeredEmailPredicate } from "./roster";
 
@@ -29,6 +33,7 @@ type Cursor = {
 };
 type DirectoryRow = {
   id: string;
+  email?: string;
   name: string;
   avatarColor: string;
   avatarExpression: string;
@@ -135,7 +140,7 @@ const selection = `SELECT u.id,COALESCE(pp.display_name,u.name) name,
  AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=u.id AND rr.active=1)
  AND pp.completed_at IS NOT NULL AND pd.phone<>''`;
 const name = "COALESCE(pp.display_name,u.name) COLLATE NOCASE";
-const project = (row: DirectoryRow) => ({
+const project = ({ email: _email, ...row }: DirectoryRow) => ({
   ...row,
   socials: JSON.parse(row.socials),
 });
@@ -147,6 +152,12 @@ async function selectedPerson(
 ) {
   const publicPerson = project(row);
   if (!viewer) return { ...publicPerson, details: {} };
+  // Only the staff-selected query reads email. Never include it in directory
+  // cards, ordinary selected profiles, or public project member payloads.
+  const staffEmail =
+    !viewer.deactivated && (viewer.owner || viewer.role === "admin")
+      ? row.email
+      : undefined;
   const extra = await one<SelectedProfileFacts>(
     db,
     `SELECT p.bio,p.socials,p.gender,p.gender_description genderDescription,
@@ -157,8 +168,14 @@ async function selectedPerson(
     viewer!.id,
     row.id,
   );
-  if (!extra) return { ...publicPerson, details: {} };
-  return { ...publicPerson, ...selectedProfileFacts(extra, viewer, row.id) };
+  const facts = extra
+    ? selectedProfileFacts(extra, viewer, row.id)
+    : { details: {} };
+  return {
+    ...publicPerson,
+    ...facts,
+    details: { ...facts.details, ...(staffEmail ? { email: staffEmail } : {}) },
+  };
 }
 
 export async function discoverParticipants(
@@ -219,7 +236,7 @@ export async function discoverParticipants(
     ? staff
       ? await one<DirectoryRow>(
           db,
-          `SELECT u.id,COALESCE(pp.display_name,u.name) name,
+          `SELECT u.id,u.email,COALESCE(pp.display_name,u.name) name,
         pd.avatar_color avatarColor,pd.avatar_expression avatarExpression,
         t.name teamName,COALESCE(ts.color_key,ts.palette) teamPalette,
         CASE WHEN m.team_id IS NULL THEN 'Not in a team' ELSE 'In a team' END teamStatus,

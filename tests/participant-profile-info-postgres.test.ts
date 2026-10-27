@@ -142,6 +142,8 @@ test("PostgreSQL profile-info projection and role/membership boundaries", async 
       "admin orgID/contact, Viewer public gender and current-teammate phone obey fresh audience checks",
       async () => {
         const admin = await selected("admin");
+        assert.equal(admin.details.email, "bob@portal.test");
+        assert.equal((await selected("owner")).details.email, "bob@portal.test");
         assert.equal(admin.details.openaiOrgId, "org-private-pg-profile-info");
         assert.equal(admin.details.phone, "+12025550123");
         assert.equal(admin.bio, "PRIVATE_PG_PROFILE_INFO_BIO");
