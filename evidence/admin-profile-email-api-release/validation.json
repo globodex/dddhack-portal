@@ -1,0 +1,29 @@
+{
+  "runtimeSource": "6cb9b2862fb992135491fcadca5795b63a9ed3f9",
+  "focusedDistinctTests": 31,
+  "focusedFailed": 0,
+  "postgresIncluded": true,
+  "typecheck": "passed",
+  "productionBuild": "passed (default Turbopack)",
+  "browser": [
+    {
+      "width": 1440,
+      "emailVisibleToAdmin": true,
+      "escapeFocusRestored": true,
+      "repeatOpen": true,
+      "nonadminApiNoEmail": true
+    },
+    {
+      "width": 390,
+      "emailVisibleToAdmin": true,
+      "escapeFocusRestored": true,
+      "repeatOpen": true,
+      "nonadminApiNoEmail": true
+    }
+  ],
+  "fullRegression": "not rerun for this narrowly scoped change",
+  "migrationRequired": false,
+  "backendRedeployRequired": true,
+  "hostedOperations": "none",
+  "screenshots": "Synthetic captures outside Git: /workspace/admin-profile-email/screens/"
+}

@@ -1,9 +1,9 @@
 {
-  "runtimeSource": "882bc7c311a4a52f6b7da971f56f6e8cfe09af42",
+  "runtimeSource": "6cb9b2862fb992135491fcadca5795b63a9ed3f9",
   "runtime": "nodejs24",
   "source": "neon/api.ts",
-  "zipBytes": 9039133,
-  "sha256": "0c3e35e8894fe48b40dfb58b848f1b131a917aca691357fb09a77a461d0864e2",
+  "zipBytes": 9039162,
+  "sha256": "6c94e2ccd8ad3baeccc326c7e87c49e0b0900657012becad36b97505f89d0542",
   "env": {},
   "warnings": [],
   "buildOnly": true,
@@ -11,10 +11,10 @@
   "packager": "@neon/config-runtime@1.10.2",
   "nativeExecution": "not performed; headers only",
   "archive": "artifacts/neon/portalapi.zip",
-  "candidateOnly": true,
-  "uncompressedBytes": 21234424,
+  "candidateOnly": false,
+  "uncompressedBytes": 21234547,
   "fileCount": 93,
-  "indexSha256": "0bf9225529da30ffbd5226fb6022b3509063feb53399a3e08dee03a550849d10",
+  "indexSha256": "8649033ec0f2959c0075bf0ead08b150b44d3b82cb453d111f64157bd11c0b89",
   "nativeArchitecture": "Linux ARM64 glibc",
   "nativeFiles": [
     {
@@ -39,7 +39,7 @@
   "graphRecomputed": true,
   "archiveIndexBytesIdentical": true,
   "applicationInputsMatchExactGitSnapshot": true,
-  "previousArchiveSha256": "cef0cb28499525c48fbf4825d4a50c988b19337c5b0ff240ed3d0c5719bac6cb",
+  "previousArchiveSha256": "0c3e35e8894fe48b40dfb58b848f1b131a917aca691357fb09a77a461d0864e2",
   "changedArchiveEntries": [
     "index.mjs"
   ],
@@ -115,37 +115,14 @@
     "automaticMigration": false,
     "zipContainsSql": false
   },
-  "schemaChangedThisRelease": true,
-  "migrationsUnchangedFromPublishedArchive": false,
+  "schemaChangedThisRelease": false,
+  "migrationsUnchangedFromPublishedArchive": true,
   "manualBackendRedeployRequired": true,
-  "publicationAuthorized": false,
+  "publicationAuthorized": true,
   "hostedMigrationLedgerInspected": false,
   "migrationPerformed": false,
   "sourceSnapshotMethod": "git archive exact committed runtime source; all runtime application input hashes verified against Git blobs",
-  "verificationEvidence": "evidence/admin-team-lock-api-release",
-  "manualWindowsGuide": "docs/ADMIN_TEAM_LOCK_WINDOWS_ROLLOUT.md",
-  "publicationStatus": "Local candidate only; user screenshot review and fresh push approval required",
-  "hostSmoke": {
-    "passed": true,
-    "report": "evidence/admin-team-lock-api-release/host-smoke.json",
-    "outboundAttempts": 0,
-    "nativeArmExecution": false
-  },
-  "runtimeFinalConfirmedByRoot": true,
-  "supersedesLocalCandidateSHA256": "77dbb77b2c3c459bcaf910bbcfa945a3fce06f1f2cefa4426d7abe7121d2e0f2",
-  "validationEvidence": "evidence/admin-team-lock-api-release/validation.json",
-  "finalFullRegression": {
-    "tests": 977,
-    "pass": 970,
-    "fail": 0,
-    "cancelled": 0,
-    "skipped": 7
-  },
-  "validationLimitations": [
-    "Earlier complete run underfilled legacy concurrent D1 submissions (1 success vs expected3); five isolated runs and subsequent full-run D1 cases passed. Cause was not reproduced; no runtime fix or relaxed assertion is claimed.",
-    "The full suite uses a test-only supported V8 code-GC workaround after a matching Node24/PGlite native crash; the default no-flag suite is not claimed clean.",
-    "Native PostgreSQL multi-connection tests skipped: no target configured.",
-    "Native Windows and unmodified Linux ARM64 package execution not performed.",
-    "No hosted migration, backend deployment, env edit, paid evaluation or production record mutation performed."
-  ]
+  "verificationEvidence": "evidence/admin-profile-email-api-release",
+  "manualWindowsGuide": "docs/ADMIN_PROFILE_EMAIL_WINDOWS_ROLLOUT.md",
+  "publicationStatus": "User-authorized source publication; backend deployment remains owner-operated and has not been performed by the agent."
 }
