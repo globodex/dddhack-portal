@@ -1,0 +1,19 @@
+{
+  "runtimeSource": "63075adf6e309877803af1d66fa0d4273b29be88",
+  "checks": [
+    {
+      "name": "trusted-health",
+      "status": 200
+    },
+    {
+      "name": "untrusted-health",
+      "status": 403
+    },
+    {
+      "name": "unconfigured-portal",
+      "status": 503
+    }
+  ],
+  "outboundAttempts": [],
+  "nativeExecution": "Host Sharp substituted in separate copy; ARM64 native runtime execution unverified"
+}

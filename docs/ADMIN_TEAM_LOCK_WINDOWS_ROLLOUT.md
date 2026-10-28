@@ -1,5 +1,7 @@
 # Admin lock, inline members and AND filters: Windows rollout
 
+> Historical release instructions. The current unpublished batch adds0108 and0109. After publication approval, use [Admin operations and owner AI rollout](ADMIN_OPERATIONS_AI_WINDOWS_ROLLOUT.md), with its fifteen-entry plan and matching ZIP. Do not use the older pinned digest/archive below with the current checkout.
+
 **Local review candidate — do not run until this exact release is approved and published.**
 
 Use PowerShell in `D:\Dev\dddhack-portal\dddhack-portal-migration`, plus the existing

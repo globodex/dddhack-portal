@@ -1,5 +1,7 @@
 # Admin profile email: Windows backend update
 
+> Historical release instructions. The current unpublished batch adds0108 and0109. After publication approval, use [Admin operations and owner AI rollout](ADMIN_OPERATIONS_AI_WINDOWS_ROLLOUT.md), with its fifteen-entry plan and matching ZIP. Do not use the older pinned digest/archive below with the current checkout.
+
 This release adds email only to selected profile lookups authorized as admin/owner, and renders it in the shared profile modal. Public cards, public project SSR and nonadmin selected profiles do not receive email. No new SQL migration or environment change is required. The existing schema through 0107 remains the prerequisite; if that earlier rollout is incomplete, use its guarded upgrade guide first. Do not rerun applied SQL.
 
 1. **PowerShell**, in the existing repository. Stop on Git errors or conflicting local edits; preserve local environment/configuration files.

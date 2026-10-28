@@ -1,9 +1,9 @@
 {
-  "runtimeSource": "6cb9b2862fb992135491fcadca5795b63a9ed3f9",
+  "runtimeSource": "63075adf6e309877803af1d66fa0d4273b29be88",
   "runtime": "nodejs24",
   "source": "neon/api.ts",
-  "zipBytes": 9039162,
-  "sha256": "6c94e2ccd8ad3baeccc326c7e87c49e0b0900657012becad36b97505f89d0542",
+  "zipBytes": 9042084,
+  "sha256": "a63f43009afc8df75f7d29783ed8e44759740aaf4ea4d003034bed59bf4834a0",
   "env": {},
   "warnings": [],
   "buildOnly": true,
@@ -11,10 +11,10 @@
   "packager": "@neon/config-runtime@1.10.2",
   "nativeExecution": "not performed; headers only",
   "archive": "artifacts/neon/portalapi.zip",
-  "candidateOnly": false,
-  "uncompressedBytes": 21234547,
+  "candidateOnly": true,
+  "uncompressedBytes": 21244796,
   "fileCount": 93,
-  "indexSha256": "8649033ec0f2959c0075bf0ead08b150b44d3b82cb453d111f64157bd11c0b89",
+  "indexSha256": "7225eaa89620c2670f0f1be3406fb9a914b9bb868c6120b901ab92c1742dabf5",
   "nativeArchitecture": "Linux ARM64 glibc",
   "nativeFiles": [
     {
@@ -33,18 +33,18 @@
     }
   ],
   "forbiddenInputs": [],
-  "graphInputCount": 880,
-  "graphApplicationInputCount": 96,
+  "graphInputCount": 882,
+  "graphApplicationInputCount": 98,
   "graphFrontendInputs": [],
   "graphRecomputed": true,
   "archiveIndexBytesIdentical": true,
   "applicationInputsMatchExactGitSnapshot": true,
-  "previousArchiveSha256": "0c3e35e8894fe48b40dfb58b848f1b131a917aca691357fb09a77a461d0864e2",
+  "previousArchiveSha256": "6c94e2ccd8ad3baeccc326c7e87c49e0b0900657012becad36b97505f89d0542",
   "changedArchiveEntries": [
     "index.mjs"
   ],
   "unchangedArchiveEntryCount": 92,
-  "canonicalPlanDigest": "2dc505efb7e5cf25f4e9da1a56e9aa9cb4a816735b222127b9fdfdb5daafa277",
+  "canonicalPlanDigest": "129ae4bc6c20a817b883d68229ee51a73a41998140b9bead2f4309a1c1b7b227",
   "historicalMigrationsPreserved": [
     {
       "name": "0000_compatibility.sql",
@@ -99,30 +99,34 @@
     {
       "name": "0107_admin_team_lock.sql",
       "sha256": "008d9ede3191d0ef8e3198ba0ddfde3188349db9a0003738ec64b44955f4215a"
+    },
+    {
+      "name": "0108_admin_testing_and_team_corrections.sql",
+      "sha256": "dc6fc5c44a5e881109a5c7c0936d682a2f2d1cac210ea042fdfba9fcb13fcec0"
+    },
+    {
+      "name": "0109_owner_ai_model_usage.sql",
+      "sha256": "9dde1b8e4cf3b4a38f6522e677d58633ecfe131df0a88f6f38b57c70ab4e4727"
     }
   ],
   "requiredSchemaBeforeDeploy": {
-    "expectedFinalLedgerEntries": 13,
-    "twelveEntryTargetPending": [
-      "0107_admin_team_lock.sql"
+    "expectedFinalLedgerEntries": 15,
+    "thirteenEntryTargetPending": [
+      "0108_admin_testing_and_team_corrections.sql",
+      "0109_owner_ai_model_usage.sql"
     ],
-    "elevenEntryTargetPending": [
-      "0106_admin_team_unlock.sql",
-      "0107_admin_team_lock.sql"
-    ],
-    "thirteenEntryTargetPending": [],
     "ownerBackupRestoreVerificationRequiredForPendingApply": true,
     "automaticMigration": false,
     "zipContainsSql": false
   },
-  "schemaChangedThisRelease": false,
-  "migrationsUnchangedFromPublishedArchive": true,
+  "schemaChangedThisRelease": true,
+  "migrationsUnchangedFromPublishedArchive": false,
   "manualBackendRedeployRequired": true,
-  "publicationAuthorized": true,
+  "publicationAuthorized": false,
   "hostedMigrationLedgerInspected": false,
   "migrationPerformed": false,
   "sourceSnapshotMethod": "git archive exact committed runtime source; all runtime application input hashes verified against Git blobs",
-  "verificationEvidence": "evidence/admin-profile-email-api-release",
-  "manualWindowsGuide": "docs/ADMIN_PROFILE_EMAIL_WINDOWS_ROLLOUT.md",
-  "publicationStatus": "User-authorized source publication; backend deployment remains owner-operated and has not been performed by the agent."
+  "verificationEvidence": "evidence/admin-time-override-api-release",
+  "manualWindowsGuide": "docs/ADMIN_OPERATIONS_AI_WINDOWS_ROLLOUT.md",
+  "publicationStatus": "Local review only; no publication or hosted deployment authorized"
 }

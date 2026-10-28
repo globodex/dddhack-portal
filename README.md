@@ -1,6 +1,6 @@
 # DDD Hack portal: Next.js and Neon migration
 
-The unpublished redesign is on `feat/portal-experience-rework`. See the [24 October review and screenshot index](docs/PORTAL_REDESIGN_REVIEW_2026_10_24.md), [backend artifact](artifacts/neon/README.md), and [populated-database incremental upgrade plan](docs/NEON_POPULATED_UPGRADE_PLAN.md). Publication remains the owner's manual action; never seed or use synthetic apply flags on the populated hosted database.
+The unpublished redesign is on `feat/portal-experience-rework`. See the [24 October review and screenshot index](docs/PORTAL_REDESIGN_REVIEW_2026_10_24.md), [backend artifact](artifacts/neon/README.md), and [populated-database incremental upgrade plan](docs/ADMIN_OPERATIONS_AI_WINDOWS_ROLLOUT.md). Publication remains the owner's manual action; never seed or use synthetic apply flags on the populated hosted database.
 
 The `main` branch migrated verified v7 (`dc92672c`) to real Next.js App Router frontend/rendering on Vercel and a separate Node.js 24 Neon Functions backend. The retained Sites source is historical. This redesign work has not deployed, transferred production data or changed provider settings.
 

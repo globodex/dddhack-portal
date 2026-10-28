@@ -1,5 +1,7 @@
 # Incremental 0107 upgrade for the populated portal
 
+> Historical release instructions. The current unpublished batch adds0108 and0109. After publication approval, use [Admin operations and owner AI rollout](ADMIN_OPERATIONS_AI_WINDOWS_ROLLOUT.md), with its fifteen-entry plan and matching ZIP. Do not use the older pinned digest/archive below with the current checkout.
+
 A fresh inspection decides the exact pending suffix. A twelve-entry target requires only `0107_admin_team_lock.sql`; an eleven-entry target requires canonical0106+0107. A thirteen-entry target needs no apply. Do not infer hosted state from a local checkout or health200. The current easy Windows sequence is [Admin lock rollout](ADMIN_TEAM_LOCK_WINDOWS_ROLLOUT.md).
 
 The earlier roster-removal0107 was an unimplemented proposal and is not part of this plan. Future roster work needs a new unused number. Do not apply a draft with that earlier meaning.
