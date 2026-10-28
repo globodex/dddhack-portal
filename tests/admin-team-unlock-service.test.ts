@@ -200,7 +200,7 @@ for (const engine of ["sqlite", "postgres"] as const) {
     }
   });
 
-  test(`${engine}: committed or consumed attempts, frozen results and normal deadlines deny unlock without mutation`, async () => {
+  test(`${engine}: admin time override preserves committed-attempt and frozen-result unlock barriers`, async () => {
     const { db, service, clock } = await fixture();
     try {
       await service("bob").command("lock-team", { confirmation: "LOCK_TEAM" });
@@ -209,10 +209,8 @@ for (const engine of ["sqlite", "postgres"] as const) {
         "SELECT * FROM team_locks WHERE team_id='fake_team3'",
       );
       clock("2026-10-30T00:00:00.000Z");
-      await assert.rejects(
-        service("admin").command("admin-unlock-team", unlock(lock.locked_at)),
-        { code: "TEAM_UNLOCK_DEADLINE_PASSED" },
-      );
+      assert.equal((await service("admin").command("admin-unlock-team", unlock(lock.locked_at))).changed, true);
+      await batch(db, [["INSERT INTO team_locks VALUES('fake_team3','fake_bob',?)", lock.locked_at]]);
       clock("2026-10-22T08:00:00.000Z");
       await attend(db, "fake_bob");
       await batch(db, [
@@ -239,7 +237,7 @@ for (const engine of ["sqlite", "postgres"] as const) {
             "SELECT * FROM audit_logs WHERE action='admin-unlock-team'",
           )
         ).length,
-        0,
+        1,
       );
       const projection = (await service("admin").view("/admin/teams")) as any;
       assert.equal(

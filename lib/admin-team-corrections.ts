@@ -159,10 +159,84 @@ export async function adminTeamCorrection(
   action: string,
   input: unknown,
 ) {
-  if (!["admin-add-team-member", "admin-rename-team"].includes(action))
+  if (
+    ![
+      "admin-add-team-member",
+      "admin-remove-team-member",
+      "admin-rename-team",
+    ].includes(action)
+  )
     return null;
   const actor = await s.staff();
   await s.unfrozen();
+  if (action === "admin-remove-team-member") {
+    const d = z
+      .object({
+        teamId: id,
+        userId: id,
+        confirmation: z.literal("REMOVE_TEAM_MEMBER"),
+        reason: auditReason(),
+      })
+      .strict()
+      .parse(input);
+    const team = await targetTeam(s, d.teamId);
+    demand(
+      team.leader_id !== d.userId,
+      409,
+      "TRANSFER_LEADERSHIP_FIRST",
+      "Transfer leadership before removing the team leader.",
+    );
+    const member = await one<{ joined_at: string }>(
+      s.db,
+      "SELECT joined_at FROM memberships WHERE team_id=? AND user_id=?",
+      team.id,
+      d.userId,
+    );
+    if (!member)
+      return {
+        changed: false,
+        teamId: team.id,
+        userId: d.userId,
+        message: "This participant is no longer a member.",
+      };
+    const guard =
+      "admin-team-remove:" +
+      JSON.stringify([team.id, d.userId, member.joined_at]);
+    await s.mutate(
+      actor.id,
+      action,
+      team.id,
+      [
+        ...staffGuard(actor),
+        ["INSERT INTO write_guards VALUES(?,1)", guard],
+        [
+          `DELETE FROM memberships WHERE team_id=? AND user_id=? AND joined_at=?
+        AND EXISTS(SELECT 1 FROM teams t WHERE t.id=memberships.team_id AND t.leader_id<>memberships.user_id AND ${active("team", "t.id")})
+        AND NOT EXISTS(SELECT 1 FROM result_snapshots)`,
+          team.id,
+          d.userId,
+          member.joined_at,
+        ],
+        ...assertPreviousWrite(),
+        ["DELETE FROM write_guards WHERE token=?", guard],
+      ],
+      {
+        userId: d.userId,
+        membershipRemoved: true,
+        participantPreserved: true,
+        leaderPreserved: true,
+        lockPreserved: true,
+      },
+      d.reason,
+    );
+    return {
+      changed: true,
+      teamId: team.id,
+      userId: d.userId,
+      message:
+        "Member removed from the team. Their participant account is unchanged.",
+    };
+  }
   if (action === "admin-add-team-member") {
     const d = z
       .object({

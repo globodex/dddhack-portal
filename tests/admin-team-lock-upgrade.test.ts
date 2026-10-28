@@ -37,7 +37,7 @@ const stripLedger = (data: Record<string, unknown>) =>
   );
 
 for (const encoding of ["lf", "crlf"] as const) {
-  test(`admin-lock upgrade ${encoding}: populated12→13 applies only0107, preserves data/checksums/locks and repeats with no work`, async () => {
+  test(`admin-lock upgrade ${encoding}: populated12→14 applies0107/0108, preserves data/checksums/locks and repeats with no work`, async () => {
     const f = await legacyLedgerIndependentFixture(encoding);
     try {
       await applyPortalMigrations(f.pool, f.plan.slice(7, 12));
@@ -54,7 +54,10 @@ for (const encoding of ["lf", "crlf"] as const) {
           target,
         );
       assert.equal(inspected.ledger.length, 12);
-      assert.deepEqual(inspected.pending, [migration]);
+      assert.deepEqual(inspected.pending, [
+        migration,
+        "0108_admin_testing_and_team_corrections.sql",
+      ]);
       assert.deepEqual(await f.snapshot(), before);
       const applied = await applyPopulatedUpgrade(
         f.pool,
@@ -64,7 +67,10 @@ for (const encoding of ["lf", "crlf"] as const) {
         inspected,
         confirmation,
       );
-      assert.deepEqual(applied.applied, [migration]);
+      assert.deepEqual(applied.applied, [
+        migration,
+        "0108_admin_testing_and_team_corrections.sql",
+      ]);
       const after = await f.snapshot();
       assert.deepEqual(stripLedger(after), stripLedger(before));
       assert.deepEqual(
@@ -77,7 +83,7 @@ for (const encoding of ["lf", "crlf"] as const) {
         baseline,
         target,
       );
-      assert.equal(repeat.ledger.length, 13);
+      assert.equal(repeat.ledger.length, 14);
       assert.deepEqual(repeat.pending, []);
       assert.deepEqual(
         (

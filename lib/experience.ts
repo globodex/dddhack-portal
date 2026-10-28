@@ -1,4 +1,5 @@
 import { submissionWindowHasOpened } from "./team-lifecycle";
+import { adminSubmissionAuthority, removeOwnTestProject } from "./admin-submission-testing";
 import { adminDemographics, hasDemographics, demographicPredicate, matchingDemographicPeople, matchesAdminParticipant } from "./admin-demographic-filters";
 import { publicProjectMembers, adminSubmissionMembers } from "./project-member-profiles";
 import { projectMediaPolicy } from "./project-media-policy";
@@ -1260,6 +1261,8 @@ export class PortalExperience {
     data: unknown,
     actor: Actor,
   ): Promise<Record<string, unknown> | null> {
+    const removedTest = await removeOwnTestProject(this.s, action, data);
+    if (removedTest !== null) return removedTest;
     const locked = await adminTeamLock(this.s, action, data);
     if (locked !== null) return locked;
     const approval = await approveTeam(this.s, action, data);
@@ -1969,9 +1972,10 @@ export class PortalExperience {
               this.s.now(),
             ],
           ];
+      if (access.adminSubmissionTest) sql.unshift(...adminSubmissionAuthority(actor, t.id));
       sql.push(...assertPreviousWrite());
       if (action === "submit-project") {
-        await this.s.operational("submissions");
+        if (!access.adminTimeOverride) await this.s.operational("submissions");
 
         text(120).parse(d.project.projectName);
         text(500).parse(d.project.problemSolution);
@@ -1984,14 +1988,18 @@ export class PortalExperience {
         validateProjectImage(d.project.banner, "banner");
         demand(d.project.attestation, 422, "ATTESTATION_REQUIRED");
         const versionId = crypto.randomUUID();
+        const createdAt = this.s.now();
+        const testGuard = "admin-test-submission:" + JSON.stringify([t.id, actor.id, versionId, createdAt]);
+        if (access.adminSubmissionTest) sql.push(["INSERT INTO write_guards VALUES(?,1)", testGuard]);
         sql.push([
           "INSERT INTO submission_versions SELECT ?,?,COALESCE(MAX(attempt),0)+1,?,? FROM submission_versions WHERE team_id=?",
           versionId,
           t.id,
           JSON.stringify(d.project),
-          this.s.now(),
+          createdAt,
           t.id,
         ]);
+        if (access.adminSubmissionTest) sql.push(["DELETE FROM write_guards WHERE token=?", testGuard]);
         sql.push([
           "INSERT INTO astra_jobs(id,version_id,updated_at) VALUES(?,?,?)",
           crypto.randomUUID(),
@@ -2016,6 +2024,7 @@ export class PortalExperience {
         await this.s.mutate(actor.id, action, projectId, sql, {
           fields: ["project", "media"],
           submitted: action === "submit-project",
+          ...(access.adminSubmissionTest ? { adminSubmissionTest: true, timeWindowOverridden: access.adminTimeOverride } : {}),
         });
       } catch (error) {
         if (action === "submit-project") {

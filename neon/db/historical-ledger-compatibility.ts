@@ -50,15 +50,16 @@ export function historicalLedgerCompatibility(
   migrations: PortalMigration[];
 } | null {
   if (
-    plan.length !== 13 ||
+    plan.length !== 14 ||
     ledger.length < 7 ||
-    ledger.length > 13 ||
+    ledger.length > 14 ||
     plan[7]?.name !== "0102_credit_stock.sql" ||
     plan[8]?.name !== "0103_project_media_limits.sql" ||
     plan[9]?.name !== "0104_admin_team_corrections.sql" ||
     plan[10]?.name !== "0105_terminal_record_deletion.sql" ||
     plan[11]?.name !== "0106_admin_team_unlock.sql" ||
     plan[12]?.name !== "0107_admin_team_lock.sql" ||
+    plan[13]?.name !== "0108_admin_testing_and_team_corrections.sql" ||
     ledger.some((entry, i) => entry.name !== plan[i]?.name)
   )
     return null;

@@ -133,6 +133,7 @@ test("independent legacy ledger: canonical LF history and an existing canonical 
       "0105_terminal_record_deletion.sql",
       "0106_admin_team_unlock.sql",
       "0107_admin_team_lock.sql",
+      "0108_admin_testing_and_team_corrections.sql",
     ]);
     const after = await f.snapshot();
     assert.deepEqual(domain(after), domain(before));
@@ -174,6 +175,7 @@ test("independent actual CRLF history: readonly inspect, populated7→13 canonic
       "0105_terminal_record_deletion.sql",
       "0106_admin_team_unlock.sql",
       "0107_admin_team_lock.sql",
+      "0108_admin_testing_and_team_corrections.sql",
     ]);
     assert.deepEqual(await f.snapshot(), before);
     assert.equal(
@@ -196,7 +198,7 @@ test("independent actual CRLF history: readonly inspect, populated7→13 canonic
     const after = await f.snapshot(),
       ledger = after.portal_schema_migrations as any[];
     assert.deepEqual(domain(after), domain(before));
-    assert.equal(ledger.length, 13);
+    assert.equal(ledger.length, 14);
     assert.deepEqual(ledger.slice(0, 7), before.portal_schema_migrations);
     assert.deepEqual(
       ledger.slice(7).map(({ name, checksum }) => ({ name, checksum })),

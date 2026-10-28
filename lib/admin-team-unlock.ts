@@ -17,11 +17,6 @@ export function teamUnlockBlocker(input: {
       code: "TEAM_HAS_SUBMISSIONS",
       message: "Committed submissions prevent unlocking this team.",
     };
-  if (input.now >= input.membershipFreeze || input.now >= input.ideaLock)
-    return {
-      code: "TEAM_UNLOCK_DEADLINE_PASSED",
-      message: "The team or idea editing deadline has passed.",
-    };
   return null;
 }
 
@@ -108,14 +103,11 @@ export async function adminTeamUnlock(
       AND NOT EXISTS(SELECT 1 FROM result_snapshots)
       AND NOT EXISTS(SELECT 1 FROM submission_versions WHERE team_id=?)
       AND NOT EXISTS(SELECT 1 FROM submission_attempt_ledger WHERE team_id=? AND attempts>0)
-      AND EXISTS(SELECT 1 FROM event_settings WHERE id=1 AND ?<json_extract(policy,'$.membershipFreeze') AND ?<json_extract(policy,'$.ideaLock'))
       AND NOT EXISTS(SELECT 1 FROM record_removals WHERE kind='team' AND target_id=? AND active=1)`,
       team.id,
       d.expectedLockedAt,
       team.id,
       team.id,
-      s.now(),
-      s.now(),
       team.id,
     ],
     ...assertPreviousWrite(),
@@ -167,6 +159,6 @@ export async function adminTeamUnlock(
   return {
     changed: true,
     teamId: team.id,
-    message: "Team unlocked. Normal team and idea editing is open.",
+    message: "Team unlocked. Participant deadlines still apply.",
   };
 }

@@ -3,7 +3,7 @@ import { test } from "node:test";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import Home from "../app/home";
-import { Dashboard, Settings } from "../app/portal";
+import { Dashboard, DashboardArrival, Settings } from "../app/portal";
 
 const run = async () => { throw new Error("Rendering cannot mutate"); };
 const privateVenue = { location: "SYNTHETIC ROOM TEST-201", directions: "Synthetic north entry for local proof only.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Synthetic+Test+Venue" };
@@ -28,6 +28,22 @@ test("an entitled teamless participant can see Dashboard arrival details without
   assert.match(markup, /SYNTHETIC ROOM TEST-201/);
   assert.equal((markup.match(/aria-label="Your arrival details"/g) || []).length, 1);
   assert.doesNotMatch(html(Dashboard, { data: { me, individualStatus: "Registered" }, run }), /Your arrival details/);
+});
+
+test("personal attendance and entitled arrival are surfaced once above team preparation without inferring venue from status", () => {
+  for (const status of ["Registered", "Going", "Checked in", "Absent"]) {
+    const markup = html(DashboardArrival, { data: { me, individualStatus: status } });
+    assert.match(markup, /Your attendance status/);
+    assert.ok(markup.includes(status === "Checked in" ? "Checked-in" : status));
+    assert.doesNotMatch(markup, /Your arrival details|SYNTHETIC ROOM|Google Maps/);
+  }
+  const markup = html(Dashboard, { data: { me, privateVenue, individualStatus: "Going" }, run });
+  assert.ok(markup.indexOf('aria-label="Your attendance and arrival"') < markup.indexOf('aria-label="Team preparation"'));
+  assert.equal((markup.match(/aria-label="Your attendance status"/g) || []).length, 1);
+  assert.equal((markup.match(/aria-label="Your arrival details"/g) || []).length, 1);
+  assert.doesNotMatch(markup, /You: Going/);
+  const unsafe = html(DashboardArrival, { data: { me, individualStatus: "Going", privateVenue: { ...privateVenue, mapUrl: "javascript:alert(1)" } } });
+  assert.doesNotMatch(unsafe, /href="javascript:|Open Google Maps/);
 });
 
 test("private venue editing remains limited to the backend manager capability, separately from admin reading", () => {

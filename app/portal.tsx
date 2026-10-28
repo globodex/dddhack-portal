@@ -1210,7 +1210,7 @@ export function TeamWorkspace({
   const phaseIndex = ["Forming", "Locked", "Approved", "Yet to submit", "Submitted"].indexOf(phase);
   const canEditProject =
     leader &&
-    data.me?.canParticipate === true &&
+    (data.me?.canParticipate === true || data.submissionAccess?.adminSubmissionTest === true) &&
     data.submissionAccess?.canCommit === true &&
     !data.submissionAccess?.locked &&
     used < 3;
@@ -1663,10 +1663,6 @@ export function TeamWorkspace({
           Leave team
         </TeamAction>
       )}
-      <div className="studio-personal-status">
-        <UserRound size={16} aria-hidden="true" />
-        You: {data.individualStatus || "Registered"}
-      </div>
       {leader && !locked && count === 1 && (
         <div className="studio-delete-team">
           <TeamAction
@@ -1738,14 +1734,32 @@ export function TeamWorkspace({
     </section>
   );
 }
+export function DashboardArrival({ data }: { data: View }) {
+  const venue = data.privateVenue;
+  const status = data.individualStatus || "Registered";
+  const eligibleAttendance = ["Going", "Checked in"].includes(status);
+  return (
+    <section className="dashboard-arrival-top" aria-label="Your attendance and arrival">
+      <div className="dashboard-attendance" aria-label="Your attendance status" aria-live="polite">
+        <span>Your status</span>
+        <Pill tone={eligibleAttendance ? "positive" : status === "Absent" ? "warning" : "neutral"}>
+          {eligibleAttendance ? <CircleCheck size={16} aria-hidden="true" /> : <UserRound size={16} aria-hidden="true" />}
+          {status === "Checked in" ? "Checked-in" : status}
+        </Pill>
+      </div>
+      {venue && <DashboardVenue venue={venue} />}
+    </section>
+  );
+}
 function DashboardVenue({ venue }: { venue: Row }) {
   return (
     <section
       className="private-arrival dashboard-venue"
       aria-label="Your arrival details"
     >
-      <MapPin size={28} aria-hidden="true" />
+      <span className="dashboard-arrival-pin"><MapPin size={28} aria-hidden="true" /></span>
       <div>
+        <span className="dashboard-arrival-eyebrow">Your event arrival details</span>
         <h3>{venue.location}</h3>
         {venue.directions && <p className="prose">{venue.directions}</p>}
       </div>
@@ -1757,7 +1771,7 @@ function DashboardVenue({ venue }: { venue: Row }) {
           rel="noopener noreferrer"
         >
           <ExternalLink size={20} aria-hidden="true" />
-          Google Maps
+          Open Google Maps
         </a>
       )}
     </section>
@@ -1790,7 +1804,7 @@ function DashboardProject({
       : data.attempts?.length || 0,
     canRead = data.submissionAccess?.canRead === true,
     canEdit =
-      data.me?.canParticipate === true &&
+      (data.me?.canParticipate === true || data.submissionAccess?.adminSubmissionTest === true) &&
       data.team?.leader_id === data.me?.id &&
       data.submissionAccess?.canCommit === true &&
       used < 3 &&
@@ -1879,6 +1893,13 @@ function DashboardProject({
             onClick={() => setEditing(!editing)}
           >
             {editing ? "Close editor" : "Update project"}
+          </button>
+        )}
+        {data.submissionAccess?.adminSubmissionTest === true && project?.id && !data.submissionAccess?.projectRemoved && (
+          <button className="admin-toolbar-icon admin-icon-danger" type="button"
+            aria-label="Remove your test project" title="Remove your test project"
+            onClick={() => { void run("admin-remove-own-test-project", { projectId: project.id }).catch(() => {}); }}>
+            <AdminIcon name="trash" />
           </button>
         )}
       </div>
@@ -1976,7 +1997,7 @@ export function Dashboard({
   const editorOpen =
     tab === "project" &&
     data.submissionAccess?.canRead === true &&
-    data.me?.canParticipate === true &&
+    (data.me?.canParticipate === true || data.submissionAccess?.adminSubmissionTest === true) &&
     data.team?.leader_id === data.me?.id &&
     data.submissionAccess?.canCommit === true &&
     !data.submissionAccess?.locked &&
@@ -2035,6 +2056,7 @@ export function Dashboard({
           </button>
         ))}
       </nav>
+      <DashboardArrival data={data} />
       <section
         id="team"
         role="tabpanel"
@@ -2048,7 +2070,6 @@ export function Dashboard({
           run={run}
           onProject={() => select("project")}
         />
-        {data.privateVenue && <DashboardVenue venue={data.privateVenue} />}
       </section>
       <section
         id="credits"
@@ -2831,7 +2852,7 @@ export function Submission({
   const remaining = Math.max(0, 3 - attemptsUsed);
   const canCommit =
     leader &&
-    data.me?.canParticipate === true &&
+    (data.me?.canParticipate === true || data.submissionAccess?.adminSubmissionTest === true) &&
     data.submissionAccess?.canCommit === true &&
     !data.submissionAccess?.locked &&
     attemptsUsed < 3;
@@ -3039,7 +3060,7 @@ export function Submission({
           {(data.submissionStatus?.allowed === true || canCommit) && (
             <span>
               <i aria-hidden="true" />
-              Submission window open
+              {data.submissionAccess?.adminTimeOverride ? "Admin testing · time override" : "Submission window open"}
             </span>
           )}
         </div>
@@ -3048,7 +3069,7 @@ export function Submission({
         <p className="notice">Ineligible · excluded from leaderboard</p>
       )}
       {data.submissionStatus && !data.submissionStatus.allowed && (
-        <p className="notice">{data.submissionStatus.message}</p>
+        <p className="notice">{data.submissionAccess?.adminTimeOverride ? data.submissionAccess.message : data.submissionStatus.message}</p>
       )}
       <form
         className="project-editor"
@@ -5651,7 +5672,8 @@ export function AdminList({
                         aria-label={`Remove ${member.name || member.email} from ${team.name}`}
                         title={`Remove ${member.name || member.email} (${member.email})`}
                         onClick={() => {
-                          void run("remove-workspace-member", {
+                          void run("admin-remove-team-member", {
+                            teamId: team.id,
                             userId: member.id,
                             reason: "Administrator updated team membership",
                           }).catch(() => {});

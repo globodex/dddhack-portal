@@ -88,7 +88,7 @@ async function fixture(encoding: "lf" | "crlf", prefix: 9 | 10) {
 }
 for (const encoding of ["lf", "crlf"] as const)
   for (const prefix of [9, 10] as const)
-    test(`0105 upgrade ${encoding}: populated${prefix}→13 preserves existing data/ledger and max attempts, pending-only then repeat[]`, async () => {
+    test(`0105 upgrade ${encoding}: populated${prefix}→14 preserves existing data/ledger and max attempts, pending-only then repeat[]`, async () => {
       const f = await fixture(encoding, prefix);
       try {
         const before = await f.state(),
@@ -109,8 +109,14 @@ for (const encoding of ["lf", "crlf"] as const)
                 feature,
                 "0106_admin_team_unlock.sql",
                 "0107_admin_team_lock.sql",
+                "0108_admin_testing_and_team_corrections.sql",
               ]
-            : [feature, "0106_admin_team_unlock.sql", "0107_admin_team_lock.sql"];
+            : [
+                feature,
+                "0106_admin_team_unlock.sql",
+                "0107_admin_team_lock.sql",
+                "0108_admin_testing_and_team_corrections.sql",
+              ];
         assert.deepEqual(receipt.pending, pending);
         assert.equal(receipt.planDigest, digest);
         assert.equal(
@@ -135,7 +141,7 @@ for (const encoding of ["lf", "crlf"] as const)
         );
         assert.deepEqual(result.applied, pending);
         const after = await f.state();
-        assert.equal(after.portal_schema_migrations.length, 13);
+        assert.equal(after.portal_schema_migrations.length, 14);
         for (const [name, data] of Object.entries(before)) {
           if (name !== "portal_schema_migrations")
             assert.deepEqual(after[name], data, name);

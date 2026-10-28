@@ -20,8 +20,8 @@ export async function reconcileAbsences(
         row.email,
       ],
       [
-        "INSERT INTO audit_logs SELECT ?,?,'automatic-absence',?,?,?,? WHERE changes()=1",
-        crypto.randomUUID(),
+        "INSERT INTO audit_logs SELECT ?,?,'automatic-absence',?,?,?,? WHERE EXISTS(SELECT 1 FROM registration_absences WHERE email=? AND cutoff=?) ON CONFLICT(id) DO NOTHING",
+        "automatic-absence:registration:" + row.email + ":" + absenceCutoff,
         requestActorId,
         "registration:" + row.email,
         JSON.stringify({
@@ -33,6 +33,8 @@ export async function reconcileAbsences(
         }),
         "Going registrant never checked in before the event ended.",
         s.now(),
+        row.email,
+        absenceCutoff,
       ],
     ]);
   const predicate = `r.status='approved' AND COALESCE(o.status,'Going')='Going' AND NOT EXISTS(SELECT 1 FROM check_ins c WHERE c.user_id=u.id) AND NOT EXISTS(SELECT 1 FROM manual_checkins c WHERE c.user_id=u.id) AND NOT EXISTS(SELECT 1 FROM registration_absences ra WHERE ra.email=u.email) AND NOT EXISTS(SELECT 1 FROM automatic_absences a WHERE a.user_id=u.id) AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.kind='participant' AND rr.target_id=u.id AND rr.active=1)`;
@@ -49,8 +51,8 @@ export async function reconcileAbsences(
         candidate.id,
       ],
       [
-        "INSERT INTO audit_logs SELECT ?,?,'automatic-absence',?,?,?,? WHERE changes()=1",
-        crypto.randomUUID(),
+        "INSERT INTO audit_logs SELECT ?,?,'automatic-absence',?,?,?,? WHERE EXISTS(SELECT 1 FROM automatic_absences WHERE user_id=? AND cutoff=?) ON CONFLICT(id) DO NOTHING",
+        "automatic-absence:participant:" + candidate.id + ":" + absenceCutoff,
         requestActorId,
         candidate.id,
         JSON.stringify({
@@ -61,6 +63,8 @@ export async function reconcileAbsences(
         }),
         "Going attendee never checked in before the event ended.",
         s.now(),
+        candidate.id,
+        absenceCutoff,
       ],
     ];
     await batch(s.db, sql);

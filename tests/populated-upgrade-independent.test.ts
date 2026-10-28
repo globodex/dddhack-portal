@@ -70,7 +70,7 @@ function traced(pool: PostgresPool, sequence: string[]): PostgresPool {
   };
 }
 
-test("independent populated upgrade: read-only inspection, pending-only7→13, all old data preserved and fresh-receipt repeat[]", async () => {
+test("independent populated upgrade: read-only inspection, pending-only7→14, all old data preserved and fresh-receipt repeat[]", async () => {
   const f = await populatedUpgradeIndependentFixture();
   try {
     const target = targetFor(f.identity),
@@ -102,6 +102,7 @@ test("independent populated upgrade: read-only inspection, pending-only7→13, a
       "0105_terminal_record_deletion.sql",
       "0106_admin_team_unlock.sql",
       "0107_admin_team_lock.sql",
+      "0108_admin_testing_and_team_corrections.sql",
     ]);
     const serialized = JSON.stringify(receipt);
     for (const marker of [
@@ -140,7 +141,7 @@ test("independent populated upgrade: read-only inspection, pending-only7→13, a
       ),
     );
     const journal = after.portal_schema_migrations as { name: string }[];
-    assert.equal(journal.length, 13);
+    assert.equal(journal.length, 14);
     assert.deepEqual(journal.slice(0, 7), before.portal_schema_migrations);
     assert.equal(
       (await rows(f.db, "SELECT * FROM credit_code_history")).length,
@@ -277,6 +278,7 @@ test("independent populated upgrade: existing0102 ledger allows remaining0103/01
       "0105_terminal_record_deletion.sql",
       "0106_admin_team_unlock.sql",
       "0107_admin_team_lock.sql",
+      "0108_admin_testing_and_team_corrections.sql",
     ]);
     const before = await f.snapshot();
     const history = await rows(
@@ -298,6 +300,7 @@ test("independent populated upgrade: existing0102 ledger allows remaining0103/01
       "0105_terminal_record_deletion.sql",
       "0106_admin_team_unlock.sql",
       "0107_admin_team_lock.sql",
+      "0108_admin_testing_and_team_corrections.sql",
     ]);
     const after = await f.snapshot();
     assert.deepEqual(
@@ -661,7 +664,7 @@ test("independent populated upgrade CLI: offline default/strict flags, private r
     assert.equal(defaults.status, 0);
     const plan = JSON.parse(defaults.stdout);
     assert.equal(plan.mode, "source-plan-only");
-    assert.equal(plan.migrations.length, 13);
+    assert.equal(plan.migrations.length, 14);
     for (const args of [
       ["--apply-synthetic"],
       ["--plan", "--unknown"],

@@ -1069,3 +1069,98 @@
  .app-shell .main .team-studio .studio-progress:before,.app-shell .main .team-studio .studio-progress:after { display:none; }
  .app-shell .main .team-studio .studio-progress > li { min-height:44px;flex-direction:row;gap:10px;align-items:center; }
 }
+
+.app-shell .main .team-studio .dashboard-arrival-top {
+  margin: 0 0 28px;
+}
+.app-shell .team-studio .dashboard-attendance {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.app-shell .team-studio .dashboard-attendance .pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  font-weight: 600;
+}
+.app-shell .main .team-studio .dashboard-arrival-top .dashboard-venue {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 20px;
+  margin: 0;
+  padding: 24px 26px;
+  border: 1px solid #b9deca;
+  border-radius: 16px;
+  background: linear-gradient(112deg, #eaf8ef, #f8fcf7 78%);
+  box-shadow: inset 4px 0 #007c50;
+}
+.app-shell .team-studio .dashboard-arrival-pin {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 17px;
+  color: #007c50;
+  background: #d7efe0;
+}
+.app-shell .team-studio .dashboard-arrival-eyebrow {
+  display: block;
+  margin-bottom: 6px;
+  color: #006b45;
+  font-size: 13px;
+  font-weight: 600;
+}
+.app-shell .main .team-studio .dashboard-arrival-top h3 {
+  font-size: 24px;
+  line-height: 1.3;
+  letter-spacing: -.6px;
+  overflow-wrap: anywhere;
+}
+.app-shell .main .team-studio .dashboard-arrival-top p {
+  margin: 8px 0 0;
+  color: #455a4d;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.app-shell .main .team-studio .dashboard-arrival-top .text-link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: #007c50;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+}
+@media (max-width: 700px) {
+  .app-shell .main .team-studio .dashboard-arrival-top .dashboard-venue {
+    grid-template-columns: 44px minmax(0, 1fr);
+    align-items: start;
+    gap: 14px;
+    padding: 20px;
+  }
+  .app-shell .team-studio .dashboard-arrival-pin {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+  }
+  .app-shell .main .team-studio .dashboard-arrival-top h3 {
+    font-size: 20px;
+    letter-spacing: -.4px;
+  }
+  .app-shell .main .team-studio .dashboard-arrival-top .text-link {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}

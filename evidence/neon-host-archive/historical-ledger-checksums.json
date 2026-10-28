@@ -54,6 +54,10 @@
     {
       "name": "0107_admin_team_lock.sql",
       "checksum": "008d9ede3191d0ef8e3198ba0ddfde3188349db9a0003738ec64b44955f4215a"
+    },
+    {
+      "name": "0108_admin_testing_and_team_corrections.sql",
+      "checksum": "dc6fc5c44a5e881109a5c7c0936d682a2f2d1cac210ea042fdfba9fcb13fcec0"
     }
   ],
   "hostedRead": false,

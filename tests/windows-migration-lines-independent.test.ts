@@ -22,7 +22,7 @@ const approvalPath =
   "evidence/neon-host-archive/historical-ledger-checksums.json";
 const baseline = JSON.parse(readFileSync(join(root, approvalPath), "utf8"));
 const expectedDigest =
-  "2dc505efb7e5cf25f4e9da1a56e9aa9cb4a816735b222127b9fdfdb5daafa277";
+  "1d95d9c38b20495c2c34a78bed865c0a989426d46675ce016e59b933ca3858b1";
 const sqlPaths = [
   "neon/migrations/0000_compatibility.sql",
   "neon/migrations/0001_portal.sql",
@@ -37,6 +37,7 @@ const sqlPaths = [
   "neon/migrations/0105_terminal_record_deletion.sql",
   "neon/migrations/0106_admin_team_unlock.sql",
   "neon/migrations/0107_admin_team_lock.sql",
+  "neon/migrations/0108_admin_testing_and_team_corrections.sql",
 ];
 const sha = (value: Uint8Array | string) =>
   createHash("sha256").update(value).digest("hex");
@@ -112,9 +113,9 @@ function crlf(cwd: string) {
     );
 }
 
-test("independent Windows source: approved LF plan is thirteen exact HEAD blobs and keeps the published digest", async () => {
+test("independent Windows source: approved LF plan is fourteen exact HEAD blobs and keeps the published digest", async () => {
   const plan = await loadMigrationPlan();
-  assert.equal(plan.length, 13);
+  assert.equal(plan.length, 14);
   assert.equal(verifyUpgradePlan(plan, baseline), expectedDigest);
   assert.deepEqual(
     plan.map(({ name, checksum }) => ({ name, checksum })),
@@ -279,10 +280,10 @@ test("independent Windows source: actual CRLF loader and offline CLI reject; str
     assert.equal(verifyUpgradePlan(before, baseline), expectedDigest);
     crlf(f.cwd);
     const changed = await planAt(f.cwd);
-    assert.equal(changed.length, 13);
+    assert.equal(changed.length, 14);
     assert.equal(
       changed.filter((item, i) => item.checksum !== before[i].checksum).length,
-      13,
+      14,
     );
     assert.throws(() => verifyUpgradePlan(changed, baseline), {
       code: "UPGRADE_SOURCE_PLAN_MISMATCH",

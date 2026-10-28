@@ -174,6 +174,7 @@ test("historical Windows CRLF: actual seven-entry ledger inspects read-only and 
       "0105_terminal_record_deletion.sql",
       "0106_admin_team_unlock.sql",
       "0107_admin_team_lock.sql",
+      "0108_admin_testing_and_team_corrections.sql",
     ]);
     const appliedSql: string[] = [];
     const result = await applyPopulatedUpgrade(
@@ -264,6 +265,7 @@ test("historical Windows CRLF: canonical0102 already applied leaves0103/0104/010
       "0105_terminal_record_deletion.sql",
       "0106_admin_team_unlock.sql",
       "0107_admin_team_lock.sql",
+      "0108_admin_testing_and_team_corrections.sql",
     ]);
     assert.deepEqual(
       (
