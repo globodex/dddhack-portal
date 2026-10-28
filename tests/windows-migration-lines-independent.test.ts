@@ -149,7 +149,7 @@ test("independent Windows repair: check is read-only, exact CRLF repair preserve
     assert.equal(check.status, 2, check.stderr);
     const checked = JSON.parse(check.stdout);
     assert.equal(checked.repairNeeded, true);
-    assert.equal(checked.sourceFiles, 13);
+    assert.equal(checked.sourceFiles, 15);
     assert.equal(checked.databaseConnected, false);
     assert.deepEqual(
       sqlPaths.map((path) => readFileSync(join(f.cwd, path))),
@@ -330,7 +330,7 @@ test("independent Windows source: missing, extra, reordered, BOM and literal-edi
     });
 });
 
-test("independent Windows checkout: autocrlf=true still checks out only the thirteen pinned migration paths as canonical LF", () => {
+test("independent Windows checkout: autocrlf=true still checks out only the fifteen pinned migration paths as canonical LF", () => {
   const f = fixture();
   try {
     assert.ok(

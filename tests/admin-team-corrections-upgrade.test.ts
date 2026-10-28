@@ -100,6 +100,8 @@ const domain = (state: Record<string, string[]>) =>
           "portal_schema_migrations",
           "terminal_record_deletions",
           "submission_attempt_ledger",
+          "ai_model_settings",
+          "ai_provider_usage",
         ].includes(name),
     ),
   );
@@ -165,6 +167,8 @@ for (const encoding of ["lf", "crlf"] as const) {
         "0109_owner_ai_model_usage.sql",
       ]);
       const after = await f.state();
+      assert.deepEqual(after.ai_model_settings, []);
+      assert.deepEqual(after.ai_provider_usage, []);
       assert.deepEqual(domain(after), domain(before));
       assert.equal(after.portal_schema_migrations.length, 15);
       assert.deepEqual(
