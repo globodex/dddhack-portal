@@ -4,6 +4,7 @@ import { useId, useState, type CSSProperties } from "react";
 import type {
   AdminParticipantBreakdown,
   AdminStatsDTO,
+  TeamSizeGroupKey,
 } from "../lib/admin-stats";
 import { resolveTeamColor } from "../lib/team-color";
 import { useHydrated } from "./use-hydrated";
@@ -28,6 +29,10 @@ export default function AdminStats({ stats }: { stats: AdminStatsDTO }) {
   const [detailed, setDetailed] = useState(false);
   const hydrated = useHydrated();
   const contentId = useId();
+  const [teamSizeGroup, setTeamSizeGroup] = useState<TeamSizeGroupKey>("total");
+  const sizeGroup =
+    stats.teamSizeGroups?.find((group) => group.key === teamSizeGroup) ||
+    stats.teamSizeGroups?.find((group) => group.key === "total");
   const canShowDetails =
     stats.collection === "participants" &&
     stats.cards.some((card) => card.breakdown);
@@ -103,10 +108,34 @@ export default function AdminStats({ stats }: { stats: AdminStatsDTO }) {
             <dt>
               <span className="admin-stat-dot" aria-hidden="true" />
               Team sizes
+              {stats.teamSizeGroups && (
+                <select
+                  className="admin-team-size-select"
+                  aria-label="Team sizes by status"
+                  aria-controls={`${contentId}-team-sizes`}
+                  value={sizeGroup?.key || "total"}
+                  disabled={!hydrated}
+                  onChange={(event) =>
+                    setTeamSizeGroup(event.target.value as TeamSizeGroupKey)
+                  }
+                >
+                  {stats.teamSizeGroups.map((group) => (
+                    <option key={group.key} value={group.key}>
+                      {group.label}
+                    </option>
+                  ))}
+                </select>
+              )}
             </dt>
             <dd>
-              <dl className="admin-team-size-values">
-                {stats.teamSizes.map((size) => (
+              <dl
+                id={`${contentId}-team-sizes`}
+                className="admin-team-size-values"
+                aria-label={`${sizeGroup?.label || "Total"} team sizes`}
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                {(sizeGroup?.sizes || stats.teamSizes).map((size) => (
                   <div key={size.label}>
                     <dt>{size.label}</dt>
                     <dd>{numbers.format(size.value)}</dd>
@@ -114,6 +143,29 @@ export default function AdminStats({ stats }: { stats: AdminStatsDTO }) {
                 ))}
               </dl>
             </dd>
+            {sizeGroup && (
+              <small className="admin-team-size-caption">
+                <b>
+                  {numbers.format(sizeGroup.total)}{" "}
+                  {sizeGroup.total === 1 ? "team" : "teams"}
+                </b>{" "}
+                · {sizeGroup.description}
+                {sizeGroup.empty > 0 && (
+                  <span>
+                    {numbers.format(sizeGroup.empty)}{" "}
+                    {sizeGroup.empty === 1 ? "team has" : "teams have"} no
+                    members.
+                  </span>
+                )}
+                {sizeGroup.overCapacity > 0 && (
+                  <span>
+                    {numbers.format(sizeGroup.overCapacity)}{" "}
+                    {sizeGroup.overCapacity === 1 ? "team has" : "teams have"}{" "}
+                    more than 5 members.
+                  </span>
+                )}
+              </small>
+            )}
           </div>
         )}
       </dl>

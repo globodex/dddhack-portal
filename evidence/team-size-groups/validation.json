@@ -1,0 +1,12 @@
+{
+  "newCalculationTests": 2,
+  "existingStatsTests": 23,
+  "failed": 0,
+  "skipped": 0,
+  "typecheck": "passed",
+  "productionBuildLog": "/workspace/team-size-review/build.log",
+  "screenshots": "outside Git: /workspace/team-size-review/screens",
+  "queryCount": "one aggregate for five groups",
+  "hostedOperations": "none",
+  "pushed": false
+}

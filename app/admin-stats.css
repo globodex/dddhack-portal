@@ -206,6 +206,43 @@
   gap: 10px;
   margin: 0;
 }
+.app-shell .admin-team-size-card > dt {
+  align-items: center;
+  flex-wrap: wrap;
+}
+.app-shell .admin-team-size-card {
+  grid-template-rows: minmax(40px, auto) auto 1fr;
+}
+.app-shell .admin-team-size-select {
+  min-width: 0;
+  min-height: 44px;
+  max-width: 100%;
+  width: 150px;
+  margin-left: auto;
+  padding: 8px 24px 8px 10px;
+  border: 1px solid var(--line, #e3e4db);
+  border-radius: 8px;
+  background-color: var(--surface, #fffefa);
+  color: var(--ink, #202320);
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: normal;
+}
+.app-shell .admin-team-size-select:focus-visible {
+  outline: 2px solid var(--stat-dot, #006b43);
+  outline-offset: 2px;
+}
+.app-shell .admin-team-size-caption {
+  line-height: 1.5;
+}
+.app-shell .admin-team-size-caption b {
+  color: var(--ink, #202320);
+  font-weight: 600;
+}
+.app-shell .admin-team-size-caption span {
+  display: block;
+  margin-top: 4px;
+}
 .app-shell .admin-team-size-values dt {
   color: var(--muted, #656960);
   font-size: 11px;

@@ -1,0 +1,38 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "allFiveGroups": true,
+    "zeroCountsVisible": true,
+    "noHorizontalOverflow": true,
+    "minimum44pxControl": true,
+    "noExtraRequests": true
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "allFiveGroups": true,
+    "zeroCountsVisible": true,
+    "noHorizontalOverflow": true,
+    "minimum44pxControl": true,
+    "noExtraRequests": true
+  },
+  {
+    "width": 320,
+    "height": 480,
+    "allFiveGroups": true,
+    "zeroCountsVisible": true,
+    "noHorizontalOverflow": true,
+    "minimum44pxControl": true,
+    "noExtraRequests": true
+  },
+  {
+    "width": 768,
+    "height": 900,
+    "allFiveGroups": true,
+    "zeroCountsVisible": true,
+    "noHorizontalOverflow": true,
+    "minimum44pxControl": true,
+    "noExtraRequests": true
+  }
+]

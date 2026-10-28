@@ -12,6 +12,17 @@ export type AdminParticipantBreakdown = {
 };
 
 export type AdminStatsCollection = "participants" | "teams" | "submissions";
+export type TeamSizeGroupKey =
+  "total" | "locked" | "approved" | "submitted" | "not_submitted";
+export type TeamSizeGroup = {
+  key: TeamSizeGroupKey;
+  label: string;
+  description: string;
+  total: number;
+  sizes: { label: string; value: number }[];
+  empty: number;
+  overCapacity: number;
+};
 export type AdminStatsDTO = {
   collection: AdminStatsCollection;
   scope: "Entire collection";
@@ -24,6 +35,7 @@ export type AdminStatsDTO = {
     breakdown?: AdminParticipantBreakdown;
   }[];
   teamSizes?: { label: string; value: number }[];
+  teamSizeGroups?: TeamSizeGroup[];
   note?: string;
 };
 
@@ -48,6 +60,49 @@ const teamCtes = `active_teams AS (
     CASE WHEN m.total>0 AND m.total=m.approved THEN 1 ELSE 0 END approved
   FROM active_teams t LEFT JOIN member_states m ON m.team_id=t.id
 )`;
+const teamSizeGroups = [
+  {
+    key: "total",
+    label: "Total",
+    description: "All active teams.",
+    predicate: "1=1",
+  },
+  {
+    key: "locked",
+    label: "Locked",
+    description: "Teams with an actual team lock.",
+    predicate: "t.locked=1",
+  },
+  {
+    key: "approved",
+    label: "Approved",
+    description: "Every current member has approved registration.",
+    predicate: "t.approved=1",
+  },
+  {
+    key: "submitted",
+    label: "Submitted",
+    description: "At least one committed submission, including hidden history.",
+    predicate: "t.submitted=1",
+  },
+  {
+    key: "not_submitted",
+    label: "Not yet submitted",
+    description: "No committed submission, including teams still forming.",
+    predicate: "t.submitted=0",
+  },
+] as const;
+const teamSizeAggregates = teamSizeGroups
+  .flatMap(({ key, predicate }) => [
+    `COALESCE(sum(CASE WHEN ${predicate} THEN 1 ELSE 0 END),0) ${key}_count`,
+    ...Array.from(
+      { length: 6 },
+      (_, size) =>
+        `COALESCE(sum(CASE WHEN ${predicate} AND t.total=${size} THEN 1 ELSE 0 END),0) ${key}_size_${size}`,
+    ),
+    `COALESCE(sum(CASE WHEN ${predicate} AND t.total>5 THEN 1 ELSE 0 END),0) ${key}_oversize`,
+  ])
+  .join(",\n");
 const retainedSessions = ` UNION SELECT se.auth_user_id user_id
   FROM auth_sessions se JOIN auth_users au ON au.id=se.auth_user_id
   JOIN users su ON su.id=au.id
@@ -140,16 +195,24 @@ const participantQuery = (
   UNION ALL SELECT 'breakdown',cohort,dimension,bucket,n,NULL,NULL,NULL,NULL,NULL,NULL FROM demographic_totals`;
 const queries = {
   participants: participantQuery(false),
-  teams: `WITH ${teamCtes}
+  teams: `WITH ${teamCtes}, sized_teams AS (
+    SELECT ts.*,
+      CASE WHEN EXISTS(SELECT 1 FROM team_locks l WHERE l.team_id=ts.id) THEN 1 ELSE 0 END locked,
+      CASE WHEN EXISTS(SELECT 1 FROM submission_versions v WHERE v.team_id=ts.id)
+        OR EXISTS(SELECT 1 FROM submission_attempt_ledger a WHERE a.team_id=ts.id AND a.attempts>0)
+        THEN 1 ELSE 0 END submitted
+    FROM team_states ts
+  )
   SELECT count(*) formed,
-    COALESCE(sum(CASE WHEN EXISTS(SELECT 1 FROM team_locks l WHERE l.team_id=t.id) THEN 1 ELSE 0 END),0) locked,
+    COALESCE(sum(t.locked),0) locked,
     COALESCE(sum(t.approved),0) approved,
     COALESCE(sum(CASE WHEN t.total=1 THEN 1 ELSE 0 END),0) size_1,
     COALESCE(sum(CASE WHEN t.total=2 THEN 1 ELSE 0 END),0) size_2,
     COALESCE(sum(CASE WHEN t.total=3 THEN 1 ELSE 0 END),0) size_3,
     COALESCE(sum(CASE WHEN t.total=4 THEN 1 ELSE 0 END),0) size_4,
-    COALESCE(sum(CASE WHEN t.total=5 THEN 1 ELSE 0 END),0) size_5
-  FROM team_states t`,
+    COALESCE(sum(CASE WHEN t.total=5 THEN 1 ELSE 0 END),0) size_5,
+    ${teamSizeAggregates}
+  FROM sized_teams t`,
   submissions: `WITH active_projects AS (
     SELECT p.id,p.team_id FROM projects p JOIN teams t ON t.id=p.team_id
     WHERE ${active("team", "t.id")} AND ${active("project", "p.id")}
@@ -347,6 +410,18 @@ export async function readAdminStats(
       teamSizes: Array.from({ length: 5 }, (_, index) => ({
         label: index === 0 ? "Solo" : `${index + 1} people`,
         value: count(result[`size_${index + 1}`]),
+      })),
+      teamSizeGroups: teamSizeGroups.map(({ key, label, description }) => ({
+        key,
+        label,
+        description,
+        total: count(result[`${key}_count`]),
+        sizes: Array.from({ length: 5 }, (_, index) => ({
+          label: index === 0 ? "Solo" : `${index + 1} people`,
+          value: count(result[`${key}_size_${index + 1}`]),
+        })),
+        empty: count(result[`${key}_size_0`]),
+        overCapacity: count(result[`${key}_oversize`]),
       })),
       note: "Locked and approved counts can overlap.",
     };
