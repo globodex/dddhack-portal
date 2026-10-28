@@ -194,7 +194,7 @@ for (const engine of ["sqlite", "postgres"] as const) {
       assert.deepEqual(stats.total, { tokens: 135, knownResponses: 3 });
       assert.equal(stats.costUSD, null);
       assert.match(stats.coverage, /Historical calls/);
-      assert.match(stats.costReason, /not an invoice/);
+      assert.match(stats.costReason, /verified billing data/);
       assert.equal(
         (await one<any>(f.db, "SELECT count(*) n FROM ai_provider_usage"))?.n,
         4,

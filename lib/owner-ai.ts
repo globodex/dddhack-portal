@@ -126,9 +126,9 @@ export async function ownerAIView(s: PortalService) {
     total: metric("total"),
     costUSD: null,
     coverage:
-      "Recorded portal Responses only, starting after this backend update. Historical calls and requests without returned telemetry are unavailable. Cached tokens are included in input, not added again.",
+      "Recorded portal responses only, after this backend update. Historical calls and missing telemetry are unavailable. Cached tokens are included in input.",
     costReason:
-      "Charged cost is unavailable: Responses telemetry provides tokens, not an invoice. No pricing or account totals are inferred.",
+      "Charged cost is unavailable without verified billing data. No pricing or account totals are inferred.",
   };
 }
 export async function ownerAICommand(
