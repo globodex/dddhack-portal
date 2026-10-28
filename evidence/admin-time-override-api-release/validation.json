@@ -1,0 +1,102 @@
+{
+  "validatedAt": "2026-10-28T18:48:47.297855+00:00",
+  "candidateCommitBeforeReceipt": "538855bd84a309c6b8e484f5a50e96403af2fb30",
+  "runtimeSource": "63075adf6e309877803af1d66fa0d4273b29be88",
+  "runtimeAndMigrationSourceUnchangedSincePackageSource": true,
+  "tests": {
+    "command": "node --no-wasm-code-gc --import tsx --test --test-concurrency=2 tests/*.test.ts",
+    "completeCleanRun": true,
+    "tests": 1008,
+    "pass": 1001,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 7,
+    "todo": 0,
+    "duration_ms": 971242.468738,
+    "logPath": "/workspace/admin-time-review/verified-full-regression.log",
+    "logSha256": "b8768c4fcedfd251c683f5ed918291a78cc9b88c362e4f2a55bb566a7049979a",
+    "skips": [
+      "\ufe63 native PostgreSQL: concurrent guarded admin corrections retain max5, one team per person, rename CAS and empty guards (3.833683ms) # SKIP",
+      "\ufe63 native PostgreSQL magic link GET confirms without consumption, POST has one winner, and session resolves preserved portal staff (0.929284ms) # SKIP",
+      "\ufe63 native PostgreSQL verified login grants no viewer role escalation and ignores spoofed identity and cookies (0.206002ms) # SKIP",
+      "\ufe63 native PostgreSQL sessions recheck current portal roles and reject a changed verified-email binding (0.121438ms) # SKIP",
+      "\ufe63 native PostgreSQL concurrent connections preserve guards, member/vote caps, three attempts, and frozen snapshots (0.754152ms) # SKIP",
+      "\ufe63 native PostgreSQL snapshot API rejects unauthorized, unbound, wrong-origin and unsafe source requests through the complete migration plan (1.585627ms) # SKIP",
+      "\ufe63 native PostgreSQL approved snapshots retry idempotently, audit no source, and permit only one-way immutable revocation (0.155983ms) # SKIP"
+    ],
+    "executionHandleNote": "Existing process survived the environment restart; terminal test-runner summary was monitored from its original log."
+  },
+  "build": {
+    "command": "npm run build",
+    "observedExitCode": 0,
+    "logPath": "/workspace/admin-time-review/final-build.log",
+    "logSha256": "bf15dd9af450133e994cb2b43e7043d63814d92871d4f25132458a5aaa470e55"
+  },
+  "typecheck": {
+    "command": "npm run typecheck",
+    "observedExitCode": 0,
+    "logPath": "/workspace/admin-time-review/final-typecheck.log",
+    "logSha256": "6610db233911b67d968ae766778b6b13519989e13312fadaf0b6cc2984335bfd"
+  },
+  "browsers": {
+    "teamSizes": "/workspace/team-size-review/screens/report.json",
+    "dashboardArrival": "/workspace/dashboard-top-review/screens/report.json",
+    "adminSubmission": "/workspace/admin-time-review/screens/report.json",
+    "ownerModel": "/workspace/owner-ai-review/screens/report.json",
+    "desktopTabletMobileWidths": [
+      1440,
+      768,
+      390,
+      320
+    ],
+    "note": "768px is covered by Team Sizes; other changed surfaces cover1440/390/320. Actual synthetic UI, not mockups."
+  },
+  "screenshots": {
+    "count": 28,
+    "manifest": "/workspace/portal-review-20261028/screenshots-manifest.json",
+    "zip": "/workspace/portal-review-20261028/synthetic-review-screenshots.zip",
+    "zipSha256": "15c99cae38bdd2aaf649371dfb569fb1f1d36eed57c66ccd6c145b69c3cbc88b",
+    "trackedInGit": false,
+    "libraryFileIds": [],
+    "libraryDelivery": "Prior prepared-helper authenticated tools/list returnedHTTP401 before upload. No denied route retried; no third-party upload."
+  },
+  "package": {
+    "sha256": "a63f43009afc8df75f7d29783ed8e44759740aaf4ea4d003034bed59bf4834a0",
+    "indexSha256": "7225eaa89620c2670f0f1be3406fb9a914b9bb868c6120b901ab92c1742dabf5",
+    "bytes": 9042084,
+    "entries": 93,
+    "applicationInputCount": 98,
+    "dependenciesUnchanged": 92,
+    "noEnvironmentValuesPackaged": true,
+    "manualWindowsGuide": "docs/ADMIN_OPERATIONS_AI_WINDOWS_ROLLOUT.md"
+  },
+  "migration": {
+    "canonicalPlanDigest": "129ae4bc6c20a817b883d68229ee51a73a41998140b9bead2f4309a1c1b7b227",
+    "expectedEntries": 15,
+    "newMigrations": [
+      "0108_admin_testing_and_team_corrections.sql",
+      "0109_owner_ai_model_usage.sql"
+    ],
+    "historicalSqlThrough0107Unchanged": true,
+    "sevenLegacyCrLfAliasesPreserved": true,
+    "hostedLedgerInspected": false,
+    "hostedApply": false
+  },
+  "constraints": {
+    "pushed": false,
+    "hostedDeployment": false,
+    "liveDataMutation": false,
+    "paidEvaluations": false,
+    "credentialsChanged": false,
+    "scoringWeightsChanged": false,
+    "revealPolicyChanged": false,
+    "pausedNoBackupWorkIncluded": false
+  },
+  "limitations": [
+    "Native multi-connection PostgreSQL tests remain skipped; PGlite uses one connection.",
+    "ARM64 native headers/hashes verified; native execution on that architecture remains unverified.",
+    "Live model account access/evaluation and historical/account billing are unverified; UI reports unavailable data honestly.",
+    "Existing AI source-approval UI/scheduler work is outside this batch; model selection does not complete it.",
+    "Native Library screenshot delivery remains blocked as recorded above."
+  ]
+}

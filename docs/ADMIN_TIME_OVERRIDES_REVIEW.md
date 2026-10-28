@@ -47,3 +47,11 @@ Charged cost stays unavailable: no verified account-cost data or versioned prici
 The combined plan has fifteen entries, digest `129ae4bc6c20a817b883d68229ee51a73a41998140b9bead2f4309a1c1b7b227`. A target already through0107 should inspect as exactly0108 and0109 pending; an already applied migration must not be replayed. Owner-run guarded inspection/recovery verification/apply and matching backend deployment remain future actions after publication approval. There was no hosted inspection/apply or paid provider call by this agent.
 
 Actual synthetic owner-settings screenshots: `/workspace/owner-ai-review/screens/owner-model-1440.png`, `owner-model-390.png` and their `owner-settings-*` viewport variants. Browser assertions cover1440×1000,390×844 and320×480, model changes with confirmation, unknown versus recorded counts and account switching to a nonowner administrator.
+
+## Final local validation
+
+Runtime source `63075adf6e309877803af1d66fa0d4273b29be88`; later package/test-fixture/receipt commits leave all application, API, schema and migration CLI inputs unchanged. The final clean full run completed1008 tests:1001 passed,7 skipped,0 failed/cancelled/todo. Production build and typecheck exited0. Native multi-connection PostgreSQL remains skipped; PGlite is single-connection evidence.
+
+All changed interfaces have actual desktop/mobile synthetic browser captures; Team Sizes additionally covers768px, and all changed surfaces are checked at320px.28 originals, manifest and screenshot ZIP remain outside Git at `/workspace/portal-review-20261028/`. No image upload or native LibraryID is claimed.
+
+See [structured validation receipt](../evidence/admin-time-override-api-release/validation.json) and [future Windows rollout](ADMIN_OPERATIONS_AI_WINDOWS_ROLLOUT.md). The packaged API has93 entries,98 exact application inputs and all92 dependency/native files unchanged from the published archive. ZIP SHA256: `a63f43009afc8df75f7d29783ed8e44759740aaf4ea4d003034bed59bf4834a0`. No agent hosted migration/deployment, paid evaluation, credential change or publication occurred.
