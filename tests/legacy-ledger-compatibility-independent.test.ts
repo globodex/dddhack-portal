@@ -86,7 +86,7 @@ test("independent legacy ledger: exact seven CRLF aliases derive from pinned LF 
   const plan = await loadMigrationPlan();
   assert.equal(
     verifyUpgradePlan(plan, baseline),
-    "2dc505efb7e5cf25f4e9da1a56e9aa9cb4a816735b222127b9fdfdb5daafa277",
+    "129ae4bc6c20a817b883d68229ee51a73a41998140b9bead2f4309a1c1b7b227",
   );
   assert.equal(historical.length, 7);
   for (const [i, entry] of hashes.historical.entries()) {
@@ -134,6 +134,7 @@ test("independent legacy ledger: canonical LF history and an existing canonical 
       "0106_admin_team_unlock.sql",
       "0107_admin_team_lock.sql",
       "0108_admin_testing_and_team_corrections.sql",
+      "0109_owner_ai_model_usage.sql",
     ]);
     const after = await f.snapshot();
     assert.deepEqual(domain(after), domain(before));
@@ -176,6 +177,7 @@ test("independent actual CRLF history: readonly inspect, populated7→13 canonic
       "0106_admin_team_unlock.sql",
       "0107_admin_team_lock.sql",
       "0108_admin_testing_and_team_corrections.sql",
+      "0109_owner_ai_model_usage.sql",
     ]);
     assert.deepEqual(await f.snapshot(), before);
     assert.equal(
@@ -198,7 +200,7 @@ test("independent actual CRLF history: readonly inspect, populated7→13 canonic
     const after = await f.snapshot(),
       ledger = after.portal_schema_migrations as any[];
     assert.deepEqual(domain(after), domain(before));
-    assert.equal(ledger.length, 14);
+    assert.equal(ledger.length, 15);
     assert.deepEqual(ledger.slice(0, 7), before.portal_schema_migrations);
     assert.deepEqual(
       ledger.slice(7).map(({ name, checksum }) => ({ name, checksum })),

@@ -1,3 +1,4 @@
+import { providerUsage, type ProviderUsage } from "../../lib/owner-ai";
 import { reportSchema, type Evaluator } from "../../lib/evaluation";
 import {
   evaluationLimits,
@@ -27,6 +28,7 @@ export interface OpenAIEvaluationEnv {
 export interface OpenAIEvaluatorDependencies {
   resolveApprovedSnapshot: ApprovedSnapshotResolver;
   fetch?: typeof fetch;
+  recordUsage?: (usage: ProviderUsage) => Promise<void>;
 }
 export const OPENAI_RESPONSES_ENDPOINT = "https://api.openai.com/v1/responses";
 const modelPattern = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/;
@@ -133,6 +135,7 @@ export function createOpenAIEvaluator(
   const available = approved && keyValid && modelValid;
   return {
     provenance: "provider",
+    model: modelValid ? env.OPENAI_MODEL : undefined,
     available,
     unavailableReason: available
       ? undefined
@@ -247,9 +250,16 @@ export function createOpenAIEvaluator(
             }
             throw new OpenAIEvaluationError("OPENAI_UNAVAILABLE");
           }
-          const { result, model } = extractOutput(
-            await boundedResponse(response, signal),
-          );
+          const responseBody = await boundedResponse(response, signal);
+          // Returned provider telemetry is recorded even when rubric parsing fails.
+          // A telemetry outage must never trigger an additional paid request.
+          if (dependencies.recordUsage)
+            await dependencies
+              .recordUsage(
+                providerUsage(responseBody, versionId, env.OPENAI_MODEL!),
+              )
+              .catch(() => {});
+          const { result, model } = extractOutput(responseBody);
           return reportSchema.parse(modelReviewReport(result, snapshot, model));
         }
         throw new OpenAIEvaluationError("OPENAI_UNAVAILABLE");

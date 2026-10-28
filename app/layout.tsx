@@ -22,6 +22,7 @@ import "./profile-experience.css";
 import "./team-discovery-experience.css";
 import "./admin-experience.css";
 import "./admin-stats.css";
+import "./owner-ai-controls.css";
 import "./admin-submission-analytics.css";
 import "./admin-project-score.css";
 import "./admin-team-approval.css";

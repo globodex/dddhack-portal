@@ -1,0 +1,156 @@
+import assert from "node:assert/strict";
+import { test } from "node:test";
+import { readFileSync, readdirSync } from "node:fs";
+import { batch, one, rows } from "../lib/db";
+import { LocalDatabase } from "../lib/local-test/sqlite";
+import { seedLocal } from "../scripts/fixtures";
+import { legacyLedgerIndependentFixture } from "./legacy-ledger-independent-fixture";
+import { applyPortalMigrations } from "../neon/db/migrate";
+import {
+  inspectPopulatedUpgrade,
+  applyPopulatedUpgrade,
+  type UpgradeBaseline,
+  type UpgradeTarget,
+} from "../neon/db/populated-upgrade";
+import type { PostgresPool } from "../neon/db/adapter";
+
+const baseline: UpgradeBaseline = JSON.parse(
+  readFileSync(
+    new URL(
+      "../evidence/neon-host-archive/historical-ledger-checksums.json",
+      import.meta.url,
+    ),
+    "utf8",
+  ),
+);
+const migration = "0109_owner_ai_model_usage.sql",
+  at = "2026-10-22T08:00:00.000Z";
+const confirmation = {
+  backupCheckpoint: "synthetic-admin-lock-verified-restore",
+  restoreVerified: true,
+};
+const stripLedger = (data: Record<string, unknown>) =>
+  Object.fromEntries(
+    Object.entries(data).filter(
+      ([name]) => name !== "portal_schema_migrations",
+    ),
+  );
+
+for (const encoding of ["lf", "crlf"] as const) {
+  test(`admin-testing upgrade ${encoding}: populated14→15 applies only0109, preserves data/checksums/locks and repeats with no work`, async () => {
+    const f = await legacyLedgerIndependentFixture(encoding);
+    try {
+      await applyPortalMigrations(f.pool, f.plan.slice(7, 14));
+      const target: UpgradeTarget = {
+        host: "synthetic-admin-lock.invalid",
+        port: "5432",
+        ...f.identity,
+      };
+      const before = await f.snapshot(),
+        inspected = await inspectPopulatedUpgrade(
+          f.pool,
+          f.plan,
+          baseline,
+          target,
+        );
+      assert.equal(inspected.ledger.length, 14);
+      assert.deepEqual(inspected.pending, [migration]);
+      assert.deepEqual(await f.snapshot(), before);
+      const applied = await applyPopulatedUpgrade(
+        f.pool,
+        f.plan,
+        baseline,
+        target,
+        inspected,
+        confirmation,
+      );
+      assert.deepEqual(applied.applied, [migration]);
+      const after = await f.snapshot();
+      assert.deepEqual(stripLedger(after), stripLedger(before));
+      assert.deepEqual(
+        (after.portal_schema_migrations as any[]).slice(0, 14),
+        before.portal_schema_migrations,
+      );
+      const repeat = await inspectPopulatedUpgrade(
+        f.pool,
+        f.plan,
+        baseline,
+        target,
+      );
+      assert.equal(repeat.ledger.length, 15);
+      assert.deepEqual(repeat.pending, []);
+      assert.deepEqual(
+        (
+          await applyPopulatedUpgrade(
+            f.pool,
+            f.plan,
+            baseline,
+            target,
+            repeat,
+            confirmation,
+          )
+        ).applied,
+        [],
+      );
+      assert.deepEqual(await f.snapshot(), after);
+    } finally {
+      await f.db.close();
+    }
+  });
+}
+
+test("owner AI migration DDL failure rolls back the trigger function and ledger without rewriting any recorded hash", async () => {
+  const f = await legacyLedgerIndependentFixture("crlf");
+  try {
+    await applyPortalMigrations(f.pool, f.plan.slice(7, 14));
+    const target: UpgradeTarget = {
+      host: "synthetic-admin-lock.invalid",
+      port: "5432",
+      ...f.identity,
+    };
+    const receipt = await inspectPopulatedUpgrade(
+        f.pool,
+        f.plan,
+        baseline,
+        target,
+      ),
+      before = await f.snapshot();
+    const definition = async () =>
+      (
+        await f.engine.query(
+          "SELECT to_regclass('public.ai_model_settings') definition",
+        )
+      ).rows;
+    const beforeFunction = await definition();
+    const failing: PostgresPool = {
+      async connect() {
+        const c = await f.pool.connect();
+        return {
+          query: (sql, values) =>
+            c.query(
+              sql === f.plan[14].sql
+                ? sql + "; SELECT synthetic_missing_lock_function()"
+                : sql,
+              values,
+            ),
+          release: (error) => c.release(error),
+        };
+      },
+      end: () => f.pool.end(),
+    };
+    await assert.rejects(
+      applyPopulatedUpgrade(
+        failing,
+        f.plan,
+        baseline,
+        target,
+        receipt,
+        confirmation,
+      ),
+    );
+    assert.deepEqual(await definition(), beforeFunction);
+    assert.deepEqual(await f.snapshot(), before);
+  } finally {
+    await f.db.close();
+  }
+});

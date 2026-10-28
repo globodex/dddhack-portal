@@ -38,6 +38,7 @@ const labels: Record<string, string> = {
   "admin-remove-own-test-project": "Remove your test project?",
   "admin-rename-team": "Rename team?",
   "admin-unlock-team": "Unlock team?",
+  "change-ai-model": "Change AI model?",
   "admin-lock-team": "Lock team?",
   "leave-workspace-team": "Leave team?",
   "admin-delete-participant": "Delete participant?",
@@ -157,6 +158,7 @@ export function confirmationFor(
       critical: true,
       tone: "danger",
     };
+  if (action === "change-ai-model") return { title, target: values.model, description: "Use this model for future evaluations. Existing scores stay unchanged. Saving does not verify API access.", confirmLabel: "Save model", critical: false };
   if (action === "settings")
     return {
       title,
@@ -338,6 +340,7 @@ export function revealConfirmation(
   action: string,
   values: Record<string, any>,
 ) {
+  if (action === "change-ai-model") return "CHANGE_AI_MODEL";
   if (action === "admin-delete-participant") return "DELETE_PARTICIPANT";
   if (action === "admin-delete-team") return "DELETE_TEAM";
   if (action === "bulk-check-in") return "CHECK_IN_PARTICIPANTS";

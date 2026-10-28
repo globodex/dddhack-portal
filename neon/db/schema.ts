@@ -1182,3 +1182,10 @@ export const submission_attempt_ledger = pgTable(
     ),
   ],
 );
+
+export const ai_model_settings = pgTable("ai_model_settings", {
+ id: integer("id").primaryKey(), model: text("model").notNull(), revision: integer("revision").notNull(), updated_by: text("updated_by").notNull(), updated_at: text("updated_at").notNull(),
+}, t => [check("ai_model_settings_id", sql`${t.id}=1`),check("ai_model_settings_revision",sql`${t.revision}>0`)]);
+export const ai_provider_usage = pgTable("ai_provider_usage", {
+ id: text("id").primaryKey(), version_id: text("version_id").notNull(), requested_model: text("requested_model").notNull(), actual_model: text("actual_model"), input_tokens: integer("input_tokens"), output_tokens: integer("output_tokens"), cached_tokens: integer("cached_tokens"), total_tokens: integer("total_tokens"), created_at: text("created_at").notNull(),
+}, t => [index("ai_provider_usage_model_time").on(t.requested_model,t.created_at),check("ai_usage_input",sql`${t.input_tokens}>=0`),check("ai_usage_output",sql`${t.output_tokens}>=0`),check("ai_usage_cached",sql`${t.cached_tokens}>=0`),check("ai_usage_total",sql`${t.total_tokens}>=0`)]);

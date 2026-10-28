@@ -2263,7 +2263,11 @@ export class PortalService {
         };
       return {
         ...base,
-        items: await this.adminList(list),
+        items: await this.adminList(list).then(items => list !== "astra" || u.owner ? items : items.map(row => {
+          if (typeof row.report !== "string") return row;
+          try { const { model: _model, ...report } = JSON.parse(row.report); return { ...row, report: JSON.stringify(report) }; }
+          catch { return { ...row, report: null }; }
+        })),
         ...(list === "credits"
           ? { creditBatches: await creditBatchesView(this) }
           : {}),

@@ -42,6 +42,8 @@ export const reportSchema = z
   .strict();
 export type Report = z.infer<typeof reportSchema>;
 export interface Evaluator {
+  /** Server configuration; project/admin DTOs must expose it only to the owner. */
+  model?: string;
   provenance?: "offline" | "provider";
   configuration?: string;
   available?: boolean;

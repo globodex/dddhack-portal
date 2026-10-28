@@ -58,6 +58,10 @@
     {
       "name": "0108_admin_testing_and_team_corrections.sql",
       "checksum": "dc6fc5c44a5e881109a5c7c0936d682a2f2d1cac210ea042fdfba9fcb13fcec0"
+    },
+    {
+      "name": "0109_owner_ai_model_usage.sql",
+      "checksum": "9dde1b8e4cf3b4a38f6522e677d58633ecfe131df0a88f6f38b57c70ab4e4727"
     }
   ],
   "hostedRead": false,

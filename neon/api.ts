@@ -1,3 +1,5 @@
+import { selectedAIModel, recordProviderUsage } from "../lib/owner-ai";
+import { disabledEvaluator } from "../lib/evaluation";
 import { createNeonDatabase, type NeonDatabaseEnvironment } from "./db/index";
 import {
   authenticateRequest,
@@ -46,6 +48,7 @@ const db = () =>
 function requestHandler(tasks: Promise<unknown>[]) {
   return createPortalBackend(env, {
     async runtime(request) {
+      const selected = await selectedAIModel(baseDb(), env.OPENAI_MODEL);
       return {
         db: db(),
         identity: await authenticateRequest(request, env, baseDb()),
@@ -55,12 +58,26 @@ function requestHandler(tasks: Promise<unknown>[]) {
         },
         ...(env.PORTAL_OPENAI_EVALUATION_APPROVED === "true"
           ? {
-              evaluator: createOpenAIEvaluator(env, {
-                resolveApprovedSnapshot: (versionId) =>
-                  readApprovedSnapshot(baseDb(), versionId),
-              }),
+              evaluator: createOpenAIEvaluator(
+                { ...env, OPENAI_MODEL: selected.model || undefined },
+                {
+                  recordUsage: (usage) =>
+                    recordProviderUsage(
+                      baseDb(),
+                      usage,
+                      new Date().toISOString(),
+                    ),
+                  resolveApprovedSnapshot: (versionId) =>
+                    readApprovedSnapshot(baseDb(), versionId),
+                },
+              ),
             }
-          : {}),
+          : {
+              evaluator: {
+                ...disabledEvaluator,
+                model: selected.model || undefined,
+              },
+            }),
       };
     },
     evaluation: handleEvaluationSnapshots,

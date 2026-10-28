@@ -1,3 +1,4 @@
+import { ownerAIView, ownerAICommand } from "./owner-ai";
 import { submissionWindowHasOpened } from "./team-lifecycle";
 import { adminSubmissionAuthority, removeOwnTestProject } from "./admin-submission-testing";
 import { adminDemographics, hasDemographics, demographicPredicate, matchingDemographicPeople, matchesAdminParticipant } from "./admin-demographic-filters";
@@ -1030,6 +1031,7 @@ export class PortalExperience {
         : undefined;
       return {
         me,
+        ...(me.owner ? { ownerAI: await ownerAIView(this.s) } : {}),
         engagement: await engagementState(this.s),
         ...(me.owner ? { adminAccess: await adminAccessView(this.s) } : {}),
         creditInstructions: await rows(
@@ -1237,7 +1239,7 @@ export class PortalExperience {
           ? []
           : await rows(
               this.s.db,
-              "SELECT id,version_id,config_key,state,error,created_at,updated_at FROM evaluation_runs WHERE project_id=? ORDER BY created_at DESC",
+              me.owner ? "SELECT id,version_id,config_key,state,error,created_at,updated_at FROM evaluation_runs WHERE project_id=? ORDER BY created_at DESC" : "SELECT id,version_id,state,error,created_at,updated_at FROM evaluation_runs WHERE project_id=? ORDER BY created_at DESC",
               p.id,
             ),
         reviewers:
@@ -1250,7 +1252,11 @@ export class PortalExperience {
         evaluationConfigured: evaluationAvailability(this.s.evaluator).available,
         evaluationUnavailableReason: evaluationAvailability(this.s.evaluator).reason,
         scoringReady: policyBlockers(policySettings.policy).length === 0,
-        evaluation: (me.owner || me.role === "admin") && v ? await latestProviderGrade(this.s.db, p.id, v.id) : null,
+        evaluation: (me.owner || me.role === "admin") && v ? await latestProviderGrade(this.s.db, p.id, v.id).then(value => {
+          if (!value || me.owner) return value;
+          const { model: _model, ...report } = value.report;
+          return { ...value, report };
+        }) : null,
         ...actionState,
       };
     }
@@ -1261,6 +1267,8 @@ export class PortalExperience {
     data: unknown,
     actor: Actor,
   ): Promise<Record<string, unknown> | null> {
+    const aiModel = await ownerAICommand(this.s, action, data);
+    if (aiModel !== null) return aiModel;
     const removedTest = await removeOwnTestProject(this.s, action, data);
     if (removedTest !== null) return removedTest;
     const locked = await adminTeamLock(this.s, action, data);

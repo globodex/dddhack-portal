@@ -588,3 +588,15 @@ test("repository snapshot reads validate exact contents and digest and exclude r
     db.close();
   }
 });
+
+test("provider telemetry is captured before invalid/incomplete rubric handling; a statistics failure never repeats a paid request", async () => {
+  let requests=0;const captured: any[]=[];
+  const evaluator=createOpenAIEvaluator(env,{
+    resolveApprovedSnapshot:async()=>snapshot(),
+    fetch:async()=>{requests++;return providerResponse(modelOutput(),{status:"incomplete",incomplete_details:{reason:"max_output_tokens"},usage:{input_tokens:100,output_tokens:20,input_tokens_details:{cached_tokens:25},total_tokens:120}});},
+    recordUsage:async usage=>{captured.push(usage);},
+  });
+  await assert.rejects(evaluator.evaluate(versionId,{commitSha:sha}),rejected("OPENAI_OUTPUT_INVALID"));assert.equal(requests,1);assert.equal(captured.length,1);assert.equal(captured[0].cached,25);
+  const good=createOpenAIEvaluator(env,{resolveApprovedSnapshot:async()=>snapshot(),fetch:async()=>{requests++;return providerResponse();},recordUsage:async()=>{throw Error("Synthetic telemetry outage");}});
+  assert.equal((await good.evaluate(versionId,{commitSha:sha})).versionId,versionId);assert.equal(requests,2);
+});

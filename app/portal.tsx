@@ -1,4 +1,5 @@
 "use client";
+import OwnerAIControls from "./owner-ai-controls";
 import {
   ChevronDown,
   ChevronRight,
@@ -6414,6 +6415,7 @@ export function Settings({
         />
       </div>
       <div {...panel("results")}>
+        {data.me?.owner && <OwnerAIControls key={`ai-model-${data.ownerAI?.revision ?? 0}`} owner={true} data={data.ownerAI} run={run} />}
         {section === "results" && data.me?.owner && (
           <JudgingSettings
             key={`judging-${data.policyVersion}`}
