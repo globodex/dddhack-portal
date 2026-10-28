@@ -6,7 +6,11 @@ import { demand } from "./security";
 export const aiModelId = z
   .string()
   .trim()
-  .regex(/^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/);
+  .regex(/^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/)
+  .refine(
+    (value) => !/^(?:sk-|sess-)/i.test(value),
+    "Enter a model ID, never an API key.",
+  );
 export type ProviderUsage = {
   id: string;
   versionId: string;

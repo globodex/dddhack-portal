@@ -5,6 +5,7 @@ import { createPGliteFixture } from "./neon-db-fixture";
 import { seedLocal, fixtures, LOCAL_CREDIT_KEY } from "../scripts/fixtures";
 import { PortalService } from "../lib/service";
 import {
+  aiModelId,
   ownerAIView,
   providerUsage,
   recordProviderUsage,
@@ -344,4 +345,16 @@ test("owner UI distinguishes missing totals from genuine zero and shows no contr
     render(true, { input: { tokens: 0, knownResponses: 1 }, responses: 1 }),
     /Input<\/span><strong>0/,
   );
+});
+
+test("model setting rejects credential-shaped strings without accepting or printing credentials", () => {
+  assert.equal(
+    aiModelId.safeParse("sk-proj-synthetic-not-a-key").success,
+    false,
+  );
+  assert.equal(
+    aiModelId.safeParse("https://example.invalid/model").success,
+    false,
+  );
+  assert.equal(aiModelId.safeParse("gpt-6-astra").success, true);
 });
