@@ -1,0 +1,55 @@
+{
+  "runtimeSource": "aede2eb7c595b2ddd0708bbd3337ab9e97dac21e",
+  "focusedTests": {
+    "passed": 24,
+    "failed": 0,
+    "skipped": 0,
+    "log": "/workspace/team-participant-card-verified-tests.log"
+  },
+  "priorFilterRegression": {
+    "passed": 28,
+    "failed": 0,
+    "note": "Earlier follow-up; not summed into current final count"
+  },
+  "productionBuild": {
+    "passed": true,
+    "log": "/workspace/team-participant-card-build.log"
+  },
+  "typecheck": {
+    "passed": true,
+    "log": "/workspace/team-card-participants-typecheck.log"
+  },
+  "browser": {
+    "synthetic": true,
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "source": "/workspace/team-participant-card-review/report.json",
+    "allFiveCohortParticipantCaptions": true,
+    "horizontalOverflow": false
+  },
+  "package": {
+    "sha256": "e2fe6ef514c45cd6f52175b25ce10a4f569fbe08bb648181c7059e07cd97200d",
+    "indexSha256": "45f6f7ba72839fa2015c4bf14b5412c778e424817182abcdd472c807dc397f67",
+    "runtimeSource": "aede2eb7c595b2ddd0708bbd3337ab9e97dac21e",
+    "entries": 93,
+    "unchangedDependencies": 92,
+    "applicationInputs": 98,
+    "nativeExecution": false,
+    "hostSmoke": {
+      "trustedHealth": 200,
+      "untrustedHealth": 403,
+      "unconfiguredPortal": 503,
+      "outboundAttempts": 0
+    }
+  },
+  "migrationsAdded": [],
+  "historicalSqlUnchanged": true,
+  "publicationAuthorization": "main only; review branch must remain unchanged",
+  "backendDeploymentPerformed": false,
+  "hostedDatabaseAccess": false,
+  "paidEvaluationPerformed": false,
+  "fullRegressionRerun": false
+}

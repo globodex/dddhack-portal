@@ -1,20 +1,20 @@
 {
-  "runtimeSource": "63075adf6e309877803af1d66fa0d4273b29be88",
+  "runtimeSource": "aede2eb7c595b2ddd0708bbd3337ab9e97dac21e",
   "runtime": "nodejs24",
   "source": "neon/api.ts",
-  "zipBytes": 9042084,
-  "sha256": "a63f43009afc8df75f7d29783ed8e44759740aaf4ea4d003034bed59bf4834a0",
+  "zipBytes": 9042403,
+  "sha256": "e2fe6ef514c45cd6f52175b25ce10a4f569fbe08bb648181c7059e07cd97200d",
   "env": {},
   "warnings": [],
   "buildOnly": true,
   "deployment": "not performed",
   "packager": "@neon/config-runtime@1.10.2",
-  "nativeExecution": "not performed; headers only",
+  "nativeExecution": "ARM64 headers/hashes verified only; native execution unavailable",
   "archive": "artifacts/neon/portalapi.zip",
-  "candidateOnly": true,
-  "uncompressedBytes": 21244796,
+  "candidateOnly": false,
+  "uncompressedBytes": 21245929,
   "fileCount": 93,
-  "indexSha256": "7225eaa89620c2670f0f1be3406fb9a914b9bb868c6120b901ab92c1742dabf5",
+  "indexSha256": "45f6f7ba72839fa2015c4bf14b5412c778e424817182abcdd472c807dc397f67",
   "nativeArchitecture": "Linux ARM64 glibc",
   "nativeFiles": [
     {
@@ -39,7 +39,7 @@
   "graphRecomputed": true,
   "archiveIndexBytesIdentical": true,
   "applicationInputsMatchExactGitSnapshot": true,
-  "previousArchiveSha256": "6c94e2ccd8ad3baeccc326c7e87c49e0b0900657012becad36b97505f89d0542",
+  "previousArchiveSha256": "a63f43009afc8df75f7d29783ed8e44759740aaf4ea4d003034bed59bf4834a0",
   "changedArchiveEntries": [
     "index.mjs"
   ],
@@ -111,22 +111,19 @@
   ],
   "requiredSchemaBeforeDeploy": {
     "expectedFinalLedgerEntries": 15,
-    "thirteenEntryTargetPending": [
-      "0108_admin_testing_and_team_corrections.sql",
-      "0109_owner_ai_model_usage.sql"
-    ],
-    "ownerBackupRestoreVerificationRequiredForPendingApply": true,
+    "additionalMigrationsThisFollowup": [],
     "automaticMigration": false,
-    "zipContainsSql": false
+    "zipContainsSql": false,
+    "priorReleasePendingMigrationsMustBeResolvedBeforeDeployment": true
   },
-  "schemaChangedThisRelease": true,
-  "migrationsUnchangedFromPublishedArchive": false,
+  "schemaChangedThisRelease": false,
+  "migrationsUnchangedFromPublishedArchive": true,
   "manualBackendRedeployRequired": true,
-  "publicationAuthorized": false,
+  "publicationAuthorized": true,
   "hostedMigrationLedgerInspected": false,
   "migrationPerformed": false,
   "sourceSnapshotMethod": "git archive exact committed runtime source; all runtime application input hashes verified against Git blobs",
-  "verificationEvidence": "evidence/admin-time-override-api-release",
-  "manualWindowsGuide": "docs/ADMIN_OPERATIONS_AI_WINDOWS_ROLLOUT.md",
-  "publicationStatus": "Local review only; no publication or hosted deployment authorized"
+  "verificationEvidence": "evidence/team-size-analytics-release",
+  "manualWindowsGuide": "docs/TEAM_SIZE_ANALYTICS_WINDOWS_ROLLOUT.md",
+  "publicationStatus": "Main-only publication authorized; no backend deployment or migration by agent"
 }

@@ -1,12 +1,13 @@
-# Admin operations and owner AI backend review package
+# Team analytics backend release package
 
-**Local review only; not pushed or deployed.** Built from exact committed runtime source `63075adf6e309877803af1d66fa0d4273b29be88` using official `@neon/config-runtime@1.10.2`, Node.js24/Linux ARM64 glibc, `env: {}`, zero warnings. No credentials, SQL, fixtures, tests or screenshots are packaged.
+Built from exact committed runtime source `aede2eb7c595b2ddd0708bbd3337ab9e97dac21e` using official `@neon/config-runtime@1.10.2`, Node.js24/Linux ARM64 glibc, env{}, zero warnings. Main-only frontend publication is authorized; backend deployment is owner-operated and has not been performed by the agent.
 
-- ZIP SHA256: `a63f43009afc8df75f7d29783ed8e44759740aaf4ea4d003034bed59bf4834a0` (9,042,084 bytes).
-- JavaScript SHA256: `7225eaa89620c2670f0f1be3406fb9a914b9bb868c6120b901ab92c1742dabf5`.
-- 93 entries; only `index.mjs` changed versus the published6c94e2 archive; all92 native/dependency entries remain byte-identical.
-- Independent fresh esbuild matches the archive JavaScript;98 application input hashes match the exact committed Git source. No frontend input enters the API graph.
-- Requires the fifteen-entry schema plan, including new0108 and0109. Historical SQL through0107 and all seven recognized Windows checksum aliases are unchanged. A fresh guarded inspection determines pending migrations; no migration runs at function startup.
-- Matching backend deployment is required for the new distributions, admin-only operations and owner model/usage controls. Dashboard top attendance/arrival layout reuses existing private filtering. The agent has not deployed or changed hosted data/settings and has not run paid evaluations.
+- ZIP SHA256: `e2fe6ef514c45cd6f52175b25ce10a4f569fbe08bb648181c7059e07cd97200d` (9,042,403 bytes).
+- index.mjs SHA256: `45f6f7ba72839fa2015c4bf14b5412c778e424817182abcdd472c807dc397f67`.
+-93 files; only index.mjs changed versus previous a63f430 archive; all92 dependency/native entries remain byte-identical.98 exact committed application inputs, no frontend/fixtures/tests/SQL/env files. Independent fresh bundle matches exactly.
+- No new migration for this follow-up. Prior fifteen-entry schema through0109 is still required; inspect rather than assume hosted state. Historical migration bytes/plan are unchanged. No automatic migration occurs.
+- Matching backend deployment required for the Team size1–5 filter, lock-aware approval analytics and cohort participant captions. Yet to submit and Submitted remain distinct lifecycle filters while fully approved locked teams retain underlying approval analytics.
 
-[Review and behavior](../../docs/ADMIN_TIME_OVERRIDES_REVIEW.md), [future owner-run Windows rollout](../../docs/ADMIN_OPERATIONS_AI_WINDOWS_ROLLOUT.md), [receipt](receipt.json), [build metadata](build-metadata.json), [package evidence](../../evidence/admin-time-override-api-release/). Host smoke verifies JavaScript routing in a separate copy with host Sharp substituted; native ARM64 execution, hosted rollout and model account access remain unverified.
+[Windows deployment commands](../../docs/TEAM_SIZE_ANALYTICS_WINDOWS_ROLLOUT.md), [behavior and validation](../../docs/TEAM_SIZE_ANALYTICS_REVIEW.md), [receipt](receipt.json), [package evidence](../../evidence/team-size-analytics-release/).
+
+Package/env/ARM64 headers/hashes and host JavaScript routing were checked. Actual ARM64 execution, hosted schema and backend deployment have not been agent-verified. No paid evaluation, live-data mutation or credential/settings change occurred.

@@ -1,0 +1,8 @@
+{
+  "runtimeSource": "aede2eb7c595b2ddd0708bbd3337ab9e97dac21e",
+  "trustedHealth": 200,
+  "untrustedHealth": 403,
+  "unconfiguredPortal": 503,
+  "outboundAttempts": 0,
+  "nativeExecution": "Host Sharp substituted only in separate smoke copy; actual Linux ARM64 native execution unverified"
+}
