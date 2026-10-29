@@ -247,6 +247,7 @@ test("filter trigger is compact, accessible and reports selected fields without 
     profession: "",
     participantStatus: "",
     teamStatus: "",
+    teamSize: "",
   });
   const html = renderToStaticMarkup(
     createElement(AdminDemographicFilters, {

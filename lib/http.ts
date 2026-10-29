@@ -142,6 +142,7 @@ export async function handlePortal(request: Request, runtime: Runtime) {
         profession: params.get("profession") || "",
         participantStatus: params.get("participantStatus") || "",
         teamStatus: params.get("teamStatus") || "",
+        teamSize: params.get("teamSize") || "",
         ...((view.replace(/\/+/g, "/").replace(/\/$/, "") || "/") === "/" &&
         params.get("arrival") === "1"
           ? { includePrivateVenue: true }
@@ -170,7 +171,7 @@ export async function handlePortal(request: Request, runtime: Runtime) {
       const optimized = await prepareAdminPresentation(
         projected,
         view,
-        { search: options.search, page: options.page, focus: options.focus, ...(options.gender || options.profession || options.participantStatus || options.teamStatus ? {gender: options.gender, profession: options.profession, participantStatus: options.participantStatus, teamStatus: options.teamStatus} : {}) },
+        { search: options.search, page: options.page, focus: options.focus, ...(options.gender || options.profession || options.participantStatus || options.teamStatus || options.teamSize ? {gender: options.gender, profession: options.profession, participantStatus: options.participantStatus, teamStatus: options.teamStatus, teamSize: options.teamSize} : {}) },
         params.get("presentation") || undefined,
       );
       return Response.json(
@@ -271,7 +272,8 @@ export async function handleExport(request: Request, runtime: Runtime) {
     if (list === "audit" || list === "logs") await service.staff(true);
     if (["settings", "permissions"].includes(list)) await service.staff(true);
     const exportParams = new URL(request.url).searchParams;
-    const demographics = adminDemographics({ gender: exportParams.get("gender") || "", profession: exportParams.get("profession") || "", participantStatus: exportParams.get("participantStatus") || "", teamStatus: exportParams.get("teamStatus") || "" });
+    const demographics = adminDemographics({ gender: exportParams.get("gender") || "", profession: exportParams.get("profession") || "", participantStatus: exportParams.get("participantStatus") || "", teamStatus: exportParams.get("teamStatus") || "", teamSize: exportParams.get("teamSize") || "" });
+    if (demographics.teamSize) demand(["teams", "team-emails"].includes(list), 422, "TEAM_SIZE_FILTER_ROUTE_REQUIRED");
     if (hasDemographics(demographics)) {
       demand(["participants", "teams", "team-emails", "submissions"].includes(list), 422, "ADMIN_FILTER_ROUTE_REQUIRED");
       await service.staff();

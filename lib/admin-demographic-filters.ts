@@ -43,14 +43,17 @@ export function adminDemographics(input: AdminDemographics): AdminDemographics {
     422,
     "INVALID_TEAM_STATUS_FILTER",
   );
-  return { gender, profession, participantStatus, teamStatus };
+  const teamSize = input.teamSize || "";
+  demand(!teamSize || /^[1-5]$/.test(teamSize), 422, "INVALID_TEAM_SIZE_FILTER");
+  return { gender, profession, participantStatus, teamStatus, teamSize };
 }
 export const hasDemographics = (filters: AdminDemographics) =>
   !!(
     filters.gender ||
     filters.profession ||
     filters.participantStatus ||
-    filters.teamStatus
+    filters.teamStatus ||
+    filters.teamSize
   );
 /** One correlated member must satisfy every selected answer. No inference/prefill. */
 export function demographicPredicate(
@@ -64,7 +67,7 @@ export function demographicPredicate(
       ? "u_demo.id=" + expression
       : "m_demo.team_id=" + expression,
   ];
-  const args: string[] = [];
+  const args: (string | number)[] = [];
   if (filters.gender) {
     conditions.push("pp_demo.gender_confirmed=1 AND p_demo.gender=?");
     args.push(filters.gender);
@@ -107,7 +110,11 @@ export function demographicPredicate(
       : `${teamId} IS NOT NULL AND ${teamStatusSQL(teamId, windowOpened)}=?`;
   if (filters.teamStatus && filters.teamStatus !== "none")
     args.push(filters.teamStatus);
-  return { sql: `(${memberSQL}) AND (${teamSQL})`, args };
+  const sizeSQL = filters.teamSize
+    ? `(SELECT count(*) FROM memberships size_m JOIN users size_u ON size_u.id=size_m.user_id WHERE size_m.team_id=${teamId})=?`
+    : "1=1";
+  if (filters.teamSize) args.push(Number(filters.teamSize));
+  return { sql: `(${memberSQL}) AND (${teamSQL}) AND (${sizeSQL})`, args };
 }
 export async function matchingDemographicPeople(
   db: Database,

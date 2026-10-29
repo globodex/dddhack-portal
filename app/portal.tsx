@@ -4516,7 +4516,7 @@ export function AdminParticipants({
             <a
               className="button secondary"
               aria-label={`Export filtered participants (${items.length})`}
-              href={participantExportHref(filters, recordState) + (demographics ? "&" + new URLSearchParams({gender: demographics.value.gender || "", profession: demographics.value.profession || "", participantStatus: demographics.value.participantStatus || "", teamStatus: demographics.value.teamStatus || ""}) : "")}
+              href={participantExportHref(filters, recordState) + (demographics ? "&" + new URLSearchParams({gender: demographics.value.gender || "", profession: demographics.value.profession || "", participantStatus: demographics.value.participantStatus || "", teamStatus: demographics.value.teamStatus || "", teamSize: demographics.value.teamSize || ""}) : "")}
             >
               <AdminIcon name="download" />
               Export
@@ -5462,7 +5462,7 @@ export function AdminList({
       (data.items || []).map((row) => String(row.action || "")).filter(Boolean),
     ),
   ].sort();
-  const exportHref = `/api/export?list=${logs ? "logs" : teams ? "teams" : credits ? "credits" : "submissions"}&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}${demographics ? "&" + new URLSearchParams({gender: demographics.value.gender || "", profession: demographics.value.profession || "", participantStatus: demographics.value.participantStatus || "", teamStatus: demographics.value.teamStatus || ""}) : ""}`;
+  const exportHref = `/api/export?list=${logs ? "logs" : teams ? "teams" : credits ? "credits" : "submissions"}&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}${demographics ? "&" + new URLSearchParams({gender: demographics.value.gender || "", profession: demographics.value.profession || "", participantStatus: demographics.value.participantStatus || "", teamStatus: demographics.value.teamStatus || "", teamSize: demographics.value.teamSize || ""}) : ""}`;
   return (
     <section
       className={`admin-exact admin-workspace admin-list-page${teams ? " admin-teams-page" : logs ? " admin-logs-page" : credits ? " admin-credits-page" : " admin-submissions-page"}`}
@@ -5502,7 +5502,7 @@ export function AdminList({
                   : "Search projects"
           }
         />
-        {demographics && <AdminDemographicFilters {...demographics} />}
+        {demographics && <AdminDemographicFilters {...demographics} teamSizes={teams} />}
         {!credits && !demographics && (
           <button
             className="admin-toolbar-icon admin-mobile-filter"
@@ -5563,7 +5563,7 @@ export function AdminList({
           <a
             className="button secondary admin-member-export"
             aria-label="Export member emails"
-            href={`/api/export?list=team-emails&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}${demographics ? "&" + new URLSearchParams({gender: demographics.value.gender || "", profession: demographics.value.profession || "", participantStatus: demographics.value.participantStatus || "", teamStatus: demographics.value.teamStatus || ""}) : ""}`}
+            href={`/api/export?list=team-emails&q=${encodeURIComponent(q)}&status=${encodeURIComponent(filter)}&lock=${encodeURIComponent(lockFilter)}${demographics ? "&" + new URLSearchParams({gender: demographics.value.gender || "", profession: demographics.value.profession || "", participantStatus: demographics.value.participantStatus || "", teamStatus: demographics.value.teamStatus || "", teamSize: demographics.value.teamSize || ""}) : ""}`}
           >
             <AdminIcon name="users" />
             <span className="admin-export-label">Member emails</span>
@@ -6578,13 +6578,13 @@ export default function Portal({
       const focus =
         new URLSearchParams(window.location.search).get("project") || "";
       const selected = demographicSelection.current.path === path ? demographicSelection.current.value : {};
-      const options = { search: "", page: 0, focus, ...(selected.gender || selected.profession || selected.participantStatus || selected.teamStatus ? {gender: selected.gender || "", profession: selected.profession || "", participantStatus: selected.participantStatus || "", teamStatus: selected.teamStatus || ""} : {}) };
+      const options = { search: "", page: 0, focus, ...(selected.gender || selected.profession || selected.participantStatus || selected.teamStatus || selected.teamSize ? {gender: selected.gender || "", profession: selected.profession || "", participantStatus: selected.participantStatus || "", teamStatus: selected.teamStatus || "", teamSize: selected.teamSize || ""} : {}) };
       const version = await presentationCache.current.knownVersion(
         path,
         data.me,
         options,
       );
-      const url = `/api/portal?view=${encodeURIComponent(path)}&focus=${encodeURIComponent(focus)}${path === "/" ? "&arrival=1" : ""}&gender=${encodeURIComponent(options.gender || "")}&profession=${encodeURIComponent(options.profession || "")}&participantStatus=${encodeURIComponent(options.participantStatus || "")}&teamStatus=${encodeURIComponent(options.teamStatus || "")}`;
+      const url = `/api/portal?view=${encodeURIComponent(path)}&focus=${encodeURIComponent(focus)}${path === "/" ? "&arrival=1" : ""}&gender=${encodeURIComponent(options.gender || "")}&profession=${encodeURIComponent(options.profession || "")}&participantStatus=${encodeURIComponent(options.participantStatus || "")}&teamStatus=${encodeURIComponent(options.teamStatus || "")}&teamSize=${encodeURIComponent(options.teamSize || "")}`;
       let { response: r, body } = await readPortalView(
         url + (version ? "&presentation=" + encodeURIComponent(version) : ""),
         controller.signal,

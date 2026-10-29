@@ -57,7 +57,9 @@ const teamCtes = `active_teams AS (
   LEFT JOIN registrations r ON r.email=u.email GROUP BY m.team_id
 ), team_states AS (
   SELECT t.id,COALESCE(m.total,0) total,
-    CASE WHEN m.total>0 AND m.total=m.approved THEN 1 ELSE 0 END approved
+    CASE WHEN m.total>0 AND m.total=m.approved
+      AND EXISTS(SELECT 1 FROM team_locks approval_lock WHERE approval_lock.team_id=t.id)
+      THEN 1 ELSE 0 END approved
   FROM active_teams t LEFT JOIN member_states m ON m.team_id=t.id
 )`;
 const teamSizeGroups = [
@@ -76,7 +78,7 @@ const teamSizeGroups = [
   {
     key: "approved",
     label: "Approved",
-    description: "Every current member has approved registration.",
+    description: "Locked teams where every current member has approved registration.",
     predicate: "t.approved=1",
   },
   {

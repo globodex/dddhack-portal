@@ -134,6 +134,7 @@ test(
             teamStatus: "Submitted",
             gender: "man",
             profession: "Independent Developer",
+            teamSize: "",
           },
         ]);
         await active.evaluate((el: HTMLButtonElement) => el.click());
@@ -162,6 +163,7 @@ test(
           teamStatus: "",
           gender: "",
           profession: "",
+          teamSize: "",
         });
         assert.ok(
           await p.evaluate(

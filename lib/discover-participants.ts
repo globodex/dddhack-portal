@@ -22,6 +22,7 @@ export type PortalViewOptions = DiscoverParticipantOptions & {
   profession?: string;
   participantStatus?: string;
   teamStatus?: string;
+  teamSize?: string;
 };
 type Membership = "all" | "in" | "out";
 type Cursor = {

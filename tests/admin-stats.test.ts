@@ -268,7 +268,7 @@ for (const engine of ["sqlite", "postgres"] as const) {
         },
       );
       await t.test(
-        "approval follows registration flags, including approved Absent, empty false, independent of lock and attendance",
+        "approval requires an actual lock and all registration approvals, preserving approved Absent",
         async () => {
           await batch(db, [
             [
@@ -297,15 +297,15 @@ for (const engine of ["sqlite", "postgres"] as const) {
           assert.deepEqual(values(await stats("teams")), {
             formed: 4,
             locked: 2,
-            approved: 3,
-            pending: 1,
+            approved: 2,
+            pending: 2,
           });
           await batch(db, [
             [
               "UPDATE registrations SET status='pending' WHERE email='alice@portal.test'",
             ],
           ]);
-          assert.equal(values(await stats("teams")).approved, 2);
+          assert.equal(values(await stats("teams")).approved, 1);
           await batch(db, [
             [
               "UPDATE registrations SET status='approved' WHERE email='alice@portal.test'",
@@ -320,7 +320,7 @@ for (const engine of ["sqlite", "postgres"] as const) {
               "INSERT INTO automatic_absences VALUES('fake_alice','2026-10-22T07:00:00.000Z','2026-10-22T07:00:00.000Z')",
             ],
           ]);
-          assert.equal(values(await stats("teams")).approved, 3);
+          assert.equal(values(await stats("teams")).approved, 2);
           // A later Checked-in state changes attendance, not approval or lock.
           await batch(db, [
             [
@@ -332,8 +332,8 @@ for (const engine of ["sqlite", "postgres"] as const) {
           assert.deepEqual(values(result), {
             formed: 4,
             locked: 2,
-            approved: 3,
-            pending: 1,
+            approved: 2,
+            pending: 2,
           });
           assert.match(result.note!, /can overlap/);
           assert.equal(

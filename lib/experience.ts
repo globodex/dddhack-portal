@@ -618,6 +618,7 @@ export class PortalExperience {
   ): Promise<Record<string, unknown> | null> {
     let route = path.replace(/\/+/g, "/").replace(/\/$/, "") || "/";
     const demographics = adminDemographics(options);
+    if (demographics.teamSize) demand(route === "/admin/teams", 422, "TEAM_SIZE_FILTER_ROUTE_REQUIRED");
     if (hasDemographics(demographics)) {
       demand(["/admin", "/admin/participants", "/admin/teams", "/admin/submissions"].includes(route), 422, "ADMIN_FILTER_ROUTE_REQUIRED");
       await this.s.staff();

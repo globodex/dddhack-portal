@@ -67,7 +67,7 @@ for (const engine of ["sqlite", "postgres"] as const)
       const expected: Record<TeamSizeGroupKey, number[]> = {
         total: [1, 0, 1, 0, 1],
         locked: [1, 0, 1, 0, 0],
-        approved: [1, 0, 0, 0, 1],
+        approved: [1, 0, 0, 0, 0],
         submitted: [0, 0, 1, 0, 1],
         not_submitted: [1, 0, 0, 0, 0],
       };

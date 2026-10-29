@@ -20,6 +20,7 @@ export type AdminDemographicControls = {
 export const emptyAdminFilters: AdminDemographics = {
   participantStatus: "",
   teamStatus: "",
+  teamSize: "",
   gender: "",
   profession: "",
 };
@@ -28,7 +29,8 @@ export default function AdminDemographicFilters({
   onChange,
   pending,
   participants = false,
-}: AdminDemographicControls & { participants?: boolean }) {
+  teamSizes = false,
+}: AdminDemographicControls & { participants?: boolean; teamSizes?: boolean }) {
   const hydrated = useHydrated(),
     id = useId(),
     trigger = useRef<HTMLButtonElement>(null),
@@ -42,6 +44,7 @@ export default function AdminDemographicFilters({
     value.teamStatus,
     value.gender,
     value.profession,
+    value.teamSize,
   ].filter(Boolean).length;
   useEffect(() => {
     if (!open || !dialog.current) return;
@@ -199,6 +202,14 @@ export default function AdminDemographicFilters({
                   {participants && <option value="none">No team</option>}
                 </select>
               </label>
+              {teamSizes && <label>
+                Team size
+                <select aria-label="Team size" value={draft.teamSize || ""}
+                  onChange={(event) => setDraft({ ...draft, teamSize: event.target.value })}>
+                  <option value="">All sizes</option>
+                  {[1, 2, 3, 4, 5].map(size => <option key={size} value={String(size)}>{size === 1 ? "1 person (solo)" : `${size} people`}</option>)}
+                </select>
+              </label>}
               <label>
                 Sex
                 <select

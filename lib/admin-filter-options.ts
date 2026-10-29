@@ -22,4 +22,5 @@ export type AdminDemographics = {
   profession?: string;
   participantStatus?: string;
   teamStatus?: string;
+  teamSize?: string;
 };
