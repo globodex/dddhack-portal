@@ -24,6 +24,7 @@ for (const engine of ["sqlite", "postgres"] as const)
       assert.equal(empty.teamSizeGroups?.length, 5);
       for (const group of empty.teamSizeGroups!) {
         assert.equal(group.total, 0);
+        assert.equal(group.participants, 0);
         assert.deepEqual(
           group.sizes.map((size) => size.value),
           [0, 0, 0, 0, 0],
@@ -77,11 +78,13 @@ for (const engine of ["sqlite", "postgres"] as const)
           expected[group.key],
           group.key,
         );
+        assert.equal(group.participants, expected[group.key].reduce((sum, n, index) => sum + n * (index + 1), 0));
         assert.equal(
           group.total,
           expected[group.key].reduce((sum, n) => sum + n, 0),
         );
       }
+      assert.deepEqual(stats.cards.map(card => card.participants), [9, 4, 1, 8]);
       assert.deepEqual(stats.teamSizes, stats.teamSizeGroups![0].sizes);
       const filtered = (await service().view("/admin/teams", {
         search: "No matching team",

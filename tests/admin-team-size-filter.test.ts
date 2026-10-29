@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { setup } from "./helpers";
+import { setup, attend } from "./helpers";
 import { createPGliteFixture } from "./neon-db-fixture";
 import { fixtures, seedLocal, LOCAL_CREDIT_KEY } from "../scripts/fixtures";
 import { PortalService } from "../lib/service";
@@ -104,6 +104,15 @@ for (const engine of ["sqlite", "postgres"] as const)
           .sizes[0].value,
         1,
       );
+      const approvedList: any = await service().view("/admin/teams", {teamSize: "1", teamStatus: "Approved"});
+      assert.equal(approvedList.items.length, locked.stats.teamSizeGroups.find((g: any) => g.key === "approved").sizes[0].value, "Before submission opens, Approved list and Approved/Solo cohort agree");
+      const policy = (await service().settings(true)).policy;
+      const afterOpen = new PortalService(f.db, fixtures.owner, LOCAL_CREDIT_KEY, () => new Date(Date.parse(policy.submissionOpen) + 1000).toISOString());
+      const laterList: any = await afterOpen.view("/admin/teams", {teamSize: "1", teamStatus: "Approved"});
+      const yetList: any = await afterOpen.view("/admin/teams", {teamSize: "1", teamStatus: "Yet to submit"});
+      assert.equal(laterList.items.length, 0, "Approved status is a literal lifecycle filter");
+      assert.equal(yetList.items.length, 1);
+      assert.equal(laterList.stats.teamSizeGroups.find((g: any) => g.key === "approved").sizes[0].value, 1, "Underlying approval survives the next lifecycle stage");
       assert.equal(
         teamIsApproved(locked.items.find((t: any) => t.id === "fake_team1")),
         true,
@@ -131,6 +140,16 @@ for (const engine of ["sqlite", "postgres"] as const)
         teamStatus: "Locked",
       });
       assert.equal(combined.items.length, 0, "Size AND actual status");
+      await attend(f.db, "fake_alice");
+      await batch(f.db, [
+        ["INSERT INTO team_locks VALUES('fake_team1','fake_alice','2026-10-22T09:00:00Z')"],
+        ["INSERT INTO submission_versions VALUES('solo-lifecycle-proof','fake_team1',1,'{}','2026-11-01T04:00:00.000Z')"],
+      ]);
+      const submittedApproved: any = await service().view("/admin/teams", {teamSize: "1", teamStatus: "Approved"});
+      const submittedStage: any = await service().view("/admin/teams", {teamSize: "1", teamStatus: "Submitted"});
+      assert.equal(submittedApproved.items.length, 0);
+      assert.equal(submittedStage.items.length, 1);
+      assert.equal(submittedStage.stats.teamSizeGroups.find((g: any) => g.key === "approved").sizes[0].value, 1, "Submitted teams retain underlying approval");
     } finally {
       await f.db.close();
     }

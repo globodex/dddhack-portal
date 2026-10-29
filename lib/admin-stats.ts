@@ -19,6 +19,7 @@ export type TeamSizeGroup = {
   label: string;
   description: string;
   total: number;
+  participants?: number;
   sizes: { label: string; value: number }[];
   empty: number;
   overCapacity: number;
@@ -31,6 +32,7 @@ export type AdminStatsDTO = {
     label: string;
     value: number | null;
     caption?: string;
+    participants?: number;
     lowerBound?: boolean;
     breakdown?: AdminParticipantBreakdown;
   }[];
@@ -97,6 +99,7 @@ const teamSizeGroups = [
 const teamSizeAggregates = teamSizeGroups
   .flatMap(({ key, predicate }) => [
     `COALESCE(sum(CASE WHEN ${predicate} THEN 1 ELSE 0 END),0) ${key}_count`,
+    `COALESCE(sum(CASE WHEN ${predicate} THEN t.total ELSE 0 END),0) ${key}_participants`,
     ...Array.from(
       { length: 6 },
       (_, size) =>
@@ -208,6 +211,7 @@ const queries = {
   SELECT count(*) formed,
     COALESCE(sum(t.locked),0) locked,
     COALESCE(sum(t.approved),0) approved,
+    COALESCE(sum(CASE WHEN t.approved=0 THEN t.total ELSE 0 END),0) pending_participants,
     COALESCE(sum(CASE WHEN t.total=1 THEN 1 ELSE 0 END),0) size_1,
     COALESCE(sum(CASE WHEN t.total=2 THEN 1 ELSE 0 END),0) size_2,
     COALESCE(sum(CASE WHEN t.total=3 THEN 1 ELSE 0 END),0) size_3,
@@ -400,14 +404,14 @@ export async function readAdminStats(
       collection,
       scope: "Entire collection",
       cards: [
-        card("formed", "Teams formed"),
-        card("locked", "Locked teams"),
-        card("approved", "Approved teams"),
-        card(
+        { ...card("formed", "Teams formed"), participants: count(result.total_participants) },
+        { ...card("locked", "Locked teams"), participants: count(result.locked_participants) },
+        { ...card("approved", "Approved teams"), participants: count(result.approved_participants) },
+        { ...card(
           "pending",
           "Pending teams",
           count(result.formed) - count(result.approved),
-        ),
+        ), participants: count(result.pending_participants) },
       ],
       teamSizes: Array.from({ length: 5 }, (_, index) => ({
         label: index === 0 ? "Solo" : `${index + 1} people`,
@@ -418,6 +422,7 @@ export async function readAdminStats(
         label,
         description,
         total: count(result[`${key}_count`]),
+        participants: count(result[`${key}_participants`]),
         sizes: Array.from({ length: 5 }, (_, index) => ({
           label: index === 0 ? "Solo" : `${index + 1} people`,
           value: count(result[`${key}_size_${index + 1}`]),
@@ -425,7 +430,7 @@ export async function readAdminStats(
         empty: count(result[`${key}_size_0`]),
         overCapacity: count(result[`${key}_oversize`]),
       })),
-      note: "Locked and approved counts can overlap.",
+      note: "Locked and approved counts can overlap. Participant counts are current members of each cohort, not additional unique attendees.",
     };
   return {
     collection,

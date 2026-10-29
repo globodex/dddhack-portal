@@ -331,3 +331,5 @@ dialog .admin-backend-notice {
   line-height: 1.6;
   overflow-wrap: anywhere;
 }
+
+.app-shell .admin-stat-participants { display:block; color:var(--muted,#656960); font-size:12px; line-height:1.5; margin-top:6px; }

@@ -91,6 +91,7 @@ export default function AdminStats({ stats }: { stats: AdminStatsDTO }) {
                 ? "Not available"
                 : `${card.lowerBound ? "≥" : ""}${numbers.format(card.value)}`}
             </dd>
+            {card.participants !== undefined && <small className="admin-stat-participants">{numbers.format(card.participants)} {card.participants === 1 ? "participant" : "participants"}</small>}
             {card.caption && <small>{card.caption}</small>}
             {canShowDetails && detailed && card.breakdown && (
               <ParticipantBreakdown
@@ -149,7 +150,8 @@ export default function AdminStats({ stats }: { stats: AdminStatsDTO }) {
                   {numbers.format(sizeGroup.total)}{" "}
                   {sizeGroup.total === 1 ? "team" : "teams"}
                 </b>{" "}
-                · {sizeGroup.description}
+                {sizeGroup.participants !== undefined && <span className="admin-stat-participants">{numbers.format(sizeGroup.participants)} {sizeGroup.participants === 1 ? "participant" : "participants"}</span>}
+                <span>{sizeGroup.description}</span>
                 {sizeGroup.empty > 0 && (
                   <span>
                     {numbers.format(sizeGroup.empty)}{" "}
