@@ -1219,6 +1219,10 @@ export function TeamWorkspace({
     locked: t.locked === true,
     members: data.members || [],
   });
+  const personalStatus = data.individualStatus ||
+    (data.members || []).find((member: Row) => member.id === data.me?.id)?.status ||
+    "Registered";
+  const attending = ["Going", "Checked in"].includes(personalStatus);
   const next = !locked
     ? {
         title: persisted ? "Make it official." : "Start with your idea.",
@@ -1251,16 +1255,20 @@ export function TeamWorkspace({
               ? "Your project is in."
               : !approved
                 ? "Your team is in review"
-                : data.checkedIn
-                  ? "Ready for what's next."
-                  : "See you at check-in.",
+                : personalStatus === "Checked in"
+                  ? "You’re checked in."
+                  : personalStatus === "Going"
+                    ? "You’re going to the hackathon!"
+                    : "Your team is approved.",
             detail:
               !approved
                 ? "Your team is not approved yet."
-                : data.submissionAccess?.message ||
-                  (!leader
-                    ? "Your leader submits the project."
-                    : "Project submission is not available yet."),
+                : !attending
+                  ? `Your personal attendance status is ${personalStatus}.`
+                  : data.submissionAccess?.message ||
+                    (!leader
+                      ? "Your leader submits the project."
+                      : "Project submission is not available yet."),
             action: data.submissionAccess?.canRead ? "View your project" : "",
             kind: "project",
           };
@@ -1416,6 +1424,7 @@ export function TeamWorkspace({
           count > 0 &&
           data.members.every((member: Row) => member.profileComplete === true)
         }
+        approvalLocked={t.locked === true}
         approvalTotal={count}
         approvalGoing={
           (data.members || []).filter(

@@ -1,10 +1,11 @@
-import { CalendarDays, Check, CircleCheck, LockKeyhole } from "lucide-react";
+import { CalendarDays, Check, CircleCheck, Clock3, LockKeyhole } from "lucide-react";
 
 export type TeamPreparationProps = {
   hasTeam: boolean;
   ideaSaved: boolean;
   locked: boolean;
   memberProfilesComplete?: boolean;
+  approvalLocked?: boolean;
   approvalTotal?: number;
   approvalGoing?: number;
 };
@@ -15,6 +16,7 @@ export default function TeamPreparation({
   ideaSaved,
   locked,
   memberProfilesComplete,
+  approvalLocked = locked,
   approvalTotal,
   approvalGoing,
 }: TeamPreparationProps) {
@@ -22,6 +24,7 @@ export default function TeamPreparation({
   const current = complete.findIndex((done) => !done);
   const approved =
     hasTeam &&
+    approvalLocked &&
     Number.isInteger(approvalTotal) &&
     Number.isInteger(approvalGoing) &&
     Number(approvalTotal) > 0 &&
@@ -84,11 +87,15 @@ export default function TeamPreparation({
       </div>
       <aside className="team-preparation-approval" aria-label="Team approval">
         <span className="team-preparation-approval-icon" aria-hidden="true">
-          <CircleCheck size={27} strokeWidth={1.8} />
+          {approved ? <CircleCheck size={27} strokeWidth={1.8} /> : <Clock3 size={27} strokeWidth={1.8} />}
         </span>
         <div>
-          <h3>{approved ? "Team approved" : "Team approval"}</h3>
-          <p>Your team is approved when every member is approved to attend.</p>
+          <h3>{approved ? "Team approved" : "Your team is not approved yet"}</h3>
+          <p>{approved
+            ? "Every member is approved to attend. Your personal attendance status is shown separately."
+            : locked
+              ? "Your team is in review. Locking does not confirm attendance."
+              : "Complete the steps and lock your team for review. Creating a team does not confirm attendance."}</p>
           <p>
             Venue details and rules will be shared in the portal. Be ready with your idea. All the best!
             <em>~ Codex Ambassadors</em>

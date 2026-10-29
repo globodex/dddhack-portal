@@ -51,21 +51,24 @@ test("lock explanation preserves the admin-unlock exception and approval stays s
   assert.match(html, /you can’t change the team, members or idea/);
   assert.match(html, /An admin can unlock eligible teams/);
   assert.match(html, /<\/ol>[\s\S]*<aside[^>]+aria-label="Team approval"/);
-  assert.match(html, /every member is approved to attend/);
+  assert.match(html, /Your team is not approved yet/);
+  assert.match(html, /Your team is in review/);
+  assert.match(html, /Locking does not confirm attendance/);
   assert.match(html, /Venue details and rules will be shared in the portal/);
   assert.match(html, /Be ready with your idea. All the best/);
   assert.match(html, /<em>~ Codex Ambassadors<\/em>/);
   assert.doesNotMatch(html, /Your arrival details|Venue unlocked|All members can access|location|directions/);
 });
 
-test("approved status requires a real team and a nonempty complete authoritative Going count", () => {
-  assert.match(render({ hasTeam: true, approvalTotal: 3, approvalGoing: 3 }), /<h3>Team approved<\/h3>/);
+test("approved status requires a locked real team and a nonempty complete authoritative approval count", () => {
+  assert.match(render({ hasTeam: true, locked: true, approvalTotal: 3, approvalGoing: 3 }), /<h3>Team approved<\/h3>/);
   for (const props of [
-    { hasTeam: true, approvalTotal: 3, approvalGoing: 2 },
+    { hasTeam: true, locked: true, approvalTotal: 3, approvalGoing: 2 },
+    { hasTeam: true, locked: false, approvalTotal: 3, approvalGoing: 3 },
     { hasTeam: true, approvalTotal: 0, approvalGoing: 0 },
     { hasTeam: false, approvalTotal: 1, approvalGoing: 1 },
     { hasTeam: true },
-  ]) assert.match(render(props), /<h3>Team approval<\/h3>/);
+  ]) assert.match(render(props), /<h3>Your team is not approved yet<\/h3>/);
 });
 
 test("preparation is self-contained responsive presentation without fixed content heights or network effects", () => {

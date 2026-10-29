@@ -184,43 +184,43 @@ test("nonleader retains authorized read access to an unpublished saved draft", (
   );
 });
 
-test("locked team next-up distinguishes review from approved check-in without changing project or forming states", () => {
+test("dashboard attendance messaging distinguishes review, approval and personal attendance", () => {
   const member = { ...me, role: "leader", approval: "approved", status: "Going" };
   const data = {
     me, team, members: [member], checkedIn: false,
     idea: { title: "Synthetic idea", description: "Synthetic description" },
     submissionAccess: { canCommit: false, canRead: false, attemptsUsed: 0, message: "One team member must check in before submissions unlock." },
   };
-  const render = (changes: Record<string, any> = {}) => {
-    const html = renderToStaticMarkup(createElement(TeamWorkspace, { data: { ...data, ...changes }, run }));
-    const next = html.match(/<aside class="studio-next"[\s\S]*?<\/aside>/)?.[0];
-    assert.ok(next, "The real dashboard next-up card is rendered");
-    return next;
-  };
-  for (const status of ["Registered", "Going", "Checked in", "Absent"]) {
-    const next = render({ members: [{ ...member, status, approval: "pending" }], checkedIn: status === "Checked in" });
-    assert.match(next, /Your team is in review/);
-    assert.match(next, /Your team is not approved yet\./);
-    assert.doesNotMatch(next, /See you at check-in|One team member must check in|Ready for what/);
+  const render = (changes: Record<string, any> = {}) => renderToStaticMarkup(createElement(TeamWorkspace, { data: { ...data, ...changes }, run }));
+  const next = (html: string) => html.match(/<aside class="studio-next"[\s\S]*?<\/aside>/)?.[0] || "";
+  for (const locked of [false, true]) for (const status of ["Registered", "Going", "Checked in", "Absent"]) {
+    const html = render({ team: { ...team, locked }, members: [{ ...member, status, approval: "pending" }], checkedIn: status === "Checked in" });
+    assert.match(html, /Your team is not approved yet/);
+    assert.doesNotMatch(next(html), /See you at check-in|One team member must check in|You’re going to the hackathon/);
+    assert.match(next(html), locked ? /Your team is in review/ : /Make it official/);
   }
-  for (const status of ["Going", "Checked in", "Absent"]) {
-    const next = render({ members: [{ ...member, status }] });
-    assert.match(next, /See you at check-in/);
-    assert.match(next, /One team member must check in/);
-    assert.doesNotMatch(next, /in review|not approved/);
+  assert.match(next(render()), /You’re going to the hackathon!/);
+  assert.match(next(render()), /One team member must check in/);
+  assert.match(next(render({ individualStatus: "Checked in", checkedIn: true })), /You’re checked in/);
+  for (const status of ["Absent", "Registered"]) {
+    const html = render({ individualStatus: status, members: [{ ...member, status }] });
+    assert.match(html, /class="studio-approved-chip"/);
+    assert.match(next(html), /Your team is approved/);
+    assert.match(next(html), new RegExp("Your personal attendance status is " + status));
+    assert.doesNotMatch(next(html), /check-in|must check in|going to the hackathon/);
   }
-  assert.match(render({ members: [] }), /Your team is in review/);
-  assert.match(render({ members: [member, { ...member, id: "pending", approval: "pending" }] }), /Your team is in review/);
-  const existingUnapproved = render({ members: [{ ...member, approval: "pending" }], submissionAccess: { ...data.submissionAccess, attemptsUsed: 1, canRead: true } });
-  assert.match(existingUnapproved, /Your project is in/);
-  assert.doesNotMatch(existingUnapproved, /One team member must check in|See you at check-in/);
-  assert.match(render({ checkedIn: true }), /Ready for what/);
-  assert.match(render({ team: { ...team, locked: false } }), /Make it official/);
-  assert.match(render({ submissionAccess: { ...data.submissionAccess, attemptsUsed: 3, canRead: true } }), /Your project is in/);
-  assert.match(render({ submissionAccess: { ...data.submissionAccess, canCommit: true } }), /Bring it to life/);
-  assert.match(render({ submissionAccess: { ...data.submissionAccess, attemptsUsed: 1, canCommit: true } }), /Keep building/);
-  // Re-rendering fresh approval/unlock projections cannot retain a stale check-in message.
-  assert.match(render({ members: [{ ...member, approval: "pending" }] }), /Your team is in review/);
-  assert.match(render(), /See you at check-in/);
-  assert.match(render({ team: { ...team, locked: false } }), /Make it official/);
+  assert.match(next(render({ members: [] })), /Your team is in review/);
+  assert.match(next(render({ members: [member, { ...member, id: "pending", approval: "pending" }] })), /Your team is in review/);
+  // Personal Going cannot turn an unlocked team into an approved team.
+  const forming = render({ team: { ...team, locked: false } });
+  assert.match(forming, /Your team is not approved yet/);
+  assert.doesNotMatch(forming, /studio-approved-chip|You’re going to the hackathon/);
+  const staleIdeaLock = render({ team: { ...team, locked: false }, ideaLocked: true });
+  assert.match(staleIdeaLock, /Your team is not approved yet/);
+  assert.doesNotMatch(staleIdeaLock, /<h3>Team approved|studio-approved-chip|You’re going to the hackathon/);
+  assert.match(next(render({ submissionAccess: { ...data.submissionAccess, attemptsUsed: 3, canRead: true } })), /Your project is in/);
+  assert.match(next(render({ submissionAccess: { ...data.submissionAccess, canCommit: true } })), /Bring it to life/);
+  assert.match(next(render({ submissionAccess: { ...data.submissionAccess, attemptsUsed: 1, canCommit: true } })), /Keep building/);
+  assert.match(next(render({ members: [{ ...member, approval: "pending" }] })), /Your team is in review/);
+  assert.match(next(render()), /You’re going to the hackathon!/);
 });

@@ -71,7 +71,8 @@ test("Dashboard lifecycle advances approved Absent from Approved to Yet to submi
   for (const label of ["Forming team", "Locked", "Approved", "Yet to submit", "Submitted"]) assert.ok(progress.includes(label));
   assert.doesNotMatch(progress, /Team checked in|members/);
   assert.match(html, /class="studio-approved-chip"/);
-  assert.match(html, /See you at check-in/);
+  assert.doesNotMatch(html, /See you at check-in|You’re going to the hackathon|One team member must check in/);
+  assert.match(html, /Your personal attendance status is Absent/);
   const unapproved = render({ members: [{ ...member, status: "Going", approval: "pending" }], submissionAccess: { ...data.submissionAccess, windowHasOpened: true } });
   assert.match(unapproved.match(/<ol class="studio-progress"[\s\S]*?<\/ol>/)?.[0] || "", /data-stage="1"/);
 });
