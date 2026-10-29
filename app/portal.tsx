@@ -1215,6 +1215,10 @@ export function TeamWorkspace({
     data.submissionAccess?.canCommit === true &&
     !data.submissionAccess?.locked &&
     used < 3;
+  const approved = teamIsApproved({
+    locked: t.locked === true,
+    members: data.members || [],
+  });
   const next = !locked
     ? {
         title: persisted ? "Make it official." : "Start with your idea.",
@@ -1245,14 +1249,18 @@ export function TeamWorkspace({
         : {
             title: used
               ? "Your project is in."
-              : data.checkedIn
-                ? "Ready for what's next."
-                : "See you at check-in.",
+              : !approved
+                ? "Your team is in review"
+                : data.checkedIn
+                  ? "Ready for what's next."
+                  : "See you at check-in.",
             detail:
-              data.submissionAccess?.message ||
-              (!leader
-                ? "Your leader submits the project."
-                : "Project submission is not available yet."),
+              !approved
+                ? "Your team is not approved yet."
+                : data.submissionAccess?.message ||
+                  (!leader
+                    ? "Your leader submits the project."
+                    : "Project submission is not available yet."),
             action: data.submissionAccess?.canRead ? "View your project" : "",
             kind: "project",
           };
@@ -1285,10 +1293,7 @@ export function TeamWorkspace({
           </div>
         </div>
         <div className="studio-team-status">
-          {teamIsApproved({
-            locked: t.locked === true,
-            members: data.members || [],
-          }) && (
+          {approved && (
             <strong className="studio-approved-chip">
               <CircleCheck size={16} aria-hidden="true" />
               Team approved
