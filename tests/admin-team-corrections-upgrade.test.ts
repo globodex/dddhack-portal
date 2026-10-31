@@ -114,7 +114,7 @@ const noDdl = (queries: string[]) =>
   );
 
 for (const encoding of ["lf", "crlf"] as const) {
-  test(`0104 upgrade ${encoding}: populated existing9→19 applies only0104/0105/0106, preserves all prior rows/hashes and repeats with no work`, async () => {
+  test(`0104 upgrade ${encoding}: populated existing9→20 applies only pending approved migrations, preserves all prior rows/hashes and repeats with no work`, async () => {
     const f = await fixture(encoding);
     try {
       const before = await f.state(),
@@ -176,7 +176,7 @@ for (const encoding of ["lf", "crlf"] as const) {
       assert.deepEqual(after.ai_model_settings, []);
       assert.deepEqual(after.ai_provider_usage, []);
       assert.deepEqual(domain(after), domain(before));
-      assert.equal(after.portal_schema_migrations.length, 19);
+      assert.equal(after.portal_schema_migrations.length, 20);
       assert.deepEqual(
         after.portal_schema_migrations.filter(
           (row) =>
@@ -412,7 +412,7 @@ test("0104 upgrade: real postcondition failure rolls function replacements, ledg
   }
 });
 
-test("0104 source plan pins exactly fifteen LF files and leaves all nine previous SQL blobs and seven historical approval entries unchanged", async () => {
+test("0104 source plan pins exactly twenty LF files and leaves all nine previous SQL blobs and seven historical approval entries unchanged", async () => {
   const { loadMigrationPlan } = await import("../neon/migration-plan");
   const plan = await loadMigrationPlan();
   assert.equal(plan.length, 20);

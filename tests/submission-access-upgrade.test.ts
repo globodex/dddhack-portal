@@ -19,7 +19,7 @@ const confirmation = {
   restoreVerified: true,
 };
 for (const encoding of ["lf", "crlf"] as const)
-  test(`0110/0111 ${encoding}: populated 15→19 preserves rows and ledger hashes; DDL failure rolls back capabilities`, async () => {
+  test(`0110/0111 ${encoding}: populated 15→20 preserves rows and ledger hashes; DDL failure rolls back capabilities`, async () => {
     const f = await legacyLedgerIndependentFixture(encoding);
     try {
       await applyPortalMigrations(f.pool, f.plan.slice(7, 15));

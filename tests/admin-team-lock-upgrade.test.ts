@@ -37,7 +37,7 @@ const stripLedger = (data: Record<string, unknown>) =>
   );
 
 for (const encoding of ["lf", "crlf"] as const) {
-  test(`admin-lock upgrade ${encoding}: populated12→19 applies0107/0108, preserves data/checksums/locks and repeats with no work`, async () => {
+  test(`admin-lock upgrade ${encoding}: populated12→20 applies0107/0108, preserves data/checksums/locks and repeats with no work`, async () => {
     const f = await legacyLedgerIndependentFixture(encoding);
     try {
       await applyPortalMigrations(f.pool, f.plan.slice(7, 12));

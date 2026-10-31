@@ -95,7 +95,7 @@ async function fixture(encoding: "lf" | "crlf", prefix: 9 | 11) {
 
 for (const encoding of ["lf", "crlf"] as const)
   for (const prefix of [9, 11] as const)
-    test(`0106 upgrade ${encoding}: populated${prefix}→19 applies the exact pending suffix, preserves all old data/ledger/locks, then repeats[]`, async () => {
+    test(`0106 upgrade ${encoding}: populated${prefix}→20 applies the exact pending suffix, preserves all old data/ledger/locks, then repeats[]`, async () => {
       const f = await fixture(encoding, prefix);
       try {
         const before = await f.state(),
@@ -153,7 +153,7 @@ for (const encoding of ["lf", "crlf"] as const)
         );
         assert.deepEqual(result.applied, pending);
         const after = await f.state();
-        assert.equal(after.portal_schema_migrations.length, 19);
+        assert.equal(after.portal_schema_migrations.length, 20);
         for (const [table, data] of Object.entries(before))
           if (table !== "portal_schema_migrations")
             assert.deepEqual(after[table], data, table);
