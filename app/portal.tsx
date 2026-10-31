@@ -1830,6 +1830,7 @@ function DashboardProject({
       used < 3 &&
       !data.submissionAccess?.locked;
   if (submissionContentHidden(data)) return <SubmissionWelcome data={data} />;
+  if (data.projectIndexMissing) return <ProjectIndexRecovery data={data} />;
   if (editorOpen && canRead && canEdit)
     return (
       <Submission
@@ -2020,6 +2021,7 @@ export function Dashboard({
   };
   const editorOpen =
     tab === "project" &&
+    !data.projectIndexMissing &&
     data.submissionAccess?.canRead === true &&
     (data.me?.canParticipate === true || data.submissionAccess?.adminSubmissionTest === true) &&
     data.team?.leader_id === data.me?.id &&
@@ -2984,6 +2986,9 @@ export function Submission({
         submit ? "submit-project" : "save-project",
         {
           revision: data.project?.revision || 0,
+          ...(data.submissionAccess?.intentVersion === 1
+            ? { teamId: data.team?.id, actorId: data.me?.id }
+            : {}),
           project: {
             ...project,
             ecosystemSelections: selectedSubmissionTools(
@@ -3016,6 +3021,7 @@ export function Submission({
     }
   };
   if (submissionContentHidden(data)) return <SubmissionWelcome data={data} />;
+  if (data.projectIndexMissing && data.submissionAccess?.canRead === true) return <ProjectIndexRecovery data={data} />;
   if (data.submissionAccess?.canRead !== true)
     return (
       <p className="notice">This project is not available for your account.</p>
@@ -3403,14 +3409,19 @@ export function Submission({
     </section>
   );
 }
+export function ProjectIndexRecovery({data}:{data:View}) {
+  return <section className="panel" role="status"><h2>Your committed submissions are preserved</h2><p>{data.submissionAccess?.attemptsUsed ?? data.attempts?.length ?? 0} committed submissions need their project record reconciled. Do not resubmit; the owner must review the index before further edits.</p><ProjectHistory canRead={data.submissionAccess?.canRead === true} /></section>;
+}
 export function ProjectHistory({
   canRead,
   label = "View committed history",
   currentVersionId,
+  teamId,
 }: {
   canRead: boolean;
   label?: string;
   currentVersionId?: string;
+  teamId?: string;
 }) {
   const [open, setOpen] = useState(false),
     [items, setItems] = useState<Row[]>([]),
@@ -3432,7 +3443,7 @@ export function ProjectHistory({
     setItems([]);
     void (async () => {
       try {
-        const response = await fetch("/api/portal?view=%2Fproject-history", {
+        const response = await fetch("/api/portal?view=%2Fproject-history" + (teamId ? "&focus=" + encodeURIComponent(teamId) : ""), {
           cache: "no-store",
           credentials: "same-origin",
           signal: controller.signal,
@@ -3455,7 +3466,7 @@ export function ProjectHistory({
       popup?.close();
       previous?.isConnected && previous.focus({ preventScroll: true });
     };
-  }, [open, canRead]);
+  }, [open, canRead, teamId]);
   if (!canRead) return null;
   return (
     <>
@@ -5512,6 +5523,7 @@ export function AdminList({
       </header>
       {data.stats ? <AdminStats stats={data.stats} /> : (teams || !logs && !credits) && <AdminBackendNotice me={data.me} />}
       {data.submissionAnalytics && <AdminSubmissionAnalytics analytics={data.submissionAnalytics} />}
+      {Number(data.unindexedSubmissionCount)>0 && <p className="notice" role="status">{data.unindexedSubmissionCount} committed submissions lack project records and are shown below for recovery. They are not included in indexed-project analytics. Do not ask teams to resubmit.</p>}
       <div
         className={`toolbar admin-list-toolbar${filtersExpanded ? " is-expanded" : ""}`}
       >
@@ -5775,8 +5787,10 @@ export function AdminList({
         </ul>
       ) : (
         <ul className="submission-list admin-submission-records">
-          {items.map((record) => (
-            <li key={record.id}>
+          {items.map((record) => record.projectIndexMissing ? (
+            <li key={`version-${record.id}`}><div className="panel"><h2>{record.teamName}</h2><p>{record.projectName || "Committed submission"}</p><Pill>Submitted</Pill><p>{record.committedVersions} committed versions · Project record needs owner reconciliation. History and used attempts are preserved.</p><ProjectHistory canRead={Boolean(data.me?.owner || data.me?.role === "admin")} teamId={record.teamId} /></div></li>
+          ) : (
+            <li key={`project-${record.id}`}>
               <a
                 href={`${path === "/review" ? "/review" : "/admin/submissions"}/${record.slug}`}
               >
@@ -6647,6 +6661,12 @@ export default function Portal({
       setErrorCode("");
       setError("");
       hasLoadedView.current = true;
+      if (data.me?.id && hydrated.me?.id !== data.me.id) {
+        gate.current?.decide(false);
+        setSubmissionSuccess(null);
+        setMessage("");
+        presentationCache.current.clear();
+      }
       setData(hydrated);
       return hydrated;
     } catch (e) {
@@ -7143,6 +7163,7 @@ export default function Portal({
                 ) : path === "/profile" ? (
                   data.me?.mode === "viewer" ? (
                     <Dashboard
+                      key={`${path}:${data.me?.id || "anonymous"}:${data.team?.id || "none"}`}
                       data={data}
                       run={run}
                       onInteraction={clearSuccessNotice}
@@ -7156,6 +7177,7 @@ export default function Portal({
                   <PersonalCredits data={data} />
                 ) : path === "/dashboard" ? (
                   <Dashboard
+                    key={`${path}:${data.me?.id || "anonymous"}:${data.team?.id || "none"}`}
                     data={data}
                     run={run}
                     initialTab={original === "/submission" || original === "/dashboard/submission" ? "project" : original === "/credits" || original === "/dashboard/credits" ? "credits" : "team"}
@@ -7180,7 +7202,7 @@ export default function Portal({
                 ) : /^\/(admin\/submissions|review)\//.test(path) ? (
                   <Review data={data} run={run} />
                 ) : path.startsWith("/admin") || path === "/review" ? (
-                  <AdminList data={data} path={path} run={run} demographics={["/admin/teams", "/admin/submissions"].includes(path) ? demographicControls : undefined} />
+                  <AdminList key={`${path}:${data.me?.id || "anonymous"}`} data={data} path={path} run={run} demographics={["/admin/teams", "/admin/submissions"].includes(path) ? demographicControls : undefined} />
                 ) : (
                   <Empty>Choose a page from the navigation.</Empty>
                 )}

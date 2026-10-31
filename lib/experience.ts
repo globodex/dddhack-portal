@@ -1,3 +1,4 @@
+import { unindexedSubmissions } from "./private-project-index";
 import { ownerAIView, ownerAICommand } from "./owner-ai";
 import { submissionWindowHasOpened } from "./team-lifecycle";
 import { addMissingTeamIdea } from "./admin-team-idea";
@@ -502,6 +503,7 @@ export class PortalExperience {
           team.id,
         )
       : undefined;
+    const projectIndexMissing = !project && attempts.length > 0 && access.canRead;
     const feedback =
       project && access.canRead
         ? await rows(
@@ -550,7 +552,12 @@ export class PortalExperience {
       team: team
         ? { ...team, locked: !!lock, lockedAt: lock?.locked_at }
         : undefined,
-      submissionAccess: access,
+      projectIndexMissing,
+      submissionAccess: {
+        ...access,
+        intentVersion: 1,
+        ...(projectIndexMissing ? {canCommit:false,message:"Committed submissions need project-index reconciliation. Do not resubmit."} : {}),
+      },
       projectStats: access.contentHidden ? undefined : { upvotes: projectUpvotes, result: projectResult },
       projectPublicPath:
         !access.contentHidden && project && projectEligibility.status === "eligible" && projectEligibility.versionId === project.published_version_id
@@ -800,11 +807,12 @@ export class PortalExperience {
       };
     }
     if (route === "/project-history") {
-      const me = await this.s.actor(),
-        team = await this.team(me.id);
+      const me = await this.s.actor();
+      if (options.focus) await this.s.staff();
+      const team = options.focus ? await one<Team>(this.s.db,"SELECT t.* FROM teams t WHERE t.id=? AND NOT EXISTS(SELECT 1 FROM record_removals r WHERE r.kind='team' AND r.target_id=t.id AND r.active=1) AND NOT EXISTS(SELECT 1 FROM terminal_record_deletions d WHERE d.kind='team' AND d.target_id=t.id)",options.focus) : await this.team(me.id);
       demand(team, 403, "TEAM_REQUIRED");
       const access = await submissionAccess(this.s, team.id);
-      demand(access.canRead, 403, "TEAM_CHECKIN_REQUIRED");
+      demand(!!options.focus || access.canRead, 403, "TEAM_CHECKIN_REQUIRED");
       return {
         me,
         items: (
@@ -815,8 +823,9 @@ export class PortalExperience {
             created_at: string;
           }>(
             this.s.db,
-            "SELECT id,attempt,payload,created_at FROM submission_versions v WHERE team_id=? AND EXISTS(SELECT 1 FROM memberships m WHERE m.team_id=v.team_id AND m.user_id=?) ORDER BY attempt DESC LIMIT 3",
+            "SELECT id,attempt,payload,created_at FROM submission_versions v WHERE team_id=? AND (?=1 OR EXISTS(SELECT 1 FROM memberships m WHERE m.team_id=v.team_id AND m.user_id=?)) ORDER BY attempt DESC LIMIT 3",
             team.id,
+            options.focus ? 1 : 0,
             me.id,
           )
         ).map((v) => ({ ...v, payload: JSON.parse(v.payload) })),
@@ -1121,6 +1130,7 @@ export class PortalExperience {
               " JOIN project_assignments a ON a.project_id=p.id WHERE a.user_id=? AND a.kind=? ORDER BY p.updated_at DESC LIMIT 1000",
         ...(me.owner || me.role === "admin" ? demographic.args : [me.id, me.role]),
       );
+      const unindexed = me.owner || me.role === "admin" ? await unindexedSubmissions(this.s,demographics,submissionWindowHasOpened((await this.s.settings(true)).policy,this.s.now())) : [];
       const byProject = new Map<string, Record<string, unknown>[]>();
       if (me.owner || me.role === "admin") {
         const versions = await selectedRows<{
@@ -1149,7 +1159,8 @@ export class PortalExperience {
         me,
         ...(me.owner || me.role === "admin" ? { stats: await readAdminStats(this.s, "submissions", me), demographicFilters: demographics } : {}),
         ...(adminAnalytics ? { submissionAnalytics: adminAnalytics.analytics } : {}),
-        items: items.map((item) => ({
+        unindexedSubmissionCount: unindexed.reduce((n,item)=>n+Number(item.committedVersions || 0),0),
+        items: [...items.map((item) => ({
           ...item,
           ...(adminAnalytics ? {
             score: currentScores.get(String(item.id)),
@@ -1160,7 +1171,7 @@ export class PortalExperience {
             me.owner || me.role === "admin"
               ? byProject.get(String(item.id)) || []
               : undefined,
-        })),
+        })),...unindexed].sort((a,b)=>String((b as Record<string,unknown>).updated_at || "").localeCompare(String((a as Record<string,unknown>).updated_at || ""))),
       };
     }
 
@@ -1264,11 +1275,29 @@ export class PortalExperience {
     }
     return null;
   }
+  async legacyAdminSubmission(actor: Actor, data: unknown) {
+    demand(actor.owner || actor.role === "admin", 403, "ADMIN_REQUIRED");
+    demand(data && typeof data === "object" && !Array.isArray(data), 422, "INVALID_PROJECT");
+    const team = await this.team(actor.id);
+    demand(team && team.leader_id === actor.id, 403, "LEADER_REQUIRED");
+    const project = await one<Project>(this.s.db, "SELECT * FROM projects WHERE team_id=?", team.id);
+    const values = data as Record<string, unknown>;
+    // The old flat API must use the same validated project shape and atomic commit.
+    const clean = Object.fromEntries(Object.keys(draftSchema.shape)
+      .filter(key => key in values).map(key => [key, values[key]]));
+    const result = await this.command("submit-project", {
+      revision: project?.revision || 0, project: clean, teamId: team.id, actorId: actor.id,
+    }, actor, "legacy-submit");
+    return { ...result, id: result?.versionId };
+  }
   async command(
     action: string,
     data: unknown,
     actor: Actor,
+    source?: "legacy-submit",
   ): Promise<Record<string, unknown> | null> {
+    if (action === "submit" && (actor.owner || actor.role === "admin"))
+      return this.legacyAdminSubmission(actor, data);
     const addedIdea = await addMissingTeamIdea(this.s, action, data);
     if (addedIdea !== null) return addedIdea;
     const aiModel = await ownerAICommand(this.s, action, data);
@@ -1927,7 +1956,7 @@ export class PortalExperience {
       const access = await requireSubmissionAccess(this.s, t.id);
       if (!access.adminSubmissionTest) await this.completed(actor);
       const d = z
-          .object({ revision: z.number().int().min(0), project: draftSchema })
+          .object({ revision: z.number().int().min(0), project: draftSchema,teamId:id.optional(),actorId:id.optional() })
           .strict()
           .parse(data),
         p = await one<Project>(
@@ -1935,8 +1964,10 @@ export class PortalExperience {
           "SELECT * FROM projects WHERE team_id=?",
           t.id,
         );
+      demand(!d.teamId || d.teamId === t.id,409,"SUBMISSION_TEAM_CHANGED","Your team changed. Reload before saving or submitting.");
+      demand(!d.actorId || d.actorId === actor.id,409,"SUBMISSION_ACCOUNT_CHANGED","Your signed-in account changed. Reload before saving or submitting.");
       const requestKey = await sha256(
-        JSON.stringify({ revision: d.revision, project: d.project }),
+        JSON.stringify(source === "legacy-submit" ? {legacy:true,project:d.project} : { revision: d.revision, project: d.project }),
       );
       if (action === "submit-project") {
         const receipt = await one<{ project_id: string; version_id: string; attempt: number }>(
@@ -1953,6 +1984,7 @@ export class PortalExperience {
             attemptsUsed: receipt.attempt,
           };
       }
+      demand(p || access.attemptsUsed === 0,409,"PROJECT_INDEX_MISSING","Committed submissions exist without a project record. History is preserved; ask the owner to reconcile it before submitting again.");
       demand(
         !access.locked,
         409,
