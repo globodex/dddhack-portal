@@ -86,7 +86,7 @@ test("independent legacy ledger: exact seven CRLF aliases derive from pinned LF 
   const plan = await loadMigrationPlan();
   assert.equal(
     verifyUpgradePlan(plan, baseline),
-    "3c173216603f6a2927903493e29bfbe629dcaddf67cbcd322196f3153f6bffd5",
+    "460705f60687059641f482e70229c185b5b65740c7792d772d3bb1e7522c371a",
   );
   assert.equal(historical.length, 7);
   for (const [i, entry] of hashes.historical.entries()) {
@@ -137,6 +137,7 @@ test("independent legacy ledger: canonical LF history and an existing canonical 
       "0109_owner_ai_model_usage.sql",
       "0110_admin_submission_access.sql",
       "0111_admin_missing_team_idea.sql",
+      "0112_continuous_engagement.sql",
     ]);
     const after = await f.snapshot();
     assert.deepEqual(domain(after), domain(before));
@@ -149,7 +150,7 @@ test("independent legacy ledger: canonical LF history and an existing canonical 
   }
 });
 
-test("independent actual CRLF history: readonly inspect, populated7→17 canonical features, unchanged legacy ledger/data and repeat[]", async () => {
+test("independent actual CRLF history: readonly inspect, populated7→18 canonical features, unchanged legacy ledger/data and repeat[]", async () => {
   const f = await legacyLedgerIndependentFixture();
   try {
     const before = await f.snapshot(),
@@ -182,6 +183,7 @@ test("independent actual CRLF history: readonly inspect, populated7→17 canonic
       "0109_owner_ai_model_usage.sql",
       "0110_admin_submission_access.sql",
       "0111_admin_missing_team_idea.sql",
+      "0112_continuous_engagement.sql",
     ]);
     assert.deepEqual(await f.snapshot(), before);
     assert.equal(
@@ -204,7 +206,7 @@ test("independent actual CRLF history: readonly inspect, populated7→17 canonic
     const after = await f.snapshot(),
       ledger = after.portal_schema_migrations as any[];
     assert.deepEqual(domain(after), domain(before));
-    assert.equal(ledger.length, 17);
+    assert.equal(ledger.length, 18);
     assert.deepEqual(ledger.slice(0, 7), before.portal_schema_migrations);
     assert.deepEqual(
       ledger.slice(7).map(({ name, checksum }) => ({ name, checksum })),

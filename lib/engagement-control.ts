@@ -13,7 +13,8 @@ export async function engagementState(s: PortalService) {
     "SELECT voting_paused,feedback_paused,version FROM engagement_controls WHERE id=1",
   );
   return {
-    votingPaused: !!row?.voting_paused,
+    // Voting availability is permanent; retain the stored row for audit/history.
+    votingPaused: false,
     feedbackPaused: !!row?.feedback_paused,
     version: row?.version || 0,
   };
@@ -35,6 +36,7 @@ export async function engagementControl(
       })
       .strict()
       .parse(input);
+  demand(!d.votingPaused, 422, "VOTING_ALWAYS_OPEN", "Voting stays open; only public feedback can be paused.");
   const current = await engagementState(s);
   demand(current.version === d.version, 409, "ENGAGEMENT_CHANGED_RELOAD");
   await s.mutate(

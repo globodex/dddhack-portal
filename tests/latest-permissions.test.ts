@@ -681,7 +681,7 @@ test("approved never-login registrants become Absent without inventing a user an
     db.close();
   }
 });
-test("admin engagement pause is versioned, backend enforced, and reopening preserves one vote per project", async () => {
+test("participant feedback pause is versioned while voting remains open and unique", async () => {
   const { db, service, clock } = await setup();
   try {
     await activate(db);
@@ -697,7 +697,7 @@ test("admin engagement pause is versioned, backend enforced, and reopening prese
       String(commit.versionId),
     );
     const pause = {
-      votingPaused: true,
+      votingPaused: false,
       feedbackPaused: true,
       version: 0,
       reason: "Synthetic pause",
@@ -707,7 +707,7 @@ test("admin engagement pause is versioned, backend enforced, and reopening prese
       code: "ADMIN_REQUIRED",
     });
     await service("admin").command("engagement-control", pause);
-    for (const action of ["upvote-project", "comment-project"])
+    for (const action of ["comment-project"])
       await assert.rejects(
         service("bob").command(action, {
           projectId: commit.projectId,
@@ -716,7 +716,7 @@ test("admin engagement pause is versioned, backend enforced, and reopening prese
         { code: "ENGAGEMENT_PAUSED" },
       );
     let row = asRow(await service("bob").view("/projects")).items[0];
-    assert.equal(row.canUpvote, false);
+    assert.equal(row.canUpvote, true);
     assert.equal(row.canComment, false);
     await service("admin").command("engagement-control", {
       ...pause,

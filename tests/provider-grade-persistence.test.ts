@@ -136,14 +136,10 @@ test("explicit current-version evaluation persists a numeric provider report, wh
       },
     };
     const values = { projectId: f.projectId, versionId: f.versionId };
-    await assert.rejects(admin.command("reevaluate-project", values), {
-      code: "SUBMISSION_WINDOW_OPEN",
-    });
-    assert.equal(calls, 0);
     await assert.rejects(f.service().command("reevaluate-project", values), {
       code: "ADMIN_REQUIRED",
     });
-    f.clock("2026-11-01T11:00:00.000Z");
+    // Explicit staff evaluation is independent of the submission calendar.
     const result = await admin.command("reevaluate-project", values);
     assert.equal(result.message, "AI score saved.");
     assert.equal(calls, 1);

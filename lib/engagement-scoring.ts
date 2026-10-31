@@ -1,3 +1,4 @@
+import { feedbackLength } from "./feedback-length";
 import { auditReason } from "./security";
 import { z } from "zod";
 import type { PortalService } from "./service";
@@ -66,7 +67,7 @@ export async function qualifiedEngagement(
       // Qualification always requires the declared bounds; semantic judgement is a
       // recorded staff decision, never a count of every public comment.
       if (
-        c.body.trim().length < policy.feedbackMin ||
+        feedbackLength(c.body) < 30 ||
         c.body.trim().length > policy.feedbackMax
       ) {
         pendingAuthors.add(c.user_id);

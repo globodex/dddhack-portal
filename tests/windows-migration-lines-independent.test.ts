@@ -22,7 +22,7 @@ const approvalPath =
   "evidence/neon-host-archive/historical-ledger-checksums.json";
 const baseline = JSON.parse(readFileSync(join(root, approvalPath), "utf8"));
 const expectedDigest =
-  "3c173216603f6a2927903493e29bfbe629dcaddf67cbcd322196f3153f6bffd5";
+  "460705f60687059641f482e70229c185b5b65740c7792d772d3bb1e7522c371a";
 const sqlPaths = [
   "neon/migrations/0000_compatibility.sql",
   "neon/migrations/0001_portal.sql",
@@ -41,6 +41,7 @@ const sqlPaths = [
   "neon/migrations/0109_owner_ai_model_usage.sql",
   "neon/migrations/0110_admin_submission_access.sql",
   "neon/migrations/0111_admin_missing_team_idea.sql",
+  "neon/migrations/0112_continuous_engagement.sql",
 ];
 const sha = (value: Uint8Array | string) =>
   createHash("sha256").update(value).digest("hex");
@@ -118,7 +119,7 @@ function crlf(cwd: string) {
 
 test("independent Windows source: approved LF plan is seventeen exact HEAD blobs and keeps the published digest", async () => {
   const plan = await loadMigrationPlan();
-  assert.equal(plan.length, 17);
+  assert.equal(plan.length, 18);
   assert.equal(verifyUpgradePlan(plan, baseline), expectedDigest);
   assert.deepEqual(
     plan.map(({ name, checksum }) => ({ name, checksum })),
@@ -151,7 +152,7 @@ test("independent Windows repair: check is read-only, exact CRLF repair preserve
     assert.equal(check.status, 2, check.stderr);
     const checked = JSON.parse(check.stdout);
     assert.equal(checked.repairNeeded, true);
-    assert.equal(checked.sourceFiles, 17);
+    assert.equal(checked.sourceFiles, 18);
     assert.equal(checked.databaseConnected, false);
     assert.deepEqual(
       sqlPaths.map((path) => readFileSync(join(f.cwd, path))),
@@ -283,10 +284,10 @@ test("independent Windows source: actual CRLF loader and offline CLI reject; str
     assert.equal(verifyUpgradePlan(before, baseline), expectedDigest);
     crlf(f.cwd);
     const changed = await planAt(f.cwd);
-    assert.equal(changed.length, 17);
+    assert.equal(changed.length, 18);
     assert.equal(
       changed.filter((item, i) => item.checksum !== before[i].checksum).length,
-      17,
+      18,
     );
     assert.throws(() => verifyUpgradePlan(changed, baseline), {
       code: "UPGRADE_SOURCE_PLAN_MISMATCH",

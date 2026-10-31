@@ -1,3 +1,4 @@
+import { aiModelChoices, modelPricing } from "./ai-model-catalog";
 import { z } from "zod";
 import { one, batch, assertPreviousWrite, type Database } from "./db";
 import type { PortalService } from "./service";
@@ -122,6 +123,9 @@ export async function ownerAIView(s: PortalService) {
   });
   return {
     ...selected,
+    choices: aiModelChoices,
+    pricing: modelPricing,
+    provider: "OpenAI Responses API",
     providerAvailable: s.evaluator.available === true,
     responses: Number(sums?.responses || 0),
     input: metric("input"),

@@ -98,7 +98,6 @@ test("judging validates real IST dates, ordering, exact limits and explicit qual
     "judgingClose",
     "codexReviewer",
     "minJudges",
-    "feedbackMin",
   ])
     assert.ok(invalid.errors[key]);
   const missing = judgingSettingsValues(policy, {

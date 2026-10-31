@@ -89,7 +89,7 @@ export async function evaluationActionState(
   projectId: string,
   versionId: string | undefined,
   publishedVersionId: string | null,
-  submissionClose: string | null,
+  _submissionClose: string | null,
 ) {
   const job = versionId ? await one<{ state: string; attempts: number; frozen: number; removed: number }>(service.db,
     "SELECT j.state,j.attempts,EXISTS(SELECT 1 FROM result_snapshots) frozen,EXISTS(SELECT 1 FROM record_removals WHERE active=1 AND ((kind='project' AND target_id=?) OR (kind='submission' AND target_id=?))) removed FROM astra_jobs j WHERE version_id=?",
@@ -99,9 +99,7 @@ export async function evaluationActionState(
   const reason = job?.frozen ? "Final scores are frozen."
     : !availability.available ? availability.reason
       : !versionId || versionId !== publishedVersionId ? "A current committed submission is required."
-        : !submissionClose ? "Set the submission closing time."
-          : service.now() < submissionClose ? "Wait for submissions to close."
-            : !job ? "No evaluation job exists for this submission."
+        : !job ? "No evaluation job exists for this submission."
               : job.removed ? "This project or submission was removed."
                 : job.attempts >= 3 ? "Three evaluation attempts have been used."
                   : job.state === "running" ? "Evaluation is already running."

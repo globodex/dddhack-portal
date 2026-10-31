@@ -1,3 +1,4 @@
+import { feedbackLengthValid } from "./feedback-length";
 import { projectMediaPolicy } from "./project-media-policy";
 import { authenticatedRequestEvidenceStatement } from "./sign-in-evidence";
 import {
@@ -1301,20 +1302,18 @@ export class PortalService {
       case "vote":
       case "feedback": {
         await this.unfrozen();
-        const s = await this.live();
-        const u = await this.approved();
+        const s = await this.settings(true);
+        const staffFeedback = action === "feedback" && !actor.deactivated && (actor.owner || actor.role === "admin");
+        const u = staffFeedback ? actor : await this.approved();
         const d = z
           .object({ teamId: id, text: z.string().optional() })
           .parse(data);
-        demand(
-          s.policy.engagementOpen &&
-            s.policy.engagementClose &&
-            this.now() >= s.policy.engagementOpen &&
-            this.now() < s.policy.engagementClose,
-          409,
-          "ENGAGEMENT_CLOSED",
+        if (action === "feedback" && !staffFeedback) demand(
+          s.policy.engagementOpen && s.policy.engagementClose &&
+          this.now() >= s.policy.engagementOpen && this.now() < s.policy.engagementClose,
+          409, "ENGAGEMENT_CLOSED",
         );
-        demand(
+        if (!staffFeedback) demand(
           await one(
             this.db,
             "SELECT user_id FROM check_ins WHERE user_id=?",
@@ -1349,10 +1348,10 @@ export class PortalService {
         } else {
           const value = d.text?.trim() || "";
           demand(
-            feedbackQuality(value, s.policy.feedbackMin, s.policy.feedbackMax),
+            feedbackLengthValid(value, 500),
             422,
-            "FEEDBACK_TOO_GENERIC",
-            "Give a specific observation: what worked, what failed, and what could improve.",
+            "FEEDBACK_LENGTH",
+            "Enter at least 30 and at most 500 characters after trimming spaces.",
           );
           const normalized = value.toLowerCase().replace(/[^a-z0-9]/g, "");
           const prior = await rows<{ text: string; team_id: string }>(
@@ -1372,7 +1371,9 @@ export class PortalService {
             422,
             "DUPLICATE_FEEDBACK",
           );
+          const staffGuard = "staff-feedback:" + JSON.stringify([u.id, d.teamId, this.now()]);
           await this.mutate(u.id, action, d.teamId, [
+            ...(staffFeedback ? [["INSERT INTO write_guards(token,valid) VALUES(?,1)", staffGuard] as SQL] : []),
             [
               "INSERT INTO feedback(author_id,team_id,text,updated_at) VALUES(?,?,?,?) ON CONFLICT(author_id,team_id) DO UPDATE SET text=excluded.text,valid=0,moderation_reason='Edited: needs staff review',updated_at=excluded.updated_at",
               u.id,
@@ -1380,13 +1381,13 @@ export class PortalService {
               value,
               this.now(),
             ],
+            ...(staffFeedback ? [["DELETE FROM write_guards WHERE token=?", staffGuard] as SQL] : []),
           ]);
         }
         return {};
       }
       case "judge-score": {
         await this.unfrozen();
-        const s = await this.live();
         const d = z
           .object({
             teamId: id,
@@ -1395,13 +1396,6 @@ export class PortalService {
           })
           .parse(data);
         demand(actor.role === "judge", 403, "JUDGE_REQUIRED");
-        demand(
-          s.policy.judgingClose &&
-            this.now() >= s.policy.submissionClose! &&
-            this.now() < s.policy.judgingClose,
-          409,
-          "JUDGING_CLOSED",
-        );
         demand(
           await one(
             this.db,
@@ -1500,11 +1494,6 @@ export class PortalService {
             j.attempts < 3,
           409,
           "JOB_NOT_RUNNABLE",
-        );
-        demand(
-          this.now() >= (await this.settings()).policy.submissionClose!,
-          409,
-          "SUBMISSION_WINDOW_OPEN",
         );
         const claimedAt = this.now();
         const runId = crypto.randomUUID();
@@ -1704,11 +1693,6 @@ export class PortalService {
           "NO_UNCLAIMED_API_PENALTIES",
         );
         const s = await this.settings();
-        demand(
-          this.now() >= s.policy.submissionClose!,
-          409,
-          "SUBMISSION_WINDOW_OPEN",
-        );
         demand(
           !d.falseClaims || s.policy.penaltyApproved,
           409,

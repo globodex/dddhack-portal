@@ -37,6 +37,7 @@ export function judgingSettingsValues(
     ["engagementClose", "feedback close"],
     ["appealClose", "appeal close"],
   ]) {
+    if (!(key in input)) continue;
     try {
       dates[key] =
         value(key) === istInput(policy[key as keyof Policy]) &&
@@ -106,9 +107,10 @@ export function judgingSettingsValues(
     ["feedbackMin", 30, 500],
     ["feedbackMax", 30, 500],
   ] as const) {
-    const number = Number(value(key));
+    const raw = key === "feedbackMin" ? "30" : key === "feedbackTarget" ? String(policy.feedbackTarget) : value(key);
+    const number = Number(raw);
     if (
-      !value(key) ||
+      !raw ||
       !Number.isInteger(number) ||
       number < min ||
       number > max
@@ -158,8 +160,8 @@ export function judgingSettingsValues(
     voteFormula: value("voteFormula") as Policy["voteFormula"],
     minJudges: numbers.minJudges,
     voteTarget: numbers.voteTarget,
-    feedbackTarget: numbers.feedbackTarget,
-    feedbackMin: numbers.feedbackMin,
+    feedbackTarget: policy.feedbackTarget,
+    feedbackMin: 30,
     feedbackMax: numbers.feedbackMax,
     projectEngagementRule: value(
       "projectEngagementRule",
@@ -358,15 +360,6 @@ export default function JudgingSettings({
         >
           <fieldset disabled={!hydrated || busy || frozen}>
             <section className="results-ui-formGroup">
-              <h3>Dates · IST</h3>
-              <div className="results-ui-formGrid">
-                {field("judgingClose", "Judging closes", "date")}
-                {field("appealClose", "Appeals close", "date")}
-                {field("engagementOpen", "Feedback opens", "date")}
-                {field("engagementClose", "Feedback closes", "date")}
-              </div>
-            </section>
-            <section className="results-ui-formGroup">
               <h3>Judging rules</h3>
               <div className="results-ui-formGrid">
                 {select(
@@ -414,14 +407,6 @@ export default function JudgingSettings({
                 {field("voteTarget", "Vote target", "number", {
                   min: 1,
                   max: 160,
-                })}
-                {field("feedbackTarget", "Feedback target", "number", {
-                  min: 1,
-                  max: 160,
-                })}
-                {field("feedbackMin", "Feedback minimum length", "number", {
-                  min: 30,
-                  max: 500,
                 })}
                 {field("feedbackMax", "Feedback maximum length", "number", {
                   min: 30,

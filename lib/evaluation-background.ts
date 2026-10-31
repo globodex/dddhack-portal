@@ -20,8 +20,6 @@ export async function queueEvaluations(
   // Larger offline fixture batches retain the existing limit of five.
   demand(service.evaluator.provenance !== "provider" || limit === 1, 422, "PROVIDER_BATCH_LIMIT_ONE");
   await service.unfrozen();
-  const close = (await service.settings()).policy.submissionClose;
-  demand(close && service.now() >= close, 409, "SUBMISSION_WINDOW_OPEN");
   const jobs = await rows<{ id: string }>(
     service.db,
     "SELECT id FROM astra_jobs WHERE state IN ('pending','failed_retryable') AND attempts<3 ORDER BY updated_at,id LIMIT ?",

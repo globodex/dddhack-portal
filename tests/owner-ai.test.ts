@@ -340,7 +340,7 @@ test("owner UI distinguishes missing totals from genuine zero and shows no contr
   const h = render(true);
   assert.match(h, /Owner only/);
   assert.match(h, /Unavailable/);
-  assert.match(h, /Model ID/);
+  assert.match(h, /Evaluation model/);
   assert.match(
     render(true, { input: { tokens: 0, knownResponses: 1 }, responses: 1 }),
     /Input<\/span><strong>0/,

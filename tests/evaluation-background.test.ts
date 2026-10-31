@@ -68,12 +68,7 @@ test("explicit bounded offline background batch preserves human review and never
       queueEvaluations(f.service("alice"), {}, (p) => tasks.push(p)),
       { code: "ADMIN_REQUIRED" },
     );
-    await assert.rejects(
-      queueEvaluations(f.service("admin"), {}, (p) => tasks.push(p)),
-      { code: "SUBMISSION_WINDOW_OPEN" },
-    );
     assert.equal(tasks.length, 0);
-    f.clock("2026-11-01T11:00:00.000Z");
     await assert.rejects(
       queueEvaluations(f.service("admin"), { limit: 6 }, (p) => tasks.push(p)),
     );
@@ -186,31 +181,7 @@ test("background endpoint requires dispatcher, staff, same origin and returns pr
       ).status,
       403,
     );
-    // HTTP uses real server time; test fixture close is in future, so authorization remains closed.
-    assert.equal(
-      (
-        await handlePortal(request(), {
-          ...runtime,
-          background: (p) => tasks.push(p),
-        })
-      ).status,
-      409,
-    );
-    assert.equal(tasks.length, 0);
-    const close = new Date(Date.now() - 1000).toISOString();
-    const settings = await one<{ policy: string }>(
-      f.db,
-      "SELECT policy FROM event_settings",
-    );
-    await batch(f.db, [
-      [
-        "UPDATE event_settings SET policy=?",
-        JSON.stringify({
-          ...JSON.parse(settings!.policy),
-          submissionClose: close,
-        }),
-      ],
-    ]);
+    // Calendar windows do not gate explicit staff processing.
     const accepted = await handlePortal(request(), {
       ...runtime,
       background: (p) => tasks.push(p),

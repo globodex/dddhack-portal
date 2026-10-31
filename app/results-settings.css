@@ -826,3 +826,5 @@
 }
 .results-ui-versionButton{border:1px solid var(--line,#e3e4db);border-radius:8px;padding:0 12px;min-width:44px;min-height:44px;background:var(--surface,#fffefa);color:var(--ink,#202320);font:inherit;font-size:13px;cursor:pointer}.results-ui-versionButton:disabled{opacity:.6;cursor:default}
 .results-ui-judgingLoading{height:66px;border:1px solid var(--line,#e3e4db);border-radius:16px;margin-bottom:22px;background:var(--surface,#fffefa)}
+
+.owner-ai-model-prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:12px;margin-block:20px}.owner-ai-model-prices article{display:grid;gap:8px;border:1px solid #ddd;border-radius:16px;padding:16px;background:linear-gradient(135deg,#f3f0ff,#fff)}.owner-ai-model-prices small{color:#54515e}.owner-ai-model form select{width:100%;min-width:0}

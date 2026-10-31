@@ -1,4 +1,5 @@
 "use client";
+import { feedbackLengthValid } from "../lib/feedback-length";
 import OwnerAIControls from "./owner-ai-controls";
 import SubmissionWelcome, { submissionContentHidden } from "./submission-welcome";
 import {
@@ -3980,8 +3981,8 @@ export function Projects({
                 onSubmit={async (e) => {
                   e.preventDefault();
                   if (commentPending.current || !comment.trim()) return;
-                  if (comment.trim().length < 30 || comment.trim().length > 1500) {
-                    setCommentError("Use 30–1,500 characters for your comment.");
+                  if (!feedbackLengthValid(comment, 1500)) {
+                    setCommentError("Enter at least 30 and at most 1,500 characters after trimming spaces.");
                     return;
                   }
                   commentPending.current = true;
@@ -6313,7 +6314,7 @@ export function AdminEngagementControls({
       label="Save"
       onSave={async (form) => {
         await run("engagement-control", {
-          votingPaused: form.get("votingEnabled") !== "on",
+          votingPaused: false,
           feedbackPaused: form.get("feedbackEnabled") !== "on",
           version: settings.version,
           reason: form.get("reason"),
@@ -6321,16 +6322,7 @@ export function AdminEngagementControls({
         });
       }}
     >
-      <label className="admin-switch-row">
-        <span>Voting</span>
-        <input
-          type="checkbox"
-          role="switch"
-          name="votingEnabled"
-          defaultChecked={!settings.votingPaused}
-        />
-        <span className="admin-switch-track" aria-hidden="true" />
-      </label>
+      <p>Voting is always open. Admins and the owner can leave feedback at any time.</p>
       <label className="admin-switch-row">
         <span>Public comments</span>
         <input
@@ -6438,6 +6430,7 @@ export function Settings({
         label="Settings sections"
       />
       <div {...panel("event")}>
+        {data.me?.owner && <OwnerAIControls key={`ai-model-${data.ownerAI?.revision ?? 0}`} owner={true} data={data.ownerAI} run={run} />}
         {data.me?.owner && (
           <OwnerSubmissionWindow
             key={`${data.policyVersion}-${data.policy?.submissionOpen}-${data.policy?.submissionClose}`}
@@ -6454,7 +6447,7 @@ export function Settings({
         />
       </div>
       <div {...panel("results")}>
-        {data.me?.owner && <OwnerAIControls key={`ai-model-${data.ownerAI?.revision ?? 0}`} owner={true} data={data.ownerAI} run={run} />}
+        {data.me?.owner && <OwnerPolicyControls data={data} run={run} />}
         {section === "results" && data.me?.owner && (
           <JudgingSettings
             key={`judging-${data.policyVersion}`}
@@ -6487,15 +6480,7 @@ export function Settings({
             />
           </section>
         )}{" "}
-        {data.me?.owner && (
-          <details className="admin-settings-extra">
-            <summary>
-              Scoring configuration
-              <ChevronDown size={20} aria-hidden="true" />
-            </summary>
-            <OwnerPolicyControls data={data} run={run} />
-          </details>
-        )}
+
         {data.canManageVenue && (
           <section className="admin-event-content-workspace">
             <ContentEditor

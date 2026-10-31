@@ -1,3 +1,4 @@
+import { feedbackLengthValid } from "./feedback-length";
 import { unindexedSubmissions } from "./private-project-index";
 import { ownerAIView, ownerAICommand } from "./owner-ai";
 import { submissionWindowHasOpened } from "./team-lifecycle";
@@ -718,6 +719,8 @@ export class PortalExperience {
       const hasMore = listRoute && all.length > (selectedPage + 1) * 24;
       const me = this.s.identity ? await this.s.actor() : undefined;
       const engagement = await engagementState(this.s);
+      if (me && !me.deactivated && (me.owner || me.role === "admin"))
+        engagement.feedbackPaused = false;
       const ownTeam = me ? await this.team(me.id) : undefined;
       const ownAttendance = me
         ? (await personStatus(this.s, me.id)).checkedIn
@@ -2164,6 +2167,8 @@ export class PortalExperience {
     }
     if (action === "upvote-project" || action === "comment-project") {
       const engagement = await engagementState(this.s);
+      if (!actor.deactivated && (actor.owner || actor.role === "admin"))
+        engagement.feedbackPaused = false;
       demand(
         !(action === "upvote-project"
           ? engagement.votingPaused
@@ -2176,7 +2181,7 @@ export class PortalExperience {
             projectId: id,
             body:
               action === "comment-project"
-                ? text(1500).min(30)
+                ? text(1500).refine(value => feedbackLengthValid(value, 1500), "Enter at least 30 and at most 1,500 characters after trimming spaces.")
                 : z.string().optional(),
           })
           .strict()
@@ -2197,6 +2202,8 @@ export class PortalExperience {
             "OWN_PROJECT_CHECKIN_REQUIRED",
           );
       }
+      const staffComment = action === "comment-project" && !actor.deactivated && (actor.owner || actor.role === "admin");
+      const commentGuard = "staff-comment:" + JSON.stringify([actor.id, p.id, this.s.now()]);
       await this.s.mutate(
         actor.id,
         action,
@@ -2211,6 +2218,7 @@ export class PortalExperience {
               ],
             ]
           : [
+              ...(staffComment ? [["INSERT INTO write_guards(token,valid) VALUES(?,1)", commentGuard] as SQL] : []),
               [
                 "INSERT INTO project_comments VALUES(?,?,?,?,?)",
                 crypto.randomUUID(),
@@ -2219,6 +2227,7 @@ export class PortalExperience {
                 d.body!,
                 this.s.now(),
               ],
+              ...(staffComment ? [["DELETE FROM write_guards WHERE token=?", commentGuard] as SQL] : []),
             ],
         { publicEngagement: true },
       );
@@ -2482,8 +2491,6 @@ export class PortalExperience {
       demand(availability.available, 503, "EVALUATOR_NOT_CONFIGURED", availability.reason);
       const p = await this.project(d.projectId), v = await this.version(p);
       demand(v?.id === d.versionId && p.published_version_id === v.id, 409, "STALE_SUBMISSION");
-      const close = (await this.s.settings(true)).policy.submissionClose;
-      demand(close && this.s.now() >= close, 409, "SUBMISSION_WINDOW_OPEN");
       demand(!(await one(this.s.db, "SELECT target_id FROM record_removals WHERE active=1 AND ((kind='project' AND target_id=?) OR (kind='submission' AND target_id=?))", p.id, v.id)), 409, "RECORD_REMOVED");
       const job = await one<{ id: string; state: string; attempts: number }>(this.s.db, "SELECT id,state,attempts FROM astra_jobs WHERE version_id=?", v.id);
       demand(job && job.attempts < 3 && job.state !== "running", 409, "JOB_NOT_RUNNABLE");

@@ -70,6 +70,10 @@
     {
       "name": "0111_admin_missing_team_idea.sql",
       "checksum": "d6c9a0d66b8d5ffc2a5178277e8588e9ec5f7ce05fce68f505eb3eb6cc2ddc5b"
+    },
+    {
+      "name": "0112_continuous_engagement.sql",
+      "checksum": "42b45027320e91bbdf7cbe536cd854a320c0d4dbb3e5715f6abc19834bdc186e"
     }
   ],
   "hostedRead": false,

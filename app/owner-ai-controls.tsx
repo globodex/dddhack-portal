@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import { Cpu, Save } from "lucide-react";
+import { aiModelChoices, modelPricing } from "../lib/ai-model-catalog";
 import { useHydrated } from "./use-hydrated";
 type Metric = { tokens: number | null; knownResponses: number };
 export type OwnerAIData = {
@@ -79,18 +80,17 @@ export default function OwnerAIControls({
         }}
       >
         <label>
-          Model ID
-          <input
+          Evaluation model
+          <select
             value={model}
             onChange={(e) => setModel(e.target.value)}
             required
-            maxLength={128}
-            pattern="[A-Za-z0-9][A-Za-z0-9._:\-]{0,127}"
-            spellCheck={false}
-            autoComplete="off"
-            placeholder="Not configured"
             disabled={!hydrated || busy}
-          />
+          >
+            <option value="" disabled>Choose a model</option>
+            {model && !aiModelChoices.some(choice => choice.id === model) && <option value={model}>{model} · existing selection</option>}
+            {aiModelChoices.map(choice => <option key={choice.id} value={choice.id}>{choice.name}</option>)}
+          </select>
         </label>
         <button
           type="submit"
@@ -104,6 +104,14 @@ export default function OwnerAIControls({
           {busy ? "Saving…" : "Save model"}
         </button>
       </form>
+      <div className="owner-ai-model-prices" aria-label="Published model prices">
+        {aiModelChoices.map(choice => <article key={choice.id} aria-label={`${choice.name} pricing`}>
+          <strong>{choice.name}</strong>
+          <span>Input ${choice.input} · Output ${choice.output}</span>
+          <small>Cached input ${choice.cachedInput} / {modelPricing.unit}</small>
+        </article>)}
+      </div>
+      <p className="owner-ai-note">USD per {modelPricing.unit}. <a href={modelPricing.source} target="_blank" rel="noopener noreferrer">Official pricing</a> · checked {modelPricing.checkedAt}. {modelPricing.scope}</p>
       <p className="owner-ai-note">
         Applies to future evaluations. API access and compatibility are not
         verified by saving.
@@ -113,7 +121,7 @@ export default function OwnerAIControls({
           {error}
         </p>
       )}
-      <h3>Selected model usage</h3>
+      <h3>Saved model usage · {data.model || "Not configured"}</h3>
       <div className="owner-ai-usage">
         <article>
           <span>Recorded responses</span>

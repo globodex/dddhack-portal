@@ -47,7 +47,7 @@ test("ordinary missing/null/blank reasons become server audit text without chang
   const { db, service } = await setup();
   try {
     await service("owner").command("engagement-control", {
-      votingPaused: true,
+      votingPaused: false,
       feedbackPaused: false,
       version: 0,
       confirmation: "CHANGE_ENGAGEMENT",
