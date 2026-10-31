@@ -15,16 +15,17 @@ import {
   revealConfirmation,
 } from "../lib/action-confirmation";
 
-test("upvotes alone skip the dialog without changing protected confirmation actions", () => {
+test("public engagement skips the dialog without changing protected confirmation actions", () => {
   assert.equal(requiresActionConfirmation("upvote-project"), false);
   assert.equal(revealConfirmation("upvote-project", {}), undefined);
+  assert.equal(requiresActionConfirmation("comment-project"), false);
+  assert.equal(revealConfirmation("comment-project", {}), undefined);
   for (const action of [
     "submit-project",
     "lock-team",
     "delete-credit-column",
     "bulk-check-in",
     "reveal-final-scores",
-    "comment-project",
   ])
     assert.equal(requiresActionConfirmation(action), true);
 });

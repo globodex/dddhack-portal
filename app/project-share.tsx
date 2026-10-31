@@ -207,14 +207,6 @@ export function ProjectShareDialog({
           <span>Instagram</span>
         </button>
       </div>
-      <button
-        className="project-share-caption-copy"
-        type="button"
-        onClick={() => void copy(projectShareText(url), "Post text copied.")}
-      >
-        <Copy size={15} aria-hidden="true" />
-        Copy post text
-      </button>
       <div className="project-share-copy-row">
         <label className="sr-only" htmlFor={`${id}-url`}>
           Project link
@@ -248,7 +240,7 @@ export function ProjectShareDialog({
         data-error={failed}
         role={failed ? "alert" : "status"}
       >
-        {notice || "Facebook and LinkedIn may need you to paste the post text."}
+        {notice || "Facebook and LinkedIn share the link. Add your message there."}
       </p>
     </dialog>
   );

@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import ProjectShare from "../app/project-share";
+import ProjectShare, { ProjectShareDialog } from "../app/project-share";
 import ProjectSubmissionSuccess from "../app/project-submission-success";
 import {
   projectShareCaption,
@@ -139,4 +139,43 @@ test("success requires a real committed receipt, exact count, and fresh server g
       /View project|aria-label="Share"|evaluation|pending|\/projects\//i,
     );
   }
+});
+
+test("share modal keeps Copy Link and platform-native prefill without a separate copy-post-text button", () => {
+  const url =
+    "https://community.example/projects/demo?source=a&note=two%20words#details";
+  const html = renderToStaticMarkup(
+    createElement(ProjectShareDialog, {
+      url,
+      projectName: "Synthetic share project",
+      onClose() {},
+    }),
+  );
+  assert.doesNotMatch(
+    html,
+    /project-share-caption-copy|>\s*Copy post text\s*</,
+  );
+  assert.match(html, /Project link/);
+  assert.match(html, />\s*Copy\s*</);
+  for (const intent of projectShareIntents(url)) {
+    const parsed = new URL(intent.href);
+    assert.equal(parsed.protocol, "https:");
+    assert.equal(
+      parsed.searchParams.get(intent.id === "facebook" ? "u" : "url"),
+      url,
+    );
+    if (intent.id === "x") {
+      assert.equal(parsed.searchParams.get("text"), projectShareCaption);
+      assert.equal(
+        parsed.searchParams.get("hashtags"),
+        projectShareHashtags.join(","),
+      );
+    } else
+      assert.equal(
+        parsed.searchParams.has("text"),
+        false,
+        "Do not invent unsupported caption parameters",
+      );
+  }
+  assert.doesNotMatch(html, /instagram.com\/.*(?:share|intent)/);
 });

@@ -813,3 +813,22 @@
     font-size: 12px;
   }
 }
+
+.main .public-project-detail .form-actions .project-destination-link {
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+}
+.project-destination-link > svg,
+.project-destination-link > img { flex-shrink: 0; }
+.project-destination-link .project-link-label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+@media (max-width: 600px) {
+  .main .public-project-detail .form-actions .project-destination-link {
+    flex: 1 1 100%;
+    justify-content: flex-start;
+  }
+}

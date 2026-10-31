@@ -59,6 +59,7 @@ import TeamPreparation from "./team-preparation";
 import AdminCreditBatches from "./admin-credit-batches";
 import PersonalCredits, { PersonalCreditsContent } from "./personal-credits";
 import ProjectShare from "./project-share";
+import ProjectDestinationLinks from "./project-destination-links";
 import AdminLeaderTransfer from "./admin-leader-transfer";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -3616,37 +3617,9 @@ function ProjectBody({
         </div>
         <p className="project-description">{project.problemSolution}</p>
         <div className="form-actions">
-          {publicView && project.github && (
-            <a
-              className="button secondary"
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src="/icons/social/github.svg"
-                width="20"
-                height="20"
-                alt=""
-              />{" "}
-              GitHub
-            </a>
-          )}
-          {project.demo && (
-            <a
-              className={publicView ? "button secondary" : "button"}
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {publicView ? (
-                <>
-                  <ExternalLink size={20} aria-hidden="true" /> Visit project
-                </>
-              ) : (
-                "Open demo"
-              )}
-            </a>
+          {publicView && <ProjectDestinationLinks github={project.github} demo={project.demo} />}
+          {!publicView && project.demo && (
+            <a className="button" href={project.demo} target="_blank" rel="noopener noreferrer">Open demo</a>
           )}
           {!publicView && project.github && (
             <a
@@ -4007,6 +3980,10 @@ export function Projects({
                 onSubmit={async (e) => {
                   e.preventDefault();
                   if (commentPending.current || !comment.trim()) return;
+                  if (comment.trim().length < 30 || comment.trim().length > 1500) {
+                    setCommentError("Use 30–1,500 characters for your comment.");
+                    return;
+                  }
                   commentPending.current = true;
                   setCommentBusy(true);
                   setCommentError("");
@@ -4039,6 +4016,14 @@ export function Projects({
                   required
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
+                  minLength={30}
+                  maxLength={1500}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && e.ctrlKey && !e.nativeEvent.isComposing && e.nativeEvent.keyCode !== 229) {
+                      e.preventDefault();
+                      e.currentTarget.form?.requestSubmit();
+                    }
+                  }}
                   disabled={commentBusy || !hydrated}
                 />
                 <button

@@ -110,3 +110,47 @@ for (const engine of ["sqlite", "postgres"] as const)
       await f.db.close();
     }
   });
+
+for (const engine of ["sqlite", "postgres"] as const)
+  test(`${engine}: public project shows registered completed admin teammates from current membership without exposing staff contacts`, async () => {
+    const f = engine === "sqlite" ? await setup() : await createPGliteFixture();
+    if (engine === "postgres") await seedLocal(f.db);
+    try {
+      await batch(f.db, [
+        [
+          "INSERT INTO portal_roles VALUES('fake_bob','admin','fake_owner','2026-10-22T08:00:00Z')",
+        ],
+        [
+          "INSERT INTO portal_roles VALUES('fake_carol','admin','fake_owner','2026-10-22T08:00:00Z')",
+        ],
+      ]);
+      for (const viewer of [
+        undefined,
+        { id: "fake_alice", role: "participant", canParticipate: true },
+        { id: "fake_owner", role: "admin", owner: true },
+      ]) {
+        const members = await publicProjectMembers(f.db, "fake_team3", viewer);
+        assert.deepEqual(
+          members.map((m) => m.id),
+          ["fake_bob", "fake_carol", "fake_dave"],
+        );
+        assert.doesNotMatch(
+          JSON.stringify(members),
+          /"email"|"phone"|"openaiOrgId"|"status"/,
+        );
+      }
+      await batch(f.db, [
+        ["DELETE FROM participant_profiles WHERE user_id='fake_carol'"],
+        [
+          "INSERT INTO record_removals(kind,target_id,active,reason,actor_id,updated_at)VALUES('participant','fake_dave',1,'Synthetic privacy check','fake_owner','2026-10-22T08:00:00Z')",
+        ],
+      ]);
+      assert.deepEqual(
+        (await publicProjectMembers(f.db, "fake_team3")).map((m) => m.id),
+        ["fake_bob"],
+        "Existing profile/removal gates stay intact, including for staff",
+      );
+    } finally {
+      await f.db.close();
+    }
+  });

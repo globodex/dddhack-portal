@@ -24,8 +24,7 @@ export async function publicProjectMembers(
      FROM memberships m JOIN users u ON u.id=m.user_id
      JOIN participant_profiles pp ON pp.user_id=u.id
      LEFT JOIN profile_details pd ON pd.user_id=u.id
-     LEFT JOIN portal_roles roles ON roles.user_id=u.id
-     WHERE m.team_id=? AND COALESCE(roles.role,u.role)='participant'
+     WHERE m.team_id=?
        AND ${registeredEmailPredicate("u.email")} AND pp.completed_at IS NOT NULL
        AND NOT EXISTS(SELECT 1 FROM record_removals r WHERE r.kind='participant' AND r.target_id=u.id AND r.active=1)
        AND NOT EXISTS(SELECT 1 FROM terminal_record_deletions r WHERE r.kind='participant' AND r.target_id=u.id)

@@ -385,6 +385,7 @@ export function revealConfirmation(
 export function requiresActionConfirmation(action: string) {
   return ![
     "upvote-project",
+    "comment-project",
     "complete-profile",
     "profile",
     "quick-check-in",
