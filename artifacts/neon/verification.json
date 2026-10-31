@@ -859,5 +859,30 @@
     "Native Windows PowerShell/.NET extraction not executed here",
     "Full aggregate had one cancelled timeout, independently passed; seven optional skips",
     "Archive timestamp/npm resolution reproducibility is not claimed; independent entry matches exact source"
-  ]
+  ],
+  "windowsGuideValidation": {
+    "checks": [
+      {
+        "check": "guide Node block 1",
+        "passed": true,
+        "output": "Verified approved ZIP"
+      },
+      {
+        "check": "guide Node block 2",
+        "passed": true,
+        "output": "Verified all 93 extracted files. Deploy source: /workspace/public-project-ux-packaging/extracted-2ef518541ab8"
+      },
+      {
+        "check": "old ZIP refused",
+        "passed": true
+      },
+      {
+        "check": "old entry refused",
+        "passed": true
+      }
+    ],
+    "nativePowerShellExecution": "not performed; pwsh unavailable",
+    "dotNetExtraction": "not executed on Windows; uses built-in two-argument ZipFile.ExtractToDirectory",
+    "nodeHereStringBodies": "executed by node via stdin, no fragile node -e quoting"
+  }
 }
