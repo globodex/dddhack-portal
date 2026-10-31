@@ -1,16 +1,17 @@
-# Public project UX — unpublished package
+# Showcase and evaluation — review package, not published
 
-Runtime source: `7e6d02d8b658e1738c007ac53dcd6175907ff2c9`. Official `@neon/config-runtime@1.10.2`, Node.js24/Linux ARM64 glibc, empty function environment, zero warnings. No push/deployment/hosted database operation.
+Runtime source: `30cd91f6863d0cfd526f70ecd928a58e57c9ed57`. The earlier ready `ed80cc5` UX batch is included in ancestry. Held public-eligibility bypass edits and unrelated diagnostics are excluded.
 
-- ZIP: 9,043,881 bytes; SHA256 `2ef518541ab8d6b17f2da7d2e755ffd72ee944e0ebf167e35c06bafff94ff790`.
-- Entry: SHA256 `5abf7de0d50d16b88f9d2dcef991cd6423b4a6cde16145d8256ef95911d6424d`.
-- 93 files; 21,252,492 uncompressed bytes. Only index.mjs differs from previous ZIP `21dde7d6fea1e7df23b5a0508a93995e7902acbd01561732625906b23ef1c1dc`; all92 dependency/native files are identical. Previous artifact remains in Git history.
-- Independent esbuild entry matches extracted entry; all100 application inputs match exact Git source (884 total graph inputs). See [verification](verification.json) and [receipt](receipt.json).
-- Backend change includes otherwise eligible admin team members in the existing public-safe member projection. No contacts, private email or org ID exposed. Comment/keyboard/link/share changes also require frontend publication. Public eligibility and scoring/reveal policy unchanged.
-- No new migration. Prior0110/0111 required; unchanged17-entry plan `3c173216603f6a2927903493e29bfbe629dcaddf67cbcd322196f3153f6bffd5`. No automatic migration/repair/resubmission.
+- ZIP: 9,051,660 bytes; SHA256 `322a91a1bce0003ac487572c61a03bd73d558cf4c770aebf57c4eb941a5fd6f8`.
+- Entry SHA256: `c9747fe4902e2a117d9ba466826bea06b25e2e53bf4b766a51b492f509bad4c8`.
+- 93 files, 21,277,937 uncompressed bytes. Only index.mjs changed from prior ZIP `2ef518541ab8d6b17f2da7d2e755ffd72ee944e0ebf167e35c06bafff94ff790`; all92 dependency/native entries are identical. Earlier archive remains in Git history.
+- Independent entry rebuild is byte-identical. All112 application inputs match exact Git source;896 total inputs, no forbidden files. Receipt contains every payload hash. Official packager @neon/config-runtime1.10.2, Node.js24/Linux ARM64 glibc, empty function env, zero warnings.
+- Host smoke passed health200, untrusted403 and unavailable503, with zero outbound attempts. It loaded unchanged JavaScript using explicitly substituted host x86_64 Sharp dependencies. Original ARM64 archive/extraction bytes remain unchanged. This does NOT prove ARM64 execution, Windows command execution or hosted DB/provider/trigger/login behavior.
 
-Validation: 1,036 passes, zero assertion failures, one cancelled timeout, seven skips in the1,044-test aggregate. Timed-out D1 test independently passed23.1s; this is not a clean aggregate. Targeted66, share/API rerun5, final focused11 passed. Typecheck, Webpack build and synthetic desktop/mobile browser checks passed.
+Validation: full aggregate began at2ca7c83 and finished1,095 passes, zero failures/cancellations, seven skips (1,102 tests). Final30cd91f retry-state correction separately passed26 focused tests. Final-source typecheck and Webpack production build passed. Native optional PostgreSQL tests skipped; PGlite transaction tests do not prove native multi-connection concurrency. No lint script exists. Synthetic browser checks cover1440/390/320, score omission/released ranks, toolbar, owner confirmation, countdown thresholds and prizes; these are actual components with synthetic transport, not hosted proof.
 
-Host smoke loads the exact JavaScript with explicit x86_64 Sharp substitution, zero outbound attempts and no DB/provider credentials. Unmodified Linux ARM64 native execution and native Windows commands remain unverified. All93 original extracted files were verified unchanged. Do not install Windows dependencies inside this package.
+Migration plan:19 entries, digest `3624c82a7dc7026b5db4179dc021e5d88d33c66bafab35c4916c5a476e04293b`. Existing0112 is retained unchanged; new0113_submission_vote_window.sql restores window-bound vote toggles and removes retired comment pause triggers without deleting engagement. Actual hosted ledger is unknown. Source checkout verification passed; no hosted migration was run.
 
-After later publication approval, follow `docs/PUBLIC_PROJECT_UX_WINDOWS_ROLLOUT.md`. Preserve working origins, Neon linkage and deployed secrets.
+**Deployment blocked pending review and GitHub authentication implementation.** Public evidence transport is currently anonymous-only (60 requests/hour per source IP); merely setting the proposed token does nothing. See [authentication proposal](../../docs/GITHUB_PUBLIC_EVIDENCE_AUTH_REVIEW.md). Owner native schedule/provider configuration and actual end-to-end verification are also required. No paid calls, credentials, deployment, live settings changes or push occurred.
+
+Unresolved product gates: separate question-response scoring weight/formula/caps/overlap; nondemographic contribution rubric; provisional feedback minimum30; final design/publication approval. Existing canonical scores are retained; no protected-trait scoring or fabricated marks.

@@ -1,888 +1,125 @@
 {
-  "runtimeSource": "7e6d02d8b658e1738c007ac53dcd6175907ff2c9",
-  "archiveSha256": "2ef518541ab8d6b17f2da7d2e755ffd72ee944e0ebf167e35c06bafff94ff790",
-  "indexSha256": "5abf7de0d50d16b88f9d2dcef991cd6423b4a6cde16145d8256ef95911d6424d",
-  "archiveFiles": {
-    "index.mjs": "5abf7de0d50d16b88f9d2dcef991cd6423b4a6cde16145d8256ef95911d6424d",
-    "node_modules/@emnapi/runtime/dist/emnapi.cjs.js": "eb583443e0dbaa6b0480cb2a2c0346d2d7fc0dd2bdb8ec72ec769389c7d2496b",
-    "node_modules/@emnapi/runtime/dist/emnapi.cjs.min.js": "82a6dd28d44f434ce0450def3a8645a1d2a565275e26f9260a326c163c7ab153",
-    "node_modules/@emnapi/runtime/index.js": "c406ece13dc7dcd5aec8b02c2d3d11c87acbfb01dee17f30483bec071c20a0c5",
-    "node_modules/@emnapi/runtime/package.json": "751db16171cb4d111905122be8a4c0dc2b5c82e6ba2a590ca24fbc6cca048f93",
-    "node_modules/@img/colour/color.cjs": "f7c3efcf482624007f2019fffee3e1dec56b8cb893faa9a420b2832805888dce",
-    "node_modules/@img/colour/index.cjs": "e6e93e7fb209420a20fdf2ec676e9c67413be8d5ace99eec64f9468480f0368d",
-    "node_modules/@img/colour/package.json": "bc38c5097693ed53b91c32f35fb0a52569736c7854ba2eb6d080f3252071f75c",
-    "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f",
-    "node_modules/@img/sharp-libvips-linux-arm64/package.json": "a3d16b47b7c0a55ddb43afa9678a9a83b6a27edbd3cf42d41e53c7838930982b",
-    "node_modules/@img/sharp-linux-arm64/index.cjs": "5fefc8e2a4db759ab7b80f26ffff131b9a4251ff5cfd07030f968ba5698ebdc2",
-    "node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.5.node": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b",
-    "node_modules/@img/sharp-linux-arm64/package.json": "46b7220846b8c6a552f002f62ab2c855f33a4013fb97d1e54c6a4895e4317c8b",
-    "node_modules/detect-libc/lib/detect-libc.js": "5de6a1c1abec8bba5ea1261cf819d83a73c92ebe72b879ae48c59ca12320a462",
-    "node_modules/detect-libc/lib/elf.js": "0e8820f00ee11d179d94894d4f97a6e87c34ab59e5dd4d3a571dfabcecf043af",
-    "node_modules/detect-libc/lib/filesystem.js": "5c98fb66b559d0b4fa82c7a3e39d9ab6840f022c4c73e6b1a73ac6d16ec13fd7",
-    "node_modules/detect-libc/lib/process.js": "f37dd0ead9f70b50c6f5529c600e1cdf076e3c3bc8e6b4a0a9820a8d65244628",
-    "node_modules/detect-libc/package.json": "ee88e5b954fdf3a8480b1d01ef767d68d8ca2c6da269f58c5cf1c5550e9aa2a7",
-    "node_modules/semver/classes/comparator.js": "054202956430d63d5ff4599fae09760ce465b489e4f0b5ef5ce7cc7ac21157ac",
-    "node_modules/semver/classes/range.js": "a6544485aa8575aa9854c67e2caa67726815de18a482d0ceb8a1003244de3bc1",
-    "node_modules/semver/classes/semver.js": "813b2c185512d30c9b931c2fed8140889d9d7490ceeeedc370da30337dc8ca57",
-    "node_modules/semver/functions/clean.js": "4eadb0892844cf3ae295121a86163a66c73f89acd1b7f0b114ec115b4539512f",
-    "node_modules/semver/functions/cmp.js": "a63d74e87b73788e78e9ce0a4892b5333d6b809c0de88b31e4ed76cbf17f94b3",
-    "node_modules/semver/functions/coerce.js": "28a251c5ab210ddf9e97551b9f37a53329fcce91f0c3943dcbc02de1a1de915a",
-    "node_modules/semver/functions/compare-build.js": "5ab651d5b40af289bd85c645a92b6d8cfe1a986dc413c797cfcc8d623d7c844c",
-    "node_modules/semver/functions/compare-loose.js": "07b6a3a1db0a5210ceb784c1708bd4679f3a94fc73a9c9eb349349e7070a6f78",
-    "node_modules/semver/functions/compare.js": "d404b5aa48aaddc8a654c5da8fb7d4443404b7948589b21ac4b045d1cee4e34c",
-    "node_modules/semver/functions/diff.js": "7a11fd39b987cdf06c65e928cb1aca49bec583feb86fb5c8fe47a6fd61d7de31",
-    "node_modules/semver/functions/eq.js": "b6e30a7168e52723216fc163d300e2bbabf92ec0251f9ac5438bb6ccf57c8936",
-    "node_modules/semver/functions/gt.js": "135523704aa48cd98834dd170ee9f74f0e68043b379f32d021db11e6304c5c93",
-    "node_modules/semver/functions/gte.js": "991c5bbe48ecb210a562646872f05862ad9fc0d42186d85aa60bdc6fa323eb9d",
-    "node_modules/semver/functions/inc.js": "952069fc8690b7d3af0fe9d55f7c54fe2ac067b48c5e74f6a54f9ce19a334493",
-    "node_modules/semver/functions/lt.js": "1c897a9bc849320e2e9dc0f6c09555c01ee3ddf30734515d717b88ad7740ea25",
-    "node_modules/semver/functions/lte.js": "3a8d0b1d00423f60cc7cb810b36ab77b61330831ad237dbe73eb5cecfa412800",
-    "node_modules/semver/functions/major.js": "5c678480d882f511200fed2c16ec3847dfedb08a1d70328dc2f031d35d825276",
-    "node_modules/semver/functions/minor.js": "1b051794f1713adec2a236517196691687c35f82e0b596ff3316a78b3cc10ae6",
-    "node_modules/semver/functions/neq.js": "a662883751918822c162183b46b9e20d09489132f82686c92ab78bee67f3a127",
-    "node_modules/semver/functions/parse.js": "29a69e15b6d02fe381d573f861881a89590e9d0f0f0ca740c5f85eaf0234c4ad",
-    "node_modules/semver/functions/patch.js": "f02d3c1b059fe3d96ce124886f7eef321d381a95638fd3c4a8d5ccd8e76ffadd",
-    "node_modules/semver/functions/prerelease.js": "baedbf503d5610ad041bfb56071efa48feb331ca278295c399537d35d3ffb593",
-    "node_modules/semver/functions/rcompare.js": "84fa5e88adf08d15c993cac8cdec6d1a65045b7e95a9c55184230a7f807f4dc0",
-    "node_modules/semver/functions/rsort.js": "6ec659ce3b6c2b173c719286caab04409adba046c0917874ec3b5e36ddfbc7e3",
-    "node_modules/semver/functions/satisfies.js": "8cf5e122b757251671ed6c9d9680904b71cd375845853f05312e608cf2cc2946",
-    "node_modules/semver/functions/sort.js": "c2fe2d3ed0be8a4e9de8f02abdfd5d9c0d3bcc510d88e87af84185592882c4b8",
-    "node_modules/semver/functions/truncate.js": "e145833a250311927c92f424f56498c52f1b7bb1271ce6afbf006db87773ff43",
-    "node_modules/semver/functions/valid.js": "0de7ea736cb7807179d46dfac09c830a9338e02b6a07db12d7040cde2def6025",
-    "node_modules/semver/index.js": "4b3e57d3d40e29e0706002eba113d09f35aea593578376bbeec83b777b9912ab",
-    "node_modules/semver/internal/constants.js": "38a112baf27ceca0260082ff26ac2fd7a9861cab1af12dd65e720277f68e6ce9",
-    "node_modules/semver/internal/debug.js": "8a9f420572260f3cf944463b5090d62a60f0730589dc23a7ec4ca25e2ee41bb3",
-    "node_modules/semver/internal/identifiers.js": "b4916b09dc7869ae0eb05e71c855c942a3a7365f7e6e89185d59a9e45a2451d7",
-    "node_modules/semver/internal/lrucache.js": "14d087c87da87b6f5c36fc4cdd7d2d14077874b14a68e20fce5b6138fa2ca34f",
-    "node_modules/semver/internal/parse-options.js": "fdf51d0de8d5442c35a997ef58cd530d239ce206f961d14c5121354451b01d01",
-    "node_modules/semver/internal/re.js": "5833262888e2b5d843a69193f83c05e374818dbe55379b497819b5bf58e48cd8",
-    "node_modules/semver/package.json": "7c94cb7f2a53c27b20d76386ec144c062894dbcc909cfabd0f728c37874b1776",
-    "node_modules/semver/preload.js": "edb6808911bebcb324b2df57e5c9935149e56984ff083b74c6cfe215f5b710ba",
-    "node_modules/semver/ranges/gtr.js": "8fadad28e36d28e93d498ac7ac20badba2a407312845eabc18e82e90a0732b19",
-    "node_modules/semver/ranges/intersects.js": "fe87ac5d3020010ad3ec00636dadbf0c669ff07d0f57e0a8165a8264f79a676f",
-    "node_modules/semver/ranges/ltr.js": "e5186fcc03018acf9be6d968755d4c49727aeb0d981d179eb568ae5fbe983038",
-    "node_modules/semver/ranges/max-satisfying.js": "e1a2c0d6144cc772cd20bbc8ecb9e8a3a4074e9172a3d8e794838b591cdeb416",
-    "node_modules/semver/ranges/min-satisfying.js": "2681abf54098aa670f12826b76a6ec77a2441186ae4243afde3be8ae4908f7ca",
-    "node_modules/semver/ranges/min-version.js": "fefba0a88c2bf74d5cede504b5ae50a8dc3edfd69cf0174a491e2cf3e442614b",
-    "node_modules/semver/ranges/outside.js": "3a2b0b23593d2f49419c06af2af75450cab103b0c25d665d48fe5bca495a21ca",
-    "node_modules/semver/ranges/simplify.js": "7b78581c13322bc68ece2088685386b2a9b51c15b94d0a2063bdf2546bd41934",
-    "node_modules/semver/ranges/subset.js": "ceb9eb6ed5bfc6c7ac7af7f47e5c3535444a4e66a0e2b58cdad4bd02a35d454d",
-    "node_modules/semver/ranges/to-comparators.js": "6c5e966210cff270fa2850668aaf8460fac7759f8d99f282521ef7a78f4564e9",
-    "node_modules/semver/ranges/valid.js": "5ef6f995af801868925940cf8df5735d565ebabb090b068695cae65218bcd3ac",
-    "node_modules/sharp/dist/channel.cjs": "7445567e8001f4be3126374e4c17e282777ed14c718acca875c91bec69a2d7a1",
-    "node_modules/sharp/dist/channel.mjs": "6067b0ba5ebcc9682a01d0b450a12b54849a95c8ed017f8485bddb5fd0b9db91",
-    "node_modules/sharp/dist/colour.cjs": "da760186e75d4fd8b6da0a617ecf122deec2fa6d95fdcc194bbee0cb1c5e4605",
-    "node_modules/sharp/dist/colour.mjs": "760e7fa8161432a9cc97f0a3d9f3e0b757e66089c967e6b36f3131c9fdafa1b5",
-    "node_modules/sharp/dist/composite.cjs": "6e0837309d25c2b642d42b557f3e1292c2b057af09746647a3a6d54de772a157",
-    "node_modules/sharp/dist/composite.mjs": "16eadc26ba57417e90e4bb73aff1116b56ad26766088793ab0b7c4bbdd2bc9fc",
-    "node_modules/sharp/dist/constructor.cjs": "6b8978e0f1614d83a219cbbd455e3eed7922bc4212a5b3b99c5d37c3af3b3226",
-    "node_modules/sharp/dist/constructor.mjs": "8be8da679d2a028d0f53b02ce52f07f295134a297caf3068944cd8d0b57ab3d1",
-    "node_modules/sharp/dist/index.cjs": "d69f275bc49fcd2a6188b26b35c986d4db32a1b008653fef88adb4598688232a",
-    "node_modules/sharp/dist/index.mjs": "0e8f955c68a1b0bccf0ba5343c924dbfa6a46a76a0d491ec27fe6b328311363e",
-    "node_modules/sharp/dist/input.cjs": "e5eb5c891c0893098dbe8bc0358a2f2c7e800581018923a7956732fe1a5ddf8f",
-    "node_modules/sharp/dist/input.mjs": "4b0a51e678f9022cec06a1ffb34e17ea3498cfb707492b54de87541ccac54125",
-    "node_modules/sharp/dist/is.cjs": "46fa32e93964d8a31d6e851dc3bb7f3ec36935f9e8323b59603ff6cd84a7faa7",
-    "node_modules/sharp/dist/is.mjs": "96a3b1b82d389b7b57569332fed93e46cf9b5aa79f2babb82cbb15fe1581a409",
-    "node_modules/sharp/dist/libvips.cjs": "3419f6cb4303feaf4a76abe122ce1caf5dc755f9f17fa013afd5561827b61062",
-    "node_modules/sharp/dist/libvips.mjs": "d9984601b0aafe44c393b29ce4b0712b1c40890c3d740d4fda49842a4ea5873d",
-    "node_modules/sharp/dist/operation.cjs": "11eb4921f37e4e06c0b349f55e186852cdd094203cc3c5651681801eea5d80f8",
-    "node_modules/sharp/dist/operation.mjs": "a3b14c3a13305dbe8fde48a263d13b0a104dcb97afc65fe5f55b8e556d054be1",
-    "node_modules/sharp/dist/output.cjs": "4c2878241a264095b661fb321accf86fa9be033bfe541d5a70ac2f8d80150893",
-    "node_modules/sharp/dist/output.mjs": "d1be82aace2d7f96bfc29e6e76538521fc8dfe6d4e90f7eda71a8f4c2a1597ba",
-    "node_modules/sharp/dist/resize.cjs": "e03dce87aaee233fecf191ec3c713a9f856e13d0d9ccd7b0a7dbf35b65e36538",
-    "node_modules/sharp/dist/resize.mjs": "e3d26f31cf391e28f3f96e708ccb96745cf016e18f8ef4486c837e5efcb3c922",
-    "node_modules/sharp/dist/sharp.cjs": "76120d3971051fcc469c0bfa36e7b23d3c388b6a2f5785bf1491bbdb90ff0176",
-    "node_modules/sharp/dist/sharp.mjs": "d0c3ce3837636a140e8363850823e3b8dc2b000928303664cc9fc1aa2ba326ee",
-    "node_modules/sharp/dist/utility.cjs": "0f7a14858dfa8ebd01b2c6c2272297f7a34c4af3d84f0c0b926146c49a2655b1",
-    "node_modules/sharp/dist/utility.mjs": "761566e165bc1fc90bc6dd67a3b560c1a63e6cfe98009b726d35288606d629b9",
-    "node_modules/sharp/package.json": "ad4a2535d72eb638053a38867b1abf43c328cd1c1dbae5cf4172d498365a8b97"
-  },
-  "independentGraph": {
-    "runtimeSource": "7e6d02d8b658e1738c007ac53dcd6175907ff2c9",
-    "esbuild": "0.28.2",
-    "graphInputCount": 884,
-    "applicationInputCount": 100,
-    "indexSha256": "5abf7de0d50d16b88f9d2dcef991cd6423b4a6cde16145d8256ef95911d6424d",
-    "archiveIndexBytesIdentical": true,
-    "applicationInputsMatchExactGitSnapshot": true,
-    "forbiddenInputs": [],
-    "inputs": [
-      {
-        "path": "lib/db.ts",
-        "sha256": "6f1db2f94aa83211cddf05851fc32053381f9f2b3bcbf133bac793ab410c1587"
-      },
-      {
-        "path": "lib/audit-contract.ts",
-        "sha256": "f0e1710acc69634fbcf2182d0b4803995d75c26e9530f91cdf5728b532dbb535"
-      },
-      {
-        "path": "lib/security.ts",
-        "sha256": "ae25fc8feff6f8e75df65452640ed55639bfc1be5b587e767f65630aa01da575"
-      },
-      {
-        "path": "lib/owner-ai.ts",
-        "sha256": "bbc0d819e27f59921c12a3c3b678e5f0f2f7bb390800a7a9c33cd6e4964d7935"
-      },
-      {
-        "path": "lib/derived-readiness.ts",
-        "sha256": "7fc73c8ec9d00e4fc110c32bd1d83093254e794a70fa6520c9af78e809f4ecb3"
-      },
-      {
-        "path": "lib/operational-setup-contract.ts",
-        "sha256": "77c8208939b0504e2456024276af4f240255a92229a18bf1127f65d2066649fd"
-      },
-      {
-        "path": "lib/time.ts",
-        "sha256": "7430b1662198dd73a9c3fc9cf9244efa10ddfbd1c727a0ed0ccbd23c7ad84caa"
-      },
-      {
-        "path": "lib/policy.ts",
-        "sha256": "7fac068ad1c750a677ddb6b9a16831873a385567f12113467fbed9c53a19622a"
-      },
-      {
-        "path": "lib/submission-tools.ts",
-        "sha256": "a48abd504ff49b216261b460a335576fc957ae025e84d89ee3c3df4d1e8cd3f7"
-      },
-      {
-        "path": "lib/ecosystem-verification.ts",
-        "sha256": "f9a2db0458a27c872525ea75c39b8ffb126147e16f1a8c06502ffa273b09d933"
-      },
-      {
-        "path": "lib/evaluation.ts",
-        "sha256": "0b330728fdb7feb54fab16303c6f21c4cf7cef4ab1fbe8d7f46dd5609e3d1c1a"
-      },
-      {
-        "path": "neon/db/sql.ts",
-        "sha256": "1f753a167d0136ce4211d872f2c80fbbd7e7959d18a49189cf3bdfde2993fcbb"
-      },
-      {
-        "path": "neon/db/adapter.ts",
-        "sha256": "9fa930533fbf17065edc717e246152d5d0f6ef61a5060436ca2f9fde8da0dd41"
-      },
-      {
-        "path": "neon/db/index.ts",
-        "sha256": "aca84084cd262027f534bba828c1c030fe7418c357d8f4858ea7ae26363aba41"
-      },
-      {
-        "path": "lib/identity.ts",
-        "sha256": "2ad5f8400cb9b37b1b377da2303ecbbdce0ec672a3bbd578872dda170f22ef0e"
-      },
-      {
-        "path": "neon/auth/config.ts",
-        "sha256": "685dd004c790d3eee5465300dfe3e4b2e4fcf89356b50448672c752db59dbb55"
-      },
-      {
-        "path": "neon/auth/google.ts",
-        "sha256": "68aaf21657f9d7afaf1f9c43d9c029ad9b9df8131d30cf4bf059a352d61a125e"
-      },
-      {
-        "path": "neon/auth/email-template.ts",
-        "sha256": "6b5f73406002aecf12a52380f89319025204a51dd8ec07520f10af8f8da0c820"
-      },
-      {
-        "path": "neon/auth/smtp.ts",
-        "sha256": "e45f3496684eb1333743e84bae1197f30d9b8489ef06566ee1c9ffb863e736ea"
-      },
-      {
-        "path": "lib/sign-in-evidence.ts",
-        "sha256": "2bedfc3e728b09be5726eb6a17b445da6ed1f58582f2fa26fddcdb0e9f40abdd"
-      },
-      {
-        "path": "neon/auth/index.ts",
-        "sha256": "9188f63f59696263ce9673449cfaa69b45b4bdfdb8ff68a84d5a7563a2843e4b"
-      },
-      {
-        "path": "lib/credit-stock.ts",
-        "sha256": "ae2fff08f262142e16975b2fae2d18abb86f254f368e526a54426c2167900122"
-      },
-      {
-        "path": "lib/experience-contract.ts",
-        "sha256": "b11b7e01b143768b56c6ebbe2104594eea3e52503b61dcb707617dcf880eaeae"
-      },
-      {
-        "path": "lib/team-lifecycle.ts",
-        "sha256": "5c7484f78616039a17afc86908456fd567ba6a5ac17dae243f8af220338399ed"
-      },
-      {
-        "path": "lib/directory-facts.ts",
-        "sha256": "46817d681c338efb5e71f2f8a7ef1f14fd367e8d79569340fbf6fcb70f2247c1"
-      },
-      {
-        "path": "lib/portal-status.ts",
-        "sha256": "80beccd1b362a99e537afd4ce7dc92e5b4234181ada4cc76a7f70bbbaaeb2949"
-      },
-      {
-        "path": "lib/admin-filter-status.ts",
-        "sha256": "214c3d85446165e3ece48f8a3aa77a4c4e0ad14909d3b90b5fbac358d4bb0ea3"
-      },
-      {
-        "path": "lib/profile-contract.ts",
-        "sha256": "1c7c89063c7aa5899fa60c4643a9ab726f3cd85f65cf006158710ab60a1d23a8"
-      },
-      {
-        "path": "lib/admin-filter-options.ts",
-        "sha256": "844a958be3fe411201b001c7422fa6f1cba421c755f6f02d3aefc2458e2ce479"
-      },
-      {
-        "path": "lib/admin-demographic-filters.ts",
-        "sha256": "efb7050038058c52ee30d5432e8095fc8c6b7323e134b83a41aa4d145144be1a"
-      },
-      {
-        "path": "lib/project-media-policy.ts",
-        "sha256": "536169318d8fd9f7ad7f6baa8643071d8c1ed2146ca7e8fa04c290384436b4ee"
-      },
-      {
-        "path": "lib/participant-filters.ts",
-        "sha256": "5a95aef4af2631f1e7e8252a00d04b717187a413c9cddda2307b419fcd821b42"
-      },
-      {
-        "path": "lib/participant-export.ts",
-        "sha256": "35061922ebbc5ad82a005aba206c1c1c235f46ea36b2e227a4b9a176b70dd897"
-      },
-      {
-        "path": "lib/provider-grade.ts",
-        "sha256": "5ae8dbde6edd7e16e4942228bb510520363d28cf0687be60a32b60cc2ab16377"
-      },
-      {
-        "path": "lib/credit-audit.ts",
-        "sha256": "ad9acdd6c5eacd2bb1932b32a941aa36766d18ae3acd6f34608cbc88cb9df532"
-      },
-      {
-        "path": "lib/credit-stock-import.ts",
-        "sha256": "098a419aa80c38a16c29860eae9e9410098b7a8ef706c8f31cdccb2712249e56"
-      },
-      {
-        "path": "lib/credit-batches.ts",
-        "sha256": "d98309b845d206be804965131bce876db4f575f005c861df535cf723e56747d2"
-      },
-      {
-        "path": "lib/team-leader-transfer.ts",
-        "sha256": "62a183dd212efb383d3e9f46781010dca8c33a2ee173ddee332ad85a5dd454d2"
-      },
-      {
-        "path": "lib/phone.ts",
-        "sha256": "93d310bd6292c4096f4de4375c2c8bd5dc9490283849fa2321fa969d4dc37031"
-      },
-      {
-        "path": "lib/roster-website.ts",
-        "sha256": "d54e2a5058fc052e650fe06b7b39498289ded0fc4995bd761b686f67eb95190a"
-      },
-      {
-        "path": "lib/roster-import-columns.ts",
-        "sha256": "86e2adaf1446de3dd1b3de707d136e4c9453f3c07adec0efe20f739b78428900"
-      },
-      {
-        "path": "lib/roster-import.ts",
-        "sha256": "553f110692f7215654892ad40a01e1e757880b76a06b32af4832e76ff4f27972"
-      },
-      {
-        "path": "lib/absence.ts",
-        "sha256": "3138297d337bfeb5c7815586d3ccd32e544681fbbf6b29697d98985a46e4e77b"
-      },
-      {
-        "path": "lib/terminal-deletion.ts",
-        "sha256": "14dae54a5869522c8560ce706d622a18363fb378229876807454fcb0829bd7a6"
-      },
-      {
-        "path": "lib/record-removal.ts",
-        "sha256": "cf14396eeeb231701674336b8687026ac15ce196198fc6bec8cbd5c2506248f7"
-      },
-      {
-        "path": "lib/roster.ts",
-        "sha256": "23710512516133ac7010cb2508b2360fc4fbf4967d972819b9d352b830e4127f"
-      },
-      {
-        "path": "lib/team-access.ts",
-        "sha256": "823655cfb9332c578ad65101e0c873785d254dfe12c3fb5c2bc17d7f09400dd5"
-      },
-      {
-        "path": "lib/project-image-preflight.ts",
-        "sha256": "991dfb4469d9d855860dfc33297b7a1688cda2c0373b2efd0cbe1a288717c077"
-      },
-      {
-        "path": "lib/project-media.ts",
-        "sha256": "2287bfe98f5fb93548664d3c0765e9efb122172d4cbd58a9876d9a92c0f99fe2"
-      },
-      {
-        "path": "lib/engagement-scoring.ts",
-        "sha256": "287fbd090efaf1b93e2863d25c3cc388d346b588094d411bda38d07616d41de5"
-      },
-      {
-        "path": "lib/private-project-index.ts",
-        "sha256": "11863ab42fbd262daa6add1f57acc957f5abb91045b5fe4058b590a58880f8a9"
-      },
-      {
-        "path": "lib/admin-team-idea.ts",
-        "sha256": "1c3d52888a0ebf91daaffe11b958aef5b2bde5ee30271743e52ee83c653c7572"
-      },
-      {
-        "path": "lib/admin-submission-testing.ts",
-        "sha256": "9ee176e6355a059c8f05ca0bb2537ea39114f6772b35bb000b30835b58edd1c8"
-      },
-      {
-        "path": "lib/selected-profile-facts.ts",
-        "sha256": "4a522d43b8bd12bcbf460c8a01ad6f128b337728fc909e86aa8200a6492fbc3b"
-      },
-      {
-        "path": "lib/project-member-profiles.ts",
-        "sha256": "2367897301a6d96b3ce70373e80e2e154eb01ef7acdf302b1db1a284892404f3"
-      },
-      {
-        "path": "lib/admin-team-corrections.ts",
-        "sha256": "856dba7bd563f666fed0de475e44062a8456a31dbd710631249ce1ce15b82d68"
-      },
-      {
-        "path": "lib/admin-team-approval.ts",
-        "sha256": "494fd27f1349c1e465875177b39227dd617ee38b3d393cac8cd1c4018358bca4"
-      },
-      {
-        "path": "lib/admin-team-lock.ts",
-        "sha256": "e267465346d8e44cfe8352f8f23f0e5fc659847e9a643d5818b778d0b707a26f"
-      },
-      {
-        "path": "lib/public-team-members.ts",
-        "sha256": "a319c4505c04ab2d520870777c2cb71f12d6dd7437b1127a700737caa881a744"
-      },
-      {
-        "path": "lib/admin-access.ts",
-        "sha256": "688a69014a400f82a139deebb7794266e903e3c6607a28626241506f126e5cd9"
-      },
-      {
-        "path": "lib/participant-checkin.ts",
-        "sha256": "ac0a8e6942bf27115a7f35e36042d20da069992b68c953c23857eda94844d018"
-      },
-      {
-        "path": "lib/operational-setup.ts",
-        "sha256": "70252e1ec44ee7e56a3424939b17938eaf2cc574e629df7ef3f47979d285f592"
-      },
-      {
-        "path": "lib/policy-controls.ts",
-        "sha256": "08a2470a8dd8691ed269077bd219671aaefd43fe05a2df1a36277626293feff3"
-      },
-      {
-        "path": "lib/score-release.ts",
-        "sha256": "30160653fb078dae820096faab314815c8e22ec15a16d149f62a083c4d7b5089"
-      },
-      {
-        "path": "lib/result-controls.ts",
-        "sha256": "239972bcabf79502ac92662ea2af046dae88f10d14b2524424d5b874d1afda44"
-      },
-      {
-        "path": "lib/discover-participants.ts",
-        "sha256": "78724f7523ee3ba7e07881e22a19d3ab3c9fbde74b7aa37fb06b5a415bb23b19"
-      },
-      {
-        "path": "lib/avatar-contract.ts",
-        "sha256": "24bd0a8188213d348b67a10b967430c1bf765d50e9a6f30bd3c7b9b570536a77"
-      },
-      {
-        "path": "lib/team-color.ts",
-        "sha256": "d1e70496f4fe60aee182ae65ca83bfc29e790f929fb1fdb65c741a9744f16852"
-      },
-      {
-        "path": "lib/public-project-facts.ts",
-        "sha256": "86751cb6eebebdcf07e888d09fca4cbd8dd692dd05c0276966c2598e92aa8ca4"
-      },
-      {
-        "path": "lib/engagement-control.ts",
-        "sha256": "74543d4e5481f0d38c1cf19f6c094b3b3801a4659bb0915303c3c89e9e63fa57"
-      },
-      {
-        "path": "lib/participant-rules.ts",
-        "sha256": "ad801b915e157403a66ffcd0cafa26c795da5a8666220c121b81b1b68d055428"
-      },
-      {
-        "path": "lib/repository-evidence.ts",
-        "sha256": "0cc2aaa69b2fe8524509927e9dd382c12ead6c6aca92a5f8e761ed952ac53621"
-      },
-      {
-        "path": "lib/admin-team-unlock.ts",
-        "sha256": "5340f60779c94e536722ff526d21f474028858da42d1b4c11351ffb96231c0fb"
-      },
-      {
-        "path": "lib/admin-stats.ts",
-        "sha256": "54ec37288e2200953541b50d57484164df5159f4559b14aca51ac9178b6fa941"
-      },
-      {
-        "path": "lib/admin-submission-analytics.ts",
-        "sha256": "89220ad1404134babc2bed23af385286597fdb4803d2d8b39a5a3bbae17269f8"
-      },
-      {
-        "path": "neon/storage/types.ts",
-        "sha256": "09257cf4c3d5735f77b6c25d177c990ed9ff44220633fb7f4151847681c6dc4f"
-      },
-      {
-        "path": "neon/storage/reference.ts",
-        "sha256": "66c9c65efb646a208a0946c5711e1f02b54ccb70621d492ecf463d1270810b83"
-      },
-      {
-        "path": "lib/public-content-defaults.ts",
-        "sha256": "cab8182bc3d622d84dd1d64d39779ee626ac07615059214875f1bfe456890165"
-      },
-      {
-        "path": "lib/event-content-contract.ts",
-        "sha256": "50c7698f840af3f9a854bc662a718b04bf23baead002d1329eab0e44e62f201e"
-      },
-      {
-        "path": "lib/event-content.ts",
-        "sha256": "70b296884e6fd8e3c42c665073a65128802170c0bed99697aa3b6f50f15767d7"
-      },
-      {
-        "path": "lib/experience.ts",
-        "sha256": "64fa8aa04073f5539b422e12e7c76b35cc2de4ea6766abe702f3eb4a4f733606"
-      },
-      {
-        "path": "lib/service.ts",
-        "sha256": "386782933fc92192e36bb09801dfe48b1f224febcc5e352e954491ffa1de2af7"
-      },
-      {
-        "path": "lib/admin-presentation.ts",
-        "sha256": "4cf4de2d1ed3e988792959dff374f079915c7fb498b7c5b25a0e30a6bb5e5433"
-      },
-      {
-        "path": "lib/evaluation-background.ts",
-        "sha256": "4339fb1bed404b7954ad23e73aa77c09a3d4301bea18428c829cc266c730eb27"
-      },
-      {
-        "path": "lib/http.ts",
-        "sha256": "b4ade163a21b6134f7383133a5a79e722c59990fee86cbcf67cf7607ab4bd4f7"
-      },
-      {
-        "path": "lib/public-project-image.ts",
-        "sha256": "ca939d3ffe44c8e10b76cd0459f6c2a7d679969217834ce1421d5dfc3e60cb01"
-      },
-      {
-        "path": "neon/router.ts",
-        "sha256": "579b236d4b7722aaac9a6422e07bc52d58a707f3f6a9303126fbcb3ff06187c9"
-      },
-      {
-        "path": "neon/storage/image.ts",
-        "sha256": "990054a3d4aa7fe0d6fc92f88f66ee4dbc559c24b49f34e52a2d06ff9afa21ba"
-      },
-      {
-        "path": "neon/storage/s3.ts",
-        "sha256": "6669b3de090054a01a4afc8b376a0d8756fc8f7c96fd4a508f386f4a2df4b799"
-      },
-      {
-        "path": "neon/storage/repository.ts",
-        "sha256": "037c88bc319dd11e8cef97a72bd060f739c19fc5c49ead908f763044e8eac671"
-      },
-      {
-        "path": "neon/storage/authorization.ts",
-        "sha256": "2ba4db4b1e337803eda287b6bf717b0d15c1b720682382243456cfdd1d26c8ff"
-      },
-      {
-        "path": "neon/storage/http.ts",
-        "sha256": "b18f5434d033b947e8f79a999317f6b7130d5bd607b4f1f3992f93461ee22d9d"
-      },
-      {
-        "path": "neon/storage/database.ts",
-        "sha256": "16036dff7b987bbedc6f0c8489f53e654a6a81a63be5d9bf09bcb2ad263f7370"
-      },
-      {
-        "path": "neon/storage/index.ts",
-        "sha256": "d854b54e66355d6da065c3399187d7a0244631665f55c7a813844a7f25661c82"
-      },
-      {
-        "path": "neon/ai/input.ts",
-        "sha256": "08223c0ccddbd2e6e9852f3fbbe62ae140c1f55c1b140d5c87973222948f82e5"
-      },
-      {
-        "path": "neon/ai/output.ts",
-        "sha256": "6b1d7dbf3b6e92aef2e1b1f82b48d834da698441a805383dc3085303380f156c"
-      },
-      {
-        "path": "neon/ai/repository.ts",
-        "sha256": "eae14f8f21f7de1b0357d3551d0a130c2eee53ffc410a183941b70fab780b7a6"
-      },
-      {
-        "path": "neon/ai/index.ts",
-        "sha256": "0f59641dc9637eb0dd521ab30b57c6f078ae2951eb43913f8529abcad3f0ce13"
-      },
-      {
-        "path": "neon/ai/http.ts",
-        "sha256": "323bdd74d8eb8feb704ac394709a79ba59cd41cba4443b86c259d47d20650503"
-      },
-      {
-        "path": "neon/api.ts",
-        "sha256": "44dcfea5b66a0d0a7f996d120fb1354f767936347ebc40932f1741b7a7fda50d"
+  "runtimeSource": "30cd91f6863d0cfd526f70ecd928a58e57c9ed57",
+  "archive": {
+    "path": "/workspace/ddd-showcase-evaluation-review/artifacts/neon/portalapi.zip",
+    "bytes": 9051660,
+    "sha256": "322a91a1bce0003ac487572c61a03bd73d558cf4c770aebf57c4eb941a5fd6f8",
+    "files": 93,
+    "uncompressedBytes": 21277937,
+    "nativeFiles": [
+      {
+        "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
+        "bytes": 18324712,
+        "elfMachine": 183,
+        "sha256": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f"
+      },
+      {
+        "path": "node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.5.node",
+        "bytes": 530120,
+        "elfMachine": 183,
+        "sha256": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b"
       }
-    ]
+    ],
+    "forbiddenPaths": []
+  },
+  "indexSha256": "c9747fe4902e2a117d9ba466826bea06b25e2e53bf4b766a51b492f509bad4c8",
+  "identicalUnmodifiedJavaScript": true,
+  "hostDependencySubstitution": {
+    "path": "/workspace/showcase-evaluation-package/host-smoke-322a91a1bce0",
+    "nodeModulesTarget": "/workspace/dddhack-portal/node_modules",
+    "purpose": "Resolve sharp against installed host x86_64 native dependencies; original ARM64 archive and extracted tree remain unchanged."
   },
   "hostSmoke": {
-    "runtimeSource": "7e6d02d8b658e1738c007ac53dcd6175907ff2c9",
-    "archive": {
-      "path": "/workspace/ddd-comment-direct-review/artifacts/neon/portalapi.zip",
-      "bytes": 9043881,
-      "sha256": "2ef518541ab8d6b17f2da7d2e755ffd72ee944e0ebf167e35c06bafff94ff790",
-      "files": 93,
-      "uncompressedBytes": 21252492,
-      "nativeFiles": [
-        {
-          "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
-          "bytes": 18324712,
-          "elfMachine": 183,
-          "sha256": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f"
-        },
-        {
-          "path": "node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.5.node",
-          "bytes": 530120,
-          "elfMachine": 183,
-          "sha256": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b"
-        }
-      ],
-      "forbiddenPaths": []
-    },
-    "indexSha256": "5abf7de0d50d16b88f9d2dcef991cd6423b4a6cde16145d8256ef95911d6424d",
-    "identicalUnmodifiedJavaScript": true,
-    "hostDependencySubstitution": {
-      "path": "/workspace/public-project-ux-packaging/host-smoke",
-      "nodeModulesTarget": "/workspace/dddhack-portal/node_modules",
-      "purpose": "Resolve sharp against installed host x86_64 native dependencies; original ARM64 archive and extracted tree remain unchanged."
-    },
-    "hostSmoke": {
-      "passed": true,
-      "node": "v24.19.0",
-      "platform": "linux",
-      "architecture": "x64",
-      "environmentKeysAtStart": [
-        "APP_ORIGIN",
-        "LANG",
-        "NODE_ENV",
-        "PATH",
-        "PORTAL_PROXY_SECRET",
-        "TZ"
-      ],
-      "environmentKeysAfterImport": [
-        "APP_ORIGIN",
-        "LANG",
-        "NODE_ENV",
-        "PATH",
-        "PORTAL_PROXY_SECRET",
-        "TZ",
-        "VIPSHOME"
-      ],
-      "guards": [
-        "fetch",
-        "net.connect",
-        "net.createConnection",
-        "net.Socket.connect",
-        "tls.connect",
-        "http.request/get",
-        "https.request/get"
-      ],
-      "outboundAttempts": [],
-      "checks": [
-        {
-          "name": "trusted-health",
-          "method": "GET",
-          "path": "/api/health",
-          "status": 200,
-          "body": {
-            "ok": true,
-            "runtime": "neon-functions"
-          },
-          "cacheControl": "private, no-store, max-age=0"
-        },
-        {
-          "name": "untrusted-health",
-          "method": "GET",
-          "path": "/api/health",
-          "status": 403,
-          "body": {
-            "code": "UNTRUSTED_PROXY"
-          },
-          "cacheControl": "private, no-store, max-age=0"
-        },
-        {
-          "name": "unconfigured-portal",
-          "method": "GET",
-          "path": "/api/portal?view=%2Fdashboard",
-          "status": 503,
-          "body": {
-            "code": "BACKEND_UNAVAILABLE"
-          },
-          "cacheControl": "private, no-store, max-age=0"
-        }
-      ],
-      "sharp": {
-        "version": "0.35.5",
-        "vips": "8.18.7",
-        "resolvedModule": "/workspace/dddhack-portal/node_modules/sharp/dist/index.cjs",
-        "loadedNativeAddons": [
-          {
-            "file": "@img/sharp-linux-x64/lib/sharp-linux-x64-0.35.5.node",
-            "elfMachine": 62
-          }
-        ]
-      }
-    },
-    "noRebuild": true,
-    "noDeploy": true,
-    "noMailSent": true,
-    "noDatabaseConfigured": true,
-    "receiptGraphOnly": {
-      "inputs": 884,
-      "forbiddenInputs": [],
-      "recomputed": false
-    },
-    "nativeARM64Execution": "unverified",
-    "manualBackendRedeploy": "required after user review",
-    "limitations": [
-      "This is JavaScript loading/routing with an explicitly substituted host sharp dependency, not execution of the unmodified ARM64 archive.",
-      "Outbound guards are installed on Node fetch/TCP/TLS/HTTP APIs. No provider, DB, SMTP, Google or storage credential is supplied.",
-      "Hosted ARM64 decoding, storage, SMTP delivery and full login remain unverified."
-    ]
-  },
-  "archiveComparison": {
-    "changed": [
-      "index.mjs"
+    "passed": true,
+    "node": "v24.19.0",
+    "platform": "linux",
+    "architecture": "x64",
+    "environmentKeysAtStart": [
+      "APP_ORIGIN",
+      "LANG",
+      "NODE_ENV",
+      "PATH",
+      "PORTAL_PROXY_SECRET",
+      "TZ"
     ],
-    "removed": [],
-    "unchanged": 92,
-    "previousSha256": "21dde7d6fea1e7df23b5a0508a93995e7902acbd01561732625906b23ef1c1dc",
-    "sha256": "2ef518541ab8d6b17f2da7d2e755ffd72ee944e0ebf167e35c06bafff94ff790"
-  },
-  "migrationPlan": {
-    "mode": "source-plan-only",
-    "planDigest": "3c173216603f6a2927903493e29bfbe629dcaddf67cbcd322196f3153f6bffd5",
-    "migrations": [
-      {
-        "name": "0000_compatibility.sql",
-        "checksum": "5e5f7c29d376532f6a32771f556f965aaed666c3bd8bf6fc32d2f00bd9f0ac66"
-      },
-      {
-        "name": "0001_portal.sql",
-        "checksum": "f9e5a1379f598c6c7bc86c771148f16c4c7d5767c773dffbcb14e50e7285b031"
-      },
-      {
-        "name": "0002_invariants.sql",
-        "checksum": "abdea4e04ea373c8a86ba2848d10a0122ab09308f52c1e51d439d138a8670928"
-      },
-      {
-        "name": "0003_transaction_safety.sql",
-        "checksum": "9e3e440b4d0a14d1fee077a3a4c9ab92fd972d61e377931f602f46d0f5bbed24"
-      },
-      {
-        "name": "0004_media_uploads.sql",
-        "checksum": "32cf9496df32661e65299f846359da306b8efca2a15f4c6070b8f0f8a1cab8e7"
-      },
-      {
-        "name": "0100_auth.sql",
-        "checksum": "d7a7d26116c1cf892f129edfbbf70ee4a7b3014165667e5b4b7cda8a916d6bbf"
-      },
-      {
-        "name": "0101_approved_evaluation.sql",
-        "checksum": "21929ac1cf790d34644b385fa4506c69db6df9be3d5ddaae00db9ee2bccb5797"
-      },
-      {
-        "name": "0102_credit_stock.sql",
-        "checksum": "74bf8549edbecb753424a86e692844e962be02c0faeddda8f0b2dd3ffaacb72e"
-      },
-      {
-        "name": "0103_project_media_limits.sql",
-        "checksum": "3f42da160787977b7655fe74647655bd656f4c55467c2a42b3dd1627859f462c"
-      },
-      {
-        "name": "0104_admin_team_corrections.sql",
-        "checksum": "a931aeafba01be07f43e35fc7c17cae80f11bbd212fbd92f0e5fd8d475c40500"
-      },
-      {
-        "name": "0105_terminal_record_deletion.sql",
-        "checksum": "088b96a239915cd518765b5ef260c73feee913d8e0b181234110f7591676ccde"
-      },
-      {
-        "name": "0106_admin_team_unlock.sql",
-        "checksum": "dd437230bcbc5d9ffc65b63464992976b7b0ddcd1fd64a675f76f113623c17aa"
-      },
-      {
-        "name": "0107_admin_team_lock.sql",
-        "checksum": "008d9ede3191d0ef8e3198ba0ddfde3188349db9a0003738ec64b44955f4215a"
-      },
-      {
-        "name": "0108_admin_testing_and_team_corrections.sql",
-        "checksum": "dc6fc5c44a5e881109a5c7c0936d682a2f2d1cac210ea042fdfba9fcb13fcec0"
-      },
-      {
-        "name": "0109_owner_ai_model_usage.sql",
-        "checksum": "9dde1b8e4cf3b4a38f6522e677d58633ecfe131df0a88f6f38b57c70ab4e4727"
-      },
-      {
-        "name": "0110_admin_submission_access.sql",
-        "checksum": "dc691d36242a962eebf72e46f3ef65f6f3b8cf61edc45151b4e61da2ce7b954a"
-      },
-      {
-        "name": "0111_admin_missing_team_idea.sql",
-        "checksum": "d6c9a0d66b8d5ffc2a5178277e8588e9ec5f7ce05fce68f505eb3eb6cc2ddc5b"
-      }
-    ]
-  },
-  "migrationCheckout": {
-    "mode": "check",
-    "planDigest": "3c173216603f6a2927903493e29bfbe629dcaddf67cbcd322196f3153f6bffd5",
-    "sourceFiles": 17,
-    "repairNeeded": false,
-    "repaired": [],
-    "files": [
-      {
-        "name": "0000_compatibility.sql",
-        "path": "neon/migrations/0000_compatibility.sql",
-        "approvedChecksum": "5e5f7c29d376532f6a32771f556f965aaed666c3bd8bf6fc32d2f00bd9f0ac66",
-        "lineEndingOnlyDifference": false
-      },
-      {
-        "name": "0001_portal.sql",
-        "path": "neon/migrations/0001_portal.sql",
-        "approvedChecksum": "f9e5a1379f598c6c7bc86c771148f16c4c7d5767c773dffbcb14e50e7285b031",
-        "lineEndingOnlyDifference": false
-      },
-      {
-        "name": "0002_invariants.sql",
-        "path": "neon/migrations/0002_invariants.sql",
-        "approvedChecksum": "abdea4e04ea373c8a86ba2848d10a0122ab09308f52c1e51d439d138a8670928",
-        "lineEndingOnlyDifference": false
-      },
-      {
-        "name": "0003_transaction_safety.sql",
-        "path": "neon/migrations/0003_transaction_safety.sql",
-        "approvedChecksum": "9e3e440b4d0a14d1fee077a3a4c9ab92fd972d61e377931f602f46d0f5bbed24",
-        "lineEndingOnlyDifference": false
-      },
-      {
-        "name": "0004_media_uploads.sql",
-        "path": "neon/migrations/0004_media_uploads.sql",
-        "approvedChecksum": "32cf9496df32661e65299f846359da306b8efca2a15f4c6070b8f0f8a1cab8e7",
-        "lineEndingOnlyDifference": false
-      },
-      {
-        "name": "0100_auth.sql",
-        "path": "neon/auth-migrations/0001_auth.sql",
-        "approvedChecksum": "d7a7d26116c1cf892f129edfbbf70ee4a7b3014165667e5b4b7cda8a916d6bbf",
-        "lineEndingOnlyDifference": false
-      },
-      {
-        "name": "0101_approved_evaluation.sql",
-        "path": "neon/auth-migrations/0002_approved_evaluation.sql",
-        "approvedChecksum": "21929ac1cf790d34644b385fa4506c69db6df9be3d5ddaae00db9ee2bccb5797",
-        "lineEndingOnlyDifference": false
-      },
-      {
-        "name": "0102_credit_stock.sql",
-        "path": "neon/migrations/0102_credit_stock.sql",
-        "approvedChecksum": "74bf8549edbecb753424a86e692844e962be02c0faeddda8f0b2dd3ffaacb72e",
-        "lineEndingOnlyDifference": false
-      },
-      {
-        "name": "0103_project_media_limits.sql",
-        "path": "neon/migrations/0103_project_media_limits.sql",
-        "approvedChecksum": "3f42da160787977b7655fe74647655bd656f4c55467c2a42b3dd1627859f462c",
-        "lineEndingOnlyDifference": false
-      },
-      {
-        "name": "0104_admin_team_corrections.sql",
-        "path": "neon/migrations/0104_admin_team_corrections.sql",
-        "approvedChecksum": "a931aeafba01be07f43e35fc7c17cae80f11bbd212fbd92f0e5fd8d475c40500",
-        "lineEndingOnlyDifference": false
-      },
-      {
-        "name": "0105_terminal_record_deletion.sql",
-        "path": "neon/migrations/0105_terminal_record_deletion.sql",
-        "approvedChecksum": "088b96a239915cd518765b5ef260c73feee913d8e0b181234110f7591676ccde",
-        "lineEndingOnlyDifference": false
-      },
-      {
-        "name": "0106_admin_team_unlock.sql",
-        "path": "neon/migrations/0106_admin_team_unlock.sql",
-        "approvedChecksum": "dd437230bcbc5d9ffc65b63464992976b7b0ddcd1fd64a675f76f113623c17aa",
-        "lineEndingOnlyDifference": false
-      },
-      {
-        "name": "0107_admin_team_lock.sql",
-        "path": "neon/migrations/0107_admin_team_lock.sql",
-        "approvedChecksum": "008d9ede3191d0ef8e3198ba0ddfde3188349db9a0003738ec64b44955f4215a",
-        "lineEndingOnlyDifference": false
-      },
-      {
-        "name": "0108_admin_testing_and_team_corrections.sql",
-        "path": "neon/migrations/0108_admin_testing_and_team_corrections.sql",
-        "approvedChecksum": "dc6fc5c44a5e881109a5c7c0936d682a2f2d1cac210ea042fdfba9fcb13fcec0",
-        "lineEndingOnlyDifference": false
-      },
-      {
-        "name": "0109_owner_ai_model_usage.sql",
-        "path": "neon/migrations/0109_owner_ai_model_usage.sql",
-        "approvedChecksum": "9dde1b8e4cf3b4a38f6522e677d58633ecfe131df0a88f6f38b57c70ab4e4727",
-        "lineEndingOnlyDifference": false
-      },
-      {
-        "name": "0110_admin_submission_access.sql",
-        "path": "neon/migrations/0110_admin_submission_access.sql",
-        "approvedChecksum": "dc691d36242a962eebf72e46f3ef65f6f3b8cf61edc45151b4e61da2ce7b954a",
-        "lineEndingOnlyDifference": false
-      },
-      {
-        "name": "0111_admin_missing_team_idea.sql",
-        "path": "neon/migrations/0111_admin_missing_team_idea.sql",
-        "approvedChecksum": "d6c9a0d66b8d5ffc2a5178277e8588e9ec5f7ce05fce68f505eb3eb6cc2ddc5b",
-        "lineEndingOnlyDifference": false
-      }
+    "environmentKeysAfterImport": [
+      "APP_ORIGIN",
+      "LANG",
+      "NODE_ENV",
+      "PATH",
+      "PORTAL_PROXY_SECRET",
+      "TZ",
+      "VIPSHOME"
     ],
-    "databaseConnected": false,
-    "gitIndexChanged": false
-  },
-  "applicationValidation": {
-    "aggregate": {
-      "tests": 1044,
-      "passed": 1036,
-      "assertionFailures": 0,
-      "cancelledTimeout": 1,
-      "skipped": 7,
-      "cleanAggregate": false
-    },
-    "timeoutRerun": "Same D1 test independently passed in 23.1 seconds; timeout unchanged",
-    "targetedPassed": 66,
-    "shareAndTimeoutRerunPassed": 5,
-    "finalFocusedPassed": 11,
-    "typecheck": "passed",
-    "webpackBuild": "passed",
-    "syntheticBrowser": "desktop 1440 and mobile 390 passed",
-    "lint": "no configured lint script"
-  },
-  "operations": {
-    "pushed": false,
-    "deployed": false,
-    "hostedDatabaseAccess": false,
-    "providerCalls": false
-  },
-  "limitations": [
-    "Linux ARM64 native execution not performed on x86_64 host",
-    "Native Windows PowerShell/.NET extraction not executed here",
-    "Full aggregate had one cancelled timeout, independently passed; seven optional skips",
-    "Archive timestamp/npm resolution reproducibility is not claimed; independent entry matches exact source"
-  ],
-  "windowsGuideValidation": {
+    "guards": [
+      "fetch",
+      "net.connect",
+      "net.createConnection",
+      "net.Socket.connect",
+      "tls.connect",
+      "http.request/get",
+      "https.request/get"
+    ],
+    "outboundAttempts": [],
     "checks": [
       {
-        "check": "guide Node block 1",
-        "passed": true,
-        "output": "Verified approved ZIP"
+        "name": "trusted-health",
+        "method": "GET",
+        "path": "/api/health",
+        "status": 200,
+        "body": {
+          "ok": true,
+          "runtime": "neon-functions"
+        },
+        "cacheControl": "private, no-store, max-age=0"
       },
       {
-        "check": "guide Node block 2",
-        "passed": true,
-        "output": "Verified all 93 extracted files. Deploy source: /workspace/public-project-ux-packaging/extracted-2ef518541ab8"
+        "name": "untrusted-health",
+        "method": "GET",
+        "path": "/api/health",
+        "status": 403,
+        "body": {
+          "code": "UNTRUSTED_PROXY"
+        },
+        "cacheControl": "private, no-store, max-age=0"
       },
       {
-        "check": "old ZIP refused",
-        "passed": true
-      },
-      {
-        "check": "old entry refused",
-        "passed": true
+        "name": "unconfigured-portal",
+        "method": "GET",
+        "path": "/api/portal?view=%2Fdashboard",
+        "status": 503,
+        "body": {
+          "code": "BACKEND_UNAVAILABLE"
+        },
+        "cacheControl": "private, no-store, max-age=0"
       }
     ],
-    "nativePowerShellExecution": "not performed; pwsh unavailable",
-    "dotNetExtraction": "not executed on Windows; uses built-in two-argument ZipFile.ExtractToDirectory",
-    "nodeHereStringBodies": "executed by node via stdin, no fragile node -e quoting"
-  }
+    "sharp": {
+      "version": "0.35.5",
+      "vips": "8.18.7",
+      "resolvedModule": "/workspace/dddhack-portal/node_modules/sharp/dist/index.cjs",
+      "loadedNativeAddons": [
+        {
+          "file": "@img/sharp-linux-x64/lib/sharp-linux-x64-0.35.5.node",
+          "elfMachine": 62
+        }
+      ]
+    }
+  },
+  "noRebuild": true,
+  "noDeploy": true,
+  "noMailSent": true,
+  "noDatabaseConfigured": true,
+  "receiptGraphOnly": {
+    "inputs": 896,
+    "forbiddenInputs": [],
+    "recomputed": false
+  },
+  "nativeARM64Execution": "unverified",
+  "manualBackendRedeploy": "required after user review",
+  "limitations": [
+    "This is JavaScript loading/routing with an explicitly substituted host sharp dependency, not execution of the unmodified ARM64 archive.",
+    "Outbound guards are installed on Node fetch/TCP/TLS/HTTP APIs. No provider, DB, SMTP, Google or storage credential is supplied.",
+    "Hosted ARM64 decoding, storage, SMTP delivery and full login remain unverified."
+  ]
 }
