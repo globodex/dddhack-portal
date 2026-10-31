@@ -1,12 +1,12 @@
 # HELD Windows rollout: Showcase and automatic evaluation
 
-**REVIEW ONLY — NOT deployment-ready.** GitHub authentication transport is still anonymous-only and requires separate approval/implementation; design and scoring decisions remain open. Preserve this candidate as evidence, not a recommendation to enable unattended evaluation. **Do not run until this exact candidate and its package have received explicit publication approval and are on main.** These are owner-run operations; the agent has not run a hosted migration/deployment. A main push may publish the frontend before the backend is ready, so agree the release window first. Required order: obtain this approved source/package → verify source and target → apply pending0112/0113 → verify schema → deploy matching backend → check behavior.
+**REVIEW ONLY — NOT deployment-ready.** Optional server-only GitHub transport is implemented and mock-tested, but owner credential/provider/schedule setup and hosted verification remain pending; design and scoring decisions remain open. Preserve this candidate as evidence, not a recommendation to enable unattended evaluation. **Do not run until this exact candidate and its package have received explicit publication approval and are on main.** These are owner-run operations; the agent has not run a hosted migration/deployment. A main push may publish the frontend before the backend is ready, so agree the release window first. Required order: obtain this approved source/package → verify source and target → apply pending0112/0113 → verify schema → deploy matching backend → check behavior.
 
 Prerequisites: existing Git, Node with `--env-file` support, installed repository dependencies (the command installs them only if tsx is absent), existing linked/authenticated Neon CLI, Windows PowerShell with built-in .NET ZIP support. Before applying SQL, independently verify a CURRENT backup/restore recovery checkpoint for the intended database. The helper does not create or verify that checkpoint for you. Use a quiet migration window; if database state changes or an outcome is unconfirmed, stop and inspect rather than loop/retry blindly.
 
 Keep `.env.backend.local`, `.neon`, `neon.windows.ts`, deployed secrets and the working APP_ORIGIN/NEON_API_ORIGIN unchanged. No new key, config path or `--env` deployment flag. The intended source is main, **not** the repository's Sites default branch. Do not use an old extracted folder.
 
-Package commit4c6ee016346aba24e8f7d5dea56c332974fedbe6; runtime source30cd91f6863d0cfd526f70ecd928a58e57c9ed57; ZIP `322a91a1bce0003ac487572c61a03bd73d558cf4c770aebf57c4eb941a5fd6f8`; entry `c9747fe4902e2a117d9ba466826bea06b25e2e53bf4b766a51b492f509bad4c8`; plan `3624c82a7dc7026b5db4179dc021e5d88d33c66bafab35c4916c5a476e04293b`. Commands use one fresh terminal; every variable starts here. Stop on any error. PowerShell syntax was inspected but not executed on native Windows in this Linux executor.
+Package commit96ee85586cbeceeb51103692884632c947fac04e; runtime sourcee21e35e9bbded388ca9d73d73bbbeef143bd57a0; ZIP `b57ceb8bf9e2a11806e85f3f337af3a915b130ad28f2c98bfc4bc0c534041dc4`; entry `4c5983625f62815215ada6eff1562eb4ac99f01b4982d6bcd74f619800218fb8`; plan `3624c82a7dc7026b5db4179dc021e5d88d33c66bafab35c4916c5a476e04293b`. Commands use one fresh terminal; every variable starts here. Stop on any error. PowerShell syntax was inspected but not executed on native Windows in this Linux executor.
 
 1. **Fresh PowerShell, after approved main publication:** safely update; preserve local edits/configuration.
 
@@ -30,9 +30,9 @@ git switch main
 if ($LASTEXITCODE -ne 0) { throw 'Cannot safely switch; preserve local files.' }
 git merge --ff-only origin/main
 if ($LASTEXITCODE -ne 0) { throw 'Main diverged; do not force or reset.' }
-git merge-base --is-ancestor 4c6ee016346aba24e8f7d5dea56c332974fedbe6 HEAD
+git merge-base --is-ancestor 96ee85586cbeceeb51103692884632c947fac04e HEAD
 if ($LASTEXITCODE -ne 0) { throw 'Approved package source is not present.' }
-$changedAfterPackage = @(git diff --name-only 4c6ee016346aba24e8f7d5dea56c332974fedbe6 HEAD)
+$changedAfterPackage = @(git diff --name-only 96ee85586cbeceeb51103692884632c947fac04e HEAD)
 if ($LASTEXITCODE -ne 0 -or @($changedAfterPackage | Where-Object { $_ -notlike 'docs/*' }).Count -ne 0) { throw 'Later non-documentation changes exist; obtain their own release instructions.' }
 if (-not (Test-Path '.\node_modules\tsx')) {
     npm ci
@@ -93,14 +93,14 @@ Do not paste raw SQL into SQL Editor: it would bypass the required migration-led
 const fs=require('node:fs'),crypto=require('node:crypto');
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 const raw=fs.readFileSync('artifacts/neon/receipt.json');
-if(hash(raw)!=='de57b1dbf8777f47e18ee9ad4769aa00858ee608948a91a61b3f57321bdcae3a') throw Error('Wrong receipt');
+if(hash(raw)!=='483afad02f0f0b55646b8c19be98d138dcaaf628b4971eae7a4323b6844e5fe8') throw Error('Wrong receipt');
 const r=JSON.parse(raw);
-if(hash(fs.readFileSync('artifacts/neon/portalapi.zip'))!=='322a91a1bce0003ac487572c61a03bd73d558cf4c770aebf57c4eb941a5fd6f8' || r.runtimeSource!=='30cd91f6863d0cfd526f70ecd928a58e57c9ed57' || r.canonicalPlanDigest!=='3624c82a7dc7026b5db4179dc021e5d88d33c66bafab35c4916c5a476e04293b') throw Error('Wrong ZIP/source');
+if(hash(fs.readFileSync('artifacts/neon/portalapi.zip'))!=='b57ceb8bf9e2a11806e85f3f337af3a915b130ad28f2c98bfc4bc0c534041dc4' || r.runtimeSource!=='e21e35e9bbded388ca9d73d73bbbeef143bd57a0' || r.canonicalPlanDigest!=='3624c82a7dc7026b5db4179dc021e5d88d33c66bafab35c4916c5a476e04293b') throw Error('Wrong ZIP/source');
 console.log('Correct review archive and receipt');
 '@ | node -
 if ($LASTEXITCODE -ne 0) { throw 'Archive verification failed.' }
 Add-Type -AssemblyName System.IO.Compression.FileSystem
-$src = Join-Path (Get-Location) ('.local\portalapi-322a91a1bce0-' + [guid]::NewGuid().ToString('N'))
+$src = Join-Path (Get-Location) ('.local\portalapi-b57ceb8bf9e2-' + [guid]::NewGuid().ToString('N'))
 if (Test-Path $src) { throw 'Refusing existing destination.' }
 [System.IO.Compression.ZipFile]::ExtractToDirectory((Join-Path (Get-Location) 'artifacts\neon\portalapi.zip'), $src)
 $env:PORTAL_VERIFIED_EXTRACTED_SOURCE = $src
@@ -115,21 +115,21 @@ const root=process.env.PORTAL_VERIFIED_EXTRACTED_SOURCE;
 if(!root || !fs.statSync(root).isDirectory()) throw Error('Missing fresh extracted directory');
 const raw=fs.readFileSync('artifacts/neon/receipt.json');
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
-if(hash(raw)!=='de57b1dbf8777f47e18ee9ad4769aa00858ee608948a91a61b3f57321bdcae3a') throw Error('Wrong receipt');
+if(hash(raw)!=='483afad02f0f0b55646b8c19be98d138dcaaf628b4971eae7a4323b6844e5fe8') throw Error('Wrong receipt');
 const r=JSON.parse(raw), found=[];
 function walk(dir,rel=''){for(const e of fs.readdirSync(dir,{withFileTypes:true})){const n=rel?rel+'/'+e.name:e.name,p=path.join(dir,e.name);if(e.isSymbolicLink())throw Error('Symlink refused');if(e.isDirectory())walk(p,n);else if(e.isFile())found.push(n);else throw Error('Unsupported entry');}}
 walk(root);
 const expected=r.fileManifest.map(f=>f.path).sort();
 if(expected.length!==93 || JSON.stringify(found.sort())!==JSON.stringify(expected))throw Error('Wrong extracted file set');
 for(const f of r.fileManifest){const b=fs.readFileSync(path.join(root,f.path));if(b.length!==f.bytes || hash(b)!==f.sha256)throw Error('Wrong extracted file: '+f.path);}
-if(hash(fs.readFileSync(path.join(root,'index.mjs')))!=='c9747fe4902e2a117d9ba466826bea06b25e2e53bf4b766a51b492f509bad4c8')throw Error('Wrong entry');
+if(hash(fs.readFileSync(path.join(root,'index.mjs')))!=='4c5983625f62815215ada6eff1562eb4ac99f01b4982d6bcd74f619800218fb8')throw Error('Wrong entry');
 for(const f of r.nativeFiles){const b=fs.readFileSync(path.join(root,f.path));if(b.subarray(0,4).toString('hex')!=='7f454c46' || b.readUInt16LE(18)!==183)throw Error('Wrong native architecture');}
 console.log('Verified all93 payload files and Linux ARM64 dependencies');
 '@ | node -
 if ($LASTEXITCODE -ne 0) { throw 'Extraction failed verification; DO NOT deploy.' }
 ```
 
-6. **Owner-run, ONLY after publication/design approval and the separately reviewed GitHub authentication dependency are resolved:** confirm existing linked portalapi is the function Vercel uses, then deploy the same verified directory. These commands preserve omitted deployed variables; they do not configure a token/provider/schedule. Do not add --env or change existing origins/secrets to force success.
+6. **Owner-run, ONLY after publication/design approval and owner GitHub/provider/scheduler setup are resolved:** confirm existing linked portalapi is the function Vercel uses, then deploy the same verified directory. These commands preserve omitted deployed variables; they do not configure a token/provider/schedule. Do not add --env or change existing origins/secrets to force success.
 
 ```powershell
 neon functions get portalapi
@@ -141,6 +141,6 @@ neon functions get portalapi
 if ($LASTEXITCODE -ne 0) { throw 'Cannot confirm active deployment metadata.' }
 ```
 
-Confirm completed active deployment and matching separately approved frontend. Native schedule setup is a separate owner action: POST /api/evaluation/automatic-tick with the configured trigger ID forwarded as PORTAL_EVALUATION_TRIGGER_ID. Do not enable it until provider approval/readiness and public GitHub read capacity are established. No credential is present or configured in this package; proposed PORTAL_GITHUB_PUBLIC_READ_TOKEN is NOT yet consumed by code.
+Confirm completed active deployment and matching separately approved frontend. Native schedule setup is a separate owner action: POST /api/evaluation/automatic-tick with the configured trigger ID forwarded as PORTAL_EVALUATION_TRIGGER_ID. Do not enable it until provider approval/readiness and public GitHub read capacity are established. No credential is present or configured in this package. Optional PORTAL_GITHUB_PUBLIC_READ_TOKEN is consumed only by the server reader; absent means anonymous fallback. Invalid/expired/forbidden configured credentials remain pending for organizer attention and do not fall back silently. See GITHUB_PUBLIC_EVIDENCE_AUTH_REVIEW.md for private owner setup; this guide does not create/configure credentials.
 
 Read-only checks first: shared dashboard timing across tabs; pre-reveal public payloads contain no scores; canonical ranks only after an intentionally owner-approved reveal; current-version evaluation progress. Do not consume real attempts, run paid evaluations or reveal real results merely to smoke-test. Full hosted login/provider/scheduler/ARM64 execution remains owner-verified. Native Windows commands were syntax-reviewed, not executed in this Linux environment.
