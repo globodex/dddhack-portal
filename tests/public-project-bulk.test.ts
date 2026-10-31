@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { LocalDatabase } from "../lib/local-test/sqlite";
 import { PortalService } from "../lib/service";
 import { draftPolicy } from "../lib/policy";
-import { type Database, rows } from "../lib/db";
+import { type Database, rows, one, batch } from "../lib/db";
 import {
   makeLoad300,
   seedLoad300,
@@ -116,6 +116,10 @@ test("bulk counts do not fan out and actor votes/own-team permission refresh on 
         .prepare("INSERT INTO project_upvotes VALUES(?,?,?)")
         .bind(projectId, voter.id, now)
         .all();
+    const storedPolicy=(await one<{policy:string}>(db,"SELECT policy FROM event_settings WHERE id=1"))!.policy;
+    // Existing comments can survive a later owner window extension. Seed that history
+    // through the real closed phase, then restore the current open vote window.
+    await batch(db,[["UPDATE event_settings SET policy=? WHERE id=1",JSON.stringify({...JSON.parse(storedPolicy),submissionClose:now})]]);
     for (let i = 0; i < 3; i++)
       await db
         .prepare("INSERT INTO project_comments VALUES(?,?,?,?,?)")
@@ -128,6 +132,7 @@ test("bulk counts do not fan out and actor votes/own-team permission refresh on 
           now,
         )
         .all();
+    await batch(db,[["UPDATE event_settings SET policy=? WHERE id=1",storedPolicy]]);
     const detail = (await service().view(
       "/projects/synthetic-" + own.index,
     )) as View;

@@ -93,7 +93,7 @@ async function enrichTarget(db: Database) {
     ["INSERT INTO votes VALUES('fake_alice','fake_team5',?)", now],
     [
       "INSERT INTO feedback VALUES('fake_alice','fake_team5','Synthetic specific old feedback about this project',1,NULL,?)",
-      now,
+      policy.submissionClose,
     ],
     [
       "INSERT INTO tie_resolutions VALUES('synthetic-cascade-tie','fake_team5',1)",

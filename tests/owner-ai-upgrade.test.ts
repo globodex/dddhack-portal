@@ -54,7 +54,7 @@ for (const encoding of ["lf", "crlf"] as const) {
           target,
         );
       assert.equal(inspected.ledger.length, 14);
-      assert.deepEqual(inspected.pending, [migration, "0110_admin_submission_access.sql", "0111_admin_missing_team_idea.sql", "0112_continuous_engagement.sql", "0113_submission_vote_window.sql"]);
+      assert.deepEqual(inspected.pending, [migration, "0110_admin_submission_access.sql", "0111_admin_missing_team_idea.sql", "0112_continuous_engagement.sql", "0113_submission_vote_window.sql", "0114_post_submission_feedback.sql"]);
       assert.deepEqual(await f.snapshot(), before);
       const applied = await applyPopulatedUpgrade(
         f.pool,
@@ -64,7 +64,7 @@ for (const encoding of ["lf", "crlf"] as const) {
         inspected,
         confirmation,
       );
-      assert.deepEqual(applied.applied, [migration, "0110_admin_submission_access.sql", "0111_admin_missing_team_idea.sql", "0112_continuous_engagement.sql", "0113_submission_vote_window.sql"]);
+      assert.deepEqual(applied.applied, [migration, "0110_admin_submission_access.sql", "0111_admin_missing_team_idea.sql", "0112_continuous_engagement.sql", "0113_submission_vote_window.sql", "0114_post_submission_feedback.sql"]);
       const after = await f.snapshot();
       assert.deepEqual(stripLedger(after), stripLedger(before));
       assert.deepEqual(

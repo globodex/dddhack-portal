@@ -24,7 +24,7 @@ Published source already implements `qualify-project-feedback`: authorized staff
 | Public comments | Old post payload accepted after close; staff timing bypass retained. Before close the new response disables commenting and mutation rejects. Old UI may call this paused and requires refresh at opening. |
 | Team/admin reads | Existing DTOs and actual old Dashboard SSR covered by compatibility tests; no broader public/private profile permission granted. |
 | Eligibility/auth | Existing approval/evidence/privacy and auth checks retained; no held public-eligibility bypass included. |
-| Settings/Results | Retired pause/staged reveal actions fail closed. Old UI is NOT an unrestricted administrative bridge during staging. Do not use old Settings/Results controls in the transition. |
+| Settings/Results | General policy writes require the current `settingsContract`; old forms fail `SETTINGS_CLIENT_UPDATE_REQUIRED` before any policy write. Retired pause/staged reveal actions fail closed. Freeze requires a fresh actor/revision-bound preview token. This is server enforcement, not an owner promise to avoid buttons. |
 | Historical released results | Old hidden top-five positions remain hidden unless actually unveiled; already unveiled rows remain visible. A new combined-release audit establishes combined consent. Partial historical releases require explicit owner review; no automatic migration to all-public visibility. |
 | New frontend → old backend | Unsafe: new vote fields, 100-scale judge contract and combined reveal actions are unsupported. Do not switch frontend first. |
 
@@ -35,3 +35,19 @@ New append-only Neon `0114_post_submission_feedback.sql` follows existing `0112`
 Migration changes DB vote/feedback guards immediately, even while an old backend is active. Therefore require a coordinated quiet window: guarded fresh target/ledger inspection and recovery checkpoint; apply only pending migrations with the current strict helper; deploy the matching verified backend; switch the matching frontend; verify role/phase/reveal paths before ordinary use. This is a conditional plan, not permission to execute it.
 
 Rolling back backend code does not undo append-only migrations or trigger behavior. Never edit ledger/checksums, run downgrade SQL or use the old 17/19-entry migration helper against the 20-entry schema. Historical partially unveiled results need a separate owner decision before release. Existing real deployment/schema and GitHub/provider/scheduler configuration remain unverified.
+
+## Qualification operational blocker and proposed remedy
+
+When the saved policy counts approved-normalized public engagement, an in-window author without a matching qualifying/excluding review leaves `pendingFeedback` nonzero. `PortalService.compute()` rejects with `ENGAGEMENT_REVIEW_INCOMPLETE`; owner freeze/reveal cannot silently turn those comments into points. Reviewers are admins/owner (`staff()`), not all judges or mentors. Only staff-authored comments is NOT the rule: qualifying eligible participant comments can earn credit under the saved audience rules.
+
+No per-comment review UI is wired into the app. A minimal proposed follow-up is a private admin Submissions detail comment-review panel, current-version status, Approve/Exclude actions and required reason, calling existing `qualify-project-feedback`. It should refresh on stale version/body and preserve audit/authorization/frozen guards. This is a proposal, NOT implemented or approved here. Do not replace it with automatic qualification, fabricated marks, changed weights or a switch to display-only without owner policy approval.
+
+## Enforced stale-client restrictions
+
+- `settings`: authenticated owner first; missing/wrong `settingsContract` is409 `SETTINGS_CLIENT_UPDATE_REQUIRED`, no policy/history write. Updated UI sends `submission-feedback-v1`; this public contract marker is not an authorization credential. Fresh actor, policy version, protected operational fields and frozen checks remain.
+- `engagement-control`: staff authorized then409 `ENGAGEMENT_CONTROLS_RETIRED`; no pause mutation.
+- `reveal-ai-scores`, `reveal-final-scores`, `unveil-winner`, `publish-results`: owner authorized then409 `USE_OWNER_SCORE_REVEAL`; no staged/expanded disclosure.
+- `freeze-results`: current owner readiness plus fresh five-minute preview token and `FREEZE_RESULTS` confirmation; old payload cannot freeze.
+- Existing dedicated window/weight preview-confirm contracts retain the same explicit intent and server authorization/version checks; they are not silently remapped to a new action.
+
+These guards protect the new-backend/old-frontend interval. They do not prove an atomic deployment or place the currently deployed old backend into maintenance. Migration inspection refuses changed state; a genuinely quiet coordinated migration/deploy window is still required. If that cannot be assured, owner approval for an enforced temporary ingress/read-only maintenance gate is needed before rollout; no such external gate has been configured by this task. Do not claim zero-downtime compatibility or tell users to bypass failures.

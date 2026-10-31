@@ -1,3 +1,4 @@
+import { SETTINGS_WRITE_CONTRACT } from "./settings-contract";
 import {engagementScoringCohort,inScoringCohort} from './engagement-cohort';
 import {runEvaluationJob} from "./evaluation-runner";
 import {communityVotingWindow,communityFeedbackWindow} from "./community-window";
@@ -991,7 +992,8 @@ export class PortalService {
       }
       case "settings": {
         await this.staff(true);
-        const d = z.object({ policy: z.unknown(), version: z.number().int().min(0).optional(), reason,
+        demand(!!data && typeof data === "object" && (data as Record<string,unknown>).settingsContract === SETTINGS_WRITE_CONTRACT,409,"SETTINGS_CLIENT_UPDATE_REQUIRED","Refresh to the updated portal before changing scoring settings. Nothing was saved.");
+        const d = z.object({ settingsContract:z.literal(SETTINGS_WRITE_CONTRACT), policy: z.unknown(), version: z.number().int().min(0).optional(), reason,
           }).parse(data);
         const old = await this.settings();
         demand(d.version === undefined || d.version === old.version, 409, "POLICY_CHANGED_RELOAD",

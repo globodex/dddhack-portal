@@ -1,4 +1,5 @@
 "use client";
+import { SETTINGS_WRITE_CONTRACT } from "../lib/settings-contract";
 import { useId, useState } from "react";
 import { ChevronDown, Save } from "lucide-react";
 import type { Policy } from "../lib/policy";
@@ -350,6 +351,7 @@ export default function JudgingSettings({
               run(
                 "settings",
                 {
+                  settingsContract: SETTINGS_WRITE_CONTRACT,
                   policy: result.policy,
                   version: data.policyVersion,
                 },

@@ -1,3 +1,4 @@
+import { SETTINGS_WRITE_CONTRACT } from "../lib/settings-contract";
 import { attend } from "./helpers";
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -48,6 +49,7 @@ const project = {
 };
 async function configure(service: any) {
   await service("owner").command("settings", {
+    settingsContract: SETTINGS_WRITE_CONTRACT,
     policy: operationPolicy,
     reason: "Synthetic operational rules only",
   });
@@ -213,6 +215,7 @@ test("check-in derives readiness from actual Going approval and valid submission
       ),
     };
     await service("owner").command("settings", {
+    settingsContract: SETTINGS_WRITE_CONTRACT,
       policy,
       reason: "Synthetic check-in-only rules",
     });
@@ -293,6 +296,7 @@ test("actual setup errors are actionable and legacy enable compatibility cannot 
     await attend(db, "fake_alice");
     const active = await service("owner").settings();
     await service("owner").command("settings", {
+    settingsContract: SETTINGS_WRITE_CONTRACT,
       policy: {
         ...active.policy,
         diversityAssessment: "non-demographic-evidence",
@@ -310,6 +314,7 @@ test("actual setup errors are actionable and legacy enable compatibility cannot 
     assert.equal(updated.policy.confirmations.includes("diversity"), false);
     await assert.rejects(
       service("owner").command("settings", {
+    settingsContract: SETTINGS_WRITE_CONTRACT,
         policy: {
           ...updated.policy,
           submissionClose: "2026-11-01T10:00:00.000Z",
@@ -373,6 +378,7 @@ test("historical scope hints do not gate actual readiness and legacy activation 
   const { db, service } = await setup();
   try {
     await service("owner").command("settings", {
+    settingsContract: SETTINGS_WRITE_CONTRACT,
       policy: { ...operationPolicy, operationScopes: ["checkin"] },
       reason: "Synthetic draft scope hint",
     });
@@ -391,6 +397,7 @@ test("historical scope hints do not gate actual readiness and legacy activation 
     await db.prepare("UPDATE event_settings SET active=0").all();
     const { rehearsalPolicy } = await import("./helpers");
     await service("owner").command("settings", {
+    settingsContract: SETTINGS_WRITE_CONTRACT,
       policy: {
         ...rehearsalPolicy,
         operationScopes: [],
