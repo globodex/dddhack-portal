@@ -88,7 +88,7 @@ test("Dashboard consolidates Team, Credits and Project and keeps upvotes read-on
           created_at: "2026-11-01T12:00:00Z",
         },
       ],
-      submissionAccess: { canRead: false, message: "Check-in pending" },
+      submissionAccess: { contentHidden: false, windowHasOpened: true, canRead: false, message: "Check-in pending" },
     },
     run,
   });
@@ -186,6 +186,8 @@ test("project mutation controls fail closed unless server grants canCommit to th
     members: [member],
     project: { revision: 1, draft: { projectName: "Fixture project" } },
     submissionAccess: {
+      contentHidden: false,
+      windowHasOpened: true,
       canRead: true,
       canAccess: true,
       canCommit: false,

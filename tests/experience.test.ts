@@ -115,7 +115,7 @@ test("inline profile gate, registered team creation, presets, partial readiness 
       .prepare("INSERT INTO luma_roster VALUES(?,'fake_admin','2026-10-23')")
       .bind(identity.email)
       .all();
-    const s = new PortalService(db, identity, undefined);
+    const s = new PortalService(db, identity, undefined, () => "2026-10-22T08:00:00.000Z");
     assert.equal((await s.view("/dashboard")).profileIncomplete, true);
     await assert.rejects(
       s.command("create-workspace-team", {
