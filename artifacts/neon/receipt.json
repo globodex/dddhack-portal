@@ -1,20 +1,20 @@
 {
-  "runtimeSource": "49de9dd55dcaaa14b881e30fd0eac39eb4c8a23d",
+  "runtimeSource": "e5d6ee699c40f932aed4ef084e1b203bc7ccbb26",
   "runtime": "nodejs24",
   "source": "neon/api.ts",
-  "zipBytes": 9042985,
-  "sha256": "a23ff1aa87e9cd8d9ef13bc2db7eaafec21407932603f0bea52d9188c796136e",
+  "zipBytes": 9043898,
+  "sha256": "21dde7d6fea1e7df23b5a0508a93995e7902acbd01561732625906b23ef1c1dc",
   "env": {},
   "warnings": [],
   "buildOnly": true,
   "deployment": "not performed",
   "packager": "@neon/config-runtime@1.10.2",
-  "nativeExecution": "ARM64 headers/hashes verified only; native execution unavailable",
+  "nativeExecution": "ARM64 headers/hashes verified only; execution unavailable on x86_64",
   "archive": "artifacts/neon/portalapi.zip",
   "candidateOnly": true,
-  "uncompressedBytes": 21249435,
+  "indexSha256": "a97d70c7c2e1e16fe2f8312fbe9781f8ddf5c89db6f64245ef9998e928630dd4",
   "fileCount": 93,
-  "indexSha256": "1a4115a59bd6a69c5af52ddcbf9ecb20c3cf4f67eb2d881a17f56f43c7da811a",
+  "uncompressedBytes": 21252594,
   "nativeArchitecture": "Linux ARM64 glibc",
   "nativeFiles": [
     {
@@ -32,15 +32,16 @@
   ],
   "forbiddenInputs": [],
   "canonicalPlanDigest": "3c173216603f6a2927903493e29bfbe629dcaddf67cbcd322196f3153f6bffd5",
-  "previousArchiveSha256": "e2fe6ef514c45cd6f52175b25ce10a4f569fbe08bb648181c7059e07cd97200d",
-  "graphInputCount": 883,
-  "graphApplicationInputCount": 99,
-  "graphRecomputed": true,
-  "archiveIndexBytesIdentical": true,
-  "applicationInputsMatchExactGitSnapshot": true,
+  "previousArchiveSha256": "a23ff1aa87e9cd8d9ef13bc2db7eaafec21407932603f0bea52d9188c796136e",
   "changedArchiveEntries": [
     "index.mjs"
   ],
   "unchangedArchiveEntryCount": 92,
-  "hostSmoke": "Passed trusted health 200, untrusted 403, unconfigured portal 503 with outbound blocked and host-native Sharp substitution"
+  "graphInputCount": 884,
+  "graphApplicationInputCount": 100,
+  "graphRecomputed": true,
+  "archiveIndexBytesIdentical": true,
+  "applicationInputsMatchExactGitSnapshot": true,
+  "hostSmoke": "Passed trusted health200, untrusted403, unconfigured portal503; zero outbound; explicit host-native Sharp substitution",
+  "verification": "artifacts/neon/verification.json"
 }
