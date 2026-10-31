@@ -6,6 +6,7 @@ const backendNames = [
   "SMTP_SECURE", "SMTP_USER", "SMTP_PASS", "SMTP_PASSWORD", "SMTP_FROM",
   "CREDIT_ENCRYPTION_KEY", "NEON_MEDIA_BUCKET", "JOB_RUNNER_SECRET",
   "OPENAI_API_KEY", "OPENAI_MODEL", "PORTAL_OPENAI_EVALUATION_APPROVED",
+  "PORTAL_EVALUATION_TRIGGER_ID",
 ] as const;
 const configured = Object.fromEntries(backendNames.flatMap(name =>
   process.env[name] ? [[name, process.env[name]!]] : []));
