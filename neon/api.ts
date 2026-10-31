@@ -35,6 +35,7 @@ const env = process.env as AuthEnv &
   OpenAIEvaluationEnv & {
     CREDIT_ENCRYPTION_KEY?: string;
     PORTAL_EVALUATION_TRIGGER_ID?:string;
+    PORTAL_GITHUB_PUBLIC_READ_TOKEN?:string;
   };
 
 let database: ReturnType<typeof createNeonDatabase> | undefined;
@@ -59,7 +60,7 @@ function requestHandler(tasks: Promise<unknown>[]) {
         db: db(),
         identity: await authenticateRequest(request, env, baseDb()),
         key: env.CREDIT_ENCRYPTION_KEY,
-        startAutomaticEvaluation: (service,input)=>startOwnAutomaticEvaluation(service,input,globalThis.fetch),
+        startAutomaticEvaluation: (service,input)=>startOwnAutomaticEvaluation(service,input,globalThis.fetch,env.PORTAL_GITHUB_PUBLIC_READ_TOKEN),
         background: (task) => {
           tasks.push(task);
         },

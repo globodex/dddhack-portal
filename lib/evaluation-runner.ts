@@ -1,3 +1,4 @@
+import {repositoryReadFailure} from './repository-read-error';
 import {one,batch,assertPreviousWrite,type SQL} from './db';
 import {demand} from './security';
 import {reportSchema} from './evaluation';
@@ -139,7 +140,9 @@ export async function runEvaluationJob(service:PortalService,actorId:string,jobI
             message:
               grade === null ? "AI report needs review." : "AI score saved.",
           };
-        } catch {
+        } catch (error) {
+          const repositoryFailure=repositoryReadFailure(error);
+          const failureMessage=repositoryFailure?JSON.stringify(repositoryFailure):"Evaluation unavailable or invalid output";
           if (await one(service.db, "SELECT id FROM result_snapshots LIMIT 1"))
             return { message: "Evaluation stopped; final scores are frozen." };
           const lease = await one<{
@@ -166,8 +169,8 @@ export async function runEvaluationJob(service:PortalService,actorId:string,jobI
             j.id,
             [
               [
-                "UPDATE astra_jobs SET state='failed_retryable',error='Evaluation unavailable or invalid output',updated_at=? WHERE id=? AND state='running' AND attempts=? AND updated_at=?",
-                service.now(),
+                "UPDATE astra_jobs SET state='failed_retryable',error=?,updated_at=? WHERE id=? AND state='running' AND attempts=? AND updated_at=?",
+                failureMessage,service.now(),
                 j.id,
                 j.attempts + 1,
                 claimedAt,
@@ -176,8 +179,8 @@ export async function runEvaluationJob(service:PortalService,actorId:string,jobI
               ...(j.project_id
                 ? [
                     [
-                      "UPDATE evaluation_runs SET state='failed',error='Evaluation unavailable or invalid output',updated_at=? WHERE id=? AND state='running'",
-                      service.now(),
+                      "UPDATE evaluation_runs SET state='failed',error=?,updated_at=? WHERE id=? AND state='running'",
+                      failureMessage,service.now(),
                       runId,
                     ] as SQL,
                   ]

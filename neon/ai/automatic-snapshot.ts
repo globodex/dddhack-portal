@@ -1,14 +1,15 @@
+import {createPublicGitHubReader,type PublicGitHubReader} from './github-public';
 import {createHash} from 'node:crypto';
-import {repositoryApiBase,readRepositoryJson} from './repository-timing';
+import {repositoryApiBase} from './repository-timing';
 import {safeSourcePath,assertSafeEvaluationText,digest,evaluationLimits} from './input';
 import {prepareApprovedSnapshot} from './repository';
 const sha=(value:unknown):value is string=>typeof value==='string'&&/^[a-f0-9]{40}$/.test(value);
 /** Server-owned selection from a public, immutable commit. Never accepts client-provided source contents. */
-export async function collectAutomaticSnapshot(input:{versionId:string;commitSha:string;repository:string;payload:Record<string,unknown>},fetcher:typeof fetch){
+export async function collectAutomaticSnapshot(input:{versionId:string;commitSha:string;repository:string;payload:Record<string,unknown>},fetcher:typeof fetch,reader:PublicGitHubReader=createPublicGitHubReader(fetcher)){
  const base=repositoryApiBase(input.repository);if(!base||!sha(input.commitSha))throw new Error('REPOSITORY_UNAVAILABLE');
  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),10_000);
  try{
-  const read=(url:string,max=65_536)=>readRepositoryJson(fetcher,url,controller.signal,max);
+  const read=(url:string,max=65_536)=>reader.read(url,controller.signal,max);
   const commit=(await read(base+'/git/commits/'+input.commitSha)).value;
   if(commit.sha!==input.commitSha||!sha(commit.tree?.sha))throw new Error('REPOSITORY_BINDING_UNAVAILABLE');
   const tree=(await read(base+'/git/trees/'+commit.tree.sha+'?recursive=1',524_288)).value;
