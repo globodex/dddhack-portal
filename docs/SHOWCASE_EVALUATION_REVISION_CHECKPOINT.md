@@ -29,3 +29,11 @@ Output Library upload is still blocked by the previously observed HTTP 401. It h
 - Separate homepage slice: podium above Schedule, conditional Pro-per-approved-member copy, accurately separated prize/API and participant credit amounts; verified Exa logo pending. No protected-trait data goes into evaluation or prize ranking. Collaboration must use documented contribution evidence, without inventing identity attribution.
 
 No final migration plan, matching package or owner rollout instructions have been generated for this incomplete revision. Preserve earlier ready `ed80cc5`, held public-eligibility edits and unrelated diagnostic work.
+
+## Subsequent local implementation slice
+
+- Current-version team evaluation progress now returns only pending/running/retry/completed state, no provider errors or score values. Offline/ungraded reports stay pending; a genuine provider score of zero is a valid completed evaluation. This does not create an automatic worker.
+- Released canonical aggregate categories are available only on detail/team breakdowns. Listing projections omit component fields; Judge score is first, no individual marks. Missing historical component data is not fabricated.
+- New unpublished `0113_submission_vote_window.sql` supersedes0112's voting calendar; SQLite0034 and Drizzle0036 match. Public comments are not blocked by old pause controls. Both vote tables retain existing identity/security/frozen guards. Vote removal/add uses desired-state commands, and a settings-version change aborts the mutation transaction. Five focused SQLite/PostgreSQL-emulation/upgrade tests passed, including17→19 LF/CRLF suffix rollback and old-row/checksum preservation. Native concurrent PostgreSQL and hosted rollout remain unverified.
+- The evolving19-entry plan digest is `3624c82a7dc7026b5db4179dc021e5d88d33c66bafab35c4916c5a476e04293b`; all18 prior SQL blobs are preserved. The source checkout verifier intentionally cannot validate a new SQL blob against HEAD before its local commit. No owner migration commands/package are issued for this unfinished revision.
+- Separate homepage preview saved at `77c9742547ff47dc873545c2a6a4a0abe88c27fd` in `/workspace/ddd-prizes-review`: seven tests, typecheck/build and three viewport browser checks passed. Not merged into this runtime checkpoint.

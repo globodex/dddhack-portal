@@ -1,3 +1,4 @@
+import {releasedScoreComponents,type ReleasedScoreComponents} from "./released-score-components";
 import { auditReason } from "./security";
 import { z } from "zod";
 import type { PortalService } from "./service";
@@ -9,6 +10,7 @@ type Entry = {
   versionId: string;
   teamId: string;
   score: number;
+  components?: ReleasedScoreComponents;
   position?: number;
 };
 type Release = {
@@ -170,6 +172,7 @@ export async function revealCommand(
         versionId: p.published_version_id,
         teamId: r.teamId,
         score: r.components!.total,
+        ...(releasedScoreComponents(r.components,r.components!.total) ? {components:releasedScoreComponents(r.components,r.components!.total)!} : {}),
         position: r.rank!,
       });
     }

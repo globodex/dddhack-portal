@@ -24,7 +24,7 @@ const approval = JSON.parse(
   ),
 ) as UpgradeBaseline;
 const feature = "0105_terminal_record_deletion.sql",
-  digest = "460705f60687059641f482e70229c185b5b65740c7792d772d3bb1e7522c371a";
+  digest = "3624c82a7dc7026b5db4179dc021e5d88d33c66bafab35c4916c5a476e04293b";
 const now = new Date("2026-10-24T22:00:00.000Z"),
   confirmation = {
     backupCheckpoint: "synthetic-0105-verified-restore",
@@ -88,7 +88,7 @@ async function fixture(encoding: "lf" | "crlf", prefix: 9 | 10) {
 }
 for (const encoding of ["lf", "crlf"] as const)
   for (const prefix of [9, 10] as const)
-    test(`0105 upgrade ${encoding}: populated${prefix}→18 preserves existing data/ledger and max attempts, pending-only then repeat[]`, async () => {
+    test(`0105 upgrade ${encoding}: populated${prefix}→19 preserves existing data/ledger and max attempts, pending-only then repeat[]`, async () => {
       const f = await fixture(encoding, prefix);
       try {
         const before = await f.state(),
@@ -113,7 +113,7 @@ for (const encoding of ["lf", "crlf"] as const)
                 "0109_owner_ai_model_usage.sql",
         "0110_admin_submission_access.sql",
         "0111_admin_missing_team_idea.sql",
-        "0112_continuous_engagement.sql",
+        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql",
               ]
             : [
                 feature,
@@ -123,7 +123,7 @@ for (const encoding of ["lf", "crlf"] as const)
                 "0109_owner_ai_model_usage.sql",
         "0110_admin_submission_access.sql",
         "0111_admin_missing_team_idea.sql",
-        "0112_continuous_engagement.sql",
+        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql",
               ];
         assert.deepEqual(receipt.pending, pending);
         assert.equal(receipt.planDigest, digest);
@@ -149,7 +149,7 @@ for (const encoding of ["lf", "crlf"] as const)
         );
         assert.deepEqual(result.applied, pending);
         const after = await f.state();
-        assert.equal(after.portal_schema_migrations.length, 18);
+        assert.equal(after.portal_schema_migrations.length, 19);
         for (const [name, data] of Object.entries(before)) {
           if (name !== "portal_schema_migrations")
             assert.deepEqual(after[name], data, name);

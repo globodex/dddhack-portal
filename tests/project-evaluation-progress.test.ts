@@ -1,0 +1,7 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {setup} from './helpers';import {seedRichVisual} from '../scripts/visual-rich-fixtures';import {batch} from '../lib/db';import {projectEvaluationProgress} from '../lib/project-evaluation-progress';
+test('team evaluation progress is current-version bound and has no score or private provider error fields',async()=>{
+ const f=await setup();try{await seedRichVisual(f.db);const p='visual_project_alice',v='visual_alice_v2';assert.equal((await projectEvaluationProgress(f.db,p,v))?.state,'pending');assert.equal(await projectEvaluationProgress(f.db,p,'older-version'),null);
+ for(const state of ['queued','running','failed','completed']){await batch(f.db,[["DELETE FROM evaluation_runs WHERE project_id=?",p],["INSERT INTO evaluation_runs(id,project_id,version_id,config_key,state,error,created_at,updated_at,provenance,score) VALUES(?,?,?,?,?,?,?,?,?,?)",'synthetic-progress',p,v,'synthetic-config',state,'Private upstream detail should never be exposed','2026-11-01','2026-11-01','provider',state==='completed'?0:null]]);const progress=await projectEvaluationProgress(f.db,p,v);assert.equal(progress?.state,state==='queued'?'pending':state==='failed'?'retry_pending':state);assert.doesNotMatch(JSON.stringify(progress),/Private upstream|config_key|report|rating|\"score\"/);}
+ await batch(f.db,[["UPDATE evaluation_runs SET provenance='offline',score=NULL WHERE project_id=?",p]]);assert.equal((await projectEvaluationProgress(f.db,p,v))?.state,'pending');
+ }finally{f.db.close()}
+});

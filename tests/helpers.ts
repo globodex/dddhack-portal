@@ -47,7 +47,7 @@ export const rehearsalPolicy: Policy = {
     "FAKE REHEARSAL ONLY: October freeze, not a live event decision.",
   projectEngagementRule: "display-only",
 };
-export async function activate(db: LocalDatabase) {
+export async function activate(db: import("../lib/db").Database) {
   await batch(db, [
     [
       "UPDATE event_settings SET policy=?,active=1 WHERE id=1",

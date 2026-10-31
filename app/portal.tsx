@@ -1,4 +1,5 @@
 "use client";
+import ReleasedScoreBreakdown from "./released-score-breakdown";
 import { feedbackLengthValid } from "../lib/feedback-length";
 import DashboardSubmissionStatus from "./dashboard-submission-status";
 import OwnerAIControls from "./owner-ai-controls";
@@ -1867,9 +1868,13 @@ function DashboardProject({
           {used ? "Submitted" : "Not submitted"}
         </Pill>
       </div>
-      {data.projectStats?.result && (
-        <PublicResult result={data.projectStats.result} />
-      )}
+      {data.evaluationProgress && <section className="project-evaluation-progress" aria-label="Project evaluation" aria-live="polite">
+        <h3>{data.evaluationProgress.state === "completed" ? "Evaluation complete" : data.evaluationProgress.state === "running" ? "Evaluating your project" : "Evaluation pending"}</h3>
+        <p>{data.projectStats?.result ? "Scores have been revealed by the owner." : data.evaluationProgress.message}</p>
+        {data.projectStats?.result ? <PublicResult result={data.projectStats.result}/> : data.evaluationProgress.state === "completed" ? <span className="project-score-hidden"><strong aria-hidden="true">— —</strong><span>Score hidden until the owner reveals scores</span></span> : <span role="status">{data.evaluationProgress.state === "running" ? "In progress" : "Awaiting evaluation"}</span>}
+      </section>}
+      {!data.evaluationProgress && data.projectStats?.result && <PublicResult result={data.projectStats.result}/>}
+      {data.projectStats?.result?.components && <ReleasedScoreBreakdown components={data.projectStats.result.components} total={data.projectStats.result.score}/>}
       <div className="dashboard-project-toolbar">
         <div className="dashboard-project-metrics">
           {data.projectStats && (
@@ -3760,7 +3765,8 @@ export function UpvoteButton({
               // A lost response may follow a committed vote. Ask the existing
               // public projection before presenting a retry as still available.
               try {
-                if ((await reconcile())?.upvoted) setError("");
+                const reconciled = await reconcile();
+                if (reconciled && reconciled.upvoted === !before.voted) setError("");
               } catch {}
             }
           } finally {
@@ -3927,26 +3933,13 @@ export function Projects({
         <article className="project-detail">
           <ProjectBody project={p} publicView teamColorKey={p.teamColorKey} />
           <ProjectTeamMembers members={data.teamMembers} />
-          {p.result && (
-            <p className="notice">
-              Revealed {p.result.stage === "ai" ? "AI" : "final"} score{" "}
-              {p.result.score}
-            </p>
-          )}
+          {p.result?.stage === "final" && typeof p.result.score === "number" ? <><p className="notice">Score {p.result.score}</p><ReleasedScoreBreakdown components={p.result.components} total={p.result.score}/></> : <p className="notice">Score hidden until the owner reveals scores.</p>}
           {engagement(p)}
           {(p.engagementPaused ||
             data.engagement?.votingPaused ||
             data.engagement?.feedbackPaused) && (
             <p className="notice" role="status">
-              Engagement paused. The hosts have paused{" "}
-              {data.engagement?.votingPaused && data.engagement?.feedbackPaused
-                ? "community voting and public feedback"
-                : data.engagement?.feedbackPaused
-                  ? "public feedback"
-                  : data.engagement?.votingPaused
-                    ? "community voting"
-                    : "one or more community actions"}
-              .
+              {data.engagement?.votingWindow?.message || "Voting is not currently open."} Public feedback remains available.
             </p>
           )}
           <section id="comments" aria-labelledby="project-comments-heading">

@@ -74,6 +74,10 @@
     {
       "name": "0112_continuous_engagement.sql",
       "checksum": "42b45027320e91bbdf7cbe536cd854a320c0d4dbb3e5715f6abc19834bdc186e"
+    },
+    {
+      "name": "0113_submission_vote_window.sql",
+      "checksum": "b2b87547c29ba39951706f4c7d572fca0f9fa6ce0992ae470a4f895c798cdd82"
     }
   ],
   "hostedRead": false,

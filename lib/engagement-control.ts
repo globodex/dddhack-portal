@@ -11,9 +11,11 @@ export async function engagementState(s: PortalService) {
     s.db,
     "SELECT voting_paused,feedback_paused,version FROM engagement_controls WHERE id=1",
   );
-  const window = communityVotingWindow((await s.settings(true)).policy, s.now());
+  const settings = await s.settings(true);
+  const window = communityVotingWindow(settings.active === 1 ? settings.policy : {}, s.now());
   return {
     votingWindow: window,
+    settingsVersion: settings.version,
     votingPaused: !window.allowed,
     feedbackPaused: false,
     version: row?.version || 0,

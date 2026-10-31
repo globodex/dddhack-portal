@@ -25,7 +25,7 @@ const approval = JSON.parse(
   ),
 ) as UpgradeBaseline;
 const expectedDigest =
-  "460705f60687059641f482e70229c185b5b65740c7792d772d3bb1e7522c371a";
+  "3624c82a7dc7026b5db4179dc021e5d88d33c66bafab35c4916c5a476e04293b";
 const feature = "0104_admin_team_corrections.sql";
 const now = new Date("2026-10-24T20:00:00.000Z");
 const confirmation = {
@@ -114,7 +114,7 @@ const noDdl = (queries: string[]) =>
   );
 
 for (const encoding of ["lf", "crlf"] as const) {
-  test(`0104 upgrade ${encoding}: populated existing9→18 applies only0104/0105/0106, preserves all prior rows/hashes and repeats with no work`, async () => {
+  test(`0104 upgrade ${encoding}: populated existing9→19 applies only0104/0105/0106, preserves all prior rows/hashes and repeats with no work`, async () => {
     const f = await fixture(encoding);
     try {
       const before = await f.state(),
@@ -146,7 +146,7 @@ for (const encoding of ["lf", "crlf"] as const) {
         "0109_owner_ai_model_usage.sql",
         "0110_admin_submission_access.sql",
         "0111_admin_missing_team_idea.sql",
-        "0112_continuous_engagement.sql",
+        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql",
       ]);
       assert.equal(receipt.ledger.length, 9);
       noDdl(inspectQueries);
@@ -170,13 +170,13 @@ for (const encoding of ["lf", "crlf"] as const) {
         "0109_owner_ai_model_usage.sql",
         "0110_admin_submission_access.sql",
         "0111_admin_missing_team_idea.sql",
-        "0112_continuous_engagement.sql",
+        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql",
       ]);
       const after = await f.state();
       assert.deepEqual(after.ai_model_settings, []);
       assert.deepEqual(after.ai_provider_usage, []);
       assert.deepEqual(domain(after), domain(before));
-      assert.equal(after.portal_schema_migrations.length, 18);
+      assert.equal(after.portal_schema_migrations.length, 19);
       assert.deepEqual(
         after.portal_schema_migrations.filter(
           (row) =>
@@ -189,7 +189,7 @@ for (const encoding of ["lf", "crlf"] as const) {
               "0109_owner_ai_model_usage.sql",
         "0110_admin_submission_access.sql",
         "0111_admin_missing_team_idea.sql",
-        "0112_continuous_engagement.sql",
+        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql",
             ].includes(JSON.parse(row).name),
         ),
         before.portal_schema_migrations,
@@ -415,7 +415,7 @@ test("0104 upgrade: real postcondition failure rolls function replacements, ledg
 test("0104 source plan pins exactly fifteen LF files and leaves all nine previous SQL blobs and seven historical approval entries unchanged", async () => {
   const { loadMigrationPlan } = await import("../neon/migration-plan");
   const plan = await loadMigrationPlan();
-  assert.equal(plan.length, 18);
+  assert.equal(plan.length, 19);
   assert.equal(verifyUpgradePlan(plan, approval), expectedDigest);
   assert.equal(plan[9].name, feature);
   for (const item of plan.slice(0, 9)) {
@@ -461,7 +461,7 @@ test("0104 source plan pins exactly fifteen LF files and leaves all nine previou
       "0109_owner_ai_model_usage.sql",
         "0110_admin_submission_access.sql",
         "0111_admin_missing_team_idea.sql",
-        "0112_continuous_engagement.sql",
+        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql",
     ],
   );
 });

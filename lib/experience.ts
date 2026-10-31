@@ -1,3 +1,5 @@
+import {releasedScoreComponents} from "./released-score-components";
+import {projectEvaluationProgress} from "./project-evaluation-progress";
 import { feedbackLengthValid } from "./feedback-length";
 import { unindexedSubmissions } from "./private-project-index";
 import { ownerAIView, ownerAICommand } from "./owner-ai";
@@ -312,6 +314,7 @@ export class PortalExperience {
     p: PublicProjectReference,
     disclosure?: Awaited<ReturnType<typeof publicScores>>,
     prefetched?: PublicProjectFact,
+    includeBreakdown = false,
   ) {
     const fact =
       prefetched ?? (await publicProjectFacts(this.s.db, [p.id])).get(p.id);
@@ -355,6 +358,7 @@ export class PortalExperience {
             result: {
               score: revealed.score,
               stage: publishedScores.stage,
+              ...(includeBreakdown && releasedScoreComponents(revealed.components,revealed.score) ? {components:releasedScoreComponents(revealed.components,revealed.score)} : {}),
               ...(revealed.position ? { position: revealed.position } : {}),
             },
           }
@@ -560,6 +564,7 @@ export class PortalExperience {
         ...(projectIndexMissing ? {canCommit:false,message:"Committed submissions need project-index reconciliation. Do not resubmit."} : {}),
       },
       projectStats: access.contentHidden ? undefined : { upvotes: projectUpvotes, result: projectResult },
+      evaluationProgress: !access.contentHidden && access.canRead && project?.published_version_id ? await projectEvaluationProgress(this.s.db,project.id,project.published_version_id) : undefined,
       projectPublicPath:
         !access.contentHidden && project && projectEligibility.status === "eligible" && projectEligibility.versionId === project.published_version_id
           ? "/projects/" + encodeURIComponent(project.slug)
@@ -758,7 +763,7 @@ export class PortalExperience {
       );
       const items = await Promise.all(
         selected.map(async (p) => ({
-          ...(await this.publicProject(p, scores, facts.get(p.id))),
+          ...(await this.publicProject(p, scores, facts.get(p.id), !listRoute)),
           canComment: !!me?.canEngage && !engagement.feedbackPaused,
           engagementPaused:
             engagement.votingPaused || engagement.feedbackPaused,
@@ -2199,12 +2204,15 @@ export class PortalExperience {
       }
       const staffComment = action === "comment-project" && !actor.deactivated && (actor.owner || actor.role === "admin");
       const commentGuard = "staff-comment:" + JSON.stringify([actor.id, p.id, this.s.now()]);
+      const voteGuard = "vote-settings:" + crypto.randomUUID();
       await this.s.mutate(
         actor.id,
         action,
         p.id,
         action === "upvote-project"
           ? [
+              ["INSERT INTO write_guards VALUES(?,CASE WHEN EXISTS(SELECT 1 FROM event_settings WHERE id=1 AND active=1 AND version=?) THEN 1 ELSE 0 END)",voteGuard,engagement.settingsVersion],
+              ["DELETE FROM write_guards WHERE token=?",voteGuard],
               d.voted === false
                 ? ["DELETE FROM project_upvotes WHERE project_id=? AND user_id=?", p.id, actor.id]
                 : ["INSERT INTO project_upvotes VALUES(?,?,?) ON CONFLICT DO NOTHING", p.id, actor.id, this.s.now()],

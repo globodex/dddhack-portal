@@ -1,3 +1,4 @@
+import {communityVotingWindow} from "./community-window";
 import { freezeReadiness, freezePreviewToken, previewResultFreeze } from "./result-freeze";
 import { feedbackLengthValid } from "./feedback-length";
 import { projectMediaPolicy } from "./project-media-policy";
@@ -1303,6 +1304,7 @@ export class PortalService {
       case "feedback": {
         await this.unfrozen();
         const s = await this.settings(true);
+        if (action === "vote") {const window=communityVotingWindow(s.active===1?s.policy:{},this.now());demand(window.allowed,409,"VOTING_CLOSED",window.message);}
         const staffFeedback = action === "feedback" && !actor.deactivated && (actor.owner || actor.role === "admin");
         const u = staffFeedback ? actor : await this.approved();
         const d = z
