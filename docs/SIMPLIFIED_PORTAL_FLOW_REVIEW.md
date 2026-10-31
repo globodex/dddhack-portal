@@ -51,3 +51,7 @@ The owner has now authorized replacing historical closing-date gating with expli
 Questions responses is an intended separate configurable weight category. Only an owner-visible unconfigured placeholder is added; it contributes no marks until the numeric weight, per-question caps, scorer, aggregation/missing-answer rules and AI/Codex overlap treatment are decided. The earlier alternative of merely relabelling existing evidence is not the intended category design.
 
 The implemented30-character feedback minimum remains PROVISIONAL interpretation, pending clarification of the exact numeric policy. It is not described as explicit user approval. Historical values are preserved.
+
+## Migration parity correction
+
+The full aggregate identified a missing Sites Drizzle counterpart for the continuous-engagement guards. Added append-only `drizzle/0035_continuous_engagement.sql` and its journal entry, matching localSQLite0033 and Neon0112. The D1 regression now also exercises always-open voting and staff feedback while participant feedback is paused. The retained Sites remote branch was not changed or deployed. Neon still needs only0112; its18-entry plan and all17 earlier checksums remain unchanged. PostgreSQL trigger-inventory expectations explicitly exclude only the three retired voting gates; immutable, authorization and transaction guards remain asserted.
