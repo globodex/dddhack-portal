@@ -6,7 +6,7 @@ Prerequisites: existing Git, Node with `--env-file` support, installed repositor
 
 Keep `.env.backend.local`, `.neon`, `neon.windows.ts`, deployed secrets and the working APP_ORIGIN/NEON_API_ORIGIN unchanged. No new key, config path or `--env` deployment flag. The intended source is main, **not** the repository's Sites default branch. Do not use an old extracted folder.
 
-Package commit96ee85586cbeceeb51103692884632c947fac04e; runtime sourcee21e35e9bbded388ca9d73d73bbbeef143bd57a0; ZIP `b57ceb8bf9e2a11806e85f3f337af3a915b130ad28f2c98bfc4bc0c534041dc4`; entry `4c5983625f62815215ada6eff1562eb4ac99f01b4982d6bcd74f619800218fb8`; plan `3624c82a7dc7026b5db4179dc021e5d88d33c66bafab35c4916c5a476e04293b`. Commands use one fresh terminal; every variable starts here. Stop on any error. PowerShell syntax was inspected but not executed on native Windows in this Linux executor.
+Package commit2925583983d32873981aea2063f6428241ece232; runtime sourcea3b64c5f95bb44595e6f012847dc92fff4201452; ZIP `ec36ea645974989d010550ddb2723358612f3c42522c3acf4bc72d071da4bdfd`; entry `3e908f13bb297046bb04c09d2c56cace9c3ba8cc64a5e0c8c1c1d13130cd46c8`; plan `3624c82a7dc7026b5db4179dc021e5d88d33c66bafab35c4916c5a476e04293b`. Commands use one fresh terminal; every variable starts here. Stop on any error. PowerShell syntax was inspected but not executed on native Windows in this Linux executor.
 
 1. **Fresh PowerShell, after approved main publication:** safely update; preserve local edits/configuration.
 
@@ -30,9 +30,9 @@ git switch main
 if ($LASTEXITCODE -ne 0) { throw 'Cannot safely switch; preserve local files.' }
 git merge --ff-only origin/main
 if ($LASTEXITCODE -ne 0) { throw 'Main diverged; do not force or reset.' }
-git merge-base --is-ancestor 96ee85586cbeceeb51103692884632c947fac04e HEAD
+git merge-base --is-ancestor 2925583983d32873981aea2063f6428241ece232 HEAD
 if ($LASTEXITCODE -ne 0) { throw 'Approved package source is not present.' }
-$changedAfterPackage = @(git diff --name-only 96ee85586cbeceeb51103692884632c947fac04e HEAD)
+$changedAfterPackage = @(git diff --name-only 2925583983d32873981aea2063f6428241ece232 HEAD)
 if ($LASTEXITCODE -ne 0 -or @($changedAfterPackage | Where-Object { $_ -notlike 'docs/*' }).Count -ne 0) { throw 'Later non-documentation changes exist; obtain their own release instructions.' }
 if (-not (Test-Path '.\node_modules\tsx')) {
     npm ci
@@ -93,14 +93,14 @@ Do not paste raw SQL into SQL Editor: it would bypass the required migration-led
 const fs=require('node:fs'),crypto=require('node:crypto');
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 const raw=fs.readFileSync('artifacts/neon/receipt.json');
-if(hash(raw)!=='483afad02f0f0b55646b8c19be98d138dcaaf628b4971eae7a4323b6844e5fe8') throw Error('Wrong receipt');
+if(hash(raw)!=='1c33f843e5e4f440b46f93cd9a06bb5fa7beca91e0b0af44b0dc52645a77914a') throw Error('Wrong receipt');
 const r=JSON.parse(raw);
-if(hash(fs.readFileSync('artifacts/neon/portalapi.zip'))!=='b57ceb8bf9e2a11806e85f3f337af3a915b130ad28f2c98bfc4bc0c534041dc4' || r.runtimeSource!=='e21e35e9bbded388ca9d73d73bbbeef143bd57a0' || r.canonicalPlanDigest!=='3624c82a7dc7026b5db4179dc021e5d88d33c66bafab35c4916c5a476e04293b') throw Error('Wrong ZIP/source');
+if(hash(fs.readFileSync('artifacts/neon/portalapi.zip'))!=='ec36ea645974989d010550ddb2723358612f3c42522c3acf4bc72d071da4bdfd' || r.runtimeSource!=='a3b64c5f95bb44595e6f012847dc92fff4201452' || r.canonicalPlanDigest!=='3624c82a7dc7026b5db4179dc021e5d88d33c66bafab35c4916c5a476e04293b') throw Error('Wrong ZIP/source');
 console.log('Correct review archive and receipt');
 '@ | node -
 if ($LASTEXITCODE -ne 0) { throw 'Archive verification failed.' }
 Add-Type -AssemblyName System.IO.Compression.FileSystem
-$src = Join-Path (Get-Location) ('.local\portalapi-b57ceb8bf9e2-' + [guid]::NewGuid().ToString('N'))
+$src = Join-Path (Get-Location) ('.local\portalapi-ec36ea645974-' + [guid]::NewGuid().ToString('N'))
 if (Test-Path $src) { throw 'Refusing existing destination.' }
 [System.IO.Compression.ZipFile]::ExtractToDirectory((Join-Path (Get-Location) 'artifacts\neon\portalapi.zip'), $src)
 $env:PORTAL_VERIFIED_EXTRACTED_SOURCE = $src
@@ -115,14 +115,14 @@ const root=process.env.PORTAL_VERIFIED_EXTRACTED_SOURCE;
 if(!root || !fs.statSync(root).isDirectory()) throw Error('Missing fresh extracted directory');
 const raw=fs.readFileSync('artifacts/neon/receipt.json');
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
-if(hash(raw)!=='483afad02f0f0b55646b8c19be98d138dcaaf628b4971eae7a4323b6844e5fe8') throw Error('Wrong receipt');
+if(hash(raw)!=='1c33f843e5e4f440b46f93cd9a06bb5fa7beca91e0b0af44b0dc52645a77914a') throw Error('Wrong receipt');
 const r=JSON.parse(raw), found=[];
 function walk(dir,rel=''){for(const e of fs.readdirSync(dir,{withFileTypes:true})){const n=rel?rel+'/'+e.name:e.name,p=path.join(dir,e.name);if(e.isSymbolicLink())throw Error('Symlink refused');if(e.isDirectory())walk(p,n);else if(e.isFile())found.push(n);else throw Error('Unsupported entry');}}
 walk(root);
 const expected=r.fileManifest.map(f=>f.path).sort();
 if(expected.length!==93 || JSON.stringify(found.sort())!==JSON.stringify(expected))throw Error('Wrong extracted file set');
 for(const f of r.fileManifest){const b=fs.readFileSync(path.join(root,f.path));if(b.length!==f.bytes || hash(b)!==f.sha256)throw Error('Wrong extracted file: '+f.path);}
-if(hash(fs.readFileSync(path.join(root,'index.mjs')))!=='4c5983625f62815215ada6eff1562eb4ac99f01b4982d6bcd74f619800218fb8')throw Error('Wrong entry');
+if(hash(fs.readFileSync(path.join(root,'index.mjs')))!=='3e908f13bb297046bb04c09d2c56cace9c3ba8cc64a5e0c8c1c1d13130cd46c8')throw Error('Wrong entry');
 for(const f of r.nativeFiles){const b=fs.readFileSync(path.join(root,f.path));if(b.subarray(0,4).toString('hex')!=='7f454c46' || b.readUInt16LE(18)!==183)throw Error('Wrong native architecture');}
 console.log('Verified all93 payload files and Linux ARM64 dependencies');
 '@ | node -
