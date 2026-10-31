@@ -32,3 +32,14 @@ Mobile: single-column cards, price grid wraps, native labelled model select; no 
 ## Deployment implications
 
 This follow-up is separate from ready package ed80cc5 and has not replaced its archive. New append-only migration0112_continuous_engagement.sql (SQLite test equivalent0033) removes legacy voting time/pause triggers and adds exact transaction-capability exemptions for staff feedback. All17 historical SQL checksums remain unchanged; the new plan has18 entries. Backend package must be rebuilt from final approved source after this scope is settled. No migration/package/deployment commands from the previous ready package apply automatically to this follow-up.
+
+## Local verification checkpoint
+
+-18 focused tests passed (SQLite/PGlite, selected model telemetry/privacy, explicit evaluation and unavailable-provider handling).
+-51 related regression tests passed (permissions, settings/review UI, engagement qualification, provider grading and immutable result gates).
+-17 existing populated-upgrade/ledger/Windows-source tests passed against the appended18-entry plan.
+-2 dedicated0112 tests passed: LF/CRLF17→18, unchanged historical rows/checksums, failed trigger replacement rollback, pending-only application and repeat inspection.
+-Final16-test UI/continuous-operation rerun passed. An earlier core run had one obsolete voting-switch rendering assertion; it was corrected and rerun successfully. Do not describe that earlier run as green.
+-Actual synthetic browser1440/390 passed: model select/save (local DB only), owner-only projection, no obsolete date/min/target inputs, no horizontal overflow and staff feedback while participant feedback is paused. No provider call or production write. Captures outside Git at `/workspace/simplified-judging-review/screens/`.
+-Native PostgreSQL multi-connection concurrency and hosted behavior were not verified; PGlite verifies PostgreSQL SQL/trigger/transaction behavior only. No lint script is configured. A fresh full repository aggregate was not run for this design-stage checkpoint.
+-The prior ready backend ZIP remains byte-identical; rebuilding it for this follow-up is intentionally deferred until policy/design decisions settle. Never deploy the old package as though it contained these new changes.

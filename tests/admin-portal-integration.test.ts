@@ -334,7 +334,7 @@ test("owner window editor replaces extension-only settings and engagement contro
   assert.match(markup, /Closes \(IST\)/);
   assert.match(markup, /Three committed submissions/);
   assert.match(markup, />Publish<\/button>/);
-  assert.match(markup, /name="votingEnabled"/);
+  assert.doesNotMatch(markup, /name="votingEnabled"/);
   assert.doesNotMatch(markup, /name="votingEnabled" checked=""/);
   assert.match(markup, /name="feedbackEnabled" checked=""/);
   assert.match(markup, /Reveal AI scores[\s\S]*?<button[^>]*disabled=""/);
@@ -344,7 +344,7 @@ test("owner window editor replaces extension-only settings and engagement contro
   );
   const nonOwner = html(Settings, { data: { ...data, me: admin }, run });
   assert.doesNotMatch(nonOwner, /admin-window-footer/);
-  assert.match(nonOwner, /name="votingEnabled"/);
+  assert.doesNotMatch(nonOwner, /name="votingEnabled"/);
   assert.doesNotMatch(nonOwner, /Admin access/);
   assert.equal(
     html(AdminEngagementControls, {

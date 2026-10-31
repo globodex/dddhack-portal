@@ -28,6 +28,9 @@ for (const engine of ['sqlite','postgres'] as const) test(`${engine}: continuous
    await post('  '+'x'.repeat(30)+'  ');
    await post('x'.repeat(1500));
    await post('😀'.repeat(30));
+   await service(who).command('feedback',{teamId:'fake_team1',text:'  '+'y'.repeat(30)+'  '});
+   await assert.rejects(service(who).command('feedback',{teamId:'fake_team1',text:'y'.repeat(29)}),{code:'FEEDBACK_LENGTH'});
+   await assert.rejects(service(who).command('feedback',{teamId:'fake_team1',text:'y'.repeat(501)}),{code:'FEEDBACK_LENGTH'});
   }
   const ordinary:any=await service('alice').view('/projects');
   assert.equal(ordinary.engagement.feedbackPaused,true);

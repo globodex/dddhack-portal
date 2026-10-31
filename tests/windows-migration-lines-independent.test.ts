@@ -117,7 +117,7 @@ function crlf(cwd: string) {
     );
 }
 
-test("independent Windows source: approved LF plan is seventeen exact HEAD blobs and keeps the published digest", async () => {
+test("independent Windows source: approved LF plan is eighteen exact HEAD blobs and keeps the published digest", async () => {
   const plan = await loadMigrationPlan();
   assert.equal(plan.length, 18);
   assert.equal(verifyUpgradePlan(plan, baseline), expectedDigest);
@@ -333,7 +333,7 @@ test("independent Windows source: missing, extra, reordered, BOM and literal-edi
     });
 });
 
-test("independent Windows checkout: autocrlf=true still checks out only the fifteen pinned migration paths as canonical LF", () => {
+test("independent Windows checkout: autocrlf=true still checks out only the eighteen pinned migration paths as canonical LF", () => {
   const f = fixture();
   try {
     assert.ok(

@@ -82,6 +82,7 @@ export default function OwnerAIControls({
         <label>
           Evaluation model
           <select
+            aria-label="Evaluation model"
             value={model}
             onChange={(e) => setModel(e.target.value)}
             required

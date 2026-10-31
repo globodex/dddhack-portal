@@ -82,7 +82,7 @@ const domain = (snapshot: Record<string, unknown>) =>
     ),
   );
 
-test("independent legacy ledger: exact seven CRLF aliases derive from pinned LF source while canonical seventeen-entry digest matches the reviewed plan", async () => {
+test("independent legacy ledger: exact seven CRLF aliases derive from pinned LF source while canonical eighteen-entry digest matches the reviewed plan", async () => {
   const plan = await loadMigrationPlan();
   assert.equal(
     verifyUpgradePlan(plan, baseline),
