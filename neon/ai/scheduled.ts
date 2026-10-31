@@ -29,7 +29,7 @@ export async function handleAutomaticSchedule(request:Request,env:AutomaticSched
   if(inserted[0].meta?.changes!==1)return reply({processed:0,duplicate:true});
   const pending=await rows<{project_id:string;version_id:string;leader_id:string;state:string;attempts:number;updated_at:string}>(service.db,"SELECT p.id project_id,p.published_version_id version_id,t.leader_id,j.state,j.attempts,j.updated_at FROM astra_jobs j JOIN projects p ON p.published_version_id=j.version_id JOIN teams t ON t.id=p.team_id JOIN memberships m ON m.team_id=t.id AND m.user_id=t.leader_id WHERE j.state IN ('pending','failed_retryable','needs_review','running') AND (j.attempts<3 OR j.state='running') AND NOT EXISTS(SELECT 1 FROM record_removals r WHERE r.active=1 AND ((r.kind='project' AND r.target_id=p.id) OR (r.kind='submission' AND r.target_id=p.published_version_id) OR (r.kind='team' AND r.target_id=t.id) OR (r.kind='participant' AND r.target_id=t.leader_id))) ORDER BY j.updated_at,j.id LIMIT 24");
   let processed=0;for(const item of pending){const elapsed=Date.parse(service.now())-Date.parse(item.updated_at);if(item.state==='running'?elapsed<=900_000:item.state!=='pending'&&elapsed<60_000*Math.pow(2,Math.max(0,item.attempts-1)))continue;
-   try{await processAutomaticEvaluation(service,item.leader_id,{projectId:item.project_id,versionId:item.version_id},fetcher,'scheduled');processed++}catch{}if(processed>=3)break;
+   processed++;try{await processAutomaticEvaluation(service,item.leader_id,{projectId:item.project_id,versionId:item.version_id},fetcher,'scheduled')}catch{}if(processed>=3)break;
   }
   console.info("automatic-evaluation-tick",{invocationId:value.invocation_id,processed});
   return reply({processed});
