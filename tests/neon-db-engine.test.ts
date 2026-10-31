@@ -50,7 +50,8 @@ test("PostgreSQL baseline installs every portal table/trigger and checksum migra
       ...manifest.triggers,
       ...stockTriggerNames,
       ...terminalTriggerNames,
-    ].filter(name => !["vote_window", "community_voting_paused", "legacy_voting_paused"].includes(name)).sort();
+      "community_submission_vote_window", "legacy_submission_vote_window",
+    ].filter(name => !["vote_window", "community_voting_paused", "legacy_voting_paused", "community_feedback_paused", "legacy_feedback_paused"].includes(name)).sort();
     assert.equal(tables.rows[0].count, logicalTables.length);
     const triggers = await engine.query<{ count: number }>(
       "SELECT count(*)::int count FROM pg_trigger WHERE NOT tgisinternal",

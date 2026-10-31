@@ -94,7 +94,7 @@ test("actual operational data permits check-in and submissions while incomplete 
         confirmation: "PUBLIC_AI",
         reason: "Synthetic premature reveal",
       }),
-      { code: "NO_ELIGIBLE_EVALUATIONS" },
+      { code: "OWNER_REQUIRED" },
     );
     await assert.rejects(
       service("admin").command("participant-bulk", {

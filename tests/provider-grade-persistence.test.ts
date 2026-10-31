@@ -170,12 +170,12 @@ test("explicit current-version evaluation persists a numeric provider report, wh
       .view("/leaderboard")) as any;
     assert.equal(beforeReveal.scoreStage, "community");
     assert.ok(beforeReveal.items.every((item: any) => !item.result));
-    await admin.command("reveal-ai-scores", { confirmation: "PUBLIC_AI" });
+    await assert.rejects(admin.command("reveal-ai-scores", { confirmation: "PUBLIC_AI" }),{code:"OWNER_REQUIRED"});
     const afterReveal = (await f
       .service("stranger")
       .view("/leaderboard")) as any;
-    assert.equal(afterReveal.scoreStage, "ai");
-    assert.equal(afterReveal.items[0].result.score, 10);
+    assert.equal(afterReveal.scoreStage, "community");
+    assert.ok(afterReveal.items.every((item:any)=>!item.result));
     assert.doesNotMatch(
       JSON.stringify(afterReveal),
       /dimensions|approved-snapshot|synthetic-provider-model|rubricVersion/,
@@ -209,7 +209,7 @@ test("explicit current-version evaluation persists a numeric provider report, wh
       (await latestProviderGrade(f.db, f.projectId, f.versionId))!.score,
       10,
     );
-    assert.equal((await admin.view("/admin/settings") as any).scoreRelease.aiRevealed, true);
+    assert.equal((await admin.view("/admin/settings") as any).scoreRelease.aiRevealed, false);
     f.clock("2026-11-01T13:00:00.000Z");
     await freezeResults(f.service("owner"), {});
     const frozenSettings = await admin.view("/admin/settings") as any;
@@ -219,6 +219,7 @@ test("explicit current-version evaluation persists a numeric provider report, wh
     const frozenReview = await admin.view("/admin/submissions/" + f.projectId) as any;
     assert.equal(frozenReview.evaluationControl.allowed, false);
     assert.equal(frozenReview.resultsFrozen, true);
+    const owner=f.service("owner"),preview:any=await owner.command("preview-reveal-scores",{});await owner.command("reveal-scores",{token:preview.token,expiresAt:preview.expiresAt,confirmation:"REVEAL_SCORES"});const revealed:any=await f.service("stranger").view("/leaderboard");assert.equal(revealed.scoreStage,"final");assert.ok(Number.isFinite(revealed.items[0].result.score));assert.doesNotMatch(JSON.stringify(revealed),/dimensions|approved-snapshot|synthetic-provider-model|rubricVersion/);
   } finally {
     f.db.close();
   }

@@ -323,11 +323,13 @@ test(
       );
       await seedRichVisual(db);
       await batch(db, [["INSERT INTO engagement_controls VALUES(1,1,1,1,'fake_admin','2026-10-31T00:00:00Z') ON CONFLICT(id) DO UPDATE SET voting_paused=1,feedback_paused=1"]]);
+      const publicCommentsBefore=(await rows(db,"SELECT * FROM project_comments WHERE project_id='visual_project_alice'")).length;
       const staff = new PortalService(db, fixtures.admin, LOCAL_CREDIT_KEY);
       await staff.command("upvote-project", {projectId:"visual_project_alice"});
       await staff.command("comment-project", {projectId:"visual_project_alice",body:"Synthetic staff feedback stays available with participant feedback paused."});
       assert.equal((await rows(db,"SELECT * FROM project_upvotes WHERE user_id='fake_admin'")).length,1);
-      await assert.rejects(new PortalService(db,fixtures.alice,LOCAL_CREDIT_KEY).command("comment-project",{projectId:"visual_project_alice",body:"Synthetic participant feedback remains paused by the existing control."}),{code:"ENGAGEMENT_PAUSED"});
+      await new PortalService(db,fixtures.alice,LOCAL_CREDIT_KEY).command("comment-project",{projectId:"visual_project_alice",body:"Synthetic participant feedback remains open despite retired pause controls."});
+      assert.equal((await rows(db,"SELECT * FROM project_comments WHERE project_id='visual_project_alice'")).length,publicCommentsBefore+2);
       assert.deepEqual(await rows(db, "PRAGMA foreign_key_check"), []);
     } finally {
       await mf.dispose();

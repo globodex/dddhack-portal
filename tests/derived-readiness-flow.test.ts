@@ -125,6 +125,7 @@ test("existing inactive flags do not block legitimate check-in and three submiss
       "Readiness never auto-enables, initializes or rewrites policy",
     );
     assert.equal((await rows(db, "SELECT * FROM result_snapshots")).length, 0);
+    await assert.rejects(service("owner").command("reveal-ai-scores", {reason:"Synthetic retired action",confirmation:"PUBLIC_AI"}), {code:"USE_OWNER_SCORE_REVEAL"});
     assert.equal((await rows(db, "SELECT * FROM score_releases")).length, 0);
   } finally {
     db.close();
@@ -209,7 +210,7 @@ test("derived submissions preserve real window boundaries and version-bound owne
   }
 });
 
-test("AI score release requires actual finalized provider data rather than operational acknowledgments", async () => {
+test("retired AI-only release cannot publish marks through operational acknowledgments", async () => {
   const ctx = await setup();
   const { db, service, clock } = ctx;
   try {
@@ -235,7 +236,7 @@ test("AI score release requires actual finalized provider data rather than opera
         reason: "Synthetic evidence gate",
         confirmation: "PUBLIC_AI",
       }),
-      { code: "REAL_EVALUATION_REQUIRED" },
+      { code: "OWNER_REQUIRED" },
     );
     assert.equal((await rows(db, "SELECT * FROM score_releases")).length, 0);
     assert.equal((await rows(db, "SELECT * FROM result_snapshots")).length, 0);
@@ -244,7 +245,7 @@ test("AI score release requires actual finalized provider data rather than opera
   }
 });
 
-test("actual score coverage and explicit staged publication preserve immutable final snapshots with acknowledgment flags absent", async () => {
+test("actual score coverage and owner-only publication preserve immutable final snapshots without staged awards", async () => {
   const ctx = await setup();
   const { db, service, clock } = ctx;
   try {
@@ -307,20 +308,20 @@ test("actual score coverage and explicit staged publication preserve immutable f
       /IMMUTABLE/,
     );
     await assert.rejects(
-      service("admin").command("reveal-final-scores", {
+      service("owner").command("reveal-final-scores", {
         snapshotId: frozen.snapshotId,
         reason: "Synthetic reveal missing action confirmation",
         confirmation: "WRONG",
       }),
       { code: "EXPLICIT_REVEAL_CONFIRMATION_REQUIRED" },
     );
-    await service("admin").command("reveal-final-scores", {
+    await service("owner").command("reveal-final-scores", {
       snapshotId: frozen.snapshotId,
       reason: "Synthetic deliberate final reveal",
       confirmation: "PUBLIC_FINAL",
     });
     assert.equal((await scoreState(service())).stage, "final");
-    assert.equal((await scoreState(service())).complete, false);
+    assert.equal((await scoreState(service())).complete, true);
     assert.equal((await rows(db, "SELECT * FROM winner_reveals")).length, 0);
     assert.equal((await service().settings()).active, 0);
   } finally {

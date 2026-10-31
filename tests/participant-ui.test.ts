@@ -271,7 +271,7 @@ test("showcase votes use server capabilities and persistent pressed state withou
     run,
   });
   assert.match(voted, /aria-pressed="true"/);
-  assert.match(voted, /disabled=""/);
+  assert.doesNotMatch(voted, /disabled=""/);
 });
 test("vote controller permits one pending action, rolls back rejection and can retry after failure", async () => {
   const controller = new UpvoteController();

@@ -7,14 +7,14 @@ import { openMobileNavigation } from "../app/mobile-navigation";
 
 test("all role shells share one mobile dialog with ordinary role-authorized links and no section labels", () => {
   const cases = [
-    { path: "/", me: undefined, links: ["Home", "Projects", "Sign in"] },
+    { path: "/", me: undefined, links: ["Home", "Showcase", "Sign in"] },
     {
       path: "/",
       me: { role: "participant", name: "Synthetic" },
       links: [
         "Dashboard",
         "Discover",
-        "Projects",
+        "Showcase",
         "Rules",
         "Your profile",
         "Log out",
@@ -57,7 +57,7 @@ test("all role shells share one mobile dialog with ordinary role-authorized link
     {
       path: "/projects",
       me: { role: "participant", mode: "viewer", name: "Synthetic viewer" },
-      links: ["Discover", "Projects", "Log out"],
+      links: ["Discover", "Showcase", "Log out"],
     },
   ];
   for (const entry of cases) {

@@ -425,7 +425,7 @@ test("three distinct votes, no own-team or duplicate votes, meaningful feedback 
     userId: "fake_bob",
     reason: "test",
   });
-  clock("2026-11-01T10:45:00.000Z");
+  clock("2026-11-01T10:15:00.000Z");
   await assert.rejects(
     service("bob").command("vote", { teamId: "fake_team3" }),
     /OWN_TEAM/,
@@ -441,6 +441,7 @@ test("three distinct votes, no own-team or duplicate votes, meaningful feedback 
   );
   assert(!feedbackQuality("good"));
   assert(!feedbackQuality("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
+  clock("2026-11-01T10:45:00.000Z");
   await service("bob").command("feedback", {
     teamId: "fake_team1",
     text: "Good layout, but the search button failed twice while testing.",
@@ -509,27 +510,25 @@ test("full mock rehearsal: two equal-weight judges, human review, owner freeze, 
   await activate(db);
   await attend(db, "fake_alice", "fake_bob", "fake_eve");
   clock("2026-11-01T06:00:00.000Z");
-  const v = await service().command("submit", submission);
-  await service("owner").command("assign-judge", {
-    judgeId: "fake_judge",
-    teamId: "fake_team1",
+  const v = await service().command("submit-project", {revision:0,project:{projectName:submission.projectName,problemSolution:submission.problemSolution,description:submission.description,github:submission.github,logo:submission.logo,banner:submission.banner,attestation:true}});
+  await service("owner").command("assign-project", {
+    projectId:v.projectId, kind:"judge", userId: "fake_judge",
     reason: "assignment",
   });
-  await service("owner").command("assign-judge", {
-    judgeId: "fake_judge2",
-    teamId: "fake_team1",
+  await service("owner").command("assign-project", {
+    projectId:v.projectId, kind:"judge", userId: "fake_judge2",
     reason: "assignment",
   });
   clock("2026-11-01T11:00:00.000Z");
-  await service("judge").command("judge-score", {
-    teamId: "fake_team1",
-    rating: 8,
-    notes: "Strong prototype",
+  await service("judge").command("review-project", {
+    projectId:v.projectId,versionId:v.versionId,ratingScale:100,
+    rating: 80,
+    body: "Strong prototype",
   });
-  await service("judge2").command("judge-score", {
-    teamId: "fake_team1",
-    rating: 10,
-    notes: "Clear explanation",
+  await service("judge2").command("review-project", {
+    projectId:v.projectId,versionId:v.versionId,ratingScale:100,
+    rating: 100,
+    body: "Clear explanation",
   });
   await assert.rejects(
     service("judge").command("review", {}),
@@ -537,7 +536,7 @@ test("full mock rehearsal: two equal-weight judges, human review, owner freeze, 
   );
   await service("admin").command("review", {
     teamId: "fake_team1",
-    versionId: v.id,
+    versionId: v.versionId,
     eligibility: "eligible",
     astra: 24,
     codex: 4,
@@ -562,7 +561,7 @@ test("full mock rehearsal: two equal-weight judges, human review, owner freeze, 
   await assert.rejects(
     service("admin").command("review", {
       teamId: "fake_team1",
-      versionId: v.id,
+      versionId: v.versionId,
       eligibility: "eligible",
       astra: 30,
       codex: 5,
@@ -582,12 +581,11 @@ test("full mock rehearsal: two equal-weight judges, human review, owner freeze, 
       snapshotId: frozen.snapshotId,
       reason: "FAKE local reveal",
     }),
-    /USE_STAGED_SCORE_REVEAL/,
+    {code:"USE_OWNER_SCORE_REVEAL"},
   );
-  assert.equal(
-    ((await service().view("/winners")).items as unknown[]).length,
-    0,
-  );
+  const preview=await service("owner").command("preview-reveal-scores",{});
+  await service("owner").command("reveal-scores",{token:preview.token,expiresAt:preview.expiresAt,confirmation:"REVEAL_SCORES"});
+  assert.equal(((await service().view("/winners")).items as unknown[]).length,1);
   db.close();
 });
 test("HTTP security: CSRF, IDOR, role bypass, export permissions, cache controls and bounded body", async () => {

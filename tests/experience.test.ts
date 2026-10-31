@@ -864,27 +864,21 @@ test("revised judge reviews feed only an owner-revealed frozen score; public eng
       ((await publicService.view("/leaderboard")) as Row).items[0].result,
       undefined,
     );
-    const release = await service("admin").command("reveal-final-scores", {
+    const release = await service("owner").command("reveal-final-scores", {
       confirmation: "PUBLIC_FINAL",
       snapshotId: frozen.snapshotId,
       reason: "Synthetic explicit reveal",
     });
-    assert.equal(
-      ((await publicService.view("/leaderboard")) as Row).items[0].result,
-      undefined,
-    );
-    await service("admin").command("unveil-winner", {
-      releaseId: release.releaseId,
-      position: 1,
-      confirmation: "UNVEIL_1",
-      reason: "Synthetic first award",
-    });
+    assert.equal(((await publicService.view("/leaderboard")) as Row).items[0].result.score,65);
+    await assert.rejects(service("owner").command("unveil-winner", {releaseId:release.releaseId,position:1,confirmation:"UNVEIL_1",reason:"Synthetic retired award"}),{code:"USE_OWNER_SCORE_REVEAL"});
     let board = (await publicService.view("/leaderboard")) as Row;
     assert.equal(board.items[0].result.score, 65);
     assert.equal(board.items[0].result.rank, undefined);
-    await service("pending").command("upvote-project", { projectId });
+    await assert.rejects(service("pending").command("upvote-project", { projectId }),{code:"VOTING_CLOSED"});
+    await service("admin").command("comment-project",{projectId,body:"Synthetic public comment remains available after owner reveal."});
     board = (await publicService.view("/leaderboard")) as Row;
-    assert.equal(board.items[0].upvotes, 1);
+    assert.equal(board.items[0].upvotes, 0);
+    assert.equal(board.items[0].comments,1);
     assert.equal(board.items[0].result.score, 65);
     assert.ok(!JSON.stringify(board).includes("private team advice"));
     await assert.rejects(

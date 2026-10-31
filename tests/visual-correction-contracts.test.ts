@@ -46,44 +46,13 @@ test("ordinary missing/null/blank reasons become server audit text without chang
     assert.equal(auditReason().parse(value), automaticAuditReason);
   const { db, service } = await setup();
   try {
-    await service("owner").command("engagement-control", {
-      votingPaused: false,
-      feedbackPaused: false,
-      version: 0,
-      confirmation: "CHANGE_ENGAGEMENT",
-    });
-    const audit: any = await one(
-      db,
-      "SELECT * FROM audit_logs WHERE action='engagement-control'",
-    );
-    assert.equal(audit.actor_id, "fake_owner");
-    assert.equal(audit.reason, automaticAuditReason);
-    assert.ok(audit.created_at);
-    await assert.rejects(
-      service("alice").command("engagement-control", {
-        votingPaused: false,
-        feedbackPaused: false,
-        version: 1,
-        confirmation: "CHANGE_ENGAGEMENT",
-      }),
-      { code: "ADMIN_REQUIRED" },
-    );
-    await assert.rejects(
-      service("owner").command("engagement-control", {
-        votingPaused: false,
-        feedbackPaused: false,
-        version: 0,
-        confirmation: "CHANGE_ENGAGEMENT",
-      }),
-      { code: "ENGAGEMENT_CHANGED_RELOAD" },
-    );
-    await assert.rejects(
-      service("owner").command("engagement-control", {
-        votingPaused: false,
-        feedbackPaused: false,
-        version: 1,
-      }),
-    );
+    const status={kind:"person",targetId:"fake_alice",status:"Going",confirmation:"CHANGE_STATUS"};
+    await service("owner").command("admin-status",status);
+    const audit:any=await one(db,"SELECT * FROM audit_logs WHERE action='admin-status'");assert.equal(audit.actor_id,"fake_owner");assert.equal(audit.reason,automaticAuditReason);assert.ok(audit.created_at);
+    await assert.rejects(service("alice").command("admin-status",status),{code:"ADMIN_REQUIRED"});
+    await assert.rejects(service("owner").command("admin-status",{...status,confirmation:"WRONG"}));
+    await assert.rejects(service("owner").command("engagement-control",{votingPaused:false,feedbackPaused:false,version:0,confirmation:"CHANGE_ENGAGEMENT"}),{code:"ENGAGEMENT_CONTROLS_RETIRED"});
+    assert.equal(await one(db,"SELECT id FROM audit_logs WHERE action='engagement-control'"),undefined);
     const request = operationalSetupRequest({
       version: 1,
       operation: "submissions",
@@ -99,6 +68,7 @@ test("ordinary missing/null/blank reasons become server audit text without chang
       "save-operational-setup",
       operationalSetupSave(request, preview),
     );
+    await assert.rejects(service("owner").command("save-operational-setup",operationalSetupSave(request,preview)),{code:"POLICY_CHANGED_RELOAD"});
     const settings: any = await service("owner").settings(true);
     assert.equal(settings.active, 0);
     assert.equal(

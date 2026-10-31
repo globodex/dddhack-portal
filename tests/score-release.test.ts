@@ -120,6 +120,10 @@ test("each public response reads score disclosure once and refilters the next re
       )
       .all();
     releaseReads = validityScans = 0;
+    const legacyHidden = (await ctx.publicService.view("/projects")) as Row;
+    assert.equal(legacyHidden.scoreStage,"community");assert.ok(legacyHidden.items.every((item:Row)=>!item.result));assert.equal(validityScans,0);
+    await ctx.db.prepare("INSERT INTO score_releases VALUES(?,'final',?,?,NULL,?,'fake_owner')").bind("synthetic-final-performance-release","synthetic-historical-source",JSON.stringify([{projectId:"stage-project-1",versionId:"stage-version-1",teamId:"stage-team-1",score:12,position:1}]),"2026-11-01T13:00:00Z").all();
+    releaseReads = validityScans = 0;
     const disclosed = (await ctx.publicService.view("/projects")) as Row;
     assert.equal(releaseReads, 1);
     assert.equal(validityScans, 1);
@@ -212,190 +216,8 @@ const intent = {
   reason: "Synthetic reviewed public release",
   confirmation: "PUBLIC_AI",
 };
-test("AI reveal requires admin, explicit intent, actual persisted provider score and finalized current-version report", async () => {
-  const { db, service, publicService } = await data(2);
-  try {
-    for (const actor of ["alice", "judge", "pending"])
-      await assert.rejects(
-        service(actor).command("reveal-ai-scores", intent),
-        /ADMIN_REQUIRED/,
-      );
-    await assert.rejects(
-      publicService.command("reveal-ai-scores", intent),
-      /SIGN_IN_REQUIRED/,
-    );
-    await assert.rejects(
-      service("admin").command("reveal-ai-scores", {
-        ...intent,
-        confirmation: "",
-      }),
-      /EXPLICIT_REVEAL/,
-    );
-    await assert.rejects(
-      service("admin").command("reveal-ai-scores", intent),
-      /REAL_EVALUATION_REQUIRED/,
-    );
-    await evaluations(db, 2);
-    await batch(db, [
-      [
-        "UPDATE evaluation_runs SET report=? WHERE id='provider-fixture-1'",
-        JSON.stringify(report("stage-version-1", "disabled-no-external-calls")),
-      ],
-    ]);
-    await assert.rejects(
-      service("admin").command("reveal-ai-scores", intent),
-      /FINALIZED_EVALUATION_REQUIRED/,
-    );
-    await batch(db, [
-      [
-        "UPDATE evaluation_runs SET report=? WHERE id='provider-fixture-1'",
-        JSON.stringify(report("stage-version-1")),
-      ],
-    ]);
-    const before = (await publicService.view("/leaderboard")) as Row;
-    assert.equal(before.scoreStage, "community");
-    assert.ok(before.items.every((p: Row) => !p.result));
-    await service("admin").command("reveal-ai-scores", intent);
-    await service("owner").command("reveal-ai-scores", intent);
-    const board = (await publicService.view("/leaderboard")) as Row;
-    assert.equal(board.scoreStage, "ai");
-    assert.deepEqual(
-      board.items.map((p: Row) => p.id),
-      ["stage-project-2", "stage-project-1"],
-    );
-    assert.equal(board.items[0].result.score, 6);
-    assert.equal(board.scoringInfo, undefined);
-    const json = JSON.stringify(board);
-    for (const privateKey of [
-      "dimensions",
-      "rubricVersion",
-      "weightage",
-      "provider-response",
-      "provenance",
-      "source_id",
-    ])
-      assert.ok(!json.includes(privateKey));
-    assert.equal((await rows(db, "SELECT * FROM score_releases")).length, 1);
-    await assert.rejects(
-      batch(db, [["UPDATE score_releases SET payload='[]'"]]),
-      /IMMUTABLE/,
-    );
-    await batch(db, [
-      [
-        "UPDATE project_eligibility SET status='ineligible' WHERE project_id='stage-project-2'",
-      ],
-    ]);
-    assert.equal(
-      ((await publicService.view("/leaderboard")) as Row).items.length,
-      1,
-    );
-  } finally {
-    db.close();
-  }
-});
-test("final stage withholds every undisclosed position, allows manual award order, then enables full final ordering and confirmed Info", async () => {
-  const { db, service, publicService } = await data();
-  try {
-    const before = (await publicService.view("/leaderboard")) as Row;
-    const intent = {
-      snapshotId: "stage-frozen",
-      confirmation: "PUBLIC_FINAL",
-      reason: "Synthetic explicit final disclosure",
-    };
-    await assert.rejects(
-      service("admin").command("reveal-final-scores", intent),
-      /CURRENT_FROZEN_SNAPSHOT_REQUIRED/,
-    );
-    await snapshot(db, 6);
-    const policy = JSON.parse(
-      (await one<Row>(db, "SELECT policy FROM event_settings WHERE id=1"))!
-        .policy,
-    );
-    await batch(db, [
-      [
-        "UPDATE event_settings SET policy=?",
-        JSON.stringify({ ...policy, scoringDisclosure: null }),
-      ],
-    ]);
-    await assert.rejects(
-      service("admin").command("reveal-final-scores", intent),
-      { code: "SCORING_DISCLOSURE_UNCONFIRMED" },
-    );
-    await batch(db, [
-      ["UPDATE event_settings SET policy=?", JSON.stringify(policy)],
-    ]);
-    const release = await service("admin").command(
-      "reveal-final-scores",
-      intent,
-    );
-    await service("owner").command("reveal-final-scores", intent);
-    let board = (await publicService.view("/leaderboard")) as Row;
-    assert.deepEqual(
-      board.items.map((p: Row) => p.id),
-      before.items.map((p: Row) => p.id),
-    );
-    assert.ok(board.items.every((p: Row) => !p.result));
-    assert.equal(board.awards.length, 0);
-    assert.ok(board.scoringInfo.weightage.includes("maximum 105"));
-    assert.equal(
-      ((await publicService.view("/winners")) as Row).items.length,
-      0,
-    );
-    for (const [step, n] of [3, 1, 5, 2, 4].entries()) {
-      const command = {
-        releaseId: release.releaseId,
-        position: n,
-        confirmation: "UNVEIL_" + n,
-        reason: "Synthetic unveil award " + n,
-      };
-      await service("admin").command("unveil-winner", command);
-      await service("admin").command("unveil-winner", command);
-      board = (await publicService.view("/leaderboard")) as Row;
-      const winner = (await publicService.view("/projects/stage-1")) as Row;
-      if (step < 4) {
-        assert.equal(board.finalCountdownComplete, false);
-        assert.equal(
-          board.items.find((p: Row) => p.id === "stage-project-6").result,
-          undefined,
-        );
-        assert.equal(board.awards.length, step + 1);
-        assert.deepEqual(
-          board.items.map((p: Row) => p.id),
-          before.items.map((p: Row) => p.id),
-        );
-        const hidden = [3, 1, 5, 2, 4].slice(step + 1);
-        for (const position of hidden)
-          assert.equal(
-            board.items.find((p: Row) => p.id === "stage-project-" + position)
-              .result,
-            undefined,
-          );
-      }
-    }
-    assert.equal(board.finalCountdownComplete, true);
-    assert.deepEqual(
-      board.items.map((p: Row) => p.result.position),
-      [1, 2, 3, 4, 5, 6],
-    );
-    assert.equal((await rows(db, "SELECT * FROM winner_reveals")).length, 5);
-    await assert.rejects(
-      batch(db, [["DELETE FROM winner_reveals"]]),
-      /IMMUTABLE/,
-    );
-    await assert.rejects(
-      service("alice").command("unveil-winner", {
-        releaseId: release.releaseId,
-        position: 1,
-        confirmation: "UNVEIL_1",
-        reason: "Synthetic unauthorized repeat",
-      }),
-      /ADMIN_REQUIRED/,
-    );
-    assert.equal((await rows(db, "SELECT * FROM score_releases")).length, 1);
-  } finally {
-    db.close();
-  }
-});
+test("retired AI-only actions never reveal marks, including historical provider records",async()=>{const {db,service,publicService}=await data(2);try{for(const actor of ["alice","judge","pending","admin"])await assert.rejects(service(actor).command("reveal-ai-scores",intent),{code:"OWNER_REQUIRED"});await assert.rejects(publicService.command("reveal-ai-scores",intent),{code:"SIGN_IN_REQUIRED"});await evaluations(db,2);await assert.rejects(service("owner").command("reveal-ai-scores",intent),{code:"USE_OWNER_SCORE_REVEAL"});await batch(db,[["INSERT INTO score_releases VALUES('synthetic-old-ai','ai','synthetic-source',?,NULL,'2026-11-01','fake_admin')",JSON.stringify([{projectId:"stage-project-1",versionId:"stage-version-1",teamId:"stage-team-1",score:3}])]]);const board=await publicService.view("/leaderboard") as Row;assert.equal(board.scoreStage,"community");assert.ok(board.items.every((p:Row)=>!p.result));assert.equal(board.scoringInfo,undefined);for(const key of ["dimensions","provider-response","provenance","source_id"])assert.ok(!JSON.stringify(board).includes(key));await assert.rejects(batch(db,[["UPDATE score_releases SET payload='[]'"]]),/IMMUTABLE/)}finally{db.close()}});
+test("owner final reveal publishes every canonical position together without award-by-award withholding",async()=>{const {db,service,publicService}=await data();try{const command={snapshotId:"stage-frozen",confirmation:"PUBLIC_FINAL",reason:"Synthetic explicit final disclosure"};await assert.rejects(service("admin").command("reveal-final-scores",command),{code:"OWNER_REQUIRED"});await assert.rejects(service("owner").command("reveal-final-scores",command),{code:"CURRENT_FROZEN_SNAPSHOT_REQUIRED"});await snapshot(db,6);const policy=JSON.parse((await one<Row>(db,"SELECT policy FROM event_settings WHERE id=1"))!.policy);await batch(db,[["UPDATE event_settings SET policy=?",JSON.stringify({...policy,scoringDisclosure:null})]]);await assert.rejects(service("owner").command("reveal-final-scores",command),{code:"SCORING_DISCLOSURE_UNCONFIRMED"});await batch(db,[["UPDATE event_settings SET policy=?",JSON.stringify(policy)]]);const release=await service("owner").command("reveal-final-scores",command);await service("owner").command("reveal-final-scores",command);const board=await publicService.view("/leaderboard") as Row;assert.deepEqual(board.items.map((p:Row)=>p.result.position),[1,2,3,4,5,6]);assert.equal(board.finalCountdownComplete,true);assert.equal((await publicService.view("/winners") as Row).items.length,6);assert.equal(board.scoringInfo,undefined);const detail=await publicService.view("/projects/stage-1") as Row;assert.ok(detail.scoringInfo.weightage.includes("maximum 105"));assert.equal((await rows(db,"SELECT * FROM winner_reveals")).length,0);await assert.rejects(service("owner").command("unveil-winner",{releaseId:release.releaseId,position:1,confirmation:"UNVEIL_1",reason:"Synthetic retired action"}),{code:"USE_OWNER_SCORE_REVEAL"});assert.equal((await rows(db,"SELECT * FROM score_releases")).length,1);await assert.rejects(batch(db,[["UPDATE score_releases SET payload='[]'"]]),/IMMUTABLE/)}finally{db.close()}});
 test("confirmation decisions are default-safe, single-use and block overlapping prompts; accessible dialog exposes exact target", async () => {
   const updates: any[] = [];
   const gate = new ConfirmationGate((value) => updates.push(value));
@@ -428,15 +250,15 @@ test("confirmation decisions are default-safe, single-use and block overlapping 
   assert.equal(writes, 1);
   assert.equal(gate.pending, null);
   const specification = confirmationFor(
-    "unveil-winner",
-    { position: 5 },
-    "Award 5",
+    "reveal-scores",
+    { token: "synthetic-ready-token" },
+    "Scores for 6 projects",
   );
-  assert.match(specification.description, /everyone/);
+  assert.match(specification.description, /Publish current total and category scores/);
   assert.match(specification.description, /cannot/);
   assert.equal(
-    revealConfirmation("unveil-winner", { position: 5 }),
-    "UNVEIL_5",
+    revealConfirmation("reveal-scores", {}),
+    "REVEAL_SCORES",
   );
   const html = renderToStaticMarkup(
     createElement(ConfirmationDialog, {
@@ -449,7 +271,8 @@ test("confirmation decisions are default-safe, single-use and block overlapping 
   assert.match(html, /aria-describedby=/);
   assert.match(html, /autoFocus=""/i);
   assert.match(html, /Cancel/);
-  assert.match(html, /Award 5/);
+  assert.match(html, /All current eligible projects/);
+  assert.doesNotMatch(html, /Scores for 6 projects/);
 });
 test("managed identity persists across ordinary requests; local logout expires its fixture cookie and anonymous private reads fail", async () => {
   const { db } = await setup();

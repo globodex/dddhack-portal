@@ -150,14 +150,15 @@ test("bulk counts do not fan out and actor votes/own-team permission refresh on 
     )) as View;
     assert.equal(
       revoked.items[0].canUpvote,
-      false,
-      "own-team vote still requires current personal check-in",
+      true,
+      "an existing own-team vote can be removed after attendance changes",
     );
     assert.equal(
       revoked.items[0].upvoted,
       true,
       "attendance changes preserve existing votes",
     );
+    await assert.rejects(service().command("upvote-project",{projectId,voted:true}),{code:"OWN_PROJECT_CHECKIN_REQUIRED"});
     assert.equal(
       (
         await rows(
@@ -173,7 +174,7 @@ test("bulk counts do not fan out and actor votes/own-team permission refresh on 
   }
 });
 
-test("public cards and global awards share current safe facts without exposing hidden final positions", async () => {
+test("public cards and global awards expose canonical positions only after the final release", async () => {
   const { db, f, service } = await fixture();
   try {
     const entries = f.teams.slice(0, 6).map((team, index) => ({
@@ -194,20 +195,16 @@ test("public cards and global awards share current safe facts without exposing h
       .bind(entries[0].projectId, now, f.operations[0].id)
       .all();
     const first = (await service(null).view("/projects")) as View;
-    assert.equal(first.finalCountdownComplete, false);
+    assert.equal(first.finalCountdownComplete, true);
     assert.deepEqual(
       first.items
         .filter((item: View) => item.result)
         .map((item: View) => item.id),
-      [entries[0].projectId],
+      entries.map(entry=>entry.projectId),
     );
-    assert.equal(first.awards.length, 1);
+    assert.equal(first.awards.length, 6);
     assert.equal(first.awards[0].position, 1);
-    assert.ok(
-      first.items
-        .filter((item: View) => item.id !== entries[0].projectId)
-        .every((item: View) => !item.result),
-    );
+    assert.ok(entries.every(entry=>first.items.some((item:View)=>item.id===entry.projectId&&item.result.position===entry.position)));
     const search = (await service(null).view("/projects", {
       search: "Synthetic Project 89",
     })) as View;
@@ -227,7 +224,7 @@ test("public cards and global awards share current safe facts without exposing h
       .bind(entries[0].projectId)
       .all();
     const revoked = (await service(null).view("/projects")) as View;
-    assert.equal(revoked.awards.length, 0);
+    assert.equal(revoked.awards.length, 5);
     assert.ok(!JSON.stringify(revoked).includes(entries[0].projectId));
     await assert.rejects(service(null).view("/projects/synthetic-0"), {
       code: "PROJECT_NOT_ELIGIBLE",
@@ -287,11 +284,11 @@ test("new committed versions require their own eligibility and never inherit a p
       id = "public_" + team.id;
     await db
       .prepare(
-        "INSERT INTO score_releases VALUES('bulk_ai','ai','synthetic-source',?,NULL,?,?)",
+        "INSERT INTO score_releases VALUES('bulk_final','final','synthetic-source',?,NULL,?,?)",
       )
       .bind(
         JSON.stringify([
-          { projectId: id, versionId: id + "_v1", teamId: team.id, score: 99 },
+          { projectId: id, versionId: id + "_v1", teamId: team.id, score: 99,position:1 },
         ]),
         now,
         f.operations[0].id,

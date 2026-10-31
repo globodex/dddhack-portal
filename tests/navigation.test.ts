@@ -6,10 +6,12 @@ test("participant primary navigation stays focused and admin discovery retains m
     portalNavigation("/dashboard", { role: "participant" }).items.map(
       (x) => x[1],
     ),
-    ["Dashboard", "Discover", "Projects", "Rules"],
+    ["Dashboard", "Discover", "Showcase", "Rules"],
   );
   const management = portalNavigation("/discover/teams", { role: "admin" });
   assert.equal(management.admin, true);
+  assert.ok(management.items.some(x=>x[1]==="Showcase"));
+  assert.ok(management.items.some(x=>x[1]==="Submissions"));
   assert.ok(management.items.some((x) => x[1] === "Participants"));
   assert.ok(!management.items.some((x) => x[1] === "Logs"));
   assert.ok(

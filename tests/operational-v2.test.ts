@@ -238,7 +238,7 @@ test("only one checked-in team member is necessary; unapproved or absent member 
     db.close();
   }
 });
-test("repository cutoff is strictly after 08:00 IST for BOTH dates; uncertainty is never a violation", () => {
+test("repository cutoff allows exactly08:00 IST; only known earlier dates violate it", () => {
   const before = "2026-11-01T02:29:59.999Z",
     exact = "2026-11-01T08:00:00+05:30",
     after = "2026-11-01T08:00:00.001+05:30";
@@ -246,7 +246,7 @@ test("repository cutoff is strictly after 08:00 IST for BOTH dates; uncertainty 
     for (const firstCommit of [before, exact, after])
       assert.equal(
         githubEligibility({ public: true, createdAt, firstCommit }),
-        createdAt === after && firstCommit === after
+        createdAt !== before && firstCommit !== before
           ? "ELIGIBLE"
           : "INELIGIBLE",
       );
@@ -277,7 +277,7 @@ test("version-bound private repository evidence, proven violation and narrow ass
       observedAt: "2026-11-01T03:55:00Z",
       metadata: {
         public: true,
-        createdAt: "2026-11-01T02:30:00Z",
+        createdAt: "2026-11-01T02:29:59.999Z",
         firstCommit: "2026-11-01T02:30:01Z",
       },
     };

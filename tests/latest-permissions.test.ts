@@ -82,7 +82,7 @@ test("leader must personally check in for drafts/commits while a teammate can un
     db.close();
   }
 });
-test("own project votes require personal check-in; other project votes have no check-in/time window or global quota and stay idempotent", async () => {
+test("own project votes require personal check-in; other project votes remain unique inside the submission window", async () => {
   const { db, service, clock } = await setup();
   try {
     await activate(db);
@@ -117,8 +117,10 @@ test("own project votes require personal check-in; other project votes have no c
         .all(),
       /OWN_PROJECT_CHECKIN_REQUIRED/,
     );
-    // Bob never checked in; voting for another team's project remains allowed after event.
+    // Bob need not check in for another team, but the submission vote window still applies.
     clock("2026-11-03T04:00:00.000Z");
+    await assert.rejects(service("bob").command("upvote-project", {projectId:commit.projectId}),{code:"VOTING_CLOSED"});
+    clock("2026-11-01T04:10:00.000Z");
     await Promise.all(
       Array.from({ length: 8 }, () =>
         service("bob").command("upvote-project", {
@@ -681,7 +683,7 @@ test("approved never-login registrants become Absent without inventing a user an
     db.close();
   }
 });
-test("participant feedback pause is versioned while voting remains open and unique", async () => {
+test("retired engagement controls cannot pause comments and windowed votes remain unique", async () => {
   const { db, service, clock } = await setup();
   try {
     await activate(db);
@@ -706,24 +708,12 @@ test("participant feedback pause is versioned while voting remains open and uniq
     await assert.rejects(service().command("engagement-control", pause), {
       code: "ADMIN_REQUIRED",
     });
-    await service("admin").command("engagement-control", pause);
-    for (const action of ["comment-project"])
-      await assert.rejects(
-        service("bob").command(action, {
-          projectId: commit.projectId,
-          body: "This is a synthetic comment with enough characters.",
-        }),
-        { code: "ENGAGEMENT_PAUSED" },
-      );
+    await assert.rejects(service("admin").command("engagement-control", pause),{code:"ENGAGEMENT_CONTROLS_RETIRED"});
+    await service("bob").command("comment-project", {projectId:commit.projectId,body:"This is a synthetic comment with enough characters."});
     let row = asRow(await service("bob").view("/projects")).items[0];
     assert.equal(row.canUpvote, true);
-    assert.equal(row.canComment, false);
-    await service("admin").command("engagement-control", {
-      ...pause,
-      votingPaused: false,
-      feedbackPaused: false,
-      version: 1,
-    });
+    assert.equal(row.canComment, true);
+    await assert.rejects(service("admin").command("engagement-control", {...pause,votingPaused:false,feedbackPaused:false,version:1}),{code:"ENGAGEMENT_CONTROLS_RETIRED"});
     await service("bob").command("upvote-project", {
       projectId: commit.projectId,
     });

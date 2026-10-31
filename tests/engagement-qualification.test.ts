@@ -137,7 +137,7 @@ test("scored engagement stays disabled without explicit qualification policy; pu
 test("qualified scoring filters declared audience/windows, requires staff review, deduplicates authors/copies and ignores late public comments", async () => {
   const { db, service, id, version } = await prepared();
   try {
-    await configure(db);
+    await configure(db,{...policy,submissionClose:"2026-11-01T13:00:00.000Z"});
     await service("admin").command("participant-bulk", {
       emails: ["bob@portal.test", "carol@portal.test", "dave@portal.test"],
       checkIn: true,
@@ -153,6 +153,8 @@ test("qualified scoring filters declared audience/windows, requires staff review
       await batch(db, [
         ["INSERT INTO project_upvotes VALUES(?,?,?)", id, "fake_" + user, time],
       ]);
+    // Historical valid votes remain when the owner later shortens the window.
+    await configure(db);
     await comment(db, "original", id, "bob", body, "2026-11-01T04:10:00.000Z");
     await comment(
       db,

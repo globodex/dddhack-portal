@@ -24,7 +24,7 @@ test("an actually empty collection has no search or fake project and offers the 
 
 test("a real collection retains search, canonical detail/comment links and existing engagement counts", () => {
   const html = projects({ items: [{ id: "real", slug: "real-saved-slug", projectName: "Real saved project", teamName: "Saved team", problemSolution: "Real summary", teamColorKey: "violet", logo: "/real.png", upvotes: 7, comments: 3 }] });
-  assert.match(html, /Search projects/);
+  assert.match(html, /Search showcase/);
   assert.match(html, /href="\/projects\/real-saved-slug"/);
   assert.match(html, /href="\/projects\/real-saved-slug#comments"/);
   assert.match(html, /3 comments on Real saved project/);

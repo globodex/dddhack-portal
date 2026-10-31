@@ -90,7 +90,7 @@ test("ties need complete owner adjudication; altered score breakdown invalidates
       snapshotId: snapshot.snapshotId,
       reason: "FAKE reveal",
     }),
-    /USE_STAGED_SCORE_REVEAL/,
+    {code:"USE_OWNER_SCORE_REVEAL"},
   );
   const pub = await service("alice").view("/winners");
   assert.equal((pub.items as unknown[]).length, 0);

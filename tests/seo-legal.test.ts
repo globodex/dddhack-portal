@@ -247,7 +247,7 @@ test("legal header reuses the hydrated shared menu with named icon destinations 
   assert.match(html, /aria-haspopup="dialog" disabled=""/);
   for (const [path, name] of [
     ["/", "Home"],
-    ["/projects", "Projects"],
+    ["/projects", "Showcase"],
     ["/dashboard", "Dashboard"],
     ["/privacy", "Privacy"],
     ["/terms", "Terms"],

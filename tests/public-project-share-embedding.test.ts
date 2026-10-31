@@ -14,7 +14,7 @@ test("only supplied public entries get icon-only sharing controls outside their 
     assert.equal((html.match(/aria-label="Share"/g) || []).length, 1);
     assert.match(html, /class="public-project-card-actions"/);
     assert.match(html, /href="\/projects\/saved-public-slug"/);
-    assert.doesNotMatch(html, /<a[^>]*class="project-row-link"[^>]*>[\s\S]*?<button[\s\S]*?<\/a>/);
+    const rowLink=html.match(/<a[^>]*class="project-row-link"[^>]*>([\s\S]*?)<\/a>/)?.[1];assert.ok(rowLink);assert.doesNotMatch(rowLink,/<button/);
     assert.doesNotMatch(html, /project-share-dialog/);
   }
 });
