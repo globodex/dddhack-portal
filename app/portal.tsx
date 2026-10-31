@@ -1,5 +1,6 @@
 "use client";
 import { feedbackLengthValid } from "../lib/feedback-length";
+import DashboardSubmissionStatus from "./dashboard-submission-status";
 import OwnerAIControls from "./owner-ai-controls";
 import SubmissionWelcome, { submissionContentHidden } from "./submission-welcome";
 import {
@@ -518,6 +519,7 @@ function navigationIcon(label: string): IconName {
         Participants: "users",
         Teams: "team",
         Projects: "projects",
+        Showcase: "projects",
         Leaderboard: "leaderboard",
         Rules: "rules",
         Settings: "settings",
@@ -2085,6 +2087,7 @@ export function Dashboard({
         ))}
       </nav>
       <DashboardArrival data={data} />
+      <DashboardSubmissionStatus access={data.submissionAccess} />
       <section
         id="team"
         role="tabpanel"
@@ -3701,19 +3704,19 @@ export function UpvoteButton({
     }
     return fresh;
   };
-  const allowed = canEngage && capability && !voted;
+  const allowed = canEngage && capability;
   return (
     <div className="vote-control">
       <button
         type="button"
         className="upvote-button"
-        aria-label={`${voted ? "Upvoted" : "Upvote"} ${project.projectName}; ${upvoteCountLabel(count)}`}
+        aria-label={`${voted ? "Remove upvote from" : "Upvote"} ${project.projectName}; ${upvoteCountLabel(count)}`}
         aria-pressed={voted}
         aria-busy={busy}
         disabled={!allowed || busy}
         title={
           voted
-            ? "You have upvoted this project"
+            ? "Remove your upvote"
             : !allowed
               ? "Voting is unavailable for your account"
               : "Upvote this project"
@@ -3725,11 +3728,11 @@ export function UpvoteButton({
           try {
             const saved = await controller.current!.commit(
               allowed,
-              () => run("upvote-project", { projectId: project.id }),
+              () => run("upvote-project", { projectId: project.id, voted: !before.voted }),
               () => {
                 setBusy(true);
-                setVoted(true);
-                if (count !== null) setCount(count + 1);
+                setVoted(!before.voted);
+                if (count !== null) setCount(Math.max(0, count + (before.voted ? -1 : 1)));
               },
               () => {
                 setVoted(before.voted);
@@ -3908,7 +3911,7 @@ export function Projects({
           <a
             className="back-link"
             href="/projects"
-            aria-label="Back to Projects"
+            aria-label="Back to Showcase"
           >
             <ArrowLeft size={20} aria-hidden="true" />
           </a>
@@ -4053,7 +4056,7 @@ export function Projects({
     >
       <header className="page-heading projects-heading">
         <HeadingDot color="purple" expression="squeezed" size={64} />
-        <h1>{board ? "Leaderboard" : "Projects"}</h1>
+        <h1>{board ? "Leaderboard" : "Showcase"}</h1>
       </header>
       {!emptyCollection && (
         <div className="project-directory-toolbar">
@@ -4066,7 +4069,7 @@ export function Projects({
                 setPage(0);
                 if (board && v.trim()) setSearchBusy(true);
               }}
-              label="Search projects"
+              label="Search showcase"
             />
           </div>
           {searchBusy && (
@@ -4079,8 +4082,7 @@ export function Projects({
       {(listing.engagement?.votingPaused ||
         listing.engagement?.feedbackPaused) && (
         <p className="notice" role="status">
-          Engagement paused. Existing projects, votes and public feedback remain
-          readable.
+          {listing.engagement?.votingWindow?.message || "Voting is not currently open."} Public feedback remains available.
         </p>
       )}
       {board && (
@@ -4156,6 +4158,7 @@ export function Projects({
             id={"entry-" + p.slug}
             style={projectMediaStyle(p.teamColorKey)}
           >
+            {!board && p.banner && <a className="showcase-banner-link" href={`/projects/${p.slug}`} aria-label={`View ${p.projectName}`}><img className="showcase-card-banner" loading="lazy" decoding="async" src={p.banner} alt="" /></a>}
             <a className="project-row-link" href={`/projects/${p.slug}`}>
               <img
                 loading="lazy"
@@ -4176,6 +4179,7 @@ export function Projects({
                 aria-hidden="true"
               />
             </a>
+            {!board && <div className="showcase-card-score" aria-label="Project score">{p.result?.stage === "final" && typeof p.result.score === "number" && Number.isFinite(p.result.score) ? <><strong>{p.result.score}</strong><span>Total score</span></> : <><strong aria-hidden="true">— —</strong><span>Hidden until the owner reveals scores</span></>}</div>}
             <div className="public-project-card-actions">
               {board ? (
                 <div className="engagement">
@@ -4195,6 +4199,7 @@ export function Projects({
                   projectName={p.projectName}
                 />
               )}
+              {!board && <a className="button showcase-view-project" href={`/projects/${p.slug}`}>View Project</a>}
             </div>
           </li>
         ))}
@@ -4960,9 +4965,9 @@ export function privateReviewValues(
   const rating = canScore && supplied ? Number(supplied) : undefined;
   if (
     rating !== undefined &&
-    (!Number.isFinite(rating) || rating < 1 || rating > 10)
+    (!Number.isFinite(rating) || rating < 0 || rating > 100)
   )
-    throw new Error("Enter a private score from 1 to 10.");
+    throw new Error("Enter a private score from 0 to 100.");
   if (!body && rating === undefined)
     throw new Error(
       canScore
@@ -4973,7 +4978,7 @@ export function privateReviewValues(
     projectId,
     versionId,
     ...(body ? { body } : {}),
-    ...(rating !== undefined ? { rating } : {}),
+    ...(rating !== undefined ? { rating, ratingScale: 100 } : {}),
   };
 }
 export function Review({
@@ -5230,22 +5235,10 @@ export function Review({
               }}
             >
               {["admin", "judge"].includes(data.reviewKind) && (
-                <fieldset className="results-ui-rating">
-                  <legend>Score (1 to 10)</legend>
-                  {Array.from({ length: 10 }, (_, index) => index + 1).map(
-                    (rating) => (
-                      <label key={rating}>
-                        <input
-                          type="radio"
-                          name="rating"
-                          value={rating}
-                          defaultChecked={Number(ownReview?.rating) === rating}
-                        />
-                        <span>{rating}</span>
-                      </label>
-                    ),
-                  )}
-                </fieldset>
+                <label className="results-ui-rating-input">
+                  <span>Score (0 to 100)</span>
+                  <input name="rating" type="number" min="0" max="100" step="any" defaultValue={ownReview?.rating == null ? "" : Number(ownReview.rating) * 10} aria-label="Score out of 100" />
+                </label>
               )}
               <Field
                 name="body"
@@ -5360,7 +5353,7 @@ export function Review({
                     <strong>
                       {item.author} · {item.kind}
                     </strong>
-                    {item.rating != null && <span>{item.rating} / 10</span>}
+                    {item.rating != null && <span>{Number(item.rating) * 10} / 100</span>}
                   </header>
                   {item.body && <p>{item.body}</p>}
                   <small>{ist(item.created_at)}</small>
@@ -6288,59 +6281,7 @@ function OwnerPolicyControls({
     </section>
   );
 }
-export function AdminEngagementControls({
-  data,
-  run,
-}: {
-  data: View;
-  run: (a: string, d: Row) => Promise<Row>;
-}) {
-  if (!(data.me?.owner || data.me?.role === "admin")) return null;
-  const settings = data.engagement;
-  if (
-    !settings ||
-    !Number.isInteger(settings.version) ||
-    typeof settings.votingPaused !== "boolean" ||
-    typeof settings.feedbackPaused !== "boolean"
-  )
-    return (
-      <section className="admin-settings-section admin-settings-engagement">
-        <h2>Voting and public comments</h2>
-        <p className="control-feedback" role="status">
-          Voting settings could not load. Refresh this page.
-        </p>
-      </section>
-    );
-  return (
-    <Form
-      className="admin-settings-section admin-settings-engagement"
-      title="Voting and public comments"
-      label="Save"
-      onSave={async (form) => {
-        await run("engagement-control", {
-          votingPaused: false,
-          feedbackPaused: form.get("feedbackEnabled") !== "on",
-          version: settings.version,
-          reason: form.get("reason"),
-          confirmation: "CHANGE_ENGAGEMENT",
-        });
-      }}
-    >
-      <p>Voting is always open. Admins and the owner can leave feedback at any time.</p>
-      <label className="admin-switch-row">
-        <span>Public comments</span>
-        <input
-          type="checkbox"
-          role="switch"
-          name="feedbackEnabled"
-          defaultChecked={!settings.feedbackPaused}
-        />
-        <span className="admin-switch-track" aria-hidden="true" />
-      </label>
-    </Form>
-  );
-}
-function AdminCreditInstructions({
+export function AdminCreditInstructions({
   providers,
   run,
 }: {
@@ -6444,11 +6385,7 @@ export function Settings({
             run={run}
           />
         )}
-        <AdminEngagementControls
-          key={`engagement-${data.engagement?.version ?? "pending"}`}
-          data={data}
-          run={run}
-        />
+        <p className="owner-ai-note">Voting opens and closes with participant submissions. Public feedback remains open.</p>
       </div>
       <div {...panel("results")}>
         {data.me?.owner && <OwnerPolicyControls data={data} run={run} />}

@@ -128,13 +128,13 @@ export async function repositoryCommand(
     observedAt: d.observedAt,
     commitSha: d.commitSha,
     cutoff: repositoryStart,
-    comparison: "strictly-after",
+    comparison: "not-before",
     caveat:
       "Repository history dates are operational evidence, not proof of original authorship.",
   };
   const reason =
     status === "ineligible"
-      ? "Repository creation and first commit must both be strictly after 1 November 2026, 08:00 IST. " +
+      ? "The repository or its first commit was created before 1 November 2026, 08:00 IST. " +
         d.reason
       : d.reason;
   await s.mutate(

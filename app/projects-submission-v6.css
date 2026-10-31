@@ -832,3 +832,22 @@
     justify-content: flex-start;
   }
 }
+
+.dashboard-venue{border-left:1px solid var(--line,#e4e4dd)}.dashboard-submission-status{display:flex;align-items:center;gap:16px;padding:22px;border:1px solid #d9e4dc;border-radius:22px;background:linear-gradient(115deg,#f1f8f2,#f7f8fc);margin-block:18px}.dashboard-submission-status>svg{flex:none;color:#157545}.dashboard-submission-status h3{margin:0 0 6px}.dashboard-submission-status p{margin:0;color:#505d53}.dashboard-submission-countdown{margin-left:auto;text-align:center;flex:none;display:grid;gap:4px}.dashboard-submission-countdown strong{font-variant-numeric:tabular-nums;font-size:clamp(26px,4vw,38px);letter-spacing:.02em}.dashboard-submission-countdown span{font-size:12px;color:#536457}.dashboard-submission-status.is-compact{padding:12px 16px;font-size:13px}@media(max-width:600px){.dashboard-submission-status{flex-wrap:wrap;padding:18px;align-items:flex-start}.dashboard-submission-status>div:first-of-type{flex:1;min-width:0}.dashboard-submission-countdown{width:100%;margin:4px 0 0;text-align:left}}
+
+/* Showcase cards keep the full breakdown on the project detail page. */
+.app-shell .public-project-list .showcase-banner-link{display:block;margin:-24px -24px 0;overflow:hidden;border-radius:18px 18px 0 0}
+.app-shell .public-project-list .showcase-card-banner{display:block;width:100%;aspect-ratio:16/7;object-fit:cover}
+.app-shell .public-project-list .showcase-card-score{display:flex;align-items:center;gap:10px;color:var(--muted,#656960);font-size:12px}
+.app-shell .public-project-list .showcase-card-score strong{font-size:24px;color:var(--ink,#202320);font-variant-numeric:tabular-nums}
+.app-shell .public-project-list .public-project-card-actions{flex-wrap:wrap}
+.app-shell .public-project-list .showcase-view-project{margin-left:auto;min-height:44px;white-space:nowrap}
+@media(max-width:480px){.app-shell .public-project-list .showcase-view-project{flex-basis:100%;margin-left:0;text-align:center;justify-content:center}}
+
+.committed-project-current{border:1px solid var(--line,#e3e4db);border-radius:20px;padding:24px;background:var(--surface,#fffefa);overflow:hidden}
+.committed-project-current>header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.committed-project-current time{font-size:12px;color:var(--muted,#656960)}
+.committed-project-current .committed-submission-banner{width:100%;aspect-ratio:16/7;object-fit:cover;border-radius:12px;margin-bottom:24px}
+.committed-project-history{margin-top:24px;border-top:1px solid var(--line,#e3e4db);padding-top:20px}
+.committed-project-history>summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+@media(max-width:480px){.committed-project-current{padding:18px}}

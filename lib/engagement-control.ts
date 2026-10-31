@@ -1,7 +1,6 @@
-import { auditReason } from "./security";
-import { z } from "zod";
+import { communityVotingWindow } from "./community-window";
 import type { PortalService } from "./service";
-import { one, assertPreviousWrite } from "./db";
+import { one } from "./db";
 import { demand } from "./security";
 export async function engagementState(s: PortalService) {
   const row = await one<{
@@ -12,62 +11,18 @@ export async function engagementState(s: PortalService) {
     s.db,
     "SELECT voting_paused,feedback_paused,version FROM engagement_controls WHERE id=1",
   );
+  const window = communityVotingWindow((await s.settings(true)).policy, s.now());
   return {
-    // Voting availability is permanent; retain the stored row for audit/history.
-    votingPaused: false,
-    feedbackPaused: !!row?.feedback_paused,
+    votingWindow: window,
+    votingPaused: !window.allowed,
+    feedbackPaused: false,
     version: row?.version || 0,
   };
 }
-export async function engagementControl(
-  s: PortalService,
-  action: string,
-  input: unknown,
-) {
+/** Retired mutable controls are rejected, not silently applied by stale clients. */
+export async function engagementControl(s: PortalService, action: string, _input: unknown) {
   if (action !== "engagement-control") return null;
-  const actor = await s.staff(),
-    d = z
-      .object({
-        votingPaused: z.boolean(),
-        feedbackPaused: z.boolean(),
-        version: z.number().int().min(0),
-        reason: auditReason(),
-        confirmation: z.literal("CHANGE_ENGAGEMENT"),
-      })
-      .strict()
-      .parse(input);
-  demand(!d.votingPaused, 422, "VOTING_ALWAYS_OPEN", "Voting stays open; only public feedback can be paused.");
-  const current = await engagementState(s);
-  demand(current.version === d.version, 409, "ENGAGEMENT_CHANGED_RELOAD");
-  await s.mutate(
-    actor.id,
-    action,
-    "community-engagement",
-    [
-      [
-        "INSERT INTO engagement_controls VALUES(1,?,?,1,?,?) ON CONFLICT(id) DO UPDATE SET voting_paused=excluded.voting_paused,feedback_paused=excluded.feedback_paused,version=engagement_controls.version+1,actor_id=excluded.actor_id,updated_at=excluded.updated_at WHERE engagement_controls.version=?",
-        d.votingPaused ? 1 : 0,
-        d.feedbackPaused ? 1 : 0,
-        actor.id,
-        s.now(),
-        d.version,
-      ],
-      ...assertPreviousWrite(),
-    ],
-    {
-      before: current,
-      after: { votingPaused: d.votingPaused, feedbackPaused: d.feedbackPaused },
-      frozenScoresUnchanged: true,
-    },
-    d.reason,
-  );
-  return {
-    message:
-      "Community engagement controls updated. Existing frozen score snapshots are unchanged.",
-    engagement: {
-      votingPaused: d.votingPaused,
-      feedbackPaused: d.feedbackPaused,
-      version: d.version + 1,
-    },
-  };
+  await s.staff();
+  demand(false, 409, "ENGAGEMENT_CONTROLS_RETIRED", "Voting follows the submission window; comments remain open.");
+  return null;
 }

@@ -58,9 +58,11 @@ test("Dashboard tab panels keep default Team visible and published project mutat
   assert.match(html, /id="dashboard-tab-team"[^>]+aria-selected="true"/);
   assert.match(html, /id="credits"[^>]+hidden=""/);
   assert.match(html, /id="project"[^>]+hidden=""/);
-  assert.equal((html.match(/<details class="committed-submission"/g) || []).length, 3);
+  assert.equal((html.match(/<details class="committed-submission"/g) || []).length, 2);
+  assert.match(html, /aria-label="Current submitted project"/);
+  assert.match(html, /Previous versions \(2\)/);
   assert.equal((html.match(/class="committed-submission-current"/g) || []).length, 1);
-  assert.match(html, /Submission 2<span class="committed-submission-current">Current/);
+  assert.match(html, /class="committed-submission-current">Current version/);
   assert.match(html, /dateTime="2026-11-01T03:30:00.000Z"/);
   assert.doesNotMatch(html, /Actual permitted description|dashboard-project-card|Versions 3\/3/);
   assert.match(html, /aria-label="12 upvotes"/);

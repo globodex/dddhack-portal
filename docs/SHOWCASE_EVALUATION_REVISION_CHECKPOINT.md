@@ -1,0 +1,31 @@
+# Revised portal implementation checkpoint — not a release
+
+This work follows the latest owner direction. It supersedes the older continuous-voting / staged AI / top-five reveal design. The older package beginning `4b7cf264` is preserved in its original worktree and is **not** a package for this revision. Nothing here has been pushed or deployed.
+
+## Current implemented slice
+
+- Public navigation says Showcase; existing URLs and the current navigation frame stay intact. Admin navigation includes Showcase and Submissions remains admin-only.
+- A single server-aligned submission-window card lives in the shared dashboard shell, before all Team/Credits/Project panels. Final-hour countdown does not remount on tab changes; existing server refresh retains authority for form eligibility.
+- Showcase cards have banner, logo, name, pitch, masked score, left upvote/comment actions, share and primary View Project. No listing accordion or score breakdown. Real score values are not rendered before combined release.
+- Latest submitted project is an open detail card. Previous versions are secondary history; three-attempt protection remains.
+- New judge inputs explicitly use 0–100; immutable historical marks retain canonical 0–10 storage and are displayed on the 100-point scale. Existing clients retain their declared/default historical scale.
+- Historical AI-only releases are filtered from public/team score projections. Only owner-authorized combined release remains accepted; all current eligible released projects appear, without a top-five withholding stage. Existing internal snapshot requirement remains until the combined owner interaction is completed.
+- Voting service checks the participant opening-inclusive/closing-exclusive window and supports idempotent desired-state toggles. This is PARTIAL until remaining legacy/database guards and coherent UI refresh are verified.
+- Known pre-event repository/first-commit timestamps reject eligibility; missing/unreachable evidence stays pending. Exactly 1 November 2026 08:00 IST is not before the event. This is not an automatic repository collector yet.
+
+## Verified evidence for this slice
+
+15 focused tests passed, no failures/skips. Typecheck passed. Browser component integration checks at 1440 and 390 pixels cover persistent dashboard card across all tabs, closing boundary and refreshed schedule; plain Showcase cards, masked/released totals and no horizontal overflow. The captures render actual React components with synthetic fixtures and actual application styles; they are not a hosted end-to-end evaluation or complete application route proof. All captures are outside Git under `/workspace/showcase-evaluation-review/screens`.
+
+Output Library upload is still blocked by the previously observed HTTP 401. It has not been retried or bypassed; local captures are not claimed delivered as Library attachments.
+
+## Remaining work / decisions
+
+- Complete automatic, bounded, current-version-bound repository evidence/snapshot collection, durable evaluation processing/retries and operational worker setup. Existing provider integration still requires approved immutable evidence. No live AI call has been made. Provider/repository failures must never become ineligible.
+- Complete owner Reveal scores interaction and public/detail breakdown projection. Existing internal frozen snapshot preserves integrity; the owner must settle whether the single Reveal action also freezes marks and whether incomplete coverage blocks reveal. No individual judge marks may reach public/team responses.
+- Questions responses is an intended separate configurable category, but weight, scorer, per-question caps/aggregation, missing-answer and overlap rules are not supplied. Do not invent scores.
+- Feedback minimum 30 is provisional interpretation of prior wording, not a claimed explicit numeric approval.
+- Complete windowed voting/database consistency, current-version score presentation, masked evaluation status, celebration, sort controls and final full regression/build/browser validation. Old full-suite counts do not validate this revised scope.
+- Separate homepage slice: podium above Schedule, conditional Pro-per-approved-member copy, accurately separated prize/API and participant credit amounts; verified Exa logo pending. No protected-trait data goes into evaluation or prize ranking. Collaboration must use documented contribution evidence, without inventing identity attribution.
+
+No final migration plan, matching package or owner rollout instructions have been generated for this incomplete revision. Preserve earlier ready `ed80cc5`, held public-eligibility edits and unrelated diagnostic work.

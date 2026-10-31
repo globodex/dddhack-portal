@@ -17,7 +17,7 @@ export default function InformationNavigation({ path }: { path: string }) {
   useEffect(() => setHydrated(true), []);
   const destinations = [
     { href: "/", label: "Home", Icon: House },
-    { href: "/projects", label: "Projects", Icon: BriefcaseBusiness },
+    { href: "/projects", label: "Showcase", Icon: BriefcaseBusiness },
     { href: "/dashboard", label: "Dashboard", Icon: LayoutDashboard },
     { href: "/privacy", label: "Privacy", Icon: ShieldCheck },
     { href: "/terms", label: "Terms", Icon: FileText },

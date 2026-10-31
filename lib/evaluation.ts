@@ -95,20 +95,12 @@ export function githubEligibility(
     firstCommit: string | null;
   } | null,
 ) {
-  if (!meta) return "NEEDS_MANUAL_REVIEW";
-  if (
-    !meta.firstCommit ||
-    !Number.isFinite(Date.parse(meta.createdAt)) ||
-    !Number.isFinite(Date.parse(meta.firstCommit))
-  )
-    return "NEEDS_MANUAL_REVIEW";
-  const cutoff = Date.parse("2026-11-01T02:30:00Z");
-  // Inaccessibility/private repositories cannot establish a timing violation.
-  if (!meta.public) return "NEEDS_MANUAL_REVIEW";
-  return Date.parse(meta.createdAt) > cutoff &&
-    Date.parse(meta.firstCommit) > cutoff
-    ? "ELIGIBLE"
-    : "INELIGIBLE";
+  if (!meta || !meta.public) return "NEEDS_MANUAL_REVIEW";
+  const created=Date.parse(meta.createdAt),first=Date.parse(meta.firstCommit||'');
+  const cutoff=Date.parse("2026-11-01T02:30:00Z");
+  // A known old timestamp is evidence; missing/unreachable evidence is never a rejection.
+  if ((Number.isFinite(created)&&created<cutoff)||(Number.isFinite(first)&&first<cutoff)) return "INELIGIBLE";
+  return Number.isFinite(created)&&Number.isFinite(first) ? "ELIGIBLE" : "NEEDS_MANUAL_REVIEW";
 }
 export function score(input: {
   human: number[];

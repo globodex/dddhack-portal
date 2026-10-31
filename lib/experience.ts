@@ -766,7 +766,7 @@ export class PortalExperience {
           canUpvote:
             !engagement.votingPaused &&
             !!me?.canEngage &&
-            (ownTeam?.id !== p.team_id || ownAttendance),
+            (!!facts.get(p.id)?.upvoted || ownTeam?.id !== p.team_id || ownAttendance),
         })),
       );
       const awards = await Promise.all(
@@ -2169,16 +2169,11 @@ export class PortalExperience {
       const engagement = await engagementState(this.s);
       if (!actor.deactivated && (actor.owner || actor.role === "admin"))
         engagement.feedbackPaused = false;
-      demand(
-        !(action === "upvote-project"
-          ? engagement.votingPaused
-          : engagement.feedbackPaused),
-        409,
-        "ENGAGEMENT_PAUSED",
-      );
+      if (action === "upvote-project") demand(!engagement.votingPaused, 409, "VOTING_CLOSED", engagement.votingWindow.message);
       const d = z
           .object({
             projectId: id,
+            voted: z.boolean().optional(),
             body:
               action === "comment-project"
                 ? text(1500).refine(value => feedbackLengthValid(value, 1500), "Enter at least 30 and at most 1,500 characters after trimming spaces.")
@@ -2195,7 +2190,7 @@ export class PortalExperience {
       );
       if (action === "upvote-project") {
         const own = await this.team(actor.id);
-        if (own?.id === p.team_id)
+        if (d.voted !== false && own?.id === p.team_id)
           demand(
             (await personStatus(this.s, actor.id)).checkedIn,
             403,
@@ -2210,12 +2205,9 @@ export class PortalExperience {
         p.id,
         action === "upvote-project"
           ? [
-              [
-                "INSERT INTO project_upvotes VALUES(?,?,?) ON CONFLICT DO NOTHING",
-                p.id,
-                actor.id,
-                this.s.now(),
-              ],
+              d.voted === false
+                ? ["DELETE FROM project_upvotes WHERE project_id=? AND user_id=?", p.id, actor.id]
+                : ["INSERT INTO project_upvotes VALUES(?,?,?) ON CONFLICT DO NOTHING", p.id, actor.id, this.s.now()],
             ]
           : [
               ...(staffComment ? [["INSERT INTO write_guards(token,valid) VALUES(?,1)", commentGuard] as SQL] : []),
@@ -2233,7 +2225,7 @@ export class PortalExperience {
       );
       return {
         message:
-          action === "upvote-project" ? "Upvote recorded." : "Comment posted.",
+          action === "upvote-project" ? (d.voted === false ? "Upvote removed." : "Upvote recorded.") : "Comment posted.",
       };
     }
     if (action === "participant-bulk") {
@@ -2429,7 +2421,8 @@ export class PortalExperience {
             projectId: id,
             versionId: id,
             body: z.string().trim().max(4000).default(""),
-            rating: z.number().min(1).max(10).optional(),
+            rating: z.number().finite().min(0).max(100).optional(),
+            ratingScale: z.union([z.literal(10), z.literal(100)]).default(10),
           })
           .strict()
           .parse(data),
@@ -2437,6 +2430,8 @@ export class PortalExperience {
         kind = await this.canReview(actor, p),
         v = await this.version(p);
       demand(v?.id === d.versionId, 409, "PROJECT_VERSION_CHANGED");
+      demand(d.rating === undefined || d.rating <= d.ratingScale, 422, "INVALID_REVIEW_SCORE", "Score exceeds its declared scale.");
+      const normalizedRating = d.rating === undefined ? null : d.rating * 10 / d.ratingScale;
       demand(
         kind === "judge" || kind === "admin" || d.rating === undefined,
         403,
@@ -2472,11 +2467,11 @@ export class PortalExperience {
             actor.id,
             kind,
             d.body,
-            d.rating ?? null,
+            normalizedRating,
             this.s.now(),
           ],
         ],
-        { versionId: d.versionId, kind, hasRating: d.rating !== undefined },
+        { versionId: d.versionId, kind, hasRating: d.rating !== undefined, enteredRating: d.rating ?? null, inputScale: d.ratingScale, canonicalScale: 10 },
       );
       return {
         message:

@@ -8,7 +8,6 @@ import Portal, {
   Review,
   Settings,
   Projects,
-  AdminEngagementControls,
   adminParticipantProjection,
   adminProjectProjection,
   portalTargetName,
@@ -346,17 +345,8 @@ test("owner window editor replaces extension-only settings and engagement contro
   assert.doesNotMatch(nonOwner, /admin-window-footer/);
   assert.doesNotMatch(nonOwner, /name="votingEnabled"/);
   assert.doesNotMatch(nonOwner, /Admin access/);
-  assert.equal(
-    html(AdminEngagementControls, {
-      data: { ...data, me: { ...admin, role: "mentor", owner: false } },
-      run,
-    }),
-    "",
-  );
-  assert.match(
-    html(AdminEngagementControls, { data: { me: admin }, run }),
-    /Voting and public comments/,
-  );
+  assert.doesNotMatch(markup, /name="feedbackEnabled"|name="votingEnabled"/);
+  assert.match(markup, /Voting opens and closes with participant submissions/);
 });
 test("public project engagement is read-only when server flags or per-row capabilities deny it, with no private score leaks", () => {
   const row = {

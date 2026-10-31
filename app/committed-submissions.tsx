@@ -81,12 +81,10 @@ export default function CommittedSubmissions({
 }) {
   const [items, setItems] = useState<Version[]>([]);
   const [busy, setBusy] = useState(false);
-  const [requested, setRequested] = useState(false);
-  const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState("");
   const [retry, setRetry] = useState(0);
   useEffect(() => {
-    if (!canRead || !requested) return;
+    if (!canRead) return;
     const controller = new AbortController();
     setBusy(true);
     setError("");
@@ -130,7 +128,6 @@ export default function CommittedSubmissions({
           );
         if (!controller.signal.aborted) {
           setItems(versions);
-          setLoaded(true);
         }
       } catch (cause) {
         if (!controller.signal.aborted) setError((cause as Error).message);
@@ -139,7 +136,7 @@ export default function CommittedSubmissions({
       }
     })();
     return () => controller.abort();
-  }, [canRead, requested, retry]);
+  }, [canRead, currentVersionId, retry]);
   if (!canRead) return null;
   return (
     <section
@@ -147,50 +144,24 @@ export default function CommittedSubmissions({
       aria-label="Committed submissions"
       aria-busy={busy}
     >
-      <h3>Submissions</h3>
-      {!attempts.length && (
-        <p className="committed-submissions-status">
-          No committed submissions yet.
-        </p>
-      )}
-      {attempts.map((item) => {
-        const payload = items.find(
-          (version) => version.id === item.id,
-        )?.payload;
-        return (
-          <CommittedSubmission
-            key={item.id}
-            item={item}
-            payload={payload}
-            currentVersionId={currentVersionId}
-            onOpen={() => {
-              if (!loaded) setRequested(true);
-            }}
-          >
-            {payload ? (
-              renderVersion(payload)
-            ) : error ? (
-              <div className="committed-submissions-error">
-                <p role="alert">{error}</p>
-                <button
-                  className="button secondary"
-                  type="button"
-                  onClick={() => setRetry((value) => value + 1)}
-                >
-                  Retry history
-                </button>
-              </div>
-            ) : (
-              <div className="committed-submission-loading" role="status">
-                <span className="sr-only">Loading saved submission…</span>
-                <i aria-hidden="true" />
-                <i aria-hidden="true" />
-                <i aria-hidden="true" />
-              </div>
-            )}
-          </CommittedSubmission>
-        );
+      <h3>Your submitted project</h3>
+      <p className="committed-submissions-status">{attempts.length} of 3 submissions used. Each update uses one submission; your latest version replaces the previous one.</p>
+      {!attempts.length && <p>No committed submissions yet.</p>}
+      {error && <div className="committed-submissions-error"><p role="alert">{error}</p><button className="button secondary" type="button" onClick={()=>setRetry(value=>value+1)}>Retry saved project</button></div>}
+      {attempts.filter(item=>item.id===currentVersionId).map(item=>{
+        const payload=items.find(version=>version.id===item.id)?.payload;
+        return <article className="committed-project-current" key={item.id} aria-label="Current submitted project">
+          <header><span className="committed-submission-current">Current version</span><time dateTime={item.created_at}>{timestamp(item.created_at)}</time></header>
+          {payload?.banner&&<img className="committed-submission-banner" src={payload.banner} alt=""/>}
+          {payload ? renderVersion(payload) : !error && <p role="status">Loading your saved project…</p>}
+        </article>;
       })}
+      {attempts.some(item=>item.id!==currentVersionId)&&<details className="committed-project-history"><summary>Previous versions ({attempts.filter(item=>item.id!==currentVersionId).length})</summary><p>History only. These versions do not replace your current project or reset votes and comments.</p>
+        {attempts.filter(item=>item.id!==currentVersionId).map(item=>{
+          const payload=items.find(version=>version.id===item.id)?.payload;
+          return <CommittedSubmission key={item.id} item={item} payload={payload}>{payload?renderVersion(payload):<p>Saved version loading.</p>}</CommittedSubmission>;
+        })}
+      </details>}
     </section>
   );
 }

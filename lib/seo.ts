@@ -44,7 +44,7 @@ const routeCopy: Record<string, { title: string; description: string }> = {
       "Join a community hackathon in New Delhi on 1 November 2026, hosted by Codex Ambassadors. Find event details, registration and published projects.",
   },
   "/projects": {
-    title: `Projects · ${eventShortTitle}`,
+    title: `Showcase · ${eventShortTitle}`,
     description:
       "Explore eligible published hackathon projects, team ideas brought to life and community feedback from DevDay Exchange New Delhi.",
   },

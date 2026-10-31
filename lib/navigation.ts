@@ -13,6 +13,7 @@ export function portalNavigation(path: string, me?: NavigationActor) {
           ? [
               ["/admin/teams", "Teams"],
               ["/admin/submissions", "Submissions"],
+              ["/projects", "Showcase"],
               ["/admin/credits", "Credits"],
               ["/admin/settings", "Settings"],
             ]
@@ -24,13 +25,13 @@ export function portalNavigation(path: string, me?: NavigationActor) {
       ? [
           ...(me.mode === "viewer" ? [] : [["/dashboard", "Dashboard"]]),
           ["/discover/teams", "Discover"],
-          ["/projects", "Projects"],
+          ["/projects", "Showcase"],
           ["/rules", "Rules"],
           ...(reviewer ? [["/review", "Assigned projects"]] : []),
         ]
       : [
           ["/", "Home"],
-          ["/projects", "Projects"],
+          ["/projects", "Showcase"],
         ];
   return { privileged, admin, items };
 }
