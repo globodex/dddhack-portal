@@ -50,9 +50,9 @@ export function historicalLedgerCompatibility(
   migrations: PortalMigration[];
 } | null {
   if (
-    plan.length !== 15 ||
+    plan.length !== 17 ||
     ledger.length < 7 ||
-    ledger.length > 15 ||
+    ledger.length > 17 ||
     plan[7]?.name !== "0102_credit_stock.sql" ||
     plan[8]?.name !== "0103_project_media_limits.sql" ||
     plan[9]?.name !== "0104_admin_team_corrections.sql" ||
@@ -61,6 +61,8 @@ export function historicalLedgerCompatibility(
     plan[12]?.name !== "0107_admin_team_lock.sql" ||
     plan[13]?.name !== "0108_admin_testing_and_team_corrections.sql" ||
     plan[14]?.name !== "0109_owner_ai_model_usage.sql" ||
+    plan[15]?.name !== "0110_admin_submission_access.sql" ||
+    plan[16]?.name !== "0111_admin_missing_team_idea.sql" ||
     ledger.some((entry, i) => entry.name !== plan[i]?.name)
   )
     return null;

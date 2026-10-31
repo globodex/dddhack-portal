@@ -1,5 +1,6 @@
 "use client";
 import OwnerAIControls from "./owner-ai-controls";
+import SubmissionWelcome, { submissionContentHidden } from "./submission-welcome";
 import {
   ChevronDown,
   ChevronRight,
@@ -603,6 +604,7 @@ function Field({
   type = "text",
   required = false,
   minLength,
+  maxLength,
   children,
 }: {
   name: string;
@@ -611,6 +613,7 @@ function Field({
   type?: string;
   required?: boolean;
   minLength?: number;
+  maxLength?: number;
   children?: ReactNode;
 }) {
   if (name === "reason") return null;
@@ -632,6 +635,7 @@ function Field({
             defaultValue={String(value ?? "")}
             required={required}
             minLength={minLength}
+            maxLength={maxLength}
             rows={4}
           />
         ) : type === "checkbox" ? (
@@ -643,6 +647,7 @@ function Field({
             defaultValue={String(value ?? "")}
             required={required}
             minLength={minLength}
+            maxLength={maxLength}
           />
         ))}
     </label>
@@ -1824,6 +1829,7 @@ function DashboardProject({
       data.submissionAccess?.canCommit === true &&
       used < 3 &&
       !data.submissionAccess?.locked;
+  if (submissionContentHidden(data)) return <SubmissionWelcome data={data} />;
   if (editorOpen && canRead && canEdit)
     return (
       <Submission
@@ -1984,6 +1990,7 @@ export function Dashboard({
   data,
   run,
   onInteraction,
+  initialTab = "team",
 }: {
   data: View;
   run: (
@@ -1992,18 +1999,20 @@ export function Dashboard({
     options?: { errorFeedback?: "local" },
   ) => Promise<Row>;
   onInteraction?: () => void;
+  initialTab?: "team" | "credits" | "project";
 }) {
-  const [tab, setTab] = useState("team"),
+  const [tab, setTab] = useState(initialTab),
     [projectEditing, setProjectEditing] = useState(false);
   useEffect(() => {
     const sync = () => {
       const value = location.hash.slice(1);
       if (["team", "credits", "project"].includes(value)) setTab(value);
+      else setTab(initialTab);
     };
     sync();
     window.addEventListener("hashchange", sync);
     return () => window.removeEventListener("hashchange", sync);
-  }, []);
+  }, [initialTab]);
   const select = (value: string, focus = false) => {
     setTab(value);
     history.replaceState(null, "", `#${value}`);
@@ -3006,6 +3015,7 @@ export function Submission({
       setSavingSubmission(false);
     }
   };
+  if (submissionContentHidden(data)) return <SubmissionWelcome data={data} />;
   if (data.submissionAccess?.canRead !== true)
     return (
       <p className="notice">This project is not available for your account.</p>
@@ -5368,7 +5378,7 @@ export function Review({
     </section>
   );
 }
-function AdminTeamIdea({
+export function AdminTeamIdea({
   team,
   run,
 }: {
@@ -5378,7 +5388,23 @@ function AdminTeamIdea({
   const [description, setDescription] = useState(
     String(team.idea?.description || ""),
   );
-  if (!team.idea) return <p className="admin-team-no-idea">No saved idea.</p>;
+  if (!team.idea) return (
+    <details className="admin-team-idea" aria-label={`Add idea to ${team.name}`}>
+      <summary><span><Plus size={16} aria-hidden="true" /> Add idea</span><ChevronDown size={16} aria-hidden="true" /></summary>
+      <Form className="admin-team-idea-form" label="Add idea" onSave={async form => {
+        try {
+          await run("admin-add-team-idea", {teamId:team.id,title:form.get("title"),description:description.trim(),confirmation:"ADD_TEAM_IDEA"});
+        } catch (error) {
+          if ((error as {code?:string}).code === "TEAM_IDEA_EXISTS") window.dispatchEvent(new Event("portal-admin-team-idea-refresh"));
+          throw error;
+        }
+      }}>
+        <p>{team.name}</p>
+        <Field name="title" label="Idea title" required minLength={2} maxLength={120} />
+        <label><span>Description <span className="required-mark" aria-hidden="true">*</span></span><textarea name="description" aria-label={`Idea description for ${team.name}`} required maxLength={500} value={description} onChange={event=>setDescription(event.target.value)} rows={3} /><small>{description.length}/500</small></label>
+      </Form>
+    </details>
+  );
   return (
     <details className="admin-team-idea">
       <summary>
@@ -6709,6 +6735,37 @@ export default function Portal({
       gate.current?.decide(false);
     };
   }, [path]);
+  useEffect(() => {
+    if (!["/dashboard", "/submission"].includes(path) || !data.me || data.me.mode === "viewer") return;
+    let stopped = false;
+    let boundaryTimer: ReturnType<typeof setTimeout> | undefined;
+    const refresh = () => {
+      if (!stopped && document.visibilityState === "visible" && !actionBusy.current && !loadAbort.current) void load();
+    };
+    const serverTime = Date.parse(data.submissionAccess?.serverNow || "");
+    const boundary = [data.submissionAccess?.opensAt, data.submissionAccess?.closesAt]
+      .map(value => Date.parse(value || "")).filter(value => Number.isFinite(value) && value > serverTime).sort((a,b) => a-b)[0];
+    if (!data.submissionAccess?.adminSubmissionTest && Number.isFinite(serverTime) && boundary) {
+      boundaryTimer = setTimeout(() => {
+        // Never enable a form using the browser clock. Keep the pre-start placeholder
+        // until a fresh server projection arrives; close editing fail-closed.
+        setData(previous => ({...previous, submissionAccess: {...previous.submissionAccess, canCommit:false}}));
+        refresh();
+      }, Math.min(2_147_483_647, Math.max(1, boundary - serverTime + 20)));
+    }
+    const poll = setInterval(refresh, 15_000);
+    window.addEventListener("portal-submission-refresh", refresh);
+    return () => { stopped = true; clearInterval(poll); if (boundaryTimer) clearTimeout(boundaryTimer); window.removeEventListener("portal-submission-refresh", refresh); };
+  }, [path, data.me?.id, data.submissionAccess?.serverNow, data.submissionAccess?.opensAt, data.submissionAccess?.closesAt, data.submissionAccess?.adminSubmissionTest]);
+  useEffect(() => {
+    if (data.submissionAccess?.contentHidden === true) setSubmissionSuccess(null);
+  }, [data.submissionAccess?.contentHidden]);
+  useEffect(() => {
+    if (path !== "/admin/teams") return;
+    const refresh = () => { if (!actionBusy.current && !loadAbort.current) void load(); };
+    window.addEventListener("portal-admin-team-idea-refresh", refresh);
+    return () => window.removeEventListener("portal-admin-team-idea-refresh", refresh);
+  }, [path]);
   const clearSuccessNotice = () => {
     if (messageTone === "success") setMessage("");
   };
@@ -7101,6 +7158,7 @@ export default function Portal({
                   <Dashboard
                     data={data}
                     run={run}
+                    initialTab={original === "/submission" || original === "/dashboard/submission" ? "project" : original === "/credits" || original === "/dashboard/credits" ? "credits" : "team"}
                     onInteraction={clearSuccessNotice}
                   />
                 ) : path === "/discover/teams" ||

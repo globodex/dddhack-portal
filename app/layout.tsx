@@ -33,6 +33,7 @@ import "./team-preparation.css";
 import "./confirmation-experience.css";
 import "./unified-navigation.css";
 import "./submission-finish.css";
+import "./submission-welcome.css";
 import "./project-share.css";
 import "./results-settings.css";
 import "./admin-credit-stock-values.css";

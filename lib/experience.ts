@@ -1,5 +1,6 @@
 import { ownerAIView, ownerAICommand } from "./owner-ai";
 import { submissionWindowHasOpened } from "./team-lifecycle";
+import { addMissingTeamIdea } from "./admin-team-idea";
 import { adminSubmissionAuthority, removeOwnTestProject } from "./admin-submission-testing";
 import { adminDemographics, hasDemographics, demographicPredicate, matchingDemographicPeople, matchesAdminParticipant } from "./admin-demographic-filters";
 import { publicProjectMembers, adminSubmissionMembers } from "./project-member-profiles";
@@ -456,7 +457,7 @@ export class PortalExperience {
 
   async workspace(actor: Actor, contacts = true) {
     const profile = await this.profile(actor);
-    if (!profile.complete)
+    if (!profile.complete && !actor.owner && actor.role !== "admin")
       return { me: actor, profile, profileIncomplete: true };
     const { phone: _phone, openai_org_id: _orgId, ...workspaceProfile } = profile;
     const team = await this.team(actor.id),
@@ -469,6 +470,8 @@ export class PortalExperience {
     const individual = await personStatus(this.s, actor.id);
     const ready = team ? await this.ready(team.id) : readiness(0, 0);
     const access = await submissionAccess(this.s, team?.id);
+    if (!profile.complete && !access.adminSubmissionTest)
+      return { me: actor, profile, profileIncomplete: true };
     const lock = team
       ? await one(
           this.s.db,
@@ -548,9 +551,9 @@ export class PortalExperience {
         ? { ...team, locked: !!lock, lockedAt: lock?.locked_at }
         : undefined,
       submissionAccess: access,
-      projectStats: { upvotes: projectUpvotes, result: projectResult },
+      projectStats: access.contentHidden ? undefined : { upvotes: projectUpvotes, result: projectResult },
       projectPublicPath:
-        project && projectEligibility.status === "eligible" && projectEligibility.versionId === project.published_version_id
+        !access.contentHidden && project && projectEligibility.status === "eligible" && projectEligibility.versionId === project.published_version_id
           ? "/projects/" + encodeURIComponent(project.slug)
           : null,
       submissionProgress: {
@@ -584,15 +587,15 @@ export class PortalExperience {
           ...(contacts ? teamPhone(String(phone || "")) : {}),
         }),
       ),
-      attempts,
+      attempts: access.contentHidden ? [] : attempts,
       project:
         project && access.canRead
           ? { ...project, draft: JSON.parse(project.draft) }
           : undefined,
       feedback,
-      eligibility: projectEligibility,
+      eligibility: access.contentHidden ? { status: "not_submitted", versionId: null } : projectEligibility,
       leaderboardUrl:
-        project && projectEligibility.status === "eligible"
+        !access.contentHidden && project && projectEligibility.status === "eligible"
           ? "/leaderboard?project=" +
             encodeURIComponent(project.slug) +
             "#entry-" +
@@ -872,13 +875,11 @@ export class PortalExperience {
     if (["/submission", "/dashboard/submission"].includes(route)) {
       const me = await this.s.actor(),
         team = await this.team(me.id);
-      demand(
-        team,
-        403,
-        "TEAM_CHECKIN_REQUIRED",
-        "At least one team member must check in before submission unlocks.",
-      );
-      await requireSubmissionAccess(this.s, team.id, true);
+      const access = await submissionAccess(this.s, team?.id);
+      if (!access.contentHidden) {
+        demand(team, 403, "TEAM_CHECKIN_REQUIRED", "Create or join your team before submitting.");
+        await requireSubmissionAccess(this.s, team.id, true);
+      }
       return this.workspace(me, false);
     }
     if (
@@ -1268,6 +1269,8 @@ export class PortalExperience {
     data: unknown,
     actor: Actor,
   ): Promise<Record<string, unknown> | null> {
+    const addedIdea = await addMissingTeamIdea(this.s, action, data);
+    if (addedIdea !== null) return addedIdea;
     const aiModel = await ownerAICommand(this.s, action, data);
     if (aiModel !== null) return aiModel;
     const removedTest = await removeOwnTestProject(this.s, action, data);
@@ -1918,11 +1921,11 @@ export class PortalExperience {
       };
     }
     if (action === "save-project" || action === "submit-project") {
-      await this.completed(actor);
       const t = await this.team(actor.id);
       demand(t && t.leader_id === actor.id, 403, "LEADER_REQUIRED");
       await this.s.unfrozen();
       const access = await requireSubmissionAccess(this.s, t.id);
+      if (!access.adminSubmissionTest) await this.completed(actor);
       const d = z
           .object({ revision: z.number().int().min(0), project: draftSchema })
           .strict()
@@ -1960,13 +1963,14 @@ export class PortalExperience {
       if (d.project.logo) validateProjectImage(d.project.logo, "logo");
       if (d.project.banner) validateProjectImage(d.project.banner, "banner");
       const projectId = p?.id || crypto.randomUUID(),
+        updatedAt = this.s.now(),
         slug = p?.slug || "project-" + projectId;
       const sql: SQL[] = p
         ? [
             [
               "UPDATE projects SET draft=?,revision=revision+1,updated_at=? WHERE id=? AND revision=?",
               JSON.stringify(d.project),
-              this.s.now(),
+              updatedAt,
               p.id,
               d.revision,
             ],
@@ -1978,11 +1982,13 @@ export class PortalExperience {
               t.id,
               slug,
               JSON.stringify(d.project),
-              this.s.now(),
+              updatedAt,
             ],
           ];
-      if (access.adminSubmissionTest) sql.unshift(...adminSubmissionAuthority(actor, t.id));
+      const draftGuard = "admin-test-project:" + JSON.stringify([t.id, actor.id, projectId, updatedAt]);
+      if (access.adminSubmissionTest) sql.unshift(...adminSubmissionAuthority(actor, t.id), ["INSERT INTO write_guards VALUES(?,1)", draftGuard]);
       sql.push(...assertPreviousWrite());
+      if (access.adminSubmissionTest) sql.push(["DELETE FROM write_guards WHERE token=?", draftGuard]);
       if (action === "submit-project") {
         if (!access.adminTimeOverride) await this.s.operational("submissions");
 

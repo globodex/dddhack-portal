@@ -298,7 +298,7 @@ for (const engine of ["sqlite", "postgres"] as const) {
       await f.db.close();
     }
   });
-  test(`${engine}: stale admin role/crown, incomplete profile and failed admin writes cannot consume attempts`, async () => {
+  test(`${engine}: stale admin role/crown and failed writes cannot consume attempts; incomplete admin profile permits draft testing`, async () => {
     const f = await fixture();
     try {
       await attend(f.db, "fake_bob");
@@ -356,14 +356,11 @@ for (const engine of ["sqlite", "postgres"] as const) {
         ["DELETE FROM participant_profiles WHERE user_id='fake_bob'"],
       ]);
       admin.mutate = original;
-      assert.equal((await submissionAccess(admin, teamId)).canCommit, false);
-      await assert.rejects(
-        admin.command("submit-project", {
-          revision: 0,
-          project: project("Incomplete"),
-        }),
-        { code: "PROFILE_COMPLETION_REQUIRED" },
-      );
+      assert.equal((await submissionAccess(admin, teamId)).canCommit, true);
+      await admin.command("save-project", {
+        revision: 0,
+        project: project("Incomplete admin draft"),
+      });
       assert.deepEqual(
         await rows(f.db, "SELECT * FROM submission_attempt_ledger"),
         [],

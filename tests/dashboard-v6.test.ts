@@ -44,6 +44,7 @@ test("Dashboard tab panels keep default Team visible and published project mutat
           created_at: `2026-11-01T0${attempt}:30:00.000Z`,
         })),
         submissionAccess: {
+          contentHidden: false,
           canRead: true,
           canCommit: false,
           attemptsUsed: 3,
@@ -160,7 +161,7 @@ test("nonleader retains authorized read access to an unpublished saved draft", (
         github: "https://github.com/example/existing-draft",
       },
     },
-    submissionAccess: { canRead: true, canCommit: false, attemptsUsed: 0 },
+    submissionAccess: { contentHidden: false, canRead: true, canCommit: false, attemptsUsed: 0 },
   };
   const html = renderToStaticMarkup(createElement(Dashboard, { data, run }));
   assert.match(html, /name="projectName"[^>]*value="Saved team draft"/);

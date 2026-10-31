@@ -64,6 +64,8 @@ export function verifyUpgradePlan(
         "0107_admin_team_lock.sql",
         "0108_admin_testing_and_team_corrections.sql",
         "0109_owner_ai_model_usage.sql",
+        "0110_admin_submission_access.sql",
+        "0111_admin_missing_team_idea.sql",
       ],
     ) ||
     !same(entries(plan), approved) ||

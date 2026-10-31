@@ -9,15 +9,15 @@ export function createPortalMediaAuthorizer(
   service: PortalService,
 ): MediaAuthorizer {
   return async (actorId, { teamId, revision }) => {
-    const { u, t } = await service.lead();
-    demand(u.id === actorId && t.id === teamId, 403, "LEADER_REQUIRED");
+    const u = await service.actor(), t = await service.team(u.id);
+    demand(t && u.id === actorId && t.id === teamId && t.leader_id === u.id, 403, "LEADER_REQUIRED");
+    await service.unfrozen();
+    const access = await requireSubmissionAccess(service, teamId);
     demand(
-      u.canParticipate && !u.deactivated,
+      !u.deactivated && (u.canParticipate || access.adminSubmissionTest),
       403,
       "PARTICIPANT_PROFILE_REQUIRED",
     );
-    await service.unfrozen();
-    const access = await requireSubmissionAccess(service, teamId);
     demand(!access.locked, 409, "PROJECT_LOCKED_AFTER_THIRD_SUBMISSION");
     const project = await one<{ revision: number }>(
       service.db,

@@ -232,6 +232,20 @@
       "when": 1793190600000,
       "tag": "0032_owner_ai_model_usage",
       "breakpoints": true
+    },
+    {
+      "idx": 33,
+      "version": "6",
+      "when": 1793433600000,
+      "tag": "0033_admin_submission_access",
+      "breakpoints": true
+    },
+    {
+      "idx": 34,
+      "version": "6",
+      "when": 1793437200000,
+      "tag": "0034_admin_missing_team_idea",
+      "breakpoints": true
     }
   ]
 }

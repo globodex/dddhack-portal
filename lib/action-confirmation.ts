@@ -32,6 +32,7 @@ const labels: Record<string, string> = {
   "save-project": "Update project draft",
   "submit-project": "Submit project version",
   "admin-idea-override": "Override private locked idea",
+  "admin-add-team-idea": "Add team idea",
   "rename-team": "Rename your team",
   "admin-add-team-member": "Add team member?",
   "admin-remove-team-member": "Remove team member?",
@@ -212,6 +213,7 @@ export function confirmationFor(
       confirmLabel: "Rename team",
       critical: false,
     };
+  if (action === "admin-add-team-idea") return { title: "Add team idea?", target, description: "Create the missing idea for this team. Existing ideas will not be overwritten.", confirmLabel: "Add idea", critical: false };
   if (action === "submit-project") {
     const used = Number(values.attemptsUsed);
     const attempt =
@@ -350,6 +352,7 @@ export function revealConfirmation(
   if (action === "delete-credit-column") return "DELETE_CREDIT_COLUMN";
   if (action === "add-admin") return "ADD_ADMIN";
   if (action === "admin-add-team-member") return "ADD_TEAM_MEMBER";
+  if (action === "admin-add-team-idea") return "ADD_TEAM_IDEA";
   if (action === "admin-remove-team-member") return "REMOVE_TEAM_MEMBER";
   if (action === "admin-remove-own-test-project") return "REMOVE_TEST_PROJECT";
   if (action === "admin-rename-team") return "RENAME_TEAM";

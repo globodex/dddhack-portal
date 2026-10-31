@@ -136,7 +136,7 @@ test("historical Windows CRLF: actual seven-entry ledger inspects read-only and 
   try {
     assert.equal(
       verifyUpgradePlan(f.plan, baseline),
-      "129ae4bc6c20a817b883d68229ee51a73a41998140b9bead2f4309a1c1b7b227",
+      "3c173216603f6a2927903493e29bfbe629dcaddf67cbcd322196f3153f6bffd5",
     );
     // Reproduces the old strict runner mismatch. Compatibility must stay outside it.
     await assert.rejects(
@@ -176,6 +176,8 @@ test("historical Windows CRLF: actual seven-entry ledger inspects read-only and 
       "0107_admin_team_lock.sql",
       "0108_admin_testing_and_team_corrections.sql",
       "0109_owner_ai_model_usage.sql",
+        "0110_admin_submission_access.sql",
+        "0111_admin_missing_team_idea.sql",
     ]);
     const appliedSql: string[] = [];
     const result = await applyPopulatedUpgrade(
@@ -268,6 +270,8 @@ test("historical Windows CRLF: canonical0102 already applied leaves0103/0104/010
       "0107_admin_team_lock.sql",
       "0108_admin_testing_and_team_corrections.sql",
       "0109_owner_ai_model_usage.sql",
+        "0110_admin_submission_access.sql",
+        "0111_admin_missing_team_idea.sql",
     ]);
     assert.deepEqual(
       (

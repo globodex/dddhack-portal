@@ -62,6 +62,14 @@
     {
       "name": "0109_owner_ai_model_usage.sql",
       "checksum": "9dde1b8e4cf3b4a38f6522e677d58633ecfe131df0a88f6f38b57c70ab4e4727"
+    },
+    {
+      "name": "0110_admin_submission_access.sql",
+      "checksum": "dc691d36242a962eebf72e46f3ef65f6f3b8cf61edc45151b4e61da2ce7b954a"
+    },
+    {
+      "name": "0111_admin_missing_team_idea.sql",
+      "checksum": "d6c9a0d66b8d5ffc2a5178277e8588e9ec5f7ce05fce68f505eb3eb6cc2ddc5b"
     }
   ],
   "hostedRead": false,
