@@ -1,9 +1,9 @@
 {
-  "runtimeSource": "e5d6ee699c40f932aed4ef084e1b203bc7ccbb26",
-  "archiveSha256": "21dde7d6fea1e7df23b5a0508a93995e7902acbd01561732625906b23ef1c1dc",
-  "indexSha256": "a97d70c7c2e1e16fe2f8312fbe9781f8ddf5c89db6f64245ef9998e928630dd4",
+  "runtimeSource": "7e6d02d8b658e1738c007ac53dcd6175907ff2c9",
+  "archiveSha256": "2ef518541ab8d6b17f2da7d2e755ffd72ee944e0ebf167e35c06bafff94ff790",
+  "indexSha256": "5abf7de0d50d16b88f9d2dcef991cd6423b4a6cde16145d8256ef95911d6424d",
   "archiveFiles": {
-    "index.mjs": "a97d70c7c2e1e16fe2f8312fbe9781f8ddf5c89db6f64245ef9998e928630dd4",
+    "index.mjs": "5abf7de0d50d16b88f9d2dcef991cd6423b4a6cde16145d8256ef95911d6424d",
     "node_modules/@emnapi/runtime/dist/emnapi.cjs.js": "eb583443e0dbaa6b0480cb2a2c0346d2d7fc0dd2bdb8ec72ec769389c7d2496b",
     "node_modules/@emnapi/runtime/dist/emnapi.cjs.min.js": "82a6dd28d44f434ce0450def3a8645a1d2a565275e26f9260a326c163c7ab153",
     "node_modules/@emnapi/runtime/index.js": "c406ece13dc7dcd5aec8b02c2d3d11c87acbfb01dee17f30483bec071c20a0c5",
@@ -98,11 +98,11 @@
     "node_modules/sharp/package.json": "ad4a2535d72eb638053a38867b1abf43c328cd1c1dbae5cf4172d498365a8b97"
   },
   "independentGraph": {
-    "runtimeSource": "e5d6ee699c40f932aed4ef084e1b203bc7ccbb26",
+    "runtimeSource": "7e6d02d8b658e1738c007ac53dcd6175907ff2c9",
     "esbuild": "0.28.2",
     "graphInputCount": 884,
     "applicationInputCount": 100,
-    "indexSha256": "a97d70c7c2e1e16fe2f8312fbe9781f8ddf5c89db6f64245ef9998e928630dd4",
+    "indexSha256": "5abf7de0d50d16b88f9d2dcef991cd6423b4a6cde16145d8256ef95911d6424d",
     "archiveIndexBytesIdentical": true,
     "applicationInputsMatchExactGitSnapshot": true,
     "forbiddenInputs": [],
@@ -325,7 +325,7 @@
       },
       {
         "path": "lib/project-member-profiles.ts",
-        "sha256": "7a0ef0c7207a0d5225d726a341e71bc5e008826945fdc71a681cd018deba7470"
+        "sha256": "2367897301a6d96b3ce70373e80e2e154eb01ef7acdf302b1db1a284892404f3"
       },
       {
         "path": "lib/admin-team-corrections.ts",
@@ -510,148 +510,354 @@
     ]
   },
   "hostSmoke": {
-    "passed": true,
-    "node": "v24.19.0",
-    "platform": "linux",
-    "architecture": "x64",
-    "environmentKeysAtStart": [
-      "APP_ORIGIN",
-      "LANG",
-      "NODE_ENV",
-      "PATH",
-      "PORTAL_PROXY_SECRET",
-      "TZ"
-    ],
-    "environmentKeysAfterImport": [
-      "APP_ORIGIN",
-      "LANG",
-      "NODE_ENV",
-      "PATH",
-      "PORTAL_PROXY_SECRET",
-      "TZ",
-      "VIPSHOME"
-    ],
-    "guards": [
-      "fetch",
-      "net.connect",
-      "net.createConnection",
-      "net.Socket.connect",
-      "tls.connect",
-      "http.request/get",
-      "https.request/get"
-    ],
-    "outboundAttempts": [],
-    "checks": [
-      {
-        "name": "trusted-health",
-        "method": "GET",
-        "path": "/api/health",
-        "status": 200,
-        "body": {
-          "ok": true,
-          "runtime": "neon-functions"
-        },
-        "cacheControl": "private, no-store, max-age=0"
-      },
-      {
-        "name": "untrusted-health",
-        "method": "GET",
-        "path": "/api/health",
-        "status": 403,
-        "body": {
-          "code": "UNTRUSTED_PROXY"
-        },
-        "cacheControl": "private, no-store, max-age=0"
-      },
-      {
-        "name": "unconfigured-portal",
-        "method": "GET",
-        "path": "/api/portal?view=%2Fdashboard",
-        "status": 503,
-        "body": {
-          "code": "BACKEND_UNAVAILABLE"
-        },
-        "cacheControl": "private, no-store, max-age=0"
-      }
-    ],
-    "sharp": {
-      "version": "0.35.5",
-      "vips": "8.18.7",
-      "resolvedModule": "/workspace/dddhack-portal/node_modules/sharp/dist/index.cjs",
-      "loadedNativeAddons": [
+    "runtimeSource": "7e6d02d8b658e1738c007ac53dcd6175907ff2c9",
+    "archive": {
+      "path": "/workspace/ddd-comment-direct-review/artifacts/neon/portalapi.zip",
+      "bytes": 9043881,
+      "sha256": "2ef518541ab8d6b17f2da7d2e755ffd72ee944e0ebf167e35c06bafff94ff790",
+      "files": 93,
+      "uncompressedBytes": 21252492,
+      "nativeFiles": [
         {
-          "file": "@img/sharp-linux-x64/lib/sharp-linux-x64-0.35.5.node",
-          "elfMachine": 62
+          "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
+          "bytes": 18324712,
+          "elfMachine": 183,
+          "sha256": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f"
+        },
+        {
+          "path": "node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.5.node",
+          "bytes": 530120,
+          "elfMachine": 183,
+          "sha256": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b"
         }
-      ]
-    }
-  },
-  "hostNativeSubstitution": true,
-  "nativeARM64Execution": "not performed on x86_64",
-  "nativeFiles": [
-    {
-      "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
-      "bytes": 18324712,
-      "sha256": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f",
-      "elfMachine": 183
+      ],
+      "forbiddenPaths": []
     },
-    {
-      "path": "node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.5.node",
-      "bytes": 530120,
-      "sha256": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b",
-      "elfMachine": 183
-    }
-  ],
+    "indexSha256": "5abf7de0d50d16b88f9d2dcef991cd6423b4a6cde16145d8256ef95911d6424d",
+    "identicalUnmodifiedJavaScript": true,
+    "hostDependencySubstitution": {
+      "path": "/workspace/public-project-ux-packaging/host-smoke",
+      "nodeModulesTarget": "/workspace/dddhack-portal/node_modules",
+      "purpose": "Resolve sharp against installed host x86_64 native dependencies; original ARM64 archive and extracted tree remain unchanged."
+    },
+    "hostSmoke": {
+      "passed": true,
+      "node": "v24.19.0",
+      "platform": "linux",
+      "architecture": "x64",
+      "environmentKeysAtStart": [
+        "APP_ORIGIN",
+        "LANG",
+        "NODE_ENV",
+        "PATH",
+        "PORTAL_PROXY_SECRET",
+        "TZ"
+      ],
+      "environmentKeysAfterImport": [
+        "APP_ORIGIN",
+        "LANG",
+        "NODE_ENV",
+        "PATH",
+        "PORTAL_PROXY_SECRET",
+        "TZ",
+        "VIPSHOME"
+      ],
+      "guards": [
+        "fetch",
+        "net.connect",
+        "net.createConnection",
+        "net.Socket.connect",
+        "tls.connect",
+        "http.request/get",
+        "https.request/get"
+      ],
+      "outboundAttempts": [],
+      "checks": [
+        {
+          "name": "trusted-health",
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "body": {
+            "ok": true,
+            "runtime": "neon-functions"
+          },
+          "cacheControl": "private, no-store, max-age=0"
+        },
+        {
+          "name": "untrusted-health",
+          "method": "GET",
+          "path": "/api/health",
+          "status": 403,
+          "body": {
+            "code": "UNTRUSTED_PROXY"
+          },
+          "cacheControl": "private, no-store, max-age=0"
+        },
+        {
+          "name": "unconfigured-portal",
+          "method": "GET",
+          "path": "/api/portal?view=%2Fdashboard",
+          "status": 503,
+          "body": {
+            "code": "BACKEND_UNAVAILABLE"
+          },
+          "cacheControl": "private, no-store, max-age=0"
+        }
+      ],
+      "sharp": {
+        "version": "0.35.5",
+        "vips": "8.18.7",
+        "resolvedModule": "/workspace/dddhack-portal/node_modules/sharp/dist/index.cjs",
+        "loadedNativeAddons": [
+          {
+            "file": "@img/sharp-linux-x64/lib/sharp-linux-x64-0.35.5.node",
+            "elfMachine": 62
+          }
+        ]
+      }
+    },
+    "noRebuild": true,
+    "noDeploy": true,
+    "noMailSent": true,
+    "noDatabaseConfigured": true,
+    "receiptGraphOnly": {
+      "inputs": 884,
+      "forbiddenInputs": [],
+      "recomputed": false
+    },
+    "nativeARM64Execution": "unverified",
+    "manualBackendRedeploy": "required after user review",
+    "limitations": [
+      "This is JavaScript loading/routing with an explicitly substituted host sharp dependency, not execution of the unmodified ARM64 archive.",
+      "Outbound guards are installed on Node fetch/TCP/TLS/HTTP APIs. No provider, DB, SMTP, Google or storage credential is supplied.",
+      "Hosted ARM64 decoding, storage, SMTP delivery and full login remain unverified."
+    ]
+  },
   "archiveComparison": {
     "changed": [
       "index.mjs"
     ],
     "removed": [],
     "unchanged": 92,
-    "previousSha256": "a23ff1aa87e9cd8d9ef13bc2db7eaafec21407932603f0bea52d9188c796136e",
-    "sha256": "21dde7d6fea1e7df23b5a0508a93995e7902acbd01561732625906b23ef1c1dc"
+    "previousSha256": "21dde7d6fea1e7df23b5a0508a93995e7902acbd01561732625906b23ef1c1dc",
+    "sha256": "2ef518541ab8d6b17f2da7d2e755ffd72ee944e0ebf167e35c06bafff94ff790"
   },
   "migrationPlan": {
-    "entries": 17,
-    "digest": "3c173216603f6a2927903493e29bfbe629dcaddf67cbcd322196f3153f6bffd5",
-    "changedMigrations": []
-  },
-  "applicationValidation": {
-    "source": "e5d6ee699c40f932aed4ef084e1b203bc7ccbb26",
-    "tests": 1039,
-    "pass": 1032,
-    "fail": 0,
-    "skip": 7,
-    "skipReason": "Optional native PostgreSQL server unavailable",
-    "typecheck": "passed",
-    "build": "Next16 Webpack passed",
-    "browser": "Synthetic Next development fixture, desktop/mobile, no hosted authenticated verification"
-  },
-  "operations": {
-    "push": false,
-    "deploy": false,
-    "hostedMigration": false,
-    "hostedDatabaseReadOrWrite": false,
-    "providerAPICalls": false,
-    "secretsSupplied": false,
-    "npmInstallScripts": false
-  },
-  "windowsGuideChecks": {
-    "guide": "docs/PRIVATE_SUBMISSION_VISIBILITY_WINDOWS_ROLLOUT.md",
-    "positive": [
+    "mode": "source-plan-only",
+    "planDigest": "3c173216603f6a2927903493e29bfbe629dcaddf67cbcd322196f3153f6bffd5",
+    "migrations": [
       {
-        "block": 1,
-        "passed": true,
-        "stdout": "Verified approved ZIP"
+        "name": "0000_compatibility.sql",
+        "checksum": "5e5f7c29d376532f6a32771f556f965aaed666c3bd8bf6fc32d2f00bd9f0ac66"
       },
       {
-        "block": 2,
-        "passed": true,
-        "stdout": "Verified all 93 extracted files. Deploy source: /workspace/private-visibility-packaging/extracted-21dde7d6fea1"
+        "name": "0001_portal.sql",
+        "checksum": "f9e5a1379f598c6c7bc86c771148f16c4c7d5767c773dffbcb14e50e7285b031"
+      },
+      {
+        "name": "0002_invariants.sql",
+        "checksum": "abdea4e04ea373c8a86ba2848d10a0122ab09308f52c1e51d439d138a8670928"
+      },
+      {
+        "name": "0003_transaction_safety.sql",
+        "checksum": "9e3e440b4d0a14d1fee077a3a4c9ab92fd972d61e377931f602f46d0f5bbed24"
+      },
+      {
+        "name": "0004_media_uploads.sql",
+        "checksum": "32cf9496df32661e65299f846359da306b8efca2a15f4c6070b8f0f8a1cab8e7"
+      },
+      {
+        "name": "0100_auth.sql",
+        "checksum": "d7a7d26116c1cf892f129edfbbf70ee4a7b3014165667e5b4b7cda8a916d6bbf"
+      },
+      {
+        "name": "0101_approved_evaluation.sql",
+        "checksum": "21929ac1cf790d34644b385fa4506c69db6df9be3d5ddaae00db9ee2bccb5797"
+      },
+      {
+        "name": "0102_credit_stock.sql",
+        "checksum": "74bf8549edbecb753424a86e692844e962be02c0faeddda8f0b2dd3ffaacb72e"
+      },
+      {
+        "name": "0103_project_media_limits.sql",
+        "checksum": "3f42da160787977b7655fe74647655bd656f4c55467c2a42b3dd1627859f462c"
+      },
+      {
+        "name": "0104_admin_team_corrections.sql",
+        "checksum": "a931aeafba01be07f43e35fc7c17cae80f11bbd212fbd92f0e5fd8d475c40500"
+      },
+      {
+        "name": "0105_terminal_record_deletion.sql",
+        "checksum": "088b96a239915cd518765b5ef260c73feee913d8e0b181234110f7591676ccde"
+      },
+      {
+        "name": "0106_admin_team_unlock.sql",
+        "checksum": "dd437230bcbc5d9ffc65b63464992976b7b0ddcd1fd64a675f76f113623c17aa"
+      },
+      {
+        "name": "0107_admin_team_lock.sql",
+        "checksum": "008d9ede3191d0ef8e3198ba0ddfde3188349db9a0003738ec64b44955f4215a"
+      },
+      {
+        "name": "0108_admin_testing_and_team_corrections.sql",
+        "checksum": "dc6fc5c44a5e881109a5c7c0936d682a2f2d1cac210ea042fdfba9fcb13fcec0"
+      },
+      {
+        "name": "0109_owner_ai_model_usage.sql",
+        "checksum": "9dde1b8e4cf3b4a38f6522e677d58633ecfe131df0a88f6f38b57c70ab4e4727"
+      },
+      {
+        "name": "0110_admin_submission_access.sql",
+        "checksum": "dc691d36242a962eebf72e46f3ef65f6f3b8cf61edc45151b4e61da2ce7b954a"
+      },
+      {
+        "name": "0111_admin_missing_team_idea.sql",
+        "checksum": "d6c9a0d66b8d5ffc2a5178277e8588e9ec5f7ce05fce68f505eb3eb6cc2ddc5b"
+      }
+    ]
+  },
+  "migrationCheckout": {
+    "mode": "check",
+    "planDigest": "3c173216603f6a2927903493e29bfbe629dcaddf67cbcd322196f3153f6bffd5",
+    "sourceFiles": 17,
+    "repairNeeded": false,
+    "repaired": [],
+    "files": [
+      {
+        "name": "0000_compatibility.sql",
+        "path": "neon/migrations/0000_compatibility.sql",
+        "approvedChecksum": "5e5f7c29d376532f6a32771f556f965aaed666c3bd8bf6fc32d2f00bd9f0ac66",
+        "lineEndingOnlyDifference": false
+      },
+      {
+        "name": "0001_portal.sql",
+        "path": "neon/migrations/0001_portal.sql",
+        "approvedChecksum": "f9e5a1379f598c6c7bc86c771148f16c4c7d5767c773dffbcb14e50e7285b031",
+        "lineEndingOnlyDifference": false
+      },
+      {
+        "name": "0002_invariants.sql",
+        "path": "neon/migrations/0002_invariants.sql",
+        "approvedChecksum": "abdea4e04ea373c8a86ba2848d10a0122ab09308f52c1e51d439d138a8670928",
+        "lineEndingOnlyDifference": false
+      },
+      {
+        "name": "0003_transaction_safety.sql",
+        "path": "neon/migrations/0003_transaction_safety.sql",
+        "approvedChecksum": "9e3e440b4d0a14d1fee077a3a4c9ab92fd972d61e377931f602f46d0f5bbed24",
+        "lineEndingOnlyDifference": false
+      },
+      {
+        "name": "0004_media_uploads.sql",
+        "path": "neon/migrations/0004_media_uploads.sql",
+        "approvedChecksum": "32cf9496df32661e65299f846359da306b8efca2a15f4c6070b8f0f8a1cab8e7",
+        "lineEndingOnlyDifference": false
+      },
+      {
+        "name": "0100_auth.sql",
+        "path": "neon/auth-migrations/0001_auth.sql",
+        "approvedChecksum": "d7a7d26116c1cf892f129edfbbf70ee4a7b3014165667e5b4b7cda8a916d6bbf",
+        "lineEndingOnlyDifference": false
+      },
+      {
+        "name": "0101_approved_evaluation.sql",
+        "path": "neon/auth-migrations/0002_approved_evaluation.sql",
+        "approvedChecksum": "21929ac1cf790d34644b385fa4506c69db6df9be3d5ddaae00db9ee2bccb5797",
+        "lineEndingOnlyDifference": false
+      },
+      {
+        "name": "0102_credit_stock.sql",
+        "path": "neon/migrations/0102_credit_stock.sql",
+        "approvedChecksum": "74bf8549edbecb753424a86e692844e962be02c0faeddda8f0b2dd3ffaacb72e",
+        "lineEndingOnlyDifference": false
+      },
+      {
+        "name": "0103_project_media_limits.sql",
+        "path": "neon/migrations/0103_project_media_limits.sql",
+        "approvedChecksum": "3f42da160787977b7655fe74647655bd656f4c55467c2a42b3dd1627859f462c",
+        "lineEndingOnlyDifference": false
+      },
+      {
+        "name": "0104_admin_team_corrections.sql",
+        "path": "neon/migrations/0104_admin_team_corrections.sql",
+        "approvedChecksum": "a931aeafba01be07f43e35fc7c17cae80f11bbd212fbd92f0e5fd8d475c40500",
+        "lineEndingOnlyDifference": false
+      },
+      {
+        "name": "0105_terminal_record_deletion.sql",
+        "path": "neon/migrations/0105_terminal_record_deletion.sql",
+        "approvedChecksum": "088b96a239915cd518765b5ef260c73feee913d8e0b181234110f7591676ccde",
+        "lineEndingOnlyDifference": false
+      },
+      {
+        "name": "0106_admin_team_unlock.sql",
+        "path": "neon/migrations/0106_admin_team_unlock.sql",
+        "approvedChecksum": "dd437230bcbc5d9ffc65b63464992976b7b0ddcd1fd64a675f76f113623c17aa",
+        "lineEndingOnlyDifference": false
+      },
+      {
+        "name": "0107_admin_team_lock.sql",
+        "path": "neon/migrations/0107_admin_team_lock.sql",
+        "approvedChecksum": "008d9ede3191d0ef8e3198ba0ddfde3188349db9a0003738ec64b44955f4215a",
+        "lineEndingOnlyDifference": false
+      },
+      {
+        "name": "0108_admin_testing_and_team_corrections.sql",
+        "path": "neon/migrations/0108_admin_testing_and_team_corrections.sql",
+        "approvedChecksum": "dc6fc5c44a5e881109a5c7c0936d682a2f2d1cac210ea042fdfba9fcb13fcec0",
+        "lineEndingOnlyDifference": false
+      },
+      {
+        "name": "0109_owner_ai_model_usage.sql",
+        "path": "neon/migrations/0109_owner_ai_model_usage.sql",
+        "approvedChecksum": "9dde1b8e4cf3b4a38f6522e677d58633ecfe131df0a88f6f38b57c70ab4e4727",
+        "lineEndingOnlyDifference": false
+      },
+      {
+        "name": "0110_admin_submission_access.sql",
+        "path": "neon/migrations/0110_admin_submission_access.sql",
+        "approvedChecksum": "dc691d36242a962eebf72e46f3ef65f6f3b8cf61edc45151b4e61da2ce7b954a",
+        "lineEndingOnlyDifference": false
+      },
+      {
+        "name": "0111_admin_missing_team_idea.sql",
+        "path": "neon/migrations/0111_admin_missing_team_idea.sql",
+        "approvedChecksum": "d6c9a0d66b8d5ffc2a5178277e8588e9ec5f7ce05fce68f505eb3eb6cc2ddc5b",
+        "lineEndingOnlyDifference": false
       }
     ],
-    "negativeOldZip": "refused",
-    "negativeOldExtraction": "refused",
-    "nativeWindowsExecution": false
-  }
+    "databaseConnected": false,
+    "gitIndexChanged": false
+  },
+  "applicationValidation": {
+    "aggregate": {
+      "tests": 1044,
+      "passed": 1036,
+      "assertionFailures": 0,
+      "cancelledTimeout": 1,
+      "skipped": 7,
+      "cleanAggregate": false
+    },
+    "timeoutRerun": "Same D1 test independently passed in 23.1 seconds; timeout unchanged",
+    "targetedPassed": 66,
+    "shareAndTimeoutRerunPassed": 5,
+    "finalFocusedPassed": 11,
+    "typecheck": "passed",
+    "webpackBuild": "passed",
+    "syntheticBrowser": "desktop 1440 and mobile 390 passed",
+    "lint": "no configured lint script"
+  },
+  "operations": {
+    "pushed": false,
+    "deployed": false,
+    "hostedDatabaseAccess": false,
+    "providerCalls": false
+  },
+  "limitations": [
+    "Linux ARM64 native execution not performed on x86_64 host",
+    "Native Windows PowerShell/.NET extraction not executed here",
+    "Full aggregate had one cancelled timeout, independently passed; seven optional skips",
+    "Archive timestamp/npm resolution reproducibility is not claimed; independent entry matches exact source"
+  ]
 }

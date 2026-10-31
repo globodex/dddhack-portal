@@ -1,14 +1,16 @@
-# Private submission indexing/history — unpublished package
+# Public project UX — unpublished package
 
-Runtime source: `e5d6ee699c40f932aed4ef084e1b203bc7ccbb26`. Built using official `@neon/config-runtime@1.10.2`, Node.js24/Linux ARM64 glibc, empty function environment, zero warnings. No push, hosted database operation or deployment performed.
+Runtime source: `7e6d02d8b658e1738c007ac53dcd6175907ff2c9`. Official `@neon/config-runtime@1.10.2`, Node.js24/Linux ARM64 glibc, empty function environment, zero warnings. No push/deployment/hosted database operation.
 
-- ZIP: `portalapi.zip`, 9,043,898 bytes; SHA256 `21dde7d6fea1e7df23b5a0508a93995e7902acbd01561732625906b23ef1c1dc`.
-- Entry: `index.mjs`, SHA256 `a97d70c7c2e1e16fe2f8312fbe9781f8ddf5c89db6f64245ef9998e928630dd4`.
-- 93 files; 21,252,594 uncompressed bytes. Only the entry changes from previous ZIP `a23ff1aa87e9cd8d9ef13bc2db7eaafec21407932603f0bea52d9188c796136e`; all92 dependencies/native files remain byte-identical. Previous package remains in Git history and a separate executor copy.
-- Independent esbuild output equals the extracted entry; all100 application inputs match the exact source commit. No held public bypass, frontend, tests, fixtures or env files are bundled. See [verification](verification.json) and [receipt](receipt.json).
-- No new migration. Prior0110/0111 must already be applied: unchanged17-entry plan `3c173216603f6a2927903493e29bfbe629dcaddf67cbcd322196f3153f6bffd5`. Nothing migrates automatically.
-- Existing unindexed versions become privately readable without rewriting them; index reconciliation requires a separate owner-approved repair. No automatic resubmission, public eligibility bypass or reveal change.
+- ZIP: 9,043,881 bytes; SHA256 `2ef518541ab8d6b17f2da7d2e755ffd72ee944e0ebf167e35c06bafff94ff790`.
+- Entry: SHA256 `5abf7de0d50d16b88f9d2dcef991cd6423b4a6cde16145d8256ef95911d6424d`.
+- 93 files; 21,252,492 uncompressed bytes. Only index.mjs differs from previous ZIP `21dde7d6fea1e7df23b5a0508a93995e7902acbd01561732625906b23ef1c1dc`; all92 dependency/native files are identical. Previous artifact remains in Git history.
+- Independent esbuild entry matches extracted entry; all100 application inputs match exact Git source (884 total graph inputs). See [verification](verification.json) and [receipt](receipt.json).
+- Backend change includes otherwise eligible admin team members in the existing public-safe member projection. No contacts, private email or org ID exposed. Comment/keyboard/link/share changes also require frontend publication. Public eligibility and scoring/reveal policy unchanged.
+- No new migration. Prior0110/0111 required; unchanged17-entry plan `3c173216603f6a2927903493e29bfbe629dcaddf67cbcd322196f3153f6bffd5`. No automatic migration/repair/resubmission.
 
-Fresh extraction must contain index.mjs and node_modules directly at its root. Do not merge with an older extraction or install Windows dependencies inside this ARM64 tree. A separate host-native substitution passed isolated routing with zero outbound attempts; the actual ARM64 addon/system-library behavior and native Windows command execution remain unverified. Current exact-entry reproduction does not guarantee future npm resolution/ZIP timestamps reproduce this whole archive.
+Validation: 1,036 passes, zero assertion failures, one cancelled timeout, seven skips in the1,044-test aggregate. Timed-out D1 test independently passed23.1s; this is not a clean aggregate. Targeted66, share/API rerun5, final focused11 passed. Typecheck, Webpack build and synthetic desktop/mobile browser checks passed.
 
-After explicit publication approval, use `docs/PRIVATE_SUBMISSION_VISIBILITY_WINDOWS_ROLLOUT.md`. Preserve working Neon linkage, origins and deployed secrets.
+Host smoke loads the exact JavaScript with explicit x86_64 Sharp substitution, zero outbound attempts and no DB/provider credentials. Unmodified Linux ARM64 native execution and native Windows commands remain unverified. All93 original extracted files were verified unchanged. Do not install Windows dependencies inside this package.
+
+After later publication approval, follow `docs/PUBLIC_PROJECT_UX_WINDOWS_ROLLOUT.md`. Preserve working origins, Neon linkage and deployed secrets.

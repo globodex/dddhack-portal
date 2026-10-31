@@ -1,20 +1,21 @@
 {
-  "runtimeSource": "e5d6ee699c40f932aed4ef084e1b203bc7ccbb26",
+  "runtimeSource": "7e6d02d8b658e1738c007ac53dcd6175907ff2c9",
   "runtime": "nodejs24",
   "source": "neon/api.ts",
-  "zipBytes": 9043898,
-  "sha256": "21dde7d6fea1e7df23b5a0508a93995e7902acbd01561732625906b23ef1c1dc",
+  "zipBytes": 9043881,
+  "sha256": "2ef518541ab8d6b17f2da7d2e755ffd72ee944e0ebf167e35c06bafff94ff790",
   "env": {},
   "warnings": [],
   "buildOnly": true,
   "deployment": "not performed",
   "packager": "@neon/config-runtime@1.10.2",
-  "nativeExecution": "ARM64 headers/hashes verified only; execution unavailable on x86_64",
+  "nativeExecution": "not verified on this x86_64 executor",
   "archive": "artifacts/neon/portalapi.zip",
   "candidateOnly": true,
-  "indexSha256": "a97d70c7c2e1e16fe2f8312fbe9781f8ddf5c89db6f64245ef9998e928630dd4",
+  "indexSha256": "5abf7de0d50d16b88f9d2dcef991cd6423b4a6cde16145d8256ef95911d6424d",
+  "indexBytes": 1751615,
   "fileCount": 93,
-  "uncompressedBytes": 21252594,
+  "uncompressedBytes": 21252492,
   "nativeArchitecture": "Linux ARM64 glibc",
   "nativeFiles": [
     {
@@ -32,7 +33,7 @@
   ],
   "forbiddenInputs": [],
   "canonicalPlanDigest": "3c173216603f6a2927903493e29bfbe629dcaddf67cbcd322196f3153f6bffd5",
-  "previousArchiveSha256": "a23ff1aa87e9cd8d9ef13bc2db7eaafec21407932603f0bea52d9188c796136e",
+  "previousArchiveSha256": "21dde7d6fea1e7df23b5a0508a93995e7902acbd01561732625906b23ef1c1dc",
   "changedArchiveEntries": [
     "index.mjs"
   ],
@@ -42,6 +43,8 @@
   "graphRecomputed": true,
   "archiveIndexBytesIdentical": true,
   "applicationInputsMatchExactGitSnapshot": true,
-  "hostSmoke": "Passed trusted health200, untrusted403, unconfigured portal503; zero outbound; explicit host-native Sharp substitution",
-  "verification": "artifacts/neon/verification.json"
+  "verification": "artifacts/neon/verification.json",
+  "hostSmokePassed": true,
+  "outboundAttempts": 0,
+  "nativeARM64Execution": "unverified"
 }
