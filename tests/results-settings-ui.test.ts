@@ -152,7 +152,7 @@ test("owner judging form is prehydration POST guarded, existing fields populated
     /name="weights|name="confirmations|name="reason|type="checkbox"/,
   );
 });
-test("result stages trust current backend controls and keep manual final independent of AI", () => {
+test("one owner reveal control respects readiness and removes staged snapshot/award UI", () => {
   const data = {
     me: owner,
     policyVersion: 7,
@@ -187,9 +187,10 @@ test("result stages trust current backend controls and keep manual final indepen
     [],
   );
   const markup = html(ResultVisibility, { data, run });
-  assert.match(markup, /9 eligible projects/);
+  assert.doesNotMatch(markup,/Final snapshot|AI scores revealed|9 eligible projects/);
   assert.doesNotMatch(markup, /<select/);
-  assert.match(markup, /Reveal final scores/);
+  assert.match(markup, /Reveal scores/);
+  assert.equal(html(ResultVisibility,{data:{...data,me:{...owner,owner:false}},run}),"");
   assert.doesNotMatch(markup, /readiness|name="reason"/);
   const final = html(ResultVisibility, {
     data: {
@@ -203,8 +204,8 @@ test("result stages trust current backend controls and keep manual final indepen
     },
     run,
   });
-  assert.match(final, /AI scores were not revealed/);
-  assert.match(final, /Award 5[\s\S]*Award 2/);
+  assert.match(final, /Scores revealed/);
+  assert.doesNotMatch(final, /Award 5|Award 2|Unveil/);
   assert.doesNotMatch(final, /Reveal AI scores/);
 });
 test("private AI uses exact current report, attempts and actual action blocker without scoringReady gate", () => {
@@ -314,7 +315,8 @@ test("Review renders saved version answers once, unknown Cerebras stays unavaila
   assert.match(markup, /example\/project/);
   assert.match(markup, /example.invalid/);
   assert.match(markup, /aria-label="Back"/);
-  assert.equal((markup.match(/name="rating"/g) || []).length, 10);
+  assert.equal((markup.match(/name="rating"/g) || []).length, 1);
+  assert.match(markup,/Score \(0 to 100\)/);
   assert.doesNotMatch(
     markup,
     /Final judging rubric|Assign a reviewer|name="codex"|name="diversity"|DRAFT DO NOT SHOW|role="tablist"/,

@@ -56,6 +56,7 @@ const labels: Record<string, string> = {
   "venue-manager": "Update private venue permission",
   "publish-submission-extension": "Publish submission deadline extension",
   "publish-policy-weights": "Publish global scoring weights",
+  "reveal-scores": "Reveal scores",
   "freeze-results": "Freeze final score snapshot",
   "reveal-ai-scores": "Reveal AI scores",
   "reveal-final-scores": "Reveal Final score",
@@ -83,6 +84,7 @@ export function confirmationFor(
     "publish-credit-batch",
     "delete-credit-batch",
     "delete-credit-column",
+    "reveal-scores",
     "reveal-ai-scores",
     "reveal-final-scores",
     "unveil-winner",
@@ -98,6 +100,7 @@ export function confirmationFor(
   ].includes(action);
   const title = labels[action] || action.replaceAll("-", " ");
   let description = "";
+  if (action === "reveal-scores") return {title:"Reveal scores",target:"All current eligible projects",description:"Publish current total and category scores, and lock judging, evaluation and submission edits. This cannot be undone. Individual judge marks stay private.",confirmLabel:"Reveal scores",critical:true};
   if (action === "leave-workspace-team")
     return {
       title,
@@ -245,6 +248,7 @@ export function confirmationFor(
       values.scope === "private"
         ? "Publish to Going or Checked in attendees and permitted staff."
         : "Publish this content to everyone.";
+  if (action === "reveal-scores") description="Publish current total and category scores, and lock judging, evaluation and submission edits. This cannot be undone. Individual judge marks stay private.";
   if (action === "reveal-ai-scores")
     description = "Make AI scores public. This cannot be undone.";
   if (action === "reveal-final-scores")
@@ -342,6 +346,7 @@ export function revealConfirmation(
   action: string,
   values: Record<string, any>,
 ) {
+  if (action === "reveal-scores") return "REVEAL_SCORES";
   if (action === "freeze-results") return "FREEZE_RESULTS";
   if (action === "change-ai-model") return "CHANGE_AI_MODEL";
   if (action === "admin-delete-participant") return "DELETE_PARTICIPANT";
@@ -386,6 +391,7 @@ export function revealConfirmation(
 export function requiresActionConfirmation(action: string) {
   return ![
     "upvote-project",
+    "preview-reveal-scores",
     "preview-freeze-results",
     "comment-project",
     "complete-profile",

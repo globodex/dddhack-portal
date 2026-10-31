@@ -1393,10 +1393,13 @@ export class PortalService {
         const d = z
           .object({
             teamId: id,
-            rating: number.min(0).max(10),
+            rating: number.min(0).max(100),
+            ratingScale:z.union([z.literal(10),z.literal(100)]).default(10),
             notes: z.string().max(4000).default(""),
           })
           .parse(data);
+        demand(d.rating<=d.ratingScale,422,"RATING_OUT_OF_RANGE");
+        const normalizedRating=d.rating*10/d.ratingScale;
         demand(actor.role === "judge", 403, "JUDGE_REQUIRED");
         demand(
           await one(
@@ -1427,12 +1430,12 @@ export class PortalService {
               "INSERT INTO human_scores VALUES(?,?,?,?,?) ON CONFLICT(judge_id,team_id) DO UPDATE SET rating=excluded.rating,notes=excluded.notes,updated_at=excluded.updated_at",
               actor.id,
               d.teamId,
-              d.rating,
+              normalizedRating,
               d.notes,
               this.now(),
             ],
           ],
-          { rating: d.rating },
+          { rating: normalizedRating,enteredRating:d.rating,ratingScale:d.ratingScale },
         );
         return {};
       }
@@ -2026,6 +2029,7 @@ export class PortalService {
     );
     const result = entries.map((e) => ({
       teamId: e.t.id,
+      versionId:e.v.id,
       name: e.t.name,
       projectName: JSON.parse(e.v.payload).projectName,
       eligibility: e.review.eligibility,

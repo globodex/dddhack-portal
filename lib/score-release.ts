@@ -1,3 +1,4 @@
+import {ownerScoreReveal} from "./owner-score-reveal";
 import {releasedScoreComponents,type ReleasedScoreComponents} from "./released-score-components";
 import { auditReason } from "./security";
 import { z } from "zod";
@@ -74,6 +75,7 @@ export async function revealCommand(
   action: string,
   input: unknown,
 ) {
+  const combined=await ownerScoreReveal(s,action,input);if(combined!==null)return combined;
   if (
     ![
       "reveal-ai-scores",

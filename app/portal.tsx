@@ -13,6 +13,7 @@ import {
   ArrowLeft,
   ArrowRight,
   ArrowUp,
+  ArrowDown,
   CircleCheck,
   ExternalLink,
   LockKeyhole,
@@ -1874,7 +1875,7 @@ function DashboardProject({
         {data.projectStats?.result ? <PublicResult result={data.projectStats.result}/> : data.evaluationProgress.state === "completed" ? <span className="project-score-hidden"><strong aria-hidden="true">— —</strong><span>Score hidden until the owner reveals scores</span></span> : <span role="status">{data.evaluationProgress.state === "running" ? "In progress" : "Awaiting evaluation"}</span>}
       </section>}
       {!data.evaluationProgress && data.projectStats?.result && <PublicResult result={data.projectStats.result}/>}
-      {data.projectStats?.result?.components && <ReleasedScoreBreakdown components={data.projectStats.result.components} total={data.projectStats.result.score}/>}
+      {data.projectStats?.result?.components && <ReleasedScoreBreakdown id="project-score-breakdown" components={data.projectStats.result.components} total={data.projectStats.result.score}/>}
       <div className="dashboard-project-toolbar">
         <div className="dashboard-project-metrics">
           {data.projectStats && (
@@ -2092,7 +2093,8 @@ export function Dashboard({
         ))}
       </nav>
       <DashboardArrival data={data} />
-      <DashboardSubmissionStatus access={data.submissionAccess} />
+      <DashboardSubmissionStatus access={data.submissionAccess} compact={typeof data.projectStats?.result?.score === "number"}/>
+      {typeof data.projectStats?.result?.score === "number" && Number.isFinite(data.projectStats.result.score) && <section className="dashboard-score-summary" aria-label="Your revealed score"><div><p>Your score</p><strong>{new Intl.NumberFormat("en",{maximumFractionDigits:2}).format(data.projectStats.result.score)}<span>points</span></strong></div><div className="dashboard-score-community"><span>{Number.isFinite(data.projectStats.upvotes)?data.projectStats.upvotes:"—"} upvotes</span><span>{Number.isFinite(data.projectStats.feedbackCount)?data.projectStats.feedbackCount:"—"} public feedback</span></div><button className="button" type="button" onClick={()=>{select("project",true);requestAnimationFrame(()=>{const target=document.getElementById("project-score-breakdown");target?.scrollIntoView({block:"start"});target?.focus({preventScroll:true})})}}>View detailed breakdown<ArrowRight size={18} aria-hidden="true"/></button></section>}
       <section
         id="team"
         role="tabpanel"
@@ -3807,7 +3809,9 @@ export function Projects({
   const board = path === "/leaderboard",
     detail = path !== "/projects" && !board,
     p = data.items?.[0];
-  const feed = useProjectFeed(data, q, !board && !detail);
+  const [selectedSort,setSelectedSort]=useState<string|null>(null),[sortDirection,setSortDirection]=useState("desc");
+  const projectSort=selectedSort || (data.scoreStage === "final" ? "score" : "votes");
+  const feed = useProjectFeed(data, q, !board && !detail, {sort:projectSort,direction:sortDirection});
   const listing: View = board
     ? boardListing
     : detail
@@ -4065,6 +4069,7 @@ export function Projects({
               label="Search showcase"
             />
           </div>
+          {!board && <div className="showcase-sort"><label className="sr-only" htmlFor="showcase-sort">Sort showcase</label><select id="showcase-sort" value={projectSort} onChange={event=>setSelectedSort(event.target.value)}><option value="votes">Upvotes</option><option value="name">Team name</option>{data.scoreStage === "final"&&<option value="score">Score</option>}</select><button type="button" aria-label="Sort ascending" aria-pressed={sortDirection === "asc"} onClick={()=>setSortDirection("asc")}><ArrowUp size={18} aria-hidden="true"/></button><button type="button" aria-label="Sort descending" aria-pressed={sortDirection === "desc"} onClick={()=>setSortDirection("desc")}><ArrowDown size={18} aria-hidden="true"/></button></div>}
           {searchBusy && (
             <span className="project-search-status" role="status">
               Searching…
@@ -4102,7 +4107,7 @@ export function Projects({
           ))}
         </section>
       )}
-      {listing.scoringInfo && (
+      {board && listing.scoringInfo && (
         <details className="scoring-info">
           <summary>Info · calculation criteria and weightage</summary>
           <p>{listing.scoringInfo.criteria}</p>

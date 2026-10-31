@@ -131,9 +131,10 @@ test("success requires a real committed receipt, exact count, and fresh server g
         onClose() {},
       }),
     );
-    assert.match(html, /Project submitted successfully<\/h2>/);
-    assert.match(html, new RegExp(`Submission ${attempt}/3`));
-    assert.match(html, />Done<\/button>/);
+    assert.match(html, /role="status"/);
+    assert.match(html, /Project submitted successfully/);
+    assert.match(html, new RegExp(`Submission ${attempt} of 3`));
+    assert.doesNotMatch(html, /<dialog|>Done<\/button>/);
     assert.doesNotMatch(
       html,
       /View project|aria-label="Share"|evaluation|pending|\/projects\//i,

@@ -143,6 +143,8 @@ export async function handlePortal(request: Request, runtime: Runtime) {
         participantStatus: params.get("participantStatus") || "",
         teamStatus: params.get("teamStatus") || "",
         teamSize: params.get("teamSize") || "",
+        projectSort: params.get("sort") || undefined,
+        sortDirection: params.get("direction") || undefined,
         ...((view.replace(/\/+/g, "/").replace(/\/$/, "") || "/") === "/" &&
         params.get("arrival") === "1"
           ? { includePrivateVenue: true }

@@ -531,15 +531,8 @@ export class PortalExperience {
             r.versionId === project.published_version_id,
         )
       : undefined;
-    const projectUpvotes = project
-      ? (
-          await one<{ n: number }>(
-            this.s.db,
-            "SELECT count(*) n FROM project_upvotes WHERE project_id=?",
-            project.id,
-          )
-        )?.n || 0
-      : 0;
+    const projectEngagement = project ? await one<{upvotes:number;feedbackCount:number}>(this.s.db,"SELECT (SELECT count(*) FROM project_upvotes WHERE project_id=?) upvotes,(SELECT count(*) FROM project_comments WHERE project_id=?) feedbackCount",project.id,project.id) : undefined;
+    const projectUpvotes=projectEngagement?.upvotes || 0;
     const operational = setupReadiness(
       await this.s.settings(true),
       this.s.now(),
@@ -563,7 +556,7 @@ export class PortalExperience {
         intentVersion: 1,
         ...(projectIndexMissing ? {canCommit:false,message:"Committed submissions need project-index reconciliation. Do not resubmit."} : {}),
       },
-      projectStats: access.contentHidden ? undefined : { upvotes: projectUpvotes, result: projectResult },
+      projectStats: access.contentHidden ? undefined : { upvotes: projectUpvotes, feedbackCount:projectEngagement?.feedbackCount || 0, result: projectResult },
       evaluationProgress: !access.contentHidden && access.canRead && project?.published_version_id ? await projectEvaluationProgress(this.s.db,project.id,project.published_version_id) : undefined,
       projectPublicPath:
         !access.contentHidden && project && projectEligibility.status === "eligible" && projectEligibility.versionId === project.published_version_id
@@ -684,14 +677,24 @@ export class PortalExperience {
     ) {
       let selectedPage = Math.floor(options.page || 0);
       const scores = await publicScores(this.s);
+      const showcaseSort=z.enum(["votes","name","score"]).parse(options.projectSort || (scores.stage === "final" ? "score" : "votes"));
+      const sortDirection=z.enum(["asc","desc"]).parse(options.sortDirection || "desc");
+      if(route === "/projects" && showcaseSort === "score") demand(scores.stage === "final",409,"SCORES_NOT_REVEALED","Score sorting becomes available after the owner reveals scores.");
+      const scoreOrderArgs:unknown[]=[];
+      const scoreOrder=scores.scores.length ? "CASE "+scores.scores.map(entry=>{scoreOrderArgs.push(entry.projectId,entry.versionId,entry.score);return "WHEN p.id=? AND p.published_version_id=? THEN CAST(? AS DOUBLE PRECISION)"}).join(" ")+" ELSE NULL END" : "NULL";
+      const directionSql=sortDirection === "asc" ? "ASC" : "DESC";
+      const showcaseOrder=showcaseSort === "name" ? "lower(t.name) "+directionSql : showcaseSort === "score" ? scoreOrder+" "+directionSql+" NULLS LAST" : "(SELECT count(*) FROM project_upvotes u WHERE u.project_id=p.id) "+directionSql;
+      const baseOrder="(SELECT count(*) FROM project_upvotes u WHERE u.project_id=p.id) DESC";
+      const selectedOrder=route === "/projects" ? showcaseOrder : baseOrder;
       const listRoute = ["/projects", "/leaderboard", "/winners"].includes(
         route,
       );
       let all = listRoute
         ? await rows<PublicProjectReference>(
             this.s.db,
-            "SELECT p.id,p.team_id,p.slug,p.published_version_id FROM projects p JOIN submission_versions v ON v.id=p.published_version_id JOIN teams t ON t.id=p.team_id WHERE COALESCE((SELECT e.status FROM project_eligibility e WHERE e.project_id=p.id AND e.version_id=v.id),(SELECT r.eligibility FROM reviews r WHERE r.team_id=p.team_id AND r.version_id=v.id),'needs_review')='eligible' AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.active=1 AND ((rr.kind='project' AND rr.target_id=p.id) OR (rr.kind='submission' AND rr.target_id=v.id))) AND instr(lower(json_extract(v.payload,'$.projectName') || ' ' || t.name),lower(?))>0 ORDER BY (SELECT count(*) FROM project_upvotes u WHERE u.project_id=p.id) DESC,(SELECT first.created_at FROM submission_versions first WHERE first.team_id=p.team_id ORDER BY first.attempt ASC LIMIT 1) ASC,p.id ASC LIMIT 1000",
+            "SELECT p.id,p.team_id,p.slug,p.published_version_id FROM projects p JOIN submission_versions v ON v.id=p.published_version_id JOIN teams t ON t.id=p.team_id WHERE COALESCE((SELECT e.status FROM project_eligibility e WHERE e.project_id=p.id AND e.version_id=v.id),(SELECT r.eligibility FROM reviews r WHERE r.team_id=p.team_id AND r.version_id=v.id),'needs_review')='eligible' AND NOT EXISTS(SELECT 1 FROM record_removals rr WHERE rr.active=1 AND ((rr.kind='project' AND rr.target_id=p.id) OR (rr.kind='submission' AND rr.target_id=v.id))) AND instr(lower(json_extract(v.payload,'$.projectName') || ' ' || t.name || ' ' || COALESCE(json_extract(v.payload,'$.problemSolution'),'')),lower(?))>0 ORDER BY "+selectedOrder+",(SELECT first.created_at FROM submission_versions first WHERE first.team_id=p.team_id ORDER BY first.attempt ASC LIMIT 1) ASC,p.id ASC LIMIT 1000",
             (options.search || "").slice(0, 200),
+            ...(route === "/projects" && showcaseSort === "score" ? scoreOrderArgs : []),
           )
         : [await this.project(decodeURIComponent(route.split("/")[2]))];
       const scoreFor = (p: PublicProjectReference) =>
@@ -799,9 +802,11 @@ export class PortalExperience {
         page: selectedPage,
         engagement,
         scoreStage: scores.stage,
+        projectSort: route === "/projects" ? showcaseSort : undefined,
+        sortDirection: route === "/projects" ? sortDirection : undefined,
         finalCountdownComplete: scores.complete,
         awards,
-        ...(scores.criteria ? { scoringInfo: scores.criteria } : {}),
+        ...(scores.criteria && !listRoute ? { scoringInfo: scores.criteria } : {}),
         ...(!listRoute
           ? {
               teamMembers: await publicProjectMembers(this.s.db, all[0].team_id, me),

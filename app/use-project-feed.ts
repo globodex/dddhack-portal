@@ -10,11 +10,11 @@ import {
 
 type Project = Record<string, any>;
 type ProjectPage = IncrementalPage<Project> & Record<string, any>;
-export function projectPageUrl(search = "", cursor: string | null = null) {
+export function projectPageUrl(search = "", cursor: string | null = null, order?:{sort:string;direction:string}) {
   const page = cursor === null ? 0 : Number(cursor);
   if (!Number.isSafeInteger(page) || page < 0)
     throw new Error("Invalid project page.");
-  return `/api/portal?${new URLSearchParams({ view: "/projects", q: search.trim().slice(0, 200), page: String(page) })}`;
+  return `/api/portal?${new URLSearchParams({ view: "/projects", q: search.trim().slice(0, 200), page: String(page), ...(order?{sort:order.sort,direction:order.direction}:{}) })}`;
 }
 
 export function projectFeedPage(page: ProjectPage): ProjectPage {
@@ -53,6 +53,7 @@ export function useProjectFeed(
   data: ProjectPage,
   search: string,
   enabled: boolean,
+  order?:{sort:string;direction:string},
 ) {
   const query = search.trim().slice(0, 200);
   const source = useRef(data.items);
@@ -61,16 +62,16 @@ export function useProjectFeed(
     source.current = data.items;
     searched.current = false;
   }
-  if (query) searched.current = true;
+  if (query || (order && (order.sort!==(data.projectSort || (data.scoreStage === "final" ? "score" : "votes")) || order.direction!==(data.sortDirection||"desc")))) searched.current = true;
   return useIncrementalPages<Project, ProjectPage>({
     seed: projectFeedPage(data),
-    queryKey: JSON.stringify({ search: query }),
+    queryKey: JSON.stringify({ search: query,order }),
     // Returning from search must read current counts/capabilities, since a vote
     // deliberately leaves the expanded feed in place instead of reloading it.
-    useSeed: !query && !searched.current,
+    useSeed: !query && !searched.current && (!order || (order.sort===(data.projectSort || (data.scoreStage === "final" ? "score" : "votes")) && order.direction===(data.sortDirection||"desc"))),
     enabled,
     read: (cursor, signal) =>
-      readProjectPage(projectPageUrl(query, cursor), signal),
+      readProjectPage(projectPageUrl(query, cursor, order), signal),
   });
 }
 

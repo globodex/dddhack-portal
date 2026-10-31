@@ -23,6 +23,8 @@ export type PortalViewOptions = DiscoverParticipantOptions & {
   participantStatus?: string;
   teamStatus?: string;
   teamSize?: string;
+  projectSort?: string;
+  sortDirection?: string;
 };
 type Membership = "all" | "in" | "out";
 type Cursor = {

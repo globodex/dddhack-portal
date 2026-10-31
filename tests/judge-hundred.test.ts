@@ -8,3 +8,9 @@ test('new judge inputs use explicit100 scale, retain canonical historical10 scal
  const form=new FormData();form.set('rating','0');assert.equal(privateReviewValues(form,'admin',base.projectId,base.versionId).rating,0);assert.equal(privateReviewValues(form,'admin',base.projectId,base.versionId).ratingScale,100);
  }finally{f.db.close()}
 });
+test('legacy judging API accepts declared hundred-point marks while preserving historical ten-point clients',async()=>{
+ const f=await setup();try{await f.service('judge').actor();await f.db.prepare("UPDATE users SET role='judge' WHERE id='fake_judge'").all();await f.db.prepare("INSERT INTO judge_assignments(judge_id,team_id) VALUES('fake_judge','fake_team1') ON CONFLICT DO NOTHING").all();
+ for(const [rating,ratingScale,stored] of [[8,10,8],[80,100,8],[0,100,0],[100,100,10]]){await f.service('judge').command('judge-score',{teamId:'fake_team1',rating,ratingScale});const values=await rows<any>(f.db,"SELECT rating FROM human_scores WHERE judge_id='fake_judge' AND team_id='fake_team1'");assert.equal(values[0].rating,stored)}
+ await assert.rejects(f.service('judge').command('judge-score',{teamId:'fake_team1',rating:80}));
+ }finally{f.db.close()}
+});

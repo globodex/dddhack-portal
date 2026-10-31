@@ -74,7 +74,7 @@ export function submittedProjectSuccess(
   fresh?: Record<string, any>,
 ): SubmissionSuccessState | null {
   // A successful commit receipt is required. Neither an old page nor a draft
-  // save can produce the popup or an additional committed-attempt chip.
+  // save can produce a celebration or an additional committed-attempt chip.
   if (typeof result.versionId !== "string" || !result.versionId) return null;
   // The receipt identifies this commit even if a later version is visible by
   // the time the page refreshes (or this request is an idempotent retry).

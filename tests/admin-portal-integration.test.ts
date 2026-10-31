@@ -215,10 +215,10 @@ test("review detail wires project management for staff while mentor duties stay 
   };
   const markup = html(Review, { data, run });
   assert.match(markup, /Manage project/);
-  assert.match(markup, /Score \(1 to 10\)/);
-  assert.equal((markup.match(/type="radio" name="rating"/g) || []).length, 10);
-  for (let score = 1; score <= 10; score++)
-    assert.ok(markup.includes(`name="rating" value="${score}"`));
+  assert.match(markup, /Score \(0 to 100\)/);
+  const scoreInput=markup.match(/<input[^>]*name="rating"[^>]*>/)?.[0] || "";
+  for(const attribute of ['type="number"','min="0"','max="100"'])assert.ok(scoreInput.includes(attribute));
+  assert.doesNotMatch(markup, /type="radio" name="rating"/);
   assert.match(markup, /Not configured[\s\S]*?disabled=""/);
   assert.match(markup, /aria-label="Back"/);
   assert.doesNotMatch(
@@ -245,17 +245,16 @@ test("private review accepts score-only or feedback-only for admins/judges and r
   form.set("rating", "7");
   assert.deepEqual(
     privateReviewValues(form, "admin", project.id, versions[0].id),
-    { projectId: project.id, versionId: versions[0].id, rating: 7 },
+    { projectId: project.id, versionId: versions[0].id, rating: 7, ratingScale:100 },
   );
   assert.throws(
     () => privateReviewValues(form, "mentor", project.id, versions[0].id),
     /written feedback/,
   );
   form.set("rating", "0");
-  assert.throws(
-    () => privateReviewValues(form, "judge", project.id, versions[0].id),
-    /1 to 10/,
-  );
+  assert.equal(privateReviewValues(form,"judge",project.id,versions[0].id).rating,0);
+  form.set("rating", "101");
+  assert.throws(()=>privateReviewValues(form,"judge",project.id,versions[0].id),/0 to 100/);
   form.delete("rating");
   form.set("body", "Useful written feedback");
   assert.equal(
@@ -314,7 +313,7 @@ test("confirmation targets distinguish duplicate names, project versions, window
   );
   assert.match(change.description, /frozen scores remain unchanged/);
 });
-test("owner window editor replaces extension-only settings and engagement controls are versioned staff-only", () => {
+test("owner window editor retains time settings while retired engagement toggles are absent", () => {
   const data = {
     me: { ...admin, owner: true },
     policy: {
@@ -335,8 +334,9 @@ test("owner window editor replaces extension-only settings and engagement contro
   assert.match(markup, />Publish<\/button>/);
   assert.doesNotMatch(markup, /name="votingEnabled"/);
   assert.doesNotMatch(markup, /name="votingEnabled" checked=""/);
-  assert.match(markup, /name="feedbackEnabled" checked=""/);
-  assert.match(markup, /Reveal AI scores[\s\S]*?<button[^>]*disabled=""/);
+  assert.doesNotMatch(markup, /name="feedbackEnabled"/);
+  assert.doesNotMatch(markup, /Reveal AI scores/);
+  assert.match(markup, /Reveal scores/);
   assert.doesNotMatch(
     markup,
     /Extend submission deadline|Additional whole minutes/,
@@ -374,7 +374,7 @@ test("public project engagement is read-only when server flags or per-row capabi
     ],
   };
   const paused = html(Projects, { data, path: "/projects/fixture", run });
-  assert.match(paused, /Engagement paused/);
+  assert.match(paused, /Voting is not currently open/);
   assert.match(paused, /Existing public text/);
   assert.doesNotMatch(paused, /Post comment|99|98|name="rating"/);
   const open = html(Projects, {
