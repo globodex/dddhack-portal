@@ -8,9 +8,10 @@ import {
 import { setup, activate, attend, submission } from "./helpers";
 
 test("optional control fixtures add25 public entries without altering rich source or settings", async () => {
-  const { db, service } = await setup();
+  const { db, service, clock } = await setup();
   try {
     await activate(db);
+    clock("2026-11-01T06:00:00.000Z");
     await attend(db, "fake_alice");
     const payload = JSON.stringify(submission);
     await batch(db, [
