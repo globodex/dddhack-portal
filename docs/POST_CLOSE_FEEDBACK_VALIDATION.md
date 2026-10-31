@@ -2,7 +2,7 @@
 
 Unpublished branch `review/backend-first-compat`. Runtime `5eff3da382f734ac9e47a8ea68976710b5a13fe7`; matching package commit `2b627e8262e34c005ae7fdc717e6cd8396cd6203`. All later changes are reports/artifacts, not tested application edits.
 
-- Fresh final aggregate: **1,130 total; 1,123 passed; 0 failed; 0 cancelled; 7 skipped**. Duration757755.343619ms. Optional native PostgreSQL multi-connection tests were skipped; PostgreSQL SQL/transaction tests ran on PGlite.
+- Fresh final aggregate: **1,130 total; 1,123 passed; 0 failed; 0 cancelled; 7 skipped**. Duration757755.343619ms. Optional native PostgreSQL integration tests (auth, concurrency and snapshots) were skipped; PostgreSQL SQL/transaction tests ran on PGlite.
 - Previous baseline:1,129 total;1,107 passed;15 failed;7 skipped. The15 were outdated migration count/suffix expectations(8), a bulk-comment fixture(1), and deletion-enrichment feedback fixtures(6). They were corrected to create data in valid phases and expect the exact append-only20-entry plan; assertions on data preservation, transactions, permissions and counts remain. This earlier run is not represented as passing.
 - New stale-settings fence and affected backend tests:37passed. Typecheck and final production Webpack build passed; no lint script exists.
 - Actual synthetic browser checks1440/390/320: participant pre-close composer absent and API409, fresh server boundary/focus refresh opens feedback, Ctrl+Enter saves with no popup, staff can post beforeclose; no horizontal overflow or page errors. Project media serving is not part of the fixture: missing media icons are not hosted evidence.
