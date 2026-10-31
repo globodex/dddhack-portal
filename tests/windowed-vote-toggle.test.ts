@@ -12,7 +12,7 @@ test('votes toggle idempotently only in submission window; public comments ignor
 test('a settings change between vote eligibility read and mutation rolls back the toggle',async()=>{
  const f=await setup();try{await seedRichVisual(f.db);await activate(f.db);f.clock('2026-11-01T03:00:00Z');
  const originalBatch=f.db.batch.bind(f.db),prepare=f.db.prepare.bind(f.db);let voteMutation=false,changed=false;
- f.db.prepare=(sql:string)=>{if(sql.includes('CASE WHEN EXISTS(SELECT 1 FROM event_settings WHERE id=1 AND active=1 AND version=?)'))voteMutation=true;return prepare(sql)};
+ f.db.prepare=(sql:string)=>{if(sql.includes('CASE WHEN EXISTS(SELECT 1 FROM event_settings WHERE id=1 AND version=?)'))voteMutation=true;return prepare(sql)};
  f.db.batch=async statements=>{if(voteMutation&&!changed){changed=true;await originalBatch([prepare('UPDATE event_settings SET version=version+1 WHERE id=1')]);}return originalBatch(statements)};
  await assert.rejects(f.service('admin').command('upvote-project',{projectId:'visual_project_alice',voted:true}));assert.equal(changed,true);
  assert.equal((await one<any>(f.db,'SELECT count(*) n FROM project_upvotes WHERE project_id=? AND user_id=?','visual_project_alice','fake_admin'))?.n,0);

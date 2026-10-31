@@ -5,18 +5,20 @@ import { createPGliteFixture } from './neon-db-fixture';
 import { seedLocal, fixtures, LOCAL_CREDIT_KEY } from '../scripts/fixtures';
 import { seedRichVisual } from '../scripts/visual-rich-fixtures';
 import { PortalService } from '../lib/service';
-import { batch, rows } from '../lib/db';
+import { batch, rows, one } from '../lib/db';
 import { engagementState } from '../lib/engagement-control';
 import { ownerAIView } from '../lib/owner-ai';
 import { aiModelChoices, modelPricing } from '../lib/ai-model-catalog';
 
-for (const engine of ['sqlite','postgres'] as const) test(`${engine}: windowed voting, continuous comments/staff feedback and judging retain authorization and fixed length validation`, async () => {
+for (const engine of ['sqlite','postgres'] as const) test(`${engine}: windowed voting, post-close participant feedback and continuous staff feedback and judging retain authorization and fixed length validation`, async () => {
  const f=engine==='sqlite'?await setup():await createPGliteFixture();
  if(engine==='postgres') await seedLocal(f.db);
  let now='2026-10-22T08:00:00.000Z';
  const service=(who:string)=>new PortalService(f.db, fixtures[who],LOCAL_CREDIT_KEY,()=>now);
  try {
   await seedRichVisual(f.db);
+  const policy=JSON.parse((await one<any>(f.db,"SELECT policy FROM event_settings WHERE id=1"))!.policy);
+  await batch(f.db,[["INSERT INTO portal_roles VALUES('fake_owner','admin','fake_owner',?)",now],["UPDATE event_settings SET policy=? WHERE id=1",JSON.stringify({...policy,submissionOpen:"2026-11-01T02:30:00Z",submissionClose:"2026-11-01T10:30:00Z"})]]);
   await batch(f.db,[['INSERT INTO engagement_controls VALUES(1,1,1,1,?,?) ON CONFLICT(id) DO UPDATE SET voting_paused=1,feedback_paused=1','fake_admin',now]]);
   assert.equal((await engagementState(service('admin'))).votingPaused,true);
   for(const who of ['admin','owner']) {
@@ -33,7 +35,8 @@ for (const engine of ['sqlite','postgres'] as const) test(`${engine}: windowed v
    await assert.rejects(service(who).command('feedback',{teamId:'fake_team1',text:'y'.repeat(501)}),{code:'FEEDBACK_LENGTH'});
   }
   const ordinary:any=await service('alice').view('/projects');
-  assert.equal(ordinary.engagement.feedbackPaused,false);
+  assert.equal(ordinary.engagement.feedbackPaused,true);
+  await assert.rejects(service('alice').command('comment-project',{projectId:'visual_project_alice',body:'x'.repeat(30)}),{code:'FEEDBACK_NOT_OPEN'});now='2026-11-01T10:30:00Z';
   await service('alice').command('comment-project',{projectId:'visual_project_alice',body:'x'.repeat(30)});
   await assert.rejects(service('admin').command('upvote-project',{projectId:'visual_project_alice'}),{code:'VOTING_CLOSED'});now='2026-11-01T06:00:00.000Z';
   await service('admin').command('upvote-project',{projectId:'visual_project_alice'});

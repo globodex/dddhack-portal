@@ -414,10 +414,8 @@ test("combined synthetic journey: profile, membership, locked idea, check-in, dr
             service("bob").command("upvote-project", { projectId }),
           ),
         );
-        await service("bob").command("comment-project", {
-          projectId,
-          body: "Useful synthetic fixture <script>literal markup</script> with clear steps.",
-        });
+        await assert.rejects(service("bob").command("comment-project",{projectId,body:"Useful synthetic fixture <script>literal markup</script> with clear steps."}),{code:"FEEDBACK_NOT_OPEN"});
+        await service("admin").command("comment-project",{projectId,body:"Useful synthetic fixture <script>literal markup</script> with clear steps."});
         assert.equal(
           (
             await rows(

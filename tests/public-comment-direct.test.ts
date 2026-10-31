@@ -4,12 +4,13 @@ import { setup } from "./helpers";
 import { fixtures, LOCAL_CREDIT_KEY } from "../scripts/fixtures";
 import { seedRichVisual } from "../scripts/visual-rich-fixtures";
 import { handlePortal } from "../lib/http";
-import { rows } from "../lib/db";
+import { rows,one,batch } from "../lib/db";
 
 test("public comment posts without a confirmation token while content validation and authentication remain enforced", async () => {
   const f = await setup();
   try {
     await seedRichVisual(f.db);
+    const policy=JSON.parse((await one<any>(f.db,'SELECT policy FROM event_settings WHERE id=1'))!.policy);policy.submissionClose=new Date(Date.now()-1000).toISOString();await batch(f.db,[["UPDATE event_settings SET policy=? WHERE id=1",JSON.stringify(policy)]]);
     const post = (body: string, identity = fixtures.alice) =>
       handlePortal(
         new Request("https://portal.test/api/portal", {

@@ -11,7 +11,7 @@ import { handlePortal, handleExport } from "../lib/http";
 import { seedRichVisual } from "../scripts/visual-rich-fixtures";
 import { PortalService } from "../lib/service";
 import { seedLocal, fixtures, LOCAL_CREDIT_KEY } from "../scripts/fixtures";
-import { rows, batch, type Database } from "../lib/db";
+import { rows, batch, one, type Database } from "../lib/db";
 import { setup, attend } from "./helpers";
 import { seal, unseal, PortalError } from "../lib/security";
 
@@ -328,6 +328,8 @@ test(
       await staff.command("upvote-project", {projectId:"visual_project_alice"});
       await staff.command("comment-project", {projectId:"visual_project_alice",body:"Synthetic staff feedback stays available with participant feedback paused."});
       assert.equal((await rows(db,"SELECT * FROM project_upvotes WHERE user_id='fake_admin'")).length,1);
+      await assert.rejects(new PortalService(db,fixtures.alice,LOCAL_CREDIT_KEY).command("comment-project",{projectId:"visual_project_alice",body:"Synthetic participant feedback waits for submissions to close."}),{code:"FEEDBACK_NOT_OPEN"});
+      const closedPolicy=JSON.parse((await one<any>(db,'SELECT policy FROM event_settings WHERE id=1'))!.policy);closedPolicy.submissionClose=new Date(Date.now()-1000).toISOString();await batch(db,[["UPDATE event_settings SET policy=? WHERE id=1",JSON.stringify(closedPolicy)]]);
       await new PortalService(db,fixtures.alice,LOCAL_CREDIT_KEY).command("comment-project",{projectId:"visual_project_alice",body:"Synthetic participant feedback remains open despite retired pause controls."});
       assert.equal((await rows(db,"SELECT * FROM project_comments WHERE project_id='visual_project_alice'")).length,publicCommentsBefore+2);
       assert.deepEqual(await rows(db, "PRAGMA foreign_key_check"), []);

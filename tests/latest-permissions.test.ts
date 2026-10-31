@@ -709,10 +709,10 @@ test("retired engagement controls cannot pause comments and windowed votes remai
       code: "ADMIN_REQUIRED",
     });
     await assert.rejects(service("admin").command("engagement-control", pause),{code:"ENGAGEMENT_CONTROLS_RETIRED"});
-    await service("bob").command("comment-project", {projectId:commit.projectId,body:"This is a synthetic comment with enough characters."});
+    await assert.rejects(service("bob").command("comment-project", {projectId:commit.projectId,body:"This is a synthetic comment with enough characters."}),{code:"FEEDBACK_NOT_OPEN"});
     let row = asRow(await service("bob").view("/projects")).items[0];
     assert.equal(row.canUpvote, true);
-    assert.equal(row.canComment, true);
+    assert.equal(row.canComment, false);
     await assert.rejects(service("admin").command("engagement-control", {...pause,votingPaused:false,feedbackPaused:false,version:1}),{code:"ENGAGEMENT_CONTROLS_RETIRED"});
     await service("bob").command("upvote-project", {
       projectId: commit.projectId,
@@ -721,6 +721,7 @@ test("retired engagement controls cannot pause comments and windowed votes remai
       projectId: commit.projectId,
     });
     assert.equal((await rows(db, "SELECT * FROM project_upvotes")).length, 1);
+    clock("2026-11-01T10:30:00.000Z");
     await assert.rejects(
       service("bob").command("comment-project", {
         projectId: commit.projectId,

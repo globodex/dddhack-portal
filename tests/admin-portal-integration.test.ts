@@ -346,7 +346,7 @@ test("owner window editor retains time settings while retired engagement toggles
   assert.doesNotMatch(nonOwner, /name="votingEnabled"/);
   assert.doesNotMatch(nonOwner, /Admin access/);
   assert.doesNotMatch(markup, /name="feedbackEnabled"|name="votingEnabled"/);
-  assert.match(markup, /Voting opens and closes with participant submissions/);
+  assert.match(markup, /Voting follows the submission window/);
 });
 test("public project engagement is read-only when server flags or per-row capabilities deny it, with no private score leaks", () => {
   const row = {

@@ -514,6 +514,7 @@ test("signed-in engagement permits admins and pending people, is idempotent, and
     await service("pending").command("upvote-project", { projectId: p.id });
     await service("pending").command("upvote-project", { projectId: p.id });
     await service("admin").command("upvote-project", { projectId: p.id });
+    clock("2026-11-01T10:30:00.000Z");
     await service("alice").command("comment-project", {
       projectId: p.id,
       body: "A synthetic public comment for this project.",
