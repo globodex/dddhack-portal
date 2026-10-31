@@ -82,7 +82,7 @@ for (const engine of ["sqlite", "postgres"] as const)
         15,
         "Combined manual/import roster is normalized and deduplicated",
       );
-      assert.equal((await vals("teams")).pending, 0);
+      assert.equal((await vals("teams")).pending, 3, "Forming teams are not lifecycle Approved");
       await batch(db, [
         [
           "UPDATE registrations SET status='pending' WHERE email='bob@portal.test'",
@@ -94,8 +94,8 @@ for (const engine of ["sqlite", "postgres"] as const)
       ]);
       assert.equal(
         (await vals("teams")).pending,
-        1,
-        "Unlocked incomplete team is pending",
+        3,
+        "All unlocked teams remain pending, including the incomplete team",
       );
       assert.equal(
         (await vals("participants")).pending,
@@ -107,8 +107,8 @@ for (const engine of ["sqlite", "postgres"] as const)
       ]);
       assert.equal(
         (await vals("teams")).pending,
-        1,
-        "Lock does not change approval",
+        3,
+        "Lock alone does not approve the incomplete team",
       );
       await batch(db, [
         [
@@ -117,10 +117,10 @@ for (const engine of ["sqlite", "postgres"] as const)
       ]);
       assert.equal(
         (await vals("teams")).approved,
-        3,
+        1,
         "Approved Absent Dave does not revoke existing registration approval",
       );
-      assert.equal((await vals("teams")).pending, 0);
+      assert.equal((await vals("teams")).pending, 2, "Other forming teams remain pending");
       assert.equal((await vals("participants")).pending, 0);
       await batch(db, [
         [
@@ -130,8 +130,8 @@ for (const engine of ["sqlite", "postgres"] as const)
       ]);
       const team = await vals("teams");
       assert.equal(team.formed, 4);
-      assert.equal(team.approved, 3);
-      assert.equal(team.pending, 1, "Empty team is not approved");
+      assert.equal(team.approved, 1);
+      assert.equal(team.pending, 3, "Empty and forming teams are not approved");
       assert.equal(
         (await get("teams")).teamSizes!.reduce((n, s) => n + s.value, 0),
         3,

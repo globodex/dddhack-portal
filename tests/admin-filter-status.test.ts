@@ -164,6 +164,7 @@ for (const engine of ["sqlite", "postgres"] as const)
         profession: "Startup Founder",
         participantStatus: "Absent",
         teamStatus: "",
+        teamSize: "",
       };
       await cache.merge(filteredPage, "/admin/teams", cacheOptions);
       const repeated = await handlePortal(
