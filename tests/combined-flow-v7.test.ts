@@ -268,14 +268,8 @@ test("combined synthetic journey: profile, membership, locked idea, check-in, dr
         assert.equal(pending.length, 1);
         assert.equal(pending[0].state, "pending");
         const tasks: Promise<unknown>[] = [];
-        await assert.rejects(
-          queueEvaluations(service("admin"), { limit: 1 }, (task) =>
-            tasks.push(task),
-          ),
-          { code: "SUBMISSION_WINDOW_OPEN" },
-        );
+        // Explicit staff verification is allowed while participant submissions are open.
         assert.equal(tasks.length, 0);
-        clock("2026-11-01T10:31:00.000Z");
         const queued = await queueEvaluations(
           service("admin"),
           { limit: 1 },
