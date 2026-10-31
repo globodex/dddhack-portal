@@ -1,9 +1,9 @@
 {
-  "runtimeSource": "aede2eb7c595b2ddd0708bbd3337ab9e97dac21e",
+  "runtimeSource": "49de9dd55dcaaa14b881e30fd0eac39eb4c8a23d",
   "runtime": "nodejs24",
   "source": "neon/api.ts",
-  "zipBytes": 9042403,
-  "sha256": "e2fe6ef514c45cd6f52175b25ce10a4f569fbe08bb648181c7059e07cd97200d",
+  "zipBytes": 9042985,
+  "sha256": "a23ff1aa87e9cd8d9ef13bc2db7eaafec21407932603f0bea52d9188c796136e",
   "env": {},
   "warnings": [],
   "buildOnly": true,
@@ -11,119 +11,36 @@
   "packager": "@neon/config-runtime@1.10.2",
   "nativeExecution": "ARM64 headers/hashes verified only; native execution unavailable",
   "archive": "artifacts/neon/portalapi.zip",
-  "candidateOnly": false,
-  "uncompressedBytes": 21245929,
+  "candidateOnly": true,
+  "uncompressedBytes": 21249435,
   "fileCount": 93,
-  "indexSha256": "45f6f7ba72839fa2015c4bf14b5412c778e424817182abcdd472c807dc397f67",
+  "indexSha256": "1a4115a59bd6a69c5af52ddcbf9ecb20c3cf4f67eb2d881a17f56f43c7da811a",
   "nativeArchitecture": "Linux ARM64 glibc",
   "nativeFiles": [
     {
       "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
       "bytes": 18324712,
-      "compressedBytes": 8195758,
       "sha256": "97c2ae9a663cd3de58a34d68820994e49e0e261fddbd4616bd726a72610bbc8f",
       "elfMachine": 183
     },
     {
       "path": "node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.5.node",
       "bytes": 530120,
-      "compressedBytes": 167789,
       "sha256": "6c3c549bd1bae0fe0b34832917a39950abd4db8feea874f8447ed07cded7854b",
       "elfMachine": 183
     }
   ],
   "forbiddenInputs": [],
-  "graphInputCount": 882,
-  "graphApplicationInputCount": 98,
-  "graphFrontendInputs": [],
+  "canonicalPlanDigest": "3c173216603f6a2927903493e29bfbe629dcaddf67cbcd322196f3153f6bffd5",
+  "previousArchiveSha256": "e2fe6ef514c45cd6f52175b25ce10a4f569fbe08bb648181c7059e07cd97200d",
+  "graphInputCount": 883,
+  "graphApplicationInputCount": 99,
   "graphRecomputed": true,
   "archiveIndexBytesIdentical": true,
   "applicationInputsMatchExactGitSnapshot": true,
-  "previousArchiveSha256": "a63f43009afc8df75f7d29783ed8e44759740aaf4ea4d003034bed59bf4834a0",
   "changedArchiveEntries": [
     "index.mjs"
   ],
   "unchangedArchiveEntryCount": 92,
-  "canonicalPlanDigest": "129ae4bc6c20a817b883d68229ee51a73a41998140b9bead2f4309a1c1b7b227",
-  "historicalMigrationsPreserved": [
-    {
-      "name": "0000_compatibility.sql",
-      "checksum": "5e5f7c29d376532f6a32771f556f965aaed666c3bd8bf6fc32d2f00bd9f0ac66"
-    },
-    {
-      "name": "0001_portal.sql",
-      "checksum": "f9e5a1379f598c6c7bc86c771148f16c4c7d5767c773dffbcb14e50e7285b031"
-    },
-    {
-      "name": "0002_invariants.sql",
-      "checksum": "abdea4e04ea373c8a86ba2848d10a0122ab09308f52c1e51d439d138a8670928"
-    },
-    {
-      "name": "0003_transaction_safety.sql",
-      "checksum": "9e3e440b4d0a14d1fee077a3a4c9ab92fd972d61e377931f602f46d0f5bbed24"
-    },
-    {
-      "name": "0004_media_uploads.sql",
-      "checksum": "32cf9496df32661e65299f846359da306b8efca2a15f4c6070b8f0f8a1cab8e7"
-    },
-    {
-      "name": "0100_auth.sql",
-      "checksum": "d7a7d26116c1cf892f129edfbbf70ee4a7b3014165667e5b4b7cda8a916d6bbf"
-    },
-    {
-      "name": "0101_approved_evaluation.sql",
-      "checksum": "21929ac1cf790d34644b385fa4506c69db6df9be3d5ddaae00db9ee2bccb5797"
-    }
-  ],
-  "manualMigrationPlan": [
-    {
-      "name": "0102_credit_stock.sql",
-      "sha256": "74bf8549edbecb753424a86e692844e962be02c0faeddda8f0b2dd3ffaacb72e"
-    },
-    {
-      "name": "0103_project_media_limits.sql",
-      "sha256": "3f42da160787977b7655fe74647655bd656f4c55467c2a42b3dd1627859f462c"
-    },
-    {
-      "name": "0104_admin_team_corrections.sql",
-      "sha256": "a931aeafba01be07f43e35fc7c17cae80f11bbd212fbd92f0e5fd8d475c40500"
-    },
-    {
-      "name": "0105_terminal_record_deletion.sql",
-      "sha256": "088b96a239915cd518765b5ef260c73feee913d8e0b181234110f7591676ccde"
-    },
-    {
-      "name": "0106_admin_team_unlock.sql",
-      "sha256": "dd437230bcbc5d9ffc65b63464992976b7b0ddcd1fd64a675f76f113623c17aa"
-    },
-    {
-      "name": "0107_admin_team_lock.sql",
-      "sha256": "008d9ede3191d0ef8e3198ba0ddfde3188349db9a0003738ec64b44955f4215a"
-    },
-    {
-      "name": "0108_admin_testing_and_team_corrections.sql",
-      "sha256": "dc6fc5c44a5e881109a5c7c0936d682a2f2d1cac210ea042fdfba9fcb13fcec0"
-    },
-    {
-      "name": "0109_owner_ai_model_usage.sql",
-      "sha256": "9dde1b8e4cf3b4a38f6522e677d58633ecfe131df0a88f6f38b57c70ab4e4727"
-    }
-  ],
-  "requiredSchemaBeforeDeploy": {
-    "expectedFinalLedgerEntries": 15,
-    "additionalMigrationsThisFollowup": [],
-    "automaticMigration": false,
-    "zipContainsSql": false,
-    "priorReleasePendingMigrationsMustBeResolvedBeforeDeployment": true
-  },
-  "schemaChangedThisRelease": false,
-  "migrationsUnchangedFromPublishedArchive": true,
-  "manualBackendRedeployRequired": true,
-  "publicationAuthorized": true,
-  "hostedMigrationLedgerInspected": false,
-  "migrationPerformed": false,
-  "sourceSnapshotMethod": "git archive exact committed runtime source; all runtime application input hashes verified against Git blobs",
-  "verificationEvidence": "evidence/team-size-analytics-release",
-  "manualWindowsGuide": "docs/TEAM_SIZE_ANALYTICS_WINDOWS_ROLLOUT.md",
-  "publicationStatus": "Main-only publication authorized; no backend deployment or migration by agent"
+  "hostSmoke": "Passed trusted health 200, untrusted 403, unconfigured portal 503 with outbound blocked and host-native Sharp substitution"
 }

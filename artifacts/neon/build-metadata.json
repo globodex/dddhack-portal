@@ -1,9 +1,9 @@
 {
-  "runtimeSource": "aede2eb7c595b2ddd0708bbd3337ab9e97dac21e",
+  "runtimeSource": "49de9dd55dcaaa14b881e30fd0eac39eb4c8a23d",
   "runtime": "nodejs24",
   "source": "neon/api.ts",
-  "zipBytes": 9042403,
-  "sha256": "e2fe6ef514c45cd6f52175b25ce10a4f569fbe08bb648181c7059e07cd97200d",
+  "zipBytes": 9042985,
+  "sha256": "a23ff1aa87e9cd8d9ef13bc2db7eaafec21407932603f0bea52d9188c796136e",
   "env": {},
   "warnings": [],
   "buildOnly": true,

@@ -1,0 +1,30 @@
+{
+  "runtimeSource": "49de9dd55dcaaa14b881e30fd0eac39eb4c8a23d",
+  "officialPackager": "@neon/config-runtime@1.10.2",
+  "esbuild": "0.28.2",
+  "functionEnv": {},
+  "providerCredentialsSupplied": false,
+  "network": "Public npm package downloads only, using managed proxy/CA; no provider API calls",
+  "dependencyInstallScripts": false,
+  "packageVersions": {
+    "detect-libc": "2.1.2",
+    "sharp": "0.35.5",
+    "semver": "7.8.5",
+    "@emnapi/runtime": "1.11.3",
+    "@img/sharp-linux-arm64": "0.35.5",
+    "@img/colour": "1.1.0",
+    "@img/sharp-libvips-linux-arm64": "1.3.4"
+  },
+  "previousArchiveSha256": "e2fe6ef514c45cd6f52175b25ce10a4f569fbe08bb648181c7059e07cd97200d",
+  "sha256": "a23ff1aa87e9cd8d9ef13bc2db7eaafec21407932603f0bea52d9188c796136e",
+  "indexSha256": "1a4115a59bd6a69c5af52ddcbf9ecb20c3cf4f67eb2d881a17f56f43c7da811a",
+  "canonicalPlanDigest": "3c173216603f6a2927903493e29bfbe629dcaddf67cbcd322196f3153f6bffd5",
+  "applicationInputsMatchExactGitSnapshot": true,
+  "nativeARM64Execution": "not performed on x86_64 host",
+  "push": false,
+  "deployment": false,
+  "hostedMigration": false,
+  "hostedDatabaseReadOrWrite": false,
+  "environmentSettingsChange": false,
+  "archiveByteReproducibility": "Not claimed across future npm resolution/ZIP timestamps; exact current entry independently reproduced; 92 previous dependency/native payloads unchanged"
+}

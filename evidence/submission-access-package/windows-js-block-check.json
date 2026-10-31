@@ -1,0 +1,18 @@
+{
+  "nativePowerShellExecution": false,
+  "method": "Run verbatim Node stdin blocks against a shadow checkout of the verified archive; no SQL or deploy commands executed",
+  "blocks": [
+    {
+      "block": 1,
+      "exit": 0,
+      "stdout": "Correct approved candidate ZIP",
+      "stderr": ""
+    },
+    {
+      "block": 2,
+      "exit": 0,
+      "stdout": "Correct extracted entry and ARM64 native dependencies",
+      "stderr": ""
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "previousSHA256": "e2fe6ef514c45cd6f52175b25ce10a4f569fbe08bb648181c7059e07cd97200d",
+  "refreshedSHA256": "a23ff1aa87e9cd8d9ef13bc2db7eaafec21407932603f0bea52d9188c796136e",
+  "entriesCompared": 93,
+  "unchangedEntries": 92,
+  "changedEntries": [
+    {
+      "path": "index.mjs",
+      "previousSHA256": "45f6f7ba72839fa2015c4bf14b5412c778e424817182abcdd472c807dc397f67",
+      "sha256": "1a4115a59bd6a69c5af52ddcbf9ecb20c3cf4f67eb2d881a17f56f43c7da811a",
+      "previousBytes": 1745052,
+      "bytes": 1748558
+    }
+  ],
+  "allOtherEntryPayloadBytesIdentical": true,
+  "allEntryPayloadBytesIdentical": false,
+  "zipOnlyDosTimestampsDiffer": false,
+  "normalizedZipBytesIdentical": false,
+  "previousNormalizedSHA256": "85bb2c4aa17c077ae3224c5db93b78710be1b902c2c30b0cb861b28eaaeecb3f",
+  "refreshedNormalizedSHA256": "cef1ffa1d316e72e280c622de3d49b7de00afa6073f7e352ec056f199c606e18",
+  "readOnly": true
+}
