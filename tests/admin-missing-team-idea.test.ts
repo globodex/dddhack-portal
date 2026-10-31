@@ -41,14 +41,12 @@ for (const engine of ["sqlite", "postgres"]) {
       const review: any = await f
         .service("admin")
         .view("/admin/team-lock", { focus: "fake_team3" });
-      await f
-        .service("admin")
-        .command("admin-lock-team", {
-          teamId: "fake_team3",
-          expectedName: review.team.name,
-          snapshotDigest: review.snapshotDigest,
-          confirmation: "ADMIN_LOCK_TEAM",
-        });
+      await f.service("admin").command("admin-lock-team", {
+        teamId: "fake_team3",
+        expectedName: review.team.name,
+        snapshotDigest: review.snapshotDigest,
+        confirmation: "ADMIN_LOCK_TEAM",
+      });
       f.clock("2026-11-02T08:00:00.000Z");
       const before = await rows(
         f.db,
@@ -201,6 +199,59 @@ for (const engine of ["sqlite", "postgres"]) {
         f.service("admin").command("admin-add-team-idea", input("idea-fail")),
         { code: "RESULTS_FROZEN" },
       );
+    } finally {
+      await f.db.close();
+    }
+  });
+  test(`${engine}: stale locked-team card returns an idea conflict even when the insert trigger sees a concurrent winner`, async () => {
+    const f = await fixture(engine);
+    try {
+      await batch(f.db, [["DELETE FROM ideas WHERE team_id='fake_team3'"]]);
+      const lock: any = await f
+        .service("admin")
+        .view("/admin/team-lock", { focus: "fake_team3" });
+      await f
+        .service("admin")
+        .command("admin-lock-team", {
+          teamId: "fake_team3",
+          expectedName: lock.team.name,
+          snapshotDigest: lock.snapshotDigest,
+          confirmation: "ADMIN_LOCK_TEAM",
+        });
+      f.clock("2026-11-02T08:00:00.000Z");
+      const stale = f.service("admin"),
+        original = stale.mutate.bind(stale);
+      stale.mutate = async (...args) => {
+        await f
+          .service("owner")
+          .command(
+            "admin-add-team-idea",
+            input("fake_team3", "Concurrent winning idea"),
+          );
+        return original(...args);
+      };
+      await assert.rejects(
+        stale.command(
+          "admin-add-team-idea",
+          input("fake_team3", "Stale losing idea"),
+        ),
+        { code: "TEAM_IDEA_EXISTS" },
+      );
+      assert.equal(
+        (await one<any>(f.db, "SELECT * FROM ideas WHERE team_id='fake_team3'"))
+          ?.title,
+        "Concurrent winning idea",
+      );
+      assert.equal(
+        (
+          await rows(
+            f.db,
+            "SELECT * FROM idea_revisions WHERE team_id='fake_team3'",
+          )
+        ).length,
+        1,
+      );
+      assert.deepEqual(await rows(f.db, "SELECT * FROM write_guards"), []);
     } finally {
       await f.db.close();
     }

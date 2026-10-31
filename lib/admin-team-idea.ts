@@ -94,7 +94,7 @@ export async function addMissingTeamIdea(
     // A stale card/concurrent create fails the conditional-write guard and rolls
     // back audit/revision/capability writes. Never turn this into an overwrite.
     if (
-      /write_guards|CHECK constraint failed|duplicate key|serialization/i.test(
+      /write_guards|CHECK constraint failed|duplicate key|serializ|TEAM_LOCKED|IDEA_LOCKED/i.test(
         error instanceof Error ? error.message : String(error),
       )
     ) {
