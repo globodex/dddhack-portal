@@ -34,3 +34,9 @@ Official references checked during implementation:
 - https://docs.github.com/en/rest/using-the-rest-api/using-pagination-in-the-rest-api
 
 Ready prior comment/share checkpoint `ed80cc5372be94bab46c491e0295dc343e271e71` remains in ancestry. Older provisional packages do not include this worker. A matching package must be generated only after final revision validation. Nothing in this note authorizes publication, hosted configuration or live data changes.
+
+## Event-scale repository access decision
+
+The current collector uses unauthenticated public GitHub REST reads. GitHub documents a primary limit of60 requests/hour per originating IP, so this is not sufficient assurance for event-wide processing of many repositories. A dedicated server-only read-only GitHub credential or GitHub App transport should be agreed and implemented before enabling the production-wide schedule. This candidate does not yet consume a GitHub credential: merely adding a GITHUB_TOKEN variable would not change its behavior. No credential was accessed, created or configured during this work. Rate-limited evidence remains non-negative/pending; exhausted attempts now explicitly request organizer review instead of implying an automatic retry remains scheduled. The existing attempt cap is unchanged.
+
+Primary reference: https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api . Local synthetic provider/transport tests do not establish hosted quota, credential readiness or end-to-end paid evaluation.
