@@ -906,3 +906,7 @@
 .app-shell .public-project-list .showcase-place-2 .showcase-rank-badge{background:#e5e9ed;color:#343f49}
 .app-shell .public-project-list .showcase-place-3 .showcase-rank-badge{background:#eed1b9;color:#553824}
 .app-shell .public-project-list .showcase-ranked .showcase-banner-link{margin-top:12px}
+.dashboard-submission-status[data-urgency]{background:hsl(var(--submission-urgency-hue) 92% 94%);border-color:hsl(var(--submission-urgency-hue) 65% 63%);color:#352615;transition:background-color 1s linear,border-color 1s linear}
+.dashboard-submission-status[data-urgency] p,.dashboard-submission-status[data-urgency] .dashboard-submission-countdown span{color:#51402d}
+.dashboard-submission-status[data-urgency]>svg{color:#6c4520}
+@media(prefers-reduced-motion:reduce){.dashboard-submission-status[data-urgency]{transition:none}}
