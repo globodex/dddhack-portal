@@ -22,3 +22,30 @@
  .public-home-shell .home-hero .hero-brand-lockup .hero-exa-wordmark{width:36px;height:18px;margin:0 10px}
  .prize-partners{gap:8px}.prize-partners img{width:64px;height:30px}.prize-partners img:last-child{width:40px;height:18px;margin:0 12px}
 }
+/* Prize review: align to the surrounding chapters and emphasize the podium. */
+.public-home-shell #prizes .chapter-heading h2{justify-content:flex-start;text-align:left}
+.public-home-shell #prizes .prize-partners{justify-content:flex-start;margin-left:0;margin-right:0;margin-bottom:32px}
+.prize-podium{gap:22px}
+.prize-place{padding:30px 26px 28px}
+.prize-place-1{min-height:550px;padding-top:62px}
+.prize-place-2{min-height:430px}
+.prize-place-3{min-height:380px}
+.prize-rank{font-size:56px;line-height:1;gap:14px;letter-spacing:-.06em}
+.prize-rank svg{width:64px;height:64px;stroke-width:1.5;transition:transform .25s ease}
+.prize-place-1 .prize-rank{font-size:96px;gap:18px}
+.prize-place-1 .prize-rank svg{width:108px;height:108px}
+.prize-place-3 .prize-rank{font-size:50px}
+.prize-place-3 .prize-rank svg{width:56px;height:56px}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){.prize-place:hover .prize-rank svg{transform:translateY(-5px) rotate(-4deg)}}
+@media(max-width:740px){
+ .public-home-shell #prizes .prize-partners{margin-bottom:24px}
+ .prize-podium{gap:16px}
+ .prize-place-1{min-height:420px;padding:30px 24px}
+ .prize-place-2{min-height:340px;padding:24px}
+ .prize-place-3{min-height:310px;padding:24px}
+ .prize-place-1 .prize-rank{font-size:72px;gap:16px}
+ .prize-place-1 .prize-rank svg{width:84px;height:84px}
+ .prize-rank{font-size:48px}.prize-rank svg{width:54px;height:54px}
+ .prize-place-3 .prize-rank{font-size:42px}.prize-place-3 .prize-rank svg{width:48px;height:48px}
+}
+@media(prefers-reduced-motion:reduce){.prize-rank svg{transform:none;transition:none}}

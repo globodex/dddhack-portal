@@ -10,3 +10,9 @@ Source ZIP SHA256: d74e880f9b188a164186f08f062814beb9d1665087e344b749612218aca41
 Validation: seven focused prizes/home geometry/privacy tests passed. Browser component integration at1440,390,320px passed podium order, no horizontal overflow, visible hero Exa asset, reduced-motion layout and normal chapter stacking/re-entry. Actual component captures using current application styles are outside Git at `/workspace/showcase-evaluation-review/screens/prizes-{1440,390,320}.png` and `hero-partners-{1440,390,320}.png`. These are not full hosted navbar/integration or sponsor-approval evidence. Known Library401 output-transfer restriction has not been bypassed. No screenshot is committed.
 
 Frontend-only slice; no schema, backend archive or hosted changes. Typecheck and production Webpack build passed for this isolated slice. This is not a claim of a completed combined portal release.
+
+## Owner-requested revision
+
+Heading and partner marks now align left with the existing chapter grid. The subtitle and participant-credit presentation are removed. Exact participant-credit values remain in the exported source constant for later use; none are advertised in this preview. First place is substantially taller with a larger trophy/rank; second and third retain progressively smaller treatment. Mobile reads first/second/third with the same hierarchy. Hover motion is bounded and disabled for reduced motion.
+
+Two revised content tests and actual browser checks at1440/390/320 passed, including normal chapter stack re-entry, no overflow and larger first-place trophy. Captures: `prizes-revised-{1440,390,320}.png` outside Git. Native Library upload now works; desktop image ID `libfile_f1cd58657b488191a2523a086e34012a`. The earlier helper401 was not retried or bypassed. This revision still has no backend/schema effect and is not published.
