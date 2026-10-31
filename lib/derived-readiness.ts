@@ -61,15 +61,11 @@ export function deriveOperational(
 /** Actual scoring configuration only. Never resolves missing rules or supplies weights. */
 export function deriveScorePolicyBlockers(policy: Policy): string[] {
   const blockers: string[] = [];
-  if (!windowValid(policy.submissionOpen, policy.submissionClose))
-    blockers.push("valid submission window");
-  if (!windowValid(policy.submissionClose, policy.judgingClose))
-    blockers.push("valid judging window");
-  if (
+  if (policy.projectEngagementRule === "score-with-approved-normalization" && (
     !windowValid(policy.engagementOpen, policy.engagementClose) ||
     !Number.isFinite(timestamp(policy.ideaReveal)) ||
     timestamp(policy.engagementOpen) < timestamp(policy.ideaReveal)
-  )
+  ))
     blockers.push("valid engagement window");
   if (
     !textPresent(policy.diversityRubric) ||
@@ -88,12 +84,6 @@ export function deriveScorePolicyBlockers(policy: Policy): string[] {
     blockers.push("public engagement scoring policy");
   for (const key of ["aiFallback", "tieBreak", "codexReviewer"] as const)
     if (!textPresent(policy[key])) blockers.push(key);
-  if (
-    !Number.isFinite(timestamp(policy.appealClose)) ||
-    !Number.isFinite(timestamp(policy.judgingClose)) ||
-    timestamp(policy.appealClose) > timestamp(policy.judgingClose)
-  )
-    blockers.push("appeal deadline");
   if (
     !Number.isInteger(policy.feedbackMin) ||
     !Number.isInteger(policy.feedbackMax) ||

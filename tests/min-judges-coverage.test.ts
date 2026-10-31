@@ -1,3 +1,4 @@
+import { freezeResults } from "./helpers";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
@@ -107,7 +108,7 @@ for (const modern of [false, true]) {
           );
           clock("2026-11-01T13:00:00.000Z");
           await assert.rejects(
-            service("owner").command("freeze-results", {
+            freezeResults(service("owner"), {
               reason: "Synthetic coverage check",
             }),
             { code: "SCORE_COVERAGE_INCOMPLETE" },

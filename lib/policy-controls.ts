@@ -45,11 +45,7 @@ export async function policyControl(
     const warnings = [
       "These are real portal dates. Testing consumes real submission attempts; removing records does not reset the three-attempt limit.",
       "Repository creation and first commit must still be strictly after 1 November 2026, 08:00 IST; changing this window does not change that rule.",
-      ...(current.policy.judgingClose && close >= current.policy.judgingClose
-        ? [
-            "The close reaches judging close; scoring remains blocked until judging dates are reviewed.",
-          ]
-        : []),
+
     ];
     if (action.startsWith("preview-"))
       return {
@@ -187,14 +183,7 @@ export async function policyControl(
     return {
       preview,
       version: current.version,
-      warnings:
-        extending &&
-        current.policy.judgingClose &&
-        next.submissionClose! >= current.policy.judgingClose
-          ? [
-              "The new deadline reaches the current judging close. Final scoring stays blocked until the owner confirms a later judging window.",
-            ]
-          : [],
+      warnings: extending ? ["Final owner freeze still ends submission edits independently of this deadline."] : [],
       ...(extending
         ? {
             before: current.policy.submissionClose,

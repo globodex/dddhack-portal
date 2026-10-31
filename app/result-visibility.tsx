@@ -43,7 +43,8 @@ export default function ResultVisibility({
     pending = useRef(false);
   const [busy, setBusy] = useState(""),
     [errors, setErrors] = useState<Record<string, string>>({}),
-    [snapshotId, setSnapshotId] = useState("");
+    [snapshotId, setSnapshotId] = useState(""),
+    [freezePreview, setFreezePreview] = useState<Row | null>(null);
   if (!data.me?.owner && data.me?.role !== "admin") return null;
   const stage = data.scoreRelease?.stage || "community",
     snapshots = currentResultSnapshots(data);
@@ -60,8 +61,11 @@ export default function ResultVisibility({
     setBusy(key);
     setErrors((current) => ({ ...current, [key]: "" }));
     try {
-      await run(command, values, { errorFeedback: "local" });
+      const response = await run(command, values, { errorFeedback: "local" });
+      if (command === "preview-freeze-results") setFreezePreview(response);
+      if (command === "freeze-results") setFreezePreview(null);
     } catch (error) {
+      if (command === "freeze-results" && !(error instanceof ActionCancelled)) setFreezePreview(null);
       if (!(error instanceof ActionCancelled))
         setErrors((current) => ({
           ...current,
@@ -174,10 +178,20 @@ export default function ResultVisibility({
                     aria-describedby={
                       reason("freeze") ? `${id}-freeze-reason` : undefined
                     }
-                    onClick={() => void action("freeze", "freeze-results", {})}
+                    onClick={() => void action("freeze", "preview-freeze-results", {})}
                   >
-                    {busy === "freeze" ? "Freezing…" : "Freeze final scores"}
+                    {busy === "freeze" ? "Checking…" : "Preview final freeze"}
                   </button>
+                )}
+                {freezePreview && data.me?.owner && (
+                  <section className="results-ui-freezePreview" aria-label="Final freeze readiness preview">
+                    <strong>{freezePreview.projects} {freezePreview.projects === 1 ? "project" : "projects"} · {freezePreview.eligibleProjects} eligible</strong>
+                    <p>Policy {freezePreview.policyVersion} · Score revision {freezePreview.sourceRevision}</p>
+                    <ul>{(freezePreview.warnings || []).map((warning: string) => <li key={warning}>{warning}</li>)}</ul>
+                    <p>Preview expires {dateLabel(freezePreview.expiresAt)}.</p>
+                    <button type="button" className="button" disabled={!hydrated || !!busy || !control("freeze").allowed} onClick={() => void action("freeze", "freeze-results", { token: freezePreview.token, expiresAt: freezePreview.expiresAt })}>Confirm final freeze</button>
+                    <button type="button" className="button secondary" disabled={!!busy} onClick={() => setFreezePreview(null)}>Cancel</button>
+                  </section>
                 )}
                 {reason("freeze") && (
                   <p

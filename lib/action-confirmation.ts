@@ -266,7 +266,7 @@ export function confirmationFor(
       "Membership and idea details become read-only. Only an admin can reopen an eligible team.";
   if (action === "freeze-results")
     description =
-      "Freeze the current final scores. Scoring changes will be blocked.";
+      "Freeze the reviewed scores and end judging, evaluation and submission edits, even while the submission window is open. This is immutable and does not reveal results.";
   if (action === "remove-workspace-member")
     description = "They will lose access to this team's private details.";
   return {
@@ -342,6 +342,7 @@ export function revealConfirmation(
   action: string,
   values: Record<string, any>,
 ) {
+  if (action === "freeze-results") return "FREEZE_RESULTS";
   if (action === "change-ai-model") return "CHANGE_AI_MODEL";
   if (action === "admin-delete-participant") return "DELETE_PARTICIPANT";
   if (action === "admin-delete-team") return "DELETE_TEAM";
@@ -385,6 +386,7 @@ export function revealConfirmation(
 export function requiresActionConfirmation(action: string) {
   return ![
     "upvote-project",
+    "preview-freeze-results",
     "comment-project",
     "complete-profile",
     "profile",

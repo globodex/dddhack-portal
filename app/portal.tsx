@@ -6204,6 +6204,10 @@ function OwnerPolicyControls({
   return (
     <section className="panel">
       <h2>Scoring weights</h2>
+      <section className="results-ui-questionScoring" aria-label="Question response scoring setup">
+        <h3>Questions responses</h3><strong>Not configured</strong>
+        <p>A separate scoring category is planned. Weight, per-question caps, scorer and overlap rules must be confirmed before it contributes to totals.</p>
+      </section>
 
       <Form
         disabled={data.readiness?.scoring?.ready !== true}

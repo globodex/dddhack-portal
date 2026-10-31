@@ -1,3 +1,4 @@
+import { freezeResults } from "./helpers";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { setup, activate, attend, submission } from "./helpers";
@@ -210,7 +211,7 @@ test("explicit current-version evaluation persists a numeric provider report, wh
     );
     assert.equal((await admin.view("/admin/settings") as any).scoreRelease.aiRevealed, true);
     f.clock("2026-11-01T13:00:00.000Z");
-    await f.service("owner").command("freeze-results", {});
+    await freezeResults(f.service("owner"), {});
     const frozenSettings = await admin.view("/admin/settings") as any;
     assert.equal(frozenSettings.resultSnapshots[0].entryCount, 1);
     assert.equal(frozenSettings.resultSnapshots[0].eligibleCount, 1);

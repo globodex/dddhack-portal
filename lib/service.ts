@@ -1,3 +1,4 @@
+import { freezeReadiness, freezePreviewToken, previewResultFreeze } from "./result-freeze";
 import { feedbackLengthValid } from "./feedback-length";
 import { projectMediaPolicy } from "./project-media-policy";
 import { authenticatedRequestEvidenceStatement } from "./sign-in-evidence";
@@ -1797,25 +1798,16 @@ export class PortalService {
           message: "Owner tie order recorded for this exact score breakdown.",
         };
       }
+      case "preview-freeze-results": {
+        z.object({}).strict().parse(data);
+        return previewResultFreeze(this);
+      }
       case "freeze-results": {
-        await this.staff(true);
-        await this.unfrozen();
-        const d = z.object({ reason }).parse(data);
-        const s = await this.live();
-        demand(
-          s.policy.judgingClose &&
-            this.now() >= s.policy.judgingClose &&
-            s.policy.engagementClose &&
-            this.now() >= s.policy.engagementClose,
-          409,
-          "SCORING_WINDOWS_OPEN",
-        );
-        const revision = (await one<{ version: number }>(
-          this.db,
-          "SELECT version FROM scoring_revision WHERE id=1",
-        ))!.version;
-        const result = await this.compute();
-        demand(result.length > 0, 409, "NO_RESULTS");
+        const state = await freezeReadiness(this);
+        const d = z.object({ reason, token: z.string().min(32), expiresAt: z.string().datetime(), confirmation: z.literal("FREEZE_RESULTS") }).strict().parse(data);
+        const now = Date.parse(this.now()), expiry = Date.parse(d.expiresAt);
+        demand(expiry > now && expiry <= now + 5 * 60_000 && d.token === await freezePreviewToken(state, d.expiresAt), 409, "FREEZE_PREVIEW_STALE", "Readiness changed or the preview expired. Preview again before freezing.");
+        const s = state.settings, revision = state.revision, result = state.result;
         const snapshotId = crypto.randomUUID();
         await this.mutate(
           actor.id,
@@ -1832,7 +1824,7 @@ export class PortalService {
               actor.id,
             ],
           ],
-          { count: result.length },
+          { count: result.length, policyVersion: s.version, sourceRevision: revision, previewConfirmed: true },
           d.reason,
         );
         return { snapshotId };

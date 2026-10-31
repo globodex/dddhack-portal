@@ -1,3 +1,4 @@
+import { freezeResults } from "./helpers";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createHash } from "node:crypto";
@@ -561,7 +562,7 @@ for (const engine of ["sqlite", "postgres"] as const) {
         task = admin.command("reevaluate-project", f.values);
         await started;
         f.clock("2026-11-01T13:00:00.000Z");
-        await f.service("owner").command("freeze-results", {
+        await freezeResults(f.service("owner"), {
           reason: "Independent synthetic frozen-score proof.",
         });
         const frozen = await rows(f.db, "SELECT * FROM result_snapshots");

@@ -1,3 +1,4 @@
+import { freezeResults } from "./helpers";
 import { attend } from "./helpers";
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -56,7 +57,7 @@ test("ties need complete owner adjudication; altered score breakdown invalidates
   await service("admin").command("review", review("fake_team3", b.id));
   clock("2026-11-01T13:00:00.000Z");
   await assert.rejects(
-    service("owner").command("freeze-results", { reason: "Rehearsal freeze" }),
+    freezeResults(service("owner"), { reason: "Rehearsal freeze" }),
     /Owner must record/,
   );
   await assert.rejects(
@@ -74,14 +75,14 @@ test("ties need complete owner adjudication; altered score breakdown invalidates
   await service("admin").command("review", review("fake_team1", a.id, 21));
   await service("admin").command("review", review("fake_team3", b.id, 21));
   await assert.rejects(
-    service("owner").command("freeze-results", { reason: "Rehearsal freeze" }),
+    freezeResults(service("owner"), { reason: "Rehearsal freeze" }),
     /Owner must record/,
   );
   await service("owner").command("resolve-tie", {
     teamIds: ["fake_team3", "fake_team1"],
     reason: "FAKE re-adjudication after score correction.",
   });
-  const snapshot = await service("owner").command("freeze-results", {
+  const snapshot = await freezeResults(service("owner"), {
     reason: "Rehearsal freeze after adjudication",
   });
   await assert.rejects(

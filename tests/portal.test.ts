@@ -1,3 +1,4 @@
+import { freezeResults } from "./helpers";
 import { attend } from "./helpers";
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -547,7 +548,7 @@ test("full mock rehearsal: two equal-weight judges, human review, owner freeze, 
     reason: "manual review",
   });
   await assert.rejects(
-    service("admin").command("freeze-results", { reason: "test" }),
+    freezeResults(service("admin"), { reason: "test" }),
     /OWNER_REQUIRED/,
   );
   assert.equal(
@@ -555,7 +556,7 @@ test("full mock rehearsal: two equal-weight judges, human review, owner freeze, 
     0,
   );
   clock("2026-11-01T13:00:00.000Z");
-  const frozen = await service("owner").command("freeze-results", {
+  const frozen = await freezeResults(service("owner"), {
     reason: "Rehearsal completed",
   });
   await assert.rejects(

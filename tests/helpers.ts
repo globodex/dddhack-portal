@@ -95,3 +95,9 @@ export const submission = {
   cerebrasEvidence: "",
   attestation: true,
 };
+
+/** Explicit owner preview/confirm flow used by legacy scoring scenarios. */
+export async function freezeResults(service: PortalService, values: Record<string, unknown> = {}) {
+  const preview = await service.command("preview-freeze-results", {});
+  return service.command("freeze-results", { ...values, token: preview.token, expiresAt: preview.expiresAt, confirmation: "FREEZE_RESULTS" });
+}

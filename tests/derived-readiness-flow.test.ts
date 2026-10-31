@@ -1,3 +1,4 @@
+import { freezeResults } from "./helpers";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { setup, submission, rehearsalPolicy } from "./helpers";
@@ -285,14 +286,10 @@ test("actual score coverage and explicit staged publication preserve immutable f
       row(await service("admin").command("compute-results", {})).items.length,
       1,
     );
-    await assert.rejects(
-      service("owner").command("freeze-results", {
-        reason: "Synthetic premature freeze",
-      }),
-      { code: "SCORING_WINDOWS_OPEN" },
-    );
+    const preview = await service("owner").command("preview-freeze-results", {});
+    assert.equal(preview.projects, 1, "Owner readiness can be previewed before any historical close time");
     clock("2026-11-01T13:00:00.000Z");
-    const frozen = await service("owner").command("freeze-results", {
+    const frozen = await freezeResults(service("owner"), {
       reason: "Synthetic actual score freeze",
     });
     await assert.rejects(

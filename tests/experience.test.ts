@@ -1,3 +1,4 @@
+import { freezeResults } from "./helpers";
 import { attend } from "./helpers";
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -856,7 +857,7 @@ test("revised judge reviews feed only an owner-revealed frozen score; public eng
       undefined,
     );
     clock("2026-11-01T13:00:00.000Z");
-    const frozen = await service("owner").command("freeze-results", {
+    const frozen = await freezeResults(service("owner"), {
       reason: "Synthetic final snapshot",
     });
     assert.equal(

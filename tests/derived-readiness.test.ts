@@ -118,14 +118,11 @@ test("removing manual acknowledgments does not resolve absent scoring decisions 
     confirmations: [],
   });
   for (const blocker of [
-    "valid judging window",
-    "valid engagement window",
     "non-demographic diversity rubric",
     "public engagement scoring policy",
     "aiFallback",
     "tieBreak",
     "codexReviewer",
-    "appeal deadline",
     "scoring criteria and weightage",
   ])
     assert.ok(draft.includes(blocker), blocker);

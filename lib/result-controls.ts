@@ -56,12 +56,7 @@ export async function resultControls(s: PortalService) {
       ? deny("A final snapshot is already frozen.")
       : blockers.length
         ? deny("Configure " + blockers[0] + ".")
-        : !settings.policy.judgingClose ||
-            !settings.policy.engagementClose ||
-            s.now() < settings.policy.judgingClose ||
-            s.now() < settings.policy.engagementClose
-          ? deny("Wait for judging and feedback to close.")
-          : yes;
+        : yes;
   if (freeze.allowed) {
     try {
       const scores = await s.compute();
