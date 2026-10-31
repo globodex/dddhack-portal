@@ -2001,7 +2001,7 @@ export function Dashboard({
   onInteraction?: () => void;
   initialTab?: "team" | "credits" | "project";
 }) {
-  const [tab, setTab] = useState(initialTab),
+  const [tab, setTab] = useState<string>(initialTab),
     [projectEditing, setProjectEditing] = useState(false);
   useEffect(() => {
     const sync = () => {

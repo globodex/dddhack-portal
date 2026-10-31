@@ -86,12 +86,10 @@ for (const engine of ["sqlite", "postgres"]) {
       );
       assert.deepEqual(await rows(f.db, "SELECT * FROM write_guards"), []);
       await assert.rejects(
-        f
-          .service("admin")
-          .command("save-project", {
-            revision: 0,
-            project: payload("Not own team"),
-          }),
+        f.service("admin").command("save-project", {
+          revision: 0,
+          project: payload("Not own team"),
+        }),
         { code: "LEADER_REQUIRED" },
       );
       assert.equal(
@@ -286,6 +284,54 @@ for (const engine of ["sqlite", "postgres"]) {
         }),
         { code: "RESULTS_FROZEN" },
       );
+    } finally {
+      await f.db.close();
+    }
+  });
+  test(`${engine}: missing schedule preserves admin testing, inactive/nonmember actors lose it and direct HTTP never projects pre-start drafts`, async () => {
+    const f = await fixture(engine);
+    try {
+      await batch(f.db, [
+        [
+          "INSERT INTO portal_roles VALUES('fake_bob','admin','fake_owner','2026-10-22T08:00:00Z')",
+        ],
+        ["DELETE FROM event_settings"],
+      ]);
+      const admin = f.service("bob");
+      assert.equal((await submissionAccess(admin, team)).canCommit, true);
+      await admin.command("save-project", {
+        revision: 0,
+        project: payload("Admin without settings"),
+      });
+      assert.equal(
+        (await submissionAccess(f.service("alice"), "fake_team1"))
+          .contentHidden,
+        true,
+      );
+      await batch(f.db, [
+        [
+          "INSERT INTO record_removals(kind,target_id,active,reason,actor_id,updated_at) VALUES('participant','fake_bob',1,'Synthetic inactive test','fake_owner','2026-10-22T08:00:00Z')",
+        ],
+      ]);
+      assert.equal(
+        (await submissionAccess(admin, team)).adminSubmissionTest,
+        false,
+      );
+      await assert.rejects(
+        admin.command("save-project", {
+          revision: 1,
+          project: payload("Inactive must not save"),
+        }),
+      );
+      const response = await handlePortal(
+        new Request("http://localhost/api/portal?view=/submission"),
+        { db: f.db, identity: fixtures.alice, key: LOCAL_CREDIT_KEY },
+      );
+      assert.equal(response.status, 200);
+      const view: any = await response.json();
+      assert.equal(view.submissionAccess.contentHidden, true);
+      assert.equal(view.project, undefined);
+      assert.deepEqual(view.attempts, []);
     } finally {
       await f.db.close();
     }

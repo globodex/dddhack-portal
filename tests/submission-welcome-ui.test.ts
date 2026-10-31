@@ -15,6 +15,8 @@ const data = {
   me: {
     id: "synthetic",
     name: "Synthetic person",
+    email: "synthetic@example.invalid",
+    owner: false,
     role: "participant",
     canParticipate: true,
   },
@@ -80,7 +82,7 @@ test("missing-idea card exposes explicit team-bound create action; saved idea re
     }),
   );
   assert.doesNotMatch(saved, /Add idea to Synthetic target/);
-  assert.equal(revealConfirmation("admin-add-team-idea"), "ADD_TEAM_IDEA");
+  assert.equal(revealConfirmation("admin-add-team-idea", {}), "ADD_TEAM_IDEA");
   assert.match(
     JSON.stringify(
       confirmationFor("admin-add-team-idea", {}, "Synthetic target"),
