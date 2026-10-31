@@ -635,5 +635,23 @@
     "providerAPICalls": false,
     "secretsSupplied": false,
     "npmInstallScripts": false
+  },
+  "windowsGuideChecks": {
+    "guide": "docs/PRIVATE_SUBMISSION_VISIBILITY_WINDOWS_ROLLOUT.md",
+    "positive": [
+      {
+        "block": 1,
+        "passed": true,
+        "stdout": "Verified approved ZIP"
+      },
+      {
+        "block": 2,
+        "passed": true,
+        "stdout": "Verified all 93 extracted files. Deploy source: /workspace/private-visibility-packaging/extracted-21dde7d6fea1"
+      }
+    ],
+    "negativeOldZip": "refused",
+    "negativeOldExtraction": "refused",
+    "nativeWindowsExecution": false
   }
 }
