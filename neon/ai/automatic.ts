@@ -1,0 +1,47 @@
+import {z} from 'zod';
+import {one,rows,assertPreviousWrite,type SQL} from '../../lib/db';
+import {demand} from '../../lib/security';
+import {githubEligibility} from '../../lib/evaluation';
+import {runEvaluationJob,currentEvaluationBinding,type EvaluationBinding} from '../../lib/evaluation-runner';
+import {eligibilityWrite} from '../../lib/repository-evidence';
+import {latestProviderGrade} from '../../lib/provider-grade';
+import type {PortalService} from '../../lib/service';
+import {collectRepositoryTiming} from './repository-timing';
+import {collectAutomaticSnapshot} from './automatic-snapshot';
+import {readApprovedSnapshot} from './repository';
+const id=z.string().min(1).max(150);
+const waiting={pending:true,message:'Your submission is saved and awaiting evaluation.'};
+function guard(service:PortalService,binding:EvaluationBinding,actorId:string):SQL[]{const token='automatic-current:'+crypto.randomUUID();return [["INSERT INTO write_guards SELECT ?,1 FROM projects p JOIN teams t ON t.id=p.team_id JOIN memberships m ON m.team_id=t.id AND m.user_id=t.leader_id WHERE p.id=? AND p.published_version_id=? AND t.leader_id=? AND NOT EXISTS(SELECT 1 FROM result_snapshots) AND NOT EXISTS(SELECT 1 FROM record_removals r WHERE r.active=1 AND ((r.kind='project' AND r.target_id=p.id) OR (r.kind='submission' AND r.target_id=p.published_version_id) OR (r.kind='team' AND r.target_id=t.id) OR (r.kind='participant' AND r.target_id=?)))",token,binding.projectId,binding.versionId,actorId,actorId],...assertPreviousWrite(),['DELETE FROM write_guards WHERE token=?',token]]}
+async function saveDecision(service:PortalService,binding:EvaluationBinding,actorId:string,status:'eligible'|'ineligible',reason:string,evidence:unknown,extra:SQL[]=[],source='post-submit'){
+ const team=await one<{team_id:string}>(service.db,'SELECT team_id FROM projects WHERE id=? AND published_version_id=?',binding.projectId,binding.versionId);demand(team,409,'JOB_SUPERSEDED');
+ const sql:SQL[]=[...guard(service,binding,actorId),...extra,...eligibilityWrite({id:binding.projectId,versionId:binding.versionId,status,reason,evidence},actorId,service.now()),["INSERT INTO reviews(team_id,version_id,eligibility,astra,codex,diversity,false_claims,evidence,reviewer_id,updated_at) VALUES(?,?,?,NULL,NULL,NULL,0,?,?,?) ON CONFLICT(team_id) DO UPDATE SET version_id=excluded.version_id,eligibility=excluded.eligibility,astra=CASE WHEN reviews.version_id=excluded.version_id THEN reviews.astra ELSE NULL END,codex=CASE WHEN reviews.version_id=excluded.version_id THEN reviews.codex ELSE NULL END,diversity=CASE WHEN reviews.version_id=excluded.version_id THEN reviews.diversity ELSE NULL END,false_claims=CASE WHEN reviews.version_id=excluded.version_id THEN reviews.false_claims ELSE 0 END,evidence=CASE WHEN reviews.version_id=excluded.version_id THEN reviews.evidence ELSE excluded.evidence END,reviewer_id=CASE WHEN reviews.version_id=excluded.version_id THEN reviews.reviewer_id ELSE excluded.reviewer_id END,updated_at=excluded.updated_at",team.team_id,binding.versionId,status,JSON.stringify({source:'automatic-repository-evaluation',evidence}),actorId,service.now()]];
+ await service.mutate(actorId,'automatic-project-evaluation',binding.projectId,sql,{versionId:binding.versionId,status,source},'Automatic processing of an existing committed submission');
+}
+/** Called only after HTTP leader authorization or an attested scheduled invocation selects the current leader. */
+export async function processAutomaticEvaluation(service:PortalService,actorId:string,binding:EvaluationBinding,fetcher:typeof fetch,source:'post-submit'|'scheduled'='post-submit'){
+ demand(await currentEvaluationBinding(service,binding,actorId),403,'ACTIVE_PROJECT_LEADER_REQUIRED');await service.unfrozen();
+ if(service.evaluator.provenance!=='provider'||service.evaluator.available===false)return {...waiting,configured:false};
+ let job=await one<{id:string;state:string;attempts:number;updated_at:string}>(service.db,'SELECT id,state,attempts,updated_at FROM astra_jobs WHERE version_id=?',binding.versionId);demand(job,409,'EVALUATION_JOB_MISSING');
+ if(job.state==='running'&&Date.parse(job.updated_at)<Date.parse(service.now())-900_000){await service.mutate(actorId,'automatic-evaluation-recovery',job.id,[...guard(service,binding,actorId),["UPDATE astra_jobs SET state=?,error='Interrupted automatic evaluation',updated_at=? WHERE id=? AND state='running' AND attempts=? AND updated_at=?",job.attempts>=3?'needs_review':'failed_retryable',service.now(),job.id,job.attempts,job.updated_at],...assertPreviousWrite(),["UPDATE evaluation_runs SET state='stale',score=NULL,error='Interrupted automatic evaluation',updated_at=? WHERE version_id=? AND state IN ('queued','running')",service.now(),binding.versionId]],{versionId:binding.versionId,source},'Recover expired automatic evaluation lease');job=await one(service.db,'SELECT id,state,attempts,updated_at FROM astra_jobs WHERE id=?',job.id);demand(job,409,'EVALUATION_JOB_MISSING')}
+ if(job.state==='running')return {...waiting,state:'running'};
+ if(job.state==='finalized'){const decision=await one<{status:string}>(service.db,'SELECT status FROM project_eligibility WHERE project_id=? AND version_id=?',binding.projectId,binding.versionId);return {pending:false,state:decision?.status==='ineligible'?'ineligible':'completed',message:'Evaluation has already been processed.'};}
+ if(job.attempts>=3)return {...waiting,reviewRequired:true};
+ if(job.state!=='pending'&&Date.parse(service.now())-Date.parse(job.updated_at)<60_000*Math.pow(2,Math.max(0,job.attempts-1)))return {...waiting,retryScheduled:true};
+ const result=await runEvaluationJob(service,actorId,job.id,'automatic-evaluation',{binding,source,prepare:async context=>{
+  demand(await currentEvaluationBinding(service,binding,actorId),409,'JOB_SUPERSEDED');
+  const existing=await one<{commit_sha:string;revoked_at:string|null}>(service.db,'SELECT commit_sha,revoked_at FROM approved_evaluation_snapshots WHERE version_id=?',binding.versionId);
+  if(existing){demand(!existing.revoked_at,409,'AUTOMATIC_SNAPSHOT_REVOKED');const approved=await readApprovedSnapshot(service.db,binding.versionId);const evidence=await one<{commit_sha:string}>(service.db,'SELECT commit_sha FROM repository_evidence WHERE project_id=? AND version_id=? ORDER BY created_at DESC,id DESC LIMIT 1',binding.projectId,binding.versionId);demand(approved&&evidence?.commit_sha===approved.commitSha,409,'REPOSITORY_BINDING_CHANGED');return 'continue'}
+  let timing=await collectRepositoryTiming(String(context.payload.github||''),fetcher);if(timing.state==='pending'||!timing.metadata)throw new Error('REPOSITORY_EVIDENCE_PENDING');
+  const evidence={metadata:timing.metadata,commitSha:timing.commitSha||null,source:'Automatic public GitHub API observation',observedAt:service.now(),comparison:'not-before',cutoff:'2026-11-01T02:30:00Z'};
+  if(timing.state==='ineligible'){demand(githubEligibility(timing.metadata)==='INELIGIBLE',409,'OLD_REPOSITORY_EVIDENCE_REQUIRED');await saveDecision(service,binding,actorId,'ineligible',timing.reason,evidence,[],source);return 'ineligible'}
+  demand(timing.commitSha,409,'REPOSITORY_EVIDENCE_PENDING');
+  const prepared=await collectAutomaticSnapshot({versionId:binding.versionId,commitSha:timing.commitSha,repository:String(context.payload.github||''),payload:context.payload},fetcher);
+  await service.mutate(actorId,'automatic-evaluation-snapshot',binding.projectId,[...guard(service,binding,actorId),['INSERT INTO repository_evidence VALUES(?,?,?,?,?,?,?,?,?)',crypto.randomUUID(),binding.projectId,binding.versionId,timing.commitSha,'eligible',JSON.stringify(evidence),'Automatic event-date verification',actorId,service.now()],["INSERT INTO approved_evaluation_snapshots(version_id,commit_sha,snapshot_json,snapshot_sha256,approved_by,approved_at) VALUES(?,?,?,?,?,?)",binding.versionId,prepared.commitSha,prepared.snapshotJson,prepared.snapshotSha256,actorId,service.now()]],{versionId:binding.versionId,source,selection:'server-owned safe text files',selectedFiles:JSON.parse(prepared.snapshotJson).files.length},'Automatic safe-source selection for an existing committed submission');return 'continue';
+ }});
+ if((await one<{status:string}>(service.db,'SELECT status FROM project_eligibility WHERE project_id=? AND version_id=?',binding.projectId,binding.versionId))?.status==='ineligible')return {pending:false,state:'ineligible',message:'Repository dates predate the hackathon start.'};
+ if(await currentEvaluationBinding(service,binding,actorId)&&!await one(service.db,'SELECT id FROM result_snapshots LIMIT 1')){const grade=await latestProviderGrade(service.db,binding.projectId,binding.versionId);if(grade){await saveDecision(service,binding,actorId,'eligible','Repository event dates verified; current-version provider evaluation completed.',{providerRunId:grade.runId,commitSha:grade.report.revision},[],source);return {pending:false,state:'completed',message:'Evaluation complete. Scores stay hidden until the owner reveals them.'}}}
+ return {...waiting,message:result.message};
+}
+export async function startOwnAutomaticEvaluation(service:PortalService,input:unknown,fetcher:typeof fetch){
+ const binding=z.object({projectId:id,versionId:id}).strict().parse(input),actor=await service.actor();demand(!actor.deactivated&&(actor.owner||actor.role==='admin'||actor.mode==='participant'),403,'PARTICIPANT_REQUIRED');return processAutomaticEvaluation(service,actor.id,binding,fetcher);
+}

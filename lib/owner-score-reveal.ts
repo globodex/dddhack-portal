@@ -45,6 +45,7 @@ export async function ownerScoreReveal(service:PortalService,action:string,input
  const snapshotId=state.snapshotId||crypto.randomUUID(),releaseId=crypto.randomUUID(),guard='owner-release:'+crypto.randomUUID();
  const statements:SQL[]=[['INSERT INTO write_guards SELECT ?,1 WHERE (SELECT version FROM scoring_revision WHERE id=1)=? AND (SELECT version FROM event_settings WHERE id=1)=? AND NOT EXISTS(SELECT 1 FROM score_releases WHERE stage=\'final\')',guard,state.revision,state.settings.version],...assertPreviousWrite(),['DELETE FROM write_guards WHERE token=?',guard]];
  if(!state.snapshotId)statements.push(['INSERT INTO result_snapshots VALUES(?,?,?,?,?,?)',snapshotId,state.settings.version,state.revision,JSON.stringify(state.result),service.now(),state.actor.id]);
+ statements.push(["UPDATE evaluation_runs SET state='stale',score=NULL,error='Stopped at owner score release',updated_at=? WHERE state IN ('queued','running')",service.now()],["UPDATE astra_jobs SET state='needs_review',error='Stopped at owner score release',updated_at=? WHERE state IN ('pending','running','failed_retryable')",service.now()]);
  statements.push(['INSERT INTO score_releases VALUES(?,?,?,?,?,?,?)',releaseId,'final',snapshotId,JSON.stringify(state.entries),JSON.stringify(state.criteria),service.now(),state.actor.id]);
  const publication=await one<{snapshot_id:string}>(service.db,'SELECT snapshot_id FROM result_publication WHERE id=1');
  demand(!publication||publication.snapshot_id===snapshotId,409,'PUBLICATION_CHANGED');

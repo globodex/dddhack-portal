@@ -15,7 +15,7 @@ import {
  * runs the same production adapter against an ephemeral local native server.
  */
 export async function createPGliteFixture(
-  options: { excludeMigrations?: string[] } = {},
+  options: { excludeMigrations?: string[]; includeAuth?:boolean } = {},
 ) {
   const engine = new PGlite({ extensions: { citext } });
   let tail = Promise.resolve();
@@ -46,7 +46,7 @@ export async function createPGliteFixture(
       await engine.close();
     },
   };
-  const migrations = (await loadPortalMigrations()).filter(
+  const migrations = (options.includeAuth ? await (await import("../neon/migration-plan")).loadMigrationPlan() : await loadPortalMigrations()).filter(
     (migration) => !options.excludeMigrations?.includes(migration.name),
   );
   await applyPortalMigrations(pool, migrations);

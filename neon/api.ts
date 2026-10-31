@@ -1,3 +1,5 @@
+import {handleAutomaticSchedule} from "./ai/scheduled";
+import {startOwnAutomaticEvaluation} from "./ai/automatic";
 import { selectedAIModel, recordProviderUsage } from "../lib/owner-ai";
 import { disabledEvaluator } from "../lib/evaluation";
 import { createNeonDatabase, type NeonDatabaseEnvironment } from "./db/index";
@@ -32,6 +34,7 @@ const env = process.env as AuthEnv &
   StorageEnvironment &
   OpenAIEvaluationEnv & {
     CREDIT_ENCRYPTION_KEY?: string;
+    PORTAL_EVALUATION_TRIGGER_ID?:string;
   };
 
 let database: ReturnType<typeof createNeonDatabase> | undefined;
@@ -45,39 +48,22 @@ const db = () =>
     objectStore: objects(),
     mediaBucket: env.NEON_MEDIA_BUCKET,
   }));
+async function configuredEvaluator(){
+ const selected=await selectedAIModel(baseDb(),env.OPENAI_MODEL);
+ return env.PORTAL_OPENAI_EVALUATION_APPROVED === "true" ? createOpenAIEvaluator({...env,OPENAI_MODEL:selected.model||undefined},{recordUsage:usage=>recordProviderUsage(baseDb(),usage,new Date().toISOString()),resolveApprovedSnapshot:versionId=>readApprovedSnapshot(baseDb(),versionId)}) : {...disabledEvaluator,model:selected.model||undefined};
+}
 function requestHandler(tasks: Promise<unknown>[]) {
   return createPortalBackend(env, {
     async runtime(request) {
-      const selected = await selectedAIModel(baseDb(), env.OPENAI_MODEL);
       return {
         db: db(),
         identity: await authenticateRequest(request, env, baseDb()),
         key: env.CREDIT_ENCRYPTION_KEY,
+        startAutomaticEvaluation: (service,input)=>startOwnAutomaticEvaluation(service,input,globalThis.fetch),
         background: (task) => {
           tasks.push(task);
         },
-        ...(env.PORTAL_OPENAI_EVALUATION_APPROVED === "true"
-          ? {
-              evaluator: createOpenAIEvaluator(
-                { ...env, OPENAI_MODEL: selected.model || undefined },
-                {
-                  recordUsage: (usage) =>
-                    recordProviderUsage(
-                      baseDb(),
-                      usage,
-                      new Date().toISOString(),
-                    ),
-                  resolveApprovedSnapshot: (versionId) =>
-                    readApprovedSnapshot(baseDb(), versionId),
-                },
-              ),
-            }
-          : {
-              evaluator: {
-                ...disabledEvaluator,
-                model: selected.model || undefined,
-              },
-            }),
+        evaluator:await configuredEvaluator(),
       };
     },
     evaluation: handleEvaluationSnapshots,
@@ -107,9 +93,11 @@ function requestHandler(tasks: Promise<unknown>[]) {
 // scheduler, production fixture or credential discovery runs on import.
 export default {
   async fetch(request: Request) {
-    // Processing starts only from an authenticated explicit request. Await its
-    // bounded work within this invocation; leases/results live in Postgres.
-    // No process loop, fire-and-forget promise or automatic schedule is used.
+    const scheduled=await handleAutomaticSchedule(request,env,async()=>new PortalService(baseDb(),null,env.CREDIT_ENCRYPTION_KEY,undefined,await configuredEvaluator()),globalThis.fetch);
+    if(scheduled)return scheduled;
+    // App starts are authenticated; scheduled recovery is handled above. Await
+    // bounded work in each invocation; durable leases/results live in Postgres.
+    // No startup loop or untracked server-side background promise is used.
     const tasks: Promise<unknown>[] = [];
     const response = await requestHandler(tasks)(request);
     await Promise.allSettled(tasks);

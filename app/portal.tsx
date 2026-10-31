@@ -203,9 +203,10 @@ type View = Row & {
   };
   items?: Row[];
 };
-async function api(action: string, data: Row) {
+async function api(action: string, data: Row, keepalive = false) {
   const r = await fetch("/api/portal", {
     method: "POST",
+    keepalive,
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ action, data }),
     cache: "no-store",
@@ -1870,9 +1871,9 @@ function DashboardProject({
         </Pill>
       </div>
       {data.evaluationProgress && <section className="project-evaluation-progress" aria-label="Project evaluation" aria-live="polite">
-        <h3>{data.evaluationProgress.state === "completed" ? "Evaluation complete" : data.evaluationProgress.state === "running" ? "Evaluating your project" : "Evaluation pending"}</h3>
+        <h3>{data.evaluationProgress.state === "locked" ? "Scores locked" : data.evaluationProgress.state === "ineligible" ? "Repository ineligible" : data.evaluationProgress.state === "completed" ? "Evaluation complete" : data.evaluationProgress.state === "running" ? "Evaluating your project" : "Evaluation pending"}</h3>
         <p>{data.projectStats?.result ? "Scores have been revealed by the owner." : data.evaluationProgress.message}</p>
-        {data.projectStats?.result ? <PublicResult result={data.projectStats.result}/> : data.evaluationProgress.state === "completed" ? <span className="project-score-hidden"><strong aria-hidden="true">— —</strong><span>Score hidden until the owner reveals scores</span></span> : <span role="status">{data.evaluationProgress.state === "running" ? "In progress" : "Awaiting evaluation"}</span>}
+        {data.projectStats?.result ? <PublicResult result={data.projectStats.result}/> : data.evaluationProgress.state === "completed" ? <span className="project-score-hidden"><strong aria-hidden="true">— —</strong><span>Score hidden until the owner reveals scores</span></span> : !["ineligible","locked"].includes(data.evaluationProgress.state) ? <span role="status">{data.evaluationProgress.state === "running" ? "In progress" : "Awaiting evaluation"}</span> : null}
       </section>}
       {!data.evaluationProgress && data.projectStats?.result && <PublicResult result={data.projectStats.result}/>}
       {data.projectStats?.result?.components && <ReleasedScoreBreakdown id="project-score-breakdown" components={data.projectStats.result.components} total={data.projectStats.result.score}/>}
@@ -6764,8 +6765,10 @@ export default function Portal({
       if (action !== "submit-project")
         setMessage(portalSuccessText(action, result.message));
       const fresh = await load();
-      if (action === "submit-project")
+      if (action === "submit-project") {
         setSubmissionSuccess(submittedProjectSuccess(result, fresh));
+        if(typeof result.projectId === "string"&&typeof result.versionId === "string")void api("start-own-evaluation",{projectId:result.projectId,versionId:result.versionId},true).then(()=>window.dispatchEvent(new Event("portal-submission-refresh"))).catch(()=>{});
+      }
       return result;
     } catch (e) {
       if (

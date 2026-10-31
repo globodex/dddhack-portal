@@ -33,6 +33,7 @@ export type Runtime = {
   localTest?: boolean;
   background?: BackgroundDispatch;
   evaluator?: Evaluator;
+  startAutomaticEvaluation?:(service:PortalService,input:unknown)=>Promise<Record<string,unknown>>;
 };
 const safeHeaders = {
   "Cache-Control": "private, no-store, max-age=0",
@@ -232,6 +233,10 @@ export async function handlePortal(request: Request, runtime: Runtime) {
           },
         },
       );
+    }
+    if (action === "start-own-evaluation") {
+      demand(runtime.startAutomaticEvaluation,503,"AUTOMATIC_EVALUATION_UNAVAILABLE");
+      return Response.json(await runtime.startAutomaticEvaluation(service,data),{headers:safeHeaders});
     }
     if (action === "astra-process") {
       demand(runtime.background, 503, "BACKGROUND_PROCESSING_UNAVAILABLE");

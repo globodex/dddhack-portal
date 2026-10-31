@@ -1,0 +1,11 @@
+import {createHash} from 'node:crypto';
+export function automaticGitFixture(options:{createdAt?:string;firstCommit?:string;unavailable?:boolean;private?:boolean;unsafeSource?:boolean;wrongBlob?:boolean}={}){
+ const head='a'.repeat(40),root='b'.repeat(40),tree='c'.repeat(40),files=[{path:'README.md',content:'# Synthetic project\nA small, documented synthetic implementation.'},{path:'src/main.ts',content:options.unsafeSource?'const apiKey = "sk-proj-SYNTHETIC_NOT_REAL_KEY_1234567890";':'export const answer = 42;'}].map(file=>({...file,sha:createHash('sha1').update(`blob ${Buffer.byteLength(file.content)}\0${file.content}`).digest('hex')}));
+ const calls:string[]=[];const fetcher=(async(input:any,init:any)=>{const url=new URL(String(input));calls.push(url.href);if(url.hostname!=='api.github.com'||!url.pathname.startsWith('/repos/synthetic/fresh'))throw new Error('OUTBOUND_BLOCKED');if(init?.redirect!=='error')throw new Error('REDIRECTS_FORBIDDEN');if(options.unavailable)return Response.json({message:'Synthetic unavailable'},{status:503});const base='/repos/synthetic/fresh';
+ if(url.pathname===base)return Response.json({private:options.private===true,created_at:options.createdAt||'2026-11-01T03:00:00Z'});
+ if(url.pathname===base+'/commits'){const last=url.searchParams.has('page');return Response.json([{sha:last?root:head,commit:{committer:{date:last?options.firstCommit||'2026-11-01T03:00:00Z':'2026-11-01T04:00:00Z'}}}],{headers:url.searchParams.has('sha')&&!last?{link:`<https://api.github.com${base}/commits?sha=${head}&per_page=1&page=4>; rel="last"`}:{}})}
+ if(url.pathname===base+'/git/commits/'+head)return Response.json({sha:head,tree:{sha:tree}});
+ if(url.pathname===base+'/git/trees/'+tree)return Response.json({sha:tree,truncated:false,tree:[...files.map(file=>({type:'blob',path:file.path,sha:file.sha,size:Buffer.byteLength(file.content)})),{type:'blob',path:'.env',sha:'d'.repeat(40),size:40},{type:'blob',path:'participants/private.json',sha:'e'.repeat(40),size:40}]});
+ const file=files.find(file=>url.pathname===base+'/git/blobs/'+file.sha);if(file)return Response.json({sha:file.sha,encoding:'base64',content:Buffer.from(options.wrongBlob?'tampered':file.content).toString('base64')});throw new Error('UNEXPECTED_SYNTHETIC_GITHUB_REQUEST');
+ }) as typeof fetch;return {head,files,calls,fetcher};
+}

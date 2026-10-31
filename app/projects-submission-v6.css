@@ -860,3 +860,42 @@
 .submission-celebration{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0;contain:layout paint;opacity:.75}.submission-celebration>span{position:absolute;top:-40px;will-change:transform,opacity;animation:submission-celebrate-fall 2200ms cubic-bezier(.25,.1,.5,.9) var(--celebration-delay) both}.submission-celebration svg{display:block}@keyframes submission-celebrate-fall{0%{transform:translate3d(0,-40px,0) rotate(0);opacity:0}12%{opacity:1}85%{opacity:1}100%{transform:translate3d(var(--celebration-drift),calc(100dvh + 80px),0) rotate(var(--celebration-turn));opacity:0}}@media(prefers-reduced-motion:reduce){.submission-celebration{display:none}.submission-celebration>span{animation:none}}
 
 .dashboard-submission-status.is-compact{padding:12px 18px;gap:12px}.dashboard-submission-status.is-compact h3{font-size:15px}.dashboard-submission-status.is-compact p{font-size:12px}.dashboard-score-summary{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:24px;border:1px solid #d3ddc8;border-radius:22px;background:linear-gradient(120deg,#edf5e8,#fbf9ea);margin-bottom:24px}.dashboard-score-summary p{font-size:14px;margin:0 0 8px}.dashboard-score-summary strong{display:flex;align-items:baseline;gap:10px;font-size:44px;line-height:1;font-variant-numeric:tabular-nums}.dashboard-score-summary strong span{font-size:13px;font-weight:400}.dashboard-score-community{display:flex;flex-direction:column;gap:8px;font-size:14px}@media(max-width:600px){.dashboard-score-summary{padding:20px;gap:20px}.dashboard-score-summary>.button{width:100%;justify-content:center}}
+
+/* Keep the sort direction attached to its select, including narrow phones. */
+.app-shell .public-project-list .project-directory-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+}
+.app-shell .public-project-list .project-directory-toolbar .project-search {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  margin: 0;
+}
+.app-shell .public-project-list .showcase-sort {
+  display: grid;
+  grid-template-columns: minmax(110px, 1fr) 44px 44px;
+  align-items: center;
+  gap: 6px;
+  width: auto;
+  min-width: 0;
+}
+.app-shell .public-project-list .showcase-sort select {
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  margin: 0;
+}
+.app-shell .public-project-list .showcase-sort button {
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+}
+.app-shell .public-project-list .project-search-status { grid-column: 1 / -1; }
+@media (max-width: 600px) {
+  .app-shell .public-project-list .project-directory-toolbar { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .app-shell .public-project-list .showcase-sort { width: 100%; }
+}

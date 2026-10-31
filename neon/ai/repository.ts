@@ -7,8 +7,9 @@ import {
   validateApprovedSnapshot,
 } from "./input";
 
-// Authorization belongs to the caller: only an authenticated operational admin
-// may approve these exact contents against immutable version/repository evidence.
+// Authorization belongs to the caller: an operational admin selection or a
+// server-owned automatic selection must bind these exact immutable contents.
+// A client-supplied approved flag never grants authority.
 export function prepareApprovedSnapshot(
   input: unknown,
   binding: { versionId: string; commitSha: string },
