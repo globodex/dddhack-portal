@@ -20,7 +20,7 @@ git diff --quiet
 if ($LASTEXITCODE -ne 0) { throw 'Preserve tracked local edits first; do not reset.' }
 git diff --cached --quiet
 if ($LASTEXITCODE -ne 0) { throw 'Preserve staged edits first.' }
-git fetch origin main
+git fetch origin refs/heads/main:refs/remotes/origin/main
 if ($LASTEXITCODE -ne 0) { throw 'Fetch failed.' }
 git merge-base --is-ancestor $release origin/main
 if ($LASTEXITCODE -ne 0) { throw 'This package is not published on main; stop.' }
