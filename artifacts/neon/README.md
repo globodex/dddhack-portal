@@ -1,10 +1,10 @@
 # Showcase and evaluation — review package, not published
 
-Runtime source: `e21e35e9bbded388ca9d73d73bbbeef143bd57a0`. The earlier ready `ed80cc5` UX batch is included in ancestry. Held public-eligibility bypass edits and unrelated diagnostics are excluded.
+Runtime source: `a3b64c5f95bb44595e6f012847dc92fff4201452`. The earlier ready `ed80cc5` UX batch is included in ancestry. Held public-eligibility bypass edits and unrelated diagnostics are excluded.
 
-- ZIP: 9,053,041 bytes; SHA256 `b57ceb8bf9e2a11806e85f3f337af3a915b130ad28f2c98bfc4bc0c534041dc4`.
-- Entry SHA256: `4c5983625f62815215ada6eff1562eb4ac99f01b4982d6bcd74f619800218fb8`.
-- 93 files, 21,281,142 uncompressed bytes. Only index.mjs changed from prior ZIP `322a91a1bce0003ac487572c61a03bd73d558cf4c770aebf57c4eb941a5fd6f8`; all92 dependency/native entries are identical. Earlier archive remains in Git history.
+- ZIP: 9,053,120 bytes; SHA256 `ec36ea645974989d010550ddb2723358612f3c42522c3acf4bc72d071da4bdfd`.
+- Entry SHA256: `3e908f13bb297046bb04c09d2c56cace9c3ba8cc64a5e0c8c1c1d13130cd46c8`.
+- 93 files, 21,281,379 uncompressed bytes. Only index.mjs changed from prior ZIP `b57ceb8bf9e2a11806e85f3f337af3a915b130ad28f2c98bfc4bc0c534041dc4`; all92 dependency/native entries are identical. Earlier archive remains in Git history.
 - Independent entry rebuild is byte-identical. All114 application inputs match exact Git source;898 total inputs, no forbidden files. Receipt contains every payload hash. Official packager @neon/config-runtime1.10.2, Node.js24/Linux ARM64 glibc, empty function env, zero warnings.
 - Host smoke passed health200, untrusted403 and unavailable503, with zero outbound attempts. It loaded unchanged JavaScript using explicitly substituted host x86_64 Sharp dependencies. Original ARM64 archive/extraction bytes remain unchanged. This does NOT prove ARM64 execution, Windows command execution or hosted DB/provider/trigger/login behavior.
 
@@ -14,6 +14,6 @@ Migration plan:19 entries, digest `3624c82a7dc7026b5db4179dc021e5d88d33c66bafab3
 
 **Review-only; owner setup and hosted verification pending.** Optional server-only PORTAL_GITHUB_PUBLIC_READ_TOKEN now works in the local candidate; anonymous fallback remains when absent. No credential was read/created/configured. Public metadata/source GETs are fixed-host, redirect-forbidden and capped16/job. Private/unknown visibility stops source reads. Rate-limit retry deadlines persist safely and both own/scheduled starts wait without spending attempts. Authentication failures never become ineligibility. See [authentication handoff](../../docs/GITHUB_PUBLIC_EVIDENCE_AUTH_REVIEW.md). Native schedule, configured provider and hosted verification are still required. No paid calls, live settings changes or push occurred.
 
-Optional-auth delta validation:88 distinct affected tests passed across transport/timing/snapshot/progress, automatic processing/config, combined-reveal/privacy/voting and shared-runner/deletion suites. Repeated security9 passed. No new full aggregate on e21e35e; the1,095-pass baseline above belongs to the earlier latest-spec source, not the auth delta. Final e21e35e typecheck and production build passed;36 generated client JS chunks contained no token environment name. Cold-cache public npm requests failed; dependencies were rebuilt successfully offline from the prior public cache. The resulting archive still has only index.mjs changed and92 byte-identical dependencies.
+Optional-auth delta validation:89 distinct affected tests passed across transport/timing/snapshot/progress, automatic processing/config, combined-reveal/privacy/voting and shared-runner/deletion suites. Final credential-echo hardening passed29 affected tests including10 transport/security cases. No new full aggregate on final a3b64c5; the1,095-pass baseline above belongs to the earlier latest-spec source, not the auth delta. Final a3b64c5 typecheck and production build passed;36 generated client JS chunks contained no token environment name. Cold-cache public npm requests failed; dependencies were rebuilt successfully offline from the prior public cache. The resulting archive still has only index.mjs changed and92 byte-identical dependencies.
 
 Unresolved product gates: separate question-response scoring weight/formula/caps/overlap; nondemographic contribution rubric; provisional feedback minimum30; final design/publication approval. Existing canonical scores are retained; no protected-trait scoring or fabricated marks.

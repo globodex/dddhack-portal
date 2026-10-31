@@ -1,9 +1,9 @@
 {
-  "runtimeSource": "e21e35e9bbded388ca9d73d73bbbeef143bd57a0",
+  "runtimeSource": "a3b64c5f95bb44595e6f012847dc92fff4201452",
   "runtime": "nodejs24",
   "source": "neon/api.ts",
-  "zipBytes": 9053041,
-  "sha256": "b57ceb8bf9e2a11806e85f3f337af3a915b130ad28f2c98bfc4bc0c534041dc4",
+  "zipBytes": 9053120,
+  "sha256": "ec36ea645974989d010550ddb2723358612f3c42522c3acf4bc72d071da4bdfd",
   "env": {},
   "warnings": [],
   "buildOnly": true,
@@ -18,10 +18,10 @@
     "Owner-configured native schedule and provider readiness",
     "Design/publication approval and unresolved scoring decisions"
   ],
-  "indexSha256": "4c5983625f62815215ada6eff1562eb4ac99f01b4982d6bcd74f619800218fb8",
-  "indexBytes": 1780265,
+  "indexSha256": "3e908f13bb297046bb04c09d2c56cace9c3ba8cc64a5e0c8c1c1d13130cd46c8",
+  "indexBytes": 1780502,
   "fileCount": 93,
-  "uncompressedBytes": 21281142,
+  "uncompressedBytes": 21281379,
   "nativeFiles": [
     {
       "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
@@ -38,7 +38,7 @@
   ],
   "nativeArchitecture": "Linux ARM64 glibc",
   "canonicalPlanDigest": "3624c82a7dc7026b5db4179dc021e5d88d33c66bafab35c4916c5a476e04293b",
-  "previousArchiveSha256": "322a91a1bce0003ac487572c61a03bd73d558cf4c770aebf57c4eb941a5fd6f8",
+  "previousArchiveSha256": "b57ceb8bf9e2a11806e85f3f337af3a915b130ad28f2c98bfc4bc0c534041dc4",
   "changedArchiveEntries": [
     "index.mjs"
   ],
@@ -52,8 +52,8 @@
   "fileManifest": [
     {
       "path": "index.mjs",
-      "bytes": 1780265,
-      "sha256": "4c5983625f62815215ada6eff1562eb4ac99f01b4982d6bcd74f619800218fb8"
+      "bytes": 1780502,
+      "sha256": "3e908f13bb297046bb04c09d2c56cace9c3ba8cc64a5e0c8c1c1d13130cd46c8"
     },
     {
       "path": "node_modules/@emnapi/runtime/dist/emnapi.cjs.js",
@@ -539,7 +539,7 @@
     },
     {
       "path": "neon/ai/github-public.ts",
-      "sha256": "2a680b908fd35249cab659ea0eaf5a09df1f0ca93bffea04640bdf02203be1d2"
+      "sha256": "c245ded89cfcd1799f978a4f9248a577e32c2d14f45a689f2d54332c944e12c8"
     },
     {
       "path": "lib/derived-readiness.ts",
