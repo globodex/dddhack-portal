@@ -1,11 +1,8 @@
 import {ownerScoreReveal} from "./owner-score-reveal";
-import {releasedScoreComponents,type ReleasedScoreComponents} from "./released-score-components";
-import { auditReason } from "./security";
-import { z } from "zod";
+import {type ReleasedScoreComponents} from "./released-score-components";
 import type { PortalService } from "./service";
-import { one, rows, assertPreviousWrite } from "./db";
+import { rows } from "./db";
 import { demand } from "./security";
-import { weightage } from "./policy-controls";
 type Entry = {
   projectId: string;
   versionId: string;
@@ -20,12 +17,12 @@ type Release = {
   source_id: string;
   payload: string;
   criteria: string | null;
+  owner_combined?: number | boolean;
 };
-const reason = auditReason();
 export async function scoreState(s: PortalService) {
   const releases = await rows<Release>(
     s.db,
-    "SELECT * FROM score_releases ORDER BY CASE stage WHEN 'final' THEN 0 ELSE 1 END",
+    "SELECT sr.*,EXISTS(SELECT 1 FROM audit_logs a WHERE a.action='reveal-scores' AND a.entity_id=sr.id) owner_combined FROM score_releases sr ORDER BY CASE stage WHEN 'final' THEN 0 ELSE 1 END",
   );
   const active = releases.at(0);
   const unveiled =
@@ -37,13 +34,18 @@ export async function scoreState(s: PortalService) {
         )
       : [];
   const entries: Entry[] = active ? JSON.parse(active.payload) : [];
+  const hiddenCount=Math.min(5,entries.length);
+  const legacyPending=active?.stage==="final"&&!active.owner_combined&&entries.some(entry=>!Number.isInteger(entry.position)||entry.position!<=hiddenCount&&!unveiled.some(reveal=>reveal.position===entry.position&&reveal.project_id===entry.projectId));
   return {
     active,
     entries,
     unveiled,
     stage: active?.stage || "community",
     aiRevealed: releases.some(release => release.stage === "ai"),
-    complete: active?.stage === "final",
+    complete: active?.stage === "final" && !legacyPending,
+    ownerCombined: !!active?.owner_combined,
+    legacyPending,
+    hiddenCount,
   };
 }
 export async function publicScores(s: PortalService) {
@@ -58,7 +60,7 @@ export async function publicScores(s: PortalService) {
       )
     : [];
   const current = state.entries.filter((e) =>
-    valid.some((v) => v.id === e.projectId && v.versionId === e.versionId),
+    valid.some((v) => v.id === e.projectId && v.versionId === e.versionId) && (state.ownerCombined || typeof e.position==='number' && (e.position>state.hiddenCount || state.unveiled.some(reveal=>reveal.position===e.position&&reveal.project_id===e.projectId))),
   );
   return {
     stage: state.stage,
@@ -70,154 +72,11 @@ export async function publicScores(s: PortalService) {
         : undefined,
   };
 }
-export async function revealCommand(
-  s: PortalService,
-  action: string,
-  input: unknown,
-) {
-  const combined=await ownerScoreReveal(s,action,input);if(combined!==null)return combined;
-  if (
-    ![
-      "reveal-ai-scores",
-      "reveal-final-scores",
-      "unveil-winner",
-      "publish-results",
-    ].includes(action)
-  )
-    return null;
-  const actor = await s.staff(true);
-  demand(action === "reveal-final-scores", 409, "USE_OWNER_SCORE_REVEAL", "Only the owner can reveal the combined project scores.");
-  const d = z
-    .object({
-      reason,
-      confirmation: z.string(),
-      snapshotId: z.string().optional(),
-      position: z.number().int().min(1).max(5).optional(),
-      releaseId: z.string().optional(),
-    })
-    .strict()
-    .parse(input);
-  demand(d.confirmation === "PUBLIC_FINAL",422,"EXPLICIT_REVEAL_CONFIRMATION_REQUIRED");
-  const existing = await one<Release>(
-    s.db,
-    "SELECT * FROM score_releases WHERE stage=?",
-    "final",
-  );
-  if (existing) {
-    demand(
-      existing.source_id === d.snapshotId,
-      409,
-      "FINAL_RELEASE_CHANGED",
-    );
-    return { message: "This score stage was already revealed." };
-  }
-  {
-    const disclosure = (await s.settings(true)).policy.scoringDisclosure;
-    demand(
-      disclosure && disclosure.criteria.trim() && disclosure.weightage.trim(),
-      409,
-      "SCORING_DISCLOSURE_UNCONFIRMED",
-      "Set scoring criteria and weightage before revealing final scores.",
-    );
-  }
-  const settings = await s.live();
-  const revision = (await one<{ version: number }>(
-    s.db,
-    "SELECT version FROM scoring_revision WHERE id=1",
-  ))!.version;
-  let entries: Entry[] = [],
-    sourceId = "",
-    criteria: string | null = null;
-  {
-    demand(d.snapshotId, 422, "SNAPSHOT_REQUIRED");
-    const snapshot = await one<{
-      id: string;
-      payload: string;
-      policy_version: number;
-    }>(
-      s.db,
-      "SELECT id,payload,policy_version FROM result_snapshots WHERE id=?",
-      d.snapshotId,
-    );
-    demand(
-      snapshot && snapshot.policy_version === settings.version,
-      409,
-      "CURRENT_FROZEN_SNAPSHOT_REQUIRED",
-    );
-    const disclosure = settings.policy.scoringDisclosure;
-    demand(
-      disclosure && disclosure.criteria.trim() && disclosure.weightage.trim(),
-      409,
-      "SCORING_DISCLOSURE_UNCONFIRMED",
-    );
-    const result = JSON.parse(snapshot.payload) as {
-      teamId: string;
-      rank: number | null;
-      components: { total: number } | null;
-      eligibility: string;
-    }[];
-    for (const r of result.filter((r) => r.eligibility === "eligible")) {
-      const p = await one<{ id: string; published_version_id: string }>(
-        s.db,
-        "SELECT id,published_version_id FROM projects WHERE team_id=?",
-        r.teamId,
-      );
-      demand(
-        p?.published_version_id &&
-          Number.isFinite(r.components?.total) &&
-          r.rank,
-        409,
-        "FINAL_PROJECT_COVERAGE_REQUIRED",
-      );
-      entries.push({
-        projectId: p.id,
-        versionId: p.published_version_id,
-        teamId: r.teamId,
-        score: r.components!.total,
-        ...(releasedScoreComponents(r.components,r.components!.total) ? {components:releasedScoreComponents(r.components,r.components!.total)!} : {}),
-        position: r.rank!,
-      });
-    }
-    entries.sort((a, b) => a.position! - b.position!);
-    demand(
-      entries.length > 0 && entries.every((e, i) => e.position === i + 1),
-      409,
-      "FINAL_ORDER_INCOMPLETE",
-    );
-    sourceId = snapshot.id;
-    criteria = JSON.stringify({
-      criteria: disclosure.criteria,
-      weightage: weightage(settings.policy.weights),
-      policyVersion: settings.version,
-    });
-  }
-  const releaseId = crypto.randomUUID();
-  await s.mutate(
-    actor.id,
-    action,
-    releaseId,
-    [
-      [
-        "INSERT INTO score_releases SELECT ?,?,?,?,?,?,? WHERE (SELECT version FROM scoring_revision WHERE id=1)=? AND NOT EXISTS(SELECT 1 FROM score_releases WHERE stage='final')",
-        releaseId,
-        "final",
-        sourceId,
-        JSON.stringify(entries),
-        criteria,
-        s.now(),
-        actor.id,
-        revision,
-      ],
-      ...assertPreviousWrite(),
-    ],
-    {
-      stage: "final",
-      count: entries.length,
-    },
-    d.reason,
-  );
-  return {
-    message: "Project scores are now public.",
-    releaseId,
-  };
+/** Old staged confirmations promise different disclosure. Never reinterpret them as combined consent. */
+export async function revealCommand(s:PortalService,action:string,input:unknown){
+ const combined=await ownerScoreReveal(s,action,input);if(combined!==null)return combined;
+ if(!['reveal-ai-scores','reveal-final-scores','unveil-winner','publish-results'].includes(action))return null;
+ await s.staff(true);
+ demand(false,409,'USE_OWNER_SCORE_REVEAL','Refresh to the updated portal and use the owner score preview and confirmation. Historical staged releases require owner review.');
+ return null;
 }

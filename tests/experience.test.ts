@@ -1,3 +1,4 @@
+import {revealScores} from './helpers';
 import { freezeResults } from "./helpers";
 import { attend } from "./helpers";
 import { test } from "node:test";
@@ -864,11 +865,7 @@ test("revised judge reviews feed only an owner-revealed frozen score; public eng
       ((await publicService.view("/leaderboard")) as Row).items[0].result,
       undefined,
     );
-    const release = await service("owner").command("reveal-final-scores", {
-      confirmation: "PUBLIC_FINAL",
-      snapshotId: frozen.snapshotId,
-      reason: "Synthetic explicit reveal",
-    });
+    const release=await revealScores(service("owner"),{reason:"Synthetic explicit reveal"});
     assert.equal(((await publicService.view("/leaderboard")) as Row).items[0].result.score,65);
     await assert.rejects(service("owner").command("unveil-winner", {releaseId:release.releaseId,position:1,confirmation:"UNVEIL_1",reason:"Synthetic retired award"}),{code:"USE_OWNER_SCORE_REVEAL"});
     let board = (await publicService.view("/leaderboard")) as Row;

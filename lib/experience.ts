@@ -1089,6 +1089,7 @@ export class PortalExperience {
         scoreRelease: await scoreState(this.s).then((s) => ({
           stage: s.stage,
           aiRevealed: s.aiRevealed,
+          legacyPending: s.legacyPending,
           releaseId: s.active?.id,
           remainingAwards: s.entries
             .filter(

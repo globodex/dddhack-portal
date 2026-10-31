@@ -1,3 +1,4 @@
+import {revealScores} from './helpers';
 import { freezeResults } from "./helpers";
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -313,13 +314,9 @@ test("actual score coverage and owner-only publication preserve immutable final 
         reason: "Synthetic reveal missing action confirmation",
         confirmation: "WRONG",
       }),
-      { code: "EXPLICIT_REVEAL_CONFIRMATION_REQUIRED" },
+      { code: "USE_OWNER_SCORE_REVEAL" },
     );
-    await service("owner").command("reveal-final-scores", {
-      snapshotId: frozen.snapshotId,
-      reason: "Synthetic deliberate final reveal",
-      confirmation: "PUBLIC_FINAL",
-    });
+    await revealScores(service("owner"),{reason:"Synthetic deliberate final reveal"});
     assert.equal((await scoreState(service())).stage, "final");
     assert.equal((await scoreState(service())).complete, true);
     assert.equal((await rows(db, "SELECT * FROM winner_reveals")).length, 0);

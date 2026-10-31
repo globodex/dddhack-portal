@@ -1,3 +1,4 @@
+import {markCombinedRelease} from './helpers';
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { LocalDatabase } from "../lib/local-test/sqlite";
@@ -190,6 +191,7 @@ test("public cards and global awards expose canonical positions only after the f
       )
       .bind(JSON.stringify(entries), now, f.operations[0].id)
       .all();
+    await markCombinedRelease(db,'bulk_final');
     await db
       .prepare("INSERT INTO winner_reveals VALUES('bulk_final',1,?,?,?)")
       .bind(entries[0].projectId, now, f.operations[0].id)
@@ -294,6 +296,7 @@ test("new committed versions require their own eligibility and never inherit a p
         f.operations[0].id,
       )
       .all();
+    await markCombinedRelease(db,'bulk_final');
     assert.equal(
       ((await service(null).view("/projects/synthetic-0")) as View).items[0]
         .result.score,

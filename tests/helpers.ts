@@ -101,3 +101,13 @@ export async function freezeResults(service: PortalService, values: Record<strin
   const preview = await service.command("preview-freeze-results", {});
   return service.command("freeze-results", { ...values, token: preview.token, expiresAt: preview.expiresAt, confirmation: "FREEZE_RESULTS" });
 }
+
+/** Current explicit combined consent; never substitutes an old staged confirmation. */
+export async function revealScores(service:PortalService, values:Record<string,unknown>={}){
+ const preview=await service.command('preview-reveal-scores',{});
+ return service.command('reveal-scores',{...values,token:preview.token,expiresAt:preview.expiresAt,confirmation:'REVEAL_SCORES'});
+}
+/** Direct fixture insertion must identify whether it models explicit new combined consent. */
+export async function markCombinedRelease(db:import('../lib/db').Database,releaseId:string){
+ await batch(db,[["INSERT INTO audit_logs SELECT ?,actor_id,'reveal-scores',id,'{}','Synthetic combined reveal fixture','2026-11-01' FROM score_releases WHERE id=?",'synthetic-combined-'+releaseId,releaseId]]);
+}
