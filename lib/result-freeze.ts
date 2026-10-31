@@ -25,7 +25,7 @@ export async function previewResultFreeze(service: PortalService) {
     policyVersion: state.settings.version, sourceRevision: state.revision,
     projects: state.result.length,
     eligibleProjects: state.result.filter(entry => entry.eligibility === "eligible").length,
-    warnings: ["Freezing ends judging, evaluation and submission edits even if the participant submission window is still open.", "Frozen scores cannot be edited. Public voting/comments may continue without changing this snapshot.", "This does not reveal results. Public reveal remains a separate action."],
+    warnings: ["Freezing ends judging, evaluation and submission edits even if the participant submission window is still open.", "Frozen scores cannot be edited. Later permitted community activity does not change this snapshot.", "This does not reveal results. Public reveal remains a separate action."],
     message: "Readiness preview only. Nothing was frozen or revealed.",
   };
 }

@@ -52,7 +52,7 @@ test("Drizzle journal registers every SQL file and new mirror has one executable
   assert.equal(journal.entries[33].tag, "0033_admin_submission_access");
   assert.equal(journal.entries[34].tag, "0034_admin_missing_team_idea");
   assert.equal(journal.entries[35].tag, "0035_continuous_engagement");
-  assert.equal(journal.entries.at(-1).tag, "0036_submission_vote_window");
+  assert.equal(journal.entries.at(-1).tag, "0037_post_submission_feedback");
   const parts = mirror
     .split("--> statement-breakpoint")
     .filter((part) => part.trim());

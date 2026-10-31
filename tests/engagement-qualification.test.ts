@@ -36,6 +36,7 @@ const rules = {
 };
 const policy: Policy = {
   ...rehearsalPolicy,
+  submissionClose:"2026-11-01T04:05:00.000Z",
   projectEngagementRule: "score-with-approved-normalization",
   engagementQualification: rules,
   engagementOpen: "2026-11-01T04:00:00.000Z",
@@ -100,9 +101,10 @@ async function qualify(
   });
 }
 test("scored engagement stays disabled without explicit qualification policy; public interactions remain available and unchanged", async () => {
-  const { db, service, id, version } = await prepared();
+  const { db, service, id, version, clock } = await prepared();
   try {
     await service("pending").command("upvote-project", { projectId: id });
+    await configure(db);clock("2026-11-01T04:10:00.000Z");
     await service("pending").command("comment-project", {
       projectId: id,
       body: "Public comment remains independent of judging qualification.",
@@ -112,7 +114,7 @@ test("scored engagement stays disabled without explicit qualification policy; pu
     assert.ok(
       policyBlockers(unconfirmed).includes("engagement qualification rules"),
     );
-    await assert.rejects(qualifiedEngagement(db, unconfirmed, id, version), {
+    await assert.rejects(qualifiedEngagement(db, unconfirmed, id, version,"2026-11-01T11:00:00.000Z"), {
       code: "ENGAGEMENT_SCORING_NOT_CONFIGURED",
     });
     const c = (await rows<Row>(db, "SELECT id FROM project_comments"))[0];
@@ -135,17 +137,17 @@ test("scored engagement stays disabled without explicit qualification policy; pu
   }
 });
 test("qualified scoring filters declared audience/windows, requires staff review, deduplicates authors/copies and ignores late public comments", async () => {
-  const { db, service, id, version } = await prepared();
+  const { db, service, id, version, clock } = await prepared();
   try {
-    await configure(db,{...policy,submissionClose:"2026-11-01T13:00:00.000Z"});
+    await configure(db,{...policy,submissionOpen:"2026-11-01T02:00:00.000Z",submissionClose:"2026-11-01T13:00:00.000Z"});
     await service("admin").command("participant-bulk", {
       emails: ["bob@portal.test", "carol@portal.test", "dave@portal.test"],
       checkIn: true,
       reason: "Synthetic attendance facts",
     });
     for (const [user, time] of [
-      ["bob", "2026-11-01T04:10:00.000Z"],
-      ["carol", "2026-11-01T03:59:59.999Z"],
+      ["bob", "2026-11-01T04:04:00.000Z"],
+      ["carol", "2026-11-01T02:29:59.999Z"],
       ["alice", "2026-11-01T04:10:00.000Z"],
       ["pending", "2026-11-01T04:10:00.000Z"],
       ["dave", "2026-11-01T12:00:00.000Z"],
@@ -153,8 +155,8 @@ test("qualified scoring filters declared audience/windows, requires staff review
       await batch(db, [
         ["INSERT INTO project_upvotes VALUES(?,?,?)", id, "fake_" + user, time],
       ]);
-    // Historical valid votes remain when the owner later shortens the window.
-    await configure(db);
+    // Historical votes remain when the owner later shortens the window; only the final cohort counts.
+    await configure(db);clock("2026-11-01T11:00:00.000Z");
     await comment(db, "original", id, "bob", body, "2026-11-01T04:10:00.000Z");
     await comment(
       db,
@@ -183,7 +185,7 @@ test("qualified scoring filters declared audience/windows, requires staff review
     await comment(db, "own", id, "alice");
     await comment(db, "unapproved", id, "pending");
     await comment(db, "late", id, "carol", body, "2026-11-01T12:00:00.000Z");
-    let counted = await qualifiedEngagement(db, policy, id, version);
+    let counted = await qualifiedEngagement(db, policy, id, version,"2026-11-01T11:00:00.000Z");
     assert.equal(counted.votes, 1);
     assert.equal(counted.feedback, 0);
     assert.equal(counted.pendingFeedback, 3);
@@ -198,11 +200,11 @@ test("qualified scoring filters declared audience/windows, requires staff review
     );
     for (const c of ["original", "same-author", "copy"])
       await qualify(service, c, version);
-    counted = await qualifiedEngagement(db, policy, id, version);
+    counted = await qualifiedEngagement(db, policy, id, version,"2026-11-01T11:00:00.000Z");
     assert.equal(counted.feedback, 1);
     assert.equal(counted.pendingFeedback, 1);
     await qualify(service, "pending-review", version, false);
-    counted = await qualifiedEngagement(db, policy, id, version);
+    counted = await qualifiedEngagement(db, policy, id, version,"2026-11-01T11:00:00.000Z");
     assert.deepEqual(counted, { votes: 1, feedback: 1, pendingFeedback: 0 });
     assert.equal((await rows(db, "SELECT * FROM project_comments")).length, 7);
     const revisedPolicy = {
@@ -210,7 +212,7 @@ test("qualified scoring filters declared audience/windows, requires staff review
       engagementQualification: { ...rules, version: 2 },
     };
     await configure(db, revisedPolicy);
-    counted = await qualifiedEngagement(db, revisedPolicy, id, version);
+    counted = await qualifiedEngagement(db, revisedPolicy, id, version,"2026-11-01T11:00:00.000Z");
     assert.equal(counted.feedback, 0);
     assert.equal(counted.pendingFeedback, 3);
   } finally {
@@ -218,9 +220,9 @@ test("qualified scoring filters declared audience/windows, requires staff review
   }
 });
 test("qualification binds comment text and submission/rule version, records immutable decisions and respects result freeze", async () => {
-  const { db, service, id, version } = await prepared();
+  const { db, service, id, version, clock } = await prepared();
   try {
-    await configure(db);
+    await configure(db);clock("2026-11-01T11:00:00.000Z");
     await service("admin").command("participant-bulk", {
       emails: ["bob@portal.test"],
       checkIn: true,
@@ -229,7 +231,7 @@ test("qualification binds comment text and submission/rule version, records immu
     await comment(db, "body-bound", id, "bob");
     await qualify(service, "body-bound", version);
     assert.equal(
-      (await qualifiedEngagement(db, policy, id, version)).feedback,
+      (await qualifiedEngagement(db, policy, id, version,"2026-11-01T11:00:00.000Z")).feedback,
       1,
     );
     await batch(db, [
@@ -239,11 +241,11 @@ test("qualification binds comment text and submission/rule version, records immu
       ],
     ]);
     assert.equal(
-      (await qualifiedEngagement(db, policy, id, version)).feedback,
+      (await qualifiedEngagement(db, policy, id, version,"2026-11-01T11:00:00.000Z")).feedback,
       0,
     );
     assert.equal(
-      (await qualifiedEngagement(db, policy, id, version)).pendingFeedback,
+      (await qualifiedEngagement(db, policy, id, version,"2026-11-01T11:00:00.000Z")).pendingFeedback,
       1,
     );
     await assert.rejects(
@@ -252,7 +254,7 @@ test("qualification binds comment text and submission/rule version, records immu
     );
     await qualify(service, "body-bound", version);
     assert.equal(
-      (await qualifiedEngagement(db, policy, id, version)).feedback,
+      (await qualifiedEngagement(db, policy, id, version,"2026-11-01T11:00:00.000Z")).feedback,
       1,
     );
     await assert.rejects(
@@ -284,7 +286,7 @@ test("qualification binds comment text and submission/rule version, records immu
 test("final computation refuses pending scored feedback and uses only reviewed valid authors after qualification", async () => {
   const { db, service, clock, id, version } = await prepared();
   try {
-    await configure(db);
+    await configure(db);clock("2026-11-01T11:00:00.000Z");
     await service("admin").command("participant-bulk", {
       emails: ["bob@portal.test"],
       checkIn: true,

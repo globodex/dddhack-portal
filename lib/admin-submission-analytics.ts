@@ -1,3 +1,5 @@
+import {engagementScoringCohort,inScoringCohort} from './engagement-cohort';
+import {feedbackLength} from './feedback-length';
 import { one, rows, type Database } from "./db";
 import { score, reportSchema } from "./evaluation";
 import { validatedProviderGrade } from "./provider-grade";
@@ -128,22 +130,13 @@ function audienceSQL(mode: string, alias: string) {
 type Engagement = { votes: number; feedback: number; pendingFeedback: number };
 /** Bulk equivalent of qualifiedEngagement: same windows, audience, exact-version
  * latest staff/body-hash decisions, author/copy rules and 200-row cursor bound. */
-async function engagement(db: Database, policy: Policy) {
+async function engagement(db: Database, policy: Policy,asOf:string,frozenAt:string|null) {
   const result = new Map<string, Engagement>();
   const rules = policy.engagementQualification!;
-  const voteRows = await rows<{ project_id: string; n: number }>(
-    db,
-    `${cohort} SELECT s.project_id,count(*) n FROM selected s JOIN project_upvotes v ON v.project_id=s.project_id
-      WHERE v.created_at>=? AND v.created_at<? AND ${audienceSQL(rules.voters, "v")} GROUP BY s.project_id`,
-    policy.engagementOpen,
-    policy.engagementClose,
-  );
-  for (const vote of voteRows)
-    result.set(vote.project_id, {
-      votes: Number(vote.n),
-      feedback: 0,
-      pendingFeedback: 0,
-    });
+  const window=engagementScoringCohort(policy,asOf,frozenAt);demand(window.configured,409,'ENGAGEMENT_SCORING_NOT_CONFIGURED');
+  let voteProject='',voteUser='';
+  for(;;){const page=await rows<{project_id:string;user_id:string;created_at:string}>(db,`${cohort} SELECT s.project_id,v.user_id,v.created_at FROM selected s JOIN project_upvotes v ON v.project_id=s.project_id WHERE (s.project_id>? OR (s.project_id=? AND v.user_id>?)) AND ${audienceSQL(rules.voters,'v')} ORDER BY s.project_id,v.user_id LIMIT 200`,voteProject,voteProject,voteUser);
+   for(const vote of page){if(!inScoringCohort(vote.created_at,window.votes))continue;const counts=result.get(vote.project_id)||{votes:0,feedback:0,pendingFeedback:0};counts.votes++;result.set(vote.project_id,counts)}if(page.length<200)break;voteProject=page.at(-1)!.project_id;voteUser=page.at(-1)!.user_id;}
   const authors = new Map<
     string,
     { valid: Set<string>; pending: Set<string>; bodies: Set<string> }
@@ -167,7 +160,7 @@ async function engagement(db: Database, policy: Policy) {
       LEFT JOIN project_feedback_reviews q ON q.rowid=(SELECT max(last.rowid) FROM project_feedback_reviews last
         WHERE last.comment_id=c.id AND last.version_id=s.version_id AND last.rule_version=?)
       WHERE (s.project_id>? OR (s.project_id=? AND (c.created_at>? OR (c.created_at=? AND c.id>?))))
-        AND c.created_at>=? AND c.created_at<? AND ${audienceSQL(rules.feedbackAuthors, "c").replaceAll("c.user_id", "c.author_id")}
+        AND ${audienceSQL(rules.feedbackAuthors, "c").replaceAll("c.user_id", "c.author_id")}
       ORDER BY s.project_id,c.created_at,c.id LIMIT 200`,
       rules.version,
       projectCursor,
@@ -175,10 +168,9 @@ async function engagement(db: Database, policy: Policy) {
       timeCursor,
       timeCursor,
       idCursor,
-      policy.engagementOpen,
-      policy.engagementClose,
     );
     for (const comment of comments) {
+      if(!inScoringCohort(comment.created_at,window.feedback))continue;
       let group = authors.get(comment.project_id);
       if (!group)
         authors.set(
@@ -190,7 +182,7 @@ async function engagement(db: Database, policy: Policy) {
       if (
         comment.qualified !== 1 ||
         comment.body_hash !== hash ||
-        comment.body.trim().length < policy.feedbackMin ||
+        feedbackLength(comment.body) < 30 ||
         comment.body.trim().length > policy.feedbackMax
       ) {
         group.pending.add(comment.user_id);
@@ -254,7 +246,7 @@ const numeric = (value: unknown, max: number): value is number =>
 /** Server-only, request-scoped admin facts. This does not evaluate, rank, mutate,
  * publish or call providers. No private profile payloads are fetched or returned. */
 export async function readAdminSubmissionAnalytics(
-  service: Pick<PortalService, "db" | "staff" | "settings">,
+  service: Pick<PortalService, "db" | "staff" | "settings" | "now">,
 ): Promise<AdminSubmissionAnalyticsResult> {
   // Do not accept client roles or reuse a stale list actor; staff resolves current
   // permission/removal state before any private collection read.
@@ -321,12 +313,22 @@ export async function readAdminSubmissionAnalytics(
     group.push(row.rating);
     humans.set(row.project_id, group);
   }
+  const snapshot = await one<{
+    id: string;
+    policy_version: number;
+    source_revision: number;
+    created_at: string;
+    payload: string;
+  }>(
+    service.db,
+    "SELECT id,policy_version,source_revision,created_at,payload FROM result_snapshots ORDER BY created_at DESC,id LIMIT 1",
+  );
   const engagementScored =
     policy.projectEngagementRule === "score-with-approved-normalization";
   const engagementReady =
     engagementScored && qualificationBlockers(policy).length === 0;
   const counts = engagementReady
-    ? await engagement(service.db, policy)
+    ? await engagement(service.db, policy,service.now(),snapshot?.created_at||null)
     : new Map<string, Engagement>();
   const maxVotes = Math.max(
     0,
@@ -515,16 +517,6 @@ export async function readAdminSubmissionAnalytics(
       createdAt: null,
     });
   }
-  const snapshot = await one<{
-    id: string;
-    policy_version: number;
-    source_revision: number;
-    created_at: string;
-    payload: string;
-  }>(
-    service.db,
-    "SELECT id,policy_version,source_revision,created_at,payload FROM result_snapshots ORDER BY created_at DESC,id LIMIT 1",
-  );
   const frozenScores: AdminProjectScoreDTO[] = [];
   let frozen: AdminSubmissionAnalyticsDTO["frozen"] = null;
   if (snapshot) {

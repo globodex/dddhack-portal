@@ -3944,7 +3944,7 @@ export function Projects({
             data.engagement?.votingPaused ||
             data.engagement?.feedbackPaused) && (
             <p className="notice" role="status">
-              {data.engagement?.votingWindow?.message || "Voting is not currently open."} Public feedback remains available.
+              {data.engagement?.votingWindow?.message || "Voting is not currently open."} {data.engagement?.feedbackWindow?.message || "Feedback opens after submissions close."}
             </p>
           )}
           <section id="comments" aria-labelledby="project-comments-heading">
@@ -4081,7 +4081,7 @@ export function Projects({
       {(listing.engagement?.votingPaused ||
         listing.engagement?.feedbackPaused) && (
         <p className="notice" role="status">
-          {listing.engagement?.votingWindow?.message || "Voting is not currently open."} Public feedback remains available.
+          {listing.engagement?.votingWindow?.message || "Voting is not currently open."} {listing.engagement?.feedbackWindow?.message || "Feedback opens after submissions close."}
         </p>
       )}
       {board && (
@@ -6385,7 +6385,7 @@ export function Settings({
             run={run}
           />
         )}
-        <p className="owner-ai-note">Voting opens and closes with participant submissions. Public feedback remains open.</p>
+        <p className="owner-ai-note">Voting follows the submission window. Participant feedback opens after submissions close; admins can post anytime.</p>
       </div>
       <div {...panel("results")}>
         {data.me?.owner && <OwnerPolicyControls data={data} run={run} />}
@@ -6688,6 +6688,13 @@ export default function Portal({
     window.addEventListener("portal-submission-refresh", refresh);
     return () => { stopped = true; clearInterval(poll); if (boundaryTimer) clearTimeout(boundaryTimer); window.removeEventListener("portal-submission-refresh", refresh); };
   }, [path, data.me?.id, data.submissionAccess?.serverNow, data.submissionAccess?.opensAt, data.submissionAccess?.closesAt, data.submissionAccess?.adminSubmissionTest]);
+  useEffect(()=>{
+    if(!path.startsWith('/projects/'))return;
+    let stopped=false;const refresh=()=>{if(!stopped&&document.visibilityState==='visible'&&!actionBusy.current&&!loadAbort.current)void load()};
+    const now=Date.parse(data.engagement?.votingWindow?.serverNow||''),next=[data.engagement?.votingWindow?.opensAt,data.engagement?.votingWindow?.closesAt,data.engagement?.feedbackWindow?.opensAt].map(value=>Date.parse(value||'')).filter(value=>Number.isFinite(value)&&value>now).sort((a,b)=>a-b)[0];
+    const timer=Number.isFinite(now)&&next?setTimeout(refresh,Math.min(2147483647,Math.max(1,next-now+20))):undefined;
+    const poll=setInterval(refresh,15000);window.addEventListener('focus',refresh);return()=>{stopped=true;if(timer)clearTimeout(timer);clearInterval(poll);window.removeEventListener('focus',refresh)};
+  },[path,data.me?.id,data.engagement?.votingWindow?.serverNow,data.engagement?.votingWindow?.opensAt,data.engagement?.votingWindow?.closesAt,data.engagement?.feedbackWindow?.opensAt]);
   useEffect(() => {
     if (data.submissionAccess?.contentHidden === true) setSubmissionSuccess(null);
   }, [data.submissionAccess?.contentHidden]);

@@ -78,6 +78,10 @@
     {
       "name": "0113_submission_vote_window.sql",
       "checksum": "b2b87547c29ba39951706f4c7d572fca0f9fa6ce0992ae470a4f895c798cdd82"
+    },
+    {
+      "name": "0114_post_submission_feedback.sql",
+      "checksum": "3fde80ab7f197b0d7851210ec2ec3530eb70e3026b188c6b066a05e245771958"
     }
   ],
   "hostedRead": false,

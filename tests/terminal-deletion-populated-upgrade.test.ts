@@ -24,7 +24,7 @@ const approval = JSON.parse(
   ),
 ) as UpgradeBaseline;
 const feature = "0105_terminal_record_deletion.sql",
-  digest = "3624c82a7dc7026b5db4179dc021e5d88d33c66bafab35c4916c5a476e04293b";
+  digest = "7237ebe292938f17c8e51373b700cc12e4e8ce01f611e329ba76fc140305c92c";
 const now = new Date("2026-10-24T22:00:00.000Z"),
   confirmation = {
     backupCheckpoint: "synthetic-0105-verified-restore",
@@ -113,7 +113,7 @@ for (const encoding of ["lf", "crlf"] as const)
                 "0109_owner_ai_model_usage.sql",
         "0110_admin_submission_access.sql",
         "0111_admin_missing_team_idea.sql",
-        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql",
+        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql", "0114_post_submission_feedback.sql",
               ]
             : [
                 feature,
@@ -123,7 +123,7 @@ for (const encoding of ["lf", "crlf"] as const)
                 "0109_owner_ai_model_usage.sql",
         "0110_admin_submission_access.sql",
         "0111_admin_missing_team_idea.sql",
-        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql",
+        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql", "0114_post_submission_feedback.sql",
               ];
         assert.deepEqual(receipt.pending, pending);
         assert.equal(receipt.planDigest, digest);

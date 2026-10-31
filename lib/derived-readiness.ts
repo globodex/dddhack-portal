@@ -61,12 +61,8 @@ export function deriveOperational(
 /** Actual scoring configuration only. Never resolves missing rules or supplies weights. */
 export function deriveScorePolicyBlockers(policy: Policy): string[] {
   const blockers: string[] = [];
-  if (policy.projectEngagementRule === "score-with-approved-normalization" && (
-    !windowValid(policy.engagementOpen, policy.engagementClose) ||
-    !Number.isFinite(timestamp(policy.ideaReveal)) ||
-    timestamp(policy.engagementOpen) < timestamp(policy.ideaReveal)
-  ))
-    blockers.push("valid engagement window");
+  if (policy.projectEngagementRule === "score-with-approved-normalization" && !windowValid(policy.submissionOpen,policy.submissionClose))
+    blockers.push("valid submission window");
   if (
     !textPresent(policy.diversityRubric) ||
     policy.diversityAssessment !== "non-demographic-evidence"

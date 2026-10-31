@@ -260,6 +260,13 @@
       "when": 1793440800001,
       "tag": "0036_submission_vote_window",
       "breakpoints": true
+    },
+    {
+      "idx": 37,
+      "version": "6",
+      "when": 1793440800002,
+      "tag": "0037_post_submission_feedback",
+      "breakpoints": true
     }
   ]
 }

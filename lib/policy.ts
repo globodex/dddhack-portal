@@ -193,7 +193,7 @@ export function qualificationBlockers(p: Policy): string[] {
   return deriveScorePolicyBlockers(p).filter((b) =>
     [
       "engagement qualification rules",
-      "valid engagement window",
+      "valid submission window",
       "feedback limits",
     ].includes(b),
   );

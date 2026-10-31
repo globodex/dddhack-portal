@@ -77,7 +77,7 @@ for (const encoding of ["lf", "crlf"] as const) {
         baseline,
         target,
       );
-      assert.equal(repeat.ledger.length, 19);
+      assert.equal(repeat.ledger.length, 20);
       assert.deepEqual(repeat.pending, []);
       assert.deepEqual(
         (

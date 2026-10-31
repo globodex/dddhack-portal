@@ -1,3 +1,4 @@
+import {engagementScoringCohort,inScoringCohort} from './engagement-cohort';
 import { feedbackLength } from "./feedback-length";
 import { auditReason } from "./security";
 import { z } from "zod";
@@ -17,6 +18,8 @@ export async function qualifiedEngagement(
   policy: Policy,
   projectId: string,
   versionId: string,
+  asOf:string,
+  frozenAt?:string|null,
 ) {
   demand(
     qualificationBlockers(policy).length === 0,
@@ -25,13 +28,10 @@ export async function qualifiedEngagement(
     "Scored engagement qualification is not confirmed. Public upvotes and comments remain separate.",
   );
   const rules = policy.engagementQualification!;
-  const votes = await one<{ n: number }>(
-    db,
-    `SELECT count(*) n FROM project_upvotes v JOIN projects p ON p.id=v.project_id WHERE v.project_id=? AND v.created_at>=? AND v.created_at<? AND ${audienceSQL(rules.voters, "v")}`,
-    projectId,
-    policy.engagementOpen,
-    policy.engagementClose,
-  );
+  const freeze=frozenAt===undefined?(await one<{created_at:string}>(db,'SELECT created_at FROM result_snapshots ORDER BY created_at,id LIMIT 1'))?.created_at||null:frozenAt;
+  const cohort=engagementScoringCohort(policy,asOf,freeze);demand(cohort.configured,409,'ENGAGEMENT_SCORING_NOT_CONFIGURED','A valid submission window is required for scored engagement.');
+  let voteCount=0,voterCursor='';
+  for(;;){const page=await rows<{user_id:string;created_at:string}>(db,`SELECT v.user_id,v.created_at FROM project_upvotes v JOIN projects p ON p.id=v.project_id WHERE v.project_id=? AND v.user_id>? AND ${audienceSQL(rules.voters,'v')} ORDER BY v.user_id LIMIT 200`,projectId,voterCursor);voteCount+=page.filter(vote=>inScoringCohort(vote.created_at,cohort.votes)).length;if(page.length<200)break;voterCursor=page.at(-1)!.user_id;}
   const validAuthors = new Set<string>(),
     pendingAuthors = new Set<string>(),
     countedBodies = new Set<string>();
@@ -47,17 +47,16 @@ export async function qualifiedEngagement(
       body_hash: string | null;
     }>(
       db,
-      `SELECT c.id,c.created_at,c.author_id user_id,c.body,q.qualified,q.body_hash FROM project_comments c JOIN projects p ON p.id=c.project_id LEFT JOIN project_feedback_reviews q ON q.rowid=(SELECT max(last.rowid) FROM project_feedback_reviews last WHERE last.comment_id=c.id AND last.version_id=? AND last.rule_version=?) WHERE c.project_id=? AND (c.created_at>? OR (c.created_at=? AND c.id>?)) AND c.created_at>=? AND c.created_at<? AND ${audienceSQL(rules.feedbackAuthors, "c").replaceAll("c.user_id", "c.author_id")} ORDER BY c.created_at,c.id LIMIT 200`,
+      `SELECT c.id,c.created_at,c.author_id user_id,c.body,q.qualified,q.body_hash FROM project_comments c JOIN projects p ON p.id=c.project_id LEFT JOIN project_feedback_reviews q ON q.rowid=(SELECT max(last.rowid) FROM project_feedback_reviews last WHERE last.comment_id=c.id AND last.version_id=? AND last.rule_version=?) WHERE c.project_id=? AND (c.created_at>? OR (c.created_at=? AND c.id>?)) AND ${audienceSQL(rules.feedbackAuthors, "c").replaceAll("c.user_id", "c.author_id")} ORDER BY c.created_at,c.id LIMIT 200`,
       versionId,
       rules.version,
       projectId,
       cursorTime,
       cursorTime,
       cursor,
-      policy.engagementOpen,
-      policy.engagementClose,
     );
     for (const c of comments) {
+      if(!inScoringCohort(c.created_at,cohort.feedback))continue;
       const hash = await sha256(c.body);
       if (c.qualified === 0 && c.body_hash === hash) continue;
       if (c.qualified !== 1 || c.body_hash !== hash) {
@@ -89,7 +88,7 @@ export async function qualifiedEngagement(
     cursorTime = comments.at(-1)!.created_at;
   }
   return {
-    votes: Number(votes?.n || 0),
+    votes: voteCount,
     feedback: validAuthors.size,
     pendingFeedback: [...pendingAuthors].filter((id) => !validAuthors.has(id))
       .length,

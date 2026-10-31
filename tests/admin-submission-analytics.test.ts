@@ -153,6 +153,7 @@ test("staff authorization precedes collection SQL and removed or downgraded staf
       staff: async () => {
         throw Object.assign(new Error("Denied"), { code: "ADMIN_REQUIRED" });
       },
+      now:()=>{throw new Error('Unauthorized clock read');},
       settings: async () => {
         throw new Error("No settings read");
       },
@@ -448,6 +449,7 @@ for (const engine of ["sqlite", "postgres"] as const)
     try {
       const scored = {
         ...policy,
+        submissionClose:"2026-11-01T05:00:00.000Z",
         engagementOpen: "2026-11-01T04:00:00.000Z",
         projectEngagementRule: "score-with-approved-normalization" as const,
         engagementQualification: {
@@ -465,10 +467,10 @@ for (const engine of ["sqlite", "postgres"] as const)
           JSON.stringify({...scored,submissionClose:"2026-11-01T13:00:00.000Z"}),
         ],
         ["UPDATE reviews SET codex=2.5 WHERE team_id='fake_team3'"],
-        ["INSERT INTO project_upvotes VALUES('p1','fake_bob',?)", time],
-        ["INSERT INTO project_upvotes VALUES('p1','fake_carol',?)", time],
-        ["INSERT INTO project_upvotes VALUES('p2','fake_alice',?)", time],
-        ["INSERT INTO project_upvotes VALUES('p1','fake_alice',?)", time],
+        ["INSERT INTO project_upvotes VALUES('p1','fake_bob',?)", "2026-11-01T04:59:00.000Z"],
+        ["INSERT INTO project_upvotes VALUES('p1','fake_carol',?)", "2026-11-01T04:59:00.000Z"],
+        ["INSERT INTO project_upvotes VALUES('p2','fake_alice',?)", "2026-11-01T04:59:00.000Z"],
+        ["INSERT INTO project_upvotes VALUES('p1','fake_alice',?)", "2026-11-01T04:59:00.000Z"],
         [
           "INSERT INTO project_upvotes VALUES('p1','fake_dave','2026-11-01T12:00:00.000Z')",
         ],
@@ -486,7 +488,7 @@ for (const engine of ["sqlite", "postgres"] as const)
             "INSERT INTO project_comments VALUES(?,'p1','fake_bob',?,?)",
             id,
             text,
-            time,
+            "2026-11-01T05:30:00.000Z",
           ],
           [
             "INSERT INTO project_feedback_reviews VALUES(?,?,'p1_v1',2,1,?,'fake_admin','Synthetic qualification',?)",
@@ -500,12 +502,12 @@ for (const engine of ["sqlite", "postgres"] as const)
       statements.push(
         [
           "INSERT INTO project_comments VALUES('pending','p1','fake_bob','Unreviewed but same valid author',?)",
-          time,
+          "2026-11-01T05:30:00.000Z",
         ],
         [
           "INSERT INTO project_comments VALUES('bad-hash','p2','fake_eve',?,?)",
           text,
-          time,
+          "2026-11-01T05:30:00.000Z",
         ],
         [
           "INSERT INTO project_feedback_reviews VALUES('q-bad','bad-hash','p2_v1',2,1,'not-the-body-hash','fake_admin','Synthetic mismatch',?)",
@@ -528,7 +530,7 @@ for (const engine of ["sqlite", "postgres"] as const)
         queries < 25,
         `Bounded bulk queries including fresh actor: ${queries}`,
       );
-      const canonical = await qualifiedEngagement(f.db, scored, "p1", "p1_v1");
+      const canonical = await qualifiedEngagement(f.db, scored, "p1", "p1_v1",time);
       assert.deepEqual(canonical, {
         votes: 2,
         feedback: 1,
@@ -600,6 +602,7 @@ test("concurrent scoring revision or policy change fails cleanly instead of retu
         db: wrapped,
         staff: real.staff.bind(real),
         settings: real.settings.bind(real),
+        now:real.now.bind(real),
       }),
       { code: "ANALYTICS_CHANGED_REFRESH" },
     );
@@ -639,6 +642,7 @@ test("bulk query count does not grow per project and canonical complete componen
       db: measured,
       staff: service.staff.bind(service),
       settings: service.settings.bind(service),
+      now:service.now.bind(service),
     };
     await readAdminSubmissionAnalytics(reader);
     const small = queryCount;

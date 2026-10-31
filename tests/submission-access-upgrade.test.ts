@@ -39,7 +39,7 @@ for (const encoding of ["lf", "crlf"] as const)
       assert.deepEqual(receipt.pending, [
         "0110_admin_submission_access.sql",
         "0111_admin_missing_team_idea.sql",
-        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql",
+        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql", "0114_post_submission_feedback.sql",
       ]);
       assert.deepEqual(await f.snapshot(), before);
       const definitions = () =>
@@ -94,7 +94,7 @@ for (const encoding of ["lf", "crlf"] as const)
       assert.deepEqual(applied.applied, [
         "0110_admin_submission_access.sql",
         "0111_admin_missing_team_idea.sql",
-        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql",
+        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql", "0114_post_submission_feedback.sql",
       ]);
       const after = await f.snapshot();
       for (const [table, rows] of Object.entries(before))
@@ -110,7 +110,7 @@ for (const encoding of ["lf", "crlf"] as const)
         baseline,
         target,
       );
-      assert.equal(repeat.ledger.length, 19);
+      assert.equal(repeat.ledger.length, 20);
       assert.deepEqual(repeat.pending, []);
     } finally {
       await f.pool.end();

@@ -104,6 +104,9 @@ export async function seedRichVisual(db: any) {
         now,
       )
       .all();
+    // Seed a legitimate historical closed-window comment, then reopen the disposable
+    // visual window for vote/form previews. No production bypass marker is used.
+    await db.prepare("UPDATE event_settings SET policy=? WHERE id=1").bind(JSON.stringify({...policy,submissionClose:now})).all();
     await db
       .prepare(
         "INSERT INTO project_comments(id,project_id,author_id,body,created_at) VALUES(?,?,?,?,?)",
@@ -116,6 +119,7 @@ export async function seedRichVisual(db: any) {
         now,
       )
       .all();
+    await db.prepare("UPDATE event_settings SET policy=? WHERE id=1").bind(JSON.stringify(policy)).all();
     await db
       .prepare(
         "INSERT INTO project_upvotes(project_id,user_id,created_at) VALUES(?,?,?)",

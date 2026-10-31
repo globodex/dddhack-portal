@@ -728,7 +728,7 @@ export class PortalExperience {
       const me = this.s.identity ? await this.s.actor() : undefined;
       const engagement = await engagementState(this.s);
       if (me && !me.deactivated && (me.owner || me.role === "admin"))
-        engagement.feedbackPaused = false;
+        {engagement.feedbackPaused = false;engagement.feedbackWindow={...engagement.feedbackWindow,allowed:true,message:'Admin feedback is available anytime.'};}
       const ownTeam = me ? await this.team(me.id) : undefined;
       const ownAttendance = me
         ? (await personStatus(this.s, me.id)).checkedIn
@@ -2179,8 +2179,9 @@ export class PortalExperience {
     if (action === "upvote-project" || action === "comment-project") {
       const engagement = await engagementState(this.s);
       if (!actor.deactivated && (actor.owner || actor.role === "admin"))
-        engagement.feedbackPaused = false;
+        {engagement.feedbackPaused = false;engagement.feedbackWindow={...engagement.feedbackWindow,allowed:true,message:'Admin feedback is available anytime.'};}
       if (action === "upvote-project") demand(!engagement.votingPaused, 409, "VOTING_CLOSED", engagement.votingWindow.message);
+      else demand(!engagement.feedbackPaused,409,'FEEDBACK_NOT_OPEN',engagement.feedbackWindow.message);
       const d = z
           .object({
             projectId: id,
@@ -2217,7 +2218,7 @@ export class PortalExperience {
         p.id,
         action === "upvote-project"
           ? [
-              ["INSERT INTO write_guards VALUES(?,CASE WHEN EXISTS(SELECT 1 FROM event_settings WHERE id=1 AND active=1 AND version=?) THEN 1 ELSE 0 END)",voteGuard,engagement.settingsVersion],
+              ["INSERT INTO write_guards VALUES(?,CASE WHEN EXISTS(SELECT 1 FROM event_settings WHERE id=1 AND version=?) THEN 1 ELSE 0 END)",voteGuard,engagement.settingsVersion],
               ["DELETE FROM write_guards WHERE token=?",voteGuard],
               d.voted === false
                 ? ["DELETE FROM project_upvotes WHERE project_id=? AND user_id=?", p.id, actor.id]

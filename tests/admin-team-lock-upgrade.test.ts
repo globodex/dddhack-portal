@@ -60,7 +60,7 @@ for (const encoding of ["lf", "crlf"] as const) {
         "0109_owner_ai_model_usage.sql",
         "0110_admin_submission_access.sql",
         "0111_admin_missing_team_idea.sql",
-        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql",
+        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql", "0114_post_submission_feedback.sql",
       ]);
       assert.deepEqual(await f.snapshot(), before);
       const applied = await applyPopulatedUpgrade(
@@ -77,7 +77,7 @@ for (const encoding of ["lf", "crlf"] as const) {
         "0109_owner_ai_model_usage.sql",
         "0110_admin_submission_access.sql",
         "0111_admin_missing_team_idea.sql",
-        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql",
+        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql", "0114_post_submission_feedback.sql",
       ]);
       const after = await f.snapshot();
       assert.deepEqual(stripLedger(after), stripLedger(before));
@@ -91,7 +91,7 @@ for (const encoding of ["lf", "crlf"] as const) {
         baseline,
         target,
       );
-      assert.equal(repeat.ledger.length, 19);
+      assert.equal(repeat.ledger.length, 20);
       assert.deepEqual(repeat.pending, []);
       assert.deepEqual(
         (

@@ -25,7 +25,7 @@ const approval: UpgradeBaseline = JSON.parse(
   ),
 );
 const digest =
-  "3624c82a7dc7026b5db4179dc021e5d88d33c66bafab35c4916c5a476e04293b";
+  "7237ebe292938f17c8e51373b700cc12e4e8ce01f611e329ba76fc140305c92c";
 const feature = "0106_admin_team_unlock.sql";
 const now = new Date("2026-10-25T18:00:00.000Z");
 const confirmation = {
@@ -122,7 +122,7 @@ for (const encoding of ["lf", "crlf"] as const)
                 "0109_owner_ai_model_usage.sql",
         "0110_admin_submission_access.sql",
         "0111_admin_missing_team_idea.sql",
-        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql",
+        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql", "0114_post_submission_feedback.sql",
               ]
             : [
                 "0104_admin_team_corrections.sql",
@@ -133,7 +133,7 @@ for (const encoding of ["lf", "crlf"] as const)
                 "0109_owner_ai_model_usage.sql",
         "0110_admin_submission_access.sql",
         "0111_admin_missing_team_idea.sql",
-        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql",
+        "0112_continuous_engagement.sql", "0113_submission_vote_window.sql", "0114_post_submission_feedback.sql",
               ];
         assert.deepEqual(receipt.pending, pending);
         assert.equal(receipt.planDigest, digest);

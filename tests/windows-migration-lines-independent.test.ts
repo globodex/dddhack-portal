@@ -22,7 +22,7 @@ const approvalPath =
   "evidence/neon-host-archive/historical-ledger-checksums.json";
 const baseline = JSON.parse(readFileSync(join(root, approvalPath), "utf8"));
 const expectedDigest =
-  "3624c82a7dc7026b5db4179dc021e5d88d33c66bafab35c4916c5a476e04293b";
+  "7237ebe292938f17c8e51373b700cc12e4e8ce01f611e329ba76fc140305c92c";
 const sqlPaths = [
   "neon/migrations/0000_compatibility.sql",
   "neon/migrations/0001_portal.sql",
@@ -43,6 +43,7 @@ const sqlPaths = [
   "neon/migrations/0111_admin_missing_team_idea.sql",
   "neon/migrations/0112_continuous_engagement.sql",
   "neon/migrations/0113_submission_vote_window.sql",
+  "neon/migrations/0114_post_submission_feedback.sql",
 ];
 const sha = (value: Uint8Array | string) =>
   createHash("sha256").update(value).digest("hex");
@@ -120,7 +121,7 @@ function crlf(cwd: string) {
 
 test("independent Windows source: approved LF plan is nineteen exact HEAD blobs and keeps the published digest", async () => {
   const plan = await loadMigrationPlan();
-  assert.equal(plan.length, 19);
+  assert.equal(plan.length, 20);
   assert.equal(verifyUpgradePlan(plan, baseline), expectedDigest);
   assert.deepEqual(
     plan.map(({ name, checksum }) => ({ name, checksum })),
@@ -153,7 +154,7 @@ test("independent Windows repair: check is read-only, exact CRLF repair preserve
     assert.equal(check.status, 2, check.stderr);
     const checked = JSON.parse(check.stdout);
     assert.equal(checked.repairNeeded, true);
-    assert.equal(checked.sourceFiles, 19);
+    assert.equal(checked.sourceFiles, 20);
     assert.equal(checked.databaseConnected, false);
     assert.deepEqual(
       sqlPaths.map((path) => readFileSync(join(f.cwd, path))),
@@ -285,10 +286,10 @@ test("independent Windows source: actual CRLF loader and offline CLI reject; str
     assert.equal(verifyUpgradePlan(before, baseline), expectedDigest);
     crlf(f.cwd);
     const changed = await planAt(f.cwd);
-    assert.equal(changed.length, 19);
+    assert.equal(changed.length, 20);
     assert.equal(
       changed.filter((item, i) => item.checksum !== before[i].checksum).length,
-      19,
+      20,
     );
     assert.throws(() => verifyUpgradePlan(changed, baseline), {
       code: "UPGRADE_SOURCE_PLAN_MISMATCH",
@@ -334,7 +335,7 @@ test("independent Windows source: missing, extra, reordered, BOM and literal-edi
     });
 });
 
-test("independent Windows checkout: autocrlf=true still checks out only the nineteen pinned migration paths as canonical LF", () => {
+test("independent Windows checkout: autocrlf=true still checks out only the twenty pinned migration paths as canonical LF", () => {
   const f = fixture();
   try {
     assert.ok(

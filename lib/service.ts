@@ -1,5 +1,6 @@
+import {engagementScoringCohort,inScoringCohort} from './engagement-cohort';
 import {runEvaluationJob} from "./evaluation-runner";
-import {communityVotingWindow} from "./community-window";
+import {communityVotingWindow,communityFeedbackWindow} from "./community-window";
 import { freezeReadiness, freezePreviewToken, previewResultFreeze } from "./result-freeze";
 import { feedbackLengthValid } from "./feedback-length";
 import { projectMediaPolicy } from "./project-media-policy";
@@ -1305,16 +1306,15 @@ export class PortalService {
       case "feedback": {
         await this.unfrozen();
         const s = await this.settings(true);
-        if (action === "vote") {const window=communityVotingWindow(s.active===1?s.policy:{},this.now());demand(window.allowed,409,"VOTING_CLOSED",window.message);}
+        if (action === "vote") {const window=communityVotingWindow(s.policy,this.now());demand(window.allowed,409,"VOTING_CLOSED",window.message);}
         const staffFeedback = action === "feedback" && !actor.deactivated && (actor.owner || actor.role === "admin");
         const u = staffFeedback ? actor : await this.approved();
         const d = z
           .object({ teamId: id, text: z.string().optional() })
           .parse(data);
         if (action === "feedback" && !staffFeedback) demand(
-          s.policy.engagementOpen && s.policy.engagementClose &&
-          this.now() >= s.policy.engagementOpen && this.now() < s.policy.engagementClose,
-          409, "ENGAGEMENT_CLOSED",
+          communityFeedbackWindow(s.policy,this.now()).allowed,
+          409, "FEEDBACK_NOT_OPEN", "Feedback opens after submissions close.",
         );
         if (!staffFeedback) demand(
           await one(
@@ -1737,6 +1737,8 @@ export class PortalService {
   }
   async compute(allowUnresolvedTies = false) {
     const s = await this.live();
+    const frozenAt=(await one<{created_at:string}>(this.db,'SELECT created_at FROM result_snapshots ORDER BY created_at,id LIMIT 1'))?.created_at||null;
+    const asOf=this.now(),cohort=engagementScoringCohort(s.policy,asOf,frozenAt);
     const versions = await rows<Version>(
       this.db,
       "SELECT v.* FROM submission_versions v WHERE attempt=(SELECT MAX(attempt) FROM submission_versions WHERE team_id=v.team_id)",
@@ -1811,20 +1813,10 @@ export class PortalService {
           "SCORE_COVERAGE_INCOMPLETE",
         );
       }
-      const voteCount = Number(
-        (await one<{ n: number }>(
-          this.db,
-          "SELECT count(*) n FROM votes v JOIN users u ON u.id=v.voter_id JOIN registrations r ON r.email=u.email JOIN check_ins c ON c.user_id=u.id WHERE v.team_id=? AND r.status='approved' AND NOT EXISTS(SELECT 1 FROM memberships m WHERE m.user_id=v.voter_id AND m.team_id=v.team_id)",
-          t.id,
-        ))!.n,
-      );
-      const feedbackCount = Number(
-        (await one<{ n: number }>(
-          this.db,
-          "SELECT count(*) n FROM feedback f JOIN users u ON u.id=f.author_id JOIN registrations r ON r.email=u.email JOIN check_ins c ON c.user_id=u.id WHERE f.team_id=? AND f.valid=1 AND r.status='approved' AND NOT EXISTS(SELECT 1 FROM memberships m WHERE m.user_id=f.author_id AND m.team_id=f.team_id)",
-          t.id,
-        ))!.n,
-      );
+      const legacyVotes=await rows<{created_at:string}>(this.db,"SELECT v.created_at FROM votes v JOIN users u ON u.id=v.voter_id JOIN registrations r ON r.email=u.email JOIN check_ins c ON c.user_id=u.id WHERE v.team_id=? AND r.status='approved' AND NOT EXISTS(SELECT 1 FROM memberships m WHERE m.user_id=v.voter_id AND m.team_id=v.team_id)",t.id);
+      const voteCount=legacyVotes.filter(row=>inScoringCohort(row.created_at,cohort.votes)).length;
+      const legacyFeedback=await rows<{updated_at:string}>(this.db,"SELECT f.updated_at FROM feedback f JOIN users u ON u.id=f.author_id JOIN registrations r ON r.email=u.email JOIN check_ins c ON c.user_id=u.id WHERE f.team_id=? AND f.valid=1 AND r.status='approved' AND NOT EXISTS(SELECT 1 FROM memberships m WHERE m.user_id=f.author_id AND m.team_id=f.team_id)",t.id);
+      const feedbackCount=legacyFeedback.filter(row=>inScoringCohort(row.updated_at,cohort.feedback)).length;
       const revisedCounts =
         revisedProject &&
         review.eligibility === "eligible" &&
@@ -1834,6 +1826,8 @@ export class PortalService {
               s.policy,
               revisedProject.id,
               v.id,
+              asOf,
+              frozenAt,
             )
           : undefined;
       demand(

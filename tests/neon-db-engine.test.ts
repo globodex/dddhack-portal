@@ -51,6 +51,7 @@ test("PostgreSQL baseline installs every portal table/trigger and checksum migra
       ...stockTriggerNames,
       ...terminalTriggerNames,
       "community_submission_vote_window", "legacy_submission_vote_window",
+      "feedback_guard_update", "community_feedback_after_close", "community_feedback_after_close_update",
     ].filter(name => !["vote_window", "community_voting_paused", "legacy_voting_paused", "community_feedback_paused", "legacy_feedback_paused"].includes(name)).sort();
     assert.equal(tables.rows[0].count, logicalTables.length);
     const triggers = await engine.query<{ count: number }>(
