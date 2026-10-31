@@ -1,9 +1,9 @@
 {
-  "runtimeSource": "30cd91f6863d0cfd526f70ecd928a58e57c9ed57",
+  "runtimeSource": "e21e35e9bbded388ca9d73d73bbbeef143bd57a0",
   "runtime": "nodejs24",
   "source": "neon/api.ts",
-  "zipBytes": 9051660,
-  "sha256": "322a91a1bce0003ac487572c61a03bd73d558cf4c770aebf57c4eb941a5fd6f8",
+  "zipBytes": 9053041,
+  "sha256": "b57ceb8bf9e2a11806e85f3f337af3a915b130ad28f2c98bfc4bc0c534041dc4",
   "env": {},
   "warnings": [],
   "buildOnly": true,
@@ -14,13 +14,14 @@
   "candidateOnly": true,
   "productionReady": false,
   "deploymentBlockers": [
-    "GitHub public-read authentication transport approval and implementation",
-    "Owner-configured native schedule and provider readiness"
+    "Owner-managed optional GitHub token setup and hosted verification",
+    "Owner-configured native schedule and provider readiness",
+    "Design/publication approval and unresolved scoring decisions"
   ],
-  "indexSha256": "c9747fe4902e2a117d9ba466826bea06b25e2e53bf4b766a51b492f509bad4c8",
-  "indexBytes": 1777060,
+  "indexSha256": "4c5983625f62815215ada6eff1562eb4ac99f01b4982d6bcd74f619800218fb8",
+  "indexBytes": 1780265,
   "fileCount": 93,
-  "uncompressedBytes": 21277937,
+  "uncompressedBytes": 21281142,
   "nativeFiles": [
     {
       "path": "node_modules/@img/sharp-libvips-linux-arm64/lib/libvips-cpp.so.8.18.7",
@@ -37,13 +38,13 @@
   ],
   "nativeArchitecture": "Linux ARM64 glibc",
   "canonicalPlanDigest": "3624c82a7dc7026b5db4179dc021e5d88d33c66bafab35c4916c5a476e04293b",
-  "previousArchiveSha256": "2ef518541ab8d6b17f2da7d2e755ffd72ee944e0ebf167e35c06bafff94ff790",
+  "previousArchiveSha256": "322a91a1bce0003ac487572c61a03bd73d558cf4c770aebf57c4eb941a5fd6f8",
   "changedArchiveEntries": [
     "index.mjs"
   ],
   "unchangedArchiveEntryCount": 92,
-  "graphInputCount": 896,
-  "graphApplicationInputCount": 112,
+  "graphInputCount": 898,
+  "graphApplicationInputCount": 114,
   "graphRecomputed": true,
   "archiveIndexBytesIdentical": true,
   "applicationInputsMatchExactGitSnapshot": true,
@@ -51,8 +52,8 @@
   "fileManifest": [
     {
       "path": "index.mjs",
-      "bytes": 1777060,
-      "sha256": "c9747fe4902e2a117d9ba466826bea06b25e2e53bf4b766a51b492f509bad4c8"
+      "bytes": 1780265,
+      "sha256": "4c5983625f62815215ada6eff1562eb4ac99f01b4982d6bcd74f619800218fb8"
     },
     {
       "path": "node_modules/@emnapi/runtime/dist/emnapi.cjs.js",
@@ -517,6 +518,10 @@
   ],
   "sourceInputs": [
     {
+      "path": "lib/repository-read-error.ts",
+      "sha256": "b6713b0c6182210fb54d51d23eda37e339efa70d8dca760eadf398b7154193d5"
+    },
+    {
       "path": "lib/db.ts",
       "sha256": "6f1db2f94aa83211cddf05851fc32053381f9f2b3bcbf133bac793ab410c1587"
     },
@@ -531,6 +536,10 @@
     {
       "path": "lib/identity.ts",
       "sha256": "2ad5f8400cb9b37b1b377da2303ecbbdce0ec672a3bbd578872dda170f22ef0e"
+    },
+    {
+      "path": "neon/ai/github-public.ts",
+      "sha256": "2a680b908fd35249cab659ea0eaf5a09df1f0ca93bffea04640bdf02203be1d2"
     },
     {
       "path": "lib/derived-readiness.ts",
@@ -566,7 +575,7 @@
     },
     {
       "path": "lib/evaluation-runner.ts",
-      "sha256": "d06bf80820670e00d1721bbeb0f1483f8f219d9f386fe007cd8a27c33e675cb1"
+      "sha256": "c3ba67b5480362a820d52c1f1574d7be8d5c5c015d862147273a692f8680d3fc"
     },
     {
       "path": "lib/repository-evidence.ts",
@@ -574,7 +583,7 @@
     },
     {
       "path": "neon/ai/repository-timing.ts",
-      "sha256": "8b6acd22b647a47d192b59077e22bc6b66c536529270d9132b9a55c4596b8902"
+      "sha256": "b6339c20c62f5824101d763d33fef61295c2b5dc130aee7fb0245bbb390d2e0e"
     },
     {
       "path": "neon/ai/input.ts",
@@ -586,15 +595,15 @@
     },
     {
       "path": "neon/ai/automatic-snapshot.ts",
-      "sha256": "90de9fee1b99e6b81ce283d40e3841a5bfb448a8f483d6c47407c0e809b38256"
+      "sha256": "ea5dd380c1ba1900e6474420fbfffbeef393bcdb595132af2f37708de6de63d2"
     },
     {
       "path": "neon/ai/automatic.ts",
-      "sha256": "5408ffaac3cd20d9bd1f6eb92798d9221464798395f42c962f4f06bbaf659573"
+      "sha256": "ca93d541cfeb50996cb46cb44c3f839ff3036d1f32fcd9f420c9a150a73e2d86"
     },
     {
       "path": "neon/ai/scheduled.ts",
-      "sha256": "d9b613e8a514a098b3f919c6edce625eb9f7978534c2db9b6c388f7635a236ab"
+      "sha256": "d80f10dc7eb39bb3a3b1b5970dfff734189252b59b5ab8314d8eed2b74c7c82d"
     },
     {
       "path": "lib/ai-model-catalog.ts",
@@ -770,7 +779,7 @@
     },
     {
       "path": "lib/project-evaluation-progress.ts",
-      "sha256": "ac84422462f95aaf531a4403f2008075853127d806be0614cbc92ef517552634"
+      "sha256": "55cc8f377972ebc96ab1f65d83647bfd8a7dee72d081c699dcc3b5eef9faeb7d"
     },
     {
       "path": "lib/private-project-index.ts",
@@ -962,11 +971,12 @@
     },
     {
       "path": "neon/api.ts",
-      "sha256": "f9b522e2c2a6d3ce3f8454ac1e5f5249dfc2b550df6165fb7c0a6802978e42da"
+      "sha256": "c31be3aee403d2f0734a46eeb094943457d2b08799e81e74920d67da7c8066a9"
     }
   ],
   "verification": "artifacts/neon/verification.json",
   "nativeARM64Execution": "unverified",
+  "offlineDependencyBuild": true,
   "hostSmokePassed": true,
   "hostSmokeOutboundAttempts": 0
 }
