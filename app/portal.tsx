@@ -3938,7 +3938,7 @@ export function Projects({
         <article className="project-detail">
           <ProjectBody project={p} publicView teamColorKey={p.teamColorKey} />
           <ProjectTeamMembers members={data.teamMembers} />
-          {p.result?.stage === "final" && typeof p.result.score === "number" ? <><p className="notice">Score {p.result.score}</p><ReleasedScoreBreakdown components={p.result.components} total={p.result.score}/></> : <p className="notice">Score hidden until the owner reveals scores.</p>}
+          {p.result?.stage === "final" && typeof p.result.score === "number" ? <><p className="notice">Score {p.result.score}</p><ReleasedScoreBreakdown components={p.result.components} total={p.result.score}/></> : null}
           {engagement(p)}
           {(p.engagementPaused ||
             data.engagement?.votingPaused ||
@@ -4152,11 +4152,12 @@ export function Projects({
           ))}
         {visibleProjects.map((p) => (
           <li
-            className="public-project-card"
+            className={`public-project-card${!board && p.result?.stage === "final" && Number.isInteger(p.result.position) && p.result.position >= 1 && p.result.position <= 10 ? ` showcase-ranked showcase-top-ten${p.result.position <= 3 ? ` showcase-podium showcase-place-${p.result.position}` : ""}` : ""}`}
             key={p.id}
             id={"entry-" + p.slug}
             style={projectMediaStyle(p.teamColorKey)}
           >
+            {!board && p.result?.stage === "final" && Number.isInteger(p.result.position) && p.result.position >= 1 && p.result.position <= 10 && <span className="showcase-rank-badge">{p.result.position <= 3 ? `${p.result.position === 1 ? "1st" : p.result.position === 2 ? "2nd" : "3rd"} place` : `Rank ${p.result.position} · Top 10`}</span>}
             {!board && p.banner && <a className="showcase-banner-link" href={`/projects/${p.slug}`} aria-label={`View ${p.projectName}`}><img className="showcase-card-banner" loading="lazy" decoding="async" src={p.banner} alt="" /></a>}
             <a className="project-row-link" href={`/projects/${p.slug}`}>
               <img
@@ -4178,7 +4179,7 @@ export function Projects({
                 aria-hidden="true"
               />
             </a>
-            {!board && <div className="showcase-card-score" aria-label="Project score">{p.result?.stage === "final" && typeof p.result.score === "number" && Number.isFinite(p.result.score) ? <><strong>{p.result.score}</strong><span>Total score</span></> : <><strong aria-hidden="true">— —</strong><span>Hidden until the owner reveals scores</span></>}</div>}
+            {!board && p.result?.stage === "final" && typeof p.result.score === "number" && Number.isFinite(p.result.score) && <div className="showcase-card-score" aria-label="Project score"><strong>{p.result.score}</strong><span>Total score</span></div>}
             <div className="public-project-card-actions">
               {board ? (
                 <div className="engagement">

@@ -462,7 +462,7 @@ for (const engine of ["sqlite", "postgres"] as const)
       await batch(f.db, [
         [
           "UPDATE event_settings SET policy=? WHERE id=1",
-          JSON.stringify(scored),
+          JSON.stringify({...scored,submissionClose:"2026-11-01T13:00:00.000Z"}),
         ],
         ["UPDATE reviews SET codex=2.5 WHERE team_id='fake_team3'"],
         ["INSERT INTO project_upvotes VALUES('p1','fake_bob',?)", time],
@@ -473,6 +473,8 @@ for (const engine of ["sqlite", "postgres"] as const)
           "INSERT INTO project_upvotes VALUES('p1','fake_dave','2026-11-01T12:00:00.000Z')",
         ],
       ]);
+      // Existing votes survive a later owner window adjustment; new writes still obey 0113.
+      await batch(f.db,[["UPDATE event_settings SET policy=? WHERE id=1",JSON.stringify(scored)]]);
       const text =
         "A detailed synthetic comment which meets the approved quality bounds.";
       const hash = await sha256(text);

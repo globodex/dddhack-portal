@@ -899,3 +899,10 @@
   .app-shell .public-project-list .project-directory-toolbar { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .app-shell .public-project-list .showcase-sort { width: 100%; }
 }
+.app-shell .public-project-list .public-project-card.showcase-ranked{position:relative;border:2px solid #b7b0ce;box-shadow:0 5px 20px #6552860c}
+.app-shell .public-project-list .showcase-rank-badge{display:block;align-self:flex-start;margin:14px 20px 0;padding:6px 11px;border-radius:100px;background:#eee8fa;color:#3f3157;font-size:12px;font-weight:750;line-height:1.4}
+.app-shell .public-project-list .public-project-card.showcase-podium{border-color:#bd9754;box-shadow:0 8px 30px #9b72251a}
+.app-shell .public-project-list .showcase-podium .showcase-rank-badge{background:#f5df9f;color:#4d390d;font-size:14px;padding:8px 14px}
+.app-shell .public-project-list .showcase-place-2 .showcase-rank-badge{background:#e5e9ed;color:#343f49}
+.app-shell .public-project-list .showcase-place-3 .showcase-rank-badge{background:#eed1b9;color:#553824}
+.app-shell .public-project-list .showcase-ranked .showcase-banner-link{margin-top:12px}
