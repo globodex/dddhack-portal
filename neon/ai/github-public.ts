@@ -34,8 +34,11 @@ export function createPublicGitHubReader(fetcher:typeof fetch,token?:string,now:
   const reader=response.body?.getReader();if(!reader)throw unavailable();let bytes=0,body='';const decoder=new TextDecoder();
   try{for(;;){const {value,done}=await reader.read();if(done)break;bytes+=value.byteLength;if(bytes>maxBytes)throw unavailable();body+=decoder.decode(value,{stream:true})}body+=decoder.decode()}catch{throw unavailable()}finally{await reader.cancel().catch(()=>{});reader.releaseLock()}
   let json:any;try{json=JSON.parse(body)}catch{throw unavailable()}
+  const link=response.headers.get('link')||'';
+  // Defense in depth if an upstream fixture/proxy echoes a credential, including base64 blobs.
+  if(token&&(body.includes(token)||JSON.stringify(json).includes(token)||link.includes(token)||target.url.pathname.includes('/git/blobs/')&&typeof json?.content==='string'&&json.encoding==='base64'&&Buffer.from(json.content,'base64').includes(Buffer.from(token))))throw unavailable();
   if(target.metadata){if(json?.private!==false)throw new RepositoryReadError({code:'GITHUB_PUBLIC_ONLY'});verified.add(target.base)}
-  return {value:json,link:response.headers.get('link')||''};
+  return {value:json,link};
  };
  return {read};
 }
