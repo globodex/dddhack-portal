@@ -1,0 +1,24 @@
+.public-home-shell #prizes{background:#fdfcf9}
+.prize-partners{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap;margin:0 auto 24px}
+.prize-partners img{display:block;object-fit:contain;width:128px;height:54px}.prize-partners img:last-child{width:80px;height:28px;margin:0 28px}.prize-partners>span{color:#626672;font-size:20px}
+.prize-intro{text-align:center;margin:0 0 28px;font-size:18px;color:var(--muted,#626672)}
+.prize-podium{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:end;max-width:1080px;margin:0 auto}
+.prize-place{position:relative;border:1px solid #e0ded5;border-radius:24px;padding:26px 24px 24px;background:linear-gradient(155deg,#fff,#ececf1);min-width:0;overflow-wrap:anywhere;box-shadow:0 10px 30px #24241608}
+.prize-place-1{grid-column:2;grid-row:1;background:linear-gradient(155deg,#fff7d5,#f1d681);border-color:#d7b953;padding-top:54px;min-height:370px}.prize-place-2{grid-column:1;grid-row:1;min-height:330px}.prize-place-3{grid-column:3;grid-row:1;background:linear-gradient(155deg,#fdf1e8,#e6bea0);border-color:#d0ac8f;min-height:310px}
+.prize-rank{display:flex;align-items:center;gap:8px;font-size:24px;font-weight:700}.prize-place h3{font-size:22px;margin:12px 0}.prize-pro{font-size:14px;line-height:1.6;max-width:28ch}.prize-place dl{display:grid;gap:10px;margin:22px 0 12px}.prize-place dl>div{display:flex;align-items:center;justify-content:space-between;gap:12px}.prize-place dt{font-size:13px}.prize-place dd{margin:0;font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}.prize-place>small{font-size:11px;color:#565447}
+.participant-credit-perks{max-width:1080px;margin:28px auto 0;border:1px solid #dedfd5;border-radius:22px;padding:24px;background:#f3f4ec}.participant-credit-perks h3{margin:0;font-size:20px}.participant-credit-perks>p{font-size:13px;color:var(--muted,#626672);margin:6px 0 20px}.participant-credit-perks ul{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0;padding:0;list-style:none}.participant-credit-perks li{display:flex;gap:12px;align-items:center;min-width:0}.participant-credit-perks strong{font-size:26px}.participant-credit-perks span{font-size:13px}.participant-credit-perks small{display:block;font-size:10px;margin-top:3px}
+.hero-brand-lockup .hero-exa-wordmark{width:56px;height:22px;object-fit:contain;margin-left:22px;margin-right:22px}
+@media(max-width:740px){.prize-partners{gap:16px;margin-bottom:16px}.prize-partners img{width:90px;height:38px}.prize-partners img:last-child{width:54px;height:20px;margin:0 20px}.prize-partners>span{font-size:16px}.prize-podium{grid-template-columns:1fr;gap:14px}.prize-place-1,.prize-place-2,.prize-place-3{grid-column:auto;grid-row:auto;min-height:0;padding:22px}.prize-place-1{order:0}.prize-place-2{order:1}.prize-place-3{order:2}.prize-place dl{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.prize-place dl>div{align-items:flex-start;flex-direction:column;gap:4px}.prize-pro{max-width:none}.participant-credit-perks ul{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.hero-brand-lockup .hero-exa-wordmark{width:42px;height:18px;margin:0 18px}}
+@media(prefers-reduced-motion:reduce){.prize-place{transform:none;transition:none;animation:none}}
+.public-home-shell #prizes .chapter-content{display:block}
+.public-home-shell #prizes .chapter-heading{margin-bottom:16px}
+.public-home-shell #prizes .chapter-heading h2{justify-content:center;font-size:clamp(48px,6vw,76px)}
+.prize-place dt,.prize-place dd{white-space:nowrap}
+.public-home-shell .home-hero .hero-brand-lockup img{flex:0 0 auto}
+@media(max-width:740px){
+ .public-home-shell .home-hero .hero-brand-lockup{gap:8px}
+ .public-home-shell .home-hero .hero-brand-lockup .hero-openai-wordmark{height:30px;width:auto}
+ .public-home-shell .home-hero .hero-brand-lockup .hero-cerebras-wordmark{height:34px;width:auto}
+ .public-home-shell .home-hero .hero-brand-lockup .hero-exa-wordmark{width:36px;height:18px;margin:0 10px}
+ .prize-partners{gap:8px}.prize-partners img{width:64px;height:30px}.prize-partners img:last-child{width:40px;height:18px;margin:0 12px}
+}

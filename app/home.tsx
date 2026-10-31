@@ -1,4 +1,5 @@
 "use client";
+import Prizes from "./prizes";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import {
   ArrowDown,
@@ -166,10 +167,11 @@ function Chapters({
   );
   return (
     <div className="chapter-stack" ref={root}>
+      <section id="prizes" className="chapter" style={{"--chapter-index":0} as CSSProperties}><div className="chapter-content">{heading(0,"Prizes")}<Prizes/></div></section>
       <section
         id="schedule"
         className="chapter"
-        style={{ "--chapter-index": 0 } as CSSProperties}
+        style={{ "--chapter-index": 1 } as CSSProperties}
       >
         <div className="chapter-content">
           {heading(0, "Schedule")}
@@ -199,7 +201,7 @@ function Chapters({
       <section
         id="venue"
         className="chapter"
-        style={{ "--chapter-index": 1 } as CSSProperties}
+        style={{ "--chapter-index": 2 } as CSSProperties}
       >
         <div className="chapter-content">
           {heading(1, "Venue")}
@@ -228,7 +230,7 @@ function Chapters({
       <section
         id="rules"
         className="chapter"
-        style={{ "--chapter-index": 2 } as CSSProperties}
+        style={{ "--chapter-index": 3 } as CSSProperties}
       >
         <div className="chapter-content">
           {heading(2, "Rules")}
@@ -252,7 +254,7 @@ function Chapters({
       <section
         id="faq"
         className="chapter"
-        style={{ "--chapter-index": 3 } as CSSProperties}
+        style={{ "--chapter-index": 4 } as CSSProperties}
       >
         <div className="chapter-content">
           {heading(3, "FAQ")}
@@ -369,6 +371,7 @@ export default function Home({
                 height={159}
                 decoding="async"
               />
+              <span className="hero-brand-separator" aria-hidden="true">×</span><img className="hero-exa-wordmark" src="/brand/exa-official-blue.svg" alt="Exa" width={56} height={22} decoding="async"/>
             </span>
           </p>
           <div className="hero-actions">

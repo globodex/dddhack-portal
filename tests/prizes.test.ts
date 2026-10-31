@@ -1,0 +1,7 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {createElement} from 'react';import {renderToStaticMarkup} from 'react-dom/server';import Prizes from '../app/prizes';import Home from '../app/home';import {readFileSync} from 'node:fs';
+test('prizes preserve conditional per-approved-member Pro and exact team versus participant credits',()=>{
+ const html=renderToStaticMarkup(createElement(Prizes));assert.equal((html.match(/Approved team members can receive/g)||[]).length,3);assert.equal((html.match(/1 year of ChatGPT Pro each/g)||[]).length,3);for(const amount of ['$1,000','$500','$250','$300','$200','$600','$400','$50','$100','$5'])assert.ok(html.includes(amount));assert.match(html,/Credit card required/);assert.equal((html.match(/API credits · team prize/g)||[]).length,3);assert.match(html,/For every participant/);assert.doesNotMatch(html,/guaranteed|expiry|expires|winner reveal/i);
+});
+test('prizes integrate before Schedule without changing navigation; Exa uses official local asset',()=>{
+ const html=renderToStaticMarkup(createElement(Home));assert.ok(html.indexOf('id="prizes"')<html.indexOf('id="schedule"'));assert.equal((html.match(/<img[^>]+src="\/brand\/exa-official-blue.svg"/g)||[]).length,2);assert.match(html,/hero-exa-wordmark/);const svg=readFileSync(new URL('../public/brand/exa-official-blue.svg',import.meta.url),'utf8');assert.match(svg,/viewBox="0 0 413 129"/);assert.doesNotMatch(svg,/<script|<foreignObject|onload=/i);
+});
